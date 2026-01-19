@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using TEdit.Configuration;
 using TEdit.Geometry;
 
 namespace TEdit.Terraria;
 
-public class Tile
+public class Tile : IEquatable<Tile>
 {
     public static readonly Tile Empty = new Tile();
 
@@ -60,6 +61,75 @@ public class Tile
     public object Clone()
     {
         return MemberwiseClone();
+    }
+
+    public override bool Equals(object obj)
+    {
+        return Equals(obj as Tile);
+    }
+
+    /// <summary>
+    /// Compares serialized tile properties. Ignores [NonSerialized] cache fields.
+    /// </summary>
+    public bool Equals(Tile other)
+    {
+        return other is not null &&
+               IsActive == other.IsActive &&
+               Type == other.Type &&
+               U == other.U &&
+               V == other.V &&
+               TileColor == other.TileColor &&
+               Wall == other.Wall &&
+               WallColor == other.WallColor &&
+               LiquidAmount == other.LiquidAmount &&
+               LiquidType == other.LiquidType &&
+               WireRed == other.WireRed &&
+               WireGreen == other.WireGreen &&
+               WireBlue == other.WireBlue &&
+               WireYellow == other.WireYellow &&
+               BrickStyle == other.BrickStyle &&
+               Actuator == other.Actuator &&
+               InActive == other.InActive &&
+               InvisibleBlock == other.InvisibleBlock &&
+               InvisibleWall == other.InvisibleWall &&
+               FullBrightBlock == other.FullBrightBlock &&
+               FullBrightWall == other.FullBrightWall;
+    }
+
+    public override int GetHashCode()
+    {
+        int hashCode = -1661845228;
+        hashCode = hashCode * -1521134295 + IsActive.GetHashCode();
+        hashCode = hashCode * -1521134295 + Type.GetHashCode();
+        hashCode = hashCode * -1521134295 + U.GetHashCode();
+        hashCode = hashCode * -1521134295 + V.GetHashCode();
+        hashCode = hashCode * -1521134295 + TileColor.GetHashCode();
+        hashCode = hashCode * -1521134295 + Wall.GetHashCode();
+        hashCode = hashCode * -1521134295 + WallColor.GetHashCode();
+        hashCode = hashCode * -1521134295 + LiquidAmount.GetHashCode();
+        hashCode = hashCode * -1521134295 + LiquidType.GetHashCode();
+        hashCode = hashCode * -1521134295 + WireRed.GetHashCode();
+        hashCode = hashCode * -1521134295 + WireGreen.GetHashCode();
+        hashCode = hashCode * -1521134295 + WireBlue.GetHashCode();
+        hashCode = hashCode * -1521134295 + WireYellow.GetHashCode();
+        hashCode = hashCode * -1521134295 + BrickStyle.GetHashCode();
+        hashCode = hashCode * -1521134295 + Actuator.GetHashCode();
+        hashCode = hashCode * -1521134295 + InActive.GetHashCode();
+        hashCode = hashCode * -1521134295 + InvisibleBlock.GetHashCode();
+        hashCode = hashCode * -1521134295 + InvisibleWall.GetHashCode();
+        hashCode = hashCode * -1521134295 + FullBrightBlock.GetHashCode();
+        hashCode = hashCode * -1521134295 + FullBrightWall.GetHashCode();
+        return hashCode;
+    }
+
+    public static bool operator ==(Tile left, Tile right)
+    {
+        return EqualityComparer<Tile>.Default.Equals(left, right);
+    }
+
+    public static bool operator !=(Tile left, Tile right)
+    {
+        return !(left == right);
     }
 
     // Added legacy enums back

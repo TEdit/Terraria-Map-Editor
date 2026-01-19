@@ -296,4 +296,61 @@ public class WorldTests
         // essentially, just a save and load test
         var w2 = World.LoadWorld(saveTest);
     }
+
+    [Theory]
+    [InlineData(".\\WorldFiles\\v1.4.4.1.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.4.2.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.4.3.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.4.4.wld")]
+    [InlineData(".\\WorldFiles\\console.wld")]
+    public void SaveWorld_RLE_Compression_Test(string fileName)
+    {
+        var fileInfo = new FileInfo(fileName);
+        if (fileInfo.Length < 1_000_000)
+        {
+            // Skip files < 1MB (likely broken LFS links or stub files)
+            return;
+        }
+
+        var originalSize = fileInfo.Length;
+
+        var (world, errors) = World.LoadWorld(fileName);
+        var saveTest = fileName + ".rle.test";
+        World.Save(world, saveTest, incrementRevision: false);
+
+        var savedSize = new FileInfo(saveTest).Length;
+        double sizeRatio = (double)savedSize / originalSize;
+
+        // Clean up test file
+        if (File.Exists(saveTest))
+        {
+            File.Delete(saveTest);
+        }
+
+        // Saved file should not be significantly larger (5% tolerance for metadata)
+        Assert.True(sizeRatio <= 1.05,
+            $"File grew from {originalSize:N0} to {savedSize:N0} bytes ({sizeRatio:P1}). " +
+            $"RLE compression may not be working.");
+    }
+
+    [Fact]
+    public void Tile_Equals_Test()
+    {
+        var tile1 = new Tile { IsActive = true, Type = 1, Wall = 5 };
+        var tile2 = (Tile)tile1.Clone();
+
+        // Cloned tiles should be equal
+        Assert.True(tile1.Equals(tile2));
+        Assert.True(tile1 == tile2);
+        Assert.Equal(tile1.GetHashCode(), tile2.GetHashCode());
+
+        // Different cache values should not affect comparison
+        tile2.uvTileCache = 999;
+        Assert.True(tile1.Equals(tile2));
+
+        // Different serialized property should not be equal
+        tile2.Type = 2;
+        Assert.False(tile1.Equals(tile2));
+        Assert.False(tile1 == tile2);
+    }
 }

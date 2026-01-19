@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../.editorconfig" />
+    <File Path="../build.ps1" />
+  </Folder>
+  <Project Path="SettingsFileUpdater/SettingsFileUpdater.csproj">
+    <Platform Solution="Debug|*" Project="x86" />
+    <Build Project="false" />
+  </Project>
+  <Project Path="TEdit.Common/TEdit.Common.csproj" />
+  <Project Path="TEdit.Configuration.Tests/TEdit.Configuration.Tests.csproj" />
+  <Project Path="TEdit.Configuration/TEdit.Configuration.csproj" />
+  <Project Path="TEdit.Editor/TEdit.Editor.csproj" />
+  <Project Path="TEdit.Terraria/TEdit.Terraria.csproj" />
+  <Project Path="TEdit.Tests/TEdit.Tests.csproj" />
+  <Project Path="TEdit/TEdit.csproj" />
+  <Project Path="TEdit5/TEdit5.csproj" />
+  <Properties Name="ExtensibilityGlobals" Scope="PostLoad">
+    <Property Name="RESX_PrefixTranslations" Value="False" />
+    <Property Name="RESX_SortFileContentOnSave" Value="True" />
+  </Properties>
+  <Properties Name="TestCaseManagementSettings" Scope="PostLoad">
+    <Property Name="CategoryFile" Value="TEdit.vsmdi" />
+  </Properties>
+</Solution>

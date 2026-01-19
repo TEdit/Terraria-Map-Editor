@@ -53,3 +53,5 @@ build/
 /publish/
 /publish-avalonia/
 .idea/
+nul
+.claude

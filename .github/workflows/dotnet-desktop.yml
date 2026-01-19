@@ -31,4 +31,4 @@ jobs:
         shell: pwsh
         run: |
           dotnet restore .\src
-          dotnet build .\src\TEdit.sln /p:EnableWindowsTargeting=true /p:Configuration=Release
+          dotnet build .\src\TEdit.slnx /p:EnableWindowsTargeting=true /p:Configuration=Release
