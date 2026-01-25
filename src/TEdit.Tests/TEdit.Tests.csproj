@@ -23,6 +23,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\TEdit.Terraria\TEdit.Terraria.csproj" />
+		<ProjectReference Include="..\TEdit.Editor\TEdit.Editor.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

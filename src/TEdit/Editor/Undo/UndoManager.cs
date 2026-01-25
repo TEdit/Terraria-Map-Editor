@@ -210,7 +210,7 @@ public class UndoManager : ObservableObject, IDisposable
     public void SaveUndo(bool updateMax = true)
     {
         // no tiles to undo, skip save
-        if (_buffer == null || (_buffer.Count == 0 && _buffer.UndoTiles.Count == 0))
+        if (_buffer == null || _buffer.IsEmpty)
         {
             return;
         }

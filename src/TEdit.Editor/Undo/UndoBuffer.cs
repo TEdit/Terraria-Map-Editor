@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria;
@@ -24,7 +25,9 @@ public class UndoBuffer : IDisposable
     }
 
 
-    private readonly List<UndoTile> _undoTiles = new List<UndoTile>();
+    private readonly Dictionary<Tile, HashSet<Vector2Int32>> _undoTiles = new();
+    private readonly List<Tile> _tileOrder = new(); // For order preservation
+    private int _uniqueTileGroupsWritten = 0; // Track across batches for file header
     private readonly List<Sign> _signs = new List<Sign>();
     private readonly List<Chest> _chests = new List<Chest>();
     private readonly List<TileEntity> _tileEntities = new List<TileEntity>();
@@ -45,34 +48,78 @@ public class UndoBuffer : IDisposable
         get { return _tileEntities; }
     }
 
-    public List<UndoTile> UndoTiles
+    public UndoTile LastTile { get; set; }
+
+    public void Add(Tile tile, int x, int y)
     {
-        get { return _undoTiles; }
+        Add(new Vector2Int32(x, y), tile);
     }
 
-    public UndoTile LastTile { get; set; }
+    public bool Remove(int x, int y)
+    {
+        lock (UndoSaveLock)
+        {
+            // Find and remove the location from whichever tile contains it
+            foreach (var kvp in _undoTiles)
+            {
+                if (kvp.Value.Remove(new Vector2Int32(x, y)))
+                {
+                    // If this was the last location for this tile, remove the tile entry
+                    if (kvp.Value.Count == 0)
+                    {
+                        _undoTiles.Remove(kvp.Key);
+                        _tileOrder.Remove(kvp.Key);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public void Clear()
+    {
+        lock (UndoSaveLock)
+        {
+            _undoTiles.Clear();
+            _tileOrder.Clear();
+            LastTile = null;
+        }
+    }
+
+    private int GetTotalTileCount()
+    {
+        return _undoTiles.Values.Sum(s => s.Count);
+    }
 
     public void Add(Vector2Int32 location, Tile tile)
     {
-        var undoTile = new UndoTile(tile, location);
-
-        if (undoTile == null)
+        if (tile == null)
         {
-            throw new Exception("Null undo?");
+            throw new ArgumentNullException(nameof(tile));
         }
 
         lock (UndoSaveLock)
         {
-            UndoTiles.Add(undoTile);
-            LastTile = undoTile;
+            // Find or create tile entry
+            if (!_undoTiles.TryGetValue(tile, out var locations))
+            {
+                locations = new HashSet<Vector2Int32>();
+                _undoTiles[tile] = locations;
+                _tileOrder.Add(tile); // Track insertion order
+            }
+
+            locations.Add(location);
+            LastTile = new UndoTile(tile, location); // For compatibility
         }
-        if (UndoTiles.Count > FlushSize)
+
+        if (GetTotalTileCount() > FlushSize)
         {
             SaveTileData();
         }
     }
 
-    public int Count { get; private set; }
+    public bool IsEmpty => !_undoTiles.Any();
 
     public void SaveTileData()
     {
@@ -80,34 +127,60 @@ public class UndoBuffer : IDisposable
         var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
         var tileFrameImportant = world?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
-        int maxTileId = WorldConfiguration.SaveConfiguration.SaveVersions[(int)version].MaxTileId;
-        int maxWallId = WorldConfiguration.SaveConfiguration.SaveVersions[(int)version].MaxWallId;
+        int maxTileId = ushort.MaxValue;
+        int maxWallId = ushort.MaxValue;
+        var saveVersions = WorldConfiguration.SaveConfiguration?.SaveVersions;
+        if (saveVersions != null && (int)version < saveVersions.Count)
+        {
+            maxTileId = saveVersions[(int)version].MaxTileId;
+            maxWallId = saveVersions[(int)version].MaxWallId;
+        }
+
         lock (UndoSaveLock)
         {
-            int count = _undoTiles.Count;
-            var tiles = UndoTiles.ToArray();
-            _undoTiles.RemoveRange(0, count);
+            int totalCount = GetTotalTileCount();
+            int uniqueThisBatch = _undoTiles.Count;
 
-            Debug.WriteLine("Flushing Undo Buffer: {0} Tiles", count);
-            for (int i = 0; i < count; i++)
+            if (totalCount == 0) return;
+
+            Debug.WriteLine($"Flushing Undo Buffer: {totalCount} Tiles ({uniqueThisBatch} unique)");
+
+            // Don't write count per batch - we write total at Close() in position 0
+            // Write each unique tile and its locations
+            foreach (var tile in _tileOrder) // Maintain order
             {
-                var tile = tiles[i];
-
-                if (tile == null || tile.Tile == null)
+                if (!_undoTiles.TryGetValue(tile, out var locations))
                     continue;
 
-                _writer.Write(tile.Location.X);
-                _writer.Write(tile.Location.Y);
-
+                // Serialize tile data
                 int dataIndex;
                 int headerIndex;
 
-                byte[] tileData = World.SerializeTileData(tile.Tile, (int)version, maxTileId, maxWallId, tileFrameImportant, out dataIndex, out headerIndex);
+                byte[] tileData = World.SerializeTileData(
+                    tile,
+                    (int)version,
+                    maxTileId,
+                    maxWallId,
+                    tileFrameImportant,
+                    out dataIndex,
+                    out headerIndex);
 
                 _writer.Write(tileData, headerIndex, dataIndex - headerIndex);
+
+                // Write location count and locations
+                _writer.Write(locations.Count);
+                foreach (var loc in locations)
+                {
+                    _writer.Write(loc.X);
+                    _writer.Write(loc.Y);
+                }
             }
 
-            Count += count;
+            // Track unique tile groups written for file header
+            _uniqueTileGroupsWritten += uniqueThisBatch;
+
+            // Clear processed data
+            Clear();
         }
     }
 
@@ -122,7 +195,7 @@ public class UndoBuffer : IDisposable
         World.SaveSigns(Signs, _writer, (int)version);
         World.SaveTileEntities(TileEntities, _writer);
         _writer.BaseStream.Position = (long)0;
-        _writer.Write(Count);
+        _writer.Write(_uniqueTileGroupsWritten);
         _writer.Close();
         _writer.Dispose();
         _writer = null;
@@ -134,15 +207,30 @@ public class UndoBuffer : IDisposable
     {
         var tileFrameImportant = tileFrameImportance ?? WorldConfiguration.SettingsTileFrameImportant;
 
-        var tilecount = br.ReadInt32();
-        for (int i = 0; i < tilecount; i++)
-        {
-            int rle;
-            int x = br.ReadInt32();
-            int y = br.ReadInt32();
-            var curTile = World.DeserializeTileData(br, tileFrameImportant, (int)WorldConfiguration.CompatibleVersion, out rle);
+        int uniqueTileCount = br.ReadInt32();
 
-            yield return new UndoTile(curTile, new Vector2Int32(x, y));
+        for (int i = 0; i < uniqueTileCount; i++)
+        {
+            // Read tile data
+            int rle;
+            var tile = World.DeserializeTileData(
+                br,
+                tileFrameImportant,
+                (int)WorldConfiguration.CompatibleVersion,
+                out rle);
+
+            // Read location count
+            int locationCount = br.ReadInt32();
+
+            // Yield UndoTile for each location
+            for (int j = 0; j < locationCount; j++)
+            {
+                int x = br.ReadInt32();
+                int y = br.ReadInt32();
+
+                // Clone tile for each location (important!)
+                yield return new UndoTile((Tile)tile.Clone(), new Vector2Int32(x, y));
+            }
         }
     }
 
