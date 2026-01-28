@@ -392,8 +392,8 @@ namespace TEdit.Editor.Plugins
                     #region Define Tile Color Table
 
                     // "Array"
-                    Color[][] tileArray = new Color[(int)TileID.Count][];
-                    for (int i = 0; i < (int)TileID.Count; i++)
+                    Color[][] tileArray = new Color[(int)maxTileID][];
+                    for (int i = 0; i < (int)maxTileID; i++)
                     {
                         tileArray[i] = new Color[13];
                     }
@@ -1458,8 +1458,8 @@ namespace TEdit.Editor.Plugins
                     #region Define Wall Color Table
 
                     // "Array4"
-                    Color[][] wallArray = new Color[(int)WallID.Count][];
-                    for (int i = 0; i < (int)WallID.Count; i++)
+                    Color[][] wallArray = new Color[(int)maxWallID][];
+                    for (int i = 0; i < (int)maxWallID; i++)
                     {
                         wallArray[i] = new Color[2];
                     }
