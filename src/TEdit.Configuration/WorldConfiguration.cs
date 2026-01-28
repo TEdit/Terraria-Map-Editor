@@ -111,7 +111,7 @@ public class WorldConfiguration
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
         }
 

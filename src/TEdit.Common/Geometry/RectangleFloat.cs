@@ -4,7 +4,7 @@ namespace TEdit.Geometry;
 
 public struct RectangleFloat : IEquatable<RectangleFloat>
 {
-    private static RectangleFloat emptyRectangle;
+    private static RectangleFloat emptyRectangle = default;
 
     //
     // Summary:
