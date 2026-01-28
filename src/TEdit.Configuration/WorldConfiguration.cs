@@ -19,7 +19,7 @@ public class WorldConfiguration
     public static short WallCount { get; private set; } = 346; // updated by json
     public static short MaxNpcID { get; private set; } = 687; // updated by json
     public static int MaxChests { get; private set; } = 8000;
-    public static int MaxSigns { get; private set; } = 1000;
+    public static int MaxSigns { get; private set; } = 32767;
     public static int CavernLevelToBottomOfWorld { get; private set; } = 478;
     public static byte MaxMoons = 3;
 
