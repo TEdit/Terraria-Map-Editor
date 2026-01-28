@@ -1819,22 +1819,22 @@ namespace TEdit.Editor.Plugins
                     wallArray[347][0] = new Color(100, 65, 130);
                     wallArray[348][0] = new Color(120, 75, 75);
                     float num7 = 0.5f;
-                    wallArray[351][0] = array[734][0] * num7;
-                    wallArray[352][0] = array[735][0] * num7;
-                    wallArray[353][0] = array[170][0] * num7;
-                    wallArray[354][0] = array[736][0] * num7;
-                    wallArray[355][0] = array[737][0] * num7;
-                    wallArray[356][0] = array[738][0] * num7;
-                    wallArray[357][0] = array[739][0] * num7;
-                    wallArray[358][0] = array[741][0] * num7;
-                    wallArray[359][0] = array[742][0] * num7;
+                    wallArray[351][0] = tileArray[734][0] * num7;
+                    wallArray[352][0] = tileArray[735][0] * num7;
+                    wallArray[353][0] = tileArray[170][0] * num7;
+                    wallArray[354][0] = tileArray[736][0] * num7;
+                    wallArray[355][0] = tileArray[737][0] * num7;
+                    wallArray[356][0] = tileArray[738][0] * num7;
+                    wallArray[357][0] = tileArray[739][0] * num7;
+                    wallArray[358][0] = tileArray[741][0] * num7;
+                    wallArray[359][0] = tileArray[742][0] * num7;
                     wallArray[360][0] = new Color(73, 93, 116);
-                    wallArray[361][0] = array[744][0] * num7;
-                    wallArray[362][0] = array[745][0] * num7;
-                    wallArray[363][0] = array[746][0] * num7;
-                    wallArray[364][0] = array[747][0] * num7;
-                    wallArray[365][0] = array[748][0] * num7;
-                    wallArray[366][0] = array[749][0] * num7;
+                    wallArray[361][0] = tileArray[744][0] * num7;
+                    wallArray[362][0] = tileArray[745][0] * num7;
+                    wallArray[363][0] = tileArray[746][0] * num7;
+                    wallArray[364][0] = tileArray[747][0] * num7;
+                    wallArray[365][0] = tileArray[748][0] * num7;
+                    wallArray[366][0] = tileArray[749][0] * num7;
 
                     #endregion
 
