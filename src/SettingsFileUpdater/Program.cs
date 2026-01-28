@@ -23,7 +23,8 @@ namespace SettingsFileUpdater
             //Terraria.Program.SavePath = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location);
 
             var wrapper = TerrariaHost.TerrariaWrapper.Initialize(true);
-            wrapper.MakeWorldFile("1234", "1234", 0);
+            //wrapper.MakeWorldFile("1234", "1234", 0);
+            wrapper.LoadWorld("1234");
 
 
 
@@ -86,7 +87,7 @@ namespace SettingsFileUpdater
             //     var wall = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
             //     wall.SetAttributeValue("Color", item.Value);
             // }
-            return;
+            //return;
 
             var bestiaryNpcs = wrapper.GetBestiaryData().ToList();
 

@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Terraria.GameContent.UI.States;
 using System.Diagnostics;
+using Terraria.GameContent;
 
 namespace SettingsFileUpdater.TerrariaHost
 {
@@ -81,7 +82,14 @@ namespace SettingsFileUpdater.TerrariaHost
         {
 
         }
+        public void LoadWorld(string worldName)
+        {
+            bool cloudSave = false;
+            WorldFileData worldFileData = new WorldFileData(Main.GetWorldPathFromName(worldName, cloudSave), cloudSave);
+            ActiveWorldFileData = worldFileData;
 
+            WorldFile.LoadWorld();
+        }
         public void MakeWorldFile(string seedName, string worldname, int gameMode = 0)
         {
             GameMode = gameMode;
@@ -116,7 +124,6 @@ namespace SettingsFileUpdater.TerrariaHost
 
             seedName = seedName.Trim();
             ActiveWorldFileData.SetSeed(seedName);
-            UIWorldCreation.ProcessSpecialWorldSeeds(seedName);
             GenerationProgress progress = new GenerationProgress();
 
 
@@ -405,7 +412,7 @@ namespace SettingsFileUpdater.TerrariaHost
         {
             foreach (var npc in GetNpcs(true))
             {
-                int killId = Item.NPCtoBanner(npc.BannerID());
+                int killId = BannerSystem.NPCtoBanner(npc.BannerID());
                 if (killId <= 0 || npc.ExcludedFromDeathTally())
                     killId = -1;
 
@@ -509,7 +516,7 @@ namespace SettingsFileUpdater.TerrariaHost
                     npc.SetDefaults(info.NetId);
                 }
 
-                int killId = Item.NPCtoBanner(npc.BannerID());
+                int killId = BannerSystem.NPCtoBanner(npc.BannerID());
                 if (killId <= 0 || npc.ExcludedFromDeathTally())
                     killId = -1;
 
@@ -632,9 +639,9 @@ namespace SettingsFileUpdater.TerrariaHost
         public List<ItemId> GetItems()
         {
             var banners = new Dictionary<int, int>();
-            for (int bannerId = 0; bannerId < Terraria.Main.MaxBannerTypes; bannerId++)
+            for (int bannerId = 0; bannerId < BannerSystem.MaxBannerTypes; bannerId++)
             {
-                int itemId = Terraria.Item.BannerToItem(bannerId);
+                int itemId = BannerSystem.BannerToItem(bannerId);
                 banners[itemId] = bannerId;
             }
 

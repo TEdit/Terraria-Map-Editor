@@ -104,9 +104,6 @@ public partial class World
 
         if (world.Version >= 140)
         {
-            progress?.Report(new ProgressChangedEventArgs(94, "Save Mobs..."));
-            sectionPointers[5] = SaveMobs(world.Mobs, bw, (int)world.Version);
-
             progress?.Report(new ProgressChangedEventArgs(95, "Save Tile Entities Section..."));
             sectionPointers[6] = SaveTileEntities(world.TileEntities, bw, world.Version);
         }
@@ -470,7 +467,11 @@ public partial class World
         bool useLegacyLimit = version < 216;
         Int16 count = useLegacyLimit ? (Int16)Math.Min(chests.Count, Chest.LegacyLimit) : (Int16)chests.Count;
         bw.Write(count);
-        bw.Write((Int16)Chest.LegacyMaxItems);
+
+        if (version < 294)
+        {
+            bw.Write((Int16)Chest.LegacyMaxItems);
+        }
 
         int written = 0;
         foreach (Chest chest in chests)
@@ -479,7 +480,14 @@ public partial class World
             bw.Write(chest.Y);
             bw.Write(chest.Name ?? string.Empty);
 
-            for (int slot = 0; slot < Chest.LegacyMaxItems; slot++)
+            int itemCount = version >= 294 ? chest.MaxItems : Chest.LegacyMaxItems;
+
+            if (version >= 294)
+            {
+                bw.Write(chest.MaxItems);
+            }
+
+            for (int slot = 0; slot < itemCount; slot++)
             {
                 Item item = chest.Items[slot];
 
@@ -575,8 +583,33 @@ public partial class World
                 }
             }
 
+            if (version >= 315)
+            {
+                bw.Write(npc.HomelessDespawn);
+            }
         }
         bw.Write(false);
+
+        // save mobs
+        if (version >= 140)
+        {
+            foreach (NPC mob in world.Mobs)
+            {
+                if (mob.SpriteId > maxNPC) { break; }
+                bw.Write(true);
+                if (version >= 190)
+                {
+                    bw.Write(mob.SpriteId);
+                }
+                else
+                {
+                    bw.Write(WorldConfiguration.NpcNames[mob.SpriteId]);
+                }
+                bw.Write(mob.Position.X);
+                bw.Write(mob.Position.Y);
+            }
+            bw.Write(false);
+        }
 
         return (int)bw.BaseStream.Position;
     }
@@ -594,31 +627,6 @@ public partial class World
             bw.Write(room.Home.X);
             bw.Write(room.Home.Y);
         }
-        return (int)bw.BaseStream.Position;
-    }
-
-    public static int SaveMobs(IEnumerable<NPC> mobs, BinaryWriter bw, int version)
-    {
-        var maxNPC = WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
-
-        foreach (NPC mob in mobs)
-        {
-            if (mob.SpriteId > maxNPC) { break; }
-
-            bw.Write(true);
-            if (version >= 190)
-            {
-                bw.Write(mob.SpriteId);
-            }
-            else
-            {
-                bw.Write(WorldConfiguration.NpcNames[mob.SpriteId]);
-            }
-            bw.Write(mob.Position.X);
-            bw.Write(mob.Position.Y);
-        }
-        bw.Write(false);
-
         return (int)bw.BaseStream.Position;
     }
 
@@ -817,6 +825,10 @@ public partial class World
         {
             bw.Write(world.CreationTime);
         }
+        if (world.Version >= 284)
+        {
+            bw.Write(world.LastPlayed);
+        }
 
         // check if target moonType is over max
         if (world.MoonType > WorldConfiguration.SaveConfiguration.GetData(version).MaxMoonId)
@@ -1003,6 +1015,15 @@ public partial class World
             else
             {
                 bw.Write(0);
+            }
+        }
+
+        if (world.Version >= 289)
+        {
+            bw.Write((short)world.ClaimableBanners.Count);
+            foreach (var banner in world.ClaimableBanners)
+            {
+                bw.Write(banner);
             }
         }
 
@@ -1210,6 +1231,34 @@ public partial class World
             bw.Write((byte)world.MoondialCooldown);
         }
 
+        if (world.Version >= 287)
+        {
+            bw.Write(world.ForceHalloweenForever);
+            bw.Write(world.ForceXMasForever);
+        }
+        if (world.Version >= 288)
+        {
+            bw.Write(world.VampireSeed);
+        }
+        if (world.Version >= 296)
+        {
+            bw.Write(world.InfectedSeed);
+        }
+        if (world.Version >= 291)
+        {
+            bw.Write(world.TempMeteorShowerCount);
+            bw.Write(world.TempCoinRain);
+        }
+        if (world.Version >= 297)
+        {
+            bw.Write(world.TeamBasedSpawnsSeed);
+            SaveTeamSpawns(bw, world);
+        }
+        if (world.Version >= 304)
+        {
+            bw.Write(world.DualDungeonsSeed);
+        }
+
         // unknown flags from data file
         if (world.UnknownData != null && world.UnknownData.Length > 0)
         {
@@ -1217,6 +1266,16 @@ public partial class World
         }
 
         return (int)bw.BaseStream.Position;
+    }
+
+    private static void SaveTeamSpawns(BinaryWriter bw, World world)
+    {
+        bw.Write((byte)world.TeamSpawns.Count);
+        foreach (var spawn in world.TeamSpawns)
+        {
+            bw.Write((short)spawn.X);
+            bw.Write((short)spawn.Y);
+        }
     }
 
     public static int SaveTileEntities(IList<TileEntity> tileEntities, BinaryWriter bw, uint version)
