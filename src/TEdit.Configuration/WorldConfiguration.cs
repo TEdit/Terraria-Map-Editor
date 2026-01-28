@@ -14,7 +14,7 @@ namespace TEdit.Configuration;
 
 public class WorldConfiguration
 {
-    public static uint CompatibleVersion { get; set; } = 275;
+    public static uint CompatibleVersion { get; set; } = 315;
     public static short TileCount { get; private set; } = 693; // updated by json
     public static short WallCount { get; private set; } = 346; // updated by json
     public static short MaxNpcID { get; private set; } = 687; // updated by json

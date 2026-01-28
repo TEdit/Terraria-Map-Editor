@@ -193,7 +193,7 @@ public class UndoBuffer : IDisposable
         SaveTileData();
         World.SaveChests(Chests, _writer, (int)version);
         World.SaveSigns(Signs, _writer, (int)version);
-        World.SaveTileEntities(TileEntities, _writer);
+        World.SaveTileEntities(TileEntities, _writer, version);
         _writer.BaseStream.Position = (long)0;
         _writer.Write(_uniqueTileGroupsWritten);
         _writer.Close();

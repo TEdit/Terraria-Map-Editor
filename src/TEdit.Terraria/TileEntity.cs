@@ -15,53 +15,56 @@ public class TileEntity : ObservableObject
         TE.PosX = (short)x;
         TE.PosY = (short)y;
         TE.Id = id;
-        if (curTile.Type == (int)TileType.TrainingDummy)
+        switch (curTile.Type)
         {
-            TE.Type = 0;
-            TE.Npc = -1;
-        }
-        else if (curTile.Type == (int)TileType.ItemFrame)
-        {
-            TE.Type = 1;
-            TE.NetId = 0;
-            TE.Prefix = 0;
-            TE.StackSize = 0;
-        }
-        else if (curTile.Type == (int)TileType.LogicSensor)
-        {
-            TE.Type = 2;
-            TE.On = false;
-            TE.LogicCheck = (byte)(curTile.V / 18 + 1);
-        }
-        else if (curTile.Type == (int)TileType.MannequinLegacy || curTile.Type == (int)TileType.WomannequinLegacy || curTile.Type == (int)TileType.DisplayDoll)
-        {
-            TE.Type = 3;
-            TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 8));
-            TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 8));
-        }
-        else if (curTile.Type == (int)TileType.WeaponRackLegacy || curTile.Type == (int)TileType.WeaponRack)
-        {
-            TE.Type = 4;
-            TE.NetId = 0;
-            TE.Prefix = 0;
-            TE.StackSize = 0;
-        }
-        else if (curTile.Type == (int)TileType.HatRack)
-        {
-            TE.Type = 5;
-            TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
-            TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
-        }
-        else if (curTile.Type == (int)TileType.FoodPlatter)
-        {
-            TE.Type = 6;
-            TE.NetId = 0;
-            TE.Prefix = 0;
-            TE.StackSize = 0;
-        }
-        else if (curTile.Type == (int)TileType.TeleportationPylon)
-        {
-            TE.Type = 7;
+            case (int)TileType.TrainingDummy:
+                TE.Type = 0;
+                TE.Npc = -1;
+                break;
+            case (int)TileType.ItemFrame:
+                TE.Type = 1;
+                TE.NetId = 0;
+                TE.Prefix = 0;
+                TE.StackSize = 0;
+                break;
+            case (int)TileType.LogicSensor:
+                TE.Type = 2;
+                TE.On = false;
+                TE.LogicCheck = (byte)(curTile.V / 18 + 1);
+                break;
+            case (int)TileType.MannequinLegacy:
+            case (int)TileType.WomannequinLegacy:
+            case (int)TileType.DisplayDoll:
+                TE.Type = (byte)TileEntityType.DisplayDoll;
+                TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 9));
+                TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 9));
+                TE.Pose = 0;
+                break;
+            case (int)TileType.WeaponRackLegacy:
+            case (int)TileType.WeaponRack:
+                TE.Type = (byte)TileEntityType.WeaponRack;
+                TE.NetId = 0;
+                TE.Prefix = 0;
+                TE.StackSize = 0;
+                break;
+            case (int)TileType.HatRack:
+                TE.Type = 5;
+                TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
+                TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
+                break;
+            case (int)TileType.FoodPlatter:
+                TE.Type = (byte)TileEntityType.FoodPlatter;
+                TE.NetId = 0;
+                TE.Prefix = 0;
+                TE.StackSize = 0;
+                break;
+            case (int)TileType.TeleportationPylon:
+                TE.Type = (byte)TileEntityType.TeleportationPylon;
+                break;
+            case (int)TileType.CritterAnchor:
+                TE.Type = (byte)TileEntityType.CritterAnchor;
+                TE.NetId = (int)LeashedCritters.NormalButterfly1;
+                break;
         }
         return TE;
     }
@@ -83,8 +86,18 @@ public class TileEntity : ObservableObject
     private byte _logicCheck;
     private bool _on;
 
+    // display doll
     public ObservableCollection<TileEntityItem> Items { get; set; } = new ObservableCollection<TileEntityItem>();
     public ObservableCollection<TileEntityItem> Dyes { get; set; } = new ObservableCollection<TileEntityItem>();
+    public ObservableCollection<TileEntityItem> Misc { get; set; } = new ObservableCollection<TileEntityItem>();
+    private byte _pose;
+
+    public byte Pose
+    {
+        get { return _pose; }
+        set { Set(nameof(Pose), ref _pose, value); }
+    }
+
 
     public byte Type
     {
@@ -102,6 +115,18 @@ public class TileEntity : ObservableObject
         set { Set(nameof(Id), ref _id, value); }
     }
 
+    // linked prop
+    public DisplayDollPoseID DisplayDollPose
+    {
+        get { return (DisplayDollPoseID)_pose; }
+        set
+        {
+            Set(nameof(Pose), ref _pose, (byte)value);
+            RaisePropertyChanged(nameof(DisplayDollPoseID));
+        }
+    }
+
+    // linked prop
     public TileEntityType EntityType
     {
         get { return (TileEntityType)_type; }
@@ -182,6 +207,12 @@ public class TileEntity : ObservableObject
                     return TileType.FoodPlatter;
                 case TileEntityType.TeleportationPylon:
                     return TileType.TeleportationPylon;
+                case TileEntityType.DeadCellsDisplayJar:
+                    return TileType.DeadCellsDisplayJar;
+                case TileEntityType.KiteAnchor:
+                    return TileType.KiteAnchor;
+                case TileEntityType.CritterAnchor:
+                    return TileType.CritterAnchor;
                 default:
                     return 0;
             }
@@ -231,6 +262,11 @@ public class TileEntity : ObservableObject
                 break;
             case TileEntityType.TeleportationPylon:
                 break;
+            case TileEntityType.DeadCellsDisplayJar:
+                break;
+            case TileEntityType.KiteAnchor:
+            case TileEntityType.CritterAnchor:
+                break;
         }
     }
 
@@ -244,7 +280,7 @@ public class TileEntity : ObservableObject
     }
 
 
-    public void Save(BinaryWriter bw)
+    public void Save(BinaryWriter bw, uint version)
     {
         bw.Write(Type);
         bw.Write(Id);
@@ -263,7 +299,7 @@ public class TileEntity : ObservableObject
                 bw.Write(On);
                 break;
             case TileEntityType.DisplayDoll: // display doll
-                SaveDisplayDoll(bw);
+                SaveDisplayDoll(bw, version);
                 break;
             case TileEntityType.WeaponRack: // weapons rack 
                 SaveStack(bw);
@@ -275,13 +311,20 @@ public class TileEntity : ObservableObject
                 SaveStack(bw);
                 break;
             case TileEntityType.TeleportationPylon: // teleportation pylon
-
+                break;
+            case TileEntityType.DeadCellsDisplayJar:
+                SaveStack(bw);
+                break;
+            case TileEntityType.CritterAnchor:
+            case TileEntityType.KiteAnchor:
+                bw.Write((short)NetId); // aka item type
                 break;
         }
     }
 
     public void Load(BinaryReader r, uint version)
     {
+
         Type = r.ReadByte();
         Id = r.ReadInt32();
         PosX = r.ReadInt16();
@@ -300,7 +343,7 @@ public class TileEntity : ObservableObject
                 On = r.ReadBoolean();
                 break;
             case TileEntityType.DisplayDoll: // display doll
-                LoadDisplayDoll(r);
+                LoadDisplayDoll(r, version);
                 break;
             case TileEntityType.WeaponRack: // weapons rack 
                 LoadStack(r);
@@ -310,10 +353,15 @@ public class TileEntity : ObservableObject
                 break;
             case TileEntityType.FoodPlatter: // food platter
                 LoadStack(r);
-
                 break;
             case TileEntityType.TeleportationPylon: // teleportation pylon
-
+                break;
+            case TileEntityType.DeadCellsDisplayJar:
+                LoadStack(r);
+                break;
+            case TileEntityType.CritterAnchor:
+            case TileEntityType.KiteAnchor:
+                NetId = r.ReadInt16(); // aka itemtype
                 break;
         }
     }
@@ -399,16 +447,37 @@ public class TileEntity : ObservableObject
         }
     }
 
-    private void LoadDisplayDoll(BinaryReader r)
+    private void LoadDisplayDoll(BinaryReader r, uint version)
     {
-        byte numSlots = 8;
         var itemSlots = (BitsByte)r.ReadByte();
         var dyeSlots = (BitsByte)r.ReadByte();
-        Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
-        Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
-        for (int i = 0; i < numSlots; i++)
+
+        if (version >= 307)
+            this._pose = r.ReadByte();
+
+        BitsByte extraSlots = (BitsByte)(byte)0;
+        if (version >= 308)
+            extraSlots = (BitsByte)r.ReadByte();
+
+        bool v311 = false;
+        if (version == 311)
         {
-            if (itemSlots[i])
+            v311 = extraSlots[1];
+            extraSlots[1] = false;
+        }
+
+        // Determine how many slots to process
+        int maxSlots = (version >= 308) ? 9 : 8;
+
+        Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Range(0, 9).Select(_ => new TileEntityItem()));
+        Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Range(0, 9).Select(_ => new TileEntityItem()));
+        Misc = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Range(0, 1).Select(_ => new TileEntityItem()));
+
+        // Read items - first 8 bits from itemSlots, 9th bit from extraSlots[1]
+        for (int i = 0; i < maxSlots; i++)
+        {
+            bool hasItem = (i < 8) ? itemSlots[i] : extraSlots[1];
+            if (hasItem)
             {
                 Items[i] = new TileEntityItem
                 {
@@ -418,9 +487,12 @@ public class TileEntity : ObservableObject
                 };
             }
         }
-        for (int i = 0; i < numSlots; i++)
+
+        // Read dyes - first 8 bits from dyeSlots, 9th bit from extraSlots[2]
+        for (int i = 0; i < maxSlots; i++)
         {
-            if (dyeSlots[i])
+            bool hasDye = (i < 8) ? dyeSlots[i] : extraSlots[2];
+            if (hasDye)
             {
                 Dyes[i] = new TileEntityItem
                 {
@@ -430,41 +502,105 @@ public class TileEntity : ObservableObject
                 };
             }
         }
+
+        // Read misc items (only in version 308+, extraSlots[0] is for Misc[0])
+        for (int i = 0; i < Misc.Count; i++)
+        {
+            if (extraSlots[i])
+            {
+                Misc[i] = new TileEntityItem
+                {
+                    Id = r.ReadInt16(),
+                    Prefix = r.ReadByte(),
+                    StackSize = r.ReadInt16(),
+                };
+            }
+        }
+
+        // Version 311 special bug handling
+        if (v311)
+        {
+            TileEntityItem item = Items[8];
+            item.Id = r.ReadInt16();
+            item.Prefix = r.ReadByte();
+            item.StackSize = r.ReadInt16();
+        }
     }
 
-    private void SaveDisplayDoll(BinaryWriter w)
+    private void SaveDisplayDoll(BinaryWriter w, uint gameVersion)
     {
-        byte numSlots = 8;
-        var items = new BitsByte();
-        var dyes = new BitsByte();
-        for (int i = 0; i < numSlots; i++)
+        var itemSlots = new BitsByte();
+        var dyeSlots = new BitsByte();
+
+        // First 8 item slots
+        for (int i = 0; i < 8; i++)
         {
-            items[i] = Items[i]?.IsValid ?? false;
-        }
-        for (int i = 0; i < numSlots; i++)
-        {
-            dyes[i] = Dyes[i]?.IsValid ?? false;
+            itemSlots[i] = Items[i]?.IsValid ?? false;
         }
 
-        w.Write((byte)items);
-        w.Write((byte)dyes);
-
-        for (int i = 0; i < numSlots; i++)
+        // First 8 dye slots
+        for (int i = 0; i < 8; i++)
         {
-            if (items[i])
+            dyeSlots[i] = Dyes[i]?.IsValid ?? false;
+        }
+
+        // Write first two bytes (always present)
+        w.Write((byte)itemSlots);
+        w.Write((byte)dyeSlots);
+
+        // Version 307+: write pose
+        if (gameVersion >= 307)
+        {
+            w.Write(this._pose);
+        }
+
+        // Version 308+: write extra slots byte
+        if (gameVersion >= 308)
+        {
+            var extraSlots = new BitsByte();
+            extraSlots[0] = Misc[0]?.IsValid ?? false;  // Misc[0]
+            extraSlots[1] = Items[8]?.IsValid ?? false; // 9th item slot
+            extraSlots[2] = Dyes[8]?.IsValid ?? false;  // 9th dye slot
+
+            w.Write((byte)extraSlots);
+        }
+
+        // Determine how many slots to write
+        int maxSlots = (gameVersion >= 308) ? 9 : 8;
+
+        // Write item data
+        for (int i = 0; i < maxSlots; i++)
+        {
+            if (Items[i]?.IsValid ?? false)
             {
                 w.Write(Items[i].Id);
                 w.Write(Items[i].Prefix);
                 w.Write(Items[i].StackSize);
             }
         }
-        for (int i = 0; i < numSlots; i++)
+
+        // Write dye data
+        for (int i = 0; i < maxSlots; i++)
         {
-            if (dyes[i])
+            if (Dyes[i]?.IsValid ?? false)
             {
                 w.Write(Dyes[i].Id);
                 w.Write(Dyes[i].Prefix);
                 w.Write(Dyes[i].StackSize);
+            }
+        }
+
+        // Version 308+: write misc data
+        if (gameVersion >= 308)
+        {
+            for (int i = 0; i < Misc.Count; i++)
+            {
+                if (Misc[i]?.IsValid ?? false)
+                {
+                    w.Write(Misc[i].Id);
+                    w.Write(Misc[i].Prefix);
+                    w.Write(Misc[i].StackSize);
+                }
             }
         }
     }
@@ -477,7 +613,7 @@ public class TileEntity : ObservableObject
         frame.PosY = PosY;
 
         frame.Npc = Npc;
-
+        frame.Pose = Pose;
         frame.NetId = NetId;
         frame.StackSize = StackSize;
         frame.Prefix = Prefix;
@@ -505,10 +641,19 @@ public class TileEntity : ObservableObject
             }
         }
 
+        if (this.Misc.Count > 0)
+        {
+            frame.Misc = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 1));
+            for (int i = 0; i < Misc.Count; i++)
+            {
+                frame.Misc[i] = Misc[i]?.Copy();
+            }
+        }
+
         return frame;
     }
 
-    // WPF binding properties. Only needed since each slog can be something different.
+    // WPF binding properties. Only needed since each slot can be something different.
     public TileEntityItem Item0 { get { return (Items.Count > 0) ? Items[0] : null; } set { if (Items.Count > 0) { Items[0] = value; RaisePropertyChanged(nameof(Item0)); } } }
     public TileEntityItem Item1 { get { return (Items.Count > 1) ? Items[1] : null; } set { if (Items.Count > 1) { Items[1] = value; RaisePropertyChanged(nameof(Item1)); } } }
     public TileEntityItem Item2 { get { return (Items.Count > 2) ? Items[2] : null; } set { if (Items.Count > 2) { Items[2] = value; RaisePropertyChanged(nameof(Item2)); } } }

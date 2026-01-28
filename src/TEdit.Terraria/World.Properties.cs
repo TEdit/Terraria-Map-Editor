@@ -24,6 +24,8 @@ public partial class World : ReactiveObject, ITileData
     public ObservableCollection<int> ShimmeredTownNPCs { get; } = new ObservableCollection<int>(Enumerable.Repeat(0, WorldConfiguration.MaxNpcID));
     public ObservableCollection<NPC> NPCs { get; } = new ObservableCollection<NPC>();
     public ObservableCollection<int> KilledMobs { get; } = new ObservableCollection<int>(Enumerable.Repeat(0, WorldConfiguration.MaxNpcID));
+    public ObservableCollection<ushort> ClaimableBanners { get; } = new ObservableCollection<ushort>(Enumerable.Repeat<ushort>(0, WorldConfiguration.MaxNpcID));
+
     public ObservableCollection<NPC> Mobs { get; } = new ObservableCollection<NPC>();
     public List<Sign> Signs { get; } = new();
     public List<Chest> Chests { get; } = new();
@@ -201,6 +203,7 @@ public partial class World : ReactiveObject, ITileData
 
     #region Weather
 
+    [Category("Weather")]
     [Reactive] public bool IsRaining { get; set; }
 
     [Category("Weather")]
@@ -211,6 +214,12 @@ public partial class World : ReactiveObject, ITileData
 
     [Category("Weather")]
     [Reactive] public double SlimeRainTime { get; set; }
+
+    [Category("Weather")]
+    [Reactive] public int TempMeteorShowerCount { get; set; }
+    [Category("Weather")]
+    [Reactive] public int TempCoinRain { get; set; }
+
     #endregion Weather
 
     #region Holidays
@@ -229,6 +238,12 @@ public partial class World : ReactiveObject, ITileData
 
     [Category("Weather")]
     [Reactive] public float CloudBgActive { get; set; }
+
+    [Category("Difficulty")]
+    [Reactive] public bool ForceHalloweenForever { get; set; }
+
+    [Category("Difficulty")]
+    [Reactive] public bool ForceXMasForever { get; set; }
     #endregion Holidays
 
     #region Sandstorm
@@ -333,6 +348,7 @@ public partial class World : ReactiveObject, ITileData
     [Category("Difficulty")]
     [Reactive] public bool PartyOfDoom { get; set; }
 
+
     #endregion Difficulty
 
     #region Seed
@@ -360,6 +376,18 @@ public partial class World : ReactiveObject, ITileData
 
     [Category("Seed")]
     [Reactive] public bool ZenithWorld { get; set; }
+
+    [Category("Seed")]
+    [Reactive] public bool SkyblockWorld { get; set; }
+
+    [Category("Seed")]
+    [Reactive] public bool VampireSeed { get; set; }
+
+    [Category("Seed")]
+    [Reactive] public bool InfectedSeed { get; set; }
+
+    [Category("Seed")]
+    [Reactive] public bool DualDungeonsSeed { get; set; }
 
     #endregion Seed
 
@@ -547,6 +575,14 @@ public partial class World : ReactiveObject, ITileData
     [Reactive] public bool CelestialStardustActive { get; set; }
 
     #endregion Boss Events
+
+    #region Team Spawns
+
+    [Category("Team Spawns")]
+    [Reactive] public bool TeamBasedSpawnsSeed { get; set; }
+    [Reactive] public ObservableCollection<Vector2Int32> TeamSpawns { get; set; } = new ObservableCollection<Vector2Int32>();
+
+    #endregion
 
     #region Lantern Night
 
@@ -839,6 +875,7 @@ public partial class World : ReactiveObject, ITileData
     [Reactive][ReadOnly(true)] public byte[] UnknownData { get; set; }
 
     [Reactive] public Int64 CreationTime { get; set; }
+    [Reactive] public Int64 LastPlayed { get; set; }
 
     [Reactive] public int IceBackStyle { get; set; }
     [Reactive] public int JungleBackStyle { get; set; }

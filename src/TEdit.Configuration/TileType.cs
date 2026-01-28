@@ -41,6 +41,10 @@ public enum TileType : int
     WeaponRackLegacy = 334,
     HatRack = 475,
     TeleportationPylon = 597,
+    DeadCellsDisplayJar = 698,
+    KiteAnchor = 723,
+    CritterAnchor = 724,
+    // doors
     DoorClosed = 10,
     DoorOpen = 11,
     TrapDoor = 386,

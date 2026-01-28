@@ -5,12 +5,12 @@ namespace TEdit.Terraria;
 
 public class Chest : ObservableObject
 {
-    public static int MaxItems = 40; 
+    public static int LegacyMaxItems = 40;
     public static int LegacyLimit = 1000;
 
     public Chest()
     {
-        for (int i = 0; i < MaxItems; i++)
+        for (int i = 0; i < LegacyMaxItems; i++)
         {
             _items.Add(new Item());
         }
@@ -34,10 +34,17 @@ public class Chest : ObservableObject
     private int _x;
     private int _y;
 
+    private int _maxItems = 40;
+
     private string _name = string.Empty;
     private int _chestId = -1;
 
-    
+
+    public int MaxItems
+    {
+        get { return _maxItems; }
+        set { Set(nameof(MaxItems), ref _maxItems, value); }
+    }
 
     public string Name
     {
@@ -67,7 +74,7 @@ public class Chest : ObservableObject
         var chest = new Chest(_x, _y);
         chest.Name = Name;
         //chest.Items.Clear();
-        for (int i = 0; i < MaxItems; i++)
+        for (int i = 0; i < LegacyMaxItems; i++)
         {
             if (Items.Count > i)
                 chest.Items[i] = Items[i].Copy();

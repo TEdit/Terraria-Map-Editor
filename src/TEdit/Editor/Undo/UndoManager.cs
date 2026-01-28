@@ -9,6 +9,8 @@ using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.ViewModel;
+using YamlDotNet.Core;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace TEdit.Editor.Undo;
 
@@ -391,7 +393,7 @@ public class UndoManager : ObservableObject, IDisposable
             redo.Dispose();
             redo = null;
 
-            foreach (var chest in World.LoadChestData(br))
+            foreach (var chest in World.LoadChestData(br, WorldConfiguration.CompatibleVersion))
             {
                 _world.Chests.Add(chest);
             }
@@ -455,7 +457,7 @@ public class UndoManager : ObservableObject, IDisposable
 
                 _notifyTileChanged?.Invoke(undoTile.Location.X, undoTile.Location.Y, 1, 1);
             }
-            foreach (var chest in World.LoadChestData(br))
+            foreach (var chest in World.LoadChestData(br, WorldConfiguration.CompatibleVersion))
             {
                 _world.Chests.Add(chest);
             }

@@ -7,6 +7,7 @@ public class NPC : ObservableObject
 {
     private Vector2Int32 _home;
     private bool _isHomeless;
+    private bool _homelessDespawn;
     private string _name;
     private Vector2Float _position;
     private int _spriteId;
@@ -37,6 +38,14 @@ public class NPC : ObservableObject
         get { return _name; }
         set { Set(nameof(Name), ref _name, value); }
     }
+
+
+    public bool HomelessDespawn
+    {
+        get { return _homelessDespawn; }
+        set { Set(nameof(HomelessDespawn), ref _homelessDespawn, value); }
+    }
+
 
     public bool IsHomeless
     {

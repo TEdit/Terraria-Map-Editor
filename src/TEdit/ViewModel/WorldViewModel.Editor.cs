@@ -192,6 +192,7 @@ public partial class WorldViewModel
 
             // w.ResetTime();
             w.CreationTime = System.DateTime.Now.ToBinary();
+            w.LastPlayed = System.DateTime.Now.ToBinary();
             w.TilesHigh = worldHeight;
             w.TilesWide = worldWidth;
 
