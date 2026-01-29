@@ -304,17 +304,18 @@ namespace SettingsFileUpdater.TerrariaHost
 
             for (int i = 0; i < TileID.Count; i++)
             {
-                
-                var color = MapHelper.GetMapTileXnaColor(new MapTile { Type = (ushort)i, Light = byte.MaxValue });
+
+                var color = MapHelper.GetMapTileXnaColor(MapTile.Create((ushort)i, byte.MaxValue, 0));
 
                 var node = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString());
                 string origName = node?.Attribute("Name").Value;
-                     
+
                 string colorHex = node?.Attributes().FirstOrDefault(a => a.Name == "Color")?.Value;
 
-                if (string.IsNullOrEmpty(colorHex))
+                if (string.IsNullOrEmpty(colorHex) || i > 659)
                 {
                     colorHex = color.Hex4();
+                    colorHex = colorHex.Substring(6, 2) + colorHex.Substring(0, 6);
                 }
 
                 var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
