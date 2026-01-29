@@ -8944,6 +8944,66 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="626" Name="Neon Moss Brick" Light="true" Solid="true" Color="#FF86598D" Special="Grass" MergeWith="0" Stone="true"/>
         <Tile Id="627" Name="Helium Moss Block" Light="true" Solid="true" Color="#FF969696" Special="Grass" MergeWith="0" Stone="true" />
         <Tile Id="628" Name="Helium Moss Brick" Light="true" Solid="true" Color="#FF858585" Special="Grass" MergeWith="0" Stone="true"/>
+        <Tile Id="693" Name="StalactiteEcho" />
+        <Tile Id="694" Name="StalactiteEcho" />
+        <Tile Id="695" Name="DemonAltarReplica" />
+        <Tile Id="696" Name="ShadowOrbsReplica" />
+        <Tile Id="697" Name="CobwebReplica" />
+        <Tile Id="698" Name="DeadCellsDisplayJar" />
+        <Tile Id="699" Name="DeadCellsPotionStation" />
+        <Tile Id="700" Name="AbigailsFlowerReplica" />
+        <Tile Id="701" Name="GlowTulipReplica" />
+        <Tile Id="702" Name="LifeFruitReplica" />
+        <Tile Id="703" Name="JunglePlantsEcho" />
+        <Tile Id="704" Name="FallenLogEcho" />
+        <Tile Id="705" Name="OasisPlantsEcho" />
+        <Tile Id="706" Name="TerragrimShrineEcho" />
+        <Tile Id="707" Name="BooksEcho" />
+        <Tile Id="708" Name="Shimmerfall" />
+        <Tile Id="709" Name="ShimmerDrip" />
+        <Tile Id="710" Name="PufferfishCage" />
+        <Tile Id="711" Name="RainbowBoulder" />
+        <Tile Id="712" Name="Poulder" />
+        <Tile Id="713" Name="LavaBoulder" />
+        <Tile Id="714" Name="SpiderBoulder" />
+        <Tile Id="715" Name="Ghoulder" />
+        <Tile Id="716" Name="PetSpawningBoulder" />
+        <Tile Id="717" Name="LavaCloud" />
+        <Tile Id="718" Name="StarCloud" />
+        <Tile Id="719" Name="RainbowCloud" />
+        <Tile Id="720" Name="CRTMonolith" />
+        <Tile Id="721" Name="RetroMonolith" />
+        <Tile Id="722" Name="FallenStarBlock" />
+        <Tile Id="723" Name="KiteAnchor" />
+        <Tile Id="724" Name="CritterAnchor" />
+        <Tile Id="725" Name="NoirMonolith" />
+        <Tile Id="726" Name="CannonBall" />
+        <Tile Id="727" Name="RedTeamBlock" />
+        <Tile Id="728" Name="GreenTeamBlock" />
+        <Tile Id="729" Name="BlueTeamBlock" />
+        <Tile Id="730" Name="YellowTeamBlock" />
+        <Tile Id="731" Name="PinkTeamBlock" />
+        <Tile Id="732" Name="WhiteTeamBlock" />
+        <Tile Id="733" Name="RadioThingMonolith" />
+        <Tile Id="734" Name="Feywood" />
+        <Tile Id="735" Name="HallowedBrick" />
+        <Tile Id="736" Name="EasterBlock" />
+        <Tile Id="737" Name="GothicBrick" />
+        <Tile Id="738" Name="FlinxFurBlock" />
+        <Tile Id="739" Name="JellyfishBlock" />
+        <Tile Id="740" Name="ToyBreakerBlock" />
+        <Tile Id="741" Name="PineWoodBlock" />
+        <Tile Id="742" Name="HarpyBlock" />
+        <Tile Id="743" Name="MoonplateBlock" />
+        <Tile Id="744" Name="LibrarianBlock" />
+        <Tile Id="745" Name="SpikeBlock" />
+        <Tile Id="746" Name="OfficeBlock" />
+        <Tile Id="747" Name="ForbiddenBlock" />
+        <Tile Id="748" Name="WaterBlock" />
+        <Tile Id="749" Name="BoulderBlock" />
+        <Tile Id="750" Name="DamagingSpikeBlock" />
+        <Tile Id="751" Name="PalworldDigtoiseSleeping" />
+        <Tile Id="752" Name="PalworldChilletEgg" />
         <Tile Id="629" Name="Stinkbug Cage" SolidTop="true" Framed="true" Size="3,2" IsAnimated="true" Color="#FF4C6C60" />
         <Tile Id="630" Name="Stinkbug Blocker" Framed="true" Size="1,1" Color="#FF555E36">
             <Frames>
@@ -9859,6 +9919,26 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Wall Id="344" Name="Xenon Moss Brick Wall" Color="#FF05415E" IsHouse="True" />
         <Wall Id="345" Name="Neon Moss Brick Wall" Color="#FF3A0651" IsHouse="True" />
         <Wall Id="346" Name="Helium Moss Brick Wall" Color="#FFFF00FF" IsHouse="True" />
+        <Wall Id="347" Name="Shimmerfall Wall" />
+        <Wall Id="348" Name="Fallen Star Wall" />
+        <Wall Id="349" Name="Shimmerfall Wall (Unsafe)" />
+        <Wall Id="350" Name="Fallen Star Wall (Unsafe)" />
+        <Wall Id="351" Name="Feywood Wall" />
+        <Wall Id="352" Name="Feywood Wall (Unsafe)" />
+        <Wall Id="353" Name="Hallowed Brick Wall" />
+        <Wall Id="354" Name="Pine Tree Wall" />
+        <Wall Id="355" Name="Easter Wall" />
+        <Wall Id="356" Name="Gothic Brick Wall" />
+        <Wall Id="357" Name="Flinx Fur Wall" />
+        <Wall Id="358" Name="Jellyfish Wall" />
+        <Wall Id="359" Name="Pine Wood Wall" />
+        <Wall Id="360" Name="Harpy Wall" />
+        <Wall Id="361" Name="Crescent Wall" />
+        <Wall Id="362" Name="Book Wall" />
+        <Wall Id="363" Name="Tattered Wall" />
+        <Wall Id="364" Name="Plagueplate Wall" />
+        <Wall Id="365" Name="Boulder Wall (Unsafe)" />
+        <Wall Id="366" Name="Boulder Wall" />
     </Walls>
     <Items>
         <Item Id="-48" Name="Platinum Bow" Rack="True" />
@@ -15339,6 +15419,695 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Item Id="5453" Name="Guide to Critter Companionship (Inactive)" />
         <Item Id="5454" Name="Guide to Environmental Preservation (Inactive)" />
         <Item Id="5455" Name="Guide to Peaceful Coexistence (Inactive)" />
+        <Item Id="5456" Name="Dead Cells Guide to Environmentalist" />
+        <Item Id="5457" Name="Dead Cells Guide to Peaceful Coexistence" />
+        <Item Id="5458" Name="Health Flask" />
+        <Item Id="5459" Name="Hanging Flask" />
+        <Item Id="5460" Name="Flint" />
+        <Item Id="5461" Name="Phaseboy" />
+        <Item Id="5462" Name="Phasedropper" />
+        <Item Id="5463" Name="Magic Mirror (Dead Cells)" />
+        <Item Id="5464" Name="Pan" />
+        <Item Id="5465" Name="Ram Rune" />
+        <Item Id="5466" Name="Swarm Grenade" />
+        <Item Id="5467" Name="Replica Demon Altar" />
+        <Item Id="5468" Name="Replica Crimson Altar" />
+        <Item Id="5469" Name="Replica Shadow Orb" />
+        <Item Id="5470" Name="Replica Crimson Heart" />
+        <Item Id="5471" Name="Decorative Cobweb" />
+        <Item Id="5472" Name="Item Flask" />
+        <Item Id="5473" Name="Cobwhip" />
+        <Item Id="5474" Name="Soulscourge" />
+        <Item Id="5475" Name="Vasculash" />
+        <Item Id="5476" Name="Starcrash" />
+        <Item Id="5477" Name="Vulgar Display of Flower" />
+        <Item Id="5478" Name="Electric Eel" />
+        <Item Id="5479" Name="Constellation" />
+        <Item Id="5480" Name="Possession" />
+        <Item Id="5481" Name="Portable Kiln" />
+        <Item Id="5482" Name="Alchemy Flask" />
+        <Item Id="5483" Name="Queen of Bees" />
+        <Item Id="5484" Name="Cow Bell" />
+        <Item Id="5485" Name="Chicken Charm" />
+        <Item Id="5486" Name="The Sea of Silence" />
+        <Item Id="5487" Name="Heroes From Another World" />
+        <Item Id="5488" Name="Crystallize" />
+        <Item Id="5489" Name="Eater Of Life" />
+        <Item Id="5490" Name="This Is Canon Now" />
+        <Item Id="5491" Name="Winter At Varingskollen" />
+        <Item Id="5492" Name="Magic Shimmer Dropper" />
+        <Item Id="5493" Name="Shimmerfall Block" />
+        <Item Id="5494" Name="Shimmerfall Wall" />
+        <Item Id="5495" Name="Shimmer Gun" />
+        <Item Id="5496" Name="Jungle Juice" />
+        <Item Id="5497" Name="Pink Banner" />
+        <Item Id="5498" Name="White Banner" />
+        <Item Id="5499" Name="Froggy Neckband" />
+        <Item Id="5500" Name="Goat's Tuft" />
+        <Item Id="5501" Name="Old Companion Locket" />
+        <Item Id="5502" Name="Cat Chime" />
+        <Item Id="5503" Name="Dog Collar" />
+        <Item Id="5504" Name="Turkey Wattle Necklace" />
+        <Item Id="5505" Name="Mean Goblin's Spikes" />
+        <Item Id="5506" Name="Crow's Beak" />
+        <Item Id="5507" Name="Balloony Beads" />
+        <Item Id="5508" Name="Grim Old Barb" />
+        <Item Id="5509" Name="Vampire Pendant" />
+        <Item Id="5510" Name="Slasher's Mysterious Skull" />
+        <Item Id="5511" Name="Pufferfish" />
+        <Item Id="5512" Name="Pufferfish Cage" />
+        <Item Id="5513" Name="Puffer Shrimp" />
+        <Item Id="5514" Name="Rainbow Boulder" />
+        <Item Id="5515" Name="Moon Lord Torso" />
+        <Item Id="5516" Name="Poo Boulder" />
+        <Item Id="5517" Name="Faecorn" />
+        <Item Id="5518" Name="Infused Fertilizer" />
+        <Item Id="5519" Name="Axearang" />
+        <Item Id="5520" Name="Lava Boulder" />
+        <Item Id="5521" Name="Spider Boulder" />
+        <Item Id="5522" Name="Ghoulder" />
+        <Item Id="5523" Name="Friendly Boulder" />
+        <Item Id="5524" Name="Chlorophyte Visor" />
+        <Item Id="5525" Name="Cursed Piper Flute" />
+        <Item Id="5526" Name="Flairon" />
+        <Item Id="5527" Name="Of Sea and Dreams" />
+        <Item Id="5528" Name="The Runic Pixie" />
+        <Item Id="5529" Name="Banner of the Beast" />
+        <Item Id="5530" Name="Stickman vs Terr Terr" />
+        <Item Id="5531" Name="Cozy Window" />
+        <Item Id="5532" Name="Demon Altar" />
+        <Item Id="5533" Name="Crimson Altar" />
+        <Item Id="5534" Name="Fairy Choker" />
+        <Item Id="5535" Name="Pink Phaseblade" />
+        <Item Id="5536" Name="Pink Phasesaber" />
+        <Item Id="5537" Name="Blackened Fish" />
+        <Item Id="5538" Name="Music Box (Queen Bee)" />
+        <Item Id="5539" Name="Music Box (The Twins)" />
+        <Item Id="5540" Name="Magic String" />
+        <Item Id="5541" Name="Magic Yoyo Bag" />
+        <Item Id="5542" Name="Freeze Bomb" />
+        <Item Id="5543" Name="Stress Ball" />
+        <Item Id="5544" Name="Cloud Platform" />
+        <Item Id="5545" Name="Overgrown Living Wood Wall" />
+        <Item Id="5546" Name="Natural Dirt Wall" />
+        <Item Id="5547" Name="Strung Counterweight" />
+        <Item Id="5548" Name="Aetherium Bathtub" />
+        <Item Id="5549" Name="Aetherium Bed" />
+        <Item Id="5550" Name="Aetherium Bookcase" />
+        <Item Id="5551" Name="Aetherium Dresser" />
+        <Item Id="5552" Name="Aetherium Candelabra" />
+        <Item Id="5553" Name="Aetherium Candle" />
+        <Item Id="5554" Name="Aetherium Chair" />
+        <Item Id="5555" Name="Aetherium Chandelier" />
+        <Item Id="5556" Name="Aetherium Chest" />
+        <Item Id="5557" Name="Aetherium Clock" />
+        <Item Id="5558" Name="Aetherium Door" />
+        <Item Id="5559" Name="Aetherium Lamp" />
+        <Item Id="5560" Name="Aetherium Lantern" />
+        <Item Id="5561" Name="Aetherium Piano" />
+        <Item Id="5562" Name="Aetherium Platform" />
+        <Item Id="5563" Name="Aetherium Sink" />
+        <Item Id="5564" Name="Aetherium Sofa" />
+        <Item Id="5565" Name="Aetherium Table" />
+        <Item Id="5566" Name="Aetherium Work Bench" />
+        <Item Id="5567" Name="Trapped Aetherium Chest" />
+        <Item Id="5568" Name="Aetherium Toilet" />
+        <Item Id="5569" Name="Lava Cloud" />
+        <Item Id="5570" Name="Star Cloud" />
+        <Item Id="5571" Name="Rainbow Cloud" />
+        <Item Id="5572" Name="Mud Ball" />
+        <Item Id="5573" Name="Torch God's Flavor" />
+        <Item Id="5574" Name="Lucky Clover" />
+        <Item Id="5575" Name="Wilted Clover" />
+        <Item Id="5576" Name="Raven Feather" />
+        <Item Id="5577" Name="Pretty Mirror" />
+        <Item Id="5578" Name="Music Box (King Slime)" />
+        <Item Id="5579" Name="Music Box (Alt Queen Bee)" />
+        <Item Id="5580" Name="Music Box (Lunatic Cultist)" />
+        <Item Id="5581" Name="Music Box (Skeletron Prime)" />
+        <Item Id="5582" Name="Music Box (The Destroyer)" />
+        <Item Id="5583" Name="Chicken Bones' Visor" />
+        <Item Id="5584" Name="Chicken Bones' Vest" />
+        <Item Id="5585" Name="Chicken Bones' Pants" />
+        <Item Id="5586" Name="Chicken Bones' Wings" />
+        <Item Id="5587" Name="Chicken Bones' Robe" />
+        <Item Id="5588" Name="Prospector Helmet" />
+        <Item Id="5589" Name="Prospector Shirt" />
+        <Item Id="5590" Name="Prospector Pants" />
+        <Item Id="5591" Name="Captain Hat" />
+        <Item Id="5592" Name="Captain Vest" />
+        <Item Id="5593" Name="Captain Pants" />
+        <Item Id="5594" Name="Power Bomb" />
+        <Item Id="5595" Name="Sticky Power Bomb" />
+        <Item Id="5596" Name="Welding Mask" />
+        <Item Id="5597" Name="Amulet of the Night" />
+        <Item Id="5598" Name="CRT Monolith" />
+        <Item Id="5599" Name="Retro Monolith" />
+        <Item Id="5600" Name="Blue Roller Skates" />
+        <Item Id="5601" Name="Fallen Star Bathtub" />
+        <Item Id="5602" Name="Fallen Star Bed" />
+        <Item Id="5603" Name="Fallen Star Bookcase" />
+        <Item Id="5604" Name="Fallen Star Dresser" />
+        <Item Id="5605" Name="Fallen Star Candelabra" />
+        <Item Id="5606" Name="Fallen Star Candle" />
+        <Item Id="5607" Name="Fallen Star Chair" />
+        <Item Id="5608" Name="Fallen Star Chandelier" />
+        <Item Id="5609" Name="Fallen Star Chest" />
+        <Item Id="5610" Name="Fallen Star Clock" />
+        <Item Id="5611" Name="Fallen Star Door" />
+        <Item Id="5612" Name="Fallen Star Lamp" />
+        <Item Id="5613" Name="Fallen Star Lantern" />
+        <Item Id="5614" Name="Fallen Star Piano" />
+        <Item Id="5615" Name="Fallen Star Platform" />
+        <Item Id="5616" Name="Fallen Star Sink" />
+        <Item Id="5617" Name="Fallen Star Sofa" />
+        <Item Id="5618" Name="Fallen Star Table" />
+        <Item Id="5619" Name="Fallen Star Work Bench" />
+        <Item Id="5620" Name="Trapped Fallen Star Chest" />
+        <Item Id="5621" Name="Fallen Star Toilet" />
+        <Item Id="5622" Name="Fallen Star Block" />
+        <Item Id="5623" Name="Fallen Star Wall" />
+        <Item Id="5624" Name="Chippy's Helmet" />
+        <Item Id="5625" Name="Chippy's Chestplate" />
+        <Item Id="5626" Name="Chippy's Greaves" />
+        <Item Id="5627" Name="Chippy's Cloak" />
+        <Item Id="5628" Name="Chippy's Headband" />
+        <Item Id="5629" Name="Acorn Slingshot" />
+        <Item Id="5630" Name="r/Terraria 2023" />
+        <Item Id="5631" Name="Bould and Bash" />
+        <Item Id="5632" Name="Dark Forebodings" />
+        <Item Id="5633" Name="Oktober" />
+        <Item Id="5634" Name="It's Scragglin' Time" />
+        <Item Id="5635" Name="Kaguya" />
+        <Item Id="5636" Name="Prost" />
+        <Item Id="5637" Name="Music Box (Eater of Worlds)" />
+        <Item Id="5638" Name="Music Box (Torch God)" />
+        <Item Id="5639" Name="Music Box (Alt Torch God)" />
+        <Item Id="5640" Name="Green Roller Skates" />
+        <Item Id="5641" Name="Classic Roller Skates" />
+        <Item Id="5642" Name="Party Roller Skates" />
+        <Item Id="5643" Name="Rainbow Glowstick" />
+        <Item Id="5644" Name="Scrying Orb" />
+        <Item Id="5645" Name="Rock Candy" />
+        <Item Id="5646" Name="Blue Bikini Top" />
+        <Item Id="5647" Name="Blue Bikini Bottom" />
+        <Item Id="5648" Name="Red Swimsuit" />
+        <Item Id="5649" Name="Green Swimshorts" />
+        <Item Id="5650" Name="Gray Swimshorts" />
+        <Item Id="5651" Name="Orca Banner" />
+        <Item Id="5652" Name="Underworld Pylon" />
+        <Item Id="5653" Name="Aether Pylon" />
+        <Item Id="5654" Name="Friendly Rainbow Boulder" />
+        <Item Id="5655" Name="Film Projector" />
+        <Item Id="5656" Name="Heroicis' Hat" />
+        <Item Id="5657" Name="Heroicis' Coat" />
+        <Item Id="5658" Name="Heroicis' Pants" />
+        <Item Id="5659" Name="Heroicis' Wings" />
+        <Item Id="5660" Name="Hallowed Crown" />
+        <Item Id="5661" Name="Heroicis' Wings (Inactive)" />
+        <Item Id="5662" Name="Enchanted Pixie Dust" />
+        <Item Id="5663" Name="Cattiva" />
+        <Item Id="5664" Name="Foxparks" />
+        <Item Id="5665" Name="Chillet" />
+        <Item Id="5666" Name="Chillet Ignis" />
+        <Item Id="5667" Name="Digtoise" />
+        <Item Id="5668" Name="The Imploder" />
+        <Item Id="5669" Name="True Copper Shortsword" />
+        <Item Id="5670" Name="Rainbow Phaseblade" />
+        <Item Id="5671" Name="Rainbow Phasesaber" />
+        <Item Id="5672" Name="Librarian Skeleton Banner" />
+        <Item Id="5673" Name="Water Bolt Mimic Banner" />
+        <Item Id="5674" Name="Dull Red Team Block" />
+        <Item Id="5675" Name="Dull Green Team Block" />
+        <Item Id="5676" Name="Dull Blue Team Block" />
+        <Item Id="5677" Name="Dull Yellow Team Block" />
+        <Item Id="5678" Name="Dull Pink Team Block" />
+        <Item Id="5679" Name="Dull White Team Block" />
+        <Item Id="5680" Name="Lilac Dusk Hairclip" />
+        <Item Id="5681" Name="Lilac Dusk Dress" />
+        <Item Id="5682" Name="Lilac Dusk Skirt" />
+        <Item Id="5683" Name="Kazzymodus' Hood" />
+        <Item Id="5684" Name="Kazzymodus' Chestpiece" />
+        <Item Id="5685" Name="Kazzymodus' Leggings" />
+        <Item Id="5686" Name="Kazzymodus' Wings" />
+        <Item Id="5687" Name="Slime Spear" />
+        <Item Id="5688" Name="Slime Whip" />
+        <Item Id="5689" Name="Feywood Bathtub" />
+        <Item Id="5690" Name="Feywood Bed" />
+        <Item Id="5691" Name="Feywood Bookcase" />
+        <Item Id="5692" Name="Feywood Dresser" />
+        <Item Id="5693" Name="Feywood Candelabra" />
+        <Item Id="5694" Name="Feywood Candle" />
+        <Item Id="5695" Name="Feywood Chair" />
+        <Item Id="5696" Name="Feywood Chandelier" />
+        <Item Id="5697" Name="Feywood Chest" />
+        <Item Id="5698" Name="Feywood Clock" />
+        <Item Id="5699" Name="Feywood Door" />
+        <Item Id="5700" Name="Feywood Lamp" />
+        <Item Id="5701" Name="Feywood Lantern" />
+        <Item Id="5702" Name="Feywood Piano" />
+        <Item Id="5703" Name="Feywood Platform" />
+        <Item Id="5704" Name="Feywood Sink" />
+        <Item Id="5705" Name="Feywood Sofa" />
+        <Item Id="5706" Name="Feywood Table" />
+        <Item Id="5707" Name="Feywood Work Bench" />
+        <Item Id="5708" Name="Trapped Feywood Chest" />
+        <Item Id="5709" Name="Feywood Toilet" />
+        <Item Id="5710" Name="Feywood" />
+        <Item Id="5711" Name="Feywood Wall" />
+        <Item Id="5712" Name="Hallowed Bathtub" />
+        <Item Id="5713" Name="Hallowed Bed" />
+        <Item Id="5714" Name="Hallowed Bookcase" />
+        <Item Id="5715" Name="Hallowed Dresser" />
+        <Item Id="5716" Name="Hallowed Candelabra" />
+        <Item Id="5717" Name="Hallowed Candle" />
+        <Item Id="5718" Name="Hallowed Chair" />
+        <Item Id="5719" Name="Hallowed Chandelier" />
+        <Item Id="5720" Name="Fancy Hallowed Chest" />
+        <Item Id="5721" Name="Hallowed Clock" />
+        <Item Id="5722" Name="Hallowed Door" />
+        <Item Id="5723" Name="Hallowed Lamp" />
+        <Item Id="5724" Name="Hallowed Lantern" />
+        <Item Id="5725" Name="Hallowed Piano" />
+        <Item Id="5726" Name="Hallowed Platform" />
+        <Item Id="5727" Name="Hallowed Sink" />
+        <Item Id="5728" Name="Hallowed Sofa" />
+        <Item Id="5729" Name="Hallowed Table" />
+        <Item Id="5730" Name="Hallowed Work Bench" />
+        <Item Id="5731" Name="Trapped Fancy Hallowed Chest" />
+        <Item Id="5732" Name="Hallowed Toilet" />
+        <Item Id="5733" Name="Hallowed Brick" />
+        <Item Id="5734" Name="Hallowed Brick Wall" />
+        <Item Id="5735" Name="Pal Metal Chestplate" />
+        <Item Id="5736" Name="Pal Metal Leggings" />
+        <Item Id="5737" Name="Chippy's Cloak (Inactive)" />
+        <Item Id="5738" Name="Wall Racer Car" />
+        <Item Id="5739" Name="Gothic Bathtub" />
+        <Item Id="5740" Name="Gothic Bed" />
+        <Item Id="5741" Name="Gothic Dresser" />
+        <Item Id="5742" Name="Gothic Candelabra" />
+        <Item Id="5743" Name="Gothic Candle" />
+        <Item Id="5744" Name="Gothic Chandelier" />
+        <Item Id="5745" Name="Gothic Chest" />
+        <Item Id="5746" Name="Gothic Clock" />
+        <Item Id="5747" Name="Gothic Door" />
+        <Item Id="5748" Name="Gothic Lamp" />
+        <Item Id="5749" Name="Gothic Lantern" />
+        <Item Id="5750" Name="Gothic Piano" />
+        <Item Id="5751" Name="Gothic Platform" />
+        <Item Id="5752" Name="Gothic Sink" />
+        <Item Id="5753" Name="Gothic Sofa" />
+        <Item Id="5754" Name="Trapped Gothic Chest" />
+        <Item Id="5755" Name="Gothic Toilet" />
+        <Item Id="5756" Name="Demonite Bathtub" />
+        <Item Id="5757" Name="Demonite Bed" />
+        <Item Id="5758" Name="Demonite Bookcase" />
+        <Item Id="5759" Name="Demonite Candelabra" />
+        <Item Id="5760" Name="Demonite Candle" />
+        <Item Id="5761" Name="Demonite Chair" />
+        <Item Id="5762" Name="Demonite Chandelier" />
+        <Item Id="5763" Name="Demonite Chest" />
+        <Item Id="5764" Name="Demonite Clock" />
+        <Item Id="5765" Name="Demonite Door" />
+        <Item Id="5766" Name="Demonite Dresser" />
+        <Item Id="5767" Name="Demonite Lamp" />
+        <Item Id="5768" Name="Demonite Lantern" />
+        <Item Id="5769" Name="Demonite Piano" />
+        <Item Id="5770" Name="Demonite Platform" />
+        <Item Id="5771" Name="Demonite Sink" />
+        <Item Id="5772" Name="Demonite Sofa" />
+        <Item Id="5773" Name="Demonite Table" />
+        <Item Id="5774" Name="Demonite Toilet" />
+        <Item Id="5775" Name="Demonite Work Bench" />
+        <Item Id="5776" Name="Trapped Demonite Chest" />
+        <Item Id="5777" Name="Crimtane Bathtub" />
+        <Item Id="5778" Name="Crimtane Bed" />
+        <Item Id="5779" Name="Crimtane Bookcase" />
+        <Item Id="5780" Name="Crimtane Candelabra" />
+        <Item Id="5781" Name="Crimtane Candle" />
+        <Item Id="5782" Name="Crimtane Chair" />
+        <Item Id="5783" Name="Crimtane Chandelier" />
+        <Item Id="5784" Name="Crimtane Chest" />
+        <Item Id="5785" Name="Crimtane Clock" />
+        <Item Id="5786" Name="Crimtane Door" />
+        <Item Id="5787" Name="Crimtane Dresser" />
+        <Item Id="5788" Name="Crimtane Lamp" />
+        <Item Id="5789" Name="Crimtane Lantern" />
+        <Item Id="5790" Name="Crimtane Piano" />
+        <Item Id="5791" Name="Crimtane Platform" />
+        <Item Id="5792" Name="Crimtane Sink" />
+        <Item Id="5793" Name="Crimtane Sofa" />
+        <Item Id="5794" Name="Crimtane Table" />
+        <Item Id="5795" Name="Crimtane Toilet" />
+        <Item Id="5796" Name="Crimtane Work Bench" />
+        <Item Id="5797" Name="Trapped Crimtane Chest" />
+        <Item Id="5798" Name="Snow Bathtub" />
+        <Item Id="5799" Name="Snow Bed" />
+        <Item Id="5800" Name="Snow Bookcase" />
+        <Item Id="5801" Name="Snow Candelabra" />
+        <Item Id="5802" Name="Snow Candle" />
+        <Item Id="5803" Name="Snow Chair" />
+        <Item Id="5804" Name="Snow Chandelier" />
+        <Item Id="5805" Name="Snow Chest" />
+        <Item Id="5806" Name="Snow Clock" />
+        <Item Id="5807" Name="Snow Door" />
+        <Item Id="5808" Name="Snow Dresser" />
+        <Item Id="5809" Name="Snow Lamp" />
+        <Item Id="5810" Name="Snow Lantern" />
+        <Item Id="5811" Name="Snow Piano" />
+        <Item Id="5812" Name="Snow Platform" />
+        <Item Id="5813" Name="Snow Sink" />
+        <Item Id="5814" Name="Snow Sofa" />
+        <Item Id="5815" Name="Snow Table" />
+        <Item Id="5816" Name="Snow Toilet" />
+        <Item Id="5817" Name="Snow Work Bench" />
+        <Item Id="5818" Name="Trapped Snow Chest" />
+        <Item Id="5819" Name="Flinx Fur Bathtub" />
+        <Item Id="5820" Name="Flinx Fur Bed" />
+        <Item Id="5821" Name="Flinx Fur Bookcase" />
+        <Item Id="5822" Name="Flinx Fur Candelabra" />
+        <Item Id="5823" Name="Flinx Fur Candle" />
+        <Item Id="5824" Name="Flinx Fur Chair" />
+        <Item Id="5825" Name="Flinx Fur Chandelier" />
+        <Item Id="5826" Name="Flinx Fur Chest" />
+        <Item Id="5827" Name="Flinx Fur Clock" />
+        <Item Id="5828" Name="Flinx Fur Door" />
+        <Item Id="5829" Name="Flinx Fur Dresser" />
+        <Item Id="5830" Name="Flinx Fur Lamp" />
+        <Item Id="5831" Name="Flinx Fur Lantern" />
+        <Item Id="5832" Name="Flinx Fur Piano" />
+        <Item Id="5833" Name="Flinx Fur Platform" />
+        <Item Id="5834" Name="Flinx Fur Sink" />
+        <Item Id="5835" Name="Flinx Fur Sofa" />
+        <Item Id="5836" Name="Flinx Fur Table" />
+        <Item Id="5837" Name="Flinx Fur Toilet" />
+        <Item Id="5838" Name="Flinx Fur Work Bench" />
+        <Item Id="5839" Name="Trapped Flinx Fur Chest" />
+        <Item Id="5840" Name="Pine Bathtub" />
+        <Item Id="5841" Name="Pine Bed" />
+        <Item Id="5842" Name="Pine Bookcase" />
+        <Item Id="5843" Name="Pine Candelabra" />
+        <Item Id="5844" Name="Pine Candle" />
+        <Item Id="5845" Name="Pine Chandelier" />
+        <Item Id="5846" Name="Pine Chest" />
+        <Item Id="5847" Name="Pine Clock" />
+        <Item Id="5848" Name="Pine Dresser" />
+        <Item Id="5849" Name="Pine Lamp" />
+        <Item Id="5850" Name="Pine Lantern" />
+        <Item Id="5851" Name="Pine Piano" />
+        <Item Id="5852" Name="Pine Platform" />
+        <Item Id="5853" Name="Pine Sink" />
+        <Item Id="5854" Name="Pine Sofa" />
+        <Item Id="5855" Name="Pine Toilet" />
+        <Item Id="5856" Name="Pine Work Bench" />
+        <Item Id="5857" Name="Trapped Pine Chest" />
+        <Item Id="5858" Name="Easter Bathtub" />
+        <Item Id="5859" Name="Easter Bed" />
+        <Item Id="5860" Name="Easter Bookcase" />
+        <Item Id="5861" Name="Easter Candelabra" />
+        <Item Id="5862" Name="Easter Candle" />
+        <Item Id="5863" Name="Easter Chair" />
+        <Item Id="5864" Name="Easter Chandelier" />
+        <Item Id="5865" Name="Easter Chest" />
+        <Item Id="5866" Name="Easter Clock" />
+        <Item Id="5867" Name="Easter Door" />
+        <Item Id="5868" Name="Easter Dresser" />
+        <Item Id="5869" Name="Easter Lamp" />
+        <Item Id="5870" Name="Easter Lantern" />
+        <Item Id="5871" Name="Easter Piano" />
+        <Item Id="5872" Name="Easter Platform" />
+        <Item Id="5873" Name="Easter Sink" />
+        <Item Id="5874" Name="Easter Sofa" />
+        <Item Id="5875" Name="Easter Table" />
+        <Item Id="5876" Name="Easter Toilet" />
+        <Item Id="5877" Name="Easter Work Bench" />
+        <Item Id="5878" Name="Trapped Easter Chest" />
+        <Item Id="5879" Name="Stone Bathtub" />
+        <Item Id="5880" Name="Stone Bed" />
+        <Item Id="5881" Name="Stone Bookcase" />
+        <Item Id="5882" Name="Stone Candelabra" />
+        <Item Id="5883" Name="Stone Candle" />
+        <Item Id="5884" Name="Stone Chair" />
+        <Item Id="5885" Name="Stone Chandelier" />
+        <Item Id="5886" Name="Stone Chest" />
+        <Item Id="5887" Name="Stone Clock" />
+        <Item Id="5888" Name="Stone Dresser" />
+        <Item Id="5889" Name="Stone Lamp" />
+        <Item Id="5890" Name="Stone Lantern" />
+        <Item Id="5891" Name="Stone Piano" />
+        <Item Id="5892" Name="Stone Sink" />
+        <Item Id="5893" Name="Stone Sofa" />
+        <Item Id="5894" Name="Stone Table" />
+        <Item Id="5895" Name="Stone Toilet" />
+        <Item Id="5896" Name="Stone Work Bench" />
+        <Item Id="5897" Name="Trapped Stone Chest" />
+        <Item Id="5898" Name="Jellyfish Bathtub" />
+        <Item Id="5899" Name="Jellyfish Bed" />
+        <Item Id="5900" Name="Jellyfish Bookcase" />
+        <Item Id="5901" Name="Jellyfish Candelabra" />
+        <Item Id="5902" Name="Jellyfish Candle" />
+        <Item Id="5903" Name="Jellyfish Chair" />
+        <Item Id="5904" Name="Jellyfish Chandelier" />
+        <Item Id="5905" Name="Jellyfish Chest" />
+        <Item Id="5906" Name="Jellyfish Clock" />
+        <Item Id="5907" Name="Jellyfish Door" />
+        <Item Id="5908" Name="Jellyfish Dresser" />
+        <Item Id="5909" Name="Jellyfish Lamp" />
+        <Item Id="5910" Name="Jellyfish Lantern" />
+        <Item Id="5911" Name="Jellyfish Piano" />
+        <Item Id="5912" Name="Jellyfish Platform" />
+        <Item Id="5913" Name="Jellyfish Sink" />
+        <Item Id="5914" Name="Jellyfish Sofa" />
+        <Item Id="5915" Name="Jellyfish Table" />
+        <Item Id="5916" Name="Jellyfish Toilet" />
+        <Item Id="5917" Name="Jellyfish Work Bench" />
+        <Item Id="5918" Name="Trapped Jellyfish Chest" />
+        <Item Id="5919" Name="Pine Tree Wall" />
+        <Item Id="5920" Name="Easter Block" />
+        <Item Id="5921" Name="Easter Wall" />
+        <Item Id="5922" Name="Gothic Brick" />
+        <Item Id="5923" Name="Gothic Brick Wall" />
+        <Item Id="5924" Name="Flinx Fur Block" />
+        <Item Id="5925" Name="Flinx Fur Wall" />
+        <Item Id="5926" Name="Jellyfish Block" />
+        <Item Id="5927" Name="Jellyfish Wall" />
+        <Item Id="5928" Name="Toybreaker Brick" />
+        <Item Id="5929" Name="Remix" />
+        <Item Id="5930" Name="Pine Wood" />
+        <Item Id="5931" Name="Pine Wood Wall" />
+        <Item Id="5932" Name="Harpy Bathtub" />
+        <Item Id="5933" Name="Harpy Bed" />
+        <Item Id="5934" Name="Harpy Bookcase" />
+        <Item Id="5935" Name="Harpy Candelabra" />
+        <Item Id="5936" Name="Harpy Candle" />
+        <Item Id="5937" Name="Harpy Chair" />
+        <Item Id="5938" Name="Harpy Chandelier" />
+        <Item Id="5939" Name="Harpy Chest" />
+        <Item Id="5940" Name="Harpy Clock" />
+        <Item Id="5941" Name="Harpy Door" />
+        <Item Id="5942" Name="Harpy Dresser" />
+        <Item Id="5943" Name="Harpy Lamp" />
+        <Item Id="5944" Name="Harpy Lantern" />
+        <Item Id="5945" Name="Harpy Piano" />
+        <Item Id="5946" Name="Harpy Platform" />
+        <Item Id="5947" Name="Harpy Sink" />
+        <Item Id="5948" Name="Harpy Sofa" />
+        <Item Id="5949" Name="Harpy Table" />
+        <Item Id="5950" Name="Harpy Toilet" />
+        <Item Id="5951" Name="Harpy Work Bench" />
+        <Item Id="5952" Name="Trapped Harpy Chest" />
+        <Item Id="5953" Name="Harpy Block" />
+        <Item Id="5954" Name="Harpy Wall" />
+        <Item Id="5955" Name="Cloud Bathtub" />
+        <Item Id="5956" Name="Cloud Bed" />
+        <Item Id="5957" Name="Cloud Bookcase" />
+        <Item Id="5958" Name="Cloud Candelabra" />
+        <Item Id="5959" Name="Cloud Candle" />
+        <Item Id="5960" Name="Cloud Chair" />
+        <Item Id="5961" Name="Cloud Chandelier" />
+        <Item Id="5962" Name="Cloud Chest" />
+        <Item Id="5963" Name="Cloud Clock" />
+        <Item Id="5964" Name="Cloud Door" />
+        <Item Id="5965" Name="Cloud Dresser" />
+        <Item Id="5966" Name="Cloud Lamp" />
+        <Item Id="5967" Name="Cloud Lantern" />
+        <Item Id="5968" Name="Cloud Piano" />
+        <Item Id="5969" Name="Cloud Sink" />
+        <Item Id="5970" Name="Cloud Sofa" />
+        <Item Id="5971" Name="Cloud Table" />
+        <Item Id="5972" Name="Cloud Toilet" />
+        <Item Id="5973" Name="Cloud Work Bench" />
+        <Item Id="5974" Name="Trapped Cloud Chest" />
+        <Item Id="5975" Name="Duskware Bathtub" />
+        <Item Id="5976" Name="Duskware Bed" />
+        <Item Id="5977" Name="Duskware Bookcase" />
+        <Item Id="5978" Name="Duskware Candelabra" />
+        <Item Id="5979" Name="Duskware Candle" />
+        <Item Id="5980" Name="Duskware Chair" />
+        <Item Id="5981" Name="Duskware Chandelier" />
+        <Item Id="5982" Name="Duskware Chest" />
+        <Item Id="5983" Name="Duskware Clock" />
+        <Item Id="5984" Name="Duskware Door" />
+        <Item Id="5985" Name="Duskware Dresser" />
+        <Item Id="5986" Name="Duskware Lamp" />
+        <Item Id="5987" Name="Duskware Lantern" />
+        <Item Id="5988" Name="Duskware Piano" />
+        <Item Id="5989" Name="Duskware Platform" />
+        <Item Id="5990" Name="Duskware Sink" />
+        <Item Id="5991" Name="Duskware Sofa" />
+        <Item Id="5992" Name="Duskware Table" />
+        <Item Id="5993" Name="Duskware Toilet" />
+        <Item Id="5994" Name="Duskware Work Bench" />
+        <Item Id="5995" Name="Trapped Duskware Chest" />
+        <Item Id="5996" Name="Moonplate Block" />
+        <Item Id="5997" Name="Crescent Wall" />
+        <Item Id="5998" Name="Librarian Bathtub" />
+        <Item Id="5999" Name="Librarian Bed" />
+        <Item Id="6000" Name="Librarian Bookcase" />
+        <Item Id="6001" Name="Librarian Candelabra" />
+        <Item Id="6002" Name="Librarian Candle" />
+        <Item Id="6003" Name="Librarian Chair" />
+        <Item Id="6004" Name="Librarian Chandelier" />
+        <Item Id="6005" Name="Librarian Chest" />
+        <Item Id="6006" Name="Librarian Clock" />
+        <Item Id="6007" Name="Librarian Door" />
+        <Item Id="6008" Name="Librarian Dresser" />
+        <Item Id="6009" Name="Librarian Lamp" />
+        <Item Id="6010" Name="Librarian Lantern" />
+        <Item Id="6011" Name="Librarian Piano" />
+        <Item Id="6012" Name="Librarian Platform" />
+        <Item Id="6013" Name="Librarian Sink" />
+        <Item Id="6014" Name="Librarian Sofa" />
+        <Item Id="6015" Name="Librarian Table" />
+        <Item Id="6016" Name="Librarian Toilet" />
+        <Item Id="6017" Name="Librarian Work Bench" />
+        <Item Id="6018" Name="Trapped Librarian Chest" />
+        <Item Id="6019" Name="Book Block" />
+        <Item Id="6020" Name="Book Wall" />
+        <Item Id="6021" Name="Armored Bones Bathtub" />
+        <Item Id="6022" Name="Armored Bones Bed" />
+        <Item Id="6023" Name="Armored Bones Bookcase" />
+        <Item Id="6024" Name="Armored Bones Candelabra" />
+        <Item Id="6025" Name="Armored Bones Candle" />
+        <Item Id="6026" Name="Armored Bones Chair" />
+        <Item Id="6027" Name="Armored Bones Chandelier" />
+        <Item Id="6028" Name="Armored Bones Chest" />
+        <Item Id="6029" Name="Armored Bones Clock" />
+        <Item Id="6030" Name="Armored Bones Door" />
+        <Item Id="6031" Name="Armored Bones Dresser" />
+        <Item Id="6032" Name="Armored Bones Lamp" />
+        <Item Id="6033" Name="Armored Bones Lantern" />
+        <Item Id="6034" Name="Armored Bones Piano" />
+        <Item Id="6035" Name="Armored Bones Platform" />
+        <Item Id="6036" Name="Armored Bones Sink" />
+        <Item Id="6037" Name="Armored Bones Sofa" />
+        <Item Id="6038" Name="Armored Bones Table" />
+        <Item Id="6039" Name="Armored Bones Toilet" />
+        <Item Id="6040" Name="Armored Bones Work Bench" />
+        <Item Id="6041" Name="Trapped Armored Bones Chest" />
+        <Item Id="6042" Name="Tattered Block" />
+        <Item Id="6043" Name="Tattered Wall" />
+        <Item Id="6044" Name="Music Box (Jungle Night)" />
+        <Item Id="6045" Name="Spooky Bathtub" />
+        <Item Id="6046" Name="Spooky Bed" />
+        <Item Id="6047" Name="Spooky Bookcase" />
+        <Item Id="6048" Name="Spooky Candelabra" />
+        <Item Id="6049" Name="Spooky Candle" />
+        <Item Id="6050" Name="Spooky Chair" />
+        <Item Id="6051" Name="Spooky Chandelier" />
+        <Item Id="6052" Name="Spooky Clock" />
+        <Item Id="6053" Name="Spooky Drawers" />
+        <Item Id="6054" Name="Spooky Lamp" />
+        <Item Id="6055" Name="Spooky Lantern" />
+        <Item Id="6056" Name="Spooky Piano" />
+        <Item Id="6057" Name="Spooky Sink" />
+        <Item Id="6058" Name="Spooky Sofa" />
+        <Item Id="6059" Name="Spooky Table" />
+        <Item Id="6060" Name="Spooky Work Bench" />
+        <Item Id="6061" Name="Trapped Spooky Chest" />
+        <Item Id="6062" Name="Plague Bathtub" />
+        <Item Id="6063" Name="Plague Bed" />
+        <Item Id="6064" Name="Plague Bookcase" />
+        <Item Id="6065" Name="Plague Candelabra" />
+        <Item Id="6066" Name="Plague Candle" />
+        <Item Id="6067" Name="Plague Chair" />
+        <Item Id="6068" Name="Plague Chandelier" />
+        <Item Id="6069" Name="Plague Chest" />
+        <Item Id="6070" Name="Plague Clock" />
+        <Item Id="6071" Name="Plague Door" />
+        <Item Id="6072" Name="Plague Dresser" />
+        <Item Id="6073" Name="Plague Lamp" />
+        <Item Id="6074" Name="Plague Lantern" />
+        <Item Id="6075" Name="Plague Piano" />
+        <Item Id="6076" Name="Plague Platform" />
+        <Item Id="6077" Name="Plague Sink" />
+        <Item Id="6078" Name="Plague Sofa" />
+        <Item Id="6079" Name="Plague Table" />
+        <Item Id="6080" Name="Plague Toilet" />
+        <Item Id="6081" Name="Plague Work Bench" />
+        <Item Id="6082" Name="Trapped Plague Chest" />
+        <Item Id="6083" Name="Plagueplate" />
+        <Item Id="6084" Name="Plagueplate Wall" />
+        <Item Id="6085" Name="Shroomite Bathtub" />
+        <Item Id="6086" Name="Shroomite Bed" />
+        <Item Id="6087" Name="Shroomite Bookcase" />
+        <Item Id="6088" Name="Shroomite Candelabra" />
+        <Item Id="6089" Name="Shroomite Candle" />
+        <Item Id="6090" Name="Shroomite Chair" />
+        <Item Id="6091" Name="Shroomite Chandelier" />
+        <Item Id="6092" Name="Shroomite Chest" />
+        <Item Id="6093" Name="Shroomite Clock" />
+        <Item Id="6094" Name="Shroomite Door" />
+        <Item Id="6095" Name="Shroomite Dresser" />
+        <Item Id="6096" Name="Shroomite Lamp" />
+        <Item Id="6097" Name="Shroomite Lantern" />
+        <Item Id="6098" Name="Shroomite Piano" />
+        <Item Id="6099" Name="Shroomite Platform" />
+        <Item Id="6100" Name="Shroomite Sink" />
+        <Item Id="6101" Name="Shroomite Sofa" />
+        <Item Id="6102" Name="Shroomite Table" />
+        <Item Id="6103" Name="Shroomite Toilet" />
+        <Item Id="6104" Name="Shroomite Work Bench" />
+        <Item Id="6105" Name="Trapped Shroomite Chest" />
+        <Item Id="6106" Name="Boulder Bathtub" />
+        <Item Id="6107" Name="Boulder Bed" />
+        <Item Id="6108" Name="Boulder Bookcase" />
+        <Item Id="6109" Name="Boulder Candelabra" />
+        <Item Id="6110" Name="Boulder Candle" />
+        <Item Id="6111" Name="Boulder Chair" />
+        <Item Id="6112" Name="Boulder Chandelier" />
+        <Item Id="6113" Name="Boulder Chest" />
+        <Item Id="6114" Name="Boulder Clock" />
+        <Item Id="6115" Name="Boulder Door" />
+        <Item Id="6116" Name="Boulder Dresser" />
+        <Item Id="6117" Name="Boulder Lamp" />
+        <Item Id="6118" Name="Boulder Lantern" />
+        <Item Id="6119" Name="Boulder Piano" />
+        <Item Id="6120" Name="Boulder Platform" />
+        <Item Id="6121" Name="Boulder Sink" />
+        <Item Id="6122" Name="Boulder Sofa" />
+        <Item Id="6123" Name="Boulder Table" />
+        <Item Id="6124" Name="Boulder Toilet" />
+        <Item Id="6125" Name="Boulder Work Bench" />
+        <Item Id="6126" Name="Trapped Boulder Chest" />
+        <Item Id="6127" Name="Boulder Block" />
+        <Item Id="6128" Name="Boulder Wall" />
+        <Item Id="6129" Name="Sharp Spike Block" />
+        <Item Id="6130" Name="Demon Altar" />
+        <Item Id="6131" Name="Crimson Altar" />
+        <Item Id="6132" Name="Boulder Block" />
+        <Item Id="6133" Name="Boulder Wall" />
+        <Item Id="6134" Name="Sharp Spike Block" />
+        <Item Id="6135" Name="Demon Altar" />
+        <Item Id="6136" Name="Crimson Altar" />
+        <Item Id="6137" Name="Luna's Runic Pixie Hood" />
+        <Item Id="6138" Name="Luna's Runic Pixie Shirt" />
+        <Item Id="6139" Name="Luna's Runic Pixie Pants" />
+        <Item Id="6140" Name="Luna's Runic Pixie Wings" />
+        <Item Id="6141" Name="Luna's Runic Pixie Cloak" />
+        <Item Id="6142" Name="Huge Dragon Egg" />
+        <Item Id="6143" Name="n/a (No official name)" />
+        <Item Id="6144" Name="Music Box (Skeletron)" />
     </Items>
     <Npcs>
         <Npc Id="17" Name="Merchant"  />
@@ -15405,6 +16174,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Npc Id="683" Name="Mystic Slime" Size="32,32" />
         <Npc Id="684" Name="Squire Slime" Size="32,32" />
         <Npc Id="685" Name="Old Shaking Chest" Size="30,28" />
+        <Npc Id="686" Name="Clumsy Balloon Slime" />
+        <Npc Id="687" Name="Mystic Frog" />
+        <Npc Id="688" Name="Pufferfish" />
+        <Npc Id="689" Name="Town Pet (Placeholder)" />
+        <Npc Id="690" Name="Statue (enemy)" />
+        <Npc Id="691" Name="Moss Zombie" />
+        <Npc Id="692" Name="Unverified (Placeholder)" />
+        <Npc Id="693" Name="Librarian Skeleton" />
+        <Npc Id="694" Name="Water Bolt Mimic" />
     </Npcs>
     <ItemPrefix>
         <Prefix Id="0" Name="" />

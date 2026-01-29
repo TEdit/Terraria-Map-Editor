@@ -14,12 +14,12 @@ namespace TEdit.Configuration;
 
 public class WorldConfiguration
 {
-    public static uint CompatibleVersion { get; set; } = 275;
+    public static uint CompatibleVersion { get; set; } = 315;
     public static short TileCount { get; private set; } = 693; // updated by json
     public static short WallCount { get; private set; } = 346; // updated by json
     public static short MaxNpcID { get; private set; } = 687; // updated by json
     public static int MaxChests { get; private set; } = 8000;
-    public static int MaxSigns { get; private set; } = 1000;
+    public static int MaxSigns { get; private set; } = 32767;
     public static int CavernLevelToBottomOfWorld { get; private set; } = 478;
     public static byte MaxMoons = 3;
 
@@ -111,7 +111,7 @@ public class WorldConfiguration
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
         }
 
@@ -206,7 +206,8 @@ public class WorldConfiguration
         foreach (var xElement in xmlSettings.Elements("GlobalColors").Elements("GlobalColor"))
         {
             string name = (string)xElement.Attribute("Name");
-            var color = TEditColor.FromString((string)xElement.Attribute("Color"));
+            string colorHex = (string)xElement.Attribute("Color");
+            var color = !string.IsNullOrEmpty(colorHex) ? TEditColor.FromString(colorHex) : TEditColor.Magenta;
             GlobalColors.Add(name, color);
         }
 
@@ -216,7 +217,8 @@ public class WorldConfiguration
             var curTile = new TileProperty();
 
             // Read XML attributes
-            curTile.Color = TEditColor.FromString((string)xElement.Attribute("Color"));
+            string tileColorHex = (string)xElement.Attribute("Color");
+            curTile.Color = !string.IsNullOrEmpty(tileColorHex) ? TEditColor.FromString(tileColorHex) : TEditColor.Magenta;
             curTile.Name = (string)xElement.Attribute("Name");
             curTile.Id = (int?)xElement.Attribute("Id") ?? 0;
             curTile.IsFramed = (bool?)xElement.Attribute("Framed") ?? false;
@@ -320,7 +322,8 @@ public class WorldConfiguration
         foreach (var xElement in xmlSettings.Elements("Walls").Elements("Wall"))
         {
             var curWall = new WallProperty();
-            curWall.Color = TEditColor.FromString((string)xElement.Attribute("Color"));
+            var colorHex = (string)xElement.Attribute("Color");
+            curWall.Color = !string.IsNullOrEmpty(colorHex) ? TEditColor.FromString(colorHex) : TEditColor.Magenta;
             curWall.Name = (string)xElement.Attribute("Name");
             curWall.Id = (int?)xElement.Attribute("Id") ?? -1;
             WallProperties.Add(curWall);
@@ -377,7 +380,8 @@ public class WorldConfiguration
             var curPaint = new PaintProperty();
             curPaint.Id = (int?)xElement.Attribute("Id") ?? -1;
             curPaint.Name = (string)xElement.Attribute("Name");
-            curPaint.Color = TEditColor.FromString((string)xElement.Attribute("Color"));
+            var colorHex = (string)xElement.Attribute("Color");
+            curPaint.Color = !string.IsNullOrEmpty(colorHex) ? TEditColor.FromString(colorHex) : TEditColor.Magenta;
             PaintProperties.Add(curPaint);
         }
 

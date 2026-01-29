@@ -228,6 +228,11 @@ public partial class WorldRenderXna : UserControl
 
     public static TEditColor GetTextureTileColor(Texture2D texture, Rectangle source, bool useAverage = true)
     {
+        if (source.Right > texture.Width || source.Bottom > texture.Height)
+        {
+            source = new Rectangle(0, 0, texture.Width, texture.Height);
+        }
+
         Dictionary<Color, int> colorHistogram = new Dictionary<Color, int>();
 
         var color = new Color[source.Height * source.Width];
