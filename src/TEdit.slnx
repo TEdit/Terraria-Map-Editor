@@ -5,7 +5,7 @@
   </Folder>
   <Project Path="SettingsFileUpdater/SettingsFileUpdater.csproj">
     <Platform Solution="Debug|*" Project="x86" />
-    <Build Project="false" />
+    <Build Solution="Release|*" Project="false" />
   </Project>
   <Project Path="TEdit.Common/TEdit.Common.csproj" />
   <Project Path="TEdit.Configuration.Tests/TEdit.Configuration.Tests.csproj" />

@@ -1,4 +1,4 @@
-{ 
+{
   "Cat": ["Siamese", "Black", "OrangeTabby", "RussianBlue", "Silver", "White"],
   "Dog": ["Labrador", "PitBull", "Beagle", "Corgi", "Dalmation", "Husky"],
   "Bunny": ["White", "Angora", "Dutch", "Flemish", "Lop", "Silver"],
@@ -13,7 +13,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 254
+      "BestiaryDisplayIndex": 258
     },
     {
       "Id": -9,
@@ -25,7 +25,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 181
+      "BestiaryDisplayIndex": 184
     },
     {
       "Id": -8,
@@ -37,7 +37,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 180
+      "BestiaryDisplayIndex": 183
     },
     {
       "Id": -7,
@@ -49,7 +49,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 132
+      "BestiaryDisplayIndex": 133
     },
     {
       "Id": -6,
@@ -61,7 +61,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 186
+      "BestiaryDisplayIndex": 189
     },
     {
       "Id": -5,
@@ -73,7 +73,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 185
+      "BestiaryDisplayIndex": 188
     },
     {
       "Id": -4,
@@ -85,7 +85,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 133
+      "BestiaryDisplayIndex": 134
     },
     {
       "Id": -3,
@@ -97,7 +97,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 130
+      "BestiaryDisplayIndex": 131
     },
     {
       "Id": -1,
@@ -109,7 +109,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 325
+      "BestiaryDisplayIndex": 331
     },
     {
       "Id": 1,
@@ -121,7 +121,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 131
+      "BestiaryDisplayIndex": 132
     },
     {
       "Id": 2,
@@ -133,7 +133,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 142
+      "BestiaryDisplayIndex": 143
     },
     {
       "Id": 3,
@@ -145,7 +145,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 149
+      "BestiaryDisplayIndex": 150
     },
     {
       "Id": 4,
@@ -157,7 +157,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 504
+      "BestiaryDisplayIndex": 510
     },
     {
       "Id": 5,
@@ -169,7 +169,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 505
+      "BestiaryDisplayIndex": 511
     },
     {
       "Id": 6,
@@ -181,7 +181,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 327
+      "BestiaryDisplayIndex": 333
     },
     {
       "Id": 7,
@@ -193,7 +193,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 329
+      "BestiaryDisplayIndex": 335
     },
     {
       "Id": 10,
@@ -205,7 +205,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 183
+      "BestiaryDisplayIndex": 186
     },
     {
       "Id": 13,
@@ -215,9 +215,9 @@
       "BestiaryId": "EaterofWorldsHead",
       "CanTalk": false,
       "IsCritter": false,
-      "IsKillCredit": true,
+      "IsKillCredit": false,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 507
+      "BestiaryDisplayIndex": 513
     },
     {
       "Id": 16,
@@ -229,7 +229,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 188
+      "BestiaryDisplayIndex": 191
     },
     {
       "Id": 21,
@@ -241,7 +241,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 191
+      "BestiaryDisplayIndex": 194
     },
     {
       "Id": 23,
@@ -253,7 +253,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 279
+      "BestiaryDisplayIndex": 283
     },
     {
       "Id": 24,
@@ -265,7 +265,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 316
+      "BestiaryDisplayIndex": 322
     },
     {
       "Id": 26,
@@ -277,7 +277,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 379
+      "BestiaryDisplayIndex": 385
     },
     {
       "Id": 27,
@@ -289,7 +289,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 380
+      "BestiaryDisplayIndex": 386
     },
     {
       "Id": 28,
@@ -301,7 +301,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 382
+      "BestiaryDisplayIndex": 388
     },
     {
       "Id": 29,
@@ -313,7 +313,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 384
+      "BestiaryDisplayIndex": 390
     },
     {
       "Id": 31,
@@ -325,7 +325,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 281
+      "BestiaryDisplayIndex": 285
     },
     {
       "Id": 32,
@@ -337,7 +337,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 302
+      "BestiaryDisplayIndex": 306
     },
     {
       "Id": 34,
@@ -349,7 +349,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 309
+      "BestiaryDisplayIndex": 315
     },
     {
       "Id": 35,
@@ -361,7 +361,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 511
+      "BestiaryDisplayIndex": 517
     },
     {
       "Id": 39,
@@ -373,7 +373,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 315
+      "BestiaryDisplayIndex": 321
     },
     {
       "Id": 42,
@@ -385,7 +385,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 265
+      "BestiaryDisplayIndex": 269
     },
     {
       "Id": 43,
@@ -397,7 +397,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 271
+      "BestiaryDisplayIndex": 275
     },
     {
       "Id": 44,
@@ -409,7 +409,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 196
+      "BestiaryDisplayIndex": 199
     },
     {
       "Id": 45,
@@ -421,7 +421,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 201
+      "BestiaryDisplayIndex": 204
     },
     {
       "Id": 46,
@@ -445,7 +445,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 158
+      "BestiaryDisplayIndex": 159
     },
     {
       "Id": 48,
@@ -457,7 +457,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 323
+      "BestiaryDisplayIndex": 329
     },
     {
       "Id": 49,
@@ -469,7 +469,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 203
+      "BestiaryDisplayIndex": 206
     },
     {
       "Id": 50,
@@ -481,7 +481,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 506
+      "BestiaryDisplayIndex": 512
     },
     {
       "Id": 51,
@@ -493,7 +493,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 273
+      "BestiaryDisplayIndex": 277
     },
     {
       "Id": 52,
@@ -505,7 +505,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 260
+      "BestiaryDisplayIndex": 264
     },
     {
       "Id": 53,
@@ -517,7 +517,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 163
+      "BestiaryDisplayIndex": 164
     },
     {
       "Id": 55,
@@ -541,7 +541,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 255
+      "BestiaryDisplayIndex": 259
     },
     {
       "Id": 57,
@@ -553,7 +553,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 169
+      "BestiaryDisplayIndex": 170
     },
     {
       "Id": 58,
@@ -565,7 +565,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 274
+      "BestiaryDisplayIndex": 278
     },
     {
       "Id": 59,
@@ -577,7 +577,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 313
+      "BestiaryDisplayIndex": 319
     },
     {
       "Id": 60,
@@ -589,7 +589,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 317
+      "BestiaryDisplayIndex": 323
     },
     {
       "Id": 61,
@@ -601,7 +601,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 232
+      "BestiaryDisplayIndex": 235
     },
     {
       "Id": 62,
@@ -613,7 +613,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 318
+      "BestiaryDisplayIndex": 324
     },
     {
       "Id": 63,
@@ -625,7 +625,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 205
+      "BestiaryDisplayIndex": 208
     },
     {
       "Id": 64,
@@ -637,7 +637,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 253
+      "BestiaryDisplayIndex": 257
     },
     {
       "Id": 65,
@@ -649,7 +649,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 251
+      "BestiaryDisplayIndex": 254
     },
     {
       "Id": 66,
@@ -661,7 +661,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 319
+      "BestiaryDisplayIndex": 325
     },
     {
       "Id": 67,
@@ -673,7 +673,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 249
+      "BestiaryDisplayIndex": 252
     },
     {
       "Id": 68,
@@ -685,7 +685,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 311
+      "BestiaryDisplayIndex": 317
     },
     {
       "Id": 69,
@@ -697,7 +697,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 240
+      "BestiaryDisplayIndex": 243
     },
     {
       "Id": 71,
@@ -709,7 +709,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 280
+      "BestiaryDisplayIndex": 284
     },
     {
       "Id": 73,
@@ -721,7 +721,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 129
+      "BestiaryDisplayIndex": 130
     },
     {
       "Id": 74,
@@ -745,7 +745,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 357
+      "BestiaryDisplayIndex": 363
     },
     {
       "Id": 77,
@@ -757,7 +757,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 199
+      "BestiaryDisplayIndex": 202
     },
     {
       "Id": 78,
@@ -769,7 +769,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 236
+      "BestiaryDisplayIndex": 239
     },
     {
       "Id": 79,
@@ -781,7 +781,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 337
+      "BestiaryDisplayIndex": 343
     },
     {
       "Id": 80,
@@ -793,7 +793,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 367
+      "BestiaryDisplayIndex": 373
     },
     {
       "Id": 81,
@@ -805,7 +805,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 326
+      "BestiaryDisplayIndex": 332
     },
     {
       "Id": 82,
@@ -817,7 +817,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 157
+      "BestiaryDisplayIndex": 158
     },
     {
       "Id": 83,
@@ -829,7 +829,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 333
+      "BestiaryDisplayIndex": 339
     },
     {
       "Id": 84,
@@ -841,7 +841,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 363
+      "BestiaryDisplayIndex": 369
     },
     {
       "Id": 85,
@@ -853,7 +853,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 207
+      "BestiaryDisplayIndex": 210
     },
     {
       "Id": 86,
@@ -865,7 +865,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 359
+      "BestiaryDisplayIndex": 365
     },
     {
       "Id": 87,
@@ -877,7 +877,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 322
+      "BestiaryDisplayIndex": 328
     },
     {
       "Id": 93,
@@ -889,7 +889,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 204
+      "BestiaryDisplayIndex": 207
     },
     {
       "Id": 94,
@@ -901,7 +901,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 328
+      "BestiaryDisplayIndex": 334
     },
     {
       "Id": 95,
@@ -913,7 +913,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 184
+      "BestiaryDisplayIndex": 187
     },
     {
       "Id": 98,
@@ -925,7 +925,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 330
+      "BestiaryDisplayIndex": 336
     },
     {
       "Id": 101,
@@ -937,7 +937,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 331
+      "BestiaryDisplayIndex": 337
     },
     {
       "Id": 102,
@@ -949,7 +949,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 275
+      "BestiaryDisplayIndex": 279
     },
     {
       "Id": 103,
@@ -961,7 +961,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 206
+      "BestiaryDisplayIndex": 209
     },
     {
       "Id": 104,
@@ -973,55 +973,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 156
-    },
-    {
-      "Id": 105,
-      "BannerId": -1,
-      "FullName": "Bound Goblin",
-      "Name": "Bound Goblin",
-      "BestiaryId": "BoundGoblin",
-      "CanTalk": true,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": true,
-      "BestiaryDisplayIndex": 14
-    },
-    {
-      "Id": 106,
-      "BannerId": -1,
-      "FullName": "Bound Wizard",
-      "Name": "Bound Wizard",
-      "BestiaryId": "BoundWizard",
-      "CanTalk": true,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": true,
-      "BestiaryDisplayIndex": 18
-    },
-    {
-      "Id": 123,
-      "BannerId": -1,
-      "FullName": "Bound Mechanic",
-      "Name": "Bound Mechanic",
-      "BestiaryId": "BoundMechanic",
-      "CanTalk": true,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": true,
-      "BestiaryDisplayIndex": 16
-    },
-    {
-      "Id": 685,
-      "BannerId": -1,
-      "FullName": "Old Shaking Chest",
-      "Name": "Old Shaking Chest",
-      "BestiaryId": "OldShakingChest",
-      "CanTalk": true,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": true,
-      "BestiaryDisplayIndex": 32
+      "BestiaryDisplayIndex": 157
     },
     {
       "Id": 109,
@@ -1033,7 +985,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 166
+      "BestiaryDisplayIndex": 167
     },
     {
       "Id": 110,
@@ -1045,7 +997,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 197
+      "BestiaryDisplayIndex": 200
     },
     {
       "Id": 111,
@@ -1057,7 +1009,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 381
+      "BestiaryDisplayIndex": 387
     },
     {
       "Id": 113,
@@ -1069,7 +1021,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 513
+      "BestiaryDisplayIndex": 519
     },
     {
       "Id": 115,
@@ -1081,7 +1033,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 515
+      "BestiaryDisplayIndex": 521
     },
     {
       "Id": 116,
@@ -1093,7 +1045,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 516
+      "BestiaryDisplayIndex": 522
     },
     {
       "Id": 117,
@@ -1105,7 +1057,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 514
+      "BestiaryDisplayIndex": 520
     },
     {
       "Id": 120,
@@ -1117,7 +1069,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 361
+      "BestiaryDisplayIndex": 367
     },
     {
       "Id": 121,
@@ -1127,9 +1079,9 @@
       "BestiaryId": "Slimer",
       "CanTalk": false,
       "IsCritter": false,
-      "IsKillCredit": true,
+      "IsKillCredit": false,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 332
+      "BestiaryDisplayIndex": 338
     },
     {
       "Id": 122,
@@ -1141,7 +1093,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 358
+      "BestiaryDisplayIndex": 364
     },
     {
       "Id": 125,
@@ -1153,7 +1105,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 521
+      "BestiaryDisplayIndex": 527
     },
     {
       "Id": 126,
@@ -1165,7 +1117,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 522
+      "BestiaryDisplayIndex": 528
     },
     {
       "Id": 127,
@@ -1177,7 +1129,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 525
+      "BestiaryDisplayIndex": 531
     },
     {
       "Id": 132,
@@ -1189,7 +1141,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 148
+      "BestiaryDisplayIndex": 149
     },
     {
       "Id": 133,
@@ -1201,7 +1153,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 145
+      "BestiaryDisplayIndex": 146
     },
     {
       "Id": 134,
@@ -1213,7 +1165,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 523
+      "BestiaryDisplayIndex": 529
     },
     {
       "Id": 137,
@@ -1225,7 +1177,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 362
+      "BestiaryDisplayIndex": 368
     },
     {
       "Id": 138,
@@ -1237,7 +1189,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 360
+      "BestiaryDisplayIndex": 366
     },
     {
       "Id": 139,
@@ -1249,7 +1201,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 524
+      "BestiaryDisplayIndex": 530
     },
     {
       "Id": 140,
@@ -1261,7 +1213,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 155
+      "BestiaryDisplayIndex": 156
     },
     {
       "Id": 141,
@@ -1273,7 +1225,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 182
+      "BestiaryDisplayIndex": 185
     },
     {
       "Id": 143,
@@ -1285,7 +1237,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 477
+      "BestiaryDisplayIndex": 484
     },
     {
       "Id": 144,
@@ -1297,7 +1249,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 479
+      "BestiaryDisplayIndex": 486
     },
     {
       "Id": 145,
@@ -1309,7 +1261,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 478
+      "BestiaryDisplayIndex": 485
     },
     {
       "Id": 147,
@@ -1321,7 +1273,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 218
+      "BestiaryDisplayIndex": 221
     },
     {
       "Id": 148,
@@ -1357,7 +1309,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 228
+      "BestiaryDisplayIndex": 231
     },
     {
       "Id": 151,
@@ -1369,7 +1321,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 320
+      "BestiaryDisplayIndex": 326
     },
     {
       "Id": 152,
@@ -1381,7 +1333,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 256
+      "BestiaryDisplayIndex": 260
     },
     {
       "Id": 153,
@@ -1393,7 +1345,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 277
+      "BestiaryDisplayIndex": 281
     },
     {
       "Id": 154,
@@ -1405,7 +1357,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 231
+      "BestiaryDisplayIndex": 234
     },
     {
       "Id": 155,
@@ -1417,7 +1369,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 221
+      "BestiaryDisplayIndex": 224
     },
     {
       "Id": 156,
@@ -1429,7 +1381,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 321
+      "BestiaryDisplayIndex": 327
     },
     {
       "Id": 157,
@@ -1441,7 +1393,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 276
+      "BestiaryDisplayIndex": 280
     },
     {
       "Id": 159,
@@ -1453,7 +1405,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 425
+      "BestiaryDisplayIndex": 432
     },
     {
       "Id": 161,
@@ -1465,7 +1417,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 219
+      "BestiaryDisplayIndex": 222
     },
     {
       "Id": 162,
@@ -1477,7 +1429,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 418
+      "BestiaryDisplayIndex": 425
     },
     {
       "Id": 165,
@@ -1489,7 +1441,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 216
+      "BestiaryDisplayIndex": 219
     },
     {
       "Id": 166,
@@ -1501,7 +1453,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 420
+      "BestiaryDisplayIndex": 427
     },
     {
       "Id": 167,
@@ -1513,7 +1465,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 224
+      "BestiaryDisplayIndex": 227
     },
     {
       "Id": 168,
@@ -1525,7 +1477,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 159
+      "BestiaryDisplayIndex": 160
     },
     {
       "Id": 169,
@@ -1537,7 +1489,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 229
+      "BestiaryDisplayIndex": 232
     },
     {
       "Id": 170,
@@ -1549,7 +1501,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 335
+      "BestiaryDisplayIndex": 341
     },
     {
       "Id": 171,
@@ -1561,7 +1513,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 365
+      "BestiaryDisplayIndex": 371
     },
     {
       "Id": 172,
@@ -1573,7 +1525,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 202
+      "BestiaryDisplayIndex": 205
     },
     {
       "Id": 173,
@@ -1585,7 +1537,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 341
+      "BestiaryDisplayIndex": 347
     },
     {
       "Id": 174,
@@ -1597,7 +1549,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 348
+      "BestiaryDisplayIndex": 354
     },
     {
       "Id": 175,
@@ -1609,7 +1561,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 272
+      "BestiaryDisplayIndex": 276
     },
     {
       "Id": 176,
@@ -1621,7 +1573,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 269
+      "BestiaryDisplayIndex": 273
     },
     {
       "Id": 177,
@@ -1633,7 +1585,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 257
+      "BestiaryDisplayIndex": 261
     },
     {
       "Id": 179,
@@ -1645,7 +1597,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 346
+      "BestiaryDisplayIndex": 352
     },
     {
       "Id": 180,
@@ -1657,7 +1609,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 350
+      "BestiaryDisplayIndex": 356
     },
     {
       "Id": 181,
@@ -1669,7 +1621,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 340
+      "BestiaryDisplayIndex": 346
     },
     {
       "Id": 182,
@@ -1681,7 +1633,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 344
+      "BestiaryDisplayIndex": 350
     },
     {
       "Id": 183,
@@ -1693,7 +1645,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 339
+      "BestiaryDisplayIndex": 345
     },
     {
       "Id": 184,
@@ -1705,7 +1657,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 222
+      "BestiaryDisplayIndex": 225
     },
     {
       "Id": 185,
@@ -1717,7 +1669,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 225
+      "BestiaryDisplayIndex": 228
     },
     {
       "Id": 186,
@@ -1729,7 +1681,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 153
+      "BestiaryDisplayIndex": 154
     },
     {
       "Id": 187,
@@ -1741,7 +1693,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 147
+      "BestiaryDisplayIndex": 148
     },
     {
       "Id": 188,
@@ -1753,7 +1705,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 152
+      "BestiaryDisplayIndex": 153
     },
     {
       "Id": 189,
@@ -1765,7 +1717,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 150
+      "BestiaryDisplayIndex": 151
     },
     {
       "Id": 190,
@@ -1777,7 +1729,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 144
+      "BestiaryDisplayIndex": 145
     },
     {
       "Id": 191,
@@ -1789,7 +1741,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 140
+      "BestiaryDisplayIndex": 141
     },
     {
       "Id": 192,
@@ -1801,7 +1753,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 139
+      "BestiaryDisplayIndex": 140
     },
     {
       "Id": 193,
@@ -1813,7 +1765,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 143
+      "BestiaryDisplayIndex": 144
     },
     {
       "Id": 194,
@@ -1825,7 +1777,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 141
+      "BestiaryDisplayIndex": 142
     },
     {
       "Id": 195,
@@ -1837,7 +1789,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 209
+      "BestiaryDisplayIndex": 212
     },
     {
       "Id": 196,
@@ -1849,7 +1801,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 198
+      "BestiaryDisplayIndex": 201
     },
     {
       "Id": 197,
@@ -1861,7 +1813,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 226
+      "BestiaryDisplayIndex": 229
     },
     {
       "Id": 198,
@@ -1873,7 +1825,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 377
+      "BestiaryDisplayIndex": 383
     },
     {
       "Id": 200,
@@ -1885,7 +1837,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 146
+      "BestiaryDisplayIndex": 147
     },
     {
       "Id": 201,
@@ -1897,7 +1849,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 193
+      "BestiaryDisplayIndex": 196
     },
     {
       "Id": 202,
@@ -1909,7 +1861,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 190
+      "BestiaryDisplayIndex": 193
     },
     {
       "Id": 203,
@@ -1921,7 +1873,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 194
+      "BestiaryDisplayIndex": 197
     },
     {
       "Id": 204,
@@ -1933,7 +1885,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 258
+      "BestiaryDisplayIndex": 262
     },
     {
       "Id": 205,
@@ -1945,7 +1897,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 270
+      "BestiaryDisplayIndex": 274
     },
     {
       "Id": 206,
@@ -1957,7 +1909,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 227
+      "BestiaryDisplayIndex": 230
     },
     {
       "Id": 210,
@@ -1969,7 +1921,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 262
+      "BestiaryDisplayIndex": 266
     },
     {
       "Id": 211,
@@ -1981,7 +1933,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 261
+      "BestiaryDisplayIndex": 265
     },
     {
       "Id": 212,
@@ -1993,7 +1945,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 400
+      "BestiaryDisplayIndex": 406
     },
     {
       "Id": 213,
@@ -2005,7 +1957,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 402
+      "BestiaryDisplayIndex": 408
     },
     {
       "Id": 214,
@@ -2017,7 +1969,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 399
+      "BestiaryDisplayIndex": 405
     },
     {
       "Id": 215,
@@ -2029,7 +1981,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 401
+      "BestiaryDisplayIndex": 407
     },
     {
       "Id": 216,
@@ -2041,7 +1993,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 403
+      "BestiaryDisplayIndex": 409
     },
     {
       "Id": 217,
@@ -2053,7 +2005,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 189
+      "BestiaryDisplayIndex": 192
     },
     {
       "Id": 218,
@@ -2065,7 +2017,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 223
+      "BestiaryDisplayIndex": 226
     },
     {
       "Id": 219,
@@ -2077,7 +2029,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 259
+      "BestiaryDisplayIndex": 263
     },
     {
       "Id": 220,
@@ -2089,7 +2041,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 250
+      "BestiaryDisplayIndex": 253
     },
     {
       "Id": 221,
@@ -2101,7 +2053,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 252
+      "BestiaryDisplayIndex": 256
     },
     {
       "Id": 222,
@@ -2113,7 +2065,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 512
+      "BestiaryDisplayIndex": 518
     },
     {
       "Id": 223,
@@ -2125,7 +2077,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 154
+      "BestiaryDisplayIndex": 155
     },
     {
       "Id": 224,
@@ -2137,7 +2089,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 137
+      "BestiaryDisplayIndex": 138
     },
     {
       "Id": 225,
@@ -2149,7 +2101,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 136
+      "BestiaryDisplayIndex": 137
     },
     {
       "Id": 226,
@@ -2161,7 +2113,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 378
+      "BestiaryDisplayIndex": 384
     },
     {
       "Id": 231,
@@ -2173,7 +2125,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 266
+      "BestiaryDisplayIndex": 270
     },
     {
       "Id": 232,
@@ -2185,7 +2137,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 267
+      "BestiaryDisplayIndex": 271
     },
     {
       "Id": 233,
@@ -2197,7 +2149,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 268
+      "BestiaryDisplayIndex": 272
     },
     {
       "Id": 234,
@@ -2209,7 +2161,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 264
+      "BestiaryDisplayIndex": 268
     },
     {
       "Id": 235,
@@ -2221,7 +2173,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 263
+      "BestiaryDisplayIndex": 267
     },
     {
       "Id": 237,
@@ -2233,7 +2185,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 278
+      "BestiaryDisplayIndex": 282
     },
     {
       "Id": 238,
@@ -2245,7 +2197,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 217
+      "BestiaryDisplayIndex": 220
     },
     {
       "Id": 240,
@@ -2257,7 +2209,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 347
+      "BestiaryDisplayIndex": 353
     },
     {
       "Id": 241,
@@ -2269,7 +2221,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 342
+      "BestiaryDisplayIndex": 348
     },
     {
       "Id": 242,
@@ -2281,7 +2233,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 343
+      "BestiaryDisplayIndex": 349
     },
     {
       "Id": 243,
@@ -2293,7 +2245,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 220
+      "BestiaryDisplayIndex": 223
     },
     {
       "Id": 244,
@@ -2305,7 +2257,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 356
+      "BestiaryDisplayIndex": 362
     },
     {
       "Id": 245,
@@ -2317,7 +2269,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 528
+      "BestiaryDisplayIndex": 534
     },
     {
       "Id": 250,
@@ -2329,7 +2281,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 138
+      "BestiaryDisplayIndex": 139
     },
     {
       "Id": 251,
@@ -2341,7 +2293,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 426
+      "BestiaryDisplayIndex": 433
     },
     {
       "Id": 252,
@@ -2353,7 +2305,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 404
+      "BestiaryDisplayIndex": 410
     },
     {
       "Id": 253,
@@ -2365,7 +2317,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 428
+      "BestiaryDisplayIndex": 435
     },
     {
       "Id": 254,
@@ -2377,7 +2329,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 370
+      "BestiaryDisplayIndex": 376
     },
     {
       "Id": 255,
@@ -2389,7 +2341,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 371
+      "BestiaryDisplayIndex": 377
     },
     {
       "Id": 256,
@@ -2401,7 +2353,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 376
+      "BestiaryDisplayIndex": 382
     },
     {
       "Id": 257,
@@ -2413,7 +2365,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 372
+      "BestiaryDisplayIndex": 378
     },
     {
       "Id": 258,
@@ -2425,7 +2377,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 373
+      "BestiaryDisplayIndex": 379
     },
     {
       "Id": 259,
@@ -2437,7 +2389,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 374
+      "BestiaryDisplayIndex": 380
     },
     {
       "Id": 260,
@@ -2449,7 +2401,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 375
+      "BestiaryDisplayIndex": 381
     },
     {
       "Id": 262,
@@ -2461,7 +2413,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 526
+      "BestiaryDisplayIndex": 532
     },
     {
       "Id": 266,
@@ -2473,7 +2425,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 508
+      "BestiaryDisplayIndex": 514
     },
     {
       "Id": 267,
@@ -2485,7 +2437,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 509
+      "BestiaryDisplayIndex": 515
     },
     {
       "Id": 268,
@@ -2497,7 +2449,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 345
+      "BestiaryDisplayIndex": 351
     },
     {
       "Id": 269,
@@ -2509,7 +2461,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 298
+      "BestiaryDisplayIndex": 302
     },
     {
       "Id": 270,
@@ -2521,7 +2473,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 291
+      "BestiaryDisplayIndex": 295
     },
     {
       "Id": 271,
@@ -2533,7 +2485,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 294
+      "BestiaryDisplayIndex": 298
     },
     {
       "Id": 272,
@@ -2545,7 +2497,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 290
+      "BestiaryDisplayIndex": 294
     },
     {
       "Id": 273,
@@ -2557,7 +2509,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 293
+      "BestiaryDisplayIndex": 297
     },
     {
       "Id": 274,
@@ -2569,7 +2521,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 285
+      "BestiaryDisplayIndex": 289
     },
     {
       "Id": 275,
@@ -2581,7 +2533,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 296
+      "BestiaryDisplayIndex": 300
     },
     {
       "Id": 276,
@@ -2593,7 +2545,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 299
+      "BestiaryDisplayIndex": 303
     },
     {
       "Id": 277,
@@ -2605,7 +2557,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 289
+      "BestiaryDisplayIndex": 293
     },
     {
       "Id": 278,
@@ -2617,7 +2569,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 295
+      "BestiaryDisplayIndex": 299
     },
     {
       "Id": 279,
@@ -2629,7 +2581,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 292
+      "BestiaryDisplayIndex": 296
     },
     {
       "Id": 280,
@@ -2641,7 +2593,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 297
+      "BestiaryDisplayIndex": 301
     },
     {
       "Id": 281,
@@ -2653,7 +2605,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 306
+      "BestiaryDisplayIndex": 311
     },
     {
       "Id": 282,
@@ -2665,7 +2617,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 308
+      "BestiaryDisplayIndex": 313
     },
     {
       "Id": 283,
@@ -2677,7 +2629,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 305
+      "BestiaryDisplayIndex": 310
     },
     {
       "Id": 284,
@@ -2689,7 +2641,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 307
+      "BestiaryDisplayIndex": 312
     },
     {
       "Id": 285,
@@ -2701,7 +2653,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 303
+      "BestiaryDisplayIndex": 308
     },
     {
       "Id": 286,
@@ -2713,7 +2665,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 304
+      "BestiaryDisplayIndex": 309
     },
     {
       "Id": 287,
@@ -2725,7 +2677,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 300
+      "BestiaryDisplayIndex": 304
     },
     {
       "Id": 288,
@@ -2737,7 +2689,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 312
+      "BestiaryDisplayIndex": 318
     },
     {
       "Id": 289,
@@ -2749,7 +2701,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 310
+      "BestiaryDisplayIndex": 316
     },
     {
       "Id": 290,
@@ -2761,7 +2713,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 301
+      "BestiaryDisplayIndex": 305
     },
     {
       "Id": 291,
@@ -2773,7 +2725,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 286
+      "BestiaryDisplayIndex": 290
     },
     {
       "Id": 292,
@@ -2785,7 +2737,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 287
+      "BestiaryDisplayIndex": 291
     },
     {
       "Id": 293,
@@ -2797,7 +2749,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 288
+      "BestiaryDisplayIndex": 292
     },
     {
       "Id": 294,
@@ -2809,7 +2761,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 282
+      "BestiaryDisplayIndex": 286
     },
     {
       "Id": 295,
@@ -2821,7 +2773,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 283
+      "BestiaryDisplayIndex": 287
     },
     {
       "Id": 296,
@@ -2833,11 +2785,11 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 284
+      "BestiaryDisplayIndex": 288
     },
     {
       "Id": 297,
-      "BannerId": -1,
+      "BannerId": 8,
       "FullName": "Blue Jay",
       "Name": "Blue Jay",
       "BestiaryId": "BirdBlue",
@@ -2849,7 +2801,7 @@
     },
     {
       "Id": 298,
-      "BannerId": -1,
+      "BannerId": 8,
       "FullName": "Cardinal",
       "Name": "Cardinal",
       "BestiaryId": "BirdRed",
@@ -2893,7 +2845,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 178
+      "BestiaryDisplayIndex": 180
     },
     {
       "Id": 302,
@@ -2905,7 +2857,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 462
+      "BestiaryDisplayIndex": 469
     },
     {
       "Id": 303,
@@ -2929,7 +2881,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 176
+      "BestiaryDisplayIndex": 177
     },
     {
       "Id": 305,
@@ -2941,98 +2893,14 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 436
+      "BestiaryDisplayIndex": 443
     },
     {
       "Id": 306,
       "BannerId": 162,
       "FullName": "Scarecrow",
       "Name": "Scarecrow",
-      "BestiaryId": "Scarecrow2",
-      "CanTalk": false,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": false,
-      "BestiaryDisplayIndex": 432
-    },
-    {
-      "Id": 307,
-      "BannerId": 162,
-      "FullName": "Scarecrow",
-      "Name": "Scarecrow",
-      "BestiaryId": "Scarecrow3",
-      "CanTalk": false,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": false,
-      "BestiaryDisplayIndex": 440
-    },
-    {
-      "Id": 308,
-      "BannerId": 162,
-      "FullName": "Scarecrow",
-      "Name": "Scarecrow",
-      "BestiaryId": "Scarecrow4",
-      "CanTalk": false,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": false,
-      "BestiaryDisplayIndex": 438
-    },
-    {
-      "Id": 309,
-      "BannerId": 162,
-      "FullName": "Scarecrow",
-      "Name": "Scarecrow",
-      "BestiaryId": "Scarecrow5",
-      "CanTalk": false,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": false,
-      "BestiaryDisplayIndex": 434
-    },
-    {
-      "Id": 310,
-      "BannerId": 162,
-      "FullName": "Scarecrow",
-      "Name": "Scarecrow",
-      "BestiaryId": "Scarecrow6",
-      "CanTalk": false,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": false,
-      "BestiaryDisplayIndex": 437
-    },
-    {
-      "Id": 311,
-      "BannerId": 162,
-      "FullName": "Scarecrow",
-      "Name": "Scarecrow",
-      "BestiaryId": "Scarecrow7",
-      "CanTalk": false,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": false,
-      "BestiaryDisplayIndex": 433
-    },
-    {
-      "Id": 312,
-      "BannerId": 162,
-      "FullName": "Scarecrow",
-      "Name": "Scarecrow",
-      "BestiaryId": "Scarecrow8",
-      "CanTalk": false,
-      "IsCritter": false,
-      "IsKillCredit": true,
-      "IsTownNpc": false,
-      "BestiaryDisplayIndex": 441
-    },
-    {
-      "Id": 313,
-      "BannerId": 162,
-      "FullName": "Scarecrow",
-      "Name": "Scarecrow",
-      "BestiaryId": "Scarecrow9",
+      "BestiaryId": "Scarecrow1",
       "CanTalk": false,
       "IsCritter": false,
       "IsKillCredit": true,
@@ -3040,16 +2908,100 @@
       "BestiaryDisplayIndex": 439
     },
     {
-      "Id": 314,
+      "Id": 307,
       "BannerId": 162,
       "FullName": "Scarecrow",
       "Name": "Scarecrow",
-      "BestiaryId": "Scarecrow10",
+      "BestiaryId": "Scarecrow1",
       "CanTalk": false,
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 435
+      "BestiaryDisplayIndex": 447
+    },
+    {
+      "Id": 308,
+      "BannerId": 162,
+      "FullName": "Scarecrow",
+      "Name": "Scarecrow",
+      "BestiaryId": "Scarecrow1",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 445
+    },
+    {
+      "Id": 309,
+      "BannerId": 162,
+      "FullName": "Scarecrow",
+      "Name": "Scarecrow",
+      "BestiaryId": "Scarecrow1",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 441
+    },
+    {
+      "Id": 310,
+      "BannerId": 162,
+      "FullName": "Scarecrow",
+      "Name": "Scarecrow",
+      "BestiaryId": "Scarecrow1",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 444
+    },
+    {
+      "Id": 311,
+      "BannerId": 162,
+      "FullName": "Scarecrow",
+      "Name": "Scarecrow",
+      "BestiaryId": "Scarecrow1",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 440
+    },
+    {
+      "Id": 312,
+      "BannerId": 162,
+      "FullName": "Scarecrow",
+      "Name": "Scarecrow",
+      "BestiaryId": "Scarecrow1",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 448
+    },
+    {
+      "Id": 313,
+      "BannerId": 162,
+      "FullName": "Scarecrow",
+      "Name": "Scarecrow",
+      "BestiaryId": "Scarecrow1",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 446
+    },
+    {
+      "Id": 314,
+      "BannerId": 162,
+      "FullName": "Scarecrow",
+      "Name": "Scarecrow",
+      "BestiaryId": "Scarecrow1",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 442
     },
     {
       "Id": 315,
@@ -3061,7 +3013,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 445
+      "BestiaryDisplayIndex": 452
     },
     {
       "Id": 316,
@@ -3073,7 +3025,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 179
+      "BestiaryDisplayIndex": 181
     },
     {
       "Id": 317,
@@ -3085,7 +3037,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 464
+      "BestiaryDisplayIndex": 471
     },
     {
       "Id": 318,
@@ -3097,7 +3049,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 463
+      "BestiaryDisplayIndex": 470
     },
     {
       "Id": 319,
@@ -3109,7 +3061,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 465
+      "BestiaryDisplayIndex": 472
     },
     {
       "Id": 320,
@@ -3121,7 +3073,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 466
+      "BestiaryDisplayIndex": 473
     },
     {
       "Id": 321,
@@ -3133,11 +3085,11 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 467
+      "BestiaryDisplayIndex": 474
     },
     {
       "Id": 322,
-      "BannerId": -1,
+      "BannerId": 67,
       "FullName": "Skeleton",
       "Name": "Skeleton",
       "BestiaryId": "SkeletonTopHat",
@@ -3145,11 +3097,11 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 470
+      "BestiaryDisplayIndex": 477
     },
     {
       "Id": 323,
-      "BannerId": -1,
+      "BannerId": 67,
       "FullName": "Skeleton",
       "Name": "Skeleton",
       "BestiaryId": "SkeletonAstonaut",
@@ -3157,11 +3109,11 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 468
+      "BestiaryDisplayIndex": 475
     },
     {
       "Id": 324,
-      "BannerId": -1,
+      "BannerId": 67,
       "FullName": "Skeleton",
       "Name": "Skeleton",
       "BestiaryId": "SkeletonAlien",
@@ -3169,7 +3121,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 469
+      "BestiaryDisplayIndex": 476
     },
     {
       "Id": 325,
@@ -3181,7 +3133,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 446
+      "BestiaryDisplayIndex": 453
     },
     {
       "Id": 326,
@@ -3193,7 +3145,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 442
+      "BestiaryDisplayIndex": 449
     },
     {
       "Id": 327,
@@ -3205,7 +3157,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 447
+      "BestiaryDisplayIndex": 454
     },
     {
       "Id": 329,
@@ -3217,7 +3169,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 444
+      "BestiaryDisplayIndex": 451
     },
     {
       "Id": 330,
@@ -3229,7 +3181,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 443
+      "BestiaryDisplayIndex": 450
     },
     {
       "Id": 331,
@@ -3241,7 +3193,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 475
+      "BestiaryDisplayIndex": 482
     },
     {
       "Id": 332,
@@ -3253,7 +3205,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 476
+      "BestiaryDisplayIndex": 483
     },
     {
       "Id": 333,
@@ -3265,7 +3217,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 473
+      "BestiaryDisplayIndex": 480
     },
     {
       "Id": 334,
@@ -3277,7 +3229,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 472
+      "BestiaryDisplayIndex": 479
     },
     {
       "Id": 335,
@@ -3289,7 +3241,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 474
+      "BestiaryDisplayIndex": 481
     },
     {
       "Id": 336,
@@ -3301,7 +3253,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 471
+      "BestiaryDisplayIndex": 478
     },
     {
       "Id": 337,
@@ -3325,7 +3277,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 449
+      "BestiaryDisplayIndex": 456
     },
     {
       "Id": 339,
@@ -3337,7 +3289,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 450
+      "BestiaryDisplayIndex": 457
     },
     {
       "Id": 340,
@@ -3349,7 +3301,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 448
+      "BestiaryDisplayIndex": 455
     },
     {
       "Id": 341,
@@ -3361,7 +3313,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 456
+      "BestiaryDisplayIndex": 463
     },
     {
       "Id": 342,
@@ -3373,7 +3325,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 451
+      "BestiaryDisplayIndex": 458
     },
     {
       "Id": 343,
@@ -3385,7 +3337,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 455
+      "BestiaryDisplayIndex": 462
     },
     {
       "Id": 344,
@@ -3397,7 +3349,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 457
+      "BestiaryDisplayIndex": 464
     },
     {
       "Id": 345,
@@ -3409,7 +3361,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 458
+      "BestiaryDisplayIndex": 465
     },
     {
       "Id": 346,
@@ -3421,7 +3373,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 459
+      "BestiaryDisplayIndex": 466
     },
     {
       "Id": 347,
@@ -3433,7 +3385,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 460
+      "BestiaryDisplayIndex": 467
     },
     {
       "Id": 349,
@@ -3445,7 +3397,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 453
+      "BestiaryDisplayIndex": 460
     },
     {
       "Id": 350,
@@ -3457,7 +3409,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 452
+      "BestiaryDisplayIndex": 459
     },
     {
       "Id": 351,
@@ -3469,7 +3421,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 454
+      "BestiaryDisplayIndex": 461
     },
     {
       "Id": 352,
@@ -3481,7 +3433,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 461
+      "BestiaryDisplayIndex": 468
     },
     {
       "Id": 355,
@@ -3529,7 +3481,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 125
+      "BestiaryDisplayIndex": 126
     },
     {
       "Id": 359,
@@ -3553,7 +3505,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 127
+      "BestiaryDisplayIndex": 128
     },
     {
       "Id": 361,
@@ -3625,7 +3577,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 529
+      "BestiaryDisplayIndex": 535
     },
     {
       "Id": 372,
@@ -3637,7 +3589,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 530
+      "BestiaryDisplayIndex": 536
     },
     {
       "Id": 374,
@@ -3673,7 +3625,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 172
+      "BestiaryDisplayIndex": 173
     },
     {
       "Id": 379,
@@ -3685,7 +3637,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 533
+      "BestiaryDisplayIndex": 539
     },
     {
       "Id": 381,
@@ -3697,7 +3649,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 406
+      "BestiaryDisplayIndex": 412
     },
     {
       "Id": 382,
@@ -3709,7 +3661,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 407
+      "BestiaryDisplayIndex": 413
     },
     {
       "Id": 383,
@@ -3721,7 +3673,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 409
+      "BestiaryDisplayIndex": 415
     },
     {
       "Id": 385,
@@ -3733,7 +3685,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 412
+      "BestiaryDisplayIndex": 418
     },
     {
       "Id": 386,
@@ -3745,7 +3697,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 408
+      "BestiaryDisplayIndex": 414
     },
     {
       "Id": 387,
@@ -3757,7 +3709,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 414
+      "BestiaryDisplayIndex": 420
     },
     {
       "Id": 388,
@@ -3769,7 +3721,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 415
+      "BestiaryDisplayIndex": 421
     },
     {
       "Id": 389,
@@ -3781,7 +3733,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 410
+      "BestiaryDisplayIndex": 416
     },
     {
       "Id": 390,
@@ -3793,7 +3745,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 416
+      "BestiaryDisplayIndex": 422
     },
     {
       "Id": 391,
@@ -3805,7 +3757,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 411
+      "BestiaryDisplayIndex": 417
     },
     {
       "Id": 395,
@@ -3817,7 +3769,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 502
+      "BestiaryDisplayIndex": 423
     },
     {
       "Id": 398,
@@ -3829,7 +3781,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 540
+      "BestiaryDisplayIndex": 546
     },
     {
       "Id": 399,
@@ -3841,7 +3793,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 324
+      "BestiaryDisplayIndex": 330
     },
     {
       "Id": 402,
@@ -3853,7 +3805,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 498
+      "BestiaryDisplayIndex": 505
     },
     {
       "Id": 405,
@@ -3865,7 +3817,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 499
+      "BestiaryDisplayIndex": 506
     },
     {
       "Id": 406,
@@ -3877,7 +3829,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 500
+      "BestiaryDisplayIndex": 507
     },
     {
       "Id": 407,
@@ -3889,7 +3841,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 501
+      "BestiaryDisplayIndex": 508
     },
     {
       "Id": 409,
@@ -3901,7 +3853,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 497
+      "BestiaryDisplayIndex": 504
     },
     {
       "Id": 411,
@@ -3913,7 +3865,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 496
+      "BestiaryDisplayIndex": 503
     },
     {
       "Id": 412,
@@ -3925,7 +3877,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 487
+      "BestiaryDisplayIndex": 494
     },
     {
       "Id": 415,
@@ -3937,7 +3889,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 484
+      "BestiaryDisplayIndex": 491
     },
     {
       "Id": 416,
@@ -3949,7 +3901,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 490
+      "BestiaryDisplayIndex": 497
     },
     {
       "Id": 417,
@@ -3961,7 +3913,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 488
+      "BestiaryDisplayIndex": 495
     },
     {
       "Id": 418,
@@ -3973,7 +3925,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 489
+      "BestiaryDisplayIndex": 496
     },
     {
       "Id": 419,
@@ -3985,7 +3937,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 485
+      "BestiaryDisplayIndex": 492
     },
     {
       "Id": 420,
@@ -3997,7 +3949,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 483
+      "BestiaryDisplayIndex": 490
     },
     {
       "Id": 421,
@@ -4009,7 +3961,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 482
+      "BestiaryDisplayIndex": 489
     },
     {
       "Id": 422,
@@ -4021,7 +3973,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 538
+      "BestiaryDisplayIndex": 544
     },
     {
       "Id": 423,
@@ -4033,7 +3985,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 481
+      "BestiaryDisplayIndex": 488
     },
     {
       "Id": 424,
@@ -4045,7 +3997,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 480
+      "BestiaryDisplayIndex": 487
     },
     {
       "Id": 425,
@@ -4057,7 +4009,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 494
+      "BestiaryDisplayIndex": 501
     },
     {
       "Id": 426,
@@ -4069,7 +4021,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 495
+      "BestiaryDisplayIndex": 502
     },
     {
       "Id": 427,
@@ -4081,7 +4033,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 492
+      "BestiaryDisplayIndex": 499
     },
     {
       "Id": 428,
@@ -4093,7 +4045,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 491
+      "BestiaryDisplayIndex": 498
     },
     {
       "Id": 429,
@@ -4105,7 +4057,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 493
+      "BestiaryDisplayIndex": 500
     },
     {
       "Id": 438,
@@ -4117,7 +4069,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 532
+      "BestiaryDisplayIndex": 538
     },
     {
       "Id": 439,
@@ -4129,7 +4081,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 531
+      "BestiaryDisplayIndex": 537
     },
     {
       "Id": 442,
@@ -4225,7 +4177,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 535
+      "BestiaryDisplayIndex": 541
     },
     {
       "Id": 460,
@@ -4237,7 +4189,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 424
+      "BestiaryDisplayIndex": 431
     },
     {
       "Id": 461,
@@ -4249,7 +4201,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 419
+      "BestiaryDisplayIndex": 426
     },
     {
       "Id": 462,
@@ -4261,7 +4213,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 417
+      "BestiaryDisplayIndex": 424
     },
     {
       "Id": 463,
@@ -4273,7 +4225,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 427
+      "BestiaryDisplayIndex": 434
     },
     {
       "Id": 464,
@@ -4285,7 +4237,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 160
+      "BestiaryDisplayIndex": 161
     },
     {
       "Id": 465,
@@ -4297,7 +4249,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 170
+      "BestiaryDisplayIndex": 171
     },
     {
       "Id": 466,
@@ -4309,7 +4261,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 423
+      "BestiaryDisplayIndex": 430
     },
     {
       "Id": 467,
@@ -4321,7 +4273,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 429
+      "BestiaryDisplayIndex": 436
     },
     {
       "Id": 468,
@@ -4333,7 +4285,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 421
+      "BestiaryDisplayIndex": 428
     },
     {
       "Id": 469,
@@ -4345,7 +4297,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 422
+      "BestiaryDisplayIndex": 429
     },
     {
       "Id": 470,
@@ -4357,7 +4309,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 161
+      "BestiaryDisplayIndex": 162
     },
     {
       "Id": 471,
@@ -4369,7 +4321,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 383
+      "BestiaryDisplayIndex": 389
     },
     {
       "Id": 472,
@@ -4381,7 +4333,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 385
+      "BestiaryDisplayIndex": 391
     },
     {
       "Id": 473,
@@ -4393,7 +4345,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 334
+      "BestiaryDisplayIndex": 340
     },
     {
       "Id": 474,
@@ -4405,7 +4357,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 349
+      "BestiaryDisplayIndex": 355
     },
     {
       "Id": 475,
@@ -4417,7 +4369,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 364
+      "BestiaryDisplayIndex": 370
     },
     {
       "Id": 477,
@@ -4429,7 +4381,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 430
+      "BestiaryDisplayIndex": 437
     },
     {
       "Id": 479,
@@ -4441,7 +4393,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 431
+      "BestiaryDisplayIndex": 438
     },
     {
       "Id": 480,
@@ -4453,7 +4405,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 213
+      "BestiaryDisplayIndex": 216
     },
     {
       "Id": 481,
@@ -4465,7 +4417,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 212
+      "BestiaryDisplayIndex": 215
     },
     {
       "Id": 482,
@@ -4477,7 +4429,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 210
+      "BestiaryDisplayIndex": 213
     },
     {
       "Id": 483,
@@ -4489,7 +4441,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 211
+      "BestiaryDisplayIndex": 214
     },
     {
       "Id": 484,
@@ -4513,7 +4465,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 119
+      "BestiaryDisplayIndex": 120
     },
     {
       "Id": 486,
@@ -4525,7 +4477,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 120
+      "BestiaryDisplayIndex": 121
     },
     {
       "Id": 487,
@@ -4537,7 +4489,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 121
+      "BestiaryDisplayIndex": 122
     },
     {
       "Id": 489,
@@ -4549,7 +4501,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 162
+      "BestiaryDisplayIndex": 163
     },
     {
       "Id": 490,
@@ -4561,7 +4513,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 171
+      "BestiaryDisplayIndex": 172
     },
     {
       "Id": 491,
@@ -4573,7 +4525,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 405
+      "BestiaryDisplayIndex": 411
     },
     {
       "Id": 493,
@@ -4585,7 +4537,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 539
+      "BestiaryDisplayIndex": 545
     },
     {
       "Id": 494,
@@ -4597,7 +4549,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 195
+      "BestiaryDisplayIndex": 198
     },
     {
       "Id": 496,
@@ -4609,7 +4561,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 208
+      "BestiaryDisplayIndex": 211
     },
     {
       "Id": 499,
@@ -4621,7 +4573,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 192
+      "BestiaryDisplayIndex": 195
     },
     {
       "Id": 507,
@@ -4633,7 +4585,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 536
+      "BestiaryDisplayIndex": 542
     },
     {
       "Id": 508,
@@ -4645,7 +4597,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 235
+      "BestiaryDisplayIndex": 238
     },
     {
       "Id": 509,
@@ -4657,7 +4609,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 242
+      "BestiaryDisplayIndex": 245
     },
     {
       "Id": 510,
@@ -4669,7 +4621,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 244
+      "BestiaryDisplayIndex": 247
     },
     {
       "Id": 513,
@@ -4681,7 +4633,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 239
+      "BestiaryDisplayIndex": 242
     },
     {
       "Id": 517,
@@ -4693,7 +4645,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 537
+      "BestiaryDisplayIndex": 543
     },
     {
       "Id": 518,
@@ -4705,7 +4657,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 486
+      "BestiaryDisplayIndex": 493
     },
     {
       "Id": 520,
@@ -4717,7 +4669,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 413
+      "BestiaryDisplayIndex": 419
     },
     {
       "Id": 521,
@@ -4729,7 +4681,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 534
+      "BestiaryDisplayIndex": 540
     },
     {
       "Id": 524,
@@ -4741,7 +4693,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 237
+      "BestiaryDisplayIndex": 240
     },
     {
       "Id": 525,
@@ -4753,7 +4705,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 338
+      "BestiaryDisplayIndex": 344
     },
     {
       "Id": 526,
@@ -4765,7 +4717,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 353
+      "BestiaryDisplayIndex": 359
     },
     {
       "Id": 527,
@@ -4777,7 +4729,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 368
+      "BestiaryDisplayIndex": 374
     },
     {
       "Id": 528,
@@ -4789,7 +4741,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 369
+      "BestiaryDisplayIndex": 375
     },
     {
       "Id": 529,
@@ -4801,7 +4753,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 354
+      "BestiaryDisplayIndex": 360
     },
     {
       "Id": 531,
@@ -4813,7 +4765,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 241
+      "BestiaryDisplayIndex": 244
     },
     {
       "Id": 532,
@@ -4825,7 +4777,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 238
+      "BestiaryDisplayIndex": 241
     },
     {
       "Id": 533,
@@ -4837,7 +4789,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 355
+      "BestiaryDisplayIndex": 361
     },
     {
       "Id": 534,
@@ -4849,7 +4801,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 314
+      "BestiaryDisplayIndex": 320
     },
     {
       "Id": 536,
@@ -4861,7 +4813,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 164
+      "BestiaryDisplayIndex": 165
     },
     {
       "Id": 537,
@@ -4873,7 +4825,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 233
+      "BestiaryDisplayIndex": 236
     },
     {
       "Id": 538,
@@ -4921,7 +4873,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 247
+      "BestiaryDisplayIndex": 250
     },
     {
       "Id": 542,
@@ -4933,7 +4885,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 248
+      "BestiaryDisplayIndex": 251
     },
     {
       "Id": 543,
@@ -4945,7 +4897,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 336
+      "BestiaryDisplayIndex": 342
     },
     {
       "Id": 544,
@@ -4957,7 +4909,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 351
+      "BestiaryDisplayIndex": 357
     },
     {
       "Id": 545,
@@ -4969,7 +4921,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 366
+      "BestiaryDisplayIndex": 372
     },
     {
       "Id": 546,
@@ -4981,7 +4933,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 245
+      "BestiaryDisplayIndex": 248
     },
     {
       "Id": 551,
@@ -4993,7 +4945,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 397
+      "BestiaryDisplayIndex": 403
     },
     {
       "Id": 554,
@@ -5005,7 +4957,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 387
+      "BestiaryDisplayIndex": 393
     },
     {
       "Id": 557,
@@ -5017,7 +4969,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 388
+      "BestiaryDisplayIndex": 394
     },
     {
       "Id": 560,
@@ -5029,7 +4981,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 395
+      "BestiaryDisplayIndex": 401
     },
     {
       "Id": 563,
@@ -5041,7 +4993,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 390
+      "BestiaryDisplayIndex": 396
     },
     {
       "Id": 565,
@@ -5053,7 +5005,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 396
+      "BestiaryDisplayIndex": 402
     },
     {
       "Id": 567,
@@ -5065,7 +5017,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 386
+      "BestiaryDisplayIndex": 392
     },
     {
       "Id": 569,
@@ -5077,7 +5029,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 391
+      "BestiaryDisplayIndex": 397
     },
     {
       "Id": 571,
@@ -5089,7 +5041,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 392
+      "BestiaryDisplayIndex": 398
     },
     {
       "Id": 573,
@@ -5101,7 +5053,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 389
+      "BestiaryDisplayIndex": 395
     },
     {
       "Id": 575,
@@ -5113,7 +5065,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 394
+      "BestiaryDisplayIndex": 400
     },
     {
       "Id": 577,
@@ -5125,7 +5077,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 393
+      "BestiaryDisplayIndex": 399
     },
     {
       "Id": 578,
@@ -5137,7 +5089,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 398
+      "BestiaryDisplayIndex": 404
     },
     {
       "Id": 580,
@@ -5149,7 +5101,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 243
+      "BestiaryDisplayIndex": 246
     },
     {
       "Id": 581,
@@ -5161,7 +5113,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 246
+      "BestiaryDisplayIndex": 249
     },
     {
       "Id": 582,
@@ -5173,7 +5125,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 234
+      "BestiaryDisplayIndex": 237
     },
     {
       "Id": 583,
@@ -5221,7 +5173,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 165
+      "BestiaryDisplayIndex": 166
     },
     {
       "Id": 587,
@@ -5233,7 +5185,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 173
+      "BestiaryDisplayIndex": 174
     },
     {
       "Id": 590,
@@ -5245,7 +5197,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 151
+      "BestiaryDisplayIndex": 152
     },
     {
       "Id": 592,
@@ -5269,7 +5221,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 134
+      "BestiaryDisplayIndex": 135
     },
     {
       "Id": 599,
@@ -5437,7 +5389,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 117
+      "BestiaryDisplayIndex": 118
     },
     {
       "Id": 616,
@@ -5461,7 +5413,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 118
+      "BestiaryDisplayIndex": 119
     },
     {
       "Id": 618,
@@ -5473,7 +5425,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 175
+      "BestiaryDisplayIndex": 176
     },
     {
       "Id": 619,
@@ -5485,7 +5437,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 167
+      "BestiaryDisplayIndex": 168
     },
     {
       "Id": 620,
@@ -5497,7 +5449,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 174
+      "BestiaryDisplayIndex": 175
     },
     {
       "Id": 621,
@@ -5509,7 +5461,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 168
+      "BestiaryDisplayIndex": 169
     },
     {
       "Id": 624,
@@ -5521,7 +5473,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 128
+      "BestiaryDisplayIndex": 129
     },
     {
       "Id": 625,
@@ -5569,7 +5521,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 135
+      "BestiaryDisplayIndex": 136
     },
     {
       "Id": 629,
@@ -5581,7 +5533,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 230
+      "BestiaryDisplayIndex": 233
     },
     {
       "Id": 630,
@@ -5593,7 +5545,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 352
+      "BestiaryDisplayIndex": 358
     },
     {
       "Id": 631,
@@ -5605,7 +5557,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 200
+      "BestiaryDisplayIndex": 203
     },
     {
       "Id": 632,
@@ -5617,7 +5569,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 177
+      "BestiaryDisplayIndex": 178
     },
     {
       "Id": 634,
@@ -5629,7 +5581,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 215
+      "BestiaryDisplayIndex": 218
     },
     {
       "Id": 635,
@@ -5641,7 +5593,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 214
+      "BestiaryDisplayIndex": 217
     },
     {
       "Id": 636,
@@ -5653,7 +5605,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 527
+      "BestiaryDisplayIndex": 533
     },
     {
       "Id": 639,
@@ -5833,7 +5785,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 123
+      "BestiaryDisplayIndex": 124
     },
     {
       "Id": 654,
@@ -5845,7 +5797,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 122
+      "BestiaryDisplayIndex": 123
     },
     {
       "Id": 655,
@@ -5857,7 +5809,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 124
+      "BestiaryDisplayIndex": 125
     },
     {
       "Id": 657,
@@ -5869,7 +5821,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 517
+      "BestiaryDisplayIndex": 523
     },
     {
       "Id": 658,
@@ -5881,7 +5833,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 518
+      "BestiaryDisplayIndex": 524
     },
     {
       "Id": 659,
@@ -5893,7 +5845,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 519
+      "BestiaryDisplayIndex": 525
     },
     {
       "Id": 660,
@@ -5905,7 +5857,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 520
+      "BestiaryDisplayIndex": 526
     },
     {
       "Id": 661,
@@ -5917,7 +5869,7 @@
       "IsCritter": true,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 126
+      "BestiaryDisplayIndex": 127
     },
     {
       "Id": 664,
@@ -5929,7 +5881,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 503
+      "BestiaryDisplayIndex": 509
     },
     {
       "Id": 668,
@@ -5941,7 +5893,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 510
+      "BestiaryDisplayIndex": 516
     },
     {
       "Id": 669,
@@ -6025,7 +5977,7 @@
       "IsCritter": false,
       "IsKillCredit": true,
       "IsTownNpc": false,
-      "BestiaryDisplayIndex": 187
+      "BestiaryDisplayIndex": 190
     },
     {
       "Id": 677,
@@ -6050,6 +6002,78 @@
       "IsKillCredit": true,
       "IsTownNpc": false,
       "BestiaryDisplayIndex": 41
+    },
+    {
+      "Id": 688,
+      "BannerId": -1,
+      "FullName": "Pufferfish",
+      "Name": "Pufferfish",
+      "BestiaryId": "Pufferfish",
+      "CanTalk": false,
+      "IsCritter": true,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 117
+    },
+    {
+      "Id": 690,
+      "BannerId": -1,
+      "FullName": "Statue",
+      "Name": "Statue",
+      "BestiaryId": "StatueMimic",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 182
+    },
+    {
+      "Id": 691,
+      "BannerId": 87,
+      "FullName": "Moss Zombie",
+      "Name": "Moss Zombie",
+      "BestiaryId": "MossZombie",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 179
+    },
+    {
+      "Id": 692,
+      "BannerId": 290,
+      "FullName": "Orca",
+      "Name": "Orca",
+      "BestiaryId": "Orca",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 255
+    },
+    {
+      "Id": 693,
+      "BannerId": 291,
+      "FullName": "Librarian Skeleton",
+      "Name": "Librarian Skeleton",
+      "BestiaryId": "LibrarianSkeleton",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 307
+    },
+    {
+      "Id": 694,
+      "BannerId": 292,
+      "FullName": "Water Bolt Mimic",
+      "Name": "Water Bolt Mimic",
+      "BestiaryId": "WaterBoltMimic",
+      "CanTalk": false,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": false,
+      "BestiaryDisplayIndex": 314
     },
     {
       "Id": 22,

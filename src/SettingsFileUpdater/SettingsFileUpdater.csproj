@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net48</TargetFramework>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="C:\Program Files %28x86%29\Steam\steamapps\common\Terraria\ReLogic.Native.dll" Link="ReLogic.Native.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="10.0.2" />
   </ItemGroup>
 
@@ -32,10 +39,14 @@
   <ItemGroup>
     <Reference Include="TerrariaServer">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Terraria\TerrariaServer.exe</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="serverconfig.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="settings2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

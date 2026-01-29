@@ -1,29 +1,29 @@
-﻿using System.Linq;
-using System;
-using System.Collections.Generic;
-
-using Terraria;
-using Terraria.Localization;
-using Terraria.Initializers;
-using Terraria.Social;
-using System.Text;
-using Terraria.ObjectData;
-using System.IO;
-using System.Xml.Linq;
-using Terraria.Map;
-using System.Security.Cryptography.X509Certificates;
-using Terraria.GameContent.Bestiary;
+﻿using System;
 using System.Collections;
-using System.Reflection;
-using Terraria.ID;
-using Terraria.IO;
-using Terraria.WorldBuilding;
-using Terraria.Server;
-using System.Threading.Tasks;
-using System.Threading;
-using Terraria.GameContent.UI.States;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.UI.States;
+using Terraria.ID;
+using Terraria.Initializers;
+using Terraria.IO;
+using Terraria.Localization;
+using Terraria.Map;
+using Terraria.ObjectData;
+using Terraria.Server;
+using Terraria.Social;
+using Terraria.WorldBuilding;
 
 namespace SettingsFileUpdater.TerrariaHost
 {
@@ -31,12 +31,10 @@ namespace SettingsFileUpdater.TerrariaHost
     public class TerrariaWrapper : Terraria.Main
 
     {
-        public static TerrariaWrapper Initialize(bool dedServer = false)
+        public static new bool dedServ = true;
+
+        public static TerrariaWrapper Initialize()
         {
-
-            TerrariaWrapper.worldName = "world";
-            TerrariaWrapper.dedServ = true;
-
 
             var terrariaAsm = typeof(Terraria.Program).Assembly;
             //var init = typeof(Terraria.Program).GetMethod("ForceLoadAssembly", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static, null, new Type[] { typeof(Assembly), typeof(bool) }, null);
@@ -48,39 +46,63 @@ namespace SettingsFileUpdater.TerrariaHost
             //Program.SetupLogging();
             //Platform.Get<IWindowService>().SetQuickEditEnabled(false);
 
-            var main = new TerrariaWrapper();
+            var wrapper = RunGame();
+            return wrapper;
+        }
 
+        private Thread _serverThread;
 
-            try
+        public static TerrariaWrapper RunGame()
+        {
+            // Set dedServ BEFORE any access to Terraria.Main to ensure static initialization runs in server mode
+            Main.dedServ = true;
+
+            LanguageManager.Instance.SetLanguage(GameCulture.DefaultCulture);
+
+            var game = new TerrariaWrapper();
+
+            Lang.InitializeLegacyLocalization();
+            SocialAPI.Initialize();
+            LaunchInitializer.LoadParameters((Main)game);
+            TerrariaWrapper.OnEnginePreload += new Action(Terraria.Program.StartForceLoad);
+
+            // Run DedServ on a background thread so data extractors can execute
+            game._serverThread = new Thread(() =>
             {
-                Lang.InitializeLegacyLocalization();
-                SocialAPI.Initialize(null);
-                LaunchInitializer.LoadParameters(main);
-                Main.OnEnginePreload += new Action(Terraria.Program.StartForceLoad);
-                // main.InitBase();
-
-                if (dedServer)
+                try
                 {
-                    Task.Factory.StartNew(() => main.DedServ());
-                    Thread.Sleep(2000);
-                    main.Run();
+                    if (TerrariaWrapper.dedServ)
+                        game.DedServ();
+                    game.Run();
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Server thread error: {ex.Message}");
+                    Console.WriteLine(ex.StackTrace);
+                }
+            });
+            game._serverThread.IsBackground = true;
+            game._serverThread.Name = "Server Thread";
+            game._serverThread.Start();
 
-                return main;
-
-            }
-            catch (Exception ex)
+            // Wait for content initialization to complete
+            // DedServ calls Initialize() which populates ContentSamples
+            Console.WriteLine("Waiting for server initialization...");
+            while (ContentSamples.ItemsByType == null || ContentSamples.ItemsByType.Count == 0)
             {
-                return null;
+                Thread.Sleep(250);
             }
+            Console.WriteLine($"Server initialized. {ContentSamples.ItemsByType.Count} items loaded.");
+
+            return game;
         }
 
         public static string Localize(string value) =>
             Language.GetTextValue(value);
 
-        public TerrariaWrapper() : base()
+        public TerrariaWrapper()
         {
-
+            instance = this;
         }
         public void LoadWorld(string worldName)
         {
@@ -585,6 +607,7 @@ namespace SettingsFileUpdater.TerrariaHost
 
         //public Terraria.Item GetN
 
+
         public List<string> Prefixes()
         {
 
@@ -616,6 +639,7 @@ namespace SettingsFileUpdater.TerrariaHost
         public Terraria.Recipe[] Recipes
         {
             get { return recipe; }
+
         }
 
         private string GetItemType(Item i)
