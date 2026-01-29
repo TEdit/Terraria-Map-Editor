@@ -9427,97 +9427,97 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="649" Name="Medium Rubble (2x1)" Framed="true" Size="2,1" Color="#FF5C5C5C">
       <Frames>
         <Frame UV="0,0" Variety="Stone A" />
-                <Frame UV="36,0" Variety="Stone B" />
-                <Frame UV="72,0"
-          Variety="Stone C" />
-                <Frame UV="108,0" Variety="Stone D" />
-                <Frame UV="144,0"
-          Variety="Stone E" />
-                <Frame UV="180,0" Variety="Stone F" />
-                <Frame UV="216,0"
-          Variety="Bone A" />
-                <Frame UV="252,0" Variety="Bone B" />
-                <Frame UV="288,0" Variety="Bone C" />
-                <Frame
-          UV="324,0" Variety="Bone D" />
-                <Frame UV="360,0" Variety="Bone E" />
-                <Frame UV="396,0"
-          Variety="Bone F" />
-                <Frame UV="432,0" Variety="Bone G" />
-                <Frame UV="468,0" Variety="Bone H" />
-                <Frame
-          UV="504,0" Variety="Bone I" />
-                <Frame UV="540,0" Variety="Bone J" />
-                <Frame UV="576,0"
-          Variety="Copper Coin" />
-                <Frame UV="612,0" Variety="Silver Coin" />
-                <Frame UV="648,0"
-          Variety="Gold Coin" />
-                <Frame UV="684,0" Variety="Amethyst" />
-                <Frame UV="720,0"
-          Variety="Topaz" />" /> <Frame UV="756,0" Variety="Sapphire" />" /> <Frame UV="792,0"
+        <Frame UV="36,0" Variety="Stone B" />
+        <Frame UV="72,0"
+  Variety="Stone C" />
+        <Frame UV="108,0" Variety="Stone D" />
+        <Frame UV="144,0"
+  Variety="Stone E" />
+        <Frame UV="180,0" Variety="Stone F" />
+        <Frame UV="216,0"
+  Variety="Bone A" />
+        <Frame UV="252,0" Variety="Bone B" />
+        <Frame UV="288,0" Variety="Bone C" />
+        <Frame
+  UV="324,0" Variety="Bone D" />
+        <Frame UV="360,0" Variety="Bone E" />
+        <Frame UV="396,0"
+  Variety="Bone F" />
+        <Frame UV="432,0" Variety="Bone G" />
+        <Frame UV="468,0" Variety="Bone H" />
+        <Frame
+  UV="504,0" Variety="Bone I" />
+        <Frame UV="540,0" Variety="Bone J" />
+        <Frame UV="576,0"
+  Variety="Copper Coin" />
+        <Frame UV="612,0" Variety="Silver Coin" />
+        <Frame UV="648,0"
+  Variety="Gold Coin" />
+        <Frame UV="684,0" Variety="Amethyst" />
+        <Frame UV="720,0"
+  Variety="Topaz" />" /> <Frame UV="756,0" Variety="Sapphire" />" /> <Frame UV="792,0"
           Variety="Emerald" />" /> <Frame UV="828,0" Variety="Ruby" />" /> <Frame UV="864,0"
           Variety="Diamond" />
-                <Frame UV="900,0" Variety="Snow A" />
-                <Frame UV="936,0"
-          Variety="Snow B" />
-                <Frame UV="972,0" Variety="Snow C" />
-                <Frame UV="1008,0"
-          Variety="Snow D" />
-                <Frame UV="1044,0" Variety="Snow E" />
-                <Frame UV="1080,0"
-          Variety="Snow F" />
-                <Frame UV="1116,0" Variety="Wood A" />
-                <Frame UV="1152,0"
-          Variety="Wood B" />
-                <Frame UV="1188,0" Variety="Wood C" />
-                <Frame UV="1224,0"
-          Variety="Cobweb A" />
-                <Frame UV="1260,0" Variety="Cobweb B" />
-                <Frame UV="1296,0"
-          Variety="Cobweb C" />
-                <Frame UV="1332,0" Variety="Cobweb D" />
-                <Frame UV="1368,0"
-          Variety="Stone G" />
-                <Frame UV="1404,0" Variety="Stone H" />
-                <Frame UV="1440,0"
-          Variety="Stone I" />
-                <Frame UV="1476,0" Variety="Sandstone A" />
-                <Frame UV="1512,0"
-          Variety="Sandstone B" />
-                <Frame UV="1548,0" Variety="Sandstone C" />
-                <Frame UV="1584,0"
-          Variety="Sandstone D" />
-                <Frame UV="1620,0" Variety="Sandstone E" />
-                <Frame UV="1656,0"
-          Variety="Sandstone F" />
-                <Frame UV="1692,0" Variety="Granite A" />
-                <Frame UV="1728,0"
-          Variety="Granite B" />
-                <Frame UV="1764,0" Variety="Granite C" />
-                <Frame UV="1800,0"
-          Variety="Granite D" />
-                <Frame UV="1836,0" Variety="Granite E" />
-                <Frame UV="1872,0"
-          Variety="Granite F" />
-                <Frame UV="0,18" Variety="Marble A" />
-                <Frame UV="36,18"
-          Variety="Marble B" />
-                <Frame UV="72,18" Variety="Marble C" />
-                <Frame UV="108,18"
-          Variety="Marble D" />
-                <Frame UV="144,18" Variety="Marble E" />
-                <Frame UV="180,18"
-          Variety="Marble F" />
-                <Frame UV="216,18" Variety="Grass Seeds A" />
-                <Frame UV="252,18"
-          Variety="Grass Seeds B" />
-                <Frame UV="288,18" Variety="Grass Seeds C" />
-                <Frame UV="324,18"
-          Variety="Sand A" />
-                <Frame UV="360,18" Variety="Sand B" />
-                <Frame UV="396,18"
-          Variety="Sand C" />
+        <Frame UV="900,0" Variety="Snow A" />
+        <Frame UV="936,0"
+  Variety="Snow B" />
+        <Frame UV="972,0" Variety="Snow C" />
+        <Frame UV="1008,0"
+  Variety="Snow D" />
+        <Frame UV="1044,0" Variety="Snow E" />
+        <Frame UV="1080,0"
+  Variety="Snow F" />
+        <Frame UV="1116,0" Variety="Wood A" />
+        <Frame UV="1152,0"
+  Variety="Wood B" />
+        <Frame UV="1188,0" Variety="Wood C" />
+        <Frame UV="1224,0"
+  Variety="Cobweb A" />
+        <Frame UV="1260,0" Variety="Cobweb B" />
+        <Frame UV="1296,0"
+  Variety="Cobweb C" />
+        <Frame UV="1332,0" Variety="Cobweb D" />
+        <Frame UV="1368,0"
+  Variety="Stone G" />
+        <Frame UV="1404,0" Variety="Stone H" />
+        <Frame UV="1440,0"
+  Variety="Stone I" />
+        <Frame UV="1476,0" Variety="Sandstone A" />
+        <Frame UV="1512,0"
+  Variety="Sandstone B" />
+        <Frame UV="1548,0" Variety="Sandstone C" />
+        <Frame UV="1584,0"
+  Variety="Sandstone D" />
+        <Frame UV="1620,0" Variety="Sandstone E" />
+        <Frame UV="1656,0"
+  Variety="Sandstone F" />
+        <Frame UV="1692,0" Variety="Granite A" />
+        <Frame UV="1728,0"
+  Variety="Granite B" />
+        <Frame UV="1764,0" Variety="Granite C" />
+        <Frame UV="1800,0"
+  Variety="Granite D" />
+        <Frame UV="1836,0" Variety="Granite E" />
+        <Frame UV="1872,0"
+  Variety="Granite F" />
+        <Frame UV="0,18" Variety="Marble A" />
+        <Frame UV="36,18"
+  Variety="Marble B" />
+        <Frame UV="72,18" Variety="Marble C" />
+        <Frame UV="108,18"
+  Variety="Marble D" />
+        <Frame UV="144,18" Variety="Marble E" />
+        <Frame UV="180,18"
+  Variety="Marble F" />
+        <Frame UV="216,18" Variety="Grass Seeds A" />
+        <Frame UV="252,18"
+  Variety="Grass Seeds B" />
+        <Frame UV="288,18" Variety="Grass Seeds C" />
+        <Frame UV="324,18"
+  Variety="Sand A" />
+        <Frame UV="360,18" Variety="Sand B" />
+        <Frame UV="396,18"
+  Variety="Sand C" />
       </Frames>
     </Tile>
     <Tile Id="650" Name="Small Rubble (1x1)" Framed="true" Size="1,1" Color="#FF646464">
@@ -9803,7 +9803,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       MergeWith="0" Grass="true" />
     <Tile Id="692" Name="Helium Moss Brick" Light="true" Solid="true" Color="#FF434343"
       Blends="true" MergeWith="0" Grass="true" />
-    <Tile Id="693" Name="Mitey-Titey" Framed="true" Size="1,1">
+    <Tile Id="693" Name="Mitey-Titey" Framed="true" Size="1,1" >
       <Frames>
         <Frame Name="Mitey-Titey" UV="0, 0" Anchor="Top" />
       </Frames>
@@ -15615,7 +15615,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5240" Name="Dread of the Red Sea" />
     <Item Id="5241" Name="Do Not Eat the Vile Mushroom!" />
     <Item Id="5242" Name="Yuuma, The Blue Tiger" />
-    <Item Id="5243" Name="Moonman & Company" />
+    <Item Id="5243" Name="Moonman and Company" />
     <Item Id="5244" Name="Sunshine of Israpony" />
     <Item Id="5245" Name="Purity" />
     <Item Id="5246" Name="Sufficiently Advanced" />

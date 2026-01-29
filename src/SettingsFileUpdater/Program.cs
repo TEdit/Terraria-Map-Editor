@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using TEdit.Configuration;
 using Terraria;
 using Terraria.Social;
 
@@ -84,43 +85,25 @@ namespace SettingsFileUpdater
             //}
             //xdoc.Save("settings3.xml");
 
-//#if DEBUG
-//            XDocument xdoc = XDocument.Load("settings.xml");
-//            var xTiles = xdoc.Root.Element("Tiles");
-//            for (int t = 623; t < World.TileCount; t++)
-//            {
-//                var xTile = xTiles.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
-//                var tileProps = WorldConfiguration.TileProperties.FirstOrDefault(item => item.Id == t);
-//                //var sprite = (!tileProps.IsFramed) ? null : WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == t);
-//                xTile.SetAttributeValue("Color", tileProps.Color.ToString());
+            //            foreach (var item in tilecolors)
+            //            {
+            //                if (item.Key < 470) continue;
+            //                var tile = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
+            //                tile.SetAttributeValue("Color", item.Value);
+            //            }
 
-//                // update frame colors
-//            }
-//            var xWalls = xdoc.Root.Element("Walls");
-//            for (int t = 0; t < World.WallCount; t++)
-//            {
-//                var xWall = xWalls.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
-//                var wallProps = WorldConfiguration.WallProperties.FirstOrDefault(item => item.Id == t);
-//                xWall.SetAttributeValue("Color", wallProps.Color.ColorToString());
-//            }
-//            xdoc.Save("settings2.xml");
-//#endif
+            //            var walls = xdoc.Root.Element("Walls");
+            //            foreach (var item in wallcolors)
+            //            {
+            //                var wall = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
+            //                wall.SetAttributeValue("Color", item.Value);
+            //            }
+            //            //return;
+            Thread.Sleep(5 * 1000);
+            Console.WriteLine(wrapper.GetTilesXml());
 
-//            foreach (var item in tilecolors)
-//            {
-//                if (item.Key < 470) continue;
-//                var tile = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
-//                tile.SetAttributeValue("Color", item.Value);
-//            }
 
-//            var walls = xdoc.Root.Element("Walls");
-//            foreach (var item in wallcolors)
-//            {
-//                var wall = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
-//                wall.SetAttributeValue("Color", item.Value);
-//            }
-//            //return;
-            Thread.Sleep(10 * 1000);
+
             var bestiaryNpcs = wrapper.GetBestiaryData().ToList();
 
             using (var stream = new FileStream("..\\..\\..\\..\\bestiaryData.json", FileMode.Create, FileAccess.Write))
@@ -137,7 +120,6 @@ namespace SettingsFileUpdater
             Console.WriteLine(wrapper.GetNpcsXml());
             Console.WriteLine(wrapper.GetPrefixesXml());
 
-            Console.WriteLine(wrapper.GetTilesXml());
             Console.WriteLine(wrapper.GetWallsXml());
         }
 

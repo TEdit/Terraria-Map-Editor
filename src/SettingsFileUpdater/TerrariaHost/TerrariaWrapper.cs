@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -63,6 +64,7 @@ namespace SettingsFileUpdater.TerrariaHost
 
             Lang.InitializeLegacyLocalization();
             SocialAPI.Initialize();
+            MapHelper.Initialize();
             LaunchInitializer.LoadParameters((Main)game);
             TerrariaWrapper.OnEnginePreload += new Action(Terraria.Program.StartForceLoad);
 
@@ -302,7 +304,18 @@ namespace SettingsFileUpdater.TerrariaHost
 
             for (int i = 0; i < TileID.Count; i++)
             {
-                string origName = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString())?.Attribute("Name").Value;
+                
+                var color = MapHelper.GetMapTileXnaColor(new MapTile { Type = (ushort)i, Light = byte.MaxValue });
+
+                var node = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString());
+                string origName = node?.Attribute("Name").Value;
+                     
+                string colorHex = node?.Attributes().FirstOrDefault(a => a.Name == "Color")?.Value;
+
+                if (string.IsNullOrEmpty(colorHex))
+                {
+                    colorHex = color.Hex4();
+                }
 
                 var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
                 //var creatingItems = curItems.Where(x => x.createTile == i).ToList();
@@ -316,7 +329,8 @@ namespace SettingsFileUpdater.TerrariaHost
                 var tile = new XElement(
                     "Tile",
                     new XAttribute("Id", i.ToString()),
-                    new XAttribute("Name", itemName));
+                    new XAttribute("Name", itemName),
+                    new XAttribute("Color", colorHex));
                 root.Add(tile);
 
                 if (tileLighted[i]) { tile.Add(new XAttribute("Light", "true")); }
