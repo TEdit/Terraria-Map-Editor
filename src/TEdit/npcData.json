@@ -215,7 +215,7 @@
       "BestiaryId": "EaterofWorldsHead",
       "CanTalk": false,
       "IsCritter": false,
-      "IsKillCredit": false,
+      "IsKillCredit": true,
       "IsTownNpc": false,
       "BestiaryDisplayIndex": 513
     },
@@ -1079,7 +1079,7 @@
       "BestiaryId": "Slimer",
       "CanTalk": false,
       "IsCritter": false,
-      "IsKillCredit": false,
+      "IsKillCredit": true,
       "IsTownNpc": false,
       "BestiaryDisplayIndex": 338
     },
