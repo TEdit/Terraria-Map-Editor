@@ -718,5 +718,21 @@ namespace SettingsFileUpdater.TerrariaHost
 
             return sitems;
         }
+
+        /// <summary>
+        /// Returns the generated MapColors XML as a string (optional original file can override BuildSafe).
+        /// </summary>
+        public string GetMapColorsXml(string optionalOriginalPath = null)
+        {
+            return MapColorsExporter.BuildMapColorsXmlString(optionalOriginalPath);
+        }
+
+        /// <summary>
+        /// Writes the generated MapColors XML to a file (optional original file can override BuildSafe).
+        /// </summary>
+        public void WriteMapColorsXml(string outputPath, string optionalOriginalPath = null)
+        {
+            MapColorsExporter.WriteMapColorsXml(outputPath, optionalOriginalPath);
+        }
     }
 }

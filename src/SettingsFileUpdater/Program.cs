@@ -121,6 +121,21 @@ namespace SettingsFileUpdater
             Console.WriteLine(wrapper.GetPrefixesXml());
 
             Console.WriteLine(wrapper.GetWallsXml());
+
+            // Write MapColorsUpdated.xml next to the exe.
+            string outPath = Path.Combine(savePath, "MapColorsUpdated.xml");
+
+            // Optional override file (if you have one).
+            // Prefer MapColors.xml next to the exe; fallback to repo-relative ..\..\..\..\TEdit\MapColors.xml.
+            string exeDir       = AppDomain.CurrentDomain.BaseDirectory;
+            string originalPath = Path.Combine(exeDir, "MapColors.xml");
+            if (!File.Exists(originalPath))
+            {
+                originalPath = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\TEdit\MapColors.xml"));
+            }
+
+            wrapper.WriteMapColorsXml(outPath, File.Exists(originalPath) ? originalPath : null);
+            Console.WriteLine("Wrote: " + outPath);
         }
 
         private static void LoadTerrariaAsm()
