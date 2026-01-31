@@ -9815,12 +9815,127 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="692" Name="Helium Moss Brick" Color="#Ff050505" Light="true" Solid="true" />
     <Tile Id="693" Name="Mitey-Titey" Color="#Ff050505" Framed="true" Size="1,1">
       <Frames>
-        <Frame Name="Mitey-Titey" UV="0, 0" Anchor="Top" />
+        <Frame UV="0,0" Name="Icicle 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="18,0" Name="Icicle 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="36,0" Name="Icicle 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="54,0" Name="Stone Stalactite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="72,0" Name="Stone Stalactite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="90,0" Name="Stone Stalactite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="54,18" Name="Stone Stalagmite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="72,18" Name="Stone Stalagmite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="90,18" Name="Stone Stalagmite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="162,0" Name="Hive Stalactite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="180,0" Name="Hive Stalactite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="198,0" Name="Hive Stalactite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="162,18" Name="Hive Stalagmite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="180,18" Name="Hive Stalagmite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="198,18" Name="Hive Stalagmite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="216,0" Name="Pearlstone Stalactite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="234,0" Name="Pearlstone Stalactite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="252,0" Name="Pearlstone Stalactite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="216,18" Name="Pearlstone Stalagmite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="234,18" Name="Pearlstone Stalagmite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="252,18" Name="Pearlstone Stalagmite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="270,0" Name="Ebonstone Stalactite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="288,0" Name="Ebonstone Stalactite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="306,0" Name="Ebonstone Stalactite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="270,18" Name="Ebonstone Stalagmite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="288,18" Name="Ebonstone Stalagmite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="306,18" Name="Ebonstone Stalagmite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="324,0" Name="Crimstone Stalactite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="342,0" Name="Crimstone Stalactite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="360,0" Name="Crimstone Stalactite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="324,18" Name="Crimstone Stalagmite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="342,18" Name="Crimstone Stalagmite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="360,18" Name="Crimstone Stalagmite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="378,0" Name="Sandstone Stalactite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="396,0" Name="Sandstone Stalactite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="414,0" Name="Sandstone Stalactite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="378,18" Name="Sandstone Stalagmite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="396,18" Name="Sandstone Stalagmite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="414,18" Name="Sandstone Stalagmite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="432,0" Name="Granite Stalactite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="450,0" Name="Granite Stalactite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="468,0" Name="Granite Stalactite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="432,18" Name="Granite Stalagmite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="450,18" Name="Granite Stalagmite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="468,18" Name="Granite Stalagmite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="486,0" Name="Marble Stalactite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="504,0" Name="Marble Stalactite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="522,0" Name="Marble Stalactite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="486,18" Name="Marble Stalagmite 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="504,18" Name="Marble Stalagmite 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="522,18" Name="Marble Stalagmite 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="540,0" Name="Pink Icicle 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="558,0" Name="Pink Icicle 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="576,0" Name="Pink Icicle 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="594,0" Name="Purple Icicle 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="612,0" Name="Purple Icicle 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="630,0" Name="Purple Icicle 1x1" Variety="C" FrameSize="1,1" />
+        <Frame UV="648,0" Name="Red Icicle 1x1" Variety="A" FrameSize="1,1" />
+        <Frame UV="666,0" Name="Red Icicle 1x1" Variety="B" FrameSize="1,1" />
+        <Frame UV="684,0" Name="Red Icicle 1x1" Variety="C" FrameSize="1,1" />
       </Frames>
     </Tile>
-    <Tile Id="694" Name="694" Color="#Ff32323c" Framed="true" Size="1,2">
+    <Tile Id="694" Name="Stalactite 1x2 Echo" Color="#Ff32323c" Framed="true" Size="1,2">
       <Frames>
-        <Frame Name="694" UV="0, 0" />
+        <Frame UV="0,0" Name="Icicle 1x2" Variety="A" />
+        <Frame UV="18,0" Name="Icicle 1x2" Variety="B" />
+        <Frame UV="36,0" Name="Icicle 1x2" Variety="C" />
+        <Frame UV="54,0" Name="Stone Stalactite 1x2" Variety="A" />
+        <Frame UV="72,0" Name="Stone Stalactite 1x2" Variety="B" />
+        <Frame UV="90,0" Name="Stone Stalactite 1x2" Variety="C" />
+        <Frame UV="54,36" Name="Stone Stalagmite 1x2" Variety="A" />
+        <Frame UV="72,36" Name="Stone Stalagmite 1x2" Variety="B" />
+        <Frame UV="90,36" Name="Stone Stalagmite 1x2" Variety="C" />
+        <Frame UV="108,0" Name="Spider Web 1x2" Variety="A" />
+        <Frame UV="126,0" Name="Spider Web 1x2" Variety="B" />
+        <Frame UV="144,0" Name="Spider Web 1x2" Variety="C" />
+        <Frame UV="216,0" Name="Pearlstone Stalactite 1x2" Variety="A" />
+        <Frame UV="234,0" Name="Pearlstone Stalactite 1x2" Variety="B" />
+        <Frame UV="252,0" Name="Pearlstone Stalactite 1x2" Variety="C" />
+        <Frame UV="216,36" Name="Pearlstone Stalagmite 1x2" Variety="A" />
+        <Frame UV="234,36" Name="Pearlstone Stalagmite 1x2" Variety="B" />
+        <Frame UV="252,36" Name="Pearlstone Stalagmite 1x2" Variety="C" />
+        <Frame UV="270,0" Name="Ebonstone Stalactite 1x2" Variety="A" />
+        <Frame UV="288,0" Name="Ebonstone Stalactite 1x2" Variety="B" />
+        <Frame UV="306,0" Name="Ebonstone Stalactite 1x2" Variety="C" />
+        <Frame UV="270,36" Name="Ebonstone Stalagmite 1x2" Variety="A" />
+        <Frame UV="288,36" Name="Ebonstone Stalagmite 1x2" Variety="B" />
+        <Frame UV="306,36" Name="Ebonstone Stalagmite 1x2" Variety="C" />
+        <Frame UV="324,0" Name="Crimstone Stalactite 1x2" Variety="A" />
+        <Frame UV="342,0" Name="Crimstone Stalactite 1x2" Variety="B" />
+        <Frame UV="360,0" Name="Crimstone Stalactite 1x2" Variety="C" />
+        <Frame UV="324,36" Name="Crimstone Stalagmite 1x2" Variety="A" />
+        <Frame UV="342,36" Name="Crimstone Stalagmite 1x2" Variety="B" />
+        <Frame UV="360,36" Name="Crimstone Stalagmite 1x2" Variety="C" />
+        <Frame UV="378,0" Name="Sandstone Stalactite 1x2" Variety="A" />
+        <Frame UV="396,0" Name="Sandstone Stalactite 1x2" Variety="B" />
+        <Frame UV="414,0" Name="Sandstone Stalactite 1x2" Variety="C" />
+        <Frame UV="378,36" Name="Sandstone Stalagmite 1x2" Variety="A" />
+        <Frame UV="396,36" Name="Sandstone Stalagmite 1x2" Variety="B" />
+        <Frame UV="414,36" Name="Sandstone Stalagmite 1x2" Variety="C" />
+        <Frame UV="432,0" Name="Granite Stalactite 1x2" Variety="A" />
+        <Frame UV="450,0" Name="Granite Stalactite 1x2" Variety="B" />
+        <Frame UV="468,0" Name="Granite Stalactite 1x2" Variety="C" />
+        <Frame UV="432,36" Name="Granite Stalagmite 1x2" Variety="A" />
+        <Frame UV="450,36" Name="Granite Stalagmite 1x2" Variety="B" />
+        <Frame UV="468,36" Name="Granite Stalagmite 1x2" Variety="C" />
+        <Frame UV="486,0" Name="Marble Stalactite 1x2" Variety="A" />
+        <Frame UV="504,0" Name="Marble Stalactite 1x2" Variety="B" />
+        <Frame UV="522,0" Name="Marble Stalactite 1x2" Variety="C" />
+        <Frame UV="486,36" Name="Marble Stalagmite 1x2" Variety="A" />
+        <Frame UV="504,36" Name="Marble Stalagmite 1x2" Variety="B" />
+        <Frame UV="522,36" Name="Marble Stalagmite 1x2" Variety="C" />
+        <Frame UV="540,0" Name="Pink Icicle 1x2" Variety="A" />
+        <Frame UV="558,0" Name="Pink Icicle 1x2" Variety="B" />
+        <Frame UV="576,0" Name="Pink Icicle 1x2" Variety="C" />
+        <Frame UV="594,0" Name="Purple Icicle 1x2" Variety="A" />
+        <Frame UV="612,0" Name="Purple Icicle 1x2" Variety="B" />
+        <Frame UV="630,0" Name="Purple Icicle 1x2" Variety="C" />
+        <Frame UV="648,0" Name="Red Icicle 1x2" Variety="A" />
+        <Frame UV="666,0" Name="Red Icicle 1x2" Variety="B" />
+        <Frame UV="684,0" Name="Red Icicle 1x2" Variety="C" />
       </Frames>
     </Tile>
     <Tile Id="695" Name="Replica Demon Altar" Color="#Ffbf8e6f" Light="true" Framed="true" Size="3,2">
@@ -9836,9 +9951,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="697" Name="Decorative Cobweb" Color="#Ff318672" />
-    <Tile Id="698" Name="Item Flask" Color="#Ff7e8631" Framed="true" Size="1,2">
+    <Tile Id="698" Name="Item Flask" Color="#Ff7e8631" Framed="true" Size="2,3">
       <Frames>
         <Frame Name="Item Flask" UV="0, 0" Anchor="Top" />
+        <Frame Name="Item Flask" UV="2, 0" Anchor="Top" />
+        <Frame Name="Item Flask" UV="3, 0" Anchor="Top" />
       </Frames>
     </Tile>
     <Tile Id="699" Name="Alchemy Flask" Color="#Ff863b31" Light="true" Framed="true" Size="4,4">
@@ -9846,44 +9963,44 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Alchemy Flask" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="700" Name="700" Color="#Ff2b568c" Framed="true" TextureGrid="20,16" Size="1,1">
+    <Tile Id="700" Name="Abigails Flower Replica" Color="#Ff2b568c" Framed="true" TextureGrid="20,16" Size="1,1">
       <Frames>
-        <Frame Name="700" UV="0, 0" />
+        <Frame Name="Abigails Flower Replica" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="701" Name="701" Color="#Ff793186" Light="true" Framed="true" TextureGrid="24,34" Size="1,1">
+    <Tile Id="701" Name="Glow Tulip Replica" Color="#Ff793186" Light="true" Framed="true" TextureGrid="24,34" Size="1,1">
       <Frames>
-        <Frame Name="701" UV="0, 0" />
+        <Frame Name="Glow Tulip Replica" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="702" Name="702" Color="#Fffe7902" Framed="true" Size="2,2">
+    <Tile Id="702" Name="Life Fruit Replica" Color="#Fffe7902" Framed="true" Size="2,2">
       <Frames>
-        <Frame Name="702" UV="0, 0" />
+        <Frame Name="Life Fruit Replica" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="703" Name="703" Color="#Ff1ac454" Light="true" Framed="true" Size="1,1">
+    <Tile Id="703" Name="Jungle Plants Echo" Color="#Ff1ac454" Light="true" Framed="true" Size="1,1">
       <Frames>
-        <Frame Name="703" UV="0, 0" />
+        <Frame Name="Jungle Plants Echo" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="704" Name="704" Color="#Ff30d0ea" Framed="true" Size="3,2">
+    <Tile Id="704" Name="Fallen Log Echo" Color="#Ff30d0ea" Framed="true" Size="3,2">
       <Frames>
-        <Frame Name="704" UV="0, 0" />
+        <Frame Name="Fallen Log Echo" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="705" Name="705" Color="#Ff87c41a" Framed="true" Size="3,2">
+    <Tile Id="705" Name="Oasis Plants Echo" Color="#Ff87c41a" Framed="true" Size="3,2">
       <Frames>
-        <Frame Name="705" UV="0, 0" />
+        <Frame Name="Oasis Plants Echo" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="706" Name="706" Color="#Ff1cd86d" Framed="true" Size="3,2">
+    <Tile Id="706" Name="Terragrim Shrine Echo" Color="#Ff1cd86d" Framed="true" Size="3,2">
       <Frames>
-        <Frame Name="706" UV="0, 0" />
+        <Frame Name="Terragrim Shrine Echo" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="707" Name="707" Color="#Ff6bb600" Framed="true" Size="1,1">
+    <Tile Id="707" Name="Books Echo" Color="#Ff6bb600" Framed="true" Size="1,1">
       <Frames>
-        <Frame Name="707" UV="0, 0" />
+        <Frame Name="Books Echo" UV="0, 0" />
       </Frames>
     </Tile>
     <Tile Id="708" Name="Shimmerfall Block" Color="#Ff4bb8e6" Light="true" Solid="true" />
@@ -9922,9 +10039,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Ghoulder" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="716" Name="716" Color="#Ff7ad9e8" Solid="true" Framed="true">
+    <Tile Id="716" Name="Friendly Boulder" Color="#Ff7ad9e8" Solid="true" Framed="true" Size="2,2">
       <Frames>
-        <Frame Name="716" UV="0, 0" />
+        <Frame Name="Friendly Boulder" UV="0, 0" />
       </Frames>
     </Tile>
     <Tile Id="717" Name="Lava Cloud" Color="#Ff7ad9e8" Light="true" Solid="true" />
@@ -10027,14 +10144,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="748" Name="Aquarium Block" Color="#Ff365314" Solid="true" />
     <Tile Id="749" Name="Boulder Block" Color="#Ff7ad9e8" Solid="true" />
     <Tile Id="750" Name="Sharp Spike Block" Color="#Ff7ad9e8" Solid="true" />
-    <Tile Id="751" Name="751" Color="#Ffbaa854" Framed="true" Size="2,2">
+    <Tile Id="751" Name="Sleeping Digtoise" Color="#Ffbaa854" Framed="true" Size="3,3">
       <Frames>
-        <Frame Name="751" UV="0, 0" />
+        <Frame Name="Sleeping Digtoise" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="752" Name="752" Color="#Ff7ad9e8" Framed="true" Size="2,2">
+    <Tile Id="752" Name="Chillet Egg" Color="#Ff7ad9e8" Framed="true" Size="2,2">
       <Frames>
-        <Frame Name="752" UV="0, 0" />
+        <Frame Name="Chillet Egg" UV="0, 0" />
       </Frames>
     </Tile>
   </Tiles>
