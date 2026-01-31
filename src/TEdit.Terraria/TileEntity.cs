@@ -2,12 +2,11 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using TEdit.Common.Reactive;
 using TEdit.Configuration;
 
 namespace TEdit.Terraria;
 
-public class TileEntity : ObservableObject
+public partial class TileEntity : ReactiveObject
 {
     public static TileEntity CreateForTile(Tile curTile, int x, int y, int id)
     {
@@ -70,49 +69,53 @@ public class TileEntity : ObservableObject
     }
 
     private byte _type;
+
+    [Reactive]
     private int _id;
-    private Int16 _x;
-    private Int16 _y;
+
+    [Reactive]
+    private Int16 _posX;
+
+    [Reactive]
+    private Int16 _posY;
 
     //data for when this is a dummy
+    [Reactive]
     private Int16 _npc;
 
     //data for this is a item frame
+    [Reactive]
     private int _netId;
+
+    [Reactive]
     private byte _prefix;
+
+    [Reactive]
     private Int16 _stackSize;
 
     //data for Logic Sensor
+    [Reactive]
     private byte _logicCheck;
+
+    [Reactive]
     private bool _on;
 
     // display doll
     public ObservableCollection<TileEntityItem> Items { get; set; } = new ObservableCollection<TileEntityItem>();
     public ObservableCollection<TileEntityItem> Dyes { get; set; } = new ObservableCollection<TileEntityItem>();
     public ObservableCollection<TileEntityItem> Misc { get; set; } = new ObservableCollection<TileEntityItem>();
+
+    [Reactive]
     private byte _pose;
-
-    public byte Pose
-    {
-        get { return _pose; }
-        set { Set(nameof(Pose), ref _pose, value); }
-    }
-
 
     public byte Type
     {
         get { return _type; }
         set
         {
-            Set(nameof(Type), ref _type, value);
-            RaisePropertyChanged(nameof(EntityType));
+            this.RaiseAndSetIfChanged(ref _type, value);
+            this.RaisePropertyChanged(nameof(EntityType));
         }
-    }
-
-    public int Id
-    {
-        get { return _id; }
-        set { Set(nameof(Id), ref _id, value); }
     }
 
     // linked prop
@@ -121,8 +124,8 @@ public class TileEntity : ObservableObject
         get { return (DisplayDollPoseID)_pose; }
         set
         {
-            Set(nameof(Pose), ref _pose, (byte)value);
-            RaisePropertyChanged(nameof(DisplayDollPoseID));
+            Pose = (byte)value;
+            this.RaisePropertyChanged(nameof(DisplayDollPose));
         }
     }
 
@@ -132,57 +135,8 @@ public class TileEntity : ObservableObject
         get { return (TileEntityType)_type; }
         set
         {
-            Set(nameof(Type), ref _type, (byte)value);
-            RaisePropertyChanged(nameof(EntityType));
+            Type = (byte)value;
         }
-    }
-
-    public Int16 PosX
-    {
-        get { return _x; }
-        set { Set(nameof(PosX), ref _x, value); }
-    }
-
-    public Int16 PosY
-    {
-        get { return _y; }
-        set { Set(nameof(PosY), ref _y, value); }
-    }
-
-    public Int16 Npc
-    {
-        get { return _npc; }
-        set { Set(nameof(Npc), ref _npc, value); }
-    }
-
-    public int NetId
-    {
-        get { return _netId; }
-        set { Set(nameof(NetId), ref _netId, value); }
-    }
-
-    public byte Prefix
-    {
-        get { return _prefix; }
-        set { Set(nameof(Prefix), ref _prefix, value); }
-    }
-
-    public Int16 StackSize
-    {
-        get { return _stackSize; }
-        set { Set(nameof(StackSize), ref _stackSize, value); }
-    }
-
-    public byte LogicCheck
-    {
-        get { return _logicCheck; }
-        set { Set(nameof(LogicCheck), ref _logicCheck, value); }
-    }
-
-    public bool On
-    {
-        get { return _on; }
-        set { Set(nameof(On), ref _on, value); }
     }
 
     public TileType TileType
@@ -301,10 +255,10 @@ public class TileEntity : ObservableObject
             case TileEntityType.DisplayDoll: // display doll
                 SaveDisplayDoll(bw, version);
                 break;
-            case TileEntityType.WeaponRack: // weapons rack 
+            case TileEntityType.WeaponRack: // weapons rack
                 SaveStack(bw);
                 break;
-            case TileEntityType.HatRack: // hat rack 
+            case TileEntityType.HatRack: // hat rack
                 SaveHatRack(bw);
                 break;
             case TileEntityType.FoodPlatter: // food platter
@@ -345,10 +299,10 @@ public class TileEntity : ObservableObject
             case TileEntityType.DisplayDoll: // display doll
                 LoadDisplayDoll(r, version);
                 break;
-            case TileEntityType.WeaponRack: // weapons rack 
+            case TileEntityType.WeaponRack: // weapons rack
                 LoadStack(r);
                 break;
-            case TileEntityType.HatRack: // hat rack 
+            case TileEntityType.HatRack: // hat rack
                 LoadHatRack(r);
                 break;
             case TileEntityType.FoodPlatter: // food platter
@@ -453,7 +407,7 @@ public class TileEntity : ObservableObject
         var dyeSlots = (BitsByte)r.ReadByte();
 
         if (version >= 307)
-            this._pose = r.ReadByte();
+            _pose = r.ReadByte();
 
         BitsByte extraSlots = (BitsByte)(byte)0;
         if (version >= 308)
@@ -654,21 +608,21 @@ public class TileEntity : ObservableObject
     }
 
     // WPF binding properties. Only needed since each slot can be something different.
-    public TileEntityItem Item0 { get { return (Items.Count > 0) ? Items[0] : null; } set { if (Items.Count > 0) { Items[0] = value; RaisePropertyChanged(nameof(Item0)); } } }
-    public TileEntityItem Item1 { get { return (Items.Count > 1) ? Items[1] : null; } set { if (Items.Count > 1) { Items[1] = value; RaisePropertyChanged(nameof(Item1)); } } }
-    public TileEntityItem Item2 { get { return (Items.Count > 2) ? Items[2] : null; } set { if (Items.Count > 2) { Items[2] = value; RaisePropertyChanged(nameof(Item2)); } } }
-    public TileEntityItem Item3 { get { return (Items.Count > 3) ? Items[3] : null; } set { if (Items.Count > 3) { Items[3] = value; RaisePropertyChanged(nameof(Item3)); } } }
-    public TileEntityItem Item4 { get { return (Items.Count > 4) ? Items[4] : null; } set { if (Items.Count > 4) { Items[4] = value; RaisePropertyChanged(nameof(Item4)); } } }
-    public TileEntityItem Item5 { get { return (Items.Count > 5) ? Items[5] : null; } set { if (Items.Count > 5) { Items[5] = value; RaisePropertyChanged(nameof(Item5)); } } }
-    public TileEntityItem Item6 { get { return (Items.Count > 6) ? Items[6] : null; } set { if (Items.Count > 6) { Items[6] = value; RaisePropertyChanged(nameof(Item6)); } } }
-    public TileEntityItem Item7 { get { return (Items.Count > 7) ? Items[7] : null; } set { if (Items.Count > 7) { Items[7] = value; RaisePropertyChanged(nameof(Item7)); } } }
+    public TileEntityItem Item0 { get { return (Items.Count > 0) ? Items[0] : null; } set { if (Items.Count > 0) { Items[0] = value; this.RaisePropertyChanged(nameof(Item0)); } } }
+    public TileEntityItem Item1 { get { return (Items.Count > 1) ? Items[1] : null; } set { if (Items.Count > 1) { Items[1] = value; this.RaisePropertyChanged(nameof(Item1)); } } }
+    public TileEntityItem Item2 { get { return (Items.Count > 2) ? Items[2] : null; } set { if (Items.Count > 2) { Items[2] = value; this.RaisePropertyChanged(nameof(Item2)); } } }
+    public TileEntityItem Item3 { get { return (Items.Count > 3) ? Items[3] : null; } set { if (Items.Count > 3) { Items[3] = value; this.RaisePropertyChanged(nameof(Item3)); } } }
+    public TileEntityItem Item4 { get { return (Items.Count > 4) ? Items[4] : null; } set { if (Items.Count > 4) { Items[4] = value; this.RaisePropertyChanged(nameof(Item4)); } } }
+    public TileEntityItem Item5 { get { return (Items.Count > 5) ? Items[5] : null; } set { if (Items.Count > 5) { Items[5] = value; this.RaisePropertyChanged(nameof(Item5)); } } }
+    public TileEntityItem Item6 { get { return (Items.Count > 6) ? Items[6] : null; } set { if (Items.Count > 6) { Items[6] = value; this.RaisePropertyChanged(nameof(Item6)); } } }
+    public TileEntityItem Item7 { get { return (Items.Count > 7) ? Items[7] : null; } set { if (Items.Count > 7) { Items[7] = value; this.RaisePropertyChanged(nameof(Item7)); } } }
 
-    public TileEntityItem Dye0 { get { return (Dyes.Count > 0) ? Dyes[0] : null; } set { if (Dyes.Count > 0) { Dyes[0] = value; RaisePropertyChanged(nameof(Dye0)); } } }
-    public TileEntityItem Dye1 { get { return (Dyes.Count > 1) ? Dyes[1] : null; } set { if (Dyes.Count > 1) { Dyes[1] = value; RaisePropertyChanged(nameof(Dye1)); } } }
-    public TileEntityItem Dye2 { get { return (Dyes.Count > 2) ? Dyes[2] : null; } set { if (Dyes.Count > 2) { Dyes[2] = value; RaisePropertyChanged(nameof(Dye2)); } } }
-    public TileEntityItem Dye3 { get { return (Dyes.Count > 3) ? Dyes[3] : null; } set { if (Dyes.Count > 3) { Dyes[3] = value; RaisePropertyChanged(nameof(Dye3)); } } }
-    public TileEntityItem Dye4 { get { return (Dyes.Count > 4) ? Dyes[4] : null; } set { if (Dyes.Count > 4) { Dyes[4] = value; RaisePropertyChanged(nameof(Dye4)); } } }
-    public TileEntityItem Dye5 { get { return (Dyes.Count > 5) ? Dyes[5] : null; } set { if (Dyes.Count > 5) { Dyes[5] = value; RaisePropertyChanged(nameof(Dye5)); } } }
-    public TileEntityItem Dye6 { get { return (Dyes.Count > 6) ? Dyes[6] : null; } set { if (Dyes.Count > 6) { Dyes[6] = value; RaisePropertyChanged(nameof(Dye6)); } } }
-    public TileEntityItem Dye7 { get { return (Dyes.Count > 7) ? Dyes[7] : null; } set { if (Dyes.Count > 7) { Dyes[7] = value; RaisePropertyChanged(nameof(Dye7)); } } }
+    public TileEntityItem Dye0 { get { return (Dyes.Count > 0) ? Dyes[0] : null; } set { if (Dyes.Count > 0) { Dyes[0] = value; this.RaisePropertyChanged(nameof(Dye0)); } } }
+    public TileEntityItem Dye1 { get { return (Dyes.Count > 1) ? Dyes[1] : null; } set { if (Dyes.Count > 1) { Dyes[1] = value; this.RaisePropertyChanged(nameof(Dye1)); } } }
+    public TileEntityItem Dye2 { get { return (Dyes.Count > 2) ? Dyes[2] : null; } set { if (Dyes.Count > 2) { Dyes[2] = value; this.RaisePropertyChanged(nameof(Dye2)); } } }
+    public TileEntityItem Dye3 { get { return (Dyes.Count > 3) ? Dyes[3] : null; } set { if (Dyes.Count > 3) { Dyes[3] = value; this.RaisePropertyChanged(nameof(Dye3)); } } }
+    public TileEntityItem Dye4 { get { return (Dyes.Count > 4) ? Dyes[4] : null; } set { if (Dyes.Count > 4) { Dyes[4] = value; this.RaisePropertyChanged(nameof(Dye4)); } } }
+    public TileEntityItem Dye5 { get { return (Dyes.Count > 5) ? Dyes[5] : null; } set { if (Dyes.Count > 5) { Dyes[5] = value; this.RaisePropertyChanged(nameof(Dye5)); } } }
+    public TileEntityItem Dye6 { get { return (Dyes.Count > 6) ? Dyes[6] : null; } set { if (Dyes.Count > 6) { Dyes[6] = value; this.RaisePropertyChanged(nameof(Dye6)); } } }
+    public TileEntityItem Dye7 { get { return (Dyes.Count > 7) ? Dyes[7] : null; } set { if (Dyes.Count > 7) { Dyes[7] = value; this.RaisePropertyChanged(nameof(Dye7)); } } }
 }

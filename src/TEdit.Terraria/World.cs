@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TEdit.Common.Exceptions;
-using TEdit.Common.Reactive;
 using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria.IO;

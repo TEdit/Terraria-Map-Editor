@@ -7,16 +7,16 @@ namespace TEdit5.ViewModels;
 
 public partial class ToolSelectionViewModel : ReactiveObject
 {
-    [Reactive] public IMouseTool? ActiveTool { get; set; }
+    [Reactive] private IMouseTool? _activeTool;
 
     [Reactive]
-    public List<IMouseTool> Tools { get; set; } = [];
+    private List<IMouseTool> _tools = [];
 
     public ReactiveCommand<IMouseTool, Unit> SetToolCommand { get; }
 
     public ToolSelectionViewModel(IEnumerable<IMouseTool> tools)
     {
-        Tools = tools.ToList();
+        _tools = tools.ToList();
         SetToolCommand = ReactiveCommand.Create<IMouseTool>(SetTool);
 
         SetTool(Tools.FirstOrDefault(t => t.Name == "Arrow"));

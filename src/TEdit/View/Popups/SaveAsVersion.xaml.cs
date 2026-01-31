@@ -3,23 +3,20 @@ using System.Linq;
 using System.Windows;
 using TEdit.Terraria;
 using TEdit.Configuration;
-using System.Windows.Input;
 using System.Windows.Controls;
-using TEdit.Common.Reactive.Command; // TE4: using GalaSoft.MvvmLight.Command;
+using ReactiveUI.SourceGenerators;
 
 namespace TEdit.UI.Xaml
 {
     /// <summary>
     /// Interaction logic for SaveAsVersionGUI.xaml
     /// </summary>
-    /// 
+    ///
     public partial class SaveAsVersionGUI : Window
     {
         // Using a DependencyProperty as the backing store for WorldVersion. This enables animation, styling, binding, etc...
         public static readonly DependencyProperty WorldVersionProperty =
             DependencyProperty.Register("WorldVersion", typeof(uint), typeof(SaveAsVersionGUI), new PropertyMetadata((uint)0));
-
-        private ICommand _saveAsCommand;
 
         public SaveAsVersionGUI()
         {
@@ -36,12 +33,8 @@ namespace TEdit.UI.Xaml
             set { SetValue(WorldVersionProperty, value); }
         }
 
-        public ICommand SaveAsVersionCommand
-        {
-            get { return _saveAsCommand ??= new RelayCommand<string>(SaveAsVersionCommandAction); }
-        }
-
-        private void SaveAsVersionCommandAction(string gameVersion)
+        [ReactiveCommand]
+        private void SaveAsVersion(string gameVersion)
         {
             try
             {

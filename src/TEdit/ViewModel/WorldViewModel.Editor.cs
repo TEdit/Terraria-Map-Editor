@@ -16,6 +16,8 @@ using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.Utility;
 using TEdit.View.Popups;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 
 namespace TEdit.ViewModel;
 
@@ -389,7 +391,7 @@ public partial class WorldViewModel
         set
         {
             _worldEditor = value;
-            RaisePropertyChanged("TilePicker");
+            this.RaisePropertyChanged(nameof(TilePicker));
         }
     }
 

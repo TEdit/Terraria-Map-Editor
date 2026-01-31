@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="toolBarItemTemplate">
             <tedit:ToggleButtonDataBound  Margin="1" Height="24" Width="24" FocusVisualStyle="{x:Null}"
-                                      Command="{Binding DataContext.SetTool, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                      Command="{Binding DataContext.SetToolCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                       CommandParameter="{Binding}" IsChecked="{Binding IsActive}" >
                 <tedit:ToggleButtonDataBound.ToolTip>
                     <TextBlock Text="{Binding Title}" FocusVisualStyle="{x:Null}"/>

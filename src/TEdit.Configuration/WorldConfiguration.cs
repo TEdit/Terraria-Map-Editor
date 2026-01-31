@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Linq;
-using TEdit.Common.Reactive;
 using TEdit.Terraria.Objects;
 using System.Linq;
 using TEdit.Geometry;
@@ -64,9 +63,6 @@ public class WorldConfiguration
 
     static WorldConfiguration()
     {
-        if (ViewModelBase.IsInDesignModeStatic)
-            return;
-
         var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
         if (File.Exists(saveVersionPath))
             SaveConfiguration = SaveVersionManager.LoadJson(saveVersionPath);

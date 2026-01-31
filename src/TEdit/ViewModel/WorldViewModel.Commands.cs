@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
-using TEdit.Common.Reactive.Command;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
@@ -22,90 +22,47 @@ namespace TEdit.ViewModel;
 
 public partial class WorldViewModel
 {
-    private ICommand _saveAsVersionCommand;
-    private ICommand _saveAsCommand;
-    private ICommand _saveCommand;
-    private ICommand _setTool;
-    private ICommand _closeApplication;
-    private ICommand _commandOpenWorld;
-    private ICommand _commandReloadWorld;
-    private ICommand _deleteCommand;
-    private ICommand _pasteCommand;
-    private ICommand _copyCommand;
-    private ICommand _cropCommand;
-    private ICommand _expandCommand;
-    private ICommand _undoCommand;
-    private ICommand _redoCommand;
-    private ICommand _newWorldCommand;
-    private ICommand _runPluginCommand;
-    private ICommand _saveChestCommand;
-    private ICommand _saveSignCommand;
-    private ICommand _saveXmasCommand;
-    private ICommand _saveTileEntityCommand;
-    private ICommand _npcRemoveCommand;
-    private ICommand _importBestiaryCommand;
-    private ICommand _clearSpriteSelection;
-    private ICommand _npcAddCommand;
-    private ICommand _requestZoomCommand;
-    private ICommand _requestScrollCommand;
-    private ICommand _requestPanCommand;
 
 
 
-    public event EventHandler<EventArgs<bool>> RequestZoom;
-    public event EventHandler<EventArgs<bool>> RequestPan;
-    public event EventHandler<ScrollEventArgs> RequestScroll;
+    public event EventHandler<EventArgs<bool>> RequestZoomEvent;
+    public event EventHandler<EventArgs<bool>> RequestPanEvent;
+    public event EventHandler<ScrollEventArgs> RequestScrollEvent;
 
     protected virtual void OnRequestZoom(object sender, EventArgs<bool> e)
     {
-        if (RequestZoom != null) RequestZoom(sender, e);
+        RequestZoomEvent?.Invoke(sender, e);
     }
 
     protected virtual void OnRequestPan(object sender, EventArgs<bool> e)
     {
-        if (RequestPan != null) RequestPan(sender, e);
+        RequestPanEvent?.Invoke(sender, e);
     }
 
     protected virtual void OnRequestScroll(object sender, ScrollEventArgs e)
     {
-        if (RequestScroll != null) RequestScroll(sender, e);
+        RequestScrollEvent?.Invoke(sender, e);
     }
 
-    public ICommand ClearSpriteSelection
+    [ReactiveCommand]
+    private void ClearSpriteSelection()
     {
-        get
-        {
-            return _clearSpriteSelection ??= new RelayCommand(
-                () =>
-                {
-                    SpriteFilter = string.Empty;
-                    SelectedSpriteSheet = null;
-                    SpriteStylesView.Refresh();
-                });
-        }
+        SpriteFilter = string.Empty;
+        SelectedSpriteSheet = null;
+        SpriteStylesView.Refresh();
     }
 
-    public ICommand RequestPanCommand
-    {
-        get { return _requestPanCommand ??= new RelayCommand<bool>(o => OnRequestPan(this, new EventArgs<bool>(o))); }
-    }
+    [ReactiveCommand]
+    private void RequestPan(bool value) => OnRequestPan(this, new EventArgs<bool>(value));
 
-    public ICommand RequestZoomCommand
-    {
-        get { return _requestZoomCommand ??= new RelayCommand<bool>(o => OnRequestZoom(this, new EventArgs<bool>(o))); }
-    }
+    [ReactiveCommand]
+    private void RequestZoom(bool value) => OnRequestZoom(this, new EventArgs<bool>(value));
 
-    public ICommand RequestScrollCommand
-    {
-        get { return _requestScrollCommand ??= new RelayCommand<ScrollEventArgs>(o => OnRequestScroll(this, new ScrollEventArgs(o.Direction, o.Amount))); }
-    }
+    [ReactiveCommand]
+    private void RequestScroll(ScrollEventArgs args) => OnRequestScroll(this, new ScrollEventArgs(args.Direction, args.Amount));
 
-    public ICommand NpcAddCommand
-    {
-        get { return _npcAddCommand ??= new RelayCommand<int>(AddNpc); }
-    }
-
-    private void AddNpc(int npcId)
+    [ReactiveCommand]
+    private void NpcAdd(int npcId)
     {
         if (CurrentWorld != null && WorldConfiguration.NpcNames.ContainsKey(npcId))
         {
@@ -128,18 +85,14 @@ public partial class WorldViewModel
         }
     }
 
-    public ICommand NpcRemoveCommand
-    {
-        get { return _npcRemoveCommand ??= new RelayCommand<NPC>(RemoveNpc); }
-    }
-
-    private void RemoveNpc(NPC npc)
+    [ReactiveCommand]
+    private void NpcRemove(NPC npc)
     {
         if (CurrentWorld != null)
         {
             try
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(RemoveNpc), properties: new Dictionary<string, string> { ["ID"] = npc.SpriteId.ToString(), ["Name"] = npc.Name });
+                ErrorLogging.TelemetryClient?.TrackEvent(nameof(NpcRemove), properties: new Dictionary<string, string> { ["ID"] = npc.SpriteId.ToString(), ["Name"] = npc.Name });
                 CurrentWorld.NPCs.Remove(npc);
                 Points.Remove(npc.Name);
                 MessageBox.Show(string.Format("{1} ({0}) removed.", npc.Name, npc.DisplayName), "NPC Removed");
@@ -151,27 +104,19 @@ public partial class WorldViewModel
         }
     }
 
-    public ICommand SaveSignCommand
-    {
-        get { return _saveSignCommand ??= new RelayCommand<bool>(SaveSign); }
-    }
+    [ReactiveCommand]
+    private void SaveSign(bool save) => ExecuteSaveSign(save);
 
-    public ICommand SaveXmasCommand
-    {
-        get { return _saveXmasCommand ??= new RelayCommand<bool>(SaveXmasTree); }
-    }
+    [ReactiveCommand]
+    private void SaveXmas(bool save) => SaveXmasTree(save);
 
-    public ICommand SaveTileEntityCommand
-    {
-        get { return _saveTileEntityCommand ??= new RelayCommand<bool>(SaveTileEntity); }
-    }
+    [ReactiveCommand]
+    private void SaveTileEntity(bool save) => ExecuteSaveTileEntity(save);
 
-    public ICommand ImportBestiaryCommand
-    {
-        get { return _importBestiaryCommand ??= new RelayCommand(ImportKillsAndBestiary); }
-    }
+    [ReactiveCommand]
+    private void ImportBestiary() => ImportKillsAndBestiary();
 
-    private void SaveTileEntity(bool save)
+    private void ExecuteSaveTileEntity(bool save)
     {
         if (save)
         {
@@ -223,7 +168,7 @@ public partial class WorldViewModel
         }
     }
 
-    private void SaveSign(bool save)
+    private void ExecuteSaveSign(bool save)
     {
         if (save)
         {
@@ -243,6 +188,7 @@ public partial class WorldViewModel
         }
     }
 
+    [ReactiveCommand]
     private void SaveChest(bool save)
     {
         if (save)
@@ -265,13 +211,8 @@ public partial class WorldViewModel
         }
     }
 
-    private ICommand _updateCommand;
-    public ICommand UpdateCommand
-    {
-        get { return _updateCommand ??= new RelayCommand(Update); }
-    }
-
-    public void Update()
+    [ReactiveCommand]
+    private void Update()
     {
         string url = "http://www.binaryconstruct.com/downloads/";
         try
@@ -286,106 +227,67 @@ public partial class WorldViewModel
         }
     }
 
-    public ICommand SaveChestCommand
-    {
-        get { return _saveChestCommand ??= new RelayCommand<bool>(SaveChest); }
-    }
-
-    public ICommand RunPluginCommand
-    {
-        get { return _runPluginCommand ??= new RelayCommand<IPlugin>(RunPlugin); }
-    }
-
+    [ReactiveCommand]
     private void RunPlugin(IPlugin plugin)
     {
         plugin.Execute();
     }
 
-    public ICommand NewWorldCommand
-    {
-        get { return _newWorldCommand ??= new RelayCommand(NewWorld); }
-    }
-    public ICommand RedoCommand
-    {
-        get { return _redoCommand ??= new RelayCommand(() => UndoManager?.Redo()); }
-    }
+    // Command wrappers for methods defined in other files
+    [ReactiveCommand]
+    private void Open() => OpenWorld();
 
-    public ICommand UndoCommand
-    {
-        get { return _undoCommand ??= new RelayCommand(() => UndoManager?.Undo()); }
-    }
+    [ReactiveCommand]
+    private void Save() => SaveWorld();
 
-    public ICommand CopyCommand
-    {
-        get { return _copyCommand ??= new RelayCommand(EditCopy); }
-    }
+    [ReactiveCommand]
+    private void SaveAs() => SaveWorldAs();
 
-    public ICommand CropCommand
-    {
-        get { return _cropCommand ??= new RelayCommand(CropWorld); }
-    }
-    public ICommand ExpandCommand
-    {
-        get { return _expandCommand ??= new RelayCommand(ExpandWorld); }
-    }
+    [ReactiveCommand]
+    private void SaveAsVersion() => SaveWorldAsVersion();
+
+    [ReactiveCommand]
+    private void Reload() => ReloadWorld();
+
+    [ReactiveCommand]
+    private void Copy() => EditCopy();
+
+    [ReactiveCommand]
+    private void Paste() => EditPaste();
+
+    [ReactiveCommand]
+    private void Delete() => EditDelete();
+
+    [ReactiveCommand]
+    private void Crop() => CropWorld();
+
+    [ReactiveCommand]
+    private void Expand() => ExpandWorld();
+
+    [ReactiveCommand]
+    private void Redo() => UndoManager?.Redo();
+
+    [ReactiveCommand]
+    private void Undo() => UndoManager?.Undo();
 
     private bool CanCopy()
     {
         return _selection.IsActive;
     }
 
-    public ICommand PasteCommand
-    {
-        get { return _pasteCommand ??= new RelayCommand(EditPaste); }
-    }
     private bool CanPaste()
     {
         return Clipboard != null && _clipboard.Buffer != null;
     }
-    public ICommand DeleteCommand
-    {
-        get { return _deleteCommand ??= new RelayCommand(EditDelete); }
-    }
 
-    public ICommand CloseApplicationCommand
-    {
-        get { return _closeApplication ??= new RelayCommand(Application.Current.Shutdown); }
-    }
+    [ReactiveCommand]
+    private void CloseApplication() => Application.Current.Shutdown();
 
-    public ICommand OpenCommand
-    {
-        get { return _commandOpenWorld ??= new RelayCommand(OpenWorld); }
-    }
+    [ReactiveCommand]
+    private void SetTool(ITool tool) => SetActiveTool(tool);
 
-    public ICommand ReloadCommand
-    {
-        get { return _commandReloadWorld ??= new RelayCommand(ReloadWorld); }
-    }
-
-    public ICommand SaveAsVersionCommand
-    {
-        get { return _saveAsVersionCommand ??= new RelayCommand(SaveWorldAsVersion); }
-    }
-
-    public ICommand SaveAsCommand
-    {
-        get { return _saveAsCommand ??= new RelayCommand(SaveWorldAs); }
-    }
-
-    public ICommand SaveCommand
-    {
-        get { return _saveCommand ??= new RelayCommand(SaveWorld); }
-    }
-
-    public ICommand SetTool
-    {
-        get { return _setTool ??= new RelayCommand<ITool>(SetActiveTool); }
-    }
-
-    public ICommand SetLanguageCommand
-    {
-        get { return _setLanguage ??= new RelayCommand<LanguageSelection>(SetLanguage); }
-    }
+    [ReactiveCommand]
+    private void SetLanguage(LanguageSelection language) => ExecuteSetLanguage(language);
 
     private LanguageSelection _currentLanguage;
 
@@ -395,13 +297,13 @@ public partial class WorldViewModel
         get { return _currentLanguage; }
         set
         {
-            Set(nameof(CurrentLanguage), ref _currentLanguage, value);
+            this.RaiseAndSetIfChanged(ref _currentLanguage, value);
             UpdateRenderWorld();
         }
 
     }
 
-    private void SetLanguage(LanguageSelection language)
+    private void ExecuteSetLanguage(LanguageSelection language)
     {
         CurrentLanguage = language;
         ErrorLogging.TelemetryClient?.TrackEvent(nameof(SetLanguage), properties: new Dictionary<string, string> { ["language"] = language.ToString() });
@@ -416,25 +318,15 @@ public partial class WorldViewModel
     }
 
     // Chest Commands
-    private ICommand _copyChestItemCommand;
-    private ICommand _pasteChestItemCommand;
-    private ICommand _chestItemSetToMaxStack;
 
-    public ICommand CopyChestItemCommand
-    {
-        get { return _copyChestItemCommand ??= new RelayCommand<object>(CopyChestItems); }
-    }
+    [ReactiveCommand]
+    private void CopyChestItem(object container) => CopyChestItems(container);
 
+    [ReactiveCommand]
+    private void PasteChestItem(object parameter) => PasteChestItems(parameter);
 
-    public ICommand PasteChestItemCommand
-    {
-        get { return _pasteChestItemCommand ??= new RelayCommand<object>(PasteChestItems); }
-    }
-
-    public ICommand ChestItemSetToMaxStack
-    {
-        get { return _chestItemSetToMaxStack ??= new RelayCommand<object>(ChestItemMaxStack); }
-    }
+    [ReactiveCommand]
+    private void ChestItemSetToMaxStack(object container) => ChestItemMaxStack(container);
 
     private Item _chestItemClipboard;
 
@@ -542,74 +434,40 @@ public partial class WorldViewModel
 
     #region Clipboard
 
-    private ICommand _emptyClipboardCommand;
-    private ICommand _importSchematicCommand;
-    private ICommand _exportSchematicCommand;
-    private ICommand _removeSchematicCommand;
-    private ICommand _clipboardSetActiveCommand;
-    private ICommand _clipboardFlipXCommand;
-    private ICommand _clipboardFlipYCommand;
-    private ICommand _clipboardRotateCommand;
-    private ICommand _setLanguage;
+    [ReactiveCommand]
+    private void ClipboardSetActive(ClipboardBufferPreview item) => ActivateBuffer(item);
 
-    public ICommand ClipboardSetActiveCommand
+    [ReactiveCommand]
+    private void RemoveSchematic(ClipboardBufferPreview buffer) => _clipboard?.Remove(buffer);
+
+    [ReactiveCommand]
+    private void ExportSchematic(ClipboardBufferPreview buffer) => ExportSchematicFile(buffer);
+
+    [ReactiveCommand]
+    private void ImportSchematic(bool isFalseColor) => ExecuteImportSchematic(isFalseColor);
+
+    [ReactiveCommand]
+    private void EmptyClipboard() => _clipboard?.ClearBuffers();
+
+    [ReactiveCommand]
+    private void ClipboardFlipX(ClipboardBufferPreview buffer)
     {
-        get { return _clipboardSetActiveCommand ??= new RelayCommand<ClipboardBufferPreview>(ActivateBuffer); }
+        _clipboard.FlipX(buffer);
+        this.PreviewChange();
     }
 
-    public ICommand RemoveSchematicCommand
+    [ReactiveCommand]
+    private void ClipboardFlipY(ClipboardBufferPreview buffer)
     {
-        get { return _removeSchematicCommand ??= new RelayCommand<ClipboardBufferPreview>((b) => _clipboard?.Remove(b)); }
+        _clipboard.FlipY(buffer);
+        this.PreviewChange();
     }
 
-    public ICommand ExportSchematicCommand
+    [ReactiveCommand]
+    private void ClipboardRotate(ClipboardBufferPreview buffer)
     {
-        get { return _exportSchematicCommand ??= new RelayCommand<ClipboardBufferPreview>(ExportSchematicFile); }
-    }
-
-    public ICommand ImportSchematicCommand
-    {
-        get { return _importSchematicCommand ??= new RelayCommand<bool>(ImportSchematic); }
-    }
-
-    public ICommand EmptyClipboardCommand
-    {
-        get { return _emptyClipboardCommand ??= new RelayCommand(() => _clipboard?.ClearBuffers()); }
-    }
-
-    public ICommand ClipboardFlipXCommand
-    {
-        get
-        {
-            return _clipboardFlipXCommand ??= new RelayCommand<ClipboardBufferPreview>(b =>
-            {
-                _clipboard.FlipX(b);
-                this.PreviewChange();
-            });
-        }
-    }
-
-    public ICommand ClipboardFlipYCommand
-    {
-        get
-        {
-            return _clipboardFlipYCommand ??= new RelayCommand<ClipboardBufferPreview>(b =>
-            {
-                _clipboard.FlipY(b);
-                this.PreviewChange();
-            });
-        }
-    }
-    public ICommand ClipboardRotateCommand
-    {
-        get
-        {
-            return _clipboardRotateCommand ??= new RelayCommand<ClipboardBufferPreview>(b =>
-            {
-                _clipboard.Rotate(b);
-                this.PreviewChange();
-            });
-        }
+        _clipboard.Rotate(buffer);
+        this.PreviewChange();
     }
 
     private void ActivateBuffer(ClipboardBufferPreview item)
@@ -662,7 +520,7 @@ public partial class WorldViewModel
         }
     }
 
-    private void ImportSchematic(bool isFalseColor)
+    private void ExecuteImportSchematic(bool isFalseColor)
     {
         var ofd = new OpenFileDialog
         {

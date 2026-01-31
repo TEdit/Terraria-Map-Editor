@@ -1,57 +1,31 @@
-﻿using System;
-using TEdit.Common.Reactive;
+using System;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using Microsoft.Xna.Framework;
 
 namespace TEdit.Render;
 
-public class PixelMapManager : ObservableObject
+public partial class PixelMapManager : ReactiveObject
 {
     const int MaxTextureSize = 256;
 
+    [Reactive]
     private int _tileWidth;
+
+    [Reactive]
     private int _tileHeight;
+
+    [Reactive]
     private int _tilesX;
+
+    [Reactive]
     private int _tilesY;
 
-    
+    [Reactive]
     private Color[][] _colorBuffers;
+
+    [Reactive]
     private bool[] _bufferUpdated;
-     
-
-    public bool[] BufferUpdated
-    {
-        get { return _bufferUpdated; }
-        set { Set(nameof(BufferUpdated), ref _bufferUpdated, value); }
-    }
-    public Color[][] ColorBuffers
-    {
-        get { return _colorBuffers; }
-        private set { Set(nameof(ColorBuffers), ref _colorBuffers, value); }
-    }
-
-    public int TilesY
-    {
-        get { return _tilesY; }
-        private set { Set(nameof(TilesY), ref _tilesY, value); }
-    }
-
-    public int TilesX
-    {
-        get { return _tilesX; }
-        private set { Set(nameof(TilesX), ref _tilesX, value); }
-    }
-
-    public int TileHeight
-    {
-        get { return _tileHeight; }
-        set { Set(nameof(TileHeight), ref _tileHeight, value); }
-    }
-
-    public int TileWidth
-    {
-        get { return _tileWidth; }
-        set { Set(nameof(TileWidth), ref _tileWidth, value); }
-    }
 
     public void InitializeBuffers(int worldWidth, int worldHeight)
     {

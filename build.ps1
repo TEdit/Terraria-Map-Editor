@@ -14,10 +14,10 @@ if ([String]::IsNullOrWhitespace($Version)) {
         if ($ahead -eq 0) {
             $Version = $tag
         } elseif ($tag -match '-') {
-            # Tag has pre-release suffix (e.g. 5.0.0-beta2) -> 5.0.0-beta2.ci.3
+            # Tag has pre-release suffix (e.g. 5.1.0-beta2) -> 5.1.0-beta2.ci.3
             $Version = "$tag.ci.$ahead"
         } else {
-            # Stable tag (e.g. 5.0.0) -> 5.0.0-ci.3
+            # Stable tag (e.g. 5.1.0) -> 5.1.0-ci.3
             $Version = "$tag-ci.$ahead"
         }
     } else {
