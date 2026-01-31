@@ -700,7 +700,7 @@
                 HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         </StackPanel>
 
-        <UniformGrid Columns="2" Grid.Row="9">
+        <UniformGrid Columns="2" Grid.Row="11">
                     <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
                     <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
