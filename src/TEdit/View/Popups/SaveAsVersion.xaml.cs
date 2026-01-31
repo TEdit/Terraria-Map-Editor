@@ -43,13 +43,14 @@ namespace TEdit.UI.Xaml
 
         private void SaveAsVersionCommandAction(string gameVersion)
         {
-            if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(gameVersion, out uint worldVersion))
+            try
             {
-                WorldVersion = worldVersion;
+                var data = WorldConfiguration.SaveConfiguration.GetDataForGameVersion(gameVersion);
+                WorldVersion = (uint)data.SaveVersion;
                 this.DialogResult = true;
                 this.Close();
             }
-            else
+            catch
             {
                 WorldVersion = WorldConfiguration.CompatibleVersion;
                 this.DialogResult = false;
@@ -61,21 +62,30 @@ namespace TEdit.UI.Xaml
         {
             try
             {
+                var versions = WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.Keys
+                    .Select(v => new
+                    {
+                        Raw = v,
+                        Parsed = Version.TryParse(v, out var ver) ? ver : new Version(0, 0)
+                    })
+                    .OrderByDescending(x => x.Parsed)
+                    .Select(x => x.Raw)
+                    .ToList();
+
                 // Iterate over the SaveVersions values in reverse order.
-                foreach (var version in WorldConfiguration.SaveConfiguration.SaveVersions.Values.Reverse())
+                foreach (var gv in versions)
                 {
                     // Create a new Button for each version.
                     Button button = new()
                     {
                         // Set the button content to the game version, removing the leading "v" character.
-                        Content = version.GameVersion.Substring(1), // e.g., "v1.2" becomes "1.2".
+                        Content = gv,
                         Width = 50,  // Set the width.
                         Height = 20, // Set the height.
-                        Margin = new Thickness(5) // Add margin around the button for spacing.
+                        Margin = new Thickness(5), // Add margin around the button for spacing.
+                                                   // Set up the command and command parameter for each button.
+                        Command = SaveAsVersionCommand
                     };
-
-                    // Set up the command and command parameter for each button.
-                    button.Command = SaveAsVersionCommand;
                     button.CommandParameter = button.Content;
 
                     // Add the newly created button to the WrapPanel (ButtonPanel).

@@ -1867,34 +1867,62 @@ public partial class WorldViewModel : ViewModelBase
     {
         if (CurrentWorld == null) return;
 
+        // Build "Save As" targets from gameVersionToSaveVersion keys.
+        // Sort descending so newest versions appear first.
+        var versionKeys = WorldConfiguration.SaveConfiguration?.GameVersionToSaveVersion?.Keys
+            ?.Select(v => v.Trim())
+            .Where(v => !string.IsNullOrWhiteSpace(v))
+            .Select(v => new
+            {
+                Raw = v,
+                Parsed = Version.TryParse(v, out var ver) ? ver : new Version(0, 0)
+            })
+            .OrderByDescending(x => x.Parsed)
+            .Select(x => x.Raw)
+            .ToList()
+            ?? new List<string>();
+
         var sfd = new SaveFileDialog();
+
+        // FilterIndex:
+        // 1 = "Terraria World File"
+        // 2 = first game version entry
+        // 3 = second game version entry
+        // ...
         sfd.Filter =
             "Terraria World File|*.wld|" +
-            string.Join("|", WorldConfiguration.SaveConfiguration.SaveVersions.Values.Reverse().Select(vers => $"Terraria {vers.GameVersion}|*.wld"));
+            string.Join("|", versionKeys.Select(v => $"Terraria v{v}|*.wld"));
 
         sfd.Title = "Save World As";
         sfd.InitialDirectory = DependencyChecker.PathToWorlds;
         sfd.FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()));
+
         if ((bool)sfd.ShowDialog())
         {
             CurrentFile = sfd.FileName;
 
+            // If they picked a specific Terraria version filter, use that gameVersion -> saveVersion mapping.
             if (sfd.FilterIndex > 1)
             {
                 try
                 {
-                    var parts = sfd.Filter.Split('|');
-                    var desc = parts[(sfd.FilterIndex - 1) * 2];
-                    var key = desc.Replace("Terraria v", "");
+                    int idx = sfd.FilterIndex - 2; // map FilterIndex to versionKeys index
 
-                    if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(key, out uint versionOverride))
+                    if (idx >= 0 && idx < versionKeys.Count)
                     {
-                        SaveWorldFile(versionOverride);
-                        return;
+                        string selectedGameVersion = versionKeys[idx];
+
+                        if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(selectedGameVersion, out uint versionOverride))
+                        {
+                            SaveWorldFile(versionOverride);
+                            return;
+                        }
                     }
                 }
                 catch (Exception)
-                { }
+                {
+                    // fall through to default
+                }
             }
 
             // Maintain the existing world version.

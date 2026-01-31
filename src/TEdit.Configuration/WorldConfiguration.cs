@@ -84,7 +84,6 @@ public class WorldConfiguration
             var morphPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "morphSettings.json");
             if (File.Exists(morphPath))
                 MorphSettings = MorphConfiguration.LoadJson(morphPath);
-
         }
         catch (Exception ex)
         {
@@ -93,11 +92,15 @@ public class WorldConfiguration
 
         try
         {
-            // Used to dynamically update static CompatibleVersion
-            CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
-            TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
-            WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
-            MaxNpcID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
+            if (SaveConfiguration != null)
+            {
+                CompatibleVersion = (uint)SaveConfiguration.GetMaxVersion();
+                var latest = SaveConfiguration.GetData((int)CompatibleVersion);
+
+                TileCount = (short)latest.MaxTileId;
+                WallCount = (short)latest.MaxWallId;
+                MaxNpcID = (short)latest.MaxNpcId;
+            }
 
             if (SettingsTileFrameImportant == null || SettingsTileFrameImportant.Length <= 0)
             {
@@ -114,7 +117,6 @@ public class WorldConfiguration
         catch (Exception)
         {
         }
-
     }
 
     private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
