@@ -884,10 +884,7 @@ public partial class WorldViewModel : ReactiveObject
                 }
                 catch { }
             }
-#else
-            MessageBox.Show("This is a debug build, version checking disabled.", "Update");
 #endif
-
         }
         else if (!auto)
         {

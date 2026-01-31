@@ -575,12 +575,14 @@ public partial class TileEntity : ReactiveObject
         frame.LogicCheck = LogicCheck;
         frame.On = On;
 
-        int slots = frame.EntityType == TileEntityType.DisplayDoll ? 8 : frame.EntityType == TileEntityType.HatRack ? 2 : 0;
+
 
         if (this.Items.Count > 0)
         {
-            frame.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), slots));
-            for (int i = 0; i < Items.Count; i++)
+            int itemsCount = this.Items.Count;
+
+            frame.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), itemsCount));
+            for (int i = 0; i < itemsCount; i++)
             {
                 frame.Items[i] = Items[i]?.Copy();
             }
@@ -588,8 +590,10 @@ public partial class TileEntity : ReactiveObject
 
         if (this.Dyes.Count > 0)
         {
-            frame.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), slots));
-            for (int i = 0; i < Dyes.Count; i++)
+            int dyesCount = this.Dyes.Count;
+
+            frame.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), dyesCount));
+            for (int i = 0; i < dyesCount; i++)
             {
                 frame.Dyes[i] = Dyes[i]?.Copy();
             }
@@ -597,8 +601,9 @@ public partial class TileEntity : ReactiveObject
 
         if (this.Misc.Count > 0)
         {
-            frame.Misc = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 1));
-            for (int i = 0; i < Misc.Count; i++)
+            var miscCount = this.Misc.Count;
+            frame.Misc = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), miscCount));
+            for (int i = 0; i < miscCount; i++)
             {
                 frame.Misc[i] = Misc[i]?.Copy();
             }
