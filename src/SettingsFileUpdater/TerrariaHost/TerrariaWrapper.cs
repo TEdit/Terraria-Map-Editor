@@ -577,27 +577,29 @@ namespace SettingsFileUpdater.TerrariaHost
 
         public string GetMaxCounts()
         {
-            string TileFrameData = "";
+            // Collect framed tile IDs.
+            var framed = new List<int>();
             for (int a = 0; a < Main.tileFrameImportant.Length; a++)
             {
-                if ((bool)Main.tileFrameImportant[a])
-                {
-                    TileFrameData = TileFrameData + a + ", ";
-                }
+                if (Main.tileFrameImportant[a])
+                    framed.Add(a);
             }
 
+            // New format:
+            // - saveVersions is an ARRAY of objects, so we output only the object.
+            // - No "    \"315\": { ... }" wrapper and no trailing comma key structure changes.
             return string.Join("", new string[]
             {
                 Environment.NewLine,
-                "    \"" + Main.curRelease + "\": {" + Environment.NewLine,
+                "    {" + Environment.NewLine,
                 "      \"saveVersion\": " + Main.curRelease + "," + Environment.NewLine,
                 "      \"gameVersion\": \"" + Main.versionNumber + "\"," + Environment.NewLine,
-                "      \"MaxTileId\": " + (TileID.Count - 1) + "," + Environment.NewLine,
-                "      \"MaxWallId\": " + (WallID.Count - 1) + "," + Environment.NewLine,
-                "      \"MaxItemId\": " + (ItemID.Count - 1) + "," + Environment.NewLine,
-                "      \"MaxNpcId\": " + (NPCID.Count - 1) + "," + Environment.NewLine,
+                "      \"maxTileId\": " + (TileID.Count - 1) + "," + Environment.NewLine,
+                "      \"maxWallId\": " + (WallID.Count - 1) + "," + Environment.NewLine,
+                "      \"maxItemId\": " + (ItemID.Count - 1) + "," + Environment.NewLine,
+                "      \"maxNpcId\": " + (NPCID.Count - 1) + "," + Environment.NewLine,
                 "      \"maxMoonId\": " + Main.maxMoons + "," + Environment.NewLine,
-                "      \"framedTileIds\": [ " + TileFrameData.Substring(0, TileFrameData.Length - 2) + " ]" + Environment.NewLine,
+                "      \"framedTileIds\": [ " + string.Join(", ", framed) + " ]" + Environment.NewLine,
                 "    },"
             });
         }
