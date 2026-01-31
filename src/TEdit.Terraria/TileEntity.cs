@@ -630,4 +630,8 @@ public partial class TileEntity : ReactiveObject
     public TileEntityItem Dye5 { get { return (Dyes.Count > 5) ? Dyes[5] : null; } set { if (Dyes.Count > 5) { Dyes[5] = value; this.RaisePropertyChanged(nameof(Dye5)); } } }
     public TileEntityItem Dye6 { get { return (Dyes.Count > 6) ? Dyes[6] : null; } set { if (Dyes.Count > 6) { Dyes[6] = value; this.RaisePropertyChanged(nameof(Dye6)); } } }
     public TileEntityItem Dye7 { get { return (Dyes.Count > 7) ? Dyes[7] : null; } set { if (Dyes.Count > 7) { Dyes[7] = value; this.RaisePropertyChanged(nameof(Dye7)); } } }
+
+    public TileEntityItem WeaponDye { get { return (Dyes.Count > 8) ? Dyes[8] : null; } set { if (Dyes.Count > 8) { Dyes[8] = value; this.RaisePropertyChanged(nameof(WeaponDye)); } } }
+    public TileEntityItem Weapon { get { return (Items.Count > 8) ? Items[8] : null; } set { if (Items.Count > 8) { Items[8] = value; this.RaisePropertyChanged(nameof(Weapon)); } } }
+    public TileEntityItem Mount { get { return (Misc.Count > 0) ? Misc[0] : null; } set { if (Misc.Count > 0) { Misc[0] = value; this.RaisePropertyChanged(nameof(Mount)); } } }
 }

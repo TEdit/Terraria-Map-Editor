@@ -281,6 +281,9 @@
   <data name="MaskMode_Off" xml:space="preserve">
     <value>تعطيل القناع</value>
   </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>نسخ البند الأول</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>حرر</value>
   </data>
@@ -290,11 +293,11 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>عالم المحاصيل</value>
   </data>
-  <data name="menu_edit_expand" xml:space="preserve">
-    <value>توسيع العالم</value>
-  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>حذف التحديد</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>توسيع العالم</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>معجون</value>
@@ -334,6 +337,69 @@
   </data>
   <data name="menu_file_update" xml:space="preserve">
     <value>التحقق من وجود تحديثات الآن</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>فلتر</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>يتقدم</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>وضع الخلفية</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>يلغي</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>مخصص</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>إبطال</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>تصفية الحافظة</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>وضع التصفية</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>تدرج الرمادي</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>السوائل</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>العفاريت</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>البلاط</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>الجدران</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>الأسلاك</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>يخفي</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>طبيعي</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>تحقق من الكل</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>قم بإلغاء تحديد الكل</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>مرشح متقدم</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>شفاف</value>
   </data>
   <data name="menu_help" xml:space="preserve">
     <value>تعليمات</value>
@@ -425,6 +491,9 @@
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>سلك أصفر</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>لصق في جميع الفتحات</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>الإضافات</value>
   </data>
@@ -436,6 +505,33 @@
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>تصغير</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>إلغاء الأمر</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>نقل كافة الإطارات</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>كمية النقل (الإطارات)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>يعيد</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>إطارات مختارة</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>تعيين الأشعة فوق البنفسجية اليدوية على الكل</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>تعيين القيم</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>محرر الأشعة فوق البنفسجية</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>إعادة التشغيل مطلوبة</value>
@@ -534,6 +630,9 @@
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
     <value>ملابس عارضات الأزياء</value>
   </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>الجبل</value>
+  </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>محتويات اللوحة</value>
   </data>
@@ -542,6 +641,9 @@
   </data>
   <data name="specialtile_label_signtype" xml:space="preserve">
     <value>نوع التوقيع</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>السلاح</value>
   </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>سلاح رف البند</value>
@@ -1361,101 +1463,5 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
-  </data>
-  <data name="menu_filter_header_tiles" xml:space="preserve">
-    <value>البلاط</value>
-  </data>
-  <data name="menu_filter_header_walls" xml:space="preserve">
-    <value>الجدران</value>
-  </data>
-  <data name="menu_filter_header_liquids" xml:space="preserve">
-    <value>السوائل</value>
-  </data>
-  <data name="menu_filter_header_wires" xml:space="preserve">
-    <value>الأسلاك</value>
-  </data>
-  <data name="menu_filter_tab_searchname" xml:space="preserve">
-    <value>اسم</value>
-  </data>
-  <data name="menu_filter_tab_check_all" xml:space="preserve">
-    <value>تحقق من الكل</value>
-  </data>
-  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
-    <value>قم بإلغاء تحديد الكل</value>
-  </data>
-  <data name="menu_filter_filtermode" xml:space="preserve">
-    <value>وضع التصفية</value>
-  </data>
-  <data name="menu_filter_backgroundmode" xml:space="preserve">
-    <value>وضع الخلفية</value>
-  </data>
-  <data name="menu_filter_hide" xml:space="preserve">
-    <value>يخفي</value>
-  </data>
-  <data name="menu_filter_grayscale" xml:space="preserve">
-    <value>تدرج الرمادي</value>
-  </data>
-  <data name="menu_filter_normal" xml:space="preserve">
-    <value>طبيعي</value>
-  </data>
-  <data name="menu_filter_transparent" xml:space="preserve">
-    <value>شفاف</value>
-  </data>
-  <data name="menu_filter_custom" xml:space="preserve">
-    <value>مخصص</value>
-  </data>
-  <data name="menu_filter_cancel" xml:space="preserve">
-    <value>يلغي</value>
-  </data>
-  <data name="menu_filter_disable" xml:space="preserve">
-    <value>إبطال</value>
-  </data>
-  <data name="menu_filter_apply" xml:space="preserve">
-    <value>يتقدم</value>
-  </data>
-  <data name="menu_uveditor_moveallframes" xml:space="preserve">
-    <value>نقل كافة الإطارات</value>
-  </data>
-  <data name="menu_uveditor_moveamount" xml:space="preserve">
-    <value>كمية النقل (الإطارات)</value>
-  </data>
-  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
-    <value>تعيين الأشعة فوق البنفسجية اليدوية على الكل</value>
-  </data>
-  <data name="menu_uveditor_selectedframes" xml:space="preserve">
-    <value>إطارات مختارة</value>
-  </data>
-  <data name="menu_uveditor_setvalues" xml:space="preserve">
-    <value>تعيين القيم</value>
-  </data>
-  <data name="menu_uveditor_cancel" xml:space="preserve">
-    <value>إلغاء الأمر</value>
-  </data>
-  <data name="menu_uveditor_restore" xml:space="preserve">
-    <value>يعيد</value>
-  </data>
-  <data name="menu_uveditor_ok" xml:space="preserve">
-    <value>نعم</value>
-  </data>
-  <data name="menu_filter" xml:space="preserve">
-    <value>فلتر</value>
-  </data>
-  <data name="menu_filter_title" xml:space="preserve">
-    <value>مرشح متقدم</value>
-  </data>
-  <data name="menu_uveditor_title" xml:space="preserve">
-    <value>محرر الأشعة فوق البنفسجية</value>
-  </data>
-  <data name="menu_filter_filterclipboard" xml:space="preserve">
-    <value>تصفية الحافظة</value>
-  </data>
-  <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>العفاريت</value>
-  </data>
-  <data name="menu_pasteall" xml:space="preserve">
-    <value>لصق في جميع الفتحات</value>
-  </data>
-  <data name="menu_copyfirstitem" xml:space="preserve">
-    <value>نسخ البند الأول</value>
   </data>
 </root>

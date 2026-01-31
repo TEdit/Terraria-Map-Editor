@@ -19,7 +19,7 @@ namespace TEdit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Language {
@@ -1565,6 +1565,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mount.
+        /// </summary>
+        public static string specialtile_label_mount {
+            get {
+                return ResourceManager.GetString("specialtile_label_mount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plate Contents.
         /// </summary>
         public static string specialtile_label_platecontents {
@@ -1588,6 +1597,15 @@ namespace TEdit.Properties {
         public static string specialtile_label_signtype {
             get {
                 return ResourceManager.GetString("specialtile_label_signtype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weapon.
+        /// </summary>
+        public static string specialtile_label_weapon {
+            get {
+                return ResourceManager.GetString("specialtile_label_weapon", resourceCulture);
             }
         }
         

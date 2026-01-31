@@ -426,8 +426,10 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_mannequin}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
@@ -657,7 +659,48 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
 
-                <UniformGrid Columns="2" Grid.Row="9">
+              <StackPanel Orientation="Horizontal" Grid.Row="9">
+          <TextBlock Text="{x:Static p:Language.specialtile_label_weapon}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                  SelectedValue="{Binding SelectedTileEntity.WeaponDye.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                  IsEditable="true"
+                  SelectedValuePath="Key"
+                  DisplayMemberPath="Value"
+                  HorizontalAlignment="Stretch"
+                  IsSynchronizedWithCurrentItem="False"
+                  Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                SelectedValue="{Binding SelectedTileEntity.Weapon.Prefix, Mode=TwoWay}"
+                IsEditable="true"
+                SelectedValuePath="Key"
+                DisplayMemberPath="Value"
+                HorizontalAlignment="Stretch"
+                IsSynchronizedWithCurrentItem="False"
+                Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                <ComboBox Width="150px"
+                ItemsSource="{Binding Source={StaticResource RackCollection}}"
+                SelectedValue="{Binding SelectedTileEntity.Weapon.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                IsEditable="true"
+                SelectedValuePath="Key"
+                DisplayMemberPath="Value"
+                IsSynchronizedWithCurrentItem="False"
+                HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+              </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="10">
+          <TextBlock Text="{x:Static p:Language.specialtile_label_mount}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+       
+          <ComboBox Width="150px"
+                ItemsSource="{Binding Source={StaticResource MountCollection}}"
+                SelectedValue="{Binding SelectedTileEntity.Mount.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                IsEditable="true"
+                SelectedValuePath="Key"
+                DisplayMemberPath="Value"
+                IsSynchronizedWithCurrentItem="False"
+                HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        </StackPanel>
+
+        <UniformGrid Columns="2" Grid.Row="9">
                     <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
                     <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"

@@ -48,6 +48,8 @@ public class WorldConfiguration
     private static readonly Dictionary<int, string> _armorBodyNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _armorLegsNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _rackable = new Dictionary<int, string>();
+    private static readonly Dictionary<int, string> _mountNames = new Dictionary<int, string>();
+
 
     private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
     private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
@@ -364,6 +366,12 @@ public class WorldConfiguration
             if (acc)
                 _accessoryNames.Add(curItem.Id, curItem.Name);
 
+            bool mount = (bool?)xElement.Attribute("Mount") ?? false;
+            if (mount)
+            {
+                _mountNames.Add(curItem.Id, curItem.Name);
+            }
+
             if (curItem.Name.Contains("Dye"))
             {
                 _dyeNames.Add(curItem.Id, curItem.Name);
@@ -510,6 +518,12 @@ public class WorldConfiguration
     public static Dictionary<int, string> ArmorHeadNames
     {
         get { return _armorHeadNames; }
+    }
+
+
+    public static Dictionary<int, string> MountNames
+    {
+        get { return _mountNames; }
     }
 
     public static Dictionary<int, string> AccessoryNames
