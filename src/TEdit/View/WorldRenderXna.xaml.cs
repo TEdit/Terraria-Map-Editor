@@ -809,6 +809,25 @@ public partial class WorldRenderXna : UserControl
             {
                 case TileEntityType.TrainingDummy:
                     break;
+                case TileEntityType.DeadCellsDisplayJar:
+                    {
+                        int weapon = te.NetId;
+                        if (weapon == 0) continue;
+                        tileTex = (Texture2D)_textureDictionary.GetItem(weapon);
+                        SpriteEffects effect = curtile.U == 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                        WorldConfiguration.ItemLookupTable.TryGetValue(weapon, out var itemProps);
+                        float scale = itemProps?.Scale ?? 1.0f;
+                        source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+                        _spriteBatch.Draw(
+                            tileTex,
+                            new Vector2(1 + (int)((_scrollPosition.X + x + 1 - 0.5f) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1 + 0.25f) * _zoom)),
+                            source,
+                            Color.White,
+                            0f,
+                            new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)),
+                            scale * _zoom / 16f * 0.75f, effect, LayerTileTrack);
+                    }
+                    break;
                 case TileEntityType.ItemFrame:
                     {
                         int weapon = te.NetId;
@@ -2772,7 +2791,7 @@ public partial class WorldRenderXna : UserControl
                                     isMushroom = true;
                                     tileTex = (Texture2D)_textureDictionary.GetShroomTop(0);
                                 }
-                                if (curtile.Type == 323)
+                                if (curtile.Type == (int)TileType.PalmTree)
                                 {
                                     if (curtile.U >= 88 && curtile.U <= 132)
                                     {

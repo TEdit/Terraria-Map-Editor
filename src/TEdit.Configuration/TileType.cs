@@ -12,6 +12,7 @@ public enum TileType : int
     Chandelier = 34,
     Sign = 55,
     MushroomTree = 72,
+    PalmTree = 323,
     GraveMarker = 85,
     Dresser = 88,
     EbonsandBlock = 112,
