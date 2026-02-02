@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.Linq;
+using System.IO;
+using System;
 
 namespace TEdit.Configuration
 {
@@ -10,32 +10,15 @@ namespace TEdit.Configuration
     /// Robust version selection that supports:
     /// - Multiple Terraria game versions mapping to the SAME world SaveVersion (ex: 1.4.5.0/1.4.5.1/1.4.5.2 -> 315).
     /// - A distinct "Save As" target chosen by gameVersion, even when the saveVersion is shared.
-    ///
-    /// IMPORTANT JSON SHAPE CHANGE:
-    /// --------------------------------------
-    /// "saveVersions" must become an ARRAY, not an OBJECT keyed by saveVersion.
-    ///
-    /// ✅ Good:
-    ///   "saveVersions": [
-    ///     { "saveVersion": 315, "gameVersion": "v1.4.5.0", ... },
-    ///     { "saveVersion": 315, "gameVersion": "v1.4.5.1", ... },
-    ///     { "saveVersion": 315, "gameVersion": "v1.4.5.2", ... },
-    ///     { "saveVersion": 316, "gameVersion": "v1.4.5.3", ... }
-    ///   ]
-    ///
-    /// ❌ Bad (duplicates cannot exist in JSON objects / dictionaries):
-    ///   "saveVersions": { "315": {...}, "315": {...} }
-    ///
+    /// 
     /// Indexes:
-    /// - _byGameVersion: exact lookup for Save-As target data
-    /// - _latestBySaveVersion: fallback for opening worlds by saveVersion (use newest gameVersion for that saveVersion)
-    /// - _allBySaveVersion: all variants grouped by saveVersion
+    /// - _byGameVersion:       Exact lookup for Save-As target data.
+    /// - _latestBySaveVersion: Fallback for opening worlds by saveVersion (use newest gameVersion for that saveVersion).
+    /// - _allBySaveVersion:    All variants grouped by saveVersion.
     /// </summary>
     public class SaveVersionManager
     {
-        // -------------------------------------------------------------------------------------
-        // Raw JSON fields
-        // -------------------------------------------------------------------------------------
+        #region Raw JSON Fields
 
         /// <summary>
         /// Maps Terraria gameVersion (ex: "1.4.5.2") -> world saveVersion (ex: 315).
@@ -51,17 +34,17 @@ namespace TEdit.Configuration
         [JsonProperty("saveVersions")]
         public List<SaveVersionData> SaveVersions { get; set; } = [];
 
-        // -------------------------------------------------------------------------------------
-        // Built indexes (not serialized)
-        // -------------------------------------------------------------------------------------
+        #endregion
+
+        #region Built Indexes (Not Serialized)
 
         [JsonIgnore] private Dictionary<string, SaveVersionData> _byGameVersion;
         [JsonIgnore] private Dictionary<int, SaveVersionData> _latestBySaveVersion;
         [JsonIgnore] private Dictionary<int, List<SaveVersionData>> _allBySaveVersion;
 
-        // -------------------------------------------------------------------------------------
-        // Public API (same intent as existing)
-        // -------------------------------------------------------------------------------------
+        #endregion
+
+        #region Public API
 
         /// <summary>
         /// Returns the max saveVersion number that exists (based on built index).
@@ -170,31 +153,29 @@ namespace TEdit.Configuration
         }
 
         /// <summary>
-        /// Optionally: get framed tile flags for a specific Terraria gameVersion (Save-As rules).
+        /// Optionally: Get framed tile flags for a specific Terraria gameVersion (Save-As rules).
         /// </summary>
         public bool[] GetTileFramesForGameVersion(string gameVersion)
         {
             var data = GetDataForGameVersion(gameVersion);
             return data.GetFrames();
         }
+        #endregion
 
-        // -------------------------------------------------------------------------------------
-        // Loading
-        // -------------------------------------------------------------------------------------
+        #region Loading
 
         public static SaveVersionManager LoadJson(string fileName)
         {
             using StreamReader file = File.OpenText(fileName);
             using JsonTextReader reader = new(file);
             JsonSerializer serializer = new();
-            var mgr = serializer.Deserialize<SaveVersionManager>(reader) ?? throw new InvalidOperationException($"Failed to deserialize save version configuration: {fileName}");
+            var mgr = serializer.Deserialize<SaveVersionManager>(reader) ?? throw new InvalidOperationException($"Failed to deserialize save version configuration: {fileName}.");
             mgr.BuildIndexes();
             return mgr;
         }
+        #endregion
 
-        // -------------------------------------------------------------------------------------
-        // Index building / helpers
-        // -------------------------------------------------------------------------------------
+        #region Index Building / Helpers
 
         /// <summary>
         /// Builds internal lookup tables.
@@ -281,5 +262,6 @@ namespace TEdit.Configuration
 
             return new Version(0, 0);
         }
+        #endregion
     }
 }
