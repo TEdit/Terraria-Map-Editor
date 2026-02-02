@@ -575,7 +575,7 @@ public partial class World : ReactiveObject, ITileData
 
     [property: Category("Team Spawns")]
     [Reactive] private bool _teamBasedSpawnsSeed;
-    [Reactive] private ObservableCollection<Vector2Int32> _teamSpawns = new ObservableCollection<Vector2Int32>();
+    [Reactive] private ObservableCollection<Vector2Int32Observable> _teamSpawns = new ObservableCollection<Vector2Int32Observable>();
 
     #endregion
 

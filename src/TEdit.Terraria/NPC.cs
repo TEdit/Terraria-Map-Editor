@@ -5,7 +5,7 @@ namespace TEdit.Terraria;
 public partial class NPC : ReactiveObject
 {
     [Reactive]
-    private Vector2Int32 _home;
+    private Vector2Int32Observable _home;
 
     [Reactive]
     private bool _isHomeless;
@@ -17,7 +17,7 @@ public partial class NPC : ReactiveObject
     private string _name;
 
     [Reactive]
-    private Vector2Float _position;
+    private Vector2FloatObservable _position;
 
     [Reactive]
     private int _spriteId;

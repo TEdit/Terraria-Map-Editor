@@ -4058,6 +4058,51 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string WireReplaceMode_Blue {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string WireReplaceMode_Green {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string WireReplaceMode_Off {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string WireReplaceMode_Red {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow.
+        /// </summary>
+        public static string WireReplaceMode_Yellow {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Yellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fix Background Gap.
         /// </summary>
         public static string wp_fixbackground {

@@ -17,4 +17,9 @@
     <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Config\" />
+  </ItemGroup>
+
 </Project>

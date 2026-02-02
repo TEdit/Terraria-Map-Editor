@@ -1461,6 +1461,21 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>المسار</value>
   </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>أزرق</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>أخضر</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>انطلق</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>أحمر</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>أصفر</value>
+  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
   </data>

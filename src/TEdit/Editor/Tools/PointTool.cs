@@ -29,7 +29,7 @@ public sealed class PointTool : BaseTool
             if (npc != null)
             {
                 npc.Home = e.Location;
-                npc.Position = new Vector2Float(e.Location.X * 16, e.Location.Y * 16);
+                npc.Position = new Vector2FloatObservable(e.Location.X * 16, e.Location.Y * 16);
             }
             else
             {

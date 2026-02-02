@@ -1461,6 +1461,21 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Gleis</value>
   </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>Blau</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>Grün</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>Rot</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>Gelb</value>
+  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>
   </data>

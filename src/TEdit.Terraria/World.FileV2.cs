@@ -1780,9 +1780,9 @@ public partial class World
                     npc.SpriteId = WorldConfiguration.NpcIds[npc.Name];
             }
             npc.DisplayName = r.ReadString();
-            npc.Position = new Vector2Float(r.ReadSingle(), r.ReadSingle());
+            npc.Position = new Vector2FloatObservable(r.ReadSingle(), r.ReadSingle());
             npc.IsHomeless = r.ReadBoolean();
-            npc.Home = new Vector2Int32(r.ReadInt32(), r.ReadInt32());
+            npc.Home = new Vector2Int32Observable(r.ReadInt32(), r.ReadInt32());
 
             if (w.Version >= 213 && ((BitsByte)r.ReadByte())[0])
             {
@@ -1816,7 +1816,7 @@ public partial class World
                     if (WorldConfiguration.NpcIds.ContainsKey(npc.Name))
                         npc.SpriteId = WorldConfiguration.NpcIds[npc.Name];
                 }
-                npc.Position = new Vector2Float(r.ReadSingle(), r.ReadSingle());
+                npc.Position = new Vector2FloatObservable(r.ReadSingle(), r.ReadSingle());
                 w.Mobs.Add(npc);
                 totalMobs++;
                 flag = r.ReadBoolean();
@@ -1830,7 +1830,7 @@ public partial class World
         {
             TownManager room = new TownManager();
             room.NpcId = r.ReadInt32();
-            room.Home = new Vector2Int32(r.ReadInt32(), r.ReadInt32());
+            room.Home = new Vector2Int32Observable(r.ReadInt32(), r.ReadInt32());
             w.PlayerRooms.Add(room);
         }
     }
@@ -2405,7 +2405,7 @@ public partial class World
         {
             int x = (int)r.ReadInt16();
             int y = (int)r.ReadInt16();
-            w.TeamSpawns.Add(new Vector2Int32(x, y));
+            w.TeamSpawns.Add(new Vector2Int32Observable(x, y));
         }
     }
 

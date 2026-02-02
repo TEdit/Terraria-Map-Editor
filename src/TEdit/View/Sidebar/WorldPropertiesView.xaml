@@ -572,11 +572,11 @@
         <TextBlock Text="Team Spawns" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.TeamBasedSpawnsSeed}" Content="Team Based Spawns Enabled" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock Text="Team Spawn Locations" HorizontalAlignment="Right" VerticalAlignment="Top" />
-        <ItemsControl ItemsSource="{Binding CurrentWorld.TeamSpawns}" Margin="0,2">
+        <ItemsControl ItemsSource="{Binding CurrentWorld.TeamSpawns}" AlternationCount="100" Margin="0,2">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Margin="0,1">
-                        <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}, Path=ItemsSource.IndexOf, StringFormat=Team {0}:}" Width="50" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ContentPresenter}, StringFormat=Team {0}:}" Width="50" VerticalAlignment="Center" />
                         <TextBlock Text="X:" VerticalAlignment="Center" Margin="0,0,3,0" />
                         <TextBox Text="{Binding X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="45" Margin="0,0,5,0" />
                         <TextBlock Text="Y:" VerticalAlignment="Center" Margin="0,0,3,0" />
