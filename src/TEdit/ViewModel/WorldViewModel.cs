@@ -58,7 +58,7 @@ public partial class WorldViewModel : ReactiveObject
     private UndoManager _undoManager;
     public bool[] CheckTiles;
     private ITool _activeTool;
-    private bool _checkUpdates;
+    private bool _enableCheckUpdates;
     private string _currentFile;
     public static World _currentWorld;
     private ClipboardManager _clipboard;
@@ -120,11 +120,10 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) { return; }
 
-        CheckUpdates = Settings.Default.CheckUpdates;
+        EnableCheckUpdates = Settings.Default.CheckUpdates;
 
-        if (CheckUpdates)
+        if (EnableCheckUpdates)
             CheckVersion();
-
 
         IsAutoSaveEnabled = Settings.Default.Autosave;
 
@@ -271,7 +270,7 @@ public partial class WorldViewModel : ReactiveObject
         System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.None;
         try
         {
-            Process.Start(url);
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
         }
         catch
         {
@@ -720,7 +719,7 @@ public partial class WorldViewModel : ReactiveObject
     private void ShowNewsDialog() => ShowNewsDialogImpl();
 
     [ReactiveCommand]
-    private async Task CheckUpdatesAsync() => await CheckVersion(false);
+    private async Task CheckUpdates() => await CheckVersion(false);
 
     [ReactiveCommand]
     private void ViewLog() => ErrorLogging.ViewLog();
@@ -737,12 +736,12 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
-    public bool CheckUpdates
+    public bool EnableCheckUpdates
     {
-        get { return _checkUpdates; }
+        get { return _enableCheckUpdates; }
         set
         {
-            this.RaiseAndSetIfChanged(ref _checkUpdates, value);
+            this.RaiseAndSetIfChanged(ref _enableCheckUpdates, value);
             Settings.Default.CheckUpdates = value;
             try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
         }
@@ -875,16 +874,12 @@ public partial class WorldViewModel : ReactiveObject
 
         if (isOutdated)
         {
-#if !DEBUG
+//#if !DEBUG
             if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                try
-                {
-                    Process.Start("http://www.binaryconstruct.com/downloads/");
-                }
-                catch { }
+                LaunchUrl("https://www.binaryconstruct.com/tedit/#download");
             }
-#endif
+//#endif
         }
         else if (!auto)
         {

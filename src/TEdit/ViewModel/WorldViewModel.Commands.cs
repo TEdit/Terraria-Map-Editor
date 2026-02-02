@@ -214,7 +214,7 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void Update()
     {
-        string url = "http://www.binaryconstruct.com/downloads/";
+        string url = "https://www.binaryconstruct.com/tedit/#download";
         try
         {
             ErrorLogging.TelemetryClient?.TrackEvent(nameof(Update));

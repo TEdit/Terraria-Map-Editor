@@ -72,8 +72,8 @@
                     <MenuItem Header="{x:Static p:Language.menu_file_saveasversion}" Icon="{StaticResource TB_SaveAsVersionIcon}" Command="{Binding SaveAsVersionCommand}"/>
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_autosave}" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
-                    <MenuItem Header="{x:Static p:Language.menu_file_autoupdate}" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
-                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_autoupdate}" IsCheckable="True" IsChecked="{Binding EnableCheckUpdates}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Command="{Binding CheckUpdatesCommand}" />
                     <MenuItem Header="{x:Static p:Language.menu_telemetry}" IsCheckable="True" IsChecked="{Binding EnableTelemetry}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_language}">
