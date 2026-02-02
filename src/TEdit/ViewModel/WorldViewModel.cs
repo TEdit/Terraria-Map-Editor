@@ -716,8 +716,6 @@ public partial class WorldViewModel : ReactiveObject
             UpdateRenderWorld();
         }
     }
-    [ReactiveCommand]
-    private void ShowNewsDialog() => ShowNewsDialogImpl();
 
     [ReactiveCommand]
     private async Task CheckUpdatesAsync() => await CheckVersion(false);
@@ -830,15 +828,6 @@ public partial class WorldViewModel : ReactiveObject
         this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
         UpdateTitle();
     }
-
-    private void ShowNewsDialogImpl()
-    {
-        var w = new NotificationsWindow();
-        w.Owner = Application.Current.MainWindow;
-        w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        w.ShowDialog();
-    }
-
 
     private void UpdateTitle()
     {
