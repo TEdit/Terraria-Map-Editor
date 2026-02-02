@@ -408,11 +408,19 @@ public partial class WorldViewModel
     {
         if (container == null) return;
 
-        if (container is Item item)
+        if (container is System.Collections.IList selectedItems)
+        {
+            foreach (var obj in selectedItems)
+            {
+                if (obj is Item listItem)
+                    SetItemMaxStack(listItem);
+            }
+        }
+        else if (container is Item item)
         {
             SetItemMaxStack(item);
         }
-        if (container is TileEntity te && te.EntityType == TileEntityType.ItemFrame)
+        else if (container is TileEntity te && te.EntityType == TileEntityType.ItemFrame)
         {
             var teItem = new Item(te.StackSize, te.NetId, te.Prefix);
             SetItemMaxStack(teItem);
