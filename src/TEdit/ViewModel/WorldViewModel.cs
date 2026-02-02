@@ -120,6 +120,7 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) { return; }
 
+
         EnableCheckUpdates = Settings.Default.CheckUpdates;
 
         if (EnableCheckUpdates)
@@ -715,8 +716,7 @@ public partial class WorldViewModel : ReactiveObject
             UpdateRenderWorld();
         }
     }
-    [ReactiveCommand]
-    private void ShowNewsDialog() => ShowNewsDialogImpl();
+
 
     [ReactiveCommand]
     private async Task CheckUpdates() => await CheckVersion(false);
@@ -830,13 +830,6 @@ public partial class WorldViewModel : ReactiveObject
         UpdateTitle();
     }
 
-    private void ShowNewsDialogImpl()
-    {
-        var w = new NotificationsWindow();
-        w.Owner = Application.Current.MainWindow;
-        w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        w.ShowDialog();
-    }
 
 
     private void UpdateTitle()
@@ -856,7 +849,7 @@ public partial class WorldViewModel : ReactiveObject
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/4.0");
-                string githubReleases = await client.GetStringAsync("https://api.github.com/repos/TEdit/Terraria-map-Editor/releases");
+                string githubReleases = await client.GetStringAsync("https://api.github.com/repos/TEdit/Terraria-Map-Editor/releases");
                 var versions = Regex.Match(githubReleases, versionRegex);
 
                 var githubVersion = Semver.SemVersion.Parse(versions?.Groups?[1].Value, Semver.SemVersionStyles.Any);

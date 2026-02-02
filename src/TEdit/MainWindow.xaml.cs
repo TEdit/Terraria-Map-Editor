@@ -40,15 +40,6 @@ public partial class MainWindow : Window
         {
             _vm.EnableTelemetry = true;
         }
-
-        
-        if (Settings.Default.ShowNews)
-        {
-            var w = new NotificationsWindow();
-            w.Owner = Application.Current.MainWindow;
-            w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            w.ShowDialog();
-        }
     }
 
     private void HandleKeyUpEvent(object sender, KeyEventArgs e)

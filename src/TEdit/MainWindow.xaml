@@ -136,7 +136,6 @@
 
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_help}">
-                    <MenuItem Header="News" Command="{Binding ShowNewsDialogCommand}" Icon="{StaticResource TB_LogIcon}"/>
                     <MenuItem Header="{x:Static p:Language.menu_help_wiki}" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"/>
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_help_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
