@@ -774,6 +774,15 @@
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>清空剪切板</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>出口</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>翻转X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>翻转</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>导入假彩色图像</value>
   </data>
@@ -798,8 +807,17 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>粘贴电线</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>删除</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>替换现有物块</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>旋转</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>禁用感染蔓延</value>
@@ -960,6 +978,9 @@
   <data name="tool_wp_altars" xml:space="preserve">
     <value>祭坛已损坏</value>
   </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>末日（月之主生成）</value>
+  </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>腐化背景</value>
   </data>
@@ -1098,6 +1119,9 @@
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>中国版世界</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>云BG活跃</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>钴矿</value>
   </data>
@@ -1116,6 +1140,9 @@
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>猩红</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>邪教徒延迟</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>难度</value>
   </data>
@@ -1127,6 +1154,9 @@
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>醉酒世界（Drunk World）</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>地牢点</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>事件</value>
@@ -1152,8 +1182,14 @@
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>万圣节</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>万圣节永远的力场</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>圣诞节</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>永远的强制圣诞</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>世界ID</value>
@@ -1284,6 +1320,9 @@
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>已拯救的NPC</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>已拯救的NPC</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>书呆子史莱姆</value>
   </data>
@@ -1347,6 +1386,21 @@
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>商贩背包</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>支柱活跃</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>星云柱</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>日耀柱</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>星尘柱</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>星旋柱</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>困难模式前</value>
   </data>
@@ -1389,17 +1443,32 @@
   <data name="tool_wp_seed" xml:space="preserve">
     <value>种子</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>双重地下城</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>感染者</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>无陷阱（No traps）</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>反转种子（Don't dig up）</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>天空街区</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>吸血鬼</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>天顶种子（Get fixed boi）</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>银矿</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>出生点</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>洞穴样式</value>
@@ -1439,6 +1508,15 @@
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>表层深度</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>团队生成</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>支持团队生成</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>团队出生点</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>十周年（Celebrationmk10）</value>

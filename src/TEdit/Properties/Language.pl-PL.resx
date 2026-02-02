@@ -774,6 +774,15 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>Pusty Schowek</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>Eksport</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>Flip X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>Flip Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>Importuj Fałszywy Kolor Obrazu</value>
   </data>
@@ -798,8 +807,17 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Wklej Kable</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>Wklej</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Zastępowanie istniejących kafelków</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>Obróć</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>Zamrażanie biomu Spread</value>
@@ -960,6 +978,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_altars" xml:space="preserve">
     <value>Zniszczone Ołtarze</value>
   </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>Apokalipsa (Pojawienie się Władcy Księżyca)</value>
+  </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>Korupcja BG</value>
   </data>
@@ -1098,6 +1119,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Chińska wersja światowa</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Active</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Wariant Kobaltu</value>
   </data>
@@ -1116,6 +1140,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>Szkartłat</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>Opóźnienie kultystów</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>Poziom Trudności</value>
   </data>
@@ -1127,6 +1154,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>Drunk World</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>Punkt Lochu</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Zdarzenie</value>
@@ -1152,8 +1182,14 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>Halloween</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>Force Halloween na zawsze</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>Święta</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>Zmuszamy Boże Narodzenie na zawsze</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>ID Świata</value>
@@ -1284,6 +1320,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>Uratowani NPC</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>Uratowani NPC</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>Niebieski szlam</value>
   </data>
@@ -1347,6 +1386,21 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>Torba na wioślarza</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>Filary aktywne</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>Filar Mgławicy</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>Filar Słońca</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>Filar Pyłu Gwiezdnego</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>Filar Wiru</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Pre-Hardmode</value>
   </data>
@@ -1389,17 +1443,32 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_seed" xml:space="preserve">
     <value>Ziarno</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>Podwójne lochy</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>Zainfekowani</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Bez pułapek</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>Remiks</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>Skyblock</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>Wampir</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>Zenit</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Poziom Srebra</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>Punkt odrodzenia</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>Wygląd Powierzchni</value>
@@ -1439,6 +1508,15 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>Poziom Powierzchni</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>Powstania drużyny</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>Aktywne pojawiania się zespołowe</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>Miejsca powstawania drużyny</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>Dziesiąta rocznica</value>

@@ -774,6 +774,15 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>Zwischenablage leeren</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>Flip X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>Flip Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>Falsche-Farben-Bild importieren</value>
   </data>
@@ -798,8 +807,17 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Kabel einfügen</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>Einfügen</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Ersetzen vorhandener Kacheln</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>Drehen</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>Biom-Ausbreitung einfrieren</value>
@@ -960,6 +978,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_altars" xml:space="preserve">
     <value>Zerschlagene Altäre</value>
   </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>Apokalypse (Mondherr Laicht)</value>
+  </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>HG Verderben</value>
   </data>
@@ -1098,6 +1119,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Chinesische Weltversion</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Aktiv</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Kobalterz</value>
   </data>
@@ -1116,6 +1140,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>Purpur</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>Kultisten-Verzögerung</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>Fortschritt</value>
   </data>
@@ -1127,6 +1154,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>„Drunk world“</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>Dungeon Point</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Event</value>
@@ -1152,8 +1182,14 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>Halloween</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>Erzwingen Sie Halloween für immer</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>Weihnachten</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>Weihnachten für immer erzwingen</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>Welt-ID</value>
@@ -1284,6 +1320,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>Gerettete NPCs</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>Gerettete NPCs</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>Blauer Schleim</value>
   </data>
@@ -1347,6 +1386,21 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>Hausierer-Schulranzen</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>Aktive Säulen</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>Nebulasäule</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>Sonnensäule</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>Sternenstaubsäule</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>Vortexsäule</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Pre-Hardmode</value>
   </data>
@@ -1389,17 +1443,32 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_seed" xml:space="preserve">
     <value>Seed</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>Doppelte Dungeons</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>Infiziert</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Keine Fallen</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>Remix</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>Skyblock</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>Vampir</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>Zenit</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Silbererz</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>Spawn Point</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>Höhlenarten</value>
@@ -1439,6 +1508,15 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>Oberflächenniveau</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>Team-Spawns</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>Teambasierte Spawns aktiviert</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>Team-Spawn-Orte</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>„Celebrationmk10“</value>

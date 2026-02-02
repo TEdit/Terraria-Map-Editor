@@ -774,6 +774,15 @@
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>الحافظة الفارغة</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>التصدير</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>فليب إكس</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>فليب Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>استيراد صورة لون زائفة</value>
   </data>
@@ -798,8 +807,17 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>لصق الأسلاك</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>معجون</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>إزالة</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>استبدال اللوحات الموجودة</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>تدوير</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>تجميد انتشار بيوم</value>
@@ -960,6 +978,9 @@
   <data name="tool_wp_altars" xml:space="preserve">
     <value>المذابح حطمت</value>
   </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>نهاية العالم (ظهور سيد القمر)</value>
+  </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>الفاسدة BG</value>
   </data>
@@ -1098,6 +1119,9 @@
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>النسخة الصينية العالمية</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Active</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>مستوى الكوبالت</value>
   </data>
@@ -1116,6 +1140,9 @@
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>قرمزي</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>تأخير الطائفة</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>حرج</value>
   </data>
@@ -1127,6 +1154,9 @@
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>العالم في حالة سكر</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>نقطة الزنزانة</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>حدث</value>
@@ -1152,8 +1182,14 @@
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>هالوين</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>هالوين القوة إلى الأبد</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>عيد الميلاد</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>عيد الميلاد القسري إلى الأبد</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>معرف العالم</value>
@@ -1284,6 +1320,9 @@
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>NPCs المحفوظة</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>NPCs المحفوظة</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>الوحل الأزرق</value>
   </data>
@@ -1347,6 +1386,21 @@
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>حقيبة البائع المتجول</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>الأعمدة النشطة</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>سديم عمود</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>عمود شمسي</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>عمود ستاردست</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>دوامة عمود</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>ما قبل هاردمود</value>
   </data>
@@ -1389,17 +1443,32 @@
   <data name="tool_wp_seed" xml:space="preserve">
     <value>بذرة</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>زنزانات مزدوجة</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>المصابون</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>لا الفخاخ</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>ريميكس</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>سكاي بلوك</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>مصاص الدماء</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>سَمْت</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>الطبقة الفضية</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>نقطة الظهور</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>أنماط الكهف</value>
@@ -1439,6 +1508,15 @@
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>مستوى السطح</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>ظهور الفرق</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>تمكين الظهور القائم على الفرق</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>مواقع ظهور الفرق</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>الذكرى العاشرة</value>

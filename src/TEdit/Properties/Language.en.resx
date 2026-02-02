@@ -774,6 +774,15 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>Empty Clipboard</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>Flip X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>Flip Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>Import False Color Image</value>
   </data>
@@ -798,8 +807,17 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Paste Wires</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Replace Existing Tiles</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>Rotate</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>Freeze Biome Spread</value>
@@ -960,6 +978,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_altars" xml:space="preserve">
     <value>Altars Smashed</value>
   </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>Apocalypse (Moon Lord Spawning)</value>
+  </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>Corrupt BG</value>
   </data>
@@ -1098,6 +1119,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Chinese World Version</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Active</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Cobalt Tier</value>
   </data>
@@ -1116,6 +1140,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>Crimson</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>Cultist Delay</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>Difficulty</value>
   </data>
@@ -1127,6 +1154,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>Drunk World</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>Dungeon Point</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Event</value>
@@ -1152,8 +1182,14 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>Halloween</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>Force Halloween Forever</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>XMas</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>Force Christmas Forever</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>World ID</value>
@@ -1284,6 +1320,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>NPCs Saved</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>NPCs Saved</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>Blue Slime</value>
   </data>
@@ -1347,6 +1386,21 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>Peddler's Satchel</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>Pillars Active</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>Nebula Pillar</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>Solar Pillar</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>Stardust Pillar</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>Vortex Pillar</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Pre-Hardmode</value>
   </data>
@@ -1389,17 +1443,32 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_seed" xml:space="preserve">
     <value>Seed</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>Dual Dungeons</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>Infected</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>No Traps</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>Remix</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>Skyblock</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>Vampire</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>Zenith</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Silver Tier</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>Spawn Point</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>Cave Styles</value>
@@ -1439,6 +1508,15 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>Surface Level</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>Team Spawns</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>Team Based Spawns Enabled</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>Team Spawn Locations</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>Tenth Anniversary</value>

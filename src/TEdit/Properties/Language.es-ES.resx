@@ -774,6 +774,15 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>Portapapeles vacío</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>Flip X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>Flip Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>Importar imagen en color falso</value>
   </data>
@@ -798,8 +807,17 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Pegar cables</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>Pegar</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Reemplazar bloques existentes</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>Rotar</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>Congelar propagación del bioma</value>
@@ -960,6 +978,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_altars" xml:space="preserve">
     <value>Altares destrozados</value>
   </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>Apocalipsis (Aparición del Señor de la Luna)</value>
+  </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>Fondo corrupto</value>
   </data>
@@ -1098,6 +1119,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Versión china</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Active</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Nivel de cobalto</value>
   </data>
@@ -1116,6 +1140,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>Carmesí</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>Retraso del Cultista</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>Dificultad</value>
   </data>
@@ -1127,6 +1154,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>Drunk World</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>Punto Mazmorra</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Evento</value>
@@ -1152,8 +1182,14 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>Halloween</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>Fuerza Halloween para siempre</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>Navidad</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>Fuerza la Navidad para siempre</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>Identificador (ID)</value>
@@ -1284,6 +1320,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>PNJs encontrados</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>PNJs encontrados</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>Slime Nerd</value>
   </data>
@@ -1347,6 +1386,21 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>Mochila de vendedor ambulante</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>Pilares activos</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>Pilar de la Nebulosa</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>Pilar solar</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>Pilar de Polvo Estelar</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>Pilar de vórtice</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Modo Pre-Difícil</value>
   </data>
@@ -1389,17 +1443,32 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_seed" xml:space="preserve">
     <value>Semilla</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>Mazmorras Duales</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>Infectados</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>notraps (sin trampas)</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>Remix</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>Skyblock</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>Vampiro</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>Zenit</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Nivel Plata</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>Punto de Aparición</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>Estilos de cueva</value>
@@ -1439,6 +1508,15 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>Nivel de superficie</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>Aparición de equipos</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>Aparición basada en equipos habilitada</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>Ubicaciones de aparición de equipos</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>Décimo Aniversario</value>

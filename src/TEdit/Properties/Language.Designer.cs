@@ -1997,6 +1997,33 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string tool_clipboard_export {
+            get {
+                return ResourceManager.GetString("tool_clipboard_export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip X.
+        /// </summary>
+        public static string tool_clipboard_flipx {
+            get {
+                return ResourceManager.GetString("tool_clipboard_flipx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Y.
+        /// </summary>
+        public static string tool_clipboard_flipy {
+            get {
+                return ResourceManager.GetString("tool_clipboard_flipy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import False Color Image.
         /// </summary>
         public static string tool_clipboard_importfalsecolor {
@@ -2069,11 +2096,38 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        public static string tool_clipboard_paste {
+            get {
+                return ResourceManager.GetString("tool_clipboard_paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string tool_clipboard_remove {
+            get {
+                return ResourceManager.GetString("tool_clipboard_remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Replace Existing Tiles.
         /// </summary>
         public static string tool_clipboard_replace {
             get {
                 return ResourceManager.GetString("tool_clipboard_replace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate.
+        /// </summary>
+        public static string tool_clipboard_rotate {
+            get {
+                return ResourceManager.GetString("tool_clipboard_rotate", resourceCulture);
             }
         }
         
@@ -2555,6 +2609,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apocalypse (Moon Lord Spawning).
+        /// </summary>
+        public static string tool_wp_apocalypse {
+            get {
+                return ResourceManager.GetString("tool_wp_apocalypse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Corrupt BG.
         /// </summary>
         public static string tool_wp_bg_corrupt {
@@ -2969,6 +3032,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cloud BG Active.
+        /// </summary>
+        public static string tool_wp_cloud_bg_active {
+            get {
+                return ResourceManager.GetString("tool_wp_cloud_bg_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cobalt Tier.
         /// </summary>
         public static string tool_wp_cobalt {
@@ -3023,6 +3095,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cultist Delay.
+        /// </summary>
+        public static string tool_wp_cultist_delay {
+            get {
+                return ResourceManager.GetString("tool_wp_cultist_delay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difficulty.
         /// </summary>
         public static string tool_wp_difficulty {
@@ -3055,6 +3136,15 @@ namespace TEdit.Properties {
         public static string tool_wp_drunk {
             get {
                 return ResourceManager.GetString("tool_wp_drunk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dungeon Point.
+        /// </summary>
+        public static string tool_wp_dungeon_point {
+            get {
+                return ResourceManager.GetString("tool_wp_dungeon_point", resourceCulture);
             }
         }
         
@@ -3131,11 +3221,29 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Force Halloween Forever.
+        /// </summary>
+        public static string tool_wp_holiday_halloween_forever {
+            get {
+                return ResourceManager.GetString("tool_wp_holiday_halloween_forever", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XMas.
         /// </summary>
         public static string tool_wp_holiday_xmas {
             get {
                 return ResourceManager.GetString("tool_wp_holiday_xmas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Christmas Forever.
+        /// </summary>
+        public static string tool_wp_holiday_xmas_forever {
+            get {
+                return ResourceManager.GetString("tool_wp_holiday_xmas_forever", resourceCulture);
             }
         }
         
@@ -3527,6 +3635,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NPCs Saved.
+        /// </summary>
+        public static string tool_wp_npc_saved_label {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_saved_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blue Slime.
         /// </summary>
         public static string tool_wp_npc_slime_blue {
@@ -3716,6 +3833,51 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nebula Pillar.
+        /// </summary>
+        public static string tool_wp_pillar_nebula {
+            get {
+                return ResourceManager.GetString("tool_wp_pillar_nebula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solar Pillar.
+        /// </summary>
+        public static string tool_wp_pillar_solar {
+            get {
+                return ResourceManager.GetString("tool_wp_pillar_solar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stardust Pillar.
+        /// </summary>
+        public static string tool_wp_pillar_stardust {
+            get {
+                return ResourceManager.GetString("tool_wp_pillar_stardust", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vortex Pillar.
+        /// </summary>
+        public static string tool_wp_pillar_vortex {
+            get {
+                return ResourceManager.GetString("tool_wp_pillar_vortex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars Active.
+        /// </summary>
+        public static string tool_wp_pillars_active {
+            get {
+                return ResourceManager.GetString("tool_wp_pillars_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pre-Hardmode.
         /// </summary>
         public static string tool_wp_prehardmode {
@@ -3842,6 +4004,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dual Dungeons.
+        /// </summary>
+        public static string tool_wp_seed_dualdungeons {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_dualdungeons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infected.
+        /// </summary>
+        public static string tool_wp_seed_infected {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_infected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Traps.
         /// </summary>
         public static string tool_wp_seed_notraps {
@@ -3860,6 +4040,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skyblock.
+        /// </summary>
+        public static string tool_wp_seed_skyblock {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_skyblock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vampire.
+        /// </summary>
+        public static string tool_wp_seed_vampire {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_vampire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zenith.
         /// </summary>
         public static string tool_wp_seed_zenith {
@@ -3874,6 +4072,15 @@ namespace TEdit.Properties {
         public static string tool_wp_silver {
             get {
                 return ResourceManager.GetString("tool_wp_silver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spawn Point.
+        /// </summary>
+        public static string tool_wp_spawn_point {
+            get {
+                return ResourceManager.GetString("tool_wp_spawn_point", resourceCulture);
             }
         }
         
@@ -3991,6 +4198,33 @@ namespace TEdit.Properties {
         public static string tool_wp_surface_level {
             get {
                 return ResourceManager.GetString("tool_wp_surface_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team Spawns.
+        /// </summary>
+        public static string tool_wp_teamspawns {
+            get {
+                return ResourceManager.GetString("tool_wp_teamspawns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team Based Spawns Enabled.
+        /// </summary>
+        public static string tool_wp_teamspawns_enabled {
+            get {
+                return ResourceManager.GetString("tool_wp_teamspawns_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team Spawn Locations.
+        /// </summary>
+        public static string tool_wp_teamspawns_locations {
+            get {
+                return ResourceManager.GetString("tool_wp_teamspawns_locations", resourceCulture);
             }
         }
         

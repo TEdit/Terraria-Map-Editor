@@ -11,7 +11,7 @@
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
-             d:DesignWidth="260"
+             d:DesignWidth="340"
              Background="{StaticResource WindowBackgroundBrush}"
              Foreground="{StaticResource TextBrush}"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
@@ -293,14 +293,14 @@
         <CheckBox x:Name="consoleCb" Content="{x:Static p:Language.tool_wp_console}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding CurrentWorld.IsConsole, Mode=TwoWay}"/>
 
         <Separator Grid.ColumnSpan="2" />
-        <TextBlock Text="Spawn Point" HorizontalAlignment="Right" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_spawn_point}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="X:" VerticalAlignment="Center" Margin="0,0,3,0" />
             <TextBox IsReadOnly="True"  Text="{Binding CurrentWorld.SpawnX, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
             <TextBlock Text="Y:" VerticalAlignment="Center" Margin="10,0,3,0" />
             <TextBox IsReadOnly="True" Text="{Binding CurrentWorld.SpawnY, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
         </DockPanel>
-        <TextBlock Text="Dungeon Point" HorizontalAlignment="Right" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_dungeon_point}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="X:" VerticalAlignment="Center" Margin="0,0,3,0" />
             <TextBox IsReadOnly="True" Text="{Binding CurrentWorld.DungeonX, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
@@ -360,7 +360,7 @@
             <TextBlock Text="{Binding CurrentWorld.SlimeRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
             <Slider Value="{Binding CurrentWorld.SlimeRainTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
         </DockPanel>
-        <TextBlock Text="Cloud BG Active" HorizontalAlignment="Right" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_cloud_bg_active}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="{Binding CurrentWorld.CloudBgActive, StringFormat={}{0:0.0}}" Width="30" DockPanel.Dock="Right" />
             <Slider Value="{Binding CurrentWorld.CloudBgActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.1" />
@@ -371,9 +371,9 @@
         <TextBlock  />
         <CheckBox IsChecked="{Binding CurrentWorld.ForceXMasForToday, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_holiday_xmas}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
         <TextBlock  />
-        <CheckBox IsChecked="{Binding CurrentWorld.ForceHalloweenForever, Mode=TwoWay}" Content="Force Halloween Forever" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+        <CheckBox IsChecked="{Binding CurrentWorld.ForceHalloweenForever, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_holiday_halloween_forever}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
         <TextBlock  />
-        <CheckBox IsChecked="{Binding CurrentWorld.ForceXMasForever, Mode=TwoWay}" Content="Force Christmas Forever" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+        <CheckBox IsChecked="{Binding CurrentWorld.ForceXMasForever, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_holiday_xmas_forever}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
 
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_sandstorm}" HorizontalAlignment="Right" />
@@ -455,13 +455,13 @@
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.ZenithWorld}" Content="{x:Static p:Language.tool_wp_seed_zenith}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.SkyblockWorld}" Content="Skyblock" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.SkyblockWorld}" Content="{x:Static p:Language.tool_wp_seed_skyblock}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.VampireSeed}" Content="Vampire" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.VampireSeed}" Content="{x:Static p:Language.tool_wp_seed_vampire}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.InfectedSeed}" Content="Infected" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.InfectedSeed}" Content="{x:Static p:Language.tool_wp_seed_infected}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.DualDungeonsSeed}" Content="Dual Dungeons" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DualDungeonsSeed}" Content="{x:Static p:Language.tool_wp_seed_dualdungeons}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_crimson}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="{x:Static p:Language.tool_wp_crimson}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
@@ -543,17 +543,17 @@
         <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialStardust}" Content="{x:Static p:Language.tool_wp_boss_stardustpillar}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Separator Grid.ColumnSpan="2" />
-        <TextBlock Text="Pillars Active" HorizontalAlignment="Right" />
-        <CheckBox IsChecked="{Binding CurrentWorld.CelestialSolarActive}" Content="Solar Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_pillars_active}" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.CelestialSolarActive}" Content="{x:Static p:Language.tool_wp_pillar_solar}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.CelestialNebulaActive}" Content="Nebula Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.CelestialNebulaActive}" Content="{x:Static p:Language.tool_wp_pillar_nebula}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.CelestialVortexActive}" Content="Vortex Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.CelestialVortexActive}" Content="{x:Static p:Language.tool_wp_pillar_vortex}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.CelestialStardustActive}" Content="Stardust Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.CelestialStardustActive}" Content="{x:Static p:Language.tool_wp_pillar_stardust}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.Apocalypse}" Content="Apocalypse (Moon Lord Spawning)" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-        <TextBlock Text="Cultist Delay" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.Apocalypse}" Content="{x:Static p:Language.tool_wp_apocalypse}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_cultist_delay}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="{Binding CurrentWorld.CultistDelay, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
             <Slider Value="{Binding CurrentWorld.CultistDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="86400" SmallChange="1" />
@@ -570,9 +570,9 @@
         <CheckBox IsChecked="{Binding CurrentWorld.LanternNightNextNightIsGenuine}" Content="{x:Static p:Language.tool_wp_lanternnight_nextgenuine}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Separator Grid.ColumnSpan="2" />
-        <TextBlock Text="Team Spawns" HorizontalAlignment="Right" />
-        <CheckBox IsChecked="{Binding CurrentWorld.TeamBasedSpawnsSeed}" Content="Team Based Spawns Enabled" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-        <TextBlock Text="Team Spawn Locations" HorizontalAlignment="Right" VerticalAlignment="Top" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_teamspawns}" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.TeamBasedSpawnsSeed}" Content="{x:Static p:Language.tool_wp_teamspawns_enabled}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_teamspawns_locations}" HorizontalAlignment="Right" VerticalAlignment="Top" />
         <ItemsControl ItemsSource="{Binding CurrentWorld.TeamSpawns}" AlternationCount="100" Margin="0,2">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -610,7 +610,7 @@
         <TextBlock  />
         <CheckBox IsChecked="{Binding CurrentWorld.BoughtBunny}" Content="{x:Static p:Language.tool_wp_npc_bunny}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <Separator Grid.ColumnSpan="2" />
-        <TextBlock Text="NPCs Saved" HorizontalAlignment="Right" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_npc_saved_label}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin}" Content="{x:Static p:Language.tool_wp_npc_goblintinkerer}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.SavedMech}" Content="{x:Static p:Language.tool_wp_npc_mechanic}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
