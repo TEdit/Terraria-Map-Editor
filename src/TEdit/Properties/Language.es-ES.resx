@@ -702,6 +702,24 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tab_bestiary" xml:space="preserve">
     <value>Bestiario</value>
   </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>Aparición del Equipo Azul</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>Aparición del equipo Verde</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>Aparición del Equipo Rosa</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>Aparición del Equipo Rojo</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>Engendro del Equipo Blanco</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>Aparición del equipo amarillo</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analizar</value>
   </data>

@@ -702,6 +702,24 @@
   <data name="tab_bestiary" xml:space="preserve">
     <value>Бестиарий</value>
   </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>Появление синей команды</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>Появление зелёной команды</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>Появление Розовой команды</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>Появление Красной команды</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>Появление белой команды</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>Жёлтая команда появляется</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Анализ</value>
   </data>

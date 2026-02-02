@@ -702,6 +702,24 @@
   <data name="tab_bestiary" xml:space="preserve">
     <value>怪物图鉴</value>
   </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>蓝队出生</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>绿队出生点</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>粉色队生成</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>红队出生点</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>白队生成</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>黄队刷新</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>分析</value>
   </data>

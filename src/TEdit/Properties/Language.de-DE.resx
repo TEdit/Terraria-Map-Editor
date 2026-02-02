@@ -702,6 +702,24 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tab_bestiary" xml:space="preserve">
     <value>Bestiarium</value>
   </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>Blaues Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>Grünes Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>Pink Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>Rotes Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>Weißes Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>Gelbes Team Spawn</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analysieren</value>
   </data>

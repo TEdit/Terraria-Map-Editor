@@ -702,6 +702,24 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tab_bestiary" xml:space="preserve">
     <value>Bestiariusz</value>
   </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>Potomek Niebieskiej Drużyny</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>Zielona drużyna Spawn</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>Pojawienie się z Różowej Drużyny</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>Pojawienie się Czerwonej Drużyny</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>Pojawienie się Białej Drużyny</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>Potomek Żółtej Drużyny</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analiza</value>
   </data>

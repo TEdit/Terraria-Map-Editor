@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TEdit.Common.Exceptions;
@@ -14,6 +15,9 @@ namespace TEdit.Terraria;
 
 public partial class World
 {
+    public static readonly string[] TeamNames = ["Red", "Green", "Blue", "Yellow", "Pink", "White"];
+    public const int TeamCount = 6;
+
     private SemaphoreSlim _fileSemaphore = new SemaphoreSlim(0, 1);
     private static readonly object _fileLock = new object();
 
@@ -29,6 +33,18 @@ public partial class World
         Chests.Clear();
         CharacterNames.Clear();
         TileFrameImportant = WorldConfiguration.SettingsTileFrameImportant.ToArray(); // clone for "new" world. Loaded worlds will replace this with file data
+
+        this.WhenAnyValue(x => x.TeamBasedSpawnsSeed)
+            .Subscribe(enabled =>
+            {
+                if (enabled && TeamSpawns.Count == 0)
+                {
+                    for (int i = 0; i < TeamCount; i++)
+                    {
+                        TeamSpawns.Add(new Vector2Int32Observable(SpawnX, SpawnY));
+                    }
+                }
+            });
     }
 
     public World(int height, int width, string title, int seed = -1)

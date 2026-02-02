@@ -702,6 +702,24 @@
   <data name="tab_bestiary" xml:space="preserve">
     <value>بيستاري</value>
   </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>نسل الفريق الأزرق</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>نسل الفريق الأخضر</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>نسل فريق الوردي</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>فريق الأحمر سباون</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>نسل الفريق الأبيض</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>نسل الفريق الأصفر</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>حلل</value>
   </data>

@@ -17,6 +17,7 @@
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
     <UserControl.Resources>
         <converters:ByteIntConverter x:Key="ByteIntConverter" />
+        <converters:TeamIndexToNameConverter x:Key="TeamIndexToNameConverter" />
         <enum:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="0">None</enum:EnumItem>
             <enum:EnumItem Value="1">Goblin Invasion</enum:EnumItem>
@@ -576,7 +577,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Margin="0,1">
-                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ContentPresenter}, StringFormat=Team {0}:}" Width="50" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ContentPresenter}, Converter={StaticResource TeamIndexToNameConverter}}" Width="50" VerticalAlignment="Center" />
                         <TextBlock Text="X:" VerticalAlignment="Center" Margin="0,0,3,0" />
                         <TextBox Text="{Binding X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="45" Margin="0,0,5,0" />
                         <TextBlock Text="Y:" VerticalAlignment="Center" Margin="0,0,3,0" />

@@ -1781,6 +1781,60 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blue Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Blue {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Green {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pink Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Pink {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Pink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Red {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_White {
+            get {
+                return ResourceManager.GetString("TeamSpawn_White", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Yellow {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Yellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analyze.
         /// </summary>
         public static string tool_analyze_analyze_button {

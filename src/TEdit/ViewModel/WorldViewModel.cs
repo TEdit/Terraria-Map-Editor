@@ -446,6 +446,29 @@ public partial class WorldViewModel : ReactiveObject
         set { this.RaiseAndSetIfChanged(ref _selectedPoint, value); }
     }
 
+    private void RefreshPoints()
+    {
+        Points.Clear();
+        Points.Add("Spawn");
+        Points.Add("Dungeon");
+
+        if (CurrentWorld?.TeamBasedSpawnsSeed == true)
+        {
+            for (int i = 0; i < World.TeamNames.Length; i++)
+            {
+                Points.Add($"Team {World.TeamNames[i]}");
+            }
+        }
+
+        if (CurrentWorld != null)
+        {
+            foreach (NPC npc in CurrentWorld.NPCs)
+            {
+                Points.Add(npc.Name);
+            }
+        }
+    }
+
 
     public Item SelectedChestItem
     {
@@ -1116,13 +1139,7 @@ public partial class WorldViewModel : ReactiveObject
                 CurrentFile = null;
                 PixelMap = t.Result; // Set the pixel map for the world
                 UpdateTitle(); // Update the window title with the current world name
-                Points.Clear(); // Clear previous points
-                Points.Add("Spawn"); // Add default points to the list
-                Points.Add("Dungeon");
-                foreach (NPC npc in CurrentWorld.NPCs)
-                {
-                    Points.Add(npc.Name); // Add NPC names to points
-                }
+                RefreshPoints();
                 MinimapImage = RenderMiniMap.Render(CurrentWorld); // Render and set the minimap image
                 _loadTimer.Stop(); // Stop the load timer
                 OnProgressChanged(this, new ProgressChangedEventArgs(0, $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds.")); // Report completion
@@ -1932,13 +1949,7 @@ public partial class WorldViewModel : ReactiveObject
 
                     PixelMap = t.Result;
                     UpdateTitle();
-                    Points.Clear();
-                    Points.Add("Spawn");
-                    Points.Add("Dungeon");
-                    foreach (NPC npc in CurrentWorld.NPCs)
-                    {
-                        Points.Add(npc.Name);
-                    }
+                    RefreshPoints();
                     MinimapImage = RenderMiniMap.Render(CurrentWorld);
                     _loadTimer.Stop();
 

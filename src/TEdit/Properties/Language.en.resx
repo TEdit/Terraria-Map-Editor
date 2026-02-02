@@ -702,6 +702,24 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tab_bestiary" xml:space="preserve">
     <value>Bestiary</value>
   </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>Blue Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>Green Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>Pink Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>Red Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>White Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>Yellow Team Spawn</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analyze</value>
   </data>

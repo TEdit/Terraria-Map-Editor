@@ -43,6 +43,16 @@ public sealed class PointTool : BaseTool
                     _wvm.CurrentWorld.DungeonX = e.Location.X;
                     _wvm.CurrentWorld.DungeonY = e.Location.Y;
                 }
+                else if (_wvm.SelectedPoint != null && _wvm.SelectedPoint.StartsWith("Team ", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    string teamName = _wvm.SelectedPoint.Substring(5);
+                    int teamIndex = Array.IndexOf(World.TeamNames, teamName);
+                    if (teamIndex >= 0 && teamIndex < _wvm.CurrentWorld.TeamSpawns.Count)
+                    {
+                        _wvm.CurrentWorld.TeamSpawns[teamIndex].X = e.Location.X;
+                        _wvm.CurrentWorld.TeamSpawns[teamIndex].Y = e.Location.Y;
+                    }
+                }
             }
         }
     }
