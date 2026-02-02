@@ -736,9 +736,16 @@ public partial class World
             }
             else
             {
+                var seedText = world.Seed ?? string.Empty;
                 // Use TryParse encase the world is being upgraded from v0 or v1.
-                int.TryParse(world.Seed, out var seed);
-                bw.Write(seed.ToString());
+                if (int.TryParse(world.Seed, out var seed))
+                {
+                    bw.Write(seed.ToString());
+                }
+                else
+                {
+                    bw.Write(seedText);
+                }
             }
 
             bw.Write(world.WorldGenVersion);
