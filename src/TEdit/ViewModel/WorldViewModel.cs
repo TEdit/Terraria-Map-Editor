@@ -58,7 +58,7 @@ public partial class WorldViewModel : ReactiveObject
     private UndoManager _undoManager;
     public bool[] CheckTiles;
     private ITool _activeTool;
-    private bool _enableCheckUpdates;
+    private bool _checkUpdates;
     private string _currentFile;
     public static World _currentWorld;
     private ClipboardManager _clipboard;
@@ -120,11 +120,11 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) { return; }
 
+        CheckUpdates = Settings.Default.CheckUpdates;
 
-        EnableCheckUpdates = Settings.Default.CheckUpdates;
-
-        if (EnableCheckUpdates)
+        if (CheckUpdates)
             CheckVersion();
+
 
         IsAutoSaveEnabled = Settings.Default.Autosave;
 
@@ -271,7 +271,7 @@ public partial class WorldViewModel : ReactiveObject
         System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.None;
         try
         {
-            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+            Process.Start(url);
         }
         catch
         {
@@ -716,10 +716,11 @@ public partial class WorldViewModel : ReactiveObject
             UpdateRenderWorld();
         }
     }
-
+    [ReactiveCommand]
+    private void ShowNewsDialog() => ShowNewsDialogImpl();
 
     [ReactiveCommand]
-    private async Task CheckUpdates() => await CheckVersion(false);
+    private async Task CheckUpdatesAsync() => await CheckVersion(false);
 
     [ReactiveCommand]
     private void ViewLog() => ErrorLogging.ViewLog();
@@ -736,12 +737,12 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
-    public bool EnableCheckUpdates
+    public bool CheckUpdates
     {
-        get { return _enableCheckUpdates; }
+        get { return _checkUpdates; }
         set
         {
-            this.RaiseAndSetIfChanged(ref _enableCheckUpdates, value);
+            this.RaiseAndSetIfChanged(ref _checkUpdates, value);
             Settings.Default.CheckUpdates = value;
             try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
         }
@@ -830,6 +831,13 @@ public partial class WorldViewModel : ReactiveObject
         UpdateTitle();
     }
 
+    private void ShowNewsDialogImpl()
+    {
+        var w = new NotificationsWindow();
+        w.Owner = Application.Current.MainWindow;
+        w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+        w.ShowDialog();
+    }
 
 
     private void UpdateTitle()
@@ -849,7 +857,7 @@ public partial class WorldViewModel : ReactiveObject
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/4.0");
-                string githubReleases = await client.GetStringAsync("https://api.github.com/repos/TEdit/Terraria-Map-Editor/releases");
+                string githubReleases = await client.GetStringAsync("https://api.github.com/repos/TEdit/Terraria-map-Editor/releases");
                 var versions = Regex.Match(githubReleases, versionRegex);
 
                 var githubVersion = Semver.SemVersion.Parse(versions?.Groups?[1].Value, Semver.SemVersionStyles.Any);
@@ -867,12 +875,16 @@ public partial class WorldViewModel : ReactiveObject
 
         if (isOutdated)
         {
-//#if !DEBUG
+#if !DEBUG
             if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                LaunchUrl("https://www.binaryconstruct.com/tedit/#download");
+                try
+                {
+                    Process.Start("http://www.binaryconstruct.com/downloads/");
+                }
+                catch { }
             }
-//#endif
+#endif
         }
         else if (!auto)
         {
@@ -1635,30 +1647,25 @@ public partial class WorldViewModel : ReactiveObject
         var versionKeys = WorldConfiguration.SaveConfiguration?.GameVersionToSaveVersion?.Keys
             ?.Select(v => v.Trim())
             .Where(v => !string.IsNullOrWhiteSpace(v))
-            .Select(v => new
-            {
-                Raw = v,
-                Parsed = Version.TryParse(v, out var ver) ? ver : new Version(0, 0)
-            })
-            .OrderByDescending(x => x.Parsed)
-            .Select(x => x.Raw)
+            .OrderByDescending(v => v, DottedVersionComparer.Instance)
             .ToList()
-            ?? new List<string>();
+            ?? [];
 
-        var sfd = new SaveFileDialog();
+        var sfd = new SaveFileDialog
+        {
+            // FilterIndex:
+            // 1 = "Terraria World File"
+            // 2 = first game version entry
+            // 3 = second game version entry
+            // ...
+            Filter =
+                "Terraria World File|*.wld|" +
+                string.Join("|", versionKeys.Select(v => $"Terraria v{v}|*.wld")),
 
-        // FilterIndex:
-        // 1 = "Terraria World File"
-        // 2 = first game version entry
-        // 3 = second game version entry
-        // ...
-        sfd.Filter =
-            "Terraria World File|*.wld|" +
-            string.Join("|", versionKeys.Select(v => $"Terraria v{v}|*.wld"));
-
-        sfd.Title = "Save World As";
-        sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-        sfd.FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()));
+            Title = "Save World As",
+            InitialDirectory = DependencyChecker.PathToWorlds,
+            FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()))
+        };
 
         if ((bool)sfd.ShowDialog())
         {
