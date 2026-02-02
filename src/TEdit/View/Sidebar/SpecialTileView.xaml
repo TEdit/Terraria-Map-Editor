@@ -314,6 +314,10 @@
                             ToolTip="{x:Static p:Language.menu_pasteall}"
                             Command="{Binding PasteChestItemCommand}"
                             CommandParameter="{Binding SelectedChest.Items}" />
+                    <Button Margin="2,0,0,0" Height="20" Width="32" Content="^"
+                            ToolTip="{x:Static p:Language.chest_max_stack}"
+                            Command="{Binding ChestItemSetToMaxStackCommand}"
+                            CommandParameter="{Binding SelectedChest.Items}" />
                 </StackPanel>
                 <!--<StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_chesttype}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
