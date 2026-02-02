@@ -796,7 +796,7 @@ public partial class World : ReactiveObject, ITileData
         get => TreeTopVariations[0];
         set
         {
-            TreeTopVariations[0] = (int)value;
+            TreeTopVariations[0] = value;
             this.RaisePropertyChanged();
         }
     }
@@ -805,7 +805,7 @@ public partial class World : ReactiveObject, ITileData
         get => TreeTopVariations[1];
         set
         {
-            TreeTopVariations[1] = (int)value;
+            TreeTopVariations[1] = value;
             this.RaisePropertyChanged();
         }
     }
@@ -814,16 +814,18 @@ public partial class World : ReactiveObject, ITileData
         get => TreeTopVariations[2];
         set
         {
-
             TreeTopVariations[2] = value;
             this.RaisePropertyChanged();
-
         }
     }
     public int TreeTop4
     {
         get => TreeTopVariations[3];
-        set => TreeTopVariations[3] = (int)value;
+        set
+        {
+            TreeTopVariations[3] = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     [Reactive] private byte _bgOcean;
@@ -838,7 +840,11 @@ public partial class World : ReactiveObject, ITileData
     public byte Bg8
     {
         get => BgTree;
-        set => BgTree = value;
+        set
+        {
+            BgTree = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     [Reactive] private byte _bgTree2;
@@ -856,8 +862,6 @@ public partial class World : ReactiveObject, ITileData
         {
             // Update the reactive property to ensure UI and other bindings are notified.
             TilesHighReactive = value;
-
-            _tilesHigh = value;
             this.RaiseAndSetIfChanged(ref _tilesHigh, value);
             UpdateMaxLayerLevels();
         }
@@ -880,7 +884,7 @@ public partial class World : ReactiveObject, ITileData
         get => _shadowOrbCount;
         set
         {
-            _shadowOrbCount = value;
+            this.RaiseAndSetIfChanged(ref _shadowOrbCount, value);
             ShadowOrbSmashed = _shadowOrbCount > 0;
         }
     }
@@ -889,9 +893,10 @@ public partial class World : ReactiveObject, ITileData
         get => _treeX0;
         set
         {
-            _treeX0 = value;
-            if (_treeX0 > _treeX1)
-                TreeX0 = _treeX1;
+            var newValue = value;
+            if (newValue > _treeX1)
+                newValue = _treeX1;
+            this.RaiseAndSetIfChanged(ref _treeX0, newValue);
         }
     }
     public int TreeX1
@@ -899,11 +904,12 @@ public partial class World : ReactiveObject, ITileData
         get => _treeX1;
         set
         {
-            _treeX1 = value;
-            if (_treeX1 < _treeX0)
-                TreeX1 = _treeX0;
-            if (_treeX1 > _treeX2)
-                TreeX1 = _treeX2;
+            var newValue = value;
+            if (newValue < _treeX0)
+                newValue = _treeX0;
+            if (newValue > _treeX2)
+                newValue = _treeX2;
+            this.RaiseAndSetIfChanged(ref _treeX1, newValue);
         }
     }
     public int TreeX2
@@ -911,9 +917,10 @@ public partial class World : ReactiveObject, ITileData
         get => _treeX2;
         set
         {
-            _treeX2 = value;
-            if (_treeX2 < _treeX1)
-                TreeX2 = _treeX1;
+            var newValue = value;
+            if (newValue < _treeX1)
+                newValue = _treeX1;
+            this.RaiseAndSetIfChanged(ref _treeX2, newValue);
         }
     }
     [Reactive] private int _treeStyle0;
@@ -926,9 +933,10 @@ public partial class World : ReactiveObject, ITileData
         get => _caveBackX0;
         set
         {
-            _caveBackX0 = value;
-            if (_caveBackX0 > _caveBackX1)
-                CaveBackX0 = _caveBackX1;
+            var newValue = value;
+            if (newValue > _caveBackX1)
+                newValue = _caveBackX1;
+            this.RaiseAndSetIfChanged(ref _caveBackX0, newValue);
         }
     }
     public int CaveBackX1
@@ -936,11 +944,12 @@ public partial class World : ReactiveObject, ITileData
         get => _caveBackX1;
         set
         {
-            _caveBackX1 = value;
-            if (_caveBackX1 < _caveBackX0)
-                CaveBackX1 = _caveBackX0;
-            if (_caveBackX1 > _caveBackX2)
-                CaveBackX1 = _caveBackX2;
+            var newValue = value;
+            if (newValue < _caveBackX0)
+                newValue = _caveBackX0;
+            if (newValue > _caveBackX2)
+                newValue = _caveBackX2;
+            this.RaiseAndSetIfChanged(ref _caveBackX1, newValue);
         }
     }
     public int CaveBackX2
@@ -948,11 +957,13 @@ public partial class World : ReactiveObject, ITileData
         get => _caveBackX2;
         set
         {
-            _caveBackX2 = value;
-            if (_caveBackX2 < _caveBackX1)
-                CaveBackX2 = _caveBackX1;
+            var newValue = value;
+            if (newValue < _caveBackX1)
+                newValue = _caveBackX1;
+            this.RaiseAndSetIfChanged(ref _caveBackX2, newValue);
         }
     }
+
     [Reactive] private int _caveBackStyle0;
     [Reactive] private int _caveBackStyle1;
     [Reactive] private int _caveBackStyle2;
