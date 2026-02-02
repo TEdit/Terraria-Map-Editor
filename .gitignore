@@ -56,3 +56,4 @@ build/
 nul
 .claude
 *.diff
+ref/*
