@@ -1266,6 +1266,15 @@ public partial class World
             bw.Write(world.DualDungeonsSeed);
         }
 
+        if (world.Version >= 299 && world.Version < 313)
+        {
+            bw.Write(0u); // deprecated uint
+        }
+        if (world.Version >= 299)
+        {
+            bw.Write(world.WorldManifestData ?? "");
+        }
+
         // unknown flags from data file
         if (world.UnknownData != null && world.UnknownData.Length > 0)
         {
@@ -2339,6 +2348,15 @@ public partial class World
 
         w.DualDungeonsSeed = w.Version >= 304 && r.ReadBoolean();
 
+        if (w.Version >= 299 && w.Version < 313)
+        {
+            r.ReadUInt32(); // deprecated, discard
+        }
+        if (w.Version >= 299)
+        {
+            w.WorldManifestData = r.ReadString();
+        }
+
         // a little future proofing, read any "unknown" flags from the end of the list and save them. We will write these back after we write our "known" flags.
         if (r.BaseStream.Position < expectedPosition)
         {
@@ -2348,38 +2366,34 @@ public partial class World
 
     private static void LoadBanners(BinaryReader r, World w)
     {
-        // for reference: 
-        var versionMaxNPCId = WorldConfiguration.SaveConfiguration.GetData(w.Version).MaxNpcId;
         var maxNpcId = WorldConfiguration.SaveConfiguration.GetData(WorldConfiguration.SaveConfiguration.GetMaxVersion()).MaxNpcId;
 
         w.KilledMobs.Clear();
 
         int numberOfMobs = r.ReadInt16();
-        for (int i = 0; i <= versionMaxNPCId; i++)
+        for (int i = 0; i < numberOfMobs; i++)
         {
-            if (i < numberOfMobs)
-            {
-                w.KilledMobs.Add(r.ReadInt32()); // read all of them
-            }
-            else
-            {
-                w.KilledMobs.Add(0); // fill with 0s to max version npc id
-            }
+            w.KilledMobs.Add(r.ReadInt32());
         }
+        // pad to maxNpcId so every mob index has an entry
+        for (int i = w.KilledMobs.Count; i <= maxNpcId; i++)
+        {
+            w.KilledMobs.Add(0);
+        }
+
         if (w.Version < 289) { return; }
 
-        // clamable banners
-        int clamableBannerCount = r.ReadInt16();
-        for (int i = 0; i < clamableBannerCount; i++)
+        // claimable banners
+        w.ClaimableBanners.Clear();
+        int claimableBannerCount = r.ReadInt16();
+        for (int i = 0; i < claimableBannerCount; i++)
         {
-            if (i < numberOfMobs)
-            {
-                w.ClaimableBanners.Add(r.ReadUInt16()); // read all of them
-            }
-            else
-            {
-                w.ClaimableBanners.Add(0); // fill with 0s to max version npc id
-            }
+            w.ClaimableBanners.Add(r.ReadUInt16());
+        }
+        // pad to maxNpcId so every mob index has an entry
+        for (int i = w.ClaimableBanners.Count; i <= maxNpcId; i++)
+        {
+            w.ClaimableBanners.Add(0);
         }
     }
 

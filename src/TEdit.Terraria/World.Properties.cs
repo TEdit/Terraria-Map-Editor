@@ -781,6 +781,8 @@ public partial class World : ReactiveObject, ITileData
 
     public int TileEntitiesNumber => TileEntities.Count;
 
+    [Reactive] private string _worldManifestData = "";
+
     [property: ReadOnly(true)]
     [Reactive] private byte[] _unknownData;
 
