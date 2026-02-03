@@ -367,6 +367,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
 
         ErrorLogging.TelemetryClient?.TrackEvent(nameof(Undo));
 
+        var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
         string undoFileName = string.Format(UndoFile, _currentIndex - 1); // load previous undo file
         string redoFileName = string.Format(RedoFile, _currentIndex);     // create redo file at current index
@@ -391,7 +392,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
             redo.Dispose();
             redo = null;
 
-            foreach (var chest in World.LoadChestData(br, WorldConfiguration.CompatibleVersion))
+            foreach (var chest in World.LoadChestData(br, version))
             {
                 _world.Chests.Add(chest);
             }
@@ -399,7 +400,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
             {
                 _world.Signs.Add(sign);
             }
-            foreach (var te in World.LoadTileEntityData(br, WorldConfiguration.CompatibleVersion))
+            foreach (var te in World.LoadTileEntityData(br, version))
             {
                 _world.TileEntities.Add(te);
             }
@@ -419,6 +420,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
 
         ErrorLogging.TelemetryClient?.TrackEvent(nameof(Redo));
 
+        var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
         // close current undo buffer and get a new one with a new name after redo
         string redoFileName = string.Format(RedoFile, _currentIndex + 1); // load redo file at +1
@@ -455,7 +457,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
 
                 _notifyTileChanged?.Invoke(undoTile.Location.X, undoTile.Location.Y, 1, 1);
             }
-            foreach (var chest in World.LoadChestData(br, WorldConfiguration.CompatibleVersion))
+            foreach (var chest in World.LoadChestData(br, version))
             {
                 _world.Chests.Add(chest);
             }
@@ -463,7 +465,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
             {
                 _world.Signs.Add(sign);
             }
-            foreach (var te in World.LoadTileEntityData(br, WorldConfiguration.CompatibleVersion))
+            foreach (var te in World.LoadTileEntityData(br, version))
             {
                 _world.TileEntities.Add(te);
             }
