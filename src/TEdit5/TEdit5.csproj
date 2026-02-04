@@ -48,8 +48,8 @@
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.11" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.11" />
-    <PackageReference Include="bodong.Avalonia.PropertyGrid" Version="11.3.3.2" />
-    <PackageReference Include="bodong.PropertyModels" Version="11.3.3.2" />
+    <PackageReference Include="bodong.Avalonia.PropertyGrid" Version="11.3.11.1" />
+    <PackageReference Include="bodong.PropertyModels" Version="11.3.11.1" />
     <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="9.6.2" />
 
 	<PackageReference Include="ReactiveUI" Version="22.3.1" />
