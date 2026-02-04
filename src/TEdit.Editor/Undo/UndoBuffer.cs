@@ -127,14 +127,8 @@ public class UndoBuffer : IDisposable
         var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
         var tileFrameImportant = world?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
-        int maxTileId = ushort.MaxValue;
-        int maxWallId = ushort.MaxValue;
-        var saveVersions = WorldConfiguration.SaveConfiguration?.SaveVersions;
-        if (saveVersions != null && (int)version < saveVersions.Count)
-        {
-            maxTileId = saveVersions[(int)version].MaxTileId;
-            maxWallId = saveVersions[(int)version].MaxWallId;
-        }
+        int maxTileId = WorldConfiguration.SaveConfiguration.GetData(version).MaxTileId;
+        int maxWallId = WorldConfiguration.SaveConfiguration.GetData(version).MaxWallId;
 
         lock (UndoSaveLock)
         {
