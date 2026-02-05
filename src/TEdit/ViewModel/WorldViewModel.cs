@@ -1849,7 +1849,7 @@ public partial class WorldViewModel : ReactiveObject
                 string message =
                         $"This world version is NEWER than supported by TEdit's config.\r\n\r\n" +
                         $"World version: {validation.Version}\r\n" +
-                        $"Max supported (config): {WorldConfiguration.CompatibleVersion}\r\n\r\n" +
+                        $"Max supported: {WorldConfiguration.CompatibleVersion}\r\n\r\n" +
                         $"TEdit will fall back to config version {WorldConfiguration.CompatibleVersion} " +
                         $"(missing newer tiles/walls/etc may cause issues).\r\n\r\n" +
                         $"Do you want to attempt to load anyway?";
