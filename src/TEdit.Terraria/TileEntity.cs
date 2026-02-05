@@ -17,17 +17,17 @@ public partial class TileEntity : ReactiveObject
         switch (curTile.Type)
         {
             case (int)TileType.TrainingDummy:
-                TE.Type = 0;
+                TE.Type = (byte)TileEntityType.TrainingDummy;
                 TE.Npc = -1;
                 break;
             case (int)TileType.ItemFrame:
-                TE.Type = 1;
+                TE.Type = (byte)TileEntityType.ItemFrame;
                 TE.NetId = 0;
                 TE.Prefix = 0;
                 TE.StackSize = 0;
                 break;
             case (int)TileType.LogicSensor:
-                TE.Type = 2;
+                TE.Type = (byte)TileEntityType.LogicSensor;
                 TE.On = false;
                 TE.LogicCheck = (byte)(curTile.V / 18 + 1);
                 break;
@@ -47,7 +47,7 @@ public partial class TileEntity : ReactiveObject
                 TE.StackSize = 0;
                 break;
             case (int)TileType.HatRack:
-                TE.Type = 5;
+                TE.Type = (byte)TileEntityType.HatRack;
                 TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
                 TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
                 break;
