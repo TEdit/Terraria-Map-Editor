@@ -10,16 +10,10 @@ body = """
             {% endif %}\
     {% endfor %}
 {% endfor %}
-{% if github.contributors | filter(attribute="is_first_time", value=true) | length > 0 %}
-    ### 🌟 New Contributors
-    {% for contributor in github.contributors | filter(attribute="is_first_time", value=true) %}
-        - @{{ contributor.username }}
-    {%- endfor %}
-{% endif %}
 {% if github.contributors | length > 0 %}
     ### 👥 Contributors
     {% for contributor in github.contributors %}
-        - @{{ contributor.username }}
+        - {% if contributor.is_first_time %}🌟 {% endif %}@{{ contributor.username }} ({{ commits | filter(attribute="remote.username", value=contributor.username) | length }} commits)
     {%- endfor %}
 {% endif %}
 """

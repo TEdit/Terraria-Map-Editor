@@ -35,7 +35,7 @@ jobs:
         shell: pwsh
         run: |
           $data = Get-Content src/TEdit/TerrariaVersionTileData.json | ConvertFrom-Json
-          $latest = $data[-1]
+          $latest = $data.saveVersions[-1]
           "gameVersion=$($latest.gameVersion)" >> $env:GITHUB_OUTPUT
           "saveVersion=$($latest.saveVersion)" >> $env:GITHUB_OUTPUT
 
@@ -44,7 +44,9 @@ jobs:
         uses: orhun/git-cliff-action@v4
         with:
           config: cliff.toml
-          args: --verbose --latest --strip header
+          args: >-
+            --verbose --latest --strip header
+            ${{ !contains(github.ref_name, '-') && '--ignore-tags "-(alpha|beta|rc)"' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
