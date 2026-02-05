@@ -10,8 +10,8 @@
 
 namespace TEdit.Properties {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace TEdit.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Language {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Language() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace TEdit.Properties {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace TEdit.Properties {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Chat.
         /// </summary>
@@ -68,7 +68,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_chat", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
@@ -77,7 +77,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_clear", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Complete.
         /// </summary>
@@ -86,7 +86,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_complete", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Defeated.
         /// </summary>
@@ -95,7 +95,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_defeated", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Load.
         /// </summary>
@@ -104,7 +104,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_load", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
@@ -113,7 +113,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_name", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Near.
         /// </summary>
@@ -122,7 +122,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_near", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
@@ -131,7 +131,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_save", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Talk.
         /// </summary>
@@ -140,7 +140,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_talked", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Update Kills.
         /// </summary>
@@ -149,7 +149,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("bestiary_tally", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Full Brick.
         /// </summary>
@@ -158,7 +158,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrickStyle_Full", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Half Brick.
         /// </summary>
@@ -167,7 +167,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrickStyle_HalfBrick", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Slope Bottom Left.
         /// </summary>
@@ -176,7 +176,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrickStyle_SlopeBottomLeft", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Slope Bottom Right.
         /// </summary>
@@ -185,7 +185,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrickStyle_SlopeBottomRight", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Slope Top Left.
         /// </summary>
@@ -194,7 +194,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrickStyle_SlopeTopLeft", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Slope Top Right.
         /// </summary>
@@ -203,7 +203,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrickStyle_SlopeTopRight", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Diagonal Left.
         /// </summary>
@@ -212,7 +212,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrushShape_Left", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Diagonal Right.
         /// </summary>
@@ -221,7 +221,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrushShape_Right", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ellipse.
         /// </summary>
@@ -230,7 +230,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrushShape_Round", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Rectangle.
         /// </summary>
@@ -239,7 +239,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrushShape_Square", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Max.
         /// </summary>
@@ -248,7 +248,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("chest_max_stack", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Directory does not appear to contain Terraria Content.
         ///Press retry to pick a new folder or cancel to use {0} as your terraria path..
@@ -258,7 +258,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("dialog_error_terriaria_folder_message", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Terraria Content not Found.
         /// </summary>
@@ -267,7 +267,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("dialog_error_terriaria_folder_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Analysis.
         /// </summary>
@@ -276,7 +276,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_tabs_analysis", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Clipboard.
         /// </summary>
@@ -285,7 +285,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_tabs_clipboard", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Creative Powers.
         /// </summary>
@@ -294,7 +294,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_tabs_creative", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to NPC Data.
         /// </summary>
@@ -303,7 +303,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_tabs_npc", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Special Tiles.
         /// </summary>
@@ -312,7 +312,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_tabs_special", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sprites.
         /// </summary>
@@ -321,7 +321,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_tabs_sprites", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tally.
         /// </summary>
@@ -330,7 +330,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_tabs_tally", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tile Entities.
         /// </summary>
@@ -339,7 +339,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_tabs_tileentities", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to World Properties.
         /// </summary>
@@ -348,7 +348,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_tabs_worldproperties", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Utilities.
         /// </summary>
@@ -357,7 +357,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("editor_utilities_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enjoy TEdit? Support Us!.
         /// </summary>
@@ -366,7 +366,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("global_enjoytedit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Half Block.
         /// </summary>
@@ -375,7 +375,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("HalfBlockMode_HalfBLock", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No Change.
         /// </summary>
@@ -384,7 +384,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("HalfBlockMode_NoAction", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ramp Left.
         /// </summary>
@@ -393,7 +393,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("HalfBlockMode_RampLeft", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ramp Right.
         /// </summary>
@@ -402,7 +402,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("HalfBlockMode_RampRight", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Set Solid.
         /// </summary>
@@ -411,7 +411,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("HalfBlockMode_Solid", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Junction Box:.
         /// </summary>
@@ -420,7 +420,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("JunctionBox_Use", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Left Facing.
         /// </summary>
@@ -429,7 +429,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("JunctionBoxMode_Left", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
@@ -438,7 +438,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("JunctionBoxMode_None", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Normal.
         /// </summary>
@@ -447,7 +447,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("JunctionBoxMode_Normal", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Right Facing.
         /// </summary>
@@ -456,7 +456,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("JunctionBoxMode_Right", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Liquid Amount:.
         /// </summary>
@@ -465,7 +465,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("liquid_amount", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Honey.
         /// </summary>
@@ -474,7 +474,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("LiquidType_Honey", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Lava.
         /// </summary>
@@ -483,7 +483,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("LiquidType_Lava", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No Liquid.
         /// </summary>
@@ -492,7 +492,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("LiquidType_None", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Water.
         /// </summary>
@@ -501,7 +501,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("LiquidType_Water", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit Empty.
         /// </summary>
@@ -510,7 +510,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MaskMode_Empty", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit Matching.
         /// </summary>
@@ -519,7 +519,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MaskMode_Match", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit not Matching.
         /// </summary>
@@ -528,7 +528,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MaskMode_NotMatching", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Disable Mask.
         /// </summary>
@@ -537,7 +537,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MaskMode_Off", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Copy first item.
         /// </summary>
@@ -546,7 +546,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_copyfirstitem", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
@@ -555,7 +555,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_edit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
@@ -564,7 +564,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_edit_copy", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Crop World.
         /// </summary>
@@ -573,7 +573,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_edit_crop", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Delete Selection.
         /// </summary>
@@ -582,7 +582,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_edit_delete", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Expand World.
         /// </summary>
@@ -591,7 +591,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_edit_expand", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste.
         /// </summary>
@@ -600,7 +600,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_edit_paste", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Redo.
         /// </summary>
@@ -609,7 +609,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_edit_redo", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Undo.
         /// </summary>
@@ -618,7 +618,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_edit_undo", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
@@ -627,7 +627,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable Autosave.
         /// </summary>
@@ -636,7 +636,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file_autosave", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Check for Updates on Startup.
         /// </summary>
@@ -645,7 +645,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file_autoupdate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
@@ -654,7 +654,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file_exit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
@@ -663,7 +663,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file_new", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
@@ -672,7 +672,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file_open", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
@@ -681,7 +681,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file_save", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save As.
         /// </summary>
@@ -690,7 +690,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file_saveas", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save As Version.
         /// </summary>
@@ -699,7 +699,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file_saveasversion", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Check for Updates Now.
         /// </summary>
@@ -708,7 +708,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_file_update", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
@@ -717,7 +717,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
@@ -726,7 +726,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_apply", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to BackgroundMode.
         /// </summary>
@@ -735,7 +735,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_backgroundmode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
@@ -744,7 +744,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_cancel", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Custom.
         /// </summary>
@@ -753,7 +753,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_custom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Disable.
         /// </summary>
@@ -762,7 +762,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_disable", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Filter Clipboard.
         /// </summary>
@@ -771,7 +771,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_filterclipboard", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to FilterMode.
         /// </summary>
@@ -780,7 +780,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_filtermode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Grayscale.
         /// </summary>
@@ -789,7 +789,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_grayscale", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Liquids.
         /// </summary>
@@ -798,7 +798,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_header_liquids", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sprites.
         /// </summary>
@@ -807,7 +807,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_header_sprites", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tiles.
         /// </summary>
@@ -816,7 +816,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_header_tiles", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Walls.
         /// </summary>
@@ -825,7 +825,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_header_walls", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wires.
         /// </summary>
@@ -834,7 +834,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_header_wires", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Hide.
         /// </summary>
@@ -843,7 +843,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_hide", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Normal.
         /// </summary>
@@ -852,7 +852,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_normal", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Check All.
         /// </summary>
@@ -861,7 +861,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_tab_check_all", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
@@ -870,7 +870,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_tab_searchname", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Uncheck All.
         /// </summary>
@@ -879,7 +879,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_tab_uncheck_all", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Advanced Filter.
         /// </summary>
@@ -888,7 +888,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Transparent.
         /// </summary>
@@ -897,7 +897,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_filter_transparent", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
@@ -906,7 +906,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_help", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
@@ -915,7 +915,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_help_about", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Open Log File.
         /// </summary>
@@ -924,7 +924,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_help_log", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Update Settings.xml.
         /// </summary>
@@ -933,7 +933,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_help_settings", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Update.
         /// </summary>
@@ -942,7 +942,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_help_update", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wiki.
         /// </summary>
@@ -951,7 +951,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_help_wiki", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
@@ -960,7 +960,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_language", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to العربية.
         /// </summary>
@@ -969,7 +969,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_language_ar", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Deutsch.
         /// </summary>
@@ -978,7 +978,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_language_de", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
@@ -987,7 +987,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_language_en", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Español.
         /// </summary>
@@ -996,7 +996,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_language_es", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Polski.
         /// </summary>
@@ -1005,7 +1005,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_language_pl", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Português.
         /// </summary>
@@ -1014,7 +1014,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_language_pt", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Русский.
         /// </summary>
@@ -1023,7 +1023,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_language_ru", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 中文.
         /// </summary>
@@ -1032,7 +1032,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_language_zh", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Layers.
         /// </summary>
@@ -1041,7 +1041,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Actuators.
         /// </summary>
@@ -1050,7 +1050,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_actuators", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Layout Grid.
         /// </summary>
@@ -1059,7 +1059,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_grid", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Liquids.
         /// </summary>
@@ -1068,7 +1068,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_liquid", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Points of Interest.
         /// </summary>
@@ -1077,7 +1077,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_points", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Textures.
         /// </summary>
@@ -1086,7 +1086,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_textures", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tiles.
         /// </summary>
@@ -1095,7 +1095,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_tiles", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Use Realistic Colors.
         /// </summary>
@@ -1104,7 +1104,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_usetexturecolor", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Walls.
         /// </summary>
@@ -1113,7 +1113,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_walls", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to All Wires.
         /// </summary>
@@ -1122,7 +1122,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_wire_all", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Blue Wire.
         /// </summary>
@@ -1131,7 +1131,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_wire_blue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Green Wire.
         /// </summary>
@@ -1140,7 +1140,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_wire_green", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Red Wire.
         /// </summary>
@@ -1149,7 +1149,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_wire_red", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wire Transparency.
         /// </summary>
@@ -1158,7 +1158,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_wire_transparency", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yellow Wire.
         /// </summary>
@@ -1167,7 +1167,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_wire_yellow", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste to all slots.
         /// </summary>
@@ -1176,7 +1176,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_pasteall", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Plugins.
         /// </summary>
@@ -1185,7 +1185,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_plugins", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable Error Reporting.
         /// </summary>
@@ -1194,7 +1194,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_telemetry", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Zoom In.
         /// </summary>
@@ -1203,7 +1203,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_toolbar_zoom_in", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Zoom Out.
         /// </summary>
@@ -1212,7 +1212,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_toolbar_zoom_out", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
@@ -1221,7 +1221,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_uveditor_cancel", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Move All Frames.
         /// </summary>
@@ -1230,7 +1230,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_uveditor_moveallframes", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Move Amount (Frames).
         /// </summary>
@@ -1239,7 +1239,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_uveditor_moveamount", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
@@ -1248,7 +1248,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_uveditor_ok", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Restore.
         /// </summary>
@@ -1257,7 +1257,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_uveditor_restore", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Selected Frames.
         /// </summary>
@@ -1266,7 +1266,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_uveditor_selectedframes", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Set Manual UV&apos;s To All.
         /// </summary>
@@ -1275,7 +1275,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_uveditor_setmanualuv", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Set Values.
         /// </summary>
@@ -1284,7 +1284,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_uveditor_setvalues", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to UV Editor.
         /// </summary>
@@ -1293,7 +1293,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_uveditor_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Restart Required.
         /// </summary>
@@ -1302,7 +1302,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("messagebox_restartrequired", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Corruption.
         /// </summary>
@@ -1311,7 +1311,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MorphBiome_Corruption", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Crimson.
         /// </summary>
@@ -1320,7 +1320,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MorphBiome_Crimson", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Custom.
         /// </summary>
@@ -1329,7 +1329,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MorphBiome_Custom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Desert.
         /// </summary>
@@ -1338,7 +1338,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MorphBiome_Desert", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Hallow.
         /// </summary>
@@ -1347,7 +1347,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MorphBiome_Hallow", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Jungle.
         /// </summary>
@@ -1356,7 +1356,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MorphBiome_Jungle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Purify.
         /// </summary>
@@ -1365,7 +1365,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MorphBiome_Purify", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Liquid.
         /// </summary>
@@ -1374,7 +1374,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("PaintMode_Liquid", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tile/Wall.
         /// </summary>
@@ -1383,7 +1383,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("PaintMode_TileAndWall", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Track.
         /// </summary>
@@ -1392,7 +1392,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("PaintMode_Track", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wire.
         /// </summary>
@@ -1401,7 +1401,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("PaintMode_Wire", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
@@ -1410,7 +1410,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_button_cancel", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
@@ -1419,7 +1419,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_button_save", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Acc1.
         /// </summary>
@@ -1428,7 +1428,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_acc1", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Acc2.
         /// </summary>
@@ -1437,7 +1437,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_acc2", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Acc3.
         /// </summary>
@@ -1446,7 +1446,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_acc3", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Acc4.
         /// </summary>
@@ -1455,7 +1455,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_acc4", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Acc5.
         /// </summary>
@@ -1464,7 +1464,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_acc5", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Acc6.
         /// </summary>
@@ -1473,7 +1473,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_acc6", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Body.
         /// </summary>
@@ -1482,7 +1482,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_body", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Chest Contents.
         /// </summary>
@@ -1491,7 +1491,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_chestcontents", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Chest Name.
         /// </summary>
@@ -1500,7 +1500,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_chestname", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Chest Type.
         /// </summary>
@@ -1509,7 +1509,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_chesttype", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit Selected Item.
         /// </summary>
@@ -1518,7 +1518,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_editselecteditem", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Head.
         /// </summary>
@@ -1527,7 +1527,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_head", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Item Frame Contents.
         /// </summary>
@@ -1536,7 +1536,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_itemframecontents", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Legs.
         /// </summary>
@@ -1545,7 +1545,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_legs", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mannequin.
         /// </summary>
@@ -1554,7 +1554,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_mannequin", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mannequin Clothing.
         /// </summary>
@@ -1563,7 +1563,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_mannequinclothing", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mount.
         /// </summary>
@@ -1572,7 +1572,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_mount", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Plate Contents.
         /// </summary>
@@ -1581,7 +1581,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_platecontents", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sign Text.
         /// </summary>
@@ -1590,7 +1590,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_signtext", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sign Type.
         /// </summary>
@@ -1599,7 +1599,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_signtype", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Weapon.
         /// </summary>
@@ -1608,7 +1608,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_weapon", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Weapon Rack Item.
         /// </summary>
@@ -1617,7 +1617,34 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_weaponrack", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Dead Cells Jar.
+        /// </summary>
+        public static string specialtile_label_deadcells_jar {
+            get {
+                return ResourceManager.GetString("specialtile_label_deadcells_jar", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Critter.
+        /// </summary>
+        public static string specialtile_label_critter {
+            get {
+                return ResourceManager.GetString("specialtile_label_critter", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Kite.
+        /// </summary>
+        public static string specialtile_label_kite {
+            get {
+                return ResourceManager.GetString("specialtile_label_kite", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Bulbs.
         /// </summary>
@@ -1626,7 +1653,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_xmas_bulbs", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Christmas Tree Decorations.
         /// </summary>
@@ -1635,7 +1662,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_xmas_deco", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Garlands.
         /// </summary>
@@ -1644,7 +1671,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_xmas_garland", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Lights.
         /// </summary>
@@ -1653,7 +1680,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_xmas_lights", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Star.
         /// </summary>
@@ -1662,7 +1689,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_label_xmas_star", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree..
         /// </summary>
@@ -1671,7 +1698,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("specialtile_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
@@ -1680,7 +1707,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("sprite_filter_button", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Filter: .
         /// </summary>
@@ -1689,7 +1716,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("sprite_filter_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Style.
         /// </summary>
@@ -1698,7 +1725,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("sprite_styletype", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tile Type Filter.
         /// </summary>
@@ -1707,7 +1734,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("sprite_tiletype", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Extra.
         /// </summary>
@@ -1716,7 +1743,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("statusbar_extra_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Frame.
         /// </summary>
@@ -1725,7 +1752,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("statusbar_frame_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paint.
         /// </summary>
@@ -1734,7 +1761,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("statusbar_paint_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Position.
         /// </summary>
@@ -1743,7 +1770,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("statusbar_position_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Selection.
         /// </summary>
@@ -1752,7 +1779,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("statusbar_selection_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tile.
         /// </summary>
@@ -1761,7 +1788,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("statusbar_tile_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wall.
         /// </summary>
@@ -1770,7 +1797,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("statusbar_wall_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Bestiary.
         /// </summary>
@@ -1779,7 +1806,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tab_bestiary", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Blue Team Spawn.
         /// </summary>
@@ -1788,7 +1815,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TeamSpawn_Blue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Green Team Spawn.
         /// </summary>
@@ -1797,7 +1824,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TeamSpawn_Green", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Pink Team Spawn.
         /// </summary>
@@ -1806,7 +1833,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TeamSpawn_Pink", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Red Team Spawn.
         /// </summary>
@@ -1815,7 +1842,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TeamSpawn_Red", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to White Team Spawn.
         /// </summary>
@@ -1824,7 +1851,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TeamSpawn_White", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yellow Team Spawn.
         /// </summary>
@@ -1833,7 +1860,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TeamSpawn_Yellow", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Analyze.
         /// </summary>
@@ -1842,7 +1869,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_analyze_analyze_button", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save Analysis.
         /// </summary>
@@ -1851,7 +1878,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_analyze_save", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
@@ -1860,7 +1887,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_analyze_save_button", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to World Analysis.
         /// </summary>
@@ -1869,7 +1896,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_analyze_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Arrow.
         /// </summary>
@@ -1878,7 +1905,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_arrow_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
@@ -1887,7 +1914,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_bestiary_edit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
@@ -1896,7 +1923,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_bestiary_import", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Save Bestiary.
         /// </summary>
@@ -1905,7 +1932,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_bestiary_save", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Scan.
         /// </summary>
@@ -1914,7 +1941,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_bestiary_scan", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Bestiary.
         /// </summary>
@@ -1923,7 +1950,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_bestiary_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Height.
         /// </summary>
@@ -1932,7 +1959,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_brush_height_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Square Width and Height.
         /// </summary>
@@ -1941,7 +1968,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_brush_lock_ratio_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Outline.
         /// </summary>
@@ -1950,7 +1977,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_brush_outline_thickness_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Toggle Draw Outline (room).
         /// </summary>
@@ -1959,7 +1986,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_brush_outline_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Shape.
         /// </summary>
@@ -1968,7 +1995,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_brush_shape_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Brush.
         /// </summary>
@@ -1977,7 +2004,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_brush_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Width.
         /// </summary>
@@ -1986,7 +2013,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_brush_width_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Empty Clipboard.
         /// </summary>
@@ -1995,7 +2022,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_empty", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
@@ -2004,7 +2031,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_export", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Flip X.
         /// </summary>
@@ -2013,7 +2040,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_flipx", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Flip Y.
         /// </summary>
@@ -2022,7 +2049,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_flipy", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Import False Color Image.
         /// </summary>
@@ -2031,7 +2058,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_importfalsecolor", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Import Schematic or Image.
         /// </summary>
@@ -2040,7 +2067,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_importschematic", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste Empty Tiles.
         /// </summary>
@@ -2049,7 +2076,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_ispasteempty", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste Liquids.
         /// </summary>
@@ -2058,7 +2085,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_ispasteliquid", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste Sprites.
         /// </summary>
@@ -2067,7 +2094,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_ispastesprite", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste Tiles.
         /// </summary>
@@ -2076,7 +2103,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_ispastetiles", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste Walls.
         /// </summary>
@@ -2085,7 +2112,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_ispastewalls", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste Wires.
         /// </summary>
@@ -2094,7 +2121,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_ispastewire", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste.
         /// </summary>
@@ -2103,7 +2130,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_paste", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
@@ -2112,7 +2139,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_remove", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Replace Existing Tiles.
         /// </summary>
@@ -2121,7 +2148,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_replace", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Rotate.
         /// </summary>
@@ -2130,7 +2157,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_rotate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Freeze Biome Spread.
         /// </summary>
@@ -2139,7 +2166,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_biomespread", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enemy Difficulty.
         /// </summary>
@@ -2148,7 +2175,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_difficulty", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable Enemy Difficulty.
         /// </summary>
@@ -2157,7 +2184,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_enable_difficulty", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable Spawn Rate.
         /// </summary>
@@ -2166,7 +2193,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_enable_spawn_rate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enable Time Speed.
         /// </summary>
@@ -2175,7 +2202,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_enable_time_speed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to God Mode.
         /// </summary>
@@ -2184,7 +2211,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_godmode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Increase Range.
         /// </summary>
@@ -2193,7 +2220,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_increaseplacementrange", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Power.
         /// </summary>
@@ -2202,7 +2229,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_power", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Freeze Rain.
         /// </summary>
@@ -2211,7 +2238,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_rainfrozen", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Spawn Rate.
         /// </summary>
@@ -2220,7 +2247,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_spawn_rate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Time Speed.
         /// </summary>
@@ -2229,7 +2256,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_time_speed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Freeze Time.
         /// </summary>
@@ -2238,7 +2265,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_timefrozen", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>
@@ -2247,7 +2274,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_value", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Freeze Wind.
         /// </summary>
@@ -2256,7 +2283,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_creative_windfrozen", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Fill.
         /// </summary>
@@ -2265,7 +2292,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_fill_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Morph to Biome.
         /// </summary>
@@ -2274,7 +2301,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_morph_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Biome Morph.
         /// </summary>
@@ -2283,7 +2310,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_morph_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add NPC.
         /// </summary>
@@ -2292,7 +2319,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_npc_add", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
@@ -2301,7 +2328,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_npc_name", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Is Actuator.
         /// </summary>
@@ -2310,7 +2337,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_actuator", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Brick Style.
         /// </summary>
@@ -2319,7 +2346,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_brickstyle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Coating.
         /// </summary>
@@ -2328,7 +2355,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_coating", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Echo.
         /// </summary>
@@ -2337,7 +2364,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_echocoating", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Extras.
         /// </summary>
@@ -2346,7 +2373,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_extras", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Illuminant.
         /// </summary>
@@ -2355,7 +2382,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_illuminantcoating", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Actuator/Tile InActive.
         /// </summary>
@@ -2364,7 +2391,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_inactive", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add left facing intersection junction box..
         /// </summary>
@@ -2373,7 +2400,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_junctionbox_left_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add defualt junction box..
         /// </summary>
@@ -2382,7 +2409,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_junctionbox_normal_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add right facing intersection junction box..
         /// </summary>
@@ -2391,7 +2418,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_junctionbox_right_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mask.
         /// </summary>
@@ -2400,7 +2427,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_mask", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mask Mode.
         /// </summary>
@@ -2409,7 +2436,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_maskmode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paint Mode.
         /// </summary>
@@ -2418,7 +2445,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_mode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tile.
         /// </summary>
@@ -2427,7 +2454,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_tile_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add Booster to existing track, use with Eraser to remove booster only..
         /// </summary>
@@ -2436,7 +2463,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_track_booster_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Use Hammer to modify track ends, intersections and booster direction..
         /// </summary>
@@ -2445,7 +2472,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_track_hammer_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Add Pressure Plate to existing track, use with Eraser to remove plate only..
         /// </summary>
@@ -2454,7 +2481,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_track_pressure_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wall.
         /// </summary>
@@ -2463,7 +2490,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_wall_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Blue.
         /// </summary>
@@ -2472,7 +2499,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_wire_blue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Green.
         /// </summary>
@@ -2481,7 +2508,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_wire_green", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Red.
         /// </summary>
@@ -2490,7 +2517,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_wire_red", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yellow.
         /// </summary>
@@ -2499,7 +2526,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_wire_yellow", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Paste.
         /// </summary>
@@ -2508,7 +2535,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paste_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Pencil.
         /// </summary>
@@ -2517,7 +2544,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_pencil_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Picker - select tile color.
         /// </summary>
@@ -2526,7 +2553,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_picker_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Special Interest Points.
         /// </summary>
@@ -2535,7 +2562,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_point_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
@@ -2544,7 +2571,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_sprite_filter_button", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Filter:.
         /// </summary>
@@ -2553,7 +2580,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_sprite_filter_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Style:.
         /// </summary>
@@ -2562,7 +2589,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_sprite_style_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tile Type Filter:.
         /// </summary>
@@ -2571,7 +2598,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_sprite_tiletype_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sprite Placer (OLD).
         /// </summary>
@@ -2580,7 +2607,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_sprite_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sprite Placer.
         /// </summary>
@@ -2589,7 +2616,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_sprite2_title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Adamantite Tier.
         /// </summary>
@@ -2598,7 +2625,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_adamantite", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Altars Smashed.
         /// </summary>
@@ -2607,7 +2634,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_altars", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Apocalypse (Moon Lord Spawning).
         /// </summary>
@@ -2616,7 +2643,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_apocalypse", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Corrupt BG.
         /// </summary>
@@ -2625,7 +2652,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_corrupt", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Crimson BG.
         /// </summary>
@@ -2634,7 +2661,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_crimson", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Deep Ice BG.
         /// </summary>
@@ -2643,7 +2670,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_deepice", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Deep Jungle BG.
         /// </summary>
@@ -2652,7 +2679,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_deepjungle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Desert BG.
         /// </summary>
@@ -2661,7 +2688,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_desert", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Forest BG.
         /// </summary>
@@ -2670,7 +2697,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_forest", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Hallow BG.
         /// </summary>
@@ -2679,7 +2706,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_hallow", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Hell BG.
         /// </summary>
@@ -2688,7 +2715,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_hell", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Jungle BG.
         /// </summary>
@@ -2697,7 +2724,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_jungle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mushroom BG.
         /// </summary>
@@ -2706,7 +2733,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_mushroom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ocean BG.
         /// </summary>
@@ -2715,7 +2742,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_ocean", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Snow BG.
         /// </summary>
@@ -2724,7 +2751,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_snow", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree 2 BG.
         /// </summary>
@@ -2733,7 +2760,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_tree2", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree 3 BG.
         /// </summary>
@@ -2742,7 +2769,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_tree3", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree 4 BG.
         /// </summary>
@@ -2751,7 +2778,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_tree4", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Underworld BG.
         /// </summary>
@@ -2760,7 +2787,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_bg_underworld", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Deerclops.
         /// </summary>
@@ -2769,7 +2796,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_deerclops", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The Destroyer.
         /// </summary>
@@ -2778,7 +2805,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_destroyer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Bosses Downed.
         /// </summary>
@@ -2787,7 +2814,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_downed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Duke Fishron.
         /// </summary>
@@ -2796,7 +2823,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_dukefishron", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Eater of Worlds.
         /// </summary>
@@ -2805,7 +2832,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_eaterofworlds", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Empress of Light.
         /// </summary>
@@ -2814,7 +2841,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_empressoflight", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Everscream.
         /// </summary>
@@ -2823,7 +2850,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_everscream", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Eye of Cthulhu.
         /// </summary>
@@ -2832,7 +2859,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_eyeofcthulhu", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Flying Dutchman.
         /// </summary>
@@ -2841,7 +2868,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_flyingdutchman", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Golem.
         /// </summary>
@@ -2850,7 +2877,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_golem", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Ice Queen.
         /// </summary>
@@ -2859,7 +2886,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_icequeen", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to King Slime.
         /// </summary>
@@ -2868,7 +2895,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_kingslime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Lunatic Cultist.
         /// </summary>
@@ -2877,7 +2904,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_lunaticcultist", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Moon Lord.
         /// </summary>
@@ -2886,7 +2913,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_moonlord", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mourning Wood.
         /// </summary>
@@ -2895,7 +2922,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_mourningwood", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Nebula Pillar.
         /// </summary>
@@ -2904,7 +2931,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_nebulapillar", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Plantera.
         /// </summary>
@@ -2913,7 +2940,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_plantera", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Pumpking.
         /// </summary>
@@ -2922,7 +2949,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_pumpking", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Queen Bee.
         /// </summary>
@@ -2931,7 +2958,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_queenbee", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Queen Slime.
         /// </summary>
@@ -2940,7 +2967,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_queenslime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Santa NK1.
         /// </summary>
@@ -2949,7 +2976,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_santank1", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Skeletron.
         /// </summary>
@@ -2958,7 +2985,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_skeletron", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Skeletron Prime.
         /// </summary>
@@ -2967,7 +2994,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_skeletronprime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Solar Pillar.
         /// </summary>
@@ -2976,7 +3003,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_solarpillar", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Stardust Pillar.
         /// </summary>
@@ -2985,7 +3012,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_stardustpillar", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The Twins.
         /// </summary>
@@ -2994,7 +3021,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_twins", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Vortex Pillar.
         /// </summary>
@@ -3003,7 +3030,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_vortexpillar", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wall of Flesh.
         /// </summary>
@@ -3012,7 +3039,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_boss_walloffflesh", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cavern Level.
         /// </summary>
@@ -3021,7 +3048,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_cavern_level", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Chinese World Version.
         /// </summary>
@@ -3030,7 +3057,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_chinese", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cloud BG Active.
         /// </summary>
@@ -3039,7 +3066,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_cloud_bg_active", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cobalt Tier.
         /// </summary>
@@ -3048,7 +3075,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_cobalt", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Combat Book.
         /// </summary>
@@ -3057,7 +3084,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_combatbook", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Combat Book Volume Two.
         /// </summary>
@@ -3066,7 +3093,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_combatbooktwo", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Console World Version.
         /// </summary>
@@ -3075,7 +3102,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_console", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Copper Tier.
         /// </summary>
@@ -3084,7 +3111,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_copper", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Crimson.
         /// </summary>
@@ -3093,7 +3120,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_crimson", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cultist Delay.
         /// </summary>
@@ -3102,7 +3129,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_cultist_delay", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Difficulty.
         /// </summary>
@@ -3111,7 +3138,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_difficulty", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Hardmode.
         /// </summary>
@@ -3120,7 +3147,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_difficulty_hardmode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Don&apos;t Starve World.
         /// </summary>
@@ -3129,7 +3156,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_dontstarve", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Drunk World.
         /// </summary>
@@ -3138,7 +3165,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_drunk", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Dungeon Point.
         /// </summary>
@@ -3147,7 +3174,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_dungeon_point", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Event.
         /// </summary>
@@ -3156,7 +3183,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_event", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Game Mode.
         /// </summary>
@@ -3165,7 +3192,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_gamemode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Gold Tier.
         /// </summary>
@@ -3174,7 +3201,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_gold", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to For The Worthy (FTW).
         /// </summary>
@@ -3183,7 +3210,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_gooworld", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to World GUID.
         /// </summary>
@@ -3192,7 +3219,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_guid", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Hardmode.
         /// </summary>
@@ -3201,7 +3228,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_hardmode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Force Holidays.
         /// </summary>
@@ -3210,7 +3237,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_holiday", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Halloween.
         /// </summary>
@@ -3219,7 +3246,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_holiday_halloween", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Force Halloween Forever.
         /// </summary>
@@ -3228,7 +3255,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_holiday_halloween_forever", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to XMas.
         /// </summary>
@@ -3237,7 +3264,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_holiday_xmas", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Force Christmas Forever.
         /// </summary>
@@ -3246,7 +3273,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_holiday_xmas_forever", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to World ID.
         /// </summary>
@@ -3255,7 +3282,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_id", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Invasions.
         /// </summary>
@@ -3264,7 +3291,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_invasion", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Frost Legion.
         /// </summary>
@@ -3273,7 +3300,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_invasion_frostlegion", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Goblin Army.
         /// </summary>
@@ -3282,7 +3309,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_invasion_goblinarmy", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Martian Madness.
         /// </summary>
@@ -3291,7 +3318,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_invasion_martianmadness", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Pirate Invasion.
         /// </summary>
@@ -3300,7 +3327,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_invasion_pirateinvasion", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Invasion Size.
         /// </summary>
@@ -3309,7 +3336,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_invasion_size", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Invasion Type.
         /// </summary>
@@ -3318,7 +3345,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_invasion_type", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Invasion X Target.
         /// </summary>
@@ -3327,7 +3354,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_invasion_x", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Iron Tier.
         /// </summary>
@@ -3336,7 +3363,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_iron", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Journey&apos;s End.
         /// </summary>
@@ -3345,7 +3372,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_journeysend", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Lantern Night.
         /// </summary>
@@ -3354,7 +3381,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_lanternnight", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Lantern Night Cooldown.
         /// </summary>
@@ -3363,7 +3390,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_lanternnight_cooldown", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Lantern Night Genuine.
         /// </summary>
@@ -3372,7 +3399,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_lanternnight_genuine", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Lantern Night Manual.
         /// </summary>
@@ -3381,7 +3408,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_lanternnight_manual", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Lantern Night Next Is Genuine.
         /// </summary>
@@ -3390,7 +3417,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_lanternnight_nextgenuine", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Meteor.
         /// </summary>
@@ -3399,7 +3426,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_meteor", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Spawn Meteor.
         /// </summary>
@@ -3408,7 +3435,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_meteor_spawn", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Blood Moon.
         /// </summary>
@@ -3417,7 +3444,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_moon_blood", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Is Eclipse.
         /// </summary>
@@ -3426,7 +3453,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_moon_eclipse", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Moon Phase.
         /// </summary>
@@ -3435,7 +3462,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_moon_phase", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Moon Style.
         /// </summary>
@@ -3444,7 +3471,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_moon_style", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Moondial Cooldown.
         /// </summary>
@@ -3453,7 +3480,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_moondial_cooldown", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mythril Tier.
         /// </summary>
@@ -3462,7 +3489,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_mythril", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to World Name.
         /// </summary>
@@ -3471,7 +3498,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_name", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Not The Bees World.
         /// </summary>
@@ -3480,7 +3507,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_notthebees", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Angler.
         /// </summary>
@@ -3489,7 +3516,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_angler", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Angler Mission.
         /// </summary>
@@ -3498,7 +3525,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_angler_mission", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Arms Dealer.
         /// </summary>
@@ -3507,7 +3534,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_arms_dealer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to NPCs Bought.
         /// </summary>
@@ -3516,7 +3543,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_bought", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Bunny.
         /// </summary>
@@ -3525,7 +3552,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_bunny", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cat.
         /// </summary>
@@ -3534,7 +3561,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_cat", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Demolitionist.
         /// </summary>
@@ -3543,7 +3570,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_demolitionist", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Dog.
         /// </summary>
@@ -3552,7 +3579,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_dog", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Dye Trader.
         /// </summary>
@@ -3561,7 +3588,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_dye_trader", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Goblin Tinkerer.
         /// </summary>
@@ -3570,7 +3597,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_goblintinkerer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Golfer.
         /// </summary>
@@ -3579,7 +3606,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_golfer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Mechanic.
         /// </summary>
@@ -3588,7 +3615,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_mechanic", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Merchant.
         /// </summary>
@@ -3597,7 +3624,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_merchant", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Nurse.
         /// </summary>
@@ -3606,7 +3633,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_nurse", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Party Girl.
         /// </summary>
@@ -3615,7 +3642,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_partygirl", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Princess.
         /// </summary>
@@ -3624,7 +3651,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_princess", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to NPCs Saved.
         /// </summary>
@@ -3633,7 +3660,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_saved", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to NPCs Saved.
         /// </summary>
@@ -3642,7 +3669,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_saved_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Blue Slime.
         /// </summary>
@@ -3651,7 +3678,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_slime_blue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Copper Slime.
         /// </summary>
@@ -3660,7 +3687,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_slime_copper", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Green Slime.
         /// </summary>
@@ -3669,7 +3696,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_slime_green", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Old Slime.
         /// </summary>
@@ -3678,7 +3705,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_slime_old", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Purple Slime.
         /// </summary>
@@ -3687,7 +3714,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_slime_purple", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Rainbow Slime.
         /// </summary>
@@ -3696,7 +3723,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_slime_rainbow", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Red Slime.
         /// </summary>
@@ -3705,7 +3732,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_slime_red", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yellow Slime.
         /// </summary>
@@ -3714,7 +3741,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_slime_yellow", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to NPC Spawn Unlocked.
         /// </summary>
@@ -3723,7 +3750,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_spawn_unlocked", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Stylist.
         /// </summary>
@@ -3732,7 +3759,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_stylist", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tavernkeep.
         /// </summary>
@@ -3741,7 +3768,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_tavernkeep", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tax Collector.
         /// </summary>
@@ -3750,7 +3777,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_taxcollector", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Truffle.
         /// </summary>
@@ -3759,7 +3786,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_truffle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wizard.
         /// </summary>
@@ -3768,7 +3795,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_npc_wizard", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Old One&apos;s Army.
         /// </summary>
@@ -3777,7 +3804,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_oldonesarmy", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tier 1.
         /// </summary>
@@ -3786,7 +3813,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_oldonesarmy_t1", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tier 2.
         /// </summary>
@@ -3795,7 +3822,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_oldonesarmy_t2", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tier 3.
         /// </summary>
@@ -3804,7 +3831,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_oldonesarmy_t3", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Orbs Smashed.
         /// </summary>
@@ -3813,7 +3840,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_orbs", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Party of Doom.
         /// </summary>
@@ -3822,7 +3849,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_partyofdoom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Peddler&apos;s Satchel.
         /// </summary>
@@ -3831,7 +3858,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_peddlerssatchel", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Nebula Pillar.
         /// </summary>
@@ -3840,7 +3867,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_pillar_nebula", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Solar Pillar.
         /// </summary>
@@ -3849,7 +3876,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_pillar_solar", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Stardust Pillar.
         /// </summary>
@@ -3858,7 +3885,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_pillar_stardust", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Vortex Pillar.
         /// </summary>
@@ -3867,7 +3894,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_pillar_vortex", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Pillars Active.
         /// </summary>
@@ -3876,7 +3903,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_pillars_active", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Pre-Hardmode.
         /// </summary>
@@ -3885,7 +3912,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_prehardmode", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Rain.
         /// </summary>
@@ -3894,7 +3921,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_rain", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Is Raining.
         /// </summary>
@@ -3903,7 +3930,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_rain_active", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Max Rain.
         /// </summary>
@@ -3912,7 +3939,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_rain_max", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Slime Rain Time.
         /// </summary>
@@ -3921,7 +3948,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_rain_slime", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Rain Time.
         /// </summary>
@@ -3930,7 +3957,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_rain_time", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Revision.
         /// </summary>
@@ -3939,7 +3966,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_revision", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Use Safe Values Only.
         /// </summary>
@@ -3948,7 +3975,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_safe_level", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sandstorm.
         /// </summary>
@@ -3957,7 +3984,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_sandstorm", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Is Storming.
         /// </summary>
@@ -3966,7 +3993,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_sandstorm_active", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Severity.
         /// </summary>
@@ -3975,7 +4002,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_sandstorm_severity", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Indended Severity.
         /// </summary>
@@ -3984,7 +4011,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_sandstorm_severity_target", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Time Left.
         /// </summary>
@@ -3993,7 +4020,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_sandstorm_time", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Seed.
         /// </summary>
@@ -4002,7 +4029,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_seed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Dual Dungeons.
         /// </summary>
@@ -4011,7 +4038,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_seed_dualdungeons", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Infected.
         /// </summary>
@@ -4020,7 +4047,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_seed_infected", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to No Traps.
         /// </summary>
@@ -4029,7 +4056,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_seed_notraps", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Remix.
         /// </summary>
@@ -4038,7 +4065,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_seed_remix", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Skyblock.
         /// </summary>
@@ -4047,7 +4074,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_seed_skyblock", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Vampire.
         /// </summary>
@@ -4056,7 +4083,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_seed_vampire", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Zenith.
         /// </summary>
@@ -4065,7 +4092,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_seed_zenith", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Silver Tier.
         /// </summary>
@@ -4074,7 +4101,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_silver", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Spawn Point.
         /// </summary>
@@ -4083,7 +4110,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_spawn_point", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cave Styles.
         /// </summary>
@@ -4092,7 +4119,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_cavestyles", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cave X 0.
         /// </summary>
@@ -4101,7 +4128,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_cavex0", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cave X 1.
         /// </summary>
@@ -4110,7 +4137,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_cavex1", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Cave X 2.
         /// </summary>
@@ -4119,7 +4146,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_cavex2", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree Styles.
         /// </summary>
@@ -4128,7 +4155,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_treestyles", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree 1 Tops.
         /// </summary>
@@ -4137,7 +4164,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_treetop_1", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree 2 Tops.
         /// </summary>
@@ -4146,7 +4173,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_treetop_2", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree 3 Tops.
         /// </summary>
@@ -4155,7 +4182,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_treetop_3", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree 4 Tops.
         /// </summary>
@@ -4164,7 +4191,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_treetop_4", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree X 0.
         /// </summary>
@@ -4173,7 +4200,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_treex0", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree X 1.
         /// </summary>
@@ -4182,7 +4209,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_treex1", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tree X 2.
         /// </summary>
@@ -4191,7 +4218,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_style_treex2", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Surface Level.
         /// </summary>
@@ -4200,7 +4227,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_surface_level", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Team Spawns.
         /// </summary>
@@ -4209,7 +4236,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_teamspawns", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Team Based Spawns Enabled.
         /// </summary>
@@ -4218,7 +4245,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_teamspawns_enabled", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Team Spawn Locations.
         /// </summary>
@@ -4227,7 +4254,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_teamspawns_locations", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tenth Anniversary.
         /// </summary>
@@ -4236,7 +4263,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_tenthanniversary", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Is Day Time.
         /// </summary>
@@ -4245,7 +4272,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_time_day", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
@@ -4254,7 +4281,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_time_label", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Use Sundial.
         /// </summary>
@@ -4263,7 +4290,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_time_sundial", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Sundial Cooldown.
         /// </summary>
@@ -4272,7 +4299,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_time_sundial_cooldown", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Allow Unsafe Values.
         /// </summary>
@@ -4281,7 +4308,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_unsafe_level", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Use Moondial.
         /// </summary>
@@ -4290,7 +4317,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_usemoondial", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Number Clouds.
         /// </summary>
@@ -4299,7 +4326,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_weather_clouds", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Wind Speed.
         /// </summary>
@@ -4308,7 +4335,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_wp_weather_windspeed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Booster.
         /// </summary>
@@ -4317,7 +4344,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TrackMode_Booster", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Hammer.
         /// </summary>
@@ -4326,7 +4353,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TrackMode_Hammer", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Pressure.
         /// </summary>
@@ -4335,7 +4362,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TrackMode_Pressure", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Track.
         /// </summary>
@@ -4344,7 +4371,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("TrackMode_Track", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Blue.
         /// </summary>
@@ -4353,7 +4380,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("WireReplaceMode_Blue", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Green.
         /// </summary>
@@ -4362,7 +4389,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("WireReplaceMode_Green", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Off.
         /// </summary>
@@ -4371,7 +4398,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("WireReplaceMode_Off", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Red.
         /// </summary>
@@ -4380,7 +4407,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("WireReplaceMode_Red", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Yellow.
         /// </summary>
@@ -4389,7 +4416,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("WireReplaceMode_Yellow", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Fix Background Gap.
         /// </summary>

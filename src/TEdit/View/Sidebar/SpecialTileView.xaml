@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
-    xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:p="clr-namespace:TEdit.Properties"
     xmlns:converters="clr-namespace:TEdit.Converters"
     mc:Ignorable="d"
@@ -57,6 +57,34 @@
                           IsSynchronizedWithCurrentItem="False"
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 <ComboBox Grid.Column="2" ItemsSource="{Binding Source={StaticResource FoodCollection}}"
+                          SelectedValue="{Binding NetId, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsEditable="true"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="KiteItemTemplate">
+            <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75" />
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource KiteCollection}}"
+                          SelectedValue="{Binding NetId, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsEditable="true"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="CritterItemTemplate">
+            <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75" />
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource CritterCollection}}"
                           SelectedValue="{Binding NetId, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
@@ -144,7 +172,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="SignVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="11">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="12">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -152,7 +180,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="ChestVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="12">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="13">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -161,6 +189,30 @@
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="1">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="DeadCellsJarVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="8">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="KiteVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="9">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="CritterVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="10">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -200,7 +252,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="XmasVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="10">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="11">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -372,6 +424,34 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_itemframecontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="({0}, {1})">
+                                <Binding Path="SelectedTileEntity.PosX" />
+                                <Binding Path="SelectedTileEntity.PosY" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource ItemFrameItemTemplate}"
+                    Content="{Binding Path=SelectedTileEntity}" />
+                <UniformGrid Columns="2" Grid.Row="2">
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource False}" />
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource True}" />
+                </UniformGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox BorderThickness="0" Style="{StaticResource DeadCellsJarVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"  Grid.Row="0">
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_deadcells_jar}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
@@ -693,7 +773,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="10">
           <TextBlock Text="{x:Static p:Language.specialtile_label_mount}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-       
+
           <ComboBox Width="150px"
                 ItemsSource="{Binding Source={StaticResource MountCollection}}"
                 SelectedValue="{Binding SelectedTileEntity.Mount.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
@@ -830,6 +910,62 @@
                           IsSynchronizedWithCurrentItem="False"
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
+                <UniformGrid Columns="2" Grid.Row="2">
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource False}" />
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource True}" />
+                </UniformGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox BorderThickness="0" Style="{StaticResource KiteVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"  Grid.Row="0">
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_kite}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="({0}, {1})">
+                                <Binding Path="SelectedTileEntity.PosX" />
+                                <Binding Path="SelectedTileEntity.PosY" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource KiteItemTemplate}"
+                        Content="{Binding Path=SelectedTileEntity}" />
+                <UniformGrid Columns="2" Grid.Row="2">
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource False}" />
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource True}" />
+                </UniformGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox BorderThickness="0" Style="{StaticResource CritterVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"  Grid.Row="0">
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_critter}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="({0}, {1})">
+                                <Binding Path="SelectedTileEntity.PosX" />
+                                <Binding Path="SelectedTileEntity.PosY" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource CritterItemTemplate}"
+                        Content="{Binding Path=SelectedTileEntity}" />
                 <UniformGrid Columns="2" Grid.Row="2">
                     <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />

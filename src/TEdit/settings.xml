@@ -10785,7 +10785,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="258" Name="Ninja Pants" Legs="14" />
     <Item Id="259" Name="Leather" />
     <Item Id="260" Name="Red Hat" Head="24" />
-    <Item Id="261" Name="Goldfish" />
+    <Item Id="261" Name="Goldfish" IsCritter="True" />
     <Item Id="262" Name="Robe" Body="15" />
     <Item Id="263" Name="Robot Hat" Head="25" />
     <Item Id="264" Name="Gold Crown" Head="26" />
@@ -11862,7 +11862,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1335" Name="Ichor Bullet" />
     <Item Id="1336" Name="Golden Shower" Rack="True" />
     <Item Id="1337" Name="Bunny Cannon" />
-    <Item Id="1338" Name="Explosive Bunny" />
+    <Item Id="1338" Name="Explosive Bunny" IsCritter="True" />
     <Item Id="1339" Name="Vial of Venom" />
     <Item Id="1340" Name="Flask of Venom" />
     <Item Id="1341" Name="Venom Arrow" />
@@ -12516,22 +12516,22 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1989" Name="Womannequin" />
     <Item Id="1990" Name="Hair Dye Remover" />
     <Item Id="1991" Name="Bug Net" />
-    <Item Id="1992" Name="Firefly" />
+    <Item Id="1992" Name="Firefly" IsCritter="True" />
     <Item Id="1993" Name="Firefly in a Bottle" />
-    <Item Id="1994" Name="Monarch Butterfly" />
-    <Item Id="1995" Name="Purple Emperor Butterfly" />
-    <Item Id="1996" Name="Red Admiral Butterfly" />
-    <Item Id="1997" Name="Ulysses Butterfly" />
-    <Item Id="1998" Name="Sulphur Butterfly" />
-    <Item Id="1999" Name="Tree Nymph Butterfly" />
-    <Item Id="2000" Name="Zebra Swallowtail Butterfly" />
-    <Item Id="2001" Name="Julia Butterfly" />
-    <Item Id="2002" Name="Worm" />
-    <Item Id="2003" Name="Mouse" />
-    <Item Id="2004" Name="Lightning Bug" />
+    <Item Id="1994" Name="Monarch Butterfly" IsCritter="True" />
+    <Item Id="1995" Name="Purple Emperor Butterfly" IsCritter="True" />
+    <Item Id="1996" Name="Red Admiral Butterfly" IsCritter="True" />
+    <Item Id="1997" Name="Ulysses Butterfly" IsCritter="True" />
+    <Item Id="1998" Name="Sulphur Butterfly" IsCritter="True" />
+    <Item Id="1999" Name="Tree Nymph Butterfly" IsCritter="True" />
+    <Item Id="2000" Name="Zebra Swallowtail Butterfly" IsCritter="True" />
+    <Item Id="2001" Name="Julia Butterfly" IsCritter="True" />
+    <Item Id="2002" Name="Worm" IsCritter="True" />
+    <Item Id="2003" Name="Mouse" IsCritter="True" />
+    <Item Id="2004" Name="Lightning Bug" IsCritter="True" />
     <Item Id="2005" Name="Lightning Bug in a Bottle" />
-    <Item Id="2006" Name="Snail" />
-    <Item Id="2007" Name="Glowing Snail" />
+    <Item Id="2006" Name="Snail" IsCritter="True" />
+    <Item Id="2007" Name="Glowing Snail" IsCritter="True" />
     <Item Id="2008" Name="Fancy Gray Wallpaper" />
     <Item Id="2009" Name="Ice Floe Wallpaper" />
     <Item Id="2010" Name="Music Wallpaper" />
@@ -12539,11 +12539,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2012" Name="Rainbow Wallpaper" />
     <Item Id="2013" Name="Sparkle Stone Wallpaper" />
     <Item Id="2014" Name="Starlit Heaven Wallpaper" />
-    <Item Id="2015" Name="Bird" />
-    <Item Id="2016" Name="Blue Jay" />
-    <Item Id="2017" Name="Cardinal" />
-    <Item Id="2018" Name="Squirrel" />
-    <Item Id="2019" Name="Bunny" />
+    <Item Id="2015" Name="Bird" IsCritter="True" />
+    <Item Id="2016" Name="Blue Jay" IsCritter="True" />
+    <Item Id="2017" Name="Cardinal" IsCritter="True" />
+    <Item Id="2018" Name="Squirrel" IsCritter="True" />
+    <Item Id="2019" Name="Bunny" IsCritter="True" />
     <Item Id="2020" Name="Cactus Bookcase" />
     <Item Id="2021" Name="Ebonwood Bookcase" />
     <Item Id="2022" Name="Flesh Bookcase" />
@@ -12645,9 +12645,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2118" Name="Sword Rack" />
     <Item Id="2119" Name="Stone Slab" />
     <Item Id="2120" Name="Sandstone Slab" />
-    <Item Id="2121" Name="Frog" />
-    <Item Id="2122" Name="Mallard Duck" />
-    <Item Id="2123" Name="Duck" />
+    <Item Id="2121" Name="Frog" IsCritter="True" />
+    <Item Id="2122" Name="Mallard Duck" IsCritter="True" />
+    <Item Id="2123" Name="Duck" IsCritter="True" />
     <Item Id="2124" Name="Honey Bathtub" />
     <Item Id="2125" Name="Steampunk Bathtub" />
     <Item Id="2126" Name="Living Wood Bathtub" />
@@ -12680,8 +12680,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2153" Name="Living Wood Candle" />
     <Item Id="2154" Name="Shadewood Candle" />
     <Item Id="2155" Name="Golden Candle" />
-    <Item Id="2156" Name="Black Scorpion" />
-    <Item Id="2157" Name="Scorpion" />
+    <Item Id="2156" Name="Black Scorpion" IsCritter="True" />
+    <Item Id="2157" Name="Scorpion" IsCritter="True" />
     <Item Id="2158" Name="Bubble Wallpaper" />
     <Item Id="2159" Name="Copper Pipe Wallpaper" />
     <Item Id="2160" Name="Ducky Wallpaper" />
@@ -12729,7 +12729,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2202" Name="Beetle Leggings" Legs="98" />
     <Item Id="2203" Name="Steampunk Boiler" />
     <Item Id="2204" Name="Honey Dispenser" />
-    <Item Id="2205" Name="Penguin" />
+    <Item Id="2205" Name="Penguin" IsCritter="True" />
     <Item Id="2206" Name="Penguin Cage" />
     <Item Id="2207" Name="Worm Cage" />
     <Item Id="2208" Name="Terrarium" />
@@ -13197,7 +13197,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2670" Name="Pumpkin Bookcase" />
     <Item Id="2671" Name="Pumpkin Piano" />
     <Item Id="2672" Name="Shark Statue" />
-    <Item Id="2673" Name="Truffle Worm" />
+    <Item Id="2673" Name="Truffle Worm" IsCritter="True" />
     <Item Id="2674" Name="Apprentice Bait" />
     <Item Id="2675" Name="Journeyman Bait" />
     <Item Id="2676" Name="Master Bait" />
@@ -13264,7 +13264,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2737" Name="'Z' Statue" />
     <Item Id="2738" Name="Firework Fountain" />
     <Item Id="2739" Name="Booster Track" />
-    <Item Id="2740" Name="Grasshopper" />
+    <Item Id="2740" Name="Grasshopper" IsCritter="True" />
     <Item Id="2741" Name="Grasshopper Cage" />
     <Item Id="2742" Name="Music Box (Underground Crimson)" Accessory="True" />
     <Item Id="2743" Name="Cactus Table" />
@@ -13403,13 +13403,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2886" Name="Vicious Powder" />
     <Item Id="2887" Name="Vicious Mushroom" />
     <Item Id="2888" Name="The Bee's Knees" Rack="True" />
-    <Item Id="2889" Name="Gold Bird" />
-    <Item Id="2890" Name="Gold Bunny" />
-    <Item Id="2891" Name="Gold Butterfly" />
-    <Item Id="2892" Name="Gold Frog" />
-    <Item Id="2893" Name="Gold Grasshopper" />
-    <Item Id="2894" Name="Gold Mouse" />
-    <Item Id="2895" Name="Gold Worm" />
+    <Item Id="2889" Name="Gold Bird" IsCritter="True" />
+    <Item Id="2890" Name="Gold Bunny" IsCritter="True" />
+    <Item Id="2891" Name="Gold Butterfly" IsCritter="True" />
+    <Item Id="2892" Name="Gold Frog" IsCritter="True" />
+    <Item Id="2893" Name="Gold Grasshopper" IsCritter="True" />
+    <Item Id="2894" Name="Gold Mouse" IsCritter="True" />
+    <Item Id="2895" Name="Gold Worm" IsCritter="True" />
     <Item Id="2896" Name="Sticky Dynamite" Rack="True" />
     <Item Id="2897" Name="Angry Trapper Banner" Tally="88" />
     <Item Id="2898" Name="Armored Viking Banner" Tally="89" />
@@ -13705,10 +13705,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3188" Name="Gladiator Breastplate" Body="182" />
     <Item Id="3189" Name="Gladiator Leggings" Legs="122" />
     <Item Id="3190" Name="Reflective Dye" />
-    <Item Id="3191" Name="Enchanted Nightcrawler" />
-    <Item Id="3192" Name="Grubby" />
-    <Item Id="3193" Name="Sluggy" />
-    <Item Id="3194" Name="Buggy" />
+    <Item Id="3191" Name="Enchanted Nightcrawler" IsCritter="True" />
+    <Item Id="3192" Name="Grubby" IsCritter="True" />
+    <Item Id="3193" Name="Sluggy" IsCritter="True" />
+    <Item Id="3194" Name="Buggy" IsCritter="True" />
     <Item Id="3195" Name="Grub Soup" IsFood="True" />
     <Item Id="3196" Name="Bomb Fish" Rack="True" />
     <Item Id="3197" Name="Frost Daggerfish" Rack="True" />
@@ -14074,8 +14074,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3560" Name="Red Acid Dye" />
     <Item Id="3561" Name="Gel Dye" />
     <Item Id="3562" Name="Pink Gel Dye" />
-    <Item Id="3563" Name="Red Squirrel" />
-    <Item Id="3564" Name="Gold Squirrel" />
+    <Item Id="3563" Name="Red Squirrel" IsCritter="True" />
+    <Item Id="3564" Name="Gold Squirrel" IsCritter="True" />
     <Item Id="3565" Name="Red Squirrel Cage" />
     <Item Id="3566" Name="Gold Squirrel Cage" />
     <Item Id="3567" Name="Luminite Bullet" />
@@ -14569,9 +14569,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4065" Name="Fancy Picnic Table" />
     <Item Id="4066" Name="Desert Minecart" />
     <Item Id="4067" Name="Minecarp" />
-    <Item Id="4068" Name="Pink Fairy" />
-    <Item Id="4069" Name="Green Fairy" />
-    <Item Id="4070" Name="Blue Fairy" />
+    <Item Id="4068" Name="Pink Fairy" IsCritter="True" />
+    <Item Id="4069" Name="Green Fairy" IsCritter="True" />
+    <Item Id="4070" Name="Blue Fairy" IsCritter="True" />
     <Item Id="4071" Name="Junonia Shell" />
     <Item Id="4072" Name="Lightning Whelk Shell" />
     <Item Id="4073" Name="Tulip Shell" />
@@ -14774,7 +14774,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4271" Name="Bloody Tear" />
     <Item Id="4272" Name="Drippler Crippler" Rack="True" />
     <Item Id="4273" Name="Vampire Frog Staff" Rack="True" />
-    <Item Id="4274" Name="Gold Goldfish" />
+    <Item Id="4274" Name="Gold Goldfish" IsCritter="True" />
     <Item Id="4275" Name="Gold Fish Bowl" Head="221" />
     <Item Id="4276" Name="Bast Statue" />
     <Item Id="4277" Name="Gold Starry Block" />
@@ -14834,13 +14834,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4331" Name="Red Dragonfly Jar" />
     <Item Id="4332" Name="Yellow Dragonfly Jar" />
     <Item Id="4333" Name="Gold Dragonfly Jar" />
-    <Item Id="4334" Name="Black Dragonfly" />
-    <Item Id="4335" Name="Blue Dragonfly" />
-    <Item Id="4336" Name="Green Dragonfly" />
-    <Item Id="4337" Name="Orange Dragonfly" />
-    <Item Id="4338" Name="Red Dragonfly" />
-    <Item Id="4339" Name="Yellow Dragonfly" />
-    <Item Id="4340" Name="Gold Dragonfly" />
+    <Item Id="4334" Name="Black Dragonfly" IsCritter="True" />
+    <Item Id="4335" Name="Blue Dragonfly" IsCritter="True" />
+    <Item Id="4336" Name="Green Dragonfly" IsCritter="True" />
+    <Item Id="4337" Name="Orange Dragonfly" IsCritter="True" />
+    <Item Id="4338" Name="Red Dragonfly" IsCritter="True" />
+    <Item Id="4339" Name="Yellow Dragonfly" IsCritter="True" />
+    <Item Id="4340" Name="Gold Dragonfly" IsCritter="True" />
     <Item Id="4341" Name="Step Stool" Accessory="True" />
     <Item Id="4342" Name="Dragonfly Statue" />
     <Item Id="4343" Name="Paper Airplane" Rack="True" />
@@ -14859,27 +14859,27 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4356" Name="Music Box (Journey's Beginning)" Accessory="True" />
     <Item Id="4357" Name="Music Box (Storm)" Accessory="True" />
     <Item Id="4358" Name="Music Box (Graveyard)" Accessory="True" />
-    <Item Id="4359" Name="Seagull" />
+    <Item Id="4359" Name="Seagull" IsCritter="True" />
     <Item Id="4360" Name="Seagull Statue" />
-    <Item Id="4361" Name="Ladybug" />
-    <Item Id="4362" Name="Gold Ladybug" />
-    <Item Id="4363" Name="Maggot" />
+    <Item Id="4361" Name="Ladybug" IsCritter="True" />
+    <Item Id="4362" Name="Gold Ladybug" IsCritter="True" />
+    <Item Id="4363" Name="Maggot" IsCritter="True" />
     <Item Id="4364" Name="Maggot Cage" />
     <Item Id="4365" Name="Celestial Wand" />
     <Item Id="4366" Name="Eucalyptus Sap" />
-    <Item Id="4367" Name="Blue Kite" />
-    <Item Id="4368" Name="Blue and Yellow Kite" />
-    <Item Id="4369" Name="Red Kite" />
-    <Item Id="4370" Name="Red and Yellow Kite" />
-    <Item Id="4371" Name="Yellow Kite" />
+    <Item Id="4367" Name="Blue Kite" IsKite="True" />
+    <Item Id="4368" Name="Blue and Yellow Kite" IsKite="True" />
+    <Item Id="4369" Name="Red Kite" IsKite="True" />
+    <Item Id="4370" Name="Red and Yellow Kite" IsKite="True" />
+    <Item Id="4371" Name="Yellow Kite" IsKite="True" />
     <Item Id="4372" Name="Ivy" />
-    <Item Id="4373" Name="Pupfish" />
-    <Item Id="4374" Name="Grebe" />
-    <Item Id="4375" Name="Rat" />
+    <Item Id="4373" Name="Pupfish" IsCritter="True" />
+    <Item Id="4374" Name="Grebe" IsCritter="True" />
+    <Item Id="4375" Name="Rat" IsCritter="True" />
     <Item Id="4376" Name="Rat Cage" />
     <Item Id="4377" Name="Krypton Moss" />
     <Item Id="4378" Name="Xenon Moss" />
-    <Item Id="4379" Name="Wyvern Kite" />
+    <Item Id="4379" Name="Wyvern Kite" IsKite="True" />
     <Item Id="4380" Name="Ladybug Cage" />
     <Item Id="4381" Name="Blood Rain Bow" Rack="True" />
     <Item Id="4382" Name="Advanced Combat Techniques" />
@@ -14895,7 +14895,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4392" Name="Echo Block" />
     <Item Id="4393" Name="Scarab Fish" Rack="True" />
     <Item Id="4394" Name="Scorpio Fish" Rack="True" />
-    <Item Id="4395" Name="Owl" />
+    <Item Id="4395" Name="Owl" IsCritter="True" />
     <Item Id="4396" Name="Owl Cage" />
     <Item Id="4397" Name="Owl Statue" />
     <Item Id="4398" Name="Pupfish Bowl" />
@@ -14918,8 +14918,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4415" Name="Stone Door" />
     <Item Id="4416" Name="Stone Platform" />
     <Item Id="4417" Name="Oasis Water Fountain" />
-    <Item Id="4418" Name="Water Strider" />
-    <Item Id="4419" Name="Gold Water Strider" />
+    <Item Id="4418" Name="Water Strider" IsCritter="True" />
+    <Item Id="4419" Name="Gold Water Strider" IsCritter="True" />
     <Item Id="4420" Name="Lawn Flamingo" />
     <Item Id="4421" Name="Music Box (Underground Jungle)" Accessory="True" />
     <Item Id="4422" Name="Grate" />
@@ -14964,8 +14964,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4461" Name="Turtle Cage" />
     <Item Id="4462" Name="Jungle Turtle Cage" />
     <Item Id="4463" Name="Gladius" Rack="True" />
-    <Item Id="4464" Name="Turtle" />
-    <Item Id="4465" Name="Jungle Turtle" />
+    <Item Id="4464" Name="Turtle" IsCritter="True" />
+    <Item Id="4465" Name="Jungle Turtle" IsCritter="True" />
     <Item Id="4466" Name="Turtle Statue" />
     <Item Id="4467" Name="Amber Minecart" />
     <Item Id="4468" Name="Beetle Minecart" />
@@ -14980,9 +14980,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4477" Name="Lesser Luck Potion" />
     <Item Id="4478" Name="Luck Potion" />
     <Item Id="4479" Name="Greater Luck Potion" />
-    <Item Id="4480" Name="Seahorse" />
+    <Item Id="4480" Name="Seahorse" IsCritter="True" />
     <Item Id="4481" Name="Seahorse Cage" />
-    <Item Id="4482" Name="Gold Seahorse" />
+    <Item Id="4482" Name="Gold Seahorse" IsCritter="True" />
     <Item Id="4483" Name="Gold Seahorse Cage" />
     <Item Id="4484" Name="1/2 Second Timer" />
     <Item Id="4485" Name="1/4 Second Timer" />
@@ -15110,16 +15110,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4607" Name="Desert Tiger Staff" Rack="True" />
     <Item Id="4608" Name="Chum Bucket" />
     <Item Id="4609" Name="Garden Gnome" />
-    <Item Id="4610" Name="Bone Serpent Kite" />
-    <Item Id="4611" Name="World Feeder Kite" />
-    <Item Id="4612" Name="Bunny Kite" />
-    <Item Id="4613" Name="Pigron Kite" />
+    <Item Id="4610" Name="Bone Serpent Kite" IsKite="True" />
+    <Item Id="4611" Name="World Feeder Kite" IsKite="True" />
+    <Item Id="4612" Name="Bunny Kite" IsKite="True" />
+    <Item Id="4613" Name="Pigron Kite" IsKite="True" />
     <Item Id="4614" Name="Apple Juice" IsFood="True" />
     <Item Id="4615" Name="Grape Juice" IsFood="True" />
     <Item Id="4616" Name="Lemonade" IsFood="True" />
     <Item Id="4617" Name="Frozen Banana Daiquiri" IsFood="True" />
     <Item Id="4618" Name="Peach Sangria" IsFood="True" />
-    <Item Id="4619" Name="Piña Colada" IsFood="True" />
+    <Item Id="4619" Name="Pi?a Colada" IsFood="True" />
     <Item Id="4620" Name="Tropical Smoothie" IsFood="True" />
     <Item Id="4621" Name="Bloody Moscato" IsFood="True" />
     <Item Id="4622" Name="Smoothie of Darkness" IsFood="True" />
@@ -15148,10 +15148,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4645" Name="Diamond Stone Block" />
     <Item Id="4646" Name="Amber Stone Block" />
     <Item Id="4647" Name="Amber Stone Wall" />
-    <Item Id="4648" Name="Man Eater Kite" />
-    <Item Id="4649" Name="Blue Jellyfish Kite" />
-    <Item Id="4650" Name="Pink Jellyfish Kite" />
-    <Item Id="4651" Name="Shark Kite" />
+    <Item Id="4648" Name="Man Eater Kite" IsKite="True" />
+    <Item Id="4649" Name="Blue Jellyfish Kite" IsKite="True" />
+    <Item Id="4650" Name="Pink Jellyfish Kite" IsKite="True" />
+    <Item Id="4651" Name="Shark Kite" IsKite="True" />
     <Item Id="4652" Name="Superhero Mask" Head="230" />
     <Item Id="4653" Name="Superhero Costume" Body="217" />
     <Item Id="4654" Name="Superhero Tights" Legs="191" />
@@ -15169,22 +15169,22 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4666" Name="Pretty Pink Ribbon" Head="232" />
     <Item Id="4667" Name="Bamboo Fence" />
     <Item Id="4668" Name="Illuminant Coating" />
-    <Item Id="4669" Name="Sand Shark Kite" />
-    <Item Id="4670" Name="Corrupt Bunny Kite" />
-    <Item Id="4671" Name="Vicious Bunny Kite" />
+    <Item Id="4669" Name="Sand Shark Kite" IsKite="True" />
+    <Item Id="4670" Name="Corrupt Bunny Kite" IsKite="True" />
+    <Item Id="4671" Name="Vicious Bunny Kite" IsKite="True" />
     <Item Id="4672" Name="Leather Whip" Rack="True" />
     <Item Id="4673" Name="Drumstick" />
-    <Item Id="4674" Name="Goldfish Kite" />
-    <Item Id="4675" Name="Angry Trapper Kite" />
-    <Item Id="4676" Name="Koi Kite" />
-    <Item Id="4677" Name="Crawltipede Kite" />
+    <Item Id="4674" Name="Goldfish Kite" IsKite="True" />
+    <Item Id="4675" Name="Angry Trapper Kite" IsKite="True" />
+    <Item Id="4676" Name="Koi Kite" IsKite="True" />
+    <Item Id="4677" Name="Crawltipede Kite" IsKite="True" />
     <Item Id="4678" Name="Durendal" Rack="True" />
     <Item Id="4679" Name="Morning Star" Rack="True" />
     <Item Id="4680" Name="Dark Harvest" Rack="True" />
-    <Item Id="4681" Name="Spectrum Kite" />
+    <Item Id="4681" Name="Spectrum Kite" IsKite="True" />
     <Item Id="4682" Name="Release Doves" />
-    <Item Id="4683" Name="Wandering Eye Kite" />
-    <Item Id="4684" Name="Unicorn Kite" />
+    <Item Id="4683" Name="Wandering Eye Kite" IsKite="True" />
+    <Item Id="4684" Name="Unicorn Kite" IsKite="True" />
     <Item Id="4685" Name="Gravedigger Hat" Head="231" />
     <Item Id="4686" Name="Gravedigger Coat" Body="219" />
     <Item Id="4687" Name="Angry Dandelion Banner" Tally="274" />
@@ -15330,25 +15330,25 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4828" Name="Superheated Blood" />
     <Item Id="4829" Name="Cat License" />
     <Item Id="4830" Name="Dog License" />
-    <Item Id="4831" Name="Amethyst Squirrel" />
-    <Item Id="4832" Name="Topaz Squirrel" />
-    <Item Id="4833" Name="Sapphire Squirrel" />
-    <Item Id="4834" Name="Emerald Squirrel" />
-    <Item Id="4835" Name="Ruby Squirrel" />
-    <Item Id="4836" Name="Diamond Squirrel" />
-    <Item Id="4837" Name="Amber Squirrel" />
-    <Item Id="4838" Name="Amethyst Bunny" />
-    <Item Id="4839" Name="Topaz Bunny" />
-    <Item Id="4840" Name="Sapphire Bunny" />
-    <Item Id="4841" Name="Emerald Bunny" />
-    <Item Id="4842" Name="Ruby Bunny" />
-    <Item Id="4843" Name="Diamond Bunny" />
-    <Item Id="4844" Name="Amber Bunny" />
-    <Item Id="4845" Name="Hell Butterfly" />
+    <Item Id="4831" Name="Amethyst Squirrel" IsCritter="True" />
+    <Item Id="4832" Name="Topaz Squirrel" IsCritter="True" />
+    <Item Id="4833" Name="Sapphire Squirrel" IsCritter="True" />
+    <Item Id="4834" Name="Emerald Squirrel" IsCritter="True" />
+    <Item Id="4835" Name="Ruby Squirrel" IsCritter="True" />
+    <Item Id="4836" Name="Diamond Squirrel" IsCritter="True" />
+    <Item Id="4837" Name="Amber Squirrel" IsCritter="True" />
+    <Item Id="4838" Name="Amethyst Bunny" IsCritter="True" />
+    <Item Id="4839" Name="Topaz Bunny" IsCritter="True" />
+    <Item Id="4840" Name="Sapphire Bunny" IsCritter="True" />
+    <Item Id="4841" Name="Emerald Bunny" IsCritter="True" />
+    <Item Id="4842" Name="Ruby Bunny" IsCritter="True" />
+    <Item Id="4843" Name="Diamond Bunny" IsCritter="True" />
+    <Item Id="4844" Name="Amber Bunny" IsCritter="True" />
+    <Item Id="4845" Name="Hell Butterfly" IsCritter="True" />
     <Item Id="4846" Name="Hell Butterfly Jar" />
-    <Item Id="4847" Name="Lavafly" />
+    <Item Id="4847" Name="Lavafly" IsCritter="True" />
     <Item Id="4848" Name="Lavafly in a Bottle" />
-    <Item Id="4849" Name="Magma Snail" />
+    <Item Id="4849" Name="Magma Snail" IsCritter="True" />
     <Item Id="4850" Name="Magma Snail Cage" />
     <Item Id="4851" Name="Topaz Gemcorn" />
     <Item Id="4852" Name="Amethyst Gemcorn" />
@@ -15460,7 +15460,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4958" Name="Queen Slime Trophy" />
     <Item Id="4959" Name="Queen Slime Mask" Head="260" />
     <Item Id="4960" Name="Regal Delicacy" />
-    <Item Id="4961" Name="Prismatic Lacewing" />
+    <Item Id="4961" Name="Prismatic Lacewing" IsCritter="True" />
     <Item Id="4962" Name="Stone Accent Slab" />
     <Item Id="4963" Name="Truffle Worm Cage" />
     <Item Id="4964" Name="Prismatic Lacewing Jar" />
@@ -15631,7 +15631,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5129" Name="Flymeal" Rack="True" />
     <Item Id="5130" Name="Lilith's Necklace" />
     <Item Id="5131" Name="Resplendent Dessert" />
-    <Item Id="5132" Name="Stinkbug" />
+    <Item Id="5132" Name="Stinkbug" IsCritter="True" />
     <Item Id="5133" Name="Stinkbug Cage" />
     <Item Id="5134" Name="Terraformer" />
     <Item Id="5135" Name="Venom Dart Trap" />
@@ -15711,7 +15711,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5209" Name="Trapped Ash Wood Chest" />
     <Item Id="5210" Name="Ash Wood Toilet" />
     <Item Id="5211" Name="Biome Sight Potion" />
-    <Item Id="5212" Name="Scarlet Macaw" />
+    <Item Id="5212" Name="Scarlet Macaw" IsCritter="True" />
     <Item Id="5213" Name="Scarlet Macaw Cage" />
     <Item Id="5214" Name="Ash Grass Seeds" />
     <Item Id="5215" Name="Ash Wood" />
@@ -15799,7 +15799,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5297" Name="Blue Chicken Egg" />
     <Item Id="5298" Name="Trimarang" Rack="True" />
     <Item Id="5299" Name="Mushroom Campfire" />
-    <Item Id="5300" Name="Blue Macaw" />
+    <Item Id="5300" Name="Blue Macaw" IsCritter="True" />
     <Item Id="5301" Name="Blue Macaw Cage" />
     <Item Id="5302" Name="Bottomless Honey Bucket" />
     <Item Id="5303" Name="Honey Absorbant Sponge" />
@@ -15810,9 +15810,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5308" Name="r/Terraria" />
     <Item Id="5309" Name="Guide to Environmental Preservation" />
     <Item Id="5310" Name="Princess Style" />
-    <Item Id="5311" Name="Toucan" />
-    <Item Id="5312" Name="Yellow Cockatiel" />
-    <Item Id="5313" Name="Gray Cockatiel" />
+    <Item Id="5311" Name="Toucan" IsCritter="True" />
+    <Item Id="5312" Name="Yellow Cockatiel" IsCritter="True" />
+    <Item Id="5313" Name="Gray Cockatiel" IsCritter="True" />
     <Item Id="5314" Name="Toucan Cage" />
     <Item Id="5315" Name="Yellow Cockatiel Cage" />
     <Item Id="5316" Name="Gray Cockatiel Cage" />
@@ -15849,7 +15849,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5347" Name="Aether Monolith" Accessory="True" />
     <Item Id="5348" Name="Shimmer Arrow" />
     <Item Id="5349" Name="Aetherium Block" />
-    <Item Id="5350" Name="Faeling" />
+    <Item Id="5350" Name="Faeling" IsCritter="True" />
     <Item Id="5351" Name="Faeling in a Bottle" />
     <Item Id="5352" Name="Shimmer Slime Banner" Tally="289" />
     <Item Id="5353" Name="Aether Torch" />
@@ -15989,7 +15989,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5487" Name="Heroes From Another World" />
     <Item Id="5488" Name="Crystallize" />
     <Item Id="5489" Name="Eater Of Life" />
-    <Item Id="5490" Name="This Is Canon Now" />
+    <Item Id="5490" Name="Brasilian Skies" />
     <Item Id="5491" Name="Winter At Varingskollen" />
     <Item Id="5492" Name="Magic Shimmer Dropper" />
     <Item Id="5493" Name="Shimmerfall Block" />
@@ -16010,7 +16010,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5508" Name="Grim Old Barb" Accessory="True" />
     <Item Id="5509" Name="Vampire Pendant" Accessory="True" />
     <Item Id="5510" Name="Slasher's Mysterious Skull" />
-    <Item Id="5511" Name="Pufferfish" />
+    <Item Id="5511" Name="Pufferfish" IsCritter="True" />
     <Item Id="5512" Name="Pufferfish Cage" />
     <Item Id="5513" Name="Puffer Shrimp" />
     <Item Id="5514" Name="Rainbow Boulder" />

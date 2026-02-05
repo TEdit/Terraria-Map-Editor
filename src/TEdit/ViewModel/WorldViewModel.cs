@@ -314,7 +314,7 @@ public partial class WorldViewModel : ReactiveObject
         {
             this.RaiseAndSetIfChanged(ref _selectedXmas, value);
             SelectedTabIndex = 1;
-            SelectedSpecialTile = 10;
+            SelectedSpecialTile = 11;
         }
     }
 
@@ -349,7 +349,7 @@ public partial class WorldViewModel : ReactiveObject
         {
             this.RaiseAndSetIfChanged(ref _selectedSign, value);
             SelectedTabIndex = 1;
-            SelectedSpecialTile = 11;
+            SelectedSpecialTile = 12;
         }
     }
 
@@ -360,7 +360,7 @@ public partial class WorldViewModel : ReactiveObject
         {
             this.RaiseAndSetIfChanged(ref _selectedChest, value);
             SelectedTabIndex = 1;
-            SelectedSpecialTile = 12;
+            SelectedSpecialTile = 13;
         }
     }
 

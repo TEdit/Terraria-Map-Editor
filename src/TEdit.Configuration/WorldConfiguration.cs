@@ -43,6 +43,8 @@ public class WorldConfiguration
     private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
     private static readonly Dictionary<int, string> _armorHeadNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _foodNames = new Dictionary<int, string>();
+    private static readonly Dictionary<int, string> _kiteNames = new Dictionary<int, string>();
+    private static readonly Dictionary<int, string> _critterNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _accessoryNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _dyeNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _armorBodyNames = new Dictionary<int, string>();
@@ -362,6 +364,18 @@ public class WorldConfiguration
                 curItem.IsFood = true;
             }
 
+            bool critter = (bool?)xElement.Attribute("IsCritter") ?? false;
+            if (critter)
+            {
+                _critterNames.Add(curItem.Id, curItem.Name);
+            }
+
+            bool kite = (bool?)xElement.Attribute("IsKite") ?? false;
+            if (kite)
+            {
+                _kiteNames.Add(curItem.Id, curItem.Name);
+            }
+
             bool acc = (bool?)xElement.Attribute("Accessory") ?? false;
             if (acc)
                 _accessoryNames.Add(curItem.Id, curItem.Name);
@@ -534,6 +548,16 @@ public class WorldConfiguration
     public static Dictionary<int, string> FoodNames
     {
         get { return _foodNames; }
+    }
+
+    public static Dictionary<int, string> CritterNames
+    {
+        get { return _critterNames; }
+    }
+
+    public static Dictionary<int, string> KiteNames
+    {
+        get { return _kiteNames; }
     }
 
     public static Dictionary<int, string> ArmorBodyNames
