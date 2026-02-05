@@ -33,3 +33,4 @@ jobs:
         with:
           artifacts: "release/TEdit*.zip"
           generateReleaseNotes: true
+          prerelease: ${{ contains(github.ref_name, '-') }}
