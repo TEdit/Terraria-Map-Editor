@@ -94,3 +94,31 @@ public enum LeashedCritters
     WaterStrider1 = 612,
     WaterStrider2 = 613,
 }
+
+public enum LeashedKites
+{
+    KiteBlue = 4367,
+    KiteBlueAndYellow = 4368,
+    KiteRed = 4369,
+    KiteRedAndYellow = 4370,
+    KiteYellow = 4371,
+    KiteWyvern = 4379,
+    KiteBoneSerpent = 4610,
+    KiteWorldFeeder = 4611,
+    KiteBunny = 4612,
+    KitePigron = 4613,
+    KiteManEater = 4648,
+    KiteJellyfishBlue = 4649,
+    KiteJellyfishPink = 4650,
+    KiteShark = 4651,
+    KiteSandShark = 4669,
+    KiteBunnyCorrupt = 4670,
+    KiteBunnyCrimson = 4671,
+    KiteGoldfish = 4674,
+    KiteAngryTrapper = 4675,
+    KiteKoi = 4676,
+    KiteCrawltipede = 4677,
+    KiteSpectrum = 4681,
+    KiteWanderingEye = 4683,
+    KiteUnicorn = 4684,
+}

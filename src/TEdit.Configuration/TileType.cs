@@ -75,17 +75,20 @@ public static class TileTypes
     }
     public static bool IsTileEntity(int tileType)
     {
-        return tileType == (int)TileType.DisplayDoll
-            || tileType == (int)TileType.MannequinLegacy
-            || tileType == (int)TileType.WomannequinLegacy
-            || tileType == (int)TileType.FoodPlatter
-            || tileType == (int)TileType.TrainingDummy
+        return tileType == (int)TileType.TrainingDummy
             || tileType == (int)TileType.ItemFrame
             || tileType == (int)TileType.LogicSensor
+            || tileType == (int)TileType.MannequinLegacy
+            || tileType == (int)TileType.WomannequinLegacy
+            || tileType == (int)TileType.DisplayDoll
             || tileType == (int)TileType.WeaponRackLegacy
             || tileType == (int)TileType.WeaponRack
             || tileType == (int)TileType.HatRack
-            || tileType == (int)TileType.TeleportationPylon;
+            || tileType == (int)TileType.FoodPlatter
+            || tileType == (int)TileType.TeleportationPylon
+            || tileType == (int)TileType.DeadCellsDisplayJar
+            || tileType == (int)TileType.CritterAnchor
+            || tileType == (int)TileType.KiteAnchor;
     }
 
     public static bool StopsWallsFloodFill(ushort type)

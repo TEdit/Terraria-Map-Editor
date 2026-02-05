@@ -60,9 +60,19 @@ public partial class TileEntity : ReactiveObject
             case (int)TileType.TeleportationPylon:
                 TE.Type = (byte)TileEntityType.TeleportationPylon;
                 break;
+            case (int)TileType.DeadCellsDisplayJar:
+                TE.Type = (byte)TileEntityType.DeadCellsDisplayJar;
+                TE.NetId = 0;
+                TE.Prefix = 0;
+                TE.StackSize = 0;
+                break;
             case (int)TileType.CritterAnchor:
                 TE.Type = (byte)TileEntityType.CritterAnchor;
                 TE.NetId = (int)LeashedCritters.NormalButterfly1;
+                break;
+            case (int)TileType.KiteAnchor:
+                TE.Type = (byte)TileEntityType.KiteAnchor;
+                TE.NetId = (int)LeashedKites.KiteBunny;
                 break;
         }
         return TE;
