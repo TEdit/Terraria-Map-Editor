@@ -55,3 +55,4 @@ build/
 .idea/
 nul
 .claude
+*.diff
