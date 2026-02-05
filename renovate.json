@@ -4,6 +4,7 @@
     "config:recommended",
     ":dependencyDashboard"
   ],
+  "labels": ["dependencies"],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],

@@ -5,11 +5,23 @@ body = """
     ### {{ group | striptags | trim | upper_first }}
     {% for commit in commits %}
         - {{ commit.message | upper_first }}\
-            {% if commit.github.pr_number %} \
-                ([#{{ commit.github.pr_number }}](https://github.com/TEdit/Terraria-Map-Editor/pull/{{ commit.github.pr_number }}))\
+            {% if commit.remote.pr_number %} \
+                ([#{{ commit.remote.pr_number }}](https://github.com/TEdit/Terraria-Map-Editor/pull/{{ commit.remote.pr_number }}))\
             {% endif %}\
     {% endfor %}
 {% endfor %}
+{% if github.contributors | filter(attribute="is_first_time", value=true) | length > 0 %}
+    ### 🌟 New Contributors
+    {% for contributor in github.contributors | filter(attribute="is_first_time", value=true) %}
+        - @{{ contributor.username }}
+    {%- endfor %}
+{% endif %}
+{% if github.contributors | length > 0 %}
+    ### 👥 Contributors
+    {% for contributor in github.contributors %}
+        - @{{ contributor.username }}
+    {%- endfor %}
+{% endif %}
 """
 trim = true
 render_always = false
@@ -21,6 +33,9 @@ commit_parsers = [
     # Skip merge commits
     { message = "^Merge pull request", skip = true },
     { message = "^Merge branch", skip = true },
+
+    # Skip WIP commits
+    { message = "(?i)^WIP", skip = true },
 
     # Skip dependency updates
     { message = "^chore\\(deps", skip = true },

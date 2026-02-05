@@ -30,6 +30,15 @@ jobs:
         shell: pwsh
         run: ./build.ps1 -Version ${{ github.ref_name }}
 
+      - name: Get Terraria version info
+        id: terraria
+        shell: pwsh
+        run: |
+          $data = Get-Content src/TEdit/TerrariaVersionTileData.json | ConvertFrom-Json
+          $latest = $data[-1]
+          "gameVersion=$($latest.gameVersion)" >> $env:GITHUB_OUTPUT
+          "saveVersion=$($latest.saveVersion)" >> $env:GITHUB_OUTPUT
+
       - name: Generate release notes
         id: git-cliff
         uses: orhun/git-cliff-action@v4
@@ -43,5 +52,9 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "release/TEdit*.zip"
-          body: ${{ steps.git-cliff.outputs.content }}
+          body: |
+            > [!IMPORTANT]
+            > Supports Terraria **${{ steps.terraria.outputs.gameVersion }}** (world file version ${{ steps.terraria.outputs.saveVersion }})
+
+            ${{ steps.git-cliff.outputs.content }}
           prerelease: ${{ contains(github.ref_name, '-') }}
