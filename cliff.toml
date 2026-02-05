@@ -1,0 +1,57 @@
+[changelog]
+header = ""
+body = """
+{% for group, commits in commits | group_by(attribute="group") %}
+    ### {{ group | striptags | trim | upper_first }}
+    {% for commit in commits %}
+        - {{ commit.message | upper_first }}\
+            {% if commit.github.pr_number %} \
+                ([#{{ commit.github.pr_number }}](https://github.com/TEdit/Terraria-Map-Editor/pull/{{ commit.github.pr_number }}))\
+            {% endif %}\
+    {% endfor %}
+{% endfor %}
+"""
+trim = true
+render_always = false
+
+[git]
+conventional_commits = false
+filter_unconventional = false
+commit_parsers = [
+    # Skip merge commits
+    { message = "^Merge pull request", skip = true },
+    { message = "^Merge branch", skip = true },
+
+    # Skip dependency updates
+    { message = "^chore\\(deps", skip = true },
+    { message = "(?i)^bump ", skip = true },
+
+    # Categorize by common patterns
+    { message = "(?i)^add", group = "<!-- 0 -->🎉 New Features" },
+    { message = "(?i)^initial", group = "<!-- 0 -->🎉 New Features" },
+    { message = "(?i)^implement", group = "<!-- 0 -->🎉 New Features" },
+    { message = "(?i)^introduce", group = "<!-- 0 -->🎉 New Features" },
+
+    { message = "(?i)^fix", group = "<!-- 1 -->🐛 Bug Fixes" },
+
+    { message = "(?i)^enhance", group = "<!-- 2 -->✨ Enhancements" },
+    { message = "(?i)^improve", group = "<!-- 2 -->✨ Enhancements" },
+    { message = "(?i)^update", group = "<!-- 2 -->✨ Enhancements" },
+    { message = "(?i)^adjust", group = "<!-- 2 -->✨ Enhancements" },
+
+    { message = "(?i)^refactor", group = "<!-- 3 -->🔧 Refactoring" },
+    { message = "(?i)^clean", group = "<!-- 3 -->🔧 Refactoring" },
+    { message = "(?i)^remove", group = "<!-- 3 -->🔧 Refactoring" },
+
+    { message = "(?i)^doc", group = "<!-- 4 -->📚 Documentation" },
+
+    # Catch-all
+    { message = ".*", group = "<!-- 9 -->📦 Other Changes" },
+]
+filter_commits = false
+topo_order = false
+sort_commits = "oldest"
+
+[remote.github]
+owner = "TEdit"
+repo = "Terraria-Map-Editor"

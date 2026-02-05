@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       # Install the .NET Core workload
       - name: Setup .NET
@@ -28,9 +30,18 @@ jobs:
         shell: pwsh
         run: ./build.ps1 -Version ${{ github.ref_name }}
 
+      - name: Generate release notes
+        id: git-cliff
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --verbose --latest --strip header
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "release/TEdit*.zip"
-          generateReleaseNotes: true
+          body: ${{ steps.git-cliff.outputs.content }}
           prerelease: ${{ contains(github.ref_name, '-') }}
