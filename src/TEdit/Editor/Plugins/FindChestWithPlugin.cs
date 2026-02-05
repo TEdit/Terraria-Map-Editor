@@ -11,7 +11,7 @@ public class FindChestWithPlugin : BasePlugin
     public FindChestWithPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Find Chests With";
+        Name = "搜索含有...的宝箱";
     }
 
     public override void Execute()

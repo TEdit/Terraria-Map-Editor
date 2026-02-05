@@ -11,7 +11,7 @@ namespace TEdit.Editor.Plugins
         public ReplaceAllPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Replace All Tiles";
+            Name = "更换所有方块";
         }
 
         private void PerformReplace()
@@ -32,13 +32,13 @@ namespace TEdit.Editor.Plugins
 
             if (replaceTiles && _wvm.TilePicker.TileMaskMode == MaskMode.Off)
             {
-                MessageBox.Show("Enable masking tiles to enable replace.");
+                MessageBox.Show("启用伪装块以启用替换功能.");
                 return;
             }
 
             if (replaceWalls && _wvm.TilePicker.WallMaskMode == MaskMode.Off)
             {
-                MessageBox.Show("Enable masking walls to enable replace.");
+                MessageBox.Show("启用伪装墙以启用替换功能.");
                 return;
             }
 

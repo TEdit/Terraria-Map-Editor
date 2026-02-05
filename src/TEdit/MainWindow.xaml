@@ -73,7 +73,7 @@
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_autosave}" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
                     <MenuItem Header="{x:Static p:Language.menu_file_autoupdate}" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
-                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Command="{Binding CheckUpdatesCommand}" />
                     <MenuItem Header="{x:Static p:Language.menu_telemetry}" IsCheckable="True" IsChecked="{Binding EnableTelemetry}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_language}">
@@ -123,7 +123,7 @@
                         <MenuItem.Template>
                             <ControlTemplate TargetType="{x:Type MenuItem}">
                                 <DockPanel Margin="22 1 1 1">
-                                    <Label Content="Textures Visible " DockPanel.Dock="Left" />
+                                    <Label Content="可见材质" DockPanel.Dock="Left" />
                                     <Slider Value="{Binding TextureVisibilityZoomLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="3" Maximum="10" SmallChange="1" Width="80" />
                                     <Label Content="{Binding TextureVisibilityZoomLevel, Mode=OneWay}" Width="24" Margin="5 0 2 0" DockPanel.Dock="Right" />
                                 </DockPanel>
@@ -136,7 +136,6 @@
 
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_help}">
-                    <MenuItem Header="News" Command="{Binding ShowNewsCommand}" Icon="{StaticResource TB_LogIcon}"/>
                     <MenuItem Header="{x:Static p:Language.menu_help_wiki}" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"/>
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_help_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />

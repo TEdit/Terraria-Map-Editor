@@ -1,28 +1,30 @@
-﻿using System.Linq;
-using System;
-using System.Collections.Generic;
-
-using Terraria;
-using Terraria.Localization;
-using Terraria.Initializers;
-using Terraria.Social;
-using System.Text;
-using Terraria.ObjectData;
-using System.IO;
-using System.Xml.Linq;
-using Terraria.Map;
-using System.Security.Cryptography.X509Certificates;
-using Terraria.GameContent.Bestiary;
+﻿using System;
 using System.Collections;
-using System.Reflection;
-using Terraria.ID;
-using Terraria.IO;
-using Terraria.WorldBuilding;
-using Terraria.Server;
-using System.Threading.Tasks;
-using System.Threading;
-using Terraria.GameContent.UI.States;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.UI.States;
+using Terraria.ID;
+using Terraria.Initializers;
+using Terraria.IO;
+using Terraria.Localization;
+using Terraria.Map;
+using Terraria.ObjectData;
+using Terraria.Server;
+using Terraria.Social;
+using Terraria.WorldBuilding;
 
 namespace SettingsFileUpdater.TerrariaHost
 {
@@ -30,12 +32,10 @@ namespace SettingsFileUpdater.TerrariaHost
     public class TerrariaWrapper : Terraria.Main
 
     {
-        public static TerrariaWrapper Initialize(bool dedServer = false)
+        public static new bool dedServ = true;
+
+        public static TerrariaWrapper Initialize()
         {
-
-            TerrariaWrapper.worldName = "world";
-            TerrariaWrapper.dedServ = true;
-
 
             var terrariaAsm = typeof(Terraria.Program).Assembly;
             //var init = typeof(Terraria.Program).GetMethod("ForceLoadAssembly", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static, null, new Type[] { typeof(Assembly), typeof(bool) }, null);
@@ -47,41 +47,73 @@ namespace SettingsFileUpdater.TerrariaHost
             //Program.SetupLogging();
             //Platform.Get<IWindowService>().SetQuickEditEnabled(false);
 
-            var main = new TerrariaWrapper();
+            var wrapper = RunGame();
+            return wrapper;
+        }
 
+        private Thread _serverThread;
 
-            try
+        public static TerrariaWrapper RunGame()
+        {
+            // Set dedServ BEFORE any access to Terraria.Main to ensure static initialization runs in server mode
+            Main.dedServ = true;
+
+            LanguageManager.Instance.SetLanguage(GameCulture.DefaultCulture);
+
+            var game = new TerrariaWrapper();
+
+            Lang.InitializeLegacyLocalization();
+            SocialAPI.Initialize();
+            MapHelper.Initialize();
+            LaunchInitializer.LoadParameters((Main)game);
+            TerrariaWrapper.OnEnginePreload += new Action(Terraria.Program.StartForceLoad);
+
+            // Run DedServ on a background thread so data extractors can execute
+            game._serverThread = new Thread(() =>
             {
-                Lang.InitializeLegacyLocalization();
-                SocialAPI.Initialize(null);
-                LaunchInitializer.LoadParameters(main);
-                Main.OnEnginePreload += new Action(Terraria.Program.StartForceLoad);
-                // main.InitBase();
-
-                if (dedServer)
+                try
                 {
-                    Task.Factory.StartNew(() => main.DedServ());
-                    Thread.Sleep(2000);
-                    main.Run();
+                    if (TerrariaWrapper.dedServ)
+                        game.DedServ();
+                    game.Run();
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Server thread error: {ex.Message}");
+                    Console.WriteLine(ex.StackTrace);
+                }
+            });
+            game._serverThread.IsBackground = true;
+            game._serverThread.Name = "Server Thread";
+            game._serverThread.Start();
 
-                return main;
-
-            }
-            catch (Exception ex)
+            // Wait for content initialization to complete
+            // DedServ calls Initialize() which populates ContentSamples
+            Console.WriteLine("Waiting for server initialization...");
+            while (ContentSamples.ItemsByType == null || ContentSamples.ItemsByType.Count == 0)
             {
-                return null;
+                Thread.Sleep(250);
             }
+            Console.WriteLine($"Server initialized. {ContentSamples.ItemsByType.Count} items loaded.");
+
+            return game;
         }
 
         public static string Localize(string value) =>
             Language.GetTextValue(value);
 
-        public TerrariaWrapper() : base()
+        public TerrariaWrapper()
         {
-
+            instance = this;
         }
+        public void LoadWorld(string worldName)
+        {
+            bool cloudSave = false;
+            WorldFileData worldFileData = new WorldFileData(Main.GetWorldPathFromName(worldName, cloudSave), cloudSave);
+            ActiveWorldFileData = worldFileData;
 
+            WorldFile.LoadWorld();
+        }
         public void MakeWorldFile(string seedName, string worldname, int gameMode = 0)
         {
             GameMode = gameMode;
@@ -116,7 +148,6 @@ namespace SettingsFileUpdater.TerrariaHost
 
             seedName = seedName.Trim();
             ActiveWorldFileData.SetSeed(seedName);
-            UIWorldCreation.ProcessSpecialWorldSeeds(seedName);
             GenerationProgress progress = new GenerationProgress();
 
 
@@ -273,7 +304,19 @@ namespace SettingsFileUpdater.TerrariaHost
 
             for (int i = 0; i < TileID.Count; i++)
             {
-                string origName = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString())?.Attribute("Name").Value;
+
+                var color = MapHelper.GetMapTileXnaColor(MapTile.Create((ushort)i, byte.MaxValue, 0));
+
+                var node = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString());
+                string origName = node?.Attribute("Name").Value;
+
+                string colorHex = node?.Attributes().FirstOrDefault(a => a.Name == "Color")?.Value;
+
+                if (string.IsNullOrEmpty(colorHex) || i > 659)
+                {
+                    colorHex = color.Hex4();
+                    colorHex = colorHex.Substring(6, 2) + colorHex.Substring(0, 6);
+                }
 
                 var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
                 //var creatingItems = curItems.Where(x => x.createTile == i).ToList();
@@ -287,7 +330,8 @@ namespace SettingsFileUpdater.TerrariaHost
                 var tile = new XElement(
                     "Tile",
                     new XAttribute("Id", i.ToString()),
-                    new XAttribute("Name", itemName));
+                    new XAttribute("Name", itemName),
+                    new XAttribute("Color", colorHex));
                 root.Add(tile);
 
                 if (tileLighted[i]) { tile.Add(new XAttribute("Light", "true")); }
@@ -405,7 +449,7 @@ namespace SettingsFileUpdater.TerrariaHost
         {
             foreach (var npc in GetNpcs(true))
             {
-                int killId = Item.NPCtoBanner(npc.BannerID());
+                int killId = BannerSystem.NPCtoBanner(npc.BannerID());
                 if (killId <= 0 || npc.ExcludedFromDeathTally())
                     killId = -1;
 
@@ -509,7 +553,7 @@ namespace SettingsFileUpdater.TerrariaHost
                     npc.SetDefaults(info.NetId);
                 }
 
-                int killId = Item.NPCtoBanner(npc.BannerID());
+                int killId = BannerSystem.NPCtoBanner(npc.BannerID());
                 if (killId <= 0 || npc.ExcludedFromDeathTally())
                     killId = -1;
 
@@ -533,27 +577,29 @@ namespace SettingsFileUpdater.TerrariaHost
 
         public string GetMaxCounts()
         {
-            string TileFrameData = "";
+            // Collect framed tile IDs.
+            var framed = new List<int>();
             for (int a = 0; a < Main.tileFrameImportant.Length; a++)
             {
-                if ((bool)Main.tileFrameImportant[a])
-                {
-                    TileFrameData = TileFrameData + a + ", ";
-                }
+                if (Main.tileFrameImportant[a])
+                    framed.Add(a);
             }
 
+            // New format:
+            // - saveVersions is an ARRAY of objects, so we output only the object.
+            // - No "    \"315\": { ... }" wrapper and no trailing comma key structure changes.
             return string.Join("", new string[]
             {
                 Environment.NewLine,
-                "    \"" + Main.curRelease + "\": {" + Environment.NewLine,
+                "    {" + Environment.NewLine,
                 "      \"saveVersion\": " + Main.curRelease + "," + Environment.NewLine,
                 "      \"gameVersion\": \"" + Main.versionNumber + "\"," + Environment.NewLine,
-                "      \"MaxTileId\": " + (TileID.Count - 1) + "," + Environment.NewLine,
-                "      \"MaxWallId\": " + (WallID.Count - 1) + "," + Environment.NewLine,
-                "      \"MaxItemId\": " + (ItemID.Count - 1) + "," + Environment.NewLine,
-                "      \"MaxNpcId\": " + (NPCID.Count - 1) + "," + Environment.NewLine,
+                "      \"maxTileId\": " + (TileID.Count - 1) + "," + Environment.NewLine,
+                "      \"maxWallId\": " + (WallID.Count - 1) + "," + Environment.NewLine,
+                "      \"maxItemId\": " + (ItemID.Count - 1) + "," + Environment.NewLine,
+                "      \"maxNpcId\": " + (NPCID.Count - 1) + "," + Environment.NewLine,
                 "      \"maxMoonId\": " + Main.maxMoons + "," + Environment.NewLine,
-                "      \"framedTileIds\": [ " + TileFrameData.Substring(0, TileFrameData.Length - 2) + " ]" + Environment.NewLine,
+                "      \"framedTileIds\": [ " + string.Join(", ", framed) + " ]" + Environment.NewLine,
                 "    },"
             });
         }
@@ -577,6 +623,7 @@ namespace SettingsFileUpdater.TerrariaHost
 
 
         //public Terraria.Item GetN
+
 
         public List<string> Prefixes()
         {
@@ -609,6 +656,7 @@ namespace SettingsFileUpdater.TerrariaHost
         public Terraria.Recipe[] Recipes
         {
             get { return recipe; }
+
         }
 
         private string GetItemType(Item i)
@@ -632,9 +680,9 @@ namespace SettingsFileUpdater.TerrariaHost
         public List<ItemId> GetItems()
         {
             var banners = new Dictionary<int, int>();
-            for (int bannerId = 0; bannerId < Terraria.Main.MaxBannerTypes; bannerId++)
+            for (int bannerId = 0; bannerId < BannerSystem.MaxBannerTypes; bannerId++)
             {
-                int itemId = Terraria.Item.BannerToItem(bannerId);
+                int itemId = BannerSystem.BannerToItem(bannerId);
                 banners[itemId] = bannerId;
             }
 
@@ -671,6 +719,22 @@ namespace SettingsFileUpdater.TerrariaHost
             }
 
             return sitems;
+        }
+
+        /// <summary>
+        /// Returns the generated MapColors XML as a string (optional original file can override BuildSafe).
+        /// </summary>
+        public string GetMapColorsXml(string optionalOriginalPath = null)
+        {
+            return MapColorsExporter.BuildMapColorsXmlString(optionalOriginalPath);
+        }
+
+        /// <summary>
+        /// Writes the generated MapColors XML to a file (optional original file can override BuildSafe).
+        /// </summary>
+        public void WriteMapColorsXml(string outputPath, string optionalOriginalPath = null)
+        {
+            MapColorsExporter.WriteMapColorsXml(outputPath, optionalOriginalPath);
         }
     }
 }

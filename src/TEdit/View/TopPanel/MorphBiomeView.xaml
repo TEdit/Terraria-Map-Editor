@@ -22,7 +22,7 @@
             <ComboBox Width="200"
                   ItemsSource="{Binding Source={x:Static config:WorldConfiguration.Biomes}, Mode=OneTime}" 
                   SelectedValue="{Binding MorphToolOptions.TargetBiome}" />
-            <TextBlock Text="Moss Type" Margin="2" />
+      <TextBlock Text="苔藓型" Margin="2" />
             <ComboBox Width="200"
                   ItemsSource="{Binding Source={x:Static config:WorldConfiguration.MossTypes}, Mode=OneTime}" 
                       SelectedValuePath="Value" 
@@ -30,11 +30,11 @@
                   SelectedValue="{Binding MorphToolOptions.MossType}" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="2">
-            <TextBlock Text="Options" />
-            <CheckBox Content="Base Tiles" IsChecked="{Binding MorphToolOptions.EnableBaseTiles}"/>
-            <CheckBox Content="Moss" IsChecked="{Binding MorphToolOptions.EnableMoss}"/>
-            <CheckBox Content="Evil" IsChecked="{Binding MorphToolOptions.EnableEvilTiles}"/>
-            <CheckBox Content="Decorations" IsChecked="{Binding MorphToolOptions.EnableSprites}"/>
+            <TextBlock Text="选项" />
+            <CheckBox Content="基础方块" IsChecked="{Binding MorphToolOptions.EnableBaseTiles}"/>
+            <CheckBox Content="苔藓" IsChecked="{Binding MorphToolOptions.EnableMoss}"/>
+            <CheckBox Content="邪恶" IsChecked="{Binding MorphToolOptions.EnableEvilTiles}"/>
+            <CheckBox Content="装饰" IsChecked="{Binding MorphToolOptions.EnableSprites}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

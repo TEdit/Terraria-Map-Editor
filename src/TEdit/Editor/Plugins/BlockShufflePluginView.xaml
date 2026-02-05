@@ -3,22 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
         WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico"
-        Title="Shuffle Block Locations">
+        Title="随机打乱块位置">
     <Grid Background="{StaticResource ControlBackgroundBrush}">
         <StackPanel Margin="5">
-            <Label Content="Seed: (Leave blank for random)"/>
+            <Label Content="种子: (留空则为随机)"/>
             <TextBox x:Name="SeedTextBox"/>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Shuffle:" Margin="0,0,5,0"/>
-                <RadioButton x:Name="SelectionRadio" Content="Selection" Margin="5,0"/>
-                <RadioButton x:Name="WorldRadio" Content="World" Margin="5,0"/>
+                <Label Content="打乱:" Margin="0,0,5,0"/>
+                <RadioButton x:Name="SelectionRadio" Content="自选" Margin="5,0"/>
+                <RadioButton x:Name="WorldRadio" Content="世界" Margin="5,0"/>
             </StackPanel>
-            <CheckBox x:Name="IncludeTileEntitiesCheckBox" Content="Include Tile-Entities" Checked="IncludeTileEntitiesCheckBox_Checked"/>
-            <CheckBox x:Name="SensitivePlatformCheckBox" Content="Keep blocks below special Tile-Entities" IsChecked="True"/>
-            <CheckBox x:Name="UndoCheckBox" Content="Enable undo (Slow)" IsChecked="True"/>
+            <CheckBox x:Name="IncludeTileEntitiesCheckBox" Content="包含实体方块" Checked="IncludeTileEntitiesCheckBox_Checked"/>
+            <CheckBox x:Name="SensitivePlatformCheckBox" Content="在特殊的方块实体(如宝箱等可交互的方块)下方保留方块." IsChecked="True"/>
+            <CheckBox x:Name="UndoCheckBox" Content="允许撤销 (慢)" IsChecked="True"/>
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="3" Margin="0,5">
                 <StackPanel Margin="2,0,2,2">
-                    <Label Content="% of empty blocks to be swapped:"/>
+                    <Label Content="打乱空块的 %:"/>
                     <Grid Margin="0,0,0,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -27,14 +27,14 @@
                         <Slider x:Name="ReplaceEmptySlider" Minimum="5" Maximum="100" Value="100" SmallChange="5" LargeChange="10" TickFrequency="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True"/>
                         <Label Content="{Binding Value, ElementName=ReplaceEmptySlider}" ContentStringFormat="{}{0}%" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
                     </Grid>
-                    <CheckBox x:Name="ReplaceWallCheckBox" Content ="Also count walls (and wires) as empty" IsChecked="True"/>
-                    <CheckBox x:Name="ReplaceLiquidCheckBox" Content="Also count liquids as empty (best with walls)"/>
-                    <CheckBox x:Name="ReplaceEverythingCheckBox" Content="Apply %-chance to everything" Checked="ReplaceEverythingCheckBox_Checked" Unchecked="ReplaceEverythingCheckBox_Unchecked"/>
+                    <CheckBox x:Name="ReplaceWallCheckBox" Content ="将墙壁(和电线)视为空地" IsChecked="True"/>
+                    <CheckBox x:Name="ReplaceLiquidCheckBox" Content="将液体视为空(最好有壁)"/>
+                    <CheckBox x:Name="ReplaceEverythingCheckBox" Content="对所有事物应用%的几率" Checked="ReplaceEverythingCheckBox_Checked" Unchecked="ReplaceEverythingCheckBox_Unchecked"/>
                 </StackPanel>
             </Border>
             <Grid>
-                <Button Content="Cancel" HorizontalAlignment="Left" Padding="20,3" Click="CancelButtonClick"/>
-                <Button Content="Shuffle" HorizontalAlignment="Right" Padding="20,3" Click="OkButtonClick"/>
+                <Button Content="取消" HorizontalAlignment="Left" Padding="20,3" Click="CancelButtonClick"/>
+                <Button Content="打乱" HorizontalAlignment="Right" Padding="20,3" Click="OkButtonClick"/>
             </Grid>
         </StackPanel>
     </Grid>

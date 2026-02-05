@@ -125,6 +125,13 @@ public class WorldTests
     }
 
     [Theory]
+    [InlineData(".\\WorldFiles\\v1.4.5.0.wld")]
+    public void LoadWorldV2_145x_Test(string fileName)
+    {
+        var (w, er) = World.LoadWorld(fileName);
+    }
+
+    [Theory]
     [InlineData(".\\WorldFiles\\console.wld")]
     public void SaveWorld_Console_Test(string fileName)
     {
@@ -298,10 +305,24 @@ public class WorldTests
     }
 
     [Theory]
+    [InlineData(".\\WorldFiles\\v1.4.5.0.wld")]
+    public void SaveWorldV2_145x_Test(string fileName)
+    {
+        var (w, er) = World.LoadWorld(fileName);
+
+        var saveTest = fileName + ".test";
+        World.Save(w, saveTest, incrementRevision: false);
+
+        // essentially, just a save and load test
+        var w2 = World.LoadWorld(saveTest);
+    }
+
+    [Theory]
     [InlineData(".\\WorldFiles\\v1.4.4.1.wld")]
     [InlineData(".\\WorldFiles\\v1.4.4.2.wld")]
     [InlineData(".\\WorldFiles\\v1.4.4.3.wld")]
     [InlineData(".\\WorldFiles\\v1.4.4.4.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.5.0.wld")]
     [InlineData(".\\WorldFiles\\console.wld")]
     public void SaveWorld_RLE_Compression_Test(string fileName)
     {

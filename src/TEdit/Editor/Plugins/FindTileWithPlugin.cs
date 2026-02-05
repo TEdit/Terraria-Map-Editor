@@ -12,7 +12,7 @@ public class FindTileWithPlugin : BasePlugin
     public FindTileWithPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Find Sprite, Block, or Wall";
+        Name = "搜索物品,方块或墙壁";
     }
 
     public override void Execute()
@@ -87,7 +87,7 @@ public class FindTileWithPlugin : BasePlugin
             {
                 if (locations.Count > view.MaxVolumeLimit - 1)
                 {
-                    locations.Add(new Tuple<string, Vector2Float>("HALTING! Too Many Entrees!: ", new Vector2Float(0, 0)));
+                    locations.Add(new Tuple<string, Vector2Float>("停下! 太多了!: ", new Vector2Float(0, 0)));
                     FindTileLocationResultView resultView0 = new FindTileLocationResultView(locations, ItemsFound + "+");
                     resultView0.Show();
                     return;

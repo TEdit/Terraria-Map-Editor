@@ -194,7 +194,7 @@
                       TextSearch.TextPath="Name" />
                 </tedit:AutoGrid>
             </GroupBox>
-            <GroupBox Header="Liquid" Style="{StaticResource LiquidVisibleStyle}">
+            <GroupBox Header="液体" Style="{StaticResource LiquidVisibleStyle}">
                 <StackPanel VerticalAlignment="Top">
                     <ComboBox ItemsSource="{StaticResource LiquidType}" 
                           SelectedValue="{Binding TilePicker.LiquidType}" 
@@ -259,7 +259,7 @@
                     <CheckBox IsChecked="{Binding TilePicker.UsePaintMasks}" Content="{x:Static p:Language.tool_paint_mask}" HorizontalAlignment="Left" />
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Wire" Style="{StaticResource WireStyle}">
+      <GroupBox Header="电线" Style="{StaticResource WireStyle}">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
                         <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="{x:Static p:Language.tool_paint_wire_red}" Width="75" VerticalAlignment="Center" Height="22"/>
@@ -276,7 +276,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Wire Replacement" Style="{StaticResource WireStyle}">
+            <GroupBox Header="导线替换" Style="{StaticResource WireStyle}">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                         <CheckBox IsChecked="{Binding TilePicker.WireReplaceRed}" Content="{x:Static p:Language.menu_layers_wire_red}" Width="75" VerticalAlignment="Center" Height="22" />
@@ -312,7 +312,7 @@
                 </StackPanel>
             </StackPanel>
             </GroupBox>
-            <GroupBox Header="Minecart Track" Style="{StaticResource TrackStyle}">
+      <GroupBox Header="矿车轨道" Style="{StaticResource TrackStyle}">
                 <StackPanel Orientation="Vertical" >
                     <ComboBox ItemsSource="{StaticResource TrackModeEnum}" 
                           SelectedValue="{Binding TilePicker.TrackMode}" 

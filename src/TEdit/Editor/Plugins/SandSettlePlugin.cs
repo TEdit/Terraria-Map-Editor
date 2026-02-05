@@ -11,7 +11,7 @@ public sealed class SandSettlePlugin : BasePlugin
     public SandSettlePlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Settle Sand";
+        Name = "静沙";
     }
 
     public override void Execute()

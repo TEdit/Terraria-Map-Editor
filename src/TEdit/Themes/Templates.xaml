@@ -103,4 +103,10 @@
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
 
+  <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.MountNames}, Mode=OneTime}" x:Key="MountCollection">
+    <CollectionViewSource.SortDescriptions>
+      <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+    </CollectionViewSource.SortDescriptions>
+  </CollectionViewSource>
+
 </ResourceDictionary>

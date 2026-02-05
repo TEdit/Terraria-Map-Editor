@@ -107,7 +107,7 @@
                 </StackPanel>
             </TabItem>
             <!-- SPRITES -->
-            <TabItem Header="{x:Static p:Language.menu_filter_header_sprites}">
+            <TabItem Header="{x:Static p:Language.menu_filter_header_sprites}" Height="21" VerticalAlignment="Top">
                 <StackPanel Margin="10,0,10,0" Height="365">
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,5" VerticalAlignment="Center">
                         <TextBlock Foreground="Snow" VerticalAlignment="Center" Margin="0,0,5,0">

@@ -1,19 +1,16 @@
-﻿using System;
-using TEdit.Common.Reactive;
+using System;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using TEdit.Geometry;
 
 namespace TEdit.Editor;
 
-public class Selection : ObservableObject, ISelection
+public partial class Selection : ReactiveObject, ISelection
 {
+    [Reactive]
     private RectangleInt32 _selectionArea = new RectangleInt32(0, 0, 0, 0);
+    [Reactive]
     private bool _isActive;
-
-    public bool IsActive
-    {
-        get { return _isActive; }
-        set { Set(nameof(IsActive), ref _isActive, value); }
-    }
 
     public bool IsValid(Vector2Int32 p)
     {
@@ -25,12 +22,6 @@ public class Selection : ObservableObject, ISelection
             return true;
 
         return SelectionArea.Contains(x, y);
-    }
-
-    public RectangleInt32 SelectionArea
-    {
-        get { return _selectionArea; }
-        set { Set(nameof(SelectionArea), ref _selectionArea, value); }
     }
 
     public void SetRectangle(Vector2Int32 p1, Vector2Int32 p2)

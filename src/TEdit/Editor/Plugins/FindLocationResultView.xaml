@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" 
         SizeToContent="WidthAndHeight"
-        Title="FindChestWithPlugin"
+        Title="搜索含有...的宝箱"
         ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico" 
@@ -15,8 +15,8 @@
             <RowDefinition Height="*" MinHeight="150"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Text="These location could be found." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="{StaticResource TextBrush}" Grid.Row="0"/>
+        <TextBlock Text="在这些位置可以找到该物品." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="{StaticResource TextBrush}" Grid.Row="0"/>
         <ListBox Name="LocationList" MouseDoubleClick="ListBoxMouseDoubleClick" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        <Button Margin="5" Content="Close" HorizontalAlignment="Center" Padding="20, 3" Click="CloseButtonClick" Grid.Row="2"/>
+        <Button Margin="5" Content="关闭" HorizontalAlignment="Center" Padding="20, 3" Click="CloseButtonClick" Grid.Row="2"/>
     </Grid>
 </Window>

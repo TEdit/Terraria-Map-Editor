@@ -281,6 +281,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Desactivar máscara</value>
   </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Copiar primer elemento</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>Editar</value>
   </data>
@@ -290,11 +293,11 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Cortar</value>
   </data>
-  <data name="menu_edit_expand" xml:space="preserve">
-    <value>Expandir mundo</value>
-  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Eliminar selección</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Expandir mundo</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>Pegar</value>
@@ -334,6 +337,69 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="menu_file_update" xml:space="preserve">
     <value>Buscar actualizaciones</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>Modo de fondo</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Costumbre</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>Filtrar portapapeles</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>Modo de filtro</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Escala de grises</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Líquidos</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>duendes</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Azulejos</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Paredes</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>alambres</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Esconder</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Verificar todo</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Desmarcar todo</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Filtro avanzado</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Transparente</value>
   </data>
   <data name="menu_help" xml:space="preserve">
     <value>Ayuda</value>
@@ -425,6 +491,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Cable amarillo</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Pegar en todas las ranuras</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
   </data>
@@ -436,6 +505,33 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>Alejar</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Mover todos los cuadros</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Cantidad de movimiento (fotogramas)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>DE ACUERDO</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Restaurar</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Marcos seleccionados</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Establecer UV manuales en todos</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Establecer valores</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>Editor UV</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Es necesario reiniciar</value>
@@ -534,6 +630,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
     <value>Ropa de maniquí</value>
   </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>Mount</value>
+  </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Contenido del plato</value>
   </data>
@@ -542,6 +641,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="specialtile_label_signtype" xml:space="preserve">
     <value>Tipo de letrero</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>Arma</value>
   </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Objetos de estante de armas</value>
@@ -1361,101 +1463,5 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar fondo</value>
-  </data>
-  <data name="menu_filter_header_tiles" xml:space="preserve">
-    <value>Azulejos</value>
-  </data>
-  <data name="menu_filter_header_walls" xml:space="preserve">
-    <value>Paredes</value>
-  </data>
-  <data name="menu_filter_header_liquids" xml:space="preserve">
-    <value>Líquidos</value>
-  </data>
-  <data name="menu_filter_header_wires" xml:space="preserve">
-    <value>alambres</value>
-  </data>
-  <data name="menu_filter_tab_searchname" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="menu_filter_tab_check_all" xml:space="preserve">
-    <value>Verificar todo</value>
-  </data>
-  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
-    <value>Desmarcar todo</value>
-  </data>
-  <data name="menu_filter_filtermode" xml:space="preserve">
-    <value>Modo de filtro</value>
-  </data>
-  <data name="menu_filter_backgroundmode" xml:space="preserve">
-    <value>Modo de fondo</value>
-  </data>
-  <data name="menu_filter_hide" xml:space="preserve">
-    <value>Esconder</value>
-  </data>
-  <data name="menu_filter_grayscale" xml:space="preserve">
-    <value>Escala de grises</value>
-  </data>
-  <data name="menu_filter_normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="menu_filter_transparent" xml:space="preserve">
-    <value>Transparente</value>
-  </data>
-  <data name="menu_filter_custom" xml:space="preserve">
-    <value>Costumbre</value>
-  </data>
-  <data name="menu_filter_cancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="menu_filter_disable" xml:space="preserve">
-    <value>Desactivar</value>
-  </data>
-  <data name="menu_filter_apply" xml:space="preserve">
-    <value>Aplicar</value>
-  </data>
-  <data name="menu_uveditor_moveallframes" xml:space="preserve">
-    <value>Mover todos los cuadros</value>
-  </data>
-  <data name="menu_uveditor_moveamount" xml:space="preserve">
-    <value>Cantidad de movimiento (fotogramas)</value>
-  </data>
-  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
-    <value>Establecer UV manuales en todos</value>
-  </data>
-  <data name="menu_uveditor_selectedframes" xml:space="preserve">
-    <value>Marcos seleccionados</value>
-  </data>
-  <data name="menu_uveditor_setvalues" xml:space="preserve">
-    <value>Establecer valores</value>
-  </data>
-  <data name="menu_uveditor_cancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="menu_uveditor_restore" xml:space="preserve">
-    <value>Restaurar</value>
-  </data>
-  <data name="menu_uveditor_ok" xml:space="preserve">
-    <value>DE ACUERDO</value>
-  </data>
-  <data name="menu_filter" xml:space="preserve">
-    <value>Filtrar</value>
-  </data>
-  <data name="menu_filter_title" xml:space="preserve">
-    <value>Filtro avanzado</value>
-  </data>
-  <data name="menu_uveditor_title" xml:space="preserve">
-    <value>Editor UV</value>
-  </data>
-  <data name="menu_filter_filterclipboard" xml:space="preserve">
-    <value>Filtrar portapapeles</value>
-  </data>
-  <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>duendes</value>
-  </data>
-  <data name="menu_pasteall" xml:space="preserve">
-    <value>Pegar en todas las ranuras</value>
-  </data>
-  <data name="menu_copyfirstitem" xml:space="preserve">
-    <value>Copiar primer elemento</value>
   </data>
 </root>

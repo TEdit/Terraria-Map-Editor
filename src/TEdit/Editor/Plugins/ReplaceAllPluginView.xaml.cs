@@ -23,4 +23,9 @@ public partial class ReplaceAllPluginView : Window
         DialogResult = true;
         Close();
     }
+
+    private void PaintModeView_Loaded(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

@@ -3,19 +3,23 @@
   <PropertyGroup>
     <TargetFrameworks>net10.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
-
   </PropertyGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="bodong.PropertyModels" Version="11.3.3.2" />
+    <PackageReference Include="bodong.PropertyModels" Version="11.3.11.1" />
     <PackageReference Include="ReactiveUI" Version="22.3.1" />
-    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+    <PackageReference Include="ReactiveUI.SourceGenerators" Version="2.6.1" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
     <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Config\" />
   </ItemGroup>
 
 </Project>

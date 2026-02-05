@@ -281,6 +281,9 @@
   <data name="MaskMode_Off" xml:space="preserve">
     <value>禁用覆盖</value>
   </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>复制第一项</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>编辑</value>
   </data>
@@ -290,11 +293,11 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>裁剪世界</value>
   </data>
-  <data name="menu_edit_expand" xml:space="preserve">
-    <value>拓展世界</value>
-  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>删除选择区</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>拓展世界</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>粘贴</value>
@@ -334,6 +337,69 @@
   </data>
   <data name="menu_file_update" xml:space="preserve">
     <value>检查更新</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>申请</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>背景模式</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>自定义</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>过滤剪贴板</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>过滤模式</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>灰度</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>液体</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>物品</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>瓷砖</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>墙壁</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>电线</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>普通的</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>检查全部</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>取消选中全部</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>高级过滤器</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>透明的</value>
   </data>
   <data name="menu_help" xml:space="preserve">
     <value>帮助</value>
@@ -425,6 +491,9 @@
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>黄电线</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>粘贴到所有插槽</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>插件</value>
   </data>
@@ -436,6 +505,33 @@
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>缩小</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>移动所有帧</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>移动量（帧）</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>好的</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>恢复</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>选定的帧</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>将手动 UV 设置为全部</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>设定值</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>紫外线编辑器</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>需要重新启动</value>
@@ -534,6 +630,9 @@
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
     <value>模特服装</value>
   </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>骑乘</value>
+  </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>盘内物品</value>
   </data>
@@ -542,6 +641,9 @@
   </data>
   <data name="specialtile_label_signtype" xml:space="preserve">
     <value>标牌类型</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>武器</value>
   </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>武器架物品</value>
@@ -667,7 +769,7 @@
     <value>粘贴液体</value>
   </data>
   <data name="tool_clipboard_ispastesprite" xml:space="preserve">
-    <value>粘贴精灵</value>
+    <value>粘贴物品</value>
   </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
     <value>粘贴物块</value>
@@ -1359,103 +1461,22 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>普通轨道</value>
   </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>蓝线</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>绿线</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>关掉</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>红线</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>黄线</value>
+  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
-  </data>
-  <data name="menu_filter_header_tiles" xml:space="preserve">
-    <value>瓷砖</value>
-  </data>
-  <data name="menu_filter_header_walls" xml:space="preserve">
-    <value>墙壁</value>
-  </data>
-  <data name="menu_filter_header_liquids" xml:space="preserve">
-    <value>液体</value>
-  </data>
-  <data name="menu_filter_header_wires" xml:space="preserve">
-    <value>电线</value>
-  </data>
-  <data name="menu_filter_tab_searchname" xml:space="preserve">
-    <value>姓名</value>
-  </data>
-  <data name="menu_filter_tab_check_all" xml:space="preserve">
-    <value>检查全部</value>
-  </data>
-  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
-    <value>取消选中全部</value>
-  </data>
-  <data name="menu_filter_filtermode" xml:space="preserve">
-    <value>过滤模式</value>
-  </data>
-  <data name="menu_filter_backgroundmode" xml:space="preserve">
-    <value>背景模式</value>
-  </data>
-  <data name="menu_filter_hide" xml:space="preserve">
-    <value>隐藏</value>
-  </data>
-  <data name="menu_filter_grayscale" xml:space="preserve">
-    <value>灰度</value>
-  </data>
-  <data name="menu_filter_normal" xml:space="preserve">
-    <value>普通的</value>
-  </data>
-  <data name="menu_filter_transparent" xml:space="preserve">
-    <value>透明的</value>
-  </data>
-  <data name="menu_filter_custom" xml:space="preserve">
-    <value>自定义</value>
-  </data>
-  <data name="menu_filter_cancel" xml:space="preserve">
-    <value>取消</value>
-  </data>
-  <data name="menu_filter_disable" xml:space="preserve">
-    <value>禁用</value>
-  </data>
-  <data name="menu_filter_apply" xml:space="preserve">
-    <value>申请</value>
-  </data>
-  <data name="menu_uveditor_moveallframes" xml:space="preserve">
-    <value>移动所有帧</value>
-  </data>
-  <data name="menu_uveditor_moveamount" xml:space="preserve">
-    <value>移动量（帧）</value>
-  </data>
-  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
-    <value>将手动 UV 设置为全部</value>
-  </data>
-  <data name="menu_uveditor_selectedframes" xml:space="preserve">
-    <value>选定的帧</value>
-  </data>
-  <data name="menu_uveditor_setvalues" xml:space="preserve">
-    <value>设定值</value>
-  </data>
-  <data name="menu_uveditor_cancel" xml:space="preserve">
-    <value>取消</value>
-  </data>
-  <data name="menu_uveditor_restore" xml:space="preserve">
-    <value>恢复</value>
-  </data>
-  <data name="menu_uveditor_ok" xml:space="preserve">
-    <value>好的</value>
-  </data>
-  <data name="menu_filter" xml:space="preserve">
-    <value>筛选</value>
-  </data>
-  <data name="menu_filter_title" xml:space="preserve">
-    <value>高级过滤器</value>
-  </data>
-  <data name="menu_uveditor_title" xml:space="preserve">
-    <value>紫外线编辑器</value>
-  </data>
-  <data name="menu_filter_filterclipboard" xml:space="preserve">
-    <value>过滤剪贴板</value>
-  </data>
-  <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>精灵</value>
-  </data>
-  <data name="menu_pasteall" xml:space="preserve">
-    <value>粘贴到所有插槽</value>
-  </data>
-  <data name="menu_copyfirstitem" xml:space="preserve">
-    <value>复制第一项</value>
   </data>
 </root>

@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using TEdit.Common.Reactive;
-using TEdit.ViewModel;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using XNA = Microsoft.Xna.Framework;
 using TEdit.Terraria;
 using System.Collections.Generic;
@@ -10,20 +10,38 @@ using System.Linq;
 using TEdit.Geometry;
 using TEdit.Configuration;
 using TEdit.Editor.Undo;
+using TEdit.ViewModel;
 
 namespace TEdit.Editor.Clipboard;
 
-public class ClipboardManager : ObservableObject
+public partial class ClipboardManager : ReactiveObject
 {
+    [Reactive]
     private bool _pasteEmpty = true;
+
+    [Reactive]
     private bool _pasteTiles = true;
+
+    [Reactive]
     private bool _pasteWalls = true;
+
+    [Reactive]
     private bool _pasteLiquids = true;
+
+    [Reactive]
     private bool _pasteWires = true;
+
+    [Reactive]
     private bool _pasteSprites = true;
+
+    [Reactive]
     private bool _pasteOverTiles = true;
+
     private readonly ObservableCollection<ClipboardBufferPreview> _loadedBuffers = new ObservableCollection<ClipboardBufferPreview>();
+
+    [Reactive]
     private ClipboardBufferPreview _buffer;
+
     private readonly ISelection _selection;
     private readonly IUndoManager _undo;
     private readonly NotifyTileChanged _notifyTileChanged;
@@ -36,49 +54,6 @@ public class ClipboardManager : ObservableObject
         _selection = selection;
         _undo = undo;
         _notifyTileChanged = notifyTileChanged;
-    }
-
-    public bool PasteEmpty
-    {
-        get { return _pasteEmpty; }
-        set { Set(nameof(PasteEmpty), ref _pasteEmpty, value); }
-    }
-    public bool PasteTiles
-    {
-        get { return _pasteTiles; }
-        set { Set(nameof(PasteTiles), ref _pasteTiles, value); }
-    }
-    public bool PasteWalls
-    {
-        get { return _pasteWalls; }
-        set { Set(nameof(PasteWalls), ref _pasteWalls, value); }
-    }
-    public bool PasteLiquids
-    {
-        get { return _pasteLiquids; }
-        set { Set(nameof(PasteLiquids), ref _pasteLiquids, value); }
-    }
-    public bool PasteWires
-    {
-        get { return _pasteWires; }
-        set { Set(nameof(PasteWires), ref _pasteWires, value); }
-    }
-    public bool PasteSprites
-    {
-        get { return _pasteSprites; }
-        set { Set(nameof(PasteSprites), ref _pasteSprites, value); }
-    }
-
-    public bool PasteOverTiles
-    {
-        get { return _pasteOverTiles; }
-        set { Set(nameof(PasteOverTiles), ref _pasteOverTiles, value); }
-    }
-
-    public ClipboardBufferPreview Buffer
-    {
-        get { return _buffer; }
-        set { Set(nameof(Buffer), ref _buffer, value); }
     }
 
     public ObservableCollection<ClipboardBufferPreview> LoadedBuffers
@@ -150,7 +125,7 @@ public class ClipboardManager : ObservableObject
         _notifyTileChanged(anchor.X, anchor.Y, buffer.Size.X, buffer.Size.Y);
     }
 
-    
+
 
     // Reverse the buffer along the x- or y- axis
     public void Flip(ClipboardBufferPreview bufferPreview, bool flipX, bool rotate)

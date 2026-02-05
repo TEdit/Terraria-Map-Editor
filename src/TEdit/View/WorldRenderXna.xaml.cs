@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using TEdit.Common.Reactive;
 using TEdit.UI.Xaml.XnaContentHost;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -84,16 +83,13 @@ public partial class WorldRenderXna : UserControl
     {
         _wvm = ViewModelLocator.WorldViewModel;
 
-        if (ViewModelBase.IsInDesignModeStatic)
-            return;
-
         InitializeComponent();
         _gameTimer = new GameTimer();
         _wvm.PreviewChanged += PreviewChanged;
         _wvm.PropertyChanged += _wvm_PropertyChanged;
-        _wvm.RequestZoom += _wvm_RequestZoom;
-        _wvm.RequestPan += _wvm_RequestPan;
-        _wvm.RequestScroll += _wvm_RequestScroll;
+        _wvm.RequestZoomEvent += _wvm_RequestZoom;
+        _wvm.RequestPanEvent += _wvm_RequestPan;
+        _wvm.RequestScrollEvent += _wvm_RequestScroll;
     }
 
     private void _wvm_RequestPan(object sender, EventArgs<bool> e) => SetPanMode(e.Value1);
@@ -208,12 +204,10 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
     {
         // Abort rendering if in design mode or if gameTimer is already running
-        if (ViewModelBase.IsInDesignModeStatic || _gameTimer.IsRunning)
-        {
-            return;
-        }
-        InitializeGraphicsComponents(e);
+        // TODO: add design mode check and return here
+        if (_gameTimer.IsRunning) { return; }
 
+        InitializeGraphicsComponents(e);
 
         if (_textureDictionary.Valid)
             LoadTerrariaTextures(e);
@@ -232,7 +226,7 @@ public partial class WorldRenderXna : UserControl
 
         var color = new Color[source.Height * source.Width];
 
-        if (texture.Name != null) // Catch any possible texture errors. 
+        if (texture.Name != null) // Catch any possible texture errors.
             texture.GetData(0, source, color, 0, color.Length);
 
         for (int i = 0; i < color.Length; i++)
@@ -585,7 +579,7 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_RenderXna(object sender, GraphicsDeviceEventArgs e)
     {
         // Abort rendering if in design mode or if gameTimer is not running
-        if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null || ViewModelBase.IsInDesignModeStatic)
+        if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null )
             return;
 
         // Clear the graphics device and texture buffer
@@ -814,6 +808,25 @@ public partial class WorldRenderXna : UserControl
             switch (te.EntityType)
             {
                 case TileEntityType.TrainingDummy:
+                    break;
+                case TileEntityType.DeadCellsDisplayJar:
+                    {
+                        int weapon = te.NetId;
+                        if (weapon == 0) continue;
+                        tileTex = (Texture2D)_textureDictionary.GetItem(weapon);
+                        SpriteEffects effect = curtile.U == 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                        WorldConfiguration.ItemLookupTable.TryGetValue(weapon, out var itemProps);
+                        float scale = itemProps?.Scale ?? 1.0f;
+                        source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+                        _spriteBatch.Draw(
+                            tileTex,
+                            new Vector2(1 + (int)((_scrollPosition.X + x + 1 - 0.5f) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1 + 0.25f) * _zoom)),
+                            source,
+                            Color.White,
+                            0f,
+                            new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)),
+                            scale * _zoom / 16f * 0.75f, effect, LayerTileTrack);
+                    }
                     break;
                 case TileEntityType.ItemFrame:
                     {
@@ -2778,7 +2791,7 @@ public partial class WorldRenderXna : UserControl
                                     isMushroom = true;
                                     tileTex = (Texture2D)_textureDictionary.GetShroomTop(0);
                                 }
-                                if (curtile.Type == 323)
+                                if (curtile.Type == (int)TileType.PalmTree)
                                 {
                                     if (curtile.U >= 88 && curtile.U <= 132)
                                     {
@@ -4991,7 +5004,7 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_HwndMouseWheel(object sender, HwndMouseEventArgs e)
     {
         bool useAlternateZoomFunctionality = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
-        //TODO: if (settings option to use old zoom functionality by default is checked) useAlternateZoomFunctionality = !useAlternateZoomFunctionality; 
+        //TODO: if (settings option to use old zoom functionality by default is checked) useAlternateZoomFunctionality = !useAlternateZoomFunctionality;
         Zoom(e.WheelDelta, e.Position.X, e.Position.Y, useAlternateZoomFunctionality);
     }
 

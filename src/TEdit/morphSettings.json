@@ -1,19 +1,19 @@
 {
   "mossTypes": {
-    "Green": 179,
-    "Yellow": 180,
-    "Red": 181,
-    "Blue": 182,
-    "Purple": 183,
-    "Lava": 381,
-    "Krypton": 534,
-    "Xenon": 536,
-    "Argon": 539,
-    "Neon": 625,
-    "Helium": 627
+    "绿": 179,
+    "黄": 180,
+    "红": 181,
+    "蓝": 182,
+    "紫": 183,
+    "熔岩": 381,
+    "氪": 534,
+    "氙": 536,
+    "氩": 539,
+    "氖": 625,
+    "氦": 627
   },
   "biomes": {
-    "Purify": {
+    "净化": {
       "biomeName": "Purify",
       "morphTiles": [
         {
@@ -302,7 +302,7 @@
         }
       ]
     },
-    "Corruption": {
+    "腐化": {
       "biomeName": "Corruption",
       "morphTiles": [
         {
@@ -647,7 +647,7 @@
         }
       ]
     },
-    "Crimson": {
+    "猩红": {
       "biomeName": "Crimson",
       "morphTiles": [
         {
@@ -992,7 +992,7 @@
         }
       ]
     },
-    "Hallow": {
+    "神圣": {
       "biomeName": "Hallow",
       "morphTiles": [
         {
@@ -1232,7 +1232,7 @@
         }
       ]
     },
-    "GlowingMushroom": {
+    "发光蘑菇": {
       "biomeName": "GlowingMushroom",
       "morphTiles": [
         {
@@ -1337,7 +1337,7 @@
         }
       ]
     },
-    "Forest": {
+    "森林": {
       "biomeName": "Forest",
       "morphTiles": [
         {
@@ -1806,7 +1806,7 @@
         }
       ]
     },
-    "Snow": {
+    "雪原": {
       "biomeName": "Snow",
       "morphTiles": [
         {
@@ -2166,7 +2166,7 @@
         }
       ]
     },
-    "Desert": {
+    "沙漠": {
       "biomeName": "Desert",
       "morphTiles": [
         {

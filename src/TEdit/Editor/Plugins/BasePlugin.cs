@@ -1,9 +1,9 @@
-using TEdit.Common.Reactive;
+using ReactiveUI;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Plugins;
 
-public abstract class BasePlugin : ObservableObject, IPlugin
+public abstract class BasePlugin : ReactiveObject, IPlugin
 {
     protected WorldViewModel _wvm;
 

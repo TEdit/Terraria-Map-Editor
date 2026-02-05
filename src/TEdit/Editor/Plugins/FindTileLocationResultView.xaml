@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" 
         SizeToContent="WidthAndHeight"
-        Title="FindTileWithPlugin"
+        Title="搜索实体方块"
         ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico" 
@@ -21,6 +21,6 @@
         </Grid.RowDefinitions>
         <TextBlock Name="LocationText" Text="{Binding LocationText}" Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="{StaticResource TextBrush}" Grid.Row="0" Grid.ColumnSpan="2"/>
         <ListBox Name="LocationList" MouseDoubleClick="ListBoxMouseDoubleClick" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.ColumnSpan="2"/>
-        <Button Margin="57,5" Content="Close" HorizontalAlignment="Center" Padding="20, 3" Click="CloseButtonClick" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <Button Margin="57,5" Content="关闭" HorizontalAlignment="Center" Padding="20, 3" Click="CloseButtonClick" Grid.Row="2" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

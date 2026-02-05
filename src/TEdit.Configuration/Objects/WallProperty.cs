@@ -1,9 +1,9 @@
-﻿using TEdit.Common;
-using TEdit.Common.Reactive;
+﻿using ReactiveUI;
+using TEdit.Common;
 
 namespace TEdit.Terraria.Objects;
 
-public class WallProperty : ObservableObject, ITile
+public class WallProperty : ReactiveObject, ITile
 {
     public int Id { get; set; } = -1;
     public string Name { get; set; } = "UNKNOWN";

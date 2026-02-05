@@ -12,7 +12,7 @@ class FindPlanteraBulbPlugin : BasePlugin
     public FindPlanteraBulbPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Find Plantera's Bulb";
+        Name = "搜索世纪之花球茎";
     }
 
     public override void Execute()

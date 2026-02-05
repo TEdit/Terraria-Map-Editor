@@ -2,16 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
-        Title="FindChestWithPlugin" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico">
+        Title="搜索含有...的宝箱" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
-        <TextBlock Text="Enter the name of the item you are looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+        <TextBlock Text="输入你想找到物品的名字(中文即可 名字部分也可)." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <TextBox x:Name="ItemLookup"></TextBox>
         <UniformGrid Rows="1" HorizontalAlignment="Stretch" Margin="5">
-            <CheckBox Content="Show distance from spawn." x:Name="GetDistance" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Checked="NUDCheckBox_Checked" Unchecked="NUDCheckBox_Unchecked" />
+            <CheckBox Content="显示出生点距离." x:Name="GetDistance" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Checked="NUDCheckBox_Checked" Unchecked="NUDCheckBox_Unchecked" />
         </UniformGrid>
         <Grid>
-            <Button Margin="5" Content="Cancel" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" />
-            <Button Margin="5" Content="Search" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="SearchButtonClick" />
+            <Button Margin="5" Content="取消" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" />
+            <Button Margin="5" Content="搜索" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="SearchButtonClick" />
         </Grid>
     </StackPanel>
 </Window>

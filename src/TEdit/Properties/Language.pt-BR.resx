@@ -281,6 +281,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Desabilitar máscara</value>
   </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Copiar primeiro item</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>Editar</value>
   </data>
@@ -290,11 +293,11 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Mundo da colheita</value>
   </data>
-  <data name="menu_edit_expand" xml:space="preserve">
-    <value>Expandir o mundo</value>
-  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Deletar Seleção</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Expandir o mundo</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>Colar</value>
@@ -334,6 +337,69 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="menu_file_update" xml:space="preserve">
     <value>Procurar por atualizações agora</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>Modo de fundo</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Personalizado</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Desativar</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>Filtrar área de transferência</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>Modo Filtro</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Tons de cinza</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Líquidos</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>Sprites</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Azulejos</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Paredes</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>Fios</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Esconder</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Verifique tudo</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Desmarque tudo</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Filtro Avançado</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Transparente</value>
   </data>
   <data name="menu_help" xml:space="preserve">
     <value>Ajuda</value>
@@ -425,6 +491,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Fio amarelo</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Colar em todos os slots</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
   </data>
@@ -436,6 +505,33 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>Menos zoom</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Mover todos os quadros</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Quantidade de Movimento (Quadros)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Restaurar</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Quadros selecionados</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Definir UVs manuais para todos</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Definir valores</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>Editor UV</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Reinício necessário</value>
@@ -534,6 +630,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
     <value>Roupas do manequim</value>
   </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>Monte</value>
+  </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Conteúdo do prato</value>
   </data>
@@ -542,6 +641,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="specialtile_label_signtype" xml:space="preserve">
     <value>Tipo da placa</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>Arma</value>
   </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Item da prateleira de armas</value>
@@ -1361,101 +1463,5 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corrigir lacuna de plano de fundo</value>
-  </data>
-  <data name="menu_filter_header_tiles" xml:space="preserve">
-    <value>Azulejos</value>
-  </data>
-  <data name="menu_filter_header_walls" xml:space="preserve">
-    <value>Paredes</value>
-  </data>
-  <data name="menu_filter_header_liquids" xml:space="preserve">
-    <value>Líquidos</value>
-  </data>
-  <data name="menu_filter_header_wires" xml:space="preserve">
-    <value>Fios</value>
-  </data>
-  <data name="menu_filter_tab_searchname" xml:space="preserve">
-    <value>Nome</value>
-  </data>
-  <data name="menu_filter_tab_check_all" xml:space="preserve">
-    <value>Verifique tudo</value>
-  </data>
-  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
-    <value>Desmarque tudo</value>
-  </data>
-  <data name="menu_filter_filtermode" xml:space="preserve">
-    <value>Modo Filtro</value>
-  </data>
-  <data name="menu_filter_backgroundmode" xml:space="preserve">
-    <value>Modo de fundo</value>
-  </data>
-  <data name="menu_filter_hide" xml:space="preserve">
-    <value>Esconder</value>
-  </data>
-  <data name="menu_filter_grayscale" xml:space="preserve">
-    <value>Tons de cinza</value>
-  </data>
-  <data name="menu_filter_normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="menu_filter_transparent" xml:space="preserve">
-    <value>Transparente</value>
-  </data>
-  <data name="menu_filter_custom" xml:space="preserve">
-    <value>Personalizado</value>
-  </data>
-  <data name="menu_filter_cancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="menu_filter_disable" xml:space="preserve">
-    <value>Desativar</value>
-  </data>
-  <data name="menu_filter_apply" xml:space="preserve">
-    <value>Aplicar</value>
-  </data>
-  <data name="menu_uveditor_moveallframes" xml:space="preserve">
-    <value>Mover todos os quadros</value>
-  </data>
-  <data name="menu_uveditor_moveamount" xml:space="preserve">
-    <value>Quantidade de Movimento (Quadros)</value>
-  </data>
-  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
-    <value>Definir UVs manuais para todos</value>
-  </data>
-  <data name="menu_uveditor_selectedframes" xml:space="preserve">
-    <value>Quadros selecionados</value>
-  </data>
-  <data name="menu_uveditor_setvalues" xml:space="preserve">
-    <value>Definir valores</value>
-  </data>
-  <data name="menu_uveditor_cancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="menu_uveditor_restore" xml:space="preserve">
-    <value>Restaurar</value>
-  </data>
-  <data name="menu_uveditor_ok" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="menu_filter" xml:space="preserve">
-    <value>Filtro</value>
-  </data>
-  <data name="menu_filter_title" xml:space="preserve">
-    <value>Filtro Avançado</value>
-  </data>
-  <data name="menu_uveditor_title" xml:space="preserve">
-    <value>Editor UV</value>
-  </data>
-  <data name="menu_filter_filterclipboard" xml:space="preserve">
-    <value>Filtrar área de transferência</value>
-  </data>
-  <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>Sprites</value>
-  </data>
-  <data name="menu_pasteall" xml:space="preserve">
-    <value>Colar em todos os slots</value>
-  </data>
-  <data name="menu_copyfirstitem" xml:space="preserve">
-    <value>Copiar primeiro item</value>
   </data>
 </root>

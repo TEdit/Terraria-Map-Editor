@@ -12,14 +12,14 @@ public class RemoveAllChestsPlugin : BasePlugin
     public RemoveAllChestsPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Remove All Chests";
+        Name = "移除所有箱子";
     }
 
     public override void Execute()
     {
         if (_wvm.CurrentWorld == null) return;
 
-        if (MessageBox.Show("Are you sure you wish to delete all chests?", "Delete Chests",
+        if (MessageBox.Show("您确定要删除所有箱子吗?", "删除箱子",
                     MessageBoxButton.OKCancel, MessageBoxImage.Question) != MessageBoxResult.OK)
             return;
 

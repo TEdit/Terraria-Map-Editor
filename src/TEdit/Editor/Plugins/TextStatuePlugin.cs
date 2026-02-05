@@ -23,7 +23,7 @@ public class TextStatuePlugin : BasePlugin, INotifyPropertyChanged
 
     public TextStatuePlugin(WorldViewModel worldViewModel) : base(worldViewModel)
     {
-        Name = "Generate Text Statues";
+        Name = "生成文本雕像";
     }
 
     private ClipboardBuffer _generatedSchematic;

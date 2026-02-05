@@ -1,4 +1,4 @@
-name: .NET Core Desktop
+name: .NET Core Desktop CI
 
 on:
   push:
@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       # Install the .NET Core workload
       - name: Setup .NET
@@ -26,9 +28,13 @@ jobs:
         with:
           dotnet-version: "8.0.x"
 
-      # Create the app package by building and packaging the Windows Application Packaging project
-      - name: Build code
+      - name: Build and package
         shell: pwsh
-        run: |
-          dotnet restore .\src
-          dotnet build .\src\TEdit.slnx /p:EnableWindowsTargeting=true /p:Configuration=Release
+        run: ./build.ps1
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TEdit-ci-${{ github.run_number }}
+          path: release/TEdit*.zip
+          retention-days: 7

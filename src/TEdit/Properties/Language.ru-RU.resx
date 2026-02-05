@@ -281,6 +281,9 @@
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Выключить маску</value>
   </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Скопировать первый элемент</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>Редактировать</value>
   </data>
@@ -290,11 +293,11 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Обрезать мир</value>
   </data>
-  <data name="menu_edit_expand" xml:space="preserve">
-    <value>Расширить мир</value>
-  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Удалить выделение</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Расширить мир</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>Вставить</value>
@@ -334,6 +337,69 @@
   </data>
   <data name="menu_file_update" xml:space="preserve">
     <value>Проверить обновления</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Применять</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>Фоновый режим</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Обычай</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Запрещать</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>Фильтровать буфер обмена</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>Режим фильтра</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Оттенки серого</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Жидкости</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>Спрайты</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Плитка</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Стены</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>Провода</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Скрывать</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Нормальный</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Проверить все</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Снимите все флажки</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Расширенный фильтр</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Прозрачный</value>
   </data>
   <data name="menu_help" xml:space="preserve">
     <value>Помощь</value>
@@ -425,6 +491,9 @@
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Жёлтые провода</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Вставить во все слоты</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Плагины</value>
   </data>
@@ -436,6 +505,33 @@
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>Отдалить</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Переместить все кадры</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Количество перемещений (кадров)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>ХОРОШО</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Выбранные кадры</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Установить ручные УФ-фильтры для всех</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Установить значения</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>УФ-редактор</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Требуется перезагрузка</value>
@@ -534,6 +630,9 @@
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
     <value>Одежда на манекене</value>
   </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>Маунт</value>
+  </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Содержимое тарелки</value>
   </data>
@@ -542,6 +641,9 @@
   </data>
   <data name="specialtile_label_signtype" xml:space="preserve">
     <value>Тип таблички</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>Оружие</value>
   </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Предмет на стойке</value>
@@ -1361,101 +1463,5 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>
-  </data>
-  <data name="menu_filter_header_tiles" xml:space="preserve">
-    <value>Плитка</value>
-  </data>
-  <data name="menu_filter_header_walls" xml:space="preserve">
-    <value>Стены</value>
-  </data>
-  <data name="menu_filter_header_liquids" xml:space="preserve">
-    <value>Жидкости</value>
-  </data>
-  <data name="menu_filter_header_wires" xml:space="preserve">
-    <value>Провода</value>
-  </data>
-  <data name="menu_filter_tab_searchname" xml:space="preserve">
-    <value>Имя</value>
-  </data>
-  <data name="menu_filter_tab_check_all" xml:space="preserve">
-    <value>Проверить все</value>
-  </data>
-  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
-    <value>Снимите все флажки</value>
-  </data>
-  <data name="menu_filter_filtermode" xml:space="preserve">
-    <value>Режим фильтра</value>
-  </data>
-  <data name="menu_filter_backgroundmode" xml:space="preserve">
-    <value>Фоновый режим</value>
-  </data>
-  <data name="menu_filter_hide" xml:space="preserve">
-    <value>Скрывать</value>
-  </data>
-  <data name="menu_filter_grayscale" xml:space="preserve">
-    <value>Оттенки серого</value>
-  </data>
-  <data name="menu_filter_normal" xml:space="preserve">
-    <value>Нормальный</value>
-  </data>
-  <data name="menu_filter_transparent" xml:space="preserve">
-    <value>Прозрачный</value>
-  </data>
-  <data name="menu_filter_custom" xml:space="preserve">
-    <value>Обычай</value>
-  </data>
-  <data name="menu_filter_cancel" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
-  <data name="menu_filter_disable" xml:space="preserve">
-    <value>Запрещать</value>
-  </data>
-  <data name="menu_filter_apply" xml:space="preserve">
-    <value>Применять</value>
-  </data>
-  <data name="menu_uveditor_moveallframes" xml:space="preserve">
-    <value>Переместить все кадры</value>
-  </data>
-  <data name="menu_uveditor_moveamount" xml:space="preserve">
-    <value>Количество перемещений (кадров)</value>
-  </data>
-  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
-    <value>Установить ручные УФ-фильтры для всех</value>
-  </data>
-  <data name="menu_uveditor_selectedframes" xml:space="preserve">
-    <value>Выбранные кадры</value>
-  </data>
-  <data name="menu_uveditor_setvalues" xml:space="preserve">
-    <value>Установить значения</value>
-  </data>
-  <data name="menu_uveditor_cancel" xml:space="preserve">
-    <value>Отменить</value>
-  </data>
-  <data name="menu_uveditor_restore" xml:space="preserve">
-    <value>Восстановить</value>
-  </data>
-  <data name="menu_uveditor_ok" xml:space="preserve">
-    <value>ХОРОШО</value>
-  </data>
-  <data name="menu_filter" xml:space="preserve">
-    <value>Фильтр</value>
-  </data>
-  <data name="menu_filter_title" xml:space="preserve">
-    <value>Расширенный фильтр</value>
-  </data>
-  <data name="menu_uveditor_title" xml:space="preserve">
-    <value>УФ-редактор</value>
-  </data>
-  <data name="menu_filter_filterclipboard" xml:space="preserve">
-    <value>Фильтровать буфер обмена</value>
-  </data>
-  <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>Спрайты</value>
-  </data>
-  <data name="menu_pasteall" xml:space="preserve">
-    <value>Вставить во все слоты</value>
-  </data>
-  <data name="menu_copyfirstitem" xml:space="preserve">
-    <value>Скопировать первый элемент</value>
   </data>
 </root>

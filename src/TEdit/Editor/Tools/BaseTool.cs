@@ -1,14 +1,14 @@
-﻿using System.Windows.Media;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEdit.Common.Reactive;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using TEdit.UI;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Tools;
 
-public abstract class BaseTool : ObservableObject, ITool
+public abstract partial class BaseTool : ReactiveObject, ITool
 {
-    protected bool _isActive;
     protected WriteableBitmap _preview;
     protected WorldViewModel _wvm;
     private double _previewScale = 1;
@@ -31,11 +31,8 @@ public abstract class BaseTool : ObservableObject, ITool
 
     public virtual BitmapImage Icon { get; protected set; }
 
-    public virtual bool IsActive
-    {
-        get { return _isActive; }
-        set { Set(nameof(IsActive), ref _isActive, value); }
-    }
+    [Reactive]
+    private bool _isActive;
 
     public virtual void MouseDown(TileMouseState e)
     {

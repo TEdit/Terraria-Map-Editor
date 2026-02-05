@@ -12,6 +12,7 @@ public enum TileType : int
     Chandelier = 34,
     Sign = 55,
     MushroomTree = 72,
+    PalmTree = 323,
     GraveMarker = 85,
     Dresser = 88,
     EbonsandBlock = 112,
@@ -41,6 +42,10 @@ public enum TileType : int
     WeaponRackLegacy = 334,
     HatRack = 475,
     TeleportationPylon = 597,
+    DeadCellsDisplayJar = 698,
+    KiteAnchor = 723,
+    CritterAnchor = 724,
+    // doors
     DoorClosed = 10,
     DoorOpen = 11,
     TrapDoor = 386,

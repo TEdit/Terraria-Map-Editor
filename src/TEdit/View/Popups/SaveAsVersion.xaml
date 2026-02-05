@@ -7,10 +7,11 @@
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Background="{StaticResource ControlBackgroundBrush}" Foreground="{DynamicResource TextBrush}"
-        Title="Select World Version" Height="450" Width="400">
+        Title="选择世界版本" Height="470" Width="400">
     <Grid>
         <ScrollViewer Grid.ColumnSpan="1">
             <WrapPanel Name="ButtonPanel" HorizontalAlignment="Center" Margin="0,5,0,0" />
         </ScrollViewer>
     </Grid>
 </Window>
+

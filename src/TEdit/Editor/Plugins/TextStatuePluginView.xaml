@@ -6,7 +6,7 @@
         xmlns:tedit="clr-namespace:TEdit.UI.Xaml" 
         xmlns:plugins="clr-namespace:TEdit.Editor.Plugins" 
         SizeToContent="WidthAndHeight"
-        Title="Text Statue Generator"
+        Title="文本雕像生成器"
         ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico" 
@@ -23,21 +23,21 @@
         </Grid.RowDefinitions>
         <TextBox Name="tbStatue" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MinWidth="400" MaxWidth="400" MinLines="10" TextWrapping="Wrap" Text="{Binding TextValue, Mode=TwoWay}"/>
         <StackPanel Grid.Row ="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-            <Button Content="Left" Width="60" Click="SetLeft"/>
-            <Button Content="Center" Width="60" Click="SetCenter"/>
-            <Button Content="Right" Width="60" Click="SetRight"/>
+            <Button Content="左" Width="60" Click="SetLeft"/>
+            <Button Content="中" Width="60" Click="SetCenter"/>
+            <Button Content="右" Width="60" Click="SetRight"/>
         </StackPanel>
         <UniformGrid Rows="3" Columns="2" Grid.Row="2">
-            <TextBlock Text="Line Spacing" Foreground="White"/>
+            <TextBlock Text="行距" Foreground="White"/>
             <TextBox x:Name="tbLineSpacing"  Text="{Binding LineSpacing, Mode=TwoWay}" />
-            <TextBlock Text="Letter Spacing" Foreground="White"/>
+            <TextBlock Text="间距" Foreground="White"/>
             <TextBox x:Name="tbLetterSpacing"  Text="{Binding LetterSpacing, Mode=TwoWay}"/>
-            <TextBlock Text="Max Line Length" Foreground="White"/>
+            <TextBlock Text="最大行长度" Foreground="White"/>
             <TextBox x:Name="tbLineLength"  Text="{Binding LineLength, Mode=TwoWay}"/>
         </UniformGrid>
         <Grid Grid.Row="3">
-            <Button Margin="5" Content="Cancel" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="Cancel" />
-            <Button Margin="5" Content="Add to Clipboard" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="Ok" />
+            <Button Margin="5" Content="取消" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="Cancel" />
+      <Button Margin="5" Content="添加到剪贴板" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="Ok" />
         </Grid>
     </Grid>
 </Window>

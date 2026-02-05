@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         SizeToContent="WidthAndHeight"
         Closing="WindowClosing"
-        Title="House Generator" 
+        Title="房屋生成器" 
         ResizeMode="NoResize" 
         WindowStartupLocation="CenterOwner" 
         Icon="/TEdit;component/Images/tedit.ico"
@@ -16,28 +16,28 @@
             <ColumnDefinition Width="160" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1">
-            <Label>Zone 1 Description (Group 1)</Label>
+            <Label>区域 1 描述 (群组 1)</Label>
             <DockPanel>
                 <Slider Value="3" VerticalAlignment="Center"  Minimum="0" Maximum="5" SmallChange="1" Width="120" />
                 <TextBox Text="3" Width="32" DockPanel.Dock="Right" />
             </DockPanel>
-            <Label>Zone 2 Description (Group 1)</Label>
+            <Label>区域 2 描述 (群组 1)</Label>
             <DockPanel>
                 <Slider Value="3" VerticalAlignment="Center"  Minimum="0" Maximum="5" SmallChange="1" Width="120" />
                 <TextBox Text="3" Width="32" DockPanel.Dock="Right" />
             </DockPanel>
-            <Label>Zone 3</Label>
+            <Label>区域 3</Label>
             <DockPanel>
                 <Slider Value="2" VerticalAlignment="Center"  Minimum="0" Maximum="5" SmallChange="1" Width="120" />
                 <TextBox Text="2" Width="32" DockPanel.Dock="Right" />
             </DockPanel>
-            <CheckBox IsChecked="True">Synchronize Groups</CheckBox>
+            <CheckBox IsChecked="True">同步群组</CheckBox>
             <GridSplitter Margin="0,10" Background="{StaticResource ControlBackgroundBrush}" BorderBrush="{StaticResource ControlBackgroundBrush}"></GridSplitter>
-            <Label>Schematics</Label>
+            <Label>设计图</Label>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Add" Padding="10, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Button Content="Save" Padding="10, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <Button Content="Save As" Padding="10, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Button Content="添加" Padding="10, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Button Content="保存" Padding="10, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Button Content="另存为" Padding="10, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
             </StackPanel>
             <ItemsControl Background="{StaticResource ControlBackgroundBrush}" HorizontalAlignment="Stretch" Height="100" />
             <Button Content="x" Padding="15, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
@@ -45,13 +45,13 @@
             <Button Content="X" Padding="15, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
         </StackPanel>
         <StackPanel Grid.Column="0">
-            <Label>Preview</Label>
+            <Label>预览</Label>
             <Image Source="{Binding Path=Preview}" Margin="10" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="400" Height="400" />
             <StackPanel Background="{StaticResource ControlBackgroundBrush}" Orientation="Horizontal">
                 <ComboBox ItemsSource="{Binding Path=HouseGenTemplates}" 
                       SelectedValue="{Binding Path=SelectedTemplate, Mode=TwoWay}"
                       DisplayMemberPath="Name"
-                      Text="Click [...] to Import Template Schematic"
+                      Text="点击 [...] 导入设计图"
                       Margin="5" Padding="25,3" 
                       HorizontalAlignment="Stretch"
                       MinWidth="400"
@@ -72,9 +72,9 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button Content="Cancel" Click="CancelButtonClick" Grid.Row="1" Grid.Column="0" Margin="5" Padding="15, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <Button Content="Generate" Command="{Binding Path=GenerateCommand}" Grid.Row="0" Grid.Column="1"  Grid.RowSpan="2" Margin="5" Padding="15, 3"  HorizontalAlignment="Center"  VerticalAlignment="Stretch" Height="30" Width="120" />
-                    <Button Content="Copy" Command="{Binding Path=CopyCommand}" Grid.Column="2" Grid.Row="1" Margin="5" Padding="15, 3" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    <Button Content="取消" Click="CancelButtonClick" Grid.Row="1" Grid.Column="0" Margin="5" Padding="15, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <Button Content="生成" Command="{Binding Path=GenerateCommand}" Grid.Row="0" Grid.Column="1"  Grid.RowSpan="2" Margin="5" Padding="15, 3"  HorizontalAlignment="Center"  VerticalAlignment="Stretch" Height="30" Width="120" />
+                    <Button Content="复制" Command="{Binding Path=CopyCommand}" Grid.Column="2" Grid.Row="1" Margin="5" Padding="15, 3" HorizontalAlignment="Right" VerticalAlignment="Center" />
                 </Grid>
             </StackPanel>
         </StackPanel>

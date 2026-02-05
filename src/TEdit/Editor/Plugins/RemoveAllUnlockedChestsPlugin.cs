@@ -12,7 +12,7 @@ public class RemoveAllUnlockedChestsPlugin : BasePlugin
     public RemoveAllUnlockedChestsPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "Remove All Unlocked Chests";
+        Name = "移除所有未上锁的箱子";
     }
 
     private short[] _lockedChestUs = new short[] { 72, 144, 828, 864, 900, 936, 972 };
@@ -32,7 +32,7 @@ public class RemoveAllUnlockedChestsPlugin : BasePlugin
         if (_wvm.CurrentWorld == null) return;
 
         if (
-            MessageBox.Show("Are you sure you wish to delete all unlocked chests?", "Delete Chests",
+            MessageBox.Show("您确定要删除所有未上锁的箱子吗?", "删除箱子",
                 MessageBoxButton.OKCancel, MessageBoxImage.Question) != MessageBoxResult.OK)
             return;
 

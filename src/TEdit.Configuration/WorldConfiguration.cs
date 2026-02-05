@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Linq;
-using TEdit.Common.Reactive;
 using TEdit.Terraria.Objects;
 using System.Linq;
 using TEdit.Geometry;
@@ -14,12 +13,12 @@ namespace TEdit.Configuration;
 
 public class WorldConfiguration
 {
-    public static uint CompatibleVersion { get; set; } = 275;
+    public static uint CompatibleVersion { get; set; } = 315;
     public static short TileCount { get; private set; } = 693; // updated by json
     public static short WallCount { get; private set; } = 346; // updated by json
     public static short MaxNpcID { get; private set; } = 687; // updated by json
     public static int MaxChests { get; private set; } = 8000;
-    public static int MaxSigns { get; private set; } = 1000;
+    public static int MaxSigns { get; private set; } = 32767;
     public static int CavernLevelToBottomOfWorld { get; private set; } = 478;
     public static byte MaxMoons = 3;
 
@@ -49,6 +48,8 @@ public class WorldConfiguration
     private static readonly Dictionary<int, string> _armorBodyNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _armorLegsNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _rackable = new Dictionary<int, string>();
+    private static readonly Dictionary<int, string> _mountNames = new Dictionary<int, string>();
+
 
     private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
     private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
@@ -64,9 +65,6 @@ public class WorldConfiguration
 
     static WorldConfiguration()
     {
-        if (ViewModelBase.IsInDesignModeStatic)
-            return;
-
         var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
         if (File.Exists(saveVersionPath))
             SaveConfiguration = SaveVersionManager.LoadJson(saveVersionPath);
@@ -84,7 +82,6 @@ public class WorldConfiguration
             var morphPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "morphSettings.json");
             if (File.Exists(morphPath))
                 MorphSettings = MorphConfiguration.LoadJson(morphPath);
-
         }
         catch (Exception ex)
         {
@@ -93,11 +90,15 @@ public class WorldConfiguration
 
         try
         {
-            // Used to dynamically update static CompatibleVersion
-            CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
-            TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
-            WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
-            MaxNpcID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
+            if (SaveConfiguration != null)
+            {
+                CompatibleVersion = (uint)SaveConfiguration.GetMaxVersion();
+                var latest = SaveConfiguration.GetData((int)CompatibleVersion);
+
+                TileCount = (short)latest.MaxTileId;
+                WallCount = (short)latest.MaxWallId;
+                MaxNpcID = (short)latest.MaxNpcId;
+            }
 
             if (SettingsTileFrameImportant == null || SettingsTileFrameImportant.Length <= 0)
             {
@@ -111,10 +112,9 @@ public class WorldConfiguration
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
         }
-
     }
 
     private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
@@ -189,14 +189,14 @@ public class WorldConfiguration
         TileBricks.Add(new TileProperty
         {
             Id = -1,
-            Name = "Air",
+            Name = "空气",
             Color = TEditColor.Transparent
         });
 
         TileBricksMask.Add(new TileProperty
         {
             Id = -1,
-            Name = "Air",
+            Name = "空气",
             Color = TEditColor.Transparent
         });
 
@@ -366,6 +366,12 @@ public class WorldConfiguration
             if (acc)
                 _accessoryNames.Add(curItem.Id, curItem.Name);
 
+            bool mount = (bool?)xElement.Attribute("Mount") ?? false;
+            if (mount)
+            {
+                _mountNames.Add(curItem.Id, curItem.Name);
+            }
+
             if (curItem.Name.Contains("Dye"))
             {
                 _dyeNames.Add(curItem.Id, curItem.Name);
@@ -512,6 +518,12 @@ public class WorldConfiguration
     public static Dictionary<int, string> ArmorHeadNames
     {
         get { return _armorHeadNames; }
+    }
+
+
+    public static Dictionary<int, string> MountNames
+    {
+        get { return _mountNames; }
     }
 
     public static Dictionary<int, string> AccessoryNames

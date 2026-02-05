@@ -18,7 +18,7 @@ namespace TEdit.Editor.Plugins
         {
             _noiseGenerator = new PerlinNoise(1);
             _random = new Random();
-            Name = "Simple Ore Generator";
+            Name = "简易矿石生成器";
         }
 
         public override void Execute()

@@ -1,14 +1,17 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using TEdit.Common.Reactive;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.ViewModel;
+using YamlDotNet.Core;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace TEdit.Editor.Undo;
 
@@ -55,7 +58,7 @@ public class UndoManagerWrapper : IUndoManager, IDisposable
 }
 
 
-public class UndoManager : ObservableObject, IDisposable
+public partial class UndoManager : ReactiveObject, IDisposable
 {
     private static Random r = new Random();
     private static string uniqueVal;
@@ -122,11 +125,11 @@ public class UndoManager : ObservableObject, IDisposable
     {
         string aliveFile = Path.Combine(directory, "alive.txt");
 
-        // if the keep alive file is missing, this undo dir is dead, remove it 
+        // if the keep alive file is missing, this undo dir is dead, remove it
         if (!File.Exists(aliveFile))
             return false;
 
-        // if the keep alive file is older than 20 minutes, this undo dir is dead, remove it 
+        // if the keep alive file is older than 20 minutes, this undo dir is dead, remove it
         if (File.GetLastAccessTimeUtc(aliveFile) < DateTime.UtcNow.AddMinutes(-20))
             return false;
 
@@ -172,7 +175,10 @@ public class UndoManager : ObservableObject, IDisposable
     private readonly World _world;
     private readonly NotifyTileChanged _notifyTileChanged;
     private readonly Action _undoApplied;
+
+    [Reactive]
     private UndoBuffer _buffer;
+
     private int _currentIndex = 0;
     private int _maxIndex = 0;
 
@@ -199,12 +205,6 @@ public class UndoManager : ObservableObject, IDisposable
         _buffer = new UndoBuffer(GetUndoFileName(), _world);
         _notifyTileChanged = notifyTileChanged;
         _undoApplied = undoApplied;
-    }
-
-    public UndoBuffer Buffer
-    {
-        get { return _buffer; }
-        set { Set(nameof(Buffer), ref _buffer, value); }
     }
 
     public void SaveUndo(bool updateMax = true)
@@ -391,7 +391,7 @@ public class UndoManager : ObservableObject, IDisposable
             redo.Dispose();
             redo = null;
 
-            foreach (var chest in World.LoadChestData(br))
+            foreach (var chest in World.LoadChestData(br, WorldConfiguration.CompatibleVersion))
             {
                 _world.Chests.Add(chest);
             }
@@ -455,7 +455,7 @@ public class UndoManager : ObservableObject, IDisposable
 
                 _notifyTileChanged?.Invoke(undoTile.Location.X, undoTile.Location.Y, 1, 1);
             }
-            foreach (var chest in World.LoadChestData(br))
+            foreach (var chest in World.LoadChestData(br, WorldConfiguration.CompatibleVersion))
             {
                 _world.Chests.Add(chest);
             }

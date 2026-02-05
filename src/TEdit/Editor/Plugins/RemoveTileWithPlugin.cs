@@ -13,7 +13,7 @@ namespace TEdit.Editor.Plugins
         public RemoveTileWithPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Remove Sprite, Block, or Wall";
+            Name = "移除物品,方块或墙";
         }
 
         public override void Execute()
@@ -27,8 +27,8 @@ namespace TEdit.Editor.Plugins
             }
 
             if (MessageBox.Show(
-            "This will completely remove any found tiles from your world. Continue?",
-            "RemoveTileWithPlugin",
+            "这将从你的世界中完全移除所有找到的方块. 要继续吗?",
+            "移除方块插件",
             MessageBoxButton.YesNo,
             MessageBoxImage.Question,
             MessageBoxResult.Yes) != MessageBoxResult.Yes)
@@ -168,8 +168,8 @@ namespace TEdit.Editor.Plugins
 
             // Display the total tiles removed.
             MessageBox.Show(
-            ItemsFound + " tiles have been found and removed.",
-            "RemoveTileWithPlugin",
+            ItemsFound + " 已被发现并移除.",
+            "移除方块插件",
             MessageBoxButton.OK,
             MessageBoxImage.Information,
             MessageBoxResult.Yes);

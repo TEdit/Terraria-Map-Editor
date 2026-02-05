@@ -1493,9 +1493,9 @@ public partial class World
                 var npc = new NPC();
 
                 npc.Name = reader.ReadString();
-                npc.Position = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+                npc.Position = new Vector2FloatObservable(reader.ReadSingle(), reader.ReadSingle());
                 npc.IsHomeless = reader.ReadBoolean();
-                npc.Home = new Vector2Int32(reader.ReadInt32(), reader.ReadInt32());
+                npc.Home = new Vector2Int32Observable(reader.ReadInt32(), reader.ReadInt32());
                 npc.SpriteId = 0;
 
                 if (!string.IsNullOrWhiteSpace(npc.Name) && WorldConfiguration.NpcIds.ContainsKey(npc.Name))
@@ -2028,9 +2028,9 @@ public partial class World
             var npc = new NPC();
 
             npc.Name = reader.ReadString();
-            npc.Position = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+            npc.Position = new Vector2FloatObservable(reader.ReadSingle(), reader.ReadSingle());
             npc.IsHomeless = reader.ReadBoolean();
-            npc.Home = new Vector2Int32(reader.ReadInt32(), reader.ReadInt32());
+            npc.Home = new Vector2Int32Observable(reader.ReadInt32(), reader.ReadInt32());
             npc.SpriteId = 0;
 
             if (!string.IsNullOrWhiteSpace(npc.Name) && WorldConfiguration.NpcIds.ContainsKey(npc.Name))

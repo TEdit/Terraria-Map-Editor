@@ -131,13 +131,13 @@ public static class WorldAnalysis
 
         sb.WriteLine("===SECTION: Chests===");
         sb.WriteProperty("Chest Count", world.Chests.Count);
-        sb.WriteProperty("Chest Max Items", Chest.MaxItems);
+        sb.WriteProperty("Chest Max Items", Chest.LegacyMaxItems);
 
         foreach (var chest in world.Chests)
         {
             sb.Write("[{0}, {1}] {2} - Contents: ", chest.X, chest.Y, chest.Name);
 
-            for (int i = 0; i < Chest.MaxItems; i++)
+            for (int i = 0; i < Chest.LegacyMaxItems; i++)
             {
                 Item item = chest.Items[i];
                 if (item == null)
@@ -221,6 +221,7 @@ public static class WorldAnalysis
         sb.WriteProperty("world.GameMode", world.GameMode);
         sb.WriteProperty("world.DrunkWorld", world.DrunkWorld);
         sb.WriteProperty("world.CreationTime", world.CreationTime);
+        sb.WriteProperty("world.LastPlayed", world.LastPlayed);
 
         sb.WriteProperty("world.MoonType", world.MoonType);
         sb.WriteProperty("world.TreeX[0]", world.TreeX0);
