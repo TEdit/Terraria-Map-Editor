@@ -39,6 +39,7 @@ using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
+using static TEdit.Configuration.WorldConfiguration;
 
 namespace TEdit.ViewModel;
 
@@ -831,9 +832,9 @@ public partial class WorldViewModel : ReactiveObject
         if (IsAutoSaveEnabled && HasUnsavedChanges)
         {
             if (!string.IsNullOrWhiteSpace(CurrentFile))
-                SaveWorldThreaded(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"));
+                SaveWorldThreaded(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"), GetSaveVersion_MaxConfig());
             else
-                SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave.tmp"));
+                SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave.tmp"), GetSaveVersion_MaxConfig());
         }
     }
 
@@ -1640,7 +1641,7 @@ public partial class WorldViewModel : ReactiveObject
         if (pickVersion && (bool)sfd.ShowDialog())
         {
             CurrentFile = sfd.FileName;
-            SaveWorldFile(version);
+            SaveWorldFile(GetSaveVersion_MaxConfig(version)); // Clamp to the max config version.
         }
     }
 
@@ -1703,7 +1704,8 @@ public partial class WorldViewModel : ReactiveObject
 
             // Maintain the existing world version.
             // This is also the fallback for parsing failures.
-            SaveWorldFile(CurrentWorld.Version);
+            // SaveWorldFile(CurrentWorld.Version);
+            SaveWorldFile(GetSaveVersion_MaxConfig());
         }
     }
 
@@ -1718,7 +1720,7 @@ public partial class WorldViewModel : ReactiveObject
                 return;
         }
 
-        SaveWorldThreaded(CurrentFile, version);
+        SaveWorldThreaded(CurrentFile, GetSaveVersion_MaxConfig(version));
     }
 
     private void SaveWorldThreaded(string filename, uint version = 0)
@@ -1792,6 +1794,23 @@ public partial class WorldViewModel : ReactiveObject
         }, TaskFactoryHelper.UiTaskScheduler);
     }
 
+    private uint GetSaveVersion_MaxConfig(uint requested = 0)
+    {
+        // Make sure config is loaded (safe even if already initialized).
+        WorldConfiguration.Initialize();
+
+        uint max = WorldConfiguration.CompatibleVersion;
+        if (max == 0) return requested; // ultra-defensive
+
+        // If caller didn't request a version, default to MAX config version.
+        uint v = (requested == 0) ? max : requested;
+
+        // Never allow saving above config max.
+        if (v > max) v = max;
+
+        return v;
+    }
+
     public void ReloadWorld()
     {
         // perform validations.
@@ -1824,7 +1843,27 @@ public partial class WorldViewModel : ReactiveObject
         {
             // perform validations
             var validation = World.ValidateWorldFile(filename);
-            if (validation.IsCorrupt)
+
+            if (validation.IsPreeminent)
+            {
+                string message =
+                        $"This world version is NEWER than supported by TEdit's config.\r\n\r\n" +
+                        $"World version: {validation.Version}\r\n" +
+                        $"Max supported (config): {WorldConfiguration.CompatibleVersion}\r\n\r\n" +
+                        $"TEdit will fall back to config version {WorldConfiguration.CompatibleVersion} " +
+                        $"(missing newer tiles/walls/etc may cause issues).\r\n\r\n" +
+                        $"Do you want to attempt to load anyway?";
+
+                if (MessageBox.Show(message, "Newer World Version",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                {
+                    return null;
+                }
+
+                // Apply only after user accepts.
+                WorldConfiguration.ApplyForWorldVersion(validation.Version, out _);
+            }
+            else if (validation.IsCorrupt)
             {
                 // The world file contains all-zeros (corrupt).
                 string msg =
