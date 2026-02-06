@@ -334,6 +334,11 @@ public partial class World
                         {
                             status.IsChinese = true;
                         }
+
+                        if (w.Version > WorldConfiguration.CompatibleVersion)
+                        {
+                            status.IsPreeminent = true;
+                        }
                     }
                 }
                 w.LastSave = File.GetLastWriteTimeUtc(filename);

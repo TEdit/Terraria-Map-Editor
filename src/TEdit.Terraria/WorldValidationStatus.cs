@@ -20,6 +20,11 @@ public class WorldValidationStatus
     public bool IsLegacy { get; set; }
 
     /// <summary>
+    /// World version is newer than supported by the current config.
+    /// </summary>
+    public bool IsPreeminent { get; set; }
+
+    /// <summary>
     /// .twld exists
     /// </summary>
     public bool IsTModLoader { get; set; }
