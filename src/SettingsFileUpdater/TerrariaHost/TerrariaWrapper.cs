@@ -496,23 +496,28 @@ namespace SettingsFileUpdater.TerrariaHost
             var output = new StringBuilder("  <Items>\r\n");
             foreach (var item in items)
             {
-                var curitem = new Item();
-                curitem.SetDefaults(item.Id);
+                var curItem = new Item();
+                curItem .SetDefaults(item.Id);
 
                 // this could probably be inverted to slot="head" etc.
-                string attribs = string.Join(" ", new string[]
-                {
-                    (ItemID.Sets.IsAKite[item.Id] ? " IsKite=\"True\"" : ""),
-                    ((curitem.createTile == 724 && curitem.makeNPC != 0) ? " IsCritter=\"True\"" : ""),
-                    (item.IsFood ? " IsFood=\"True\"" : ""),
-                    (item.Head > 0? $" Head=\"{item.Head}\"" : ""),
-                    (item.Body > 0? $" Body=\"{item.Body}\"" : ""),
-                    (item.Legs > 0? $" Legs=\"{item.Legs}\"" : ""),
-                    (item.Accessory ? " Accessory=\"True\"" : ""),
-                    (item.Rack ? " Rack=\"True\"" : ""),
-                    (item.Banner > 0 ? $" Tally=\"{item.Banner}\"": "")
-                });
-                output.AppendFormat("    <Item Id=\"{0}\" Name=\"{1}\"{3}/>\r\n", item.Id, Localize(item.Name), item.Type, attribs);
+                var attribs = string.Join(" ",
+                    new string[]
+                    {
+                        ItemID.Sets.IsAKite[item.Id] ? "IsKite=\"True\"" : null,
+                        (curItem.createTile == 724 && curItem.makeNPC != 0) ? "IsCritter=\"True\"" : null,
+                        item.IsFood ? "IsFood=\"True\"" : null,
+                        item.Head > 0 ? $"Head=\"{item.Head}\"" : null,
+                        item.Body > 0 ? $"Body=\"{item.Body}\"" : null,
+                        item.Legs > 0 ? $"Legs=\"{item.Legs}\"" : null,
+                        item.Accessory ? "Accessory=\"True\"" : null,
+                        item.Rack ? "Rack=\"True\"" : null,
+                        item.Banner > 0 ? $"Tally=\"{item.Banner}\"" : null,
+                        curItem.mountType != -1 ? "Mount=\"True\"" : null
+                    }
+                    .Where(s => s != null)
+                );
+                if (!string.IsNullOrEmpty(attribs)) attribs = " " + attribs;
+                output.AppendFormat("    <Item Id=\"{0}\" Name=\"{1}\"{3} />\r\n", item.Id, Localize(item.Name), item.Type, attribs);
             }
             output.Append("  </Items>");
 

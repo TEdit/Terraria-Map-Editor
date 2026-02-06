@@ -12438,7 +12438,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1911" Name="Christmas Pudding" IsFood="True" />
     <Item Id="1912" Name="Eggnog" IsFood="True" />
     <Item Id="1913" Name="Star Anise" Rack="True" />
-    <Item Id="1914" Name="Reindeer Bells" />
+    <Item Id="1914" Name="Reindeer Bells" Mount="True" />
     <Item Id="1915" Name="Candy Cane Hook" />
     <Item Id="1916" Name="Christmas Hook" />
     <Item Id="1917" Name="Candy Cane Pickaxe" Rack="True" />
@@ -12867,7 +12867,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2340" Name="Minecart Track" />
     <Item Id="2341" Name="Reaver Shark" Rack="True" />
     <Item Id="2342" Name="Sawtooth Shark" Rack="True" />
-    <Item Id="2343" Name="Minecart" />
+    <Item Id="2343" Name="Minecart" Mount="True" />
     <Item Id="2344" Name="Ammo Reservation Potion" />
     <Item Id="2345" Name="Lifeforce Potion" />
     <Item Id="2346" Name="Endurance Potion" />
@@ -12952,9 +12952,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2425" Name="Cooked Fish" IsFood="True" />
     <Item Id="2426" Name="Cooked Shrimp" IsFood="True" />
     <Item Id="2427" Name="Sashimi" IsFood="True" />
-    <Item Id="2428" Name="Fuzzy Carrot" />
-    <Item Id="2429" Name="Scaly Truffle" />
-    <Item Id="2430" Name="Slimy Saddle" />
+    <Item Id="2428" Name="Fuzzy Carrot" Mount="True" />
+    <Item Id="2429" Name="Scaly Truffle" Mount="True" />
+    <Item Id="2430" Name="Slimy Saddle" Mount="True" />
     <Item Id="2431" Name="Bee Wax" />
     <Item Id="2432" Name="Copper Plating Wall" />
     <Item Id="2433" Name="Stone Slab Wall" />
@@ -13015,7 +13015,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2488" Name="Tropical Barracuda" Rack="True" />
     <Item Id="2489" Name="King Slime Trophy" />
     <Item Id="2490" Name="Ship in a Bottle" />
-    <Item Id="2491" Name="Hardy Saddle" />
+    <Item Id="2491" Name="Hardy Saddle" Mount="True" />
     <Item Id="2492" Name="Pressure Plate Track" />
     <Item Id="2493" Name="King Slime Mask" Head="164" />
     <Item Id="2494" Name="Fin Wings" Accessory="True" />
@@ -13026,7 +13026,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2499" Name="Fish Costume Shirt" Body="172" />
     <Item Id="2500" Name="Fish Costume Finskirt" Legs="107" />
     <Item Id="2501" Name="Ginger Beard" Accessory="True" />
-    <Item Id="2502" Name="Honeyed Goggles" />
+    <Item Id="2502" Name="Honeyed Goggles" Mount="True" />
     <Item Id="2503" Name="Boreal Wood" />
     <Item Id="2504" Name="Palm Wood" />
     <Item Id="2505" Name="Boreal Wood Wall" />
@@ -13292,10 +13292,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2765" Name="Solar Flare Leggings" Legs="112" />
     <Item Id="2766" Name="Solar Tablet Fragment" />
     <Item Id="2767" Name="Solar Tablet" />
-    <Item Id="2768" Name="Drill Containment Unit" />
-    <Item Id="2769" Name="Cosmic Car Key" />
+    <Item Id="2768" Name="Drill Containment Unit" Mount="True" />
+    <Item Id="2769" Name="Cosmic Car Key" Mount="True" />
     <Item Id="2770" Name="Mothron Wings" Accessory="True" />
-    <Item Id="2771" Name="Brain Scrambler" />
+    <Item Id="2771" Name="Brain Scrambler" Mount="True" />
     <Item Id="2774" Name="Vortex Drill" Rack="True" />
     <Item Id="2776" Name="Vortex Pickaxe" Rack="True" />
     <Item Id="2779" Name="Nebula Drill" Rack="True" />
@@ -13774,7 +13774,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3257" Name="Sluggy Cage" />
     <Item Id="3258" Name="Slap Hand" Rack="True" />
     <Item Id="3259" Name="Twilight Hair Dye" />
-    <Item Id="3260" Name="Blessed Apple" />
+    <Item Id="3260" Name="Blessed Apple" Mount="True" />
     <Item Id="3261" Name="Spectre Bar" />
     <Item Id="3262" Name="Code 1" Rack="True" />
     <Item Id="3263" Name="Buccaneer Bandana" Head="184" />
@@ -13867,7 +13867,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3350" Name="Paintball Gun" Rack="True" />
     <Item Id="3351" Name="Classy Cane" Rack="True" />
     <Item Id="3352" Name="Stylish Scissors" Rack="True" />
-    <Item Id="3353" Name="Mechanical Cart" />
+    <Item Id="3353" Name="Mechanical Cart" Mount="True" />
     <Item Id="3354" Name="Mechanical Wheel Piece" />
     <Item Id="3355" Name="Mechanical Wagon Piece" />
     <Item Id="3356" Name="Mechanical Battery Piece" />
@@ -13881,7 +13881,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3364" Name="Fireplace" />
     <Item Id="3365" Name="Chimney" />
     <Item Id="3366" Name="Yoyo Bag" Accessory="True" />
-    <Item Id="3367" Name="Shrimpy Truffle" />
+    <Item Id="3367" Name="Shrimpy Truffle" Mount="True" />
     <Item Id="3368" Name="Arkhalis" Rack="True" />
     <Item Id="3369" Name="Confetti Cannon" />
     <Item Id="3370" Name="Music Box (The Towers)" Accessory="True" />
@@ -14282,7 +14282,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3768" Name="White Phasesaber" Rack="True" />
     <Item Id="3769" Name="Yellow Phasesaber" Rack="True" />
     <Item Id="3770" Name="Djinn's Curse" Legs="140" />
-    <Item Id="3771" Name="Ancient Horn" />
+    <Item Id="3771" Name="Ancient Horn" Mount="True" />
     <Item Id="3772" Name="Mandible Blade" Rack="True" />
     <Item Id="3773" Name="Ancient Headdress" Head="199" />
     <Item Id="3774" Name="Ancient Garments" Body="197" />
@@ -14567,8 +14567,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4063" Name="Drum Set" />
     <Item Id="4064" Name="Picnic Table" />
     <Item Id="4065" Name="Fancy Picnic Table" />
-    <Item Id="4066" Name="Desert Minecart" />
-    <Item Id="4067" Name="Minecarp" />
+    <Item Id="4066" Name="Desert Minecart" Mount="True" />
+    <Item Id="4067" Name="Minecarp" Mount="True" />
     <Item Id="4068" Name="Pink Fairy" IsCritter="True" />
     <Item Id="4069" Name="Green Fairy" IsCritter="True" />
     <Item Id="4070" Name="Blue Fairy" IsCritter="True" />
@@ -14764,7 +14764,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4261" Name="Orange Pressure Plate" />
     <Item Id="4262" Name="Snake Charmer's Flute" />
     <Item Id="4263" Name="Magic Conch" />
-    <Item Id="4264" Name="Golf Cart Keys" />
+    <Item Id="4264" Name="Golf Cart Keys" Mount="True" />
     <Item Id="4265" Name="Golf Chest" />
     <Item Id="4266" Name="Trapped Golf Chest" />
     <Item Id="4267" Name="Sandstone Chest" />
@@ -14926,10 +14926,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4423" Name="Scarab Bomb" Rack="True" />
     <Item Id="4424" Name="Wrought Iron Fence" />
     <Item Id="4425" Name="Shark Bait" />
-    <Item Id="4426" Name="Bee Minecart" />
-    <Item Id="4427" Name="Ladybug Minecart" />
-    <Item Id="4428" Name="Pigron Minecart" />
-    <Item Id="4429" Name="Sunflower Minecart" />
+    <Item Id="4426" Name="Bee Minecart" Mount="True" />
+    <Item Id="4427" Name="Ladybug Minecart" Mount="True" />
+    <Item Id="4428" Name="Pigron Minecart" Mount="True" />
+    <Item Id="4429" Name="Sunflower Minecart" Mount="True" />
     <Item Id="4430" Name="Potted Forest Cedar" />
     <Item Id="4431" Name="Potted Jungle Cedar" />
     <Item Id="4432" Name="Potted Hallow Cedar" />
@@ -14943,20 +14943,20 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4440" Name="Potted Jungle Bamboo" />
     <Item Id="4441" Name="Potted Hallow Bamboo" />
     <Item Id="4442" Name="Scarab Fishing Rod" Rack="True" />
-    <Item Id="4443" Name="Demonic Hellcart" />
-    <Item Id="4444" Name="Witch's Broom" />
+    <Item Id="4443" Name="Demonic Hellcart" Mount="True" />
+    <Item Id="4444" Name="Witch's Broom" Mount="True" />
     <Item Id="4445" Name="Cluster Rocket I" />
     <Item Id="4446" Name="Cluster Rocket II" />
     <Item Id="4447" Name="Wet Rocket" />
     <Item Id="4448" Name="Lava Rocket" />
     <Item Id="4449" Name="Honey Rocket" />
-    <Item Id="4450" Name="Shroom Minecart" />
-    <Item Id="4451" Name="Amethyst Minecart" />
-    <Item Id="4452" Name="Topaz Minecart" />
-    <Item Id="4453" Name="Sapphire Minecart" />
-    <Item Id="4454" Name="Emerald Minecart" />
-    <Item Id="4455" Name="Ruby Minecart" />
-    <Item Id="4456" Name="Diamond Minecart" />
+    <Item Id="4450" Name="Shroom Minecart" Mount="True" />
+    <Item Id="4451" Name="Amethyst Minecart" Mount="True" />
+    <Item Id="4452" Name="Topaz Minecart" Mount="True" />
+    <Item Id="4453" Name="Sapphire Minecart" Mount="True" />
+    <Item Id="4454" Name="Emerald Minecart" Mount="True" />
+    <Item Id="4455" Name="Ruby Minecart" Mount="True" />
+    <Item Id="4456" Name="Diamond Minecart" Mount="True" />
     <Item Id="4457" Name="Mini Nuke I" />
     <Item Id="4458" Name="Mini Nuke II" />
     <Item Id="4459" Name="Dry Rocket" />
@@ -14967,12 +14967,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4464" Name="Turtle" IsCritter="True" />
     <Item Id="4465" Name="Jungle Turtle" IsCritter="True" />
     <Item Id="4466" Name="Turtle Statue" />
-    <Item Id="4467" Name="Amber Minecart" />
-    <Item Id="4468" Name="Beetle Minecart" />
-    <Item Id="4469" Name="Meowmere Minecart" />
-    <Item Id="4470" Name="Party Wagon" />
-    <Item Id="4471" Name="The Dutchman" />
-    <Item Id="4472" Name="Steampunk Minecart" />
+    <Item Id="4467" Name="Amber Minecart" Mount="True" />
+    <Item Id="4468" Name="Beetle Minecart" Mount="True" />
+    <Item Id="4469" Name="Meowmere Minecart" Mount="True" />
+    <Item Id="4470" Name="Party Wagon" Mount="True" />
+    <Item Id="4471" Name="The Dutchman" Mount="True" />
+    <Item Id="4472" Name="Steampunk Minecart" Mount="True" />
     <Item Id="4473" Name="Grebe Cage" />
     <Item Id="4474" Name="Seagull Cage" />
     <Item Id="4475" Name="Water Strider Cage" />
@@ -15216,7 +15216,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4713" Name="Trapped Desert Chest" />
     <Item Id="4714" Name="Desert Key" />
     <Item Id="4715" Name="Stellar Tune" Rack="True" />
-    <Item Id="4716" Name="Mollusk Whistle" />
+    <Item Id="4716" Name="Mollusk Whistle" Mount="True" />
     <Item Id="4717" Name="Boreal Beam" />
     <Item Id="4718" Name="Rich Mahogany Beam" />
     <Item Id="4719" Name="Granite Column" />
@@ -15244,7 +15244,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4742" Name="Butcher's Bloodstained Pants" Legs="205" />
     <Item Id="4743" Name="Football" />
     <Item Id="4744" Name="Hunter Cloak" Accessory="True" />
-    <Item Id="4745" Name="Coffin Minecart" />
+    <Item Id="4745" Name="Coffin Minecart" Mount="True" />
     <Item Id="4746" Name="Safeman's Blanket Cape" Accessory="True" />
     <Item Id="4747" Name="Safeman's Sunny Day" Head="238" />
     <Item Id="4748" Name="Safeman's Sun Dress" Body="225" />
@@ -15262,7 +15262,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4760" Name="Sergeant United Shield" Rack="True" />
     <Item Id="4761" Name="Rock Golem Head" Head="241" />
     <Item Id="4762" Name="Critter Shampoo" Accessory="True" />
-    <Item Id="4763" Name="Digging Molecart" />
+    <Item Id="4763" Name="Digging Molecart" Mount="True" />
     <Item Id="4764" Name="Shroomerang" Rack="True" />
     <Item Id="4765" Name="Tree Globe" />
     <Item Id="4766" Name="World Globe" />
@@ -15284,18 +15284,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4782" Name="Treasure Bag (Empress of Light)" />
     <Item Id="4783" Name="Empress of Light Trophy" />
     <Item Id="4784" Name="Empress of Light Mask" Head="251" />
-    <Item Id="4785" Name="Dusty Rawhide Saddle" />
-    <Item Id="4786" Name="Royal Gilded Saddle" />
-    <Item Id="4787" Name="Black Studded Saddle" />
+    <Item Id="4785" Name="Dusty Rawhide Saddle" Mount="True" />
+    <Item Id="4786" Name="Royal Gilded Saddle" Mount="True" />
+    <Item Id="4787" Name="Black Studded Saddle" Mount="True" />
     <Item Id="4788" Name="Jousting Lance" Rack="True" />
     <Item Id="4789" Name="Shadow Jousting Lance" Rack="True" />
     <Item Id="4790" Name="Hallowed Jousting Lance" Rack="True" />
-    <Item Id="4791" Name="Pogo Stick" />
-    <Item Id="4792" Name="The Black Spot" />
-    <Item Id="4793" Name="Hexxed Branch" />
-    <Item Id="4794" Name="Toy Tank" />
-    <Item Id="4795" Name="Goat Skull" />
-    <Item Id="4796" Name="Dark Mage's Tome" />
+    <Item Id="4791" Name="Pogo Stick" Mount="True" />
+    <Item Id="4792" Name="The Black Spot" Mount="True" />
+    <Item Id="4793" Name="Hexxed Branch" Mount="True" />
+    <Item Id="4794" Name="Toy Tank" Mount="True" />
+    <Item Id="4795" Name="Goat Skull" Mount="True" />
+    <Item Id="4796" Name="Dark Mage's Tome" Mount="True" />
     <Item Id="4797" Name="Royal Delight" />
     <Item Id="4798" Name="Suspicious Grinning Eye" />
     <Item Id="4799" Name="Writhing Remains" />
@@ -15327,7 +15327,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4825" Name="Lava Bomb" Rack="True" />
     <Item Id="4826" Name="Honey Bomb" Rack="True" />
     <Item Id="4827" Name="Dry Bomb" Rack="True" />
-    <Item Id="4828" Name="Superheated Blood" />
+    <Item Id="4828" Name="Superheated Blood" Mount="True" />
     <Item Id="4829" Name="Cat License" />
     <Item Id="4830" Name="Dog License" />
     <Item Id="4831" Name="Amethyst Squirrel" IsCritter="True" />
@@ -15480,7 +15480,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4978" Name="Fledgling Wings" Accessory="True" />
     <Item Id="4979" Name="Music Box (Queen Slime)" Accessory="True" />
     <Item Id="4980" Name="Hook of Dissonance" />
-    <Item Id="4981" Name="Gelatinous Pillion" />
+    <Item Id="4981" Name="Gelatinous Pillion" Mount="True" />
     <Item Id="4982" Name="Crystal Assassin Hood" Head="261" />
     <Item Id="4983" Name="Crystal Assassin Shirt" Body="230" />
     <Item Id="4984" Name="Crystal Assassin Pants" Legs="213" />
@@ -15624,12 +15624,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5122" Name="The Firestarter" />
     <Item Id="5123" Name="The Bereaved" />
     <Item Id="5124" Name="The Strongman" />
-    <Item Id="5125" Name="Fart Kart" />
+    <Item Id="5125" Name="Fart Kart" Mount="True" />
     <Item Id="5126" Name="Hand Of Creation" Accessory="True" />
     <Item Id="5127" Name="Neon Moss" />
     <Item Id="5128" Name="Helium Moss" />
     <Item Id="5129" Name="Flymeal" Rack="True" />
-    <Item Id="5130" Name="Lilith's Necklace" />
+    <Item Id="5130" Name="Lilith's Necklace" Mount="True" />
     <Item Id="5131" Name="Resplendent Dessert" />
     <Item Id="5132" Name="Stinkbug" IsCritter="True" />
     <Item Id="5133" Name="Stinkbug Cage" />
@@ -15787,7 +15787,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5285" Name="Moon Globe" />
     <Item Id="5286" Name="Repaired Life Crystal" />
     <Item Id="5287" Name="Repaired Mana Crystal" />
-    <Item Id="5288" Name="Terra Fart Kart" />
+    <Item Id="5288" Name="Terra Fart Kart" Mount="True" />
     <Item Id="5289" Name="Minecart Upgrade Kit" />
     <Item Id="5290" Name="Jim's Cap" Head="279" />
     <Item Id="5291" Name="Echo Wall" />
@@ -16009,7 +16009,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5507" Name="Balloony Beads" Accessory="True" />
     <Item Id="5508" Name="Grim Old Barb" Accessory="True" />
     <Item Id="5509" Name="Vampire Pendant" Accessory="True" />
-    <Item Id="5510" Name="Slasher's Mysterious Skull" />
+    <Item Id="5510" Name="Slasher's Mysterious Skull" Mount="True" />
     <Item Id="5511" Name="Pufferfish" IsCritter="True" />
     <Item Id="5512" Name="Pufferfish Cage" />
     <Item Id="5513" Name="Puffer Shrimp" />
@@ -16024,7 +16024,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5522" Name="Ghoulder" />
     <Item Id="5523" Name="Friendly Boulder" />
     <Item Id="5524" Name="Chlorophyte Visor" Head="283" />
-    <Item Id="5525" Name="Cursed Piper Flute" />
+    <Item Id="5525" Name="Cursed Piper Flute" Mount="True" />
     <Item Id="5526" Name="Flairon" Rack="True" />
     <Item Id="5527" Name="Of Sea and Dreams" />
     <Item Id="5528" Name="The Runic Pixie" />
@@ -16096,10 +16096,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5594" Name="Power Bomb" Rack="True" />
     <Item Id="5595" Name="Sticky Power Bomb" Rack="True" />
     <Item Id="5596" Name="Welding Mask" Accessory="True" />
-    <Item Id="5597" Name="Amulet of the Night" />
+    <Item Id="5597" Name="Amulet of the Night" Mount="True" />
     <Item Id="5598" Name="CRT Monolith" Accessory="True" />
     <Item Id="5599" Name="Retro Monolith" Accessory="True" />
-    <Item Id="5600" Name="Blue Roller Skates" />
+    <Item Id="5600" Name="Blue Roller Skates" Mount="True" />
     <Item Id="5601" Name="Fallen Star Bathtub" />
     <Item Id="5602" Name="Fallen Star Bed" />
     <Item Id="5603" Name="Fallen Star Bookcase" />
@@ -16139,9 +16139,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5637" Name="Music Box (Eater of Worlds)" Accessory="True" />
     <Item Id="5638" Name="Music Box (Torch God)" Accessory="True" />
     <Item Id="5639" Name="Music Box (Alt Torch God)" Accessory="True" />
-    <Item Id="5640" Name="Green Roller Skates" />
-    <Item Id="5641" Name="Classic Roller Skates" />
-    <Item Id="5642" Name="Party Roller Skates" />
+    <Item Id="5640" Name="Green Roller Skates" Mount="True" />
+    <Item Id="5641" Name="Classic Roller Skates" Mount="True" />
+    <Item Id="5642" Name="Party Roller Skates" Mount="True" />
     <Item Id="5643" Name="Rainbow Glowstick" />
     <Item Id="5644" Name="Scrying Orb" />
     <Item Id="5645" Name="Rock Candy" IsFood="True" />
@@ -16161,11 +16161,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5659" Name="Heroicis' Wings" Accessory="True" />
     <Item Id="5660" Name="Hallowed Crown" Head="289" />
     <Item Id="5661" Name="Heroicis' Wings (Inactive)" />
-    <Item Id="5662" Name="Enchanted Pixie Dust" />
+    <Item Id="5662" Name="Enchanted Pixie Dust" Mount="True" />
     <Item Id="5663" Name="Cattiva" Rack="True" />
     <Item Id="5664" Name="Foxparks" Rack="True" />
-    <Item Id="5665" Name="Chillet" />
-    <Item Id="5666" Name="Chillet Ignis" />
+    <Item Id="5665" Name="Chillet" Mount="True" />
+    <Item Id="5666" Name="Chillet Ignis" Mount="True" />
     <Item Id="5667" Name="Digtoise" />
     <Item Id="5668" Name="The Imploder" />
     <Item Id="5669" Name="True Copper Shortsword" Rack="True" />
