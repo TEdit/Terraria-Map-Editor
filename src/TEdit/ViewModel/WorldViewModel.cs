@@ -1750,7 +1750,7 @@ public partial class WorldViewModel : ReactiveObject
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
             }));
-        }).ContinueWith(t =>
+        }).Unwrap().ContinueWith(t =>
         {
             if (t.IsCompletedSuccessfully && _undoManager != null)
             {
