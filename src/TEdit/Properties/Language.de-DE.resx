@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -648,6 +648,15 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Waffenregalgegenstand</value>
   </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>Artikel Flasche</value>
+  </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>Kreatur</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>Drachen</value>
+  </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>Glühbirnen</value>
   </data>
@@ -701,6 +710,24 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>Bestiarium</value>
+  </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>Blaues Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>Grünes Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>Pink Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>Rotes Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>Weißes Team Spawn</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>Gelbes Team Spawn</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analysieren</value>
@@ -756,6 +783,15 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>Zwischenablage leeren</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>Flip X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>Flip Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>Falsche-Farben-Bild importieren</value>
   </data>
@@ -780,8 +816,17 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Kabel einfügen</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>Einfügen</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Ersetzen vorhandener Kacheln</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>Drehen</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>Biom-Ausbreitung einfrieren</value>
@@ -942,6 +987,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_altars" xml:space="preserve">
     <value>Zerschlagene Altäre</value>
   </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>Apokalypse (Mondherr Laicht)</value>
+  </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>HG Verderben</value>
   </data>
@@ -1080,6 +1128,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Chinesische Weltversion</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Aktiv</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Kobalterz</value>
   </data>
@@ -1098,6 +1149,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>Purpur</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>Kultisten-Verzögerung</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>Fortschritt</value>
   </data>
@@ -1109,6 +1163,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>„Drunk world“</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>Dungeon Point</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Event</value>
@@ -1134,8 +1191,14 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>Halloween</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>Erzwingen Sie Halloween für immer</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>Weihnachten</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>Weihnachten für immer erzwingen</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>Welt-ID</value>
@@ -1266,6 +1329,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>Gerettete NPCs</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>Gerettete NPCs</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>Blauer Schleim</value>
   </data>
@@ -1329,6 +1395,21 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>Hausierer-Schulranzen</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>Aktive Säulen</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>Nebulasäule</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>Sonnensäule</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>Sternenstaubsäule</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>Vortexsäule</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Pre-Hardmode</value>
   </data>
@@ -1371,17 +1452,32 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_seed" xml:space="preserve">
     <value>Seed</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>Doppelte Dungeons</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>Infiziert</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Keine Fallen</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>Remix</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>Skyblock</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>Vampir</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>Zenit</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Silbererz</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>Spawn Point</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>Höhlenarten</value>
@@ -1422,6 +1518,15 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>Oberflächenniveau</value>
   </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>Team-Spawns</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>Teambasierte Spawns aktiviert</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>Team-Spawn-Orte</value>
+  </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>„Celebrationmk10“</value>
   </data>
@@ -1460,6 +1565,21 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Gleis</value>
+  </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>Blau</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>Grün</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>Rot</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>Gelb</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>

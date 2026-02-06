@@ -16,7 +16,7 @@ public class RandomizerPlugin : BasePlugin
     public RandomizerPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "将世界中的所有方块随机化";
+        Name = "将世界中的所有物块随机化";
     }
 
     public override void Execute()

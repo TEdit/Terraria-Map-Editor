@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
-        Title="搜索物品,方块或墙壁" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="185">
+        Title="搜索物品,物块或墙壁" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="185">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
         <TextBlock Text="输入您要查找的块或物品的名称." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <TextBox x:Name="BlockLookup"></TextBox>

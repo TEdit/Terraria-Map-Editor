@@ -28,7 +28,7 @@ namespace TEdit.View.Popups
             _newWorld.CaveNoise = 0.08;
             _newWorld.CaveMultiplier = 0.02;
             _newWorld.CaveDensity = 3.00;
-            _newWorld.CavePresets = new ObservableCollection<string> { "Normal", "Large", "labyrinth" };
+            _newWorld.CavePresets = new ObservableCollection<string> { "普通", "大", "迷宫" };
             _newWorld.CavePresetIndex = 0;
             _newWorld.GenerateAsh = true;
             _newWorld.GenerateLava = true;
@@ -124,7 +124,7 @@ namespace TEdit.View.Popups
                 WorldGeneration.Visibility = Visibility.Visible;
 
                 // Change button name.
-                ToggleWorldGeneration.Content = "↑ Collapse World Generation ↑";
+                ToggleWorldGeneration.Content = "↑ 折叠世界生成选项 ↑";
             }
             else if (WorldGeneration.Visibility == Visibility.Visible)
             {
@@ -135,7 +135,7 @@ namespace TEdit.View.Popups
                 WorldGeneration.Visibility = Visibility.Collapsed;
 
                 // Change button name.
-                ToggleWorldGeneration.Content = "↓ Expand World Generation ↓";
+                ToggleWorldGeneration.Content = "↓ 展开世界生成选项 ↓";
             }
         }
     }

@@ -35,7 +35,7 @@ public class FindChestWithPlugin : BasePlugin
                 if (view.CalculateDistance)
                 {
                     // Record Distance
-                    locations.Add(new Tuple<Vector2, string>(new Vector2(chest.X, chest.Y), ", Distance: " + Math.Round(Vector2.Distance(spawn, new Vector2(chest.X, chest.Y)))));
+                    locations.Add(new Tuple<Vector2, string>(new Vector2(chest.X, chest.Y), ", 距离: " + Math.Round(Vector2.Distance(spawn, new Vector2(chest.X, chest.Y)))));
                 }
                 else
                 {
@@ -49,7 +49,7 @@ public class FindChestWithPlugin : BasePlugin
         {
             // Sort Values Based On Distance, Rebuilt Array
             List<Tuple<Vector2, string>> locationsSorted = new List<Tuple<Vector2, string>>();
-            foreach (var value in locations.OrderBy(c => int.Parse(c.Item2.Replace(", Distance: ", ""))))
+            foreach (var value in locations.OrderBy(c => int.Parse(c.Item2.Replace(", 距离: ", ""))))
             {
                 locationsSorted.Add(value);
             }

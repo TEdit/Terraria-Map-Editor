@@ -168,7 +168,7 @@
       <Canvas x:Name="ColorFilterSettingsCanvas" Height="74" Margin="0,0,-2,0">
 
         <!-- Color Filter Settings Controls -->
-        <CheckBox x:Name="UseTiles" Height="14" Width="76" TabIndex="39" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="False" Content="使用方块" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" />
+        <CheckBox x:Name="UseTiles" Height="14" Width="76" TabIndex="39" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="False" Content="使用物块" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" />
         <CheckBox x:Name="UseWalls" Height="14" Width="76" TabIndex="40" HorizontalAlignment="Center" VerticalAlignment="Top" IsChecked="False" Content="使用墙" Panel.ZIndex="10" Canvas.Top="19" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" />
         <CheckBox x:Name="BuildSafe" Height="14" Width="76" TabIndex="41" HorizontalAlignment="Center" VerticalAlignment="Top" IsChecked="False" Content="安全建造" Panel.ZIndex="10" Canvas.Top="38" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" />
         <CheckBox x:Name="UniqueColors" Height="17" Width="100" TabIndex="42" HorizontalAlignment="Center" VerticalAlignment="Top" IsChecked="False" Content="独特的色彩" Panel.ZIndex="10" Canvas.Top="57" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" />

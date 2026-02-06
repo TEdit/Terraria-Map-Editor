@@ -228,8 +228,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 int subCount = wallOptionCounts[wallId];
                 if (subCount <= 0) continue;
 
-                // Default wall rule.
-                bool ruleSafe = true;
+                bool ruleSafe = ComputeWallBuildSafe(wallId);
 
                 int baseIndex = wallLookup[wallId];
                 if (baseIndex == 0) continue;
@@ -285,36 +284,84 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         #region BuildSafe Rules
 
         /// <summary>
-        /// Simple BuildSafe heuristic (tile-focused):
-        /// - falling tiles, cuttable tiles, frame-important tiles, breakable-on-place tiles => unsafe
-        /// - optionally treat non-solid and non-solid-top tiles as unsafe (only if arrays look initialized)
+        /// Decides if a TILE is BuildSafe:
+        /// - ManualUnsafeTiles => always false
+        /// - Conversion tiles (spread/convert) => false
+        /// - Otherwise use the cached world test result
         /// </summary>
         private static bool ComputeTileBuildSafe(int tileId, bool solidReady)
         {
-            // Gravity / falling tiles => unsafe
-            if (TileID.Sets.Falling[tileId])
+            // Manual overrides first (highest priority).
+            if (ManualUnsafeTiles.Contains(tileId))
                 return false;
 
-            // Cuttable by swords/Zenith (vines/plants/etc) => unsafe.
-            if (Main.tileCut[tileId])
+            // Conversion-based exclusions
+            if (IsConversionTile(tileId))
                 return false;
 
-            // Furniture / multi-tiles => unsafe (anchor-dependent).
-            if (Main.tileFrameImportant[tileId])
+            // World-tested result (cached)
+            return BuildSafeWorldTester.GetOrTest(tileId);
+        }
+
+        /// <summary>
+        /// Decides if a WALL is BuildSafe:
+        /// - ManualUnsafeWalls => always false
+        /// - Otherwise safe by default
+        /// </summary>
+        private static bool ComputeWallBuildSafe(int wallId)
+        {
+            // Manual overrides first (highest priority).
+            if (ManualUnsafeWalls.Contains(wallId))
                 return false;
 
-            // Fragile-on-place => unsafe.
-            if (TileID.Sets.BreakableWhenPlacing[tileId])
-                return false;
-
-            // Optional: only apply solidity rule if arrays look initialized.
-            if (solidReady)
-            {
-                if (!Main.tileSolid[tileId] && !Main.tileSolidTop[tileId])
-                    return false;
-            }
-
+            // Default wall rule: Safe.
             return true;
+        }
+
+        /// <summary>
+        /// Manual exclusions: always BuildSafe=false regardless of other rules.
+        /// </summary>
+        private static readonly HashSet<int> ManualUnsafeTiles =
+        [
+            160, // RainbowBrick.
+            687, // LavaMossBlock.
+            688, // ArgonMossBlock.
+            689, // KryptonMossBlock.
+            690, // XenonMossBlock.
+            691, // VioletMossBlock.
+            692, // RainbowMossBlock.
+        ];
+
+        /// <summary>
+        /// Manual exclusions: always BuildSafe=false for these WALL IDs.
+        /// </summary>
+        private static readonly HashSet<int> ManualUnsafeWalls =
+        [
+            62,  // SpiderUnsafe.
+            236, // Spider.
+        ];
+
+        /// <summary>
+        /// Returns true if this tile is part of any biome conversion/spread set.
+        /// </summary>
+        private static bool IsConversionTile(int tileId)
+        {
+            // If it belongs to ANY conversion set, treat it as unsafe.
+            return TileID.Sets.Conversion.MergesWithDirtInASpecialWay[tileId]
+                || TileID.Sets.Conversion.JungleGrass[tileId]
+                || TileID.Sets.Conversion.MushroomGrass[tileId]
+                || TileID.Sets.Conversion.Grass[tileId]
+                || TileID.Sets.Conversion.GolfGrass[tileId]
+             // || TileID.Sets.Conversion.Dirt[tileId]
+                || TileID.Sets.Conversion.Snow[tileId]
+             // || TileID.Sets.Conversion.Stone[tileId]
+                || TileID.Sets.Conversion.Ice[tileId]
+                || TileID.Sets.Conversion.Sand[tileId]
+                || TileID.Sets.Conversion.HardenedSand[tileId]
+                || TileID.Sets.Conversion.Sandstone[tileId]
+                || TileID.Sets.Conversion.Thorn[tileId]
+                || TileID.Sets.Conversion.Moss[tileId]
+                || TileID.Sets.Conversion.MossBrick[tileId];
         }
         #endregion
 

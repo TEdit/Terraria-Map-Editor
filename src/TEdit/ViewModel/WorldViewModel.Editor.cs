@@ -355,13 +355,7 @@ public partial class WorldViewModel
         PixelMap = RenderEntireWorld();
         UpdateTitle();
 
-        Points.Clear();
-        Points.Add("Spawn");
-        Points.Add("Dungeon");
-        foreach (NPC npc in CurrentWorld.NPCs)
-        {
-            Points.Add(npc.Name);
-        }
+        RefreshPoints();
 
         MinimapImage = RenderMiniMap.Render(CurrentWorld);
 

@@ -11,7 +11,7 @@ namespace TEdit.Editor.Plugins
         public ReplaceAllPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "更换所有方块";
+            Name = "更换所有物块";
         }
 
         private void PerformReplace()

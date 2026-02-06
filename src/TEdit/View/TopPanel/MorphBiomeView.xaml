@@ -31,7 +31,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="2">
             <TextBlock Text="选项" />
-            <CheckBox Content="基础方块" IsChecked="{Binding MorphToolOptions.EnableBaseTiles}"/>
+            <CheckBox Content="基础物块" IsChecked="{Binding MorphToolOptions.EnableBaseTiles}"/>
             <CheckBox Content="苔藓" IsChecked="{Binding MorphToolOptions.EnableMoss}"/>
             <CheckBox Content="邪恶" IsChecked="{Binding MorphToolOptions.EnableEvilTiles}"/>
             <CheckBox Content="装饰" IsChecked="{Binding MorphToolOptions.EnableSprites}"/>

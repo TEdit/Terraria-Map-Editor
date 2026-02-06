@@ -2,9 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
-        Title="移除方块插件" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="142.905">
+        Title="移除物块插件" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="142.905">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
-        <TextBlock Text="输入你想要移除的方块或物品的名称." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+        <TextBlock Text="输入你想要移除的物块或物品的名称." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <TextBox x:Name="BlockRemove"></TextBox>
         <TextBlock Text="输入你想要移除的墙的名称." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <TextBox x:Name="WallRemove"></TextBox>

@@ -13,8 +13,8 @@
                 <RadioButton x:Name="SelectionRadio" Content="自选" Margin="5,0"/>
                 <RadioButton x:Name="WorldRadio" Content="世界" Margin="5,0"/>
             </StackPanel>
-            <CheckBox x:Name="IncludeTileEntitiesCheckBox" Content="包含实体方块" Checked="IncludeTileEntitiesCheckBox_Checked"/>
-            <CheckBox x:Name="SensitivePlatformCheckBox" Content="在特殊的方块实体(如宝箱等可交互的方块)下方保留方块." IsChecked="True"/>
+            <CheckBox x:Name="IncludeTileEntitiesCheckBox" Content="包含实体物块(如箱子等)" Checked="IncludeTileEntitiesCheckBox_Checked"/>
+            <CheckBox x:Name="SensitivePlatformCheckBox" Content="在特殊的物块实体(如宝箱等可交互的物块)下方保留物块." IsChecked="True"/>
             <CheckBox x:Name="UndoCheckBox" Content="允许撤销 (慢)" IsChecked="True"/>
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="3" Margin="0,5">
                 <StackPanel Margin="2,0,2,2">

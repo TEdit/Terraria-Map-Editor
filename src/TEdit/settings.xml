@@ -137,7 +137,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
   <Tiles>
     <Tile Id="0" Color="#FF976B4B" Name="土块" Solid="true" Blends="true" />
     <Tile Id="1" Color="#FF808080" Name="石块" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="2" Color="#FF1CD85E" Name="草" Solid="true" Blends="true" MergeWith="0" Special="杂草" />
+    <Tile Id="2" Color="#FF1CD85E" Name="草块" Solid="true" Blends="true" MergeWith="0" Special="杂草" />
     <Tile Id="3" Color="#FF1BC56D" Name="矮森林植物" Framed="true" TextureGrid="16,20">
       <Frames>
         <Frame UV="0,0" Variety="单叶草" />
@@ -10551,7 +10551,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="258" Name="忍者裤" Legs="14" />
     <Item Id="259" Name="皮革" />
     <Item Id="260" Name="红帽" Head="24" />
-    <Item Id="261" Name="金鱼" />
+    <Item Id="261" Name="金鱼" IsCritter="True" />
     <Item Id="262" Name="长袍" Body="15" />
     <Item Id="263" Name="机器人帽" Head="25" />
     <Item Id="264" Name="金冠" Head="26" />
@@ -11628,7 +11628,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1335" Name="灵液弹" />
     <Item Id="1336" Name="黄金雨" Rack="True" />
     <Item Id="1337" Name="兔兔炮" />
-    <Item Id="1338" Name="爆炸兔" Rack="True" />
+    <Item Id="1338" Name="爆炸兔" IsCritter="True" />
     <Item Id="1339" Name="小毒液瓶" />
     <Item Id="1340" Name="毒液瓶" />
     <Item Id="1341" Name="毒液箭" />
@@ -12282,22 +12282,22 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1989" Name="女性人体模型" />
     <Item Id="1990" Name="染发剂清除剂" />
     <Item Id="1991" Name="虫网" />
-    <Item Id="1992" Name="萤火虫" />
+    <Item Id="1992" Name="萤火虫" IsCritter="True" />
     <Item Id="1993" Name="萤火虫瓶" />
-    <Item Id="1994" Name="帝王蝶" />
-    <Item Id="1995" Name="紫君王蝶" />
-    <Item Id="1996" Name="红纹蝶" />
-    <Item Id="1997" Name="尤利西斯蝶" />
-    <Item Id="1998" Name="硫磺蝶" />
-    <Item Id="1999" Name="树若虫蝴蝶" />
-    <Item Id="2000" Name="斑纹燕尾蝶" />
-    <Item Id="2001" Name="茱莉娅蝶" />
-    <Item Id="2002" Name="蠕虫" />
-    <Item Id="2003" Name="老鼠" />
-    <Item Id="2004" Name="荧光虫" />
+    <Item Id="1994" Name="帝王蝶" IsCritter="True" />
+    <Item Id="1995" Name="紫君王蝶" IsCritter="True" />
+    <Item Id="1996" Name="红纹蝶" IsCritter="True" />
+    <Item Id="1997" Name="尤利西斯蝶" IsCritter="True" />
+    <Item Id="1998" Name="硫磺蝶" IsCritter="True" />
+    <Item Id="1999" Name="树若虫蝴蝶" IsCritter="True" />
+    <Item Id="2000" Name="斑纹燕尾蝶" IsCritter="True" />
+    <Item Id="2001" Name="茱莉娅蝶" IsCritter="True" />
+    <Item Id="2002" Name="蠕虫" IsCritter="True" />
+    <Item Id="2003" Name="老鼠" IsCritter="True" />
+    <Item Id="2004" Name="荧光虫" IsCritter="True" />
     <Item Id="2005" Name="荧光虫瓶" />
-    <Item Id="2006" Name="蜗牛" />
-    <Item Id="2007" Name="发光蜗牛" />
+    <Item Id="2006" Name="蜗牛" IsCritter="True" />
+    <Item Id="2007" Name="发光蜗牛" IsCritter="True" />
     <Item Id="2008" Name="别致灰壁纸" />
     <Item Id="2009" Name="浮冰壁纸" />
     <Item Id="2010" Name="音符壁纸" />
@@ -12305,11 +12305,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2012" Name="彩虹壁纸" />
     <Item Id="2013" Name="烁石壁纸" />
     <Item Id="2014" Name="星光天堂壁纸" />
-    <Item Id="2015" Name="鸟" />
-    <Item Id="2016" Name="冠蓝鸦" />
-    <Item Id="2017" Name="红雀" />
-    <Item Id="2018" Name="松鼠" />
-    <Item Id="2019" Name="兔兔" />
+    <Item Id="2015" Name="鸟" IsCritter="True" />
+    <Item Id="2016" Name="冠蓝鸦" IsCritter="True" />
+    <Item Id="2017" Name="红雀" IsCritter="True" />
+    <Item Id="2018" Name="松鼠" IsCritter="True" />
+    <Item Id="2019" Name="兔兔" IsCritter="True" />
     <Item Id="2020" Name="仙人掌书架" />
     <Item Id="2021" Name="乌木书架" />
     <Item Id="2022" Name="血肉书架" />
@@ -12411,9 +12411,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2118" Name="剑架" />
     <Item Id="2119" Name="石板" />
     <Item Id="2120" Name="沙岩板" />
-    <Item Id="2121" Name="青蛙" />
-    <Item Id="2122" Name="野鸭" />
-    <Item Id="2123" Name="鸭" />
+    <Item Id="2121" Name="青蛙" IsCritter="True" />
+    <Item Id="2122" Name="野鸭" IsCritter="True" />
+    <Item Id="2123" Name="鸭" IsCritter="True" />
     <Item Id="2124" Name="蜂蜜浴缸" />
     <Item Id="2125" Name="蒸汽朋克浴缸" />
     <Item Id="2126" Name="生命木浴缸" />
@@ -12446,8 +12446,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2153" Name="生命木蜡烛" />
     <Item Id="2154" Name="暗影木蜡烛" />
     <Item Id="2155" Name="金蜡烛" />
-    <Item Id="2156" Name="黑蝎子" />
-    <Item Id="2157" Name="蝎子" />
+    <Item Id="2156" Name="黑蝎子" IsCritter="True" />
+    <Item Id="2157" Name="蝎子" IsCritter="True" />
     <Item Id="2158" Name="泡泡壁纸" />
     <Item Id="2159" Name="铜管壁纸" />
     <Item Id="2160" Name="黄鸭壁纸" />
@@ -12495,7 +12495,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2202" Name="甲虫护腿" Legs="98" />
     <Item Id="2203" Name="蒸汽朋克锅炉" />
     <Item Id="2204" Name="蜂蜜分配机" />
-    <Item Id="2205" Name="企鹅" />
+    <Item Id="2205" Name="企鹅" IsCritter="True" />
     <Item Id="2206" Name="企鹅笼" />
     <Item Id="2207" Name="蠕虫笼" />
     <Item Id="2208" Name="泰拉饲养笼" />
@@ -12963,7 +12963,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2670" Name="南瓜书架" />
     <Item Id="2671" Name="南瓜钢琴" />
     <Item Id="2672" Name="鲨鱼雕像" />
-    <Item Id="2673" Name="松露虫" />
+    <Item Id="2673" Name="松露虫" IsCritter="True" />
     <Item Id="2674" Name="学徒诱饵" />
     <Item Id="2675" Name="熟手诱饵" />
     <Item Id="2676" Name="大师诱饵" />
@@ -13030,7 +13030,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2737" Name="'Z'雕像" />
     <Item Id="2738" Name="烟花喷泉" />
     <Item Id="2739" Name="增速轨道" />
-    <Item Id="2740" Name="蚱蜢" />
+    <Item Id="2740" Name="蚱蜢" IsCritter="True" />
     <Item Id="2741" Name="蚱蜢笼" />
     <Item Id="2742" Name="八音盒 (地底猩红)" Accessory="True" />
     <Item Id="2743" Name="仙人掌桌" />
@@ -13169,13 +13169,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2886" Name="毒粉" />
     <Item Id="2887" Name="毒蘑菇" />
     <Item Id="2888" Name="蜂膝弓" Rack="True" />
-    <Item Id="2889" Name="金鸟" />
-    <Item Id="2890" Name="金兔" />
-    <Item Id="2891" Name="金蝴蝶" />
-    <Item Id="2892" Name="金蛙" />
-    <Item Id="2893" Name="金蚱蜢" />
-    <Item Id="2894" Name="金老鼠" />
-    <Item Id="2895" Name="金蠕虫" />
+    <Item Id="2889" Name="金鸟" IsCritter="True" />
+    <Item Id="2890" Name="金兔" IsCritter="True" />
+    <Item Id="2891" Name="金蝴蝶" IsCritter="True" />
+    <Item Id="2892" Name="金蛙" IsCritter="True" />
+    <Item Id="2893" Name="金蚱蜢" IsCritter="True" />
+    <Item Id="2894" Name="金老鼠" IsCritter="True" />
+    <Item Id="2895" Name="金蠕虫" IsCritter="True" />
     <Item Id="2896" Name="粘性雷管" Rack="True" />
     <Item Id="2897" Name="愤怒捕手旗" Tally="88" />
     <Item Id="2898" Name="装甲维京海盗旗" Tally="89" />
@@ -13471,10 +13471,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3188" Name="角斗士胸甲" Body="182" />
     <Item Id="3189" Name="角斗士护腿" Legs="122" />
     <Item Id="3190" Name="反光染料" />
-    <Item Id="3191" Name="附魔夜行者" />
-    <Item Id="3192" Name="蛆虫" />
-    <Item Id="3193" Name="鼻涕虫" />
-    <Item Id="3194" Name="蚜虫" />
+    <Item Id="3191" Name="附魔夜行者" IsCritter="True" />
+    <Item Id="3192" Name="蛆虫" IsCritter="True" />
+    <Item Id="3193" Name="鼻涕虫" IsCritter="True" />
+    <Item Id="3194" Name="蚜虫" IsCritter="True" />
     <Item Id="3195" Name="蛆虫汤" IsFood="True" />
     <Item Id="3196" Name="炸弹鱼" Rack="True" />
     <Item Id="3197" Name="寒霜飞鱼" Rack="True" />
@@ -13813,10 +13813,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3533" Name="流沙染料" />
     <Item Id="3534" Name="幻象染料" />
     <Item Id="3535" Name="珍珠流沙染料" />
-    <Item Id="3536" Name="星旋天塔柱" />
-    <Item Id="3537" Name="星云天塔柱" />
-    <Item Id="3538" Name="星尘天塔柱" />
-    <Item Id="3539" Name="日耀天塔柱" />
+    <Item Id="3536" Name="星旋天塔柱" Accessory="True" />
+    <Item Id="3537" Name="星云天塔柱" Accessory="True" />
+    <Item Id="3538" Name="星尘天塔柱" Accessory="True" />
+    <Item Id="3539" Name="日耀天塔柱" Accessory="True" />
     <Item Id="3540" Name="幻影弓" Rack="True" />
     <Item Id="3541" Name="终极棱镜" Rack="True" />
     <Item Id="3542" Name="星云烈焰" Rack="True" />
@@ -13840,8 +13840,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3560" Name="红酸性染料" />
     <Item Id="3561" Name="凝胶染料" />
     <Item Id="3562" Name="粉凝胶染料" />
-    <Item Id="3563" Name="红松鼠" />
-    <Item Id="3564" Name="金松鼠" />
+    <Item Id="3563" Name="红松鼠" IsCritter="True" />
+    <Item Id="3564" Name="金松鼠" IsCritter="True" />
     <Item Id="3565" Name="红松鼠笼" />
     <Item Id="3566" Name="金松鼠笼" />
     <Item Id="3567" Name="夜明弹" />
@@ -14335,9 +14335,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4065" Name="精致野餐桌" />
     <Item Id="4066" Name="沙漠矿车" />
     <Item Id="4067" Name="鲤鱼矿车" />
-    <Item Id="4068" Name="粉仙灵" />
-    <Item Id="4069" Name="绿仙灵" />
-    <Item Id="4070" Name="蓝仙灵" />
+    <Item Id="4068" Name="粉仙灵" IsCritter="True" />
+    <Item Id="4069" Name="绿仙灵" IsCritter="True" />
+    <Item Id="4070" Name="蓝仙灵" IsCritter="True" />
     <Item Id="4071" Name="旋螺壳" />
     <Item Id="4072" Name="香螺壳" />
     <Item Id="4073" Name="旋螺壳" />
@@ -14540,7 +14540,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4271" Name="血泪" />
     <Item Id="4272" Name="滴滴怪致残者" Rack="True" />
     <Item Id="4273" Name="吸血鬼青蛙法杖" Rack="True" />
-    <Item Id="4274" Name="金金鱼" />
+    <Item Id="4274" Name="金金鱼" IsCritter="True" />
     <Item Id="4275" Name="金鱼缸" Head="221" />
     <Item Id="4276" Name="巴斯特雕像" />
     <Item Id="4277" Name="金星块" />
@@ -14600,13 +14600,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4331" Name="红蜻蜓罐" />
     <Item Id="4332" Name="黄蜻蜓罐" />
     <Item Id="4333" Name="金蜻蜓罐" />
-    <Item Id="4334" Name="黑蜻蜓" />
-    <Item Id="4335" Name="蓝蜻蜓" />
-    <Item Id="4336" Name="绿蜻蜓" />
-    <Item Id="4337" Name="橙蜻蜓" />
-    <Item Id="4338" Name="红蜻蜓" />
-    <Item Id="4339" Name="黄蜻蜓" />
-    <Item Id="4340" Name="金蜻蜓" />
+    <Item Id="4334" Name="黑蜻蜓" IsCritter="True" />
+    <Item Id="4335" Name="蓝蜻蜓" IsCritter="True" />
+    <Item Id="4336" Name="绿蜻蜓" IsCritter="True" />
+    <Item Id="4337" Name="橙蜻蜓" IsCritter="True" />
+    <Item Id="4338" Name="红蜻蜓" IsCritter="True" />
+    <Item Id="4339" Name="黄蜻蜓" IsCritter="True" />
+    <Item Id="4340" Name="金蜻蜓" IsCritter="True" />
     <Item Id="4341" Name="梯凳" Accessory="True" />
     <Item Id="4342" Name="蜻蜓雕像" />
     <Item Id="4343" Name="纸飞机" Rack="True" />
@@ -14625,27 +14625,27 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4356" Name="八音盒 (旅程结束)" Accessory="True" />
     <Item Id="4357" Name="八音盒 (暴风雨)" Accessory="True" />
     <Item Id="4358" Name="八音盒 (墓地)" Accessory="True" />
-    <Item Id="4359" Name="海鸥" />
+    <Item Id="4359" Name="海鸥" IsCritter="True" />
     <Item Id="4360" Name="海鸥雕像" />
-    <Item Id="4361" Name="瓢虫" />
-    <Item Id="4362" Name="金瓢虫" />
-    <Item Id="4363" Name="蝇蛆" />
+    <Item Id="4361" Name="瓢虫" IsCritter="True" />
+    <Item Id="4362" Name="金瓢虫" IsCritter="True" />
+    <Item Id="4363" Name="蝇蛆" IsCritter="True" />
     <Item Id="4364" Name="蝇蛆笼" />
     <Item Id="4365" Name="天界魔棒" />
     <Item Id="4366" Name="桉树汁" />
-    <Item Id="4367" Name="蓝风筝" />
-    <Item Id="4368" Name="蓝黄风筝" />
-    <Item Id="4369" Name="红风筝" />
-    <Item Id="4370" Name="红黄风筝" />
-    <Item Id="4371" Name="黄风筝" />
+    <Item Id="4367" Name="蓝风筝" IsKite="True" />
+    <Item Id="4368" Name="蓝黄风筝" IsKite="True" />
+    <Item Id="4369" Name="红风筝" IsKite="True" />
+    <Item Id="4370" Name="红黄风筝" IsKite="True" />
+    <Item Id="4371" Name="黄风筝" IsKite="True" />
     <Item Id="4372" Name="常春藤" />
-    <Item Id="4373" Name="鳉鱼" />
-    <Item Id="4374" Name="䴙䴘" />
-    <Item Id="4375" Name="大鼠" />
+    <Item Id="4373" Name="鳉鱼" IsCritter="True" />
+    <Item Id="4374" Name="䴙䴘" IsCritter="True" />
+    <Item Id="4375" Name="大鼠" IsCritter="True" />
     <Item Id="4376" Name="大鼠笼" />
     <Item Id="4377" Name="氪苔藓" />
     <Item Id="4378" Name="氙苔藓" />
-    <Item Id="4379" Name="飞龙风筝" />
+    <Item Id="4379" Name="飞龙风筝" IsKite="True" />
     <Item Id="4380" Name="瓢虫笼" />
     <Item Id="4381" Name="血雨弓" Rack="True" />
     <Item Id="4382" Name="先进战斗技术" />
@@ -14661,7 +14661,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4392" Name="回声块" />
     <Item Id="4393" Name="甲虫鱼" Rack="True" />
     <Item Id="4394" Name="蝎子鱼" Rack="True" />
-    <Item Id="4395" Name="猫头鹰" />
+    <Item Id="4395" Name="猫头鹰" IsCritter="True" />
     <Item Id="4396" Name="猫头鹰笼" />
     <Item Id="4397" Name="猫头鹰雕像" />
     <Item Id="4398" Name="鳉鱼缸" />
@@ -14684,8 +14684,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4415" Name="石门" />
     <Item Id="4416" Name="石平台" />
     <Item Id="4417" Name="绿洲喷泉" />
-    <Item Id="4418" Name="水黾" />
-    <Item Id="4419" Name="金水黾" />
+    <Item Id="4418" Name="水黾" IsCritter="True" />
+    <Item Id="4419" Name="金水黾" IsCritter="True" />
     <Item Id="4420" Name="草坪火烈鸟" />
     <Item Id="4421" Name="八音盒 (地底丛林)" Accessory="True" />
     <Item Id="4422" Name="格栅" />
@@ -14730,8 +14730,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4461" Name="龟笼" />
     <Item Id="4462" Name="丛林龟笼" />
     <Item Id="4463" Name="罗马短剑" Rack="True" />
-    <Item Id="4464" Name="龟" />
-    <Item Id="4465" Name="丛林龟" />
+    <Item Id="4464" Name="龟" IsCritter="True" />
+    <Item Id="4465" Name="丛林龟" IsCritter="True" />
     <Item Id="4466" Name="龟雕像" />
     <Item Id="4467" Name="琥珀矿车" />
     <Item Id="4468" Name="甲虫矿车" />
@@ -14746,9 +14746,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4477" Name="弱效幸运药水" />
     <Item Id="4478" Name="幸运药水" />
     <Item Id="4479" Name="强效幸运药水" />
-    <Item Id="4480" Name="海马" />
+    <Item Id="4480" Name="海马" IsCritter="True" />
     <Item Id="4481" Name="海马笼" />
-    <Item Id="4482" Name="金海马" />
+    <Item Id="4482" Name="金海马" IsCritter="True" />
     <Item Id="4483" Name="金海马笼" />
     <Item Id="4484" Name="1/2秒计时器" />
     <Item Id="4485" Name="1/4秒计时器" />
@@ -14876,10 +14876,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4607" Name="沙漠虎杖" Rack="True" />
     <Item Id="4608" Name="鱼饵桶" />
     <Item Id="4609" Name="花园侏儒" />
-    <Item Id="4610" Name="骨蛇风筝" />
-    <Item Id="4611" Name="吞世怪风筝" />
-    <Item Id="4612" Name="兔兔风筝" />
-    <Item Id="4613" Name="猪龙风筝" />
+    <Item Id="4610" Name="骨蛇风筝" IsKite="True" />
+    <Item Id="4611" Name="吞世怪风筝" IsKite="True" />
+    <Item Id="4612" Name="兔兔风筝" IsKite="True" />
+    <Item Id="4613" Name="猪龙风筝" IsKite="True" />
     <Item Id="4614" Name="苹果汁" IsFood="True" />
     <Item Id="4615" Name="葡萄汁" IsFood="True" />
     <Item Id="4616" Name="柠檬水" IsFood="True" />
@@ -14914,10 +14914,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4645" Name="钻石石块" />
     <Item Id="4646" Name="琥珀石块" />
     <Item Id="4647" Name="琥珀石墙" />
-    <Item Id="4648" Name="食人怪风筝" />
-    <Item Id="4649" Name="蓝水母风筝" />
-    <Item Id="4650" Name="粉水母风筝" />
-    <Item Id="4651" Name="鲨鱼风筝" />
+    <Item Id="4648" Name="食人怪风筝" IsKite="True" />
+    <Item Id="4649" Name="蓝水母风筝" IsKite="True" />
+    <Item Id="4650" Name="粉水母风筝" IsKite="True" />
+    <Item Id="4651" Name="鲨鱼风筝" IsKite="True" />
     <Item Id="4652" Name="超级英雄面具" Head="230" />
     <Item Id="4653" Name="超级英雄服装" Body="217" />
     <Item Id="4654" Name="超级英雄紧身裤" Legs="191" />
@@ -14935,22 +14935,22 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4666" Name="漂亮粉丝带" Head="232" />
     <Item Id="4667" Name="竹栅栏" />
     <Item Id="4668" Name="夜明漆" />
-    <Item Id="4669" Name="沙鲨风筝" />
-    <Item Id="4670" Name="腐化兔兔风筝" />
-    <Item Id="4671" Name="猩红兔兔风筝" />
+    <Item Id="4669" Name="沙鲨风筝" IsKite="True" />
+    <Item Id="4670" Name="腐化兔兔风筝" IsKite="True" />
+    <Item Id="4671" Name="猩红兔兔风筝" IsKite="True" />
     <Item Id="4672" Name="皮鞭" Rack="True" />
     <Item Id="4673" Name="鼓槌" />
-    <Item Id="4674" Name="金鱼风筝" />
-    <Item Id="4675" Name="愤怒捕手风筝" />
-    <Item Id="4676" Name="锦鲤风筝" />
-    <Item Id="4677" Name="千足蜈蚣风筝" />
+    <Item Id="4674" Name="金鱼风筝" IsKite="True" />
+    <Item Id="4675" Name="愤怒捕手风筝" IsKite="True" />
+    <Item Id="4676" Name="锦鲤风筝" IsKite="True" />
+    <Item Id="4677" Name="千足蜈蚣风筝" IsKite="True" />
     <Item Id="4678" Name="迪朗达尔" Rack="True" />
     <Item Id="4679" Name="晨星" Rack="True" />
     <Item Id="4680" Name="暗黑收割" Rack="True" />
-    <Item Id="4681" Name="光谱风筝" />
+    <Item Id="4681" Name="光谱风筝" IsKite="True" />
     <Item Id="4682" Name="释放鸽子" />
-    <Item Id="4683" Name="游荡眼球怪风筝" />
-    <Item Id="4684" Name="独角兽风筝" />
+    <Item Id="4683" Name="游荡眼球怪风筝" IsKite="True" />
+    <Item Id="4684" Name="独角兽风筝" IsKite="True" />
     <Item Id="4685" Name="掘墓者帽" Head="231" />
     <Item Id="4686" Name="掘墓者外套" Body="219" />
     <Item Id="4687" Name="愤怒蒲公英旗" Tally="274" />
@@ -15096,25 +15096,25 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4828" Name="过热的血 Blood" />
     <Item Id="4829" Name="猫咪许可证" />
     <Item Id="4830" Name="狗狗许可证" />
-    <Item Id="4831" Name="紫晶松鼠" />
-    <Item Id="4832" Name="黄玉松鼠" />
-    <Item Id="4833" Name="蓝玉松鼠" />
-    <Item Id="4834" Name="翡翠松鼠" />
-    <Item Id="4835" Name="红玉松鼠" />
-    <Item Id="4836" Name="钻石松鼠" />
-    <Item Id="4837" Name="琥珀松鼠" />
-    <Item Id="4838" Name="紫晶兔兔" />
-    <Item Id="4839" Name="黄玉兔兔" />
-    <Item Id="4840" Name="蓝玉兔兔" />
-    <Item Id="4841" Name="翡翠兔兔" />
-    <Item Id="4842" Name="红玉兔兔" />
-    <Item Id="4843" Name="钻石兔兔" />
-    <Item Id="4844" Name="琥珀兔兔" />
-    <Item Id="4845" Name="地狱蝴蝶" />
+    <Item Id="4831" Name="紫晶松鼠" IsCritter="True" />
+    <Item Id="4832" Name="黄玉松鼠" IsCritter="True" />
+    <Item Id="4833" Name="蓝玉松鼠" IsCritter="True" />
+    <Item Id="4834" Name="翡翠松鼠" IsCritter="True" />
+    <Item Id="4835" Name="红玉松鼠" IsCritter="True" />
+    <Item Id="4836" Name="钻石松鼠" IsCritter="True" />
+    <Item Id="4837" Name="琥珀松鼠" IsCritter="True" />
+    <Item Id="4838" Name="紫晶兔兔" IsCritter="True" />
+    <Item Id="4839" Name="黄玉兔兔" IsCritter="True" />
+    <Item Id="4840" Name="蓝玉兔兔" IsCritter="True" />
+    <Item Id="4841" Name="翡翠兔兔" IsCritter="True" />
+    <Item Id="4842" Name="红玉兔兔" IsCritter="True" />
+    <Item Id="4843" Name="钻石兔兔" IsCritter="True" />
+    <Item Id="4844" Name="琥珀兔兔" IsCritter="True" />
+    <Item Id="4845" Name="地狱蝴蝶" IsCritter="True" />
     <Item Id="4846" Name="地狱蝴蝶罐" />
-    <Item Id="4847" Name="熔岩萤火虫" />
+    <Item Id="4847" Name="熔岩萤火虫" IsCritter="True" />
     <Item Id="4848" Name="熔岩萤火虫瓶" />
-    <Item Id="4849" Name="岩浆蜗牛" />
+    <Item Id="4849" Name="岩浆蜗牛" IsCritter="True" />
     <Item Id="4850" Name="岩浆蜗牛笼" />
     <Item Id="4851" Name="黄玉宝石果" />
     <Item Id="4852" Name="紫晶宝石果" />
@@ -15226,7 +15226,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="4958" Name="史莱姆皇后纪念章" />
     <Item Id="4959" Name="史莱姆皇后面具" Head="260" />
     <Item Id="4960" Name="王室美食" />
-    <Item Id="4961" Name="七彩草蛉" />
+    <Item Id="4961" Name="七彩草蛉" IsCritter="True" />
     <Item Id="4962" Name="石材板" />
     <Item Id="4963" Name="松露虫笼" />
     <Item Id="4964" Name="七彩草蛉罐" />
@@ -15396,7 +15396,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5129" Name="臭虫剑" Rack="True" />
     <Item Id="5130" Name="Lilith的项链" />
     <Item Id="5131" Name="华美甜点" />
-    <Item Id="5132" Name="臭虫" />
+    <Item Id="5132" Name="臭虫" IsCritter="True" />
     <Item Id="5133" Name="臭虫笼" />
     <Item Id="5134" Name="泰拉改造枪" />
     <Item Id="5135" Name="毒液飞镖机关" />
@@ -15476,7 +15476,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5209" Name="机关灰烬宝箱" />
     <Item Id="5210" Name="灰烬木马桶" />
     <Item Id="5211" Name="生物群落Sight药水" />
-    <Item Id="5212" Name="绯红金刚鹦鹉" />
+    <Item Id="5212" Name="绯红金刚鹦鹉" IsCritter="True" />
     <Item Id="5213" Name="绯红金刚鹦鹉笼" />
     <Item Id="5214" Name="灰烬草种子" />
     <Item Id="5215" Name="灰烬木" />
@@ -15564,7 +15564,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5297" Name="蓝鸡蛋" />
     <Item Id="5298" Name="三尖回旋镖" Rack="True" />
     <Item Id="5299" Name="蘑菇篝火" />
-    <Item Id="5300" Name="蓝金刚鹦鹉" />
+    <Item Id="5300" Name="蓝金刚鹦鹉" IsCritter="True" />
     <Item Id="5301" Name="蓝金刚鹦鹉笼" />
     <Item Id="5302" Name="无底蜂蜜桶" />
     <Item Id="5303" Name="蜂蜜吸收绵" />
@@ -15575,9 +15575,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5308" Name="r/Terraria" />
     <Item Id="5309" Name="环境保护指南" />
     <Item Id="5310" Name="公主风" />
-    <Item Id="5311" Name="巨嘴鸟" />
-    <Item Id="5312" Name="黄玄凤鹦鹉" />
-    <Item Id="5313" Name="灰玄凤鹦鹉" />
+    <Item Id="5311" Name="巨嘴鸟" IsCritter="True" />
+    <Item Id="5312" Name="黄玄凤鹦鹉" IsCritter="True" />
+    <Item Id="5313" Name="灰玄凤鹦鹉" IsCritter="True" />
     <Item Id="5314" Name="巨嘴鸟笼" />
     <Item Id="5315" Name="黄玄凤鹦鹉笼" />
     <Item Id="5316" Name="灰玄凤鹦鹉笼" />
@@ -15614,7 +15614,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5347" Name="以太天塔柱" Accessory="True" />
     <Item Id="5348" Name="微光箭" />
     <Item Id="5349" Name="以太块" />
-    <Item Id="5350" Name="飞灵" />
+    <Item Id="5350" Name="飞灵" IsCritter="True" />
     <Item Id="5351" Name="飞灵瓶" />
     <Item Id="5352" Name="微光史莱姆旗" Tally="289"/>
     <Item Id="5353" Name="以太火把" />
@@ -15775,7 +15775,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5508" Name="冷酷旧铁刺" Accessory="True" />
     <Item Id="5509" Name="吸血鬼吊坠" Accessory="True" />
     <Item Id="5510" Name="砍杀者的神秘骷髅头" />
-    <Item Id="5511" Name="河豚" />
+    <Item Id="5511" Name="河豚" IsCritter="True" />
     <Item Id="5512" Name="河豚笼" />
     <Item Id="5513" Name="河豚虾" />
     <Item Id="5514" Name="彩虹巨石" />
@@ -16580,7 +16580,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Prefix Id="97" Name="散乱 " />
   </ItemPrefix>
   <Paints>
-    <Paint Id="0" Name="None" Color="#00000000" />
+    <Paint Id="0" Name="无" Color="#00000000" />
     <!-- Non-deep paints, lightened ~25% toward white -->
     <Paint Id="1" Name="红" Color="#FFFF4040" />
     <Paint Id="2" Name="橙" Color="#FFFF9F40" />

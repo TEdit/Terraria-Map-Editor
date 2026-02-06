@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" 
         SizeToContent="WidthAndHeight"
-        Title="搜索实体方块"
+        Title="搜索实体物块"
         ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico" 

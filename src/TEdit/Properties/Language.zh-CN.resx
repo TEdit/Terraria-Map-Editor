@@ -204,7 +204,7 @@
     <value>NPC数据</value>
   </data>
   <data name="editor_tabs_special" xml:space="preserve">
-    <value>特殊方块</value>
+    <value>特殊物块</value>
   </data>
   <data name="editor_tabs_sprites" xml:space="preserve">
     <value>物品</value>
@@ -265,6 +265,9 @@
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
     <value>水</value>
+  </data>
+  <data name="LiquidType_Shimmer" xml:space="preserve">
+    <value>微光</value>
   </data>
   <data name="liquid_amount" xml:space="preserve">
     <value>液体量：</value>
@@ -372,7 +375,7 @@
     <value>物品</value>
   </data>
   <data name="menu_filter_header_tiles" xml:space="preserve">
-    <value>瓷砖</value>
+    <value>物块</value>
   </data>
   <data name="menu_filter_header_walls" xml:space="preserve">
     <value>墙壁</value>
@@ -390,7 +393,7 @@
     <value>检查全部</value>
   </data>
   <data name="menu_filter_tab_searchname" xml:space="preserve">
-    <value>姓名</value>
+    <value>名字</value>
   </data>
   <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
     <value>取消选中全部</value>
@@ -576,6 +579,9 @@
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>电线</value>
   </data>
+  <data name="PaintMode_Sprites" xml:space="preserve">
+    <value>物品</value>
+  </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -648,6 +654,15 @@
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>武器架物品</value>
   </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>物品罐</value>
+  </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>小动物</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>风筝</value>
+  </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>灯泡</value>
   </data>
@@ -701,6 +716,24 @@
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>怪物图鉴</value>
+  </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>蓝队出生点</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>绿队出生点</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>粉队出生点</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>红队出生点</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>白队出生点</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>黄队出生点</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>分析</value>
@@ -756,6 +789,15 @@
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>清空剪切板</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>翻转X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>翻转Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>导入假彩色图像</value>
   </data>
@@ -780,8 +822,17 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>粘贴电线</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>粘贴</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>删除</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>替换现有物块</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>旋转</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>禁用感染蔓延</value>
@@ -942,6 +993,9 @@
   <data name="tool_wp_altars" xml:space="preserve">
     <value>祭坛已损坏</value>
   </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>月亮末日（月亮领主生成）</value>
+  </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>腐化背景</value>
   </data>
@@ -1080,6 +1134,9 @@
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>中国版世界</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>云背景活动</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>钴矿</value>
   </data>
@@ -1098,6 +1155,9 @@
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>猩红</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>邪教徒延迟</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>难度</value>
   </data>
@@ -1109,6 +1169,9 @@
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>醉酒世界（Drunk World）</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>地牢点</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>事件</value>
@@ -1134,8 +1197,14 @@
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>万圣节</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>强制永久万圣节</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>圣诞节</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>强制永久圣诞节</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>世界ID</value>
@@ -1266,6 +1335,9 @@
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>已拯救的NPC</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>已拯救的NPC</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>书呆子史莱姆</value>
   </data>
@@ -1329,6 +1401,21 @@
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>商贩背包</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>支柱激活</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>星云柱</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>日耀柱</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>星尘柱</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>星旋柱</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>困难模式前</value>
   </data>
@@ -1371,17 +1458,32 @@
   <data name="tool_wp_seed" xml:space="preserve">
     <value>种子</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>双地牢</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>完全邪恶化</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>无陷阱（No traps）</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>反转种子（Don't dig up）</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>空岛</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>吸血鬼</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>天顶种子（Get fixed boi）</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>银矿</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>出生点</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>洞穴样式</value>
@@ -1421,6 +1523,15 @@
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>表层深度</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>团队生成</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>启用团队生成</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>团队出生点</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>十周年（Celebrationmk10）</value>

@@ -886,6 +886,10 @@ public partial class WorldRenderXna : UserControl
                     break;
                 case TileEntityType.TeleportationPylon:
                     break;
+                case TileEntityType.KiteAnchor:
+                    break;
+                case TileEntityType.CritterAnchor:
+                    break;
             }
         }
     }

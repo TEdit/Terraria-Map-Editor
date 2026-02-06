@@ -9,7 +9,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>5.1.0</VersionPrefix>
-    <VersionSuffix>alpha5CN</VersionSuffix>
+    <VersionSuffix>alpha10CN</VersionSuffix>
     <Platforms>AnyCPU</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <PublishSingleFile>true</PublishSingleFile>

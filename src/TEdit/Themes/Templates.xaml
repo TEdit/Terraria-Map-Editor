@@ -82,6 +82,18 @@
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
 
+    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.KiteNames}, Mode=OneTime}" x:Key="KiteCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
+
+    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.CritterNames}, Mode=OneTime}" x:Key="CritterCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
+
     <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.DyeNames}, Mode=OneTime}" x:Key="DyeCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />

@@ -496,9 +496,14 @@ namespace SettingsFileUpdater.TerrariaHost
             var output = new StringBuilder("  <Items>\r\n");
             foreach (var item in items)
             {
+                var curitem = new Item();
+                curitem.SetDefaults(item.Id);
+
                 // this could probably be inverted to slot="head" etc.
                 string attribs = string.Join(" ", new string[]
                 {
+                    (ItemID.Sets.IsAKite[item.Id] ? " IsKite=\"True\"" : ""),
+                    ((curitem.createTile == 724 && curitem.makeNPC != 0) ? " IsCritter=\"True\"" : ""),
                     (item.IsFood ? " IsFood=\"True\"" : ""),
                     (item.Head > 0? $" Head=\"{item.Head}\"" : ""),
                     (item.Body > 0? $" Body=\"{item.Body}\"" : ""),

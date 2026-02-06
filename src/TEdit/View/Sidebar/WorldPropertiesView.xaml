@@ -11,12 +11,13 @@
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
-             d:DesignWidth="260"
+             d:DesignWidth="340"
              Background="{StaticResource WindowBackgroundBrush}"
              Foreground="{StaticResource TextBrush}"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
     <UserControl.Resources>
         <converters:ByteIntConverter x:Key="ByteIntConverter" />
+        <converters:TeamIndexToNameConverter x:Key="TeamIndexToNameConverter" />
         <enum:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="0">None</enum:EnumItem>
             <enum:EnumItem Value="1">Goblin Invasion</enum:EnumItem>
@@ -205,45 +206,45 @@
             <enum:EnumItem Value="73">73</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="anglerQuestList" EnumType="{x:Type System:Int32}" SortBy="Value">
-            <enum:EnumItem Value="0">Batfish</enum:EnumItem>
-            <enum:EnumItem Value="1">Bumblebee Tuna</enum:EnumItem>
-            <enum:EnumItem Value="2">Catfish</enum:EnumItem>
-            <enum:EnumItem Value="3">Cloudfish</enum:EnumItem>
-            <enum:EnumItem Value="4">Cursedfish</enum:EnumItem>
-            <enum:EnumItem Value="5">Dirtfish</enum:EnumItem>
-            <enum:EnumItem Value="6">Dynamite Fish</enum:EnumItem>
-            <enum:EnumItem Value="7">Eater of Plankton</enum:EnumItem>
-            <enum:EnumItem Value="8">Fallen Starfish</enum:EnumItem>
-            <enum:EnumItem Value="9">The Fish of Cthulhu</enum:EnumItem>
-            <enum:EnumItem Value="10">Fishotron</enum:EnumItem>
-            <enum:EnumItem Value="11">Harpyfish</enum:EnumItem>
-            <enum:EnumItem Value="12">Hungerfish</enum:EnumItem>
-            <enum:EnumItem Value="13">Ichorfish</enum:EnumItem>
-            <enum:EnumItem Value="14">Jewelfish</enum:EnumItem>
-            <enum:EnumItem Value="15">Mirage Fish</enum:EnumItem>
-            <enum:EnumItem Value="16">Mutant Flinxfin</enum:EnumItem>
-            <enum:EnumItem Value="17">Pengfish</enum:EnumItem>
-            <enum:EnumItem Value="18">Pixiefish</enum:EnumItem>
-            <enum:EnumItem Value="19">Spiderfish</enum:EnumItem>
-            <enum:EnumItem Value="20">Tundra Trout</enum:EnumItem>
-            <enum:EnumItem Value="21">Unicorn Fish</enum:EnumItem>
-            <enum:EnumItem Value="22">Guide Voodoo Fish</enum:EnumItem>
-            <enum:EnumItem Value="23">Wyverntail</enum:EnumItem>
-            <enum:EnumItem Value="24">Zombie Fish</enum:EnumItem>
-            <enum:EnumItem Value="25">Amanitia Fungifin</enum:EnumItem>
-            <enum:EnumItem Value="26">Angelfish</enum:EnumItem>
-            <enum:EnumItem Value="27">Bloody Manowar</enum:EnumItem>
-            <enum:EnumItem Value="28">Bonefish</enum:EnumItem>
-            <enum:EnumItem Value="29">Bunnyfish</enum:EnumItem>
-            <enum:EnumItem Value="30">Cap'n Tunabeard</enum:EnumItem>
-            <enum:EnumItem Value="31">Clownfish</enum:EnumItem>
-            <enum:EnumItem Value="32">Demonic Hellfish</enum:EnumItem>
-            <enum:EnumItem Value="33">Derpfish</enum:EnumItem>
-            <enum:EnumItem Value="34">Fishron</enum:EnumItem>
-            <enum:EnumItem Value="35">Infected Scabbardfish</enum:EnumItem>
-            <enum:EnumItem Value="36">Mudfish</enum:EnumItem>
-            <enum:EnumItem Value="37">Slimefish</enum:EnumItem>
-            <enum:EnumItem Value="38">Tropical Barracuda</enum:EnumItem>
+            <enum:EnumItem Value="0">蝙蝠鱼</enum:EnumItem>
+            <enum:EnumItem Value="1">大黄蜂金枪鱼</enum:EnumItem>
+            <enum:EnumItem Value="2">鲶鱼</enum:EnumItem>
+            <enum:EnumItem Value="3">云鱼</enum:EnumItem>
+            <enum:EnumItem Value="4">诅咒鱼</enum:EnumItem>
+            <enum:EnumItem Value="5">土鱼</enum:EnumItem>
+            <enum:EnumItem Value="6">雷管鱼</enum:EnumItem>
+            <enum:EnumItem Value="7">浮游噬鱼</enum:EnumItem>
+            <enum:EnumItem Value="8">坠落海星</enum:EnumItem>
+            <enum:EnumItem Value="9">克苏鲁鱼</enum:EnumItem>
+            <enum:EnumItem Value="10">骷髅王鱼</enum:EnumItem>
+            <enum:EnumItem Value="11">鸟妖鱼</enum:EnumItem>
+            <enum:EnumItem Value="12">饥饿鱼</enum:EnumItem>
+            <enum:EnumItem Value="13">灵液鱼</enum:EnumItem>
+            <enum:EnumItem Value="14">珠宝鱼</enum:EnumItem>
+            <enum:EnumItem Value="15">幻象鱼</enum:EnumItem>
+            <enum:EnumItem Value="16">突变雪怪鱼</enum:EnumItem>
+            <enum:EnumItem Value="17">企鹅鱼</enum:EnumItem>
+            <enum:EnumItem Value="18">妖精鱼</enum:EnumItem>
+            <enum:EnumItem Value="19">蜘蛛鱼</enum:EnumItem>
+            <enum:EnumItem Value="20">苔原鳟鱼</enum:EnumItem>
+            <enum:EnumItem Value="21">独角兽鱼</enum:EnumItem>
+            <enum:EnumItem Value="22">向导巫毒鱼</enum:EnumItem>
+            <enum:EnumItem Value="23">飞龙尾</enum:EnumItem>
+            <enum:EnumItem Value="24">僵尸鱼</enum:EnumItem>
+            <enum:EnumItem Value="25">毒菌鱼</enum:EnumItem>
+            <enum:EnumItem Value="26">天使鱼</enum:EnumItem>
+            <enum:EnumItem Value="27">血腥战神</enum:EnumItem>
+            <enum:EnumItem Value="28">骷髅鱼</enum:EnumItem>
+            <enum:EnumItem Value="29">兔兔鱼</enum:EnumItem>
+            <enum:EnumItem Value="30">金枪鱼须船长</enum:EnumItem>
+            <enum:EnumItem Value="31">小丑鱼</enum:EnumItem>
+            <enum:EnumItem Value="32">恶魔地狱鱼</enum:EnumItem>
+            <enum:EnumItem Value="33">跳跳鱼</enum:EnumItem>
+            <enum:EnumItem Value="34">猪龙鱼</enum:EnumItem>
+            <enum:EnumItem Value="35">染病鞘鱼</enum:EnumItem>
+            <enum:EnumItem Value="36">泥鱼</enum:EnumItem>
+            <enum:EnumItem Value="37">史莱姆鱼</enum:EnumItem>
+            <enum:EnumItem Value="38">热带梭鱼</enum:EnumItem>
         </enum:EnumItemList>
 
         <Style x:Key="TimeBackgroundStyle" TargetType="{x:Type Rectangle}">
@@ -292,14 +293,14 @@
         <CheckBox x:Name="consoleCb" Content="{x:Static p:Language.tool_wp_console}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding CurrentWorld.IsConsole, Mode=TwoWay}"/>
 
         <Separator Grid.ColumnSpan="2" />
-    <TextBlock Text="出生点" HorizontalAlignment="Right" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_spawn_point}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="X:" VerticalAlignment="Center" Margin="0,0,3,0" />
             <TextBox IsReadOnly="True"  Text="{Binding CurrentWorld.SpawnX, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
             <TextBlock Text="Y:" VerticalAlignment="Center" Margin="10,0,3,0" />
             <TextBox IsReadOnly="True" Text="{Binding CurrentWorld.SpawnY, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
         </DockPanel>
-        <TextBlock Text="地牢位置" HorizontalAlignment="Right" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_dungeon_point}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="X:" VerticalAlignment="Center" Margin="0,0,3,0" />
             <TextBox IsReadOnly="True" Text="{Binding CurrentWorld.DungeonX, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
@@ -359,7 +360,7 @@
             <TextBlock Text="{Binding CurrentWorld.SlimeRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
             <Slider Value="{Binding CurrentWorld.SlimeRainTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
         </DockPanel>
-        <TextBlock Text="云 BG Active" HorizontalAlignment="Right" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_cloud_bg_active}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="{Binding CurrentWorld.CloudBgActive, StringFormat={}{0:0.0}}" Width="30" DockPanel.Dock="Right" />
             <Slider Value="{Binding CurrentWorld.CloudBgActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.1" />
@@ -370,9 +371,9 @@
         <TextBlock  />
         <CheckBox IsChecked="{Binding CurrentWorld.ForceXMasForToday, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_holiday_xmas}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
         <TextBlock  />
-        <CheckBox IsChecked="{Binding CurrentWorld.ForceHalloweenForever, Mode=TwoWay}" Content="强制永久万圣节" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" Checked="CheckBox_Checked_1" />
+        <CheckBox IsChecked="{Binding CurrentWorld.ForceHalloweenForever, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_holiday_halloween_forever}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
         <TextBlock  />
-        <CheckBox IsChecked="{Binding CurrentWorld.ForceXMasForever, Mode=TwoWay}" Content="强制永久圣诞节" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+        <CheckBox IsChecked="{Binding CurrentWorld.ForceXMasForever, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_holiday_xmas_forever}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
 
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_sandstorm}" HorizontalAlignment="Right" />
@@ -454,13 +455,13 @@
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.ZenithWorld}" Content="{x:Static p:Language.tool_wp_seed_zenith}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.SkyblockWorld}" Content="Skyblock(空岛)" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.SkyblockWorld}" Content="{x:Static p:Language.tool_wp_seed_skyblock}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.VampireSeed}" Content="Vampire(吸血鬼)" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.VampireSeed}" Content="{x:Static p:Language.tool_wp_seed_vampire}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.InfectedSeed}" Content="Infected" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.InfectedSeed}" Content="{x:Static p:Language.tool_wp_seed_infected}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.DualDungeonsSeed}" Content="Dual Dungeons(双地牢)" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DualDungeonsSeed}" Content="{x:Static p:Language.tool_wp_seed_dualdungeons}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_crimson}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="{x:Static p:Language.tool_wp_crimson}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
@@ -495,7 +496,7 @@
         <TextBlock Text="{x:Static p:Language.tool_wp_boss_downed}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1EyeofCthulhu}" Content="{x:Static p:Language.tool_wp_boss_eyeofcthulhu}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-    <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2EaterofWorlds}" Content="{x:Static p:Language.tool_wp_boss_eaterofworlds}" VerticalAlignment="Center" VerticalContentAlignment="Center" Checked="CheckBox_Checked_2" />
+    <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2EaterofWorlds}" Content="{x:Static p:Language.tool_wp_boss_eaterofworlds}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="{x:Static p:Language.tool_wp_boss_queenbee}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
@@ -542,17 +543,17 @@
         <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialStardust}" Content="{x:Static p:Language.tool_wp_boss_stardustpillar}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Separator Grid.ColumnSpan="2" />
-        <TextBlock Text="Pillars Active" HorizontalAlignment="Right" />
-        <CheckBox IsChecked="{Binding CurrentWorld.CelestialSolarActive}" Content="日耀柱" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_pillars_active}" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.CelestialSolarActive}" Content="{x:Static p:Language.tool_wp_pillar_solar}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.CelestialNebulaActive}" Content="星云柱" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.CelestialNebulaActive}" Content="{x:Static p:Language.tool_wp_pillar_nebula}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.CelestialVortexActive}" Content="星旋柱" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.CelestialVortexActive}" Content="{x:Static p:Language.tool_wp_pillar_vortex}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.CelestialStardustActive}" Content="星尘柱" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.CelestialStardustActive}" Content="{x:Static p:Language.tool_wp_pillar_stardust}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.Apocalypse}" Content="月亮末日 (月亮领主生成)" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-        <TextBlock Text="邪教徒延迟" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.Apocalypse}" Content="{x:Static p:Language.tool_wp_apocalypse}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_cultist_delay}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="{Binding CurrentWorld.CultistDelay, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
             <Slider Value="{Binding CurrentWorld.CultistDelay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="86400" SmallChange="1" />
@@ -569,14 +570,14 @@
         <CheckBox IsChecked="{Binding CurrentWorld.LanternNightNextNightIsGenuine}" Content="{x:Static p:Language.tool_wp_lanternnight_nextgenuine}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Separator Grid.ColumnSpan="2" />
-        <TextBlock Text="团队出生点" HorizontalAlignment="Right" />
-        <CheckBox IsChecked="{Binding CurrentWorld.TeamBasedSpawnsSeed}" Content="基于团队的出生点已启用" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-        <TextBlock Text="团队出生点" HorizontalAlignment="Right" VerticalAlignment="Top" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_teamspawns}" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.TeamBasedSpawnsSeed}" Content="{x:Static p:Language.tool_wp_teamspawns_enabled}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_teamspawns_locations}" HorizontalAlignment="Right" VerticalAlignment="Top" />
         <ItemsControl ItemsSource="{Binding CurrentWorld.TeamSpawns}" AlternationCount="100" Margin="0,2">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <DockPanel Margin="0,1">
-                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ContentPresenter}, StringFormat=Team {0}:}" Width="50" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ContentPresenter}, Converter={StaticResource TeamIndexToNameConverter}}" Width="50" VerticalAlignment="Center" />
                         <TextBlock Text="X:" VerticalAlignment="Center" Margin="0,0,3,0" />
                         <TextBox Text="{Binding X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="45" Margin="0,0,5,0" />
                         <TextBlock Text="Y:" VerticalAlignment="Center" Margin="0,0,3,0" />
@@ -609,7 +610,7 @@
         <TextBlock  />
         <CheckBox IsChecked="{Binding CurrentWorld.BoughtBunny}" Content="{x:Static p:Language.tool_wp_npc_bunny}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <Separator Grid.ColumnSpan="2" />
-        <TextBlock Text="已救NPCs" HorizontalAlignment="Right" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_npc_saved_label}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin}" Content="{x:Static p:Language.tool_wp_npc_goblintinkerer}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.SavedMech}" Content="{x:Static p:Language.tool_wp_npc_mechanic}" VerticalAlignment="Center" VerticalContentAlignment="Center" />

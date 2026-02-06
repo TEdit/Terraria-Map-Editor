@@ -9,8 +9,8 @@
         <CheckBox x:Name="OnlySelectionCheckBox" Content="仅随机选择" HorizontalAlignment="Center" />
         <CheckBox x:Name="UndoCheckBox" Content="允许撤销 (非常慢)" HorizontalAlignment="Center" />
         <CheckBox x:Name="RandomizeWallsCheckBox" Content="随机背景墙" HorizontalAlignment="Center" />
-        <CheckBox x:Name="NoDisappearingBlocksCheckBox" Content="不要随机生成瞬间消失的方块" HorizontalAlignment="Center" />
-        <CheckBox x:Name="SupportDependentBlocksCheckBox" Content="满足方块消失的条件 (藤蔓, 等.)" HorizontalAlignment="Center" />
+        <CheckBox x:Name="NoDisappearingBlocksCheckBox" Content="不要随机生成瞬间消失的物块" HorizontalAlignment="Center" />
+        <CheckBox x:Name="SupportDependentBlocksCheckBox" Content="满足物块消失的条件 (藤蔓, 等.)" HorizontalAlignment="Center" />
         <CheckBox x:Name="SupportGravityBlocksCheckBox" Content="支撑重力块 (沙子, 等.)" HorizontalAlignment="Center" />
         <Grid>
             <Grid.ColumnDefinitions>

@@ -12,7 +12,7 @@ public class FindTileWithPlugin : BasePlugin
     public FindTileWithPlugin(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
-        Name = "搜索物品,方块或墙壁";
+        Name = "搜索物品,物块或墙壁";
     }
 
     public override void Execute()

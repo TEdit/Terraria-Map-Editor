@@ -133,7 +133,7 @@
                 <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
                       SelectedValue="{Binding TilePicker.PaintMode}" 
                       SelectedValuePath="Value" Width="100"
-                      ItemTemplate="{StaticResource EnumTemplate}" />
+                      ItemTemplate="{StaticResource EnumTemplate}" SelectionChanged="ComboBox_SelectionChanged_1" />
             </StackPanel>
             <GroupBox BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
                 <GroupBox.Header>
@@ -223,7 +223,7 @@
                     <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="{x:Static p:Language.tool_paint_inactive}" VerticalAlignment="Center" Height="22"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Paint" Style="{StaticResource PaintVisibleStyle}">
+            <GroupBox Header="油漆" Style="{StaticResource PaintVisibleStyle}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                         <CheckBox IsChecked="{Binding TilePicker.TilePaintActive}" Content="{x:Static p:Language.tool_paint_tile_title}" Width="50" VerticalAlignment="Center" />

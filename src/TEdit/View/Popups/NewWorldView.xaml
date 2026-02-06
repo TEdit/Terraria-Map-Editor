@@ -61,28 +61,28 @@
 
             <!-- Hills -->
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Hill Terrain Size" HorizontalAlignment="Right" />
+            <TextBlock Text="山地地形尺寸" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding HillSize, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding HillSize, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="500" SmallChange="1" LargeChange="10" Interval="1" TickFrequency="1" IsSnapToTickEnabled="True" />
             </DockPanel>
-            <TextBlock Text="Add Grass" HorizontalAlignment="Right" />
+            <TextBlock Text="添加草地" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding GenerateGrass, Mode=TwoWay}" Margin="1" />
-            <TextBlock Text="Add Walls" HorizontalAlignment="Right" />
+            <TextBlock Text="添加墙壁" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding GenerateWalls, Mode=TwoWay}" Margin="1" />
 
             <!-- Caves -->
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Generate Caves (slow)" HorizontalAlignment="Right" />
+            <TextBlock Text="生成洞穴 (慢)" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding GenerateCaves, Mode=TwoWay}" Margin="1" />
-            <TextBlock Text="Cave Preset" HorizontalAlignment="Right" />
+            <TextBlock Text="洞穴模板" HorizontalAlignment="Right" />
             <ComboBox ItemsSource="{Binding CavePresets}" 
             SelectedIndex="{Binding CavePresetIndex, Mode=TwoWay}" 
-            Text="Normal" 
+            Text="普通" 
             SelectionChanged="ComboBox_SelectionChanged" />
-            <TextBlock Text="Include Surface" HorizontalAlignment="Right" />
+            <TextBlock Text="包含地表" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding SurfaceCaves, Mode=TwoWay}" Margin="1" />
-            <TextBlock Text="Cave Noise" HorizontalAlignment="Right" />
+            <TextBlock Text="洞穴散布" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CaveNoise, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CaveNoise, Mode=TwoWay}" 
@@ -94,7 +94,7 @@
             TickFrequency="0.01" 
             IsSnapToTickEnabled="True" />
             </DockPanel>
-            <TextBlock Text="Cave Multiplier" HorizontalAlignment="Right" />
+            <TextBlock Text="洞穴倍率" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CaveMultiplier, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CaveMultiplier, Mode=TwoWay}"
@@ -106,7 +106,7 @@
             TickFrequency="0.01" 
             IsSnapToTickEnabled="True" />
             </DockPanel>
-            <TextBlock Text="Cave Density Chance" HorizontalAlignment="Right" />
+            <TextBlock Text="洞穴密度概率" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CaveDensity, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CaveDensity, Mode=TwoWay}" 
@@ -121,13 +121,13 @@
 
             <!-- Underworld -->
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Generate Underworld" HorizontalAlignment="Right" />
+            <TextBlock Text="生成地狱" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding GenerateUnderworld, Mode=TwoWay}" Margin="1" />
-            <TextBlock Text="Add Ash" HorizontalAlignment="Right" />
+            <TextBlock Text="加入灰烬块" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding GenerateAsh, Mode=TwoWay}" Margin="1" />
-            <TextBlock Text="Add Lava" HorizontalAlignment="Right" />
+            <TextBlock Text="加入岩浆" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding GenerateLava, Mode=TwoWay}" Margin="1" />
-            <TextBlock Text="Roof Noise" HorizontalAlignment="Right" />
+            <TextBlock Text="顶散布" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding UnderworldRoofNoise, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding UnderworldRoofNoise, Mode=TwoWay}" 
@@ -139,7 +139,7 @@
             TickFrequency="0.01" 
             IsSnapToTickEnabled="True" />
             </DockPanel>
-            <TextBlock Text="Floor Noise" HorizontalAlignment="Right" />
+            <TextBlock Text="地面散布" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding UnderworldFloorNoise, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding UnderworldFloorNoise, Mode=TwoWay}" 
@@ -151,7 +151,7 @@
             TickFrequency="0.01" 
             IsSnapToTickEnabled="True" />
             </DockPanel>
-            <TextBlock Text="Lava Noise" HorizontalAlignment="Right" />
+            <TextBlock Text="岩浆散布" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding UnderworldLavaNoise, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding UnderworldLavaNoise, Mode=TwoWay}" 
@@ -166,8 +166,8 @@
 
             <!-- Ores -->
             <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Generate Ores" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding GenerateOres, Mode=TwoWay}" Margin="1" Content="(Launches ore-gen plugin)" />
+            <TextBlock Text="生成矿石" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding GenerateOres, Mode=TwoWay}" Margin="1" Content="(启动矿石生成插件)" />
         </tedit:AutoGrid>
 
         <!-- Expand Worldgen Button -->
