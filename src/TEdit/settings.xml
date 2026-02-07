@@ -9852,11 +9852,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Bouncy Boulder" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="665" Name="Life Crystal Boulder" Color="#Ffc68658" Framed="true" Size="2,2">
-      <Frames>
-        <Frame Name="Life Crystal Boulder" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
+    <Tile Id="665" Name="Life Crystal Boulder" Color="#Ffc68658" Framed="true" Size="2,2" IsAnimated="true"/>
     <Tile Id="666" Name="Poo" Color="#Ffbf8e6f" Solid="true" />
     <Tile Id="667" Name="Aetherium Brick" Color="#Ffbf8e6f" Light="true" Solid="true" />
     <Tile Id="668" Name="The Dirtiest Block" Color="#Ffbf8e6f" Solid="true" />
