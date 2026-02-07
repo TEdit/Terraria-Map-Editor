@@ -10114,9 +10114,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="717" Name="Lava Cloud" Color="#Ff7ad9e8" Light="true" Solid="true" />
     <Tile Id="718" Name="Star Cloud" Color="#Ff7ad9e8" Light="true" Solid="true" />
     <Tile Id="719" Name="Rainbow Cloud" Color="#Ff7ad9e8" Light="true" Solid="true" />
-    <Tile Id="720" Name="CRT Monolith" Color="#Ffb6af82" Framed="true" Size="2,3">
+    <Tile Id="720" Name="CRT Monolith" Color="#Ffb6af82" Framed="true" Size="2,3" IsAnimated="true">
       <Frames>
-        <Frame Name="CRT Monolith" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="Off" Anchor="Left" />
+        <Frame UV="36,0" Variety="Off" Anchor="Right" />
+        <Frame UV="0,54" Variety="On" Anchor="Left" />
+        <Frame UV="36,54" Variety="On" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="721" Name="Retro Monolith" Color="#Ff639608" Framed="true" Size="2,3">
