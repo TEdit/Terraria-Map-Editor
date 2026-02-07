@@ -7540,7 +7540,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="454" Color="#FFae10b0" Name="Pigronata" Framed="true" Size="4,3" IsAnimated="true" />
-    <Tile Id="455" Color="#FF30ff6e" Name="Party Center" Framed="true" Size="3,3" IsAnimated="true" />
+    <Tile Id="455" Color="#FF30ff6e" Name="Party Center" Framed="true" Size="3,3" IsAnimated="true" >
+      <Frames>
+        <Frame UV="0,0" Variety="Off" />
+        <Frame UV="0,54" Variety="On" />
+      </Frames>
+    </Tile>
     <Tile Id="456" Color="#FFb384ff" Name="Silly Tied Bundle of Balloons" Framed="true" Size="2,3"
       IsAnimated="true" />
     <Tile Id="457" Color="#FFFFFFFF" Name="Party Presents" Framed="true" Size="2,2">
