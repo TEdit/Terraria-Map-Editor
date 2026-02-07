@@ -1,2 +1,2 @@
 ﻿global using ReactiveUI;
-global using ReactiveUI.Fody.Helpers;
+global using ReactiveUI.SourceGenerators;

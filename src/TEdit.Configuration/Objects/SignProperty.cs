@@ -1,10 +1,10 @@
-﻿using TEdit.Common.Reactive;
+﻿using ReactiveUI;
 using TEdit.Geometry;
 using TEdit.Common;
 
 namespace TEdit.Terraria.Objects;
 
-public class SignProperty : ObservableObject, ITile
+public class SignProperty : ReactiveObject, ITile
 {
     public int SignId { get; set; }
     public Vector2Short UV { get; set; }

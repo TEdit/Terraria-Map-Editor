@@ -4,7 +4,7 @@ namespace TEdit.Geometry;
 
 public struct RectangleInt32 : IEquatable<RectangleInt32>
 {
-    private static RectangleInt32 emptyRectangle;
+    private static RectangleInt32 emptyRectangle = default;
 
     //
     // Summary:

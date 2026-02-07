@@ -32,7 +32,7 @@ public sealed class PasteTool : BaseTool
         if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
         {
            
-            _wvm.SetTool.Execute(_wvm.Tools.FirstOrDefault(t => t.Name == "Arrow"));
+            _wvm.SetActiveTool(_wvm.Tools.FirstOrDefault(t => t.Name == "Arrow"));
         }
     }
 

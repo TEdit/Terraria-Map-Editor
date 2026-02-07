@@ -14,6 +14,8 @@ using TEdit.Editor.Clipboard;
 using TEdit.Framework.Threading;
 using TEdit.Properties;
 using TEdit.Utility;
+using ReactiveUI;
+using ReactiveUI.Builder;
 using TEdit.ViewModel;
 
 namespace TEdit;
@@ -28,6 +30,9 @@ public partial class App : Application
     {
         DispatcherHelper.Initialize();
 
+        RxAppBuilder.CreateReactiveUIBuilder()
+            .WithWpf()
+            .BuildApp();
 
         switch (Settings.Default.Language)
         {
@@ -139,6 +144,9 @@ public partial class App : Application
             ErrorLogging.LogException(ex);
         }
 
+
+        FileMaintenance.CleanupOldAutosaves();
+        FileMaintenance.LogWorldBackupFiles();
 
         if (e.Args != null && e.Args.Count() > 0)
         {

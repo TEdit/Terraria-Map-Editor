@@ -107,7 +107,7 @@ public class MinimapPixelsCustomDrawOp : ICustomDrawOperation
         using var paint = new SKPaint
         {
             IsAntialias = true,
-            FilterQuality = SKFilterQuality.High,
+            FilterQuality = SKFilterQuality.Medium,
             IsDither = false,
             Color = SKColors.White,
             Style = SKPaintStyle.Fill,

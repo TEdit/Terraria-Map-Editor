@@ -9,7 +9,7 @@ using TEdit.Terraria;
 
 namespace TEdit5.Models
 {
-    public class WorldFile : ReactiveObject
+    public partial class WorldFile : ReactiveObject
     {
         /// <summary>
         /// World Name

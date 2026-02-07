@@ -1,27 +1,21 @@
-﻿using TEdit.Common.Reactive;
-
 namespace TEdit.Terraria;
 
-public class TileEntityItem : ObservableObject
+public partial class TileEntityItem : ReactiveObject
 {
     private short _id;
-    private byte _prefix;
     private short _stackSize;
+
+    [Reactive]
+    private byte _prefix;
 
     public short Id
     {
         get { return _id; }
         set
         {
-            Set(nameof(Id), ref _id, value);
+            this.RaiseAndSetIfChanged(ref _id, value);
             if (value != 0 && StackSize == 0) { StackSize = 1; }
         }
-    }
-
-    public byte Prefix
-    {
-        get { return _prefix; }
-        set { Set(nameof(Prefix), ref _prefix, value); }
     }
 
     public short StackSize
@@ -29,7 +23,7 @@ public class TileEntityItem : ObservableObject
         get { return _stackSize; }
         set
         {
-            Set(nameof(StackSize), ref _stackSize, value);
+            this.RaiseAndSetIfChanged(ref _stackSize, value);
             if (value == 0 && Id != 0)
             {
                 Id = 0;

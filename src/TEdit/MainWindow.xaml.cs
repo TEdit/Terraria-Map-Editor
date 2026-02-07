@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Collections.Generic;
@@ -39,15 +40,6 @@ public partial class MainWindow : Window
         {
             _vm.EnableTelemetry = true;
         }
-
-        
-        if (Settings.Default.ShowNews)
-        {
-            var w = new NotificationsWindow();
-            w.Owner = Application.Current.MainWindow;
-            w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            w.ShowDialog();
-        }
     }
 
     private void HandleKeyUpEvent(object sender, KeyEventArgs e)
@@ -58,8 +50,7 @@ public partial class MainWindow : Window
         switch (command)
         {
             case "pan":
-                if (_vm.RequestPanCommand.CanExecute(false))
-                    _vm.RequestPanCommand.Execute(false);
+                _vm.RequestPanCommand.Execute(false).Subscribe();
                 break;
         }
     }
@@ -78,29 +69,29 @@ public partial class MainWindow : Window
             switch (command)
             {
                 case "copy":
-                    if (_vm.CurrentWorld != null && _vm.CopyCommand.CanExecute(null))
+                    if (_vm.CurrentWorld != null && ((ICommand)_vm.CopyCommand).CanExecute(null))
                     {
-                        _vm.CopyCommand.Execute(null);
+                        ((ICommand)_vm.CopyCommand).Execute(null);
                         _vm.SelectedTabIndex = 3;
                     }
                     break;
                 case "paste":
-                    if (_vm.CurrentWorld != null && _vm.PasteCommand.CanExecute(null))
+                    if (_vm.CurrentWorld != null && ((ICommand)_vm.PasteCommand).CanExecute(null))
                     {
-                        _vm.PasteCommand.Execute(null);
+                        ((ICommand)_vm.PasteCommand).Execute(null);
                         _vm.SelectedTabIndex = 3;
                     }
                     break;
                 case "undo":
                     if (_vm.CurrentWorld != null)
                     {
-                        _vm.UndoCommand.Execute(null);
+                        ((ICommand)_vm.UndoCommand).Execute(null);
                     }
                     break;
                 case "redo":
                     if (_vm.CurrentWorld != null)
                     {
-                        _vm.RedoCommand.Execute(null);
+                        ((ICommand)_vm.RedoCommand).Execute(null);
                     }
                     break;
                 case "selectall":
@@ -118,28 +109,28 @@ public partial class MainWindow : Window
                     }
                     break;
                 case "open":
-                    if (_vm.OpenCommand.CanExecute(null))
-                        _vm.OpenCommand.Execute(null);
+                    if (((ICommand)_vm.OpenCommand).CanExecute(null))
+                        ((ICommand)_vm.OpenCommand).Execute(null);
                     break;
                 case "save":
-                    if (_vm.SaveCommand.CanExecute(null))
-                        _vm.SaveCommand.Execute(null);
+                    if (((ICommand)_vm.SaveCommand).CanExecute(null))
+                        ((ICommand)_vm.SaveCommand).Execute(null);
                     break;
                 case "saveas":
-                    if (_vm.SaveAsCommand.CanExecute(null))
-                        _vm.SaveAsCommand.Execute(null);
+                    if (((ICommand)_vm.SaveAsCommand).CanExecute(null))
+                        ((ICommand)_vm.SaveAsCommand).Execute(null);
                     break;
                 case "saveasversion":
-                    if (_vm.SaveAsVersionCommand.CanExecute(null))
-                        _vm.SaveAsVersionCommand.Execute(null);
+                    if (((ICommand)_vm.SaveAsVersionCommand).CanExecute(null))
+                        ((ICommand)_vm.SaveAsVersionCommand).Execute(null);
                     break;
                 case "reloadworld":
-                    if (_vm.ReloadCommand.CanExecute(null))
-                        _vm.ReloadCommand.Execute(null);
+                    if (((ICommand)_vm.ReloadCommand).CanExecute(null))
+                        ((ICommand)_vm.ReloadCommand).Execute(null);
                     break;
                 case "deleteselection":
-                    if (_vm.DeleteCommand.CanExecute(null))
-                        _vm.DeleteCommand.Execute(null);
+                    if (((ICommand)_vm.DeleteCommand).CanExecute(null))
+                        ((ICommand)_vm.DeleteCommand).Execute(null);
                     break;
                 case "resettool":
                     if (_vm.ActiveTool != null)
@@ -152,63 +143,52 @@ public partial class MainWindow : Window
                     break;
                 case "scrollup":
                     scrollValue = new ScrollEventArgs(ScrollDirection.Up, 10);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollupfast":
                     scrollValue = new ScrollEventArgs(ScrollDirection.Up, 50);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollright":
                     scrollValue = new ScrollEventArgs(ScrollDirection.Right, 10);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollrightfast":
                     scrollValue = new ScrollEventArgs(ScrollDirection.Right, 50);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrolldown":
                     scrollValue = new ScrollEventArgs(ScrollDirection.Down, 10);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrolldownfast":
                     scrollValue = new ScrollEventArgs(ScrollDirection.Down, 50);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollleft":
                     scrollValue = new ScrollEventArgs(ScrollDirection.Left, 10);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollleftfast":
                     scrollValue = new ScrollEventArgs(ScrollDirection.Left, 50);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "pan":
-                    if (_vm.RequestPanCommand.CanExecute(true))
-                        _vm.RequestPanCommand.Execute(true);
+                    _vm.RequestPanCommand.Execute(true).Subscribe();
                     break;
                 case "zoomin":
-                    if (_vm.RequestZoomCommand.CanExecute(true))
-                        _vm.RequestZoomCommand.Execute(true);
+                    _vm.RequestZoomCommand.Execute(true).Subscribe();
                     break;
                 case "zoomout":
-                    if (_vm.RequestZoomCommand.CanExecute(false))
-                        _vm.RequestZoomCommand.Execute(false);
+                    _vm.RequestZoomCommand.Execute(false).Subscribe();
                     break;
                 case "eraser":
                     _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
@@ -239,7 +219,7 @@ public partial class MainWindow : Window
         var tool = _vm.Tools.FirstOrDefault(t => string.Equals(t.Name, toolName, StringComparison.OrdinalIgnoreCase));
         if (tool != null)
         {
-            _vm.SetTool.Execute(tool);
+            _vm.SetActiveTool(tool);
         }
     }
 

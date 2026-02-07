@@ -73,7 +73,7 @@
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_autosave}" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
                     <MenuItem Header="{x:Static p:Language.menu_file_autoupdate}" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
-                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Command="{Binding CheckUpdatesCommand}" />
                     <MenuItem Header="{x:Static p:Language.menu_telemetry}" IsCheckable="True" IsChecked="{Binding EnableTelemetry}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_language}">
@@ -136,7 +136,6 @@
 
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_help}">
-                    <MenuItem Header="News" Command="{Binding ShowNewsCommand}" Icon="{StaticResource TB_LogIcon}"/>
                     <MenuItem Header="{x:Static p:Language.menu_help_wiki}" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"/>
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_help_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
@@ -264,7 +263,7 @@
                 </ScrollViewer>
             </DockPanel>
             <Expander Header="{x:Static p:Language.editor_utilities_label}" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
-                <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                <TabControl TabStripPlacement="Top" Width="340" Foreground="{DynamicResource TextBrush}" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
                     <TabItem Header="{x:Static p:Language.editor_tabs_worldproperties}" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>

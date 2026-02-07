@@ -9,30 +9,26 @@ namespace TEdit5.ViewModels;
 
 public partial class DocumentViewModel : ReactiveObject
 {
-    [Reactive] public int Zoom { get; set; } = 100;
-
-    [Reactive] public int MinZoom { get; set; } = 7;
-
-    [Reactive] public int MaxZoom { get; set; } = 6400;
-
-    [Reactive] public Point CursorTileCoordinate { get; set; }
-
-    [Reactive] public SkiaWorldRenderBox.SelectionModes SelectionMode { get; set; }
+    [Reactive] private int _zoom = 100;
+    [Reactive] private int _minZoom = 7;
+    [Reactive] private int _maxZoom = 6400;
+    [Reactive] private Point _cursorTileCoordinate;
+    [Reactive] private SkiaWorldRenderBox.SelectionModes _selectionMode;
 
     public ToolSelectionViewModel ToolSelection { get; }
     public TilePicker TilePicker { get; }
     public ISelection Selection { get; }
-    [Reactive] public World World { get; private set; }
-    [Reactive] public WorldEditor WorldEditor { get; private set; }
+    [Reactive] private World _world;
+    [Reactive] private WorldEditor _worldEditor;
 
     public DocumentViewModel(World world, ToolSelectionViewModel toolSelection, TilePicker tilePicker)
     {
-        World = world;
+        _world = world;
         ToolSelection = toolSelection;
         TilePicker = tilePicker;
         Selection = new Selection();
         IUndoManager undoManager = null;
 
-        WorldEditor = new WorldEditor(tilePicker, World, Selection, undoManager, (x, y, height, width) => { });
+        _worldEditor = new WorldEditor(tilePicker, World, Selection, undoManager, (x, y, height, width) => { });
     }
 }

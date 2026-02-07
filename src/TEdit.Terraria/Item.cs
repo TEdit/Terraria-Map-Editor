@@ -1,12 +1,11 @@
 using System;
 using System.Linq;
-using TEdit.Common.Reactive;
 using TEdit.Configuration;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria;
 
-public class Item : ObservableObject
+public partial class Item : ReactiveObject
 {
     private const int MaxStackSize = Int16.MaxValue;
 
@@ -20,7 +19,7 @@ public class Item : ObservableObject
         get { return _netId; }
         set
         {
-            Set(nameof(NetId), ref _netId, value);
+            this.RaiseAndSetIfChanged(ref _netId, value);
             _currentItemProperty = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Id == _netId);
             if (_netId == 0)
                 StackSize = 0;
@@ -29,7 +28,7 @@ public class Item : ObservableObject
                 if (StackSize == 0)
                     StackSize = 1;
             }
-            RaisePropertyChanged("Name");
+            this.RaisePropertyChanged(nameof(Name));
         }
     }
 
@@ -62,7 +61,7 @@ public class Item : ObservableObject
     public byte Prefix
     {
         get { return _prefix; }
-        set { Set(nameof(Prefix), ref _prefix, value); RaisePropertyChanged("PrefixName"); }
+        set { this.RaiseAndSetIfChanged(ref _prefix, value); this.RaisePropertyChanged(nameof(PrefixName)); }
     }
 
     public Item()
@@ -117,7 +116,7 @@ public class Item : ObservableObject
             if (validValue < 0)
                 validValue = 0;
 
-            Set(nameof(StackSize), ref _stackSize, validValue);
+            this.RaiseAndSetIfChanged(ref _stackSize, validValue);
         }
     }
 

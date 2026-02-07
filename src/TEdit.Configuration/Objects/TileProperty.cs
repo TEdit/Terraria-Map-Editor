@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿#nullable enable
+using System.Linq;
 using TEdit.Geometry;
 using TEdit.Common;
 using System.Collections.Generic;

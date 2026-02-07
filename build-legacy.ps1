@@ -1,6 +1,6 @@
 param(
     [string] $ReleasePath = ".\release",
-    [string] $VersionPrefix = "5.0.0",
+    [string] $VersionPrefix = "5.1.0",
     [string] $VersionSuffix = $null
 )
 
@@ -36,7 +36,7 @@ $platforms | ForEach-Object {
         ".\$publishPath\$_"
         "/p:VersionPrefix=""$VersionPrefix"""
     )
-    
+
     if (![String]::IsNullOrWhitespace($VersionSuffix)) {
         $buildArgs += "--version-suffix"
         $buildArgs += """$VersionSuffix"""
@@ -51,7 +51,7 @@ $platforms | ForEach-Object {
     # Create ZIP Release
 
     $filename = ".\$ReleasePath\TEdit-$VersionPrefix.zip"
-    
+
     if (![String]::IsNullOrWhitespace($VersionSuffix)) {
         $filename = ".\$ReleasePath\TEdit-$VersionPrefix-$VersionSuffix.zip"
     }

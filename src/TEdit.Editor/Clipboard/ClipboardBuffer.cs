@@ -454,15 +454,19 @@ public partial class ClipboardBuffer : ITileData
                         int sourceX = x + item.Key.X;
                         int targetX = x + flipOrigin.X;
 
-                        Tile tile = (Tile)buffer.Tiles[sourceX, sourceY].Clone();
+                        Tile sourceTile = buffer.Tiles[sourceX, sourceY];
+                        Tile targetTile = flippedBuffer.Tiles[targetX, targetY];
 
-                        if (tile.Type == (uint)TileType.JunctionBox)
+                        targetTile.IsActive = sourceTile.IsActive;
+                        targetTile.Type = sourceTile.Type;
+                        targetTile.U = sourceTile.U;
+                        targetTile.V = sourceTile.V;
+
+                        if (targetTile.Type == (uint)TileType.JunctionBox)
                         {
-                            if (tile.U == 18) { tile.U = 36; }
-                            else if (tile.U == 36) { tile.U = 18; }
+                            if (targetTile.U == 18) { targetTile.U = 36; }
+                            else if (targetTile.U == 36) { targetTile.U = 18; }
                         }
-
-                        flippedBuffer.Tiles[targetX, targetY] = (Tile)tile;
                     }
                     catch (Exception)
                     {

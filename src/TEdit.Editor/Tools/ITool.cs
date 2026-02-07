@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TEdit.Editor.Tools;
 
-public interface ITool
+public interface IEditorTool
 {
     bool IsActive { get; set; }
     string Name { get; }

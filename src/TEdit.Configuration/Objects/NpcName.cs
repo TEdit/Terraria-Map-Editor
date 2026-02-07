@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using TEdit.Common.Reactive;
+﻿using ReactiveUI;
 
 namespace TEdit.Terraria.Objects;
 
-public class NpcName : ObservableObject
+public class NpcName : ReactiveObject
 {
     public NpcName()
     {
-        
+
     }
     public NpcName(int id, string name)
     {
