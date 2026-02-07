@@ -10011,10 +10011,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Replica Crimson Altar" UV="0, 38" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="696" Name="Replica Shadow Orb" Color="#Ffbb444a" Light="true" Framed="true" Size="2,2">
+    <Tile Id="696" Name="Replica Shadow Orb" Color="#Ffbb444a" Light="true" Framed="true" Size="2,2" IsAnimated="true">
       <Frames>
-        <Frame Name="Replica Shadow Orb" UV="0, 0" Anchor="" />
-        <Frame Name="Replica Crimson Heart" UV="0, 36" Anchor="" />
+        <Frame Name="Replica Shadow Orb" UV="0, 0" />
+        <Frame Name="Replica Crimson Heart" UV="36, 0" />
       </Frames>
     </Tile>
     <Tile Id="697" Name="Decorative Cobweb" Color="#Ff318672" />
