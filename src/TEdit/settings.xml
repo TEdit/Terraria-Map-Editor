@@ -7671,7 +7671,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="482" Name="Cracked Green Brick" Solid="true" Color="#FF3E4D47" />
     <Tile Id="483" Name="Cracked Pink Brick" Solid="true" Color="#FF7A405F" />
     <Tile Id="484" Name="Rolling Cactus" Solid="true" Framed="true" Size="2,2" Color="#FF737E3D" />
-    <Tile Id="485" Name="Antlion Larva" Framed="true" Size="2,2" IsAnimated="true" Color="#FFA17956" />
+    <Tile Id="485" Name="Antlion Larva" Framed="true" Size="2,2" IsAnimated="true" Color="#FFA17956" >
+      <Frames>
+        <Frame UV="0,0" Variety="A" />
+        <Frame UV="36,0" Variety="B" />
+        <Frame UV="72,0" Variety="C" />
+        <Frame UV="108,0" Variety="D" />
+      </Frames>
+    </Tile>
     <Tile Id="486" Name="Drum Set" Framed="true" Size="3,2" Color="#FF7A775C" />
     <Tile Id="487" Name="Picnic Tables" Framed="true" Size="4,2" Color="#FF8D5A57">
       <Frames>
