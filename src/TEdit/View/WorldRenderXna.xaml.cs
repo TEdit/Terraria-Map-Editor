@@ -405,12 +405,6 @@ public partial class WorldRenderXna : UserControl
                 int numX = (sprite.SizeTexture.X + 2) / sprite.SizePixelsInterval.X;
                 int numY = (sprite.SizeTexture.Y + 2) / sprite.SizePixelsInterval.Y;
 
-
-                if (sprite.IsAnimated)
-                {
-                    numY = 1;
-                }
-
                 Vector2Short rowSize = tile.FrameSize[0];
 
                 for (int subY = 0; subY < numY; subY += rowSize.Y)
@@ -543,19 +537,22 @@ public partial class WorldRenderXna : UserControl
                             var uv = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY);
                             var frameName = tile.Frames.FirstOrDefault(f => f.UV == uv);
 
-                            sprite.Styles.Add(new SpriteItemPreview
+                            if (frameName != null || !sprite.IsAnimated)
                             {
-                                Tile = sprite.Tile,
-                                StyleColor = styleColor,
-                                SizeTiles = frameName?.Size ?? rowSize,
-                                SizePixelsInterval = sprite.SizePixelsInterval,
-                                Anchor = frameName?.Anchor ?? FrameAnchor.None,
-                                SizeTexture = sprite.SizeTexture,
-                                Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
-                                Preview = texture.Texture2DToWriteableBitmap(),
-                                Style = subId,
-                                UV = uv
-                            });
+                                sprite.Styles.Add(new SpriteItemPreview
+                                {
+                                    Tile = sprite.Tile,
+                                    StyleColor = styleColor,
+                                    SizeTiles = frameName?.Size ?? rowSize,
+                                    SizePixelsInterval = sprite.SizePixelsInterval,
+                                    Anchor = frameName?.Anchor ?? FrameAnchor.None,
+                                    SizeTexture = sprite.SizeTexture,
+                                    Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
+                                    Preview = texture.Texture2DToWriteableBitmap(),
+                                    Style = subId,
+                                    UV = uv
+                                });
+                            }
                         }
                     }
                 }
