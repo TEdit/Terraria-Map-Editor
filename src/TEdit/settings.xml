@@ -1265,7 +1265,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="15" Color="#FFBF8E6F" Name="Chairs" Framed="true" Size="1,2" Placement="floor"
-      TextureGrid="16,16" FrameGap="0,2">
+      TextureGrid="16,16" FrameGap="2,4">
       <Frames>
         <Frame UV="0,0" Name="Wooden Chair" Anchor="Left" />
         <Frame UV="18,0" Name="Wooden Chair" Anchor="Right" />
@@ -1363,6 +1363,46 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1840" Name="Balloon Chair" Anchor="Right" />
         <Frame UV="0,1880" Name="Ash Wood Chair" Anchor="Left" />
         <Frame UV="18,1880" Name="Ash Wood Chair" Anchor="Right" />
+        <Frame UV="0,1920" Name="Aetherium Chair" Anchor="Left" />
+        <Frame UV="18,1920" Name="Aetherium Chair" Anchor="Right" />
+        <Frame UV="0,1960" Name="Fallen Star Chair" Anchor="Left" />
+        <Frame UV="18,1960" Name="Fallen Star Chair" Anchor="Right" />
+        <Frame UV="0,2000" Name="Feywood Chair" Anchor="Left" />
+        <Frame UV="18,2000" Name="Feywood Chair" Anchor="Right" />
+        <Frame UV="36,40" Name="Hallowed Chair" Anchor="Left" />
+        <Frame UV="54,40" Name="Hallowed Chair" Anchor="Right" />
+        <Frame UV="36,80" Name="Demonite Chair" Anchor="Left" />
+        <Frame UV="54,80" Name="Demonite Chair" Anchor="Right" />
+        <Frame UV="36,120" Name="Crimtane Chair" Anchor="Left" />
+        <Frame UV="54,120" Name="Crimtane Chair" Anchor="Right" />
+        <Frame UV="36,160" Name="Snow Chair" Anchor="Left" />
+        <Frame UV="54,160" Name="Snow Chair" Anchor="Right" />
+        <Frame UV="36,200" Name="Flinx Fur Chair" Anchor="Left" />
+        <Frame UV="54,200" Name="Flinx Fur Chair" Anchor="Right" />
+        <Frame UV="36,240" Name="Easter Chair" Anchor="Left" />
+        <Frame UV="54,240" Name="Easter Chair" Anchor="Right" />
+        <Frame UV="36,280" Name="Boulder Chair" Anchor="Left" />
+        <Frame UV="54,280" Name="Boulder Chair" Anchor="Right" />
+        <Frame UV="36,320" Name="Jellyfish Chair" Anchor="Left" />
+        <Frame UV="54,320" Name="Jellyfish Chair" Anchor="Right" />
+        <Frame UV="36,360" Name="Harpy Chair" Anchor="Left" />
+        <Frame UV="54,360" Name="Harpy Chair" Anchor="Right" />
+        <Frame UV="36,400" Name="Cloud Chair" Anchor="Left" />
+        <Frame UV="54,400" Name="Cloud Chair" Anchor="Right" />
+        <Frame UV="36,440" Name="Duskware Chair" Anchor="Left" />
+        <Frame UV="54,440" Name="Duskware Chair" Anchor="Right" />
+        <Frame UV="36,480" Name="Librarian Chair" Anchor="Left" />
+        <Frame UV="54,480" Name="Librarian Chair" Anchor="Right" />
+        <Frame UV="36,520" Name="Spike Chair" Anchor="Left" />
+        <Frame UV="54,520" Name="Spike Chair" Anchor="Right" />
+        <Frame UV="36,560" Name="Office Chair" Anchor="Left" />
+        <Frame UV="54,560" Name="Office Chair" Anchor="Right" />
+        <Frame UV="36,600" Name="Forbidden Chair" Anchor="Left" />
+        <Frame UV="54,600" Name="Forbidden Chair" Anchor="Right" />
+        <Frame UV="36,640" Name="Aquarium Chair" Anchor="Left" />
+        <Frame UV="54,640" Name="Aquarium Chair" Anchor="Right" />
+        <Frame UV="36,680" Name="Stone Chair" Anchor="Left" />
+        <Frame UV="54,680" Name="Stone Chair" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="16" Color="#FF8C8274" Name="Anvils" Framed="true" Size="2,1" TextureGrid="16,18"
@@ -6261,7 +6301,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="243" Color="#FF8CB3FE" Name="Imbuing Station" Framed="true" Size="3,3"
       IsAnimated="true" />
     <Tile Id="244" Color="#FFC8F5FD" Name="Bubble Machine" Framed="true" Size="3,2"
-      IsAnimated="true" />
+      IsAnimated="true" >
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="54,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="245" Color="#FF63321E" Name="Paintings 2x3" Framed="true" Size="2,3">
       <Frames>
         <Frame UV="0,0" Name="Painting" Variety="Waldo" />
@@ -6859,7 +6904,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,0" Variety="Unlit" />
       </Frames>
     </Tile>
-    <Tile Id="406" Color="#FF787878" Name="Chimney" Framed="true" Size="3,3" IsAnimated="true" />
+    <Tile Id="406" Color="#FF787878" Name="Chimney" Framed="true" Size="3,3" IsAnimated="true" >
+      <Frames>
+        <Frame UV="0,0" Variety="On A" />
+        <Frame UV="0,54" Variety="On B" />
+        <Frame UV="0,108" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="407" Color="#FFFFE384" Name="Sturdy Fossil Block" Solid="true" Blends="true" />
     <Tile Id="408" Color="#FF555352" Name="Luminite Ore" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="409" Color="#FF555352" Name="Luminite Brick" Solid="true" Blends="true" />
@@ -7471,7 +7522,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="450" Color="#FF5cf05b" Name="Green Streamer" Solid="true" Blends="true" />
     <Tile Id="451" Color="#FFf05b93" Name="Pink Streamer" Solid="true" Blends="true" />
     <Tile Id="452" Color="#FFff96b5" Name="Silly Balloon Machine" Framed="true" Size="3,3"
-      IsAnimated="true" />
+      IsAnimated="true" >
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="54,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="453" Color="#FFFFFFFF" Name="Silly Tied Balloon" Framed="true" Size="1,3"
       IsAnimated="true">
       <Frames>
@@ -7484,7 +7540,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="454" Color="#FFae10b0" Name="Pigronata" Framed="true" Size="4,3" IsAnimated="true" />
-    <Tile Id="455" Color="#FF30ff6e" Name="Party Center" Framed="true" Size="3,3" IsAnimated="true" />
+    <Tile Id="455" Color="#FF30ff6e" Name="Party Center" Framed="true" Size="3,3" IsAnimated="true" >
+      <Frames>
+        <Frame UV="0,0" Variety="Off" />
+        <Frame UV="0,54" Variety="On" />
+      </Frames>
+    </Tile>
     <Tile Id="456" Color="#FFb384ff" Name="Silly Tied Bundle of Balloons" Framed="true" Size="2,3"
       IsAnimated="true" />
     <Tile Id="457" Color="#FFFFFFFF" Name="Party Presents" Framed="true" Size="2,2">
@@ -7610,7 +7671,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="482" Name="Cracked Green Brick" Solid="true" Color="#FF3E4D47" />
     <Tile Id="483" Name="Cracked Pink Brick" Solid="true" Color="#FF7A405F" />
     <Tile Id="484" Name="Rolling Cactus" Solid="true" Framed="true" Size="2,2" Color="#FF737E3D" />
-    <Tile Id="485" Name="Antlion Larva" Framed="true" Size="2,2" IsAnimated="true" Color="#FFA17956" />
+    <Tile Id="485" Name="Antlion Larva" Framed="true" Size="2,2" IsAnimated="true" Color="#FFA17956" >
+      <Frames>
+        <Frame UV="0,0" Variety="A" />
+        <Frame UV="36,0" Variety="B" />
+        <Frame UV="72,0" Variety="C" />
+        <Frame UV="108,0" Variety="D" />
+      </Frames>
+    </Tile>
     <Tile Id="486" Name="Drum Set" Framed="true" Size="3,2" Color="#FF7A775C" />
     <Tile Id="487" Name="Picnic Tables" Framed="true" Size="4,2" Color="#FF8D5A57">
       <Frames>
@@ -9748,19 +9816,22 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="654" Name="TNT Barrel" Framed="true" Size="2,2" Color="#FF8F6768" />
     <Tile Id="655" Name="Plantera Thorns" Color="#FFA85386" />
-    <Tile Id="656" Name="Glow Tulip" Color="#FF3995B3" Light="true" Framed="true" Size="1,1">
+    <Tile Id="656" Name="Glow Tulip" Color="#FF3995B3" Light="true" Framed="true" TextureGrid="24,34" Size="1,1">
       <Frames>
         <Frame Name="Glow Tulip" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="657" Name="Echo Chamber" Color="#FF3D3F4B" Framed="true" Size="2,3">
+    <Tile Id="657" Name="Echo Chamber" Color="#FF3D3F4B" Framed="true" Size="2,3" IsAnimated="true">
       <Frames>
-        <Frame Name="Echo Chamber" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="Off" />
+        <Frame UV="0,54" Variety="On" />
       </Frames>
     </Tile>
-    <Tile Id="658" Name="Aether Monolith" Color="#FFAB8DCE" Light="true" Framed="true" Size="2,3">
+    <Tile Id="658" Name="Aether Monolith" Color="#FFAB8DCE" Light="true" Framed="true" Size="2,3" IsAnimated="true">
       <Frames>
-        <Frame Name="Aether Monolith" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="On A" />
+        <Frame UV="0,54" Variety="On B" />
+        <Frame UV="0,108" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="659" Name="Aetherium Block" Color="#FFC7C9CB" Light="true" Solid="true" />
@@ -9781,11 +9852,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Bouncy Boulder" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="665" Name="Life Crystal Boulder" Color="#Ffc68658" Framed="true" Size="2,2">
-      <Frames>
-        <Frame Name="Life Crystal Boulder" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
+    <Tile Id="665" Name="Life Crystal Boulder" Color="#Ffc68658" Framed="true" Size="2,2" IsAnimated="true"/>
     <Tile Id="666" Name="Poo" Color="#Ffbf8e6f" Solid="true" />
     <Tile Id="667" Name="Aetherium Brick" Color="#Ffbf8e6f" Light="true" Solid="true" />
     <Tile Id="668" Name="The Dirtiest Block" Color="#Ffbf8e6f" Solid="true" />
@@ -9944,18 +10011,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Replica Crimson Altar" UV="0, 38" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="696" Name="Replica Shadow Orb" Color="#Ffbb444a" Light="true" Framed="true" Size="2,2">
+    <Tile Id="696" Name="Replica Shadow Orb" Color="#Ffbb444a" Light="true" Framed="true" Size="2,2" IsAnimated="true">
       <Frames>
-        <Frame Name="Replica Shadow Orb" UV="0, 0" Anchor="" />
-        <Frame Name="Replica Crimson Heart" UV="0, 36" Anchor="" />
+        <Frame Name="Replica Shadow Orb" UV="0, 0" />
+        <Frame Name="Replica Crimson Heart" UV="36, 0" />
       </Frames>
     </Tile>
     <Tile Id="697" Name="Decorative Cobweb" Color="#Ff318672" />
-    <Tile Id="698" Name="Item Flask" Color="#Ff7e8631" Framed="true" Size="2,3">
+    <Tile Id="698" Name="Item Flask" Color="#Ff7e8631" Framed="true" Size="1,2" IsAnimated="true">
       <Frames>
-        <Frame Name="Item Flask" UV="0, 0" Anchor="Top" />
-        <Frame Name="Item Flask" UV="2, 0" Anchor="Top" />
-        <Frame Name="Item Flask" UV="3, 0" Anchor="Top" />
+        <Frame UV="0, 0" Anchor="Top" Variety="A"/>
+        <Frame UV="18, 0" Anchor="Top" Variety="B"/>
+        <Frame UV="36, 0" Anchor="Top" Variety="C"/>
       </Frames>
     </Tile>
     <Tile Id="699" Name="Alchemy Flask" Color="#Ff863b31" Light="true" Framed="true" Size="4,4">
@@ -10009,12 +10076,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Magic Shimmer Dropper" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="710" Name="Pufferfish Cage" Color="#Ff8d89df" SolidTop="true" Framed="true" Size="6,3">
+    <Tile Id="710" Name="Pufferfish Cage" Color="#Ff8d89df" SolidTop="true" Framed="true" Size="6,3" IsAnimated="true">
       <Frames>
         <Frame Name="Pufferfish Cage" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="711" Name="Rainbow Boulder" Color="#Ffb6af82" Light="true" Solid="true" Framed="true" Size="2,2">
+    <Tile Id="711" Name="Rainbow Boulder" Color="#Ffb6af82" Light="true" Solid="true" Framed="true" Size="2,2" IsAnimated="true">
       <Frames>
         <Frame Name="Rainbow Boulder" UV="0, 0" Anchor="Bottom" />
       </Frames>
@@ -10047,68 +10114,67 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="717" Name="Lava Cloud" Color="#Ff7ad9e8" Light="true" Solid="true" />
     <Tile Id="718" Name="Star Cloud" Color="#Ff7ad9e8" Light="true" Solid="true" />
     <Tile Id="719" Name="Rainbow Cloud" Color="#Ff7ad9e8" Light="true" Solid="true" />
-    <Tile Id="720" Name="CRT Monolith" Color="#Ffb6af82" Framed="true" Size="2,3">
+    <Tile Id="720" Name="CRT Monolith" Color="#Ffb6af82" Framed="true" Size="2,3" IsAnimated="true">
       <Frames>
-        <Frame Name="CRT Monolith" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="Off" Anchor="Left" />
+        <Frame UV="36,0" Variety="Off" Anchor="Right" />
+        <Frame UV="0,54" Variety="On" Anchor="Left" />
+        <Frame UV="36,54" Variety="On" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="721" Name="Retro Monolith" Color="#Ff639608" Framed="true" Size="2,3">
+    <Tile Id="721" Name="Retro Monolith" Color="#Ff639608" Framed="true" Size="2,3" IsAnimated="true">
       <Frames>
-        <Frame Name="Retro Monolith" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="Off" Anchor="Left" />
+        <Frame UV="36,0" Variety="Off" Anchor="Right" />
+        <Frame UV="0,54" Variety="On" Anchor="Left" />
+        <Frame UV="36,54" Variety="On" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="722" Name="Fallen Star Block" Color="#Ff8b9a40" Solid="true" />
-    <Tile Id="723" Name="Blue Kite" Color="#Ff2281a8" Framed="true" Size="1,1">
+    <Tile Id="723" Name="Kite Anchor" Color="#Ff2281a8" Framed="true" Size="1,1">
       <Frames>
-        <Frame Name="Blue Kite" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Blue Kite" UV="18, 0" Anchor="Top" />
-        <Frame Name="Blue Kite" UV="36, 0" Anchor="Left" />
-        <Frame Name="Blue Kite" UV="54, 0" Anchor="Right" />
+        <Frame UV="0, 0" Anchor="Bottom" />
+        <Frame UV="18, 0" Anchor="Top" />
+        <Frame UV="36, 0" Anchor="Left" />
+        <Frame UV="54, 0" Anchor="Right" />
+        <Frame UV="72, 0" />
       </Frames>
     </Tile>
-    <Tile Id="724" Name="Goldfish" Color="#Ffb45252" Framed="true" Size="1,1">
+    <Tile Id="724" Name="Critter Anchor" Color="#Ffb45252" Framed="true" Size="1,1">
       <Frames>
-        <Frame Name="Goldfish" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Goldfish" UV="18, 0" Anchor="Top" />
-        <Frame Name="Goldfish" UV="36, 0" Anchor="Left" />
-        <Frame Name="Goldfish" UV="54, 0" Anchor="Right" />
-        <Frame Name="Monarch Butterfly" UV="0, 18" Anchor="Bottom" />
-        <Frame Name="Monarch Butterfly" UV="18, 18" Anchor="Top" />
-        <Frame Name="Monarch Butterfly" UV="36, 18" Anchor="Left" />
-        <Frame Name="Monarch Butterfly" UV="54, 18" Anchor="Right" />
-        <Frame Name="Purple Emperor Butterfly" UV="0, 36" Anchor="Bottom" />
-        <Frame Name="Purple Emperor Butterfly" UV="18, 36" Anchor="Top" />
-        <Frame Name="Purple Emperor Butterfly" UV="36, 36" Anchor="Left" />
-        <Frame Name="Purple Emperor Butterfly" UV="54, 36" Anchor="Right" />
-        <Frame Name="Red Admiral Butterfly" UV="0, 54" Anchor="Bottom" />
-        <Frame Name="Red Admiral Butterfly" UV="18, 54" Anchor="Top" />
-        <Frame Name="Red Admiral Butterfly" UV="36, 54" Anchor="Left" />
-        <Frame Name="Red Admiral Butterfly" UV="54, 54" Anchor="Right" />
-        <Frame Name="Ulysses Butterfly" UV="0, 72" Anchor="Bottom" />
-        <Frame Name="Ulysses Butterfly" UV="18, 72" Anchor="Top" />
-        <Frame Name="Ulysses Butterfly" UV="36, 72" Anchor="Left" />
-        <Frame Name="Ulysses Butterfly" UV="54, 72" Anchor="Right" />
-        <Frame Name="Sulphur Butterfly" UV="0, 90" Anchor="Bottom" />
-        <Frame Name="Sulphur Butterfly" UV="18, 90" Anchor="Top" />
-        <Frame Name="Sulphur Butterfly" UV="36, 90" Anchor="Left" />
-        <Frame Name="Sulphur Butterfly" UV="54, 90" Anchor="Right" />
-        <Frame Name="Tree Nymph Butterfly" UV="0, 108" Anchor="Bottom" />
-        <Frame Name="Tree Nymph Butterfly" UV="18, 108" Anchor="Top" />
-        <Frame Name="Tree Nymph Butterfly" UV="36, 108" Anchor="Left" />
-        <Frame Name="Tree Nymph Butterfly" UV="54, 108" Anchor="Right" />
-        <Frame Name="Zebra Swallowtail Butterfly" UV="0, 126" Anchor="Bottom" />
-        <Frame Name="Zebra Swallowtail Butterfly" UV="18, 126" Anchor="Top" />
-        <Frame Name="Zebra Swallowtail Butterfly" UV="36, 126" Anchor="Left" />
-        <Frame Name="Zebra Swallowtail Butterfly" UV="54, 126" Anchor="Right" />
-        <Frame Name="Julia Butterfly" UV="0, 144" Anchor="Bottom" />
-        <Frame Name="Julia Butterfly" UV="18, 144" Anchor="Top" />
-        <Frame Name="Julia Butterfly" UV="36, 144" Anchor="Left" />
-        <Frame Name="Julia Butterfly" UV="54, 144" Anchor="Right" />
+        <Frame UV="0, 0" Variety="A" Anchor="Bottom" />
+        <Frame UV="18, 0" Variety="A" Anchor="Top" />
+        <Frame UV="36, 0" Variety="A" Anchor="Left" />
+        <Frame UV="54, 0" Variety="A" Anchor="Right" />
+        <Frame UV="72, 0" Variety="A" />
+        <Frame UV="0, 18" Variety="B" Anchor="Bottom" />
+        <Frame UV="18, 18" Variety="B" Anchor="Top" />
+        <Frame UV="36, 18" Variety="B" Anchor="Left" />
+        <Frame UV="54, 18" Variety="B" Anchor="Right" />
+        <Frame UV="72, 18" Variety="B" />
+        <Frame UV="0, 36" Variety="C" Anchor="Bottom" />
+        <Frame UV="18, 36" Variety="C" Anchor="Top" />
+        <Frame UV="36, 36" Variety="C" Anchor="Left" />
+        <Frame UV="54, 36" Variety="C" Anchor="Right" />
+        <Frame UV="72, 36" Variety="C" />
+        <Frame UV="0, 54" Variety="D" Anchor="Bottom" />
+        <Frame UV="18, 54" Variety="D" Anchor="Top" />
+        <Frame UV="36, 54" Variety="D" Anchor="Left" />
+        <Frame UV="54, 54" Variety="D" Anchor="Right" />
+        <Frame UV="72, 54" Variety="D" />
+        <Frame UV="0, 72" Variety="E" Anchor="Bottom" />
+        <Frame UV="18, 72" Variety="E" Anchor="Top" />
+        <Frame UV="36, 72" Variety="E" Anchor="Left" />
+        <Frame UV="54, 72" Variety="E" Anchor="Right" />
+        <Frame UV="72, 72" Variety="E" />
       </Frames>
     </Tile>
-    <Tile Id="725" Name="Film Projector" Color="#Ff716ccd" Framed="true" Size="2,3">
+    <Tile Id="725" Name="Film Projector" Color="#Ff716ccd" Framed="true" Size="2,3" IsAnimated="true">
       <Frames>
-        <Frame Name="Film Projector" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="Off" Anchor="Left" />
+        <Frame UV="36,0" Variety="Off" Anchor="Right" />
+        <Frame UV="0,54" Variety="On" Anchor="Left" />
+        <Frame UV="36,54" Variety="On" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="726" Name="Cannonball" Color="#Ff6bb600" Solid="true" Framed="true">
@@ -10124,7 +10190,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="732" Name="Dull White Team Block" Color="#Ff7ad9e8" Solid="true" />
     <Tile Id="733" Name="Radio Thing" Color="#Ff72fe02" Framed="true" Size="3,3">
       <Frames>
-        <Frame Name="Radio Thing" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="54,0" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="734" Name="Feywood" Color="#Ff72fe02" Solid="true" />
@@ -10144,7 +10211,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="748" Name="Aquarium Block" Color="#Ff365314" Solid="true" />
     <Tile Id="749" Name="Boulder Block" Color="#Ff7ad9e8" Solid="true" />
     <Tile Id="750" Name="Sharp Spike Block" Color="#Ff7ad9e8" Solid="true" />
-    <Tile Id="751" Name="Sleeping Digtoise" Color="#Ffbaa854" Framed="true" Size="3,3">
+    <Tile Id="751" Name="Sleeping Digtoise" Color="#Ffbaa854" Framed="true" Size="3,3" IsAnimated="true">
       <Frames>
         <Frame Name="Sleeping Digtoise" UV="0, 0" />
       </Frames>
@@ -15742,7 +15809,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5240" Name="Dread of the Red Sea" />
     <Item Id="5241" Name="Do Not Eat the Vile Mushroom!" />
     <Item Id="5242" Name="Yuuma, The Blue Tiger" />
-    <Item Id="5243" Name="Moonman and Company" />
+    <Item Id="5243" Name="Moonman &amp; Company" />
     <Item Id="5244" Name="Sunshine of Israpony" />
     <Item Id="5245" Name="Purity" />
     <Item Id="5246" Name="Sufficiently Advanced" />
