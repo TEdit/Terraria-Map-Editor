@@ -10122,9 +10122,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,54" Variety="On" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="721" Name="Retro Monolith" Color="#Ff639608" Framed="true" Size="2,3">
+    <Tile Id="721" Name="Retro Monolith" Color="#Ff639608" Framed="true" Size="2,3" IsAnimated="true">
       <Frames>
-        <Frame Name="Retro Monolith" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="Off" Anchor="Left" />
+        <Frame UV="36,0" Variety="Off" Anchor="Right" />
+        <Frame UV="0,54" Variety="On" Anchor="Left" />
+        <Frame UV="36,54" Variety="On" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="722" Name="Fallen Star Block" Color="#Ff8b9a40" Solid="true" />
