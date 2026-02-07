@@ -10076,7 +10076,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Magic Shimmer Dropper" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="710" Name="Pufferfish Cage" Color="#Ff8d89df" SolidTop="true" Framed="true" Size="6,3">
+    <Tile Id="710" Name="Pufferfish Cage" Color="#Ff8d89df" SolidTop="true" Framed="true" Size="6,3" IsAnimated="true">
       <Frames>
         <Frame Name="Pufferfish Cage" UV="0, 0" Anchor="Bottom" />
       </Frames>
