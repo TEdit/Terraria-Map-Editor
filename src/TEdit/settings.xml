@@ -10169,7 +10169,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72, 72" Variety="E" />
       </Frames>
     </Tile>
-    <Tile Id="725" Name="Film Projector" Color="#Ff716ccd" Framed="true" Size="2,3">
+    <Tile Id="725" Name="Film Projector" Color="#Ff716ccd" Framed="true" Size="2,3" IsAnimated="true">
       <Frames>
         <Frame UV="0,0" Variety="Off" Anchor="Left" />
         <Frame UV="36,0" Variety="Off" Anchor="Right" />
