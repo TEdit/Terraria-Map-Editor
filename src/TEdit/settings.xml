@@ -10211,7 +10211,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="748" Name="Aquarium Block" Color="#Ff365314" Solid="true" />
     <Tile Id="749" Name="Boulder Block" Color="#Ff7ad9e8" Solid="true" />
     <Tile Id="750" Name="Sharp Spike Block" Color="#Ff7ad9e8" Solid="true" />
-    <Tile Id="751" Name="Sleeping Digtoise" Color="#Ffbaa854" Framed="true" Size="3,3">
+    <Tile Id="751" Name="Sleeping Digtoise" Color="#Ffbaa854" Framed="true" Size="3,3" IsAnimated="true">
       <Frames>
         <Frame Name="Sleeping Digtoise" UV="0, 0" />
       </Frames>
