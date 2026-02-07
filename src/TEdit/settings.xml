@@ -6904,7 +6904,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,0" Variety="Unlit" />
       </Frames>
     </Tile>
-    <Tile Id="406" Color="#FF787878" Name="Chimney" Framed="true" Size="3,3" IsAnimated="true" />
+    <Tile Id="406" Color="#FF787878" Name="Chimney" Framed="true" Size="3,3" IsAnimated="true" >
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="0,54" Variety="On (Smoke)" />
+        <Frame UV="0,108" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="407" Color="#FFFFE384" Name="Sturdy Fossil Block" Solid="true" Blends="true" />
     <Tile Id="408" Color="#FF555352" Name="Luminite Ore" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="409" Color="#FF555352" Name="Luminite Brick" Solid="true" Blends="true" />
