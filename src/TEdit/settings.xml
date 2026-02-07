@@ -10081,7 +10081,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Pufferfish Cage" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="711" Name="Rainbow Boulder" Color="#Ffb6af82" Light="true" Solid="true" Framed="true" Size="2,2">
+    <Tile Id="711" Name="Rainbow Boulder" Color="#Ffb6af82" Light="true" Solid="true" Framed="true" Size="2,2" IsAnimated="true">
       <Frames>
         <Frame Name="Rainbow Boulder" UV="0, 0" Anchor="Bottom" />
       </Frames>
