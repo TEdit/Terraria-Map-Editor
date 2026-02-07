@@ -6301,7 +6301,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="243" Color="#FF8CB3FE" Name="Imbuing Station" Framed="true" Size="3,3"
       IsAnimated="true" />
     <Tile Id="244" Color="#FFC8F5FD" Name="Bubble Machine" Framed="true" Size="3,2"
-      IsAnimated="true" />
+      IsAnimated="true" >
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="54,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="245" Color="#FF63321E" Name="Paintings 2x3" Framed="true" Size="2,3">
       <Frames>
         <Frame UV="0,0" Name="Painting" Variety="Waldo" />
