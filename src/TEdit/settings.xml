@@ -10131,52 +10131,42 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="722" Name="Fallen Star Block" Color="#Ff8b9a40" Solid="true" />
-    <Tile Id="723" Name="Blue Kite" Color="#Ff2281a8" Framed="true" Size="1,1">
+    <Tile Id="723" Name="Kite Anchor" Color="#Ff2281a8" Framed="true" Size="1,1">
       <Frames>
-        <Frame Name="Blue Kite" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Blue Kite" UV="18, 0" Anchor="Top" />
-        <Frame Name="Blue Kite" UV="36, 0" Anchor="Left" />
-        <Frame Name="Blue Kite" UV="54, 0" Anchor="Right" />
+        <Frame UV="0, 0" Anchor="Bottom" />
+        <Frame UV="18, 0" Anchor="Top" />
+        <Frame UV="36, 0" Anchor="Left" />
+        <Frame UV="54, 0" Anchor="Right" />
+        <Frame UV="72, 0" />
       </Frames>
     </Tile>
-    <Tile Id="724" Name="Goldfish" Color="#Ffb45252" Framed="true" Size="1,1">
+    <Tile Id="724" Name="Critter Anchor" Color="#Ffb45252" Framed="true" Size="1,1">
       <Frames>
-        <Frame Name="Goldfish" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Goldfish" UV="18, 0" Anchor="Top" />
-        <Frame Name="Goldfish" UV="36, 0" Anchor="Left" />
-        <Frame Name="Goldfish" UV="54, 0" Anchor="Right" />
-        <Frame Name="Monarch Butterfly" UV="0, 18" Anchor="Bottom" />
-        <Frame Name="Monarch Butterfly" UV="18, 18" Anchor="Top" />
-        <Frame Name="Monarch Butterfly" UV="36, 18" Anchor="Left" />
-        <Frame Name="Monarch Butterfly" UV="54, 18" Anchor="Right" />
-        <Frame Name="Purple Emperor Butterfly" UV="0, 36" Anchor="Bottom" />
-        <Frame Name="Purple Emperor Butterfly" UV="18, 36" Anchor="Top" />
-        <Frame Name="Purple Emperor Butterfly" UV="36, 36" Anchor="Left" />
-        <Frame Name="Purple Emperor Butterfly" UV="54, 36" Anchor="Right" />
-        <Frame Name="Red Admiral Butterfly" UV="0, 54" Anchor="Bottom" />
-        <Frame Name="Red Admiral Butterfly" UV="18, 54" Anchor="Top" />
-        <Frame Name="Red Admiral Butterfly" UV="36, 54" Anchor="Left" />
-        <Frame Name="Red Admiral Butterfly" UV="54, 54" Anchor="Right" />
-        <Frame Name="Ulysses Butterfly" UV="0, 72" Anchor="Bottom" />
-        <Frame Name="Ulysses Butterfly" UV="18, 72" Anchor="Top" />
-        <Frame Name="Ulysses Butterfly" UV="36, 72" Anchor="Left" />
-        <Frame Name="Ulysses Butterfly" UV="54, 72" Anchor="Right" />
-        <Frame Name="Sulphur Butterfly" UV="0, 90" Anchor="Bottom" />
-        <Frame Name="Sulphur Butterfly" UV="18, 90" Anchor="Top" />
-        <Frame Name="Sulphur Butterfly" UV="36, 90" Anchor="Left" />
-        <Frame Name="Sulphur Butterfly" UV="54, 90" Anchor="Right" />
-        <Frame Name="Tree Nymph Butterfly" UV="0, 108" Anchor="Bottom" />
-        <Frame Name="Tree Nymph Butterfly" UV="18, 108" Anchor="Top" />
-        <Frame Name="Tree Nymph Butterfly" UV="36, 108" Anchor="Left" />
-        <Frame Name="Tree Nymph Butterfly" UV="54, 108" Anchor="Right" />
-        <Frame Name="Zebra Swallowtail Butterfly" UV="0, 126" Anchor="Bottom" />
-        <Frame Name="Zebra Swallowtail Butterfly" UV="18, 126" Anchor="Top" />
-        <Frame Name="Zebra Swallowtail Butterfly" UV="36, 126" Anchor="Left" />
-        <Frame Name="Zebra Swallowtail Butterfly" UV="54, 126" Anchor="Right" />
-        <Frame Name="Julia Butterfly" UV="0, 144" Anchor="Bottom" />
-        <Frame Name="Julia Butterfly" UV="18, 144" Anchor="Top" />
-        <Frame Name="Julia Butterfly" UV="36, 144" Anchor="Left" />
-        <Frame Name="Julia Butterfly" UV="54, 144" Anchor="Right" />
+        <Frame UV="0, 0" Variety="A" Anchor="Bottom" />
+        <Frame UV="18, 0" Variety="A" Anchor="Top" />
+        <Frame UV="36, 0" Variety="A" Anchor="Left" />
+        <Frame UV="54, 0" Variety="A" Anchor="Right" />
+        <Frame UV="72, 0" Variety="A" />
+        <Frame UV="0, 18" Variety="B" Anchor="Bottom" />
+        <Frame UV="18, 18" Variety="B" Anchor="Top" />
+        <Frame UV="36, 18" Variety="B" Anchor="Left" />
+        <Frame UV="54, 18" Variety="B" Anchor="Right" />
+        <Frame UV="72, 18" Variety="B" />
+        <Frame UV="0, 36" Variety="C" Anchor="Bottom" />
+        <Frame UV="18, 36" Variety="C" Anchor="Top" />
+        <Frame UV="36, 36" Variety="C" Anchor="Left" />
+        <Frame UV="54, 36" Variety="C" Anchor="Right" />
+        <Frame UV="72, 36" Variety="C" />
+        <Frame UV="0, 54" Variety="D" Anchor="Bottom" />
+        <Frame UV="18, 54" Variety="D" Anchor="Top" />
+        <Frame UV="36, 54" Variety="D" Anchor="Left" />
+        <Frame UV="54, 54" Variety="D" Anchor="Right" />
+        <Frame UV="72, 54" Variety="D" />
+        <Frame UV="0, 72" Variety="E" Anchor="Bottom" />
+        <Frame UV="18, 72" Variety="E" Anchor="Top" />
+        <Frame UV="36, 72" Variety="E" Anchor="Left" />
+        <Frame UV="54, 72" Variety="E" Anchor="Right" />
+        <Frame UV="72, 72" Variety="E" />
       </Frames>
     </Tile>
     <Tile Id="725" Name="Film Projector" Color="#Ff716ccd" Framed="true" Size="2,3">
