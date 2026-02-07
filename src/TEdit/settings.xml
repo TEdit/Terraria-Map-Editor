@@ -7522,7 +7522,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="450" Color="#FF5cf05b" Name="Green Streamer" Solid="true" Blends="true" />
     <Tile Id="451" Color="#FFf05b93" Name="Pink Streamer" Solid="true" Blends="true" />
     <Tile Id="452" Color="#FFff96b5" Name="Silly Balloon Machine" Framed="true" Size="3,3"
-      IsAnimated="true" />
+      IsAnimated="true" >
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="54,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="453" Color="#FFFFFFFF" Name="Silly Tied Balloon" Framed="true" Size="1,3"
       IsAnimated="true">
       <Frames>
