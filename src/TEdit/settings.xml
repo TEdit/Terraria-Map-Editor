@@ -9816,7 +9816,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="654" Name="TNT Barrel" Framed="true" Size="2,2" Color="#FF8F6768" />
     <Tile Id="655" Name="Plantera Thorns" Color="#FFA85386" />
-    <Tile Id="656" Name="Glow Tulip" Color="#FF3995B3" Light="true" Framed="true" Size="1,1">
+    <Tile Id="656" Name="Glow Tulip" Color="#FF3995B3" Light="true" Framed="true" TextureGrid="24,34" Size="1,1">
       <Frames>
         <Frame Name="Glow Tulip" UV="0, 0" />
       </Frames>
