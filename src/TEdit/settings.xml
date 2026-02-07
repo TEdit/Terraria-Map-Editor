@@ -10018,11 +10018,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="697" Name="Decorative Cobweb" Color="#Ff318672" />
-    <Tile Id="698" Name="Item Flask" Color="#Ff7e8631" Framed="true" Size="2,3">
+    <Tile Id="698" Name="Item Flask" Color="#Ff7e8631" Framed="true" Size="1,2" IsAnimated="true">
       <Frames>
-        <Frame Name="Item Flask" UV="0, 0" Anchor="Top" />
-        <Frame Name="Item Flask" UV="2, 0" Anchor="Top" />
-        <Frame Name="Item Flask" UV="3, 0" Anchor="Top" />
+        <Frame UV="0, 0" Anchor="Top" Variety="A"/>
+        <Frame UV="18, 0" Anchor="Top" Variety="B"/>
+        <Frame UV="36, 0" Anchor="Top" Variety="C"/>
       </Frames>
     </Tile>
     <Tile Id="699" Name="Alchemy Flask" Color="#Ff863b31" Light="true" Framed="true" Size="4,4">
