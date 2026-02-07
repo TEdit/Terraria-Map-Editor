@@ -10190,7 +10190,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="732" Name="Dull White Team Block" Color="#Ff7ad9e8" Solid="true" />
     <Tile Id="733" Name="Radio Thing" Color="#Ff72fe02" Framed="true" Size="3,3">
       <Frames>
-        <Frame Name="Radio Thing" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="54,0" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="734" Name="Feywood" Color="#Ff72fe02" Solid="true" />
