@@ -1265,7 +1265,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="15" Color="#FFBF8E6F" Name="Chairs" Framed="true" Size="1,2" Placement="floor"
-      TextureGrid="16,16" FrameGap="0,2">
+      TextureGrid="16,16" FrameGap="2,4">
       <Frames>
         <Frame UV="0,0" Name="Wooden Chair" Anchor="Left" />
         <Frame UV="18,0" Name="Wooden Chair" Anchor="Right" />
@@ -1363,6 +1363,46 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1840" Name="Balloon Chair" Anchor="Right" />
         <Frame UV="0,1880" Name="Ash Wood Chair" Anchor="Left" />
         <Frame UV="18,1880" Name="Ash Wood Chair" Anchor="Right" />
+        <Frame UV="0,1920" Name="Aetherium Chair" Anchor="Left" />
+        <Frame UV="18,1920" Name="Aetherium Chair" Anchor="Right" />
+        <Frame UV="0,1960" Name="Fallen Star Chair" Anchor="Left" />
+        <Frame UV="18,1960" Name="Fallen Star Chair" Anchor="Right" />
+        <Frame UV="0,2000" Name="Feywood Chair" Anchor="Left" />
+        <Frame UV="18,2000" Name="Feywood Chair" Anchor="Right" />
+        <Frame UV="36,40" Name="Hallowed Chair" Anchor="Left" />
+        <Frame UV="54,40" Name="Hallowed Chair" Anchor="Right" />
+        <Frame UV="36,80" Name="Demonite Chair" Anchor="Left" />
+        <Frame UV="54,80" Name="Demonite Chair" Anchor="Right" />
+        <Frame UV="36,120" Name="Crimtane Chair" Anchor="Left" />
+        <Frame UV="54,120" Name="Crimtane Chair" Anchor="Right" />
+        <Frame UV="36,160" Name="Snow Chair" Anchor="Left" />
+        <Frame UV="54,160" Name="Snow Chair" Anchor="Right" />
+        <Frame UV="36,200" Name="Flinx Fur Chair" Anchor="Left" />
+        <Frame UV="54,200" Name="Flinx Fur Chair" Anchor="Right" />
+        <Frame UV="36,240" Name="Easter Chair" Anchor="Left" />
+        <Frame UV="54,240" Name="Easter Chair" Anchor="Right" />
+        <Frame UV="36,280" Name="Boulder Chair" Anchor="Left" />
+        <Frame UV="54,280" Name="Boulder Chair" Anchor="Right" />
+        <Frame UV="36,320" Name="Jellyfish Chair" Anchor="Left" />
+        <Frame UV="54,320" Name="Jellyfish Chair" Anchor="Right" />
+        <Frame UV="36,360" Name="Harpy Chair" Anchor="Left" />
+        <Frame UV="54,360" Name="Harpy Chair" Anchor="Right" />
+        <Frame UV="36,400" Name="Cloud Chair" Anchor="Left" />
+        <Frame UV="54,400" Name="Cloud Chair" Anchor="Right" />
+        <Frame UV="36,440" Name="Duskware Chair" Anchor="Left" />
+        <Frame UV="54,440" Name="Duskware Chair" Anchor="Right" />
+        <Frame UV="36,480" Name="Librarian Chair" Anchor="Left" />
+        <Frame UV="54,480" Name="Librarian Chair" Anchor="Right" />
+        <Frame UV="36,520" Name="Spike Chair" Anchor="Left" />
+        <Frame UV="54,520" Name="Spike Chair" Anchor="Right" />
+        <Frame UV="36,560" Name="Office Chair" Anchor="Left" />
+        <Frame UV="54,560" Name="Office Chair" Anchor="Right" />
+        <Frame UV="36,600" Name="Forbidden Chair" Anchor="Left" />
+        <Frame UV="54,600" Name="Forbidden Chair" Anchor="Right" />
+        <Frame UV="36,640" Name="Aquarium Chair" Anchor="Left" />
+        <Frame UV="54,640" Name="Aquarium Chair" Anchor="Right" />
+        <Frame UV="36,680" Name="Stone Chair" Anchor="Left" />
+        <Frame UV="54,680" Name="Stone Chair" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="16" Color="#FF8C8274" Name="Anvils" Framed="true" Size="2,1" TextureGrid="16,18"
