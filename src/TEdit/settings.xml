@@ -9827,9 +9827,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,54" Variety="On" />
       </Frames>
     </Tile>
-    <Tile Id="658" Name="Aether Monolith" Color="#FFAB8DCE" Light="true" Framed="true" Size="2,3">
+    <Tile Id="658" Name="Aether Monolith" Color="#FFAB8DCE" Light="true" Framed="true" Size="2,3" IsAnimated="true">
       <Frames>
-        <Frame Name="Aether Monolith" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="On A" />
+        <Frame UV="0,54" Variety="On B" />
+        <Frame UV="0,108" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="659" Name="Aetherium Block" Color="#FFC7C9CB" Light="true" Solid="true" />

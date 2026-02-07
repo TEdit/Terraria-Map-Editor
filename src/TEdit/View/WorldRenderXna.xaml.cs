@@ -442,7 +442,7 @@ public partial class WorldRenderXna : UserControl
                                 int destY = y * sprite.SizePixelsRender.Y;
                                 int renderY = sprite.SizePixelsRender.Y;
 
-                                // TODO: fix chimney
+                                // TODO: fix chimney and Aether Monolith
                                 // fix tall gates
                                 if (sprite.Tile == 388 || sprite.Tile == 389)
                                 {
