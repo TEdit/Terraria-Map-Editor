@@ -10171,7 +10171,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="725" Name="Film Projector" Color="#Ff716ccd" Framed="true" Size="2,3">
       <Frames>
-        <Frame Name="Film Projector" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="Off" Anchor="Left" />
+        <Frame UV="36,0" Variety="Off" Anchor="Right" />
+        <Frame UV="0,54" Variety="On" Anchor="Left" />
+        <Frame UV="36,54" Variety="On" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="726" Name="Cannonball" Color="#Ff6bb600" Solid="true" Framed="true">
