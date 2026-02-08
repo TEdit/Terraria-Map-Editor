@@ -81,18 +81,16 @@ public partial class MouseTile : ReactiveObject
             string yPart;
             if (y < surfaceY)
             {
-                // 表层（表层及以上统一处理，数值从表层向上增长）
+
                 yPart = $"地表:{(surfaceY - y) * 2}";
             }
             else if (y < rockLayer)
             {
-                // 地下（从表层向下增长）
                 yPart = $"地下:{(y - surfaceY) * 2}";
             }
             else
             {
-                // 洞穴及更深处统一为洞穴（不单独显示地狱）
-                yPart = $"洞穴:{(y - rockLayer) * 2}";
+                yPart = $"洞穴:{(y - surfaceY) * 2}";
             }
 
             IngameLocation = $"{xPart} {yPart}";

@@ -15,6 +15,12 @@ public partial class BestiaryItem : ReactiveObject
 {
     [Reactive]
     private string _name;
+    private string _fullName;
+    public string FullName
+    {
+        get => _fullName;
+        set => this.RaiseAndSetIfChanged(ref _fullName, value);
+    }
 
     private Int32 _defeated;
     public Int32 Defeated
@@ -141,12 +147,20 @@ public partial class BestiaryViewModel : ReactiveObject
             bool near = _wvm.CurrentWorld.Bestiary.NPCNear.Contains(entity);
             bool talked = _wvm.CurrentWorld.Bestiary.NPCChat.Contains(entity);
 
+            // determine display name (use FullName from npc data when available)
+            string displayName = entity;
+            if (WorldConfiguration.BestiaryData.NpcData.TryGetValue(entity, out var npcData) && !string.IsNullOrEmpty(npcData.FullName))
+            {
+                displayName = npcData.FullName;
+            }
+
             BestiaryData.Add(new BestiaryItem
             {
                 CanKill = WorldConfiguration.BestiaryData.BestiaryKilledIDs.Contains(entity),
                 CanNear = WorldConfiguration.BestiaryData.BestiaryNearIDs.Contains(entity),
                 CanTalk = WorldConfiguration.BestiaryData.BestiaryTalkedIDs.Contains(entity),
                 Name = entity,
+                FullName = displayName,
                 Defeated = kills,
                 Near = near,
                 Talked = talked,

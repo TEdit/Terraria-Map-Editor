@@ -150,6 +150,8 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{x:Static p:Language.statusbar_position_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.MouseState.Location, StringFormat={}{0}, Mode=OneWay}" Width="75" IsReadOnly="True" />
+                        <TextBlock Text="{x:Static p:Language.statusbar_ingameposition_label}" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.IngameLocation, StringFormat={}{0}, Mode=OneWay}" Width="150" IsReadOnly="True" />
                         <TextBlock Text="{x:Static p:Language.statusbar_tile_label}" VerticalAlignment="Center" Margin="5,0"  />
                         <TextBox Text="{Binding MouseOverTile.TileName, Mode=OneWay}" Width="150" IsReadOnly="True" />
                         <TextBlock Text="{x:Static p:Language.statusbar_wall_label}" VerticalAlignment="Center" Margin="5,0"/>
