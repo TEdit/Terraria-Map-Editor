@@ -1346,7 +1346,47 @@
       { "name": "Balloon Chair", "uv": [0, 1840], "anchor": "Left" },
       { "name": "Balloon Chair", "uv": [18, 1840], "anchor": "Right" },
       { "name": "Ash Wood Chair", "uv": [0, 1880], "anchor": "Left" },
-      { "name": "Ash Wood Chair", "uv": [18, 1880], "anchor": "Right" }
+      { "name": "Ash Wood Chair", "uv": [18, 1880], "anchor": "Right" },
+      { "name": "Aetherium Chair", "uv": [0, 1920], "anchor": "Left" },
+      { "name": "Aetherium Chair", "uv": [18, 1920], "anchor": "Right" },
+      { "name": "Fallen Star Chair", "uv": [0, 1960], "anchor": "Left" },
+      { "name": "Fallen Star Chair", "uv": [18, 1960], "anchor": "Right" },
+      { "name": "Feywood Chair", "uv": [0, 2000], "anchor": "Left" },
+      { "name": "Feywood Chair", "uv": [18, 2000], "anchor": "Right" },
+      { "name": "Hallowed Chair", "uv": [36, 40], "anchor": "Left" },
+      { "name": "Hallowed Chair", "uv": [54, 40], "anchor": "Right" },
+      { "name": "Demonite Chair", "uv": [36, 80], "anchor": "Left" },
+      { "name": "Demonite Chair", "uv": [54, 80], "anchor": "Right" },
+      { "name": "Crimtane Chair", "uv": [36, 120], "anchor": "Left" },
+      { "name": "Crimtane Chair", "uv": [54, 120], "anchor": "Right" },
+      { "name": "Snow Chair", "uv": [36, 160], "anchor": "Left" },
+      { "name": "Snow Chair", "uv": [54, 160], "anchor": "Right" },
+      { "name": "Flinx Fur Chair", "uv": [36, 200], "anchor": "Left" },
+      { "name": "Flinx Fur Chair", "uv": [54, 200], "anchor": "Right" },
+      { "name": "Easter Chair", "uv": [36, 240], "anchor": "Left" },
+      { "name": "Easter Chair", "uv": [54, 240], "anchor": "Right" },
+      { "name": "Boulder Chair", "uv": [36, 280], "anchor": "Left" },
+      { "name": "Boulder Chair", "uv": [54, 280], "anchor": "Right" },
+      { "name": "Jellyfish Chair", "uv": [36, 320], "anchor": "Left" },
+      { "name": "Jellyfish Chair", "uv": [54, 320], "anchor": "Right" },
+      { "name": "Harpy Chair", "uv": [36, 360], "anchor": "Left" },
+      { "name": "Harpy Chair", "uv": [54, 360], "anchor": "Right" },
+      { "name": "Cloud Chair", "uv": [36, 400], "anchor": "Left" },
+      { "name": "Cloud Chair", "uv": [54, 400], "anchor": "Right" },
+      { "name": "Duskware Chair", "uv": [36, 440], "anchor": "Left" },
+      { "name": "Duskware Chair", "uv": [54, 440], "anchor": "Right" },
+      { "name": "Librarian Chair", "uv": [36, 480], "anchor": "Left" },
+      { "name": "Librarian Chair", "uv": [54, 480], "anchor": "Right" },
+      { "name": "Spike Chair", "uv": [36, 520], "anchor": "Left" },
+      { "name": "Spike Chair", "uv": [54, 520], "anchor": "Right" },
+      { "name": "Office Chair", "uv": [36, 560], "anchor": "Left" },
+      { "name": "Office Chair", "uv": [54, 560], "anchor": "Right" },
+      { "name": "Forbidden Chair", "uv": [36, 600], "anchor": "Left" },
+      { "name": "Forbidden Chair", "uv": [54, 600], "anchor": "Right" },
+      { "name": "Aquarium Chair", "uv": [36, 640], "anchor": "Left" },
+      { "name": "Aquarium Chair", "uv": [54, 640], "anchor": "Right" },
+      { "name": "Stone Chair", "uv": [36, 680], "anchor": "Left" },
+      { "name": "Stone Chair", "uv": [54, 680], "anchor": "Right" }
     ],
     "name": "Chairs",
     "color": "#BF8E6FFF",
@@ -8393,8 +8433,8 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Bubble Machine", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Bubble Machine", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "variety": "On", "uv": [0, 0] },
+      { "variety": "Off", "uv": [54, 0] }
     ],
     "name": "Bubble Machine",
     "color": "#C8F5FDFF",
@@ -10700,8 +10740,9 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Chimney", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Chimney", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "variety": "On A", "uv": [0, 0] },
+      { "variety": "On B", "uv": [0, 54] },
+      { "variety": "Off", "uv": [0, 108] }
     ],
     "name": "Chimney",
     "color": "#787878FF",
@@ -11733,8 +11774,8 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Silly Balloon Machine", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Silly Balloon Machine", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "variety": "On", "uv": [0, 0] },
+      { "variety": "Off", "uv": [54, 0] }
     ],
     "name": "Silly Balloon Machine",
     "color": "#ff96b5FF",
@@ -11779,8 +11820,8 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Party Center", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Party Center", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "variety": "Off", "uv": [0, 0] },
+      { "variety": "On", "uv": [0, 54] }
     ],
     "name": "Party Center",
     "color": "#30ff6eFF",
@@ -12202,8 +12243,10 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Antlion Eggs", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Antlion Eggs", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "variety": "A", "uv": [0, 0] },
+      { "variety": "B", "uv": [36, 0] },
+      { "variety": "C", "uv": [72, 0] },
+      { "variety": "D", "uv": [108, 0] }
     ],
     "name": "Antlion Larva",
     "color": "#A17956FF",
@@ -16055,7 +16098,7 @@
     "id": 656,
     "isFramed": true,
     "isLight": true,
-    "textureGrid": [16, 16],
+    "textureGrid": [24, 34],
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
@@ -16071,10 +16114,12 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Echo Chamber", "uv": [0, 0], "anchor": "Bottom" }
+      { "variety": "Off", "uv": [0, 0] },
+      { "variety": "On", "uv": [0, 54] }
     ],
     "name": "Echo Chamber",
-    "color": "#3D3F4BFF"
+    "color": "#3D3F4BFF",
+    "isAnimated": true
   },
   {
     "id": 658,
@@ -16084,10 +16129,13 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Aether Monolith", "uv": [0, 0], "anchor": "Bottom" }
+      { "variety": "On A", "uv": [0, 0] },
+      { "variety": "On B", "uv": [0, 54] },
+      { "variety": "Off", "uv": [0, 108] }
     ],
     "name": "Aether Monolith",
-    "color": "#AB8DCEFF"
+    "color": "#AB8DCEFF",
+    "isAnimated": true
   },
   {
     "id": 659,
@@ -16174,7 +16222,8 @@
       { "name": "Life Crystal Boulder", "uv": [0, 0], "anchor": "Bottom" }
     ],
     "name": "Life Crystal Boulder",
-    "color": "#c68658Ff"
+    "color": "#c68658Ff",
+    "isAnimated": true
   },
   {
     "id": 666,
@@ -16616,10 +16665,11 @@
     "frameSize": [[2, 2]],
     "frames": [
       { "name": "Replica Shadow Orb", "uv": [0, 0] },
-      { "name": "Replica Crimson Heart", "uv": [0, 36] }
+      { "name": "Replica Crimson Heart", "uv": [36, 0] }
     ],
     "name": "Replica Shadow Orb",
-    "color": "#bb444aFf"
+    "color": "#bb444aFf",
+    "isAnimated": true
   },
   {
     "id": 697,
@@ -16636,12 +16686,13 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 2]],
     "frames": [
-      { "name": "Item Flask", "uv": [0, 0], "anchor": "Top" },
-      { "name": "Item Flask", "uv": [2, 0], "anchor": "Top" },
-      { "name": "Item Flask", "uv": [3, 0], "anchor": "Top" }
+      { "variety": "A", "uv": [0, 0], "anchor": "Top" },
+      { "variety": "B", "uv": [18, 0], "anchor": "Top" },
+      { "variety": "C", "uv": [36, 0], "anchor": "Top" }
     ],
     "name": "Item Flask",
-    "color": "#7e8631Ff"
+    "color": "#7e8631Ff",
+    "isAnimated": true
   },
   {
     "id": 699,
@@ -16788,7 +16839,8 @@
       { "name": "Pufferfish Cage", "uv": [0, 0], "anchor": "Bottom" }
     ],
     "name": "Pufferfish Cage",
-    "color": "#8d89dfFf"
+    "color": "#8d89dfFf",
+    "isAnimated": true
   },
   {
     "id": 711,
@@ -16803,7 +16855,8 @@
       { "name": "Rainbow Boulder", "uv": [0, 0], "anchor": "Bottom" }
     ],
     "name": "Rainbow Boulder",
-    "color": "#b6af82Ff"
+    "color": "#b6af82Ff",
+    "isAnimated": true
   },
   {
     "id": 712,
@@ -16915,10 +16968,14 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "CRT Monolith", "uv": [0, 0], "anchor": "Bottom" }
+      { "variety": "Off", "uv": [0, 0], "anchor": "Left" },
+      { "variety": "Off", "uv": [36, 0], "anchor": "Right" },
+      { "variety": "On", "uv": [0, 54], "anchor": "Left" },
+      { "variety": "On", "uv": [36, 54], "anchor": "Right" }
     ],
     "name": "CRT Monolith",
-    "color": "#b6af82Ff"
+    "color": "#b6af82Ff",
+    "isAnimated": true
   },
   {
     "id": 721,
@@ -16927,10 +16984,14 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Retro Monolith", "uv": [0, 0], "anchor": "Bottom" }
+      { "variety": "Off", "uv": [0, 0], "anchor": "Left" },
+      { "variety": "Off", "uv": [36, 0], "anchor": "Right" },
+      { "variety": "On", "uv": [0, 54], "anchor": "Left" },
+      { "variety": "On", "uv": [36, 54], "anchor": "Right" }
     ],
     "name": "Retro Monolith",
-    "color": "#639608Ff"
+    "color": "#639608Ff",
+    "isAnimated": true
   },
   {
     "id": 722,
@@ -16949,12 +17010,15 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
-      { "name": "Blue Kite", "uv": [0, 0], "anchor": "Bottom" },
-      { "name": "Blue Kite", "uv": [18, 0], "anchor": "Top" },
-      { "name": "Blue Kite", "uv": [36, 0], "anchor": "Left" },
-      { "name": "Blue Kite", "uv": [54, 0], "anchor": "Right" }
+      { "uv": [0, 0], "anchor": "Bottom" },
+      { "uv": [18, 0], "anchor": "Top" },
+      { "uv": [36, 0], "anchor": "Left" },
+      { "uv": [54, 0], "anchor": "Right" },
+      {
+        "uv": [72, 0]
+      }
     ],
-    "name": "Blue Kite",
+    "name": "Kite Anchor",
     "color": "#2281a8Ff"
   },
   {
@@ -16964,44 +17028,33 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
-      { "name": "Goldfish", "uv": [0, 0], "anchor": "Bottom" },
-      { "name": "Goldfish", "uv": [18, 0], "anchor": "Top" },
-      { "name": "Goldfish", "uv": [36, 0], "anchor": "Left" },
-      { "name": "Goldfish", "uv": [54, 0], "anchor": "Right" },
-      { "name": "Monarch Butterfly", "uv": [0, 18], "anchor": "Bottom" },
-      { "name": "Monarch Butterfly", "uv": [18, 18], "anchor": "Top" },
-      { "name": "Monarch Butterfly", "uv": [36, 18], "anchor": "Left" },
-      { "name": "Monarch Butterfly", "uv": [54, 18], "anchor": "Right" },
-      { "name": "Purple Emperor Butterfly", "uv": [0, 36], "anchor": "Bottom" },
-      { "name": "Purple Emperor Butterfly", "uv": [18, 36], "anchor": "Top" },
-      { "name": "Purple Emperor Butterfly", "uv": [36, 36], "anchor": "Left" },
-      { "name": "Purple Emperor Butterfly", "uv": [54, 36], "anchor": "Right" },
-      { "name": "Red Admiral Butterfly", "uv": [0, 54], "anchor": "Bottom" },
-      { "name": "Red Admiral Butterfly", "uv": [18, 54], "anchor": "Top" },
-      { "name": "Red Admiral Butterfly", "uv": [36, 54], "anchor": "Left" },
-      { "name": "Red Admiral Butterfly", "uv": [54, 54], "anchor": "Right" },
-      { "name": "Ulysses Butterfly", "uv": [0, 72], "anchor": "Bottom" },
-      { "name": "Ulysses Butterfly", "uv": [18, 72], "anchor": "Top" },
-      { "name": "Ulysses Butterfly", "uv": [36, 72], "anchor": "Left" },
-      { "name": "Ulysses Butterfly", "uv": [54, 72], "anchor": "Right" },
-      { "name": "Sulphur Butterfly", "uv": [0, 90], "anchor": "Bottom" },
-      { "name": "Sulphur Butterfly", "uv": [18, 90], "anchor": "Top" },
-      { "name": "Sulphur Butterfly", "uv": [36, 90], "anchor": "Left" },
-      { "name": "Sulphur Butterfly", "uv": [54, 90], "anchor": "Right" },
-      { "name": "Tree Nymph Butterfly", "uv": [0, 108], "anchor": "Bottom" },
-      { "name": "Tree Nymph Butterfly", "uv": [18, 108], "anchor": "Top" },
-      { "name": "Tree Nymph Butterfly", "uv": [36, 108], "anchor": "Left" },
-      { "name": "Tree Nymph Butterfly", "uv": [54, 108], "anchor": "Right" },
-      { "name": "Zebra Swallowtail Butterfly", "uv": [0, 126], "anchor": "Bottom" },
-      { "name": "Zebra Swallowtail Butterfly", "uv": [18, 126], "anchor": "Top" },
-      { "name": "Zebra Swallowtail Butterfly", "uv": [36, 126], "anchor": "Left" },
-      { "name": "Zebra Swallowtail Butterfly", "uv": [54, 126], "anchor": "Right" },
-      { "name": "Julia Butterfly", "uv": [0, 144], "anchor": "Bottom" },
-      { "name": "Julia Butterfly", "uv": [18, 144], "anchor": "Top" },
-      { "name": "Julia Butterfly", "uv": [36, 144], "anchor": "Left" },
-      { "name": "Julia Butterfly", "uv": [54, 144], "anchor": "Right" }
+      { "variety": "A", "uv": [0, 0], "anchor": "Bottom" },
+      { "variety": "A", "uv": [18, 0], "anchor": "Top" },
+      { "variety": "A", "uv": [36, 0], "anchor": "Left" },
+      { "variety": "A", "uv": [54, 0], "anchor": "Right" },
+      { "variety": "A", "uv": [72, 0] },
+      { "variety": "B", "uv": [0, 18], "anchor": "Bottom" },
+      { "variety": "B", "uv": [18, 18], "anchor": "Top" },
+      { "variety": "B", "uv": [36, 18], "anchor": "Left" },
+      { "variety": "B", "uv": [54, 18], "anchor": "Right" },
+      { "variety": "B", "uv": [72, 18] },
+      { "variety": "C", "uv": [0, 36], "anchor": "Bottom" },
+      { "variety": "C", "uv": [18, 36], "anchor": "Top" },
+      { "variety": "C", "uv": [36, 36], "anchor": "Left" },
+      { "variety": "C", "uv": [54, 36], "anchor": "Right" },
+      { "variety": "C", "uv": [72, 36] },
+      { "variety": "D", "uv": [0, 54], "anchor": "Bottom" },
+      { "variety": "D", "uv": [18, 54], "anchor": "Top" },
+      { "variety": "D", "uv": [36, 54], "anchor": "Left" },
+      { "variety": "D", "uv": [54, 54], "anchor": "Right" },
+      { "variety": "D", "uv": [72, 54] },
+      { "variety": "E", "uv": [0, 72], "anchor": "Bottom" },
+      { "variety": "E", "uv": [18, 72], "anchor": "Top" },
+      { "variety": "E", "uv": [36, 72], "anchor": "Left" },
+      { "variety": "E", "uv": [54, 72], "anchor": "Right" },
+      { "variety": "E", "uv": [72, 72] }
     ],
-    "name": "Goldfish",
+    "name": "Critter Anchor",
     "color": "#b45252Ff"
   },
   {
@@ -17011,10 +17064,14 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Film Projector", "uv": [0, 0], "anchor": "Bottom" }
+      { "variety": "Off", "uv": [0, 0], "anchor": "Left" },
+      { "variety": "Off", "uv": [36, 0], "anchor": "Right" },
+      { "variety": "On", "uv": [0, 54], "anchor": "Left" },
+      { "variety": "On", "uv": [36, 54], "anchor": "Right" }
     ],
     "name": "Film Projector",
-    "color": "#716ccdFf"
+    "color": "#716ccdFf",
+    "isAnimated": true
   },
   {
     "id": 726,
@@ -17097,7 +17154,8 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Radio Thing", "uv": [0, 0], "anchor": "Bottom" }
+      { "variety": "On", "uv": [0, 0] },
+      { "variety": "Off", "uv": [54, 0] }
     ],
     "name": "Radio Thing",
     "color": "#72fe02Ff"
@@ -17283,7 +17341,8 @@
       { "name": "Sleeping Digtoise", "uv": [0, 0] }
     ],
     "name": "Sleeping Digtoise",
-    "color": "#baa854Ff"
+    "color": "#baa854Ff",
+    "isAnimated": true
   },
   {
     "id": 752,
