@@ -10,16 +10,12 @@
 
   <ItemGroup>
     <None Remove="favorites.json" />
-    <None Remove="settings.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="favorites.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="settings.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
-    <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,9 +46,6 @@
 
   <ItemGroup>
     <None Update="serverconfig.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="settings2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

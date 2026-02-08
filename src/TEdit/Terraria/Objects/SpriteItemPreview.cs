@@ -1,15 +1,31 @@
-﻿using System.Windows.Media;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Media.Imaging;
-using TEdit.ViewModel;
-using TEdit.Editor;
-using System.Collections.Generic;
-using TEdit.Geometry;
-using TEdit.Common;
-using TEdit.Render;
+using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria.Objects;
 
-public class SpriteItemPreview : SpriteItem
+public class SpriteItemPreview : SpriteItem, INotifyPropertyChanged
 {
-    public WriteableBitmap Preview { get; set; } //TODO: move rendering separate from config
+    private WriteableBitmap _preview;
+
+    public WriteableBitmap Preview
+    {
+        get => _preview;
+        set
+        {
+            if (_preview != value)
+            {
+                _preview = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Data;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using System;
 
 namespace TEdit.ViewModel

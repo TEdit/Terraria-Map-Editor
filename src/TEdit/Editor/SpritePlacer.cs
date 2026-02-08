@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.Terraria.Objects;

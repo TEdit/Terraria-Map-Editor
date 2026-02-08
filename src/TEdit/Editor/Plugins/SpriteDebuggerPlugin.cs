@@ -1,7 +1,7 @@
 ﻿using TEdit.ViewModel;
 using TEdit.Terraria.Objects;
 using TEdit.Terraria.Editor;
-using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.Editor.Plugins;
 

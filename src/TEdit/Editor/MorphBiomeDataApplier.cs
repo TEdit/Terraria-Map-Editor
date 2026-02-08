@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using TEdit.Terraria;
 using TEdit.ViewModel;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Configuration.BiomeMorph;
+using TEdit.Terraria.DataModel;
 
 namespace TEdit.Editor;
 

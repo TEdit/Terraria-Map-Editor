@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Terraria;
 
 namespace TEdit.UI.Xaml

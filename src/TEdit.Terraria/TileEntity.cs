@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using TEdit.Configuration;
 
 namespace TEdit.Terraria;
 
@@ -643,6 +642,6 @@ public partial class TileEntity : ReactiveObject
     public TileEntityItem Dye7 { get { return (Dyes.Count > 7) ? Dyes[7] : null; } set { if (Dyes.Count > 7) { Dyes[7] = value; this.RaisePropertyChanged(nameof(Dye7)); } } }
 
     public TileEntityItem WeaponDye { get { return (Dyes.Count > 8) ? Dyes[8] : null; } set { if (Dyes.Count > 8) { Dyes[8] = value; this.RaisePropertyChanged(nameof(WeaponDye)); } } }
-    public TileEntityItem Weapon { get { return (Misc.Count > 0) ? Misc[0] : null; } set { if (Misc.Count > 0) { Misc[0] = value; this.RaisePropertyChanged(nameof(Mount)); } } }
-    public TileEntityItem Mount { get { return (Items.Count > 8) ? Items[8] : null; } set { if (Items.Count > 8) { Items[8] = value; this.RaisePropertyChanged(nameof(Weapon)); } } }
+    public TileEntityItem Weapon { get { return (Misc.Count > 0) ? Misc[0] : null; } set { if (Misc.Count > 0) { Misc[0] = value; this.RaisePropertyChanged(nameof(Weapon)); } } }
+    public TileEntityItem Mount { get { return (Items.Count > 8) ? Items[8] : null; } set { if (Items.Count > 8) { Items[8] = value; this.RaisePropertyChanged(nameof(Mount)); } } }
 }

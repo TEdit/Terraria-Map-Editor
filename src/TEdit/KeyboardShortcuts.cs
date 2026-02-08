@@ -12,7 +12,7 @@ public class KeyboardShortcuts
     {
         var combo = new KeyCombo(key, modifier);
         if (KeyCommands.ContainsKey(combo))
-            return true; // Duplicate, ignored.
+            return true; // Duplicate, ignored
 
         KeyCommands.Add(combo, command.ToLowerInvariant());
         return false;

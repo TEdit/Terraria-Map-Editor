@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows;
 using TEdit.Helper;
 using TEdit.Terraria;
-using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.ViewModel;
 

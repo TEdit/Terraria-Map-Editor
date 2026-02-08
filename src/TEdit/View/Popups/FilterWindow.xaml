@@ -2,7 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:config="clr-namespace:TEdit.Configuration;assembly=TEdit.Configuration"
         xmlns:filter="clr-namespace:TEdit.ViewModel"
         xmlns:local="clr-namespace:TEdit.View.Popups"
         xmlns:p="clr-namespace:TEdit.Properties"

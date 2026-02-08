@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -6,7 +6,6 @@ using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TEdit.Common.Exceptions;
-using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria.IO;
 using TEdit.Terraria.Objects;
