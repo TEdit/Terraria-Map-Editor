@@ -705,6 +705,9 @@
   <data name="statusbar_position_label" xml:space="preserve">
     <value>位置</value>
   </data>
+  <data name="statusbar_ingameposition_label" xml:space="preserve">
+    <value>游戏内位置</value>
+  </data>
   <data name="statusbar_selection_label" xml:space="preserve">
     <value>选择</value>
   </data>

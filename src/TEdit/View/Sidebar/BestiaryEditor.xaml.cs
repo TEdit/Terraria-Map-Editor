@@ -16,4 +16,14 @@ public partial class BestiaryEditor : UserControl
         _vm = ViewModelLocator.GetBestiaryViewModel();
         DataContext = _vm;
     }
+
+    private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+
+    }
+
+    private void BestiaryReadout_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
 }

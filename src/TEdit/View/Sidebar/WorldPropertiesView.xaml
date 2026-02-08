@@ -19,65 +19,65 @@
         <converters:ByteIntConverter x:Key="ByteIntConverter" />
         <converters:TeamIndexToNameConverter x:Key="TeamIndexToNameConverter" />
         <enum:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="0">None</enum:EnumItem>
-            <enum:EnumItem Value="1">Goblin Invasion</enum:EnumItem>
-            <enum:EnumItem Value="2">Frost Legion</enum:EnumItem>
-            <enum:EnumItem Value="3">Pirate Invasion</enum:EnumItem>
-            <enum:EnumItem Value="4">Martian Madness</enum:EnumItem>
+            <enum:EnumItem Value="0">无</enum:EnumItem>
+            <enum:EnumItem Value="1">哥布林入侵</enum:EnumItem>
+            <enum:EnumItem Value="2">雪人军团</enum:EnumItem>
+            <enum:EnumItem Value="3">海盗入侵</enum:EnumItem>
+            <enum:EnumItem Value="4">火星暴乱</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="moonTypeList" EnumType="{x:Type System:Byte}" SortBy="Value" >
-            <enum:EnumItem Value="0">Grey</enum:EnumItem>
-            <enum:EnumItem Value="1">Brown</enum:EnumItem>
-            <enum:EnumItem Value="2">Ringed</enum:EnumItem>
-            <enum:EnumItem Value="3">Blue Marble</enum:EnumItem>
-            <enum:EnumItem Value="4">White Ice</enum:EnumItem>
-            <enum:EnumItem Value="5">Green Gas</enum:EnumItem>
-            <enum:EnumItem Value="6">Pink</enum:EnumItem>
-            <enum:EnumItem Value="7">Orange Venus</enum:EnumItem>
-            <enum:EnumItem Value="8">Triple Purple</enum:EnumItem>
+            <enum:EnumItem Value="0">灰</enum:EnumItem>
+            <enum:EnumItem Value="1">棕</enum:EnumItem>
+            <enum:EnumItem Value="2">环状</enum:EnumItem>
+            <enum:EnumItem Value="3">蔚蓝</enum:EnumItem>
+            <enum:EnumItem Value="4">雪白</enum:EnumItem>
+            <enum:EnumItem Value="5">草绿</enum:EnumItem>
+            <enum:EnumItem Value="6">粉</enum:EnumItem>
+            <enum:EnumItem Value="7">金橙</enum:EnumItem>
+            <enum:EnumItem Value="8">三紫</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="gameModeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="3">Journey</enum:EnumItem>
-            <enum:EnumItem Value="0">Classic</enum:EnumItem>
-            <enum:EnumItem Value="1">Expert</enum:EnumItem>
-            <enum:EnumItem Value="2">Master</enum:EnumItem>
+            <enum:EnumItem Value="3">旅行</enum:EnumItem>
+            <enum:EnumItem Value="0">经典</enum:EnumItem>
+            <enum:EnumItem Value="1">专家</enum:EnumItem>
+            <enum:EnumItem Value="2">大师</enum:EnumItem>
             <!--<enum:EnumItem Value="4">Legendary</enum:EnumItem>-->
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTierCobaltList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="107">Cobalt</enum:EnumItem>
-            <enum:EnumItem Value="221">Palladium</enum:EnumItem>
+            <enum:EnumItem Value="-1">未确定</enum:EnumItem>
+            <enum:EnumItem Value="107">钴</enum:EnumItem>
+            <enum:EnumItem Value="221">钯金</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTierMythrilList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="108">Mythril</enum:EnumItem>
-            <enum:EnumItem Value="222">Orichalcum</enum:EnumItem>
+            <enum:EnumItem Value="-1">未确定</enum:EnumItem>
+            <enum:EnumItem Value="108">秘银</enum:EnumItem>
+            <enum:EnumItem Value="222">山铜</enum:EnumItem>
         </enum:EnumItemList>
 
         <enum:EnumItemList x:Key="oreTierAdamantiteList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="111">Adamantite</enum:EnumItem>
-            <enum:EnumItem Value="223">Titanium</enum:EnumItem>
+            <enum:EnumItem Value="-1">未确定</enum:EnumItem>
+            <enum:EnumItem Value="111">精金</enum:EnumItem>
+            <enum:EnumItem Value="223">钛金</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTierCopperList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="7">Copper</enum:EnumItem>
-            <enum:EnumItem Value="166">Tin</enum:EnumItem>
+            <enum:EnumItem Value="-1">未确定</enum:EnumItem>
+            <enum:EnumItem Value="7">铜</enum:EnumItem>
+            <enum:EnumItem Value="166">锡</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTierIronList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="6">Iron</enum:EnumItem>
-            <enum:EnumItem Value="167">Lead</enum:EnumItem>
+            <enum:EnumItem Value="-1">未确定</enum:EnumItem>
+            <enum:EnumItem Value="6">铁</enum:EnumItem>
+            <enum:EnumItem Value="167">铅</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTierSilverList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="9">Silver</enum:EnumItem>
-            <enum:EnumItem Value="168">Tungsten</enum:EnumItem>
+            <enum:EnumItem Value="-1">未确定</enum:EnumItem>
+            <enum:EnumItem Value="9">银</enum:EnumItem>
+            <enum:EnumItem Value="168">钨</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTierGoldList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-            <enum:EnumItem Value="8">Gold</enum:EnumItem>
-            <enum:EnumItem Value="169">Platinum</enum:EnumItem>
+            <enum:EnumItem Value="-1">未确定</enum:EnumItem>
+            <enum:EnumItem Value="8">金</enum:EnumItem>
+            <enum:EnumItem Value="169">铂金</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="TreeStyleList" EnumType="{x:Type System:Byte}" SortBy="Value" >
             <enum:EnumItem Value="0">0</enum:EnumItem>
