@@ -1,6 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:tedit="clr-namespace:TEdit.UI.Xaml">
+
+    <!-- Global font for Unicode support -->
+    <Style TargetType="{x:Type Window}">
+        <Setter Property="FontFamily" Value="Segoe UI, Arial Unicode MS"/>
+    </Style>
+
     <LinearGradientBrush x:Key="DayGradient" EndPoint="1,0.5" StartPoint="0,0.5">
         <GradientStop Color="#FF110A49" Offset="0" />
         <GradientStop Color="#FFD0260F" Offset="0.068" />

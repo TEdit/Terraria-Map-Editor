@@ -12,6 +12,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using SettingsFileUpdater.TerrariaHost.DataModel;
+using TEdit.Common;
+using TEdit.Geometry;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -496,28 +499,23 @@ namespace SettingsFileUpdater.TerrariaHost
             var output = new StringBuilder("  <Items>\r\n");
             foreach (var item in items)
             {
-                var curItem = new Item();
-                curItem .SetDefaults(item.Id);
+                var curitem = new Item();
+                curitem.SetDefaults(item.Id);
 
                 // this could probably be inverted to slot="head" etc.
-                var attribs = string.Join(" ",
-                    new string[]
-                    {
-                        ItemID.Sets.IsAKite[item.Id] ? "IsKite=\"True\"" : null,
-                        (curItem.createTile == 724 && curItem.makeNPC != 0) ? "IsCritter=\"True\"" : null,
-                        item.IsFood ? "IsFood=\"True\"" : null,
-                        item.Head > 0 ? $"Head=\"{item.Head}\"" : null,
-                        item.Body > 0 ? $"Body=\"{item.Body}\"" : null,
-                        item.Legs > 0 ? $"Legs=\"{item.Legs}\"" : null,
-                        item.Accessory ? "Accessory=\"True\"" : null,
-                        item.Rack ? "Rack=\"True\"" : null,
-                        item.Banner > 0 ? $"Tally=\"{item.Banner}\"" : null,
-                        curItem.mountType != -1 ? "Mount=\"True\"" : null
-                    }
-                    .Where(s => s != null)
-                );
-                if (!string.IsNullOrEmpty(attribs)) attribs = " " + attribs;
-                output.AppendFormat("    <Item Id=\"{0}\" Name=\"{1}\"{3} />\r\n", item.Id, Localize(item.Name), item.Type, attribs);
+                string attribs = string.Join(" ", new string[]
+                {
+                    (ItemID.Sets.IsAKite[item.Id] ? " IsKite=\"True\"" : ""),
+                    ((curitem.createTile == 724 && curitem.makeNPC != 0) ? " IsCritter=\"True\"" : ""),
+                    (item.IsFood ? " IsFood=\"True\"" : ""),
+                    (item.Head > 0? $" Head=\"{item.Head}\"" : ""),
+                    (item.Body > 0? $" Body=\"{item.Body}\"" : ""),
+                    (item.Legs > 0? $" Legs=\"{item.Legs}\"" : ""),
+                    (item.Accessory ? " Accessory=\"True\"" : ""),
+                    (item.Rack ? " Rack=\"True\"" : ""),
+                    (item.Banner > 0 ? $" Tally=\"{item.Banner}\"": "")
+                });
+                output.AppendFormat("    <Item Id=\"{0}\" Name=\"{1}\"{3}/>\r\n", item.Id, Localize(item.Name), item.Type, attribs);
             }
             output.Append("  </Items>");
 
@@ -583,6 +581,23 @@ namespace SettingsFileUpdater.TerrariaHost
 
                 yield return data;
             }
+        }
+
+        /// <summary>
+        /// Gets the full bestiary configuration including cat/dog/bunny type names.
+        /// </summary>
+        public BestiaryConfigJson GetBestiaryConfigJson()
+        {
+            var config = new BestiaryConfigJson
+            {
+                // Town pet variant names
+                Cat = new List<string> { "Siamese", "Black", "OrangeTabby", "RussianBlue", "Silver", "White" },
+                Dog = new List<string> { "Labrador", "PitBull", "Beagle", "Corgi", "Dalmation", "Husky" },
+                Bunny = new List<string> { "White", "Angora", "Dutch", "Flemish", "Lop", "Silver" },
+                NpcData = GetBestiaryData().ToList()
+            };
+
+            return config;
         }
 
         public string GetMaxCounts()
@@ -746,5 +761,466 @@ namespace SettingsFileUpdater.TerrariaHost
         {
             MapColorsExporter.WriteMapColorsXml(outputPath, optionalOriginalPath);
         }
+
+        #region JSON Output Methods
+
+        /// <summary>
+        /// Converts an XNA Color to TEditColor for JSON serialization.
+        /// </summary>
+        private static TEditColor ToTEditColor(Microsoft.Xna.Framework.Color xnaColor)
+        {
+            return new TEditColor(xnaColor.R, xnaColor.G, xnaColor.B, xnaColor.A);
+        }
+
+        /// <summary>
+        /// Gets tile data in JSON-compatible format.
+        /// </summary>
+        public List<TileDataJson> GetTilesJson()
+        {
+            var result = new List<TileDataJson>();
+
+            // Build item lookup for names
+            var curItems = new List<Item>();
+            for (int i = 0; i < ItemID.Count; i++)
+            {
+                try
+                {
+                    var curitem = new Item();
+                    curitem.SetDefaults(i);
+                    curItems.Add(curitem);
+                }
+                catch { }
+            }
+
+            for (int i = 0; i < TileID.Count; i++)
+            {
+                var color = MapHelper.GetMapTileXnaColor(MapTile.Create((ushort)i, byte.MaxValue, 0));
+                var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
+                string tileName = creatingItem?.Name ?? i.ToString();
+
+                var tile = new TileDataJson
+                {
+                    Id = i,
+                    Name = tileName,
+                    Color = ToTEditColor(color),
+                    IsLight = tileLighted[i],
+                    SaveSlope = TileID.Sets.NonSolidSaveSlopes[i],
+                    IsSolid = tileSolid[i],
+                    IsSolidTop = tileSolidTop[i],
+                    IsFramed = tileFrameImportant[i],
+                    IsStone = TileID.Sets.Conversion.Stone[i],
+                    CanBlend = TileID.Sets.Conversion.Stone[i] || TileID.Sets.Conversion.Grass[i] || tileSolid[i],
+                    IsPlatform = TileID.Sets.Platforms[i],
+                    IsCactus = i == TileID.Cactus,
+                    IsGrass = TileID.Sets.Conversion.Grass[i] || TileID.Sets.GrassSpecial[i],
+                };
+
+                // Determine merge behavior
+                if (TileID.Sets.Conversion.Grass[i] || TileID.Sets.GrassSpecial[i])
+                    tile.MergeWith = TileID.Dirt;
+                else if (TileID.Sets.Conversion.Stone[i])
+                    tile.MergeWith = TileID.Dirt;
+
+                // Handle framed tiles
+                if (tileFrameImportant[i])
+                {
+                    TileObjectData data = TileObjectData.GetTileData(i, 0);
+                    if (data != null)
+                    {
+                        var textureWidth = data.CoordinateWidth;
+                        var textureHeight = data.CoordinateHeights.FirstOrDefault();
+                        if (textureWidth != 16 || textureHeight != 16)
+                        {
+                            tile.TextureGrid = new Vector2Short((short)textureWidth, (short)textureHeight);
+                        }
+
+                        tile.FrameSize = new[] { new Vector2Short((short)data.Width, (short)data.Height) };
+
+                        // Build frames list
+                        var frames = new List<FrameDataJson>();
+                        int style = 0;
+                        while ((data = TileObjectData.GetTileData(i, style, 0)) != null)
+                        {
+                            var creatingSubItem = curItems.FirstOrDefault(x => x.createTile == i && x.placeStyle == style);
+                            string frameName = creatingSubItem?.Name ?? tileName;
+
+                            int altCount = data.AlternatesCount;
+                            for (int alt = 0; alt < altCount || alt == 0; alt++)
+                            {
+                                data = TileObjectData.GetTileData(i, style, alt);
+                                if (data == null) continue;
+
+                                string anchor = null;
+                                if (data.AnchorBottom.tileCount > 0) anchor = "Bottom";
+                                else if (data.AnchorLeft.tileCount > 0) anchor = "Left";
+                                else if (data.AnchorRight.tileCount > 0) anchor = "Right";
+                                else if (data.AnchorTop.tileCount > 0) anchor = "Top";
+
+                                frames.Add(new FrameDataJson
+                                {
+                                    Name = frameName,
+                                    UV = new Vector2Short((short)(data.CoordinateFullWidth * alt), (short)(data.CoordinateFullHeight * style)),
+                                    Size = new Vector2Short((short)data.Width, (short)data.Height),
+                                    Anchor = anchor
+                                });
+                            }
+
+                            style++;
+                            if (creatingSubItem == null && style > 0) break;
+                        }
+
+                        if (frames.Count > 0)
+                            tile.Frames = frames;
+                    }
+                    else
+                    {
+                        // Simple framed tile with no TileObjectData
+                        tile.Frames = new List<FrameDataJson>
+                        {
+                            new FrameDataJson { Name = tileName, Size = new Vector2Short(1, 1) }
+                        };
+                    }
+                }
+
+                result.Add(tile);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets wall data in JSON-compatible format.
+        /// </summary>
+        public List<WallDataJson> GetWallsJson()
+        {
+            var result = new List<WallDataJson>();
+
+            // Build item lookup for names
+            var curItems = new List<Item>();
+            for (int i = -255; i < ItemID.Count; i++)
+            {
+                try
+                {
+                    var curitem = new Item();
+                    curitem.SetDefaults(i);
+                    curItems.Add(curitem);
+                }
+                catch { }
+            }
+
+            for (int i = 0; i < WallID.Count; i++)
+            {
+                var creatingWall = curItems.FirstOrDefault(x => x.createWall == i);
+                var color = MapHelper.GetMapTileXnaColor(MapTile.Create(0, byte.MaxValue, (byte)i));
+
+                result.Add(new WallDataJson
+                {
+                    Id = i,
+                    Name = creatingWall?.Name ?? (i == 0 ? "Sky" : $"Wall_{i}"),
+                    Color = i == 0 ? TEditColor.Transparent : ToTEditColor(color)
+                });
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets item data in JSON-compatible format.
+        /// </summary>
+        public List<ItemDataJson> GetItemsJson()
+        {
+            var result = new List<ItemDataJson>();
+
+            var banners = new Dictionary<int, int>();
+            for (int bannerId = 0; bannerId < BannerSystem.MaxBannerTypes; bannerId++)
+            {
+                int itemId = BannerSystem.BannerToItem(bannerId);
+                banners[itemId] = bannerId;
+            }
+
+            foreach (var itemKvp in ContentSamples.ItemsByType.OrderBy(kvp => kvp.Key))
+            {
+                var id = itemKvp.Key;
+                var curitem = itemKvp.Value;
+
+                if (string.IsNullOrWhiteSpace(curitem.Name)) continue;
+
+                var isFood = id >= 0 && ItemID.Sets.IsFood[id];
+                var isKite = id >= 0 && ItemID.Sets.IsAKite[id];
+                var isCritter = curitem.createTile == 724 && curitem.makeNPC != 0;
+                var isRackable = (id >= 0 && ItemID.Sets.CanBePlacedOnWeaponRacks[id]) ||
+                                 curitem.fishingPole > 0 ||
+                                 (curitem.damage > 0 && curitem.useStyle != 0);
+                var isDeprecated = id >= 0 && ItemID.Sets.Deprecated[id];
+
+                string name = curitem.Name;
+                if (isDeprecated) name += " (Deprecated)";
+
+                banners.TryGetValue(id, out int tally);
+
+                result.Add(new ItemDataJson
+                {
+                    Id = id,
+                    Name = name,
+                    Scale = curitem.scale,
+                    MaxStackSize = curitem.maxStack,
+                    IsFood = isFood,
+                    IsKite = isKite,
+                    IsCritter = isCritter,
+                    IsAccessory = curitem.accessory,
+                    IsRackable = isRackable,
+                    Head = curitem.headSlot > 0 ? curitem.headSlot : -1,
+                    Body = curitem.bodySlot > 0 ? curitem.bodySlot : -1,
+                    Legs = curitem.legSlot > 0 ? curitem.legSlot : -1,
+                    Tally = tally
+                });
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets friendly NPC data in JSON-compatible format.
+        /// </summary>
+        public List<NpcDataJson> GetNpcsJson()
+        {
+            var result = new List<NpcDataJson>();
+
+            foreach (var npc in GetNpcs(false))
+            {
+                result.Add(new NpcDataJson
+                {
+                    Id = npc.netID,
+                    Name = Localize(npc.FullName),
+                    Size = new Vector2Short((short)npc.width, (short)npc.height)
+                });
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets prefix data in JSON-compatible format.
+        /// </summary>
+        public List<PrefixDataJson> GetPrefixesJson()
+        {
+            var result = new List<PrefixDataJson>();
+            var prefixes = Prefixes();
+
+            for (int i = 0; i < prefixes.Count; i++)
+            {
+                result.Add(new PrefixDataJson
+                {
+                    Id = i,
+                    Name = prefixes[i]
+                });
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets paint data in JSON-compatible format.
+        /// </summary>
+        public List<PaintDataJson> GetPaintsJson()
+        {
+            var result = new List<PaintDataJson>();
+
+            // Paint colors are defined in PaintID
+            // We'll use reflection to get paint names and hardcoded colors
+            var paintColors = new Dictionary<int, (string Name, TEditColor Color)>
+            {
+                { 0, ("None", TEditColor.Transparent) },
+                { 1, ("Red", new TEditColor(255, 0, 0, 255)) },
+                { 2, ("Orange", new TEditColor(255, 127, 0, 255)) },
+                { 3, ("Yellow", new TEditColor(255, 255, 0, 255)) },
+                { 4, ("Lime", new TEditColor(127, 255, 0, 255)) },
+                { 5, ("Green", new TEditColor(0, 255, 0, 255)) },
+                { 6, ("Teal", new TEditColor(0, 255, 127, 255)) },
+                { 7, ("Cyan", new TEditColor(0, 255, 255, 255)) },
+                { 8, ("Sky Blue", new TEditColor(0, 127, 255, 255)) },
+                { 9, ("Blue", new TEditColor(0, 0, 255, 255)) },
+                { 10, ("Purple", new TEditColor(127, 0, 255, 255)) },
+                { 11, ("Violet", new TEditColor(255, 0, 255, 255)) },
+                { 12, ("Pink", new TEditColor(255, 0, 127, 255)) },
+                { 13, ("Deep Red", new TEditColor(255, 0, 0, 255)) },
+                { 14, ("Deep Orange", new TEditColor(255, 127, 0, 255)) },
+                { 15, ("Deep Yellow", new TEditColor(255, 255, 0, 255)) },
+                { 16, ("Deep Lime", new TEditColor(127, 255, 0, 255)) },
+                { 17, ("Deep Green", new TEditColor(0, 255, 0, 255)) },
+                { 18, ("Deep Teal", new TEditColor(0, 255, 127, 255)) },
+                { 19, ("Deep Cyan", new TEditColor(0, 255, 255, 255)) },
+                { 20, ("Deep Sky Blue", new TEditColor(0, 127, 255, 255)) },
+                { 21, ("Deep Blue", new TEditColor(0, 0, 255, 255)) },
+                { 22, ("Deep Purple", new TEditColor(127, 0, 255, 255)) },
+                { 23, ("Deep Violet", new TEditColor(255, 0, 255, 255)) },
+                { 24, ("Deep Pink", new TEditColor(255, 0, 127, 255)) },
+                { 25, ("Black", new TEditColor(75, 75, 75, 255)) },
+                { 26, ("White", new TEditColor(255, 255, 255, 255)) },
+                { 27, ("Gray", new TEditColor(175, 175, 175, 255)) },
+                { 28, ("Brown", new TEditColor(255, 178, 125, 255)) },
+                { 29, ("Shadow", new TEditColor(25, 25, 25, 255)) },
+                { 30, ("Negative", new TEditColor(255, 255, 255, 255)) },
+                { 31, ("Illuminant Paint", new TEditColor(255, 255, 255, 255)) },
+            };
+
+            foreach (var kvp in paintColors.OrderBy(x => x.Key))
+            {
+                result.Add(new PaintDataJson
+                {
+                    Id = kvp.Key,
+                    Name = kvp.Value.Name,
+                    Color = kvp.Value.Color
+                });
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets global colors (Sky, Dirt, Rock, Hell, Water, Lava, Honey, Shimmer) in JSON-compatible format.
+        /// These are special map colors used for rendering backgrounds and liquids.
+        /// </summary>
+        public List<GlobalColorJson> GetGlobalColorsJson()
+        {
+            var result = new List<GlobalColorJson>();
+
+            // Access MapHelper's colorLookup array via reflection
+            var mapHelperType = typeof(Terraria.Map.MapHelper);
+            var bf = BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic;
+
+            var fiColorLookup = mapHelperType.GetField("colorLookup", bf);
+            if (fiColorLookup == null)
+            {
+                Console.WriteLine("Warning: Could not access MapHelper.colorLookup");
+                return result;
+            }
+
+            var colorLookup = (Microsoft.Xna.Framework.Color[])fiColorLookup.GetValue(null);
+            if (colorLookup == null)
+            {
+                Console.WriteLine("Warning: MapHelper.colorLookup is null");
+                return result;
+            }
+
+            // The colorLookup array layout (after tiles and walls) is:
+            // - 3 liquid colors (water, lava, honey)
+            // - 256 sky colors
+            // - 256 dirt colors
+            // - 256 rock colors
+            // - 1 hell color
+            // - Additional entries may include shimmer
+
+            // Find where tiles/walls end in the lookup
+            var fiTileLookup = mapHelperType.GetField("tileLookup", bf);
+            var fiTileOptionCounts = mapHelperType.GetField("tileOptionCounts", bf);
+            var fiWallLookup = mapHelperType.GetField("wallLookup", bf);
+            var fiWallOptionCounts = mapHelperType.GetField("wallOptionCounts", bf);
+
+            var tileLookup = (ushort[])fiTileLookup?.GetValue(null);
+            var tileOptionCounts = (int[])fiTileOptionCounts?.GetValue(null);
+            var wallLookup = (ushort[])fiWallLookup?.GetValue(null);
+            var wallOptionCounts = (int[])fiWallOptionCounts?.GetValue(null);
+
+            // Calculate the end index for walls to find global colors
+            int globalColorStart = 1; // Start after empty slot
+            if (tileLookup != null && tileOptionCounts != null)
+            {
+                for (int i = 0; i < TileID.Count && i < tileOptionCounts.Length; i++)
+                {
+                    int count = tileOptionCounts[i];
+                    if (count > 0 && tileLookup[i] > 0)
+                        globalColorStart = Math.Max(globalColorStart, tileLookup[i] + count);
+                }
+            }
+            if (wallLookup != null && wallOptionCounts != null)
+            {
+                for (int i = 0; i < WallID.Count && i < wallOptionCounts.Length; i++)
+                {
+                    int count = wallOptionCounts[i];
+                    if (count > 0 && wallLookup[i] > 0)
+                        globalColorStart = Math.Max(globalColorStart, wallLookup[i] + count);
+                }
+            }
+
+            // After tiles/walls come: 3 liquids, then sky(256), dirt(256), rock(256), hell(1), shimmer(1)
+            int liquidStart = globalColorStart;
+
+            // Add liquid colors
+            string[] liquidNames = { "Water", "Lava", "Honey" };
+            for (int i = 0; i < 3 && liquidStart + i < colorLookup.Length; i++)
+            {
+                var c = colorLookup[liquidStart + i];
+                result.Add(new GlobalColorJson
+                {
+                    Name = liquidNames[i],
+                    Color = ToTEditColor(c)
+                });
+            }
+
+            // Sky colors (256 shades, we take the middle one as representative)
+            int skyStart = liquidStart + 3;
+            if (skyStart + 127 < colorLookup.Length)
+            {
+                var c = colorLookup[skyStart + 127]; // Middle sky shade
+                result.Add(new GlobalColorJson
+                {
+                    Name = "Sky",
+                    Color = ToTEditColor(c)
+                });
+            }
+
+            // Dirt colors (256 shades)
+            int dirtStart = skyStart + 256;
+            if (dirtStart + 127 < colorLookup.Length)
+            {
+                var c = colorLookup[dirtStart + 127]; // Middle dirt shade
+                result.Add(new GlobalColorJson
+                {
+                    Name = "Dirt",
+                    Color = ToTEditColor(c)
+                });
+            }
+
+            // Rock colors (256 shades)
+            int rockStart = dirtStart + 256;
+            if (rockStart + 127 < colorLookup.Length)
+            {
+                var c = colorLookup[rockStart + 127]; // Middle rock shade
+                result.Add(new GlobalColorJson
+                {
+                    Name = "Rock",
+                    Color = ToTEditColor(c)
+                });
+            }
+
+            // Hell color (1)
+            int hellStart = rockStart + 256;
+            if (hellStart < colorLookup.Length)
+            {
+                var c = colorLookup[hellStart];
+                result.Add(new GlobalColorJson
+                {
+                    Name = "Hell",
+                    Color = ToTEditColor(c)
+                });
+            }
+
+            // Shimmer (if available, added in 1.4.4)
+            int shimmerStart = hellStart + 1;
+            if (shimmerStart < colorLookup.Length)
+            {
+                var c = colorLookup[shimmerStart];
+                result.Add(new GlobalColorJson
+                {
+                    Name = "Shimmer",
+                    Color = ToTEditColor(c)
+                });
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }

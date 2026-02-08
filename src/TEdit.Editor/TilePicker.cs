@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.Editor;
 

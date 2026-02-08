@@ -6,10 +6,10 @@ using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.ViewModel;
 using System.Linq;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Render;
 using TEdit.UI;
-using TEdit.Configuration.BiomeMorph;
+using TEdit.Terraria.DataModel;
 
 namespace TEdit.Editor.Tools;
 

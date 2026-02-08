@@ -3,7 +3,7 @@ using TEdit.Terraria;
 using TEdit.ViewModel;
 using System;
 using TEdit.Geometry;
-using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.Editor.Plugins;
 

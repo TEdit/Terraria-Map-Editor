@@ -17,7 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Editor.Plugins;
@@ -39,7 +39,7 @@ using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
-using static TEdit.Configuration.WorldConfiguration;
+using static TEdit.Terraria.WorldConfiguration;
 
 namespace TEdit.ViewModel;
 
@@ -133,6 +133,9 @@ public partial class WorldViewModel : ReactiveObject
         Brush.BrushChanged += OnPreviewChanged;
         UpdateTitle();
 
+        // Build sprites from tile config (Frames data), not from textures
+        BuildSpritesFromConfig();
+
         InitSpriteViews();
 
         _saveTimer.AutoReset = true;
@@ -148,8 +151,76 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
+    /// <summary>
+    /// Build SpriteSheet objects from TileProperty.Frames config data (not from textures).
+    /// Preview images are set later when textures are loaded.
+    /// </summary>
+    public void BuildSpritesFromConfig()
+    {
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            WorldConfiguration.Sprites2.Clear();
+
+            // Debug: Log how many framed tiles we have
+            var framedTiles = WorldConfiguration.TileProperties.Where(t => t.IsFramed).ToList();
+            var framedWithFrames = framedTiles.Where(t => t.Frames != null && t.Frames.Count > 0).ToList();
+            ErrorLogging.Log($"BuildSpritesFromConfig: {framedTiles.Count} framed tiles, {framedWithFrames.Count} with frames data");
+
+            if (framedWithFrames.Count == 0 && framedTiles.Count > 0)
+            {
+                // Log first few framed tiles to see their state
+                foreach (var t in framedTiles.Take(5))
+                {
+                    ErrorLogging.Log($"  Tile {t.Id} ({t.Name}): IsFramed={t.IsFramed}, Frames={t.Frames?.Count ?? -1}");
+                }
+            }
+
+            foreach (var tile in WorldConfiguration.TileProperties.Where(t => t.IsFramed && t.Frames != null && t.Frames.Count > 0))
+            {
+                var sprite = new SpriteSheet
+                {
+                    Tile = (ushort)tile.Id,
+                    Name = tile.Name,
+                    SizeTiles = tile.FrameSize,
+                    SizePixelsRender = tile.TextureGrid,
+                    SizePixelsInterval = tile.TextureGrid + tile.FrameGap,
+                    IsAnimated = tile.IsAnimated
+                };
+
+                // Add a SpriteItemPreview for each frame from config
+                int styleIndex = 0;
+                foreach (var frame in tile.Frames)
+                {
+                    sprite.Styles.Add(new SpriteItemPreview
+                    {
+                        Tile = sprite.Tile,
+                        Style = styleIndex++,
+                        Name = frame.ToString(),
+                        UV = frame.UV,
+                        SizeTiles = frame.Size.X > 0 && frame.Size.Y > 0 ? frame.Size : tile.FrameSize[0],
+                        SizePixelsInterval = sprite.SizePixelsInterval,
+                        Anchor = frame.Anchor,
+                        StyleColor = frame.Color.A > 0 ? frame.Color : tile.Color,
+                        Preview = null // Set later when textures load
+                    });
+                }
+
+                WorldConfiguration.Sprites2.Add(sprite);
+            }
+        }
+
+        ErrorLogging.Log($"BuildSpritesFromConfig: {WorldConfiguration.Sprites2.Count} sprite sheets created from config");
+    }
+
     public void InitSpriteViews()
     {
+        int spriteCount;
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            spriteCount = WorldConfiguration.Sprites2.Count;
+        }
+        ErrorLogging.Log($"InitSpriteViews: {spriteCount} sprites loaded");
+
         _spriteSheetView = (ListCollectionView)CollectionViewSource.GetDefaultView(WorldConfiguration.Sprites2);
         _spriteSheetView.Filter = o =>
         {
@@ -176,7 +247,12 @@ public partial class WorldViewModel : ReactiveObject
             return false;
         };
 
-        _spriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<SpriteItemPreview>(WorldConfiguration.Sprites2.SelectMany(s => s.Styles).Select(s => (SpriteItemPreview)s).ToList()));
+        List<SpriteItemPreview> styles;
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            styles = WorldConfiguration.Sprites2.SelectMany(s => s.Styles).Select(s => (SpriteItemPreview)s).ToList();
+        }
+        _spriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<SpriteItemPreview>(styles));
         _spriteStylesView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
         _spriteStylesView.Filter = (o) =>
         {
@@ -195,6 +271,10 @@ public partial class WorldViewModel : ReactiveObject
             }
             return false;
         };
+
+        // Notify UI that the views have been recreated
+        this.RaisePropertyChanged(nameof(SpriteSheetView));
+        this.RaisePropertyChanged(nameof(SpriteStylesView));
     }
 
     public WriteableBitmap MinimapImage

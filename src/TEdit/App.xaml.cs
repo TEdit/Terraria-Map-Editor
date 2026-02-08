@@ -1,14 +1,15 @@
 ﻿using Semver;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
-using System.Xml.Linq;
+using Microsoft.Extensions.Configuration;
+using TEdit.Configuration;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Framework.Threading;
@@ -16,6 +17,7 @@ using TEdit.Properties;
 using TEdit.Utility;
 using ReactiveUI;
 using ReactiveUI.Builder;
+using TEdit.Terraria;
 using TEdit.ViewModel;
 
 namespace TEdit;
@@ -73,6 +75,11 @@ public partial class App : Application
     {
         // Read settings immediately.
         LoadAppSettings();
+
+        // Enable cross-thread access to Sprites2 collection (modified on graphics thread, bound to UI)
+        BindingOperations.EnableCollectionSynchronization(
+            WorldConfiguration.Sprites2,
+            WorldConfiguration.Sprites2Lock);
 
         Version = SemVersion.Parse(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion, SemVersionStyles.Any);
         ErrorLogging.Initialize();
@@ -196,58 +203,64 @@ public partial class App : Application
     }
 
     public static KeyboardShortcuts ShortcutKeys { get; } = new KeyboardShortcuts();
-    public static string AltC { get; set; }
-    public static int? SteamUserId { get; set; }
+    public static AppSettings AppConfig { get; private set; }
+    public static IConfiguration Configuration { get; private set; }
 
     public static void LoadAppSettings()
     {
-        var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
-        var xmlSettings  = XElement.Load(settingspath);
+        var basePath = AppDomain.CurrentDomain.BaseDirectory;
+        Configuration = new ConfigurationBuilder()
+            .SetBasePath(basePath)
+            .AddYamlFile("appsettings.yaml", optional: false, reloadOnChange: false)
+            .Build();
 
-        foreach (var xElement in xmlSettings.Elements("ShortCutKeys").Elements("Shortcut"))
+        // Bind app settings
+        AppConfig = Configuration.GetSection("app").Get<AppSettings>() ?? new AppSettings();
+        ClipboardBufferRenderer.ClipboardRenderSize = (int)Calc.Clamp(AppConfig.ClipboardRenderSize, 64, 4096);
+
+        // Load shortcuts (action: keyCombo format, e.g., "Copy: ctrl+c")
+        var shortcuts = Configuration.GetSection("shortcuts").Get<Dictionary<string, string>>() ?? new();
+        foreach (var (action, keyCombo) in shortcuts)
         {
-            string keyText = (string)xElement.Attribute("Key");
-            string modText = (string)xElement.Attribute("Modifier");
-            string action  = (string)xElement.Attribute("Action");
-
-            if (string.IsNullOrWhiteSpace(action))
+            ParseShortcut(keyCombo, out var key, out var modifiers);
+            if (key == Key.None)
             {
-                ErrorLogging.Log("[Settings] Shortcut missing Action attribute; skipping.");
+                ErrorLogging.Log($"[Settings] Invalid key in shortcut '{keyCombo}' for action '{action}'; skipping.");
                 continue;
             }
-
-            // Key (ignore case) + validate.
-            if (!Enum.TryParse<Key>(keyText, ignoreCase: true, out var key) || key == Key.None)
+            bool duplicate = ShortcutKeys.Add(action, key, modifiers);
+            if (duplicate)
             {
-                ErrorLogging.Log($"[Settings] Invalid Key=\"{keyText}\" for Action=\"{action}\"; skipping.");
-                continue;
-            }
-
-            // Modifier (optional, ignore case) + validate.
-            ModifierKeys modifier = ModifierKeys.None;
-            if (!string.IsNullOrWhiteSpace(modText) &&
-                !Enum.TryParse<ModifierKeys>(modText, ignoreCase: true, out modifier))
-            {
-                ErrorLogging.Log($"[Settings] Invalid Modifier=\"{modText}\" for Action=\"{action}\"; using None.");
-                modifier = ModifierKeys.None;
-            }
-
-            // Register (no crash on duplicates).
-            bool replaced = ShortcutKeys.Add(action, key, modifier);
-            if (replaced)
-            {
-                ErrorLogging.Log($"[Settings] Duplicate shortcut {modifier}+{key} -> using latest Action=\"{action}\".");
+                ErrorLogging.Log($"[Settings] Duplicate shortcut {modifiers}+{key} -> using first binding, ignoring '{action}'.");
             }
         }
+    }
 
-        XElement appSettings = xmlSettings.Element("App");
-        int appWidth         = (int?)appSettings.Attribute("Width")  ?? 800;
-        int appHeight        = (int?)appSettings.Attribute("Height") ?? 600;
-        int clipboardSize    = (int)Calc.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
+    private static void ParseShortcut(string combo, out Key key, out ModifierKeys modifiers)
+    {
+        modifiers = ModifierKeys.None;
+        key = Key.None;
 
-        ClipboardBufferRenderer.ClipboardRenderSize = clipboardSize;
-        ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
-        AltC = (string)(xmlSettings.Element("AltC") ?? xmlSettings.Element("App")?.Element("AltC"));
-        SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;
+        var parts = combo.ToLowerInvariant().Split('+');
+        foreach (var part in parts)
+        {
+            switch (part.Trim())
+            {
+                case "ctrl":
+                    modifiers |= ModifierKeys.Control;
+                    break;
+                case "shift":
+                    modifiers |= ModifierKeys.Shift;
+                    break;
+                case "alt":
+                    modifiers |= ModifierKeys.Alt;
+                    break;
+                default:
+                    // Try to parse the key
+                    if (Enum.TryParse<Key>(part, true, out var parsedKey))
+                        key = parsedKey;
+                    break;
+            }
+        }
     }
 }

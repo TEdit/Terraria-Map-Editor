@@ -3,7 +3,6 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
                     xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
                     xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
-                    xmlns:config="clr-namespace:TEdit.Configuration;assembly=TEdit.Configuration"
                     xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
                     xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
                     xmlns:p="clr-namespace:TEdit.Properties"
@@ -12,11 +11,11 @@
                     >
     <enum:EnumItemList x:Key="PaintModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:PaintMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="TrackModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:TrackMode}" SortBy="Value"  />
-    <enum:EnumItemList x:Key="JunctionBoxEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:JunctionBoxMode}" SortBy="Value"  />
+    <enum:EnumItemList x:Key="JunctionBoxEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:JunctionBoxMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="MaskModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:MaskMode}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="HalfBlockMode" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:HalfBlockMode}" x:Shared="false" SortBy="Value" />
-    <enum:EnumItemList x:Key="BrickStyle" ResourceType="{x:Type p:Language}" EnumType="{x:Type config:BrickStyle}" x:Shared="false" SortBy="Value" />
-    <enum:EnumItemList x:Key="LiquidType" ResourceType="{x:Type p:Language}" EnumType="{x:Type config:LiquidType}" x:Shared="false" SortBy="Value" />
+    <enum:EnumItemList x:Key="BrickStyle" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:BrickStyle}" x:Shared="false" SortBy="Value" />
+    <enum:EnumItemList x:Key="LiquidType" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:LiquidType}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="LiquidAmountEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:LiquidAmountMode}" SortBy="Value" />
     <enum:EnumItemList x:Key="WireReplaceModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:WireReplaceMode}" SortBy="Value"  />
   <cv:TEditColorToMediaColorConverter x:Key="TEditColorToMediaColorConverter" />
@@ -43,79 +42,79 @@
     <System:Boolean x:Key="True">True</System:Boolean>
     <System:Boolean x:Key="False">False</System:Boolean>
 
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.ItemPrefix}, Mode=OneTime}" x:Key="PrefixCollection" >
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ItemPrefix}, Mode=OneTime}" x:Key="PrefixCollection" >
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.ItemProperties}, Mode=OneTime}" x:Key="ItemsCollection">
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ItemProperties}, Mode=OneTime}" x:Key="ItemsCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.ChestProperties}, Mode=OneTime}" x:Key="ChestsCollection">
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ChestProperties}, Mode=OneTime}" x:Key="ChestsCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="TileType" Direction="Ascending" />
             <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.SignProperties}, Mode=OneTime}" x:Key="SignsCollection">
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.SignProperties}, Mode=OneTime}" x:Key="SignsCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="TileType" Direction="Ascending" />
             <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.ArmorHeadNames}, Mode=OneTime}" x:Key="MannHeadCollection">
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ArmorHeadNames}, Mode=OneTime}" x:Key="MannHeadCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.AccessoryNames}, Mode=OneTime}" x:Key="MannAccessoryCollection">
-        <CollectionViewSource.SortDescriptions>
-            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
-        </CollectionViewSource.SortDescriptions>
-    </CollectionViewSource>
-
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.FoodNames}, Mode=OneTime}" x:Key="FoodCollection">
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.AccessoryNames}, Mode=OneTime}" x:Key="MannAccessoryCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
 
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.KiteNames}, Mode=OneTime}" x:Key="KiteCollection">
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.FoodNames}, Mode=OneTime}" x:Key="FoodCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
 
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.CritterNames}, Mode=OneTime}" x:Key="CritterCollection">
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.KiteNames}, Mode=OneTime}" x:Key="KiteCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
 
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.DyeNames}, Mode=OneTime}" x:Key="DyeCollection">
-        <CollectionViewSource.SortDescriptions>
-            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
-        </CollectionViewSource.SortDescriptions>
-    </CollectionViewSource>
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.ArmorBodyNames}, Mode=OneTime}" x:Key="MannBodyCollection">
-        <CollectionViewSource.SortDescriptions>
-            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
-        </CollectionViewSource.SortDescriptions>
-    </CollectionViewSource>
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.ArmorLegsNames}, Mode=OneTime}" x:Key="MannLegsCollection">
-        <CollectionViewSource.SortDescriptions>
-            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
-        </CollectionViewSource.SortDescriptions>
-    </CollectionViewSource>
-    <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.Rackable}, Mode=OneTime}" x:Key="RackCollection">
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.CritterNames}, Mode=OneTime}" x:Key="CritterCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
 
-  <CollectionViewSource Source="{Binding Source={x:Static config:WorldConfiguration.MountNames}, Mode=OneTime}" x:Key="MountCollection">
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.DyeNames}, Mode=OneTime}" x:Key="DyeCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ArmorBodyNames}, Mode=OneTime}" x:Key="MannBodyCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ArmorLegsNames}, Mode=OneTime}" x:Key="MannLegsCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.Rackable}, Mode=OneTime}" x:Key="RackCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
+
+  <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.MountNames}, Mode=OneTime}" x:Key="MountCollection">
     <CollectionViewSource.SortDescriptions>
       <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
     </CollectionViewSource.SortDescriptions>

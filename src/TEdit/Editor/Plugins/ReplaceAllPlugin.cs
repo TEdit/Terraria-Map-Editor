@@ -1,5 +1,5 @@
 using System.Windows;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.ViewModel;

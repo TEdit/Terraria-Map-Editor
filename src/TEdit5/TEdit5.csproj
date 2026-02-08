@@ -15,32 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="morphSettings.json" />
-    <None Remove="npcData.json" />
-    <None Remove="settings.xml" />
-    <None Remove="TerrariaVersionTileData.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="morphSettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-    <Content Include="npcData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-    <Content Include="settings.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-    <Content Include="TerrariaVersionTileData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.3.11" />
     <PackageReference Include="Avalonia.Desktop" Version="11.3.11" />
     <PackageReference Include="ReactiveUI.Avalonia" Version="11.3.8" />

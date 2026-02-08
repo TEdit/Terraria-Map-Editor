@@ -33,6 +33,7 @@ public class TEditJsonSerializer
         DefaultOptions.Converters.Add(new RectangleFloatJsonConverter());
 
         DefaultOptions.Converters.Add(new TEditColorJsonConverter());
+        DefaultOptions.Converters.Add(new InlineNumericArrayConverterFactory());
     }
 
     public static JsonSerializerOptions DefaultOptions { get; }

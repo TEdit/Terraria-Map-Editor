@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -6,8 +7,8 @@ using System.Windows.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using TEdit.Configuration;
 using TEdit.Terraria;
+using TEdit.Terraria.Objects;
 
 namespace TEdit.Render;
 
@@ -15,6 +16,20 @@ namespace TEdit.Render;
 public class Textures
 {
     private readonly GraphicsDevice _gdDevice;
+
+    // Deferred texture loading infrastructure
+    private readonly TextureLoadingState _loadingState = new();
+    private readonly ConcurrentQueue<Action> _graphicsThreadQueue = new();
+
+    /// <summary>
+    /// State for tracking async texture loading progress.
+    /// </summary>
+    public TextureLoadingState LoadingState => _loadingState;
+
+    /// <summary>
+    /// Whether async texture loading is complete.
+    /// </summary>
+    public bool TexturesFullyLoaded => _loadingState.IsComplete;
 
     public Dictionary<int, Texture2D> Moon { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Tiles { get; } = new Dictionary<int, Texture2D>();
@@ -212,7 +227,53 @@ public class Textures
     private readonly Rectangle _zeroSixteenRectangle = new Rectangle(0, 0, 16, 16);
     public Rectangle ZeroSixteenRectangle { get { return _zeroSixteenRectangle; } }
 
-    private Texture2D LoadTexture(string path)
+    /// <summary>
+    /// Get the default transparent texture (used when textures are not yet loaded).
+    /// </summary>
+    public Texture2D DefaultTexture => _defaultTexture;
+
+    /// <summary>
+    /// Queue a texture creation action to be executed on the graphics thread.
+    /// </summary>
+    /// <param name="createAction">Action that creates a texture (must be called on graphics thread)</param>
+    public void QueueTextureCreation(Action createAction)
+    {
+        _graphicsThreadQueue.Enqueue(createAction);
+    }
+
+    /// <summary>
+    /// Process queued texture creations on the graphics thread.
+    /// Call this from the render loop.
+    /// </summary>
+    /// <param name="maxOperationsPerFrame">Maximum number of texture creations per frame</param>
+    /// <returns>Number of operations processed</returns>
+    public int ProcessTextureQueue(int maxOperationsPerFrame = 5)
+    {
+        int processed = 0;
+
+        while (processed < maxOperationsPerFrame && _graphicsThreadQueue.TryDequeue(out var action))
+        {
+            try
+            {
+                action();
+                processed++;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogException(ex);
+            }
+        }
+
+        return processed;
+    }
+
+    /// <summary>
+    /// Load a texture immediately (for use during deferred loading).
+    /// Must be called on the graphics thread.
+    /// </summary>
+    /// <param name="path">Texture path (without extension)</param>
+    /// <returns>Loaded texture or default texture on failure</returns>
+    public Texture2D LoadTextureImmediate(string path)
     {
         try
         {
@@ -236,5 +297,32 @@ public class Textures
         }
 
         return _defaultTexture;
+    }
+
+    /// <summary>
+    /// Private wrapper for backward compatibility with existing code.
+    /// </summary>
+    private Texture2D LoadTexture(string path) => LoadTextureImmediate(path);
+
+    /// <summary>
+    /// Computes and caches WrapThreshold values for all tiles with TextureWrap configured.
+    /// Call this after tile textures have been loaded.
+    /// </summary>
+    public void CacheTextureWrapThresholds()
+    {
+        foreach (var tileProp in WorldConfiguration.TileProperties)
+        {
+            if (tileProp.TextureWrap != null && tileProp.TextureWrap.Axis != TextureWrapAxis.None)
+            {
+                var texture = GetTile(tileProp.Id);
+                if (texture != null && texture != _defaultTexture)
+                {
+                    tileProp.TextureWrap.WrapThreshold =
+                        tileProp.TextureWrap.Axis == TextureWrapAxis.U
+                            ? texture.Width
+                            : texture.Height;
+                }
+            }
+        }
     }
 }

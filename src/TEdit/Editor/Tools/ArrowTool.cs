@@ -4,7 +4,7 @@ using System.Windows.Media.Imaging;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Geometry;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.UI;
 
 namespace TEdit.Editor.Tools;

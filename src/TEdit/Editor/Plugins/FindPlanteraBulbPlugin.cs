@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using TEdit.ViewModel;
 using TEdit.Terraria;
-using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.Editor.Plugins;
 

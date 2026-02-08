@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using TEdit.Configuration;
 using TEdit.Geometry;
 
 namespace TEdit.Terraria;
