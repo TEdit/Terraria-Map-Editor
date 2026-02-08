@@ -24,7 +24,7 @@
             <TextBlock Margin="3,2" HorizontalAlignment="Center" Text="{x:Static p:Language.sprite_filter_label}" />
             <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" MinWidth="160" KeyUp="TextBox_KeyUp" Width="160" />
             <Button Content="{x:Static p:Language.sprite_filter_button}" Margin="1" Padding="10,2" />
-            <Button Content="{x:Static p:Language.bestiary_clear}" Margin="1" Padding="10,2" Command="{Binding ClearSpriteSelection}" />
+            <Button Content="{x:Static p:Language.bestiary_clear}" Margin="1" Padding="10,2" Command="{Binding ClearSpriteSelectionCommand}" />
         </StackPanel>
         <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
             <TextBlock>

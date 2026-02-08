@@ -1,4 +1,3 @@
-﻿using TEdit.Common.Reactive;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +6,7 @@ using System.Text;
 namespace TEdit.Terraria;
 
 
-public class Bestiary : ObservableObject
+public partial class Bestiary : ReactiveObject
 {
     const int KillMax = 9999;
     public Dictionary<string,int> NPCKills = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);

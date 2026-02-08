@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -281,6 +281,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Desactivar máscara</value>
   </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Copiar primer elemento</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>Editar</value>
   </data>
@@ -290,11 +293,11 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Cortar</value>
   </data>
-  <data name="menu_edit_expand" xml:space="preserve">
-    <value>Expandir mundo</value>
-  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Eliminar selección</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Expandir mundo</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>Pegar</value>
@@ -334,6 +337,69 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="menu_file_update" xml:space="preserve">
     <value>Buscar actualizaciones</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>Modo de fondo</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Costumbre</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>Filtrar portapapeles</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>Modo de filtro</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Escala de grises</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Líquidos</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>duendes</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Azulejos</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Paredes</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>alambres</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Esconder</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Verificar todo</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Desmarcar todo</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Filtro avanzado</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Transparente</value>
   </data>
   <data name="menu_help" xml:space="preserve">
     <value>Ayuda</value>
@@ -425,6 +491,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Cable amarillo</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Pegar en todas las ranuras</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
   </data>
@@ -436,6 +505,33 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>Alejar</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Mover todos los cuadros</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Cantidad de movimiento (fotogramas)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>DE ACUERDO</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Restaurar</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Marcos seleccionados</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Establecer UV manuales en todos</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Establecer valores</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>Editor UV</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Es necesario reiniciar</value>
@@ -534,6 +630,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
     <value>Ropa de maniquí</value>
   </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>Mount</value>
+  </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Contenido del plato</value>
   </data>
@@ -543,8 +642,20 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="specialtile_label_signtype" xml:space="preserve">
     <value>Tipo de letrero</value>
   </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>Arma</value>
+  </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Objetos de estante de armas</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>Artículo: Frasco</value>
+  </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>Bicho</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>Cometa</value>
   </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>Bulbos</value>
@@ -600,6 +711,24 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tab_bestiary" xml:space="preserve">
     <value>Bestiario</value>
   </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>Aparición del Equipo Azul</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>Aparición del equipo Verde</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>Aparición del Equipo Rosa</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>Aparición del Equipo Rojo</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>Engendro del Equipo Blanco</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>Aparición del equipo amarillo</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analizar</value>
   </data>
@@ -654,6 +783,15 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>Portapapeles vacío</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>Flip X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>Flip Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>Importar imagen en color falso</value>
   </data>
@@ -678,8 +816,17 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Pegar cables</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>Pegar</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Reemplazar bloques existentes</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>Rotar</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>Congelar propagación del bioma</value>
@@ -840,6 +987,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_altars" xml:space="preserve">
     <value>Altares destrozados</value>
   </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>Apocalipsis (Aparición del Señor de la Luna)</value>
+  </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>Fondo corrupto</value>
   </data>
@@ -978,6 +1128,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Versión china</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Active</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Nivel de cobalto</value>
   </data>
@@ -996,6 +1149,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>Carmesí</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>Retraso del Cultista</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>Dificultad</value>
   </data>
@@ -1007,6 +1163,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>Drunk World</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>Punto Mazmorra</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Evento</value>
@@ -1032,8 +1191,14 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>Halloween</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>Fuerza Halloween para siempre</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>Navidad</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>Fuerza la Navidad para siempre</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>Identificador (ID)</value>
@@ -1164,6 +1329,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>PNJs encontrados</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>PNJs encontrados</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>Slime Nerd</value>
   </data>
@@ -1227,6 +1395,21 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>Mochila de vendedor ambulante</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>Pilares activos</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>Pilar de la Nebulosa</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>Pilar solar</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>Pilar de Polvo Estelar</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>Pilar de vórtice</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Modo Pre-Difícil</value>
   </data>
@@ -1269,17 +1452,32 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_seed" xml:space="preserve">
     <value>Semilla</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>Mazmorras Duales</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>Infectados</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>notraps (sin trampas)</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>Remix</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>Skyblock</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>Vampiro</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>Zenit</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Nivel Plata</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>Punto de Aparición</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>Estilos de cueva</value>
@@ -1320,6 +1518,15 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>Nivel de superficie</value>
   </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>Aparición de equipos</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>Aparición basada en equipos habilitada</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>Ubicaciones de aparición de equipos</value>
+  </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>Décimo Aniversario</value>
   </data>
@@ -1359,103 +1566,22 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Pista</value>
   </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>Azul</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>Fuera</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>Rojo</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>Amarillo</value>
+  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar fondo</value>
-  </data>
-  <data name="menu_filter_header_tiles" xml:space="preserve">
-    <value>Azulejos</value>
-  </data>
-  <data name="menu_filter_header_walls" xml:space="preserve">
-    <value>Paredes</value>
-  </data>
-  <data name="menu_filter_header_liquids" xml:space="preserve">
-    <value>Líquidos</value>
-  </data>
-  <data name="menu_filter_header_wires" xml:space="preserve">
-    <value>alambres</value>
-  </data>
-  <data name="menu_filter_tab_searchname" xml:space="preserve">
-    <value>Nombre</value>
-  </data>
-  <data name="menu_filter_tab_check_all" xml:space="preserve">
-    <value>Verificar todo</value>
-  </data>
-  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
-    <value>Desmarcar todo</value>
-  </data>
-  <data name="menu_filter_filtermode" xml:space="preserve">
-    <value>Modo de filtro</value>
-  </data>
-  <data name="menu_filter_backgroundmode" xml:space="preserve">
-    <value>Modo de fondo</value>
-  </data>
-  <data name="menu_filter_hide" xml:space="preserve">
-    <value>Esconder</value>
-  </data>
-  <data name="menu_filter_grayscale" xml:space="preserve">
-    <value>Escala de grises</value>
-  </data>
-  <data name="menu_filter_normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="menu_filter_transparent" xml:space="preserve">
-    <value>Transparente</value>
-  </data>
-  <data name="menu_filter_custom" xml:space="preserve">
-    <value>Costumbre</value>
-  </data>
-  <data name="menu_filter_cancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="menu_filter_disable" xml:space="preserve">
-    <value>Desactivar</value>
-  </data>
-  <data name="menu_filter_apply" xml:space="preserve">
-    <value>Aplicar</value>
-  </data>
-  <data name="menu_uveditor_moveallframes" xml:space="preserve">
-    <value>Mover todos los cuadros</value>
-  </data>
-  <data name="menu_uveditor_moveamount" xml:space="preserve">
-    <value>Cantidad de movimiento (fotogramas)</value>
-  </data>
-  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
-    <value>Establecer UV manuales en todos</value>
-  </data>
-  <data name="menu_uveditor_selectedframes" xml:space="preserve">
-    <value>Marcos seleccionados</value>
-  </data>
-  <data name="menu_uveditor_setvalues" xml:space="preserve">
-    <value>Establecer valores</value>
-  </data>
-  <data name="menu_uveditor_cancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="menu_uveditor_restore" xml:space="preserve">
-    <value>Restaurar</value>
-  </data>
-  <data name="menu_uveditor_ok" xml:space="preserve">
-    <value>DE ACUERDO</value>
-  </data>
-  <data name="menu_filter" xml:space="preserve">
-    <value>Filtrar</value>
-  </data>
-  <data name="menu_filter_title" xml:space="preserve">
-    <value>Filtro avanzado</value>
-  </data>
-  <data name="menu_uveditor_title" xml:space="preserve">
-    <value>Editor UV</value>
-  </data>
-  <data name="menu_filter_filterclipboard" xml:space="preserve">
-    <value>Filtrar portapapeles</value>
-  </data>
-  <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>duendes</value>
-  </data>
-  <data name="menu_pasteall" xml:space="preserve">
-    <value>Pegar en todas las ranuras</value>
-  </data>
-  <data name="menu_copyfirstitem" xml:space="preserve">
-    <value>Copiar primer elemento</value>
   </data>
 </root>

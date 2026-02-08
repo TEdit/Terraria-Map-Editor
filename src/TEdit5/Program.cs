@@ -1,5 +1,5 @@
 ﻿using Avalonia;
-using Avalonia.ReactiveUI;
+using ReactiveUI.Avalonia;
 using Projektanker.Icons.Avalonia;
 using Projektanker.Icons.Avalonia.MaterialDesign;
 using System;

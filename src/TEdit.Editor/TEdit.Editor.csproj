@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ReactiveUI.SourceGenerators" Version="2.6.1" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
     <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
     <ProjectReference Include="..\TEdit.Terraria\TEdit.Terraria.csproj" />

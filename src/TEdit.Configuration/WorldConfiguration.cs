@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Linq;
-using TEdit.Common.Reactive;
 using TEdit.Terraria.Objects;
 using System.Linq;
 using TEdit.Geometry;
@@ -14,25 +13,45 @@ namespace TEdit.Configuration;
 
 public class WorldConfiguration
 {
-    public static uint CompatibleVersion { get; set; } = 275;
-    public static short TileCount { get; private set; } = 693; // updated by json
-    public static short WallCount { get; private set; } = 346; // updated by json
-    public static short MaxNpcID { get; private set; } = 687; // updated by json
-    public static int MaxChests { get; private set; } = 8000;
-    public static int MaxSigns { get; private set; } = 1000;
-    public static int CavernLevelToBottomOfWorld { get; private set; } = 478;
-    public static byte MaxMoons = 3;
+    // Baseline fallbacks ONLY (used if config files are missing/broken).
+    // Baselines use v1.4.5.4 (latest of 02Feb26).
+    private const uint  DefaultCompatibleVersion = 317;
+    private const short DefaultTileCount         = 752;
+    private const short DefaultWallCount         = 366;
+    private const short DefaultMaxNpcId          = 696;
+    private const int   DefaultMaxChests         = 8000;
+    private const int   DefaultMaxSigns          = 32767;
+    private const int   DefaultCavernToBottom    = 478;
+    private const byte  DefaultMaxMoons          = 9;
+
+    public static uint  CompatibleVersion          { get; private set; } = DefaultCompatibleVersion;
+
+    public static short TileCount                  { get; private set; } = DefaultTileCount;
+    public static short WallCount                  { get; private set; } = DefaultWallCount;
+    public static short MaxNpcID                   { get; private set; } = DefaultMaxNpcId;
+
+    public static int   MaxChests                  { get; private set; } = DefaultMaxChests;
+    public static int   MaxSigns                   { get; private set; } = DefaultMaxSigns;
+    public static int   CavernLevelToBottomOfWorld { get; private set; } = DefaultCavernToBottom;
+    public static byte  MaxMoons                   { get; private set; } = DefaultMaxMoons; // property, not field
+
+    public static bool[] SettingsTileFrameImportant { get; private set; }
+
+    public static SaveVersionManager SaveConfiguration { get; private set; }
+    public static BestiaryConfiguration BestiaryData { get; private set; }
+    public static MorphConfiguration MorphSettings { get; private set; }
+
+    // Tracks what we actually applied (handy for UI / warnings).
+    public static uint ActiveWorldVersion  { get; private set; }
+    public static uint ActiveConfigVersion { get; private set; }
+
+    private static bool _initialized;
+    private static readonly object _initLock = new();
 
     public const string DesktopHeader = "relogic";
     public const string ChineseHeader = "xindong";
 
-    public static bool[] SettingsTileFrameImportant { get; private set; }
-
-    public static SaveVersionManager SaveConfiguration { get; set; }
-    public static BestiaryConfiguration BestiaryData { get; set; }
-    public static MorphConfiguration MorphSettings { get; set; }
-
-    public static List<string> Biomes => MorphSettings.Biomes.Keys.ToList();
+    public static List<string>            Biomes    => MorphSettings.Biomes.Keys.ToList();
     public static Dictionary<string, int> MossTypes => MorphSettings.MossTypes;
 
     private static readonly Dictionary<string, TEditColor> _globalColors = new Dictionary<string, TEditColor>();
@@ -44,11 +63,15 @@ public class WorldConfiguration
     private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
     private static readonly Dictionary<int, string> _armorHeadNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _foodNames = new Dictionary<int, string>();
+    private static readonly Dictionary<int, string> _kiteNames = new Dictionary<int, string>();
+    private static readonly Dictionary<int, string> _critterNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _accessoryNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _dyeNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _armorBodyNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _armorLegsNames = new Dictionary<int, string>();
     private static readonly Dictionary<int, string> _rackable = new Dictionary<int, string>();
+    private static readonly Dictionary<int, string> _mountNames = new Dictionary<int, string>();
+
 
     private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
     private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
@@ -60,61 +83,197 @@ public class WorldConfiguration
     private static readonly ObservableCollection<WallProperty> _wallPropertiesMask = new ObservableCollection<WallProperty>();
     private static readonly ObservableCollection<PaintProperty> _paintProperties = new ObservableCollection<PaintProperty>();
 
-
-
     static WorldConfiguration()
     {
-        if (ViewModelBase.IsInDesignModeStatic)
+        // Keep static ctor, but route everything through Initialize()
+        // so you can also call it explicitly from App startup.
+        Initialize();
+    }
+
+    /// <summary>
+    /// Loads configuration files and applies the MAX config version so all static limits
+    /// (CompatibleVersion/TileCount/WallCount/etc.) are correct at app startup.
+    /// Safe to call multiple times.
+    /// </summary>
+    public static void Initialize()
+    {
+        if (_initialized) return;
+
+        lock (_initLock)
+        {
+            if (_initialized) return;
+
+            // ---- Load configs (same as you already do) ----
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            var saveVersionPath = Path.Combine(baseDir, "TerrariaVersionTileData.json");
+            if (File.Exists(saveVersionPath))
+                SaveConfiguration = SaveVersionManager.LoadJson(saveVersionPath);
+
+            var settingspath = Path.Combine(baseDir, "settings.xml");
+            if (File.Exists(settingspath))
+                LoadObjectDbXml(settingspath);
+
+            var bestiaryDataPath = Path.Combine(baseDir, "npcData.json");
+            if (File.Exists(bestiaryDataPath))
+                BestiaryData = BestiaryConfiguration.LoadJson(bestiaryDataPath);
+
+            try
+            {
+                var morphPath = Path.Combine(baseDir, "morphSettings.json");
+                if (File.Exists(morphPath))
+                    MorphSettings = MorphConfiguration.LoadJson(morphPath);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Invalid morphSettings.json", ex);
+            }
+
+            // ---- Apply MAX config version at startup ----
+            try
+            {
+                ApplyForConfigMax();
+            }
+            catch (Exception ex)
+            {
+                // IMPORTANT: do NOT swallow silently or you’ll never know why defaults “stick”.
+                // Use your project’s logger here:
+                // ErrorLogging.LogException(ex);
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+
+            _initialized = true;
+        }
+    }
+
+    private static void ApplyForConfigMax()
+    {
+        if (SaveConfiguration == null)
             return;
 
-        var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
-        if (File.Exists(saveVersionPath))
-            SaveConfiguration = SaveVersionManager.LoadJson(saveVersionPath);
+        var maxCfg = SaveConfiguration.GetMaxVersion();
+        if (maxCfg > 0)
+        {
+            // Apply using the config’s max version (startup baseline).
+            ApplyConfigVersion((uint)maxCfg, worldVersion: (uint)maxCfg);
+        }
+    }
 
-        var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
-        if (File.Exists(settingspath))
-            LoadObjectDbXml(settingspath);
+    /// <summary>
+    /// Update limits for a specific WORLD version, clamping to the max config version if needed.
+    /// Call this when a world is being loaded (optional).
+    /// </summary>
+    public static bool ApplyForWorldVersion(uint worldVersion, out uint configVersionUsed)
+    {
+        Initialize();
 
-        var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "npcData.json");
-        if (File.Exists(bestiaryDataPath))
-            BestiaryData = BestiaryConfiguration.LoadJson(bestiaryDataPath);
+        configVersionUsed = 0;
+        if (SaveConfiguration == null)
+            return false;
 
+        var maxCfg = SaveConfiguration.GetMaxVersion();
+        if (maxCfg <= 0)
+            return false;
+
+        var maxCfgU = (uint)maxCfg;
+
+        // This is the true "max supported by config right now".
+        CompatibleVersion = maxCfgU;
+
+        var chosen = worldVersion > maxCfgU ? maxCfgU : worldVersion;
+
+        // If GetData throws for some versions, fall back to max config.
         try
         {
-            var morphPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "morphSettings.json");
-            if (File.Exists(morphPath))
-                MorphSettings = MorphConfiguration.LoadJson(morphPath);
-
+            SaveConfiguration.GetData((int)chosen);
         }
-        catch (Exception ex)
+        catch
         {
-            throw new ApplicationException("Invalid morphSettings.json", ex);
+            chosen = maxCfgU;
         }
 
-        try
-        {
-            // Used to dynamically update static CompatibleVersion
-            CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
-            TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
-            WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
-            MaxNpcID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
+        ApplyConfigVersion(chosen, worldVersion);
+        configVersionUsed = chosen;
+        return true;
+    }
 
-            if (SettingsTileFrameImportant == null || SettingsTileFrameImportant.Length <= 0)
+    /// <summary>
+    /// Applies a specific CONFIG version to the static limits.
+    /// </summary>
+    private static void ApplyConfigVersion(uint configVersion, uint worldVersion)
+    {
+        var data = SaveConfiguration.GetData((int)configVersion);
+
+        ActiveWorldVersion  = worldVersion;
+        ActiveConfigVersion = configVersion;
+
+        CompatibleVersion = (uint)SaveConfiguration.GetMaxVersion();
+
+        TileCount = (short)data.MaxTileId;
+        WallCount = (short)data.MaxWallId;
+        MaxNpcID  = (short)data.MaxNpcId;
+
+        // OPTIONAL: Only if your JSON/version data actually contains these fields.
+        // If it doesn't, keep the defaults.
+        TryApplyOptionalInts(data);
+
+        RebuildFrameImportant();
+    }
+
+    private static void RebuildFrameImportant()
+    {
+        // Rebuild to match TileCount and avoid out-of-range.
+        var arr = new bool[TileCount + 1];
+
+        // TileProperties must already be loaded from settings.xml for this to be useful.
+        // Clamp to what we actually have.
+        var limit = Math.Min(TileCount, (short)(TileProperties.Count - 1));
+        for (int i = 0; i <= limit; i++)
+            arr[i] = TileProperties[i].IsFramed;
+
+        SettingsTileFrameImportant = arr;
+    }
+
+    private static void TryApplyOptionalInts(object data)
+    {
+        // If these properties exist on your version-data model, apply them.
+        // If not, just keep existing defaults.
+
+        if (TryGetInt(data, out var maxChests, "MaxChests", "MaxChestCount") && maxChests > 0)
+            MaxChests = maxChests;
+
+        if (TryGetInt(data, out var maxSigns, "MaxSigns", "MaxSignCount") && maxSigns > 0)
+            MaxSigns = maxSigns;
+
+        if (TryGetInt(data, out var cavern, "CavernLevelToBottomOfWorld", "CavernToBottom") && cavern > 0)
+            CavernLevelToBottomOfWorld = cavern;
+
+        if (TryGetInt(data, out var moons, "MaxMoons") && moons > 0 && moons <= byte.MaxValue)
+            MaxMoons = (byte)moons;
+    }
+
+    private static bool TryGetInt(object obj, out int value, params string[] names)
+    {
+        value = 0;
+        if (obj == null) return false;
+
+        var t = obj.GetType();
+        foreach (var n in names)
+        {
+            var p = t.GetProperty(n);
+            if (p == null || !p.CanRead) continue;
+
+            var v = p.GetValue(obj);
+            if (v == null) continue;
+
+            try
             {
-                SettingsTileFrameImportant = new bool[TileCount + 1];
-                for (int i = 0; i <= TileCount; i++)
-                {
-                    if (TileProperties.Count > i)
-                    {
-                        SettingsTileFrameImportant[i] = TileProperties[i].IsFramed;
-                    }
-                }
+                value = Convert.ToInt32(v);
+                return true;
             }
+            catch { }
         }
-        catch (Exception ex)
-        {
-        }
-
+        return false;
     }
 
     private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
@@ -362,9 +521,27 @@ public class WorldConfiguration
                 curItem.IsFood = true;
             }
 
+            bool critter = (bool?)xElement.Attribute("IsCritter") ?? false;
+            if (critter)
+            {
+                _critterNames.Add(curItem.Id, curItem.Name);
+            }
+
+            bool kite = (bool?)xElement.Attribute("IsKite") ?? false;
+            if (kite)
+            {
+                _kiteNames.Add(curItem.Id, curItem.Name);
+            }
+
             bool acc = (bool?)xElement.Attribute("Accessory") ?? false;
             if (acc)
                 _accessoryNames.Add(curItem.Id, curItem.Name);
+
+            bool mount = (bool?)xElement.Attribute("Mount") ?? false;
+            if (mount)
+            {
+                _mountNames.Add(curItem.Id, curItem.Name);
+            }
 
             if (curItem.Name.Contains("Dye"))
             {
@@ -514,6 +691,12 @@ public class WorldConfiguration
         get { return _armorHeadNames; }
     }
 
+
+    public static Dictionary<int, string> MountNames
+    {
+        get { return _mountNames; }
+    }
+
     public static Dictionary<int, string> AccessoryNames
     {
         get { return _accessoryNames; }
@@ -522,6 +705,16 @@ public class WorldConfiguration
     public static Dictionary<int, string> FoodNames
     {
         get { return _foodNames; }
+    }
+
+    public static Dictionary<int, string> CritterNames
+    {
+        get { return _critterNames; }
+    }
+
+    public static Dictionary<int, string> KiteNames
+    {
+        get { return _kiteNames; }
     }
 
     public static Dictionary<int, string> ArmorBodyNames

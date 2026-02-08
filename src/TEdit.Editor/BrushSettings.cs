@@ -1,9 +1,10 @@
-﻿using System;
-using TEdit.Common.Reactive;
+using System;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 
 namespace TEdit.Editor;
 
-public class BrushSettings : ObservableObject
+public partial class BrushSettings : ReactiveObject
 {
     private int _maxOutline = 10;
     private int _maxHeight = 400;
@@ -16,9 +17,13 @@ public class BrushSettings : ObservableObject
     private int _width = 20;
     private int _height = 20;
 
+    [Reactive]
     private int _offsetX = 10;
+    [Reactive]
     private int _offsetY = 10;
+    [Reactive]
     private bool _isLocked = true;
+    [Reactive]
     private bool _isOutline = false;
     private BrushShape _shape = ToolDefaultData.BrushShape;
 
@@ -57,7 +62,7 @@ public class BrushSettings : ObservableObject
         get { return _shape; }
         set
         {
-            Set(nameof(Shape), ref _shape, value);
+            this.RaiseAndSetIfChanged(ref _shape, value);
             BrushChange();
         }
     }
@@ -65,31 +70,7 @@ public class BrushSettings : ObservableObject
     public int MaxOutline
     {
         get { return _maxOutline; }
-        private set { Set(nameof(MaxOutline), ref _maxOutline, value); }
-    }
-
-    public bool IsOutline
-    {
-        get { return _isOutline; }
-        set { Set(nameof(IsOutline), ref _isOutline, value); }
-    }
-
-    public bool IsLocked
-    {
-        get { return _isLocked; }
-        set { Set(nameof(IsLocked), ref _isLocked, value); }
-    }
-
-    public int OffsetY
-    {
-        get { return _offsetY; }
-        set { Set(nameof(OffsetY), ref _offsetY, value); }
-    }
-
-    public int OffsetX
-    {
-        get { return _offsetX; }
-        set { Set(nameof(OffsetX), ref _offsetX, value); }
+        private set { this.RaiseAndSetIfChanged(ref _maxOutline, value); }
     }
 
     public int Height
@@ -101,11 +82,11 @@ public class BrushSettings : ObservableObject
                 value = _minHeight;
             if (value > _maxHeight)
                 value = _maxHeight;
-            Set(nameof(Height), ref _height, value);
+            this.RaiseAndSetIfChanged(ref _height, value);
             if (IsLocked)
             {
                 _width = Height;
-                RaisePropertyChanged("Width");
+                this.RaisePropertyChanged(nameof(Width));
                 OffsetX = _width / 2;
             }
             MaxOutline = Math.Min(Height, Width) / 2;
@@ -123,11 +104,11 @@ public class BrushSettings : ObservableObject
                 value = _minWidth;
             if (value > _maxWidth)
                 value = _maxWidth;
-            Set(nameof(Width), ref _width, value);
+            this.RaiseAndSetIfChanged(ref _width, value);
             if (IsLocked)
             {
                 _height = Width;
-                RaisePropertyChanged("Height");
+                this.RaisePropertyChanged(nameof(Height));
                 OffsetY = _height / 2;
             }
             MaxOutline = Math.Min(Height, Width) / 2;
@@ -145,7 +126,7 @@ public class BrushSettings : ObservableObject
                 value = _minOutline;
             if (value > _maxOutline)
                 value = _maxOutline;
-            Set(nameof(Outline), ref _outline, value);
+            this.RaiseAndSetIfChanged(ref _outline, value);
         }
     }
 }

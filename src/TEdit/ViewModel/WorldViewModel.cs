@@ -15,8 +15,8 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using TEdit.Common.Reactive;
-using TEdit.Common.Reactive.Command;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
@@ -39,12 +39,13 @@ using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
+using static TEdit.Configuration.WorldConfiguration;
 
 namespace TEdit.ViewModel;
 
 
 
-public partial class WorldViewModel : ViewModelBase
+public partial class WorldViewModel : ReactiveObject
 {
     private readonly BrushSettings _brush = new BrushSettings();
     private readonly Stopwatch _loadTimer = new Stopwatch();
@@ -63,7 +64,6 @@ public partial class WorldViewModel : ViewModelBase
     public static World _currentWorld;
     private ClipboardManager _clipboard;
     private bool _isAutoSaveEnabled = true;
-    private ICommand _launchWikiCommand;
     private WriteableBitmap _minimapImage;
     private string _morphBiomeTarget;
     private PixelMapManager _pixelMap;
@@ -100,10 +100,7 @@ public partial class WorldViewModel : ViewModelBase
     private ushort _spriteTileFilter;
     private ListCollectionView _spriteSheetView;
     private ListCollectionView _spriteStylesView;
-    private ICommand _viewLogCommand;
-    private ICommand _showNewsCommand;
     private string _windowTitle;
-    private ICommand _checkUpdatesCommand;
     private int _lastSavedUndoIndex = 0;
     private bool _hasUnsavedPropertyChanges = false;
     private int _lastUserSavedUndoIndex = 0;
@@ -122,16 +119,7 @@ public partial class WorldViewModel : ViewModelBase
 
     public WorldViewModel()
     {
-        if (IsInDesignModeStatic)
-        {
-            return;
-        }
-
-        // Clean up accumulated autosave files on startup
-        CleanupOldAutosaves();
-
-        // Log existing .TEdit backup files on startup
-        LogWorldBackupFiles();
+        if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) { return; }
 
         CheckUpdates = Settings.Default.CheckUpdates;
 
@@ -140,9 +128,6 @@ public partial class WorldViewModel : ViewModelBase
 
 
         IsAutoSaveEnabled = Settings.Default.Autosave;
-
-
-
 
         World.ProgressChanged += OnProgressChanged;
         Brush.BrushChanged += OnPreviewChanged;
@@ -215,7 +200,7 @@ public partial class WorldViewModel : ViewModelBase
     public WriteableBitmap MinimapImage
     {
         get { return _minimapImage; }
-        set { Set(nameof(MinimapImage), ref _minimapImage, value); }
+        set { this.RaiseAndSetIfChanged(ref _minimapImage, value); }
     }
 
     public ListCollectionView SpriteSheetView => _spriteSheetView;
@@ -227,7 +212,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _spriteFilter; }
         set
         {
-            Set(nameof(SpriteFilter), ref _spriteFilter, value);
+            this.RaiseAndSetIfChanged(ref _spriteFilter, value);
             SpriteSheetView.Refresh();
             SpriteStylesView.Refresh();
         }
@@ -238,7 +223,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _spriteTileFilter; }
         set
         {
-            Set(nameof(SpriteFilter), ref _spriteTileFilter, value);
+            this.RaiseAndSetIfChanged(ref _spriteTileFilter, value);
             SpriteStylesView.Refresh();
         }
     }
@@ -248,7 +233,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedSpriteItem; }
         set
         {
-            Set("SelectedSpriteItem", ref _selectedSpriteItem, value);
+            this.RaiseAndSetIfChanged(ref _selectedSpriteItem, value);
             PreviewChange();
         }
     }
@@ -258,7 +243,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedSpriteSheet; }
         set
         {
-            Set("SelectedSpriteSheet", ref _selectedSpriteSheet, value);
+            this.RaiseAndSetIfChanged(ref _selectedSpriteSheet, value);
 
             if (value == null) { SpriteTileFilter = 0; }
             else { SpriteTileFilter = value.Tile; }
@@ -278,10 +263,8 @@ public partial class WorldViewModel : ViewModelBase
     }
 
 
-    public ICommand LaunchWikiCommand
-    {
-        get { return _launchWikiCommand ??= new RelayCommand(() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki")); }
-    }
+    [ReactiveCommand]
+    private void LaunchWiki() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki");
 
     /* SBLogic - catch exception if browser can't be launched */
     public static void LaunchUrl(string url)
@@ -316,13 +299,13 @@ public partial class WorldViewModel : ViewModelBase
     public int SelectedTabIndex
     {
         get { return _selectedTabIndex; }
-        set { Set(nameof(SelectedTabIndex), ref _selectedTabIndex, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedTabIndex, value); }
     }
 
     public int SelectedSpecialTile
     {
         get { return _selectedSpecialTile; }
-        set { Set(nameof(SelectedSpecialTile), ref _selectedSpecialTile, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedSpecialTile, value); }
     }
 
     public Vector2Int32 SelectedXmas
@@ -330,34 +313,34 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedXmas; }
         set
         {
-            Set(nameof(SelectedXmas), ref _selectedXmas, value);
+            this.RaiseAndSetIfChanged(ref _selectedXmas, value);
             SelectedTabIndex = 1;
-            SelectedSpecialTile = 10;
+            SelectedSpecialTile = 11;
         }
     }
 
     public int SelectedXmasStar
     {
         get { return _selectedXmasStar; }
-        set { Set(nameof(SelectedXmasStar), ref _selectedXmasStar, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedXmasStar, value); }
     }
 
     public int SelectedXmasGarland
     {
         get { return _selectedXmasGarland; }
-        set { Set(nameof(SelectedXmasGarland), ref _selectedXmasGarland, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedXmasGarland, value); }
     }
 
     public int SelectedXmasBulb
     {
         get { return _selectedXmasBulb; }
-        set { Set(nameof(SelectedXmasBulb), ref _selectedXmasBulb, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedXmasBulb, value); }
     }
 
     public int SelectedXmasLight
     {
         get { return _selectedXmasLight; }
-        set { Set(nameof(SelectedXmasLight), ref _selectedXmasLight, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedXmasLight, value); }
     }
 
     public Sign SelectedSign
@@ -365,9 +348,9 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedSign; }
         set
         {
-            Set(nameof(SelectedSign), ref _selectedSign, value);
+            this.RaiseAndSetIfChanged(ref _selectedSign, value);
             SelectedTabIndex = 1;
-            SelectedSpecialTile = 11;
+            SelectedSpecialTile = 12;
         }
     }
 
@@ -376,9 +359,9 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedChest; }
         set
         {
-            Set(nameof(SelectedChest), ref _selectedChest, value);
+            this.RaiseAndSetIfChanged(ref _selectedChest, value);
             SelectedTabIndex = 1;
-            SelectedSpecialTile = 12;
+            SelectedSpecialTile = 13;
         }
     }
 
@@ -387,7 +370,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedTileEntity; }
         set
         {
-            Set(nameof(SelectedTileEntity), ref _selectedTileEntity, value);
+            this.RaiseAndSetIfChanged(ref _selectedTileEntity, value);
             SelectedTabIndex = 1;
             SelectedSpecialTile = (int)value?.EntityType;
         }
@@ -401,7 +384,7 @@ public partial class WorldViewModel : ViewModelBase
     public string MorphBiomeTarget
     {
         get { return _morphBiomeTarget; }
-        set { Set(nameof(MorphBiomeTarget), ref _morphBiomeTarget, value); }
+        set { this.RaiseAndSetIfChanged(ref _morphBiomeTarget, value); }
     }
 
     public bool IsAutoSaveEnabled
@@ -409,7 +392,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _isAutoSaveEnabled; }
         set
         {
-            Set(nameof(IsAutoSaveEnabled), ref _isAutoSaveEnabled, value);
+            this.RaiseAndSetIfChanged(ref _isAutoSaveEnabled, value);
             Settings.Default.Autosave = _isAutoSaveEnabled;
             try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
         }
@@ -444,13 +427,13 @@ public partial class WorldViewModel : ViewModelBase
     public bool ShowGrid
     {
         get { return _showGrid; }
-        set { Set(nameof(ShowGrid), ref _showGrid, value); }
+        set { this.RaiseAndSetIfChanged(ref _showGrid, value); }
     }
 
     public bool ShowTextures
     {
         get { return _showTextures; }
-        set { Set(nameof(ShowTextures), ref _showTextures, value); }
+        set { this.RaiseAndSetIfChanged(ref _showTextures, value); }
     }
 
     public ObservableCollection<string> Points
@@ -461,14 +444,37 @@ public partial class WorldViewModel : ViewModelBase
     public string SelectedPoint
     {
         get { return _selectedPoint; }
-        set { Set(nameof(SelectedPoint), ref _selectedPoint, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedPoint, value); }
+    }
+
+    private void RefreshPoints()
+    {
+        Points.Clear();
+        Points.Add("Spawn");
+        Points.Add("Dungeon");
+
+        if (CurrentWorld?.TeamBasedSpawnsSeed == true)
+        {
+            for (int i = 0; i < World.TeamNames.Length; i++)
+            {
+                Points.Add($"Team {World.TeamNames[i]}");
+            }
+        }
+
+        if (CurrentWorld != null)
+        {
+            foreach (NPC npc in CurrentWorld.NPCs)
+            {
+                Points.Add(npc.Name);
+            }
+        }
     }
 
 
     public Item SelectedChestItem
     {
         get { return _selectedChestItem; }
-        set { Set(nameof(SelectedChestItem), ref _selectedChestItem, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedChestItem, value); }
     }
 
     public UndoManager UndoManager
@@ -479,7 +485,7 @@ public partial class WorldViewModel : ViewModelBase
     public ClipboardManager Clipboard
     {
         get { return _clipboard; }
-        set { Set(nameof(Clipboard), ref _clipboard, value); }
+        set { this.RaiseAndSetIfChanged(ref _clipboard, value); }
     }
 
     public Selection Selection
@@ -495,7 +501,7 @@ public partial class WorldViewModel : ViewModelBase
     public string CurrentFile
     {
         get { return _currentFile; }
-        set { Set(nameof(CurrentFile), ref _currentFile, value); }
+        set { this.RaiseAndSetIfChanged(ref _currentFile, value); }
     }
 
     private ClipboardManager _clipboardManager;
@@ -510,7 +516,7 @@ public partial class WorldViewModel : ViewModelBase
                 _currentWorld.PropertyChanged -= OnWorldPropertyChanged;
             }
 
-            Set(nameof(CurrentWorld), ref _currentWorld, value);
+            this.RaiseAndSetIfChanged(ref _currentWorld, value);
 
             if (value != null)
             {
@@ -550,7 +556,7 @@ public partial class WorldViewModel : ViewModelBase
                     {
                         Clipboard.LoadedBuffers.Add(buffer);
                     }
-                
+
                     // Preserve the current active buffer if it's not null.
                     if (_clipboardManager.Buffer != null)
                     {
@@ -575,13 +581,13 @@ public partial class WorldViewModel : ViewModelBase
     public ProgressChangedEventArgs Progress
     {
         get { return _progress; }
-        set { Set(nameof(Progress), ref _progress, value); }
+        set { this.RaiseAndSetIfChanged(ref _progress, value); }
     }
 
     public string WindowTitle
     {
         get { return _windowTitle; }
-        set { Set(nameof(WindowTitle), ref _windowTitle, value); }
+        set { this.RaiseAndSetIfChanged(ref _windowTitle, value); }
     }
 
     public BrushSettings Brush
@@ -601,13 +607,13 @@ public partial class WorldViewModel : ViewModelBase
     public ITool ActiveTool
     {
         get { return _activeTool; }
-        set { Set(nameof(ActiveTool), ref _activeTool, value); }
+        set { this.RaiseAndSetIfChanged(ref _activeTool, value); }
     }
 
     public PixelMapManager PixelMap
     {
         get { return _pixelMap; }
-        set { Set(nameof(PixelMap), ref _pixelMap, value); }
+        set { this.RaiseAndSetIfChanged(ref _pixelMap, value); }
     }
 
     public bool ShowRedWires
@@ -615,7 +621,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showRedWires; }
         set
         {
-            Set(nameof(ShowRedWires), ref _showRedWires, value);
+            this.RaiseAndSetIfChanged(ref _showRedWires, value);
             UpdateRenderWorld();
         }
     }
@@ -625,7 +631,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showBlueWires; }
         set
         {
-            Set(nameof(ShowBlueWires), ref _showBlueWires, value);
+            this.RaiseAndSetIfChanged(ref _showBlueWires, value);
             UpdateRenderWorld();
         }
     }
@@ -635,7 +641,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showGreenWires; }
         set
         {
-            Set(nameof(ShowGreenWires), ref _showGreenWires, value);
+            this.RaiseAndSetIfChanged(ref _showGreenWires, value);
             UpdateRenderWorld();
         }
     }
@@ -645,22 +651,22 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showYellowWires; }
         set
         {
-            Set(nameof(ShowYellowWires), ref _showYellowWires, value);
+            this.RaiseAndSetIfChanged(ref _showYellowWires, value);
             UpdateRenderWorld();
         }
     }
-    
+
     public bool ShowAllWires
     {
         get { return _showAllWires; }
         set
         {
-            Set(nameof(ShowAllWires), ref _showAllWires, value);
+            this.RaiseAndSetIfChanged(ref _showAllWires, value);
             ToggleWireStates(_showAllWires);
             UpdateRenderWorld();
         }
     }
-    
+
     public void ToggleWireStates(bool state)
     {
         ShowRedWires = state;
@@ -668,13 +674,13 @@ public partial class WorldViewModel : ViewModelBase
         ShowGreenWires = state;
         ShowYellowWires = state;
     }
-    
+
     public bool ShowWireTransparency
     {
         get { return _showWireTransparency; }
         set
         {
-            Set(nameof(ShowWireTransparency), ref _showWireTransparency, value);
+            this.RaiseAndSetIfChanged(ref _showWireTransparency, value);
             UpdateRenderWorld();
         }
     }
@@ -684,7 +690,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showActuators; }
         set
         {
-            Set(nameof(ShowActuators), ref _showActuators, value);
+            this.RaiseAndSetIfChanged(ref _showActuators, value);
             UpdateRenderWorld();
         }
     }
@@ -692,7 +698,7 @@ public partial class WorldViewModel : ViewModelBase
     public bool ShowPoints
     {
         get { return _showPoints; }
-        set { Set(nameof(ShowPoints), ref _showPoints, value); }
+        set { this.RaiseAndSetIfChanged(ref _showPoints, value); }
     }
 
     public bool ShowLiquid
@@ -700,7 +706,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showLiquid; }
         set
         {
-            Set(nameof(ShowLiquid), ref _showLiquid, value);
+            this.RaiseAndSetIfChanged(ref _showLiquid, value);
             UpdateRenderWorld();
         }
     }
@@ -710,7 +716,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showCoatings; }
         set
         {
-            Set(nameof(ShowCoatings), ref _showCoatings, value);
+            this.RaiseAndSetIfChanged(ref _showCoatings, value);
             UpdateRenderWorld();
         }
     }
@@ -720,7 +726,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showTiles; }
         set
         {
-            Set(nameof(ShowTiles), ref _showTiles, value);
+            this.RaiseAndSetIfChanged(ref _showTiles, value);
             UpdateRenderWorld();
         }
     }
@@ -730,31 +736,23 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showWalls; }
         set
         {
-            Set(nameof(ShowWalls), ref _showWalls, value);
+            this.RaiseAndSetIfChanged(ref _showWalls, value);
             UpdateRenderWorld();
         }
     }
-    public ICommand ShowNewsCommand
-    {
-        get { return _showNewsCommand ??= new RelayCommand(ShowNewsDialog); }
-    }
 
-    public ICommand CheckUpdatesCommand
-    {
-        get { return _checkUpdatesCommand ??= new RelayCommand(async () => await CheckVersion(false)); }
-    }
+    [ReactiveCommand]
+    private async Task CheckUpdatesAsync() => await CheckVersion(false);
 
-    public ICommand ViewLogCommand
-    {
-        get { return _viewLogCommand ??= new RelayCommand(ViewLog); }
-    }
+    [ReactiveCommand]
+    private void ViewLog() => ErrorLogging.ViewLog();
 
     public bool RealisticColors
     {
         get { return Settings.Default.RealisticColors; }
         set
         {
-            RaisePropertyChanged(nameof(RealisticColors), Settings.Default.RealisticColors, value);
+            this.RaisePropertyChanged(nameof(RealisticColors));
             Settings.Default.RealisticColors = value;
             try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
             MessageBox.Show(Properties.Language.messagebox_restartrequired, Properties.Language.messagebox_restartrequired, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -766,7 +764,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _checkUpdates; }
         set
         {
-            Set(nameof(CheckUpdates), ref _checkUpdates, value);
+            this.RaiseAndSetIfChanged(ref _checkUpdates, value);
             Settings.Default.CheckUpdates = value;
             try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
         }
@@ -779,7 +777,7 @@ public partial class WorldViewModel : ViewModelBase
         set
         {
             value = (float)Math.Floor(MathHelper.Clamp(value, 3, 64));
-            if (Set(nameof(TextureVisibilityZoomLevel), ref _textureVisibilityZoomLevel, value))
+            if (this.RaiseAndSetIfChanged(ref _textureVisibilityZoomLevel, value) != value)
             {
                 Settings.Default.TextureVisibilityZoomLevel = value;
                 try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
@@ -794,7 +792,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showNews; }
         set
         {
-            if (Set(nameof(EnableTelemetry), ref _showNews, value))
+            if (this.RaiseAndSetIfChanged(ref _showNews, value) != value)
             {
                 Settings.Default.ShowNews = value;
                 try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
@@ -810,7 +808,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _enableTelemetry; }
         set
         {
-            if (Set(nameof(EnableTelemetry), ref _enableTelemetry, value))
+            if (this.RaiseAndSetIfChanged(ref _enableTelemetry, value) != value)
             {
                 Settings.Default.Telemetry = value ? 1 : 0;
                 try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
@@ -829,193 +827,14 @@ public partial class WorldViewModel : ViewModelBase
         UpdateTitle();
     }
 
-    private void CleanupOldAutosaves()
-    {
-        try
-        {
-            if (!Directory.Exists(TempPath))
-                return;
-
-            // Find all autosave files (including old .tmp files)
-            var autosaveFiles = Directory.GetFiles(TempPath, "*.autosave*")
-                .Where(f => f.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase) ||
-                           f.EndsWith(".autosave.tmp", StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            int totalAutosaveCount = autosaveFiles.Count;
-            long totalAutosaveSize = autosaveFiles.Sum(f => new FileInfo(f).Length);
-
-            ErrorLogging.Log($"Autosave cleanup: Found {totalAutosaveCount} autosave files using {FormatFileSize(totalAutosaveSize)}");
-
-            // Group by base world name (everything before .autosave)
-            var groupedFiles = autosaveFiles
-                .GroupBy(f =>
-                {
-                    string filename = Path.GetFileName(f);
-                    int idx = filename.IndexOf(".autosave", StringComparison.OrdinalIgnoreCase);
-                    return idx >= 0 ? filename.Substring(0, idx) : filename;
-                });
-
-            int deletedCount = 0;
-            long deletedSize = 0;
-
-            foreach (var group in groupedFiles)
-            {
-                // Sort by last write time, newest first
-                var sortedFiles = group.OrderByDescending(f => File.GetLastWriteTimeUtc(f)).ToList();
-
-                // Keep the most recent .autosave file (not .tmp)
-                var keepFile = sortedFiles.FirstOrDefault(f => f.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase));
-
-                // Delete all others
-                foreach (var file in sortedFiles)
-                {
-                    if (file != keepFile)
-                    {
-                        try
-                        {
-                            long fileSize = new FileInfo(file).Length;
-                            File.Delete(file);
-                            deletedCount++;
-                            deletedSize += fileSize;
-                            ErrorLogging.Log($"Deleted old autosave: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
-                        }
-                        catch
-                        {
-                            // Ignore errors deleting individual files
-                        }
-                    }
-                }
-            }
-
-            if (deletedCount > 0)
-            {
-                ErrorLogging.Log($"Autosave cleanup complete: Deleted {deletedCount} old autosave files, freed {FormatFileSize(deletedSize)}");
-            }
-            else
-            {
-                ErrorLogging.Log("Autosave cleanup complete: No old autosave files to delete");
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorLogging.LogException(ex);
-        }
-    }
-
-    private void CleanupOldWorldBackups(string worldFilePath)
-    {
-        try
-        {
-            if (!File.Exists(worldFilePath))
-                return;
-
-            string directory = Path.GetDirectoryName(worldFilePath);
-            string baseFilename = Path.GetFileName(worldFilePath);
-
-            // Find all timestamped backup files for this world (format: worldname.wld.yyyyMMddHHmmss.TEdit)
-            var backupFiles = Directory.GetFiles(directory, baseFilename + ".*.TEdit")
-                .Where(f =>
-                {
-                    string pattern = baseFilename + ".";
-                    string remaining = Path.GetFileName(f).Substring(pattern.Length);
-                    // Check if it matches the timestamp pattern (14 digits followed by .TEdit)
-                    return remaining.Length >= 14 &&
-                           remaining.Substring(0, 14).All(char.IsDigit) &&
-                           remaining.EndsWith(".TEdit", StringComparison.OrdinalIgnoreCase);
-                })
-                .ToList();
-
-            if (backupFiles.Count > 0)
-            {
-                long totalBackupSize = backupFiles.Sum(f => new FileInfo(f).Length);
-                ErrorLogging.Log($"Found {backupFiles.Count} old timestamped backup(s) for {baseFilename} using {FormatFileSize(totalBackupSize)}");
-            }
-
-            // Keep only the newest backup file (non-timestamped .TEdit file)
-            string keepFile = worldFilePath + ".TEdit";
-
-            int deletedCount = 0;
-            long deletedSize = 0;
-
-            // Delete all timestamped backups
-            foreach (var file in backupFiles)
-            {
-                try
-                {
-                    long fileSize = new FileInfo(file).Length;
-                    File.Delete(file);
-                    deletedCount++;
-                    deletedSize += fileSize;
-                    ErrorLogging.Log($"Deleted old backup: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
-                }
-                catch
-                {
-                    // Ignore errors deleting individual files
-                }
-            }
-
-            if (deletedCount > 0)
-            {
-                ErrorLogging.Log($"Backup cleanup complete: Deleted {deletedCount} old backup(s), freed {FormatFileSize(deletedSize)}");
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorLogging.LogException(ex);
-        }
-    }
-
-    private static string FormatFileSize(long bytes)
-    {
-        string[] sizes = { "B", "KB", "MB", "GB", "TB" };
-        double len = bytes;
-        int order = 0;
-        while (len >= 1024 && order < sizes.Length - 1)
-        {
-            order++;
-            len = len / 1024;
-        }
-        return $"{len:0.##} {sizes[order]}";
-    }
-
-    private void LogWorldBackupFiles()
-    {
-        try
-        {
-            string worldsPath = DependencyChecker.PathToWorlds;
-            if (!Directory.Exists(worldsPath))
-                return;
-
-            // Find all .TEdit backup files in the Terraria worlds directory
-            var backupFiles = Directory.GetFiles(worldsPath, "*.TEdit", SearchOption.TopDirectoryOnly).ToList();
-
-            int totalBackupCount = backupFiles.Count;
-            long totalBackupSize = backupFiles.Sum(f => new FileInfo(f).Length);
-
-            if (totalBackupCount > 0)
-            {
-                ErrorLogging.Log($"Found {totalBackupCount} .TEdit backup files using {FormatFileSize(totalBackupSize)}");
-            }
-            else
-            {
-                ErrorLogging.Log("No .TEdit backup files found");
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorLogging.LogException(ex);
-        }
-    }
-
     private void SaveTimerTick(object sender, ElapsedEventArgs e)
     {
         if (IsAutoSaveEnabled && HasUnsavedChanges)
         {
             if (!string.IsNullOrWhiteSpace(CurrentFile))
-                SaveWorldThreaded(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"));
+                SaveWorldThreaded(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"), GetSaveVersion_MaxConfig());
             else
-                SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave.tmp"));
+                SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave.tmp"), GetSaveVersion_MaxConfig());
         }
     }
 
@@ -1029,22 +848,9 @@ public partial class WorldViewModel : ViewModelBase
         // Mark as having unsaved changes for both autosave and user save tracking
         _hasUnsavedPropertyChanges = true;
         _hasUnsavedUserPropertyChanges = true;
-        RaisePropertyChanged(nameof(HasUnsavedChanges));
-        RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+        this.RaisePropertyChanged(nameof(HasUnsavedChanges));
+        this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
         UpdateTitle();
-    }
-
-    private void ShowNewsDialog()
-    {
-        var w = new NotificationsWindow();
-        w.Owner = Application.Current.MainWindow;
-        w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        w.ShowDialog();
-    }
-
-    private void ViewLog()
-    {
-        ErrorLogging.ViewLog();
     }
 
     private void UpdateTitle()
@@ -1091,10 +897,7 @@ public partial class WorldViewModel : ViewModelBase
                 }
                 catch { }
             }
-#else
-            MessageBox.Show("This is a debug build, version checking disabled.", "Update");
 #endif
-
         }
         else if (!auto)
         {
@@ -1102,18 +905,7 @@ public partial class WorldViewModel : ViewModelBase
         }
     }
 
-    private ICommand _analyzeWorldCommand;
-    private ICommand _analyzeWorldSaveCommand;
-    private ICommand _tallyCountCommand;
-
-    /// <summary>
-    /// Relay command to execute AnalyzeWorldSave.
-    /// </summary>
-    public ICommand AnalyzeWorldSaveCommand
-    {
-        get { return _analyzeWorldSaveCommand ??= new RelayCommand(AnalyzeWorldSave); }
-    }
-
+    [ReactiveCommand]
     private void AnalyzeWorldSave()
     {
         if (CurrentWorld == null) return;
@@ -1130,14 +922,7 @@ public partial class WorldViewModel : ViewModelBase
         }
     }
 
-    /// <summary>
-    /// Relay command to execute AnalizeWorld.
-    /// </summary>
-    public ICommand AnalyzeWorldCommand
-    {
-        get { return _analyzeWorldCommand ??= new RelayCommand(AnalyzeWorld); }
-    }
-
+    [ReactiveCommand]
     private void AnalyzeWorld()
     {
         WorldAnalysis = Editor.WorldAnalysis.AnalyzeWorld(CurrentWorld);
@@ -1149,19 +934,21 @@ public partial class WorldViewModel : ViewModelBase
     public string WorldAnalysis
     {
         get { return _worldAnalysis; }
-        set { Set(nameof(WorldAnalysis), ref _worldAnalysis, value); }
+        set { this.RaiseAndSetIfChanged(ref _worldAnalysis, value); }
     }
 
     /* SBLogic - Relay command to execute KillTally */
 
-    public ICommand LoadTallyCommand
-    {
-        get { return _tallyCountCommand ??= new RelayCommand(GetTallyCount); }
-    }
-
-    private void GetTallyCount()
+    [ReactiveCommand]
+    private void LoadTally()
     {
         TallyCount = KillTally.LoadTally(CurrentWorld);
+    }
+
+    [ReactiveCommand]
+    private void EditBestiary()
+    {
+        SelectedTabIndex = 6; // Navigate to Bestiary tab
     }
 
     private string _tallyCount;
@@ -1170,7 +957,7 @@ public partial class WorldViewModel : ViewModelBase
     public string TallyCount
     {
         get { return _tallyCount; }
-        set { Set(nameof(TallyCount), ref _tallyCount, value); }
+        set { this.RaiseAndSetIfChanged(ref _tallyCount, value); }
     }
 
     public event EventHandler PreviewChanged;
@@ -1185,7 +972,7 @@ public partial class WorldViewModel : ViewModelBase
         if (PreviewChanged != null) PreviewChanged(sender, e);
     }
 
-    private void SetActiveTool(ITool tool)
+    internal void SetActiveTool(ITool tool)
     {
         if (ActiveTool != tool)
         {
@@ -1266,6 +1053,7 @@ public partial class WorldViewModel : ViewModelBase
         }
     }
 
+    [ReactiveCommand]
     private void NewWorld()
     {
         // Define the bool for prompting ore generation plugin
@@ -1352,13 +1140,7 @@ public partial class WorldViewModel : ViewModelBase
                 CurrentFile = null;
                 PixelMap = t.Result; // Set the pixel map for the world
                 UpdateTitle(); // Update the window title with the current world name
-                Points.Clear(); // Clear previous points
-                Points.Add("Spawn"); // Add default points to the list
-                Points.Add("Dungeon");
-                foreach (NPC npc in CurrentWorld.NPCs)
-                {
-                    Points.Add(npc.Name); // Add NPC names to points
-                }
+                RefreshPoints();
                 MinimapImage = RenderMiniMap.Render(CurrentWorld); // Render and set the minimap image
                 _loadTimer.Stop(); // Stop the load timer
                 OnProgressChanged(this, new ProgressChangedEventArgs(0, $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds.")); // Report completion
@@ -1859,7 +1641,7 @@ public partial class WorldViewModel : ViewModelBase
         if (pickVersion && (bool)sfd.ShowDialog())
         {
             CurrentFile = sfd.FileName;
-            SaveWorldFile(version);
+            SaveWorldFile(GetSaveVersion_MaxConfig(version)); // Clamp to the max config version.
         }
     }
 
@@ -1867,39 +1649,63 @@ public partial class WorldViewModel : ViewModelBase
     {
         if (CurrentWorld == null) return;
 
-        var sfd = new SaveFileDialog();
-        sfd.Filter =
-            "Terraria World File|*.wld|" +
-            string.Join("|", WorldConfiguration.SaveConfiguration.SaveVersions.Values.Reverse().Select(vers => $"Terraria {vers.GameVersion}|*.wld"));
+        // Build "Save As" targets from gameVersionToSaveVersion keys.
+        // Sort descending so newest versions appear first.
+        var versionKeys = WorldConfiguration.SaveConfiguration?.GameVersionToSaveVersion?.Keys
+            ?.Select(v => v.Trim())
+            .Where(v => !string.IsNullOrWhiteSpace(v))
+            .OrderByDescending(v => v, DottedVersionComparer.Instance)
+            .ToList()
+            ?? [];
 
-        sfd.Title = "Save World As";
-        sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-        sfd.FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()));
+        var sfd = new SaveFileDialog
+        {
+            // FilterIndex:
+            // 1 = "Terraria World File"
+            // 2 = first game version entry
+            // 3 = second game version entry
+            // ...
+            Filter =
+                "Terraria World File|*.wld|" +
+                string.Join("|", versionKeys.Select(v => $"Terraria v{v}|*.wld")),
+
+            Title = "Save World As",
+            InitialDirectory = DependencyChecker.PathToWorlds,
+            FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()))
+        };
+
         if ((bool)sfd.ShowDialog())
         {
             CurrentFile = sfd.FileName;
 
+            // If they picked a specific Terraria version filter, use that gameVersion -> saveVersion mapping.
             if (sfd.FilterIndex > 1)
             {
                 try
                 {
-                    var parts = sfd.Filter.Split('|');
-                    var desc = parts[(sfd.FilterIndex - 1) * 2];
-                    var key = desc.Replace("Terraria v", "");
+                    int idx = sfd.FilterIndex - 2; // map FilterIndex to versionKeys index
 
-                    if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(key, out uint versionOverride))
+                    if (idx >= 0 && idx < versionKeys.Count)
                     {
-                        SaveWorldFile(versionOverride);
-                        return;
+                        string selectedGameVersion = versionKeys[idx];
+
+                        if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(selectedGameVersion, out uint versionOverride))
+                        {
+                            SaveWorldFile(versionOverride);
+                            return;
+                        }
                     }
                 }
                 catch (Exception)
-                { }
+                {
+                    // fall through to default
+                }
             }
 
             // Maintain the existing world version.
             // This is also the fallback for parsing failures.
-            SaveWorldFile(CurrentWorld.Version);
+            // SaveWorldFile(CurrentWorld.Version);
+            SaveWorldFile(GetSaveVersion_MaxConfig());
         }
     }
 
@@ -1914,7 +1720,7 @@ public partial class WorldViewModel : ViewModelBase
                 return;
         }
 
-        SaveWorldThreaded(CurrentFile, version);
+        SaveWorldThreaded(CurrentFile, GetSaveVersion_MaxConfig(version));
     }
 
     private void SaveWorldThreaded(string filename, uint version = 0)
@@ -1944,7 +1750,7 @@ public partial class WorldViewModel : ViewModelBase
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
             }));
-        }).ContinueWith(t =>
+        }).Unwrap().ContinueWith(t =>
         {
             if (t.IsCompletedSuccessfully && _undoManager != null)
             {
@@ -1970,7 +1776,7 @@ public partial class WorldViewModel : ViewModelBase
                     // Only reset autosave tracking, keep user save tracking
                     _lastSavedUndoIndex = _undoManager.CurrentIndex;
                     _hasUnsavedPropertyChanges = false;
-                    RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedChanges));
                 }
                 else
                 {
@@ -1979,13 +1785,30 @@ public partial class WorldViewModel : ViewModelBase
                     _hasUnsavedPropertyChanges = false;
                     _lastUserSavedUndoIndex = _undoManager.CurrentIndex;
                     _hasUnsavedUserPropertyChanges = false;
-                    RaisePropertyChanged(nameof(HasUnsavedChanges));
-                    RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
                     UpdateTitle();
                 }
             }
             CommandManager.InvalidateRequerySuggested();
         }, TaskFactoryHelper.UiTaskScheduler);
+    }
+
+    private uint GetSaveVersion_MaxConfig(uint requested = 0)
+    {
+        // Make sure config is loaded (safe even if already initialized).
+        WorldConfiguration.Initialize();
+
+        uint max = WorldConfiguration.CompatibleVersion;
+        if (max == 0) return requested; // ultra-defensive
+
+        // If caller didn't request a version, default to MAX config version.
+        uint v = (requested == 0) ? max : requested;
+
+        // Never allow saving above config max.
+        if (v > max) v = max;
+
+        return v;
     }
 
     public void ReloadWorld()
@@ -2020,7 +1843,27 @@ public partial class WorldViewModel : ViewModelBase
         {
             // perform validations
             var validation = World.ValidateWorldFile(filename);
-            if (validation.IsCorrupt)
+
+            if (validation.IsPreeminent)
+            {
+                string message =
+                        $"This world version is NEWER than supported by TEdit's config.\r\n\r\n" +
+                        $"World version: {validation.Version}\r\n" +
+                        $"Max supported: {WorldConfiguration.CompatibleVersion}\r\n\r\n" +
+                        $"TEdit will fall back to config version {WorldConfiguration.CompatibleVersion} " +
+                        $"(missing newer tiles/walls/etc may cause issues).\r\n\r\n" +
+                        $"Do you want to attempt to load anyway?";
+
+                if (MessageBox.Show(message, "Newer World Version",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                {
+                    return null;
+                }
+
+                // Apply only after user accepts.
+                WorldConfiguration.ApplyForWorldVersion(validation.Version, out _);
+            }
+            else if (validation.IsCorrupt)
             {
                 // The world file contains all-zeros (corrupt).
                 string msg =
@@ -2074,7 +1917,7 @@ public partial class WorldViewModel : ViewModelBase
                     $"Editing legacy files could cause unexpected results.\r\n" +
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
-                
+
                 if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                 {
                     return null;
@@ -2104,7 +1947,7 @@ public partial class WorldViewModel : ViewModelBase
                 }
 
                 // Clean up old timestamped backup files
-                CleanupOldWorldBackups(filename);
+                FileMaintenance.CleanupOldWorldBackups(filename);
             }
             catch (Exception ex)
             {
@@ -2145,13 +1988,7 @@ public partial class WorldViewModel : ViewModelBase
 
                     PixelMap = t.Result;
                     UpdateTitle();
-                    Points.Clear();
-                    Points.Add("Spawn");
-                    Points.Add("Dungeon");
-                    foreach (NPC npc in CurrentWorld.NPCs)
-                    {
-                        Points.Add(npc.Name);
-                    }
+                    RefreshPoints();
                     MinimapImage = RenderMiniMap.Render(CurrentWorld);
                     _loadTimer.Stop();
 
@@ -2160,8 +1997,8 @@ public partial class WorldViewModel : ViewModelBase
                     _hasUnsavedPropertyChanges = false;
                     _lastUserSavedUndoIndex = _undoManager?.CurrentIndex ?? 0;
                     _hasUnsavedUserPropertyChanges = false;
-                    RaisePropertyChanged(nameof(HasUnsavedChanges));
-                    RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
                     UpdateTitle();
 
                     OnProgressChanged(this, new ProgressChangedEventArgs(0,

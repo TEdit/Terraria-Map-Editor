@@ -19,9 +19,11 @@ public class TEditFileFormatException : Exception
     {
     }
 
+#pragma warning disable SYSLIB0051 // Obsolete serialization constructor required for netstandard2.0 compatibility
     protected TEditFileFormatException(
-        System.Runtime.Serialization.SerializationInfo info, 
+        System.Runtime.Serialization.SerializationInfo info,
         System.Runtime.Serialization.StreamingContext context) : base(info, context)
     {
     }
+#pragma warning restore SYSLIB0051
 }

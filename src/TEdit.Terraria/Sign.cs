@@ -1,9 +1,8 @@
 using System;
-using TEdit.Common.Reactive;
 
 namespace TEdit.Terraria;
 
-public class Sign : ObservableObject
+public partial class Sign : ReactiveObject
 {
     public const int LegacyLimit = 1000;
 
@@ -19,47 +18,25 @@ public class Sign : ObservableObject
         _y = y;
     }
 
+    [Reactive]
     private string _name = string.Empty;
+
     private int _signId = -1;
 
-
-
-    public string Name
-    {
-        get { return _name; }
-        set { Set(nameof(Name), ref _name, value); }
-    }
-
+    [Reactive]
     private string _text;
-    public string Text
-    {
-        get { return _text; }
-        set { Set(nameof(Text), ref _text, value); }
-    }
 
+    [Reactive]
     private int _x;
+
+    [Reactive]
     private int _y;
-
-
-    public int Y
-    {
-        get { return _y; }
-        set { Set(nameof(Y), ref _y, value); }
-    }
-
-    public int X
-    {
-        get { return _x; }
-        set { Set(nameof(X), ref _x, value); }
-    }
-
 
     public override string ToString()
     {
         var textPreview = string.IsNullOrEmpty(_text) ? string.Empty : _text.Substring(0, Math.Min(_text.Length, 25));
         return $"[Sign: {textPreview}, ({X},{Y})]";
     }
-
 
     public Sign Copy()
     {

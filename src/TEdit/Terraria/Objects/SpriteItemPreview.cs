@@ -1,6 +1,5 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEdit.Common.Reactive;
 using TEdit.ViewModel;
 using TEdit.Editor;
 using System.Collections.Generic;

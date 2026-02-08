@@ -12,16 +12,15 @@ WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 
 using System;
 using System.IO;
-using System.ComponentModel;
+using System.Reactive.Linq;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
 using Microsoft.Win32;
-using TEdit.Common.Reactive.Command;
 using Newtonsoft.Json;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Editor.Clipboard;
@@ -29,7 +28,7 @@ using TEdit.Geometry;
 
 namespace TEdit.Editor.Plugins;
 
-public class HouseGenPlugin : BasePlugin
+public partial class HouseGenPlugin : BasePlugin
 {
     private HouseGenPluginView _view;
     private HouseGenViewModel _vm;
@@ -58,7 +57,7 @@ public class HouseGenPlugin : BasePlugin
         }
     }
 
-    public class HouseGenViewModel : INotifyPropertyChanged
+    public partial class HouseGenViewModel : ReactiveObject
     {
         private readonly Random _rand = new();
 
@@ -67,33 +66,11 @@ public class HouseGenPlugin : BasePlugin
         private ObservableCollection<HouseGenTemplate> _templates;
         public ObservableCollection<HouseGenTemplate> HouseGenTemplates => _templates;
 
-        private HouseGenTemplate _selectedTemplate;
-        public HouseGenTemplate SelectedTemplate
-        {
-            get { return _selectedTemplate; }
-            set { _selectedTemplate = value; OnPropertyChanged(); }
-        }
+        [Reactive] private HouseGenTemplate _selectedTemplate;
 
-        private ClipboardBufferPreview _generatedSchematic;
-        public ClipboardBufferPreview GeneratredSchematic
-        {
-            get { return _generatedSchematic; }
-            set { _generatedSchematic = value; }
-        }
-
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/dotnet/desktop/wpf/data/how-to-implement-property-change-notification?view=netframeworkdesktop-4.8
-        /// </summary>
+        [Reactive] private ClipboardBufferPreview _generatredSchematic;
 
         public WriteableBitmap Preview => GeneratredSchematic?.Preview;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        // Create the OnPropertyChanged method to raise the event
-        // The calling member's name will be used as the parameter.
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
 
         private Vector2Int32 _generatedSchematicSize;
         public Vector2Int32 GeneratedSchematicSize
@@ -101,42 +78,20 @@ public class HouseGenPlugin : BasePlugin
             get { return GeneratedSchematicSize; }
         }
 
-        public ICommand _importCommand;
-        public ICommand _generateCommand;
-        public ICommand _copyCommand;
-        //public ICommand _cancelCommand;            
+        private IObservable<bool> CanGenerate =>
+            this.WhenAnyValue(x => x.SelectedTemplate).Select(t => t != null);
 
-        public ICommand ImportCommand
-        {
-            get { return _importCommand ??= new RelayCommand(ImportTemplateSchematic); }
-        }
+        private IObservable<bool> CanCopy =>
+            this.WhenAnyValue(x => x.GeneratredSchematic).Select(s => s?.Preview != null);
 
-        public ICommand GenerateCommand
-        {
-            get { return _generateCommand ??= new RelayCommand(() => Generate(SelectedTemplate), GenerateCanExecute); }
-        }
+        [ReactiveCommand]
+        private void Import() => ImportTemplateSchematic();
 
-        public ICommand CopyCommand
-        {
-            get { return _copyCommand ??= new RelayCommand(Copy, CopyCanExecute); }
-        }
+        [ReactiveCommand(CanExecute = nameof(CanGenerate))]
+        private void Generate() => GenerateFromTemplate(SelectedTemplate);
 
-        /*
-        public ICommand CancelCommand
-        {
-            get { return _cancelCommand ?? (_cancelCommand = new RelayCommand(Cancel)); }
-        }
-        */
-
-        public bool GenerateCanExecute()
-        {
-            return SelectedTemplate != null;
-        }
-
-        private bool CopyCanExecute()
-        {
-            return Preview != null;
-        }
+        [ReactiveCommand(CanExecute = nameof(CanCopy))]
+        private void Copy() => _clipboardManagerLoadedBuffers.Add(GeneratredSchematic);
 
         public HouseGenViewModel(ObservableCollection<ClipboardBufferPreview> loadedBuffers)
         {
@@ -173,7 +128,7 @@ public class HouseGenPlugin : BasePlugin
             }
         }
 
-        private void Generate(HouseGenTemplate template)
+        private void GenerateFromTemplate(HouseGenTemplate template)
         {
 
             //Retrive buffer size.
@@ -249,20 +204,8 @@ public class HouseGenPlugin : BasePlugin
                 }
             }
 
-            _generatedSchematic = new ClipboardBufferPreview(bufferData);
+            GeneratredSchematic = new ClipboardBufferPreview(bufferData);
         }
-
-        private void Copy()
-        {
-            _clipboardManagerLoadedBuffers.Add(GeneratredSchematic);
-        }
-
-        /*
-        private void Cancel()
-        {
-
-        }
-        */
 
         private static HouseGenTemplate LoadTemplate(string path)
         {

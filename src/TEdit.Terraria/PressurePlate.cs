@@ -1,23 +1,10 @@
-using System;
-using TEdit.Common.Reactive;
-
 namespace TEdit.Terraria;
 
-public class PressurePlate : ObservableObject
+public partial class PressurePlate : ReactiveObject
 {
-    private int _x;
-    private int _y;
+    [Reactive]
+    private int _posX;
 
-    public int PosX
-    {
-        get { return _x; }
-        set { Set(nameof(PosX), ref _x, value); }
-    }
-    
-    public int PosY
-    {
-        get { return _y; }
-        set { Set(nameof(PosY), ref _y, value); }
-    }        
-    
+    [Reactive]
+    private int _posY;
 }
