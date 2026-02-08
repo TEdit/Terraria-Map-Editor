@@ -123,7 +123,7 @@ public partial class MouseTile : ReactiveObject
         if (WorldConfiguration.TileProperties.Count > tile.Type)
         {
             var tileProperty = WorldConfiguration.TileProperties[tile.Type];
-            TileName = tile.IsActive ? $"{tileProperty.Name} ({tile.Type})" : "[empty]";
+            TileName = tile.IsActive ? $"{tileProperty.Name} ({tile.Type})" : "[空]";
         }
  
         else
@@ -142,22 +142,22 @@ public partial class MouseTile : ReactiveObject
 
         // Extras
         var extras = tile.LiquidAmount > 0
-            ? $"{tile.LiquidType}: {tile.LiquidAmount}"
+        ? $"{TranslateLiquidType(tile.LiquidType)}: {tile.LiquidAmount}" // Use translated liquid type here
             : string.Empty;
 
         if (tile.InActive)
-            extras += " Inactive";
+            extras += " 未激活";
 
         if (tile.Actuator)
-            extras += " Actuator";
+            extras += " 致动器";
 
         if (tile.WireRed || tile.WireBlue || tile.WireGreen || tile.WireYellow)
         {
-            extras += string.IsNullOrWhiteSpace(extras) ? "Wire " : ", Wire ";
-            if (tile.WireRed) extras += "R";
-            if (tile.WireGreen) extras += "G";
-            if (tile.WireBlue) extras += "B";
-            if (tile.WireYellow) extras += "Y";
+            extras += string.IsNullOrWhiteSpace(extras) ? "电线 " : ", 电线 ";
+            if (tile.WireRed) extras += "红";
+            if (tile.WireGreen) extras += "绿";
+            if (tile.WireBlue) extras += "蓝";
+            if (tile.WireYellow) extras += "黄";
         }
 
         TileExtras = extras;
@@ -166,16 +166,34 @@ public partial class MouseTile : ReactiveObject
         if (tile.TileColor > 0)
         {
             Paint = tile.WallColor > 0
-                ? $"Tile: {WorldConfiguration.PaintProperties[tile.TileColor].Name}, Wall: {WorldConfiguration.PaintProperties[tile.WallColor].Name}"
-                : $"Tile: {WorldConfiguration.PaintProperties[tile.TileColor].Name}";
+                ? $"物块: {WorldConfiguration.PaintProperties[tile.TileColor].Name}, 墙: {WorldConfiguration.PaintProperties[tile.WallColor].Name}"
+                : $"物块: {WorldConfiguration.PaintProperties[tile.TileColor].Name}";
         }
         else if (tile.WallColor > 0)
         {
-            Paint = $"Wall: {WorldConfiguration.PaintProperties[tile.WallColor].Name}";
+            Paint = $"墙: {WorldConfiguration.PaintProperties[tile.WallColor].Name}";
         }
         else
         {
-            Paint = "None";
+            Paint = "无";
+        }
+    }
+
+    // Translate liquid type (English to Chinese)
+    private string TranslateLiquidType(TEdit.Configuration.LiquidType liquidType)
+    {
+        switch (liquidType)
+        {
+            case TEdit.Configuration.LiquidType.Water:
+                return "水";
+            case TEdit.Configuration.LiquidType.Lava:
+                return "岩浆";
+            case TEdit.Configuration.LiquidType.Honey:
+                return "蜂蜜";
+            case TEdit.Configuration.LiquidType.Shimmer:
+                return "微光";
+            default:
+                return string.Empty;  // 默认返回空字符串，不显示
         }
     }
 }
