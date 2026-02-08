@@ -202,26 +202,52 @@ public partial class App : Application
     public static void LoadAppSettings()
     {
         var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
-        var xmlSettings = XElement.Load(settingspath);
+        var xmlSettings  = XElement.Load(settingspath);
+
         foreach (var xElement in xmlSettings.Elements("ShortCutKeys").Elements("Shortcut"))
         {
+            string keyText = (string)xElement.Attribute("Key");
+            string modText = (string)xElement.Attribute("Modifier");
+            string action  = (string)xElement.Attribute("Action");
 
-            Enum.TryParse<Key>((string)xElement.Attribute("Key"), out var key);
-            Enum.TryParse<ModifierKeys>((string)xElement.Attribute("Modifier"), out var modifier);
+            if (string.IsNullOrWhiteSpace(action))
+            {
+                ErrorLogging.Log("[Settings] Shortcut missing Action attribute; skipping.");
+                continue;
+            }
 
-            var tool = (string)xElement.Attribute("Action");
-            ShortcutKeys.Add(tool, key, modifier);
+            // Key (ignore case) + validate.
+            if (!Enum.TryParse<Key>(keyText, ignoreCase: true, out var key) || key == Key.None)
+            {
+                ErrorLogging.Log($"[Settings] Invalid Key=\"{keyText}\" for Action=\"{action}\"; skipping.");
+                continue;
+            }
+
+            // Modifier (optional, ignore case) + validate.
+            ModifierKeys modifier = ModifierKeys.None;
+            if (!string.IsNullOrWhiteSpace(modText) &&
+                !Enum.TryParse<ModifierKeys>(modText, ignoreCase: true, out modifier))
+            {
+                ErrorLogging.Log($"[Settings] Invalid Modifier=\"{modText}\" for Action=\"{action}\"; using None.");
+                modifier = ModifierKeys.None;
+            }
+
+            // Register (no crash on duplicates).
+            bool replaced = ShortcutKeys.Add(action, key, modifier);
+            if (replaced)
+            {
+                ErrorLogging.Log($"[Settings] Duplicate shortcut {modifier}+{key} -> using latest Action=\"{action}\".");
+            }
         }
 
         XElement appSettings = xmlSettings.Element("App");
-        int appWidth = (int?)appSettings.Attribute("Width") ?? 800;
-        int appHeight = (int?)appSettings.Attribute("Height") ?? 600;
-        int clipboardSize = (int)Calc.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
-
+        int appWidth         = (int?)appSettings.Attribute("Width")  ?? 800;
+        int appHeight        = (int?)appSettings.Attribute("Height") ?? 600;
+        int clipboardSize    = (int)Calc.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
 
         ClipboardBufferRenderer.ClipboardRenderSize = clipboardSize;
         ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
-        AltC = (string)(xmlSettings.Element("AltC") ?? xmlSettings.Element("App")?.Element("AltC")); // Handles either nesting.
+        AltC = (string)(xmlSettings.Element("AltC") ?? xmlSettings.Element("App")?.Element("AltC"));
         SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;
     }
 }

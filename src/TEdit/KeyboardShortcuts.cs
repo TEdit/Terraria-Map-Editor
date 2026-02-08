@@ -8,9 +8,14 @@ public class KeyboardShortcuts
 {
     private Dictionary<KeyCombo, string> KeyCommands = new Dictionary<KeyCombo, string>();
 
-    public void Add(string command, Key key, ModifierKeys modifier = ModifierKeys.None)
+    public bool Add(string command, Key key, ModifierKeys modifier = ModifierKeys.None)
     {
-        KeyCommands.Add(new KeyCombo(key, modifier), command.ToLowerInvariant());
+        var combo = new KeyCombo(key, modifier);
+        if (KeyCommands.ContainsKey(combo))
+            return true; // Duplicate, ignored.
+
+        KeyCommands.Add(combo, command.ToLowerInvariant());
+        return false;
     }
 
     public string Get(KeyEventArgs e) => Get(e.Key, e.KeyboardDevice.Modifiers);
