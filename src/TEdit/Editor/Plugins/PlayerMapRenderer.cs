@@ -269,28 +269,38 @@ namespace TEdit.Editor.Plugins
                             else
                             {
                                 paintColor = 0;
-                                tileData = MapHelper.tileLookup[350]; // Default to Space (MartianConduitPlating)
 
-                                // Determine the layer and set appropriate tileData
-                                if (y <= world.GroundLevel * 0.3499999940395355) // Space Layer
+                                // IMPORTANT:
+                                // Terraria map backgrounds are NOT encoded as tile IDs.
+                                // They're encoded using "type codes" (b5) where:
+                                //   6 = Sky gradient (above surface) OR hell background (below surface).
+                                //   7 = Dirt/rock background (dirt vs rock chosen by y), with a 0..255 "snowiness" parameter.
+
+                                int underworldStart = world.TilesHigh - 200;
+
+                                if (y < world.GroundLevel)
                                 {
-                                    tileData = MapHelper.tileLookup[350]; // MartianConduitPlating
+                                    // SKY GRADIENT: Game computes gradient from y; you must encode type=6 and NOT write tileData.
+                                    colorOffset = 6;
+                                    hasLight = false; // (this is the "write type bytes" flag).
+                                    tileData = 0;     // Ignored for type=6.
                                 }
-                                else if (y <= world.GroundLevel && y > world.GroundLevel * 0.3499999940395355) // Sky Layer
+                                else if (y >= underworldStart)
                                 {
-                                    tileData = MapHelper.tileLookup[126]; // DiscoBall
+                                    // HELL BACKGROUND: Also type=6 and no tileData stored.
+                                    colorOffset = 6;
+                                    hasLight = false;
+                                    tileData = 0;
                                 }
-                                else if (y >= world.GroundLevel && y < world.RockLevel) // Ground Layer
+                                else
                                 {
-                                    tileData = MapHelper.wallLookup[2]; // DirtUnsafe
-                                }
-                                else if (y >= world.RockLevel && y < (world.TilesHigh - 200)) // Cavern Layer
-                                {
-                                    tileData = MapHelper.wallLookup[1]; // StoneWall
-                                }
-                                else if (y >= (world.TilesHigh - 200)) // Underground Layer
-                                {
-                                    tileData = MapHelper.tileLookup[234]; // Crimson Sand // TE - Wall:87 LihzahrdBrickUnsafe
+                                    // DIRT/ROCK BACKGROUND: type=7 and you store a single byte 0..255 (snowiness).
+                                    colorOffset = 7;
+                                    hasLight = true;
+
+                                    // 0 = normal (no snow). If you want snow blending, set 255 when near snow/ice tiles.
+                                    // tileData = 0;
+                                    tileData = ComputeSnowiness(world, x, y);
                                 }
                             }
 
@@ -372,6 +382,31 @@ namespace TEdit.Editor.Plugins
                 {
                     deflateStream.Write(buffer, 0, bufferPosition);
                 }
+            }
+
+            private static ushort ComputeSnowiness(World world, int x, int y)
+            {
+                // Vanilla snow-related tile IDs used for background snowiness influence:
+                // 147, 161, 162, 163, 164, 200
+                int radius = 36;
+
+                for (int sx = x - radius; sx <= x + 30; sx += 10)
+                {
+                    for (int sy = y - radius; sy <= y + 30; sy += 10)
+                    {
+                        if (sx < 0 || sy < 0 || sx >= world.TilesWide || sy >= world.TilesHigh)
+                            continue;
+
+                        var t = world.Tiles[sx, sy];
+                        if (!t.IsActive) continue;
+
+                        ushort type = t.Type;
+                        if (type == 147 || type == 161 || type == 162 || type == 163 || type == 164 || type == 200)
+                            return 255; // Full snow background.
+                    }
+                }
+
+                return 0;
             }
             #endregion
         }
