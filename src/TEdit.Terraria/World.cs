@@ -80,7 +80,7 @@ public partial class World
 
                     if (resetTime)
                     {
-                        progress?.Report(new ProgressChangedEventArgs(0, "Resetting Time..."));
+                        progress?.Report(new ProgressChangedEventArgs(0, "重置时间..."));
                     // world.ResetTime();
                     }
 
@@ -122,7 +122,7 @@ public partial class World
                             File.Copy(temp, filename, true);
                             // Delete temp save file
                             File.Delete(temp);
-                            progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));
+                            progress?.Report(new ProgressChangedEventArgs(100, "世界保存完成."));
                         }
                     }
 
@@ -158,7 +158,7 @@ public partial class World
 
                 if (resetTime)
                 {
-                    progress?.Report(new ProgressChangedEventArgs(0, "Resetting Time..."));
+                    progress?.Report(new ProgressChangedEventArgs(0, "重置时间..."));
                     //world.ResetTime();
                 }
 
@@ -202,7 +202,7 @@ public partial class World
                         File.Copy(temp, filename, true);
                         // delete temp save file
                         File.Delete(temp);
-                        progress?.Report(new ProgressChangedEventArgs(0, "World Save Complete."));
+                        progress?.Report(new ProgressChangedEventArgs(0, "世界保存完成."));
                     }
                 }
 
@@ -325,10 +325,10 @@ public partial class World
                         // reset the stream
                         b.BaseStream.Position = (long)0;
 
-                        progress?.Report(new ProgressChangedEventArgs(0, "Loading File Header..."));
+                        progress?.Report(new ProgressChangedEventArgs(0, "加载文件头..."));
                         // read section pointers and tile frame data
                         if (!LoadSectionHeader(b, out _, out _, w))
-                            throw new TEditFileFormatException("Invalid File Format Section");
+                            throw new TEditFileFormatException("无效文件格式部分");
 
                         if (w.IsChinese)
                         {
@@ -540,7 +540,7 @@ public partial class World
     {
         for (int x = 0; x < TilesWide; x++)
         {
-            progress?.Report(new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
+            progress?.Report(new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "验证世界..."));
 
             for (int y = 0; y < TilesHigh; y++)
             {
@@ -610,9 +610,9 @@ public partial class World
         progress?.Report(new ProgressChangedEventArgs(0, "Validating Complete..."));
 
         if (Chests.Count > WorldConfiguration.MaxChests)
-            throw new ArgumentOutOfRangeException($"Chest Count is {Chests.Count} which is greater than {WorldConfiguration.MaxChests}.");
+            throw new ArgumentOutOfRangeException($"箱子数量为 {Chests.Count} 该数值大于 {WorldConfiguration.MaxChests}.");
         if (Signs.Count > WorldConfiguration.MaxSigns)
-            throw new ArgumentOutOfRangeException($"Sign Count is {Signs.Count} which is greater than {WorldConfiguration.MaxSigns}.");
+            throw new ArgumentOutOfRangeException($"标牌数量为 {Signs.Count} 该数值大于 {WorldConfiguration.MaxSigns}.");
     }
 
     private void ValSpecial(int x, int y)

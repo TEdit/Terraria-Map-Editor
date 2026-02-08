@@ -244,7 +244,7 @@ public partial class WorldViewModel
             for (int y = 0; y < w.TilesHigh; y++)
             {
                 int percent = Calc.ProgressPercentage(y, w.TilesHigh);
-                progress?.Report(new ProgressChangedEventArgs(percent, "Cloning World..."));
+                progress?.Report(new ProgressChangedEventArgs(percent, "克隆世界..."));
 
                 // Generate no extra tiles.
                 for (int x = 0; x < w.TilesWide; x++)
@@ -268,7 +268,7 @@ public partial class WorldViewModel
                 npc.Home -= new Vector2Int32(leftOffset, topOffset);
                 if (!tileArea.Contains(npc.Home.X, npc.Home.Y))
                 {
-                    if (npc.Name == "Old Man")
+                    if (npc.Name == "老人")
                     {
                         npc.Home = new Vector2Int32(w.DungeonX, w.DungeonY); // Move homeless old man to dungeon.
                     }
@@ -361,7 +361,7 @@ public partial class WorldViewModel
 
         _loadTimer.Stop();
         OnProgressChanged(this, new ProgressChangedEventArgs(0,
-             $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
+             $"世界在 {_loadTimer.Elapsed.TotalSeconds} 秒内加载完毕."));
         _saveTimer.Start();
     }
 
@@ -371,7 +371,7 @@ public partial class WorldViewModel
             return;
 
         this.SelectedTabIndex = 3; // Open the clipboard tab.
-        var pasteTool = Tools.FirstOrDefault(t => t.Name == "Paste");
+        var pasteTool = Tools.FirstOrDefault(t => t.Name == "粘贴");
         if (pasteTool != null)
         {
             SetActiveTool(pasteTool);
@@ -408,14 +408,14 @@ public partial class WorldViewModel
                     for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                     {
                         Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
-                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "计算色彩..."));
                         for (int x = 0; x < CurrentWorld.TilesWide; x++)
                         {
                             PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                         }
                     }
                 }
-                OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+                OnProgressChanged(this, new ProgressChangedEventArgs(100, "渲染完成"));
             });
     }
     // OPTION: This can simply be combined with 'UpdateRenderWorld'.
@@ -429,7 +429,7 @@ public partial class WorldViewModel
                     for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                     {
                         Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
-                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "计算色彩..."));
                         for (int x = 0; x < CurrentWorld.TilesWide; x++)
                         {
                             // Define defualt bools.
@@ -503,7 +503,7 @@ public partial class WorldViewModel
                         }
                     }
                 }
-                OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+                OnProgressChanged(this, new ProgressChangedEventArgs(100, "渲染完成"));
             });
     }
     public void UpdateRenderPixel(Vector2Int32 p)
@@ -530,14 +530,14 @@ public partial class WorldViewModel
                 for (int y = bounded.Top; y < bounded.Bottom; y++)
                 {
                     Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
-                    OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                    OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "计算色彩..."));
                     for (int x = bounded.Left; x < bounded.Right; x++)
                     {
                         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                     }
                 }
             }
-            OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+            OnProgressChanged(this, new ProgressChangedEventArgs(100, "渲染完成"));
         }));
     }
 
@@ -553,17 +553,17 @@ public partial class WorldViewModel
             for (int y = 0; y < CurrentWorld.TilesHigh; y++)
             {
                 Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
-                OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "计算色彩..."));
                 for (int x = 0; x < CurrentWorld.TilesWide; x++)
                 {
                     if (y > CurrentWorld.TilesHigh || x > CurrentWorld.TilesWide)
                         throw new IndexOutOfRangeException(
-                            $"Error with world format tile [{x},{y}] is not a valid location. World file version: {CurrentWorld.Version}");
+                            $"世界格式图块错误 [{x},{y}] 不是有效位置. 世界文件版本: {CurrentWorld.Version}");
                     pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                 }
             }
         }
-        OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+        OnProgressChanged(this, new ProgressChangedEventArgs(100, "渲染完成"));
         return pixels;
     }
 

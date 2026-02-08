@@ -37,28 +37,28 @@ public partial class World
 
 
             if (w.Version < 87)
-                throw new TEditFileFormatException("World file too old, please update it by loading in game.");
+                throw new TEditFileFormatException("世界文件太旧, 请在游戏中加载以进行更新.");
             if (w.Version > world.Version)
-                throw new TEditFileFormatException("Source world version is greater than target world. Please reload both in game and resave");
+                throw new TEditFileFormatException("源世界版本高于目标世界版本. 请在游戏中重新加载并重新保存");
 
             // reset the stream
             b.BaseStream.Position = (long)0;
 
-            progress?.Report(new ProgressChangedEventArgs(0, "Loading File Header..."));
+            progress?.Report(new ProgressChangedEventArgs(0, "加载文件头..."));
             // read section pointers and tile frame data
             if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
-                throw new TEditFileFormatException("Invalid File Format Section");
+                throw new TEditFileFormatException("无效文件格式部分");
 
             w.TileFrameImportant = tileFrameImportant;
 
             // we should be at the end of the first section
             if (b.BaseStream.Position != sectionPointers[0])
-                throw new TEditFileFormatException("Unexpected Position: Invalid File Format Section");
+                throw new TEditFileFormatException("意外位置: 文件格式部分无效");
 
             // Load the flags
             LoadHeaderFlags(b, w, sectionPointers[1]);
             if (b.BaseStream.Position != sectionPointers[1])
-                throw new TEditFileFormatException("Unexpected Position: Invalid Header Flags");
+                throw new TEditFileFormatException("意外位置: 标牌部分无效");
 
             if (w.Version >= 210 && sectionPointers.Length > 9)
             {
@@ -66,7 +66,7 @@ public partial class World
                 b.BaseStream.Position = sectionPointers[8];
                 LoadBestiary(b, w);
                 if (b.BaseStream.Position != sectionPointers[9])
-                    throw new TEditFileFormatException("Unexpected Position: Invalid Bestiary Section");
+                    throw new TEditFileFormatException("意外位置: 生物图鉴部分无效");
             }
         }
 
@@ -88,54 +88,54 @@ public partial class World
         int[] sectionPointers = new int[world.GetSectionCount()];
         bool[] tileFrameImportant = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)world.Version);
 
-        progress?.Report(new ProgressChangedEventArgs(0, "Save headers..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "保存文件头..."));
         sectionPointers[0] = SaveSectionHeader(world, bw, tileFrameImportant);
         sectionPointers[1] = SaveHeaderFlags(world, bw, (int)world.Version);
-        progress?.Report(new ProgressChangedEventArgs(0, "Save Tiles..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "保存物块..."));
         sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, tileFrameImportant);
 
-        progress?.Report(new ProgressChangedEventArgs(91, "Save Chests..."));
+        progress?.Report(new ProgressChangedEventArgs(91, "保存宝箱..."));
         sectionPointers[3] = SaveChests(world.Chests, bw, (int)world.Version);
-        progress?.Report(new ProgressChangedEventArgs(92, "Save Signs..."));
+        progress?.Report(new ProgressChangedEventArgs(92, "保存标牌..."));
         sectionPointers[4] = SaveSigns(world.Signs, bw, (int)world.Version);
-        progress?.Report(new ProgressChangedEventArgs(93, "Save NPCs..."));
+        progress?.Report(new ProgressChangedEventArgs(93, "保存NPC..."));
 
         sectionPointers[5] = SaveNPCs(world, bw, (int)world.Version);
 
         if (world.Version >= 140)
         {
-            progress?.Report(new ProgressChangedEventArgs(95, "Save Tile Entities Section..."));
+            progress?.Report(new ProgressChangedEventArgs(95, "保存实体物块部分..."));
             sectionPointers[6] = SaveTileEntities(world.TileEntities, bw, world.Version);
         }
 
         if (world.Version >= 170)
         {
-            progress?.Report(new ProgressChangedEventArgs(96, "Save Weighted Pressure Plates..."));
+            progress?.Report(new ProgressChangedEventArgs(96, "保存压力板..."));
             sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
         }
 
         if (world.Version >= 189)
         {
-            progress?.Report(new ProgressChangedEventArgs(97, "Save Town Manager..."));
+            progress?.Report(new ProgressChangedEventArgs(97, "保存城镇管理员..."));
             sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw, (int)world.Version);
         }
 
         if (world.Version >= 210)
         {
-            progress?.Report(new ProgressChangedEventArgs(98, "Save Bestiary..."));
+            progress?.Report(new ProgressChangedEventArgs(98, "保存生物图鉴..."));
             sectionPointers[9] = SaveBestiary(world.Bestiary, bw);
         }
 
         if (world.Version >= 220)
         {
-            progress?.Report(new ProgressChangedEventArgs(99, "Save Creative Powers..."));
+            progress?.Report(new ProgressChangedEventArgs(99, "保存创造能力..."));
             sectionPointers[10] = SaveCreativePowers(world.CreativePowers, bw);
         }
 
-        progress?.Report(new ProgressChangedEventArgs(100, "Save Footers..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "保存页脚..."));
         SaveFooter(world, bw);
         UpdateSectionPointers(world.Version, sectionPointers, bw);
-        progress?.Report(new ProgressChangedEventArgs(100, "Save Complete."));
+        progress?.Report(new ProgressChangedEventArgs(100, "保存完成."));
     }
 
     public static int SaveTiles(Tile[,] tiles, int version, int maxX, int maxY, BinaryWriter bw, bool[] tileFrameImportant, IProgress<ProgressChangedEventArgs>? progress = null)
@@ -146,7 +146,7 @@ public partial class World
 
         for (int x = 0; x < maxX; x++)
         {
-            progress?.Report(new ProgressChangedEventArgs((int)(x.ProgressPercentage(maxX) * 0.9), "Saving Tiles..."));
+            progress?.Report(new ProgressChangedEventArgs((int)(x.ProgressPercentage(maxX) * 0.9), "保存物块..."));
 
 
             for (int y = 0; y < maxY; y++)
@@ -1317,32 +1317,32 @@ public partial class World
         // reset the stream
         b.BaseStream.Position = (long)0;
 
-        progress?.Report(new ProgressChangedEventArgs(0, "Loading File Header..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "加载文件头..."));
         // read section pointers and tile frame data
         if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
-            throw new TEditFileFormatException("Invalid File Format Section");
+            throw new TEditFileFormatException("文件格式部分无效");
 
         w.TileFrameImportant = tileFrameImportant;
 
         // we should be at the end of the first section
         if (b.BaseStream.Position != sectionPointers[0])
-            throw new TEditFileFormatException("Unexpected Position: Invalid File Format Section");
+            throw new TEditFileFormatException("意外位置: 文件格式部分无效");
 
         // Load the flags
         LoadHeaderFlags(b, w, sectionPointers[1]);
         if (b.BaseStream.Position != sectionPointers[1])
-            throw new TEditFileFormatException("Unexpected Position: Invalid Header Flags");
+            throw new TEditFileFormatException("意外位置: 标牌部分无效");
 
         if (headersOnly) { return; }
 
-        progress?.Report(new ProgressChangedEventArgs(0, "Loading Tiles..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "加载物块..."));
         w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant);
 
         if (b.BaseStream.Position != sectionPointers[2])
             b.BaseStream.Position = sectionPointers[2];
         //throw new FileFormatException("Unexpected Position: Invalid Tile Data");
 
-        progress?.Report(new ProgressChangedEventArgs(100, "Loading Chests..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "加载宝箱..."));
 
         foreach (Chest chest in LoadChestData(b, w.Version))
         {
@@ -1354,9 +1354,9 @@ public partial class World
         }
 
         if (b.BaseStream.Position != sectionPointers[3])
-            throw new TEditFileFormatException("Unexpected Position: Invalid Chest Data");
+            throw new TEditFileFormatException("意外位置: 宝箱数据无效");
 
-        progress?.Report(new ProgressChangedEventArgs(100, "Loading Signs..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "加载标牌..."));
 
         foreach (Sign sign in LoadSignData(b))
         {
@@ -1368,17 +1368,17 @@ public partial class World
         }
 
         if (b.BaseStream.Position != sectionPointers[4])
-            throw new TEditFileFormatException("Unexpected Position: Invalid Sign Data");
+            throw new TEditFileFormatException("意外位置: 标牌数据无效");
 
-        progress?.Report(new ProgressChangedEventArgs(100, "Loading NPCs..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "加载NPC..."));
         LoadNPCsData(b, w);
         if (b.BaseStream.Position != sectionPointers[5])
-            throw new TEditFileFormatException("Unexpected Position: Invalid Mob and NPC Data");
+            throw new TEditFileFormatException("意外位置: 怪物和NPC数据无效");
 
 
         if (w.Version >= 116)
         {
-            progress?.Report(new ProgressChangedEventArgs(100, "Loading Tile Entities Section..."));
+            progress?.Report(new ProgressChangedEventArgs(100, "加载实体物块部分..."));
             if (w.Version < 122)
             {
                 LoadDummies(b, w);
@@ -1388,38 +1388,38 @@ public partial class World
                 LoadTileEntities(b, w);
             }
             if (b.BaseStream.Position != sectionPointers[6])
-                throw new TEditFileFormatException("Unexpected Position: Invalid Tile Entities Section");
+                throw new TEditFileFormatException("意外位置: 实体物块部分无效");
         }
 
         if (w.Version >= 170)
         {
             LoadPressurePlate(b, w);
             if (b.BaseStream.Position != sectionPointers[7])
-                throw new TEditFileFormatException("Unexpected Position: Invalid Weighted Pressure Plate Section");
+                throw new TEditFileFormatException("意外位置: 无效压力板部分");
         }
         if (w.Version >= 189)
         {
             LoadTownManager(b, w);
             if (b.BaseStream.Position != sectionPointers[8])
-                throw new TEditFileFormatException("Unexpected Position: Invalid Town Manager Section");
+                throw new TEditFileFormatException("意外位置: 城镇管理员部分无效");
         }
         if (w.Version >= 210)
         {
             LoadBestiary(b, w);
             if (b.BaseStream.Position != sectionPointers[9])
-                throw new TEditFileFormatException("Unexpected Position: Invalid Bestiary Section");
+                throw new TEditFileFormatException("意外位置: 生物图鉴部分无效");
         }
         if (w.Version >= 220)
         {
             LoadCreativePowers(b, w);
             if (b.BaseStream.Position != sectionPointers[10])
-                throw new TEditFileFormatException("Unexpected Position: Invalid Creative Powers Section");
+                throw new TEditFileFormatException("意外位置: 无效创造权限部分");
         }
 
-        progress?.Report(new ProgressChangedEventArgs(100, "Verifying File..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "验证文件..."));
         LoadFooter(b, w);
 
-        progress?.Report(new ProgressChangedEventArgs(100, "Load Complete."));
+        progress?.Report(new ProgressChangedEventArgs(100, "加载完成."));
     }
 
     public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant, IProgress<ProgressChangedEventArgs>? progress = null)
@@ -1429,7 +1429,7 @@ public partial class World
         for (int x = 0; x < maxX; x++)
         {
             progress?.Report(
-                 new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Loading Tiles..."));
+                 new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "加载完成..."));
 
             for (int y = 0; y < maxY; y++)
             {
@@ -1449,7 +1449,7 @@ public partial class World
                         {
                             break;
                             throw new TEditFileFormatException(
-                                $"Invalid Tile Data: RLE Compression outside of bounds [{x},{y}]");
+                                $"无效物块数据: RLE 压缩超出边界 [{x},{y}]");
                         }
                         tiles[x, y] = (Tile)tile.Clone();
                         rle--;
@@ -1851,13 +1851,13 @@ public partial class World
     public static void LoadFooter(BinaryReader r, World w)
     {
         if (!r.ReadBoolean())
-            throw new TEditFileFormatException("Invalid Footer");
+            throw new TEditFileFormatException("无效页脚");
 
         if (r.ReadString() != w.Title)
-            throw new TEditFileFormatException("Invalid Footer");
+            throw new TEditFileFormatException("无效页脚");
 
         if (r.ReadInt32() != w.WorldId)
-            throw new TEditFileFormatException("Invalid Footer");
+            throw new TEditFileFormatException("无效页脚");
     }
 
     public static List<TileEntity> LoadTileEntityData(BinaryReader r, uint version)
@@ -2426,17 +2426,17 @@ public partial class World
 
             if (fileType != FileType.World)
             {
-                throw new TEditFileFormatException($"Is not a supported file type: {fileType.ToString()}");
+                throw new TEditFileFormatException($"不是受支持的文件类型: {fileType.ToString()}");
             }
 
             if (!w.IsChinese && headerFormat != WorldConfiguration.DesktopHeader)
             {
-                throw new TEditFileFormatException("Invalid desktop world header.");
+                throw new TEditFileFormatException("无效的桌面版世界标头.");
             }
 
             if (w.IsChinese && headerFormat != WorldConfiguration.ChineseHeader)
             {
-                throw new TEditFileFormatException("Invalid chinese world header.");
+                throw new TEditFileFormatException("无效的心动国服世界标头.");
             }
 
             w.FileRevision = r.ReadUInt32();

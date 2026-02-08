@@ -7,7 +7,7 @@ public class ItemProperty : ITile
 {
     public Vector2Short UV { get;set; }
     public Vector2Short Size { get; set; }
-    public string Name { get; set; } = "UNKNOWN";
+    public string Name { get; set; } = "未知";
     public float Scale { get; set; }
     public bool IsFood { get; set; }
     public TEditColor Color => TEditColor.Transparent;

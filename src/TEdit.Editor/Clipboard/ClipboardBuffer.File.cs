@@ -665,7 +665,7 @@ public partial class ClipboardBuffer
                                 }
                                 else
                                 {
-                                    curChest.Items[j].SetFromName("[empty]");
+                                    curChest.Items[j].SetFromName("[空]");
                                 }
 
                             }

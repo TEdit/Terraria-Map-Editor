@@ -63,7 +63,7 @@ public static class WorldAnalysis
         if (!fullAnalysis)
             return;
 
-        sb.WriteLine("===SECTION: Tiles===");
+        sb.WriteLine("===物块部分===");
 
         var tileCounts = new Dictionary<int, int>();
         var wireCounts = new List<int>() { 0, 0, 0, 0 };
@@ -101,7 +101,7 @@ public static class WorldAnalysis
 
         float totalTiles = world.TilesWide * world.TilesHigh;
         int airTiles = (int)(totalTiles - activeTiles);
-        sb.WriteLine("Air: {0} ({1:P2})", airTiles, airTiles / totalTiles);
+        sb.WriteLine("空气: {0} ({1:P2})", airTiles, airTiles / totalTiles);
 
 
         var tiles = tileCounts.OrderByDescending(kvp => kvp.Value);
@@ -122,26 +122,26 @@ public static class WorldAnalysis
 
 
         sb.WriteLine("===Wires===");
-        sb.WriteLine("Red Wires: {0}", wireCounts[2]);
-        sb.WriteLine("Blue Wires: {0}", wireCounts[0]);
-        sb.WriteLine("Green Wires: {0}", wireCounts[1]);
-        sb.WriteLine("Yellow Wires: {0}", wireCounts[3]);
-        sb.WriteLine("Total: {0}", wireCounts[0] + wireCounts[1] + wireCounts[2] + wireCounts[3]);
+        sb.WriteLine("红电线: {0}", wireCounts[2]);
+        sb.WriteLine("蓝电线: {0}", wireCounts[0]);
+        sb.WriteLine("绿电线: {0}", wireCounts[1]);
+        sb.WriteLine("黄电线: {0}", wireCounts[3]);
+        sb.WriteLine("总共: {0}", wireCounts[0] + wireCounts[1] + wireCounts[2] + wireCounts[3]);
 
 
-        sb.WriteLine("===SECTION: Chests===");
-        sb.WriteProperty("Chest Count", world.Chests.Count);
-        sb.WriteProperty("Chest Max Items", Chest.LegacyMaxItems);
+        sb.WriteLine("===宝箱部分===");
+        sb.WriteProperty("宝箱统计", world.Chests.Count);
+        sb.WriteProperty("宝箱最大物品数", Chest.LegacyMaxItems);
 
         foreach (var chest in world.Chests)
         {
-            sb.Write("[{0}, {1}] {2} - Contents: ", chest.X, chest.Y, chest.Name);
+            sb.Write("[{0}, {1}] {2} - 内容: ", chest.X, chest.Y, chest.Name);
 
             for (int i = 0; i < Chest.LegacyMaxItems; i++)
             {
                 Item item = chest.Items[i];
                 if (item == null)
-                    sb.Write("[{0}]: Empty,", i.ToString());
+                    sb.Write("[{0}]: 空,", i.ToString());
                 else
                 {
                     sb.Write("[{0}]: {1} - {2}{3},", i.ToString(), item.StackSize, item.PrefixName, item.Name);
@@ -153,7 +153,7 @@ public static class WorldAnalysis
 
 
 
-        sb.WriteLine("===SECTION: Signs===");
+        sb.WriteLine("===标牌部分===");
         sb.WriteProperty("Sign Count", world.Signs.Count);
 
         foreach (var sign in world.Signs)
@@ -161,27 +161,27 @@ public static class WorldAnalysis
             sb.Write("[{0}, {1}] {2}\r\n", sign.X, sign.Y, sign.Text);
         }
 
-        sb.WriteLine("===SECTION: NPCs===");
+        sb.WriteLine("===NPC部分===");
         sb.WriteProperty("NPC Count", world.NPCs.Count);
         foreach (var npc in world.NPCs)
         {
-            sb.Write("ID: {0}, Name: {1}, Position: [{2:0.00}, {3:0.00}], {4}: [{5}, {6}]\r\n", npc.Name, npc.DisplayName, npc.Position.X, npc.Position.Y, npc.IsHomeless ? "Homeless" : "Home", npc.Home.X, npc.Home.Y);
+            sb.Write("ID: {0}, 名字: {1}, 位置: [{2:0.00}, {3:0.00}], {4}: [{5}, {6}]\r\n", npc.Name, npc.DisplayName, npc.Position.X, npc.Position.Y, npc.IsHomeless ? "无家可归" : "家", npc.Home.X, npc.Home.Y);
         }
 
-        sb.WriteLine("===SECTION: Tile Entities===");
+        sb.WriteLine("===实体块部分===");
         sb.WriteProperty("Tile Entities Count", world.TileEntities.Count);
         foreach (var entity in world.TileEntities)
         {
             switch (entity.Type)
             {
                 case 0:
-                    sb.Write("Dummy - ID: {0}, Position: [{1}, {2}], NPC: {3}\r\n", entity.Id, entity.PosX, entity.PosY, entity.Npc);
+                    sb.Write("虚拟 - ID: {0}, 位置: [{1}, {2}], NPC: {3}\r\n", entity.Id, entity.PosX, entity.PosY, entity.Npc);
                     break;
                 case 1:
-                    sb.Write("ItemFrame - ID: {0}, Position: [{1}, {2}], ItemID: {3}, Prefix: {4}, Stack: {5}\r\n", entity.Id, entity.PosX, entity.PosY, entity.NetId, entity.Prefix, entity.StackSize);
+                    sb.Write("物品框 - ID: {0}, 位置: [{1}, {2}], 物品ID: {3}, 前缀: {4}, 堆叠数: {5}\r\n", entity.Id, entity.PosX, entity.PosY, entity.NetId, entity.Prefix, entity.StackSize);
                     break;
                 case 2:
-                    sb.Write("Logic Sensor - ID: {0}, Position: [{1}, {2}], LogicCheck: {3}, On: {4}\r\n", entity.Id, entity.PosX, entity.PosY, entity.LogicCheck, entity.On);
+                    sb.Write("逻辑感应器 - ID: {0}, 位置: [{1}, {2}], 逻辑检查: {3}, 开: {4}\r\n", entity.Id, entity.PosX, entity.PosY, entity.LogicCheck, entity.On);
                     break;
             }
         }
@@ -191,10 +191,10 @@ public static class WorldAnalysis
 
     private static void WriteHeader(StreamWriter sb, World world)
     {
-        sb.WriteLine("===SECTION: Header===");
-        sb.WriteProperty("Compatible Version", world.Version);
-        sb.WriteProperty("Section Count", world.GetSectionCount());
-        sb.Write("Frames: ");
+        sb.WriteLine("===标题部分===");
+        sb.WriteProperty("兼容版本", world.Version);
+        sb.WriteProperty("**部分数量", world.GetSectionCount());
+        sb.Write("框架: ");
         foreach (bool t in world.TileFrameImportant)
         {
             sb.Write(t ? 1 : 0);
@@ -204,142 +204,142 @@ public static class WorldAnalysis
 
     private static void WriteFlags(StreamWriter sb, World world)
     {
-        sb.WriteProperty("world.FileRevision", world.FileRevision);
-        sb.WriteProperty("world.IsFavorite", world.IsFavorite);
+        sb.WriteProperty("世界文件修订", world.FileRevision);
+        sb.WriteProperty("是否收藏世界", world.IsFavorite);
 
-        sb.WriteLine("===SECTION: Flags===");
+        sb.WriteLine("===标志部分===");
 
-        sb.WriteProperty("world.Title", world.Title);
-        sb.WriteProperty("world.WorldId", world.WorldId);
-        sb.WriteProperty("world.LeftWorld", world.LeftWorld);
-        sb.WriteProperty("world.RightWorld", world.RightWorld);
-        sb.WriteProperty("world.TopWorld", world.TopWorld);
-        sb.WriteProperty("world.BottomWorld", world.BottomWorld);
-        sb.WriteProperty("world.TilesHigh", world.TilesHigh);
-        sb.WriteProperty("world.TilesWide", world.TilesWide);
+        sb.WriteProperty("世界标题", world.Title);
+        sb.WriteProperty("世界ID", world.WorldId);
+        sb.WriteProperty("世界左边", world.LeftWorld);
+        sb.WriteProperty("世界右边", world.RightWorld);
+        sb.WriteProperty("世界上边", world.TopWorld);
+        sb.WriteProperty("世界下边", world.BottomWorld);
+        sb.WriteProperty("物块高度", world.TilesHigh);
+        sb.WriteProperty("物块宽度", world.TilesWide);
 
-        sb.WriteProperty("world.GameMode", world.GameMode);
-        sb.WriteProperty("world.DrunkWorld", world.DrunkWorld);
-        sb.WriteProperty("world.CreationTime", world.CreationTime);
-        sb.WriteProperty("world.LastPlayed", world.LastPlayed);
+        sb.WriteProperty("游戏难度", world.GameMode);
+        sb.WriteProperty("醉酒世界", world.DrunkWorld);
+        sb.WriteProperty("创建时间", world.CreationTime);
+        sb.WriteProperty("最后游玩", world.LastPlayed);
 
-        sb.WriteProperty("world.MoonType", world.MoonType);
-        sb.WriteProperty("world.TreeX[0]", world.TreeX0);
-        sb.WriteProperty("world.TreeX[1]", world.TreeX1);
-        sb.WriteProperty("world.TreeX[2]", world.TreeX2);
-        sb.WriteProperty("world.TreeStyle[0]", world.TreeStyle0);
-        sb.WriteProperty("world.TreeStyle[1]", world.TreeStyle1);
-        sb.WriteProperty("world.TreeStyle[2]", world.TreeStyle2);
-        sb.WriteProperty("world.TreeStyle[3]", world.TreeStyle3);
-        sb.WriteProperty("world.CaveBackX[0]", world.CaveBackX0);
-        sb.WriteProperty("world.CaveBackX[1]", world.CaveBackX1);
-        sb.WriteProperty("world.CaveBackX[2]", world.CaveBackX2);
-        sb.WriteProperty("world.CaveBackStyle[0]", world.CaveBackStyle0);
-        sb.WriteProperty("world.CaveBackStyle[1]", world.CaveBackStyle1);
-        sb.WriteProperty("world.CaveBackStyle[2]", world.CaveBackStyle2);
-        sb.WriteProperty("world.CaveBackStyle[3]", world.CaveBackStyle3);
-        sb.WriteProperty("world.IceBackStyle", world.IceBackStyle);
-        sb.WriteProperty("world.JungleBackStyle", world.JungleBackStyle);
-        sb.WriteProperty("world.HellBackStyle", world.HellBackStyle);
+        sb.WriteProperty("月亮样式", world.MoonType);
+        sb.WriteProperty("树X[0]", world.TreeX0);
+        sb.WriteProperty("树X[1]", world.TreeX1);
+        sb.WriteProperty("树X[2]", world.TreeX2);
+        sb.WriteProperty("树样式[0]", world.TreeStyle0);
+        sb.WriteProperty("树样式[1]", world.TreeStyle1);
+        sb.WriteProperty("树样式[2]", world.TreeStyle2);
+        sb.WriteProperty("树样式[3]", world.TreeStyle3);
+        sb.WriteProperty("洞穴背景X[0]", world.CaveBackX0);
+        sb.WriteProperty("洞穴背景X[1]", world.CaveBackX1);
+        sb.WriteProperty("洞穴背景X[2]", world.CaveBackX2);
+        sb.WriteProperty("洞穴背景样式[0]", world.CaveBackStyle0);
+        sb.WriteProperty("洞穴背景样式[1]", world.CaveBackStyle1);
+        sb.WriteProperty("洞穴背景样式[2]", world.CaveBackStyle2);
+        sb.WriteProperty("洞穴背景样式[3]", world.CaveBackStyle3);
+        sb.WriteProperty("雪原背景样式", world.IceBackStyle);
+        sb.WriteProperty("丛林背景样式", world.JungleBackStyle);
+        sb.WriteProperty("地狱背景样式", world.HellBackStyle);
 
-        sb.WriteProperty("world.SpawnX", world.SpawnX);
-        sb.WriteProperty("world.SpawnY", world.SpawnY);
-        sb.WriteProperty("world.GroundLevel", world.GroundLevel);
-        sb.WriteProperty("world.RockLevel", world.RockLevel);
-        sb.WriteProperty("world.Time", world.Time);
-        sb.WriteProperty("world.DayTime", world.DayTime);
-        sb.WriteProperty("world.MoonPhase", world.MoonPhase);
-        sb.WriteProperty("world.BloodMoon", world.BloodMoon);
-        sb.WriteProperty("world.IsEclipse", world.IsEclipse);
-        sb.WriteProperty("world.DungeonX", world.DungeonX);
-        sb.WriteProperty("world.DungeonY", world.DungeonY);
+        sb.WriteProperty("生成X", world.SpawnX);
+        sb.WriteProperty("生成Y", world.SpawnY);
+        sb.WriteProperty("地表层", world.GroundLevel);
+        sb.WriteProperty("洞穴层", world.RockLevel);
+        sb.WriteProperty("时间", world.Time);
+        sb.WriteProperty("日间", world.DayTime);
+        sb.WriteProperty("月相", world.MoonPhase);
+        sb.WriteProperty("血月", world.BloodMoon);
+        sb.WriteProperty("日食", world.IsEclipse);
+        sb.WriteProperty("地牢X", world.DungeonX);
+        sb.WriteProperty("地牢Y", world.DungeonY);
 
-        sb.WriteProperty("world.IsCrimson", world.IsCrimson);
+        sb.WriteProperty("猩红", world.IsCrimson);
 
-        sb.WriteProperty("world.DownedBoss1", world.DownedBoss1EyeofCthulhu);
-        sb.WriteProperty("world.DownedBoss2", world.DownedBoss2EaterofWorlds);
-        sb.WriteProperty("world.DownedBoss3", world.DownedBoss3Skeletron);
-        sb.WriteProperty("world.DownedQueenBee", world.DownedQueenBee);
-        sb.WriteProperty("world.DownedMechBoss1", world.DownedMechBoss1TheDestroyer);
-        sb.WriteProperty("world.DownedMechBoss2", world.DownedMechBoss2TheTwins);
-        sb.WriteProperty("world.DownedMechBoss3", world.DownedMechBoss3SkeletronPrime);
-        sb.WriteProperty("world.DownedMechBossAny", world.DownedMechBossAny);
-        sb.WriteProperty("world.DownedPlantBoss", world.DownedPlantBoss);
-        sb.WriteProperty("world.DownedGolemBoss", world.DownedGolemBoss);
-        sb.WriteProperty("world.DownedSlimeKingBoss", world.DownedSlimeKingBoss);
-        sb.WriteProperty("world.SavedGoblin", world.SavedGoblin);
-        sb.WriteProperty("world.SavedWizard", world.SavedWizard);
-        sb.WriteProperty("world.SavedMech", world.SavedMech);
-        sb.WriteProperty("world.DownedGoblins", world.DownedGoblins);
-        sb.WriteProperty("world.DownedClown", world.DownedClown);
-        sb.WriteProperty("world.DownedFrost", world.DownedFrost);
-        sb.WriteProperty("world.DownedPirates", world.DownedPirates);
+        sb.WriteProperty("已击败的Boss1", world.DownedBoss1EyeofCthulhu);
+        sb.WriteProperty("已击败的Boss2", world.DownedBoss2EaterofWorlds);
+        sb.WriteProperty("已击败的Boss3", world.DownedBoss3Skeletron);
+        sb.WriteProperty("已击败的QueenBee", world.DownedQueenBee);
+        sb.WriteProperty("已击败的MechBoss1", world.DownedMechBoss1TheDestroyer);
+        sb.WriteProperty("已击败的MechBoss2", world.DownedMechBoss2TheTwins);
+        sb.WriteProperty("已击败的MechBoss3", world.DownedMechBoss3SkeletronPrime);
+        sb.WriteProperty("已击败的MechBossAny", world.DownedMechBossAny);
+        sb.WriteProperty("已击败的PlantBoss", world.DownedPlantBoss);
+        sb.WriteProperty("已击败的GolemBoss", world.DownedGolemBoss);
+        sb.WriteProperty("已击败的SlimeKingBoss", world.DownedSlimeKingBoss);
+        sb.WriteProperty("已拯救哥布林", world.SavedGoblin);
+        sb.WriteProperty("已拯救巫师", world.SavedWizard);
+        sb.WriteProperty("已拯救机械师", world.SavedMech);
+        sb.WriteProperty("已击败哥布林", world.DownedGoblins);
+        sb.WriteProperty("已击败小丑", world.DownedClown);
+        sb.WriteProperty("已击败雪人", world.DownedFrost);
+        sb.WriteProperty("已击败海盗", world.DownedPirates);
 
-        sb.WriteProperty("world.ShadowOrbSmashed", world.ShadowOrbSmashed);
-        sb.WriteProperty("world.SpawnMeteor", world.SpawnMeteor);
-        sb.WriteProperty("world.ShadowOrbCount", world.ShadowOrbCount);
-        sb.WriteProperty("world.AltarCount", world.AltarCount);
-        sb.WriteProperty("world.HardMode", world.HardMode);
-        sb.WriteProperty("world.InvasionDelay", world.InvasionDelay);
-        sb.WriteProperty("world.InvasionSize", world.InvasionSize);
-        sb.WriteProperty("world.InvasionType", world.InvasionType);
-        sb.WriteProperty("world.InvasionX", world.InvasionX);
+        sb.WriteProperty("暗影珠被粉碎", world.ShadowOrbSmashed);
+        sb.WriteProperty("生成陨石", world.SpawnMeteor);
+        sb.WriteProperty("暗影珠数量", world.ShadowOrbCount);
+        sb.WriteProperty("祭坛数量", world.AltarCount);
+        sb.WriteProperty("困难模式", world.HardMode);
+        sb.WriteProperty("入侵延迟", world.InvasionDelay);
+        sb.WriteProperty("入侵规模", world.InvasionSize);
+        sb.WriteProperty("入侵类型", world.InvasionType);
+        sb.WriteProperty("入侵X", world.InvasionX);
 
-        sb.WriteProperty("world.TempRaining", world.IsRaining);
-        sb.WriteProperty("world.TempRainTime", world.TempRainTime);
-        sb.WriteProperty("world.TempMaxRain", world.TempMaxRain);
-        sb.WriteProperty("world.OreTierCobalt", world.SavedOreTiersCobalt);
-        sb.WriteProperty("world.SavedOreTiersMythril", world.SavedOreTiersMythril);
-        sb.WriteProperty("world.SavedOreTiersAdamantite", world.SavedOreTiersAdamantite);
-        sb.WriteProperty("world.BgTree", world.BgTree);
-        sb.WriteProperty("world.BgCorruption", world.BgCorruption);
-        sb.WriteProperty("world.BgJungle", world.BgJungle);
-        sb.WriteProperty("world.BgSnow", world.BgSnow);
-        sb.WriteProperty("world.BgHallow", world.BgHallow);
-        sb.WriteProperty("world.BgCrimson", world.BgCrimson);
-        sb.WriteProperty("world.BgDesert", world.BgDesert);
-        sb.WriteProperty("world.BgOcean", world.BgOcean);
-        sb.WriteProperty("world.CloudBgActive", world.CloudBgActive);
-        sb.WriteProperty("world.NumClouds", world.NumClouds);
-        sb.WriteProperty("world.WindSpeedSet", world.WindSpeedSet);
-        sb.WriteProperty("world.Anglers.Count", world.Anglers.Count);
+        sb.WriteProperty("正在下雨", world.IsRaining);
+        sb.WriteProperty("下雨时长", world.TempRainTime);
+        sb.WriteProperty("最大降雨", world.TempMaxRain);
+        sb.WriteProperty("生成钴矿", world.SavedOreTiersCobalt);
+        sb.WriteProperty("生成秘银矿", world.SavedOreTiersMythril);
+        sb.WriteProperty("生成钛金", world.SavedOreTiersAdamantite);
+        sb.WriteProperty("树背景", world.BgTree);
+        sb.WriteProperty("腐化背景", world.BgCorruption);
+        sb.WriteProperty("丛林背景", world.BgJungle);
+        sb.WriteProperty("雪原背景", world.BgSnow);
+        sb.WriteProperty("神圣背景", world.BgHallow);
+        sb.WriteProperty("猩红背景", world.BgCrimson);
+        sb.WriteProperty("沙漠背景", world.BgDesert);
+        sb.WriteProperty("海洋背景", world.BgOcean);
+        sb.WriteProperty("云背景活动", world.CloudBgActive);
+        sb.WriteProperty("云量", world.NumClouds);
+        sb.WriteProperty("风速", world.WindSpeedSet);
+        sb.WriteProperty("渔数", world.Anglers.Count);
 
         for (int i = 0; i < world.Anglers.Count; i++)
         {
-            sb.WriteProperty("Angler " + i, world.Anglers[i]);
+            sb.WriteProperty("钓鱼 " + i, world.Anglers[i]);
         }
 
-        sb.WriteProperty("world.SavedAngler", world.SavedAngler);
-        sb.WriteProperty("world.AnglerQuest", world.AnglerQuest);
+        sb.WriteProperty("已拯救渔夫", world.SavedAngler);
+        sb.WriteProperty("渔夫任务", world.AnglerQuest);
 
-        sb.WriteProperty("world.MushroomBg", world.MushroomBg);
-        sb.WriteProperty("world.UnderworldBg", world.UnderworldBg);
-        sb.WriteProperty("world.BgTree2", world.BgTree2);
-        sb.WriteProperty("world.BgTree3", world.BgTree3);
-        sb.WriteProperty("world.BgTree4", world.BgTree4);
-        sb.WriteProperty("world.CombatBookUsed", world.CombatBookUsed);
+        sb.WriteProperty("蘑菇背景", world.MushroomBg);
+        sb.WriteProperty("地下蘑菇背景", world.UnderworldBg);
+        sb.WriteProperty("树背景2", world.BgTree2);
+        sb.WriteProperty("树背景3", world.BgTree3);
+        sb.WriteProperty("树背景4", world.BgTree4);
+        sb.WriteProperty("先进战斗技术", world.CombatBookUsed);
 
         // tree tops
         for (int i = 0; i < world.TreeTopVariations.Count; i++)
         {
-            sb.WriteProperty("TreeTopVariations " + i, world.TreeTopVariations[i]);
+            sb.WriteProperty("树顶样式 " + i, world.TreeTopVariations[i]);
         }
 
-        sb.WriteProperty("world.ForceHalloweenForToday", world.ForceHalloweenForToday);
-        sb.WriteProperty("world.ForceXMasForToday", world.ForceXMasForToday);
-        sb.WriteProperty("world.SavedOreTiersCopper", world.SavedOreTiersCopper);
-        sb.WriteProperty("world.SavedOreTiersIron", world.SavedOreTiersIron);
-        sb.WriteProperty("world.SavedOreTiersSilver", world.SavedOreTiersSilver);
-        sb.WriteProperty("world.SavedOreTiersGold", world.SavedOreTiersGold);
+        sb.WriteProperty("今日强制神圣", world.ForceHalloweenForToday);
+        sb.WriteProperty("今日强制圣诞", world.ForceXMasForToday);
+        sb.WriteProperty("生成铜", world.SavedOreTiersCopper);
+        sb.WriteProperty("生成铁", world.SavedOreTiersIron);
+        sb.WriteProperty("生成银", world.SavedOreTiersSilver);
+        sb.WriteProperty("生成金", world.SavedOreTiersGold);
 
-        sb.WriteProperty("world.BoughtCat", world.BoughtCat);
-        sb.WriteProperty("world.BoughtDog", world.BoughtDog);
-        sb.WriteProperty("world.BoughtBunny", world.BoughtBunny);
+        sb.WriteProperty("已购猫", world.BoughtCat);
+        sb.WriteProperty("已购狗", world.BoughtDog);
+        sb.WriteProperty("已购兔", world.BoughtBunny);
 
-        sb.WriteProperty("world.DownedEmpressOfLight", world.DownedEmpressOfLight);
-        sb.WriteProperty("world.DownedQueenSlime", world.DownedQueenSlime);
+        sb.WriteProperty("已击败光之女皇", world.DownedEmpressOfLight);
+        sb.WriteProperty("已击败史莱姆女王", world.DownedQueenSlime);
 
         if (world.UnknownData != null && world.UnknownData.Length > 0)
-            sb.WriteProperty("world.UnknownData", BitConverter.ToString(world.UnknownData));
+            sb.WriteProperty("未知数据", BitConverter.ToString(world.UnknownData));
     }
 }

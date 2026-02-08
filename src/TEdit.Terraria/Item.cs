@@ -47,7 +47,7 @@ public partial class Item : ReactiveObject
 
     public string PrefixName
     {
-        get { return WorldConfiguration.ItemPrefix.Count > Prefix ? WorldConfiguration.ItemPrefix[Prefix] : "Unknown " + Prefix.ToString(); }
+        get { return WorldConfiguration.ItemPrefix.Count > Prefix ? WorldConfiguration.ItemPrefix[Prefix] : "未知 " + Prefix.ToString(); }
     }
 
     public string GetName()
@@ -55,7 +55,7 @@ public partial class Item : ReactiveObject
         if (_currentItemProperty != null)
             return _currentItemProperty.Name;
 
-        return "[empty]";
+        return "[空]";
     }
 
     public byte Prefix
