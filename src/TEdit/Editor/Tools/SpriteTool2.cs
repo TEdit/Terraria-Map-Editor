@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Editor;

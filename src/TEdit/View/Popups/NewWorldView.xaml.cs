@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using TEdit.Terraria;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.View.Popups

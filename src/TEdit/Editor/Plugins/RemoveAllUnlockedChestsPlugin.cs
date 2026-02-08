@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Windows;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.ViewModel;

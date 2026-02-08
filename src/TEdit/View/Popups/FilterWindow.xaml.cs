@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.ComponentModel;
 using System.Windows.Media;
-using TEdit.Configuration; // For WorldConfiguration.TileBricks, WallProperties, LiquidType.
+using TEdit.Terraria; // For WorldConfiguration.TileBricks, WallProperties, LiquidType.
 using TEdit.ViewModel;     // For FilterItem, FilterManager, etc.
 using System.Windows;
 using System.Linq;
@@ -85,7 +85,7 @@ namespace TEdit.View.Popups
 
             // Populate tile items.
             TileItems.Clear();
-            foreach (var tile in TEdit.Configuration.WorldConfiguration.TileBricks)
+            foreach (var tile in TEdit.Terraria.WorldConfiguration.TileBricks)
                 TileItems.Add(new FilterCheckItem(tile.Id, tile.Name, false));
             foreach (var item in TileItems)   // Populate IsChecked with previous saved values.
                 item.IsChecked = FilterManager.SelectedTileIDs.Contains(item.Id);
@@ -97,7 +97,7 @@ namespace TEdit.View.Popups
 
             // Populate wall items.
             WallItems.Clear();
-            foreach (var wall in TEdit.Configuration.WorldConfiguration.WallProperties)
+            foreach (var wall in TEdit.Terraria.WorldConfiguration.WallProperties)
                 WallItems.Add(new FilterCheckItem(wall.Id, wall.Name, false));
             foreach (var item in WallItems)   // Populate IsChecked with previous saved values.
                 item.IsChecked = FilterManager.SelectedWallIDs.Contains(item.Id);
@@ -139,7 +139,7 @@ namespace TEdit.View.Popups
 
             // Get all tile IDs that are considered "brick" tiles (from TileBricks).
             // We'll use these to exclude tiles that are already in the main tile list.
-            var tileIds = TEdit.Configuration.WorldConfiguration.TileBricks.Select(tb => tb.Id).ToHashSet();
+            var tileIds = TEdit.Terraria.WorldConfiguration.TileBricks.Select(tb => tb.Id).ToHashSet();
 
             // Get all unique sprite IDs for sprites whose base tile type isn't a main tile (i.e., not in TileBricks).
             var spriteIds = WorldConfiguration.Sprites2

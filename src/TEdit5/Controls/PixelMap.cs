@@ -13,7 +13,7 @@
 using Avalonia.Media;
 using System;
 using TEdit.Common;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit5.Controls.WorldRenderEngine.Layers;
 using TEdit.Terraria;
 

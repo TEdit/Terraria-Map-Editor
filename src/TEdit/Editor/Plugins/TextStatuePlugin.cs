@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Editor.Clipboard;
 using TEdit.Geometry;
 using TEdit.Terraria.Editor;

@@ -19,13 +19,13 @@ public static class DependencyChecker
         Properties.Settings.Default.Reload();
 
         string path = Properties.Settings.Default.TerrariaPath;
-        int? steamUserId = App.SteamUserId;
+        int? steamUserId = App.AppConfig?.SteamUserId;
 
-        // if hard coded in settings.xml try that location first
-        if (!string.IsNullOrWhiteSpace(App.AltC))
+        // if hard coded in appSettings.yaml try that location first
+        if (!string.IsNullOrWhiteSpace(App.AppConfig?.TerrariaContentPath))
         {
-            if (Directory.Exists(App.AltC))
-                path = App.AltC;
+            if (Directory.Exists(App.AppConfig.TerrariaContentPath))
+                path = App.AppConfig.TerrariaContentPath;
         }
 
         // if the folder is missing, reset.

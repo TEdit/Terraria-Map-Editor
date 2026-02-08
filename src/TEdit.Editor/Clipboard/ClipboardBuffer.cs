@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using System.Collections.Generic;
 using TEdit.Editor.Undo;
 using System;

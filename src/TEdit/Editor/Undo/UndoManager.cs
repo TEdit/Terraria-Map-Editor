@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.ViewModel;

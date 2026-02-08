@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms.VisualStyles;
 using TEdit.Common;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Editor.Undo;
 using TEdit.Framework.Threading;

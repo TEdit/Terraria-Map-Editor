@@ -8,10 +8,9 @@
     <Build Solution="Release|*" Project="false" />
   </Project>
   <Project Path="TEdit.Common/TEdit.Common.csproj" />
-  <Project Path="TEdit.Configuration.Tests/TEdit.Configuration.Tests.csproj" />
-  <Project Path="TEdit.Configuration/TEdit.Configuration.csproj" />
   <Project Path="TEdit.Editor/TEdit.Editor.csproj" />
   <Project Path="TEdit.Terraria/TEdit.Terraria.csproj" />
+  <Project Path="TEdit.Terraria.Tests/TEdit.Terraria.Tests.csproj" />
   <Project Path="TEdit.Tests/TEdit.Tests.csproj" />
   <Project Path="TEdit/TEdit.csproj" />
   <Project Path="TEdit5/TEdit5.csproj" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Terraria;
 

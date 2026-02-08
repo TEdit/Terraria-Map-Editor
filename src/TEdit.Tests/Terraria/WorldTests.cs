@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using TEdit.Terraria;
 using System;
 using System.Collections.Generic;
@@ -14,25 +14,49 @@ namespace TEdit.Terraria.Tests;
 
 public class WorldTests
 {
+    /// <summary>
+    /// Checks if a .wld file is a valid binary world file (not a Git LFS pointer).
+    /// LFS pointers are ~130 bytes of text starting with "version ".
+    /// </summary>
+    private static bool IsValidWorldFile(string path)
+    {
+        var info = new FileInfo(path);
+        if (!info.Exists) return false;
+        if (info.Length < 500) return false; // LFS pointers are ~130 bytes
+
+        // Check first bytes for LFS pointer signature "version "
+        using var fs = File.OpenRead(path);
+        var buf = new byte[8];
+        if (fs.Read(buf, 0, 8) < 8) return false;
+        var header = System.Text.Encoding.ASCII.GetString(buf);
+        return !header.StartsWith("version ");
+    }
+
     [Theory]
     [InlineData(".\\WorldFiles\\v1.0.wld")]
     public void LoadWorldV0_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
     }
 
     [Theory]
     [InlineData(".\\WorldFiles\\android.wld")]
     public void LoadWorldAndroid_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
     }
 
     [Theory]
     [InlineData(".\\WorldFiles\\console.wld")]
     public void LoadWorldConsole_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
     }
 
     [Theory]
@@ -57,7 +81,9 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\v1.0.1.wld")]
     public void LoadWorldV1_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
     }
 
     [Theory]
@@ -111,7 +137,9 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\v1.2.3.1.wld")]
     public void LoadWorldV2_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
     }
 
     [Theory]
@@ -121,41 +149,58 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\v1.4.4.4.wld")]
     public void LoadWorldV2_144x_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
     }
 
     [Theory]
     [InlineData(".\\WorldFiles\\v1.4.5.0.wld")]
     public void LoadWorldV2_145x_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
     }
 
     [Theory]
     [InlineData(".\\WorldFiles\\console.wld")]
     public void SaveWorld_Console_Test(string fileName)
     {
-        var (w,er) = World.LoadWorld(fileName);
+        if (!IsValidWorldFile(fileName)) return;
+        var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
 
         var saveTest = fileName + ".test";
-        World.Save(w, saveTest, incrementRevision: false);
-
-        // essentially, just a save and load test
-        var w2 = World.LoadWorld(saveTest);
+        try
+        {
+            World.Save(w, saveTest, incrementRevision: false);
+            var w2 = World.LoadWorld(saveTest);
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Theory]
     [InlineData(".\\WorldFiles\\v1.0.wld")]
-
     public void SaveWorldV0_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
 
         var saveTest = fileName + ".test";
-        World.Save(w, saveTest, versionOverride: -38, incrementRevision: false);
-
-        // essentially, just a save and load test
-        var w2 = World.LoadWorld(saveTest);
+        try
+        {
+            World.Save(w, saveTest, versionOverride: -38, incrementRevision: false);
+            var w2 = World.LoadWorld(saveTest);
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Theory]
@@ -168,16 +213,22 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\v1.2.0.3.1.wld")]
     [InlineData(".\\WorldFiles\\v1.2.0.2.wld")]
     [InlineData(".\\WorldFiles\\v1.2.0.1.wld")]
-
     public void SaveWorldV1_Terraria1_2_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
 
         var saveTest = fileName + ".test";
-        World.Save(w, saveTest, incrementRevision: false);
-
-        // essentially, just a save and load test
-        var w2 = World.LoadWorld(saveTest);
+        try
+        {
+            World.Save(w, saveTest, incrementRevision: false);
+            var w2 = World.LoadWorld(saveTest);
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Theory]
@@ -186,13 +237,20 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\v1.1.1.wld")]
     public void SaveWorldV1_Terraria1_1_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
 
         var saveTest = fileName + ".test";
-        World.Save(w, saveTest, incrementRevision: false);
-
-        // essentially, just a save and load test
-        var w2 = World.LoadWorld(saveTest);
+        try
+        {
+            World.Save(w, saveTest, incrementRevision: false);
+            var w2 = World.LoadWorld(saveTest);
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Theory]
@@ -205,27 +263,40 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\v1.0.1.wld")]
     public void SaveWorldV1_Terraria1_0_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
 
         var saveTest = fileName + ".test";
-        World.Save(w, saveTest, incrementRevision: false);
-
-        // essentially, just a save and load test
-        var w2 = World.LoadWorld(saveTest);
+        try
+        {
+            World.Save(w, saveTest, incrementRevision: false);
+            var w2 = World.LoadWorld(saveTest);
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Theory]
     [InlineData(".\\WorldFiles\\v1.0.5.wld")]
-
     public void SaveWorldV1_Terraria1_0_5_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
 
         var saveTest = fileName + ".test";
-        World.Save(w, saveTest, incrementRevision: false);
-
-        // essentially, just a save and load test
-        var w2 = World.LoadWorld(saveTest);
+        try
+        {
+            World.Save(w, saveTest, incrementRevision: false);
+            var w2 = World.LoadWorld(saveTest);
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Theory]
@@ -279,13 +350,20 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\v1.2.3.1.wld")]
     public void SaveWorldV2_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
 
         var saveTest = fileName + ".test";
-        World.Save(w, saveTest, incrementRevision: false);
-
-        // essentially, just a save and load test
-        var w2 = World.LoadWorld(saveTest);
+        try
+        {
+            World.Save(w, saveTest, incrementRevision: false);
+            var w2 = World.LoadWorld(saveTest);
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Theory]
@@ -295,26 +373,40 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\v1.4.4.4.wld")]
     public void SaveWorldV2_144x_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
 
         var saveTest = fileName + ".test";
-        World.Save(w, saveTest, incrementRevision: false);
-
-        // essentially, just a save and load test
-        var w2 = World.LoadWorld(saveTest);
+        try
+        {
+            World.Save(w, saveTest, incrementRevision: false);
+            var w2 = World.LoadWorld(saveTest);
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Theory]
     [InlineData(".\\WorldFiles\\v1.4.5.0.wld")]
     public void SaveWorldV2_145x_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
         var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
 
         var saveTest = fileName + ".test";
-        World.Save(w, saveTest, incrementRevision: false);
-
-        // essentially, just a save and load test
-        var w2 = World.LoadWorld(saveTest);
+        try
+        {
+            World.Save(w, saveTest, incrementRevision: false);
+            var w2 = World.LoadWorld(saveTest);
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Theory]
@@ -326,6 +418,8 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\console.wld")]
     public void SaveWorld_RLE_Compression_Test(string fileName)
     {
+        if (!IsValidWorldFile(fileName)) return;
+
         var fileInfo = new FileInfo(fileName);
         if (fileInfo.Length < 1_000_000)
         {
@@ -336,22 +430,25 @@ public class WorldTests
         var originalSize = fileInfo.Length;
 
         var (world, errors) = World.LoadWorld(fileName);
+        Assert.Null(errors);
+
         var saveTest = fileName + ".rle.test";
-        World.Save(world, saveTest, incrementRevision: false);
-
-        var savedSize = new FileInfo(saveTest).Length;
-        double sizeRatio = (double)savedSize / originalSize;
-
-        // Clean up test file
-        if (File.Exists(saveTest))
+        try
         {
-            File.Delete(saveTest);
-        }
+            World.Save(world, saveTest, incrementRevision: false);
 
-        // Saved file should not be significantly larger (5% tolerance for metadata)
-        Assert.True(sizeRatio <= 1.05,
-            $"File grew from {originalSize:N0} to {savedSize:N0} bytes ({sizeRatio:P1}). " +
-            $"RLE compression may not be working.");
+            var savedSize = new FileInfo(saveTest).Length;
+            double sizeRatio = (double)savedSize / originalSize;
+
+            // Saved file should not be significantly larger (5% tolerance for metadata)
+            Assert.True(sizeRatio <= 1.05,
+                $"File grew from {originalSize:N0} to {savedSize:N0} bytes ({sizeRatio:P1}). " +
+                $"RLE compression may not be working.");
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
     }
 
     [Fact]

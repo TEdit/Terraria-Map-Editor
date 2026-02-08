@@ -1,0 +1,2772 @@
+{
+  "biomes": {
+    "Purify": {
+      "morphTiles": [
+        {
+          "name": "tileGrass",
+          "default": {
+            "skyId": 2
+          },
+          "sourceIds": [2, 23, 199, 109],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMowed",
+          "default": {
+            "skyId": 477
+          },
+          "sourceIds": [477, 492],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileJungleGrass",
+          "default": {
+            "skyId": 60
+          },
+          "sourceIds": [60, 70, 661, 662],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileStone",
+          "useMoss": true,
+          "default": {
+            "skyId": 1
+          },
+          "sourceIds": [1, 25, 203, 117],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMoss",
+          "useMoss": true,
+          "default": {},
+          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileIce",
+          "default": {
+            "skyId": 161
+          },
+          "sourceIds": [161, 163, 200, 164],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSand",
+          "default": {
+            "skyId": 53
+          },
+          "sourceIds": [53, 112, 234, 116],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileHardenedSand",
+          "default": {
+            "skyId": 397
+          },
+          "sourceIds": [397, 398, 399, 402],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSandstone",
+          "default": {
+            "skyId": 396
+          },
+          "sourceIds": [396, 400, 401, 403],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteGrass",
+          "delete": true,
+          "default": {},
+          "sourceIds": [71, 24, 201, 110, 113],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "default": {
+            "skyId": 165
+          },
+          "sourceIds": [165],
+          "spriteOffsets": [
+            {
+              "maxU": 36
+            },
+            { "minU": 54, "maxU": 90 },
+            { "minU": 216, "maxU": 252, "offsetU": -162 },
+            { "minU": 270, "maxU": 306, "offsetU": -216 },
+            { "minU": 324, "maxU": 362, "offsetU": -270 },
+            { "minU": 378, "maxU": 414 },
+            { "minU": 540, "maxU": 576, "offsetU": -540 },
+            { "minU": 594, "maxU": 630, "offsetU": -594 },
+            { "minU": 648, "maxU": 684, "offsetU": -270 }
+          ]
+        },
+        {
+          "name": "spriteMushroomGrassyStone",
+          "default": {
+            "skyId": 186
+          },
+          "sourceIds": [186],
+          "spriteOffsets": [
+            { "minU": 1728, "maxU": 1872, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "default": {
+            "skyId": 52
+          },
+          "sourceIds": [52, 636, 205, 115],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteJungleVines",
+          "default": {
+            "skyId": 62
+          },
+          "sourceIds": [62, 528],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteThorns",
+          "delete": true,
+          "default": {},
+          "sourceIds": [32, 352],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteHerbsSeed",
+          "default": {
+            "skyId": 82
+          },
+          "sourceIds": [82],
+          "spriteOffsets": [
+            { "minU": 54, "maxU": 54, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "default": {
+            "skyId": 83
+          },
+          "sourceIds": [83],
+          "spriteOffsets": [
+            { "minU": 54, "maxU": 54, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "default": {
+            "skyId": 84
+          },
+          "sourceIds": [84],
+          "spriteOffsets": [
+            { "minU": 54, "maxU": 54, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteLilyPad",
+          "delete": true,
+          "default": {},
+          "sourceIds": [518],
+          "spriteOffsets": []
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallGrassNatural",
+          "default": { "skyId": 63, "dirtId": 64 },
+          "sourceIds": [63, 69, 81, 70],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallGrass",
+          "default": { "skyId": 66, "dirtId": 67 },
+          "sourceIds": [66, 264, 268, 265],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallMudNatural",
+          "default": { "skyId": 15, "dirtId": 64, "deepRockId": 15 },
+          "sourceIds": [15, 80],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallMud",
+          "default": { "skyId": 247, "dirtId": 67, "deepRockId": 247 },
+          "sourceIds": [247, 74],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneNatural",
+          "default": { "skyId": 61, "rockId": 185 },
+          "sourceIds": [61, 185, 3, 83, 28],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStone",
+          "default": { "skyId": 1, "dirtId": 262, "rockId": 274 },
+          "sourceIds": [1, 262, 274, 246, 269, 248],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandNatural",
+          "default": {
+            "skyId": 216
+          },
+          "sourceIds": [216, 217, 218, 219],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSand",
+          "default": {
+            "skyId": 304
+          },
+          "sourceIds": [304, 305, 306, 307],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneNatural",
+          "default": {
+            "skyId": 187
+          },
+          "sourceIds": [187, 220, 221, 222],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstone",
+          "default": {
+            "skyId": 275
+          },
+          "sourceIds": [275, 308, 309, 310],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Natural",
+          "default": {
+            "skyId": 212
+          },
+          "sourceIds": [212, 188, 192, 200],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Natural",
+          "default": {
+            "skyId": 213
+          },
+          "sourceIds": [213, 189, 193, 201],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Natural",
+          "default": {
+            "skyId": 214
+          },
+          "sourceIds": [214, 190, 194, 202],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4Natural",
+          "default": {
+            "skyId": 215
+          },
+          "sourceIds": [215, 191, 195, 203],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1",
+          "default": {
+            "skyId": 300
+          },
+          "sourceIds": [300, 276, 280, 288],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2",
+          "default": {
+            "skyId": 301
+          },
+          "sourceIds": [301, 277, 281, 289],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3",
+          "default": {
+            "skyId": 302
+          },
+          "sourceIds": [302, 278, 282, 290],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4",
+          "default": {
+            "skyId": 303
+          },
+          "sourceIds": [303, 279, 283, 291],
+          "spriteOffsets": []
+        }
+      ]
+    },
+    "Corruption": {
+      "morphTiles": [
+        {
+          "name": "tileGrass",
+          "default": {
+            "skyId": 23
+          },
+          "sourceIds": [2, 477, 23, 199, 109, 492],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileJungleGrass",
+          "default": {
+            "skyId": 661
+          },
+          "sourceIds": [60, 661, 662],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileStone",
+          "default": {
+            "skyId": 25
+          },
+          "sourceIds": [1, 25, 203, 117],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMoss",
+          "default": {
+            "skyId": 25
+          },
+          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileIce",
+          "default": {
+            "skyId": 163
+          },
+          "sourceIds": [161, 163, 200, 164],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSand",
+          "default": {
+            "skyId": 112
+          },
+          "sourceIds": [53, 112, 234, 116],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileHardenedSand",
+          "default": {
+            "skyId": 398
+          },
+          "sourceIds": [397, 398, 399, 402],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSandstone",
+          "default": {
+            "skyId": 400
+          },
+          "sourceIds": [396, 400, 401, 403],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteSunflower",
+          "delete": true,
+          "default": {},
+          "sourceIds": [27],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteGrass",
+          "delete": true,
+          "default": {},
+          "sourceIds": [3, 73, 61, 74, 233, 201, 110, 113],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteMoss",
+          "delete": true,
+          "default": {},
+          "sourceIds": [184],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "default": {
+            "skyId": 165
+          },
+          "sourceIds": [165],
+          "spriteOffsets": [
+            { "maxU": 36, "offsetU": 594 },
+            { "minU": 54, "maxU": 90, "offsetU": 216 },
+            { "minU": 216, "maxU": 252, "offsetU": 54 },
+            { "minU": 270, "maxU": 306 },
+            { "minU": 324, "maxU": 362, "offsetU": -54 },
+            { "minU": 378, "maxU": 414, "offsetU": -108 },
+            { "minU": 540, "maxU": 576, "offsetU": 54 },
+            { "minU": 594, "maxU": 630 },
+            { "minU": 648, "maxU": 684, "offsetU": -54 }
+          ]
+        },
+        {
+          "name": "spriteSmallGrassyStone",
+          "default": {
+            "skyId": 185
+          },
+          "sourceIds": [185],
+          "spriteOffsets": [
+            {
+              "minU": 1368,
+              "maxU": 1458,
+              "offsetU": -1368,
+              "minV": 18,
+              "maxV": 18,
+              "useFilterV": true
+            }
+          ]
+        },
+        {
+          "name": "spriteGrassyStone",
+          "default": {
+            "skyId": 186
+          },
+          "sourceIds": [187],
+          "spriteOffsets": [
+            { "minU": 756, "maxU": 918, "offsetU": -378 },
+            { "maxU": 306, "maxV": 18, "useFilterV": true, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "default": {
+            "skyId": 636
+          },
+          "sourceIds": [52, 382, 62, 636, 205, 115],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteThorns",
+          "default": {
+            "skyId": 32
+          },
+          "sourceIds": [69, 655, 32, 352],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteHerbsSeed",
+          "default": {
+            "skyId": 82
+          },
+          "sourceIds": [82],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 18, "maxU": 18, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "default": {
+            "skyId": 83
+          },
+          "sourceIds": [83],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 18, "maxU": 18, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "default": {
+            "skyId": 84
+          },
+          "sourceIds": [84],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 18, "maxU": 18, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true }
+          ]
+        },
+        {
+          "name": "spritePumpkin",
+          "delete": true,
+          "default": {},
+          "sourceIds": [254],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteLifeFruit",
+          "delete": true,
+          "default": {},
+          "sourceIds": [236],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spritePlanteraBulb",
+          "delete": true,
+          "default": {},
+          "sourceIds": [238],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteFallenLog",
+          "delete": true,
+          "default": {},
+          "sourceIds": [488],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteLilyPad",
+          "delete": true,
+          "default": {},
+          "sourceIds": [518],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteBamboo",
+          "delete": true,
+          "default": {},
+          "sourceIds": [571],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteSakuraTree",
+          "delete": true,
+          "default": {},
+          "sourceIds": [595, 596],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteWillowTree",
+          "delete": true,
+          "default": {},
+          "sourceIds": [615, 616],
+          "spriteOffsets": []
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallGrassNatural",
+          "default": {
+            "skyId": 69
+          },
+          "sourceIds": [63, 64, 65, 69, 81, 70],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallGrass",
+          "default": {
+            "skyId": 264
+          },
+          "sourceIds": [66, 67, 68, 264, 268, 265],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneNatural",
+          "default": {
+            "skyId": 3
+          },
+          "sourceIds": [61, 185, 3, 83, 28],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStone",
+          "default": {
+            "skyId": 246
+          },
+          "sourceIds": [1, 262, 274, 246, 269, 248],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandNatural",
+          "default": {
+            "skyId": 217
+          },
+          "sourceIds": [216, 217, 218, 219],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSand",
+          "default": {
+            "skyId": 305
+          },
+          "sourceIds": [304, 305, 306, 307],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneNatural",
+          "default": {
+            "skyId": 220
+          },
+          "sourceIds": [187, 220, 221, 222],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstone",
+          "default": {
+            "skyId": 308
+          },
+          "sourceIds": [275, 308, 309, 310],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Natural",
+          "default": {
+            "skyId": 188
+          },
+          "sourceIds": [212, 188, 204, 192, 200],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Natural",
+          "default": {
+            "skyId": 189
+          },
+          "sourceIds": [213, 189, 205, 193, 201],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Natural",
+          "default": {
+            "skyId": 190
+          },
+          "sourceIds": [214, 190, 206, 194, 202],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4Natural",
+          "default": {
+            "skyId": 191
+          },
+          "sourceIds": [215, 191, 207, 195, 203],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1",
+          "default": {
+            "skyId": 276
+          },
+          "sourceIds": [300, 276, 292, 280, 288],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2",
+          "default": {
+            "skyId": 277
+          },
+          "sourceIds": [301, 277, 293, 289],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3",
+          "default": {
+            "skyId": 278
+          },
+          "sourceIds": [302, 278, 294, 290],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4",
+          "default": {
+            "skyId": 279
+          },
+          "sourceIds": [303, 279, 295, 291],
+          "spriteOffsets": []
+        }
+      ]
+    },
+    "Crimson": {
+      "morphTiles": [
+        {
+          "name": "tileGrass",
+          "default": {
+            "skyId": 199
+          },
+          "sourceIds": [2, 477, 23, 199, 109, 492],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileJungleGrass",
+          "default": {
+            "skyId": 662
+          },
+          "sourceIds": [60, 661, 662],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileStone",
+          "default": {
+            "skyId": 203
+          },
+          "sourceIds": [1, 25, 203, 117],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMoss",
+          "default": {
+            "skyId": 203
+          },
+          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileIce",
+          "default": {
+            "skyId": 200
+          },
+          "sourceIds": [161, 163, 200, 164],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSand",
+          "default": {
+            "skyId": 234
+          },
+          "sourceIds": [53, 112, 234, 116],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileHardenedSand",
+          "default": {
+            "skyId": 399
+          },
+          "sourceIds": [397, 398, 399, 402],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSandstone",
+          "default": {
+            "skyId": 401
+          },
+          "sourceIds": [396, 400, 401, 403],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteSunflower",
+          "delete": true,
+          "default": {},
+          "sourceIds": [27],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteGrass",
+          "delete": true,
+          "default": {},
+          "sourceIds": [3, 73, 61, 74, 233, 24, 110, 113],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteMoss",
+          "delete": true,
+          "default": {},
+          "sourceIds": [184],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "default": {
+            "skyId": 165
+          },
+          "sourceIds": [165],
+          "spriteOffsets": [
+            { "maxU": 36, "offsetU": 648 },
+            { "minU": 54, "maxU": 90, "offsetU": 270 },
+            { "minU": 216, "maxU": 252, "offsetU": 108 },
+            { "minU": 270, "maxU": 306, "offsetU": 54 },
+            { "minU": 324, "maxU": 362 },
+            { "minU": 378, "maxU": 414, "offsetU": -54 },
+            { "minU": 540, "maxU": 576, "offsetU": 108 },
+            { "minU": 594, "maxU": 630, "offsetU": 54 },
+            { "minU": 648, "maxU": 684 }
+          ]
+        },
+        {
+          "name": "spriteSmallGrassyStone",
+          "default": {
+            "skyId": 185
+          },
+          "sourceIds": [185],
+          "spriteOffsets": [
+            {
+              "minU": 1368,
+              "maxU": 1458,
+              "offsetU": -1368,
+              "minV": 18,
+              "maxV": 18,
+              "useFilterV": true
+            }
+          ]
+        },
+        {
+          "name": "spriteGrassyStone",
+          "default": {
+            "skyId": 186
+          },
+          "sourceIds": [187],
+          "spriteOffsets": [
+            { "minU": 756, "maxU": 918, "offsetU": -378 },
+            { "maxU": 306, "maxV": 18, "useFilterV": true, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "default": {
+            "skyId": 205
+          },
+          "sourceIds": [52, 382, 62, 636, 205, 115],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteThorns",
+          "default": {
+            "skyId": 352
+          },
+          "sourceIds": [69, 655, 32, 352],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteHerbsSeed",
+          "default": {
+            "skyId": 82
+          },
+          "sourceIds": [82],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 18, "maxU": 18, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "default": {
+            "skyId": 83
+          },
+          "sourceIds": [83],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 18, "maxU": 18, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "default": {
+            "skyId": 84
+          },
+          "sourceIds": [84],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 18, "maxU": 18, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteLifeFruit",
+          "delete": true,
+          "default": {},
+          "sourceIds": [236],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spritePlanteraBulb",
+          "delete": true,
+          "default": {},
+          "sourceIds": [238],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spritePumpkin",
+          "delete": true,
+          "default": {},
+          "sourceIds": [254],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteFallenLog",
+          "delete": true,
+          "default": {},
+          "sourceIds": [488],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteLilyPad",
+          "delete": true,
+          "default": {},
+          "sourceIds": [518],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteBamboo",
+          "delete": true,
+          "default": {},
+          "sourceIds": [571],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteSakuraTree",
+          "delete": true,
+          "default": {},
+          "sourceIds": [595, 596],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteWillowTree",
+          "delete": true,
+          "default": {},
+          "sourceIds": [615, 616],
+          "spriteOffsets": []
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallGrassNatural",
+          "default": {
+            "skyId": 81
+          },
+          "sourceIds": [63, 64, 65, 69, 81, 70],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallGrass",
+          "default": {
+            "skyId": 268
+          },
+          "sourceIds": [66, 67, 68, 264, 268, 265],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneNatural",
+          "default": {
+            "skyId": 83
+          },
+          "sourceIds": [61, 185, 3, 83, 28],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStone",
+          "default": {
+            "skyId": 269
+          },
+          "sourceIds": [1, 262, 274, 246, 269, 248],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandNatural",
+          "default": {
+            "skyId": 218
+          },
+          "sourceIds": [216, 217, 218, 219],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSand",
+          "default": {
+            "skyId": 306
+          },
+          "sourceIds": [304, 305, 306, 307],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneNatural",
+          "default": {
+            "skyId": 221
+          },
+          "sourceIds": [187, 220, 221, 222],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstone",
+          "default": {
+            "skyId": 309
+          },
+          "sourceIds": [275, 308, 309, 310],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Natural",
+          "default": {
+            "skyId": 192
+          },
+          "sourceIds": [212, 204, 188, 192, 200],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Natural",
+          "default": {
+            "skyId": 193
+          },
+          "sourceIds": [213, 205, 189, 193, 201],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Natural",
+          "default": {
+            "skyId": 194
+          },
+          "sourceIds": [214, 206, 190, 194, 202],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4Natural",
+          "default": {
+            "skyId": 195
+          },
+          "sourceIds": [215, 207, 191, 195, 203],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1",
+          "default": {
+            "skyId": 280
+          },
+          "sourceIds": [300, 292, 276, 280, 288],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2",
+          "default": {
+            "skyId": 281
+          },
+          "sourceIds": [301, 293, 277, 281, 289],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3",
+          "default": {
+            "skyId": 282
+          },
+          "sourceIds": [302, 294, 278, 282, 290],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4",
+          "default": {
+            "skyId": 283
+          },
+          "sourceIds": [303, 295, 279, 283, 291],
+          "spriteOffsets": []
+        }
+      ]
+    },
+    "Hallow": {
+      "morphTiles": [
+        {
+          "name": "tileGrass",
+          "default": {
+            "skyId": 109
+          },
+          "sourceIds": [2, 23, 199, 109],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMowed",
+          "default": {
+            "skyId": 492
+          },
+          "sourceIds": [477, 492],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileStone",
+          "default": {
+            "skyId": 117
+          },
+          "sourceIds": [1, 25, 203, 117],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMoss",
+          "default": {
+            "skyId": 117
+          },
+          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileIce",
+          "default": {
+            "skyId": 164
+          },
+          "sourceIds": [161, 163, 200, 164],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSand",
+          "default": {
+            "skyId": 116
+          },
+          "sourceIds": [53, 112, 234, 116],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileHardenedSand",
+          "default": {
+            "skyId": 402
+          },
+          "sourceIds": [397, 398, 399, 402],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSandstone",
+          "default": {
+            "skyId": 403
+          },
+          "sourceIds": [396, 400, 401, 403],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteGrass",
+          "delete": true,
+          "default": {},
+          "sourceIds": [3, 73, 24, 201],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteMoss",
+          "delete": true,
+          "default": {},
+          "sourceIds": [184],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "default": {
+            "skyId": 165
+          },
+          "sourceIds": [165],
+          "spriteOffsets": [
+            { "maxU": 36, "offsetU": 540 },
+            { "minU": 54, "maxU": 90, "offsetU": 162 },
+            { "minU": 216, "maxU": 252 },
+            { "minU": 270, "maxU": 306, "offsetU": -54 },
+            { "minU": 324, "maxU": 362, "offsetU": -108 },
+            { "minU": 378, "maxU": 414, "offsetU": -162 },
+            { "minU": 540, "maxU": 576 },
+            { "minU": 594, "maxU": 630, "offsetU": -54 },
+            { "minU": 648, "maxU": 684, "offsetU": -108 }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "default": {
+            "skyId": 115
+          },
+          "sourceIds": [52, 382, 205, 636, 115],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteThorns",
+          "delete": true,
+          "default": {},
+          "sourceIds": [32, 352],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteHerbsSeed",
+          "default": {
+            "skyId": 82
+          },
+          "sourceIds": [82],
+          "spriteOffsets": [
+            { "minU": 54, "maxU": 54, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "default": {
+            "skyId": 83
+          },
+          "sourceIds": [83],
+          "spriteOffsets": [
+            { "minU": 54, "maxU": 54, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "default": {
+            "skyId": 84
+          },
+          "sourceIds": [84],
+          "spriteOffsets": [
+            { "minU": 54, "maxU": 54, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteLilyPad",
+          "delete": true,
+          "default": {},
+          "sourceIds": [518],
+          "spriteOffsets": []
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallGrassNatural",
+          "default": {
+            "skyId": 70
+          },
+          "sourceIds": [63, 64, 65, 69, 81, 70],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallGrass",
+          "default": {
+            "skyId": 265
+          },
+          "sourceIds": [66, 67, 68, 264, 268, 265],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneNatural",
+          "default": {
+            "skyId": 28
+          },
+          "sourceIds": [61, 185, 3, 83, 28],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStone",
+          "default": {
+            "skyId": 248
+          },
+          "sourceIds": [1, 262, 274, 246, 269, 248],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandNatural",
+          "default": {
+            "skyId": 219
+          },
+          "sourceIds": [216, 217, 218, 219],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSand",
+          "default": {
+            "skyId": 307
+          },
+          "sourceIds": [304, 305, 306, 307],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneNatural",
+          "default": {
+            "skyId": 222
+          },
+          "sourceIds": [187, 220, 221, 222],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstone",
+          "default": {
+            "skyId": 310
+          },
+          "sourceIds": [275, 308, 309, 310],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Natural",
+          "default": {
+            "skyId": 200
+          },
+          "sourceIds": [212, 188, 192, 200],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Natural",
+          "default": {
+            "skyId": 201
+          },
+          "sourceIds": [213, 189, 193, 201],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Natural",
+          "default": {
+            "skyId": 202
+          },
+          "sourceIds": [214, 190, 194, 202],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4Natural",
+          "default": {
+            "skyId": 203
+          },
+          "sourceIds": [215, 191, 195, 203],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1",
+          "default": {
+            "skyId": 288
+          },
+          "sourceIds": [300, 276, 280, 288],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2",
+          "default": {
+            "skyId": 289
+          },
+          "sourceIds": [301, 277, 281, 289],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3",
+          "default": {
+            "skyId": 290
+          },
+          "sourceIds": [302, 278, 282, 290],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4",
+          "default": {
+            "skyId": 291
+          },
+          "sourceIds": [303, 279, 283, 291],
+          "spriteOffsets": []
+        }
+      ]
+    },
+    "GlowingMushroom": {
+      "morphTiles": [
+        {
+          "name": "tileMushroomGrass",
+          "default": {
+            "skyId": 70
+          },
+          "sourceIds": [60, 70],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteGrass",
+          "delete": true,
+          "default": {},
+          "sourceIds": [61, 74, 233],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteGrassyStone",
+          "delete": true,
+          "default": {},
+          "sourceIds": [187],
+          "spriteOffsets": [
+            {
+              "maxU": 306
+            }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "default": {
+            "skyId": 528
+          },
+          "sourceIds": [62, 528],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteThorns",
+          "delete": true,
+          "default": {},
+          "sourceIds": [69, 655],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteHerbsSeed",
+          "default": {
+            "skyId": 82
+          },
+          "sourceIds": [82],
+          "spriteOffsets": [
+            { "minU": 18, "maxU": 18, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "default": {
+            "skyId": 83
+          },
+          "sourceIds": [83],
+          "spriteOffsets": [
+            { "minU": 18, "maxU": 18, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "default": {
+            "skyId": 84
+          },
+          "sourceIds": [84],
+          "spriteOffsets": [
+            { "minU": 18, "maxU": 18, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteLifeFruit",
+          "delete": true,
+          "default": {},
+          "sourceIds": [236],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spritePlanteraBulb",
+          "delete": true,
+          "default": {},
+          "sourceIds": [238],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteLilyPad",
+          "delete": true,
+          "default": {},
+          "sourceIds": [518],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteBamboo",
+          "delete": true,
+          "default": {},
+          "sourceIds": [571],
+          "spriteOffsets": []
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallMushroomNatural",
+          "default": {
+            "skyId": 80
+          },
+          "sourceIds": [15, 64, 80],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallMushroom",
+          "default": {
+            "skyId": 74
+          },
+          "sourceIds": [247, 67, 74],
+          "spriteOffsets": []
+        }
+      ]
+    },
+    "Forest": {
+      "morphTiles": [
+        {
+          "name": "tileGrass_Corrupt",
+          "default": { "evilId": 23, "skyId": 2 },
+          "sourceIds": [23],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileGrass_Crimson",
+          "default": { "evilId": 199, "skyId": 2 },
+          "sourceIds": [199],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileGrass_Hallow",
+          "default": { "evilId": 109, "skyId": 2 },
+          "sourceIds": [109],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMowed",
+          "default": { "evilId": 492, "skyId": 477 },
+          "sourceIds": [492],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSand_Dirt",
+          "default": {
+            "skyId": 0
+          },
+          "touchingAir": {
+            "skyId": 2
+          },
+          "sourceIds": [53, 397, 147],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSand_CorruptDirt",
+          "default": {
+            "skyId": 0
+          },
+          "touchingAir": { "evilId": 23, "skyId": 2 },
+          "sourceIds": [112, 398],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSand_CrimsonDirt",
+          "default": {
+            "skyId": 0
+          },
+          "touchingAir": { "evilId": 199, "skyId": 2 },
+          "sourceIds": [234, 399],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSand_HallowDirt",
+          "default": {
+            "skyId": 0
+          },
+          "touchingAir": { "evilId": 109, "skyId": 2 },
+          "sourceIds": [116, 402],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileStone",
+          "useMoss": true,
+          "default": {
+            "skyId": 1
+          },
+          "sourceIds": [1, 161, 396],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileStone_Corrupt",
+          "default": { "evilId": 25, "skyId": 1 },
+          "sourceIds": [25, 163, 400],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileStone_Crimson",
+          "default": { "evilId": 203, "skyId": 1 },
+          "sourceIds": [203, 200, 401],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileStone_Hallow",
+          "default": { "evilId": 117, "skyId": 1 },
+          "sourceIds": [117, 164, 403],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMoss",
+          "useMoss": true,
+          "default": {},
+          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteCactus",
+          "delete": true,
+          "default": {},
+          "sourceIds": [80],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spritePalm",
+          "delete": true,
+          "default": {},
+          "sourceIds": [323],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteGrass",
+          "delete": true,
+          "default": {},
+          "sourceIds": [71, 24, 201, 110, 113],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "default": {
+            "skyId": 165
+          },
+          "sourceIds": [165],
+          "spriteOffsets": [
+            {
+              "maxU": 36
+            },
+            { "minU": 54, "maxU": 90 },
+            { "minU": 216, "maxU": 252, "offsetU": -162 },
+            { "minU": 270, "maxU": 306, "offsetU": -216 },
+            { "minU": 324, "maxU": 362, "offsetU": -270 },
+            { "minU": 378, "maxU": 414 },
+            { "minU": 540, "maxU": 576, "offsetU": -540 },
+            { "minU": 594, "maxU": 630, "offsetU": -594 },
+            { "minU": 648, "maxU": 684, "offsetU": -270 }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "default": {
+            "skyId": 52
+          },
+          "sourceIds": [52, 636, 205, 115],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteThorns",
+          "delete": true,
+          "default": {},
+          "sourceIds": [32, 352],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteHerbsSeed",
+          "default": {
+            "skyId": 82
+          },
+          "sourceIds": [82],
+          "spriteOffsets": [
+            { "minU": 54, "maxU": 54, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true },
+            { "minU": 108, "maxU": 108, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "default": {
+            "skyId": 83
+          },
+          "sourceIds": [83],
+          "spriteOffsets": [
+            { "minU": 54, "maxU": 54, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true },
+            { "minU": 108, "maxU": 108, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "default": {
+            "skyId": 84
+          },
+          "sourceIds": [84],
+          "spriteOffsets": [
+            { "minU": 54, "maxU": 54, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true },
+            { "minU": 108, "maxU": 108, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteLilyPad",
+          "delete": true,
+          "default": {},
+          "sourceIds": [518],
+          "spriteOffsets": []
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallDirtNatural",
+          "default": {
+            "skyId": 2
+          },
+          "sourceIds": [40, 216, 217, 218, 219],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallDirt",
+          "default": {
+            "skyId": 16
+          },
+          "sourceIds": [249, 304, 305, 306, 307],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneNatural",
+          "default": { "skyId": 61, "rockId": 185 },
+          "sourceIds": [71, 187],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneNaturalCorrupt",
+          "default": { "evilId": 3, "skyId": 61, "rockId": 185 },
+          "sourceIds": [3, 220],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneNaturalCrimson",
+          "default": { "evilId": 83, "skyId": 61, "rockId": 185 },
+          "sourceIds": [83, 221],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneNaturalHallow",
+          "default": { "evilId": 28, "skyId": 61, "rockId": 185 },
+          "sourceIds": [28, 222],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStone",
+          "default": { "skyId": 1, "dirtId": 262, "rockId": 274 },
+          "sourceIds": [266, 275],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneCorrupt",
+          "default": { "evilId": 246, "skyId": 1, "dirtId": 262, "rockId": 274 },
+          "sourceIds": [246, 308],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneCrimson",
+          "default": { "evilId": 269, "skyId": 1, "dirtId": 262, "rockId": 274 },
+          "sourceIds": [269, 309],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneHallow",
+          "default": { "evilId": 248, "skyId": 1, "dirtId": 262, "rockId": 274 },
+          "sourceIds": [248, 310],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Natural",
+          "default": {
+            "skyId": 196
+          },
+          "sourceIds": [212, 204],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1NaturalCorrupt",
+          "default": { "evilId": 188, "skyId": 196 },
+          "sourceIds": [188],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1NaturalCrimson",
+          "default": { "evilId": 192, "skyId": 196 },
+          "sourceIds": [192],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1NaturalHallow",
+          "default": { "evilId": 200, "skyId": 196 },
+          "sourceIds": [200],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Natural",
+          "default": {
+            "skyId": 197
+          },
+          "sourceIds": [213, 205],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2NaturalCorrupt",
+          "default": { "evilId": 189, "skyId": 197 },
+          "sourceIds": [189],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2NaturalCrimson",
+          "default": { "evilId": 193, "skyId": 197 },
+          "sourceIds": [193],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2NaturalHallow",
+          "default": { "evilId": 201, "skyId": 197 },
+          "sourceIds": [201],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Natural",
+          "default": {
+            "skyId": 198
+          },
+          "sourceIds": [214, 206],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3NaturalCorrupt",
+          "default": { "evilId": 190, "skyId": 198 },
+          "sourceIds": [190],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3NaturalCrimson",
+          "default": { "evilId": 194, "skyId": 198 },
+          "sourceIds": [194],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3NaturalHallow",
+          "default": { "evilId": 202, "skyId": 198 },
+          "sourceIds": [202],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4Natural",
+          "default": {
+            "skyId": 199
+          },
+          "sourceIds": [215, 207],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3NaturalCorrupt",
+          "default": { "evilId": 191, "skyId": 199 },
+          "sourceIds": [191],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3NaturalCrimson",
+          "default": { "evilId": 195, "skyId": 199 },
+          "sourceIds": [195],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3NaturalHallow",
+          "default": { "evilId": 203, "skyId": 199 },
+          "sourceIds": [203],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1",
+          "default": {
+            "skyId": 284
+          },
+          "sourceIds": [300, 292],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Corrupt",
+          "default": { "evilId": 276, "skyId": 284 },
+          "sourceIds": [276],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Crimson",
+          "default": { "evilId": 280, "skyId": 284 },
+          "sourceIds": [280],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Hallow",
+          "default": { "evilId": 288, "skyId": 284 },
+          "sourceIds": [288],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2",
+          "default": {
+            "skyId": 285
+          },
+          "sourceIds": [301, 293],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Corrupt",
+          "default": { "evilId": 277, "skyId": 285 },
+          "sourceIds": [277],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Crimson",
+          "default": { "evilId": 281, "skyId": 285 },
+          "sourceIds": [281],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Hallow",
+          "default": { "evilId": 289, "skyId": 285 },
+          "sourceIds": [289],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3",
+          "default": {
+            "skyId": 286
+          },
+          "sourceIds": [302, 294],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Corrupt",
+          "default": { "evilId": 278, "skyId": 286 },
+          "sourceIds": [278],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Crimson",
+          "default": { "evilId": 282, "skyId": 286 },
+          "sourceIds": [282],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Hallow",
+          "default": { "evilId": 290, "skyId": 286 },
+          "sourceIds": [290],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4",
+          "default": {
+            "skyId": 287
+          },
+          "sourceIds": [303, 295],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Corrupt",
+          "default": { "evilId": 279, "skyId": 287 },
+          "sourceIds": [279],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Crimson",
+          "default": { "evilId": 283, "skyId": 287 },
+          "sourceIds": [283],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Hallow",
+          "default": { "evilId": 291, "skyId": 287 },
+          "sourceIds": [291],
+          "spriteOffsets": []
+        }
+      ]
+    },
+    "Snow": {
+      "morphTiles": [
+        {
+          "name": "tileDirt_Snow",
+          "default": {
+            "skyId": 147
+          },
+          "sourceIds": [0, 2, 23, 199, 109, 147],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSand_Snow",
+          "default": {
+            "skyId": 147
+          },
+          "sourceIds": [53, 112, 234, 116],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileHardenedSand_Snow",
+          "default": {
+            "skyId": 147
+          },
+          "sourceIds": [397, 398, 399, 402],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMowed_Snow",
+          "default": {
+            "skyId": 147
+          },
+          "sourceIds": [477, 492],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileStone_Ice",
+          "default": {
+            "skyId": 161
+          },
+          "sourceIds": [1, 161, 396],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileIce_Corrupt",
+          "default": { "evilId": 163, "skyId": 161 },
+          "sourceIds": [25, 163, 400],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileIce_Crimson",
+          "default": { "evilId": 200, "skyId": 161 },
+          "sourceIds": [203, 200, 401],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileIce_Hallow",
+          "default": { "evilId": 164, "skyId": 161 },
+          "sourceIds": [117, 164, 403],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMoss_Ice",
+          "default": {
+            "skyId": 161
+          },
+          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteCactus",
+          "delete": true,
+          "default": {},
+          "sourceIds": [80],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spritePalm",
+          "delete": true,
+          "default": {},
+          "sourceIds": [323],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteSunflower",
+          "delete": true,
+          "default": {},
+          "sourceIds": [27],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteGrass",
+          "delete": true,
+          "default": {},
+          "sourceIds": [3, 73, 24, 201, 110, 113],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteMoss",
+          "delete": true,
+          "default": {},
+          "sourceIds": [184],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "default": {
+            "skyId": 165
+          },
+          "sourceIds": [165],
+          "spriteOffsets": [
+            {
+              "maxU": 36
+            },
+            { "minU": 54, "maxU": 90, "offsetU": -54 },
+            { "minU": 216, "maxU": 252, "offsetU": -216 },
+            { "minU": 270, "maxU": 306, "offsetU": -270 },
+            { "minU": 324, "maxU": 362, "offsetU": -324 },
+            { "minU": 378, "maxU": 414, "offsetU": -378 },
+            { "minU": 540, "maxU": 576, "offsetU": -540 },
+            { "minU": 594, "maxU": 630, "offsetU": -594 },
+            { "minU": 648, "maxU": 684, "offsetU": -270 }
+          ]
+        },
+        {
+          "name": "spriteSmallGrassyStone",
+          "default": {
+            "skyId": 185
+          },
+          "sourceIds": [185],
+          "spriteOffsets": [
+            {
+              "minU": 1368,
+              "maxU": 1458,
+              "offsetU": -1368,
+              "minV": 18,
+              "maxV": 18,
+              "useFilterV": true
+            }
+          ]
+        },
+        {
+          "name": "spriteGrassyStone",
+          "default": {
+            "skyId": 186
+          },
+          "sourceIds": [187],
+          "spriteOffsets": [
+            { "minU": 756, "maxU": 918, "offsetU": -378 },
+            { "maxU": 306, "maxV": 18, "useFilterV": true, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "delete": true,
+          "default": {},
+          "sourceIds": [52, 382, 636, 205, 115],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteThorns",
+          "delete": true,
+          "default": {},
+          "sourceIds": [32, 352],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteHerbsSeed",
+          "default": {
+            "skyId": 82
+          },
+          "sourceIds": [82],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 36, "maxU": 36, "delete": true },
+            { "minU": 54, "maxU": 54, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "default": {
+            "skyId": 83
+          },
+          "sourceIds": [83],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 36, "maxU": 36, "delete": true },
+            { "minU": 54, "maxU": 54, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "default": {
+            "skyId": 84
+          },
+          "sourceIds": [84],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 36, "maxU": 36, "delete": true },
+            { "minU": 54, "maxU": 54, "delete": true },
+            { "minU": 72, "maxU": 72, "delete": true }
+          ]
+        },
+        {
+          "name": "spritePumpkin",
+          "delete": true,
+          "default": {},
+          "sourceIds": [254],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteFallenLog",
+          "delete": true,
+          "default": {},
+          "sourceIds": [488],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteLilyPad",
+          "delete": true,
+          "default": {},
+          "sourceIds": [518],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteSakuraTree",
+          "delete": true,
+          "default": {},
+          "sourceIds": [595, 596],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteWillowTree",
+          "delete": true,
+          "default": {},
+          "sourceIds": [615, 616],
+          "spriteOffsets": []
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallDirtNatural_Snow",
+          "default": {
+            "skyId": 40
+          },
+          "sourceIds": [2, 40],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallDirt_Snow",
+          "default": {
+            "skyId": 249
+          },
+          "sourceIds": [16, 249],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStoneNatural_Ice",
+          "default": {
+            "skyId": 71
+          },
+          "sourceIds": [61, 185, 3, 83, 28, 71],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallStone_Ice",
+          "default": {
+            "skyId": 266
+          },
+          "sourceIds": [1, 262, 274, 246, 269, 248, 266],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandNatural_Snow",
+          "default": {
+            "skyId": 40
+          },
+          "sourceIds": [216, 217, 218, 219],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSand_Snow",
+          "default": {
+            "skyId": 249
+          },
+          "sourceIds": [304, 305, 306, 307],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneNatural_Ice",
+          "default": {
+            "skyId": 71
+          },
+          "sourceIds": [187, 220, 221, 222],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstone_Ice",
+          "default": {
+            "skyId": 266
+          },
+          "sourceIds": [275, 308, 309, 310],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Natural_Ice",
+          "default": {
+            "skyId": 71
+          },
+          "sourceIds": [212, 204, 188, 192, 200],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Natural_Ice",
+          "default": {
+            "skyId": 71
+          },
+          "sourceIds": [213, 205, 189, 193, 201],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Natural_Ice",
+          "default": {
+            "skyId": 71
+          },
+          "sourceIds": [214, 206, 190, 194, 202],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4Natural_Ice",
+          "default": {
+            "skyId": 71
+          },
+          "sourceIds": [215, 207, 191, 195, 203],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1_Ice",
+          "default": {
+            "skyId": 266
+          },
+          "sourceIds": [300, 292, 276, 280, 288],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2_Ice",
+          "default": {
+            "skyId": 266
+          },
+          "sourceIds": [301, 293, 277, 281, 289],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3_Ice",
+          "default": {
+            "skyId": 266
+          },
+          "sourceIds": [302, 294, 278, 282, 290],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4_Ice",
+          "default": {
+            "skyId": 266
+          },
+          "sourceIds": [303, 295, 279, 283, 291],
+          "spriteOffsets": []
+        }
+      ]
+    },
+    "Desert": {
+      "morphTiles": [
+        {
+          "name": "tileDirt_Sand",
+          "default": {
+            "skyId": 53
+          },
+          "gravity": {
+            "skyId": 397
+          },
+          "sourceIds": [0, 2, 477, 147],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileGrass_CorruptSand",
+          "default": { "evilId": 112, "skyId": 53 },
+          "gravity": { "evilId": 398, "skyId": 397 },
+          "sourceIds": [23],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileGrass_CrimsonSand",
+          "default": { "evilId": 234, "skyId": 53 },
+          "gravity": { "evilId": 399, "skyId": 397 },
+          "sourceIds": [199],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileGrass_HallowSand",
+          "default": { "evilId": 116, "skyId": 53 },
+          "gravity": { "evilId": 402, "skyId": 397 },
+          "sourceIds": [109, 492],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSandCorrupt",
+          "default": { "evilId": 112, "skyId": 53 },
+          "sourceIds": [112],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSandCrimson",
+          "default": { "evilId": 234, "skyId": 53 },
+          "sourceIds": [234],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileSandHallow",
+          "default": { "evilId": 116, "skyId": 53 },
+          "sourceIds": [116],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileHardenedSandCorrupt",
+          "default": { "evilId": 398, "skyId": 397 },
+          "sourceIds": [398],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileHardenedSandCrimson",
+          "default": { "evilId": 399, "skyId": 397 },
+          "sourceIds": [399],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileHardenedSandHallow",
+          "default": { "evilId": 402, "skyId": 397 },
+          "sourceIds": [402],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tile_Sandstone",
+          "default": {
+            "skyId": 396
+          },
+          "sourceIds": [1, 161, 396],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tile_SandstoneCorruption",
+          "default": { "evilId": 400, "skyId": 396 },
+          "sourceIds": [25, 163, 400],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tile_SandstoneCrimson",
+          "default": { "evilId": 401, "skyId": 396 },
+          "sourceIds": [203, 200, 401],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tile_SandstoneHallow",
+          "default": { "evilId": 403, "skyId": 396 },
+          "sourceIds": [117, 164, 403],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMoss_Sandstone",
+          "default": {
+            "skyId": 396
+          },
+          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteSunflower",
+          "delete": true,
+          "default": {},
+          "sourceIds": [27],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteGrass",
+          "delete": true,
+          "default": {},
+          "sourceIds": [3, 73, 24, 201, 110, 113],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteMoss",
+          "delete": true,
+          "default": {},
+          "sourceIds": [184],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "default": {
+            "skyId": 165
+          },
+          "sourceIds": [165],
+          "spriteOffsets": [
+            { "maxU": 36, "offsetU": 378 },
+            { "minU": 54, "maxU": 90, "offsetU": 324 },
+            { "minU": 216, "maxU": 252, "offsetU": 162 },
+            { "minU": 270, "maxU": 306, "offsetU": 108 },
+            { "minU": 324, "maxU": 362, "offsetU": 54 },
+            { "minU": 378, "maxU": 414 },
+            { "minU": 540, "maxU": 576, "offsetU": -162 },
+            { "minU": 594, "maxU": 630, "offsetU": -216 },
+            { "minU": 648, "maxU": 684, "offsetU": -270 }
+          ]
+        },
+        {
+          "name": "spriteSmallGrassyStone",
+          "default": {
+            "skyId": 185
+          },
+          "sourceIds": [185],
+          "spriteOffsets": [
+            {
+              "minU": 1368,
+              "maxU": 1458,
+              "offsetU": -1368,
+              "minV": 18,
+              "maxV": 18,
+              "useFilterV": true
+            }
+          ]
+        },
+        {
+          "name": "spriteGrassyStone",
+          "default": {
+            "skyId": 186
+          },
+          "sourceIds": [187],
+          "spriteOffsets": [
+            { "minU": 756, "maxU": 918, "offsetU": -378 },
+            { "maxU": 306, "maxV": 18, "useFilterV": true, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "delete": true,
+          "default": {},
+          "sourceIds": [52, 382, 636, 205, 115],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteThorns",
+          "delete": true,
+          "default": {},
+          "sourceIds": [32, 352],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteHerbsSeed",
+          "default": {
+            "skyId": 82
+          },
+          "sourceIds": [82],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 36, "maxU": 36, "delete": true },
+            { "minU": 54, "maxU": 54, "delete": true },
+            { "minU": 108, "maxU": 108, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "default": {
+            "skyId": 83
+          },
+          "sourceIds": [83],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 36, "maxU": 36, "delete": true },
+            { "minU": 54, "maxU": 54, "delete": true },
+            { "minU": 108, "maxU": 108, "delete": true }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "default": {
+            "skyId": 84
+          },
+          "sourceIds": [84],
+          "spriteOffsets": [
+            {
+              "delete": true
+            },
+            { "minU": 36, "maxU": 36, "delete": true },
+            { "minU": 54, "maxU": 54, "delete": true },
+            { "minU": 108, "maxU": 108, "delete": true }
+          ]
+        },
+        {
+          "name": "spritePumpkin",
+          "delete": true,
+          "default": {},
+          "sourceIds": [254],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteFallenLog",
+          "delete": true,
+          "default": {},
+          "sourceIds": [488],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteLilyPad",
+          "delete": true,
+          "default": {},
+          "sourceIds": [518],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteSakuraTree",
+          "delete": true,
+          "default": {},
+          "sourceIds": [595, 596],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteWillowTree",
+          "delete": true,
+          "default": {},
+          "sourceIds": [615, 616],
+          "spriteOffsets": []
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallSandNatural",
+          "default": {
+            "skyId": 216
+          },
+          "sourceIds": [2, 40],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandNaturalCorrupt",
+          "default": { "evilId": 217, "skyId": 216 },
+          "sourceIds": [217],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandNaturalCrimson",
+          "default": { "evilId": 218, "skyId": 216 },
+          "sourceIds": [218],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandNaturalHallow",
+          "default": { "evilId": 219, "skyId": 216 },
+          "sourceIds": [219],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSand",
+          "default": {
+            "skyId": 304
+          },
+          "sourceIds": [16, 249],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandCorrupt",
+          "default": { "evilId": 305, "skyId": 304 },
+          "sourceIds": [305],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandCrimson",
+          "default": { "evilId": 306, "skyId": 304 },
+          "sourceIds": [306],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandHallow",
+          "default": { "evilId": 307, "skyId": 304 },
+          "sourceIds": [307],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneNatural",
+          "default": {
+            "skyId": 187
+          },
+          "sourceIds": [61, 185, 71],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneNaturalCorrupt",
+          "default": { "evilId": 220, "skyId": 187 },
+          "sourceIds": [3, 220, 188, 189, 190, 191],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneNaturalCrimson",
+          "default": { "evilId": 221, "skyId": 187 },
+          "sourceIds": [83, 221, 192, 193, 194, 195],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneNaturalHallow",
+          "default": { "evilId": 222, "skyId": 187 },
+          "sourceIds": [28, 222, 200, 201, 202, 203],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstone",
+          "default": {
+            "skyId": 275
+          },
+          "sourceIds": [1, 262, 274, 266],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneCorrupt",
+          "default": { "evilId": 308, "skyId": 275 },
+          "sourceIds": [246, 308, 276, 277, 278, 279],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneCrimson",
+          "default": { "evilId": 309, "skyId": 275 },
+          "sourceIds": [269, 309, 280, 281, 282, 283],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallSandstoneHallow",
+          "default": { "evilId": 310, "skyId": 275 },
+          "sourceIds": [248, 310, 288, 289, 290, 291],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1Natural_Sandstone",
+          "default": {
+            "skyId": 187
+          },
+          "sourceIds": [212, 204],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2Natural_Sandstone",
+          "default": {
+            "skyId": 187
+          },
+          "sourceIds": [213, 205],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3Natural_Sandstone",
+          "default": {
+            "skyId": 187
+          },
+          "sourceIds": [214, 206],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4Natural_Sandstone",
+          "default": {
+            "skyId": 187
+          },
+          "sourceIds": [215, 207],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks1_Sandstone",
+          "default": {
+            "skyId": 275
+          },
+          "sourceIds": [300, 292],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks2_Sandstone",
+          "default": {
+            "skyId": 275
+          },
+          "sourceIds": [301, 293],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks3_Sandstone",
+          "default": {
+            "skyId": 275
+          },
+          "sourceIds": [302, 294],
+          "spriteOffsets": []
+        },
+        {
+          "name": "wallRocks4_Sandstone",
+          "default": {
+            "skyId": 275
+          },
+          "sourceIds": [303, 295],
+          "spriteOffsets": []
+        }
+      ]
+    }
+  },
+  "mossTypes": {
+    "Green": 179,
+    "Yellow": 180,
+    "Red": 181,
+    "Blue": 182,
+    "Purple": 183,
+    "Lava": 381,
+    "Krypton": 534,
+    "Xenon": 536,
+    "Argon": 539,
+    "Neon": 625,
+    "Helium": 627
+  }
+}
