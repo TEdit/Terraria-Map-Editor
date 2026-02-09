@@ -11,4 +11,9 @@ public partial class NpcSelectorView : UserControl
     {
         InitializeComponent();
     }
+
+    private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
 }

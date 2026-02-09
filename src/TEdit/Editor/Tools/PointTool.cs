@@ -33,17 +33,17 @@ public sealed class PointTool : BaseTool
             }
             else
             {
-                if (string.Equals(_wvm.SelectedPoint, "Spawn", StringComparison.InvariantCultureIgnoreCase))
+                if (string.Equals(_wvm.SelectedPoint, "出生点", StringComparison.InvariantCultureIgnoreCase))
                 {
                     _wvm.CurrentWorld.SpawnX = e.Location.X;
                     _wvm.CurrentWorld.SpawnY = e.Location.Y;
                 }
-                else if (string.Equals(_wvm.SelectedPoint, "Dungeon", StringComparison.InvariantCultureIgnoreCase))
+                else if (string.Equals(_wvm.SelectedPoint, "地牢", StringComparison.InvariantCultureIgnoreCase))
                 {
                     _wvm.CurrentWorld.DungeonX = e.Location.X;
                     _wvm.CurrentWorld.DungeonY = e.Location.Y;
                 }
-                else if (_wvm.SelectedPoint != null && _wvm.SelectedPoint.StartsWith("Team ", StringComparison.InvariantCultureIgnoreCase))
+                else if (_wvm.SelectedPoint != null && _wvm.SelectedPoint.StartsWith("队", StringComparison.InvariantCultureIgnoreCase))
                 {
                     string teamName = _wvm.SelectedPoint.Substring(5);
                     int teamIndex = Array.IndexOf(World.TeamNames, teamName);

@@ -607,7 +607,7 @@ public partial class World
             }
         }
 
-        progress?.Report(new ProgressChangedEventArgs(0, "Validating Complete..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "验证完成..."));
 
         if (Chests.Count > WorldConfiguration.MaxChests)
             throw new ArgumentOutOfRangeException($"箱子数量为 {Chests.Count} 该数值大于 {WorldConfiguration.MaxChests}.");

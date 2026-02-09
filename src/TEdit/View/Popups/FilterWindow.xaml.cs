@@ -33,6 +33,22 @@ namespace TEdit.View.Popups
         public ObservableCollection<FilterCheckItem> FilteredLiquidItems { get; } = [];
         private string _liquidSearchText;
         public string LiquidSearchText { get => _liquidSearchText; set { _liquidSearchText = value; OnPropertyChanged(nameof(LiquidSearchText)); FilterLiquidItems(); } }
+        private static string TranslateLiquidName(LiquidType type)
+        {
+            switch (type)
+            {
+                case LiquidType.Water:
+                    return "水";
+                case LiquidType.Lava:
+                    return "岩浆";
+                case LiquidType.Honey:
+                    return "蜂蜜";
+                case LiquidType.Shimmer:
+                    return "微光";
+                default:
+                    return "未知液体";
+            }
+        }
 
         // Wires
         public ObservableCollection<FilterCheckItem> WireItems { get; } = [];
@@ -113,7 +129,8 @@ namespace TEdit.View.Popups
             {
                 int v = Convert.ToInt32(val);
                 if (v != 0) // Exclude None
-                    LiquidItems.Add(new FilterCheckItem(v, val.ToString(), false));
+//                    LiquidItems.Add(new FilterCheckItem(v, val.ToString(), false));
+                    LiquidItems.Add(new FilterCheckItem(v, TranslateLiquidName(val), false));
             }
             foreach (var item in LiquidItems) // Populate IsChecked with previous saved values.
                 item.IsChecked = FilterManager.SelectedLiquidNames.Contains(item.Name); // or use IDs.
@@ -125,10 +142,10 @@ namespace TEdit.View.Popups
 
             // Populate wires (red, blue, green, yellow).
             WireItems.Clear();
-            WireItems.Add(new FilterCheckItem((int)FilterManager.WireType.Red, "Red Wire", false));       // 1. _wvm.ShowXXXWires
-            WireItems.Add(new FilterCheckItem((int)FilterManager.WireType.Blue, "Blue Wire", false));     // 2. 
-            WireItems.Add(new FilterCheckItem((int)FilterManager.WireType.Green, "Green Wire", false));   // 4.
-            WireItems.Add(new FilterCheckItem((int)FilterManager.WireType.Yellow, "Yellow Wire", false)); // 8.
+            WireItems.Add(new FilterCheckItem((int)FilterManager.WireType.Red, "红电线", false));       // 1. _wvm.ShowXXXWires
+            WireItems.Add(new FilterCheckItem((int)FilterManager.WireType.Blue, "蓝电线", false));     // 2. 
+            WireItems.Add(new FilterCheckItem((int)FilterManager.WireType.Green, "绿电线", false));   // 4.
+            WireItems.Add(new FilterCheckItem((int)FilterManager.WireType.Yellow, "黄电线", false)); // 8.
             foreach (var item in WireItems)   // Populate IsChecked with previous saved values.
                 item.IsChecked = FilterManager.WireIsAllowed((FilterManager.WireType)item.Id);
             FilterWireItems();

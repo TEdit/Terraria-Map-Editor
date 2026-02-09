@@ -450,14 +450,14 @@ public partial class WorldViewModel : ReactiveObject
     private void RefreshPoints()
     {
         Points.Clear();
-        Points.Add("Spawn");
-        Points.Add("Dungeon");
+        Points.Add("出生点");
+        Points.Add("地牢");
 
         if (CurrentWorld?.TeamBasedSpawnsSeed == true)
         {
             for (int i = 0; i < World.TeamNames.Length; i++)
             {
-                Points.Add($"Team {World.TeamNames[i]}");
+                Points.Add($"{World.TeamNames[i]}队");
             }
         }
 

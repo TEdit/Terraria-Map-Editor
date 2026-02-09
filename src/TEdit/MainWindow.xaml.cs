@@ -310,4 +310,14 @@ public partial class MainWindow : Window
     {
 
     }
+
+    private void ToolSelectorView_Loaded(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void ToolSelectorView_Loaded_1(object sender, RoutedEventArgs e)
+    {
+
+    }
 }
