@@ -20,8 +20,10 @@
         <StackPanel Orientation="Vertical" Margin="2">
             <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
             <ComboBox Width="200"
-                  ItemsSource="{Binding Source={x:Static config:WorldConfiguration.Biomes}, Mode=OneTime}" 
-                  SelectedValue="{Binding MorphToolOptions.TargetBiome}" />
+                  ItemsSource="{Binding Source={x:Static config:WorldConfiguration.Biomes}}"
+                  DisplayMemberPath="Value"
+                  SelectedValuePath="Key"
+                  SelectedValue="{Binding MorphToolOptions.TargetBiome}"/>
       <TextBlock Text="苔藓型" Margin="2" />
             <ComboBox Width="200"
                   ItemsSource="{Binding Source={x:Static config:WorldConfiguration.MossTypes}, Mode=OneTime}" 

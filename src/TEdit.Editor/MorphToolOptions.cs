@@ -6,7 +6,7 @@ namespace TEdit.Editor;
 public partial class MorphToolOptions : ReactiveObject
 {
     [Reactive]
-    private string _targetBiome = "¾»»¯";
+    private string _targetBiome = "Purify";
     [Reactive]
     private int _mossType = 179;
     [Reactive]

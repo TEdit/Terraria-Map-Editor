@@ -110,8 +110,8 @@
 
         <!-- Color Filter Tools Controls -->
         <!-- Color Filter Tools Controls -->
-        <Button x:Name="DelNullColors" Height="23" Width="87" TabIndex="23" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Del Null Colors(去色?)" Canvas.Top="2" Click="DelNullColors_Click" ToolTip="Remove colors from filter not in rendered pixel art." />
-        <Button x:Name="ResetColors" Height="23" Width="87" TabIndex="24" HorizontalAlignment="Left" VerticalAlignment="Center" Content="重置颜色" Canvas.Left="92" Canvas.Top="2" Click="ResetColors_Click" ToolTip="Reset the color filter to defined settings." />
+        <Button x:Name="DelNullColors" Height="23" Width="87" TabIndex="23" HorizontalAlignment="Left" VerticalAlignment="Center" Content="删除未使用颜色" Canvas.Top="2" Click="DelNullColors_Click" ToolTip="从过滤器中移除未在渲染像素图中出现的颜色。" />
+        <Button x:Name="ResetColors" Height="23" Width="87" TabIndex="24" HorizontalAlignment="Left" VerticalAlignment="Center" Content="重置颜色" Canvas.Left="92" Canvas.Top="2" Click="ResetColors_Click" ToolTip="将滤色器重置为默认设置。" />
       </Canvas>
     </GroupBox>
 
@@ -125,7 +125,7 @@
         <!-- Grid Options Controls -->
         <CheckBox x:Name="ShowGrid" Height="14" Width="79" TabIndex="25" HorizontalAlignment="Left" VerticalAlignment="Center" Content="显示网格" Canvas.Left="-1" ToolTip="Place a grid over the rendered pixel art." />
         <CheckBox x:Name="Backdrop" Height="20" Width="79" TabIndex="26" HorizontalAlignment="Center" VerticalAlignment="Top" Content="背景" Canvas.Left="79" ToolTip="Add a backdrop to the transparent pixels." />
-        <Button x:Name="PickGridColor" Height="23" Width="151" TabIndex="27" Background="Red" HorizontalAlignment="Center" VerticalAlignment="Top" Click="PickGridColor_Click" Canvas.Top="17" Content="网格颜色" ToolTip="Change the grid color." />
+        <Button x:Name="PickGridColor" Height="23" Width="151" TabIndex="27" Background="Red" HorizontalAlignment="Center" VerticalAlignment="Top" Click="PickGridColor_Click" Canvas.Top="17" Content="网格颜色" ToolTip="更改网格颜色。" />
 
         <Label x:Name="GridYOffset" Height="19" Width="65" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="45" Content="网格Y轴偏移:" />
         <TextBox x:Name="NUDTextBox3" Text="0" TextAlignment="Left" TextChanged="NUDTextBox3_TextChanged" Height="26" Width="143" Canvas.Top="59" HorizontalAlignment="Center" VerticalAlignment="Top" PreviewMouseWheel="NUDTextBox3_PreviewMouseWheel" ToolTip="Offset the grid Y-Axis."/>
@@ -205,9 +205,9 @@
         <Label x:Name="TotalBlocks" Height="19" Width="79" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="51" HorizontalAlignment="Center" VerticalAlignment="Top" Content="总块数 ------" Canvas.Left="6" Canvas.Top="42" />
         <Label x:Name="TotalBlocksData" Height="15" Width="80" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="52" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="89" Canvas.Top="42" Content="0" />
 
-        <CheckBox x:Name="GenerateSchematic" Height="19" Width="130" TabIndex="53" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Canvas.Left="182" Content="生成设计图" ToolTip="Generate schematic file while rendering pixel art (slight speed impact)." />
-        <CheckBox x:Name="GatherStatistics" Height="14" Width="120" TabIndex="54" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Canvas.Left="182" Canvas.Top="19" Content="收集统计数据" ToolTip="Record pixelart statistics." />
-        <CheckBox x:Name="ProgressBar" Height="19" Width="96" TabIndex="55" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Canvas.Left="182" Canvas.Top="38" Content="进度条" ToolTip="Show the pixel art progression (slight speed impact)." />
+        <CheckBox x:Name="GenerateSchematic" Height="19" Width="130" TabIndex="53" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Canvas.Left="182" Content="生成设计图" ToolTip="在渲染像素图时同时生成设计图（会轻微影响速度）。" />
+        <CheckBox x:Name="GatherStatistics" Height="14" Width="120" TabIndex="54" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Canvas.Left="182" Canvas.Top="19" Content="收集统计数据" ToolTip="记录像素图统计数据。" />
+        <CheckBox x:Name="ProgressBar" Height="19" Width="96" TabIndex="55" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Canvas.Left="182" Canvas.Top="38" Content="进度条" ToolTip="显示像素图渲染进度（会轻微影响速度）。" />
 
         <Label x:Name="CurrentImage" Height="20" Width="78" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="56" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="6" Canvas.Top="69" Content="当前图像:" />
         <TextBox x:Name="CurrentImageData" Height="18" FontSize="11" Width="222" TabIndex="57" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" Text="默认" Canvas.Left="89" Canvas.Top="67" />

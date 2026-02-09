@@ -11,7 +11,7 @@ namespace TEdit.Editor.Plugins
         // Constructor for ImageToPixelartEditor.
         public ImageToPixelartEditor(WorldViewModel worldViewModel) : base(worldViewModel)
         {
-            Name = "图像转像素画编辑器(会崩)";
+            Name = "图像转像素画编辑器";
         }
 
         // Method to execute the plugin functionality.
@@ -21,8 +21,21 @@ namespace TEdit.Editor.Plugins
             // if (_wvm.CurrentWorld == null) return;
 
             // Initialize and show the ImageToPixelartEditorView window as a non-modal window.
-            _view = new ImageToPixelartEditorView(_wvm); // Pass down "_wvm" instance to the new window.
-            _view.Show(); // Open as non-modal window.
+            //_view = new ImageToPixelartEditorView(_wvm); // Pass down "_wvm" instance to the new window.
+            //_view.Show(); // Open as non-modal window.
+
+            System.Windows.Threading.Dispatcher
+                .FromThread(System.Threading.Thread.CurrentThread)
+                .Invoke(() =>
+            {
+                _view = new ImageToPixelartEditorView(_wvm);
+
+                _view.Owner = Application.Current.MainWindow; // ★关键
+                _view.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+                _view.Show();
+            });
+
 
             // Subscribe to the main window's Closed event.
             Application.Current.MainWindow.Closed += MainWindow_Closed;

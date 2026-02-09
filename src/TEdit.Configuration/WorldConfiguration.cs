@@ -51,7 +51,11 @@ public class WorldConfiguration
     public const string DesktopHeader = "relogic";
     public const string ChineseHeader = "xindong";
 
-    public static List<string>            Biomes    => MorphSettings.Biomes.Keys.ToList();
+    public static List<KeyValuePair<string, string>> Biomes =>
+        MorphSettings.Biomes.Keys
+            .Select(k => new KeyValuePair<string, string>(k, BiomeDisplayName.Get(k)))
+            .ToList();
+
     public static Dictionary<string, int> MossTypes => MorphSettings.MossTypes;
 
     private static readonly Dictionary<string, TEditColor> _globalColors = new Dictionary<string, TEditColor>();

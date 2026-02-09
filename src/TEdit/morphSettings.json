@@ -13,7 +13,7 @@
     "氦": 627
   },
   "biomes": {
-    "净化": {
+    "Purify": {
       "biomeName": "Purify",
       "morphTiles": [
         {
@@ -302,7 +302,7 @@
         }
       ]
     },
-    "腐化": {
+    "Corruption": {
       "biomeName": "Corruption",
       "morphTiles": [
         {
@@ -647,7 +647,7 @@
         }
       ]
     },
-    "猩红": {
+    "Crimson": {
       "biomeName": "Crimson",
       "morphTiles": [
         {
@@ -992,7 +992,7 @@
         }
       ]
     },
-    "神圣": {
+    "Hallow": {
       "biomeName": "Hallow",
       "morphTiles": [
         {
@@ -1232,7 +1232,7 @@
         }
       ]
     },
-    "发光蘑菇": {
+    "GlowingMushroom": {
       "biomeName": "GlowingMushroom",
       "morphTiles": [
         {
@@ -1337,7 +1337,7 @@
         }
       ]
     },
-    "森林": {
+    "Forest": {
       "biomeName": "Forest",
       "morphTiles": [
         {
@@ -1806,7 +1806,7 @@
         }
       ]
     },
-    "雪原": {
+    "Snow": {
       "biomeName": "Snow",
       "morphTiles": [
         {
@@ -2166,7 +2166,7 @@
         }
       ]
     },
-    "沙漠": {
+    "Desert": {
       "biomeName": "Desert",
       "morphTiles": [
         {

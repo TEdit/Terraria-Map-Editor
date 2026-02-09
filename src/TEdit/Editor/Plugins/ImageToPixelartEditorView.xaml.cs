@@ -603,21 +603,21 @@ namespace TEdit.Editor.Plugins
         private async void ConvertToPixelArt_Click(object sender, RoutedEventArgs e)
         {
             // Check the current button content.
-            if (ConvertToPixelArt.Content.ToString() == "Convert To Pixel Art")
+            if (ConvertToPixelArt.Content.ToString() == "转换为像素图")
             {
                 // Ensure the color filter is not zero.
                 if (ClrsTileWallData.Count == 0)
                 {
                     // Display error.
-                    MessageBox.Show("The color filter is zero. Adjust your settings.");
+                    MessageBox.Show("颜色过滤器为空. 请调整设置.");
                     return;
                 }
                 
                 // Start or restart the conversion.
                 _cancellationTokenSource?.Cancel(); // Cancel any existing conversion tasks.
                 _cancellationTokenSource = new CancellationTokenSource(); // Create a new CancellationTokenSource for the new operation.
-                ConvertToPixelArt.ToolTip = "Cancle the current rendering operation."; // Change button tooltip.
-                ConvertToPixelArt.Content = "Cancel Conversion"; // Change button content to indicate the operation can be cancelled.
+                ConvertToPixelArt.ToolTip = "取消当前渲染操作."; // Change button tooltip.
+                ConvertToPixelArt.Content = "取消渲染"; // Change button content to indicate the operation can be cancelled.
 
                 try
                 {
@@ -627,16 +627,16 @@ namespace TEdit.Editor.Plugins
                 catch (OperationCanceledException)
                 {
                     // Handle cancellation.
-                    MessageBox.Show("Rendering was cancelled.");
+                    MessageBox.Show("渲染已取消.");
                 }
                 finally
                 {
                     // Reset button content, tooltip, and state.
-                    ConvertToPixelArt.ToolTip = "Convert the current image to pixel art.";
-                    ConvertToPixelArt.Content = "Convert To Pixel Art";
+                    ConvertToPixelArt.ToolTip = "将当前图像转换为像素图.";
+                    ConvertToPixelArt.Content = "转换为像素图";
                 }
             }
-            else if (ConvertToPixelArt.Content.ToString() == "Cancel Conversion")
+            else if (ConvertToPixelArt.Content.ToString() == "取消转换")
             {
                 // Cancel the ongoing conversion.
                 _cancellationTokenSource?.Cancel();
