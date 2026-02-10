@@ -1469,40 +1469,40 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1960" Name="Fallen Star Chair" Anchor="Right" />
         <Frame UV="0,2000" Name="Feywood Chair" Anchor="Left" />
         <Frame UV="18,2000" Name="Feywood Chair" Anchor="Right" />
-        <Frame UV="36,0" Name="Hallowed Chair" Anchor="Left" />
-        <Frame UV="54,0" Name="Hallowed Chair" Anchor="Right" />
-        <Frame UV="36,40" Name="Demonite Chair" Anchor="Left" />
-        <Frame UV="54,40" Name="Demonite Chair" Anchor="Right" />
-        <Frame UV="36,80" Name="Crimtane Chair" Anchor="Left" />
-        <Frame UV="54,80" Name="Crimtane Chair" Anchor="Right" />
-        <Frame UV="36,120" Name="Snow Chair" Anchor="Left" />
-        <Frame UV="54,120" Name="Snow Chair" Anchor="Right" />
-        <Frame UV="36,160" Name="Flinx Fur Chair" Anchor="Left" />
-        <Frame UV="54,160" Name="Flinx Fur Chair" Anchor="Right" />
-        <Frame UV="36,200" Name="Easter Chair" Anchor="Left" />
-        <Frame UV="54,200" Name="Easter Chair" Anchor="Right" />
-        <Frame UV="36,240" Name="Boulder Chair" Anchor="Left" />
-        <Frame UV="54,240" Name="Boulder Chair" Anchor="Right" />
-        <Frame UV="36,280" Name="Jellyfish Chair" Anchor="Left" />
-        <Frame UV="54,280" Name="Jellyfish Chair" Anchor="Right" />
-        <Frame UV="36,320" Name="Harpy Chair" Anchor="Left" />
-        <Frame UV="54,320" Name="Harpy Chair" Anchor="Right" />
-        <Frame UV="36,360" Name="Cloud Chair" Anchor="Left" />
-        <Frame UV="54,360" Name="Cloud Chair" Anchor="Right" />
-        <Frame UV="36,400" Name="Duskware Chair" Anchor="Left" />
-        <Frame UV="54,400" Name="Duskware Chair" Anchor="Right" />
-        <Frame UV="36,440" Name="Librarian Chair" Anchor="Left" />
-        <Frame UV="54,440" Name="Librarian Chair" Anchor="Right" />
-        <Frame UV="36,480" Name="Spike Chair" Anchor="Left" />
-        <Frame UV="54,480" Name="Spike Chair" Anchor="Right" />
-        <Frame UV="36,520" Name="Office Chair" Anchor="Left" />
-        <Frame UV="54,520" Name="Office Chair" Anchor="Right" />
-        <Frame UV="36,560" Name="Forbidden Chair" Anchor="Left" />
-        <Frame UV="54,560" Name="Forbidden Chair" Anchor="Right" />
-        <Frame UV="36,600" Name="Aquarium Chair" Anchor="Left" />
-        <Frame UV="54,600" Name="Aquarium Chair" Anchor="Right" />
-        <Frame UV="36,640" Name="Stone Chair" Anchor="Left" />
-        <Frame UV="54,640" Name="Stone Chair" Anchor="Right" />
+        <Frame UV="0,2040" Name="Hallowed Chair" Anchor="Left" />
+        <Frame UV="18,2040" Name="Hallowed Chair" Anchor="Right" />
+        <Frame UV="0,2080" Name="Demonite Chair" Anchor="Left" />
+        <Frame UV="18,2080" Name="Demonite Chair" Anchor="Right" />
+        <Frame UV="0,2120" Name="Crimtane Chair" Anchor="Left" />
+        <Frame UV="18,2120" Name="Crimtane Chair" Anchor="Right" />
+        <Frame UV="0,2160" Name="Snow Chair" Anchor="Left" />
+        <Frame UV="18,2160" Name="Snow Chair" Anchor="Right" />
+        <Frame UV="0,2200" Name="Flinx Fur Chair" Anchor="Left" />
+        <Frame UV="18,2200" Name="Flinx Fur Chair" Anchor="Right" />
+        <Frame UV="0,2240" Name="Easter Chair" Anchor="Left" />
+        <Frame UV="18,2240" Name="Easter Chair" Anchor="Right" />
+        <Frame UV="0,2280" Name="Boulder Chair" Anchor="Left" />
+        <Frame UV="18,2280" Name="Boulder Chair" Anchor="Right" />
+        <Frame UV="0,2320" Name="Jellyfish Chair" Anchor="Left" />
+        <Frame UV="18,2320" Name="Jellyfish Chair" Anchor="Right" />
+        <Frame UV="0,2360" Name="Harpy Chair" Anchor="Left" />
+        <Frame UV="18,2360" Name="Harpy Chair" Anchor="Right" />
+        <Frame UV="0,2400" Name="Cloud Chair" Anchor="Left" />
+        <Frame UV="18,2400" Name="Cloud Chair" Anchor="Right" />
+        <Frame UV="0,2440" Name="Duskware Chair" Anchor="Left" />
+        <Frame UV="18,2440" Name="Duskware Chair" Anchor="Right" />
+        <Frame UV="0,2480" Name="Librarian Chair" Anchor="Left" />
+        <Frame UV="18,2480" Name="Librarian Chair" Anchor="Right" />
+        <Frame UV="0,2520" Name="Spike Chair" Anchor="Left" />
+        <Frame UV="18,2520" Name="Spike Chair" Anchor="Right" />
+        <Frame UV="0,2560" Name="Office Chair" Anchor="Left" />
+        <Frame UV="18,2560" Name="Office Chair" Anchor="Right" />
+        <Frame UV="0,2600" Name="Forbidden Chair" Anchor="Left" />
+        <Frame UV="18,2600" Name="Forbidden Chair" Anchor="Right" />
+        <Frame UV="0,2640" Name="Aquarium Chair" Anchor="Left" />
+        <Frame UV="18,2640" Name="Aquarium Chair" Anchor="Right" />
+        <Frame UV="0,2680" Name="Stone Chair" Anchor="Left" />
+        <Frame UV="18,2680" Name="Stone Chair" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="16" Color="#FF8C8274" Name="Anvils" Framed="true" Size="2,1" TextureGrid="16,18"
@@ -1573,15 +1573,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1908, 0" Name="Easter Work Bench" />
         <Frame UV="1944, 0" Name="Stone Work Bench" />
         <Frame UV="1980, 0" Name="Jellyfish Work Bench" />
-        <Frame UV="0, 20" Name="Harpy Work Bench" />
-        <Frame UV="36, 20" Name="Cloud Work Bench" />
-        <Frame UV="72, 20" Name="Duskware Work Bench" />
-        <Frame UV="108, 20" Name="Librarian Work Bench" />
-        <Frame UV="144, 20" Name="Spike Work Bench" />
-        <Frame UV="180, 20" Name="Office Work Bench" />
-        <Frame UV="216, 20" Name="Forbidden Work Bench" />
-        <Frame UV="252, 20" Name="Aquarium Work Bench" />
-        <Frame UV="288, 20" Name="Boulder Work Bench" />
+        <Frame UV="2016, 0" Name="Harpy Work Bench" />
+        <Frame UV="2052, 0" Name="Cloud Work Bench" />
+        <Frame UV="2088, 0" Name="Duskware Work Bench" />
+        <Frame UV="2124, 0" Name="Librarian Work Bench" />
+        <Frame UV="2160, 0" Name="Spike Work Bench" />
+        <Frame UV="2196, 0" Name="Office Work Bench" />
+        <Frame UV="2232, 0" Name="Forbidden Work Bench" />
+        <Frame UV="2268, 0" Name="Aquarium Work Bench" />
+        <Frame UV="2304, 0" Name="Boulder Work Bench" />
       </Frames>
     </Tile>
     <Tile Id="19" Color="#FFBF8E6F" Name="Platforms" Solid="true" Framed="true" TextureGrid="16,16"
@@ -4182,36 +4182,36 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18, 1944" Name="Demonite Lantern" Variety="Off" />
         <Frame UV="0, 1980" Name="Crimtane Lantern" Variety="On" />
         <Frame UV="18, 1980" Name="Crimtane Lantern" Variety="Off" />
-        <Frame UV="36, 0" Name="Snow Lantern" Variety="On" />
-        <Frame UV="54, 0" Name="Snow Lantern" Variety="Off" />
-        <Frame UV="36, 36" Name="Flinx Fur Lantern" Variety="On" />
-        <Frame UV="54, 36" Name="Flinx Fur Lantern" Variety="Off" />
-        <Frame UV="36, 72" Name="Pine Lantern" Variety="On" />
-        <Frame UV="54, 72" Name="Pine Lantern" Variety="Off" />
-        <Frame UV="36, 108" Name="Easter Lantern" Variety="On" />
-        <Frame UV="54, 108" Name="Easter Lantern" Variety="Off" />
-        <Frame UV="36, 144" Name="Stone Lantern" Variety="On" />
-        <Frame UV="54, 144" Name="Stone Lantern" Variety="Off" />
-        <Frame UV="36, 180" Name="Jellyfish Lantern" Variety="On" />
-        <Frame UV="54, 180" Name="Jellyfish Lantern" Variety="Off" />
-        <Frame UV="36, 216" Name="Harpy Lantern" Variety="On" />
-        <Frame UV="54, 216" Name="Harpy Lantern" Variety="Off" />
-        <Frame UV="36, 252" Name="Cloud Lantern" Variety="On" />
-        <Frame UV="54, 252" Name="Cloud Lantern" Variety="Off" />
-        <Frame UV="36, 288" Name="Duskware Lantern" Variety="On" />
-        <Frame UV="54, 288" Name="Duskware Lantern" Variety="Off" />
-        <Frame UV="36, 324" Name="Librarian Lantern" Variety="On" />
-        <Frame UV="54, 324" Name="Librarian Lantern" Variety="Off" />
-        <Frame UV="36, 360" Name="Spike Lantern" Variety="On" />
-        <Frame UV="54, 360" Name="Spike Lantern" Variety="Off" />
-        <Frame UV="36, 396" Name="Office Lantern" Variety="On" />
-        <Frame UV="54, 396" Name="Office Lantern" Variety="Off" />
-        <Frame UV="36, 432" Name="Forbidden Lantern" Variety="On" />
-        <Frame UV="54, 432" Name="Forbidden Lantern" Variety="Off" />
-        <Frame UV="36, 468" Name="Aquarium Lantern" Variety="On" />
-        <Frame UV="54, 468" Name="Aquarium Lantern" Variety="Off" />
-        <Frame UV="36, 504" Name="Boulder Lantern" Variety="On" />
-        <Frame UV="54, 504" Name="Boulder Lantern" Variety="Off" />
+        <Frame UV="0, 2016" Name="Snow Lantern" Variety="On" />
+        <Frame UV="18, 2016" Name="Snow Lantern" Variety="Off" />
+        <Frame UV="0, 2052" Name="Flinx Fur Lantern" Variety="On" />
+        <Frame UV="18, 2052" Name="Flinx Fur Lantern" Variety="Off" />
+        <Frame UV="0, 2088" Name="Pine Lantern" Variety="On" />
+        <Frame UV="18, 2088" Name="Pine Lantern" Variety="Off" />
+        <Frame UV="0, 2124" Name="Easter Lantern" Variety="On" />
+        <Frame UV="18, 2124" Name="Easter Lantern" Variety="Off" />
+        <Frame UV="0, 2160" Name="Stone Lantern" Variety="On" />
+        <Frame UV="18, 2160" Name="Stone Lantern" Variety="Off" />
+        <Frame UV="0, 2196" Name="Jellyfish Lantern" Variety="On" />
+        <Frame UV="18, 2196" Name="Jellyfish Lantern" Variety="Off" />
+        <Frame UV="0, 2232" Name="Harpy Lantern" Variety="On" />
+        <Frame UV="18, 2232" Name="Harpy Lantern" Variety="Off" />
+        <Frame UV="0, 2268" Name="Cloud Lantern" Variety="On" />
+        <Frame UV="18, 2268" Name="Cloud Lantern" Variety="Off" />
+        <Frame UV="0, 2304" Name="Duskware Lantern" Variety="On" />
+        <Frame UV="18, 2304" Name="Duskware Lantern" Variety="Off" />
+        <Frame UV="0, 2340" Name="Librarian Lantern" Variety="On" />
+        <Frame UV="18, 2340" Name="Librarian Lantern" Variety="Off" />
+        <Frame UV="0, 2376" Name="Spike Lantern" Variety="On" />
+        <Frame UV="18, 2376" Name="Spike Lantern" Variety="Off" />
+        <Frame UV="0, 2412" Name="Office Lantern" Variety="On" />
+        <Frame UV="18, 2412" Name="Office Lantern" Variety="Off" />
+        <Frame UV="0, 2448" Name="Forbidden Lantern" Variety="On" />
+        <Frame UV="18, 2448" Name="Forbidden Lantern" Variety="Off" />
+        <Frame UV="0, 2484" Name="Aquarium Lantern" Variety="On" />
+        <Frame UV="18, 2484" Name="Aquarium Lantern" Variety="Off" />
+        <Frame UV="0, 2520" Name="Boulder Lantern" Variety="On" />
+        <Frame UV="18, 2520" Name="Boulder Lantern" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="43" Color="#FF54643F" Name="Green Brick" Solid="true" Blends="true" MergeWith="0" />
@@ -4511,24 +4511,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,1944" Name="Stone Bed" Variety="Right" />
         <Frame UV="0,1980" Name="Jellyfish Bed" Variety="Left" />
         <Frame UV="72,1980" Name="Jellyfish Bed" Variety="Right" />
-        <Frame UV="144,0" Name="Harpy Bed" Variety="Left" />
-        <Frame UV="216,0" Name="Harpy Bed" Variety="Right" />
-        <Frame UV="144,36" Name="Cloud Bed" Variety="Left" />
-        <Frame UV="216,36" Name="Cloud Bed" Variety="Right" />
-        <Frame UV="144,72" Name="Duskware Bed" Variety="Left" />
-        <Frame UV="216,72" Name="Duskware Bed" Variety="Right" />
-        <Frame UV="144,108" Name="Librarian Bed" Variety="Left" />
-        <Frame UV="216,108" Name="Librarian Bed" Variety="Right" />
-        <Frame UV="144,144" Name="Spike Bed" Variety="Left" />
-        <Frame UV="216,144" Name="Spike Bed" Variety="Right" />
-        <Frame UV="144,180" Name="Office Bed" Variety="Left" />
-        <Frame UV="216,180" Name="Office Bed" Variety="Right" />
-        <Frame UV="144,216" Name="Forbidden Bed" Variety="Left" />
-        <Frame UV="216,216" Name="Forbidden Bed" Variety="Right" />
-        <Frame UV="144,252" Name="Aquarium Bed" Variety="Left" />
-        <Frame UV="216,252" Name="Aquarium Bed" Variety="Right" />
-        <Frame UV="144,288" Name="Boulder Bed" Variety="Left" />
-        <Frame UV="216,288" Name="Boulder Bed" Variety="Right" />
+        <Frame UV="0,2016" Name="Harpy Bed" Variety="Left" />
+        <Frame UV="72,2016" Name="Harpy Bed" Variety="Right" />
+        <Frame UV="0,2052" Name="Cloud Bed" Variety="Left" />
+        <Frame UV="72,2052" Name="Cloud Bed" Variety="Right" />
+        <Frame UV="0,2088" Name="Duskware Bed" Variety="Left" />
+        <Frame UV="72,2088" Name="Duskware Bed" Variety="Right" />
+        <Frame UV="0,2124" Name="Librarian Bed" Variety="Left" />
+        <Frame UV="72,2124" Name="Librarian Bed" Variety="Right" />
+        <Frame UV="0,2160" Name="Spike Bed" Variety="Left" />
+        <Frame UV="72,2160" Name="Spike Bed" Variety="Right" />
+        <Frame UV="0,2196" Name="Office Bed" Variety="Left" />
+        <Frame UV="72,2196" Name="Office Bed" Variety="Right" />
+        <Frame UV="0,2232" Name="Forbidden Bed" Variety="Left" />
+        <Frame UV="72,2232" Name="Forbidden Bed" Variety="Right" />
+        <Frame UV="0,2268" Name="Aquarium Bed" Variety="Left" />
+        <Frame UV="72,2268" Name="Aquarium Bed" Variety="Right" />
+        <Frame UV="0,2304" Name="Boulder Bed" Variety="Left" />
+        <Frame UV="72,2304" Name="Boulder Bed" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Id="80" Color="#FF497811" Name="Cactus Plant" Special="Cactus" />
@@ -4634,34 +4634,34 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1836,0" Name="Solar Piano" />
         <Frame UV="1890,0" Name="Vortex Piano" />
         <Frame UV="1944,0" Name="Nebula Piano" />
-        <Frame UV="0, 36" Name="Stardust Piano" />
-        <Frame UV="54, 36" Name="Sandstone Piano" />
-        <Frame UV="108, 36" Name="Bamboo Piano" />
-        <Frame UV="162, 36" Name="Reef Piano" />
-        <Frame UV="216, 36" Name="Balloon Piano" />
-        <Frame UV="270, 36" Name="Ash Wood Piano" />
-        <Frame UV="324, 36" Name="Aetherium Piano" />
-        <Frame UV="378, 36" Name="Fallen Star Piano" />
-        <Frame UV="432, 36" Name="Feywood Piano" />
-        <Frame UV="486, 36" Name="Hallowed Piano" />
-        <Frame UV="540, 36" Name="Gothic Piano" />
-        <Frame UV="594, 36" Name="Demonite Piano" />
-        <Frame UV="648, 36" Name="Crimtane Piano" />
-        <Frame UV="702, 36" Name="Snow Piano" />
-        <Frame UV="756, 36" Name="Flinx Fur Piano" />
-        <Frame UV="810, 36" Name="Pine Piano" />
-        <Frame UV="864, 36" Name="Easter Piano" />
-        <Frame UV="918, 36" Name="Stone Piano" />
-        <Frame UV="972, 36" Name="Jellyfish Piano" />
-        <Frame UV="1026, 36" Name="Harpy Piano" />
-        <Frame UV="1080, 36" Name="Cloud Piano" />
-        <Frame UV="1134, 36" Name="Duskware Piano" />
-        <Frame UV="1188, 36" Name="Librarian Piano" />
-        <Frame UV="1242, 36" Name="Spike Piano" />
-        <Frame UV="1296, 36" Name="Office Piano" />
-        <Frame UV="1350, 36" Name="Forbidden Piano" />
-        <Frame UV="1404, 36" Name="Aquarium Piano" />
-        <Frame UV="1458, 36" Name="Boulder Piano" />
+        <Frame UV="1998, 0" Name="Stardust Piano" />
+        <Frame UV="2052, 0" Name="Sandstone Piano" />
+        <Frame UV="2106, 0" Name="Bamboo Piano" />
+        <Frame UV="2160, 0" Name="Reef Piano" />
+        <Frame UV="2214, 0" Name="Balloon Piano" />
+        <Frame UV="2268, 0" Name="Ash Wood Piano" />
+        <Frame UV="2322, 0" Name="Aetherium Piano" />
+        <Frame UV="2376, 0" Name="Fallen Star Piano" />
+        <Frame UV="2430, 0" Name="Feywood Piano" />
+        <Frame UV="2484, 0" Name="Hallowed Piano" />
+        <Frame UV="2538, 0" Name="Gothic Piano" />
+        <Frame UV="2592, 0" Name="Demonite Piano" />
+        <Frame UV="2646, 0" Name="Crimtane Piano" />
+        <Frame UV="2700, 0" Name="Snow Piano" />
+        <Frame UV="2754, 0" Name="Flinx Fur Piano" />
+        <Frame UV="2808, 0" Name="Pine Piano" />
+        <Frame UV="2862, 0" Name="Easter Piano" />
+        <Frame UV="2916, 0" Name="Stone Piano" />
+        <Frame UV="2970, 0" Name="Jellyfish Piano" />
+        <Frame UV="3024, 0" Name="Harpy Piano" />
+        <Frame UV="3078, 0" Name="Cloud Piano" />
+        <Frame UV="3132, 0" Name="Duskware Piano" />
+        <Frame UV="3186, 0" Name="Librarian Piano" />
+        <Frame UV="3240, 0" Name="Spike Piano" />
+        <Frame UV="3294, 0" Name="Office Piano" />
+        <Frame UV="3348, 0" Name="Forbidden Piano" />
+        <Frame UV="3402, 0" Name="Aquarium Piano" />
+        <Frame UV="3456, 0" Name="Boulder Piano" />
       </Frames>
     </Tile>
     <Tile Id="88" Color="#FFBF8E6F" Name="Dressers" Framed="true" Size="3,2" Placement="floor"
@@ -4704,34 +4704,34 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1836,0" Name="Solar Dresser" />
         <Frame UV="1890,0" Name="Vortex Dresser" />
         <Frame UV="1944,0" Name="Nebula Dresser" />
-        <Frame UV="0, 36" Name="Stardust Dresser" />
-        <Frame UV="54, 36" Name="Sandstone Dresser" />
-        <Frame UV="108, 36" Name="Bamboo Dresser" />
-        <Frame UV="162, 36" Name="Reef Dresser" />
-        <Frame UV="216, 36" Name="Balloon Dresser" />
-        <Frame UV="270, 36" Name="Ash Wood Dresser" />
-        <Frame UV="324, 36" Name="Aetherium Dresser" />
-        <Frame UV="378, 36" Name="Fallen Star Dresser" />
-        <Frame UV="432, 36" Name="Feywood Dresser" />
-        <Frame UV="486, 36" Name="Hallowed Dresser" />
-        <Frame UV="540, 36" Name="Gothic Dresser" />
-        <Frame UV="594, 36" Name="Demonite Dresser" />
-        <Frame UV="648, 36" Name="Crimtane Dresser" />
-        <Frame UV="702, 36" Name="Snow Dresser" />
-        <Frame UV="756, 36" Name="Flinx Fur Dresser" />
-        <Frame UV="810, 36" Name="Pine Dresser" />
-        <Frame UV="864, 36" Name="Easter Dresser" />
-        <Frame UV="918, 36" Name="Stone Dresser" />
-        <Frame UV="972, 36" Name="Jellyfish Dresser" />
-        <Frame UV="1026, 36" Name="Harpy Dresser" />
-        <Frame UV="1080, 36" Name="Cloud Dresser" />
-        <Frame UV="1134, 36" Name="Duskware Dresser" />
-        <Frame UV="1188, 36" Name="Librarian Dresser" />
-        <Frame UV="1242, 36" Name="Spike Dresser" />
-        <Frame UV="1296, 36" Name="Office Dresser" />
-        <Frame UV="1350, 36" Name="Forbidden Dresser" />
-        <Frame UV="1404, 36" Name="Aquarium Dresser" />
-        <Frame UV="1458, 36" Name="Boulder Dresser" />
+        <Frame UV="1998, 0" Name="Stardust Dresser" />
+        <Frame UV="2052, 0" Name="Sandstone Dresser" />
+        <Frame UV="2106, 0" Name="Bamboo Dresser" />
+        <Frame UV="2160, 0" Name="Reef Dresser" />
+        <Frame UV="2214, 0" Name="Balloon Dresser" />
+        <Frame UV="2268, 0" Name="Ash Wood Dresser" />
+        <Frame UV="2322, 0" Name="Aetherium Dresser" />
+        <Frame UV="2376, 0" Name="Fallen Star Dresser" />
+        <Frame UV="2430, 0" Name="Feywood Dresser" />
+        <Frame UV="2484, 0" Name="Hallowed Dresser" />
+        <Frame UV="2538, 0" Name="Gothic Dresser" />
+        <Frame UV="2592, 0" Name="Demonite Dresser" />
+        <Frame UV="2646, 0" Name="Crimtane Dresser" />
+        <Frame UV="2700, 0" Name="Snow Dresser" />
+        <Frame UV="2754, 0" Name="Flinx Fur Dresser" />
+        <Frame UV="2808, 0" Name="Pine Dresser" />
+        <Frame UV="2862, 0" Name="Easter Dresser" />
+        <Frame UV="2916, 0" Name="Stone Dresser" />
+        <Frame UV="2970, 0" Name="Jellyfish Dresser" />
+        <Frame UV="3024, 0" Name="Harpy Dresser" />
+        <Frame UV="3078, 0" Name="Cloud Dresser" />
+        <Frame UV="3132, 0" Name="Duskware Dresser" />
+        <Frame UV="3186, 0" Name="Librarian Dresser" />
+        <Frame UV="3240, 0" Name="Spike Dresser" />
+        <Frame UV="3294, 0" Name="Office Dresser" />
+        <Frame UV="3348, 0" Name="Forbidden Dresser" />
+        <Frame UV="3402, 0" Name="Aquarium Dresser" />
+        <Frame UV="3456, 0" Name="Boulder Dresser" />
       </Frames>
     </Tile>
     <Tile Id="89" Color="#FFBF8E6F" Name="Benches" Framed="true" Size="3,2" Placement="floor">
@@ -4773,38 +4773,38 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1836,0" Name="Dynasty Sofa" />
         <Frame UV="1890,0" Name="Spider Sofa" />
         <Frame UV="1944,0" Name="Lesion Sofa" />
-        <Frame UV="0, 36" Name="Solar Sofa" />
-        <Frame UV="54, 36" Name="Vortex Sofa" />
-        <Frame UV="108, 36" Name="Nebula Sofa" />
-        <Frame UV="162, 36" Name="Stardust Sofa" />
-        <Frame UV="216, 36" Name="Sandstone Sofa" />
-        <Frame UV="270, 36" Name="Bamboo Sofa" />
-        <Frame UV="324, 36" Name="Chippy's Couch" />
-        <Frame UV="378, 36" Name="Reef Sofa" />
-        <Frame UV="432, 36" Name="Balloon Sofa" />
-        <Frame UV="486, 36" Name="Ash Wood Sofa" />
-        <Frame UV="540, 36" Name="Aetherium Sofa" />
-        <Frame UV="594, 36" Name="Fallen Star Sofa" />
-        <Frame UV="648, 36" Name="Feywood Sofa" />
-        <Frame UV="702, 36" Name="Hallowed Sofa" />
-        <Frame UV="756, 36" Name="Gothic Sofa" />
-        <Frame UV="810, 36" Name="Demonite Sofa" />
-        <Frame UV="864, 36" Name="Crimtane Sofa" />
-        <Frame UV="918, 36" Name="Snow Sofa" />
-        <Frame UV="972, 36" Name="Flinx Fur Sofa" />
-        <Frame UV="1026, 36" Name="Pine Sofa" />
-        <Frame UV="1080, 36" Name="Easter Sofa" />
-        <Frame UV="1134, 36" Name="Stone Sofa" />
-        <Frame UV="1188, 36" Name="Jellyfish Sofa" />
-        <Frame UV="1242, 36" Name="Harpy Sofa" />
-        <Frame UV="1296, 36" Name="Cloud Sofa" />
-        <Frame UV="1350, 36" Name="Duskware Sofa" />
-        <Frame UV="1404, 36" Name="Librarian Sofa" />
-        <Frame UV="1458, 36" Name="Spike Sofa" />
-        <Frame UV="1512, 36" Name="Office Sofa" />
-        <Frame UV="1566, 36" Name="Forbidden Sofa" />
-        <Frame UV="1620, 36" Name="Aquarium Sofa" />
-        <Frame UV="1674, 36" Name="Boulder Sofa" />
+        <Frame UV="1998, 0" Name="Solar Sofa" />
+        <Frame UV="2052, 0" Name="Vortex Sofa" />
+        <Frame UV="2106, 0" Name="Nebula Sofa" />
+        <Frame UV="2160, 0" Name="Stardust Sofa" />
+        <Frame UV="2214, 0" Name="Sandstone Sofa" />
+        <Frame UV="2268, 0" Name="Bamboo Sofa" />
+        <Frame UV="2322, 0" Name="Chippy's Couch" />
+        <Frame UV="2376, 0" Name="Reef Sofa" />
+        <Frame UV="2430, 0" Name="Balloon Sofa" />
+        <Frame UV="2484, 0" Name="Ash Wood Sofa" />
+        <Frame UV="2538, 0" Name="Aetherium Sofa" />
+        <Frame UV="2592, 0" Name="Fallen Star Sofa" />
+        <Frame UV="2646, 0" Name="Feywood Sofa" />
+        <Frame UV="2700, 0" Name="Hallowed Sofa" />
+        <Frame UV="2754, 0" Name="Gothic Sofa" />
+        <Frame UV="2808, 0" Name="Demonite Sofa" />
+        <Frame UV="2862, 0" Name="Crimtane Sofa" />
+        <Frame UV="2916, 0" Name="Snow Sofa" />
+        <Frame UV="2970, 0" Name="Flinx Fur Sofa" />
+        <Frame UV="3024, 0" Name="Pine Sofa" />
+        <Frame UV="3078, 0" Name="Easter Sofa" />
+        <Frame UV="3132, 0" Name="Stone Sofa" />
+        <Frame UV="3186, 0" Name="Jellyfish Sofa" />
+        <Frame UV="3240, 0" Name="Harpy Sofa" />
+        <Frame UV="3294, 0" Name="Cloud Sofa" />
+        <Frame UV="3348, 0" Name="Duskware Sofa" />
+        <Frame UV="3402, 0" Name="Librarian Sofa" />
+        <Frame UV="3456, 0" Name="Spike Sofa" />
+        <Frame UV="3510, 0" Name="Office Sofa" />
+        <Frame UV="3564, 0" Name="Forbidden Sofa" />
+        <Frame UV="3618, 0" Name="Aquarium Sofa" />
+        <Frame UV="3672, 0" Name="Boulder Sofa" />
       </Frames>
     </Tile>
     <Tile Id="90" Color="#FF909490" Name="Bathtubs" Framed="true" Size="4,2" Placement="floor">
@@ -4921,24 +4921,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72, 1944" Name="Stone Bathtub" Variety="Right" />
         <Frame UV="0, 1980" Name="Jellyfish Bathtub" Variety="Left" />
         <Frame UV="72, 1980" Name="Jellyfish Bathtub" Variety="Right" />
-        <Frame UV="144, 0" Name="Harpy Bathtub" Variety="Left" />
-        <Frame UV="216, 0" Name="Harpy Bathtub" Variety="Right" />
-        <Frame UV="144, 36" Name="Cloud Bathtub" Variety="Left" />
-        <Frame UV="216, 36" Name="Cloud Bathtub" Variety="Right" />
-        <Frame UV="144, 72" Name="Duskware Bathtub" Variety="Left" />
-        <Frame UV="216, 72" Name="Duskware Bathtub" Variety="Right" />
-        <Frame UV="144, 108" Name="Librarian Bathtub" Variety="Left" />
-        <Frame UV="216, 108" Name="Librarian Bathtub" Variety="Right" />
-        <Frame UV="144, 144" Name="Spike Bathtub" Variety="Left" />
-        <Frame UV="216, 144" Name="Spike Bathtub" Variety="Right" />
-        <Frame UV="144, 180" Name="Office Bathtub" Variety="Left" />
-        <Frame UV="216, 180" Name="Office Bathtub" Variety="Right" />
-        <Frame UV="144, 216" Name="Forbidden Bathtub" Variety="Left" />
-        <Frame UV="216, 216" Name="Forbidden Bathtub" Variety="Right" />
-        <Frame UV="144, 252" Name="Aquarium Bathtub" Variety="Left" />
-        <Frame UV="216, 252" Name="Aquarium Bathtub" Variety="Right" />
-        <Frame UV="144, 288" Name="Boulder Bathtub" Variety="Left" />
-        <Frame UV="216, 288" Name="Boulder Bathtub" Variety="Right" />
+        <Frame UV="0, 2016" Name="Harpy Bathtub" Variety="Left" />
+        <Frame UV="72, 2016" Name="Harpy Bathtub" Variety="Right" />
+        <Frame UV="0, 2052" Name="Cloud Bathtub" Variety="Left" />
+        <Frame UV="72, 2052" Name="Cloud Bathtub" Variety="Right" />
+        <Frame UV="0, 2088" Name="Duskware Bathtub" Variety="Left" />
+        <Frame UV="72, 2088" Name="Duskware Bathtub" Variety="Right" />
+        <Frame UV="0, 2124" Name="Librarian Bathtub" Variety="Left" />
+        <Frame UV="72, 2124" Name="Librarian Bathtub" Variety="Right" />
+        <Frame UV="0, 2160" Name="Spike Bathtub" Variety="Left" />
+        <Frame UV="72, 2160" Name="Spike Bathtub" Variety="Right" />
+        <Frame UV="0, 2196" Name="Office Bathtub" Variety="Left" />
+        <Frame UV="72, 2196" Name="Office Bathtub" Variety="Right" />
+        <Frame UV="0, 2232" Name="Forbidden Bathtub" Variety="Left" />
+        <Frame UV="72, 2232" Name="Forbidden Bathtub" Variety="Right" />
+        <Frame UV="0, 2268" Name="Aquarium Bathtub" Variety="Left" />
+        <Frame UV="72, 2268" Name="Aquarium Bathtub" Variety="Right" />
+        <Frame UV="0, 2304" Name="Boulder Bathtub" Variety="Left" />
+        <Frame UV="72, 2304" Name="Boulder Bathtub" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Id="91" Color="#FF0D5882" Name="Banners" Framed="true" Size="1,3" Placement="ceiling">
@@ -5345,62 +5345,62 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1890" Name="Vortex Lamp" Variety="Off" />
         <Frame UV="0,1944" Name="Nebula Lamp" Variety="On" />
         <Frame UV="18,1944" Name="Nebula Lamp" Variety="Off" />
-        <Frame UV="36, 0" Name="Stardust Lamp" Variety="On" />
-        <Frame UV="54, 0" Name="Stardust Lamp" Variety="Off" />
-        <Frame UV="36, 54" Name="Sandstone Lamp" Variety="On" />
-        <Frame UV="54, 54" Name="Sandstone Lamp" Variety="Off" />
-        <Frame UV="36, 108" Name="Bamboo Lamp" Variety="On" />
-        <Frame UV="54, 108" Name="Bamboo Lamp" Variety="Off" />
-        <Frame UV="36, 162" Name="Reef Lamp" Variety="On" />
-        <Frame UV="54, 162" Name="Reef Lamp" Variety="Off" />
-        <Frame UV="36, 216" Name="Balloon Lamp" Variety="On" />
-        <Frame UV="54, 216" Name="Balloon Lamp" Variety="Off" />
-        <Frame UV="36, 270" Name="Ash Wood Lamp" Variety="On" />
-        <Frame UV="54, 270" Name="Ash Wood Lamp" Variety="Off" />
-        <Frame UV="36, 324" Name="Aetherium Lamp" Variety="On" />
-        <Frame UV="54, 324" Name="Aetherium Lamp" Variety="Off" />
-        <Frame UV="36, 378" Name="Fallen Star Lamp" Variety="On" />
-        <Frame UV="54, 378" Name="Fallen Star Lamp" Variety="Off" />
-        <Frame UV="36, 432" Name="Feywood Lamp" Variety="On" />
-        <Frame UV="54, 432" Name="Feywood Lamp" Variety="Off" />
-        <Frame UV="36, 486" Name="Hallowed Lamp" Variety="On" />
-        <Frame UV="54, 486" Name="Hallowed Lamp" Variety="Off" />
-        <Frame UV="36, 540" Name="Gothic Lamp" Variety="On" />
-        <Frame UV="54, 540" Name="Gothic Lamp" Variety="Off" />
-        <Frame UV="36, 594" Name="Demonite Lamp" Variety="On" />
-        <Frame UV="54, 594" Name="Demonite Lamp" Variety="Off" />
-        <Frame UV="36, 648" Name="Crimtane Lamp" Variety="On" />
-        <Frame UV="54, 648" Name="Crimtane Lamp" Variety="Off" />
-        <Frame UV="36, 702" Name="Snow Lamp" Variety="On" />
-        <Frame UV="54, 702" Name="Snow Lamp" Variety="Off" />
-        <Frame UV="36, 756" Name="Flinx Fur Lamp" Variety="On" />
-        <Frame UV="54, 756" Name="Flinx Fur Lamp" Variety="Off" />
-        <Frame UV="36, 810" Name="Pine Lamp" Variety="On" />
-        <Frame UV="54, 810" Name="Pine Lamp" Variety="Off" />
-        <Frame UV="36, 864" Name="Easter Lamp" Variety="On" />
-        <Frame UV="54, 864" Name="Easter Lamp" Variety="Off" />
-        <Frame UV="36, 918" Name="Stone Lamp" Variety="On" />
-        <Frame UV="54, 918" Name="Stone Lamp" Variety="Off" />
-        <Frame UV="36, 972" Name="Jellyfish Lamp" Variety="On" />
-        <Frame UV="54, 972" Name="Jellyfish Lamp" Variety="Off" />
-        <Frame UV="36, 1026" Name="Harpy Lamp" Variety="On" />
-        <Frame UV="54, 1026" Name="Harpy Lamp" Variety="Off" />
-        <Frame UV="36, 1080" Name="Cloud Lamp" Variety="On" />
-        <Frame UV="54, 1080" Name="Cloud Lamp" Variety="Off" />
-        <Frame UV="36, 1134" Name="Duskware Lamp" Variety="On" />
-        <Frame UV="54, 1134" Name="Duskware Lamp" Variety="Off" />
-        <Frame UV="36, 1188" Name="Librarian Lamp" Variety="On" />
-        <Frame UV="54, 1188" Name="Librarian Lamp" Variety="Off" />
-        <Frame UV="36, 1242" Name="Spike Lamp" Variety="On" />
-        <Frame UV="54, 1242" Name="Spike Lamp" Variety="Off" />
-        <Frame UV="36, 1296" Name="Office Lamp" Variety="On" />
-        <Frame UV="54, 1296" Name="Office Lamp" Variety="Off" />
-        <Frame UV="36, 1350" Name="Forbidden Lamp" Variety="On" />
-        <Frame UV="54, 1350" Name="Forbidden Lamp" Variety="Off" />
-        <Frame UV="36, 1404" Name="Aquarium Lamp" Variety="On" />
-        <Frame UV="54, 1404" Name="Aquarium Lamp" Variety="Off" />
-        <Frame UV="36, 1458" Name="Boulder Lamp" Variety="On" />
-        <Frame UV="54, 1458" Name="Boulder Lamp" Variety="Off" />
+        <Frame UV="0, 1998" Name="Stardust Lamp" Variety="On" />
+        <Frame UV="18, 1998" Name="Stardust Lamp" Variety="Off" />
+        <Frame UV="0, 2052" Name="Sandstone Lamp" Variety="On" />
+        <Frame UV="18, 2052" Name="Sandstone Lamp" Variety="Off" />
+        <Frame UV="0, 2106" Name="Bamboo Lamp" Variety="On" />
+        <Frame UV="18, 2106" Name="Bamboo Lamp" Variety="Off" />
+        <Frame UV="0, 2160" Name="Reef Lamp" Variety="On" />
+        <Frame UV="18, 2160" Name="Reef Lamp" Variety="Off" />
+        <Frame UV="0, 2214" Name="Balloon Lamp" Variety="On" />
+        <Frame UV="18, 2214" Name="Balloon Lamp" Variety="Off" />
+        <Frame UV="0, 2268" Name="Ash Wood Lamp" Variety="On" />
+        <Frame UV="18, 2268" Name="Ash Wood Lamp" Variety="Off" />
+        <Frame UV="0, 2322" Name="Aetherium Lamp" Variety="On" />
+        <Frame UV="18, 2322" Name="Aetherium Lamp" Variety="Off" />
+        <Frame UV="0, 2376" Name="Fallen Star Lamp" Variety="On" />
+        <Frame UV="18, 2376" Name="Fallen Star Lamp" Variety="Off" />
+        <Frame UV="0, 2430" Name="Feywood Lamp" Variety="On" />
+        <Frame UV="18, 2430" Name="Feywood Lamp" Variety="Off" />
+        <Frame UV="0, 2484" Name="Hallowed Lamp" Variety="On" />
+        <Frame UV="18, 2484" Name="Hallowed Lamp" Variety="Off" />
+        <Frame UV="0, 2538" Name="Gothic Lamp" Variety="On" />
+        <Frame UV="18, 2538" Name="Gothic Lamp" Variety="Off" />
+        <Frame UV="0, 2592" Name="Demonite Lamp" Variety="On" />
+        <Frame UV="18, 2592" Name="Demonite Lamp" Variety="Off" />
+        <Frame UV="0, 2646" Name="Crimtane Lamp" Variety="On" />
+        <Frame UV="18, 2646" Name="Crimtane Lamp" Variety="Off" />
+        <Frame UV="0, 2700" Name="Snow Lamp" Variety="On" />
+        <Frame UV="18, 2700" Name="Snow Lamp" Variety="Off" />
+        <Frame UV="0, 2754" Name="Flinx Fur Lamp" Variety="On" />
+        <Frame UV="18, 2754" Name="Flinx Fur Lamp" Variety="Off" />
+        <Frame UV="0, 2808" Name="Pine Lamp" Variety="On" />
+        <Frame UV="18, 2808" Name="Pine Lamp" Variety="Off" />
+        <Frame UV="0, 2862" Name="Easter Lamp" Variety="On" />
+        <Frame UV="18, 2862" Name="Easter Lamp" Variety="Off" />
+        <Frame UV="0, 2916" Name="Stone Lamp" Variety="On" />
+        <Frame UV="18, 2916" Name="Stone Lamp" Variety="Off" />
+        <Frame UV="0, 2970" Name="Jellyfish Lamp" Variety="On" />
+        <Frame UV="18, 2970" Name="Jellyfish Lamp" Variety="Off" />
+        <Frame UV="0, 3024" Name="Harpy Lamp" Variety="On" />
+        <Frame UV="18, 3024" Name="Harpy Lamp" Variety="Off" />
+        <Frame UV="0, 3078" Name="Cloud Lamp" Variety="On" />
+        <Frame UV="18, 3078" Name="Cloud Lamp" Variety="Off" />
+        <Frame UV="0, 3132" Name="Duskware Lamp" Variety="On" />
+        <Frame UV="18, 3132" Name="Duskware Lamp" Variety="Off" />
+        <Frame UV="0, 3186" Name="Librarian Lamp" Variety="On" />
+        <Frame UV="18, 3186" Name="Librarian Lamp" Variety="Off" />
+        <Frame UV="0, 3240" Name="Spike Lamp" Variety="On" />
+        <Frame UV="18, 3240" Name="Spike Lamp" Variety="Off" />
+        <Frame UV="0, 3294" Name="Office Lamp" Variety="On" />
+        <Frame UV="18, 3294" Name="Office Lamp" Variety="Off" />
+        <Frame UV="0, 3348" Name="Forbidden Lamp" Variety="On" />
+        <Frame UV="18, 3348" Name="Forbidden Lamp" Variety="Off" />
+        <Frame UV="0, 3402" Name="Aquarium Lamp" Variety="On" />
+        <Frame UV="18, 3402" Name="Aquarium Lamp" Variety="Off" />
+        <Frame UV="0, 3456" Name="Boulder Lamp" Variety="On" />
+        <Frame UV="18, 3456" Name="Boulder Lamp" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="94" Color="#FFBF8E6F" Name="Keg" Framed="true" Size="2,2" Placement="floor" />
@@ -5537,24 +5537,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36, 1944" Name="Stone Candelabra" Variety="Off" />
         <Frame UV="0, 1980" Name="Jellyfish Candelabra" Variety="On" />
         <Frame UV="36, 1980" Name="Jellyfish Candelabra" Variety="Off" />
-        <Frame UV="72, 0" Name="Harpy Candelabra" Variety="On" />
-        <Frame UV="108, 0" Name="Harpy Candelabra" Variety="Off" />
-        <Frame UV="72, 36" Name="Cloud Candelabra" Variety="On" />
-        <Frame UV="108, 36" Name="Cloud Candelabra" Variety="Off" />
-        <Frame UV="72, 72" Name="Duskware Candelabra" Variety="On" />
-        <Frame UV="108, 72" Name="Duskware Candelabra" Variety="Off" />
-        <Frame UV="72, 108" Name="Librarian Candelabra" Variety="On" />
-        <Frame UV="108, 108" Name="Librarian Candelabra" Variety="Off" />
-        <Frame UV="72, 144" Name="Spike Candelabra" Variety="On" />
-        <Frame UV="108, 144" Name="Spike Candelabra" Variety="Off" />
-        <Frame UV="72, 180" Name="Office Candelabra" Variety="On" />
-        <Frame UV="108, 180" Name="Office Candelabra" Variety="Off" />
-        <Frame UV="72, 216" Name="Forbidden Candelabra" Variety="On" />
-        <Frame UV="108, 216" Name="Forbidden Candelabra" Variety="Off" />
-        <Frame UV="72, 252" Name="Aquarium Candelabra" Variety="On" />
-        <Frame UV="108, 252" Name="Aquarium Candelabra" Variety="Off" />
-        <Frame UV="72, 288" Name="Boulder Candelabra" Variety="On" />
-        <Frame UV="108, 288" Name="Boulder Candelabra" Variety="Off" />
+        <Frame UV="0, 2016" Name="Harpy Candelabra" Variety="On" />
+        <Frame UV="36, 2016" Name="Harpy Candelabra" Variety="Off" />
+        <Frame UV="0, 2052" Name="Cloud Candelabra" Variety="On" />
+        <Frame UV="36, 2052" Name="Cloud Candelabra" Variety="Off" />
+        <Frame UV="0, 2088" Name="Duskware Candelabra" Variety="On" />
+        <Frame UV="36, 2088" Name="Duskware Candelabra" Variety="Off" />
+        <Frame UV="0, 2124" Name="Librarian Candelabra" Variety="On" />
+        <Frame UV="36, 2124" Name="Librarian Candelabra" Variety="Off" />
+        <Frame UV="0, 2160" Name="Spike Candelabra" Variety="On" />
+        <Frame UV="36, 2160" Name="Spike Candelabra" Variety="Off" />
+        <Frame UV="0, 2196" Name="Office Candelabra" Variety="On" />
+        <Frame UV="36, 2196" Name="Office Candelabra" Variety="Off" />
+        <Frame UV="0, 2232" Name="Forbidden Candelabra" Variety="On" />
+        <Frame UV="36, 2232" Name="Forbidden Candelabra" Variety="Off" />
+        <Frame UV="0, 2268" Name="Aquarium Candelabra" Variety="On" />
+        <Frame UV="36, 2268" Name="Aquarium Candelabra" Variety="Off" />
+        <Frame UV="0, 2304" Name="Boulder Candelabra" Variety="On" />
+        <Frame UV="36, 2304" Name="Boulder Candelabra" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="101" Color="#FFBF8E6F" Name="Bookcases" Framed="true" Size="3,4" Placement="floor"
@@ -5597,34 +5597,34 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1836,0" Name="Lesion Bookcase" />
         <Frame UV="1890,0" Name="Solar Bookcase" />
         <Frame UV="1944,0" Name="Vortex Bookcase" />
-        <Frame UV="0, 72" Name="Nebula Bookcase" />
-        <Frame UV="54, 72" Name="Stardust Bookcase" />
-        <Frame UV="108, 72" Name="Sandstone Bookcase" />
-        <Frame UV="162, 72" Name="Bamboo Bookcase" />
-        <Frame UV="216, 72" Name="Reef Bookcase" />
-        <Frame UV="270, 72" Name="Balloon Bookcase" />
-        <Frame UV="324, 72" Name="Ash Wood Bookcase" />
-        <Frame UV="378, 72" Name="Aetherium Bookcase" />
-        <Frame UV="432, 72" Name="Fallen Star Bookcase" />
-        <Frame UV="486, 72" Name="Feywood Bookcase" />
-        <Frame UV="540, 72" Name="Hallowed Bookcase" />
-        <Frame UV="594, 72" Name="Demonite Bookcase" />
-        <Frame UV="648, 72" Name="Crimtane Bookcase" />
-        <Frame UV="702, 72" Name="Snow Bookcase" />
-        <Frame UV="756, 72" Name="Flinx Fur Bookcase" />
-        <Frame UV="810, 72" Name="Pine Bookcase" />
-        <Frame UV="864, 72" Name="Easter Bookcase" />
-        <Frame UV="918, 72" Name="Stone Bookcase" />
-        <Frame UV="972, 72" Name="Jellyfish Bookcase" />
-        <Frame UV="1026, 72" Name="Harpy Bookcase" />
-        <Frame UV="1080, 72" Name="Cloud Bookcase" />
-        <Frame UV="1134, 72" Name="Duskware Bookcase" />
-        <Frame UV="1188, 72" Name="Librarian Bookcase" />
-        <Frame UV="1242, 72" Name="Spike Bookcase" />
-        <Frame UV="1296, 72" Name="Office Bookcase" />
-        <Frame UV="1350, 72" Name="Forbidden Bookcase" />
-        <Frame UV="1404, 72" Name="Aquarium Bookcase" />
-        <Frame UV="1458, 72" Name="Boulder Bookcase" />
+        <Frame UV="1998, 0" Name="Nebula Bookcase" />
+        <Frame UV="2052, 0" Name="Stardust Bookcase" />
+        <Frame UV="2106, 0" Name="Sandstone Bookcase" />
+        <Frame UV="2160, 0" Name="Bamboo Bookcase" />
+        <Frame UV="2214, 0" Name="Reef Bookcase" />
+        <Frame UV="2268, 0" Name="Balloon Bookcase" />
+        <Frame UV="2322, 0" Name="Ash Wood Bookcase" />
+        <Frame UV="2376, 0" Name="Aetherium Bookcase" />
+        <Frame UV="2430, 0" Name="Fallen Star Bookcase" />
+        <Frame UV="2484, 0" Name="Feywood Bookcase" />
+        <Frame UV="2538, 0" Name="Hallowed Bookcase" />
+        <Frame UV="2592, 0" Name="Demonite Bookcase" />
+        <Frame UV="2646, 0" Name="Crimtane Bookcase" />
+        <Frame UV="2700, 0" Name="Snow Bookcase" />
+        <Frame UV="2754, 0" Name="Flinx Fur Bookcase" />
+        <Frame UV="2808, 0" Name="Pine Bookcase" />
+        <Frame UV="2862, 0" Name="Easter Bookcase" />
+        <Frame UV="2916, 0" Name="Stone Bookcase" />
+        <Frame UV="2970, 0" Name="Jellyfish Bookcase" />
+        <Frame UV="3024, 0" Name="Harpy Bookcase" />
+        <Frame UV="3078, 0" Name="Cloud Bookcase" />
+        <Frame UV="3132, 0" Name="Duskware Bookcase" />
+        <Frame UV="3186, 0" Name="Librarian Bookcase" />
+        <Frame UV="3240, 0" Name="Spike Bookcase" />
+        <Frame UV="3294, 0" Name="Office Bookcase" />
+        <Frame UV="3348, 0" Name="Forbidden Bookcase" />
+        <Frame UV="3402, 0" Name="Aquarium Bookcase" />
+        <Frame UV="3456, 0" Name="Boulder Bookcase" />
       </Frames>
     </Tile>
     <Tile Id="102" Color="#FFE5D449" Name="Throne" Framed="true" Size="3,4" Placement="floor" />
@@ -5694,16 +5694,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1908, 0" Name="Pine Clock" />
         <Frame UV="1944, 0" Name="Easter Clock" />
         <Frame UV="1980, 0" Name="Stone Clock" />
-        <Frame UV="0, 90" Name="Jellyfish Clock" />
-        <Frame UV="36, 90" Name="Harpy Clock" />
-        <Frame UV="72, 90" Name="Cloud Clock" />
-        <Frame UV="108, 90" Name="Duskware Clock" />
-        <Frame UV="144, 90" Name="Librarian Clock" />
-        <Frame UV="180, 90" Name="Spike Clock" />
-        <Frame UV="216, 90" Name="Office Clock" />
-        <Frame UV="252, 90" Name="Forbidden Clock" />
-        <Frame UV="288, 90" Name="Aquarium Clock" />
-        <Frame UV="324, 90" Name="Boulder Clock" />
+        <Frame UV="2016, 0" Name="Jellyfish Clock" />
+        <Frame UV="2052, 0" Name="Harpy Clock" />
+        <Frame UV="2088, 0" Name="Cloud Clock" />
+        <Frame UV="2124, 0" Name="Duskware Clock" />
+        <Frame UV="2160, 0" Name="Librarian Clock" />
+        <Frame UV="2196, 0" Name="Spike Clock" />
+        <Frame UV="2232, 0" Name="Office Clock" />
+        <Frame UV="2268, 0" Name="Forbidden Clock" />
+        <Frame UV="2304, 0" Name="Aquarium Clock" />
+        <Frame UV="2340, 0" Name="Boulder Clock" />
       </Frames>
     </Tile>
     <Tile Id="105" Color="#FF909490" Name="Statue" Framed="true" Size="2,3" Placement="floor">
