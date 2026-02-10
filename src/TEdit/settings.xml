@@ -6235,92 +6235,92 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36, 1944" Name="Music Box (Duke Fishron)" Variety="On" />
         <Frame UV="0, 1980" Name="Music Box (Morning Rain)" Variety="Off" />
         <Frame UV="36, 1980" Name="Music Box (Morning Rain)" Variety="On" />
-        <Frame UV="72, 0" Name="Music Box (Alt Title)" Variety="Off" />
-        <Frame UV="108, 0" Name="Music Box (Alt Title)" Variety="On" />
-        <Frame UV="72, 36" Name="Music Box (Underground Desert)" Variety="Off" />
-        <Frame UV="108, 36" Name="Music Box (Underground Desert)" Variety="On" />
-        <Frame UV="72, 72" Name="Otherworldly Music Box (Rain)" Variety="Off" />
-        <Frame UV="108, 72" Name="Otherworldly Music Box (Rain)" Variety="On" />
-        <Frame UV="72, 108" Name="Otherworldly Music Box (Overworld Day)" Variety="Off" />
-        <Frame UV="108, 108" Name="Otherworldly Music Box (Overworld Day)" Variety="On" />
-        <Frame UV="72, 144" Name="Otherworldly Music Box (Night)" Variety="Off" />
-        <Frame UV="108, 144" Name="Otherworldly Music Box (Night)" Variety="On" />
-        <Frame UV="72, 180" Name="Otherworldly Music Box (Underground)" Variety="Off" />
-        <Frame UV="108, 180" Name="Otherworldly Music Box (Underground)" Variety="On" />
-        <Frame UV="72, 216" Name="Otherworldly Music Box (Desert)" Variety="Off" />
-        <Frame UV="108, 216" Name="Otherworldly Music Box (Desert)" Variety="On" />
-        <Frame UV="72, 252" Name="Otherworldly Music Box (Ocean)" Variety="Off" />
-        <Frame UV="108, 252" Name="Otherworldly Music Box (Ocean)" Variety="On" />
-        <Frame UV="72, 288" Name="Otherworldly Music Box (Mushrooms)" Variety="Off" />
-        <Frame UV="108, 288" Name="Otherworldly Music Box (Mushrooms)" Variety="On" />
-        <Frame UV="72, 324" Name="Otherworldly Music Box (Dungeon)" Variety="Off" />
-        <Frame UV="108, 324" Name="Otherworldly Music Box (Dungeon)" Variety="On" />
-        <Frame UV="72, 360" Name="Otherworldly Music Box (Space)" Variety="Off" />
-        <Frame UV="108, 360" Name="Otherworldly Music Box (Space)" Variety="On" />
-        <Frame UV="72, 396" Name="Otherworldly Music Box (Underworld)" Variety="Off" />
-        <Frame UV="108, 396" Name="Otherworldly Music Box (Underworld)" Variety="On" />
-        <Frame UV="72, 432" Name="Otherworldly Music Box (Snow)" Variety="Off" />
-        <Frame UV="108, 432" Name="Otherworldly Music Box (Snow)" Variety="On" />
-        <Frame UV="72, 468" Name="Otherworldly Music Box (Corruption)" Variety="Off" />
-        <Frame UV="108, 468" Name="Otherworldly Music Box (Corruption)" Variety="On" />
-        <Frame UV="72, 504" Name="Otherworldly Music Box (Underground Corruption)" Variety="Off" />
-        <Frame UV="108, 504" Name="Otherworldly Music Box (Underground Corruption)" Variety="On" />
-        <Frame UV="72, 540" Name="Otherworldly Music Box (Crimson)" Variety="Off" />
-        <Frame UV="108, 540" Name="Otherworldly Music Box (Crimson)" Variety="On" />
-        <Frame UV="72, 576" Name="Otherworldly Music Box (Underground Crimson)" Variety="Off" />
-        <Frame UV="108, 576" Name="Otherworldly Music Box (Underground Crimson)" Variety="On" />
-        <Frame UV="72, 612" Name="Otherworldly Music Box (Ice)" Variety="Off" />
-        <Frame UV="108, 612" Name="Otherworldly Music Box (Ice)" Variety="On" />
-        <Frame UV="72, 648" Name="Otherworldly Music Box (Underground Hallow)" Variety="Off" />
-        <Frame UV="108, 648" Name="Otherworldly Music Box (Underground Hallow)" Variety="On" />
-        <Frame UV="72, 684" Name="Otherworldly Music Box (Eerie)" Variety="Off" />
-        <Frame UV="108, 684" Name="Otherworldly Music Box (Eerie)" Variety="On" />
-        <Frame UV="72, 720" Name="Otherworldly Music Box (Boss 2)" Variety="Off" />
-        <Frame UV="108, 720" Name="Otherworldly Music Box (Boss 2)" Variety="On" />
-        <Frame UV="72, 756" Name="Otherworldly Music Box (Boss 1)" Variety="Off" />
-        <Frame UV="108, 756" Name="Otherworldly Music Box (Boss 1)" Variety="On" />
-        <Frame UV="72, 792" Name="Otherworldly Music Box (Invasion)" Variety="Off" />
-        <Frame UV="108, 792" Name="Otherworldly Music Box (Invasion)" Variety="On" />
-        <Frame UV="72, 828" Name="Otherworldly Music Box (The Towers)" Variety="Off" />
-        <Frame UV="108, 828" Name="Otherworldly Music Box (The Towers)" Variety="On" />
-        <Frame UV="72, 864" Name="Otherworldly Music Box (Lunar Boss)" Variety="Off" />
-        <Frame UV="108, 864" Name="Otherworldly Music Box (Lunar Boss)" Variety="On" />
-        <Frame UV="72, 900" Name="Otherworldly Music Box (Plantera)" Variety="Off" />
-        <Frame UV="108, 900" Name="Otherworldly Music Box (Plantera)" Variety="On" />
-        <Frame UV="72, 936" Name="Otherworldly Music Box (Jungle)" Variety="Off" />
-        <Frame UV="108, 936" Name="Otherworldly Music Box (Jungle)" Variety="On" />
-        <Frame UV="72, 972" Name="Otherworldly Music Box (Wall of Flesh)" Variety="Off" />
-        <Frame UV="108, 972" Name="Otherworldly Music Box (Wall of Flesh)" Variety="On" />
-        <Frame UV="72, 1008" Name="Otherworldly Music Box (Hallow)" Variety="Off" />
-        <Frame UV="108, 1008" Name="Otherworldly Music Box (Hallow)" Variety="On" />
-        <Frame UV="72, 1044" Name="Music Box (Journey's End)" Variety="Off" />
-        <Frame UV="108, 1044" Name="Music Box (Journey's End)" Variety="On" />
-        <Frame UV="72, 1080" Name="Music Box (Deerclops)" Variety="Off" />
-        <Frame UV="108, 1080" Name="Music Box (Deerclops)" Variety="On" />
-        <Frame UV="72, 1116" Name="Music Box (Aether)" Variety="Off" />
-        <Frame UV="108, 1116" Name="Music Box (Aether)" Variety="On" />
-        <Frame UV="72, 1152" Name="Music Box (Queen Bee)" Variety="Off" />
-        <Frame UV="108, 1152" Name="Music Box (Queen Bee)" Variety="On" />
-        <Frame UV="72, 1188" Name="Music Box (The Twins)" Variety="Off" />
-        <Frame UV="108, 1188" Name="Music Box (The Twins)" Variety="On" />
-        <Frame UV="72, 1224" Name="Music Box (King Slime)" Variety="Off" />
-        <Frame UV="108, 1224" Name="Music Box (King Slime)" Variety="On" />
-        <Frame UV="72, 1260" Name="Music Box (Alt Queen Bee)" Variety="Off" />
-        <Frame UV="108, 1260" Name="Music Box (Alt Queen Bee)" Variety="On" />
-        <Frame UV="72, 1296" Name="Music Box (Lunatic Cultist)" Variety="Off" />
-        <Frame UV="108, 1296" Name="Music Box (Lunatic Cultist)" Variety="On" />
-        <Frame UV="72, 1332" Name="Music Box (Skeletron Prime)" Variety="Off" />
-        <Frame UV="108, 1332" Name="Music Box (Skeletron Prime)" Variety="On" />
-        <Frame UV="72, 1368" Name="Music Box (The Destroyer)" Variety="Off" />
-        <Frame UV="108, 1368" Name="Music Box (The Destroyer)" Variety="On" />
-        <Frame UV="72, 1404" Name="Music Box (Eater of Worlds)" Variety="Off" />
-        <Frame UV="108, 1404" Name="Music Box (Eater of Worlds)" Variety="On" />
-        <Frame UV="72, 1440" Name="Music Box (Torch God)" Variety="Off" />
-        <Frame UV="108, 1440" Name="Music Box (Torch God)" Variety="On" />
-        <Frame UV="72, 1476" Name="Music Box (Alt Torch God)" Variety="Off" />
-        <Frame UV="108, 1476" Name="Music Box (Alt Torch God)" Variety="On" />
-        <Frame UV="72, 1512" Name="Music Box (Skeletron)" Variety="Off" />
-        <Frame UV="108, 1512" Name="Music Box (Skeletron)" Variety="On" />
+        <Frame UV="0, 2016" Name="Music Box (Alt Title)" Variety="Off" />
+        <Frame UV="36, 2016" Name="Music Box (Alt Title)" Variety="On" />
+        <Frame UV="0, 2052" Name="Music Box (Underground Desert)" Variety="Off" />
+        <Frame UV="36, 2052" Name="Music Box (Underground Desert)" Variety="On" />
+        <Frame UV="0, 2088" Name="Otherworldly Music Box (Rain)" Variety="Off" />
+        <Frame UV="36, 2088" Name="Otherworldly Music Box (Rain)" Variety="On" />
+        <Frame UV="0, 2124" Name="Otherworldly Music Box (Overworld Day)" Variety="Off" />
+        <Frame UV="36, 2124" Name="Otherworldly Music Box (Overworld Day)" Variety="On" />
+        <Frame UV="0, 2160" Name="Otherworldly Music Box (Night)" Variety="Off" />
+        <Frame UV="36, 2160" Name="Otherworldly Music Box (Night)" Variety="On" />
+        <Frame UV="0, 2196" Name="Otherworldly Music Box (Underground)" Variety="Off" />
+        <Frame UV="36, 2196" Name="Otherworldly Music Box (Underground)" Variety="On" />
+        <Frame UV="0, 2232" Name="Otherworldly Music Box (Desert)" Variety="Off" />
+        <Frame UV="36, 2232" Name="Otherworldly Music Box (Desert)" Variety="On" />
+        <Frame UV="0, 2268" Name="Otherworldly Music Box (Ocean)" Variety="Off" />
+        <Frame UV="36, 2268" Name="Otherworldly Music Box (Ocean)" Variety="On" />
+        <Frame UV="0, 2304" Name="Otherworldly Music Box (Mushrooms)" Variety="Off" />
+        <Frame UV="36, 2304" Name="Otherworldly Music Box (Mushrooms)" Variety="On" />
+        <Frame UV="0, 2340" Name="Otherworldly Music Box (Dungeon)" Variety="Off" />
+        <Frame UV="36, 2340" Name="Otherworldly Music Box (Dungeon)" Variety="On" />
+        <Frame UV="0, 2376" Name="Otherworldly Music Box (Space)" Variety="Off" />
+        <Frame UV="36, 2376" Name="Otherworldly Music Box (Space)" Variety="On" />
+        <Frame UV="0, 2412" Name="Otherworldly Music Box (Underworld)" Variety="Off" />
+        <Frame UV="36, 2412" Name="Otherworldly Music Box (Underworld)" Variety="On" />
+        <Frame UV="0, 2448" Name="Otherworldly Music Box (Snow)" Variety="Off" />
+        <Frame UV="36, 2448" Name="Otherworldly Music Box (Snow)" Variety="On" />
+        <Frame UV="0, 2484" Name="Otherworldly Music Box (Corruption)" Variety="Off" />
+        <Frame UV="36, 2484" Name="Otherworldly Music Box (Corruption)" Variety="On" />
+        <Frame UV="0, 2520" Name="Otherworldly Music Box (Underground Corruption)" Variety="Off" />
+        <Frame UV="36, 2520" Name="Otherworldly Music Box (Underground Corruption)" Variety="On" />
+        <Frame UV="0, 2556" Name="Otherworldly Music Box (Crimson)" Variety="Off" />
+        <Frame UV="36, 2556" Name="Otherworldly Music Box (Crimson)" Variety="On" />
+        <Frame UV="0, 2592" Name="Otherworldly Music Box (Underground Crimson)" Variety="Off" />
+        <Frame UV="36, 2592" Name="Otherworldly Music Box (Underground Crimson)" Variety="On" />
+        <Frame UV="0, 2628" Name="Otherworldly Music Box (Ice)" Variety="Off" />
+        <Frame UV="36, 2628" Name="Otherworldly Music Box (Ice)" Variety="On" />
+        <Frame UV="0, 2664" Name="Otherworldly Music Box (Underground Hallow)" Variety="Off" />
+        <Frame UV="36, 2664" Name="Otherworldly Music Box (Underground Hallow)" Variety="On" />
+        <Frame UV="0, 2700" Name="Otherworldly Music Box (Eerie)" Variety="Off" />
+        <Frame UV="36, 2700" Name="Otherworldly Music Box (Eerie)" Variety="On" />
+        <Frame UV="0, 2736" Name="Otherworldly Music Box (Boss 2)" Variety="Off" />
+        <Frame UV="36, 2736" Name="Otherworldly Music Box (Boss 2)" Variety="On" />
+        <Frame UV="0, 2772" Name="Otherworldly Music Box (Boss 1)" Variety="Off" />
+        <Frame UV="36, 2772" Name="Otherworldly Music Box (Boss 1)" Variety="On" />
+        <Frame UV="0, 2808" Name="Otherworldly Music Box (Invasion)" Variety="Off" />
+        <Frame UV="36, 2808" Name="Otherworldly Music Box (Invasion)" Variety="On" />
+        <Frame UV="0, 2844" Name="Otherworldly Music Box (The Towers)" Variety="Off" />
+        <Frame UV="36, 2844" Name="Otherworldly Music Box (The Towers)" Variety="On" />
+        <Frame UV="0, 2880" Name="Otherworldly Music Box (Lunar Boss)" Variety="Off" />
+        <Frame UV="36, 2880" Name="Otherworldly Music Box (Lunar Boss)" Variety="On" />
+        <Frame UV="0, 2916" Name="Otherworldly Music Box (Plantera)" Variety="Off" />
+        <Frame UV="36, 2916" Name="Otherworldly Music Box (Plantera)" Variety="On" />
+        <Frame UV="0, 2952" Name="Otherworldly Music Box (Jungle)" Variety="Off" />
+        <Frame UV="36, 2952" Name="Otherworldly Music Box (Jungle)" Variety="On" />
+        <Frame UV="0, 2988" Name="Otherworldly Music Box (Wall of Flesh)" Variety="Off" />
+        <Frame UV="36, 2988" Name="Otherworldly Music Box (Wall of Flesh)" Variety="On" />
+        <Frame UV="0, 3024" Name="Otherworldly Music Box (Hallow)" Variety="Off" />
+        <Frame UV="36, 3024" Name="Otherworldly Music Box (Hallow)" Variety="On" />
+        <Frame UV="0, 3060" Name="Music Box (Journey's End)" Variety="Off" />
+        <Frame UV="36, 3060" Name="Music Box (Journey's End)" Variety="On" />
+        <Frame UV="0, 3096" Name="Music Box (Deerclops)" Variety="Off" />
+        <Frame UV="36, 3096" Name="Music Box (Deerclops)" Variety="On" />
+        <Frame UV="0, 3132" Name="Music Box (Aether)" Variety="Off" />
+        <Frame UV="36, 3132" Name="Music Box (Aether)" Variety="On" />
+        <Frame UV="0, 3168" Name="Music Box (Queen Bee)" Variety="Off" />
+        <Frame UV="36, 3168" Name="Music Box (Queen Bee)" Variety="On" />
+        <Frame UV="0, 3204" Name="Music Box (The Twins)" Variety="Off" />
+        <Frame UV="36, 3204" Name="Music Box (The Twins)" Variety="On" />
+        <Frame UV="0, 3240" Name="Music Box (King Slime)" Variety="Off" />
+        <Frame UV="36, 3240" Name="Music Box (King Slime)" Variety="On" />
+        <Frame UV="0, 3276" Name="Music Box (Alt Queen Bee)" Variety="Off" />
+        <Frame UV="36, 3276" Name="Music Box (Alt Queen Bee)" Variety="On" />
+        <Frame UV="0, 3312" Name="Music Box (Lunatic Cultist)" Variety="Off" />
+        <Frame UV="36, 3312" Name="Music Box (Lunatic Cultist)" Variety="On" />
+        <Frame UV="0, 3348" Name="Music Box (Skeletron Prime)" Variety="Off" />
+        <Frame UV="36, 3348" Name="Music Box (Skeletron Prime)" Variety="On" />
+        <Frame UV="0, 3384" Name="Music Box (The Destroyer)" Variety="Off" />
+        <Frame UV="36, 3384" Name="Music Box (The Destroyer)" Variety="On" />
+        <Frame UV="0, 3420" Name="Music Box (Eater of Worlds)" Variety="Off" />
+        <Frame UV="36, 3420" Name="Music Box (Eater of Worlds)" Variety="On" />
+        <Frame UV="0, 3456" Name="Music Box (Torch God)" Variety="Off" />
+        <Frame UV="36, 3456" Name="Music Box (Torch God)" Variety="On" />
+        <Frame UV="0, 3492" Name="Music Box (Alt Torch God)" Variety="Off" />
+        <Frame UV="36, 3492" Name="Music Box (Alt Torch God)" Variety="On" />
+        <Frame UV="0, 3528" Name="Music Box (Skeletron)" Variety="Off" />
+        <Frame UV="36, 3528" Name="Music Box (Skeletron)" Variety="On" />
       </Frames>
     </Tile>
     <Tile Id="140" Color="#FF625FA7" Name="Demonite Brick" Solid="true" Blends="true" MergeWith="0"
@@ -6579,19 +6579,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 1900" Name="Crimtane Sink" />
         <Frame UV="0, 1938" Name="Snow Sink" />
         <Frame UV="0, 1976" Name="Flinx Fur Sink" />
-        <Frame UV="36, 0" Name="Pine Sink" />
-        <Frame UV="36, 38" Name="Easter Sink" />
-        <Frame UV="36, 76" Name="Stone Sink" />
-        <Frame UV="36, 114" Name="Jellyfish Sink" />
-        <Frame UV="36, 152" Name="Harpy Sink" />
-        <Frame UV="36, 190" Name="Cloud Sink" />
-        <Frame UV="36, 228" Name="Duskware Sink" />
-        <Frame UV="36, 266" Name="Librarian Sink" />
-        <Frame UV="36, 304" Name="Spike Sink" />
-        <Frame UV="36, 342" Name="Office Sink" />
-        <Frame UV="36, 380" Name="Forbidden Sink" />
-        <Frame UV="36, 418" Name="Aquarium Sink" />
-        <Frame UV="36, 456" Name="Boulder Sink" />
+        <Frame UV="0, 2014" Name="Pine Sink" />
+        <Frame UV="0, 2052" Name="Easter Sink" />
+        <Frame UV="0, 2090" Name="Stone Sink" />
+        <Frame UV="0, 2128" Name="Jellyfish Sink" />
+        <Frame UV="0, 2166" Name="Harpy Sink" />
+        <Frame UV="0, 2204" Name="Cloud Sink" />
+        <Frame UV="0, 2242" Name="Duskware Sink" />
+        <Frame UV="0, 2280" Name="Librarian Sink" />
+        <Frame UV="0, 2318" Name="Spike Sink" />
+        <Frame UV="0, 2356" Name="Office Sink" />
+        <Frame UV="0, 2394" Name="Forbidden Sink" />
+        <Frame UV="0, 2432" Name="Aquarium Sink" />
+        <Frame UV="0, 2470" Name="Boulder Sink" />
       </Frames>
     </Tile>
     <Tile Id="173" Color="#FFFDDD03" Name="Platinum Candelabra" Framed="true" Size="2,2"
@@ -11405,27 +11405,89 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="703" Name="Jungle Plants Echo" Color="#Ff1ac454" Light="true" Framed="true" Size="1,1">
       <Frames>
-        <Frame Name="Jungle Plants Echo" UV="0, 0" />
+        <Frame UV="0,0" Variety="Grass Single Blade (Echo)" />
+        <Frame UV="18,0" Variety="Grass Double Blade (Echo)" />
+        <Frame UV="36,0" Variety="Grass Small Y (Echo)" />
+        <Frame UV="54,0" Variety="Grass Three Small (Echo)" />
+        <Frame UV="72,0" Variety="Grass Single Blade (Echo)" />
+        <Frame UV="90,0" Variety="Grass Three Large (Echo)" />
+        <Frame UV="108,0" Variety="Flower A (Echo)" />
+        <Frame UV="126,0" Variety="Flower B (Echo)" />
+        <Frame UV="144,0" Name="Jungle Spore (Echo)" />
+        <Frame UV="162,0" Name="Nature's Gift (Echo)" />
+        <Frame UV="180,0" Variety="Flower C (Echo)" />
+        <Frame UV="198,0" Variety="Flower D (Echo)" />
+        <Frame UV="216,0" Variety="Flower E (Echo)" />
+        <Frame UV="234,0" Variety="Flower F (Echo)" />
+        <Frame UV="252,0" Variety="Flower G (Echo)" />
+        <Frame UV="270,0" Variety="Flower H (Echo)" />
+        <Frame UV="288,0" Variety="Flower I (Echo)" />
+        <Frame UV="306,0" Variety="Flower J (Echo)" />
+        <Frame UV="324,0" Variety="Flower K (Echo)" />
+        <Frame UV="342,0" Variety="Flower L (Echo)" />
+        <Frame UV="360,0" Variety="Flower M (Echo)" />
+        <Frame UV="378,0" Variety="Flower N (Echo)" />
+        <Frame UV="396,0" Variety="Flower O (Echo)" />
       </Frames>
     </Tile>
     <Tile Id="704" Name="Fallen Log Echo" Color="#Ff30d0ea" Framed="true" Size="3,2">
       <Frames>
-        <Frame Name="Fallen Log Echo" UV="0, 0" />
+        <Frame Name="Fallen Log (Echo)" UV="0, 0" />
       </Frames>
     </Tile>
     <Tile Id="705" Name="Oasis Plants Echo" Color="#Ff87c41a" Framed="true" Size="3,2">
       <Frames>
-        <Frame Name="Oasis Plants Echo" UV="0, 0" />
+        <Frame UV="0,0" Name="Oasis Plants (Echo)" Variety="A" />
+        <Frame UV="54,0" Name="Oasis Plants (Echo)" Variety="B" />
+        <Frame UV="108,0" Name="Oasis Plants (Echo)" Variety="C" />
+        <Frame UV="162,0" Name="Oasis Plants (Echo)" Variety="D" />
+        <Frame UV="216,0" Name="Oasis Plants (Echo)" Variety="E" />
+        <Frame UV="270,0" Name="Oasis Plants (Echo)" Variety="F" />
+        <Frame UV="324,0" Name="Oasis Plants (Echo)" Variety="G" />
+        <Frame UV="378,0" Name="Oasis Plants (Echo)" Variety="H" />
+        <Frame UV="432,0" Name="Oasis Plants (Echo)" Variety="I" />
+        <Frame UV="0,36" Name="Hallowed Oasis Plants (Echo)" Variety="A" />
+        <Frame UV="54,36" Name="Hallowed Oasis Plants (Echo)" Variety="B" />
+        <Frame UV="108,36" Name="Hallowed Oasis Plants (Echo)" Variety="C" />
+        <Frame UV="162,36" Name="Hallowed Oasis Plants (Echo)" Variety="D" />
+        <Frame UV="216,36" Name="Hallowed Oasis Plants (Echo)" Variety="E" />
+        <Frame UV="270,36" Name="Hallowed Oasis Plants (Echo)" Variety="F" />
+        <Frame UV="324,36" Name="Hallowed Oasis Plants (Echo)" Variety="G" />
+        <Frame UV="378,36" Name="Hallowed Oasis Plants (Echo)" Variety="H" />
+        <Frame UV="432,36" Name="Hallowed Oasis Plants (Echo)" Variety="I" />
+        <Frame UV="0,72" Name="Crimson Oasis Plants (Echo)" Variety="A" />
+        <Frame UV="54,72" Name="Crimson Oasis Plants (Echo)" Variety="B" />
+        <Frame UV="108,72" Name="Crimson Oasis Plants (Echo)" Variety="C" />
+        <Frame UV="162,72" Name="Crimson Oasis Plants (Echo)" Variety="D" />
+        <Frame UV="216,72" Name="Crimson Oasis Plants (Echo)" Variety="E" />
+        <Frame UV="270,72" Name="Crimson Oasis Plants (Echo)" Variety="F" />
+        <Frame UV="324,72" Name="Crimson Oasis Plants (Echo)" Variety="G" />
+        <Frame UV="378,72" Name="Crimson Oasis Plants (Echo)" Variety="H" />
+        <Frame UV="432,72" Name="Crimson Oasis Plants (Echo)" Variety="I" />
+        <Frame UV="0,108" Name="Corruption Oasis Plants (Echo)" Variety="A" />
+        <Frame UV="54,108" Name="Corruption Oasis Plants (Echo)" Variety="B" />
+        <Frame UV="108,108" Name="Corruption Oasis Plants (Echo)" Variety="C" />
+        <Frame UV="162,108" Name="Corruption Oasis Plants (Echo)" Variety="D" />
+        <Frame UV="216,108" Name="Corruption Oasis Plants (Echo)" Variety="E" />
+        <Frame UV="270,108" Name="Corruption Oasis Plants (Echo)" Variety="F" />
+        <Frame UV="324,108" Name="Corruption Oasis Plants (Echo)" Variety="G" />
+        <Frame UV="378,108" Name="Corruption Oasis Plants (Echo)" Variety="H" />
+        <Frame UV="432,108" Name="Corruption Oasis Plants (Echo)" Variety="I" />
       </Frames>
     </Tile>
     <Tile Id="706" Name="Terragrim Shrine Echo" Color="#Ff1cd86d" Framed="true" Size="3,2">
       <Frames>
-        <Frame Name="Terragrim Shrine Echo" UV="0, 0" />
+        <Frame Name="Terragrim Shrine (Echo)" UV="0, 0" />
       </Frames>
     </Tile>
     <Tile Id="707" Name="Books Echo" Color="#Ff6bb600" Framed="true" Size="1,1">
       <Frames>
-        <Frame Name="Books Echo" UV="0, 0" />
+        <Frame UV="0,0" Variety="Blue Red Brown (Echo)" />
+        <Frame UV="18,0" Variety="Yellow Pink (Echo)" />
+        <Frame UV="36,0" Variety="Teal Brown (Echo)" />
+        <Frame UV="54,0" Variety="Purple Blue (Echo)" />
+        <Frame UV="72,0" Variety="Green Orange (Echo)" />
+        <Frame UV="90,0" Variety="Brown Water Bolt Gray (Echo)" />
       </Frames>
     </Tile>
     <Tile Id="708" Name="Shimmerfall Block" Color="#Ff4bb8e6" Light="true" Solid="true" />
