@@ -10612,8 +10612,62 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="617" Name="Relic Base" Framed="true" Size="3,4" Color="#FF7E6C2C">
       <Frames>
-        <Frame UV="0,0" Variety="Left" />
-        <Frame UV="0,72" Variety="Right" />
+        <Frame UV="0, 0" Name="Eye of Cthulhu Relic" Variety="Left" />
+        <Frame UV="0, 72" Name="Eye of Cthulhu Relic" Variety="Right" />
+        <Frame UV="54, 0" Name="Eater of Worlds Relic" Variety="Left" />
+        <Frame UV="54, 72" Name="Eater of Worlds Relic" Variety="Right" />
+        <Frame UV="108, 0" Name="Brain of Cthulhu Relic" Variety="Left" />
+        <Frame UV="108, 72" Name="Brain of Cthulhu Relic" Variety="Right" />
+        <Frame UV="162, 0" Name="Skeletron Relic" Variety="Left" />
+        <Frame UV="162, 72" Name="Skeletron Relic" Variety="Right" />
+        <Frame UV="216, 0" Name="Queen Bee Relic" Variety="Left" />
+        <Frame UV="216, 72" Name="Queen Bee Relic" Variety="Right" />
+        <Frame UV="270, 0" Name="King Slime Relic" Variety="Left" />
+        <Frame UV="270, 72" Name="King Slime Relic" Variety="Right" />
+        <Frame UV="324, 0" Name="Wall of Flesh Relic" Variety="Left" />
+        <Frame UV="324, 72" Name="Wall of Flesh Relic" Variety="Right" />
+        <Frame UV="378, 0" Name="Twins Relic" Variety="Left" />
+        <Frame UV="378, 72" Name="Twins Relic" Variety="Right" />
+        <Frame UV="432, 0" Name="Destroyer Relic" Variety="Left" />
+        <Frame UV="432, 72" Name="Destroyer Relic" Variety="Right" />
+        <Frame UV="486, 0" Name="Skeletron Prime Relic" Variety="Left" />
+        <Frame UV="486, 72" Name="Skeletron Prime Relic" Variety="Right" />
+        <Frame UV="540, 0" Name="Plantera Relic" Variety="Left" />
+        <Frame UV="540, 72" Name="Plantera Relic" Variety="Right" />
+        <Frame UV="594, 0" Name="Golem Relic" Variety="Left" />
+        <Frame UV="594, 72" Name="Golem Relic" Variety="Right" />
+        <Frame UV="648, 0" Name="Duke Fishron Relic" Variety="Left" />
+        <Frame UV="648, 72" Name="Duke Fishron Relic" Variety="Right" />
+        <Frame UV="702, 0" Name="Lunatic Cultist Relic" Variety="Left" />
+        <Frame UV="702, 72" Name="Lunatic Cultist Relic" Variety="Right" />
+        <Frame UV="756, 0" Name="Moon Lord Relic" Variety="Left" />
+        <Frame UV="756, 72" Name="Moon Lord Relic" Variety="Right" />
+        <Frame UV="810, 0" Name="Martian Saucer Relic" Variety="Left" />
+        <Frame UV="810, 72" Name="Martian Saucer Relic" Variety="Right" />
+        <Frame UV="864, 0" Name="Flying Dutchman Relic" Variety="Left" />
+        <Frame UV="864, 72" Name="Flying Dutchman Relic" Variety="Right" />
+        <Frame UV="918, 0" Name="Mourning Wood Relic" Variety="Left" />
+        <Frame UV="918, 72" Name="Mourning Wood Relic" Variety="Right" />
+        <Frame UV="972, 0" Name="Pumpking Relic" Variety="Left" />
+        <Frame UV="972, 72" Name="Pumpking Relic" Variety="Right" />
+        <Frame UV="1026, 0" Name="Ice Queen Relic" Variety="Left" />
+        <Frame UV="1026, 72" Name="Ice Queen Relic" Variety="Right" />
+        <Frame UV="1080, 0" Name="Everscream Relic" Variety="Left" />
+        <Frame UV="1080, 72" Name="Everscream Relic" Variety="Right" />
+        <Frame UV="1134, 0" Name="Santa-NK1 Relic" Variety="Left" />
+        <Frame UV="1134, 72" Name="Santa-NK1 Relic" Variety="Right" />
+        <Frame UV="1188, 0" Name="Dark Mage Relic" Variety="Left" />
+        <Frame UV="1188, 72" Name="Dark Mage Relic" Variety="Right" />
+        <Frame UV="1242, 0" Name="Ogre Relic" Variety="Left" />
+        <Frame UV="1242, 72" Name="Ogre Relic" Variety="Right" />
+        <Frame UV="1296, 0" Name="Betsy Relic" Variety="Left" />
+        <Frame UV="1296, 72" Name="Betsy Relic" Variety="Right" />
+        <Frame UV="1350, 0" Name="Empress of Light Relic" Variety="Left" />
+        <Frame UV="1350, 72" Name="Empress of Light Relic" Variety="Right" />
+        <Frame UV="1404, 0" Name="Queen Slime Relic" Variety="Left" />
+        <Frame UV="1404, 72" Name="Queen Slime Relic" Variety="Right" />
+        <Frame UV="1458, 0" Name="Deerclops Relic" Variety="Left" />
+        <Frame UV="1458, 72" Name="Deerclops Relic" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Id="618" Name="Stone Accent Slab" Solid="true" Color="#FF828282" />

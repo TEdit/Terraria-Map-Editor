@@ -440,7 +440,7 @@ public partial class WorldRenderXna : UserControl
                                 int destY = y * sprite.SizePixelsRender.Y;
                                 int renderY = sprite.SizePixelsRender.Y;
 
-                                // TODO: fix chimney, Aether Monolith, Sleeping Digtoise and Item Flask
+                                // TODO: Fix Chimney, Aether Monolith, Sleeping Digtoise, Drip, Relic Base, Item Flask
                                 // fix tall gates
                                 if (sprite.Tile == 388 || sprite.Tile == 389)
                                 {
