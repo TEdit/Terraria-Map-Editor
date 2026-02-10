@@ -1102,6 +1102,66 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,648" Name="Ash Wood Door" Variety="A" />
         <Frame UV="72,648" Name="Ash Wood Door" Variety="B" />
         <Frame UV="90,648" Name="Ash Wood Door" Variety="C" />
+        <Frame UV="54, 702" Name="Aetherium Door" Variety="A" />
+        <Frame UV="72, 702" Name="Aetherium Door" Variety="B" />
+        <Frame UV="90, 702" Name="Aetherium Door" Variety="C" />
+        <Frame UV="54, 756" Name="Fallen Star Door" Variety="A" />
+        <Frame UV="72, 756" Name="Fallen Star Door" Variety="B" />
+        <Frame UV="90, 756" Name="Fallen Star Door" Variety="C" />
+        <Frame UV="54, 810" Name="Feywood Door" Variety="A" />
+        <Frame UV="72, 810" Name="Feywood Door" Variety="B" />
+        <Frame UV="90, 810" Name="Feywood Door" Variety="C" />
+        <Frame UV="54, 864" Name="Hallowed Door" Variety="A" />
+        <Frame UV="72, 864" Name="Hallowed Door" Variety="B" />
+        <Frame UV="90, 864" Name="Hallowed Door" Variety="C" />
+        <Frame UV="54, 918" Name="Gothic Door" Variety="A" />
+        <Frame UV="72, 918" Name="Gothic Door" Variety="B" />
+        <Frame UV="90, 918" Name="Gothic Door" Variety="C" />
+        <Frame UV="54, 972" Name="Demonite Door" Variety="A" />
+        <Frame UV="72, 972" Name="Demonite Door" Variety="B" />
+        <Frame UV="90, 972" Name="Demonite Door" Variety="C" />
+        <Frame UV="54, 1026" Name="Crimtane Door" Variety="A" />
+        <Frame UV="72, 1026" Name="Crimtane Door" Variety="B" />
+        <Frame UV="90, 1026" Name="Crimtane Door" Variety="C" />
+        <Frame UV="54, 1080" Name="Snow Door" Variety="A" />
+        <Frame UV="72, 1080" Name="Snow Door" Variety="B" />
+        <Frame UV="90, 1080" Name="Snow Door" Variety="C" />
+        <Frame UV="54, 1134" Name="Flinx Fur Door" Variety="A" />
+        <Frame UV="72, 1134" Name="Flinx Fur Door" Variety="B" />
+        <Frame UV="90, 1134" Name="Flinx Fur Door" Variety="C" />
+        <Frame UV="54, 1188" Name="Easter Door" Variety="A" />
+        <Frame UV="72, 1188" Name="Easter Door" Variety="B" />
+        <Frame UV="90, 1188" Name="Easter Door" Variety="C" />
+        <Frame UV="54, 1242" Name="Jellyfish Door" Variety="A" />
+        <Frame UV="72, 1242" Name="Jellyfish Door" Variety="B" />
+        <Frame UV="90, 1242" Name="Jellyfish Door" Variety="C" />
+        <Frame UV="54, 1296" Name="Harpy Door" Variety="A" />
+        <Frame UV="72, 1296" Name="Harpy Door" Variety="B" />
+        <Frame UV="90, 1296" Name="Harpy Door" Variety="C" />
+        <Frame UV="54, 1350" Name="Cloud Door" Variety="A" />
+        <Frame UV="72, 1350" Name="Cloud Door" Variety="B" />
+        <Frame UV="90, 1350" Name="Cloud Door" Variety="C" />
+        <Frame UV="54, 1404" Name="Duskware Door" Variety="A" />
+        <Frame UV="72, 1404" Name="Duskware Door" Variety="B" />
+        <Frame UV="90, 1404" Name="Duskware Door" Variety="C" />
+        <Frame UV="54, 1458" Name="Librarian Door" Variety="A" />
+        <Frame UV="72, 1458" Name="Librarian Door" Variety="B" />
+        <Frame UV="90, 1458" Name="Librarian Door" Variety="C" />
+        <Frame UV="54, 1512" Name="Spike Door" Variety="A" />
+        <Frame UV="72, 1512" Name="Spike Door" Variety="B" />
+        <Frame UV="90, 1512" Name="Spike Door" Variety="C" />
+        <Frame UV="54, 1566" Name="Office Door" Variety="A" />
+        <Frame UV="72, 1566" Name="Office Door" Variety="B" />
+        <Frame UV="90, 1566" Name="Office Door" Variety="C" />
+        <Frame UV="54, 1620" Name="Forbidden Door" Variety="A" />
+        <Frame UV="72, 1620" Name="Forbidden Door" Variety="B" />
+        <Frame UV="90, 1620" Name="Forbidden Door" Variety="C" />
+        <Frame UV="54, 1674" Name="Aquarium Door" Variety="A" />
+        <Frame UV="72, 1674" Name="Aquarium Door" Variety="B" />
+        <Frame UV="90, 1674" Name="Aquarium Door" Variety="C" />
+        <Frame UV="54, 1728" Name="Boulder Door" Variety="A" />
+        <Frame UV="72, 1728" Name="Boulder Door" Variety="B" />
+        <Frame UV="90, 1728" Name="Boulder Door" Variety="C" />
       </Frames>
     </Tile>
     <Tile Id="11" Color="#FF77694F" Name="Doors (Open)" Framed="true" Size="2,3" Placement="CFBoth">
@@ -1206,6 +1266,46 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,648" Name="Lihzahrd Door" Anchor="Left" />
         <Frame UV="72,648" Name="Ash Wood Door" Anchor="Right" />
         <Frame UV="108,648" Name="Ash Wood Door" Anchor="Left" />
+        <Frame UV="72,702" Name="Aetherium Door" Anchor="Right" />
+        <Frame UV="108,702" Name="Aetherium Door" Anchor="Left" />
+        <Frame UV="72,756" Name="Fallen Star Door" Anchor="Right" />
+        <Frame UV="108,756" Name="Fallen Star Door" Anchor="Left" />
+        <Frame UV="72,810" Name="Feywood Door" Anchor="Right" />
+        <Frame UV="108,810" Name="Feywood Door" Anchor="Left" />
+        <Frame UV="72,864" Name="Hallowed Door" Anchor="Right" />
+        <Frame UV="108,864" Name="Hallowed Door" Anchor="Left" />
+        <Frame UV="72,918" Name="Gothic Door" Anchor="Right" />
+        <Frame UV="108,918" Name="Gothic Door" Anchor="Left" />
+        <Frame UV="72,972" Name="Demonite Door" Anchor="Right" />
+        <Frame UV="108,972" Name="Demonite Door" Anchor="Left" />
+        <Frame UV="72,1026" Name="Crimtane Door" Anchor="Right" />
+        <Frame UV="108,1026" Name="Crimtane Door" Anchor="Left" />
+        <Frame UV="72,1080" Name="Snow Door" Anchor="Right" />
+        <Frame UV="108,1080" Name="Snow Door" Anchor="Left" />
+        <Frame UV="72,1134" Name="Flinx Fur Door" Anchor="Right" />
+        <Frame UV="108,1134" Name="Flinx Fur Door" Anchor="Left" />
+        <Frame UV="72,1188" Name="Easter Door" Anchor="Right" />
+        <Frame UV="108,1188" Name="Easter Door" Anchor="Left" />
+        <Frame UV="72,1242" Name="Jellyfish Door" Anchor="Right" />
+        <Frame UV="108,1242" Name="Jellyfish Door" Anchor="Left" />
+        <Frame UV="72,1296" Name="Harpy Door" Anchor="Right" />
+        <Frame UV="108,1296" Name="Harpy Door" Anchor="Left" />
+        <Frame UV="72,1350" Name="Cloud Door" Anchor="Right" />
+        <Frame UV="108,1350" Name="Cloud Door" Anchor="Left" />
+        <Frame UV="72,1404" Name="Duskware Door" Anchor="Right" />
+        <Frame UV="108,1404" Name="Duskware Door" Anchor="Left" />
+        <Frame UV="72,1458" Name="Librarian Door" Anchor="Right" />
+        <Frame UV="108,1458" Name="Librarian Door" Anchor="Left" />
+        <Frame UV="72,1512" Name="Spike Door" Anchor="Right" />
+        <Frame UV="108,1512" Name="Spike Door" Anchor="Left" />
+        <Frame UV="72,1566" Name="Office Door" Anchor="Right" />
+        <Frame UV="108,1566" Name="Office Door" Anchor="Left" />
+        <Frame UV="72,1620" Name="Forbidden Door" Anchor="Right" />
+        <Frame UV="108,1620" Name="Forbidden Door" Anchor="Left" />
+        <Frame UV="72,1674" Name="Aquarium Door" Anchor="Right" />
+        <Frame UV="108,1674" Name="Aquarium Door" Anchor="Left" />
+        <Frame UV="72,1728" Name="Boulder Door" Anchor="Right" />
+        <Frame UV="108,1728" Name="Boulder Door" Anchor="Left" />
       </Frames>
     </Tile>
     <Tile Id="12" Color="#FFAE1845" Name="Crystal Heart" Framed="true" Size="2,2" IsAnimated="true"
@@ -1369,40 +1469,40 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1960" Name="Fallen Star Chair" Anchor="Right" />
         <Frame UV="0,2000" Name="Feywood Chair" Anchor="Left" />
         <Frame UV="18,2000" Name="Feywood Chair" Anchor="Right" />
-        <Frame UV="36,40" Name="Hallowed Chair" Anchor="Left" />
-        <Frame UV="54,40" Name="Hallowed Chair" Anchor="Right" />
-        <Frame UV="36,80" Name="Demonite Chair" Anchor="Left" />
-        <Frame UV="54,80" Name="Demonite Chair" Anchor="Right" />
-        <Frame UV="36,120" Name="Crimtane Chair" Anchor="Left" />
-        <Frame UV="54,120" Name="Crimtane Chair" Anchor="Right" />
-        <Frame UV="36,160" Name="Snow Chair" Anchor="Left" />
-        <Frame UV="54,160" Name="Snow Chair" Anchor="Right" />
-        <Frame UV="36,200" Name="Flinx Fur Chair" Anchor="Left" />
-        <Frame UV="54,200" Name="Flinx Fur Chair" Anchor="Right" />
-        <Frame UV="36,240" Name="Easter Chair" Anchor="Left" />
-        <Frame UV="54,240" Name="Easter Chair" Anchor="Right" />
-        <Frame UV="36,280" Name="Boulder Chair" Anchor="Left" />
-        <Frame UV="54,280" Name="Boulder Chair" Anchor="Right" />
-        <Frame UV="36,320" Name="Jellyfish Chair" Anchor="Left" />
-        <Frame UV="54,320" Name="Jellyfish Chair" Anchor="Right" />
-        <Frame UV="36,360" Name="Harpy Chair" Anchor="Left" />
-        <Frame UV="54,360" Name="Harpy Chair" Anchor="Right" />
-        <Frame UV="36,400" Name="Cloud Chair" Anchor="Left" />
-        <Frame UV="54,400" Name="Cloud Chair" Anchor="Right" />
-        <Frame UV="36,440" Name="Duskware Chair" Anchor="Left" />
-        <Frame UV="54,440" Name="Duskware Chair" Anchor="Right" />
-        <Frame UV="36,480" Name="Librarian Chair" Anchor="Left" />
-        <Frame UV="54,480" Name="Librarian Chair" Anchor="Right" />
-        <Frame UV="36,520" Name="Spike Chair" Anchor="Left" />
-        <Frame UV="54,520" Name="Spike Chair" Anchor="Right" />
-        <Frame UV="36,560" Name="Office Chair" Anchor="Left" />
-        <Frame UV="54,560" Name="Office Chair" Anchor="Right" />
-        <Frame UV="36,600" Name="Forbidden Chair" Anchor="Left" />
-        <Frame UV="54,600" Name="Forbidden Chair" Anchor="Right" />
-        <Frame UV="36,640" Name="Aquarium Chair" Anchor="Left" />
-        <Frame UV="54,640" Name="Aquarium Chair" Anchor="Right" />
-        <Frame UV="36,680" Name="Stone Chair" Anchor="Left" />
-        <Frame UV="54,680" Name="Stone Chair" Anchor="Right" />
+        <Frame UV="36,0" Name="Hallowed Chair" Anchor="Left" />
+        <Frame UV="54,0" Name="Hallowed Chair" Anchor="Right" />
+        <Frame UV="36,40" Name="Demonite Chair" Anchor="Left" />
+        <Frame UV="54,40" Name="Demonite Chair" Anchor="Right" />
+        <Frame UV="36,80" Name="Crimtane Chair" Anchor="Left" />
+        <Frame UV="54,80" Name="Crimtane Chair" Anchor="Right" />
+        <Frame UV="36,120" Name="Snow Chair" Anchor="Left" />
+        <Frame UV="54,120" Name="Snow Chair" Anchor="Right" />
+        <Frame UV="36,160" Name="Flinx Fur Chair" Anchor="Left" />
+        <Frame UV="54,160" Name="Flinx Fur Chair" Anchor="Right" />
+        <Frame UV="36,200" Name="Easter Chair" Anchor="Left" />
+        <Frame UV="54,200" Name="Easter Chair" Anchor="Right" />
+        <Frame UV="36,240" Name="Boulder Chair" Anchor="Left" />
+        <Frame UV="54,240" Name="Boulder Chair" Anchor="Right" />
+        <Frame UV="36,280" Name="Jellyfish Chair" Anchor="Left" />
+        <Frame UV="54,280" Name="Jellyfish Chair" Anchor="Right" />
+        <Frame UV="36,320" Name="Harpy Chair" Anchor="Left" />
+        <Frame UV="54,320" Name="Harpy Chair" Anchor="Right" />
+        <Frame UV="36,360" Name="Cloud Chair" Anchor="Left" />
+        <Frame UV="54,360" Name="Cloud Chair" Anchor="Right" />
+        <Frame UV="36,400" Name="Duskware Chair" Anchor="Left" />
+        <Frame UV="54,400" Name="Duskware Chair" Anchor="Right" />
+        <Frame UV="36,440" Name="Librarian Chair" Anchor="Left" />
+        <Frame UV="54,440" Name="Librarian Chair" Anchor="Right" />
+        <Frame UV="36,480" Name="Spike Chair" Anchor="Left" />
+        <Frame UV="54,480" Name="Spike Chair" Anchor="Right" />
+        <Frame UV="36,520" Name="Office Chair" Anchor="Left" />
+        <Frame UV="54,520" Name="Office Chair" Anchor="Right" />
+        <Frame UV="36,560" Name="Forbidden Chair" Anchor="Left" />
+        <Frame UV="54,560" Name="Forbidden Chair" Anchor="Right" />
+        <Frame UV="36,600" Name="Aquarium Chair" Anchor="Left" />
+        <Frame UV="54,600" Name="Aquarium Chair" Anchor="Right" />
+        <Frame UV="36,640" Name="Stone Chair" Anchor="Left" />
+        <Frame UV="54,640" Name="Stone Chair" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="16" Color="#FF8C8274" Name="Anvils" Framed="true" Size="2,1" TextureGrid="16,18"
@@ -1461,6 +1561,27 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1476,0" Name="Reef Work Bench" />
         <Frame UV="1512,0" Name="Balloon Work Bench" />
         <Frame UV="1548,0" Name="Ash Wood Work Bench" />
+        <Frame UV="1584, 0" Name="Aetherium Work Bench" />
+        <Frame UV="1620, 0" Name="Fallen Star Work Bench" />
+        <Frame UV="1656, 0" Name="Feywood Work Bench" />
+        <Frame UV="1692, 0" Name="Hallowed Work Bench" />
+        <Frame UV="1728, 0" Name="Demonite Work Bench" />
+        <Frame UV="1764, 0" Name="Crimtane Work Bench" />
+        <Frame UV="1800, 0" Name="Snow Work Bench" />
+        <Frame UV="1836, 0" Name="Flinx Fur Work Bench" />
+        <Frame UV="1872, 0" Name="Pine Work Bench" />
+        <Frame UV="1908, 0" Name="Easter Work Bench" />
+        <Frame UV="1944, 0" Name="Stone Work Bench" />
+        <Frame UV="1980, 0" Name="Jellyfish Work Bench" />
+        <Frame UV="0, 20" Name="Harpy Work Bench" />
+        <Frame UV="36, 20" Name="Cloud Work Bench" />
+        <Frame UV="72, 20" Name="Duskware Work Bench" />
+        <Frame UV="108, 20" Name="Librarian Work Bench" />
+        <Frame UV="144, 20" Name="Spike Work Bench" />
+        <Frame UV="180, 20" Name="Office Work Bench" />
+        <Frame UV="216, 20" Name="Forbidden Work Bench" />
+        <Frame UV="252, 20" Name="Aquarium Work Bench" />
+        <Frame UV="288, 20" Name="Boulder Work Bench" />
       </Frames>
     </Tile>
     <Tile Id="19" Color="#FFBF8E6F" Name="Platforms" Solid="true" Framed="true" TextureGrid="16,16"
@@ -1790,7 +1911,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="432,198" Name="Wood Shelf" Variety="Stair Inset Up-Left 3" />
         <Frame UV="450,198" Name="Wood Shelf" Variety="Stair Inverted Right" />
         <Frame UV="468,198" Name="Wood Shelf" Variety="Stair Inverted Left" />
-        <Frame UV="0,218" Name="Dungeon Shelf" Variety="Flat" />
+        <Frame UV="0,216" Name="Dungeon Shelf" Variety="Flat" />
         <Frame UV="18,216" Name="Dungeon Shelf" Variety="Endcap Right" />
         <Frame UV="36,216" Name="Dungeon Shelf" Variety="Endcap Left" />
         <Frame UV="54,216" Name="Dungeon Shelf" Variety="Attach Left" />
@@ -2789,6 +2910,573 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="432,864" Name="Echo Platform" Variety="Stair Inset Up-Left 3" />
         <Frame UV="450,864" Name="Echo Platform" Variety="Stair Inverted Right" />
         <Frame UV="468,864" Name="Echo Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,882" Name="Cloud Platform" Variety="Flat" />
+        <Frame UV="18,882" Name="Cloud Platform" Variety="Endcap Right" />
+        <Frame UV="36,882" Name="Cloud Platform" Variety="Endcap Left" />
+        <Frame UV="54,882" Name="Cloud Platform" Variety="Attach Left" />
+        <Frame UV="72,882" Name="Cloud Platform" Variety="Attach Right" />
+        <Frame UV="90,882" Name="Cloud Platform" Variety="Single" />
+        <Frame UV="108,882" Name="Cloud Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,882" Name="Cloud Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,882" Name="Cloud Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,882" Name="Cloud Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,882" Name="Cloud Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,882" Name="Cloud Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,882" Name="Cloud Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,882" Name="Cloud Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,882" Name="Cloud Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,882" Name="Cloud Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,882" Name="Cloud Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,882" Name="Cloud Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,882" Name="Cloud Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,882" Name="Cloud Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,882" Name="Cloud Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,882" Name="Cloud Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,882" Name="Cloud Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,882" Name="Cloud Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,882" Name="Cloud Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,882" Name="Cloud Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,882" Name="Cloud Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,900" Name="Aetherium Platform" Variety="Flat" />
+        <Frame UV="18,900" Name="Aetherium Platform" Variety="Endcap Right" />
+        <Frame UV="36,900" Name="Aetherium Platform" Variety="Endcap Left" />
+        <Frame UV="54,900" Name="Aetherium Platform" Variety="Attach Left" />
+        <Frame UV="72,900" Name="Aetherium Platform" Variety="Attach Right" />
+        <Frame UV="90,900" Name="Aetherium Platform" Variety="Single" />
+        <Frame UV="108,900" Name="Aetherium Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,900" Name="Aetherium Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,900" Name="Aetherium Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,900" Name="Aetherium Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,900" Name="Aetherium Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,900" Name="Aetherium Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,900" Name="Aetherium Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,900" Name="Aetherium Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,900" Name="Aetherium Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,900" Name="Aetherium Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,900" Name="Aetherium Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,900" Name="Aetherium Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,900" Name="Aetherium Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,900" Name="Aetherium Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,900" Name="Aetherium Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,900" Name="Aetherium Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,900" Name="Aetherium Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,900" Name="Aetherium Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,900" Name="Aetherium Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,900" Name="Aetherium Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,900" Name="Aetherium Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,918" Name="Fallen Star Platform" Variety="Flat" />
+        <Frame UV="18,918" Name="Fallen Star Platform" Variety="Endcap Right" />
+        <Frame UV="36,918" Name="Fallen Star Platform" Variety="Endcap Left" />
+        <Frame UV="54,918" Name="Fallen Star Platform" Variety="Attach Left" />
+        <Frame UV="72,918" Name="Fallen Star Platform" Variety="Attach Right" />
+        <Frame UV="90,918" Name="Fallen Star Platform" Variety="Single" />
+        <Frame UV="108,918" Name="Fallen Star Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,918" Name="Fallen Star Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,918" Name="Fallen Star Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,918" Name="Fallen Star Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,918" Name="Fallen Star Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,918" Name="Fallen Star Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,918" Name="Fallen Star Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,918" Name="Fallen Star Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,918" Name="Fallen Star Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,918" Name="Fallen Star Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,918" Name="Fallen Star Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,918" Name="Fallen Star Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,918" Name="Fallen Star Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,918" Name="Fallen Star Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,918" Name="Fallen Star Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,918" Name="Fallen Star Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,918" Name="Fallen Star Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,918" Name="Fallen Star Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,918" Name="Fallen Star Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,918" Name="Fallen Star Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,918" Name="Fallen Star Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,936" Name="Feywood Platform" Variety="Flat" />
+        <Frame UV="18,936" Name="Feywood Platform" Variety="Endcap Right" />
+        <Frame UV="36,936" Name="Feywood Platform" Variety="Endcap Left" />
+        <Frame UV="54,936" Name="Feywood Platform" Variety="Attach Left" />
+        <Frame UV="72,936" Name="Feywood Platform" Variety="Attach Right" />
+        <Frame UV="90,936" Name="Feywood Platform" Variety="Single" />
+        <Frame UV="108,936" Name="Feywood Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,936" Name="Feywood Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,936" Name="Feywood Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,936" Name="Feywood Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,936" Name="Feywood Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,936" Name="Feywood Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,936" Name="Feywood Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,936" Name="Feywood Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,936" Name="Feywood Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,936" Name="Feywood Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,936" Name="Feywood Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,936" Name="Feywood Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,936" Name="Feywood Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,936" Name="Feywood Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,936" Name="Feywood Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,936" Name="Feywood Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,936" Name="Feywood Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,936" Name="Feywood Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,936" Name="Feywood Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,936" Name="Feywood Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,936" Name="Feywood Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,954" Name="Hallowed Platform" Variety="Flat" />
+        <Frame UV="18,954" Name="Hallowed Platform" Variety="Endcap Right" />
+        <Frame UV="36,954" Name="Hallowed Platform" Variety="Endcap Left" />
+        <Frame UV="54,954" Name="Hallowed Platform" Variety="Attach Left" />
+        <Frame UV="72,954" Name="Hallowed Platform" Variety="Attach Right" />
+        <Frame UV="90,954" Name="Hallowed Platform" Variety="Single" />
+        <Frame UV="108,954" Name="Hallowed Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,954" Name="Hallowed Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,954" Name="Hallowed Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,954" Name="Hallowed Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,954" Name="Hallowed Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,954" Name="Hallowed Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,954" Name="Hallowed Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,954" Name="Hallowed Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,954" Name="Hallowed Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,954" Name="Hallowed Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,954" Name="Hallowed Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,954" Name="Hallowed Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,954" Name="Hallowed Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,954" Name="Hallowed Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,954" Name="Hallowed Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,954" Name="Hallowed Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,954" Name="Hallowed Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,954" Name="Hallowed Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,954" Name="Hallowed Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,954" Name="Hallowed Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,954" Name="Hallowed Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,972" Name="Gothic Platform" Variety="Flat" />
+        <Frame UV="18,972" Name="Gothic Platform" Variety="Endcap Right" />
+        <Frame UV="36,972" Name="Gothic Platform" Variety="Endcap Left" />
+        <Frame UV="54,972" Name="Gothic Platform" Variety="Attach Left" />
+        <Frame UV="72,972" Name="Gothic Platform" Variety="Attach Right" />
+        <Frame UV="90,972" Name="Gothic Platform" Variety="Single" />
+        <Frame UV="108,972" Name="Gothic Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,972" Name="Gothic Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,972" Name="Gothic Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,972" Name="Gothic Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,972" Name="Gothic Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,972" Name="Gothic Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,972" Name="Gothic Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,972" Name="Gothic Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,972" Name="Gothic Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,972" Name="Gothic Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,972" Name="Gothic Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,972" Name="Gothic Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,972" Name="Gothic Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,972" Name="Gothic Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,972" Name="Gothic Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,972" Name="Gothic Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,972" Name="Gothic Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,972" Name="Gothic Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,972" Name="Gothic Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,972" Name="Gothic Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,972" Name="Gothic Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,990" Name="Demonite Platform" Variety="Flat" />
+        <Frame UV="18,990" Name="Demonite Platform" Variety="Endcap Right" />
+        <Frame UV="36,990" Name="Demonite Platform" Variety="Endcap Left" />
+        <Frame UV="54,990" Name="Demonite Platform" Variety="Attach Left" />
+        <Frame UV="72,990" Name="Demonite Platform" Variety="Attach Right" />
+        <Frame UV="90,990" Name="Demonite Platform" Variety="Single" />
+        <Frame UV="108,990" Name="Demonite Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,990" Name="Demonite Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,990" Name="Demonite Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,990" Name="Demonite Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,990" Name="Demonite Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,990" Name="Demonite Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,990" Name="Demonite Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,990" Name="Demonite Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,990" Name="Demonite Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,990" Name="Demonite Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,990" Name="Demonite Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,990" Name="Demonite Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,990" Name="Demonite Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,990" Name="Demonite Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,990" Name="Demonite Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,990" Name="Demonite Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,990" Name="Demonite Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,990" Name="Demonite Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,990" Name="Demonite Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,990" Name="Demonite Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,990" Name="Demonite Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1008" Name="Crimtane Platform" Variety="Flat" />
+        <Frame UV="18,1008" Name="Crimtane Platform" Variety="Endcap Right" />
+        <Frame UV="36,1008" Name="Crimtane Platform" Variety="Endcap Left" />
+        <Frame UV="54,1008" Name="Crimtane Platform" Variety="Attach Left" />
+        <Frame UV="72,1008" Name="Crimtane Platform" Variety="Attach Right" />
+        <Frame UV="90,1008" Name="Crimtane Platform" Variety="Single" />
+        <Frame UV="108,1008" Name="Crimtane Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1008" Name="Crimtane Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1008" Name="Crimtane Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1008" Name="Crimtane Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1008" Name="Crimtane Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1008" Name="Crimtane Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1008" Name="Crimtane Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1008" Name="Crimtane Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1008" Name="Crimtane Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1008" Name="Crimtane Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1008" Name="Crimtane Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1008" Name="Crimtane Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1008" Name="Crimtane Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1008" Name="Crimtane Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1008" Name="Crimtane Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1008" Name="Crimtane Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1008" Name="Crimtane Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1008" Name="Crimtane Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1008" Name="Crimtane Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1008" Name="Crimtane Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1008" Name="Crimtane Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1026" Name="Snow Platform" Variety="Flat" />
+        <Frame UV="18,1026" Name="Snow Platform" Variety="Endcap Right" />
+        <Frame UV="36,1026" Name="Snow Platform" Variety="Endcap Left" />
+        <Frame UV="54,1026" Name="Snow Platform" Variety="Attach Left" />
+        <Frame UV="72,1026" Name="Snow Platform" Variety="Attach Right" />
+        <Frame UV="90,1026" Name="Snow Platform" Variety="Single" />
+        <Frame UV="108,1026" Name="Snow Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1026" Name="Snow Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1026" Name="Snow Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1026" Name="Snow Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1026" Name="Snow Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1026" Name="Snow Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1026" Name="Snow Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1026" Name="Snow Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1026" Name="Snow Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1026" Name="Snow Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1026" Name="Snow Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1026" Name="Snow Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1026" Name="Snow Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1026" Name="Snow Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1026" Name="Snow Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1026" Name="Snow Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1026" Name="Snow Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1026" Name="Snow Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1026" Name="Snow Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1026" Name="Snow Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1026" Name="Snow Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1044" Name="Flinx Fur Platform" Variety="Flat" />
+        <Frame UV="18,1044" Name="Flinx Fur Platform" Variety="Endcap Right" />
+        <Frame UV="36,1044" Name="Flinx Fur Platform" Variety="Endcap Left" />
+        <Frame UV="54,1044" Name="Flinx Fur Platform" Variety="Attach Left" />
+        <Frame UV="72,1044" Name="Flinx Fur Platform" Variety="Attach Right" />
+        <Frame UV="90,1044" Name="Flinx Fur Platform" Variety="Single" />
+        <Frame UV="108,1044" Name="Flinx Fur Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1044" Name="Flinx Fur Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1044" Name="Flinx Fur Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1044" Name="Flinx Fur Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1044" Name="Flinx Fur Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1044" Name="Flinx Fur Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1044" Name="Flinx Fur Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1044" Name="Flinx Fur Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1044" Name="Flinx Fur Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1044" Name="Flinx Fur Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1044" Name="Flinx Fur Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1044" Name="Flinx Fur Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1044" Name="Flinx Fur Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1044" Name="Flinx Fur Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1044" Name="Flinx Fur Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1044" Name="Flinx Fur Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1044" Name="Flinx Fur Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1044" Name="Flinx Fur Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1044" Name="Flinx Fur Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1044" Name="Flinx Fur Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1044" Name="Flinx Fur Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1062" Name="Pine Platform" Variety="Flat" />
+        <Frame UV="18,1062" Name="Pine Platform" Variety="Endcap Right" />
+        <Frame UV="36,1062" Name="Pine Platform" Variety="Endcap Left" />
+        <Frame UV="54,1062" Name="Pine Platform" Variety="Attach Left" />
+        <Frame UV="72,1062" Name="Pine Platform" Variety="Attach Right" />
+        <Frame UV="90,1062" Name="Pine Platform" Variety="Single" />
+        <Frame UV="108,1062" Name="Pine Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1062" Name="Pine Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1062" Name="Pine Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1062" Name="Pine Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1062" Name="Pine Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1062" Name="Pine Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1062" Name="Pine Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1062" Name="Pine Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1062" Name="Pine Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1062" Name="Pine Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1062" Name="Pine Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1062" Name="Pine Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1062" Name="Pine Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1062" Name="Pine Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1062" Name="Pine Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1062" Name="Pine Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1062" Name="Pine Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1062" Name="Pine Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1062" Name="Pine Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1062" Name="Pine Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1062" Name="Pine Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1080" Name="Easter Platform" Variety="Flat" />
+        <Frame UV="18,1080" Name="Easter Platform" Variety="Endcap Right" />
+        <Frame UV="36,1080" Name="Easter Platform" Variety="Endcap Left" />
+        <Frame UV="54,1080" Name="Easter Platform" Variety="Attach Left" />
+        <Frame UV="72,1080" Name="Easter Platform" Variety="Attach Right" />
+        <Frame UV="90,1080" Name="Easter Platform" Variety="Single" />
+        <Frame UV="108,1080" Name="Easter Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1080" Name="Easter Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1080" Name="Easter Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1080" Name="Easter Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1080" Name="Easter Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1080" Name="Easter Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1080" Name="Easter Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1080" Name="Easter Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1080" Name="Easter Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1080" Name="Easter Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1080" Name="Easter Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1080" Name="Easter Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1080" Name="Easter Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1080" Name="Easter Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1080" Name="Easter Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1080" Name="Easter Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1080" Name="Easter Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1080" Name="Easter Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1080" Name="Easter Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1080" Name="Easter Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1080" Name="Easter Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1098" Name="Jellyfish Platform" Variety="Flat" />
+        <Frame UV="18,1098" Name="Jellyfish Platform" Variety="Endcap Right" />
+        <Frame UV="36,1098" Name="Jellyfish Platform" Variety="Endcap Left" />
+        <Frame UV="54,1098" Name="Jellyfish Platform" Variety="Attach Left" />
+        <Frame UV="72,1098" Name="Jellyfish Platform" Variety="Attach Right" />
+        <Frame UV="90,1098" Name="Jellyfish Platform" Variety="Single" />
+        <Frame UV="108,1098" Name="Jellyfish Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1098" Name="Jellyfish Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1098" Name="Jellyfish Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1098" Name="Jellyfish Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1098" Name="Jellyfish Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1098" Name="Jellyfish Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1098" Name="Jellyfish Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1098" Name="Jellyfish Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1098" Name="Jellyfish Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1098" Name="Jellyfish Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1098" Name="Jellyfish Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1098" Name="Jellyfish Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1098" Name="Jellyfish Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1098" Name="Jellyfish Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1098" Name="Jellyfish Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1098" Name="Jellyfish Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1098" Name="Jellyfish Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1098" Name="Jellyfish Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1098" Name="Jellyfish Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1098" Name="Jellyfish Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1098" Name="Jellyfish Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1116" Name="Harpy Platform" Variety="Flat" />
+        <Frame UV="18,1116" Name="Harpy Platform" Variety="Endcap Right" />
+        <Frame UV="36,1116" Name="Harpy Platform" Variety="Endcap Left" />
+        <Frame UV="54,1116" Name="Harpy Platform" Variety="Attach Left" />
+        <Frame UV="72,1116" Name="Harpy Platform" Variety="Attach Right" />
+        <Frame UV="90,1116" Name="Harpy Platform" Variety="Single" />
+        <Frame UV="108,1116" Name="Harpy Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1116" Name="Harpy Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1116" Name="Harpy Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1116" Name="Harpy Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1116" Name="Harpy Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1116" Name="Harpy Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1116" Name="Harpy Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1116" Name="Harpy Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1116" Name="Harpy Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1116" Name="Harpy Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1116" Name="Harpy Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1116" Name="Harpy Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1116" Name="Harpy Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1116" Name="Harpy Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1116" Name="Harpy Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1116" Name="Harpy Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1116" Name="Harpy Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1116" Name="Harpy Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1116" Name="Harpy Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1116" Name="Harpy Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1116" Name="Harpy Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1134" Name="Duskware Platform" Variety="Flat" />
+        <Frame UV="18,1134" Name="Duskware Platform" Variety="Endcap Right" />
+        <Frame UV="36,1134" Name="Duskware Platform" Variety="Endcap Left" />
+        <Frame UV="54,1134" Name="Duskware Platform" Variety="Attach Left" />
+        <Frame UV="72,1134" Name="Duskware Platform" Variety="Attach Right" />
+        <Frame UV="90,1134" Name="Duskware Platform" Variety="Single" />
+        <Frame UV="108,1134" Name="Duskware Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1134" Name="Duskware Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1134" Name="Duskware Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1134" Name="Duskware Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1134" Name="Duskware Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1134" Name="Duskware Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1134" Name="Duskware Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1134" Name="Duskware Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1134" Name="Duskware Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1134" Name="Duskware Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1134" Name="Duskware Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1134" Name="Duskware Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1134" Name="Duskware Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1134" Name="Duskware Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1134" Name="Duskware Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1134" Name="Duskware Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1134" Name="Duskware Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1134" Name="Duskware Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1134" Name="Duskware Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1134" Name="Duskware Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1134" Name="Duskware Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1152" Name="Librarian Platform" Variety="Flat" />
+        <Frame UV="18,1152" Name="Librarian Platform" Variety="Endcap Right" />
+        <Frame UV="36,1152" Name="Librarian Platform" Variety="Endcap Left" />
+        <Frame UV="54,1152" Name="Librarian Platform" Variety="Attach Left" />
+        <Frame UV="72,1152" Name="Librarian Platform" Variety="Attach Right" />
+        <Frame UV="90,1152" Name="Librarian Platform" Variety="Single" />
+        <Frame UV="108,1152" Name="Librarian Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1152" Name="Librarian Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1152" Name="Librarian Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1152" Name="Librarian Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1152" Name="Librarian Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1152" Name="Librarian Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1152" Name="Librarian Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1152" Name="Librarian Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1152" Name="Librarian Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1152" Name="Librarian Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1152" Name="Librarian Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1152" Name="Librarian Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1152" Name="Librarian Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1152" Name="Librarian Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1152" Name="Librarian Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1152" Name="Librarian Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1152" Name="Librarian Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1152" Name="Librarian Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1152" Name="Librarian Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1152" Name="Librarian Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1152" Name="Librarian Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1170" Name="Spike Platform" Variety="Flat" />
+        <Frame UV="18,1170" Name="Spike Platform" Variety="Endcap Right" />
+        <Frame UV="36,1170" Name="Spike Platform" Variety="Endcap Left" />
+        <Frame UV="54,1170" Name="Spike Platform" Variety="Attach Left" />
+        <Frame UV="72,1170" Name="Spike Platform" Variety="Attach Right" />
+        <Frame UV="90,1170" Name="Spike Platform" Variety="Single" />
+        <Frame UV="108,1170" Name="Spike Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1170" Name="Spike Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1170" Name="Spike Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1170" Name="Spike Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1170" Name="Spike Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1170" Name="Spike Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1170" Name="Spike Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1170" Name="Spike Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1170" Name="Spike Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1170" Name="Spike Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1170" Name="Spike Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1170" Name="Spike Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1170" Name="Spike Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1170" Name="Spike Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1170" Name="Spike Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1170" Name="Spike Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1170" Name="Spike Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1170" Name="Spike Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1170" Name="Spike Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1170" Name="Spike Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1170" Name="Spike Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1188" Name="Office Platform" Variety="Flat" />
+        <Frame UV="18,1188" Name="Office Platform" Variety="Endcap Right" />
+        <Frame UV="36,1188" Name="Office Platform" Variety="Endcap Left" />
+        <Frame UV="54,1188" Name="Office Platform" Variety="Attach Left" />
+        <Frame UV="72,1188" Name="Office Platform" Variety="Attach Right" />
+        <Frame UV="90,1188" Name="Office Platform" Variety="Single" />
+        <Frame UV="108,1188" Name="Office Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1188" Name="Office Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1188" Name="Office Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1188" Name="Office Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1188" Name="Office Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1188" Name="Office Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1188" Name="Office Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1188" Name="Office Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1188" Name="Office Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1188" Name="Office Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1188" Name="Office Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1188" Name="Office Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1188" Name="Office Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1188" Name="Office Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1188" Name="Office Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1188" Name="Office Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1188" Name="Office Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1188" Name="Office Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1188" Name="Office Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1188" Name="Office Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1188" Name="Office Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1206" Name="Forbidden Platform" Variety="Flat" />
+        <Frame UV="18,1206" Name="Forbidden Platform" Variety="Endcap Right" />
+        <Frame UV="36,1206" Name="Forbidden Platform" Variety="Endcap Left" />
+        <Frame UV="54,1206" Name="Forbidden Platform" Variety="Attach Left" />
+        <Frame UV="72,1206" Name="Forbidden Platform" Variety="Attach Right" />
+        <Frame UV="90,1206" Name="Forbidden Platform" Variety="Single" />
+        <Frame UV="108,1206" Name="Forbidden Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1206" Name="Forbidden Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1206" Name="Forbidden Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1206" Name="Forbidden Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1206" Name="Forbidden Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1206" Name="Forbidden Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1206" Name="Forbidden Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1206" Name="Forbidden Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1206" Name="Forbidden Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1206" Name="Forbidden Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1206" Name="Forbidden Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1206" Name="Forbidden Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1206" Name="Forbidden Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1206" Name="Forbidden Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1206" Name="Forbidden Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1206" Name="Forbidden Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1206" Name="Forbidden Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1206" Name="Forbidden Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1206" Name="Forbidden Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1206" Name="Forbidden Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1206" Name="Forbidden Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1224" Name="Aquarium Platform" Variety="Flat" />
+        <Frame UV="18,1224" Name="Aquarium Platform" Variety="Endcap Right" />
+        <Frame UV="36,1224" Name="Aquarium Platform" Variety="Endcap Left" />
+        <Frame UV="54,1224" Name="Aquarium Platform" Variety="Attach Left" />
+        <Frame UV="72,1224" Name="Aquarium Platform" Variety="Attach Right" />
+        <Frame UV="90,1224" Name="Aquarium Platform" Variety="Single" />
+        <Frame UV="108,1224" Name="Aquarium Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1224" Name="Aquarium Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1224" Name="Aquarium Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1224" Name="Aquarium Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1224" Name="Aquarium Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1224" Name="Aquarium Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1224" Name="Aquarium Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1224" Name="Aquarium Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1224" Name="Aquarium Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1224" Name="Aquarium Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1224" Name="Aquarium Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1224" Name="Aquarium Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1224" Name="Aquarium Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1224" Name="Aquarium Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1224" Name="Aquarium Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1224" Name="Aquarium Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1224" Name="Aquarium Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1224" Name="Aquarium Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1224" Name="Aquarium Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1224" Name="Aquarium Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1224" Name="Aquarium Platform" Variety="Stair Inverted Left" />
+        <Frame UV="0,1242" Name="Boulder Platform" Variety="Flat" />
+        <Frame UV="18,1242" Name="Boulder Platform" Variety="Endcap Right" />
+        <Frame UV="36,1242" Name="Boulder Platform" Variety="Endcap Left" />
+        <Frame UV="54,1242" Name="Boulder Platform" Variety="Attach Left" />
+        <Frame UV="72,1242" Name="Boulder Platform" Variety="Attach Right" />
+        <Frame UV="90,1242" Name="Boulder Platform" Variety="Single" />
+        <Frame UV="108,1242" Name="Boulder Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,1242" Name="Boulder Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,1242" Name="Boulder Platform" Variety="Stair Up-Right Riser" />
+        <Frame UV="162,1242" Name="Boulder Platform" Variety="Stair Up-Right Stringer" />
+        <Frame UV="180,1242" Name="Boulder Platform" Variety="Stair Up-Left Riser" />
+        <Frame UV="198,1242" Name="Boulder Platform" Variety="Stair Up-Left Stringer" />
+        <Frame UV="216,1242" Name="Boulder Platform" Variety="Stair Top Landing R" />
+        <Frame UV="234,1242" Name="Boulder Platform" Variety="Stair Top Landing L" />
+        <Frame UV="252,1242" Name="Boulder Platform" Variety="Stair Top Landing L-R" />
+        <Frame UV="270,1242" Name="Boulder Platform" Variety="Stair Top Landing R Endcap" />
+        <Frame UV="288,1242" Name="Boulder Platform" Variety="Stair Top Landing L Endcap" />
+        <Frame UV="306,1242" Name="Boulder Platform" Variety="Stair Bottom Landing R" />
+        <Frame UV="324,1242" Name="Boulder Platform" Variety="Stair Bottom Landing L" />
+        <Frame UV="342,1242" Name="Boulder Platform" Variety="Stair Inset Up-Right 1" />
+        <Frame UV="360,1242" Name="Boulder Platform" Variety="Stair Inset Up-Left 1" />
+        <Frame UV="378,1242" Name="Boulder Platform" Variety="Stair Inset Up-Right 2" />
+        <Frame UV="396,1242" Name="Boulder Platform" Variety="Stair Inset Up-Left 2" />
+        <Frame UV="414,1242" Name="Boulder Platform" Variety="Stair Inset Up-Right 3" />
+        <Frame UV="432,1242" Name="Boulder Platform" Variety="Stair Inset Up-Left 3" />
+        <Frame UV="450,1242" Name="Boulder Platform" Variety="Stair Inverted Right" />
+        <Frame UV="468,1242" Name="Boulder Platform" Variety="Stair Inverted Left" />
       </Frames>
     </Tile>
     <Tile Id="20" Color="#FFA37451" Name="Saplings" Framed="true" Size="1,2">
@@ -2926,7 +3614,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,0" Name="Crimson Altar" />
       </Frames>
     </Tile>
-    <Tile Id="27" Color="#FFE2C431" Name="Sunflower" Framed="true" Size="2,4">
+    <Tile Id="27" Color="#FFE2C431" Name="Sunflower" Framed="true" Size="2,4" IsAnimated="true">
       <Frames>
         <Frame UV="0,0" Variety="A" />
         <Frame UV="36,0" Variety="B" />
@@ -3146,6 +3834,50 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,880" Name="Balloon Candle" Variety="Off" />
         <Frame UV="0,902" Name="Ash Wood Candle" Variety="On" />
         <Frame UV="18,902" Name="Ash Wood Candle" Variety="Off" />
+        <Frame UV="0, 924" Name="Aetherium Candle" Variety="On" />
+        <Frame UV="18, 924" Name="Aetherium Candle" Variety="Off" />
+        <Frame UV="0, 946" Name="Fallen Star Candle" Variety="On" />
+        <Frame UV="18, 946" Name="Fallen Star Candle" Variety="Off" />
+        <Frame UV="0, 968" Name="Feywood Candle" Variety="On" />
+        <Frame UV="18, 968" Name="Feywood Candle" Variety="Off" />
+        <Frame UV="0, 990" Name="Hallowed Candle" Variety="On" />
+        <Frame UV="18, 990" Name="Hallowed Candle" Variety="Off" />
+        <Frame UV="0, 1012" Name="Gothic Candle" Variety="On" />
+        <Frame UV="18, 1012" Name="Gothic Candle" Variety="Off" />
+        <Frame UV="0, 1034" Name="Demonite Candle" Variety="On" />
+        <Frame UV="18, 1034" Name="Demonite Candle" Variety="Off" />
+        <Frame UV="0, 1056" Name="Crimtane Candle" Variety="On" />
+        <Frame UV="18, 1056" Name="Crimtane Candle" Variety="Off" />
+        <Frame UV="0, 1078" Name="Snow Candle" Variety="On" />
+        <Frame UV="18, 1078" Name="Snow Candle" Variety="Off" />
+        <Frame UV="0, 1100" Name="Flinx Fur Candle" Variety="On" />
+        <Frame UV="18, 1100" Name="Flinx Fur Candle" Variety="Off" />
+        <Frame UV="0, 1122" Name="Pine Candle" Variety="On" />
+        <Frame UV="18, 1122" Name="Pine Candle" Variety="Off" />
+        <Frame UV="0, 1144" Name="Easter Candle" Variety="On" />
+        <Frame UV="18, 1144" Name="Easter Candle" Variety="Off" />
+        <Frame UV="0, 1166" Name="Stone Candle" Variety="On" />
+        <Frame UV="18, 1166" Name="Stone Candle" Variety="Off" />
+        <Frame UV="0, 1188" Name="Jellyfish Candle" Variety="On" />
+        <Frame UV="18, 1188" Name="Jellyfish Candle" Variety="Off" />
+        <Frame UV="0, 1210" Name="Harpy Candle" Variety="On" />
+        <Frame UV="18, 1210" Name="Harpy Candle" Variety="Off" />
+        <Frame UV="0, 1232" Name="Cloud Candle" Variety="On" />
+        <Frame UV="18, 1232" Name="Cloud Candle" Variety="Off" />
+        <Frame UV="0, 1254" Name="Duskware Candle" Variety="On" />
+        <Frame UV="18, 1254" Name="Duskware Candle" Variety="Off" />
+        <Frame UV="0, 1276" Name="Librarian Candle" Variety="On" />
+        <Frame UV="18, 1276" Name="Librarian Candle" Variety="Off" />
+        <Frame UV="0, 1298" Name="Spike Candle" Variety="On" />
+        <Frame UV="18, 1298" Name="Spike Candle" Variety="Off" />
+        <Frame UV="0, 1320" Name="Office Candle" Variety="On" />
+        <Frame UV="18, 1320" Name="Office Candle" Variety="Off" />
+        <Frame UV="0, 1342" Name="Forbidden Candle" Variety="On" />
+        <Frame UV="18, 1342" Name="Forbidden Candle" Variety="Off" />
+        <Frame UV="0, 1364" Name="Aquarium Candle" Variety="On" />
+        <Frame UV="18, 1364" Name="Aquarium Candle" Variety="Off" />
+        <Frame UV="0, 1386" Name="Boulder Candle" Variety="On" />
+        <Frame UV="18, 1386" Name="Boulder Candle" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="34" Color="#FFEBA687" Name="Chandeliers" Framed="true" Size="3,3" Placement="ceiling"
@@ -3249,6 +3981,50 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="162,540" Name="Balloon Chandelier" Variety="Off" />
         <Frame UV="108,594" Name="Ash Wood Chandelier" Variety="On" />
         <Frame UV="162,594" Name="Ash Wood Chandelier" Variety="Off" />
+        <Frame UV="108, 648" Name="Aetherium Chandelier" Variety="On" />
+        <Frame UV="162, 648" Name="Aetherium Chandelier" Variety="Off" />
+        <Frame UV="108, 702" Name="Fallen Star Chandelier" Variety="On" />
+        <Frame UV="162, 702" Name="Fallen Star Chandelier" Variety="Off" />
+        <Frame UV="108, 756" Name="Feywood Chandelier" Variety="On" />
+        <Frame UV="162, 756" Name="Feywood Chandelier" Variety="Off" />
+        <Frame UV="108, 810" Name="Hallowed Chandelier" Variety="On" />
+        <Frame UV="162, 810" Name="Hallowed Chandelier" Variety="Off" />
+        <Frame UV="108, 864" Name="Gothic Chandelier" Variety="On" />
+        <Frame UV="162, 864" Name="Gothic Chandelier" Variety="Off" />
+        <Frame UV="108, 918" Name="Demonite Chandelier" Variety="On" />
+        <Frame UV="162, 918" Name="Demonite Chandelier" Variety="Off" />
+        <Frame UV="108, 972" Name="Crimtane Chandelier" Variety="On" />
+        <Frame UV="162, 972" Name="Crimtane Chandelier" Variety="Off" />
+        <Frame UV="108, 1026" Name="Snow Chandelier" Variety="On" />
+        <Frame UV="162, 1026" Name="Snow Chandelier" Variety="Off" />
+        <Frame UV="108, 1080" Name="Flinx Fur Chandelier" Variety="On" />
+        <Frame UV="162, 1080" Name="Flinx Fur Chandelier" Variety="Off" />
+        <Frame UV="108, 1134" Name="Pine Chandelier" Variety="On" />
+        <Frame UV="162, 1134" Name="Pine Chandelier" Variety="Off" />
+        <Frame UV="108, 1188" Name="Easter Chandelier" Variety="On" />
+        <Frame UV="162, 1188" Name="Easter Chandelier" Variety="Off" />
+        <Frame UV="108, 1242" Name="Stone Chandelier" Variety="On" />
+        <Frame UV="162, 1242" Name="Stone Chandelier" Variety="Off" />
+        <Frame UV="108, 1296" Name="Jellyfish Chandelier" Variety="On" />
+        <Frame UV="162, 1296" Name="Jellyfish Chandelier" Variety="Off" />
+        <Frame UV="108, 1350" Name="Harpy Chandelier" Variety="On" />
+        <Frame UV="162, 1350" Name="Harpy Chandelier" Variety="Off" />
+        <Frame UV="108, 1404" Name="Cloud Chandelier" Variety="On" />
+        <Frame UV="162, 1404" Name="Cloud Chandelier" Variety="Off" />
+        <Frame UV="108, 1458" Name="Duskware Chandelier" Variety="On" />
+        <Frame UV="162, 1458" Name="Duskware Chandelier" Variety="Off" />
+        <Frame UV="108, 1512" Name="Librarian Chandelier" Variety="On" />
+        <Frame UV="162, 1512" Name="Librarian Chandelier" Variety="Off" />
+        <Frame UV="108, 1566" Name="Spike Chandelier" Variety="On" />
+        <Frame UV="162, 1566" Name="Spike Chandelier" Variety="Off" />
+        <Frame UV="108, 1620" Name="Office Chandelier" Variety="On" />
+        <Frame UV="162, 1620" Name="Office Chandelier" Variety="Off" />
+        <Frame UV="108, 1674" Name="Forbidden Chandelier" Variety="On" />
+        <Frame UV="162, 1674" Name="Forbidden Chandelier" Variety="Off" />
+        <Frame UV="108, 1728" Name="Aquarium Chandelier" Variety="On" />
+        <Frame UV="162, 1728" Name="Aquarium Chandelier" Variety="Off" />
+        <Frame UV="108, 1782" Name="Boulder Chandelier" Variety="On" />
+        <Frame UV="162, 1782" Name="Boulder Chandelier" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="35" Color="#FFC5D8DB" Name="Jack 'O Lantern" Framed="true" Size="2,2" Light="true">
@@ -3392,6 +4168,50 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1692" Name="Balloon Lantern" Variety="Off" />
         <Frame UV="0,1728" Name="Ash Wood Lantern" Variety="On" />
         <Frame UV="18,1728" Name="Ash Wood Lantern" Variety="Off" />
+        <Frame UV="0, 1764" Name="Aetherium Lantern" Variety="On" />
+        <Frame UV="18, 1764" Name="Aetherium Lantern" Variety="Off" />
+        <Frame UV="0, 1800" Name="Fallen Star Lantern" Variety="On" />
+        <Frame UV="18, 1800" Name="Fallen Star Lantern" Variety="Off" />
+        <Frame UV="0, 1836" Name="Feywood Lantern" Variety="On" />
+        <Frame UV="18, 1836" Name="Feywood Lantern" Variety="Off" />
+        <Frame UV="0, 1872" Name="Hallowed Lantern" Variety="On" />
+        <Frame UV="18, 1872" Name="Hallowed Lantern" Variety="Off" />
+        <Frame UV="0, 1908" Name="Gothic Lantern" Variety="On" />
+        <Frame UV="18, 1908" Name="Gothic Lantern" Variety="Off" />
+        <Frame UV="0, 1944" Name="Demonite Lantern" Variety="On" />
+        <Frame UV="18, 1944" Name="Demonite Lantern" Variety="Off" />
+        <Frame UV="0, 1980" Name="Crimtane Lantern" Variety="On" />
+        <Frame UV="18, 1980" Name="Crimtane Lantern" Variety="Off" />
+        <Frame UV="36, 0" Name="Snow Lantern" Variety="On" />
+        <Frame UV="54, 0" Name="Snow Lantern" Variety="Off" />
+        <Frame UV="36, 36" Name="Flinx Fur Lantern" Variety="On" />
+        <Frame UV="54, 36" Name="Flinx Fur Lantern" Variety="Off" />
+        <Frame UV="36, 72" Name="Pine Lantern" Variety="On" />
+        <Frame UV="54, 72" Name="Pine Lantern" Variety="Off" />
+        <Frame UV="36, 108" Name="Easter Lantern" Variety="On" />
+        <Frame UV="54, 108" Name="Easter Lantern" Variety="Off" />
+        <Frame UV="36, 144" Name="Stone Lantern" Variety="On" />
+        <Frame UV="54, 144" Name="Stone Lantern" Variety="Off" />
+        <Frame UV="36, 180" Name="Jellyfish Lantern" Variety="On" />
+        <Frame UV="54, 180" Name="Jellyfish Lantern" Variety="Off" />
+        <Frame UV="36, 216" Name="Harpy Lantern" Variety="On" />
+        <Frame UV="54, 216" Name="Harpy Lantern" Variety="Off" />
+        <Frame UV="36, 252" Name="Cloud Lantern" Variety="On" />
+        <Frame UV="54, 252" Name="Cloud Lantern" Variety="Off" />
+        <Frame UV="36, 288" Name="Duskware Lantern" Variety="On" />
+        <Frame UV="54, 288" Name="Duskware Lantern" Variety="Off" />
+        <Frame UV="36, 324" Name="Librarian Lantern" Variety="On" />
+        <Frame UV="54, 324" Name="Librarian Lantern" Variety="Off" />
+        <Frame UV="36, 360" Name="Spike Lantern" Variety="On" />
+        <Frame UV="54, 360" Name="Spike Lantern" Variety="Off" />
+        <Frame UV="36, 396" Name="Office Lantern" Variety="On" />
+        <Frame UV="54, 396" Name="Office Lantern" Variety="Off" />
+        <Frame UV="36, 432" Name="Forbidden Lantern" Variety="On" />
+        <Frame UV="54, 432" Name="Forbidden Lantern" Variety="Off" />
+        <Frame UV="36, 468" Name="Aquarium Lantern" Variety="On" />
+        <Frame UV="54, 468" Name="Aquarium Lantern" Variety="Off" />
+        <Frame UV="36, 504" Name="Boulder Lantern" Variety="On" />
+        <Frame UV="54, 504" Name="Boulder Lantern" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="43" Color="#FF54643F" Name="Green Brick" Solid="true" Blends="true" MergeWith="0" />
@@ -3665,6 +4485,50 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,1476" Name="Balloon Bed" Variety="Right" />
         <Frame UV="0,1512" Name="Ash Wood Bed" Variety="Left" />
         <Frame UV="72,1512" Name="Ash Wood Bed" Variety="Right" />
+        <Frame UV="0,1548" Name="Aetherium Bed" Variety="Left" />
+        <Frame UV="72,1548" Name="Aetherium Bed" Variety="Right" />
+        <Frame UV="0,1584" Name="Fallen Star Bed" Variety="Left" />
+        <Frame UV="72,1584" Name="Fallen Star Bed" Variety="Right" />
+        <Frame UV="0,1620" Name="Feywood Bed" Variety="Left" />
+        <Frame UV="72,1620" Name="Feywood Bed" Variety="Right" />
+        <Frame UV="0,1656" Name="Hallowed Bed" Variety="Left" />
+        <Frame UV="72,1656" Name="Hallowed Bed" Variety="Right" />
+        <Frame UV="0,1692" Name="Gothic Bed" Variety="Left" />
+        <Frame UV="72,1692" Name="Gothic Bed" Variety="Right" />
+        <Frame UV="0,1728" Name="Demonite Bed" Variety="Left" />
+        <Frame UV="72,1728" Name="Demonite Bed" Variety="Right" />
+        <Frame UV="0,1764" Name="Crimtane Bed" Variety="Left" />
+        <Frame UV="72,1764" Name="Crimtane Bed" Variety="Right" />
+        <Frame UV="0,1800" Name="Snow Bed" Variety="Left" />
+        <Frame UV="72,1800" Name="Snow Bed" Variety="Right" />
+        <Frame UV="0,1836" Name="Flinx Fur Bed" Variety="Left" />
+        <Frame UV="72,1836" Name="Flinx Fur Bed" Variety="Right" />
+        <Frame UV="0,1872" Name="Pine Bed" Variety="Left" />
+        <Frame UV="72,1872" Name="Pine Bed" Variety="Right" />
+        <Frame UV="0,1908" Name="Easter Bed" Variety="Left" />
+        <Frame UV="72,1908" Name="Easter Bed" Variety="Right" />
+        <Frame UV="0,1944" Name="Stone Bed" Variety="Left" />
+        <Frame UV="72,1944" Name="Stone Bed" Variety="Right" />
+        <Frame UV="0,1980" Name="Jellyfish Bed" Variety="Left" />
+        <Frame UV="72,1980" Name="Jellyfish Bed" Variety="Right" />
+        <Frame UV="144,0" Name="Harpy Bed" Variety="Left" />
+        <Frame UV="216,0" Name="Harpy Bed" Variety="Right" />
+        <Frame UV="144,36" Name="Cloud Bed" Variety="Left" />
+        <Frame UV="216,36" Name="Cloud Bed" Variety="Right" />
+        <Frame UV="144,72" Name="Duskware Bed" Variety="Left" />
+        <Frame UV="216,72" Name="Duskware Bed" Variety="Right" />
+        <Frame UV="144,108" Name="Librarian Bed" Variety="Left" />
+        <Frame UV="216,108" Name="Librarian Bed" Variety="Right" />
+        <Frame UV="144,144" Name="Spike Bed" Variety="Left" />
+        <Frame UV="216,144" Name="Spike Bed" Variety="Right" />
+        <Frame UV="144,180" Name="Office Bed" Variety="Left" />
+        <Frame UV="216,180" Name="Office Bed" Variety="Right" />
+        <Frame UV="144,216" Name="Forbidden Bed" Variety="Left" />
+        <Frame UV="216,216" Name="Forbidden Bed" Variety="Right" />
+        <Frame UV="144,252" Name="Aquarium Bed" Variety="Left" />
+        <Frame UV="216,252" Name="Aquarium Bed" Variety="Right" />
+        <Frame UV="144,288" Name="Boulder Bed" Variety="Left" />
+        <Frame UV="216,288" Name="Boulder Bed" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Id="80" Color="#FF497811" Name="Cactus Plant" Special="Cactus" />
@@ -3770,12 +4634,34 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1836,0" Name="Solar Piano" />
         <Frame UV="1890,0" Name="Vortex Piano" />
         <Frame UV="1944,0" Name="Nebula Piano" />
-        <Frame UV="1998,0" Name="Stardust Piano" />
-        <Frame UV="2052,0" Name="Sandstone Piano" />
-        <Frame UV="2106,0" Name="Bamboo Piano" />
-        <Frame UV="2160,0" Name="Reef Piano" />
-        <Frame UV="2214,0" Name="Balloon Piano" />
-        <Frame UV="2268,0" Name="Ash Wood Piano" />
+        <Frame UV="0, 36" Name="Stardust Piano" />
+        <Frame UV="54, 36" Name="Sandstone Piano" />
+        <Frame UV="108, 36" Name="Bamboo Piano" />
+        <Frame UV="162, 36" Name="Reef Piano" />
+        <Frame UV="216, 36" Name="Balloon Piano" />
+        <Frame UV="270, 36" Name="Ash Wood Piano" />
+        <Frame UV="324, 36" Name="Aetherium Piano" />
+        <Frame UV="378, 36" Name="Fallen Star Piano" />
+        <Frame UV="432, 36" Name="Feywood Piano" />
+        <Frame UV="486, 36" Name="Hallowed Piano" />
+        <Frame UV="540, 36" Name="Gothic Piano" />
+        <Frame UV="594, 36" Name="Demonite Piano" />
+        <Frame UV="648, 36" Name="Crimtane Piano" />
+        <Frame UV="702, 36" Name="Snow Piano" />
+        <Frame UV="756, 36" Name="Flinx Fur Piano" />
+        <Frame UV="810, 36" Name="Pine Piano" />
+        <Frame UV="864, 36" Name="Easter Piano" />
+        <Frame UV="918, 36" Name="Stone Piano" />
+        <Frame UV="972, 36" Name="Jellyfish Piano" />
+        <Frame UV="1026, 36" Name="Harpy Piano" />
+        <Frame UV="1080, 36" Name="Cloud Piano" />
+        <Frame UV="1134, 36" Name="Duskware Piano" />
+        <Frame UV="1188, 36" Name="Librarian Piano" />
+        <Frame UV="1242, 36" Name="Spike Piano" />
+        <Frame UV="1296, 36" Name="Office Piano" />
+        <Frame UV="1350, 36" Name="Forbidden Piano" />
+        <Frame UV="1404, 36" Name="Aquarium Piano" />
+        <Frame UV="1458, 36" Name="Boulder Piano" />
       </Frames>
     </Tile>
     <Tile Id="88" Color="#FFBF8E6F" Name="Dressers" Framed="true" Size="3,2" Placement="floor"
@@ -3818,12 +4704,34 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1836,0" Name="Solar Dresser" />
         <Frame UV="1890,0" Name="Vortex Dresser" />
         <Frame UV="1944,0" Name="Nebula Dresser" />
-        <Frame UV="1998,0" Name="Stardust Dresser" />
-        <Frame UV="2052,0" Name="Sandstone Dresser" />
-        <Frame UV="2106,0" Name="Bamboo Dresser" />
-        <Frame UV="2160,0" Name="Reef Dresser" />
-        <Frame UV="2214,0" Name="Balloon Dresser" />
-        <Frame UV="2268,0" Name="Ash Wood Dresser" />
+        <Frame UV="0, 36" Name="Stardust Dresser" />
+        <Frame UV="54, 36" Name="Sandstone Dresser" />
+        <Frame UV="108, 36" Name="Bamboo Dresser" />
+        <Frame UV="162, 36" Name="Reef Dresser" />
+        <Frame UV="216, 36" Name="Balloon Dresser" />
+        <Frame UV="270, 36" Name="Ash Wood Dresser" />
+        <Frame UV="324, 36" Name="Aetherium Dresser" />
+        <Frame UV="378, 36" Name="Fallen Star Dresser" />
+        <Frame UV="432, 36" Name="Feywood Dresser" />
+        <Frame UV="486, 36" Name="Hallowed Dresser" />
+        <Frame UV="540, 36" Name="Gothic Dresser" />
+        <Frame UV="594, 36" Name="Demonite Dresser" />
+        <Frame UV="648, 36" Name="Crimtane Dresser" />
+        <Frame UV="702, 36" Name="Snow Dresser" />
+        <Frame UV="756, 36" Name="Flinx Fur Dresser" />
+        <Frame UV="810, 36" Name="Pine Dresser" />
+        <Frame UV="864, 36" Name="Easter Dresser" />
+        <Frame UV="918, 36" Name="Stone Dresser" />
+        <Frame UV="972, 36" Name="Jellyfish Dresser" />
+        <Frame UV="1026, 36" Name="Harpy Dresser" />
+        <Frame UV="1080, 36" Name="Cloud Dresser" />
+        <Frame UV="1134, 36" Name="Duskware Dresser" />
+        <Frame UV="1188, 36" Name="Librarian Dresser" />
+        <Frame UV="1242, 36" Name="Spike Dresser" />
+        <Frame UV="1296, 36" Name="Office Dresser" />
+        <Frame UV="1350, 36" Name="Forbidden Dresser" />
+        <Frame UV="1404, 36" Name="Aquarium Dresser" />
+        <Frame UV="1458, 36" Name="Boulder Dresser" />
       </Frames>
     </Tile>
     <Tile Id="89" Color="#FFBF8E6F" Name="Benches" Framed="true" Size="3,2" Placement="floor">
@@ -3865,16 +4773,38 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1836,0" Name="Dynasty Sofa" />
         <Frame UV="1890,0" Name="Spider Sofa" />
         <Frame UV="1944,0" Name="Lesion Sofa" />
-        <Frame UV="1998,0" Name="Solar Sofa" />
-        <Frame UV="2052,0" Name="Vortex Sofa" />
-        <Frame UV="2106,0" Name="Nebula Sofa" />
-        <Frame UV="2160,0" Name="Stardust Sofa" />
-        <Frame UV="2214,0" Name="Sandstone Sofa" />
-        <Frame UV="2268,0" Name="Bamboo Sofa" />
-        <Frame UV="2322,0" Name="Chippy's Couch" />
-        <Frame UV="2376,0" Name="Reef Sofa" />
-        <Frame UV="2430,0" Name="Balloon Sofa" />
-        <Frame UV="2484,0" Name="Ash Wood Sofa" />
+        <Frame UV="0, 36" Name="Solar Sofa" />
+        <Frame UV="54, 36" Name="Vortex Sofa" />
+        <Frame UV="108, 36" Name="Nebula Sofa" />
+        <Frame UV="162, 36" Name="Stardust Sofa" />
+        <Frame UV="216, 36" Name="Sandstone Sofa" />
+        <Frame UV="270, 36" Name="Bamboo Sofa" />
+        <Frame UV="324, 36" Name="Chippy's Couch" />
+        <Frame UV="378, 36" Name="Reef Sofa" />
+        <Frame UV="432, 36" Name="Balloon Sofa" />
+        <Frame UV="486, 36" Name="Ash Wood Sofa" />
+        <Frame UV="540, 36" Name="Aetherium Sofa" />
+        <Frame UV="594, 36" Name="Fallen Star Sofa" />
+        <Frame UV="648, 36" Name="Feywood Sofa" />
+        <Frame UV="702, 36" Name="Hallowed Sofa" />
+        <Frame UV="756, 36" Name="Gothic Sofa" />
+        <Frame UV="810, 36" Name="Demonite Sofa" />
+        <Frame UV="864, 36" Name="Crimtane Sofa" />
+        <Frame UV="918, 36" Name="Snow Sofa" />
+        <Frame UV="972, 36" Name="Flinx Fur Sofa" />
+        <Frame UV="1026, 36" Name="Pine Sofa" />
+        <Frame UV="1080, 36" Name="Easter Sofa" />
+        <Frame UV="1134, 36" Name="Stone Sofa" />
+        <Frame UV="1188, 36" Name="Jellyfish Sofa" />
+        <Frame UV="1242, 36" Name="Harpy Sofa" />
+        <Frame UV="1296, 36" Name="Cloud Sofa" />
+        <Frame UV="1350, 36" Name="Duskware Sofa" />
+        <Frame UV="1404, 36" Name="Librarian Sofa" />
+        <Frame UV="1458, 36" Name="Spike Sofa" />
+        <Frame UV="1512, 36" Name="Office Sofa" />
+        <Frame UV="1566, 36" Name="Forbidden Sofa" />
+        <Frame UV="1620, 36" Name="Aquarium Sofa" />
+        <Frame UV="1674, 36" Name="Boulder Sofa" />
       </Frames>
     </Tile>
     <Tile Id="90" Color="#FF909490" Name="Bathtubs" Framed="true" Size="4,2" Placement="floor">
@@ -3931,40 +4861,84 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,864" Name="Pumpkin Bathtub" Variety="Right" />
         <Frame UV="0,900" Name="Obsidian Bathtub" Variety="Left" />
         <Frame UV="72,900" Name="Obsidian Bathtub" Variety="Right" />
-        <Frame UV="72,936" Name="Golden Bathtub" Variety="Left" />
-        <Frame UV="0,936" Name="Golden Bathtub" Variety="Right" />
-        <Frame UV="72,972" Name="Martian Bathtub" Variety="Left" />
-        <Frame UV="0,972" Name="Martian Bathtub" Variety="Right" />
-        <Frame UV="72,1008" Name="Meteorite Bathtub" Variety="Left" />
-        <Frame UV="0,1008" Name="Meteorite Bathtub" Variety="Right" />
-        <Frame UV="72,1044" Name="Granite Bathtub" Variety="Left" />
-        <Frame UV="0,1044" Name="Granite Bathtub" Variety="Right" />
-        <Frame UV="72,1080" Name="Marble Bathtub" Variety="Left" />
-        <Frame UV="0,1080" Name="Marble Bathtub" Variety="Right" />
-        <Frame UV="72,1116" Name="Crystal Bathtub" Variety="Left" />
-        <Frame UV="0,1116" Name="Crystal Bathtub" Variety="Right" />
-        <Frame UV="72,1152" Name="Spider Bathtub" Variety="Left" />
-        <Frame UV="0,1152" Name="Spider Bathtub" Variety="Right" />
-        <Frame UV="72,1188" Name="Lesion Bathtub" Variety="Left" />
-        <Frame UV="0,1188" Name="Lesion Bathtub" Variety="Right" />
-        <Frame UV="72,1224" Name="Solar Bathtub" Variety="Left" />
-        <Frame UV="0,1224" Name="Solar Bathtub" Variety="Right" />
-        <Frame UV="72,1260" Name="Vortex Bathtub" Variety="Left" />
-        <Frame UV="0,1260" Name="Vortex Bathtub" Variety="Right" />
-        <Frame UV="72,1296" Name="Nebula Bathtub" Variety="Left" />
-        <Frame UV="0,1296" Name="Nebula Bathtub" Variety="Right" />
-        <Frame UV="72,1332" Name="Stardust Bathtub" Variety="Left" />
-        <Frame UV="0,1332" Name="Stardust Bathtub" Variety="Right" />
-        <Frame UV="72,1368" Name="Sandstone Bathtub" Variety="Left" />
-        <Frame UV="0,1368" Name="Sandstone Bathtub" Variety="Right" />
-        <Frame UV="72,1404" Name="Bamboo Bathtub" Variety="Left" />
-        <Frame UV="0,1404" Name="Bamboo Bathtub" Variety="Right" />
-        <Frame UV="72,1440" Name="Reef Bathtub" Variety="Left" />
-        <Frame UV="0,1440" Name="Reef Bathtub" Variety="Right" />
-        <Frame UV="72,1476" Name="Balloon Bathtub" Variety="Left" />
-        <Frame UV="0,1476" Name="Balloon Bathtub" Variety="Right" />
-        <Frame UV="72,1512" Name="Ash Wood Bathtub" Variety="Left" />
-        <Frame UV="0,1512" Name="Ash Wood Bathtub" Variety="Right" />
+        <Frame UV="0,936" Name="Golden Bathtub" Variety="Left" />
+        <Frame UV="72,936" Name="Golden Bathtub" Variety="Right" />
+        <Frame UV="0,972" Name="Martian Bathtub" Variety="Left" />
+        <Frame UV="72,972" Name="Martian Bathtub" Variety="Right" />
+        <Frame UV="0,1008" Name="Meteorite Bathtub" Variety="Left" />
+        <Frame UV="72,1008" Name="Meteorite Bathtub" Variety="Right" />
+        <Frame UV="0,1044" Name="Granite Bathtub" Variety="Left" />
+        <Frame UV="72,1044" Name="Granite Bathtub" Variety="Right" />
+        <Frame UV="0,1080" Name="Marble Bathtub" Variety="Left" />
+        <Frame UV="72,1080" Name="Marble Bathtub" Variety="Right" />
+        <Frame UV="0,1116" Name="Crystal Bathtub" Variety="Left" />
+        <Frame UV="72,1116" Name="Crystal Bathtub" Variety="Right" />
+        <Frame UV="0,1152" Name="Spider Bathtub" Variety="Left" />
+        <Frame UV="72,1152" Name="Spider Bathtub" Variety="Right" />
+        <Frame UV="0,1188" Name="Lesion Bathtub" Variety="Left" />
+        <Frame UV="72,1188" Name="Lesion Bathtub" Variety="Right" />
+        <Frame UV="0,1224" Name="Solar Bathtub" Variety="Left" />
+        <Frame UV="72,1224" Name="Solar Bathtub" Variety="Right" />
+        <Frame UV="0,1260" Name="Vortex Bathtub" Variety="Left" />
+        <Frame UV="72,1260" Name="Vortex Bathtub" Variety="Right" />
+        <Frame UV="0,1296" Name="Nebula Bathtub" Variety="Left" />
+        <Frame UV="72,1296" Name="Nebula Bathtub" Variety="Right" />
+        <Frame UV="0,1332" Name="Stardust Bathtub" Variety="Left" />
+        <Frame UV="72,1332" Name="Stardust Bathtub" Variety="Right" />
+        <Frame UV="0,1368" Name="Sandstone Bathtub" Variety="Left" />
+        <Frame UV="72,1368" Name="Sandstone Bathtub" Variety="Right" />
+        <Frame UV="0,1404" Name="Bamboo Bathtub" Variety="Left" />
+        <Frame UV="72,1404" Name="Bamboo Bathtub" Variety="Right" />
+        <Frame UV="0,1440" Name="Reef Bathtub" Variety="Left" />
+        <Frame UV="72,1440" Name="Reef Bathtub" Variety="Right" />
+        <Frame UV="0,1476" Name="Balloon Bathtub" Variety="Left" />
+        <Frame UV="72,1476" Name="Balloon Bathtub" Variety="Right" />
+        <Frame UV="0,1512" Name="Ash Wood Bathtub" Variety="Left" />
+        <Frame UV="72,1512" Name="Ash Wood Bathtub" Variety="Right" />
+        <Frame UV="0, 1548" Name="Aetherium Bathtub" Variety="Left" />
+        <Frame UV="72, 1548" Name="Aetherium Bathtub" Variety="Right" />
+        <Frame UV="0, 1584" Name="Fallen Star Bathtub" Variety="Left" />
+        <Frame UV="72, 1584" Name="Fallen Star Bathtub" Variety="Right" />
+        <Frame UV="0, 1620" Name="Feywood Bathtub" Variety="Left" />
+        <Frame UV="72, 1620" Name="Feywood Bathtub" Variety="Right" />
+        <Frame UV="0, 1656" Name="Hallowed Bathtub" Variety="Left" />
+        <Frame UV="72, 1656" Name="Hallowed Bathtub" Variety="Right" />
+        <Frame UV="0, 1692" Name="Gothic Bathtub" Variety="Left" />
+        <Frame UV="72, 1692" Name="Gothic Bathtub" Variety="Right" />
+        <Frame UV="0, 1728" Name="Demonite Bathtub" Variety="Left" />
+        <Frame UV="72, 1728" Name="Demonite Bathtub" Variety="Right" />
+        <Frame UV="0, 1764" Name="Crimtane Bathtub" Variety="Left" />
+        <Frame UV="72, 1764" Name="Crimtane Bathtub" Variety="Right" />
+        <Frame UV="0, 1800" Name="Snow Bathtub" Variety="Left" />
+        <Frame UV="72, 1800" Name="Snow Bathtub" Variety="Right" />
+        <Frame UV="0, 1836" Name="Flinx Fur Bathtub" Variety="Left" />
+        <Frame UV="72, 1836" Name="Flinx Fur Bathtub" Variety="Right" />
+        <Frame UV="0, 1872" Name="Pine Bathtub" Variety="Left" />
+        <Frame UV="72, 1872" Name="Pine Bathtub" Variety="Right" />
+        <Frame UV="0, 1908" Name="Easter Bathtub" Variety="Left" />
+        <Frame UV="72, 1908" Name="Easter Bathtub" Variety="Right" />
+        <Frame UV="0, 1944" Name="Stone Bathtub" Variety="Left" />
+        <Frame UV="72, 1944" Name="Stone Bathtub" Variety="Right" />
+        <Frame UV="0, 1980" Name="Jellyfish Bathtub" Variety="Left" />
+        <Frame UV="72, 1980" Name="Jellyfish Bathtub" Variety="Right" />
+        <Frame UV="144, 0" Name="Harpy Bathtub" Variety="Left" />
+        <Frame UV="216, 0" Name="Harpy Bathtub" Variety="Right" />
+        <Frame UV="144, 36" Name="Cloud Bathtub" Variety="Left" />
+        <Frame UV="216, 36" Name="Cloud Bathtub" Variety="Right" />
+        <Frame UV="144, 72" Name="Duskware Bathtub" Variety="Left" />
+        <Frame UV="216, 72" Name="Duskware Bathtub" Variety="Right" />
+        <Frame UV="144, 108" Name="Librarian Bathtub" Variety="Left" />
+        <Frame UV="216, 108" Name="Librarian Bathtub" Variety="Right" />
+        <Frame UV="144, 144" Name="Spike Bathtub" Variety="Left" />
+        <Frame UV="216, 144" Name="Spike Bathtub" Variety="Right" />
+        <Frame UV="144, 180" Name="Office Bathtub" Variety="Left" />
+        <Frame UV="216, 180" Name="Office Bathtub" Variety="Right" />
+        <Frame UV="144, 216" Name="Forbidden Bathtub" Variety="Left" />
+        <Frame UV="216, 216" Name="Forbidden Bathtub" Variety="Right" />
+        <Frame UV="144, 252" Name="Aquarium Bathtub" Variety="Left" />
+        <Frame UV="216, 252" Name="Aquarium Bathtub" Variety="Right" />
+        <Frame UV="144, 288" Name="Boulder Bathtub" Variety="Left" />
+        <Frame UV="216, 288" Name="Boulder Bathtub" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Id="91" Color="#FF0D5882" Name="Banners" Framed="true" Size="1,3" Placement="ceiling">
@@ -4280,6 +5254,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1548,108" Name="Monster Banner" Variety="Moss Hornet Banner" />
         <Frame UV="1566,108" Name="Monster Banner" Variety="Wandering Eye Banner" />
         <Frame UV="1584,108" Name="Monster Banner" Variety="Shimmer Slime Banner" />
+        <Frame UV="1602, 108" Name="Craftable Banner" Variety="Pink Banner" />
+        <Frame UV="1620, 108" Name="Craftable Banner" Variety="White Banner" />
+        <Frame UV="1638, 108" Name="Monster Banner" Variety="Orca Banner" />
+        <Frame UV="1656, 108" Name="Monster Banner" Variety="Librarian Skeleton Banner" />
+        <Frame UV="1674, 108" Name="Monster Banner" Variety="Water Bolt Mimic Banner" />
       </Frames>
     </Tile>
     <Tile Id="92" Color="#FFD5E5ED" Name="Lamp Post" Framed="true" Size="1,6" Placement="floor"
@@ -4366,18 +5345,62 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1890" Name="Vortex Lamp" Variety="Off" />
         <Frame UV="0,1944" Name="Nebula Lamp" Variety="On" />
         <Frame UV="18,1944" Name="Nebula Lamp" Variety="Off" />
-        <Frame UV="0,1998" Name="Stardust Lamp" Variety="On" />
-        <Frame UV="18,1998" Name="Stardust Lamp" Variety="Off" />
-        <Frame UV="0,2052" Name="Sandstone Lamp" Variety="On" />
-        <Frame UV="18,2052" Name="Sandstone Lamp" Variety="Off" />
-        <Frame UV="0,2106" Name="Bamboo Lamp" Variety="On" />
-        <Frame UV="18,2106" Name="Bamboo Lamp" Variety="Off" />
-        <Frame UV="0,2160" Name="Reef Lamp" Variety="On" />
-        <Frame UV="18,2160" Name="Reef Lamp" Variety="Off" />
-        <Frame UV="0,2214" Name="Balloon Lamp" Variety="On" />
-        <Frame UV="18,2214" Name="Balloon Lamp" Variety="Off" />
-        <Frame UV="0,2268" Name="Ash Wood Lamp" Variety="On" />
-        <Frame UV="18,2268" Name="Ash Wood Lamp" Variety="Off" />
+        <Frame UV="36, 0" Name="Stardust Lamp" Variety="On" />
+        <Frame UV="54, 0" Name="Stardust Lamp" Variety="Off" />
+        <Frame UV="36, 54" Name="Sandstone Lamp" Variety="On" />
+        <Frame UV="54, 54" Name="Sandstone Lamp" Variety="Off" />
+        <Frame UV="36, 108" Name="Bamboo Lamp" Variety="On" />
+        <Frame UV="54, 108" Name="Bamboo Lamp" Variety="Off" />
+        <Frame UV="36, 162" Name="Reef Lamp" Variety="On" />
+        <Frame UV="54, 162" Name="Reef Lamp" Variety="Off" />
+        <Frame UV="36, 216" Name="Balloon Lamp" Variety="On" />
+        <Frame UV="54, 216" Name="Balloon Lamp" Variety="Off" />
+        <Frame UV="36, 270" Name="Ash Wood Lamp" Variety="On" />
+        <Frame UV="54, 270" Name="Ash Wood Lamp" Variety="Off" />
+        <Frame UV="36, 324" Name="Aetherium Lamp" Variety="On" />
+        <Frame UV="54, 324" Name="Aetherium Lamp" Variety="Off" />
+        <Frame UV="36, 378" Name="Fallen Star Lamp" Variety="On" />
+        <Frame UV="54, 378" Name="Fallen Star Lamp" Variety="Off" />
+        <Frame UV="36, 432" Name="Feywood Lamp" Variety="On" />
+        <Frame UV="54, 432" Name="Feywood Lamp" Variety="Off" />
+        <Frame UV="36, 486" Name="Hallowed Lamp" Variety="On" />
+        <Frame UV="54, 486" Name="Hallowed Lamp" Variety="Off" />
+        <Frame UV="36, 540" Name="Gothic Lamp" Variety="On" />
+        <Frame UV="54, 540" Name="Gothic Lamp" Variety="Off" />
+        <Frame UV="36, 594" Name="Demonite Lamp" Variety="On" />
+        <Frame UV="54, 594" Name="Demonite Lamp" Variety="Off" />
+        <Frame UV="36, 648" Name="Crimtane Lamp" Variety="On" />
+        <Frame UV="54, 648" Name="Crimtane Lamp" Variety="Off" />
+        <Frame UV="36, 702" Name="Snow Lamp" Variety="On" />
+        <Frame UV="54, 702" Name="Snow Lamp" Variety="Off" />
+        <Frame UV="36, 756" Name="Flinx Fur Lamp" Variety="On" />
+        <Frame UV="54, 756" Name="Flinx Fur Lamp" Variety="Off" />
+        <Frame UV="36, 810" Name="Pine Lamp" Variety="On" />
+        <Frame UV="54, 810" Name="Pine Lamp" Variety="Off" />
+        <Frame UV="36, 864" Name="Easter Lamp" Variety="On" />
+        <Frame UV="54, 864" Name="Easter Lamp" Variety="Off" />
+        <Frame UV="36, 918" Name="Stone Lamp" Variety="On" />
+        <Frame UV="54, 918" Name="Stone Lamp" Variety="Off" />
+        <Frame UV="36, 972" Name="Jellyfish Lamp" Variety="On" />
+        <Frame UV="54, 972" Name="Jellyfish Lamp" Variety="Off" />
+        <Frame UV="36, 1026" Name="Harpy Lamp" Variety="On" />
+        <Frame UV="54, 1026" Name="Harpy Lamp" Variety="Off" />
+        <Frame UV="36, 1080" Name="Cloud Lamp" Variety="On" />
+        <Frame UV="54, 1080" Name="Cloud Lamp" Variety="Off" />
+        <Frame UV="36, 1134" Name="Duskware Lamp" Variety="On" />
+        <Frame UV="54, 1134" Name="Duskware Lamp" Variety="Off" />
+        <Frame UV="36, 1188" Name="Librarian Lamp" Variety="On" />
+        <Frame UV="54, 1188" Name="Librarian Lamp" Variety="Off" />
+        <Frame UV="36, 1242" Name="Spike Lamp" Variety="On" />
+        <Frame UV="54, 1242" Name="Spike Lamp" Variety="Off" />
+        <Frame UV="36, 1296" Name="Office Lamp" Variety="On" />
+        <Frame UV="54, 1296" Name="Office Lamp" Variety="Off" />
+        <Frame UV="36, 1350" Name="Forbidden Lamp" Variety="On" />
+        <Frame UV="54, 1350" Name="Forbidden Lamp" Variety="Off" />
+        <Frame UV="36, 1404" Name="Aquarium Lamp" Variety="On" />
+        <Frame UV="54, 1404" Name="Aquarium Lamp" Variety="Off" />
+        <Frame UV="36, 1458" Name="Boulder Lamp" Variety="On" />
+        <Frame UV="54, 1458" Name="Boulder Lamp" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="94" Color="#FFBF8E6F" Name="Keg" Framed="true" Size="2,2" Placement="floor" />
@@ -4488,6 +5511,50 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1476" Name="Balloon Candelabra" Variety="Off" />
         <Frame UV="0,1512" Name="Ash Wood Candelabra" Variety="On" />
         <Frame UV="36,1512" Name="Ash Wood Candelabra" Variety="Off" />
+        <Frame UV="0, 1548" Name="Aetherium Candelabra" Variety="On" />
+        <Frame UV="36, 1548" Name="Aetherium Candelabra" Variety="Off" />
+        <Frame UV="0, 1584" Name="Fallen Star Candelabra" Variety="On" />
+        <Frame UV="36, 1584" Name="Fallen Star Candelabra" Variety="Off" />
+        <Frame UV="0, 1620" Name="Feywood Candelabra" Variety="On" />
+        <Frame UV="36, 1620" Name="Feywood Candelabra" Variety="Off" />
+        <Frame UV="0, 1656" Name="Hallowed Candelabra" Variety="On" />
+        <Frame UV="36, 1656" Name="Hallowed Candelabra" Variety="Off" />
+        <Frame UV="0, 1692" Name="Gothic Candelabra" Variety="On" />
+        <Frame UV="36, 1692" Name="Gothic Candelabra" Variety="Off" />
+        <Frame UV="0, 1728" Name="Demonite Candelabra" Variety="On" />
+        <Frame UV="36, 1728" Name="Demonite Candelabra" Variety="Off" />
+        <Frame UV="0, 1764" Name="Crimtane Candelabra" Variety="On" />
+        <Frame UV="36, 1764" Name="Crimtane Candelabra" Variety="Off" />
+        <Frame UV="0, 1800" Name="Snow Candelabra" Variety="On" />
+        <Frame UV="36, 1800" Name="Snow Candelabra" Variety="Off" />
+        <Frame UV="0, 1836" Name="Flinx Fur Candelabra" Variety="On" />
+        <Frame UV="36, 1836" Name="Flinx Fur Candelabra" Variety="Off" />
+        <Frame UV="0, 1872" Name="Pine Candelabra" Variety="On" />
+        <Frame UV="36, 1872" Name="Pine Candelabra" Variety="Off" />
+        <Frame UV="0, 1908" Name="Easter Candelabra" Variety="On" />
+        <Frame UV="36, 1908" Name="Easter Candelabra" Variety="Off" />
+        <Frame UV="0, 1944" Name="Stone Candelabra" Variety="On" />
+        <Frame UV="36, 1944" Name="Stone Candelabra" Variety="Off" />
+        <Frame UV="0, 1980" Name="Jellyfish Candelabra" Variety="On" />
+        <Frame UV="36, 1980" Name="Jellyfish Candelabra" Variety="Off" />
+        <Frame UV="72, 0" Name="Harpy Candelabra" Variety="On" />
+        <Frame UV="108, 0" Name="Harpy Candelabra" Variety="Off" />
+        <Frame UV="72, 36" Name="Cloud Candelabra" Variety="On" />
+        <Frame UV="108, 36" Name="Cloud Candelabra" Variety="Off" />
+        <Frame UV="72, 72" Name="Duskware Candelabra" Variety="On" />
+        <Frame UV="108, 72" Name="Duskware Candelabra" Variety="Off" />
+        <Frame UV="72, 108" Name="Librarian Candelabra" Variety="On" />
+        <Frame UV="108, 108" Name="Librarian Candelabra" Variety="Off" />
+        <Frame UV="72, 144" Name="Spike Candelabra" Variety="On" />
+        <Frame UV="108, 144" Name="Spike Candelabra" Variety="Off" />
+        <Frame UV="72, 180" Name="Office Candelabra" Variety="On" />
+        <Frame UV="108, 180" Name="Office Candelabra" Variety="Off" />
+        <Frame UV="72, 216" Name="Forbidden Candelabra" Variety="On" />
+        <Frame UV="108, 216" Name="Forbidden Candelabra" Variety="Off" />
+        <Frame UV="72, 252" Name="Aquarium Candelabra" Variety="On" />
+        <Frame UV="108, 252" Name="Aquarium Candelabra" Variety="Off" />
+        <Frame UV="72, 288" Name="Boulder Candelabra" Variety="On" />
+        <Frame UV="108, 288" Name="Boulder Candelabra" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="101" Color="#FFBF8E6F" Name="Bookcases" Framed="true" Size="3,4" Placement="floor"
@@ -4530,13 +5597,34 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1836,0" Name="Lesion Bookcase" />
         <Frame UV="1890,0" Name="Solar Bookcase" />
         <Frame UV="1944,0" Name="Vortex Bookcase" />
-        <Frame UV="1998,0" Name="Nebula Bookcase" />
-        <Frame UV="2052,0" Name="Stardust Bookcase" />
-        <Frame UV="2106,0" Name="Sandstone Bookcase" />
-        <Frame UV="2160,0" Name="Bamboo Bookcase" />
-        <Frame UV="2214,0" Name="Reef Bookcase" />
-        <Frame UV="2268,0" Name="Balloon Bookcase" />
-        <Frame UV="2322,0" Name="Ash Wood Bookcase" />
+        <Frame UV="0, 72" Name="Nebula Bookcase" />
+        <Frame UV="54, 72" Name="Stardust Bookcase" />
+        <Frame UV="108, 72" Name="Sandstone Bookcase" />
+        <Frame UV="162, 72" Name="Bamboo Bookcase" />
+        <Frame UV="216, 72" Name="Reef Bookcase" />
+        <Frame UV="270, 72" Name="Balloon Bookcase" />
+        <Frame UV="324, 72" Name="Ash Wood Bookcase" />
+        <Frame UV="378, 72" Name="Aetherium Bookcase" />
+        <Frame UV="432, 72" Name="Fallen Star Bookcase" />
+        <Frame UV="486, 72" Name="Feywood Bookcase" />
+        <Frame UV="540, 72" Name="Hallowed Bookcase" />
+        <Frame UV="594, 72" Name="Demonite Bookcase" />
+        <Frame UV="648, 72" Name="Crimtane Bookcase" />
+        <Frame UV="702, 72" Name="Snow Bookcase" />
+        <Frame UV="756, 72" Name="Flinx Fur Bookcase" />
+        <Frame UV="810, 72" Name="Pine Bookcase" />
+        <Frame UV="864, 72" Name="Easter Bookcase" />
+        <Frame UV="918, 72" Name="Stone Bookcase" />
+        <Frame UV="972, 72" Name="Jellyfish Bookcase" />
+        <Frame UV="1026, 72" Name="Harpy Bookcase" />
+        <Frame UV="1080, 72" Name="Cloud Bookcase" />
+        <Frame UV="1134, 72" Name="Duskware Bookcase" />
+        <Frame UV="1188, 72" Name="Librarian Bookcase" />
+        <Frame UV="1242, 72" Name="Spike Bookcase" />
+        <Frame UV="1296, 72" Name="Office Bookcase" />
+        <Frame UV="1350, 72" Name="Forbidden Bookcase" />
+        <Frame UV="1404, 72" Name="Aquarium Bookcase" />
+        <Frame UV="1458, 72" Name="Boulder Bookcase" />
       </Frames>
     </Tile>
     <Tile Id="102" Color="#FFE5D449" Name="Throne" Framed="true" Size="3,4" Placement="floor" />
@@ -4594,6 +5682,28 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1476,0" Name="Reef Clock" />
         <Frame UV="1512,0" Name="Balloon Clock" />
         <Frame UV="1548,0" Name="Ash Wood Clock" />
+        <Frame UV="1584, 0" Name="Aetherium Clock" />
+        <Frame UV="1620, 0" Name="Fallen Star Clock" />
+        <Frame UV="1656, 0" Name="Feywood Clock" />
+        <Frame UV="1692, 0" Name="Hallowed Clock" />
+        <Frame UV="1728, 0" Name="Gothic Clock" />
+        <Frame UV="1764, 0" Name="Demonite Clock" />
+        <Frame UV="1800, 0" Name="Crimtane Clock" />
+        <Frame UV="1836, 0" Name="Snow Clock" />
+        <Frame UV="1872, 0" Name="Flinx Fur Clock" />
+        <Frame UV="1908, 0" Name="Pine Clock" />
+        <Frame UV="1944, 0" Name="Easter Clock" />
+        <Frame UV="1980, 0" Name="Stone Clock" />
+        <Frame UV="0, 90" Name="Jellyfish Clock" />
+        <Frame UV="36, 90" Name="Harpy Clock" />
+        <Frame UV="72, 90" Name="Cloud Clock" />
+        <Frame UV="108, 90" Name="Duskware Clock" />
+        <Frame UV="144, 90" Name="Librarian Clock" />
+        <Frame UV="180, 90" Name="Spike Clock" />
+        <Frame UV="216, 90" Name="Office Clock" />
+        <Frame UV="252, 90" Name="Forbidden Clock" />
+        <Frame UV="288, 90" Name="Aquarium Clock" />
+        <Frame UV="324, 90" Name="Boulder Clock" />
       </Frames>
     </Tile>
     <Tile Id="105" Color="#FF909490" Name="Statue" Framed="true" Size="2,3" Placement="floor">
@@ -4842,7 +5952,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="129" Color="#FFFF75E0" Name="Crystal Shard" Framed="true" Light="true">
+    <Tile Id="129" Color="#FFFF75E0" Name="Crystal Shard" Framed="true" Light="true" IsAnimated="true" >
       <Frames>
         <Frame UV="0,0" Variety="Large Pink A" Anchor="Bottom" />
         <Frame UV="0,18" Variety="Large Pink A" Anchor="Top" />
@@ -5015,8 +6125,6 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       <Frames>
         <Frame UV="0,0" Name="Music Box (Overworld Day)" Variety="Off" />
         <Frame UV="36,0" Name="Music Box (Overworld Day)" Variety="On" />
-        <Frame UV="72,0" Name="Music Box (Alt Title)" Variety="Off" />
-        <Frame UV="108,0" Name="Music Box (Alt Title)" Variety="On" />
         <Frame UV="0,36" Name="Music Box (Eerie)" Variety="Off" />
         <Frame UV="36,36" Name="Music Box (Eerie)" Variety="On" />
         <Frame UV="0,72" Name="Music Box (Night)" Variety="Off" />
@@ -5095,6 +6203,124 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1368" Name="Music Box (Sandstorm)" Variety="On" />
         <Frame UV="0,1404" Name="Music Box (Old One's Army)" Variety="Off" />
         <Frame UV="36,1404" Name="Music Box (Old One's Army)" Variety="On" />
+        <Frame UV="0, 1440" Name="Music Box (Ocean Night)" Variety="Off" />
+        <Frame UV="36, 1440" Name="Music Box (Ocean Night)" Variety="On" />
+        <Frame UV="0, 1476" Name="Music Box (Slime Rain)" Variety="Off" />
+        <Frame UV="36, 1476" Name="Music Box (Slime Rain)" Variety="On" />
+        <Frame UV="0, 1512" Name="Music Box (Space Day)" Variety="Off" />
+        <Frame UV="36, 1512" Name="Music Box (Space Day)" Variety="On" />
+        <Frame UV="0, 1548" Name="Music Box (Town Day)" Variety="Off" />
+        <Frame UV="36, 1548" Name="Music Box (Town Day)" Variety="On" />
+        <Frame UV="0, 1584" Name="Music Box (Town Night)" Variety="Off" />
+        <Frame UV="36, 1584" Name="Music Box (Town Night)" Variety="On" />
+        <Frame UV="0, 1620" Name="Music Box (Windy Day)" Variety="Off" />
+        <Frame UV="36, 1620" Name="Music Box (Windy Day)" Variety="On" />
+        <Frame UV="0, 1656" Name="Music Box (Day Remix)" Variety="Off" />
+        <Frame UV="36, 1656" Name="Music Box (Day Remix)" Variety="On" />
+        <Frame UV="0, 1692" Name="Music Box (Journey's Beginning)" Variety="Off" />
+        <Frame UV="36, 1692" Name="Music Box (Journey's Beginning)" Variety="On" />
+        <Frame UV="0, 1728" Name="Music Box (Storm)" Variety="Off" />
+        <Frame UV="36, 1728" Name="Music Box (Storm)" Variety="On" />
+        <Frame UV="0, 1764" Name="Music Box (Graveyard)" Variety="Off" />
+        <Frame UV="36, 1764" Name="Music Box (Graveyard)" Variety="On" />
+        <Frame UV="0, 1800" Name="Music Box (Underground Jungle)" Variety="Off" />
+        <Frame UV="36, 1800" Name="Music Box (Underground Jungle)" Variety="On" />
+        <Frame UV="0, 1836" Name="Music Box (Jungle Night)" Variety="Off" />
+        <Frame UV="36, 1836" Name="Music Box (Jungle Night)" Variety="On" />
+        <Frame UV="0, 1872" Name="Music Box (Queen Slime)" Variety="Off" />
+        <Frame UV="36, 1872" Name="Music Box (Queen Slime)" Variety="On" />
+        <Frame UV="0, 1908" Name="Music Box (Empress Of Light)" Variety="Off" />
+        <Frame UV="36, 1908" Name="Music Box (Empress Of Light)" Variety="On" />
+        <Frame UV="0, 1944" Name="Music Box (Duke Fishron)" Variety="Off" />
+        <Frame UV="36, 1944" Name="Music Box (Duke Fishron)" Variety="On" />
+        <Frame UV="0, 1980" Name="Music Box (Morning Rain)" Variety="Off" />
+        <Frame UV="36, 1980" Name="Music Box (Morning Rain)" Variety="On" />
+        <Frame UV="72, 0" Name="Music Box (Alt Title)" Variety="Off" />
+        <Frame UV="108, 0" Name="Music Box (Alt Title)" Variety="On" />
+        <Frame UV="72, 36" Name="Music Box (Underground Desert)" Variety="Off" />
+        <Frame UV="108, 36" Name="Music Box (Underground Desert)" Variety="On" />
+        <Frame UV="72, 72" Name="Otherworldly Music Box (Rain)" Variety="Off" />
+        <Frame UV="108, 72" Name="Otherworldly Music Box (Rain)" Variety="On" />
+        <Frame UV="72, 108" Name="Otherworldly Music Box (Overworld Day)" Variety="Off" />
+        <Frame UV="108, 108" Name="Otherworldly Music Box (Overworld Day)" Variety="On" />
+        <Frame UV="72, 144" Name="Otherworldly Music Box (Night)" Variety="Off" />
+        <Frame UV="108, 144" Name="Otherworldly Music Box (Night)" Variety="On" />
+        <Frame UV="72, 180" Name="Otherworldly Music Box (Underground)" Variety="Off" />
+        <Frame UV="108, 180" Name="Otherworldly Music Box (Underground)" Variety="On" />
+        <Frame UV="72, 216" Name="Otherworldly Music Box (Desert)" Variety="Off" />
+        <Frame UV="108, 216" Name="Otherworldly Music Box (Desert)" Variety="On" />
+        <Frame UV="72, 252" Name="Otherworldly Music Box (Ocean)" Variety="Off" />
+        <Frame UV="108, 252" Name="Otherworldly Music Box (Ocean)" Variety="On" />
+        <Frame UV="72, 288" Name="Otherworldly Music Box (Mushrooms)" Variety="Off" />
+        <Frame UV="108, 288" Name="Otherworldly Music Box (Mushrooms)" Variety="On" />
+        <Frame UV="72, 324" Name="Otherworldly Music Box (Dungeon)" Variety="Off" />
+        <Frame UV="108, 324" Name="Otherworldly Music Box (Dungeon)" Variety="On" />
+        <Frame UV="72, 360" Name="Otherworldly Music Box (Space)" Variety="Off" />
+        <Frame UV="108, 360" Name="Otherworldly Music Box (Space)" Variety="On" />
+        <Frame UV="72, 396" Name="Otherworldly Music Box (Underworld)" Variety="Off" />
+        <Frame UV="108, 396" Name="Otherworldly Music Box (Underworld)" Variety="On" />
+        <Frame UV="72, 432" Name="Otherworldly Music Box (Snow)" Variety="Off" />
+        <Frame UV="108, 432" Name="Otherworldly Music Box (Snow)" Variety="On" />
+        <Frame UV="72, 468" Name="Otherworldly Music Box (Corruption)" Variety="Off" />
+        <Frame UV="108, 468" Name="Otherworldly Music Box (Corruption)" Variety="On" />
+        <Frame UV="72, 504" Name="Otherworldly Music Box (Underground Corruption)" Variety="Off" />
+        <Frame UV="108, 504" Name="Otherworldly Music Box (Underground Corruption)" Variety="On" />
+        <Frame UV="72, 540" Name="Otherworldly Music Box (Crimson)" Variety="Off" />
+        <Frame UV="108, 540" Name="Otherworldly Music Box (Crimson)" Variety="On" />
+        <Frame UV="72, 576" Name="Otherworldly Music Box (Underground Crimson)" Variety="Off" />
+        <Frame UV="108, 576" Name="Otherworldly Music Box (Underground Crimson)" Variety="On" />
+        <Frame UV="72, 612" Name="Otherworldly Music Box (Ice)" Variety="Off" />
+        <Frame UV="108, 612" Name="Otherworldly Music Box (Ice)" Variety="On" />
+        <Frame UV="72, 648" Name="Otherworldly Music Box (Underground Hallow)" Variety="Off" />
+        <Frame UV="108, 648" Name="Otherworldly Music Box (Underground Hallow)" Variety="On" />
+        <Frame UV="72, 684" Name="Otherworldly Music Box (Eerie)" Variety="Off" />
+        <Frame UV="108, 684" Name="Otherworldly Music Box (Eerie)" Variety="On" />
+        <Frame UV="72, 720" Name="Otherworldly Music Box (Boss 2)" Variety="Off" />
+        <Frame UV="108, 720" Name="Otherworldly Music Box (Boss 2)" Variety="On" />
+        <Frame UV="72, 756" Name="Otherworldly Music Box (Boss 1)" Variety="Off" />
+        <Frame UV="108, 756" Name="Otherworldly Music Box (Boss 1)" Variety="On" />
+        <Frame UV="72, 792" Name="Otherworldly Music Box (Invasion)" Variety="Off" />
+        <Frame UV="108, 792" Name="Otherworldly Music Box (Invasion)" Variety="On" />
+        <Frame UV="72, 828" Name="Otherworldly Music Box (The Towers)" Variety="Off" />
+        <Frame UV="108, 828" Name="Otherworldly Music Box (The Towers)" Variety="On" />
+        <Frame UV="72, 864" Name="Otherworldly Music Box (Lunar Boss)" Variety="Off" />
+        <Frame UV="108, 864" Name="Otherworldly Music Box (Lunar Boss)" Variety="On" />
+        <Frame UV="72, 900" Name="Otherworldly Music Box (Plantera)" Variety="Off" />
+        <Frame UV="108, 900" Name="Otherworldly Music Box (Plantera)" Variety="On" />
+        <Frame UV="72, 936" Name="Otherworldly Music Box (Jungle)" Variety="Off" />
+        <Frame UV="108, 936" Name="Otherworldly Music Box (Jungle)" Variety="On" />
+        <Frame UV="72, 972" Name="Otherworldly Music Box (Wall of Flesh)" Variety="Off" />
+        <Frame UV="108, 972" Name="Otherworldly Music Box (Wall of Flesh)" Variety="On" />
+        <Frame UV="72, 1008" Name="Otherworldly Music Box (Hallow)" Variety="Off" />
+        <Frame UV="108, 1008" Name="Otherworldly Music Box (Hallow)" Variety="On" />
+        <Frame UV="72, 1044" Name="Music Box (Journey's End)" Variety="Off" />
+        <Frame UV="108, 1044" Name="Music Box (Journey's End)" Variety="On" />
+        <Frame UV="72, 1080" Name="Music Box (Deerclops)" Variety="Off" />
+        <Frame UV="108, 1080" Name="Music Box (Deerclops)" Variety="On" />
+        <Frame UV="72, 1116" Name="Music Box (Aether)" Variety="Off" />
+        <Frame UV="108, 1116" Name="Music Box (Aether)" Variety="On" />
+        <Frame UV="72, 1152" Name="Music Box (Queen Bee)" Variety="Off" />
+        <Frame UV="108, 1152" Name="Music Box (Queen Bee)" Variety="On" />
+        <Frame UV="72, 1188" Name="Music Box (The Twins)" Variety="Off" />
+        <Frame UV="108, 1188" Name="Music Box (The Twins)" Variety="On" />
+        <Frame UV="72, 1224" Name="Music Box (King Slime)" Variety="Off" />
+        <Frame UV="108, 1224" Name="Music Box (King Slime)" Variety="On" />
+        <Frame UV="72, 1260" Name="Music Box (Alt Queen Bee)" Variety="Off" />
+        <Frame UV="108, 1260" Name="Music Box (Alt Queen Bee)" Variety="On" />
+        <Frame UV="72, 1296" Name="Music Box (Lunatic Cultist)" Variety="Off" />
+        <Frame UV="108, 1296" Name="Music Box (Lunatic Cultist)" Variety="On" />
+        <Frame UV="72, 1332" Name="Music Box (Skeletron Prime)" Variety="Off" />
+        <Frame UV="108, 1332" Name="Music Box (Skeletron Prime)" Variety="On" />
+        <Frame UV="72, 1368" Name="Music Box (The Destroyer)" Variety="Off" />
+        <Frame UV="108, 1368" Name="Music Box (The Destroyer)" Variety="On" />
+        <Frame UV="72, 1404" Name="Music Box (Eater of Worlds)" Variety="Off" />
+        <Frame UV="108, 1404" Name="Music Box (Eater of Worlds)" Variety="On" />
+        <Frame UV="72, 1440" Name="Music Box (Torch God)" Variety="Off" />
+        <Frame UV="108, 1440" Name="Music Box (Torch God)" Variety="On" />
+        <Frame UV="72, 1476" Name="Music Box (Alt Torch God)" Variety="Off" />
+        <Frame UV="108, 1476" Name="Music Box (Alt Torch God)" Variety="On" />
+        <Frame UV="72, 1512" Name="Music Box (Skeletron)" Variety="Off" />
+        <Frame UV="108, 1512" Name="Music Box (Skeletron)" Variety="On" />
       </Frames>
     </Tile>
     <Tile Id="140" Color="#FF625FA7" Name="Demonite Brick" Solid="true" Blends="true" MergeWith="0"
@@ -5298,7 +6524,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="169" Color="#FF98ABC6" Name="Platinum Ore" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="170" Color="#FFE4DBA2" Name="Pine Tree Block" Solid="true" />
     <Tile Id="171" Color="#FF218755" Name="Christmas Tree" Framed="true" Light="true" Size="4,8" />
-    <Tile Id="172" Color="#FFB5C2D9" Name="Sinks" Framed="true" Size="2,2" Placement="floor">
+    <Tile Id="172" Color="#FFB5C2D9" Name="Sinks" Framed="true" Size="2,2" Placement="floor" FrameGap="2,3">
       <Frames>
         <Frame UV="0,0" Name="Wooden Sink" />
         <Frame UV="0,38" Name="Ebonwood Sink" />
@@ -5344,6 +6570,28 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1558" Name="Reef Sink" />
         <Frame UV="0,1596" Name="Balloon Sink" />
         <Frame UV="0,1634" Name="Ash Wood Sink" />
+        <Frame UV="0, 1672" Name="Aetherium Sink" />
+        <Frame UV="0, 1710" Name="Fallen Star Sink" />
+        <Frame UV="0, 1748" Name="Feywood Sink" />
+        <Frame UV="0, 1786" Name="Hallowed Sink" />
+        <Frame UV="0, 1824" Name="Gothic Sink" />
+        <Frame UV="0, 1862" Name="Demonite Sink" />
+        <Frame UV="0, 1900" Name="Crimtane Sink" />
+        <Frame UV="0, 1938" Name="Snow Sink" />
+        <Frame UV="0, 1976" Name="Flinx Fur Sink" />
+        <Frame UV="36, 0" Name="Pine Sink" />
+        <Frame UV="36, 38" Name="Easter Sink" />
+        <Frame UV="36, 76" Name="Stone Sink" />
+        <Frame UV="36, 114" Name="Jellyfish Sink" />
+        <Frame UV="36, 152" Name="Harpy Sink" />
+        <Frame UV="36, 190" Name="Cloud Sink" />
+        <Frame UV="36, 228" Name="Duskware Sink" />
+        <Frame UV="36, 266" Name="Librarian Sink" />
+        <Frame UV="36, 304" Name="Spike Sink" />
+        <Frame UV="36, 342" Name="Office Sink" />
+        <Frame UV="36, 380" Name="Forbidden Sink" />
+        <Frame UV="36, 418" Name="Aquarium Sink" />
+        <Frame UV="36, 456" Name="Boulder Sink" />
       </Frames>
     </Tile>
     <Tile Id="173" Color="#FFFDDD03" Name="Platinum Candelabra" Framed="true" Size="2,2"
@@ -5671,6 +6919,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1242,0" Variety="Marble D" />
         <Frame UV="1260,0" Variety="Marble E" />
         <Frame UV="1278,0" Variety="Marble F" />
+        <Frame UV="1296,0" Variety="Grass Seeds" />
+        <Frame UV="1314,0" Variety="Sand A" />
+        <Frame UV="1332,0" Variety="Sand B" />
+        <Frame UV="1350,0" Variety="Sand C" />
+        <Frame UV="1368,0" Variety="Sand D" />
+        <Frame UV="1386,0" Variety="Sand E" />
         <Frame UV="0,18" Variety="Stone A" FrameSize="2,1" />
         <Frame UV="36,18" Variety="Stone B" FrameSize="2,1" />
         <Frame UV="72,18" Variety="Stone C" FrameSize="2,1" />
@@ -5724,18 +6978,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1800,18" Variety="Granite D" FrameSize="2,1" />
         <Frame UV="1836,18" Variety="Granite E" FrameSize="2,1" />
         <Frame UV="1872,18" Variety="Granite F" FrameSize="2,1" />
-        <Frame UV="1908,18" Variety="Marble A" FrameSize="2,1" />
-        <Frame UV="1944,18" Variety="Marble B" FrameSize="2,1" />
-        <Frame UV="1980,18" Variety="Marble C" FrameSize="2,1" />
-        <Frame UV="2016,18" Variety="Marble D" FrameSize="2,1" />
-        <Frame UV="2052,18" Variety="Marble E" FrameSize="2,1" />
-        <Frame UV="2088,18" Variety="Marble F" FrameSize="2,1" />
-        <Frame UV="2124,18" Variety="Living Wood A" FrameSize="2,1" />
-        <Frame UV="2160,18" Variety="Living Wood B" FrameSize="2,1" />
-        <Frame UV="2196,18" Variety="Living Wood C" FrameSize="2,1" />
-        <Frame UV="2232,18" Variety="Sand A" FrameSize="2,1" />
-        <Frame UV="2268,18" Variety="Sand B" FrameSize="2,1" />
-        <Frame UV="2304,18" Variety="Sand C" FrameSize="2,1" />
+        <Frame UV="0,36" Variety="Marble A" FrameSize="2,1" />
+        <Frame UV="36,36" Variety="Marble B" FrameSize="2,1" />
+        <Frame UV="72,36" Variety="Marble C" FrameSize="2,1" />
+        <Frame UV="108,36" Variety="Marble D" FrameSize="2,1" />
+        <Frame UV="144,36" Variety="Marble E" FrameSize="2,1" />
+        <Frame UV="180,36" Variety="Marble F" FrameSize="2,1" />
+        <Frame UV="216,36" Variety="Living Wood A" FrameSize="2,1" />
+        <Frame UV="252,36" Variety="Living Wood B" FrameSize="2,1" />
+        <Frame UV="288,36" Variety="Living Wood C" FrameSize="2,1" />
+        <Frame UV="324,36" Variety="Sand A" FrameSize="2,1" />
+        <Frame UV="360,36" Variety="Sand B" FrameSize="2,1" />
+        <Frame UV="396,36" Variety="Sand C" FrameSize="2,1" />
       </Frames>
     </Tile>
     <Tile Id="186" Color="#FFFF00FF" Name="Decos (3x2)" Framed="true" Size="3,2">
@@ -6007,7 +7261,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="810,288" Name="Aether Campfire" Variety="Unlit" />
       </Frames>
     </Tile>
-    <Tile Id="216" Color="#FFBF8E6F" Name="Rockets" Framed="true" Size="1,2">
+    <Tile Id="216" Color="#FFBF8E6F" Name="Rockets" Framed="true" Size="1,2" FrameGap="2,4" >
       <Frames>
         <Frame UV="0,0" Name="Rocket" Variety="Red Rocket" />
         <Frame UV="0,40" Name="Rocket" Variety="Green Rocket" />
@@ -6213,6 +7467,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="972,108" Name="Painting" Variety="Duality" />
         <Frame UV="1026,108" Name="Painting" Variety="Parsec Pals" />
         <Frame UV="1080,108" Name="Painting" Variety="Eye of the Sun" />
+        <Frame UV="1134,108" Name="Painting" Variety="Brasilian Skies" />
+        <Frame UV="1188,108" Name="Painting" Variety="Of Sea and Dreams" />
+        <Frame UV="1242,108" Name="Painting" Variety="The Runic Pixie" />
+        <Frame UV="1296,108" Name="Painting" Variety="Banner of the Beast" />
+        <Frame UV="1350,108" Name="Painting" Variety="Bould and Bash" />
+        <Frame UV="1404,108" Name="Painting" Variety="Dark Forebodings" />
+        <Frame UV="1458,108" Name="Painting" Variety="Oktober" />
+        <Frame UV="1512,108" Name="Painting" Variety="Remix" />
       </Frames>
     </Tile>
     <Tile Id="241" Color="#FF4D4A48" Name="Catacombs" Framed="true" Size="4,3">
@@ -6296,6 +7558,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="216,648" Name="Painting" Variety="r/Terraria" />
         <Frame UV="216,720" Name="Painting" Variety="Princess Style" />
         <Frame UV="216,792" Name="Painting" Variety="Cheesy Pizza Poster" />
+        <Frame UV="216,864" Name="Painting" Variety="Queen of Bees" />
+        <Frame UV="216,936" Name="Painting" Variety="The Sea of Silence" />
+        <Frame UV="216,1008" Name="Painting" Variety="Heroes From Another World" />
+        <Frame UV="216,1080" Name="Painting" Variety="Eater Of Life" />
+        <Frame UV="216,1152" Name="Painting" Variety="Winter At Varingskollen" />
+        <Frame UV="216,1224" Name="Painting" Variety="Cozy Window" />
+        <Frame UV="216,1296" Name="Painting" Variety="r/Terraria 2023" />
+        <Frame UV="216,1368" Name="Painting" Variety="Kaguya" />
+        <Frame UV="216,1440" Name="Painting" Variety="Prost" />
       </Frames>
     </Tile>
     <Tile Id="243" Color="#FF8CB3FE" Name="Imbuing Station" Framed="true" Size="3,3"
@@ -6338,6 +7609,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="936,0" Name="Painting" Variety="Love is in the Trash Slot" />
         <Frame UV="972,0" Name="Painting" Variety="Fangs" />
         <Frame UV="1008,0" Name="Painting" Variety="Hail to the King" />
+        <Frame UV="1044, 0" Name="Painting" Variety="Crystallize" />
+        <Frame UV="1080, 0" Name="Painting" Variety="Stickman vs Terr Terr" />
+        <Frame UV="1116, 0" Name="Painting" Variety="It's Scragglin' Time" />
       </Frames>
     </Tile>
     <Tile Id="246" Color="#FF63321E" Name="Paintings 3x2" Framed="true" Size="3,2">
@@ -7587,6 +8861,27 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="504,0" Name="Reef Chest" />
         <Frame UV="540,0" Name="Balloon Chest" />
         <Frame UV="576,0" Name="Ash Wood Chest" />
+        <Frame UV="612, 0" Name="Aetherium Chest" />
+        <Frame UV="648, 0" Name="Fallen Star Chest" />
+        <Frame UV="684, 0" Name="Feywood Chest" />
+        <Frame UV="720, 0" Name="Fancy Hallowed Chest" />
+        <Frame UV="756, 0" Name="Gothic Chest" />
+        <Frame UV="792, 0" Name="Demonite Chest" />
+        <Frame UV="828, 0" Name="Crimtane Chest" />
+        <Frame UV="864, 0" Name="Snow Chest" />
+        <Frame UV="900, 0" Name="Flinx Fur Chest" />
+        <Frame UV="936, 0" Name="Pine Chest" />
+        <Frame UV="972, 0" Name="Easter Chest" />
+        <Frame UV="1008, 0" Name="Stone Chest" />
+        <Frame UV="1044, 0" Name="Jellyfish Chest" />
+        <Frame UV="1080, 0" Name="Harpy Chest" />
+        <Frame UV="1116, 0" Name="Cloud Chest" />
+        <Frame UV="1152, 0" Name="Duskware Chest" />
+        <Frame UV="1188, 0" Name="Librarian Chest" />
+        <Frame UV="1224, 0" Name="Spike Chest" />
+        <Frame UV="1260, 0" Name="Office Chest" />
+        <Frame UV="1296, 0" Name="Forbidden Chest" />
+        <Frame UV="1332, 0" Name="Boulder Chest" />
       </Frames>
     </Tile>
     <Tile Id="468" Color="#FFFFFFFF" Name="Trapped Chests (Group 2)" Framed="true" Size="2,2"
@@ -7609,6 +8904,27 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="504,0" Name="Trapped Reef Chest" />
         <Frame UV="540,0" Name="Trapped Balloon Chest" />
         <Frame UV="576,0" Name="Trapped Ash Wood Chest" />
+        <Frame UV="612, 0" Name="Trapped Aetherium Chest" />
+        <Frame UV="648, 0" Name="Trapped Fallen Star Chest" />
+        <Frame UV="684, 0" Name="Trapped Feywood Chest" />
+        <Frame UV="720, 0" Name="Trapped Fancy Hallowed Chest" />
+        <Frame UV="756, 0" Name="Trapped Gothic Chest" />
+        <Frame UV="792, 0" Name="Trapped Demonite Chest" />
+        <Frame UV="828, 0" Name="Trapped Crimtane Chest" />
+        <Frame UV="864, 0" Name="Trapped Snow Chest" />
+        <Frame UV="900, 0" Name="Trapped Flinx Fur Chest" />
+        <Frame UV="936, 0" Name="Trapped Pine Chest" />
+        <Frame UV="972, 0" Name="Trapped Easter Chest" />
+        <Frame UV="1008, 0" Name="Trapped Stone Chest" />
+        <Frame UV="1044, 0" Name="Trapped Jellyfish Chest" />
+        <Frame UV="1080, 0" Name="Trapped Harpy Chest" />
+        <Frame UV="1116, 0" Name="Trapped Cloud Chest" />
+        <Frame UV="1152, 0" Name="Trapped Duskware Chest" />
+        <Frame UV="1188, 0" Name="Trapped Librarian Chest" />
+        <Frame UV="1224, 0" Name="Trapped Spike Chest" />
+        <Frame UV="1260, 0" Name="Trapped Office Chest" />
+        <Frame UV="1296, 0" Name="Trapped Forbidden Chest" />
+        <Frame UV="1332, 0" Name="Trapped Boulder Chest" />
       </Frames>
     </Tile>
     <Tile Id="469" Color="#FFBF8E6F" Name="Tables (Group 2)" Framed="true" Size="3,2"
@@ -7626,6 +8942,26 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="486,0" Name="Reef Table" />
         <Frame UV="540,0" Name="Balloon Table" />
         <Frame UV="594,0" Name="Ash Wood Table" />
+        <Frame UV="648, 0" Name="Aetherium Table" />
+        <Frame UV="702, 0" Name="Fallen Star Table" />
+        <Frame UV="756, 0" Name="Feywood Table" />
+        <Frame UV="810, 0" Name="Hallowed Table" />
+        <Frame UV="864, 0" Name="Demonite Table" />
+        <Frame UV="918, 0" Name="Crimtane Table" />
+        <Frame UV="972, 0" Name="Snow Table" />
+        <Frame UV="1026, 0" Name="Flinx Fur Table" />
+        <Frame UV="1080, 0" Name="Easter Table" />
+        <Frame UV="1134, 0" Name="Stone Table" />
+        <Frame UV="1188, 0" Name="Jellyfish Table" />
+        <Frame UV="1242, 0" Name="Harpy Table" />
+        <Frame UV="1296, 0" Name="Cloud Table" />
+        <Frame UV="1350, 0" Name="Duskware Table" />
+        <Frame UV="1404, 0" Name="Librarian Table" />
+        <Frame UV="1458, 0" Name="Spike Table" />
+        <Frame UV="1512, 0" Name="Office Table" />
+        <Frame UV="1566, 0" Name="Forbidden Table" />
+        <Frame UV="1620, 0" Name="Aquarium Table" />
+        <Frame UV="1674, 0" Name="Boulder Table" />
       </Frames>
     </Tile>
     <Tile Id="470" Name="Mannequins" Framed="true" Size="2,3" Color="#FF7B5B44">
@@ -7794,6 +9130,50 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1640" Name="Balloon Toilet" Anchor="Right" />
         <Frame UV="0,1680" Name="Ash Wood Toilet" Anchor="Left" />
         <Frame UV="18,1680" Name="Ash Wood Toilet" Anchor="Right" />
+        <Frame UV="0, 1720" Name="Aetherium Toilet" Anchor="Left" />
+        <Frame UV="18, 1720" Name="Aetherium Toilet" Anchor="Right" />
+        <Frame UV="0, 1760" Name="Fallen Star Toilet" Anchor="Left" />
+        <Frame UV="18, 1760" Name="Fallen Star Toilet" Anchor="Right" />
+        <Frame UV="0, 1800" Name="Feywood Toilet" Anchor="Left" />
+        <Frame UV="18, 1800" Name="Feywood Toilet" Anchor="Right" />
+        <Frame UV="0, 1840" Name="Hallowed Toilet" Anchor="Left" />
+        <Frame UV="18, 1840" Name="Hallowed Toilet" Anchor="Right" />
+        <Frame UV="0, 1880" Name="Gothic Toilet" Anchor="Left" />
+        <Frame UV="18, 1880" Name="Gothic Toilet" Anchor="Right" />
+        <Frame UV="0, 1920" Name="Demonite Toilet" Anchor="Left" />
+        <Frame UV="18, 1920" Name="Demonite Toilet" Anchor="Right" />
+        <Frame UV="0, 1960" Name="Crimtane Toilet" Anchor="Left" />
+        <Frame UV="18, 1960" Name="Crimtane Toilet" Anchor="Right" />
+        <Frame UV="0, 2000" Name="Snow Toilet" Anchor="Left" />
+        <Frame UV="18, 2000" Name="Snow Toilet" Anchor="Right" />
+        <Frame UV="0, 2040" Name="Flinx Fur Toilet" Anchor="Left" />
+        <Frame UV="18, 2040" Name="Flinx Fur Toilet" Anchor="Right" />
+        <Frame UV="0, 2080" Name="Pine Toilet" Anchor="Left" />
+        <Frame UV="18, 2080" Name="Pine Toilet" Anchor="Right" />
+        <Frame UV="0, 2120" Name="Easter Toilet" Anchor="Left" />
+        <Frame UV="18, 2120" Name="Easter Toilet" Anchor="Right" />
+        <Frame UV="0, 2160" Name="Stone Toilet" Anchor="Left" />
+        <Frame UV="18, 2160" Name="Stone Toilet" Anchor="Right" />
+        <Frame UV="0, 2200" Name="Jellyfish Toilet" Anchor="Left" />
+        <Frame UV="18, 2200" Name="Jellyfish Toilet" Anchor="Right" />
+        <Frame UV="0, 2240" Name="Harpy Toilet" Anchor="Left" />
+        <Frame UV="18, 2240" Name="Harpy Toilet" Anchor="Right" />
+        <Frame UV="0, 2280" Name="Cloud Toilet" Anchor="Left" />
+        <Frame UV="18, 2280" Name="Cloud Toilet" Anchor="Right" />
+        <Frame UV="0, 2320" Name="Duskware Toilet" Anchor="Left" />
+        <Frame UV="18, 2320" Name="Duskware Toilet" Anchor="Right" />
+        <Frame UV="0, 2360" Name="Librarian Toilet" Anchor="Left" />
+        <Frame UV="18, 2360" Name="Librarian Toilet" Anchor="Right" />
+        <Frame UV="0, 2400" Name="Spike Toilet" Anchor="Left" />
+        <Frame UV="18, 2400" Name="Spike Toilet" Anchor="Right" />
+        <Frame UV="0, 2440" Name="Office Toilet" Anchor="Left" />
+        <Frame UV="18, 2440" Name="Office Toilet" Anchor="Right" />
+        <Frame UV="0, 2480" Name="Forbidden Toilet" Anchor="Left" />
+        <Frame UV="18, 2480" Name="Forbidden Toilet" Anchor="Right" />
+        <Frame UV="0, 2520" Name="Aquarium Toilet" Anchor="Left" />
+        <Frame UV="18, 2520" Name="Aquarium Toilet" Anchor="Right" />
+        <Frame UV="0, 2560" Name="Boulder Toilet" Anchor="Left" />
+        <Frame UV="18, 2560" Name="Boulder Toilet" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="498" Name="Spider Nest Block" Solid="true" Color="#FF8E614D" />
@@ -9104,6 +10484,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Snow Pylon" UV="324,0" Anchor="Bottom" />
         <Frame Name="Mushroom Pylon" UV="378,0" Anchor="Bottom" />
         <Frame Name="Universal Pylon" UV="432,0" Anchor="Bottom" />
+        <Frame Name="Underworld Pylon" UV="486,0" Anchor="Bottom" />
+        <Frame Name="Aether Pylon" UV="540,0" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="598" Name="Lava Serpent Bowl" Light="true" Framed="true" Size="2,2" IsAnimated="true"
@@ -9496,96 +10878,69 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       <Frames>
         <Frame UV="0,0" Variety="Stone A" />
         <Frame UV="36,0" Variety="Stone B" />
-        <Frame UV="72,0"
-  Variety="Stone C" />
+        <Frame UV="72,0" Variety="Stone C" />
         <Frame UV="108,0" Variety="Stone D" />
-        <Frame UV="144,0"
-  Variety="Stone E" />
+        <Frame UV="144,0" Variety="Stone E" />
         <Frame UV="180,0" Variety="Stone F" />
-        <Frame UV="216,0"
-  Variety="Bone A" />
+        <Frame UV="216,0" Variety="Bone A" />
         <Frame UV="252,0" Variety="Bone B" />
         <Frame UV="288,0" Variety="Bone C" />
-        <Frame
-  UV="324,0" Variety="Bone D" />
+        <Frame UV="324,0" Variety="Bone D" />
         <Frame UV="360,0" Variety="Bone E" />
-        <Frame UV="396,0"
-  Variety="Bone F" />
+        <Frame UV="396,0" Variety="Bone F" />
         <Frame UV="432,0" Variety="Bone G" />
         <Frame UV="468,0" Variety="Bone H" />
-        <Frame
-  UV="504,0" Variety="Bone I" />
+        <Frame UV="504,0" Variety="Bone I" />
         <Frame UV="540,0" Variety="Bone J" />
-        <Frame UV="576,0"
-  Variety="Copper Coin" />
+        <Frame UV="576,0" Variety="Copper Coin" />
         <Frame UV="612,0" Variety="Silver Coin" />
-        <Frame UV="648,0"
-  Variety="Gold Coin" />
+        <Frame UV="648,0" Variety="Gold Coin" />
         <Frame UV="684,0" Variety="Amethyst" />
-        <Frame UV="720,0"
-  Variety="Topaz" />" /> <Frame UV="756,0" Variety="Sapphire" />" /> <Frame UV="792,0"
-          Variety="Emerald" />" /> <Frame UV="828,0" Variety="Ruby" />" /> <Frame UV="864,0"
-          Variety="Diamond" />
+        <Frame UV="720,0" Variety="Topaz" />
+        <Frame UV="756,0" Variety="Sapphire" />
+        <Frame UV="792,0" Variety="Emerald" />
+        <Frame UV="828,0" Variety="Ruby" />
+        <Frame UV="864,0" Variety="Diamond" />
         <Frame UV="900,0" Variety="Snow A" />
-        <Frame UV="936,0"
-  Variety="Snow B" />
+        <Frame UV="936,0" Variety="Snow B" />
         <Frame UV="972,0" Variety="Snow C" />
-        <Frame UV="1008,0"
-  Variety="Snow D" />
+        <Frame UV="1008,0" Variety="Snow D" />
         <Frame UV="1044,0" Variety="Snow E" />
-        <Frame UV="1080,0"
-  Variety="Snow F" />
+        <Frame UV="1080,0" Variety="Snow F" />
         <Frame UV="1116,0" Variety="Wood A" />
-        <Frame UV="1152,0"
-  Variety="Wood B" />
+        <Frame UV="1152,0" Variety="Wood B" />
         <Frame UV="1188,0" Variety="Wood C" />
-        <Frame UV="1224,0"
-  Variety="Cobweb A" />
+        <Frame UV="1224,0" Variety="Cobweb A" />
         <Frame UV="1260,0" Variety="Cobweb B" />
-        <Frame UV="1296,0"
-  Variety="Cobweb C" />
+        <Frame UV="1296,0" Variety="Cobweb C" />
         <Frame UV="1332,0" Variety="Cobweb D" />
-        <Frame UV="1368,0"
-  Variety="Stone G" />
+        <Frame UV="1368,0" Variety="Stone G" />
         <Frame UV="1404,0" Variety="Stone H" />
-        <Frame UV="1440,0"
-  Variety="Stone I" />
+        <Frame UV="1440,0" Variety="Stone I" />
         <Frame UV="1476,0" Variety="Sandstone A" />
-        <Frame UV="1512,0"
-  Variety="Sandstone B" />
+        <Frame UV="1512,0" Variety="Sandstone B" />
         <Frame UV="1548,0" Variety="Sandstone C" />
-        <Frame UV="1584,0"
-  Variety="Sandstone D" />
+        <Frame UV="1584,0" Variety="Sandstone D" />
         <Frame UV="1620,0" Variety="Sandstone E" />
-        <Frame UV="1656,0"
-  Variety="Sandstone F" />
+        <Frame UV="1656,0" Variety="Sandstone F" />
         <Frame UV="1692,0" Variety="Granite A" />
-        <Frame UV="1728,0"
-  Variety="Granite B" />
+        <Frame UV="1728,0" Variety="Granite B" />
         <Frame UV="1764,0" Variety="Granite C" />
-        <Frame UV="1800,0"
-  Variety="Granite D" />
+        <Frame UV="1800,0" Variety="Granite D" />
         <Frame UV="1836,0" Variety="Granite E" />
-        <Frame UV="1872,0"
-  Variety="Granite F" />
+        <Frame UV="1872,0" Variety="Granite F" />
         <Frame UV="0,18" Variety="Marble A" />
-        <Frame UV="36,18"
-  Variety="Marble B" />
+        <Frame UV="36,18" Variety="Marble B" />
         <Frame UV="72,18" Variety="Marble C" />
-        <Frame UV="108,18"
-  Variety="Marble D" />
+        <Frame UV="108,18" Variety="Marble D" />
         <Frame UV="144,18" Variety="Marble E" />
-        <Frame UV="180,18"
-  Variety="Marble F" />
+        <Frame UV="180,18" Variety="Marble F" />
         <Frame UV="216,18" Variety="Grass Seeds A" />
-        <Frame UV="252,18"
-  Variety="Grass Seeds B" />
+        <Frame UV="252,18" Variety="Grass Seeds B" />
         <Frame UV="288,18" Variety="Grass Seeds C" />
-        <Frame UV="324,18"
-  Variety="Sand A" />
+        <Frame UV="324,18" Variety="Sand A" />
         <Frame UV="360,18" Variety="Sand B" />
-        <Frame UV="396,18"
-  Variety="Sand C" />
+        <Frame UV="396,18" Variety="Sand C" />
       </Frames>
     </Tile>
     <Tile Id="650" Name="Small Rubble (1x1)" Framed="true" Size="1,1" Color="#FF646464">
@@ -9667,6 +11022,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1332,0" Variety="Sand B" />
         <Frame UV="1350,0" Variety="Sand C" />
         <Frame UV="1368,0" Variety="Sand D" />
+        <Frame UV="1386,0" Variety="Sand E" />
       </Frames>
     </Tile>
     <Tile Id="651" Name="Large Rubble (3x2) (Group 3)" Framed="true" Size="3,2" Color="#FF578807">
@@ -9835,7 +11191,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="659" Name="Aetherium Block" Color="#FFC7C9CB" Light="true" Solid="true" />
-    <Tile Id="660" Name="Faeling in a Bottle" Color="#Ff783232" Light="true" Framed="true" Size="1,2">
+    <Tile Id="660" Name="Faeling in a Bottle" Color="#Ff783232" Light="true" Framed="true" Size="1,2" IsAnimated="true">
       <Frames>
         <Frame Name="Faeling in a Bottle" UV="0, 0" Anchor="Top" />
       </Frames>
@@ -10008,7 +11364,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="695" Name="Replica Demon Altar" Color="#Ffbf8e6f" Light="true" Framed="true" Size="3,2">
       <Frames>
         <Frame Name="Replica Demon Altar" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Replica Crimson Altar" UV="0, 38" Anchor="Bottom" />
+        <Frame Name="Replica Crimson Altar" UV="54, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="696" Name="Replica Shadow Orb" Color="#Ffbb444a" Light="true" Framed="true" Size="2,2" IsAnimated="true">
@@ -10042,7 +11398,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="702" Name="Life Fruit Replica" Color="#Fffe7902" Framed="true" Size="2,2">
       <Frames>
-        <Frame Name="Life Fruit Replica" UV="0, 0" />
+        <Frame UV="0, 0" Variety="A" />
+        <Frame UV="36, 0" Variety="B" />
+        <Frame UV="72, 0" Variety="C" />
       </Frames>
     </Tile>
     <Tile Id="703" Name="Jungle Plants Echo" Color="#Ff1ac454" Light="true" Framed="true" Size="1,1">

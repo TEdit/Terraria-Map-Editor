@@ -396,9 +396,7 @@ public partial class WorldRenderXna : UserControl
 
                 sprite.IsAnimated = tile.IsAnimated && tile.IsFramed;
 
-                if (tile.Id == 172) { sprite.SizePixelsInterval += new Vector2Short(3, 3); }
-                else if (tile.Id == 216) { sprite.SizePixelsInterval += new Vector2Short(2, 4); }
-                else if (tile.Id != 171) { sprite.SizePixelsInterval += interval; }
+                if (tile.Id != 171) { sprite.SizePixelsInterval += interval; }
 
                 WorldConfiguration.Sprites2.Add(sprite);
 
