@@ -149,6 +149,9 @@ public class SettingsXmlMigrationTests
             var textureGrid = ParseVector((string?)tileXml.Attribute("TextureGrid"));
             if (textureGrid != null) tile["textureGrid"] = new JsonArray(textureGrid[0], textureGrid[1]);
 
+            var frameGap = ParseVector((string?)tileXml.Attribute("FrameGap"));
+            if (frameGap != null) tile["frameGap"] = new JsonArray(frameGap[0], frameGap[1]);
+
             var placement = (string?)tileXml.Attribute("Placement");
             if (!string.IsNullOrEmpty(placement)) tile["placement"] = placement;
 
@@ -162,11 +165,10 @@ public class SettingsXmlMigrationTests
                     var frame = new JsonObject();
 
                     var frameName = (string?)frameXml.Attribute("Name");
+                    if (!string.IsNullOrEmpty(frameName)) frame["name"] = frameName;
+
                     var variety = (string?)frameXml.Attribute("Variety");
-                    if (!string.IsNullOrEmpty(frameName))
-                        frame["name"] = frameName;
-                    else if (!string.IsNullOrEmpty(variety))
-                        frame["variety"] = variety;
+                    if (!string.IsNullOrEmpty(variety)) frame["variety"] = variety;
 
                     var uv = ParseVector((string?)frameXml.Attribute("UV"));
                     if (uv != null) frame["uv"] = new JsonArray(uv[0], uv[1]);
