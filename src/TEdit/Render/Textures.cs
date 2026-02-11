@@ -324,14 +324,14 @@ public class Textures
                 if (maxUV.X >= texture.Width || maxUV.Y >= texture.Height)
                 {
                     var interval = tileProp.TextureGrid + tileProp.FrameGap;
+                    var frameSize = tileProp.FrameSize[0] * interval;
                     if (maxUV.X >= texture.Width)
                     {
-
                         tileProp.TextureWrap = new TextureWrap
                         {
                             Axis =  TextureWrapAxis.U,
-                            OffsetIncrement = (short)(maxUV.Y + tileProp.FrameSize[0].Y * interval.Y),
-                            WrapThreshold = (int)Math.Ceiling((double)texture.Width / interval.X) * interval.X
+                            OffsetIncrement = (short)(maxUV.Y + frameSize.Y),
+                            WrapThreshold = (texture.Width + tileProp.FrameGap.X) / frameSize.X * frameSize.X
                         };
                     }
                     else
@@ -339,8 +339,8 @@ public class Textures
                         tileProp.TextureWrap = new TextureWrap
                         {
                             Axis =  TextureWrapAxis.V,
-                            OffsetIncrement = (short)(maxUV.X + tileProp.FrameSize[0].X * interval.X),
-                            WrapThreshold = (int)Math.Ceiling((double)texture.Height / interval.Y) * interval.Y
+                            OffsetIncrement = (short)(maxUV.X + frameSize.X),
+                            WrapThreshold = (texture.Height + tileProp.FrameGap.Y) / frameSize.Y * frameSize.Y
                         };
                     }
                 }
