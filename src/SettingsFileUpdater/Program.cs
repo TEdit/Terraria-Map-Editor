@@ -87,7 +87,7 @@ namespace SettingsFileUpdater
             Console.WriteLine("  Extraction complete.");
 
             // Write raw extractor output to .generated/ for review
-            string generatedDir = Path.Combine(jsonOutputDir, ".generated");
+            string generatedDir = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\SettingsFileUpdater\.generated"));
             Directory.CreateDirectory(generatedDir);
             Console.WriteLine($"\nWriting raw extractor output to: {generatedDir}");
             WriteJson(Path.Combine(generatedDir, "tiles.json"), tiles, jsonOptions);
