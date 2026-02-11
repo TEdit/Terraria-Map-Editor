@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -782,6 +783,83 @@ namespace SettingsFileUpdater.TerrariaHost
         private static TEditColor ToTEditColor(Microsoft.Xna.Framework.Color xnaColor)
         {
             return new TEditColor(xnaColor.R, xnaColor.G, xnaColor.B, xnaColor.A);
+        }
+
+        /// <summary>
+        /// Automatically calculate TextureWrap from tile frame data.
+        /// </summary>
+        public static void GetTextureWrap(JsonArray tileProps)
+        {
+            foreach (var tileNode in tileProps)
+            {
+                var obj = tileNode!.AsObject();
+                var isFramed = obj["isFramed"]?.GetValue<bool>() ?? false;
+                if (!isFramed) continue;
+
+                var id = obj["id"]?.GetValue<int>() ?? 0;
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "Images", $"Tiles_{id}.png");
+                if (!File.Exists(path)) continue;
+                using var img = Image.FromFile(path);
+                var texture = new Vector2Short((short)img.Width, (short)img.Height);
+
+                var frames = obj["frames"]?.AsArray();
+                if (frames == null || frames.Count == 0) continue;
+
+                int maxU = 0;
+                int maxV = 0;
+                foreach (var frameNode in frames)
+                {
+                    var fobj = frameNode!.AsObject();
+                    var uv = fobj["uv"]?.AsArray();
+                    if (uv == null || uv.Count < 2) continue;
+                    var u = uv[0]!.GetValue<int>();
+                    var v = uv[1]!.GetValue<int>();
+                    if (u > maxU) maxU = u;
+                    if (v > maxV) maxV = v;
+                }
+
+                var maxUV = new Vector2Short((short)maxU, (short)maxV);
+                if (maxUV.X >= texture.Width || maxUV.Y >= texture.Height)
+                {
+                    var textureGrid = obj["textureGrid"]?.AsArray();
+                    var frameGap = obj["frameGap"]?.AsArray();
+                    if (textureGrid == null || frameGap == null || textureGrid.Count < 2 || frameGap.Count < 2) continue;
+
+                    var interval = new Vector2Short(
+                        (short)(textureGrid[0]!.GetValue<int>() + frameGap[0]!.GetValue<int>()),
+                        (short)(textureGrid[1]!.GetValue<int>() + frameGap[1]!.GetValue<int>())
+                    );
+
+                    var frameSizeArr = obj["frameSize"]?.AsArray();
+                    if (frameSizeArr == null || frameSizeArr.Count == 0) continue;
+                    var frameSize0 = frameSizeArr[0]!.AsArray();
+                    if (frameSize0 == null || frameSize0.Count < 2) continue;
+
+                    var frameSize = new Vector2Short(
+                        (short)(frameSize0[0]!.GetValue<int>() * interval.X),
+                        (short)(frameSize0[1]!.GetValue<int>() * interval.Y)
+                    );
+
+                    if (maxUV.X >= texture.Width)
+                    {
+                        obj["textureWrap"] = new JsonObject
+                        {
+                            ["axis"] = "U",
+                            ["offsetIncrement"] = (short)(maxUV.Y + frameSize.Y),
+                            ["wrapThreshold"] = ((texture.Width + (short)frameGap[0]!.GetValue<int>()) / frameSize.X) * frameSize.X
+                        };
+                    }
+                    else
+                    {
+                        obj["textureWrap"] = new JsonObject
+                        {
+                            ["axis"] = "V",
+                            ["offsetIncrement"] = (short)(maxUV.X + frameSize.X),
+                            ["wrapThreshold"] = ((texture.Height + (short)frameGap[1]!.GetValue<int>()) / frameSize.Y) * frameSize.Y
+                        };
+                    }
+                }
+            }
         }
 
         /// <summary>

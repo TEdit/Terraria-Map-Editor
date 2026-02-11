@@ -312,39 +312,5 @@ public class Textures
     /// </summary>
     public void CacheTextureWrapThresholds()
     {
-        foreach (var tileProp in WorldConfiguration.TileProperties)
-        {
-            if (!tileProp.IsFramed) continue;
-
-            var texture = GetTile(tileProp.Id);
-
-            if (texture != null && texture != _defaultTexture)
-            {
-                var maxUV = new Vector2Short(tileProp.Frames.Max(f => f.UV.X), tileProp.Frames.Max(f => f.UV.Y));
-                if (maxUV.X >= texture.Width || maxUV.Y >= texture.Height)
-                {
-                    var interval = tileProp.TextureGrid + tileProp.FrameGap;
-                    var frameSize = tileProp.FrameSize[0] * interval;
-                    if (maxUV.X >= texture.Width)
-                    {
-                        tileProp.TextureWrap = new TextureWrap
-                        {
-                            Axis =  TextureWrapAxis.U,
-                            OffsetIncrement = (short)(maxUV.Y + frameSize.Y),
-                            WrapThreshold = (texture.Width + tileProp.FrameGap.X) / frameSize.X * frameSize.X
-                        };
-                    }
-                    else
-                    {
-                        tileProp.TextureWrap = new TextureWrap
-                        {
-                            Axis =  TextureWrapAxis.V,
-                            OffsetIncrement = (short)(maxUV.X + frameSize.X),
-                            WrapThreshold = (texture.Height + tileProp.FrameGap.Y) / frameSize.Y * frameSize.Y
-                        };
-                    }
-                }
-            }
-        }
     }
 }

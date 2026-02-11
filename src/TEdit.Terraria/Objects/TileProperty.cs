@@ -43,7 +43,6 @@ public class TextureWrap
     /// Runtime-computed wrap threshold from texture.Width (U-axis) or texture.Height (V-axis).
     /// Cached after texture loading for performance.
     /// </summary>
-    [JsonIgnore]
     public int WrapThreshold { get; set; }
 }
 
