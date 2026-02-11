@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Data\*.json" />
+    <EmbeddedResource Remove="Data\.generated\**" />
+    <None Remove="Data\.generated\**" />
   </ItemGroup>
 
 </Project>

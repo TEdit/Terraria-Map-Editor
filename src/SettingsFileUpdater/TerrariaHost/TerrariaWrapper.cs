@@ -600,9 +600,8 @@ namespace SettingsFileUpdater.TerrariaHost
             return config;
         }
 
-        public string GetMaxCounts()
+        public VersionData GetVersionData()
         {
-            // Collect framed tile IDs.
             var framed = new List<int>();
             for (int a = 0; a < Main.tileFrameImportant.Length; a++)
             {
@@ -610,21 +609,34 @@ namespace SettingsFileUpdater.TerrariaHost
                     framed.Add(a);
             }
 
-            // New format:
-            // - saveVersions is an ARRAY of objects, so we output only the object.
-            // - No "    \"315\": { ... }" wrapper and no trailing comma key structure changes.
+            return new VersionData
+            {
+                SaveVersion = Main.curRelease,
+                GameVersion = Main.versionNumber,
+                MaxTileId = TileID.Count - 1,
+                MaxWallId = WallID.Count - 1,
+                MaxItemId = ItemID.Count - 1,
+                MaxNpcId = NPCID.Count - 1,
+                MaxMoonId = Main.maxMoons,
+                FramedTileIds = framed.ToArray()
+            };
+        }
+
+        public string GetMaxCounts()
+        {
+            var data = GetVersionData();
             return string.Join("", new string[]
             {
                 Environment.NewLine,
                 "    {" + Environment.NewLine,
-                "      \"saveVersion\": " + Main.curRelease + "," + Environment.NewLine,
-                "      \"gameVersion\": \"" + Main.versionNumber + "\"," + Environment.NewLine,
-                "      \"maxTileId\": " + (TileID.Count - 1) + "," + Environment.NewLine,
-                "      \"maxWallId\": " + (WallID.Count - 1) + "," + Environment.NewLine,
-                "      \"maxItemId\": " + (ItemID.Count - 1) + "," + Environment.NewLine,
-                "      \"maxNpcId\": " + (NPCID.Count - 1) + "," + Environment.NewLine,
-                "      \"maxMoonId\": " + Main.maxMoons + "," + Environment.NewLine,
-                "      \"framedTileIds\": [ " + string.Join(", ", framed) + " ]" + Environment.NewLine,
+                "      \"saveVersion\": " + data.SaveVersion + "," + Environment.NewLine,
+                "      \"gameVersion\": \"" + data.GameVersion + "\"," + Environment.NewLine,
+                "      \"maxTileId\": " + data.MaxTileId + "," + Environment.NewLine,
+                "      \"maxWallId\": " + data.MaxWallId + "," + Environment.NewLine,
+                "      \"maxItemId\": " + data.MaxItemId + "," + Environment.NewLine,
+                "      \"maxNpcId\": " + data.MaxNpcId + "," + Environment.NewLine,
+                "      \"maxMoonId\": " + data.MaxMoonId + "," + Environment.NewLine,
+                "      \"framedTileIds\": [ " + string.Join(", ", data.FramedTileIds) + " ]" + Environment.NewLine,
                 "    },"
             });
         }

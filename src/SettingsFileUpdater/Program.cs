@@ -1,14 +1,13 @@
-﻿using SettingsFileUpdater.TerrariaHost;
+﻿using SettingsFileUpdater;
+using SettingsFileUpdater.TerrariaHost;
+using SettingsFileUpdater.TerrariaHost.DataModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using TEdit.Common.Serialization;
 using Terraria;
 using Terraria.Social;
@@ -63,42 +62,6 @@ namespace SettingsFileUpdater
 
             var wrapper = TerrariaHost.TerrariaWrapper.Initialize();
 
-
-            //XDocument xdoc = XDocument.Load("settings.xml");
-
-            //var tiles = xdoc.Root.Element("Tiles");
-            //foreach (var tile in tiles.Elements())
-            //{
-            //    int id = int.Parse(tile.Attribute("Id").Value);
-            //    if (Terraria.ID.TileID.Sets.NonSolidSaveSlopes[id])
-            //    {
-            //        tile.SetAttributeValue("SaveSlope", "true");
-            //    }
-            //    if (Terraria.Main.tileSolid[id])
-            //    {
-            //        tile.SetAttributeValue("Solid", "true");
-            //    }
-            //    if (Terraria.Main.tileSolidTop[id])
-            //    {
-            //        tile.SetAttributeValue("SolidTop", "true");
-            //    }
-            //}
-            //xdoc.Save("settings3.xml");
-
-            //            foreach (var item in tilecolors)
-            //            {
-            //                if (item.Key < 470) continue;
-            //                var tile = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
-            //                tile.SetAttributeValue("Color", item.Value);
-            //            }
-
-            //            var walls = xdoc.Root.Element("Walls");
-            //            foreach (var item in wallcolors)
-            //            {
-            //                var wall = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
-            //                wall.SetAttributeValue("Color", item.Value);
-            //            }
-            //            //return;
             Thread.Sleep(5 * 1000);
 
             string exeDir = AppDomain.CurrentDomain.BaseDirectory;
@@ -107,87 +70,122 @@ namespace SettingsFileUpdater
             string jsonOutputDir = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\TEdit.Terraria\Data"));
             Directory.CreateDirectory(jsonOutputDir);
 
-            Console.WriteLine($"Writing JSON files to: {jsonOutputDir}");
-
             // Use TEditJsonSerializer.DefaultOptions for consistent formatting
             var jsonOptions = TEditJsonSerializer.DefaultOptions;
 
-            // Write tiles.json
-            Console.WriteLine("Generating tiles.json...");
+            // Extract all data from Terraria
+            Console.WriteLine("Extracting data from Terraria...");
             var tiles = wrapper.GetTilesJson();
-            WriteJson(Path.Combine(jsonOutputDir, "tiles.json"), tiles, jsonOptions);
-            Console.WriteLine($"  Wrote {tiles.Count} tiles");
-
-            // Write walls.json
-            Console.WriteLine("Generating walls.json...");
             var walls = wrapper.GetWallsJson();
-            WriteJson(Path.Combine(jsonOutputDir, "walls.json"), walls, jsonOptions);
-            Console.WriteLine($"  Wrote {walls.Count} walls");
-
-            // Write items.json
-            Console.WriteLine("Generating items.json...");
             var items = wrapper.GetItemsJson();
-            WriteJson(Path.Combine(jsonOutputDir, "items.json"), items, jsonOptions);
-            Console.WriteLine($"  Wrote {items.Count} items");
-
-            // Write npcs.json (friendly NPCs)
-            Console.WriteLine("Generating npcs.json...");
             var npcs = wrapper.GetNpcsJson();
-            WriteJson(Path.Combine(jsonOutputDir, "npcs.json"), npcs, jsonOptions);
-            Console.WriteLine($"  Wrote {npcs.Count} NPCs");
-
-            // Write prefixes.json
-            Console.WriteLine("Generating prefixes.json...");
             var prefixes = wrapper.GetPrefixesJson();
-            WriteJson(Path.Combine(jsonOutputDir, "prefixes.json"), prefixes, jsonOptions);
-            Console.WriteLine($"  Wrote {prefixes.Count} prefixes");
-
-            // Write paints.json
-            Console.WriteLine("Generating paints.json...");
             var paints = wrapper.GetPaintsJson();
-            WriteJson(Path.Combine(jsonOutputDir, "paints.json"), paints, jsonOptions);
-            Console.WriteLine($"  Wrote {paints.Count} paints");
-
-            // Write globalColors.json
-            Console.WriteLine("Generating globalColors.json...");
             var globalColors = wrapper.GetGlobalColorsJson();
-            WriteJson(Path.Combine(jsonOutputDir, "globalColors.json"), globalColors, jsonOptions);
-            Console.WriteLine($"  Wrote {globalColors.Count} global colors");
-
-            // Write bestiaryNpcs.json
-            Console.WriteLine("Generating bestiaryNpcs.json...");
             var bestiaryConfig = wrapper.GetBestiaryConfigJson();
-            WriteJson(Path.Combine(jsonOutputDir, "bestiaryNpcs.json"), bestiaryConfig, jsonOptions);
-            Console.WriteLine($"  Wrote {bestiaryConfig.NpcData.Count} bestiary NPCs");
+            var versionData = wrapper.GetVersionData();
+            Console.WriteLine("  Extraction complete.");
 
-            // Output version info for manual update to versions.json
-            Console.WriteLine("\nVersion info for versions.json:");
-            Console.WriteLine(wrapper.GetMaxCounts());
+            // Write raw extractor output to .generated/ for review
+            string generatedDir = Path.Combine(jsonOutputDir, ".generated");
+            Directory.CreateDirectory(generatedDir);
+            Console.WriteLine($"\nWriting raw extractor output to: {generatedDir}");
+            WriteJson(Path.Combine(generatedDir, "tiles.json"), tiles, jsonOptions);
+            WriteJson(Path.Combine(generatedDir, "walls.json"), walls, jsonOptions);
+            WriteJson(Path.Combine(generatedDir, "items.json"), items, jsonOptions);
+            WriteJson(Path.Combine(generatedDir, "npcs.json"), npcs, jsonOptions);
+            WriteJson(Path.Combine(generatedDir, "prefixes.json"), prefixes, jsonOptions);
+            WriteJson(Path.Combine(generatedDir, "paints.json"), paints, jsonOptions);
+            WriteJson(Path.Combine(generatedDir, "globalColors.json"), globalColors, jsonOptions);
+            WriteJson(Path.Combine(generatedDir, "bestiaryNpcs.json"), bestiaryConfig, jsonOptions);
+            WriteJson(Path.Combine(generatedDir, "versionData.json"), versionData, jsonOptions);
+            Console.WriteLine("  Raw output written.");
 
-            // Legacy XML output (for reference)
-            Console.WriteLine("\n--- Legacy XML Output (for reference) ---");
-            Console.WriteLine(wrapper.GetItemsXml());
-            Console.WriteLine(wrapper.GetMobsText());
-            Console.WriteLine(wrapper.GetNpcsXml());
-            Console.WriteLine(wrapper.GetPrefixesXml());
-            Console.WriteLine(wrapper.GetWallsXml());
+            // Merge into existing JSON files (append-only, preserves hand-curated data)
+            Console.WriteLine($"\nMerging into: {jsonOutputDir}");
+            var results = new Dictionary<string, MergeResult>();
+
+            Console.WriteLine("  Merging tiles.json...");
+            results["Tiles"] = JsonMerger.MergeById(
+                Path.Combine(jsonOutputDir, "tiles.json"), tiles, t => t.Id, jsonOptions);
+
+            Console.WriteLine("  Merging walls.json...");
+            results["Walls"] = JsonMerger.MergeById(
+                Path.Combine(jsonOutputDir, "walls.json"), walls, w => w.Id, jsonOptions);
+
+            Console.WriteLine("  Merging items.json...");
+            results["Items"] = JsonMerger.MergeById(
+                Path.Combine(jsonOutputDir, "items.json"), items, i => i.Id, jsonOptions);
+
+            Console.WriteLine("  Merging npcs.json...");
+            results["NPCs"] = JsonMerger.MergeById(
+                Path.Combine(jsonOutputDir, "npcs.json"), npcs, n => n.Id, jsonOptions);
+
+            Console.WriteLine("  Merging prefixes.json...");
+            results["Prefixes"] = JsonMerger.MergeById(
+                Path.Combine(jsonOutputDir, "prefixes.json"), prefixes, p => p.Id, jsonOptions);
+
+            Console.WriteLine("  Merging paints.json...");
+            results["Paints"] = JsonMerger.MergeById(
+                Path.Combine(jsonOutputDir, "paints.json"), paints, p => p.Id, jsonOptions);
+
+            Console.WriteLine("  Merging globalColors.json...");
+            results["GlobalColors"] = JsonMerger.MergeByName(
+                Path.Combine(jsonOutputDir, "globalColors.json"), globalColors, c => c.Name, jsonOptions);
+
+            Console.WriteLine("  Merging bestiaryNpcs.json...");
+            results["Bestiary"] = JsonMerger.MergeBestiary(
+                Path.Combine(jsonOutputDir, "bestiaryNpcs.json"),
+                bestiaryConfig,
+                bestiaryConfig.NpcData.Cast<object>().ToList(),
+                o => ((NpcData)o).Id,
+                bestiaryConfig.Cat,
+                bestiaryConfig.Dog,
+                bestiaryConfig.Bunny,
+                jsonOptions);
+
+            // Auto-update version data
+            Console.WriteLine("\nChecking version data...");
+
+            string versionsJsonPath = Path.Combine(jsonOutputDir, "versions.json");
+            string docsVersionPath = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\..\..\docs\TerrariaVersionTileData.json"));
+
+            bool versionsUpdated = JsonMerger.MergeVersionData(
+                versionsJsonPath, versionData, jsonOptions);
+            Console.WriteLine(versionsUpdated
+                ? $"  Added save version {versionData.SaveVersion} ({versionData.GameVersion}) to versions.json"
+                : $"  versions.json already has save version {versionData.SaveVersion}");
+
+            if (File.Exists(docsVersionPath))
+            {
+                bool docsUpdated = JsonMerger.MergeVersionData(
+                    docsVersionPath, versionData, jsonOptions);
+                Console.WriteLine(docsUpdated
+                    ? $"  Added save version {versionData.SaveVersion} to docs/TerrariaVersionTileData.json"
+                    : $"  docs/TerrariaVersionTileData.json already has save version {versionData.SaveVersion}");
+            }
 
             // Write MapColorsUpdated.xml next to the exe.
             string outPath = Path.Combine(savePath, "MapColorsUpdated.xml");
-
-            // Optional override file (if you have one).
-            // Prefer MapColors.xml next to the exe; fallback to repo-relative ..\..\..\..\TEdit\MapColors.xml.
             string originalPath = Path.Combine(exeDir, "MapColors.xml");
             if (!File.Exists(originalPath))
             {
                 originalPath = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\TEdit\MapColors.xml"));
             }
-
             wrapper.WriteMapColorsXml(outPath, File.Exists(originalPath) ? originalPath : null);
-            Console.WriteLine("Wrote: " + outPath);
+            Console.WriteLine($"Wrote: {outPath}");
+
+            // Print merge summary
+            Console.WriteLine("\n=== MERGE SUMMARY ===");
+            foreach (var kvp in results)
+            {
+                var r = kvp.Value;
+                Console.WriteLine($"  {kvp.Key,-14} {r}");
+            }
+            Console.WriteLine($"  {"Version",-14} save={versionData.SaveVersion} game={versionData.GameVersion}");
 
             // Proper shutdown
-            Console.WriteLine("\nJSON generation complete. Shutting down...");
+            Console.WriteLine("\nMerge complete. Shutting down...");
             SocialAPI.Shutdown();
             Environment.Exit(0);
         }
@@ -208,6 +206,12 @@ namespace SettingsFileUpdater
 
             var path = Path.GetDirectoryName(TerrariaAsm.Location);
 
+        }
+
+        private static void WriteJson<T>(string path, T data, JsonSerializerOptions options)
+        {
+            using var stream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            JsonSerializer.Serialize(stream, data, options);
         }
 
         private static void RegisterAssemblyResolver()
@@ -234,13 +238,5 @@ namespace SettingsFileUpdater
             });
         }
 
-        /// <summary>
-        /// Writes data to a JSON file using the specified options.
-        /// </summary>
-        private static void WriteJson<T>(string path, T data, JsonSerializerOptions options)
-        {
-            using var stream = new FileStream(path, FileMode.Create, FileAccess.Write);
-            JsonSerializer.Serialize(stream, data, options);
-        }
     }
 }

@@ -13,5 +13,9 @@
   { "name": "Wire2", "color": "#00FF0070" },
   { "name": "Wire3", "color": "#FFFF0070" },
   { "name": "Illuminant", "color": "#FFFFFF70" },
-  { "name": "Echo", "color": "#00000070" }
+  { "name": "Echo", "color": "#00000070" },
+  {
+    "name": "Dirt",
+    "color": "#3E4554FF"
+  }
 ]

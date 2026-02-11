@@ -57,3 +57,4 @@ nul
 .claude
 *.diff
 ref/*
+src/TEdit.Terraria/Data/.generated/
