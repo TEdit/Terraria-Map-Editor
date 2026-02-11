@@ -3,10 +3,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 
@@ -312,15 +314,35 @@ public class Textures
     {
         foreach (var tileProp in WorldConfiguration.TileProperties)
         {
-            if (tileProp.TextureWrap != null && tileProp.TextureWrap.Axis != TextureWrapAxis.None)
+            if (!tileProp.IsFramed) continue;
+
+            var texture = GetTile(tileProp.Id);
+
+            if (texture != null && texture != _defaultTexture)
             {
-                var texture = GetTile(tileProp.Id);
-                if (texture != null && texture != _defaultTexture)
+                var maxUV = new Vector2Short(tileProp.Frames.Max(f => f.UV.X), tileProp.Frames.Max(f => f.UV.Y));
+                if (maxUV.X >= texture.Width || maxUV.Y >= texture.Height)
                 {
-                    tileProp.TextureWrap.WrapThreshold =
-                        tileProp.TextureWrap.Axis == TextureWrapAxis.U
-                            ? texture.Width
-                            : texture.Height;
+                    var interval = tileProp.TextureGrid + tileProp.FrameGap;
+                    if (maxUV.X >= texture.Width)
+                    {
+
+                        tileProp.TextureWrap = new TextureWrap
+                        {
+                            Axis =  TextureWrapAxis.U,
+                            OffsetIncrement = (short)(maxUV.Y + tileProp.FrameSize[0].Y * interval.Y),
+                            WrapThreshold = (int)Math.Ceiling((double)texture.Width / interval.X) * interval.X
+                        };
+                    }
+                    else
+                    {
+                        tileProp.TextureWrap = new TextureWrap
+                        {
+                            Axis =  TextureWrapAxis.V,
+                            OffsetIncrement = (short)(maxUV.X + tileProp.FrameSize[0].X * interval.X),
+                            WrapThreshold = (int)Math.Ceiling((double)texture.Height / interval.Y) * interval.Y
+                        };
+                    }
                 }
             }
         }

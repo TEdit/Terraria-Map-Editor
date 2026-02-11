@@ -490,7 +490,7 @@ public partial class WorldRenderXna : UserControl
                 // Skip if already has a preview
                 if (style.Preview != null) continue;
 
-                var uv = style.UV;
+                var uv = TileProperty.GetRenderUV((ushort)tile.Id, style.UV.X, style.UV.Y);
                 var sizeTiles = style.SizeTiles;
 
                 // Validate sizes before creating texture
