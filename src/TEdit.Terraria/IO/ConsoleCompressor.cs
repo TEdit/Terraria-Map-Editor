@@ -51,14 +51,14 @@ public static class ConsoleCompressor
 
     public static MemoryStream DecompressStream(FileStream stream)
     {
-        using (var br = new BinaryReader(stream))
+        using (var br = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true))
         {
             int signature = br.ReadInt32(); // 0x1AA2227E
             int outputSize = br.ReadInt32();
 
             var ms = new MemoryStream();
 
-            using (var decompressor = new ZLibStream(stream, CompressionMode.Decompress))
+            using (var decompressor = new ZLibStream(stream, CompressionMode.Decompress, leaveOpen: true))
             {
                 decompressor.CopyTo(ms);
             }

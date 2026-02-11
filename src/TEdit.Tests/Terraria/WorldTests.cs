@@ -156,6 +156,9 @@ public class WorldTests
 
     [Theory]
     [InlineData(".\\WorldFiles\\v1.4.5.0.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.5.5.wld")]
+    [InlineData(".\\WorldFiles\\Challenge.wld")]
+    [InlineData(".\\WorldFiles\\MAINWORLD.wld")]
     public void LoadWorldV2_145x_Test(string fileName)
     {
         if (!IsValidWorldFile(fileName)) return;
@@ -164,7 +167,42 @@ public class WorldTests
     }
 
     [Theory]
+    [InlineData(".\\WorldFiles\\Challenge.wld")]
+    [InlineData(".\\WorldFiles\\MAINWORLD.wld")]
     [InlineData(".\\WorldFiles\\console.wld")]
+    public void ValidateConsoleWorld_Test(string fileName)
+    {
+        if (!IsValidWorldFile(fileName)) return;
+        var status = World.ValidateWorldFile(fileName);
+        Assert.True(status.IsValid, $"Validation failed: {status.Message}");
+        Assert.True(status.IsConsole, "Expected console world");
+    }
+
+    [Theory]
+    [InlineData(".\\WorldFiles\\Challenge.wld")]
+    [InlineData(".\\WorldFiles\\MAINWORLD.wld")]
+    [InlineData(".\\WorldFiles\\console.wld")]
+    public void LoadAndValidateConsoleWorld_Test(string fileName)
+    {
+        if (!IsValidWorldFile(fileName)) return;
+
+        // Validate first (as WPF app does)
+        var status = World.ValidateWorldFile(fileName);
+        Assert.True(status.IsValid, $"Validation failed: {status.Message}");
+        Assert.True(status.IsConsole);
+
+        // Then load (as WPF app does after validation)
+        var (w, er) = World.LoadWorld(fileName);
+        Assert.Null(er);
+        Assert.True(w.IsConsole);
+        Assert.True(w.TilesWide > 0, "World should have tiles");
+        Assert.True(w.TilesHigh > 0, "World should have tiles");
+    }
+
+    [Theory]
+    [InlineData(".\\WorldFiles\\console.wld")]
+    [InlineData(".\\WorldFiles\\Challenge.wld")]
+    [InlineData(".\\WorldFiles\\MAINWORLD.wld")]
     public void SaveWorld_Console_Test(string fileName)
     {
         if (!IsValidWorldFile(fileName)) return;
@@ -391,6 +429,7 @@ public class WorldTests
 
     [Theory]
     [InlineData(".\\WorldFiles\\v1.4.5.0.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.5.5.wld")]
     public void SaveWorldV2_145x_Test(string fileName)
     {
         if (!IsValidWorldFile(fileName)) return;

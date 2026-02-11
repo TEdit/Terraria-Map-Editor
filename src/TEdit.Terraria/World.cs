@@ -279,11 +279,13 @@ public partial class World
                             var readerPos = b.BaseStream.Position;
 
                             // Check if the world file contains all-zeros (corrupt).
+                            // Use b.BaseStream (the active stream) instead of fs,
+                            // because for console worlds fs may be closed after decompression.
                             const int BufferSize = 8192;
                             var buffer = new byte[BufferSize];
                             bool foundNonZero = false;
                             int read;
-                            while ((read = fs.Read(buffer, 0, BufferSize)) > 0)
+                            while ((read = b.BaseStream.Read(buffer, 0, BufferSize)) > 0)
                             {
                                 for (int i = 0; i < read; i++)
                                     if (buffer[i] != 0)
