@@ -1,0 +1,65 @@
+# TEdit Application Settings
+# This file is loaded on startup and can be modified to customize behavior.
+
+app:
+  width: 1024
+  height: 768
+  # Maximum render size for clipboard previews (64-4096)
+  clipboardRenderSize: 512
+  # Override path to Terraria Content folder (leave empty for auto-detect)
+  # Useful when Terraria is not installed or in a custom location
+  terrariaContentPath:
+  # Steam user ID override (leave empty for auto-detect)
+  steamUserId:
+
+# Keyboard shortcuts
+# Format: Action: keyCombo (e.g., "Copy: ctrl+c", "Arrow: a")
+# Supported modifiers: ctrl, shift, alt
+shortcuts:
+  # Clipboard
+  Copy: ctrl+c
+  Paste: ctrl+v
+
+  # History
+  Undo: ctrl+z
+  Redo: ctrl+y
+
+  # Selection
+  SelectAll: ctrl+a
+  SelectNone: ctrl+d
+  DeleteSelection: delete
+
+  # File operations
+  Open: ctrl+o
+  Save: ctrl+s
+  SaveAs: ctrl+shift+s
+
+  # Navigation
+  ResetTool: escape
+  ScrollUp: up
+  ScrollDown: down
+  ScrollLeft: left
+  ScrollRight: right
+  ScrollUpFast: shift+up
+  ScrollDownFast: shift+down
+  ScrollLeftFast: shift+left
+  ScrollRightFast: shift+right
+  Pan: space
+  ZoomIn: ctrl+oemplus
+  ZoomOut: ctrl+oemminus
+  ReloadWorld: f5
+
+  # Tools
+  Arrow: a
+  Brush: b
+  Fill: f
+  Pencil: e
+  Picker: r
+  Point: p
+  Selection: s
+  Sprite2: t
+  Eraser: z
+  Swap: x
+  Hammer: h
+  ToggleTile: q
+  ToggleWall: w

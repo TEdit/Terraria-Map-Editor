@@ -1,0 +1,302 @@
+[
+  {
+    "id": 17,
+    "size": [18,40],
+    "name": "Merchant"
+  },
+  {
+    "id": 18,
+    "size": [18,40],
+    "name": "Nurse"
+  },
+  {
+    "id": 19,
+    "size": [18,40],
+    "name": "Arms Dealer"
+  },
+  {
+    "id": 20,
+    "size": [18,40],
+    "name": "Dryad"
+  },
+  {
+    "id": 22,
+    "size": [18,40],
+    "name": "Guide"
+  },
+  {
+    "id": 37,
+    "size": [18,40],
+    "name": "Old Man"
+  },
+  {
+    "id": 38,
+    "size": [18,40],
+    "name": "Demolitionist"
+  },
+  {
+    "id": 54,
+    "size": [18,40],
+    "name": "Clothier"
+  },
+  {
+    "id": 105,
+    "size": [18,34],
+    "name": "Bound Goblin"
+  },
+  {
+    "id": 106,
+    "size": [18,40],
+    "name": "Bound Wizard"
+  },
+  {
+    "id": 107,
+    "size": [18,40],
+    "name": "Goblin Tinkerer"
+  },
+  {
+    "id": 108,
+    "size": [18,40],
+    "name": "Wizard"
+  },
+  {
+    "id": 123,
+    "size": [16,30],
+    "name": "Bound Mechanic"
+  },
+  {
+    "id": 124,
+    "size": [18,40],
+    "name": "Mechanic"
+  },
+  {
+    "id": 142,
+    "size": [18,40],
+    "name": "Santa Claus"
+  },
+  {
+    "id": 160,
+    "size": [18,40],
+    "name": "Truffle"
+  },
+  {
+    "id": 178,
+    "size": [18,40],
+    "name": "Steampunker"
+  },
+  {
+    "id": 207,
+    "size": [18,40],
+    "name": "Dye Trader"
+  },
+  {
+    "id": 208,
+    "size": [18,40],
+    "name": "Party Girl"
+  },
+  {
+    "id": 209,
+    "size": [18,40],
+    "name": "Cyborg"
+  },
+  {
+    "id": 227,
+    "size": [18,40],
+    "name": "Painter"
+  },
+  {
+    "id": 228,
+    "size": [18,40],
+    "name": "Witch Doctor"
+  },
+  {
+    "id": 229,
+    "size": [18,40],
+    "name": "Pirate"
+  },
+  {
+    "id": 353,
+    "size": [18,40],
+    "name": "Stylist"
+  },
+  {
+    "id": 354,
+    "size": [16,30],
+    "name": "Webbed Stylist"
+  },
+  {
+    "id": 357,
+    "size": [10,4],
+    "name": "Worm"
+  },
+  {
+    "id": 368,
+    "size": [18,40],
+    "name": "Traveling Merchant"
+  },
+  {
+    "id": 369,
+    "size": [18,40],
+    "name": "Angler"
+  },
+  {
+    "id": 376,
+    "size": [30,7],
+    "name": "Sleeping Angler"
+  },
+  {
+    "id": 377,
+    "size": [14,10],
+    "name": "Grasshopper"
+  },
+  {
+    "id": 441,
+    "size": [18,40],
+    "name": "Tax Collector"
+  },
+  {
+    "id": 446,
+    "size": [14,10],
+    "name": "Gold Grasshopper"
+  },
+  {
+    "id": 448,
+    "size": [10,4],
+    "name": "Gold Worm"
+  },
+  {
+    "id": 453,
+    "size": [18,40],
+    "name": "Skeleton Merchant"
+  },
+  {
+    "id": 484,
+    "size": [10,4],
+    "name": "Enchanted Nightcrawler"
+  },
+  {
+    "id": 485,
+    "size": [10,4],
+    "name": "Grubby"
+  },
+  {
+    "id": 486,
+    "size": [10,4],
+    "name": "Sluggy"
+  },
+  {
+    "id": 487,
+    "size": [10,4],
+    "name": "Buggy"
+  },
+  {
+    "id": 548,
+    "size": [40,40],
+    "name": "Eternia Crystal"
+  },
+  {
+    "id": 550,
+    "size": [18,40],
+    "name": "Tavernkeep"
+  },
+  {
+    "id": 579,
+    "size": [34,8],
+    "name": "Unconscious Man"
+  },
+  {
+    "id": 588,
+    "size": [18,40],
+    "name": "Golfer"
+  },
+  {
+    "id": 589,
+    "size": [18,34],
+    "name": "Golfer"
+  },
+  {
+    "id": 606,
+    "size": [10,4],
+    "name": "Maggot"
+  },
+  {
+    "id": 633,
+    "size": [18,40],
+    "name": "Zoologist"
+  },
+  {
+    "id": 637,
+    "size": [18,20],
+    "name": "Cat"
+  },
+  {
+    "id": 638,
+    "size": [18,28],
+    "name": "Dog"
+  },
+  {
+    "id": 656,
+    "size": [18,20],
+    "name": "Bunny"
+  },
+  {
+    "id": 663,
+    "size": [18,40],
+    "name": "Princess"
+  },
+  {
+    "id": 670,
+    "size": [18,20],
+    "name": "Nerdy Slime"
+  },
+  {
+    "id": 678,
+    "size": [18,20],
+    "name": "Cool Slime"
+  },
+  {
+    "id": 679,
+    "size": [18,20],
+    "name": "Elder Slime"
+  },
+  {
+    "id": 680,
+    "size": [18,20],
+    "name": "Clumsy Slime"
+  },
+  {
+    "id": 681,
+    "size": [18,20],
+    "name": "Diva Slime"
+  },
+  {
+    "id": 682,
+    "size": [18,20],
+    "name": "Surly Slime"
+  },
+  {
+    "id": 683,
+    "size": [18,20],
+    "name": "Mystic Slime"
+  },
+  {
+    "id": 684,
+    "size": [18,20],
+    "name": "Squire Slime"
+  },
+  {
+    "id": 685,
+    "size": [30,28],
+    "name": "Old Shaking Chest"
+  },
+  {
+    "id": 695,
+    "size": [18,18],
+    "name": "Cattiva"
+  },
+  {
+    "id": 696,
+    "size": [18,18],
+    "name": "Foxparks"
+  }
+]
