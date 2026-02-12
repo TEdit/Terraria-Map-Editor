@@ -29,7 +29,7 @@ using System.Linq;
 using System;
 
 using TEdit.Editor.Clipboard;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Geometry; /* TE4: using TEdit.Common.Geometry.Primitives; */
 

@@ -5,7 +5,6 @@ using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Geometry;
 using TEdit.Render;
-using TEdit.Configuration;
 using TEdit.UI;
 using TEdit.Common.Geometry;
 

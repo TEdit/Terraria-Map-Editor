@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using TEdit.Common;
-using TEdit.Configuration;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 

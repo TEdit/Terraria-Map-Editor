@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using TEdit.ViewModel;
 using TEdit.Terraria;
-using TEdit.Configuration;
-
 namespace TEdit.Editor.Plugins;
 
 class FindPlanteraBulbPlugin : BasePlugin

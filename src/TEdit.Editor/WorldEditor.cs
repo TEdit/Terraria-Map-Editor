@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TEdit.Configuration;
 using TEdit.Editor.Undo;
 using TEdit.Geometry;
 using TEdit.Terraria;

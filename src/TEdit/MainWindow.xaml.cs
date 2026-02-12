@@ -300,24 +300,4 @@ public partial class MainWindow : Window
         FilterWindow filterWindow = new(_vm);
         filterWindow.ShowDialog();
     }
-
-    private void SpecialTileView_Loaded(object sender, RoutedEventArgs e)
-    {
-
-    }
-
-    private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-
-    }
-
-    private void ToolSelectorView_Loaded(object sender, RoutedEventArgs e)
-    {
-
-    }
-
-    private void ToolSelectorView_Loaded_1(object sender, RoutedEventArgs e)
-    {
-
-    }
 }

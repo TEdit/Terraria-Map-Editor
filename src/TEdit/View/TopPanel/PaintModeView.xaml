@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
              xmlns:editor="clr-namespace:TEdit.Editor" 
-             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
-             xmlns:config="clr-namespace:TEdit.Configuration;assembly=TEdit.Configuration"             
+             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"             
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework"
              mc:Ignorable="d" 
@@ -133,7 +132,7 @@
                 <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
                       SelectedValue="{Binding TilePicker.PaintMode}" 
                       SelectedValuePath="Value" Width="100"
-                      ItemTemplate="{StaticResource EnumTemplate}" SelectionChanged="ComboBox_SelectionChanged_1" />
+                      ItemTemplate="{StaticResource EnumTemplate}" />
             </StackPanel>
             <GroupBox BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
                 <GroupBox.Header>
@@ -144,7 +143,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
                     </tedit:AutoGrid.ColumnDefinitions>
-                    <tedit:FilteredComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static config:WorldConfiguration.TileBricks}, Mode=OneTime}"
+                    <tedit:FilteredComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricks}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
                       IsSynchronizedWithCurrentItem="False"
@@ -154,7 +153,7 @@
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.TileMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}"  />
                     <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
-                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static config:WorldConfiguration.TileBricksMask}, Mode=OneTime}"
+                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricksMask}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.TileMask, Mode=TwoWay}"
                       IsSynchronizedWithCurrentItem="False"
@@ -172,7 +171,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
                     </tedit:AutoGrid.ColumnDefinitions>
-                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static config:WorldConfiguration.WallProperties}, Mode=OneTime}"
+                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallProperties}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
                       IsSynchronizedWithCurrentItem="False"
@@ -184,7 +183,7 @@
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.WallMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
-                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static config:WorldConfiguration.WallPropertiesMask}, Mode=OneTime}" 
+                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallPropertiesMask}, Mode=OneTime}" 
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.WallMask, Mode=TwoWay}"
                       IsSynchronizedWithCurrentItem="False"
@@ -227,7 +226,7 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                         <CheckBox IsChecked="{Binding TilePicker.TilePaintActive}" Content="{x:Static p:Language.tool_paint_tile_title}" Width="50" VerticalAlignment="Center" />
-                        <ComboBox ItemsSource="{Binding Source={x:Static config:WorldConfiguration.PaintProperties}, Mode=OneTime}" 
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}" 
                           IsEnabled="{Binding TilePicker.TilePaintActive}"
                           ItemTemplate="{StaticResource ColorPickerTemplate}" 
                           SelectedValue="{Binding Path=TilePicker.TileColor, Mode=TwoWay}"
@@ -235,7 +234,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                         <CheckBox IsChecked="{Binding TilePicker.WallPaintActive}" Content="{x:Static p:Language.tool_paint_wall_title}" Width="50" VerticalAlignment="Center" />
-                        <ComboBox ItemsSource="{Binding Source={x:Static config:WorldConfiguration.PaintProperties}, Mode=OneTime}" 
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}" 
                           IsEnabled="{Binding TilePicker.WallPaintActive}"
                           ItemTemplate="{StaticResource ColorPickerTemplate}" 
                           SelectedValue="{Binding Path=TilePicker.WallColor, Mode=TwoWay}"

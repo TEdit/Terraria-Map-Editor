@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using TEdit.Configuration;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria;

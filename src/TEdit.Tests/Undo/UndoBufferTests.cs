@@ -1,7 +1,6 @@
 using Xunit;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Configuration;
 using TEdit.Editor.Undo;
 using System.IO;
 

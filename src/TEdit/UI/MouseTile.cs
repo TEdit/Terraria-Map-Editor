@@ -3,7 +3,6 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Configuration;
 
 namespace TEdit.UI;
 
@@ -180,17 +179,17 @@ public partial class MouseTile : ReactiveObject
     }
 
     // Translate liquid type (English to Chinese)
-    private string TranslateLiquidType(TEdit.Configuration.LiquidType liquidType)
+    private string TranslateLiquidType(TEdit.Terraria.LiquidType liquidType)
     {
         switch (liquidType)
         {
-            case TEdit.Configuration.LiquidType.Water:
+            case TEdit.Terraria.LiquidType.Water:
                 return "水";
-            case TEdit.Configuration.LiquidType.Lava:
+            case TEdit.Terraria.LiquidType.Lava:
                 return "岩浆";
-            case TEdit.Configuration.LiquidType.Honey:
+            case TEdit.Terraria.LiquidType.Honey:
                 return "蜂蜜";
-            case TEdit.Configuration.LiquidType.Shimmer:
+            case TEdit.Terraria.LiquidType.Shimmer:
                 return "微光";
             default:
                 return string.Empty;  // 默认返回空字符串，不显示

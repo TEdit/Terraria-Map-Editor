@@ -1,5 +1,4 @@
 using System.IO;
-using TEdit.Configuration;
 
 namespace TEdit.Terraria;
 

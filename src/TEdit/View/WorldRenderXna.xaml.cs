@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -13,9 +16,12 @@ using TEdit.Editor;
 using TEdit.Editor.Tools;
 using TEdit.ViewModel;
 using System.Windows.Media.Imaging;
+using WpfPixelFormats = System.Windows.Media.PixelFormats;
 using Point = System.Windows.Point;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 using TEdit.Framework.Events;
+using TEdit.Framework.Threading;
+using System.Windows.Threading;
 using System.IO;
 using System.Diagnostics;
 using System.Xml.Linq;
@@ -23,7 +29,6 @@ using TEdit.Properties;
 using TEdit.Render;
 using TEdit.Geometry;
 using TEdit.Common;
-using TEdit.Configuration;
 using TEdit.UI;
 using TEdit.View.Popups;
 
@@ -44,6 +49,7 @@ public partial class WorldRenderXna : UserControl
     private const float LayerTileBackgroundTextures = 1 - 0.01f;
     private const float LayerTileWallTextures = 1 - 0.02f;
     private const float LayerTileTrackBack = 1 - 0.03f;
+    private const float LayerTileSlopeLiquid = 1 - 0.035f;
     private const float LayerTileTextures = 1 - 0.04f;
     private const float LayerTileTrack = 1 - 0.05f;
     private const float LayerTileActuator = 1 - 0.06f;
@@ -79,6 +85,13 @@ public partial class WorldRenderXna : UserControl
 
     private Dictionary<int, WriteableBitmap> _spritePreviews = new Dictionary<int, WriteableBitmap>();
 
+    // Deferred texture loading
+    private bool _texturesFullyLoaded = false;
+    private CancellationTokenSource _textureLoadCancellation;
+    private Task _backgroundTextureLoader;
+    private GraphicsDeviceEventArgs _graphicsEventArgs;
+    private DispatcherTimer _previewProcessingTimer;
+
     public WorldRenderXna()
     {
         _wvm = ViewModelLocator.WorldViewModel;
@@ -90,6 +103,13 @@ public partial class WorldRenderXna : UserControl
         _wvm.RequestZoomEvent += _wvm_RequestZoom;
         _wvm.RequestPanEvent += _wvm_RequestPan;
         _wvm.RequestScrollEvent += _wvm_RequestScroll;
+
+        // Cancel background texture loading and preview timer when control is unloaded
+        Unloaded += (s, e) =>
+        {
+            _textureLoadCancellation?.Cancel();
+            _previewProcessingTimer?.Stop();
+        };
     }
 
     private void _wvm_RequestPan(object sender, EventArgs<bool> e) => SetPanMode(e.Value1);
@@ -208,9 +228,16 @@ public partial class WorldRenderXna : UserControl
         if (_gameTimer.IsRunning) { return; }
 
         InitializeGraphicsComponents(e);
+        _graphicsEventArgs = e;
 
         if (_textureDictionary.Valid)
-            LoadTerrariaTextures(e);
+        {
+            // Load NPCs immediately (fast, needed for UI)
+            LoadImmediateTextures(e);
+
+            // Start deferred loading of tiles and walls
+            StartDeferredTextureLoading(e);
+        }
 
         _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
         LoadResourceTextures(e);
@@ -218,6 +245,377 @@ public partial class WorldRenderXna : UserControl
         _selectionTexture.SetData(new[] { Color.FromNonPremultiplied(0, 128, 255, 128) }, 0, 1);
         // Start the Game Timer
         _gameTimer.Start();
+    }
+
+    /// <summary>
+    /// Load textures that must be available immediately (NPCs for UI).
+    /// </summary>
+    private void LoadImmediateTextures(GraphicsDeviceEventArgs e)
+    {
+        // Load all NPC textures immediately - they're needed for UI and there aren't many
+        foreach (var id in WorldConfiguration.NpcIds)
+        {
+            _textureDictionary.GetNPC(id.Value);
+        }
+
+        // Also load bestiary NPCs
+        foreach (var npc in WorldConfiguration.BestiaryData.NpcData)
+        {
+            if (npc.Value.Id < 0) continue;
+            _textureDictionary.GetNPC(npc.Value.Id);
+        }
+    }
+
+    /// <summary>
+    /// Start async loading of tile and wall textures.
+    /// </summary>
+    private void StartDeferredTextureLoading(GraphicsDeviceEventArgs e)
+    {
+        _textureLoadCancellation = new CancellationTokenSource();
+
+        // Initialize loading state
+        int tileCount = WorldConfiguration.TileProperties.Count;
+        int wallCount = WorldConfiguration.WallProperties.Count;
+        int framedCount = WorldConfiguration.TileProperties.Count(t => t.IsFramed);
+        ErrorLogging.Log($"StartDeferredTextureLoading: {tileCount} tiles ({framedCount} framed), {wallCount} walls");
+        _textureDictionary.LoadingState.Initialize(tileCount, wallCount);
+
+        // Queue walls for loading
+        foreach (var wall in WorldConfiguration.WallProperties)
+        {
+            if (wall.Id == 0) continue;
+            _textureDictionary.LoadingState.QueueLoad(TextureType.Wall, wall.Id, priority: 1);
+        }
+
+        // Queue tiles for loading
+        foreach (var tile in WorldConfiguration.TileProperties)
+        {
+            if (tile.Id < 0) continue;
+            _textureDictionary.LoadingState.QueueLoad(TextureType.Tile, tile.Id, priority: 1);
+        }
+
+        // Start background task to feed the graphics thread queue
+        _backgroundTextureLoader = Task.Run(() =>
+            ProcessDeferredLoadingAsync(e, _textureLoadCancellation.Token));
+
+        // Start UI thread timer to process preview bitmaps
+        StartPreviewProcessing();
+    }
+
+    /// <summary>
+    /// Start a DispatcherTimer on the UI thread to process WriteableBitmap previews.
+    /// This is separate from the render frame to avoid blocking rendering.
+    /// </summary>
+    private void StartPreviewProcessing()
+    {
+        _previewProcessingTimer = new DispatcherTimer(DispatcherPriority.Background)
+        {
+            Interval = TimeSpan.FromMilliseconds(16) // ~60 fps pace
+        };
+        _previewProcessingTimer.Tick += (s, e) =>
+        {
+            if (_textureDictionary?.Valid == true)
+            {
+                var processed = _textureDictionary.ProcessTextureQueue(maxOperationsPerFrame: 10);
+                if (processed == 0 && _texturesFullyLoaded)
+                {
+                    _previewProcessingTimer.Stop();
+                    ErrorLogging.Log("Preview processing complete - timer stopped");
+                    _wvm.Progress = new ProgressChangedEventArgs(100, "材质包读取完毕");
+                }
+            }
+        };
+        _previewProcessingTimer.Start();
+        ErrorLogging.Log("Preview processing timer started");
+    }
+
+    /// <summary>
+    /// Background task that queues texture loads for the graphics thread.
+    /// </summary>
+    private async Task ProcessDeferredLoadingAsync(GraphicsDeviceEventArgs e, CancellationToken cancellationToken)
+    {
+        var b2 = new Rectangle(18, 18, 16, 16);
+        var b2Wall = new Rectangle(44, 44, 16, 16);
+
+        while (!cancellationToken.IsCancellationRequested &&
+               _textureDictionary.LoadingState.HasPendingLoads())
+        {
+            // Get batch of textures to load
+            var batch = _textureDictionary.LoadingState.GetNextBatch(10);
+
+            if (batch.Count == 0)
+            {
+                await Task.Delay(16, cancellationToken); // Wait one frame
+                continue;
+            }
+
+            // Queue texture loading on graphics thread
+            foreach (var request in batch)
+            {
+                var req = request; // Capture for closure
+                _textureDictionary.QueueTextureCreation(() =>
+                {
+                    try
+                    {
+                        Texture2D texture = null;
+
+                        switch (req.Type)
+                        {
+                            case TextureType.Tile:
+                                {
+                                    string path = $"Images\\Tiles_{req.Id}";
+                                    texture = _textureDictionary.LoadTextureImmediate(path);
+
+                                    if (texture != null && texture != _textureDictionary.DefaultTexture)
+                                    {
+                                        _textureDictionary.Tiles[req.Id] = texture;
+
+                                        // Handle color extraction for non-framed tiles
+                                        var tile = WorldConfiguration.TileProperties.FirstOrDefault(t => t.Id == req.Id);
+
+                                        if (tile != null && !tile.IsFramed && Settings.Default.RealisticColors)
+                                        {
+                                            var tileColor = GetTextureTileColor(texture, b2);
+                                            if (tileColor.A > 0)
+                                            {
+                                                tile.Color = tileColor;
+                                            }
+                                        }
+
+                                        // Build SpriteSheet for framed tiles
+                                        if (tile != null && tile.IsFramed)
+                                        {
+                                            UpdateSpritePreviewsForTile(tile, texture, e);
+                                        }
+                                    }
+                                }
+                                break;
+
+                            case TextureType.Wall:
+                                {
+                                    string path = $"Images\\Wall_{req.Id}";
+                                    texture = _textureDictionary.LoadTextureImmediate(path);
+                                    if (texture != null && texture != _textureDictionary.DefaultTexture)
+                                    {
+                                        _textureDictionary.Walls[req.Id] = texture;
+
+                                        // Handle color extraction
+                                        if (Settings.Default.RealisticColors)
+                                        {
+                                            var wallColor = GetTextureTileColor(texture, b2Wall);
+                                            if (wallColor.A > 0)
+                                            {
+                                                var wall = WorldConfiguration.WallProperties.FirstOrDefault(w => w.Id == req.Id);
+                                                if (wall != null)
+                                                {
+                                                    wall.Color = wallColor;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                break;
+                        }
+
+                        _textureDictionary.LoadingState.MarkLoaded(req.Type, req.Id,
+                            texture != null && texture != _textureDictionary.DefaultTexture);
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLogging.LogException(ex);
+                        _textureDictionary.LoadingState.MarkLoaded(req.Type, req.Id, false);
+                    }
+                });
+            }
+
+            // Update progress on UI thread
+            var loadedCount = _textureDictionary.LoadingState.LoadedCount;
+            var totalTextures = _textureDictionary.LoadingState.TotalTextures;
+            var progress = (int)_textureDictionary.LoadingState.ProgressPercent;
+
+            DispatcherHelper.CheckBeginInvokeOnUI(() =>
+            {
+                _wvm.Progress = new ProgressChangedEventArgs(progress,
+                    $"读取材质包: {loadedCount}/{totalTextures}");
+            });
+
+            await Task.Delay(16, cancellationToken); // Throttle to ~60 fps
+        }
+
+        _texturesFullyLoaded = true;
+
+        // Cache texture wrap thresholds now that tile textures are loaded
+        try
+        {
+            _textureDictionary.CacheTextureWrapThresholds();
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+
+        // Initialize sprite views once all textures are queued
+        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+        {
+            _wvm.InitSpriteViews();
+            // Note: "Textures loaded" shown when DispatcherTimer finishes processing
+        });
+    }
+
+    /// <summary>
+    /// Update preview images for an existing SpriteSheet (built from config).
+    /// Sprites are created from TileProperty.Frames config data in BuildSpritesFromConfig().
+    /// This method only extracts preview images from the loaded texture.
+    /// </summary>
+    private static int _previewsSetCount = 0;
+    private void UpdateSpritePreviewsForTile(TileProperty tile, Texture2D tileTex, GraphicsDeviceEventArgs e)
+    {
+        try
+        {
+            // Find the existing sprite sheet for this tile (created from config)
+            SpriteSheet sprite;
+            lock (WorldConfiguration.Sprites2Lock)
+            {
+                sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == tile.Id);
+            }
+
+            if (sprite == null) return;
+
+            // Update texture size now that we have the actual texture
+            sprite.SizeTexture = new Vector2Short((short)tileTex.Width, (short)tileTex.Height);
+
+            // Update preview images for each existing style (created from config)
+            foreach (var style in sprite.Styles.OfType<SpriteItemPreview>())
+            {
+                // Skip if already has a preview
+                if (style.Preview != null) continue;
+
+                var uv = style.UV;
+                var sizeTiles = style.SizeTiles;
+
+                // Validate sizes before creating texture
+                if (sizeTiles.X <= 0 || sizeTiles.Y <= 0 ||
+                    sprite.SizePixelsRender.X <= 0 || sprite.SizePixelsRender.Y <= 0)
+                {
+                    continue;
+                }
+
+                // Create preview texture for this sprite
+                var previewTexture = new Texture2D(e.GraphicsDevice,
+                    sizeTiles.X * sprite.SizePixelsRender.X,
+                    sizeTiles.Y * sprite.SizePixelsRender.Y);
+
+                bool hasColorData = false;
+
+                // Extract pixels from source texture for each tile in the sprite
+                for (int x = 0; x < sizeTiles.X; x++)
+                {
+                    for (int y = 0; y < sizeTiles.Y; y++)
+                    {
+                        int sourceX = uv.X + (x * sprite.SizePixelsInterval.X);
+                        int sourceY = uv.Y + (y * sprite.SizePixelsInterval.Y);
+                        int destX = x * sprite.SizePixelsRender.X;
+                        int destY = y * sprite.SizePixelsRender.Y;
+                        int renderY = sprite.SizePixelsRender.Y;
+
+                        // Handle tall gates (tiles 388, 389) special case
+                        if (sprite.Tile == 388 || sprite.Tile == 389)
+                        {
+                            switch (y)
+                            {
+                                case 0: renderY = 18; break;
+                                case 1: destY = 18; renderY = 16; break;
+                                case 2: destY = 18 + 16; renderY = 16; break;
+                                case 3: destY = 18 + 16 + 16; renderY = 16; break;
+                                case 4: destY = 18 + 16 + 16 + 16; renderY = 18; break;
+                            }
+                        }
+
+                        var source = new Rectangle(sourceX, sourceY, sprite.SizePixelsRender.X, renderY);
+
+                        // Out of bounds checks
+                        if (source.Bottom > tileTex.Height)
+                            source.Height -= (source.Bottom - tileTex.Height);
+                        if (source.Right > tileTex.Width)
+                            source.Width -= (source.Right - tileTex.Width);
+                        if (source.Height <= 0 || source.Width <= 0)
+                            continue;
+
+                        var colorData = new Color[source.Height * source.Width];
+                        var dest = new Rectangle(destX, destY, source.Width, source.Height);
+
+                        tileTex.GetData(0, source, colorData, 0, colorData.Length);
+                        previewTexture.SetData(0, dest, colorData, 0, colorData.Length);
+
+                        if (!hasColorData)
+                        {
+                            for (int i = 0; i < colorData.Length; i++)
+                            {
+                                if (colorData[i].PackedValue > 0)
+                                {
+                                    hasColorData = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (!hasColorData) continue;
+
+                // Update style color from texture if realistic colors enabled
+                if (Settings.Default.RealisticColors)
+                {
+                    style.StyleColor = GetTextureTileColor(previewTexture, previewTexture.Bounds);
+                }
+
+                // Extract pixel data on graphics thread
+                var width = previewTexture.Width;
+                var height = previewTexture.Height;
+                var pixelData = new int[width * height];
+                previewTexture.GetData(pixelData);
+                var textureSizeCopy = sprite.SizeTexture;
+
+                // Create WriteableBitmap on UI thread (required for WPF)
+                DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                {
+                    style.Preview = CreateWriteableBitmapFromPixelData(pixelData, width, height);
+                    style.SizeTexture = textureSizeCopy;
+                    _previewsSetCount++;
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+    }
+
+    /// <summary>
+    /// Creates a WriteableBitmap from raw pixel data. Must be called on the UI thread.
+    /// </summary>
+    private static WriteableBitmap CreateWriteableBitmapFromPixelData(int[] pixelData, int width, int height)
+    {
+        var bmp = new WriteableBitmap(width, height, 96, 96, WpfPixelFormats.Bgra32, null);
+        bmp.Lock();
+        unsafe
+        {
+            var pixels = (int*)bmp.BackBuffer;
+            for (int i = 0; i < pixelData.Length; i++)
+            {
+                // XNA stores as ABGR (packed: 0xAABBGGRR), WPF Bgra32 expects 0xAARRGGBB
+                // Need to swap R and B channels
+                int abgr = pixelData[i];
+                int a = (abgr >> 24) & 0xFF;
+                int b = (abgr >> 16) & 0xFF;  // XNA's B is at bits 16-23
+                int g = (abgr >> 8) & 0xFF;
+                int r = abgr & 0xFF;           // XNA's R is at bits 0-7
+                pixels[i] = (a << 24) | (r << 16) | (g << 8) | b;
+            }
+        }
+        bmp.AddDirtyRect(new Int32Rect(0, 0, width, height));
+        bmp.Unlock();
+        return bmp;
     }
 
     public static TEditColor GetTextureTileColor(Texture2D texture, Rectangle source, bool useAverage = true)
@@ -315,7 +713,12 @@ public partial class WorldRenderXna : UserControl
 #endif
     }
 
-    private void LoadTerrariaTextures(GraphicsDeviceEventArgs e)
+    /// <summary>
+    /// OBSOLETE: Replaced by LoadImmediateTextures + StartDeferredTextureLoading for async loading.
+    /// Kept for reference only.
+    /// </summary>
+    [Obsolete("Use LoadImmediateTextures + StartDeferredTextureLoading instead")]
+    private void LoadTerrariaTextures_Legacy(GraphicsDeviceEventArgs e)
     {
         // If the texture dictionary is valid (Found terraria and loaded content) load texture data
 
@@ -400,7 +803,10 @@ public partial class WorldRenderXna : UserControl
                 else if (tile.Id == 216) { sprite.SizePixelsInterval += new Vector2Short(2, 4); }
                 else if (tile.Id != 171) { sprite.SizePixelsInterval += interval; }
 
-                WorldConfiguration.Sprites2.Add(sprite);
+                lock (WorldConfiguration.Sprites2Lock)
+                {
+                    WorldConfiguration.Sprites2.Add(sprite);
+                }
 
                 int numX = (sprite.SizeTexture.X + 2) / sprite.SizePixelsInterval.X;
                 int numY = (sprite.SizeTexture.Y + 2) / sprite.SizePixelsInterval.Y;
@@ -658,6 +1064,9 @@ public partial class WorldRenderXna : UserControl
     private World? _lastRenderedWorld = null;
     private void Render(GraphicsDeviceEventArgs e)
     {
+        // NOTE: Texture queue processing is now handled by DispatcherTimer (StartPreviewProcessing)
+        // to avoid blocking render frames. The timer runs on UI thread with Background priority.
+
         // Clear all filters and the grayscale cache only when the world changes.
         // Hack: Using .CurrentWorld will always clear cache on world load.
         if (_wvm.CurrentWorld != _lastRenderedWorld)
@@ -2448,6 +2857,88 @@ public partial class WorldRenderXna : UserControl
                                     var source = new Rectangle((curtile.uvTileCache & 0x00FF) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
+                                    // Render liquid behind tiles if adjacent tile has liquid
+                                    if (_wvm.ShowLiquid)
+                                    {
+                                        Tile adjacentLiquidTile = null;
+                                        int adjacentX = x, adjacentY = y;
+
+                                        if (y > 0)
+                                        {
+                                            var aboveTile = _wvm.CurrentWorld.Tiles[x, y - 1];
+                                            if (aboveTile.LiquidAmount > 0)
+                                            {
+                                                adjacentLiquidTile = aboveTile;
+                                                adjacentY = y - 1;
+                                            }
+                                        }
+                                        // For horizontal liquid, render if one side has liquid AND other side has liquid or solid tile (not air/plants)
+                                        if (adjacentLiquidTile == null && x > 0 && x < _wvm.CurrentWorld.TilesWide - 1)
+                                        {
+                                            var leftTile = _wvm.CurrentWorld.Tiles[x - 1, y];
+                                            var rightTile = _wvm.CurrentWorld.Tiles[x + 1, y];
+                                            bool leftIsSolid = leftTile.IsActive && WorldConfiguration.GetTileProperties(leftTile.Type).IsSolid;
+                                            bool rightIsSolid = rightTile.IsActive && WorldConfiguration.GetTileProperties(rightTile.Type).IsSolid;
+                                            // Left has liquid, right has liquid or solid tile
+                                            if (leftTile.LiquidAmount > 0 && (rightTile.LiquidAmount > 0 || rightIsSolid))
+                                            {
+                                                adjacentLiquidTile = leftTile;
+                                                adjacentX = x - 1;
+                                            }
+                                            // Right has liquid, left has liquid or solid tile
+                                            else if (rightTile.LiquidAmount > 0 && (leftTile.LiquidAmount > 0 || leftIsSolid))
+                                            {
+                                                adjacentLiquidTile = rightTile;
+                                                adjacentX = x + 1;
+                                            }
+                                        }
+
+                                        if (adjacentLiquidTile != null)
+                                        {
+                                            Texture2D liquidTex = null;
+                                            var liquidColor = Color.White;
+                                            float alpha = 0.5f;
+
+                                            if (adjacentLiquidTile.LiquidType == LiquidType.Lava)
+                                            {
+                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(1);
+                                                alpha = 0.85f;
+                                            }
+                                            else if (adjacentLiquidTile.LiquidType == LiquidType.Honey)
+                                            {
+                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(11);
+                                            }
+                                            else if (adjacentLiquidTile.LiquidType == LiquidType.Shimmer)
+                                            {
+                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(14);
+                                                liquidColor = new Color(WorldConfiguration.GlobalColors["Shimmer"].PackedValue);
+                                            }
+                                            else
+                                            {
+                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(0);
+                                            }
+
+                                            if (liquidTex != null)
+                                            {
+                                                // Use same texture as the adjacent tile would use for its own rendering
+                                                // Check if adjacent tile has liquid above IT (at adjacentX, adjacentY - 1)
+                                                var liquidSource = new Rectangle(0, 8, 16, 8); // Default to body
+                                                var liquidDest = dest;
+                                                bool adjacentHasLiquidAbove = adjacentY > 0 && _wvm.CurrentWorld.Tiles[adjacentX, adjacentY - 1].LiquidAmount > 0;
+
+                                                if (!adjacentHasLiquidAbove)
+                                                {
+                                                    // Adjacent liquid is at the top - use surface texture with variable height
+                                                    liquidSource.Y = 0;
+                                                    liquidSource.Height = 4 + ((int)Math.Round(adjacentLiquidTile.LiquidAmount * 6f / 255f)) * 2;
+                                                    // Also adjust destination height and position like DrawTileLiquid does
+                                                    liquidDest.Height = (int)(liquidSource.Height * _zoom / 16f);
+                                                    liquidDest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom + ((16 - liquidSource.Height) * _zoom / 16f));
+                                                }
+                                                _spriteBatch.Draw(liquidTex, liquidDest, liquidSource, liquidColor * alpha, 0f, default, SpriteEffects.None, LayerTileSlopeLiquid);
+                                            }
+                                        }
+                                    }
 
                                     // hack for some slopes
                                     switch (curtile.BrickStyle)
@@ -3814,6 +4305,91 @@ public partial class WorldRenderXna : UserControl
                                     var source = new Rectangle((curtile.uvTileCache & 0x00FF) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
+                                    // Render liquid behind tiles if adjacent tile has liquid
+                                    if (_wvm.ShowLiquid)
+                                    {
+                                        Tile adjacentLiquidTile = null;
+                                        int adjacentX = x, adjacentY = y;
+
+                                        if (y > 0)
+                                        {
+                                            var aboveTile = _wvm.CurrentWorld.Tiles[x, y - 1];
+                                            if (aboveTile.LiquidAmount > 0 && !FilterManager.LiquidIsNotAllowed(aboveTile.LiquidType))
+                                            {
+                                                adjacentLiquidTile = aboveTile;
+                                                adjacentY = y - 1;
+                                            }
+                                        }
+                                        // For horizontal liquid, render if one side has liquid AND other side has liquid or solid tile (not air/plants)
+                                        if (adjacentLiquidTile == null && x > 0 && x < _wvm.CurrentWorld.TilesWide - 1)
+                                        {
+                                            var leftTile = _wvm.CurrentWorld.Tiles[x - 1, y];
+                                            var rightTile = _wvm.CurrentWorld.Tiles[x + 1, y];
+                                            bool leftIsSolid = leftTile.IsActive && WorldConfiguration.GetTileProperties(leftTile.Type).IsSolid;
+                                            bool rightIsSolid = rightTile.IsActive && WorldConfiguration.GetTileProperties(rightTile.Type).IsSolid;
+                                            // Left has liquid, right has liquid or solid tile
+                                            if (leftTile.LiquidAmount > 0 && (rightTile.LiquidAmount > 0 || rightIsSolid)
+                                                && !FilterManager.LiquidIsNotAllowed(leftTile.LiquidType))
+                                            {
+                                                adjacentLiquidTile = leftTile;
+                                                adjacentX = x - 1;
+                                            }
+                                            // Right has liquid, left has liquid or solid tile
+                                            else if (rightTile.LiquidAmount > 0 && (leftTile.LiquidAmount > 0 || leftIsSolid)
+                                                && !FilterManager.LiquidIsNotAllowed(rightTile.LiquidType))
+                                            {
+                                                adjacentLiquidTile = rightTile;
+                                                adjacentX = x + 1;
+                                            }
+                                        }
+
+                                        if (adjacentLiquidTile != null)
+                                        {
+                                            Texture2D liquidTex = null;
+                                            var liquidColor = Color.White;
+                                            float alpha = 0.5f;
+
+                                            if (adjacentLiquidTile.LiquidType == LiquidType.Lava)
+                                            {
+                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(1);
+                                                alpha = 0.85f;
+                                            }
+                                            else if (adjacentLiquidTile.LiquidType == LiquidType.Honey)
+                                            {
+                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(11);
+                                            }
+                                            else if (adjacentLiquidTile.LiquidType == LiquidType.Shimmer)
+                                            {
+                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(14);
+                                                liquidColor = new Color(WorldConfiguration.GlobalColors["Shimmer"].PackedValue);
+                                            }
+                                            else
+                                            {
+                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(0);
+                                            }
+
+                                            if (liquidTex != null)
+                                            {
+                                                // Use same texture as the adjacent tile would use for its own rendering
+                                                // Check if adjacent tile has liquid above IT (at adjacentX, adjacentY - 1)
+                                                var liquidSource = new Rectangle(0, 8, 16, 8); // Default to body
+                                                var liquidDest = dest;
+                                                bool adjacentHasLiquidAbove = adjacentY > 0 && _wvm.CurrentWorld.Tiles[adjacentX, adjacentY - 1].LiquidAmount > 0;
+
+                                                if (!adjacentHasLiquidAbove)
+                                                {
+                                                    // Adjacent liquid is at the top - use surface texture with variable height
+                                                    liquidSource.Y = 0;
+                                                    liquidSource.Height = 4 + ((int)Math.Round(adjacentLiquidTile.LiquidAmount * 6f / 255f)) * 2;
+                                                    // Also adjust destination height and position like DrawTileLiquid does
+                                                    liquidDest.Height = (int)(liquidSource.Height * _zoom / 16f);
+                                                    liquidDest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom + ((16 - liquidSource.Height) * _zoom / 16f));
+                                                }
+                                                _spriteBatch.Draw(liquidTex, liquidDest, liquidSource, liquidColor * alpha, 0f, default, SpriteEffects.None, LayerTileSlopeLiquid);
+                                            }
+                                        }
+                                    }
+
                                     // hack for some slopes
                                     switch (curtile.BrickStyle)
                                     {
@@ -4335,7 +4911,30 @@ public partial class WorldRenderXna : UserControl
                                     alpha = 0.85f;
                                 }
 
-                                if (neighborTile[n] != null && neighborTile[n].LiquidAmount > 0)
+                                // Check if there's liquid above (either actual or extended horizontal)
+                                bool hasLiquidAbove = neighborTile[n] != null && neighborTile[n].LiquidAmount > 0;
+
+                                // Also check for extended horizontal liquid above (only if tile above is solid, not plants)
+                                if (!hasLiquidAbove && y > 0 && neighborTile[n] != null && neighborTile[n].IsActive
+                                    && WorldConfiguration.GetTileProperties(neighborTile[n].Type).IsSolid)
+                                {
+                                    // Tile above is solid - check if it would have extended horizontal liquid
+                                    if (x > 0 && x < _wvm.CurrentWorld.TilesWide - 1)
+                                    {
+                                        var aboveLeft = _wvm.CurrentWorld.Tiles[x - 1, y - 1];
+                                        var aboveRight = _wvm.CurrentWorld.Tiles[x + 1, y - 1];
+                                        bool aboveLeftIsSolid = aboveLeft.IsActive && WorldConfiguration.GetTileProperties(aboveLeft.Type).IsSolid;
+                                        bool aboveRightIsSolid = aboveRight.IsActive && WorldConfiguration.GetTileProperties(aboveRight.Type).IsSolid;
+                                        // Same liquid type check for extended liquid
+                                        if ((aboveLeft.LiquidAmount > 0 && aboveLeft.LiquidType == curtile.LiquidType && (aboveRight.LiquidAmount > 0 || aboveRightIsSolid)) ||
+                                            (aboveRight.LiquidAmount > 0 && aboveRight.LiquidType == curtile.LiquidType && (aboveLeft.LiquidAmount > 0 || aboveLeftIsSolid)))
+                                        {
+                                            hasLiquidAbove = true;
+                                        }
+                                    }
+                                }
+
+                                if (hasLiquidAbove)
                                 {
                                     source.Y = 8;
                                     source.Height = 8;
@@ -4434,7 +5033,31 @@ public partial class WorldRenderXna : UserControl
                                     alpha = 0.85f;
                                 }
 
-                                if (neighborTile[n] != null && neighborTile[n].LiquidAmount > 0)
+                                // Check if there's liquid above (either actual or extended horizontal)
+                                // Check if there's liquid above (either actual or extended horizontal)
+                                bool hasLiquidAbove = neighborTile[n] != null && neighborTile[n].LiquidAmount > 0;
+
+                                // Also check for extended horizontal liquid above (only if tile above is solid, not plants)
+                                if (!hasLiquidAbove && y > 0 && neighborTile[n] != null && neighborTile[n].IsActive
+                                    && WorldConfiguration.GetTileProperties(neighborTile[n].Type).IsSolid)
+                                {
+                                    // Tile above is solid - check if it would have extended horizontal liquid
+                                    if (x > 0 && x < _wvm.CurrentWorld.TilesWide - 1)
+                                    {
+                                        var aboveLeft = _wvm.CurrentWorld.Tiles[x - 1, y - 1];
+                                        var aboveRight = _wvm.CurrentWorld.Tiles[x + 1, y - 1];
+                                        bool aboveLeftIsSolid = aboveLeft.IsActive && WorldConfiguration.GetTileProperties(aboveLeft.Type).IsSolid;
+                                        bool aboveRightIsSolid = aboveRight.IsActive && WorldConfiguration.GetTileProperties(aboveRight.Type).IsSolid;
+                                        // Same liquid type check for extended liquid (also check filter)
+                                        if ((aboveLeft.LiquidAmount > 0 && aboveLeft.LiquidType == curtile.LiquidType && !FilterManager.LiquidIsNotAllowed(aboveLeft.LiquidType) && (aboveRight.LiquidAmount > 0 || aboveRightIsSolid)) ||
+                                            (aboveRight.LiquidAmount > 0 && aboveRight.LiquidType == curtile.LiquidType && !FilterManager.LiquidIsNotAllowed(aboveRight.LiquidType) && (aboveLeft.LiquidAmount > 0 || aboveLeftIsSolid)))
+                                        {
+                                            hasLiquidAbove = true;
+                                        }
+                                    }
+                                }
+
+                                if (hasLiquidAbove)
                                 {
                                     source.Y = 8;
                                     source.Height = 8;

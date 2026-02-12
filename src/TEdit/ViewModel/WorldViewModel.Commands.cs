@@ -7,7 +7,6 @@ using System.Linq;
 using System.Windows;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using TEdit.Configuration;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Editor.Plugins;

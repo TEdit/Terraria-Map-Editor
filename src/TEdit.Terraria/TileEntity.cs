@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using TEdit.Configuration;
 
 namespace TEdit.Terraria;
 
@@ -37,6 +36,7 @@ public partial class TileEntity : ReactiveObject
                 TE.Type = (byte)TileEntityType.DisplayDoll;
                 TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 9));
                 TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 9));
+                TE.Misc = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 1));
                 TE.Pose = 0;
                 break;
             case (int)TileType.WeaponRackLegacy:

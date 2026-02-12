@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TEdit.Configuration;
 using TEdit.Terraria;
 
 namespace TEdit.Editor;

@@ -17,7 +17,7 @@
     <DockPanel Background="{StaticResource ControlBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
         <UniformGrid Columns="5" DockPanel.Dock="Top">
-            <Button Content="{x:Static p:Language.bestiary_load}" Padding="3" VerticalAlignment="Center" Command="{Binding LoadBestiaryCommand}" Click="Button_Click" />
+            <Button Content="{x:Static p:Language.bestiary_load}" Padding="3" VerticalAlignment="Center" Command="{Binding LoadBestiaryCommand}" />
             <Button Content="{x:Static p:Language.bestiary_clear}" Padding="3" VerticalAlignment="Center" Command="{Binding ResetBestiaryCommand}" />
             <Button Content="{x:Static p:Language.bestiary_complete}" Padding="3" VerticalAlignment="Center" Command="{Binding CompleteBestiaryCommand}" />
             <Button Content="{x:Static p:Language.bestiary_save}" Padding="3" VerticalAlignment="Center" Command="{Binding SaveBestiaryCommand}" />

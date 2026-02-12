@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.Xna.Framework;
-using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;

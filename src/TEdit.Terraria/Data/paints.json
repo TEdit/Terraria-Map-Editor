@@ -1,0 +1,160 @@
+[
+  {
+    "name": "None"
+  },
+  {
+    "id": 1,
+    "name": "红",
+    "color": "#FF0000FF"
+  },
+  {
+    "id": 2,
+    "name": "橙",
+    "color": "#FF7F00FF"
+  },
+  {
+    "id": 3,
+    "name": "黄",
+    "color": "#FFFF00FF"
+  },
+  {
+    "id": 4,
+    "name": "橙绿",
+    "color": "#7FFF00FF"
+  },
+  {
+    "id": 5,
+    "name": "绿",
+    "color": "#00FF00FF"
+  },
+  {
+    "id": 6,
+    "name": "青绿",
+    "color": "#00FF7FFF"
+  },
+  {
+    "id": 7,
+    "name": "青",
+    "color": "#00FFFFFF"
+  },
+  {
+    "id": 8,
+    "name": "天蓝",
+    "color": "#007FFFFF"
+  },
+  {
+    "id": 9,
+    "name": "蓝",
+    "color": "#0000FFFF"
+  },
+  {
+    "id": 10,
+    "name": "紫",
+    "color": "#7F00FFFF"
+  },
+  {
+    "id": 11,
+    "name": "蓝紫",
+    "color": "#FF00FFFF"
+  },
+  {
+    "id": 12,
+    "name": "粉",
+    "color": "#FF007FFF"
+  },
+  {
+    "id": 13,
+    "name": "深红",
+    "color": "#FF0000FF"
+  },
+  {
+    "id": 14,
+    "name": "深橙",
+    "color": "#FF7F00FF"
+  },
+  {
+    "id": 15,
+    "name": "深黄",
+    "color": "#FFFF00FF"
+  },
+  {
+    "id": 16,
+    "name": "深橙绿",
+    "color": "#7FFF00FF"
+  },
+  {
+    "id": 17,
+    "name": "深绿",
+    "color": "#00FF00FF"
+  },
+  {
+    "id": 18,
+    "name": "深青绿",
+    "color": "#00FF7FFF"
+  },
+  {
+    "id": 19,
+    "name": "深青",
+    "color": "#00FFFFFF"
+  },
+  {
+    "id": 20,
+    "name": "深天蓝",
+    "color": "#007FFFFF"
+  },
+  {
+    "id": 21,
+    "name": "深蓝",
+    "color": "#0000FFFF"
+  },
+  {
+    "id": 22,
+    "name": "深紫",
+    "color": "#7F00FFFF"
+  },
+  {
+    "id": 23,
+    "name": "深蓝紫",
+    "color": "#FF00FFFF"
+  },
+  {
+    "id": 24,
+    "name": "深粉",
+    "color": "#FF007FFF"
+  },
+  {
+    "id": 25,
+    "name": "黑",
+    "color": "#4B4B4BFF"
+  },
+  {
+    "id": 26,
+    "name": "白",
+    "color": "#FFFFFFFF"
+  },
+  {
+    "id": 27,
+    "name": "灰",
+    "color": "#AFAFAFFF"
+  },
+  {
+    "id": 28,
+    "name": "棕",
+    "color": "#FFB27DFF"
+  },
+  {
+    "id": 29,
+    "name": "暗影",
+    "color": "#191919FF"
+  },
+  {
+    "id": 30,
+    "name": "反色",
+    "color": "#FFFFFFFF"
+  },
+  {
+    "id": 31,
+    "name": "夜明",
+    "color": "#FFFFFFFF"
+  }
+]

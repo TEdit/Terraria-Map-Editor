@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using TEdit.Configuration;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 

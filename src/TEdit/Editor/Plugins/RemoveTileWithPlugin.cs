@@ -4,7 +4,6 @@ using TEdit.ViewModel;
 using System;
 using System.Windows;
 using TEdit.Geometry;
-using TEdit.Configuration;
 
 namespace TEdit.Editor.Plugins
 {

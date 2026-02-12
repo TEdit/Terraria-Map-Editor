@@ -10,16 +10,12 @@
 
   <ItemGroup>
     <None Remove="favorites.json" />
-    <None Remove="settings.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="favorites.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="settings.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -35,25 +31,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
-    <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework">
       <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Microsoft.Xna.Framework.Content.Pipeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="ReLogic">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\ReLogic.dll</HintPath>
-    </Reference>
-    <Reference Include="Terraria">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="TerrariaServer">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Terraria\TerrariaServer.exe</HintPath>
@@ -64,9 +46,6 @@
 
   <ItemGroup>
     <None Update="serverconfig.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="settings2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
-    <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
     <ProjectReference Include="..\TEdit.Terraria\TEdit.Terraria.csproj" />
   </ItemGroup>
 

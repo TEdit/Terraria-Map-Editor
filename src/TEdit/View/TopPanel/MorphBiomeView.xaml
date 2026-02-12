@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
              xmlns:Editor="clr-namespace:TEdit.Editor"
-             xmlns:config="clr-namespace:TEdit.Configuration;assembly=TEdit.Configuration"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
+             xmlns:conv="clr-namespace:TEdit.Converters"
              d:DesignWidth="400"
              d:DesignHeight="100"
              Background="{StaticResource WindowBackgroundBrush}"
@@ -16,17 +16,24 @@
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"             
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}" 
              mc:Ignorable="d" >
-    <StackPanel Orientation="Horizontal">
+  <UserControl.Resources>
+    <conv:BiomeNameConverter x:Key="BiomeNameConverter"/>
+  </UserControl.Resources>
+  <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical" Margin="2">
             <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
-            <ComboBox Width="200"
-                  ItemsSource="{Binding Source={x:Static config:WorldConfiguration.Biomes}}"
-                  DisplayMemberPath="Value"
-                  SelectedValuePath="Key"
-                  SelectedValue="{Binding MorphToolOptions.TargetBiome}"/>
+      <ComboBox Width="200"
+          ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.Biomes}}"
+          SelectedItem="{Binding MorphToolOptions.TargetBiome, Mode=TwoWay}">
+        <ComboBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding Converter={StaticResource BiomeNameConverter}}"/>
+          </DataTemplate>
+        </ComboBox.ItemTemplate>
+      </ComboBox>
       <TextBlock Text="苔藓型" Margin="2" />
             <ComboBox Width="200"
-                  ItemsSource="{Binding Source={x:Static config:WorldConfiguration.MossTypes}, Mode=OneTime}" 
+                  ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.MossTypes}, Mode=OneTime}" 
                       SelectedValuePath="Value" 
                       DisplayMemberPath="Key"
                   SelectedValue="{Binding MorphToolOptions.MossType}" />

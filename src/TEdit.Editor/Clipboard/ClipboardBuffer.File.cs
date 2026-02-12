@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;

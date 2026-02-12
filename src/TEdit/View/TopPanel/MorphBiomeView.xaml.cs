@@ -11,4 +11,9 @@ public partial class MorphBiomeView : UserControl
     {
         InitializeComponent();
     }
+
+    private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
 }

@@ -34,10 +34,11 @@ jobs:
         id: terraria
         shell: pwsh
         run: |
-          $data = Get-Content src/TEdit/TerrariaVersionTileData.json | ConvertFrom-Json
-          $latest = $data.saveVersions[-1]
-          "gameVersion=$($latest.gameVersion)" >> $env:GITHUB_OUTPUT
-          "saveVersion=$($latest.saveVersion)" >> $env:GITHUB_OUTPUT
+          $data = Get-Content src/TEdit.Terraria/Data/versions.json | ConvertFrom-Json
+          $map = $data.gameVersionToSaveVersion
+          $last = ($map.PSObject.Properties | Select-Object -Last 1)
+          "gameVersion=$($last.Name)" >> $env:GITHUB_OUTPUT
+          "saveVersion=$($last.Value)" >> $env:GITHUB_OUTPUT
 
       - name: Generate release notes
         id: git-cliff

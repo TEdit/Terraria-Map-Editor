@@ -1,4 +1,3 @@
-using TEdit.Configuration;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 

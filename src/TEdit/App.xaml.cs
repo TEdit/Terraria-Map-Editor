@@ -1,14 +1,15 @@
 ﻿using Semver;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
-using System.Xml.Linq;
+using Microsoft.Extensions.Configuration;
+using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Framework.Threading;
@@ -16,6 +17,7 @@ using TEdit.Properties;
 using TEdit.Utility;
 using ReactiveUI;
 using ReactiveUI.Builder;
+using TEdit.Terraria;
 using TEdit.ViewModel;
 
 namespace TEdit;
@@ -73,6 +75,11 @@ public partial class App : Application
     {
         // Read settings immediately.
         LoadAppSettings();
+
+        // Enable cross-thread access to Sprites2 collection (modified on graphics thread, bound to UI)
+        BindingOperations.EnableCollectionSynchronization(
+            WorldConfiguration.Sprites2,
+            WorldConfiguration.Sprites2Lock);
 
         Version = SemVersion.Parse(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion, SemVersionStyles.Any);
         ErrorLogging.Initialize();
@@ -196,32 +203,64 @@ public partial class App : Application
     }
 
     public static KeyboardShortcuts ShortcutKeys { get; } = new KeyboardShortcuts();
-    public static string AltC { get; set; }
-    public static int? SteamUserId { get; set; }
+    public static AppSettings AppConfig { get; private set; }
+    public static IConfiguration Configuration { get; private set; }
 
     public static void LoadAppSettings()
     {
-        var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
-        var xmlSettings = XElement.Load(settingspath);
-        foreach (var xElement in xmlSettings.Elements("ShortCutKeys").Elements("Shortcut"))
+        var basePath = AppDomain.CurrentDomain.BaseDirectory;
+        Configuration = new ConfigurationBuilder()
+            .SetBasePath(basePath)
+            .AddYamlFile("appsettings.yaml", optional: false, reloadOnChange: false)
+            .Build();
+
+        // Bind app settings
+        AppConfig = Configuration.GetSection("app").Get<AppSettings>() ?? new AppSettings();
+        ClipboardBufferRenderer.ClipboardRenderSize = (int)Calc.Clamp(AppConfig.ClipboardRenderSize, 64, 4096);
+
+        // Load shortcuts (action: keyCombo format, e.g., "Copy: ctrl+c")
+        var shortcuts = Configuration.GetSection("shortcuts").Get<Dictionary<string, string>>() ?? new();
+        foreach (var (action, keyCombo) in shortcuts)
         {
-
-            Enum.TryParse<Key>((string)xElement.Attribute("Key"), out var key);
-            Enum.TryParse<ModifierKeys>((string)xElement.Attribute("Modifier"), out var modifier);
-
-            var tool = (string)xElement.Attribute("Action");
-            ShortcutKeys.Add(tool, key, modifier);
+            ParseShortcut(keyCombo, out var key, out var modifiers);
+            if (key == Key.None)
+            {
+                ErrorLogging.Log($"[Settings] Invalid key in shortcut '{keyCombo}' for action '{action}'; skipping.");
+                continue;
+            }
+            bool duplicate = ShortcutKeys.Add(action, key, modifiers);
+            if (duplicate)
+            {
+                ErrorLogging.Log($"[Settings] Duplicate shortcut {modifiers}+{key} -> using first binding, ignoring '{action}'.");
+            }
         }
+    }
 
-        XElement appSettings = xmlSettings.Element("App");
-        int appWidth = (int?)appSettings.Attribute("Width") ?? 800;
-        int appHeight = (int?)appSettings.Attribute("Height") ?? 600;
-        int clipboardSize = (int)Calc.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
+    private static void ParseShortcut(string combo, out Key key, out ModifierKeys modifiers)
+    {
+        modifiers = ModifierKeys.None;
+        key = Key.None;
 
-
-        ClipboardBufferRenderer.ClipboardRenderSize = clipboardSize;
-        ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
-        AltC = (string)(xmlSettings.Element("AltC") ?? xmlSettings.Element("App")?.Element("AltC")); // Handles either nesting.
-        SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;
+        var parts = combo.ToLowerInvariant().Split('+');
+        foreach (var part in parts)
+        {
+            switch (part.Trim())
+            {
+                case "ctrl":
+                    modifiers |= ModifierKeys.Control;
+                    break;
+                case "shift":
+                    modifiers |= ModifierKeys.Shift;
+                    break;
+                case "alt":
+                    modifiers |= ModifierKeys.Alt;
+                    break;
+                default:
+                    // Try to parse the key
+                    if (Enum.TryParse<Key>(part, true, out var parsedKey))
+                        key = parsedKey;
+                    break;
+            }
+        }
     }
 }
