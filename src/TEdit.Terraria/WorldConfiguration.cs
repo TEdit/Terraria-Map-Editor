@@ -197,9 +197,9 @@ public class WorldConfiguration
             _itemLookup[item.Id] = item;
 
             if (item.Tally > 0) _tallynames[item.Tally] = item.Name;
-            if (item.Head >= 0) _armorHeadNames[item.Id] = item.Name;
-            if (item.Body >= 0) _armorBodyNames[item.Id] = item.Name;
-            if (item.Legs >= 0) _armorLegsNames[item.Id] = item.Name;
+            if (item.Head.HasValue) _armorHeadNames[item.Id] = item.Name;
+            if (item.Body.HasValue) _armorBodyNames[item.Id] = item.Name;
+            if (item.Legs.HasValue) _armorLegsNames[item.Id] = item.Name;
             if (item.IsRackable) _rackable[item.Id] = item.Name;
             if (item.IsFood) _foodNames[item.Id] = item.Name;
             if (item.IsCritter) _critterNames[item.Id] = item.Name;

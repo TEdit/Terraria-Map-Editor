@@ -68,6 +68,83 @@ public static class JsonMerger
     }
 
     /// <summary>
+    /// Merges items by ID, adding missing properties to existing items and appending new items.
+    /// Unlike MergeById which only appends, this method updates existing items with new properties.
+    /// </summary>
+    public static MergeResult MergeByIdWithPropertyUpdate<T>(
+        string path,
+        IList<T> newItems,
+        Func<T, int> idSelector,
+        JsonSerializerOptions options)
+    {
+        if (!File.Exists(path))
+        {
+            using var stream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            JsonSerializer.Serialize(stream, newItems, options);
+            return new MergeResult
+            {
+                ExistingCount = 0,
+                AddedCount = newItems.Count,
+                AddedKeys = newItems.Select(i => idSelector(i).ToString()).ToList()
+            };
+        }
+
+        var existingText = File.ReadAllText(path);
+        var existingArray = JsonNode.Parse(existingText)!.AsArray();
+
+        // Build lookup of existing items by ID
+        var existingById = new Dictionary<int, JsonObject>();
+        foreach (var node in existingArray)
+        {
+            if (node is JsonObject obj)
+            {
+                int id = obj["id"]?.GetValue<int>() ?? 0;
+                existingById[id] = obj;
+            }
+        }
+
+        int updatedCount = 0;
+        var addedIds = new List<string>();
+
+        foreach (var newItem in newItems)
+        {
+            int id = idSelector(newItem);
+            var newNode = JsonSerializer.SerializeToNode(newItem, options)!.AsObject();
+
+            if (existingById.TryGetValue(id, out var existingObj))
+            {
+                // Update existing item with missing properties
+                bool updated = false;
+                foreach (var prop in newNode)
+                {
+                    if (!existingObj.ContainsKey(prop.Key))
+                    {
+                        existingObj[prop.Key] = prop.Value?.DeepClone();
+                        updated = true;
+                    }
+                }
+                if (updated) updatedCount++;
+            }
+            else
+            {
+                // Add new item
+                existingArray.Add(newNode);
+                addedIds.Add(id.ToString());
+            }
+        }
+
+        // Write back
+        File.WriteAllText(path, existingArray.ToJsonString(options));
+
+        return new MergeResult
+        {
+            ExistingCount = existingById.Count,
+            AddedCount = addedIds.Count,
+            AddedKeys = addedIds
+        };
+    }
+
+    /// <summary>
     /// Merges new items into an existing JSON array file, keyed by string "name" property.
     /// Items with names already present in the file are skipped. Existing data is preserved byte-for-byte.
     /// </summary>
@@ -277,7 +354,11 @@ public static class JsonMerger
         }
 
         var existingText = File.ReadAllText(path);
-        var root = JsonNode.Parse(existingText)!.AsObject();
+        var parsed = JsonNode.Parse(existingText);
+        if (parsed is not JsonObject root)
+        {
+            throw new InvalidOperationException($"Bestiary file '{path}' must be a JSON object, not {parsed?.GetType().Name ?? "null"}");
+        }
 
         // Collect existing NPC IDs
         var existingNpcIds = new HashSet<int>();

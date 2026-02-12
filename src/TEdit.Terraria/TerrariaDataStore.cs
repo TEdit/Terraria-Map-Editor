@@ -274,9 +274,9 @@ public class TerrariaDataStore
             ItemById[item.Id] = item;
 
             if (item.Tally > 0) TallyNames[item.Tally] = item.Name;
-            if (item.Head >= 0) ArmorHeadNames[item.Id] = item.Name;
-            if (item.Body >= 0) ArmorBodyNames[item.Id] = item.Name;
-            if (item.Legs >= 0) ArmorLegsNames[item.Id] = item.Name;
+            if (item.Head.HasValue) ArmorHeadNames[item.Id] = item.Name;
+            if (item.Body.HasValue) ArmorBodyNames[item.Id] = item.Name;
+            if (item.Legs.HasValue) ArmorLegsNames[item.Id] = item.Name;
             if (item.IsRackable) Rackable[item.Id] = item.Name;
             if (item.IsFood) FoodNames[item.Id] = item.Name;
             if (item.IsCritter) CritterNames[item.Id] = item.Name;

@@ -1198,6 +1198,27 @@ public partial class WorldRenderXna : UserControl
         _spriteBatch.End();
     }
 
+    /// <summary>
+    /// Gets the rarity color for an item based on its rarity name.
+    /// Uses global colors from configuration, falls back to blue.
+    /// </summary>
+    private Color GetRarityColor(string rarityName)
+    {
+        if (string.IsNullOrEmpty(rarityName))
+            rarityName = "Blue";
+
+        // Global colors use "Rarity_" prefix
+        string colorName = "Rarity_" + rarityName;
+
+        if (WorldConfiguration.GlobalColors.TryGetValue(colorName, out var teditColor))
+        {
+            return new Color(teditColor.R, teditColor.G, teditColor.B, teditColor.A);
+        }
+
+        // Fallback to default blue
+        return new Color(150, 150, 255);
+    }
+
     private void DrawTileEntities()
     {
         Texture2D tileTex;
@@ -1219,23 +1240,7 @@ public partial class WorldRenderXna : UserControl
                 case TileEntityType.TrainingDummy:
                     break;
                 case TileEntityType.DeadCellsDisplayJar:
-                    {
-                        int weapon = te.NetId;
-                        if (weapon == 0) continue;
-                        tileTex = (Texture2D)_textureDictionary.GetItem(weapon);
-                        SpriteEffects effect = curtile.U == 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                        WorldConfiguration.ItemLookupTable.TryGetValue(weapon, out var itemProps);
-                        float scale = itemProps?.Scale ?? 1.0f;
-                        source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
-                        _spriteBatch.Draw(
-                            tileTex,
-                            new Vector2(1 + (int)((_scrollPosition.X + x + 1 - 0.5f) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1 + 0.25f) * _zoom)),
-                            source,
-                            Color.White,
-                            0f,
-                            new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)),
-                            scale * _zoom / 16f * 0.75f, effect, LayerTileTrack);
-                    }
+                    // Handled in DrawTileTextures
                     break;
                 case TileEntityType.ItemFrame:
                     {
@@ -1259,6 +1264,95 @@ public partial class WorldRenderXna : UserControl
                 case TileEntityType.LogicSensor:
                     break;
                 case TileEntityType.DisplayDoll:
+                    {
+                        // Only render if we have items
+                        if (te.Items == null || te.Items.Count == 0) break;
+
+                        // Mannequin is 2 tiles wide x 3 tiles tall
+                        // Render up to 3 main armor pieces + weapon
+                        float[] yOffsets = { 0.5f, 1.5f, 2.5f }; // Head, body, legs positions
+                        int[] armorSlots = { 0, 1, 2 };          // Corresponding slots
+
+                        for (int i = 0; i < armorSlots.Length && i < te.Items.Count; i++)
+                        {
+                            var item = te.Items[armorSlots[i]];
+                            if (item == null || item.Id <= 0 || item.StackSize <= 0) continue;
+
+                            tileTex = (Texture2D)_textureDictionary.GetItem(item.Id);
+                            if (tileTex == null) continue;
+
+                            WorldConfiguration.ItemLookupTable.TryGetValue(item.Id, out var itemProps);
+                            float scale = itemProps?.Scale ?? 1.0f;
+
+                            // Constrain to fit in mannequin (max ~24px)
+                            float maxDimension = Math.Max(tileTex.Width, tileTex.Height) * scale;
+                            if (maxDimension > 24)
+                            {
+                                scale *= 24f / maxDimension;
+                            }
+
+                            // Center on mannequin (2 tiles wide = center at +1 tile)
+                            Vector2 position = new Vector2(
+                                1 + (int)((_scrollPosition.X + x + 1f) * _zoom),
+                                1 + (int)((_scrollPosition.Y + y + yOffsets[i]) * _zoom)
+                            );
+
+                            source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+
+                            _spriteBatch.Draw(
+                                tileTex,
+                                position,
+                                source,
+                                Color.White,
+                                0f,
+                                new Vector2(tileTex.Width / 2f, tileTex.Height / 2f),
+                                scale * _zoom / 16f,
+                                SpriteEffects.None,
+                                LayerTileTrack
+                            );
+                        }
+
+                        // Render weapon from Misc[0] if present
+                        if (te.Misc != null && te.Misc.Count > 0)
+                        {
+                            var weapon = te.Misc[0];
+                            if (weapon != null && weapon.Id > 0 && weapon.StackSize > 0)
+                            {
+                                tileTex = (Texture2D)_textureDictionary.GetItem(weapon.Id);
+                                if (tileTex != null)
+                                {
+                                    WorldConfiguration.ItemLookupTable.TryGetValue(weapon.Id, out var weaponProps);
+                                    float weaponScale = weaponProps?.Scale ?? 1.0f;
+
+                                    float maxDim = Math.Max(tileTex.Width, tileTex.Height) * weaponScale;
+                                    if (maxDim > 32)
+                                    {
+                                        weaponScale *= 32f / maxDim;
+                                    }
+
+                                    // Position weapon to the right side of mannequin
+                                    Vector2 weaponPos = new Vector2(
+                                        1 + (int)((_scrollPosition.X + x + 2f) * _zoom),
+                                        1 + (int)((_scrollPosition.Y + y + 1.5f) * _zoom)
+                                    );
+
+                                    source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+
+                                    _spriteBatch.Draw(
+                                        tileTex,
+                                        weaponPos,
+                                        source,
+                                        Color.White,
+                                        0f,
+                                        new Vector2(tileTex.Width / 2f, tileTex.Height / 2f),
+                                        weaponScale * _zoom / 16f,
+                                        SpriteEffects.None,
+                                        LayerTileTrack
+                                    );
+                                }
+                            }
+                        }
+                    }
                     break;
                 case TileEntityType.WeaponRack:
                     {
@@ -2192,6 +2286,115 @@ public partial class WorldRenderXna : UserControl
                                                      LayerTileTextures);
                                             }
                                         }
+                                    }
+                                    else if (curtile.Type == (int)TileType.DeadCellsDisplayJar && curtile.V == 0)
+                                    {
+                                        // DisplayJar: 1x2 tiles, visual 36x44px
+                                        // Only render from anchor (top) tile (V == 0)
+                                        // Texture layers: Y=0 main jar, Y=46 foreground border, Y=92 background glow
+                                        // Draw order: main -> background (if item) -> item -> foreground
+
+                                        // Variant based on U: 0=variant0, 18=variant1, 36=variant2
+                                        int variant = curtile.U / 18;
+                                        int jarSourceX = variant * 38;
+
+                                        // Source rectangles for the 3 layers
+                                        Rectangle jarMain = new Rectangle(jarSourceX, 0, 36, 44);
+                                        Rectangle jarForeground = new Rectangle(jarSourceX, 46, 36, 44);
+                                        Rectangle jarBackground = new Rectangle(jarSourceX, 92, 36, 44);
+
+                                        // Dest rectangle - jar is 36px wide, centered on 16px tile (offset -10px)
+                                        int jarDestX = 1 + (int)((_scrollPosition.X + x) * _zoom) - (int)(10 * _zoom / 16f);
+                                        int jarDestY = 1 + (int)((_scrollPosition.Y + y) * _zoom);
+                                        int jarDestW = (int)(36 * _zoom / 16f);
+                                        int jarDestH = (int)(44 * _zoom / 16f);
+                                        Rectangle jarDest = new Rectangle(jarDestX, jarDestY, jarDestW, jarDestH);
+
+                                        Texture2D jarTex = _textureDictionary.GetTile(curtile.Type);
+
+                                        // 1. Draw main jar (Y=0) with tile lighting
+                                        _spriteBatch.Draw(jarTex, jarDest, jarMain, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+
+                                        // Check for item in jar
+                                        TileEntity entity = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
+                                        int itemId = entity?.NetId ?? 0;
+
+                                        if (itemId > 0)
+                                        {
+                                            // Get item rarity for color
+                                            string rarity = "Blue"; // Default
+                                            float scale = 1f;
+                                            if (WorldConfiguration.ItemLookupTable.TryGetValue(itemId, out var itemProps))
+                                            {
+                                                scale = itemProps?.Scale ?? 1.0f;
+                                                rarity = itemProps?.Rarity ?? "Blue";
+                                            }
+
+                                            // Get rarity color from global colors
+                                            Color rarityColor = GetRarityColor(rarity);
+
+                                            // 2. Draw background glow (Y=92) - dimmed rarity color (0.25x)
+                                            Color bgColor = rarityColor * 0.25f;
+                                            _spriteBatch.Draw(jarTex, jarDest, jarBackground, bgColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+
+                                            // 3. Draw item inside jar
+                                            tileTex = (Texture2D)_textureDictionary.GetItem(itemId);
+
+                                            // Size limits and Y offset per variant (from reference)
+                                            int sizeLimit;
+                                            float extraYPixels;
+                                            switch (variant)
+                                            {
+                                                case 1: sizeLimit = 18; extraYPixels = 4f; break;
+                                                case 2: sizeLimit = 20; extraYPixels = 6f; break;
+                                                default: sizeLimit = 22; extraYPixels = -1f; break;
+                                            }
+
+                                            float maxDim = Math.Max(tileTex.Width, tileTex.Height) * scale;
+                                            if (maxDim > sizeLimit)
+                                            {
+                                                scale *= sizeLimit / maxDim;
+                                            }
+
+                                            source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+
+                                            // Item position: centered in jar, Y = 24 + variant offset from jar top
+                                            float itemOffsetX = 0.5f;
+                                            float itemOffsetY = (24f + extraYPixels) / 16f;
+
+                                            // Blend item with lighting
+                                            Color itemColor = Color.Lerp(tilePaintColor, Color.White, 0.5f);
+
+                                            _spriteBatch.Draw(tileTex,
+                                                new Vector2(
+                                                    1 + (int)((_scrollPosition.X + x + itemOffsetX) * _zoom),
+                                                    1 + (int)((_scrollPosition.Y + y + itemOffsetY) * _zoom)),
+                                                source,
+                                                itemColor,
+                                                0f,
+                                                new Vector2(tileTex.Width / 2f, tileTex.Height / 2f),
+                                                scale * _zoom / 16f,
+                                                SpriteEffects.None,
+                                                LayerTileTextures);
+
+                                            // 4. Draw foreground border (Y=46) with rarity color and alpha
+                                            Color fgColor = new Color(rarityColor.R, rarityColor.G, rarityColor.B, (byte)127);
+                                            _spriteBatch.Draw(jarTex, jarDest, jarForeground, fgColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                        }
+                                        else
+                                        {
+                                            // Empty jar - draw default blue foreground border
+                                            Color fgColor = new Color(150, 150, 255, 127);
+                                            _spriteBatch.Draw(jarTex, jarDest, jarForeground, fgColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                        }
+
+                                        // Skip normal tile rendering for this tile
+                                        continue;
+                                    }
+                                    else if (curtile.Type == (int)TileType.DeadCellsDisplayJar && curtile.V != 0)
+                                    {
+                                        // Bottom tile of DisplayJar - skip rendering (handled by top tile)
+                                        continue;
                                     }
                                     else if (curtile.Type == (int)TileType.ChristmasTree) // Christmas Tree
                                     {

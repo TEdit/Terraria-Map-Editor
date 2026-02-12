@@ -1059,15 +1059,40 @@ namespace SettingsFileUpdater.TerrariaHost
                     IsCritter = isCritter,
                     IsAccessory = curitem.accessory,
                     IsRackable = isRackable,
-                    Head = curitem.headSlot > 0 ? curitem.headSlot : -1,
-                    Body = curitem.bodySlot > 0 ? curitem.bodySlot : -1,
-                    Legs = curitem.legSlot > 0 ? curitem.legSlot : -1,
-                    Tally = tally
+                    Head = curitem.headSlot > 0 ? curitem.headSlot : null,
+                    Body = curitem.bodySlot > 0 ? curitem.bodySlot : null,
+                    Legs = curitem.legSlot > 0 ? curitem.legSlot : null,
+                    Tally = tally,
+                    Rarity = GetRarityName(curitem.rare)
                 });
             }
 
             return result;
         }
+
+        /// <summary>
+        /// Maps a rarity number to its name for JSON output.
+        /// Returns null for White (rarity 0) since that's the default.
+        /// </summary>
+        private static string? GetRarityName(int rarity) => rarity switch
+        {
+            -13 => "Master",
+            -12 => "Expert",
+            -11 => "Quest",
+            -1 => "Gray",
+            1 => "Blue",
+            2 => "Green",
+            3 => "Orange",
+            4 => "LightRed",
+            5 => "Pink",
+            6 => "LightPurple",
+            7 => "Lime",
+            8 => "Yellow",
+            9 => "Cyan",
+            10 => "Red",
+            11 => "Purple",
+            _ => null  // White (0) or unknown rarities
+        };
 
         /// <summary>
         /// Gets friendly NPC data in JSON-compatible format.
@@ -1305,6 +1330,56 @@ namespace SettingsFileUpdater.TerrariaHost
                 {
                     Name = "Shimmer",
                     Color = ToTEditColor(c)
+                });
+            }
+
+            // Add rarity colors using Terraria's Item.GetPopupRarityColor
+            // These are used for DisplayJar and other item displays
+            var rarityNames = new Dictionary<int, string>
+            {
+                { -13, "Rarity_Master" },      // Animated in-game (fiery)
+                { -12, "Rarity_Expert" },      // Animated in-game (rainbow)
+                { -11, "Rarity_Quest" },
+                { -1, "Rarity_Gray" },
+                { 0, "Rarity_White" },
+                { 1, "Rarity_Blue" },
+                { 2, "Rarity_Green" },
+                { 3, "Rarity_Orange" },
+                { 4, "Rarity_LightRed" },
+                { 5, "Rarity_Pink" },
+                { 6, "Rarity_LightPurple" },
+                { 7, "Rarity_Lime" },
+                { 8, "Rarity_Yellow" },
+                { 9, "Rarity_Cyan" },
+                { 10, "Rarity_Red" },
+                { 11, "Rarity_Purple" },
+            };
+
+            foreach (var kvp in rarityNames.OrderBy(x => x.Key))
+            {
+                Microsoft.Xna.Framework.Color rarityColor;
+
+                // Animated rarities need static representative colors
+                if (kvp.Key == -13)
+                {
+                    // Master: Fiery orange (peak of animation)
+                    rarityColor = new Microsoft.Xna.Framework.Color(255, 140, 0);
+                }
+                else if (kvp.Key == -12)
+                {
+                    // Expert: Rainbow (using magenta as representative)
+                    rarityColor = new Microsoft.Xna.Framework.Color(255, 0, 255);
+                }
+                else
+                {
+                    // Use Terraria's actual rarity color
+                    rarityColor = Item.GetPopupRarityColor(kvp.Key);
+                }
+
+                result.Add(new GlobalColorJson
+                {
+                    Name = kvp.Value,
+                    Color = ToTEditColor(rarityColor)
                 });
             }
 

@@ -24,9 +24,9 @@ public class ItemPropertyTests
             IsAccessory = false,
             IsRackable = true,
             IsMount = false,
-            Head = -1,
-            Body = -1,
-            Legs = -1,
+            Head = null,
+            Body = null,
+            Legs = null,
             Tally = 0,
         };
 
@@ -36,7 +36,7 @@ public class ItemPropertyTests
         restored.Id.ShouldBe(1);
         restored.Name.ShouldBe("Iron Pickaxe");
         restored.IsRackable.ShouldBe(true);
-        restored.Head.ShouldBe(-1);
+        restored.Head.ShouldBeNull();
     }
 
     [Fact]
@@ -47,16 +47,16 @@ public class ItemPropertyTests
             Id = 100,
             Name = "Iron Helmet",
             Head = 5,
-            Body = -1,
-            Legs = -1,
+            Body = null,
+            Legs = null,
         };
 
         var json = JsonSerializer.Serialize(original, Options);
         var restored = JsonSerializer.Deserialize<ItemProperty>(json, Options)!;
 
         restored.Head.ShouldBe(5);
-        restored.Body.ShouldBe(-1);
-        restored.Legs.ShouldBe(-1);
+        restored.Body.ShouldBeNull();
+        restored.Legs.ShouldBeNull();
     }
 
     [Fact]
@@ -81,8 +81,8 @@ public class ItemPropertyTests
     {
         var item = new ItemProperty();
         item.Scale.ShouldBe(1f);
-        item.Head.ShouldBe(-1);
-        item.Body.ShouldBe(-1);
-        item.Legs.ShouldBe(-1);
+        item.Head.ShouldBeNull();
+        item.Body.ShouldBeNull();
+        item.Legs.ShouldBeNull();
     }
 }

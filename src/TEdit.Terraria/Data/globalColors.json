@@ -14,8 +14,21 @@
   { "name": "Wire3", "color": "#FFFF0070" },
   { "name": "Illuminant", "color": "#FFFFFF70" },
   { "name": "Echo", "color": "#00000070" },
-  {
-    "name": "Dirt",
-    "color": "#3E4554FF"
-  }
+  { "name": "Dirt", "color": "#3E4554FF" },
+  { "name": "Rarity_Master", "color": "#FF8C00FF" },
+  { "name": "Rarity_Expert", "color": "#FF00FFFF" },
+  { "name": "Rarity_Quest", "color": "#FFAF00FF" },
+  { "name": "Rarity_Gray", "color": "#828282FF" },
+  { "name": "Rarity_White", "color": "#FFFFFFFF" },
+  { "name": "Rarity_Blue", "color": "#9696FFFF" },
+  { "name": "Rarity_Green", "color": "#96FF96FF" },
+  { "name": "Rarity_Orange", "color": "#FFC896FF" },
+  { "name": "Rarity_LightRed", "color": "#FF9696FF" },
+  { "name": "Rarity_Pink", "color": "#FF96FFFF" },
+  { "name": "Rarity_LightPurple", "color": "#D2A0FFFF" },
+  { "name": "Rarity_Lime", "color": "#96FF0AFF" },
+  { "name": "Rarity_Yellow", "color": "#FFFF0AFF" },
+  { "name": "Rarity_Cyan", "color": "#05C8FFFF" },
+  { "name": "Rarity_Red", "color": "#FF2864FF" },
+  { "name": "Rarity_Purple", "color": "#B428FFFF" }
 ]

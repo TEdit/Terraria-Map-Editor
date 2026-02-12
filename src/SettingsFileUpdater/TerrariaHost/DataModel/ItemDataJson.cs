@@ -19,11 +19,20 @@ public class ItemDataJson
     public bool IsAccessory { get; set; }
     public bool IsRackable { get; set; }
 
-    // Armor slot indexes (-1 = not an armor piece)
-    public int Head { get; set; } = -1;
-    public int Body { get; set; } = -1;
-    public int Legs { get; set; } = -1;
+    // Armor slot indexes (null = not an armor piece)
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public int? Head { get; set; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public int? Body { get; set; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public int? Legs { get; set; }
 
     // Kill tally index (0 = none)
     public int Tally { get; set; }
+
+    // Item rarity name (null = White, otherwise Master, Expert, Quest, Gray, Blue, Green, etc.)
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Rarity { get; set; }
 }

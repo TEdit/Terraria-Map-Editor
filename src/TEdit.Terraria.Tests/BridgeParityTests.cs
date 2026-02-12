@@ -213,9 +213,9 @@ public class BridgeParityTests : IDisposable
         // These should have at least some entries if items have the right flags
         var items = _store.Items;
 
-        var expectedHeadCount = items.Count(i => i.Head >= 0);
-        var expectedBodyCount = items.Count(i => i.Body >= 0);
-        var expectedLegsCount = items.Count(i => i.Legs >= 0);
+        var expectedHeadCount = items.Count(i => i.Head.HasValue);
+        var expectedBodyCount = items.Count(i => i.Body.HasValue);
+        var expectedLegsCount = items.Count(i => i.Legs.HasValue);
         var expectedFoodCount = items.Count(i => i.IsFood);
         var expectedRackableCount = items.Count(i => i.IsRackable);
 

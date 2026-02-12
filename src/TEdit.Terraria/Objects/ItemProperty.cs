@@ -23,13 +23,16 @@ public class ItemProperty : ITile
     public bool IsRackable { get; set; }
     public bool IsMount { get; set; }
 
-    // Armor slot indexes (-1 = not an armor piece)
-    public int Head { get; set; } = -1;
-    public int Body { get; set; } = -1;
-    public int Legs { get; set; } = -1;
+    // Armor slot indexes (null = not an armor piece)
+    public int? Head { get; set; }
+    public int? Body { get; set; }
+    public int? Legs { get; set; }
 
     // Kill tally index (0 = none)
     public int Tally { get; set; }
+
+    // Item rarity name (Master, Expert, Quest, Gray, White, Blue, Green, etc.)
+    public string Rarity { get; set; } = "White";
 
     // Legacy properties (for compatibility)
     [JsonIgnore]

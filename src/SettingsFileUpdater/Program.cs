@@ -67,6 +67,7 @@ namespace SettingsFileUpdater
             string exeDir = AppDomain.CurrentDomain.BaseDirectory;
 
             // JSON output directory (relative to SettingsFileUpdater project)
+            // Path: bin/Debug/net48 -> bin/Debug -> bin -> SettingsFileUpdater -> src/TEdit.Terraria/Data
             string jsonOutputDir = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\TEdit.Terraria\Data"));
             Directory.CreateDirectory(jsonOutputDir);
 
@@ -113,8 +114,8 @@ namespace SettingsFileUpdater
             results["Walls"] = JsonMerger.MergeById(
                 Path.Combine(jsonOutputDir, "walls.json"), walls, w => w.Id, jsonOptions);
 
-            Console.WriteLine("  Merging items.json...");
-            results["Items"] = JsonMerger.MergeById(
+            Console.WriteLine("  Merging items.json (with property updates)...");
+            results["Items"] = JsonMerger.MergeByIdWithPropertyUpdate(
                 Path.Combine(jsonOutputDir, "items.json"), items, i => i.Id, jsonOptions);
 
             Console.WriteLine("  Merging npcs.json...");
