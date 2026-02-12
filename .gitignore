@@ -60,3 +60,4 @@ ref/*
 /.generated/*
 .generated/
 /src/SettingsFileUpdater/TEdit.Terraria/Data/
+*.wld.TEdit
