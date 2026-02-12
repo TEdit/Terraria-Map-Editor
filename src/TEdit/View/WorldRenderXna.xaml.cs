@@ -516,22 +516,50 @@ public partial class WorldRenderXna : UserControl
                         int sourceY = uv.Y + (y * sprite.SizePixelsInterval.Y);
                         int destX = x * sprite.SizePixelsRender.X;
                         int destY = y * sprite.SizePixelsRender.Y;
+                        int renderX = sprite.SizePixelsRender.X;
                         int renderY = sprite.SizePixelsRender.Y;
 
                         // Handle tall gates (tiles 388, 389) special case
                         if (sprite.Tile == 388 || sprite.Tile == 389)
                         {
+                            var offY = uv.Y == 100 ? 94 : 0;
                             switch (y)
                             {
-                                case 0: renderY = 18; break;
-                                case 1: destY = 18; renderY = 16; break;
-                                case 2: destY = 18 + 16; renderY = 16; break;
-                                case 3: destY = 18 + 16 + 16; renderY = 16; break;
-                                case 4: destY = 18 + 16 + 16 + 16; renderY = 18; break;
+                                case 0: sourceY = offY; renderY = 18; break;
+                                case 1: sourceY = offY + 20; destY = 18; renderY = 16; break;
+                                case 2: sourceY = offY + 20 + 18; destY = 18 + 16; renderY = 16; break;
+                                case 3: sourceY = offY + 20 + 18 + 18; destY = 18 + 16 + 16; renderY = 16; break;
+                                case 4: sourceY = offY + 20 + 18 + 18 + 18; destY = 18 + 16 + 16 + 16; renderY = 18; break;
+                            }
+                        }
+                        // Handle Chimney (tiles 406) special case
+                        else if (sprite.Tile == 406)
+                        {
+                            switch(uv.Y / 54)
+                            {
+                                // On A
+                                case 0: break;
+                                // On B
+                                case 1: sourceY = sourceY % 54 + 56; break;
+                                // Off
+                                case 2: sourceY = sourceY % 54 + 56 * 6; break;
+                            }
+                        }
+                        // Handle Aether Monolith (tiles 658) special case
+                        else if (sprite.Tile == 658)
+                        {
+                            switch(uv.Y / 54)
+                            {
+                                // On A
+                                case 0: break;
+                                // On B
+                                case 1: sourceY = sourceY % 54 + 54 * 10; break;
+                                // Off
+                                case 2: sourceY = sourceY % 54 + 54 * 20; break;
                             }
                         }
 
-                        var source = new Rectangle(sourceX, sourceY, sprite.SizePixelsRender.X, renderY);
+                        var source = new Rectangle(sourceX, sourceY, renderX, renderY);
 
                         // Out of bounds checks
                         if (source.Bottom > tileTex.Height)

@@ -525,7 +525,6 @@
                         </TextBlock.Text>
                     </TextBlock>
                 </StackPanel>
-                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource FoodItemTemplate}"  Content="{Binding Path=SelectedTileEntity}" />
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_head}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
