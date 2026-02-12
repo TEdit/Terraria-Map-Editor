@@ -33,12 +33,12 @@
             <TextBlock Text="Width" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding TilesWide, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding TilesWide, Mode=TwoWay}" VerticalAlignment="Center" Minimum="200" Maximum="8400" SmallChange="50" LargeChange="500" Interval="50" TickFrequency="50" IsSnapToTickEnabled="True" />
+        <Slider Value="{Binding TilesWide, Mode=TwoWay}" VerticalAlignment="Center" Minimum="200" Maximum="8400" SmallChange="200" LargeChange="600" Interval="200" TickFrequency="200" IsSnapToTickEnabled="True" />
             </DockPanel>
             <TextBlock Text="Height" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding TilesHighReactive, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding TilesHigh, Mode=TwoWay}" VerticalAlignment="Center" Minimum="200" Maximum="2400" SmallChange="50" LargeChange="500" Interval="50" TickFrequency="50" IsSnapToTickEnabled="True" />
+        <Slider Value="{Binding TilesHigh, Mode=TwoWay}" VerticalAlignment="Center" Minimum="150" Maximum="2400" SmallChange="150" LargeChange="450" Interval="150" TickFrequency="150" IsSnapToTickEnabled="True" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Surface Level" HorizontalAlignment="Right" />
