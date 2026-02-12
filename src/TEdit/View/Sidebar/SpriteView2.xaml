@@ -31,6 +31,16 @@
               <Run Text="{Binding SelectedSpriteSheet.Name, Mode=OneWay}"/>
               <Run Text="{x:Static p:Language.sprite_styletype}"/>
             </TextBlock>
+            <!-- Biome variant selector (only shown for tiles with biome variants) -->
+            <StackPanel Orientation="Horizontal" Margin="2"
+                        Visibility="{Binding HasBiomeVariants, Converter={StaticResource BoolToVisibilityConverter}}">
+                <TextBlock Text="Biome:" Margin="3,2" VerticalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding BiomeVariantNames}"
+                          SelectedIndex="{Binding SelectedBiomeVariantIndex, Mode=TwoWay}"
+                          MinWidth="100" Margin="2"/>
+                <CheckBox Content="Auto" IsChecked="{Binding IsBiomeAutoMode, Mode=TwoWay}"
+                          VerticalAlignment="Center" Margin="5,0"/>
+            </StackPanel>
             <ListBox x:Name="s" DockPanel.Dock="Bottom" Height="300"
             Style="{DynamicResource ListBoxWrapPanel}"
             HorizontalAlignment="Stretch"  
@@ -39,11 +49,11 @@
             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Image 
-                            Source="{Binding Path=Preview}" 
-                            Height="{Binding Path=Preview.PixelHeight}" 
-                            Width="{Binding Path=Preview.PixelWidth}"
-                            RenderOptions.BitmapScalingMode="NearestNeighbor" 
+                        <Image
+                            Source="{Binding Path=CurrentPreview}"
+                            Height="{Binding Path=CurrentPreview.PixelHeight}"
+                            Width="{Binding Path=CurrentPreview.PixelWidth}"
+                            RenderOptions.BitmapScalingMode="NearestNeighbor"
                             ToolTip="{Binding Path=Name}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>

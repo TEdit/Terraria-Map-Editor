@@ -32,11 +32,7 @@
     <PackageReference Include="Semver" Version="3.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="View\Sidebar\NewFolder\**" />
-    <EmbeddedResource Remove="View\Sidebar\NewFolder\**" />
     <None Remove="Images/**/*" />
-    <None Remove="View\Sidebar\NewFolder\**" />
-    <Page Remove="View\Sidebar\NewFolder\**" />
     <None Remove="MapColors.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +61,6 @@
     <Resource Include="Images/*.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Remove="View\Sidebar\NewFolder\**" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
@@ -148,6 +141,9 @@
     <Page Update="View\Popups\SaveAsVersion.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\Sidebar\SpecialTilesViews\" />
   </ItemGroup>
   <Target Name="Sign" AfterTargets="Publish" Condition=" $(signcert) != '' ">
     <Exec Command="signtool.exe sign /v /fd sha256 /n &quot;$(signcert)&quot; /t http://timestamp.digicert.com &quot;$(PublishDir)$(TargetFileName)&quot; " Condition="$(TargetFileName) != ''" ContinueOnError="WarnAndContinue" />

@@ -18,6 +18,23 @@ public enum TextureWrapAxis
 }
 
 /// <summary>
+/// Biome variant for tiles that automatically adapt appearance based on biome.
+/// Used for preview rendering with biome dropdown selection.
+/// </summary>
+public class BiomeVariant
+{
+    /// <summary>
+    /// Display name for the biome (e.g., "Normal", "Crimson", "Hallowed", "Corrupt").
+    /// </summary>
+    public string Name { get; set; } = "Default";
+
+    /// <summary>
+    /// UV offset to apply to the base frame UV for this biome variant [X, Y].
+    /// </summary>
+    public Vector2Short UvOffset { get; set; }
+}
+
+/// <summary>
 /// Configuration for texture UV wrapping when tile variants exceed texture dimensions.
 /// The WrapThreshold is computed at runtime from actual texture dimensions.
 /// </summary>
@@ -86,6 +103,12 @@ public class TileProperty : ITile
     public int? MergeWith { get; set; }
     public string? FrameNameSuffix { get; set; }
     public TextureWrap? TextureWrap { get; set; }
+
+    /// <summary>
+    /// Biome variants for tiles that automatically adapt based on biome (e.g., palm trees).
+    /// When present, enables biome dropdown in sprite picker for preview selection.
+    /// </summary>
+    public List<BiomeVariant>? BiomeVariants { get; set; }
 
     public bool Merges(int other)
     {

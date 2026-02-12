@@ -212,6 +212,26 @@ public class Textures
 
     public Texture2D GetMoon(int num) => GetTextureById(Moon, num, "Images\\Moon_{0}");
 
+    /// <summary>
+    /// Get texture for preview based on PreviewConfig settings.
+    /// </summary>
+    public Texture2D GetPreviewTexture(PreviewConfig config, int tileId)
+    {
+        if (config == null)
+            return GetTile(tileId);
+
+        return config.TextureType switch
+        {
+            PreviewTextureType.Tree => GetTree(config.TextureStyle),
+            PreviewTextureType.TreeTops => (Texture2D)GetTreeTops(config.TextureStyle),
+            PreviewTextureType.TreeBranch => (Texture2D)GetTreeBranches(config.TextureStyle),
+            PreviewTextureType.PalmTree => GetTile(323), // Palm tree trunk texture
+            PreviewTextureType.PalmTreeTop => (Texture2D)GetTreeTops(15), // Palm tree top texture
+            PreviewTextureType.Item => GetItem(config.TextureStyle),
+            _ => GetTile(tileId)
+        };
+    }
+
     private Texture2D GetTextureById<T>(Dictionary<T, Texture2D> collection, T id, string path)
     {
         if (!collection.ContainsKey(id))

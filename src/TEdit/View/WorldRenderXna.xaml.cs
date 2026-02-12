@@ -487,102 +487,149 @@ public partial class WorldRenderXna : UserControl
             // Update preview images for each existing style (created from config)
             foreach (var style in sprite.Styles.OfType<SpriteItemPreview>())
             {
-                // Skip if already has a preview
+                // Skip if already has a preview (the bitmap, not the config)
                 if (style.Preview != null) continue;
 
-                var uv = TileProperty.GetRenderUV((ushort)tile.Id, style.UV.X, style.UV.Y);
-                var sizeTiles = style.SizeTiles;
-
-                // Validate sizes before creating texture
-                if (sizeTiles.X <= 0 || sizeTiles.Y <= 0 ||
-                    sprite.SizePixelsRender.X <= 0 || sprite.SizePixelsRender.Y <= 0)
+                // Get the texture to use for preview (may be different from tile texture)
+                var previewConfig = style.PreviewConfig;
+                Texture2D sourceTexture = tileTex;
+                if (previewConfig?.TextureType != null && previewConfig.TextureType != PreviewTextureType.Tile)
                 {
-                    continue;
+                    sourceTexture = _textureDictionary.GetPreviewTexture(previewConfig, tile.Id);
+                    if (sourceTexture == null || sourceTexture == _textureDictionary.DefaultTexture)
+                    {
+                        sourceTexture = tileTex; // Fallback to tile texture
+                    }
                 }
 
-                // Create preview texture for this sprite
-                var previewTexture = new Texture2D(e.GraphicsDevice,
-                    sizeTiles.X * sprite.SizePixelsRender.X,
-                    sizeTiles.Y * sprite.SizePixelsRender.Y);
-
+                Texture2D previewTexture;
                 bool hasColorData = false;
 
-                // Extract pixels from source texture for each tile in the sprite
-                for (int x = 0; x < sizeTiles.X; x++)
+                // Check for custom source rectangle in preview config
+                if (previewConfig?.SourceRect != null)
                 {
-                    for (int y = 0; y < sizeTiles.Y; y++)
+                    var customRect = previewConfig.SourceRect.Value;
+                    var xnaRect = new Rectangle(customRect.X, customRect.Y, customRect.Width, customRect.Height);
+
+                    // Bounds check
+                    if (xnaRect.Right > sourceTexture.Width)
+                        xnaRect.Width = sourceTexture.Width - xnaRect.X;
+                    if (xnaRect.Bottom > sourceTexture.Height)
+                        xnaRect.Height = sourceTexture.Height - xnaRect.Y;
+
+                    if (xnaRect.Width <= 0 || xnaRect.Height <= 0)
+                        continue;
+
+                    previewTexture = new Texture2D(e.GraphicsDevice, xnaRect.Width, xnaRect.Height);
+                    var colorData = new Color[xnaRect.Width * xnaRect.Height];
+                    sourceTexture.GetData(0, xnaRect, colorData, 0, colorData.Length);
+                    previewTexture.SetData(colorData);
+
+                    // Check if we have any visible pixels
+                    for (int i = 0; i < colorData.Length; i++)
                     {
-                        int sourceX = uv.X + (x * sprite.SizePixelsInterval.X);
-                        int sourceY = uv.Y + (y * sprite.SizePixelsInterval.Y);
-                        int destX = x * sprite.SizePixelsRender.X;
-                        int destY = y * sprite.SizePixelsRender.Y;
-                        int renderX = sprite.SizePixelsRender.X;
-                        int renderY = sprite.SizePixelsRender.Y;
-
-                        // Handle tall gates (tiles 388, 389) special case
-                        if (sprite.Tile == 388 || sprite.Tile == 389)
+                        if (colorData[i].PackedValue > 0)
                         {
-                            var offY = uv.Y == 100 ? 94 : 0;
-                            switch (y)
-                            {
-                                case 0: sourceY = offY; renderY = 18; break;
-                                case 1: sourceY = offY + 20; destY = 18; renderY = 16; break;
-                                case 2: sourceY = offY + 20 + 18; destY = 18 + 16; renderY = 16; break;
-                                case 3: sourceY = offY + 20 + 18 + 18; destY = 18 + 16 + 16; renderY = 16; break;
-                                case 4: sourceY = offY + 20 + 18 + 18 + 18; destY = 18 + 16 + 16 + 16; renderY = 18; break;
-                            }
+                            hasColorData = true;
+                            break;
                         }
-                        // Handle Chimney (tiles 406) special case
-                        else if (sprite.Tile == 406)
+                    }
+                }
+                else
+                {
+                    // Standard UV-based preview extraction
+                    var uv = TileProperty.GetRenderUV((ushort)tile.Id, style.UV.X, style.UV.Y);
+                    var sizeTiles = style.SizeTiles;
+
+                    // Validate sizes before creating texture
+                    if (sizeTiles.X <= 0 || sizeTiles.Y <= 0 ||
+                        sprite.SizePixelsRender.X <= 0 || sprite.SizePixelsRender.Y <= 0)
+                    {
+                        continue;
+                    }
+
+                    // Create preview texture for this sprite
+                    previewTexture = new Texture2D(e.GraphicsDevice,
+                        sizeTiles.X * sprite.SizePixelsRender.X,
+                        sizeTiles.Y * sprite.SizePixelsRender.Y);
+
+                    // Extract pixels from source texture for each tile in the sprite
+                    for (int x = 0; x < sizeTiles.X; x++)
+                    {
+                        for (int y = 0; y < sizeTiles.Y; y++)
                         {
-                            switch(uv.Y / 54)
+                            int sourceX = uv.X + (x * sprite.SizePixelsInterval.X);
+                            int sourceY = uv.Y + (y * sprite.SizePixelsInterval.Y);
+                            int destX = x * sprite.SizePixelsRender.X;
+                            int destY = y * sprite.SizePixelsRender.Y;
+                            int renderX = sprite.SizePixelsRender.X;
+                            int renderY = sprite.SizePixelsRender.Y;
+
+                            // Handle tall gates (tiles 388, 389) special case
+                            if (sprite.Tile == 388 || sprite.Tile == 389)
                             {
-                                // On A
-                                case 0: break;
-                                // On B
-                                case 1: sourceY = sourceY % 54 + 56; break;
-                                // Off
-                                case 2: sourceY = sourceY % 54 + 56 * 6; break;
-                            }
-                        }
-                        // Handle Aether Monolith (tiles 658) special case
-                        else if (sprite.Tile == 658)
-                        {
-                            switch(uv.Y / 54)
-                            {
-                                // On A
-                                case 0: break;
-                                // On B
-                                case 1: sourceY = sourceY % 54 + 54 * 10; break;
-                                // Off
-                                case 2: sourceY = sourceY % 54 + 54 * 20; break;
-                            }
-                        }
-
-                        var source = new Rectangle(sourceX, sourceY, renderX, renderY);
-
-                        // Out of bounds checks
-                        if (source.Bottom > tileTex.Height)
-                            source.Height -= (source.Bottom - tileTex.Height);
-                        if (source.Right > tileTex.Width)
-                            source.Width -= (source.Right - tileTex.Width);
-                        if (source.Height <= 0 || source.Width <= 0)
-                            continue;
-
-                        var colorData = new Color[source.Height * source.Width];
-                        var dest = new Rectangle(destX, destY, source.Width, source.Height);
-
-                        tileTex.GetData(0, source, colorData, 0, colorData.Length);
-                        previewTexture.SetData(0, dest, colorData, 0, colorData.Length);
-
-                        if (!hasColorData)
-                        {
-                            for (int i = 0; i < colorData.Length; i++)
-                            {
-                                if (colorData[i].PackedValue > 0)
+                                var offY = uv.Y == 100 ? 94 : 0;
+                                switch (y)
                                 {
-                                    hasColorData = true;
-                                    break;
+                                    case 0: sourceY = offY; renderY = 18; break;
+                                    case 1: sourceY = offY + 20; destY = 18; renderY = 16; break;
+                                    case 2: sourceY = offY + 20 + 18; destY = 18 + 16; renderY = 16; break;
+                                    case 3: sourceY = offY + 20 + 18 + 18; destY = 18 + 16 + 16; renderY = 16; break;
+                                    case 4: sourceY = offY + 20 + 18 + 18 + 18; destY = 18 + 16 + 16 + 16; renderY = 18; break;
+                                }
+                            }
+                            // Handle Chimney (tiles 406) special case
+                            else if (sprite.Tile == 406)
+                            {
+                                switch (uv.Y / 54)
+                                {
+                                    // On A
+                                    case 0: break;
+                                    // On B
+                                    case 1: sourceY = sourceY % 54 + 56; break;
+                                    // Off
+                                    case 2: sourceY = sourceY % 54 + 56 * 6; break;
+                                }
+                            }
+                            // Handle Aether Monolith (tiles 658) special case
+                            else if (sprite.Tile == 658)
+                            {
+                                switch (uv.Y / 54)
+                                {
+                                    // On A
+                                    case 0: break;
+                                    // On B
+                                    case 1: sourceY = sourceY % 54 + 54 * 10; break;
+                                    // Off
+                                    case 2: sourceY = sourceY % 54 + 54 * 20; break;
+                                }
+                            }
+
+                            var source = new Rectangle(sourceX, sourceY, renderX, renderY);
+
+                            // Out of bounds checks
+                            if (source.Bottom > sourceTexture.Height)
+                                source.Height -= (source.Bottom - sourceTexture.Height);
+                            if (source.Right > sourceTexture.Width)
+                                source.Width -= (source.Right - sourceTexture.Width);
+                            if (source.Height <= 0 || source.Width <= 0)
+                                continue;
+
+                            var colorData = new Color[source.Height * source.Width];
+                            var dest = new Rectangle(destX, destY, source.Width, source.Height);
+
+                            sourceTexture.GetData(0, source, colorData, 0, colorData.Length);
+                            previewTexture.SetData(0, dest, colorData, 0, colorData.Length);
+
+                            if (!hasColorData)
+                            {
+                                for (int i = 0; i < colorData.Length; i++)
+                                {
+                                    if (colorData[i].PackedValue > 0)
+                                    {
+                                        hasColorData = true;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -611,12 +658,256 @@ public partial class WorldRenderXna : UserControl
                     style.SizeTexture = textureSizeCopy;
                     _previewsSetCount++;
                 });
+
+                // Generate biome variant previews if tile has BiomeVariants
+                if (tile.BiomeVariants?.Count > 0)
+                {
+                    GenerateBiomeVariantPreviews(style, tile, sourceTexture, sprite, e);
+                }
             }
         }
         catch (Exception ex)
         {
             ErrorLogging.LogException(ex);
         }
+    }
+
+    /// <summary>
+    /// Generates preview bitmaps for each biome variant of a tile.
+    /// Handles special cases like tree tops/branches (different textures per biome)
+    /// and palm tops (custom SourceRect sizes).
+    /// </summary>
+    private void GenerateBiomeVariantPreviews(SpriteItemPreview style, TileProperty tile, Texture2D sourceTexture, SpriteSheet sprite, GraphicsDeviceEventArgs e)
+    {
+        var variants = tile.BiomeVariants;
+        var biomePixelDataList = new List<(int[] pixelData, int width, int height)>();
+        var previewConfig = style.PreviewConfig;
+
+        for (int variantIndex = 0; variantIndex < variants.Count; variantIndex++)
+        {
+            var variant = variants[variantIndex];
+            var uvOffset = variant.UvOffset;
+            Texture2D variantTexture = sourceTexture;
+            Rectangle sourceRect;
+            int previewWidth, previewHeight;
+
+            // Handle special PreviewConfig cases
+            if (previewConfig != null)
+            {
+                switch (previewConfig.TextureType)
+                {
+                    case PreviewTextureType.TreeTops:
+                        // Tree tops use different texture files per biome style
+                        // Map biome variant index to tree style
+                        int treeStyle = GetTreeStyleForBiomeVariant(variantIndex);
+                        variantTexture = (Texture2D)_textureDictionary.GetTreeTops(treeStyle);
+                        sourceRect = previewConfig.SourceRect.HasValue
+                            ? new Rectangle(previewConfig.SourceRect.Value.X, previewConfig.SourceRect.Value.Y,
+                                           previewConfig.SourceRect.Value.Width, previewConfig.SourceRect.Value.Height)
+                            : new Rectangle(0, 0, 80, 80);
+                        previewWidth = sourceRect.Width;
+                        previewHeight = sourceRect.Height;
+                        break;
+
+                    case PreviewTextureType.TreeBranch:
+                        // Tree branches use different texture files per biome style
+                        int branchStyle = GetTreeStyleForBiomeVariant(variantIndex);
+                        variantTexture = (Texture2D)_textureDictionary.GetTreeBranches(branchStyle);
+                        sourceRect = previewConfig.SourceRect.HasValue
+                            ? new Rectangle(previewConfig.SourceRect.Value.X, previewConfig.SourceRect.Value.Y,
+                                           previewConfig.SourceRect.Value.Width, previewConfig.SourceRect.Value.Height)
+                            : new Rectangle(0, 0, 40, 40);
+                        previewWidth = sourceRect.Width;
+                        previewHeight = sourceRect.Height;
+                        break;
+
+                    case PreviewTextureType.PalmTreeTop:
+                        // Palm tree tops: Beach (variants 0-3) use Tree_Tops_15 (80x80, 82px Y spacing)
+                        //                 Oasis (variants 4-7) use Tree_Tops_21 (114x98, 98px Y spacing - no gap)
+                        bool isOasis = variantIndex >= 4;
+                        int palmTopStyle = isOasis ? 21 : 15;
+                        variantTexture = (Texture2D)_textureDictionary.GetTreeTops(palmTopStyle);
+                        var palmTopRect = previewConfig.SourceRect ?? new System.Drawing.Rectangle(0, 0, 80, 80);
+                        // Extract frame variant (0, 1, or 2 for Top A, B, C) from beach X position
+                        int palmFrameVariant = palmTopRect.X / 82;
+                        int palmTopSourceX, palmTopSourceY, palmTopWidth, palmTopHeight;
+                        if (isOasis)
+                        {
+                            // Oasis: 116px X spacing, 98px Y spacing (no 2px gap), 114x98 size
+                            // 4 biome rows: Normal(0), Crimson(1), Hallowed(2), Corrupt(3)
+                            palmTopSourceX = palmFrameVariant * 116;
+                            palmTopSourceY = (variantIndex - 4) * 98;
+                            palmTopWidth = 114;
+                            palmTopHeight = 98;
+                        }
+                        else
+                        {
+                            // Beach: 82px X spacing, 82px Y spacing, 80x80 size
+                            // 4 biome rows: Normal(0), Crimson(1), Hallowed(2), Corrupt(3)
+                            palmTopSourceX = palmFrameVariant * 82;
+                            palmTopSourceY = variantIndex * 82;
+                            palmTopWidth = 80;
+                            palmTopHeight = 80;
+                        }
+                        sourceRect = new Rectangle(palmTopSourceX, palmTopSourceY, palmTopWidth, palmTopHeight);
+                        previewWidth = palmTopWidth;
+                        previewHeight = palmTopHeight;
+                        break;
+
+                    case PreviewTextureType.PalmTree:
+                        // Palm tree trunks use Tiles_323 with Y offset for biome
+                        variantTexture = sourceTexture;
+                        var palmRect = previewConfig.SourceRect ?? new System.Drawing.Rectangle(style.UV.X, 0, 20, 20);
+                        sourceRect = new Rectangle(palmRect.X, uvOffset.Y, palmRect.Width, palmRect.Height);
+                        previewWidth = sourceRect.Width;
+                        previewHeight = sourceRect.Height;
+                        break;
+
+                    default:
+                        // Standard tile with UV offset
+                        sourceRect = GetStandardSourceRect(style, sprite, uvOffset);
+                        previewWidth = style.SizeTiles.X * sprite.SizePixelsRender.X;
+                        previewHeight = style.SizeTiles.Y * sprite.SizePixelsRender.Y;
+                        break;
+                }
+            }
+            else
+            {
+                // No PreviewConfig - use standard UV offset approach
+                sourceRect = GetStandardSourceRect(style, sprite, uvOffset);
+                previewWidth = style.SizeTiles.X * sprite.SizePixelsRender.X;
+                previewHeight = style.SizeTiles.Y * sprite.SizePixelsRender.Y;
+            }
+
+            // Create preview texture
+            var previewTexture = new Texture2D(e.GraphicsDevice, previewWidth, previewHeight);
+            bool hasColorData = false;
+
+            // For simple single-rect cases (tree tops, palm tops, etc.)
+            if (previewConfig != null && previewConfig.TextureType != PreviewTextureType.Tile)
+            {
+                // Bounds check
+                if (sourceRect.Right <= variantTexture.Width && sourceRect.Bottom <= variantTexture.Height &&
+                    sourceRect.Width > 0 && sourceRect.Height > 0)
+                {
+                    var colorData = new Color[sourceRect.Width * sourceRect.Height];
+                    variantTexture.GetData(0, sourceRect, colorData, 0, colorData.Length);
+                    previewTexture.SetData(colorData);
+                    hasColorData = colorData.Any(c => c.PackedValue > 0);
+                }
+            }
+            else
+            {
+                // Multi-tile extraction with UV offset
+                hasColorData = ExtractMultiTilePreview(style, sprite, variantTexture, previewTexture, uvOffset);
+            }
+
+            if (hasColorData)
+            {
+                var pixelData = new int[previewWidth * previewHeight];
+                previewTexture.GetData(pixelData);
+                biomePixelDataList.Add((pixelData, previewWidth, previewHeight));
+            }
+            else
+            {
+                biomePixelDataList.Add((null, 0, 0));
+            }
+        }
+
+        // Create WriteableBitmaps on UI thread
+        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+        {
+            var biomePreviews = new WriteableBitmap[biomePixelDataList.Count];
+            for (int i = 0; i < biomePixelDataList.Count; i++)
+            {
+                var (pixelData, width, height) = biomePixelDataList[i];
+                if (pixelData != null)
+                {
+                    biomePreviews[i] = CreateWriteableBitmapFromPixelData(pixelData, width, height);
+                }
+            }
+            style.BiomePreviews = biomePreviews;
+        });
+    }
+
+    /// <summary>
+    /// Maps biome variant index to tree style for Tree_Tops/Tree_Branches textures.
+    /// </summary>
+    private static int GetTreeStyleForBiomeVariant(int biomeVariantIndex)
+    {
+        // Biome variant indices map to tree styles:
+        // 0=Forest(0), 1=Corrupt(1), 2=Jungle(2), 3=Hallow(3), 4=Boreal(4), 5=Crimson(5), 6=UgJungle(13), 7=Mushroom(14)
+        return biomeVariantIndex switch
+        {
+            0 => 0,   // Forest
+            1 => 1,   // Corrupt
+            2 => 2,   // Jungle
+            3 => 3,   // Hallow
+            4 => 4,   // Boreal
+            5 => 5,   // Crimson
+            6 => 13,  // Underground Jungle
+            7 => 14,  // Mushroom
+            _ => 0
+        };
+    }
+
+    /// <summary>
+    /// Gets standard source rectangle for multi-tile sprites with UV offset.
+    /// </summary>
+    private static Rectangle GetStandardSourceRect(SpriteItemPreview style, SpriteSheet sprite, Vector2Short uvOffset)
+    {
+        var uv = TileProperty.GetRenderUV(style.Tile, style.UV.X, style.UV.Y);
+        return new Rectangle(
+            uv.X + uvOffset.X,
+            uv.Y + uvOffset.Y,
+            style.SizeTiles.X * sprite.SizePixelsRender.X,
+            style.SizeTiles.Y * sprite.SizePixelsRender.Y);
+    }
+
+    /// <summary>
+    /// Extracts multi-tile preview with UV offset applied.
+    /// </summary>
+    private bool ExtractMultiTilePreview(SpriteItemPreview style, SpriteSheet sprite, Texture2D sourceTexture, Texture2D previewTexture, Vector2Short uvOffset)
+    {
+        var uv = TileProperty.GetRenderUV(style.Tile, style.UV.X, style.UV.Y);
+        var sizeTiles = style.SizeTiles;
+        bool hasColorData = false;
+
+        for (int x = 0; x < sizeTiles.X; x++)
+        {
+            for (int y = 0; y < sizeTiles.Y; y++)
+            {
+                int sourceX = uv.X + (x * sprite.SizePixelsInterval.X) + uvOffset.X;
+                int sourceY = uv.Y + (y * sprite.SizePixelsInterval.Y) + uvOffset.Y;
+                int destX = x * sprite.SizePixelsRender.X;
+                int destY = y * sprite.SizePixelsRender.Y;
+                int renderX = sprite.SizePixelsRender.X;
+                int renderY = sprite.SizePixelsRender.Y;
+
+                var source = new Rectangle(sourceX, sourceY, renderX, renderY);
+
+                // Out of bounds checks
+                if (source.Bottom > sourceTexture.Height)
+                    source.Height -= (source.Bottom - sourceTexture.Height);
+                if (source.Right > sourceTexture.Width)
+                    source.Width -= (source.Right - sourceTexture.Width);
+                if (source.Height <= 0 || source.Width <= 0)
+                    continue;
+
+                var colorData = new Color[source.Height * source.Width];
+                var dest = new Rectangle(destX, destY, source.Width, source.Height);
+
+                sourceTexture.GetData(0, source, colorData, 0, colorData.Length);
+                previewTexture.SetData(0, dest, colorData, 0, colorData.Length);
+
+                if (!hasColorData && colorData.Any(c => c.PackedValue > 0))
+                {
+                    hasColorData = true;
+                }
+            }
+        }
+
+        return hasColorData;
     }
 
     /// <summary>
@@ -790,6 +1081,43 @@ public partial class WorldRenderXna : UserControl
             if (wallColor.A > 0 && Settings.Default.RealisticColors)
             {
                 wall.Color = wallColor;
+            }
+        }
+
+        // Export tree tops and branches for debugging
+        for (int i = 0; i <= 30; i++)
+        {
+            var treeTopTex = (Texture2D)_textureDictionary.GetTreeTops(i);
+            if (treeTopTex != null && treeTopTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(treeTopTex, $"textures/Tree_Tops_{i}.png");
+            }
+
+            var treeBranchTex = (Texture2D)_textureDictionary.GetTreeBranches(i);
+            if (treeBranchTex != null && treeBranchTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(treeBranchTex, $"textures/Tree_Branches_{i}.png");
+            }
+        }
+
+        // Export background textures for debugging (surface, cave, and biome backgrounds)
+        // backstyle array uses indices up to 185, but there may be more
+        for (int i = 0; i <= 200; i++)
+        {
+            var bgTex = _textureDictionary.GetBackground(i);
+            if (bgTex != null && bgTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(bgTex, $"textures/Background_{i}.png");
+            }
+        }
+
+        // Export underworld/hell background textures
+        for (int i = 0; i <= 10; i++)
+        {
+            var uwTex = _textureDictionary.GetUnderworld(i);
+            if (uwTex != null && uwTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(uwTex, $"textures/Underworld_{i}.png");
             }
         }
 
@@ -2526,6 +2854,9 @@ public partial class WorldRenderXna : UserControl
                                         FrameAnchor frameAnchor = FrameAnchor.None;
 
                                         int treeStyle = (curtile.uvTileCache & 0x000F);
+                                        // Tree frame determines which variant to show (0, 1, or 2)
+                                        // This is position-based to give visual variety, matching Terraria's GetTreeFrame
+                                        int treeFrame = x % 3;
                                         if (isBase)
                                         {
                                             source.Width = 80;
@@ -2551,7 +2882,8 @@ public partial class WorldRenderXna : UserControl
                                                         source.Height = 140;
                                                         break;
                                                 }
-                                                source.X += ((curtile.V - 198) / 22) * (source.Width + 2);
+                                                // Use position-based frame for visual variety
+                                                source.X += treeFrame * (source.Width + 2);
                                             }
                                             frameAnchor = FrameAnchor.Bottom;
                                         }
@@ -2565,7 +2897,8 @@ public partial class WorldRenderXna : UserControl
                                                     break;
                                             }
                                             frameAnchor = FrameAnchor.Right;
-                                            source.Y += ((curtile.V - 198) / 22) * (source.Height + 2);
+                                            // Use position-based frame for branch variety
+                                            source.Y += treeFrame * (source.Height + 2);
                                         }
                                         else if (isRight)
                                         {
@@ -2577,7 +2910,8 @@ public partial class WorldRenderXna : UserControl
                                                     break;
                                             }
                                             frameAnchor = FrameAnchor.Left;
-                                            source.Y += ((curtile.V - 198) / 22) * (source.Height + 2);
+                                            // Use position-based frame for branch variety
+                                            source.Y += treeFrame * (source.Height + 2);
                                         }
                                         dest.Width = (int)(_zoom * source.Width / 16f);
                                         dest.Height = (int)(_zoom * source.Height / 16f);
@@ -3932,6 +4266,9 @@ public partial class WorldRenderXna : UserControl
                                         FrameAnchor frameAnchor = FrameAnchor.None;
 
                                         int treeStyle = (curtile.uvTileCache & 0x000F);
+                                        // Tree frame determines which variant to show (0, 1, or 2)
+                                        // This is position-based to give visual variety, matching Terraria's GetTreeFrame
+                                        int treeFrame = x % 3;
                                         if (isBase)
                                         {
                                             source.Width = 80;
@@ -3957,7 +4294,8 @@ public partial class WorldRenderXna : UserControl
                                                         source.Height = 140;
                                                         break;
                                                 }
-                                                source.X += ((curtile.V - 198) / 22) * (source.Width + 2);
+                                                // Use position-based frame for visual variety
+                                                source.X += treeFrame * (source.Width + 2);
                                             }
                                             frameAnchor = FrameAnchor.Bottom;
                                         }
@@ -3971,7 +4309,8 @@ public partial class WorldRenderXna : UserControl
                                                     break;
                                             }
                                             frameAnchor = FrameAnchor.Right;
-                                            source.Y += ((curtile.V - 198) / 22) * (source.Height + 2);
+                                            // Use position-based frame for branch variety
+                                            source.Y += treeFrame * (source.Height + 2);
                                         }
                                         else if (isRight)
                                         {
@@ -3983,7 +4322,8 @@ public partial class WorldRenderXna : UserControl
                                                     break;
                                             }
                                             frameAnchor = FrameAnchor.Left;
-                                            source.Y += ((curtile.V - 198) / 22) * (source.Height + 2);
+                                            // Use position-based frame for branch variety
+                                            source.Y += treeFrame * (source.Height + 2);
                                         }
                                         dest.Width = (int)(_zoom * source.Width / 16f);
                                         dest.Height = (int)(_zoom * source.Height / 16f);
@@ -5726,7 +6066,216 @@ public partial class WorldRenderXna : UserControl
                         position.Y += (16 - texsize.Y) * _zoom / 16;
                         break;
                 }
+            }
 
+            // For tree sprites, dynamically determine tree style based on cursor position biome
+            var previewConfig = _wvm.SelectedSpriteItem?.PreviewConfig;
+
+            if (previewConfig != null &&
+                (previewConfig.TextureType == PreviewTextureType.TreeTops || previewConfig.TextureType == PreviewTextureType.TreeBranch) &&
+                _wvm.CurrentWorld != null)
+            {
+                var mousePos = _wvm.MouseOverTile.MouseState.Location;
+                int dynamicStyle = _wvm.CurrentWorld.GetTreeStyleAtPosition(mousePos.X, mousePos.Y);
+
+                // Get texture with dynamic style
+                var tex = previewConfig.TextureType == PreviewTextureType.TreeTops
+                    ? (Texture2D)_textureDictionary.GetTreeTops(dynamicStyle)
+                    : (Texture2D)_textureDictionary.GetTreeBranches(dynamicStyle);
+
+                if (tex != null && previewConfig.SourceRect.HasValue)
+                {
+                    var srcRect = previewConfig.SourceRect.Value;
+
+                    // Calculate dimensions based on tree style (different styles have different sizes)
+                    int sourceWidth = srcRect.Width;
+                    int sourceHeight = srcRect.Height;
+
+                    if (previewConfig.TextureType == PreviewTextureType.TreeTops)
+                    {
+                        // Tree top dimensions vary by style
+                        switch (dynamicStyle)
+                        {
+                            case 2:  // Jungle
+                            case 11: // Jungle variant
+                            case 13: // Underground Jungle
+                                sourceWidth = 114;
+                                sourceHeight = 96;
+                                break;
+                            case 3: // Snow (style 3 only, other snow styles use default)
+                                sourceWidth = 80;
+                                sourceHeight = 140;
+                                break;
+                            default:
+                                sourceWidth = 80;
+                                sourceHeight = 80;
+                                break;
+                        }
+                    }
+                    // Branches stay at 40x40 for all styles
+
+                    // Calculate offset dynamically based on actual dimensions (Bottom anchor for tops, Left/Right for branches)
+                    float offsetX, offsetY;
+                    if (previewConfig.TextureType == PreviewTextureType.TreeTops)
+                    {
+                        // Bottom anchor: center X, anchor Y at bottom
+                        offsetX = (16 - sourceWidth) / 2f;
+                        offsetY = 16 - sourceHeight;
+                    }
+                    else
+                    {
+                        // Branches use Left or Right anchor based on source X position
+                        bool isLeftBranch = srcRect.X == 0;
+                        if (isLeftBranch)
+                        {
+                            // Right anchor: anchor X at right of tile, center Y
+                            offsetX = 16 - sourceWidth;
+                            offsetY = (16 - sourceHeight) / 2f;
+                        }
+                        else
+                        {
+                            // Left anchor: anchor X at left of tile, center Y
+                            offsetX = 0;
+                            offsetY = (16 - sourceHeight) / 2f;
+                        }
+                    }
+
+                    position.X += offsetX * _zoom / 16f;
+                    position.Y += offsetY * _zoom / 16f;
+
+                    // Adjust source rect for dynamic style dimensions
+                    var xnaSourceRect = new Rectangle(srcRect.X, srcRect.Y, sourceWidth, sourceHeight);
+
+                    _spriteBatch.Draw(
+                        tex,
+                        position,
+                        xnaSourceRect,
+                        Color.White * 0.8f,
+                        0,
+                        Vector2.Zero,
+                        _zoom / 16f,
+                        SpriteEffects.None,
+                        LayerTools);
+                }
+                return; // Skip default preview rendering for tree top/branch sprites
+            }
+
+            // For tree trunk sprites, dynamically determine tree type based on cursor position biome
+            if (previewConfig != null &&
+                previewConfig.TextureType == PreviewTextureType.Tree &&
+                _wvm.CurrentWorld != null)
+            {
+                var mousePos = _wvm.MouseOverTile.MouseState.Location;
+                int dynamicTreeType = _wvm.CurrentWorld.GetTreeTypeAtPosition(mousePos.X, mousePos.Y);
+
+                // Get tree trunk texture with dynamic type
+                var tex = _textureDictionary.GetTree(dynamicTreeType);
+
+                if (tex != null && previewConfig.SourceRect.HasValue)
+                {
+                    var srcRect = previewConfig.SourceRect.Value;
+                    var xnaSourceRect = new Rectangle(srcRect.X, srcRect.Y, srcRect.Width, srcRect.Height);
+
+                    _spriteBatch.Draw(
+                        tex,
+                        position,
+                        xnaSourceRect,
+                        Color.White * 0.8f,
+                        0,
+                        Vector2.Zero,
+                        _zoom / 16f,
+                        SpriteEffects.None,
+                        LayerTools);
+                }
+                return; // Skip default preview rendering for tree trunk sprites
+            }
+
+            // For palm tree top sprites, dynamically determine palm type based on cursor position
+            if (previewConfig != null &&
+                previewConfig.TextureType == PreviewTextureType.PalmTreeTop &&
+                _wvm.CurrentWorld != null)
+            {
+                var mousePos = _wvm.MouseOverTile.MouseState.Location;
+                int palmType = _wvm.CurrentWorld.GetPalmTreeTypeAtPosition(mousePos.X, mousePos.Y);
+
+                // Get Tree_Tops_15 texture
+                var tex = (Texture2D)_textureDictionary.GetTreeTops(15);
+
+                if (tex != null && previewConfig.SourceRect.HasValue)
+                {
+                    var srcRect = previewConfig.SourceRect.Value;
+
+                    // source.Y = palmType * 82 (different palm variants stacked vertically)
+                    int sourceY = palmType * 82;
+
+                    // Calculate offset: Bottom anchor for palm tops (80x80)
+                    float offsetX = (16 - 80) / 2f;
+                    float offsetY = 16 - 80;
+                    position.X += offsetX * _zoom / 16f;
+                    position.Y += offsetY * _zoom / 16f;
+
+                    var xnaSourceRect = new Rectangle(srcRect.X, sourceY, 80, 80);
+
+                    _spriteBatch.Draw(
+                        tex,
+                        position,
+                        xnaSourceRect,
+                        Color.White * 0.8f,
+                        0,
+                        Vector2.Zero,
+                        _zoom / 16f,
+                        SpriteEffects.None,
+                        LayerTools);
+                }
+                return; // Skip default preview rendering for palm tree top sprites
+            }
+
+            // For palm tree trunk sprites, dynamically determine palm type based on cursor position
+            if (previewConfig != null &&
+                previewConfig.TextureType == PreviewTextureType.PalmTree &&
+                _wvm.CurrentWorld != null)
+            {
+                var mousePos = _wvm.MouseOverTile.MouseState.Location;
+                int palmType = _wvm.CurrentWorld.GetPalmTreeTypeAtPosition(mousePos.X, mousePos.Y);
+
+                // Get Tiles_323 texture
+                var tex = _textureDictionary.GetTile(323);
+
+                if (tex != null && previewConfig.SourceRect.HasValue)
+                {
+                    var srcRect = previewConfig.SourceRect.Value;
+
+                    // Apply preview offset (palm tree frames are 20x20, need to center on 16x16 tile)
+                    var drawPosition = position;
+                    if (previewConfig.Offset.X != 0 || previewConfig.Offset.Y != 0)
+                    {
+                        drawPosition.X += previewConfig.Offset.X * _zoom / 16f;
+                        drawPosition.Y += previewConfig.Offset.Y * _zoom / 16f;
+                    }
+
+                    // Set source.Y to palmType * 22 (replacement, not addition, matching world renderer)
+                    int sourceY = palmType * 22;
+                    var xnaSourceRect = new Rectangle(srcRect.X, sourceY, srcRect.Width, srcRect.Height);
+
+                    _spriteBatch.Draw(
+                        tex,
+                        drawPosition,
+                        xnaSourceRect,
+                        Color.White * 0.8f,
+                        0,
+                        Vector2.Zero,
+                        _zoom / 16f,
+                        SpriteEffects.None,
+                        LayerTools);
+                }
+                return; // Skip default preview rendering for palm tree trunk sprites
+            }
+
+            // Apply custom preview offset for non-tree sprites
+            if (previewConfig != null && (previewConfig.Offset.X != 0 || previewConfig.Offset.Y != 0))
+            {
+                position.X += previewConfig.Offset.X * _zoom / 16f;
+                position.Y += previewConfig.Offset.Y * _zoom / 16f;
             }
         }
 

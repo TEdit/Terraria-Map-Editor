@@ -19,6 +19,7 @@
     <enum:EnumItemList x:Key="LiquidAmountEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:LiquidAmountMode}" SortBy="Value" />
     <enum:EnumItemList x:Key="WireReplaceModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:WireReplaceMode}" SortBy="Value"  />
   <cv:TEditColorToMediaColorConverter x:Key="TEditColorToMediaColorConverter" />
+  <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
   <DataTemplate x:Key="ColorPickerTemplate" >
         <DockPanel LastChildFill="True">

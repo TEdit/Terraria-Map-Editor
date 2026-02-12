@@ -1,9 +1,51 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using TEdit.Common;
 using TEdit.Geometry;
 
 namespace TEdit.Terraria.Objects;
+
+/// <summary>
+/// Texture type for custom sprite preview rendering.
+/// </summary>
+public enum PreviewTextureType
+{
+    Tile,       // Standard Tiles_X texture
+    Tree,       // Tiles_5_{style} texture (tree trunks)
+    TreeTops,   // Tree_Tops_X texture
+    TreeBranch, // Tree_Branches_X texture
+    PalmTree,   // Tiles_323 texture (palm tree trunks)
+    PalmTreeTop, // Tree_Tops_15 texture (palm tree tops)
+    Item,       // Item texture
+}
+
+/// <summary>
+/// Configuration for custom sprite preview rendering.
+/// Supports alternate textures (tree tops) and source rectangles (layered tiles).
+/// </summary>
+public class PreviewConfig
+{
+    /// <summary>
+    /// Texture type to use for preview. Default = Tile (uses Tiles_X texture).
+    /// </summary>
+    public PreviewTextureType TextureType { get; set; } = PreviewTextureType.Tile;
+
+    /// <summary>
+    /// Style/index for alternate textures (e.g., tree style for TreeTops).
+    /// </summary>
+    public int TextureStyle { get; set; }
+
+    /// <summary>
+    /// Custom source rectangle within the texture (null = use UV-based calculation).
+    /// </summary>
+    public Rectangle? SourceRect { get; set; }
+
+    /// <summary>
+    /// Pixel offset for preview positioning.
+    /// </summary>
+    public Vector2Short Offset { get; set; }
+}
 
 public class SpriteSheet
 {
@@ -43,6 +85,11 @@ public class SpriteItem
     public Vector2Short SizePixelsInterval { get; set; }
     public FrameAnchor Anchor { get; set; }
     public string Name { get; set; }
+
+    /// <summary>
+    /// Custom preview configuration (null = use standard UV-based preview).
+    /// </summary>
+    public PreviewConfig PreviewConfig { get; set; }
 
     public bool ContainsUV(Vector2Short uv)
     {

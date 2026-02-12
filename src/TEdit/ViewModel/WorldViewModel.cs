@@ -101,6 +101,8 @@ public partial class WorldViewModel : ReactiveObject
     private ListCollectionView _spriteSheetView;
     private ListCollectionView _spriteStylesView;
     private string _windowTitle;
+    private int? _selectedBiomeVariantIndex; // null = Auto (follows cursor), 0+ = manual selection
+    private int _currentAutoBiomeIndex; // Tracks biome at cursor position
     private int _lastSavedUndoIndex = 0;
     private bool _hasUnsavedPropertyChanges = false;
     private int _lastUserSavedUndoIndex = 0;
@@ -191,7 +193,7 @@ public partial class WorldViewModel : ReactiveObject
                 int styleIndex = 0;
                 foreach (var frame in tile.Frames)
                 {
-                    sprite.Styles.Add(new SpriteItemPreview
+                    var spriteItem = new SpriteItemPreview
                     {
                         Tile = sprite.Tile,
                         Style = styleIndex++,
@@ -202,7 +204,12 @@ public partial class WorldViewModel : ReactiveObject
                         Anchor = frame.Anchor,
                         StyleColor = frame.Color.A > 0 ? frame.Color : tile.Color,
                         Preview = null // Set later when textures load
-                    });
+                    };
+
+                    // Set custom preview config for special tiles
+                    ConfigureSpecialTilePreview(spriteItem, tile, frame);
+
+                    sprite.Styles.Add(spriteItem);
                 }
 
                 WorldConfiguration.Sprites2.Add(sprite);
@@ -210,6 +217,137 @@ public partial class WorldViewModel : ReactiveObject
         }
 
         ErrorLogging.Log($"BuildSpritesFromConfig: {WorldConfiguration.Sprites2.Count} sprite sheets created from config");
+    }
+
+    /// <summary>
+    /// Configure custom preview settings for special tiles that need non-standard preview rendering.
+    /// </summary>
+    private static void ConfigureSpecialTilePreview(SpriteItemPreview spriteItem, TileProperty tile, FrameProperty frame)
+    {
+        // DeadCellsDisplayJar (tile 698) - texture has 3 layers stacked vertically
+        // Y=0: Main jar (36x44px), Y=46: Foreground border, Y=92: Background glow
+        // Preview should only show the main jar layer (Y=0)
+        // Tile UV.X values are 0, 18, 36 for variants 0, 1, 2
+        // But jar texture has variants at X=0, 38, 76 (each 38px apart)
+        if (tile.Id == (int)TileType.DeadCellsDisplayJar)
+        {
+            int variant = frame.UV.X / 18;  // 0, 18, 36 -> 0, 1, 2
+            int sourceX = variant * 38;      // 0, 1, 2 -> 0, 38, 76
+            spriteItem.PreviewConfig = new PreviewConfig
+            {
+                TextureType = PreviewTextureType.Tile,
+                SourceRect = new System.Drawing.Rectangle(sourceX, 0, 36, 44),
+                Offset = new Geometry.Vector2Short(-10, 0) // Jar renders with -10px X offset
+            };
+        }
+        // Tree tiles (tile 5) - identify tree tops and branches using TileDrawing.cs logic:
+        // frameY >= 198 AND frameX >= 22 triggers tree foliage rendering
+        // frameX == 22: tree top (uses Tree_Tops texture)
+        // frameX == 44: left branch (uses Tree_Branches texture)
+        // frameX == 66: right branch (uses Tree_Branches texture)
+        // Variant index = (frameY - 198) / 22 gives 0, 1, or 2 for variants A, B, C
+        else if (tile.Id == 5)
+        {
+            int frameX = frame.UV.X;
+            int frameY = frame.UV.Y;
+
+            // Tree foliage: frameY >= 198 AND frameX >= 22
+            if (frameY >= 198 && frameX >= 22)
+            {
+                // Calculate variant index from frameY (0, 1, or 2)
+                int variant = (frameY - 198) / 22;
+
+                if (frameX == 22)
+                {
+                    // Tree top - use Tree_Tops_0 texture
+                    // Variants are arranged horizontally at 82px intervals (80px width + 2px gap)
+                    // Offset: Bottom anchor - center X, anchor Y at bottom of tile
+                    // X = (16-80)/2 = -32, Y = (16-80) = -64
+                    spriteItem.PreviewConfig = new PreviewConfig
+                    {
+                        TextureType = PreviewTextureType.TreeTops,
+                        TextureStyle = 0, // Forest tree style
+                        SourceRect = new System.Drawing.Rectangle(variant * 82, 0, 80, 80),
+                        Offset = new Geometry.Vector2Short(-32, -64)
+                    };
+                }
+                else if (frameX == 44)
+                {
+                    // Left branch - use Tree_Branches_0 texture, left side (X=0)
+                    // Variants are arranged vertically at 42px intervals (40px height + 2px gap)
+                    // Offset: Right anchor - anchor X at right of tile, center Y
+                    // X = (16-40) = -24, Y = (16-40)/2 = -12
+                    spriteItem.PreviewConfig = new PreviewConfig
+                    {
+                        TextureType = PreviewTextureType.TreeBranch,
+                        TextureStyle = 0,
+                        SourceRect = new System.Drawing.Rectangle(0, variant * 42, 40, 40),
+                        Offset = new Geometry.Vector2Short(-24, -12)
+                    };
+                }
+                else if (frameX == 66)
+                {
+                    // Right branch - use Tree_Branches_0 texture, right side (X=42)
+                    // Variants are arranged vertically at 42px intervals (40px height + 2px gap)
+                    // Offset: Left anchor - anchor X at left of tile, center Y
+                    // X = 0, Y = (16-40)/2 = -12
+                    spriteItem.PreviewConfig = new PreviewConfig
+                    {
+                        TextureType = PreviewTextureType.TreeBranch,
+                        TextureStyle = 0,
+                        SourceRect = new System.Drawing.Rectangle(42, variant * 42, 40, 40),
+                        Offset = new Geometry.Vector2Short(0, -12)
+                    };
+                }
+            }
+            else
+            {
+                // Tree trunk tiles - use Tiles_5_{treeType} texture based on biome
+                // SourceRect uses the tile's UV coordinates
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.Tree,
+                    TextureStyle = -1, // Default forest tree, will be overridden dynamically
+                    SourceRect = new System.Drawing.Rectangle(frameX, frameY, 16, 16),
+                    Offset = new Geometry.Vector2Short(0, 0)
+                };
+            }
+        }
+        // Palm trees (tile 323) - similar to regular trees but uses sand-based biomes
+        // Palm tops: U >= 88 && U <= 132 (use Tree_Tops_15)
+        // Palm trunks: everything else (use Tiles_323)
+        else if (tile.Id == 323)
+        {
+            int frameX = frame.UV.X;
+            int frameY = frame.UV.Y;
+
+            if (frameX >= 88 && frameX <= 132)
+            {
+                // Palm tree top - use Tree_Tops_15 texture
+                // source.X = frame variant based on U, source.Y = treeType * 82
+                int frameVariant = (frameX - 88) / 22; // 0, 1, or 2
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.PalmTreeTop,
+                    TextureStyle = 0, // Will be determined dynamically for source.Y
+                    SourceRect = new System.Drawing.Rectangle(frameVariant * 82, 0, 80, 80),
+                    Offset = new Geometry.Vector2Short(-32, -64) // Bottom anchor
+                };
+            }
+            else
+            {
+                // Palm tree trunk - use Tiles_323 texture
+                // source.Y is replaced by treeType * 22 (not added)
+                // Frame size is 20x20 (textureGrid), srcRect.X is preserved for horizontal position
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.PalmTree,
+                    TextureStyle = 0, // Will be determined dynamically
+                    SourceRect = new System.Drawing.Rectangle(frameX, 0, 20, 20), // Y=0 will be replaced by palmType * 22
+                    Offset = new Geometry.Vector2Short(-2, -2) // Adjust for 20x20 frame vs 16x16 tile
+                };
+            }
+        }
     }
 
     public void InitSpriteViews()
@@ -314,6 +452,11 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _selectedSpriteItem, value);
+            // Sync biome index to the new sprite item
+            if (value != null)
+            {
+                value.SelectedBiomeIndex = SelectedBiomeVariantIndex;
+            }
             PreviewChange();
         }
     }
@@ -339,9 +482,123 @@ public partial class WorldViewModel : ReactiveObject
             }
 
             PreviewChange();
+            UpdateBiomeVariants();
         }
     }
 
+    /// <summary>
+    /// Whether the currently selected tile has biome variants available.
+    /// </summary>
+    public bool HasBiomeVariants
+    {
+        get
+        {
+            if (_selectedSpriteSheet == null) return false;
+            var tileProperty = WorldConfiguration.TileProperties.FirstOrDefault(t => t.Id == _selectedSpriteSheet.Tile);
+            return tileProperty?.BiomeVariants?.Count > 0;
+        }
+    }
+
+    /// <summary>
+    /// List of biome variant names for the dropdown (includes "Auto" at index 0).
+    /// </summary>
+    public List<string> BiomeVariantNames
+    {
+        get
+        {
+            var names = new List<string>();
+            if (_selectedSpriteSheet == null) return names;
+
+            var tileProperty = WorldConfiguration.TileProperties.FirstOrDefault(t => t.Id == _selectedSpriteSheet.Tile);
+            if (tileProperty?.BiomeVariants != null)
+            {
+                foreach (var variant in tileProperty.BiomeVariants)
+                {
+                    names.Add(variant.Name);
+                }
+            }
+            return names;
+        }
+    }
+
+    /// <summary>
+    /// Selected biome variant index. When IsBiomeAutoMode is true, this follows CurrentAutoBiomeIndex.
+    /// </summary>
+    public int SelectedBiomeVariantIndex
+    {
+        get => _selectedBiomeVariantIndex ?? _currentAutoBiomeIndex;
+        set
+        {
+            if (_selectedBiomeVariantIndex != value)
+            {
+                _selectedBiomeVariantIndex = value;
+                this.RaisePropertyChanged();
+                UpdateSpriteItemBiomeIndex(value);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Whether biome selection follows cursor position automatically.
+    /// </summary>
+    public bool IsBiomeAutoMode
+    {
+        get => _selectedBiomeVariantIndex == null;
+        set
+        {
+            if (value)
+            {
+                _selectedBiomeVariantIndex = null;
+                this.RaisePropertyChanged(nameof(SelectedBiomeVariantIndex));
+            }
+            else
+            {
+                _selectedBiomeVariantIndex = _currentAutoBiomeIndex;
+            }
+            this.RaisePropertyChanged();
+        }
+    }
+
+    /// <summary>
+    /// Updates the auto-detected biome index based on cursor position.
+    /// Called from mouse move handler.
+    /// </summary>
+    public void UpdateAutoBiomeIndex(int biomeIndex)
+    {
+        if (_currentAutoBiomeIndex != biomeIndex)
+        {
+            _currentAutoBiomeIndex = biomeIndex;
+            if (IsBiomeAutoMode)
+            {
+                this.RaisePropertyChanged(nameof(SelectedBiomeVariantIndex));
+                UpdateSpriteItemBiomeIndex(biomeIndex);
+            }
+        }
+    }
+
+    private void UpdateBiomeVariants()
+    {
+        this.RaisePropertyChanged(nameof(HasBiomeVariants));
+        this.RaisePropertyChanged(nameof(BiomeVariantNames));
+        this.RaisePropertyChanged(nameof(SelectedBiomeVariantIndex));
+    }
+
+    private void UpdateSpriteItemBiomeIndex(int biomeIndex)
+    {
+        // Update ALL sprite items in the current sheet, not just the selected one
+        if (_selectedSpriteSheet?.Styles != null)
+        {
+            foreach (var style in _selectedSpriteSheet.Styles)
+            {
+                if (style is SpriteItemPreview preview)
+                {
+                    preview.SelectedBiomeIndex = biomeIndex;
+                }
+            }
+            // Refresh the collection view to update the UI
+            SpriteStylesView?.Refresh();
+        }
+    }
 
     [ReactiveCommand]
     private void LaunchWiki() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki");
