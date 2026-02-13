@@ -617,6 +617,14 @@ public partial class WorldRenderXna : UserControl
                                 }
                             }
                         }
+                        // Handle Magic Droppers (tiles 373, 374, 375, 461, 709) special case
+                        else if (sprite.Tile == 373 || sprite.Tile == 374 || sprite.Tile == 375 || sprite.Tile == 461 || sprite.Tile == 709)
+                        {
+                            var goreType = sprite.Tile switch { 373 => 706, 374 => 716, 375 => 717, 461 => 943, 709 => 1383, _ => 0 };
+                            extraTex ??= _textureDictionary.LoadTextureImmediate($"Images\\Gore_{goreType}");
+                            tileTex = extraTex;
+                            sourceY = 80;
+                        }
 
                         var source = new Rectangle(sourceX, sourceY, renderX, renderY);
 
@@ -2674,10 +2682,6 @@ public partial class WorldRenderXna : UserControl
                                         dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
                                         dest.Y += (int)((16 - source.Height) * _zoom / 16);
                                     }
-                                    else if ((curtile.Type >= 373 && curtile.Type <= 375) || curtile.Type == 461)
-                                    {
-                                        //skip rendering drips
-                                    }
                                     else
                                     {
                                         var type = curtile.Type;
@@ -2731,6 +2735,13 @@ public partial class WorldRenderXna : UserControl
                                                 source.X = renderUV.X % 54 / 18 * 16;
                                                 source.Y = renderUV.Y % 72 / 18 * 16 + renderUV.X / 54 * 50;
                                             }
+                                        }
+                                        // Handle Magic Droppers (tiles 373, 374, 375, 461, 709) special case
+                                        else if (type == 373 || type == 374 || type == 375 || type == 461 || type == 709)
+                                        {
+                                            var goreType = type switch { 373 => 706, 374 => 716, 375 => 717, 461 => 943, 709 => 1383, _ => 0 };
+                                            tileTex = _textureDictionary.GetGore(goreType);
+                                            source.Y = 80;
                                         }
 
                                         if (source.Width <= 0)
@@ -4122,10 +4133,6 @@ public partial class WorldRenderXna : UserControl
                                         dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
                                         dest.Y += (int)((16 - source.Height) * _zoom / 16);
                                     }
-                                    else if ((curtile.Type >= 373 && curtile.Type <= 375) || curtile.Type == 461)
-                                    {
-                                        //skip rendering drips
-                                    }
                                     else
                                     {
                                         var type = curtile.Type;
@@ -4179,6 +4186,13 @@ public partial class WorldRenderXna : UserControl
                                                 source.X = renderUV.X % 54 / 18 * 16;
                                                 source.Y = renderUV.Y % 72 / 18 * 16 + renderUV.X / 54 * 50;
                                             }
+                                        }
+                                        // Handle Magic Droppers (tiles 373, 374, 375, 461, 709) special case
+                                        else if (type == 373 || type == 374 || type == 375 || type == 461 || type == 709)
+                                        {
+                                            var goreType = type switch { 373 => 706, 374 => 716, 375 => 717, 461 => 943, 709 => 1383, _ => 0 };
+                                            tileTex = _textureDictionary.GetGore(goreType);
+                                            source.Y = 80;
                                         }
 
                                         if (source.Width <= 0)
