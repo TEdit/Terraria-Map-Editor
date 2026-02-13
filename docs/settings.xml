@@ -11582,7 +11582,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="716" Name="Friendly Boulder" Color="#Ff7ad9e8" Solid="true" Framed="true" Size="2,2">
       <Frames>
-        <Frame Name="Friendly Boulder" UV="0, 0" />
+        <Frame Name="Friendly Boulder" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="717" Name="Lava Cloud" Color="#Ff7ad9e8" Light="true" Solid="true" />

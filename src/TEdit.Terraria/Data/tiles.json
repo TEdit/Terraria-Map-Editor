@@ -18467,9 +18467,9 @@
     "canBlend": true,
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
-    "frameSize": [[1, 1]],
+    "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Friendly Boulder", "uv": [0, 0] }
+      { "name": "Friendly Boulder", "uv": [0, 0], "anchor": "Bottom" }
     ],
     "name": "Friendly Boulder",
     "color": "#7ad9e8Ff"
