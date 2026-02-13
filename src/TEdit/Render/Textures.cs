@@ -63,6 +63,9 @@ public class Textures
         _defaultTexture = new Texture2D(_gdDevice, 1, 1);
         _defaultTexture.SetData(new Color[] { Color.Transparent });
 
+        _whitePixelTexture = new Texture2D(_gdDevice, 1, 1);
+        _whitePixelTexture.SetData(new Color[] { Color.White });
+
         if (Directory.Exists(path))
         {
             try
@@ -245,6 +248,7 @@ public class Textures
 
     private static Color ColorKey = Color.FromNonPremultiplied(247, 119, 249, 255);
     private Texture2D _defaultTexture;
+    private Texture2D _whitePixelTexture;
     private Texture2D _actuator;
     private readonly Rectangle _zeroSixteenRectangle = new Rectangle(0, 0, 16, 16);
     public Rectangle ZeroSixteenRectangle { get { return _zeroSixteenRectangle; } }
@@ -253,6 +257,11 @@ public class Textures
     /// Get the default transparent texture (used when textures are not yet loaded).
     /// </summary>
     public Texture2D DefaultTexture => _defaultTexture;
+
+    /// <summary>
+    /// Get a 1x1 white pixel texture (used for solid color drawing).
+    /// </summary>
+    public Texture2D WhitePixelTexture => _whitePixelTexture;
 
     /// <summary>
     /// Queue a texture creation action to be executed on the graphics thread.

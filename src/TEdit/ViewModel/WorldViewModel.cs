@@ -90,6 +90,7 @@ public partial class WorldViewModel : ReactiveObject
     private bool _showTiles = true;
     private bool _showCoatings = true;
     private bool _showWalls = true;
+    private bool _showBackgrounds = true;
     private bool _showActuators = true;
     private bool _showRedWires = true;
     private bool _showBlueWires = true;
@@ -1245,6 +1246,16 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _showWalls, value);
+            UpdateRenderWorld();
+        }
+    }
+
+    public bool ShowBackgrounds
+    {
+        get { return _showBackgrounds; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _showBackgrounds, value);
             UpdateRenderWorld();
         }
     }

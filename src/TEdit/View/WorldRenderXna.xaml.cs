@@ -47,7 +47,7 @@ public partial class WorldRenderXna : UserControl
     public bool AreTexturesVisible() => _zoom > _wvm.TextureVisibilityZoomLevel;
 
     private const float LayerTilePixels = 1 - 0;
-
+    private const float LayerBackgroundGradient = 1 - 0.005f;  // Depth zone colors (panning)
     private const float LayerTileBackgroundTextures = 1 - 0.01f;
     private const float LayerTileWallTextures = 1 - 0.02f;
     private const float LayerTileTrackBack = 1 - 0.03f;
@@ -317,6 +317,69 @@ public partial class WorldRenderXna : UserControl
         }
 
         return style?.GetPreviewTextureIndex() ?? 0;
+    }
+
+    /// <summary>
+    /// Draws the depth zone gradient background (Space, Sky, Earth, Rock, Hell).
+    /// This layer pans with the world and is behind the fixed surface background texture.
+    /// </summary>
+    private void DrawBackgroundGradient()
+    {
+        if (_wvm.CurrentWorld == null) return;
+
+        Rectangle visibleBounds = GetViewingArea();
+        var world = _wvm.CurrentWorld;
+
+        // Get the depth zone boundaries
+        int spaceBottom = 80;
+        int skyBottom = (int)world.GroundLevel;
+        int earthBottom = (int)world.RockLevel;
+        int hellTop = world.TilesHigh - 192;
+
+        // Get colors for each zone (with fallbacks)
+        var globalColors = WorldConfiguration.GlobalColors;
+        var spaceColor = globalColors.TryGetValue("Space", out var c1) ? ToXnaColor(c1) : new Color(51, 102, 153);
+        var skyColor = globalColors.TryGetValue("Sky", out var c2) ? ToXnaColor(c2) : new Color(155, 209, 255);
+        var earthColor = globalColors.TryGetValue("Earth", out var c3) ? ToXnaColor(c3) : new Color(84, 57, 42);
+        var rockColor = globalColors.TryGetValue("Rock", out var c4) ? ToXnaColor(c4) : new Color(72, 64, 57);
+        var hellColor = globalColors.TryGetValue("Hell", out var c5) ? ToXnaColor(c5) : new Color(51, 0, 0);
+
+        // Use a 1x1 white texture for solid color rectangles
+        var whiteTex = _textureDictionary.WhitePixelTexture;
+        if (whiteTex == null) return;
+
+        // Helper to draw a depth zone
+        void DrawZone(int worldTop, int worldBottom, Color color)
+        {
+            // Clamp to visible bounds
+            int top = Math.Max(worldTop, visibleBounds.Top);
+            int bottom = Math.Min(worldBottom, visibleBounds.Bottom);
+            if (top >= bottom) return;
+
+            // Convert to screen coordinates (panning with world)
+            int screenLeft = 1 + (int)((_scrollPosition.X + visibleBounds.Left) * _zoom);
+            int screenRight = 1 + (int)((_scrollPosition.X + visibleBounds.Right) * _zoom);
+            int screenTop = 1 + (int)((_scrollPosition.Y + top) * _zoom);
+            int screenBottom = 1 + (int)((_scrollPosition.Y + bottom) * _zoom);
+
+            var dest = new Rectangle(screenLeft, screenTop, screenRight - screenLeft, screenBottom - screenTop);
+            _spriteBatch.Draw(whiteTex, dest, null, color, 0f, default, SpriteEffects.None, LayerBackgroundGradient);
+        }
+
+        // Draw each depth zone (from top to bottom)
+        DrawZone(0, spaceBottom, spaceColor);
+        DrawZone(spaceBottom, skyBottom, skyColor);
+        DrawZone(skyBottom, earthBottom, earthColor);
+        DrawZone(earthBottom, hellTop, rockColor);
+        DrawZone(hellTop, world.TilesHigh, hellColor);
+    }
+
+    /// <summary>
+    /// Converts TEditColor to XNA Color.
+    /// </summary>
+    private static Color ToXnaColor(TEditColor c)
+    {
+        return new Color(c.R, c.G, c.B, c.A);
     }
 
     #endregion
@@ -1954,7 +2017,20 @@ public partial class WorldRenderXna : UserControl
         // Start SpriteBatch
         _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
-        DrawPixelTiles();
+        // Draw layers based on whether textures are visible
+        if (_wvm.ShowTextures && _textureDictionary.Valid && AreTexturesVisible())
+        {
+            // When textures visible: draw gradient background (panning) first
+            if (_wvm.ShowBackgrounds)
+            {
+                DrawBackgroundGradient();
+            }
+        }
+        else
+        {
+            // When textures not visible: draw pixel tiles (includes gradient colors)
+            DrawPixelTiles();
+        }
 
         if (_wvm.ShowTextures && _textureDictionary.Valid)
         {
@@ -2298,7 +2374,7 @@ public partial class WorldRenderXna : UserControl
     };
 
     /// <summary>
-    /// Draws the surface biome background as a single scaled texture.
+    /// Draws the surface biome background as a fixed texture filling the render window.
     /// Uses center of visible area for biome detection.
     /// </summary>
     private void DrawSurfaceBackground()
@@ -2309,15 +2385,13 @@ public partial class WorldRenderXna : UserControl
         Rectangle visibleBounds = GetViewingArea();
         var world = _wvm.CurrentWorld;
 
-        // Calculate the visible surface area (above ground level)
-        int surfaceTop = Math.Max(visibleBounds.Top, 0);
-        int surfaceBottom = Math.Min(visibleBounds.Bottom, (int)world.GroundLevel);
-
-        // Only draw if we're viewing surface area
-        if (surfaceTop >= surfaceBottom) return;
+        // Only draw if we're viewing surface area (y < GroundLevel)
+        if (visibleBounds.Top >= world.GroundLevel) return;
 
         // Find center of visible area for biome detection
         int centerX = (visibleBounds.Left + visibleBounds.Right) / 2;
+        int surfaceTop = Math.Max(visibleBounds.Top, 0);
+        int surfaceBottom = Math.Min(visibleBounds.Bottom, (int)world.GroundLevel);
         int centerY = (surfaceTop + surfaceBottom) / 2;
 
         // Clamp to world bounds
@@ -2333,13 +2407,14 @@ public partial class WorldRenderXna : UserControl
         var backTex = _textureDictionary.GetBackground(texIndex);
         if (backTex == null || backTex == _textureDictionary.DefaultTexture) return;
 
-        // Calculate destination rectangle for the surface area in screen coordinates
-        int destTop = 1 + (int)((_scrollPosition.Y + surfaceTop) * _zoom);
-        int destBottom = 1 + (int)((_scrollPosition.Y + surfaceBottom) * _zoom);
-        int destLeft = 1 + (int)((_scrollPosition.X + visibleBounds.Left) * _zoom);
-        int destRight = 1 + (int)((_scrollPosition.X + visibleBounds.Right) * _zoom);
+        // Use fixed screen coordinates - fill the entire render window
+        int screenWidth = (int)xnaViewport.ActualWidth;
+        int screenHeight = (int)xnaViewport.ActualHeight;
 
-        var dest = new Rectangle(destLeft, destTop, destRight - destLeft, destBottom - destTop);
+        if (screenWidth <= 0 || screenHeight <= 0) return;
+
+        // Draw background scaled to fill the render window (no panning)
+        var dest = new Rectangle(0, 0, screenWidth, screenHeight);
 
         // Use full texture as source
         var source = new Rectangle(0, 0, backTex.Width, backTex.Height);
@@ -2350,6 +2425,7 @@ public partial class WorldRenderXna : UserControl
     private void DrawTileBackgrounds()
     {
         if (!AreTexturesVisible()) return;
+        if (!_wvm.ShowBackgrounds) return;
 
         // Check if the background mode is normal. If not, return.
         if (FilterManager.CurrentBackgroundMode != FilterManager.BackgroundMode.Normal) return;

@@ -104,6 +104,7 @@
                     <MenuItem Header="{x:Static p:Language.menu_layers_usetexturecolor}" IsCheckable="True" IsChecked="{Binding RealisticColors}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_grid}" IsCheckable="True" IsChecked="{Binding ShowGrid}" />
                     <Separator Margin="1" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_backgrounds}" IsCheckable="True" IsChecked="{Binding ShowBackgrounds}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_walls}" IsCheckable="True" IsChecked="{Binding ShowWalls}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_tiles}" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
                     <MenuItem Header="{x:Static p:Language.tool_paint_coating}" IsCheckable="True" IsChecked="{Binding ShowCoatings}" />
