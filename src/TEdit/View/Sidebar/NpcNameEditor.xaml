@@ -3,63 +3,119 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
-             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
-             xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:converters="clr-namespace:TEdit.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
     <UserControl.Resources>
         <converters:NpcIdToPreviewConverter x:Key="NpcIdToPreviewConverter" />
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.NpcNames}, Mode=OneTime}"
-                          SelectedValuePath="Key"
-                          x:Name="addNpcComboBox"
-                          MinWidth="180">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Key, Converter={StaticResource NpcIdToPreviewConverter}}"
-                                       MaxWidth="32" MaxHeight="32"
-                                       Stretch="Uniform"
-                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                       Margin="0,0,4,0"
-                                       VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding Value}" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <Button Command="{Binding NpcAddCommand}" CommandParameter="{Binding Path=SelectedValue, ElementName=addNpcComboBox}" Content="{x:Static p:Language.tool_npc_add}"></Button>
-            </StackPanel>
-        </Grid>
-        <ListBox Grid.Row="1" MinHeight="100" ItemsSource="{Binding CurrentWorld.NPCs}">
+        <ListBox MinHeight="100" ItemsSource="{Binding AllNpcsView}"
+                 HorizontalContentAlignment="Stretch">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding NpcSelectCommand}"
+                                           CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=ListBox}}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="24" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Content="-" Margin="2" Command="{Binding DataContext.NpcRemoveCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" VerticalAlignment="Stretch" CommandParameter="{Binding}" Padding="4" />
+
+                        <!-- Add button: visible when NPC is NOT on the map -->
+                        <Button Grid.Column="0" Content="+" Margin="2" Padding="4"
+                                VerticalAlignment="Stretch"
+                                Command="{Binding DataContext.NpcAddCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding SpriteId}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsOnMap}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <!-- Remove button: visible when NPC IS on the map -->
+                        <Button Grid.Column="0" Content="-" Margin="2" Padding="4"
+                                VerticalAlignment="Stretch"
+                                Command="{Binding DataContext.NpcRemoveCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                CommandParameter="{Binding SpriteId}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsOnMap}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <!-- NPC preview image -->
                         <Image Grid.Column="1"
                                Source="{Binding SpriteId, Converter={StaticResource NpcIdToPreviewConverter}}"
                                MaxWidth="32" MaxHeight="32"
                                Stretch="Uniform"
                                RenderOptions.BitmapScalingMode="NearestNeighbor"
                                Margin="2"
-                               VerticalAlignment="Center"/>
-                        <TextBox Grid.Column="2" Text="{Binding DisplayName}" MinWidth="150" Margin="2,0" />
-                        <TextBlock Grid.Column="3" Text="{Binding Name}" HorizontalAlignment="Center" Margin="2" VerticalAlignment="Center" />
+                               VerticalAlignment="Center">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Opacity" Value="0.35" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsOnMap}" Value="True">
+                                            <Setter Property="Opacity" Value="1.0" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <!-- Editable display name (only when on map) -->
+                        <TextBox Grid.Column="2"
+                                 Text="{Binding WorldNpc.DisplayName, UpdateSourceTrigger=PropertyChanged}"
+                                 MinWidth="120" Margin="2,0"
+                                 VerticalAlignment="Center"
+                                 IsEnabled="{Binding IsOnMap}"
+                                 Visibility="{Binding IsOnMap, Converter={StaticResource BoolToVis}}" />
+
+                        <!-- Static name shown when NPC is not on map -->
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding DefaultName}"
+                                   Margin="4,0" Opacity="0.5"
+                                   VerticalAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsOnMap}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
+                        <!-- NPC type name -->
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding DefaultName}"
+                                   HorizontalAlignment="Right"
+                                   Margin="4,0"
+                                   VerticalAlignment="Center"
+                                   Visibility="{Binding IsOnMap, Converter={StaticResource BoolToVis}}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

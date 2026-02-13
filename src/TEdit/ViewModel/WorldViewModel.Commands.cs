@@ -64,42 +64,70 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void NpcAdd(int npcId)
     {
-        if (CurrentWorld != null && WorldConfiguration.NpcNames.ContainsKey(npcId))
+        if (CurrentWorld == null || !WorldConfiguration.NpcNames.ContainsKey(npcId))
+            return;
+
+        string name = WorldConfiguration.NpcNames[npcId];
+        if (CurrentWorld.NPCs.Any(n => n.SpriteId == npcId))
+            return;
+
+        var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
+        var npc = new NPC
         {
-            string name = WorldConfiguration.NpcNames[npcId];
-            if (CurrentWorld.NPCs.All(n => n.SpriteId != npcId))
-            {
-                var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
-                CurrentWorld.NPCs.Add(new NPC { Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position = new Vector2FloatObservable(spawn.X * 16, spawn.Y * 16), SpriteId = npcId });
-                Points.Add(name);
-                MessageBox.Show($"{name} added to spawn.", "NPC Added");
-            }
-            else
-            {
-                MessageBox.Show($"{name} is already on the map.", "NPC Exists");
-            }
-        }
-        else
-        {
-            MessageBox.Show($"Choose an NPC. NPC {npcId} not found.", "NPC Error");
-        }
+            Home = spawn,
+            IsHomeless = true,
+            DisplayName = name,
+            Name = name,
+            Position = new Vector2FloatObservable(spawn.X * 16, spawn.Y * 16),
+            SpriteId = npcId
+        };
+        CurrentWorld.NPCs.Add(npc);
+        Points.Add(name);
+
+        var listItem = AllNpcs.FirstOrDefault(i => i.SpriteId == npcId);
+        if (listItem != null)
+            listItem.WorldNpc = npc;
+
+        AllNpcsView.Refresh();
+        ActivateNpcPointTool(name);
     }
 
     [ReactiveCommand]
-    private void NpcRemove(NPC npc)
+    private void NpcRemove(int npcId)
     {
-        if (CurrentWorld != null)
+        if (CurrentWorld == null)
+            return;
+
+        var npc = CurrentWorld.NPCs.FirstOrDefault(n => n.SpriteId == npcId);
+        if (npc == null)
+            return;
+
+        CurrentWorld.NPCs.Remove(npc);
+        Points.Remove(npc.Name);
+
+        var listItem = AllNpcs.FirstOrDefault(i => i.SpriteId == npcId);
+        if (listItem != null)
+            listItem.WorldNpc = null;
+
+        AllNpcsView.Refresh();
+    }
+
+    [ReactiveCommand]
+    private void NpcSelect(NpcListItem item)
+    {
+        if (item?.IsOnMap == true)
         {
-            try
-            {
-                CurrentWorld.NPCs.Remove(npc);
-                Points.Remove(npc.Name);
-                MessageBox.Show(string.Format("{1} ({0}) removed.", npc.Name, npc.DisplayName), "NPC Removed");
-            }
-            catch (InvalidOperationException)
-            {
-                MessageBox.Show(string.Format("{1} ({0}) was not on the map.", npc.Name, npc.DisplayName), "NPC Doesn't Exist");
-            }
+            ActivateNpcPointTool(item.WorldNpc.Name);
+        }
+    }
+
+    private void ActivateNpcPointTool(string npcName)
+    {
+        var pointTool = Tools.FirstOrDefault(t => t is PointTool);
+        if (pointTool != null)
+        {
+            SetActiveTool(pointTool);
+            SelectedPoint = npcName;
         }
     }
 

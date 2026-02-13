@@ -53,6 +53,7 @@ public partial class WorldViewModel : ReactiveObject
     private readonly MouseTile _mouseOverTile = new MouseTile();
     private readonly ObservableCollection<IPlugin> _plugins = new ObservableCollection<IPlugin>();
     private readonly ObservableCollection<string> _points = new ObservableCollection<string>();
+    private readonly ObservableCollection<NpcListItem> _allNpcs = new ObservableCollection<NpcListItem>();
     private readonly Timer _saveTimer = new Timer();
     private readonly Selection _selection = new Selection();
     private readonly MorphToolOptions _MorphToolOptions = new MorphToolOptions();
@@ -956,6 +957,26 @@ public partial class WorldViewModel : ReactiveObject
         get { return _points; }
     }
 
+    public ObservableCollection<NpcListItem> AllNpcs
+    {
+        get { return _allNpcs; }
+    }
+
+    private ICollectionView _allNpcsView;
+    public ICollectionView AllNpcsView
+    {
+        get
+        {
+            if (_allNpcsView == null)
+            {
+                _allNpcsView = CollectionViewSource.GetDefaultView(_allNpcs);
+                _allNpcsView.SortDescriptions.Add(new SortDescription(nameof(NpcListItem.IsOnMap), ListSortDirection.Descending));
+                _allNpcsView.SortDescriptions.Add(new SortDescription(nameof(NpcListItem.DefaultName), ListSortDirection.Ascending));
+            }
+            return _allNpcsView;
+        }
+    }
+
     public string SelectedPoint
     {
         get { return _selectedPoint; }
@@ -983,6 +1004,26 @@ public partial class WorldViewModel : ReactiveObject
                 Points.Add(npc.Name);
             }
         }
+
+        RefreshAllNpcs();
+    }
+
+    private void RefreshAllNpcs()
+    {
+        if (_allNpcs.Count == 0)
+        {
+            foreach (var kvp in WorldConfiguration.NpcNames.OrderBy(x => x.Value))
+            {
+                _allNpcs.Add(new NpcListItem(kvp.Key, kvp.Value));
+            }
+        }
+
+        foreach (var item in _allNpcs)
+        {
+            item.WorldNpc = CurrentWorld?.NPCs.FirstOrDefault(n => n.SpriteId == item.SpriteId);
+        }
+
+        AllNpcsView.Refresh();
     }
 
 
