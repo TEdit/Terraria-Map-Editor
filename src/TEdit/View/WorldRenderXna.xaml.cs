@@ -538,7 +538,7 @@ public partial class WorldRenderXna : UserControl
                         // Handle Chimney (tiles 406) special case
                         else if (sprite.Tile == 406)
                         {
-                            switch(uv.Y / 54)
+                            switch (uv.Y / 54)
                             {
                                 // On A
                                 case 0: break;
@@ -551,7 +551,7 @@ public partial class WorldRenderXna : UserControl
                         // Handle Aether Monolith (tiles 658) special case
                         else if (sprite.Tile == 658)
                         {
-                            switch(uv.Y / 54)
+                            switch (uv.Y / 54)
                             {
                                 // On A
                                 case 0: break;
@@ -575,6 +575,46 @@ public partial class WorldRenderXna : UserControl
                                 tileTex = extraTex;
                                 sourceX = x * 16;
                                 sourceY = y * 16 + uv.X / 54 * 50;
+                            }
+                        }
+                        // Handle Pylons (tiles 597) special case
+                        else if (sprite.Tile == 597)
+                        {
+                            var pylonType = uv.X / 54;
+
+                            extraTex ??= _textureDictionary.LoadTextureImmediate($"Images\\Extra_181");
+
+                            if (extraTex != null)
+                            {
+                                var extraTargetRect = new Rectangle(9, 0, 30, 46);
+                                var extraIntersectRect = Rectangle.Intersect(new Rectangle(x * 16, y * 16, 16, 16), extraTargetRect);
+                                var tileLocalRect = new Rectangle(extraIntersectRect.X - x * 16, extraIntersectRect.Y - y * 16, extraIntersectRect.Width, extraIntersectRect.Height);
+
+                                if (extraIntersectRect.Width > 0 && extraIntersectRect.Height > 0)
+                                {
+                                    var extraOffset = new Vector2Int32(extraIntersectRect.X - extraTargetRect.X, extraIntersectRect.Y - extraTargetRect.Y);
+                                    var extraSourceRect = new Rectangle(extraOffset.X + (pylonType + 3) * 30, extraOffset.Y, extraIntersectRect.Width, extraIntersectRect.Height);
+
+                                    var tileSourceRect = new Rectangle(sourceX + tileLocalRect.X, sourceY + tileLocalRect.Y, tileLocalRect.Width, tileLocalRect.Height);
+
+                                    var extraPixels = new Color[extraIntersectRect.Width * extraIntersectRect.Height];
+                                    extraTex.GetData(0, extraSourceRect, extraPixels, 0, extraPixels.Length);
+
+                                    var tilePixels = new Color[tileSourceRect.Width * tileSourceRect.Height];
+                                    tileTex.GetData(0, tileSourceRect, tilePixels, 0, tilePixels.Length);
+
+                                    bool changed = false;
+                                    for (int i = 0; i < tilePixels.Length; i++)
+                                    {
+                                        if (tilePixels[i].A == 0 && extraPixels[i].A > 0)
+                                        {
+                                            tilePixels[i] = extraPixels[i];
+                                            changed = true;
+                                        }
+                                    }
+
+                                    if (changed) tileTex.SetData(0, tileSourceRect, tilePixels, 0, tilePixels.Length);
+                                }
                             }
                         }
 
@@ -1032,7 +1072,7 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_RenderXna(object sender, GraphicsDeviceEventArgs e)
     {
         // Abort rendering if in design mode or if gameTimer is not running
-        if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null )
+        if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null)
             return;
 
         // Clear the graphics device and texture buffer
@@ -1498,7 +1538,7 @@ public partial class WorldRenderXna : UserControl
         }
     }
 
-    static int[,] backstyle = new int[9,7]
+    static int[,] backstyle = new int[9, 7]
     {
         {66, 67, 68, 69, 128, 125, 185},
         {70, 71, 68, 72, 128, 125, 185},
@@ -1637,13 +1677,13 @@ public partial class WorldRenderXna : UserControl
                     if ((curtile.WallColor == 30) != drawInverted) continue;
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
-                    neighborTile[e]  = (x + 1) < width                     ? _wvm.CurrentWorld.Tiles[x + 1, y]     : null;
-                    neighborTile[n]  = (y - 1) > 0                         ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null;
-                    neighborTile[w]  = (x - 1) > 0                         ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null;
-                    neighborTile[s]  = (y + 1) < height                    ? _wvm.CurrentWorld.Tiles[x, y + 1]     : null;
-                    neighborTile[ne] = (x + 1) < width && (y - 1) > 0      ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                    neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0          ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                    neighborTile[sw] = (x - 1) > 0 && (y + 1) < height     ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                    neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
+                    neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
+                    neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
+                    neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
+                    neighborTile[ne] = (x + 1) < width && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                    neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                    neighborTile[sw] = (x - 1) > 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
                     neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                     if (_wvm.ShowWalls)
@@ -1756,13 +1796,13 @@ public partial class WorldRenderXna : UserControl
                         else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGrayscale = true;
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
-                    neighborTile[e]  = (x + 1 < width)                   ? _wvm.CurrentWorld.Tiles[x + 1, y]     : null;
-                    neighborTile[n]  = (y - 1 >= 0)                      ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null;
-                    neighborTile[w]  = (x - 1 >= 0)                      ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null;
-                    neighborTile[s]  = (y + 1 < height)                  ? _wvm.CurrentWorld.Tiles[x, y + 1]     : null;
-                    neighborTile[ne] = (x + 1 < width && y - 1 >= 0)     ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                    neighborTile[nw] = (x - 1 >= 0 && y - 1 >= 0)        ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                    neighborTile[sw] = (x - 1 >= 0 && y + 1 < height)    ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                    neighborTile[e] = (x + 1 < width) ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
+                    neighborTile[n] = (y - 1 >= 0) ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
+                    neighborTile[w] = (x - 1 >= 0) ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
+                    neighborTile[s] = (y + 1 < height) ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
+                    neighborTile[ne] = (x + 1 < width && y - 1 >= 0) ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                    neighborTile[nw] = (x - 1 >= 0 && y - 1 >= 0) ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                    neighborTile[sw] = (x - 1 >= 0 && y + 1 < height) ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
                     neighborTile[se] = (x + 1 < width && y + 1 < height) ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                     if (_wvm.ShowWalls)
@@ -2655,7 +2695,7 @@ public partial class WorldRenderXna : UserControl
                                         // Handle Chimney (tiles 406) special case
                                         else if (type == 406)
                                         {
-                                            switch(renderUV.Y / 54)
+                                            switch (renderUV.Y / 54)
                                             {
                                                 // On A
                                                 case 0: break;
@@ -2668,7 +2708,7 @@ public partial class WorldRenderXna : UserControl
                                         // Handle Aether Monolith (tiles 658) special case
                                         else if (type == 658)
                                         {
-                                            switch(renderUV.Y / 54)
+                                            switch (renderUV.Y / 54)
                                             {
                                                 // On A
                                                 case 0: break;
@@ -3344,13 +3384,13 @@ public partial class WorldRenderXna : UserControl
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
                     //Tile[] neighborTile = new Tile[8];
-                    neighborTile[e]  = (x + 1 < width)                   ? ((_wvm.CurrentWorld.Tiles[x + 1, y]     is var t0 && !(FilterManager.TileIsNotAllowed(t0.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t0 : null) : null;
-                    neighborTile[n]  = (y - 1 >= 0)                      ? ((_wvm.CurrentWorld.Tiles[x, y - 1]     is var t1 && !(FilterManager.TileIsNotAllowed(t1.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t1 : null) : null;
-                    neighborTile[w]  = (x - 1 >= 0)                      ? ((_wvm.CurrentWorld.Tiles[x - 1, y]     is var t2 && !(FilterManager.TileIsNotAllowed(t2.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t2 : null) : null;
-                    neighborTile[s]  = (y + 1 < height)                  ? ((_wvm.CurrentWorld.Tiles[x, y + 1]     is var t3 && !(FilterManager.TileIsNotAllowed(t3.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t3 : null) : null;
-                    neighborTile[ne] = (x + 1 < width && y - 1 >= 0)     ? ((_wvm.CurrentWorld.Tiles[x + 1, y - 1] is var t4 && !(FilterManager.TileIsNotAllowed(t4.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t4 : null) : null;
-                    neighborTile[nw] = (x - 1 >= 0 && y - 1 >= 0)        ? ((_wvm.CurrentWorld.Tiles[x - 1, y - 1] is var t5 && !(FilterManager.TileIsNotAllowed(t5.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t5 : null) : null;
-                    neighborTile[sw] = (x - 1 >= 0 && y + 1 < height)    ? ((_wvm.CurrentWorld.Tiles[x - 1, y + 1] is var t6 && !(FilterManager.TileIsNotAllowed(t6.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t6 : null) : null;
+                    neighborTile[e] = (x + 1 < width) ? ((_wvm.CurrentWorld.Tiles[x + 1, y] is var t0 && !(FilterManager.TileIsNotAllowed(t0.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t0 : null) : null;
+                    neighborTile[n] = (y - 1 >= 0) ? ((_wvm.CurrentWorld.Tiles[x, y - 1] is var t1 && !(FilterManager.TileIsNotAllowed(t1.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t1 : null) : null;
+                    neighborTile[w] = (x - 1 >= 0) ? ((_wvm.CurrentWorld.Tiles[x - 1, y] is var t2 && !(FilterManager.TileIsNotAllowed(t2.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t2 : null) : null;
+                    neighborTile[s] = (y + 1 < height) ? ((_wvm.CurrentWorld.Tiles[x, y + 1] is var t3 && !(FilterManager.TileIsNotAllowed(t3.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t3 : null) : null;
+                    neighborTile[ne] = (x + 1 < width && y - 1 >= 0) ? ((_wvm.CurrentWorld.Tiles[x + 1, y - 1] is var t4 && !(FilterManager.TileIsNotAllowed(t4.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t4 : null) : null;
+                    neighborTile[nw] = (x - 1 >= 0 && y - 1 >= 0) ? ((_wvm.CurrentWorld.Tiles[x - 1, y - 1] is var t5 && !(FilterManager.TileIsNotAllowed(t5.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t5 : null) : null;
+                    neighborTile[sw] = (x - 1 >= 0 && y + 1 < height) ? ((_wvm.CurrentWorld.Tiles[x - 1, y + 1] is var t6 && !(FilterManager.TileIsNotAllowed(t6.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t6 : null) : null;
                     neighborTile[se] = (x + 1 < width && y + 1 < height) ? ((_wvm.CurrentWorld.Tiles[x + 1, y + 1] is var t7 && !(FilterManager.TileIsNotAllowed(t7.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t7 : null) : null;
 
                     if (_wvm.ShowTiles)
@@ -4103,7 +4143,7 @@ public partial class WorldRenderXna : UserControl
                                         // Handle Chimney (tiles 406) special case
                                         else if (type == 406)
                                         {
-                                            switch(renderUV.Y / 54)
+                                            switch (renderUV.Y / 54)
                                             {
                                                 // On A
                                                 case 0: break;
@@ -4116,7 +4156,7 @@ public partial class WorldRenderXna : UserControl
                                         // Handle Aether Monolith (tiles 658) special case
                                         else if (type == 658)
                                         {
-                                            switch(renderUV.Y / 54)
+                                            switch (renderUV.Y / 54)
                                             {
                                                 // On A
                                                 case 0: break;
