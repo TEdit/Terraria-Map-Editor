@@ -166,6 +166,7 @@ public class SettingsXmlMigrationTests
 
                     var frameName = (string?)frameXml.Attribute("Name");
                     if (!string.IsNullOrEmpty(frameName)) frame["name"] = frameName;
+                    else frame["name"] = name;
 
                     var variety = (string?)frameXml.Attribute("Variety");
                     if (!string.IsNullOrEmpty(variety)) frame["variety"] = variety;
