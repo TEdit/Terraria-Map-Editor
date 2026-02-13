@@ -12,4 +12,5 @@ public class BestiaryNpcData
     public bool IsTownNpc { get; set; }
     public bool IsKillCredit { get; set; }
     public int BestiaryDisplayIndex { get; set; }
+    public string Category { get; set; } = "";
 }

@@ -140,9 +140,6 @@ namespace SettingsFileUpdater
                 bestiaryConfig,
                 bestiaryConfig.NpcData.Cast<object>().ToList(),
                 o => ((NpcData)o).Id,
-                bestiaryConfig.Cat,
-                bestiaryConfig.Dog,
-                bestiaryConfig.Bunny,
                 jsonOptions);
 
             // Auto-update version data

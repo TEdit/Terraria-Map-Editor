@@ -585,16 +585,12 @@ namespace SettingsFileUpdater.TerrariaHost
         }
 
         /// <summary>
-        /// Gets the full bestiary configuration including cat/dog/bunny type names.
+        /// Gets the full bestiary configuration.
         /// </summary>
         public BestiaryConfigJson GetBestiaryConfigJson()
         {
             var config = new BestiaryConfigJson
             {
-                // Town pet variant names
-                Cat = new List<string> { "Siamese", "Black", "OrangeTabby", "RussianBlue", "Silver", "White" },
-                Dog = new List<string> { "Labrador", "PitBull", "Beagle", "Corgi", "Dalmation", "Husky" },
-                Bunny = new List<string> { "White", "Angora", "Dutch", "Flemish", "Lop", "Silver" },
                 NpcData = GetBestiaryData().ToList()
             };
 

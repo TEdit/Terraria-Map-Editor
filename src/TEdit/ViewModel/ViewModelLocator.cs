@@ -25,6 +25,7 @@ public static class ViewModelLocator
     }
     
     public static BestiaryViewModel GetBestiaryViewModel() => new BestiaryViewModel();
+    public static BannerViewModel GetBannerViewModel() => new BannerViewModel();
     public static CreativePowersViewModel GetCreativePowersViewModel() => new CreativePowersViewModel();
 
     private static WorldViewModel CreateWorldViewModel()

@@ -75,6 +75,43 @@ public partial class World
         world.KilledMobs.AddRange(w.KilledMobs);
     }
 
+    public static void ImportBanners(World world, string worldFileName, IProgress<ProgressChangedEventArgs>? progress = null)
+    {
+        World w = new World();
+
+        using (var b = new BinaryReader(File.OpenRead(worldFileName)))
+        {
+            w.Version = b.ReadUInt32();
+
+            if (w.Version < 289)
+                throw new TEditFileFormatException("Source world does not support banners (requires version 289+).");
+            if (w.Version > world.Version)
+                throw new TEditFileFormatException("Source world version is greater than target world. Please reload both in game and resave.");
+
+            b.BaseStream.Position = 0;
+
+            if (!LoadSectionHeader(b, out var tileFrameImportant, out var sectionPointers, w))
+                throw new TEditFileFormatException("Invalid File Format Section");
+
+            w.TileFrameImportant = tileFrameImportant;
+
+            if (b.BaseStream.Position != sectionPointers[0])
+                throw new TEditFileFormatException("Unexpected Position: Invalid File Format Section");
+
+            // Load header flags (contains KilledMobs and ClaimableBanners)
+            LoadHeaderFlags(b, w, sectionPointers[1]);
+            if (b.BaseStream.Position != sectionPointers[1])
+                throw new TEditFileFormatException("Unexpected Position: Invalid Header Flags");
+        }
+
+        // Copy claimable banners to target world
+        world.ClaimableBanners.Clear();
+        foreach (var banner in w.ClaimableBanners)
+        {
+            world.ClaimableBanners.Add(banner);
+        }
+    }
+
     public static void SaveV2(World world, BinaryWriter bw, bool incrementRevision = true, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         world.Validate(progress);

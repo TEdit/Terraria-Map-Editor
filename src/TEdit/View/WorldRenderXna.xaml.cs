@@ -4899,9 +4899,11 @@ public partial class WorldRenderXna : UserControl
         var bestiaryData = WorldConfiguration.BestiaryData.NpcById[npcId];
         string npcName = bestiaryData.BestiaryId;
         bool isPartying = _wvm.CurrentWorld.PartyingNPCs.Contains(npcId);
+        bool isShimmered = npcId < _wvm.CurrentWorld.ShimmeredTownNPCs.Count
+            && _wvm.CurrentWorld.ShimmeredTownNPCs[npcId] != 0;
 
         Texture2D npcTexture = bestiaryData.IsTownNpc ?
-                _textureDictionary.GetTownNPC(npcName, npcId, variant: npc.TownNpcVariationIndex, partying: isPartying) :
+                _textureDictionary.GetTownNPC(npcName, npcId, variant: npc.TownNpcVariationIndex, partying: isPartying, shimmered: isShimmered) :
                 null;
 
         if (npcTexture != null)

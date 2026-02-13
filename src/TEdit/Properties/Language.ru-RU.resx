@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="banner_category" xml:space="preserve">
+    <value>Категория:</value>
+  </data>
+  <data name="banner_count" xml:space="preserve">
+    <value>Граф</value>
+  </data>
+  <data name="banner_filter" xml:space="preserve">
+    <value>Фильтр:</value>
+  </data>
+  <data name="banner_import" xml:space="preserve">
+    <value>Импортировать</value>
+  </data>
+  <data name="banner_kills" xml:space="preserve">
+    <value>Убийства</value>
+  </data>
+  <data name="banner_maxout" xml:space="preserve">
+    <value>Max Out</value>
+  </data>
+  <data name="banner_reset" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="banner_save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>Чат</value>
   </data>
@@ -193,6 +217,9 @@
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Анализ</value>
+  </data>
+  <data name="editor_tabs_banners" xml:space="preserve">
+    <value>Баннеры</value>
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
     <value>Буфер обмена</value>

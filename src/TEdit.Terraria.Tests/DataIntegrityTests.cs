@@ -133,9 +133,6 @@ public class DataIntegrityTests
         var restored = JsonSerializer.Deserialize<BestiaryNpcConfiguration>(json, Options)!;
 
         restored.NpcData.Count.ShouldBe(bestiary.NpcData.Count);
-        restored.Cat.Count.ShouldBe(bestiary.Cat.Count);
-        restored.Dog.Count.ShouldBe(bestiary.Dog.Count);
-        restored.Bunny.Count.ShouldBe(bestiary.Bunny.Count);
     }
 
     [Fact]

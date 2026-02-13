@@ -284,6 +284,9 @@
                     <TabItem Header="{x:Static p:Language.editor_tabs_tally}">
                         <View:BestiaryEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
+                    <TabItem Header="{x:Static p:Language.editor_tabs_banners}">
+                        <View:BannerEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </TabItem>
                     <TabItem Header="{x:Static p:Language.editor_tabs_tileentities}">
                         <View:TileEntityExaminer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>

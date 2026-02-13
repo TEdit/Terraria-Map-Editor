@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="banner_category" xml:space="preserve">
+    <value>Categoria:</value>
+  </data>
+  <data name="banner_count" xml:space="preserve">
+    <value>Conde</value>
+  </data>
+  <data name="banner_filter" xml:space="preserve">
+    <value>Filtro:</value>
+  </data>
+  <data name="banner_import" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="banner_kills" xml:space="preserve">
+    <value>Abates</value>
+  </data>
+  <data name="banner_maxout" xml:space="preserve">
+    <value>Máximo Esgotado</value>
+  </data>
+  <data name="banner_reset" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="banner_save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>Bater papo</value>
   </data>
@@ -193,6 +217,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Análise</value>
+  </data>
+  <data name="editor_tabs_banners" xml:space="preserve">
+    <value>Bandeiras</value>
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
     <value>Área de transferência</value>

@@ -61,6 +61,78 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category:.
+        /// </summary>
+        public static string banner_category {
+            get {
+                return ResourceManager.GetString("banner_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count.
+        /// </summary>
+        public static string banner_count {
+            get {
+                return ResourceManager.GetString("banner_count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string banner_filter {
+            get {
+                return ResourceManager.GetString("banner_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string banner_import {
+            get {
+                return ResourceManager.GetString("banner_import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kills.
+        /// </summary>
+        public static string banner_kills {
+            get {
+                return ResourceManager.GetString("banner_kills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Out.
+        /// </summary>
+        public static string banner_maxout {
+            get {
+                return ResourceManager.GetString("banner_maxout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string banner_reset {
+            get {
+                return ResourceManager.GetString("banner_reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string banner_save {
+            get {
+                return ResourceManager.GetString("banner_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chat.
         /// </summary>
         public static string bestiary_chat {
@@ -278,6 +350,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Banners.
+        /// </summary>
+        public static string editor_tabs_banners {
+            get {
+                return ResourceManager.GetString("editor_tabs_banners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clipboard.
         /// </summary>
         public static string editor_tabs_clipboard {
@@ -323,7 +404,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tally.
+        ///   Looks up a localized string similar to Bestiary.
         /// </summary>
         public static string editor_tabs_tally {
             get {

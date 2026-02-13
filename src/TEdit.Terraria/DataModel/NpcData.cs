@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using TEdit.Geometry;
 
@@ -21,6 +22,19 @@ public class NpcData
     /// Vertical tile offset for positioning. Positive moves down, negative moves up.
     /// </summary>
     public int TileOffsetY { get; set; }
+
+    /// <summary>
+    /// Ordered list of variant display names (index matches TownNpcVariationIndex).
+    /// Null if the NPC has no variants.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<string> Variants { get; set; }
+
+    /// <summary>
+    /// Whether this NPC supports shimmer transformation.
+    /// </summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public bool CanShimmer { get; set; }
 
     public override string ToString() => Name;
 }

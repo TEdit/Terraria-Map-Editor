@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="banner_category" xml:space="preserve">
+    <value>类别：</value>
+  </data>
+  <data name="banner_count" xml:space="preserve">
+    <value>伯爵</value>
+  </data>
+  <data name="banner_filter" xml:space="preserve">
+    <value>筛选条件:</value>
+  </data>
+  <data name="banner_import" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="banner_kills" xml:space="preserve">
+    <value>击杀</value>
+  </data>
+  <data name="banner_maxout" xml:space="preserve">
+    <value>极限</value>
+  </data>
+  <data name="banner_reset" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="banner_save" xml:space="preserve">
+    <value>保存</value>
+  </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>聊天</value>
   </data>
@@ -193,6 +217,9 @@
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>分析</value>
+  </data>
+  <data name="editor_tabs_banners" xml:space="preserve">
+    <value>旗帜</value>
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
     <value>剪贴板</value>

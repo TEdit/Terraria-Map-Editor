@@ -1017,12 +1017,17 @@ public partial class WorldViewModel : ReactiveObject
         {
             foreach (var kvp in WorldConfiguration.NpcNames.OrderBy(x => x.Value))
             {
-                _allNpcs.Add(new NpcListItem(kvp.Key, kvp.Value));
+                WorldConfiguration.NpcById.TryGetValue(kvp.Key, out var npcData);
+                _allNpcs.Add(new NpcListItem(
+                    kvp.Key, kvp.Value,
+                    npcData?.Variants,
+                    npcData?.CanShimmer ?? false));
             }
         }
 
         foreach (var item in _allNpcs)
         {
+            item.World = CurrentWorld;
             item.WorldNpc = CurrentWorld?.NPCs.FirstOrDefault(n => n.SpriteId == item.SpriteId);
         }
 

@@ -131,29 +131,12 @@ public class Textures
         if (!TownNpcs.ContainsKey(key))
         {
             string variantName = "Default";
-            if (npcId == 637)// cat
+            if (WorldConfiguration.NpcById.TryGetValue(npcId, out var npcData)
+                && npcData.Variants != null
+                && variant >= 0
+                && variant < npcData.Variants.Count)
             {
-                variantName = WorldConfiguration.BestiaryData.Configuration.Cat[variant];
-            }
-            else if (npcId == 638) // dog
-            {
-                variantName = WorldConfiguration.BestiaryData.Configuration.Dog[variant];
-            }
-            else if (npcId == 656) // bunny
-            {
-                variantName = WorldConfiguration.BestiaryData.Configuration.Bunny[variant];
-            }
-            else if (npcId == 633) // bestiaryGirl
-            {
-                if (variant == 1)
-                {
-                    variantName = "Default_Transformed";
-                }
-                else if (variant == 2)
-                {
-                    variantName = "Default_Credits";
-
-                }
+                variantName = npcData.Variants[variant];
             }
             if (name == "DD2Bartender")
             {

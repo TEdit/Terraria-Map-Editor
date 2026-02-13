@@ -330,16 +330,13 @@ public static class JsonMerger
 
     /// <summary>
     /// Merges bestiary data using JsonNode for clean mutation.
-    /// The bestiary file is a single JSON object with cat/dog/bunny string arrays and an npcData array.
+    /// The bestiary file is a single JSON object with an npcData array.
     /// </summary>
     public static MergeResult MergeBestiary(
         string path,
         object newBestiaryConfig,
         IList<object> newNpcData,
         Func<object, int> npcIdSelector,
-        IList<string> newCat,
-        IList<string> newDog,
-        IList<string> newBunny,
         JsonSerializerOptions options)
     {
         if (!File.Exists(path))
@@ -372,22 +369,7 @@ public static class JsonMerger
             }
         }
 
-        // Collect existing string sets
-        HashSet<string> ExistingStrings(string key) =>
-            root[key]?.AsArray()
-                .Select(n => n?.GetValue<string>())
-                .Where(s => s != null)
-                .ToHashSet(StringComparer.Ordinal)
-            ?? new HashSet<string>();
-
-        var existingCat = ExistingStrings("cat");
-        var existingDog = ExistingStrings("dog");
-        var existingBunny = ExistingStrings("bunny");
-
         var newNpcEntries = newNpcData.Where(n => !existingNpcIds.Contains(npcIdSelector(n))).ToList();
-        var newCatEntries = newCat.Where(c => !existingCat.Contains(c)).ToList();
-        var newDogEntries = newDog.Where(d => !existingDog.Contains(d)).ToList();
-        var newBunnyEntries = newBunny.Where(b => !existingBunny.Contains(b)).ToList();
 
         var result = new MergeResult
         {
@@ -395,15 +377,10 @@ public static class JsonMerger
             AddedCount = newNpcEntries.Count
         };
 
-        if (newNpcEntries.Count == 0 && newCatEntries.Count == 0 &&
-            newDogEntries.Count == 0 && newBunnyEntries.Count == 0)
+        if (newNpcEntries.Count == 0)
             return result;
 
         // Mutate the JsonNode tree
-        foreach (var c in newCatEntries) root["cat"]!.AsArray().Add(c);
-        foreach (var d in newDogEntries) root["dog"]!.AsArray().Add(d);
-        foreach (var b in newBunnyEntries) root["bunny"]!.AsArray().Add(b);
-
         foreach (var entry in newNpcEntries)
         {
             var entryNode = JsonSerializer.SerializeToNode(entry, options);
