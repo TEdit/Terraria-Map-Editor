@@ -25,6 +25,7 @@ using TEdit.Editor.Tools;
 using TEdit.Editor.Undo;
 using TEdit.Framework.Threading;
 using TEdit.Geometry;
+using TEdit.Configuration;
 using TEdit.Properties;
 using TEdit.Render;
 using TEdit.Terraria;
@@ -138,13 +139,13 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) { return; }
 
-        CheckUpdates = Settings.Default.CheckUpdates;
+        CheckUpdates = UserSettingsService.Current.CheckUpdates;
 
         if (CheckUpdates)
             CheckVersion();
 
 
-        IsAutoSaveEnabled = Settings.Default.Autosave;
+        IsAutoSaveEnabled = UserSettingsService.Current.Autosave;
 
         World.ProgressChanged += OnProgressChanged;
         Brush.BrushChanged += OnPreviewChanged;
@@ -603,7 +604,7 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
-    private int _spriteThumbnailSize = Settings.Default.SpriteThumbnailSize;
+    private int _spriteThumbnailSize = UserSettingsService.Current.SpriteThumbnailSize;
     public int SpriteThumbnailSize
     {
         get { return _spriteThumbnailSize; }
@@ -612,8 +613,7 @@ public partial class WorldViewModel : ReactiveObject
             var clamped = Math.Clamp(value, 16, 128);
             if (this.RaiseAndSetIfChanged(ref _spriteThumbnailSize, clamped) != clamped)
             {
-                Settings.Default.SpriteThumbnailSize = clamped;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                UserSettingsService.Current.SpriteThumbnailSize = clamped;
             }
         }
     }
@@ -902,8 +902,7 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _isAutoSaveEnabled, value);
-            Settings.Default.Autosave = _isAutoSaveEnabled;
-            try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+            UserSettingsService.Current.Autosave = _isAutoSaveEnabled;
         }
     }
 
@@ -1258,12 +1257,11 @@ public partial class WorldViewModel : ReactiveObject
 
     public bool RealisticColors
     {
-        get { return Settings.Default.RealisticColors; }
+        get { return UserSettingsService.Current.RealisticColors; }
         set
         {
             this.RaisePropertyChanged(nameof(RealisticColors));
-            Settings.Default.RealisticColors = value;
-            try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+            UserSettingsService.Current.RealisticColors = value;
             MessageBox.Show(Properties.Language.messagebox_restartrequired, Properties.Language.messagebox_restartrequired, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
@@ -1274,12 +1272,11 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _checkUpdates, value);
-            Settings.Default.CheckUpdates = value;
-            try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+            UserSettingsService.Current.CheckUpdates = value;
         }
     }
 
-    public float _textureVisibilityZoomLevel = Settings.Default.TextureVisibilityZoomLevel;
+    public float _textureVisibilityZoomLevel = UserSettingsService.Current.TextureVisibilityZoomLevel;
     public float TextureVisibilityZoomLevel
     {
         get => _textureVisibilityZoomLevel;
@@ -1288,13 +1285,12 @@ public partial class WorldViewModel : ReactiveObject
             value = (float)Math.Floor(MathHelper.Clamp(value, 3, 64));
             if (this.RaiseAndSetIfChanged(ref _textureVisibilityZoomLevel, value) != value)
             {
-                Settings.Default.TextureVisibilityZoomLevel = value;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                UserSettingsService.Current.TextureVisibilityZoomLevel = value;
             }
         }
     }
 
-    private bool _showNews = Settings.Default.ShowNews;
+    private bool _showNews = UserSettingsService.Current.ShowNews;
 
     public bool ShowNews
     {
@@ -1303,14 +1299,13 @@ public partial class WorldViewModel : ReactiveObject
         {
             if (this.RaiseAndSetIfChanged(ref _showNews, value) != value)
             {
-                Settings.Default.ShowNews = value;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                UserSettingsService.Current.ShowNews = value;
             }
         }
     }
 
 
-    private bool _enableTelemetry = Settings.Default.Telemetry != 0;
+    private bool _enableTelemetry = UserSettingsService.Current.Telemetry != 0;
 
     public bool EnableTelemetry
     {
@@ -1319,8 +1314,7 @@ public partial class WorldViewModel : ReactiveObject
         {
             if (this.RaiseAndSetIfChanged(ref _enableTelemetry, value) != value)
             {
-                Settings.Default.Telemetry = value ? 1 : 0;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                UserSettingsService.Current.Telemetry = value ? 1 : 0;
                 ErrorLogging.InitializeTelemetry();
             }
         }

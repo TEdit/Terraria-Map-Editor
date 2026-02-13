@@ -13,7 +13,6 @@ using TEdit.Configuration;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Framework.Threading;
-using TEdit.Properties;
 using TEdit.Utility;
 using ReactiveUI;
 using ReactiveUI.Builder;
@@ -36,7 +35,7 @@ public partial class App : Application
             .WithWpf()
             .BuildApp();
 
-        switch (Settings.Default.Language)
+        switch (UserSettingsService.Current.Language)
         {
             case LanguageSelection.Automatic:
                 //System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.CurrentCulture;

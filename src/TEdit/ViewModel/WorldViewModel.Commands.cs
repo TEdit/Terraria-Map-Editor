@@ -15,7 +15,7 @@ using TEdit.Editor.Tools;
 using TEdit.Framework.Events;
 using TEdit.Geometry;
 using TEdit.Helper;
-using TEdit.Properties;
+using TEdit.Configuration;
 using TEdit.Terraria;
 
 namespace TEdit.ViewModel;
@@ -300,8 +300,7 @@ public partial class WorldViewModel
     private void ExecuteSetLanguage(LanguageSelection language)
     {
         CurrentLanguage = language;
-        Settings.Default.Language = language;
-        try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+        UserSettingsService.Current.Language = language;
 
         if (MessageBox.Show($"Language changed to {language}. Do you wish to restart now?", "Restart to change language", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
         {

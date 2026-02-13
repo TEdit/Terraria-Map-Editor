@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
 using System.Collections.Generic;
+using TEdit.Configuration;
 
 namespace TEdit;
 
@@ -16,9 +17,7 @@ public static class DependencyChecker
 
     public static void CheckPaths()
     {
-        Properties.Settings.Default.Reload();
-
-        string path = Properties.Settings.Default.TerrariaPath;
+        string path = UserSettingsService.Current.TerrariaPath;
         int? steamUserId = App.AppConfig?.SteamUserId;
 
         // if hard coded in appSettings.yaml try that location first
@@ -31,8 +30,7 @@ public static class DependencyChecker
         // if the folder is missing, reset.
         if (!Directory.Exists(path))
         {
-            Properties.Settings.Default.TerrariaPath = null;
-            try { Properties.Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+            UserSettingsService.Current.TerrariaPath = null;
             path = string.Empty;
         }
 
@@ -157,8 +155,7 @@ public static class DependencyChecker
                     retry = false;
                 }
             }
-            Properties.Settings.Default.TerrariaPath = Path.Combine(tempPath, "Content");
-            try { Properties.Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+            UserSettingsService.Current.TerrariaPath = Path.Combine(tempPath, "Content");
         }
 
         if (!string.IsNullOrWhiteSpace(path) && path.IndexOf("Content", StringComparison.OrdinalIgnoreCase) < 0)

@@ -8,7 +8,7 @@ using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.ViewModel;
-using TEdit.Properties;
+using TEdit.Configuration;
 using TEdit.UI.Xaml;
 using TEdit.View.Popups;
 using System.IO;
@@ -39,13 +39,13 @@ public partial class MainWindow : Window
         bool shouldAsk = false;
         string currentVersion = App.Version.ToString();
 
-        switch (Settings.Default.Telemetry)
+        switch (UserSettingsService.Current.Telemetry)
         {
             case -1: // first run
                 shouldAsk = true;
                 break;
             case 0: // previously declined
-                shouldAsk = Settings.Default.TelemetryDeclinedVersion != currentVersion;
+                shouldAsk = UserSettingsService.Current.TelemetryDeclinedVersion != currentVersion;
                 break;
             case 1: // approved permanently
                 break;
@@ -73,9 +73,8 @@ public partial class MainWindow : Window
             }
             else
             {
-                Settings.Default.Telemetry = 0;
-                Settings.Default.TelemetryDeclinedVersion = currentVersion;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                UserSettingsService.Current.Telemetry = 0;
+                UserSettingsService.Current.TelemetryDeclinedVersion = currentVersion;
                 _vm.EnableTelemetry = false;
             }
         }

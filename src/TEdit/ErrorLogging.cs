@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using TEdit.Properties;
+using TEdit.Configuration;
 using TEdit.ViewModel;
 
 namespace TEdit;
@@ -135,7 +135,7 @@ public static class ErrorLogging
 
     public static void InitializeTelemetry()
     {
-        if (Settings.Default.Telemetry != 0)
+        if (UserSettingsService.Current.Telemetry != 0)
         {
             try
             {
@@ -213,7 +213,7 @@ public static class ErrorLogging
 
             Log($"{ErrorLevel.Error} - {ex.Message}\r\n{ex.StackTrace}");
 
-            if (Settings.Default.Telemetry == 1 && _telemetry != null)
+            if (_telemetry != null && UserSettingsService.Current.Telemetry == 1)
             {
                 var telex = new Microsoft.ApplicationInsights.DataContracts.ExceptionTelemetry(ex);
                 telex.Message = Regex.Replace(ex.Message ?? string.Empty, UserPathRegex, "C:\\Users\\[user]\\");

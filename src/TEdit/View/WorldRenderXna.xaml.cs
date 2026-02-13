@@ -26,7 +26,7 @@ using System.Windows.Threading;
 using System.IO;
 using System.Diagnostics;
 using System.Xml.Linq;
-using TEdit.Properties;
+using TEdit.Configuration;
 using TEdit.Render;
 using TEdit.Geometry;
 using TEdit.Common;
@@ -150,6 +150,176 @@ public partial class WorldRenderXna : UserControl
     {
         return 31;
     }
+
+    #region Surface Background Rendering
+
+    /// <summary>
+    /// Surface biome types for background selection.
+    /// </summary>
+    private enum SurfaceBiome
+    {
+        Forest,
+        Ocean,
+        Desert,
+        Snow,
+        Jungle,
+        Mushroom,
+        Corruption,
+        Crimson,
+        Hallow
+    }
+
+    // Cache for surface biome detection per X column
+    private Dictionary<int, SurfaceBiome> _surfaceBiomeCache = new();
+    private World _biomeCacheWorld = null;
+
+    /// <summary>
+    /// Gets cached surface biome for an X position, detecting if not cached.
+    /// </summary>
+    private SurfaceBiome GetCachedSurfaceBiome(int x, int y)
+    {
+        // Clear cache if world changed
+        if (_biomeCacheWorld != _wvm.CurrentWorld)
+        {
+            _surfaceBiomeCache.Clear();
+            _biomeCacheWorld = _wvm.CurrentWorld;
+        }
+
+        if (!_surfaceBiomeCache.TryGetValue(x, out var biome))
+        {
+            biome = DetectSurfaceBiome(x, y);
+            _surfaceBiomeCache[x] = biome;
+        }
+
+        return biome;
+    }
+
+    /// <summary>
+    /// Detects the surface biome at a given position by checking nearby tiles.
+    /// </summary>
+    private SurfaceBiome DetectSurfaceBiome(int x, int y)
+    {
+        var world = _wvm.CurrentWorld;
+
+        // Ocean: at world edges (within ~380 tiles)
+        int oceanDistance = 380;
+        if (x < oceanDistance || x > world.TilesWide - oceanDistance)
+        {
+            return SurfaceBiome.Ocean;
+        }
+
+        // Sample tiles vertically to detect biome
+        int checkDepth = Math.Min(50, (int)world.GroundLevel - y + 10);
+        int startY = Math.Max(0, y);
+        int endY = Math.Min(world.TilesHigh - 1, y + checkDepth);
+
+        for (int checkY = startY; checkY <= endY; checkY++)
+        {
+            if (x < 0 || x >= world.TilesWide) continue;
+            var tile = world.Tiles[x, checkY];
+            if (!tile.IsActive) continue;
+
+            switch (tile.Type)
+            {
+                // Snow biome tiles (check first - ice variants overlap with evil biomes)
+                case 147: // Ice
+                case 161: // Snow Block
+                    return SurfaceBiome.Snow;
+
+                // Jungle biome tiles
+                case 60:  // Jungle Grass
+                case 226: // Lihzahrd Brick
+                    return SurfaceBiome.Jungle;
+
+                // Desert biome tiles
+                case 53:  // Sand
+                    return SurfaceBiome.Desert;
+
+                // Corruption biome tiles
+                case 23:  // Corrupt Grass
+                case 25:  // Ebonstone
+                case 112: // Ebonsand
+                case 163: // Purple Ice
+                    return SurfaceBiome.Corruption;
+
+                // Crimson biome tiles
+                case 199: // Crimson Grass
+                case 203: // Crimson Grass (alternate ID)
+                case 200: // Red Ice
+                case 208: // Crimstone
+                case 234: // Crimsand
+                    return SurfaceBiome.Crimson;
+
+                // Hallow biome tiles
+                case 109: // Hallowed Grass
+                case 117: // Pearlstone
+                case 116: // Pearlsand
+                case 164: // Pink Ice
+                    return SurfaceBiome.Hallow;
+
+                // Mushroom biome tiles
+                case 70:  // Mushroom Grass
+                case 190: // Glowing Mushroom Block
+                    return SurfaceBiome.Mushroom;
+            }
+        }
+
+        // Default: Forest
+        return SurfaceBiome.Forest;
+    }
+
+    /// <summary>
+    /// Gets the background texture index for a detected biome and X position.
+    /// </summary>
+    private int GetBiomeBackgroundTextureIndex(SurfaceBiome biome, int x)
+    {
+        var world = _wvm.CurrentWorld;
+        var bgConfig = WorldConfiguration.BackgroundStyles;
+        if (bgConfig == null) return 0;
+
+        BackgroundStyle style = null;
+
+        switch (biome)
+        {
+            case SurfaceBiome.Ocean:
+                bgConfig.OceanBackgroundById.TryGetValue(world.BgOcean, out style);
+                break;
+            case SurfaceBiome.Desert:
+                bgConfig.DesertBackgroundById.TryGetValue(world.BgDesert, out style);
+                break;
+            case SurfaceBiome.Snow:
+                bgConfig.SnowBackgroundById.TryGetValue(world.BgSnow, out style);
+                break;
+            case SurfaceBiome.Jungle:
+                bgConfig.JungleBackgroundById.TryGetValue(world.BgJungle, out style);
+                break;
+            case SurfaceBiome.Mushroom:
+                bgConfig.MushroomBackgroundById.TryGetValue(world.MushroomBg, out style);
+                break;
+            case SurfaceBiome.Corruption:
+                bgConfig.CorruptionBackgroundById.TryGetValue(world.BgCorruption, out style);
+                break;
+            case SurfaceBiome.Crimson:
+                bgConfig.CrimsonBackgroundById.TryGetValue(world.BgCrimson, out style);
+                break;
+            case SurfaceBiome.Hallow:
+                bgConfig.HallowBackgroundById.TryGetValue(world.BgHallow, out style);
+                break;
+            case SurfaceBiome.Forest:
+            default:
+                // Use regional forest backgrounds
+                byte bgValue = (x <= world.TreeX0) ? world.BgTree :
+                               (x <= world.TreeX1) ? world.BgTree2 :
+                               (x <= world.TreeX2) ? world.BgTree3 :
+                               world.BgTree4;
+                bgConfig.ForestBackgroundById.TryGetValue(bgValue, out style);
+                break;
+        }
+
+        return style?.GetPreviewTextureIndex() ?? 0;
+    }
+
+    #endregion
 
     /// <summary>
     /// Applies render position offsets for special tiles (vines, position offset tiles).
@@ -550,7 +720,7 @@ public partial class WorldRenderXna : UserControl
                                         // Handle color extraction for non-framed tiles
                                         var tile = WorldConfiguration.TileProperties.FirstOrDefault(t => t.Id == req.Id);
 
-                                        if (tile != null && !tile.IsFramed && Settings.Default.RealisticColors)
+                                        if (tile != null && !tile.IsFramed && UserSettingsService.Current.RealisticColors)
                                         {
                                             var tileColor = GetTextureTileColor(texture, b2);
                                             if (tileColor.A > 0)
@@ -577,7 +747,7 @@ public partial class WorldRenderXna : UserControl
                                         _textureDictionary.Walls[req.Id] = texture;
 
                                         // Handle color extraction
-                                        if (Settings.Default.RealisticColors)
+                                        if (UserSettingsService.Current.RealisticColors)
                                         {
                                             var wallColor = GetTextureTileColor(texture, b2Wall);
                                             if (wallColor.A > 0)
@@ -817,7 +987,7 @@ public partial class WorldRenderXna : UserControl
                 if (!hasColorData) continue;
 
                 // Update style color from texture if realistic colors enabled
-                if (Settings.Default.RealisticColors)
+                if (UserSettingsService.Current.RealisticColors)
                 {
                     style.StyleColor = GetTextureTileColor(previewTexture, previewTexture.Bounds);
                 }
@@ -1262,7 +1432,7 @@ public partial class WorldRenderXna : UserControl
             TextureToPng(wallTex, $"textures/Wall_{wall.Id}.png");
 
             var wallColor = GetTextureTileColor(wallTex, b2Wall);
-            if (wallColor.A > 0 && Settings.Default.RealisticColors)
+            if (wallColor.A > 0 && UserSettingsService.Current.RealisticColors)
             {
                 wall.Color = wallColor;
             }
@@ -1315,7 +1485,7 @@ public partial class WorldRenderXna : UserControl
             if (!tile.IsFramed)
             {
                 var tileColor = GetTextureTileColor(tileTex, b2);
-                if (tileColor.A > 0 && Settings.Default.RealisticColors)
+                if (tileColor.A > 0 && UserSettingsService.Current.RealisticColors)
                 {
                     tile.Color = tileColor;
                 }
@@ -1476,7 +1646,7 @@ public partial class WorldRenderXna : UserControl
                         {
                             var styleColor = tile.Color;
 
-                            if (Settings.Default.RealisticColors)
+                            if (UserSettingsService.Current.RealisticColors)
                             {
                                 styleColor = GetTextureTileColor(texture, texture.Bounds);
 
@@ -1771,6 +1941,7 @@ public partial class WorldRenderXna : UserControl
         {
             FilterManager.ClearAll();
             GrayscaleManager.GrayscaleCache.Clear();
+            _surfaceBiomeCache.Clear();
             _lastRenderedWorld = _wvm.CurrentWorld;
         }
 
@@ -2126,6 +2297,56 @@ public partial class WorldRenderXna : UserControl
         {146, 154, 155, 156, 157, 125, 185}
     };
 
+    /// <summary>
+    /// Draws the surface biome background as a single scaled texture.
+    /// Uses center of visible area for biome detection.
+    /// </summary>
+    private void DrawSurfaceBackground()
+    {
+        if (!AreTexturesVisible()) return;
+        if (FilterManager.CurrentBackgroundMode != FilterManager.BackgroundMode.Normal) return;
+
+        Rectangle visibleBounds = GetViewingArea();
+        var world = _wvm.CurrentWorld;
+
+        // Calculate the visible surface area (above ground level)
+        int surfaceTop = Math.Max(visibleBounds.Top, 0);
+        int surfaceBottom = Math.Min(visibleBounds.Bottom, (int)world.GroundLevel);
+
+        // Only draw if we're viewing surface area
+        if (surfaceTop >= surfaceBottom) return;
+
+        // Find center of visible area for biome detection
+        int centerX = (visibleBounds.Left + visibleBounds.Right) / 2;
+        int centerY = (surfaceTop + surfaceBottom) / 2;
+
+        // Clamp to world bounds
+        centerX = Math.Clamp(centerX, 0, world.TilesWide - 1);
+        centerY = Math.Clamp(centerY, 0, (int)world.GroundLevel - 1);
+
+        // Detect biome at center
+        var biome = DetectSurfaceBiome(centerX, centerY);
+        int texIndex = GetBiomeBackgroundTextureIndex(biome, centerX);
+
+        if (texIndex <= 0) return;
+
+        var backTex = _textureDictionary.GetBackground(texIndex);
+        if (backTex == null || backTex == _textureDictionary.DefaultTexture) return;
+
+        // Calculate destination rectangle for the surface area in screen coordinates
+        int destTop = 1 + (int)((_scrollPosition.Y + surfaceTop) * _zoom);
+        int destBottom = 1 + (int)((_scrollPosition.Y + surfaceBottom) * _zoom);
+        int destLeft = 1 + (int)((_scrollPosition.X + visibleBounds.Left) * _zoom);
+        int destRight = 1 + (int)((_scrollPosition.X + visibleBounds.Right) * _zoom);
+
+        var dest = new Rectangle(destLeft, destTop, destRight - destLeft, destBottom - destTop);
+
+        // Use full texture as source
+        var source = new Rectangle(0, 0, backTex.Width, backTex.Height);
+
+        _spriteBatch.Draw(backTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerTileBackgroundTextures);
+    }
+
     private void DrawTileBackgrounds()
     {
         if (!AreTexturesVisible()) return;
@@ -2133,8 +2354,10 @@ public partial class WorldRenderXna : UserControl
         // Check if the background mode is normal. If not, return.
         if (FilterManager.CurrentBackgroundMode != FilterManager.BackgroundMode.Normal) return;
 
+        // Draw scaled surface background first
+        DrawSurfaceBackground();
+
         Rectangle visibleBounds = GetViewingArea();
-        BlendRules blendRules = BlendRules.Instance;
 
         //Extended the viewing space to give tiles time to cache their UV's
         for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -2149,10 +2372,12 @@ public partial class WorldRenderXna : UserControl
                     continue;
                 }
 
-                //draw background textures
+                // Skip surface area - handled by DrawSurfaceBackground()
+                if (y < _wvm.CurrentWorld.GroundLevel) continue;
+
+                //draw underground background textures
                 if (y >= 80)
                 {
-
                     int hellback = _wvm.CurrentWorld.HellBackStyle;
                     int backX = 0;
                     if (x <= _wvm.CurrentWorld.CaveBackX0)
@@ -2166,12 +2391,7 @@ public partial class WorldRenderXna : UserControl
                     var source = new Rectangle(0, 0, 16, 16);
                     var backTex = _textureDictionary.GetBackground(0);
 
-                    if (y < _wvm.CurrentWorld.GroundLevel)
-                    {
-                        backTex = _textureDictionary.GetBackground(0);
-                        source.Y += (y - 80) * 16;
-                    }
-                    else if (y == _wvm.CurrentWorld.GroundLevel)
+                    if (y == _wvm.CurrentWorld.GroundLevel)
                     {
                         backTex = _textureDictionary.GetBackground(backstyle[backX, 0]);
                         source.X += (x % 8) * 16;
