@@ -18878,8 +18878,8 @@
   {
     "id": 751,
     "isFramed": true,
-    "textureGrid": [16, 16],
-    "frameGap": [2, 2],
+    "textureGrid": [28, 23],
+    "frameGap": [0, 0],
     "frameSize": [[2, 2]],
     "frames": [
       { "name": "Sleeping Digtoise", "uv": [0, 0] }
