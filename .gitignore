@@ -61,3 +61,4 @@ ref/*
 .generated/
 /src/SettingsFileUpdater/TEdit.Terraria/Data/
 *.wld.TEdit
+*.diagsession
