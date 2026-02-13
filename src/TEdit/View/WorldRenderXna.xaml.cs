@@ -86,6 +86,9 @@ public partial class WorldRenderXna : UserControl
 
     private Dictionary<int, WriteableBitmap> _spritePreviews = new Dictionary<int, WriteableBitmap>();
 
+    // Vine tile IDs that need -2px Y offset and horizontal flip on alternating X
+    private static readonly HashSet<int> _vineTileIds = new HashSet<int> { 52, 62, 115, 205, 382, 528, 636, 638 };
+
     // Deferred texture loading
     private bool _texturesFullyLoaded = false;
     private CancellationTokenSource _textureLoadCancellation;
@@ -3477,7 +3480,16 @@ public partial class WorldRenderXna : UserControl
                                         }
                                     }
 
-                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                    // Vine rendering: -2px Y offset and horizontal flip on alternating X
+                                    var spriteEffect = SpriteEffects.None;
+                                    if (_vineTileIds.Contains(curtile.Type))
+                                    {
+                                        dest.Y -= (int)(2 * _zoom / 16); // -2px offset
+                                        if (x % 2 == 0)
+                                            spriteEffect = SpriteEffects.FlipHorizontally;
+                                    }
+
+                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
                                     // Actuator Overlay
                                     if (curtile.Actuator && _wvm.ShowActuators)
                                         _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
@@ -4889,15 +4901,24 @@ public partial class WorldRenderXna : UserControl
                                         }
                                     }
 
+                                    // Vine rendering: -2px Y offset and horizontal flip on alternating X
+                                    var spriteEffect = SpriteEffects.None;
+                                    if (_vineTileIds.Contains(curtile.Type))
+                                    {
+                                        dest.Y -= (int)(2 * _zoom / 16); // -2px offset
+                                        if (x % 2 == 0)
+                                            spriteEffect = SpriteEffects.FlipHorizontally;
+                                    }
+
                                     if (forceGrayscale) // Check if to force grayscale via the filter manager.
                                     {
                                         // Get or create grayscale version of this subtexture. // Paint color should also be gray.
                                         Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
                                         Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
-                                        _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                        _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, spriteEffect, LayerTileTextures);
                                     }
                                     else
-                                        _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                        _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
 
                                     // Actuator Overlay
                                     if (curtile.Actuator && _wvm.ShowActuators)
