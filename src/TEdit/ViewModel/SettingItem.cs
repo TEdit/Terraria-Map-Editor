@@ -44,6 +44,9 @@ public class SettingItem : INotifyPropertyChanged
     // ComboBox-specific
     public IEnumerable ComboBoxItems { get; set; }
 
+    // Path-specific
+    public string Placeholder { get; set; }
+
     public event PropertyChangedEventHandler PropertyChanged;
 
     public void RaiseValueChanged() =>

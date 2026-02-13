@@ -55,7 +55,25 @@
                 <DockPanel Margin="0,4,0,0">
                     <Button DockPanel.Dock="Right" Content="..." Width="30" Margin="4,0,0,0"
                             Click="BrowsePath_Click" Tag="{Binding}" />
-                    <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+                    <Grid>
+                        <TextBox x:Name="PathBox" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Placeholder}" IsHitTestVisible="False" Foreground="Gray"
+                                   VerticalAlignment="Center" Margin="6,0,0,0">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Value}" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Value}" Value="">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
                 </DockPanel>
             </StackPanel>
         </DataTemplate>

@@ -189,17 +189,13 @@ public partial class SettingsViewModel
         });
 
         // ── Paths ──
-        var detectedPath = DependencyChecker.PathToContent;
-        var pathDesc = !string.IsNullOrWhiteSpace(detectedPath)
-            ? $"{Language.settings_terraria_path_desc} ({detectedPath})"
-            : Language.settings_terraria_path_desc;
-
         AllSettings.Add(new SettingItem
         {
             Name = Language.settings_terraria_path,
-            Description = pathDesc,
+            Description = Language.settings_terraria_path_desc,
             Category = Language.settings_category_paths,
             EditorType = SettingEditorType.Path,
+            Placeholder = DependencyChecker.PathToContent ?? "",
             Getter = () => UserSettingsService.Current.TerrariaPath,
             Setter = v => UserSettingsService.Current.TerrariaPath = (string)v
         });
