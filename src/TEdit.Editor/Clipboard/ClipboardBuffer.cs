@@ -489,13 +489,11 @@ public partial class ClipboardBuffer : ITileData
                 for (int x = 0; x < sprite.SizeTiles.X; x++)
                 {
                     int tilex = x + flipOrigin.X;
-                    if (tilex > maxX) continue;
                     for (int y = 0; y < sprite.SizeTiles.Y; y++)
                     {
                         try
                         {
                             int tiley = y + flipOrigin.Y;
-                            if (tiley > maxY) continue;
                             Tile curTile = flippedBuffer.Tiles[tilex, tiley];
                             curTile.IsActive = true;
                             curTile.Type = sprite.Tile;
@@ -517,16 +515,12 @@ public partial class ClipboardBuffer : ITileData
                     int sourceY = y + item.Key.Y;
                     int targetY = y + flipOrigin.Y;
 
-                    if (targetY > maxY || sourceY > maxY) continue;
-
                     for (int x = 0; x < tileSize.X; x++)
                     {
                         try
                         {
                             int sourceX = x + item.Key.X;
                             int targetX = x + flipOrigin.X;
-
-                            if (targetX > maxX || sourceX > maxX) continue;
 
                             Tile sourceTile = buffer.Tiles[sourceX, sourceY];
                             Tile targetTile = flippedBuffer.Tiles[targetX, targetY];
@@ -618,18 +612,34 @@ public partial class ClipboardBuffer : ITileData
     private static bool IsFlipName(string name, bool flipX)
     {
         if (flipX) return name.Contains("Left") || name.Contains("Right");
-        else return name.Contains("Top") || name.Contains("Bottom");
+        else return name.Contains("Top") || name.Contains("Bottom") || name.Contains("Up") || name.Contains("Down");
     }
 
     private static string FlipName(string name, bool flipX)
     {
         if (flipX)
         {
-            return Regex.Replace(name, "Right|Left", m => { return m.Value == "Right" ? "Left" : "Right"; });
+            return Regex.Replace(name, "Right|Left", m => {
+                return m.Value switch
+                {
+                    "Right" => "Left",
+                    "Left" => "Right",
+                    _ => "",
+                };
+            });
         }
         else
         {
-            return Regex.Replace(name, "Bottom|Top", m => { return m.Value == "Bottom" ? "Top" : "Bottom"; });
+            return Regex.Replace(name, "Bottom|Top|Down|Up", m => {
+                return m.Value switch
+                {
+                    "Bottom" => "Top",
+                    "Top" => "Bottom",
+                    "Up" => "Down",
+                    "Down" => "Up",
+                    _ => "",
+                };
+            });
         }
     }
 

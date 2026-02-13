@@ -18571,9 +18571,7 @@
       { "uv": [18, 0], "anchor": "Top" },
       { "uv": [36, 0], "anchor": "Left" },
       { "uv": [54, 0], "anchor": "Right" },
-      {
-        "uv": [72, 0]
-      }
+      { "uv": [72, 0], "anchor": "Center" }
     ],
     "name": "Kite Anchor",
     "color": "#2281a8Ff"
@@ -18589,27 +18587,27 @@
       { "variety": "A", "uv": [18, 0], "anchor": "Top" },
       { "variety": "A", "uv": [36, 0], "anchor": "Left" },
       { "variety": "A", "uv": [54, 0], "anchor": "Right" },
-      { "variety": "A", "uv": [72, 0] },
+      { "variety": "A", "uv": [72, 0], "anchor": "Center" },
       { "variety": "B", "uv": [0, 18], "anchor": "Bottom" },
       { "variety": "B", "uv": [18, 18], "anchor": "Top" },
       { "variety": "B", "uv": [36, 18], "anchor": "Left" },
       { "variety": "B", "uv": [54, 18], "anchor": "Right" },
-      { "variety": "B", "uv": [72, 18] },
+      { "variety": "B", "uv": [72, 18], "anchor": "Center" },
       { "variety": "C", "uv": [0, 36], "anchor": "Bottom" },
       { "variety": "C", "uv": [18, 36], "anchor": "Top" },
       { "variety": "C", "uv": [36, 36], "anchor": "Left" },
       { "variety": "C", "uv": [54, 36], "anchor": "Right" },
-      { "variety": "C", "uv": [72, 36] },
+      { "variety": "C", "uv": [72, 36], "anchor": "Center" },
       { "variety": "D", "uv": [0, 54], "anchor": "Bottom" },
       { "variety": "D", "uv": [18, 54], "anchor": "Top" },
       { "variety": "D", "uv": [36, 54], "anchor": "Left" },
       { "variety": "D", "uv": [54, 54], "anchor": "Right" },
-      { "variety": "D", "uv": [72, 54] },
+      { "variety": "D", "uv": [72, 54], "anchor": "Center" },
       { "variety": "E", "uv": [0, 72], "anchor": "Bottom" },
       { "variety": "E", "uv": [18, 72], "anchor": "Top" },
       { "variety": "E", "uv": [36, 72], "anchor": "Left" },
       { "variety": "E", "uv": [54, 72], "anchor": "Right" },
-      { "variety": "E", "uv": [72, 72] }
+      { "variety": "E", "uv": [72, 72], "anchor": "Center" }
     ],
     "name": "Critter Anchor",
     "color": "#b45252Ff"

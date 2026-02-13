@@ -11611,7 +11611,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18, 0" Anchor="Top" />
         <Frame UV="36, 0" Anchor="Left" />
         <Frame UV="54, 0" Anchor="Right" />
-        <Frame UV="72, 0" />
+        <Frame UV="72, 0" Anchor="Center"/>
       </Frames>
     </Tile>
     <Tile Id="724" Name="Critter Anchor" Color="#Ffb45252" Framed="true" Size="1,1">
@@ -11620,27 +11620,27 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18, 0" Variety="A" Anchor="Top" />
         <Frame UV="36, 0" Variety="A" Anchor="Left" />
         <Frame UV="54, 0" Variety="A" Anchor="Right" />
-        <Frame UV="72, 0" Variety="A" />
+        <Frame UV="72, 0" Variety="A" Anchor="Center" />
         <Frame UV="0, 18" Variety="B" Anchor="Bottom" />
         <Frame UV="18, 18" Variety="B" Anchor="Top" />
         <Frame UV="36, 18" Variety="B" Anchor="Left" />
         <Frame UV="54, 18" Variety="B" Anchor="Right" />
-        <Frame UV="72, 18" Variety="B" />
+        <Frame UV="72, 18" Variety="B" Anchor="Center" />
         <Frame UV="0, 36" Variety="C" Anchor="Bottom" />
         <Frame UV="18, 36" Variety="C" Anchor="Top" />
         <Frame UV="36, 36" Variety="C" Anchor="Left" />
         <Frame UV="54, 36" Variety="C" Anchor="Right" />
-        <Frame UV="72, 36" Variety="C" />
+        <Frame UV="72, 36" Variety="C" Anchor="Center" />
         <Frame UV="0, 54" Variety="D" Anchor="Bottom" />
         <Frame UV="18, 54" Variety="D" Anchor="Top" />
         <Frame UV="36, 54" Variety="D" Anchor="Left" />
         <Frame UV="54, 54" Variety="D" Anchor="Right" />
-        <Frame UV="72, 54" Variety="D" />
+        <Frame UV="72, 54" Variety="D" Anchor="Center" />
         <Frame UV="0, 72" Variety="E" Anchor="Bottom" />
         <Frame UV="18, 72" Variety="E" Anchor="Top" />
         <Frame UV="36, 72" Variety="E" Anchor="Left" />
         <Frame UV="54, 72" Variety="E" Anchor="Right" />
-        <Frame UV="72, 72" Variety="E" />
+        <Frame UV="72, 72" Variety="E" Anchor="Center" />
       </Frames>
     </Tile>
     <Tile Id="725" Name="Film Projector" Color="#Ff716ccd" Framed="true" Size="2,3" IsAnimated="true">
