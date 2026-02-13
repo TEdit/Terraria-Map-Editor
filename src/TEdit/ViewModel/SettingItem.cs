@@ -52,10 +52,10 @@ public class SettingItem : INotifyPropertyChanged
 
 public class SettingEditorTemplateSelector : DataTemplateSelector
 {
-    public DataTemplate CheckBoxTemplate { get; set; }
-    public DataTemplate SliderTemplate { get; set; }
-    public DataTemplate ComboBoxTemplate { get; set; }
-    public DataTemplate PathTemplate { get; set; }
+    public DataTemplate SettingCheckBoxTemplate { get; set; }
+    public DataTemplate SettingSliderTemplate { get; set; }
+    public DataTemplate SettingComboBoxTemplate { get; set; }
+    public DataTemplate SettingPathTemplate { get; set; }
 
     public override DataTemplate SelectTemplate(object item, DependencyObject container)
     {
@@ -63,10 +63,10 @@ public class SettingEditorTemplateSelector : DataTemplateSelector
 
         return setting.EditorType switch
         {
-            SettingEditorType.CheckBox => CheckBoxTemplate,
-            SettingEditorType.Slider => SliderTemplate,
-            SettingEditorType.ComboBox => ComboBoxTemplate,
-            SettingEditorType.Path => PathTemplate,
+            SettingEditorType.CheckBox => SettingCheckBoxTemplate,
+            SettingEditorType.Slider => SettingSliderTemplate,
+            SettingEditorType.ComboBox => SettingComboBoxTemplate,
+            SettingEditorType.Path => SettingPathTemplate,
             _ => base.SelectTemplate(item, container)
         };
     }

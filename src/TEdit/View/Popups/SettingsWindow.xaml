@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterOwner"
         WindowStyle="ToolWindow"
         ResizeMode="CanResizeWithGrip"
-        Background="{StaticResource WindowBackgroundBrush}"
+        Background="{StaticResource ControlBackgroundBrush}"
         Foreground="{DynamicResource TextBrush}"
         Icon="/TEdit;component/Images/tedit.ico"
         Width="500" Height="600"
@@ -15,7 +15,7 @@
 
     <Window.Resources>
         <!-- Template selector for setting editor types -->
-        <DataTemplate x:Key="CheckBoxTemplate" DataType="{x:Type vm:SettingItem}">
+        <DataTemplate x:Key="SettingCheckBoxTemplate" DataType="{x:Type vm:SettingItem}">
             <DockPanel Margin="4,3">
                 <CheckBox DockPanel.Dock="Right" IsChecked="{Binding Value, Mode=TwoWay}" VerticalAlignment="Center" />
                 <StackPanel VerticalAlignment="Center">
@@ -25,7 +25,7 @@
             </DockPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="SliderTemplate" DataType="{x:Type vm:SettingItem}">
+        <DataTemplate x:Key="SettingSliderTemplate" DataType="{x:Type vm:SettingItem}">
             <StackPanel Margin="4,3">
                 <TextBlock Text="{Binding Name}" Foreground="Snow" FontWeight="SemiBold" />
                 <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="11" TextWrapping="Wrap" />
@@ -39,7 +39,7 @@
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="ComboBoxTemplate" DataType="{x:Type vm:SettingItem}">
+        <DataTemplate x:Key="SettingComboBoxTemplate" DataType="{x:Type vm:SettingItem}">
             <StackPanel Margin="4,3">
                 <TextBlock Text="{Binding Name}" Foreground="Snow" FontWeight="SemiBold" />
                 <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="11" TextWrapping="Wrap" />
@@ -48,7 +48,7 @@
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="PathTemplate" DataType="{x:Type vm:SettingItem}">
+        <DataTemplate x:Key="SettingPathTemplate" DataType="{x:Type vm:SettingItem}">
             <StackPanel Margin="4,3">
                 <TextBlock Text="{Binding Name}" Foreground="Snow" FontWeight="SemiBold" />
                 <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="11" TextWrapping="Wrap" />
@@ -103,10 +103,10 @@
                 </ItemsControl.GroupStyle>
                 <ItemsControl.ItemTemplateSelector>
                     <vm:SettingEditorTemplateSelector
-                        CheckBoxTemplate="{StaticResource CheckBoxTemplate}"
-                        SliderTemplate="{StaticResource SliderTemplate}"
-                        ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
-                        PathTemplate="{StaticResource PathTemplate}" />
+                        SettingCheckBoxTemplate="{StaticResource SettingCheckBoxTemplate}"
+                        SettingSliderTemplate="{StaticResource SettingSliderTemplate}"
+                        SettingComboBoxTemplate="{StaticResource SettingComboBoxTemplate}"
+                        SettingPathTemplate="{StaticResource SettingPathTemplate}" />
                 </ItemsControl.ItemTemplateSelector>
             </ItemsControl>
         </ScrollViewer>

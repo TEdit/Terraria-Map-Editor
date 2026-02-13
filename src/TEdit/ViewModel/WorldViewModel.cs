@@ -128,6 +128,12 @@ public partial class WorldViewModel : ReactiveObject
     public ObservableCollection<StylePreviewItem> JungleBackStylePreviews { get; } = new();
     public ObservableCollection<StylePreviewItem> HellBackStylePreviews { get; } = new();
 
+    /// <summary>
+    /// Action to export all textures to PNG files. Set by WorldRenderXna when textures are loaded.
+    /// Only available in DEBUG builds.
+    /// </summary>
+    public Action? ExportTexturesAction { get; set; }
+
     static WorldViewModel()
     {
         if (!Directory.Exists(TempPath))

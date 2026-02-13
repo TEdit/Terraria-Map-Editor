@@ -63,6 +63,9 @@ public static class ViewModelLocator
         wvm.Plugins.Add(new SandSettlePlugin(wvm));
         wvm.Plugins.Add(new SimpleOreGeneratorPlugin(wvm));
         wvm.Plugins.Add(new SpriteDebuggerPlugin(wvm));
+#if DEBUG
+        wvm.Plugins.Add(new TextureExportDebugPlugin(wvm));
+#endif
         wvm.Plugins.Add(new TextStatuePlugin(wvm));
         wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
         

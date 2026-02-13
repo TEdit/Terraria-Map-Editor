@@ -15,14 +15,12 @@ public class NpcDataTests
     [Fact]
     public void RoundTrip_PreservesAllProperties()
     {
-        var original = new NpcData { Id = 17, Name = "Merchant", Size = new Vector2Short(18, 40) };
+        var original = new NpcData { Id = 17, Name = "Merchant"};
         var json = JsonSerializer.Serialize(original, Options);
         var restored = JsonSerializer.Deserialize<NpcData>(json, Options)!;
 
         restored.Id.ShouldBe(17);
         restored.Name.ShouldBe("Merchant");
-        restored.Size.X.ShouldBe((short)18);
-        restored.Size.Y.ShouldBe((short)40);
     }
 }
 

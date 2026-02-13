@@ -647,6 +647,11 @@ public partial class WorldRenderXna : UserControl
 
             // Start deferred loading of tiles and walls
             StartDeferredTextureLoading(e);
+
+#if DEBUG
+            // Wire up texture export action for debug plugin
+            _wvm.ExportTexturesAction = ExportAllTextures;
+#endif
         }
 
         _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
@@ -674,6 +679,66 @@ public partial class WorldRenderXna : UserControl
             if (npc.Value.Id < 0) continue;
             _textureDictionary.GetNPC(npc.Value.Id);
         }
+
+        // Generate NPC preview bitmaps for UI
+        GenerateNpcPreviews();
+    }
+
+    /// <summary>
+    /// Generate preview bitmaps for all NPCs in NpcById.
+    /// </summary>
+    private void GenerateNpcPreviews()
+    {
+        foreach (var kvp in WorldConfiguration.NpcById)
+        {
+            var npcData = kvp.Value;
+            var npcId = npcData.Id;
+
+            var texture = _textureDictionary.GetNPC(npcId);
+            if (texture == null || texture == _textureDictionary.DefaultTexture)
+                continue;
+
+            // Use sourceRect from JSON data, or fall back to texture size
+            var sourceRect = npcData.SourceRect;
+            int width = sourceRect.Width > 0 ? sourceRect.Width : texture.Width;
+            int height = sourceRect.Height > 0 ? sourceRect.Height : texture.Height;
+            int x = sourceRect.X;
+            int y = sourceRect.Y;
+
+            // Clamp to texture bounds
+            if (x + width > texture.Width) width = texture.Width - x;
+            if (y + height > texture.Height) height = texture.Height - y;
+            if (width <= 0 || height <= 0) continue;
+
+            var xnaRect = new Rectangle(x, y, width, height);
+            var pixelData = new int[width * height];
+
+            try
+            {
+                texture.GetData(0, xnaRect, pixelData, 0, pixelData.Length);
+            }
+            catch
+            {
+                continue;
+            }
+
+            // Create WriteableBitmap on UI thread
+            var widthCopy = width;
+            var heightCopy = height;
+            var pixelDataCopy = pixelData;
+            var npcIdCopy = npcId;
+
+            DispatcherHelper.CheckBeginInvokeOnUI(() =>
+            {
+                var preview = CreateWriteableBitmapFromPixelData(pixelDataCopy, widthCopy, heightCopy);
+                NpcPreviewCache.SetPreview(npcIdCopy, preview);
+            });
+        }
+
+        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+        {
+            NpcPreviewCache.MarkPopulated();
+        });
     }
 
     /// <summary>
@@ -1449,6 +1514,112 @@ public partial class WorldRenderXna : UserControl
 #endif
     }
 
+#if DEBUG
+    /// <summary>
+    /// Exports all textures to PNG files. Loads textures on demand if not already loaded.
+    /// Only available in DEBUG builds.
+    /// </summary>
+    public void ExportAllTextures()
+    {
+        if (!_textureDictionary.Valid)
+        {
+            System.Windows.MessageBox.Show("Textures not available. Please ensure Terraria content path is configured.");
+            return;
+        }
+
+        int exportCount = 0;
+
+        // NPCs
+        for (int npcId = 0; npcId <= WorldConfiguration.MaxNpcID; npcId++)
+        {
+            var tex = _textureDictionary.GetNPC(npcId);
+            if (tex != null && tex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(tex, $"textures/NPC_{npcId}.png");
+                exportCount++;
+            }
+        }
+
+        // Walls
+        foreach (var wall in WorldConfiguration.WallProperties)
+        {
+            if (wall.Id == 0) continue;
+            var wallTex = _textureDictionary.GetWall(wall.Id);
+            if (wallTex != null && wallTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(wallTex, $"textures/Wall_{wall.Id}.png");
+                exportCount++;
+            }
+        }
+
+        // Tiles
+        foreach (var tile in WorldConfiguration.TileProperties)
+        {
+            if (tile.Id < 0) continue;
+            var tileTex = _textureDictionary.GetTile(tile.Id);
+            if (tileTex != null && tileTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(tileTex, $"textures/Tile_{tile.Id}.png");
+                exportCount++;
+            }
+        }
+
+        // Trees (0-30)
+        for (int i = 0; i <= 30; i++)
+        {
+            var treeTopTex = (Texture2D)_textureDictionary.GetTreeTops(i);
+            if (treeTopTex != null && treeTopTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(treeTopTex, $"textures/Tree_Tops_{i}.png");
+                exportCount++;
+            }
+
+            var treeBranchTex = (Texture2D)_textureDictionary.GetTreeBranches(i);
+            if (treeBranchTex != null && treeBranchTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(treeBranchTex, $"textures/Tree_Branches_{i}.png");
+                exportCount++;
+            }
+        }
+
+        // Backgrounds (0-200)
+        for (int i = 0; i <= 200; i++)
+        {
+            var bgTex = _textureDictionary.GetBackground(i);
+            if (bgTex != null && bgTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(bgTex, $"textures/Background_{i}.png");
+                exportCount++;
+            }
+        }
+
+        // Underworld (0-10)
+        for (int i = 0; i <= 10; i++)
+        {
+            var uwTex = _textureDictionary.GetUnderworld(i);
+            if (uwTex != null && uwTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(uwTex, $"textures/Underworld_{i}.png");
+                exportCount++;
+            }
+        }
+
+        // Liquids (0-14)
+        for (int i = 0; i <= 14; i++)
+        {
+            var liquidTex = (Texture2D)_textureDictionary.GetLiquid(i);
+            if (liquidTex != null && liquidTex != _textureDictionary.DefaultTexture)
+            {
+                TextureToPng(liquidTex, $"textures/Liquid_{i}.png");
+                exportCount++;
+            }
+        }
+
+        var outputPath = Path.GetFullPath("textures");
+        System.Windows.MessageBox.Show($"Exported {exportCount} textures to:\n{outputPath}");
+    }
+#endif
+
     /// <summary>
     /// OBSOLETE: Replaced by LoadImmediateTextures + StartDeferredTextureLoading for async loading.
     /// Kept for reference only.
@@ -1480,12 +1651,13 @@ public partial class WorldRenderXna : UserControl
 
         //}
 
-        foreach (var npc in WorldConfiguration.BestiaryData.NpcData)
+        for (int npcId = 0; npcId < WorldConfiguration.MaxNpcID; npcId++)
         {
-            if (npc.Value.Id < 0) continue;
-            var tex = (Texture2D)_textureDictionary.GetNPC(npc.Value.Id);
-            TextureToPng(tex, $"textures/NPC_{npc.Value.Id}.png");
+            var tex = (Texture2D)_textureDictionary.GetNPC(npcId);
+            TextureToPng(tex, $"textures/NPC_{npcId}.png");
         }
+
+
 
         foreach (var wall in WorldConfiguration.WallProperties)
         {
@@ -1916,7 +2088,7 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_RenderXna(object sender, GraphicsDeviceEventArgs e)
     {
         // Abort rendering if in design mode or if gameTimer is not running
-        if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null )
+        if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null)
             return;
 
         // Clear the graphics device and texture buffer
@@ -2357,7 +2529,7 @@ public partial class WorldRenderXna : UserControl
         }
     }
 
-    static int[,] backstyle = new int[9,7]
+    static int[,] backstyle = new int[9, 7]
     {
         {66, 67, 68, 69, 128, 125, 185},
         {70, 71, 68, 72, 128, 125, 185},
@@ -2558,13 +2730,13 @@ public partial class WorldRenderXna : UserControl
                     }
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
-                    neighborTile[e]  = (x + 1) < width                     ? _wvm.CurrentWorld.Tiles[x + 1, y]     : null;
-                    neighborTile[n]  = (y - 1) >= 0                        ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null;
-                    neighborTile[w]  = (x - 1) >= 0                        ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null;
-                    neighborTile[s]  = (y + 1) < height                    ? _wvm.CurrentWorld.Tiles[x, y + 1]     : null;
-                    neighborTile[ne] = (x + 1) < width && (y - 1) >= 0     ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                    neighborTile[nw] = (x - 1) >= 0 && (y - 1) >= 0       ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                    neighborTile[sw] = (x - 1) >= 0 && (y + 1) < height   ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                    neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
+                    neighborTile[n] = (y - 1) >= 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
+                    neighborTile[w] = (x - 1) >= 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
+                    neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
+                    neighborTile[ne] = (x + 1) < width && (y - 1) >= 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                    neighborTile[nw] = (x - 1) >= 0 && (y - 1) >= 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                    neighborTile[sw] = (x - 1) >= 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
                     neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                     if (_wvm.ShowWalls)
@@ -2695,24 +2867,24 @@ public partial class WorldRenderXna : UserControl
                     //Tile[] neighborTile = new Tile[8];
                     if (filterHide)
                     {
-                        neighborTile[e]  = (x + 1) < width                     ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x + 1, y].Type))     ? _wvm.CurrentWorld.Tiles[x + 1, y]     : null) : null;
-                        neighborTile[n]  = (y - 1) >= 0                        ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x, y - 1].Type))     ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null) : null;
-                        neighborTile[w]  = (x - 1) >= 0                        ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x - 1, y].Type))     ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null) : null;
-                        neighborTile[s]  = (y + 1) < height                    ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x, y + 1].Type))     ? _wvm.CurrentWorld.Tiles[x, y + 1]     : null) : null;
-                        neighborTile[ne] = (x + 1) < width && (y - 1) >= 0     ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x + 1, y - 1].Type)) ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null) : null;
-                        neighborTile[nw] = (x - 1) >= 0 && (y - 1) >= 0       ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x - 1, y - 1].Type)) ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null) : null;
-                        neighborTile[sw] = (x - 1) >= 0 && (y + 1) < height   ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x - 1, y + 1].Type)) ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null) : null;
+                        neighborTile[e] = (x + 1) < width ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x + 1, y].Type)) ? _wvm.CurrentWorld.Tiles[x + 1, y] : null) : null;
+                        neighborTile[n] = (y - 1) >= 0 ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x, y - 1].Type)) ? _wvm.CurrentWorld.Tiles[x, y - 1] : null) : null;
+                        neighborTile[w] = (x - 1) >= 0 ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x - 1, y].Type)) ? _wvm.CurrentWorld.Tiles[x - 1, y] : null) : null;
+                        neighborTile[s] = (y + 1) < height ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x, y + 1].Type)) ? _wvm.CurrentWorld.Tiles[x, y + 1] : null) : null;
+                        neighborTile[ne] = (x + 1) < width && (y - 1) >= 0 ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x + 1, y - 1].Type)) ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null) : null;
+                        neighborTile[nw] = (x - 1) >= 0 && (y - 1) >= 0 ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x - 1, y - 1].Type)) ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null) : null;
+                        neighborTile[sw] = (x - 1) >= 0 && (y + 1) < height ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x - 1, y + 1].Type)) ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null) : null;
                         neighborTile[se] = (x + 1) < width && (y + 1) < height ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x + 1, y + 1].Type)) ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null) : null;
                     }
                     else
                     {
-                        neighborTile[e]  = (x + 1) < width                     ? _wvm.CurrentWorld.Tiles[x + 1, y]     : null;
-                        neighborTile[n]  = (y - 1) >= 0                        ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null;
-                        neighborTile[w]  = (x - 1) >= 0                        ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null;
-                        neighborTile[s]  = (y + 1) < height                    ? _wvm.CurrentWorld.Tiles[x, y + 1]     : null;
-                        neighborTile[ne] = (x + 1) < width && (y - 1) >= 0     ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                        neighborTile[nw] = (x - 1) >= 0 && (y - 1) >= 0       ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                        neighborTile[sw] = (x - 1) >= 0 && (y + 1) < height   ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                        neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
+                        neighborTile[n] = (y - 1) >= 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
+                        neighborTile[w] = (x - 1) >= 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
+                        neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
+                        neighborTile[ne] = (x + 1) < width && (y - 1) >= 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                        neighborTile[nw] = (x - 1) >= 0 && (y - 1) >= 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                        neighborTile[sw] = (x - 1) >= 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
                         neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
                     }
 

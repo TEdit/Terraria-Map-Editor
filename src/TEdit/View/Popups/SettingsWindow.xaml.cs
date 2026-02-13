@@ -16,10 +16,14 @@ public partial class SettingsWindow : Window
     {
         if (sender is not Button { Tag: SettingItem setting }) return;
 
+        var currentPath = setting.Value as string;
+        if (string.IsNullOrWhiteSpace(currentPath))
+            currentPath = DependencyChecker.PathToContent ?? "";
+
         using var dialog = new System.Windows.Forms.FolderBrowserDialog
         {
             Description = setting.Description,
-            SelectedPath = setting.Value as string ?? ""
+            SelectedPath = currentPath
         };
 
         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
