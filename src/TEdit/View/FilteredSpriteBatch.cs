@@ -110,6 +110,7 @@ internal sealed class FilteredSpriteBatch
     public void Draw(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle,
         Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
     {
+        if (!_beginCalled) return;
         if (!ForceGrayscale)
         {
             _inner.Draw(texture, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth);
@@ -123,6 +124,7 @@ internal sealed class FilteredSpriteBatch
     public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle,
         Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
     {
+        if (!_beginCalled) return;
         if (!ForceGrayscale)
         {
             _inner.Draw(texture, position, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);
@@ -136,6 +138,7 @@ internal sealed class FilteredSpriteBatch
     public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle,
         Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
     {
+        if (!_beginCalled) return;
         if (!ForceGrayscale)
         {
             _inner.Draw(texture, position, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);

@@ -75,7 +75,7 @@ public partial class WorldRenderXna : UserControl
     private Vector2 _dpiScale;
     private Vector2 _scrollPosition = new Vector2(0, 0);
     private SimpleProvider _serviceProvider;
-    private SpriteBatch _spriteBatch;
+    private FilteredSpriteBatch _spriteBatch;
     private Textures _textureDictionary;
     private Texture2D[] _tileMap;
     private Texture2D _preview;
@@ -368,7 +368,7 @@ public partial class WorldRenderXna : UserControl
     {
         // Load services, textures and initialize spritebatch
         _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
-        _spriteBatch = new SpriteBatch(e.GraphicsDevice);
+        _spriteBatch = new FilteredSpriteBatch(new SpriteBatch(e.GraphicsDevice));
         _textureDictionary = new Textures(_serviceProvider, e.GraphicsDevice);
 
         System.Windows.Media.Matrix m = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformToDevice;
@@ -2098,52 +2098,24 @@ public partial class WorldRenderXna : UserControl
         {
             if (_wvm.ShowWalls)
             {
-                // Check if the advanced filter has active wall filters.
-                if (!FilterManager.AnyFilterActive)
-                {
-                    _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                    DrawTileWalls();
-                    _spriteBatch.End();
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileWalls();
+                _spriteBatch.End();
 
-                    _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                    DrawTileWalls(true);
-                    _spriteBatch.End();
-                }
-                else
-                {
-                    _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                    DrawTileWallsFiltered();
-                    _spriteBatch.End();
-
-                    _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                    DrawTileWallsFiltered(true);
-                    _spriteBatch.End();
-                }
+                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileWalls(true);
+                _spriteBatch.End();
             }
 
             if (_wvm.ShowTiles)
             {
-                // Check if the advanced filter has active tile filters.
-                if (!FilterManager.AnyFilterActive)
-                {
-                    _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                    DrawTileTextures();
-                    _spriteBatch.End();
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileTextures();
+                _spriteBatch.End();
 
-                    _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                    DrawTileTextures(true);
-                    _spriteBatch.End();
-                }
-                else
-                {
-                    _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                    DrawTileTexturesFiltered();
-                    _spriteBatch.End();
-
-                    _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                    DrawTileTexturesFiltered(true);
-                    _spriteBatch.End();
-                }
+                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileTextures(true);
+                _spriteBatch.End();
             }
 
             if ((_wvm.ShowTiles) ||
@@ -2155,20 +2127,12 @@ public partial class WorldRenderXna : UserControl
 
                 if (_wvm.ShowBlueWires || _wvm.ShowRedWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)
                 {
-                    // Check if the advanced filter has active wire filters.
-                    if (!FilterManager.AnyFilterActive)
-                        DrawTileWires();
-                    else
-                        DrawTileWiresFiltered();
+                    DrawTileWires();
                 }
 
                 if (_wvm.ShowLiquid)
                 {
-                    // Check if the advanced filter has active wire filters.
-                    if (!FilterManager.AnyFilterActive)
-                        DrawTileLiquid();
-                    else
-                        DrawTileLiquidFiltered();
+                    DrawTileLiquid();
                 }
                 // Draw Tile Entities
 
@@ -2569,6 +2533,7 @@ public partial class WorldRenderXna : UserControl
         BlendRules blendRules = BlendRules.Instance;
         var width = _wvm.CurrentWorld.TilesWide;
         var height = _wvm.CurrentWorld.TilesHigh;
+        bool anyFilter = FilterManager.AnyFilterActive;
 
         //Extended the viewing space to give tiles time to cache their UV's
         for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -2588,14 +2553,26 @@ public partial class WorldRenderXna : UserControl
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if ((curtile.WallColor == 30) != drawInverted) continue;
 
+                    // Filter check: hide or grayscale walls not allowed by the filter
+                    if (anyFilter)
+                    {
+                        _spriteBatch.ForceGrayscale = false;
+                        if (FilterManager.WallIsNotAllowed(curtile.Wall))
+                        {
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)
+                                _spriteBatch.ForceGrayscale = true;
+                        }
+                    }
+
                     //Neighbor tiles are often used when dynamically determining which UV position to render
                     neighborTile[e]  = (x + 1) < width                     ? _wvm.CurrentWorld.Tiles[x + 1, y]     : null;
-                    neighborTile[n]  = (y - 1) > 0                         ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null;
-                    neighborTile[w]  = (x - 1) > 0                         ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null;
+                    neighborTile[n]  = (y - 1) >= 0                        ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null;
+                    neighborTile[w]  = (x - 1) >= 0                        ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null;
                     neighborTile[s]  = (y + 1) < height                    ? _wvm.CurrentWorld.Tiles[x, y + 1]     : null;
-                    neighborTile[ne] = (x + 1) < width && (y - 1) > 0      ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                    neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0          ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                    neighborTile[sw] = (x - 1) > 0 && (y + 1) < height     ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                    neighborTile[ne] = (x + 1) < width && (y - 1) >= 0     ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                    neighborTile[nw] = (x - 1) >= 0 && (y - 1) >= 0       ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                    neighborTile[sw] = (x - 1) >= 0 && (y + 1) < height   ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
                     neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                     if (_wvm.ShowWalls)
@@ -2668,6 +2645,7 @@ public partial class WorldRenderXna : UserControl
                             }
                         }
                     }
+                    if (anyFilter) _spriteBatch.ForceGrayscale = false;
                 }
                 catch (Exception)
                 {
@@ -2676,133 +2654,6 @@ public partial class WorldRenderXna : UserControl
             }
         }
     }
-    public void DrawTileWallsFiltered(bool drawInverted = false)
-    {
-        Rectangle visibleBounds = GetViewingArea();
-        BlendRules blendRules = BlendRules.Instance;
-        var width = _wvm.CurrentWorld.TilesWide;
-        var height = _wvm.CurrentWorld.TilesHigh;
-
-        //Extended the viewing space to give tiles time to cache their UV's
-        for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
-        {
-            for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
-            {
-                try
-                {
-                    if (x < 0 ||
-                        y < 0 ||
-                        x >= _wvm.CurrentWorld.TilesWide ||
-                        y >= _wvm.CurrentWorld.TilesHigh)
-                    {
-                        continue;
-                    }
-
-                    var curtile = _wvm.CurrentWorld.Tiles[x, y];
-                    if ((curtile.WallColor == 30) != drawInverted) continue;
-
-                    // Hide all walls not within a filter when enabled.
-                    bool forceGrayscale = false;
-                    if (FilterManager.WallIsNotAllowed(curtile.Wall))
-                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
-                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGrayscale = true;
-
-                    //Neighbor tiles are often used when dynamically determining which UV position to render
-                    neighborTile[e]  = (x + 1 < width)                   ? _wvm.CurrentWorld.Tiles[x + 1, y]     : null;
-                    neighborTile[n]  = (y - 1 >= 0)                      ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null;
-                    neighborTile[w]  = (x - 1 >= 0)                      ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null;
-                    neighborTile[s]  = (y + 1 < height)                  ? _wvm.CurrentWorld.Tiles[x, y + 1]     : null;
-                    neighborTile[ne] = (x + 1 < width && y - 1 >= 0)     ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                    neighborTile[nw] = (x - 1 >= 0 && y - 1 >= 0)        ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                    neighborTile[sw] = (x - 1 >= 0 && y + 1 < height)    ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
-                    neighborTile[se] = (x + 1 < width && y + 1 < height) ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
-
-                    if (_wvm.ShowWalls)
-                    {
-                        // white for inverted
-                        var wallPaintColor = Color.White;
-
-                        if (_wvm.ShowCoatings)
-                        {
-                            wallPaintColor = Color.LightGray;
-
-                            if (curtile.InvisibleWall)
-                            {
-                                wallPaintColor = Color.DarkGray;
-                            }
-
-                            if (curtile.FullBrightWall || curtile.WallColor == 30)
-                            {
-                                wallPaintColor = Color.White;
-                            }
-                        }
-
-                        if (curtile.WallColor > 0 && curtile.WallColor != 30)
-                        {
-                            var paint = WorldConfiguration.PaintProperties[curtile.WallColor].Color;
-                            switch (curtile.WallColor)
-                            {
-                                case 29:
-                                    float light = wallPaintColor.B * 0.3f;
-                                    wallPaintColor.R = (byte)(wallPaintColor.R * light);
-                                    wallPaintColor.G = (byte)(wallPaintColor.G * light);
-                                    wallPaintColor.B = (byte)(wallPaintColor.B * light);
-                                    break;
-                                case 30:
-                                    wallPaintColor.R = (byte)((byte.MaxValue - wallPaintColor.R) * 0.5);
-                                    wallPaintColor.G = (byte)((byte.MaxValue - wallPaintColor.G) * 0.5);
-                                    wallPaintColor.B = (byte)((byte.MaxValue - wallPaintColor.B) * 0.5);
-                                    break;
-                                default:
-                                    paint.A = (byte)wallPaintColor.R;
-                                    wallPaintColor = wallPaintColor.AlphaBlend(paint);
-                                    break;
-                            }
-                        }
-
-                        if (curtile.Wall > 0)
-                        {
-                            wallTex = _textureDictionary.GetWall(curtile.Wall);
-
-                            if (wallTex != null)
-                            {
-                                if (curtile.uvWallCache == 0xFFFF)
-                                {
-                                    int sameStyle = 0x00000000;
-                                    sameStyle |= (neighborTile[e] != null && neighborTile[e].Wall > 0) ? 0x0001 : 0x0000;
-                                    sameStyle |= (neighborTile[n] != null && neighborTile[n].Wall > 0) ? 0x0010 : 0x0000;
-                                    sameStyle |= (neighborTile[w] != null && neighborTile[w].Wall > 0) ? 0x0100 : 0x0000;
-                                    sameStyle |= (neighborTile[s] != null && neighborTile[s].Wall > 0) ? 0x1000 : 0x0000;
-
-                                    Vector2Int32 uvBlend = blendRules.GetUVForMasks((uint)sameStyle, 0x00000000, 0);
-                                    curtile.uvWallCache = (ushort)((uvBlend.Y << 8) + uvBlend.X);
-                                }
-
-                                var texsize = new Vector2Int32(32, 32);
-                                var source = new Rectangle((curtile.uvWallCache & 0x00FF) * (texsize.X + 4), (curtile.uvWallCache >> 8) * (texsize.Y + 4), texsize.X, texsize.Y);
-                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x - 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y - 0.5) * _zoom), (int)_zoom * 2, (int)_zoom * 2);
-
-                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                {
-                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, wallTex, source);
-                                    Color grayedPaint = GrayscaleManager.ToGrayscale(wallPaintColor);
-                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileWallTextures);
-                                }
-                                else
-                                    _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default, SpriteEffects.None, LayerTileWallTextures);
-                            }
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    // failed to render tile? log?
-                }
-            }
-        }
-    }
-
     Texture2D tileTex;
     public void DrawTileTextures(bool drawInverted = false)
     {
@@ -2810,6 +2661,8 @@ public partial class WorldRenderXna : UserControl
         BlendRules blendRules = BlendRules.Instance;
         var width = _wvm.CurrentWorld.TilesWide;
         var height = _wvm.CurrentWorld.TilesHigh;
+        bool anyFilter = FilterManager.AnyFilterActive;
+        bool filterHide = anyFilter && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide;
 
         //Extended the viewing space to give tiles time to cache their UV's
         for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -2834,18 +2687,42 @@ public partial class WorldRenderXna : UserControl
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
                     var tileprop = WorldConfiguration.GetTileProperties(curtile.Type);
 
+                    // Filter check: hide or grayscale tiles/sprites not allowed by the filter
+                    if (anyFilter)
+                    {
+                        _spriteBatch.ForceGrayscale = false;
+                        if (FilterManager.TileIsNotAllowed(curtile.Type) && FilterManager.SpriteIsNotAllowed(curtile.Type))
+                        {
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)
+                                _spriteBatch.ForceGrayscale = true;
+                        }
+                    }
+
                     //Neighbor tiles are often used when dynamically determining which UV position to render
                     //Tile[] neighborTile = new Tile[8];
-                    neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
-                    neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
-                    neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
-                    neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
-                    neighborTile[ne] = (x + 1) < width && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                    neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                    neighborTile[sw] = (x - 1) > 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
-                    neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
-
-
+                    if (filterHide)
+                    {
+                        neighborTile[e]  = (x + 1) < width                     ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x + 1, y].Type))     ? _wvm.CurrentWorld.Tiles[x + 1, y]     : null) : null;
+                        neighborTile[n]  = (y - 1) >= 0                        ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x, y - 1].Type))     ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null) : null;
+                        neighborTile[w]  = (x - 1) >= 0                        ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x - 1, y].Type))     ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null) : null;
+                        neighborTile[s]  = (y + 1) < height                    ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x, y + 1].Type))     ? _wvm.CurrentWorld.Tiles[x, y + 1]     : null) : null;
+                        neighborTile[ne] = (x + 1) < width && (y - 1) >= 0     ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x + 1, y - 1].Type)) ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null) : null;
+                        neighborTile[nw] = (x - 1) >= 0 && (y - 1) >= 0       ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x - 1, y - 1].Type)) ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null) : null;
+                        neighborTile[sw] = (x - 1) >= 0 && (y + 1) < height   ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x - 1, y + 1].Type)) ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null) : null;
+                        neighborTile[se] = (x + 1) < width && (y + 1) < height ? ((!FilterManager.TileIsNotAllowed(_wvm.CurrentWorld.Tiles[x + 1, y + 1].Type)) ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null) : null;
+                    }
+                    else
+                    {
+                        neighborTile[e]  = (x + 1) < width                     ? _wvm.CurrentWorld.Tiles[x + 1, y]     : null;
+                        neighborTile[n]  = (y - 1) >= 0                        ? _wvm.CurrentWorld.Tiles[x, y - 1]     : null;
+                        neighborTile[w]  = (x - 1) >= 0                        ? _wvm.CurrentWorld.Tiles[x - 1, y]     : null;
+                        neighborTile[s]  = (y + 1) < height                    ? _wvm.CurrentWorld.Tiles[x, y + 1]     : null;
+                        neighborTile[ne] = (x + 1) < width && (y - 1) >= 0     ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                        neighborTile[nw] = (x - 1) >= 0 && (y - 1) >= 0       ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                        neighborTile[sw] = (x - 1) >= 0 && (y + 1) < height   ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                        neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
+                    }
 
                     if (_wvm.ShowTiles)
                     {
@@ -4292,1615 +4169,7 @@ public partial class WorldRenderXna : UserControl
                             }
                         }
                     }
-                }
-                catch (Exception)
-                {
-                    // failed to render tile? log?
-                }
-            }
-        }
-    }
-    public void DrawTileTexturesFiltered(bool drawInverted = false)
-    {
-        Rectangle visibleBounds = GetViewingArea();
-        BlendRules blendRules = BlendRules.Instance;
-        var width = _wvm.CurrentWorld.TilesWide;
-        var height = _wvm.CurrentWorld.TilesHigh;
-
-        //Extended the viewing space to give tiles time to cache their UV's
-        for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
-        {
-            for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
-            {
-                try
-                {
-                    if (x < 0 ||
-                        y < 0 ||
-                        x >= _wvm.CurrentWorld.TilesWide ||
-                        y >= _wvm.CurrentWorld.TilesHigh)
-                    {
-                        continue;
-                    }
-
-
-                    var curtile = _wvm.CurrentWorld.Tiles[x, y];
-
-                    if ((curtile.TileColor == 30) != drawInverted) continue;
-
-                    if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
-                    var tileprop = WorldConfiguration.GetTileProperties(curtile.Type);
-
-                    // Hide all tiles & sprites not within a filter when enabled.
-                    bool forceGrayscale = false;
-                    if (FilterManager.TileIsNotAllowed(curtile.Type) && FilterManager.SpriteIsNotAllowed(curtile.Type))
-                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
-                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGrayscale = true;
-
-                    //Neighbor tiles are often used when dynamically determining which UV position to render
-                    //Tile[] neighborTile = new Tile[8];
-                    neighborTile[e]  = (x + 1 < width)                   ? ((_wvm.CurrentWorld.Tiles[x + 1, y]     is var t0 && !(FilterManager.TileIsNotAllowed(t0.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t0 : null) : null;
-                    neighborTile[n]  = (y - 1 >= 0)                      ? ((_wvm.CurrentWorld.Tiles[x, y - 1]     is var t1 && !(FilterManager.TileIsNotAllowed(t1.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t1 : null) : null;
-                    neighborTile[w]  = (x - 1 >= 0)                      ? ((_wvm.CurrentWorld.Tiles[x - 1, y]     is var t2 && !(FilterManager.TileIsNotAllowed(t2.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t2 : null) : null;
-                    neighborTile[s]  = (y + 1 < height)                  ? ((_wvm.CurrentWorld.Tiles[x, y + 1]     is var t3 && !(FilterManager.TileIsNotAllowed(t3.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t3 : null) : null;
-                    neighborTile[ne] = (x + 1 < width && y - 1 >= 0)     ? ((_wvm.CurrentWorld.Tiles[x + 1, y - 1] is var t4 && !(FilterManager.TileIsNotAllowed(t4.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t4 : null) : null;
-                    neighborTile[nw] = (x - 1 >= 0 && y - 1 >= 0)        ? ((_wvm.CurrentWorld.Tiles[x - 1, y - 1] is var t5 && !(FilterManager.TileIsNotAllowed(t5.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t5 : null) : null;
-                    neighborTile[sw] = (x - 1 >= 0 && y + 1 < height)    ? ((_wvm.CurrentWorld.Tiles[x - 1, y + 1] is var t6 && !(FilterManager.TileIsNotAllowed(t6.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t6 : null) : null;
-                    neighborTile[se] = (x + 1 < width && y + 1 < height) ? ((_wvm.CurrentWorld.Tiles[x + 1, y + 1] is var t7 && !(FilterManager.TileIsNotAllowed(t7.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)) ? t7 : null) : null;
-
-                    if (_wvm.ShowTiles)
-                    {
-                        if (curtile.IsActive)
-                        {
-                            // white for inverted
-                            var tilePaintColor = Color.White;
-
-                            if (_wvm.ShowCoatings)
-                            {
-                                tilePaintColor = Color.LightGray;
-
-                                if (curtile.InvisibleBlock)
-                                {
-                                    tilePaintColor = Color.DarkGray;
-                                }
-
-                                if (curtile.FullBrightBlock || curtile.TileColor == 30)
-                                {
-                                    tilePaintColor = Color.White;
-                                }
-                            }
-
-                            if (curtile.TileColor > 0 && curtile.TileColor != 30)
-                            {
-                                var paint = WorldConfiguration.PaintProperties[curtile.TileColor].Color;
-                                switch (curtile.TileColor)
-                                {
-                                    case 29:
-                                        float light = tilePaintColor.B * 0.3f;
-                                        tilePaintColor.R = (byte)(tilePaintColor.R * light);
-                                        tilePaintColor.G = (byte)(tilePaintColor.G * light);
-                                        tilePaintColor.B = (byte)(tilePaintColor.B * light);
-                                        break;
-                                    case 30:
-                                        tilePaintColor.R = (byte)((byte.MaxValue - tilePaintColor.R) * 0.5);
-                                        tilePaintColor.G = (byte)((byte.MaxValue - tilePaintColor.G) * 0.5);
-                                        tilePaintColor.B = (byte)((byte.MaxValue - tilePaintColor.B) * 0.5);
-                                        break;
-                                    default:
-                                        paint.A = (byte)tilePaintColor.R;
-                                        tilePaintColor = tilePaintColor.AlphaBlend(paint);
-                                        break;
-                                }
-                            }
-
-                            if (tileprop.IsFramed)
-                            {
-                                Rectangle source = new Rectangle(), dest = new Rectangle();
-                                tileTex = _textureDictionary.GetTile(curtile.Type);
-
-                                bool isTreeSpecial = false, isMushroom = false;
-                                bool isLeft = false, isBase = false, isRight = false;
-                                if (curtile.Type == (int)TileType.Tree)
-                                {
-                                    int baseX = 0;
-                                    if (curtile.U == 66 && curtile.V <= 45)
-                                        ++baseX;
-                                    if (curtile.U == 88 && curtile.V >= 66 && curtile.V <= 110)
-                                        --baseX;
-                                    if (curtile.U == 22 && curtile.V >= 132 && curtile.V < 198)
-                                        --baseX;
-                                    if (curtile.U == 44 && curtile.V >= 132 && curtile.V < 198)
-                                        ++baseX;
-                                    if (curtile.U >= 22 && curtile.V >= 198)
-                                    {
-                                        isTreeSpecial = true;
-                                        switch (curtile.U)
-                                        {
-                                            case 22:
-                                                isBase = true;
-                                                break;
-                                            case 44:
-                                                isLeft = true;
-                                                ++baseX;
-                                                break;
-                                            case 66:
-                                                isRight = true;
-                                                --baseX;
-                                                break;
-                                        }
-                                    }
-
-                                    //Check tree type
-                                    int treeType = -1; //Default to normal in case no grass grows beneath the tree
-                                    for (int i = 0; i < 100; i++)
-                                    {
-                                        Tile checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + baseX, y + i] : null;
-                                        if (checkTile != null && checkTile.IsActive)
-                                        {
-                                            bool found = true;
-                                            switch (checkTile.Type)
-                                            {
-                                                case 2:
-                                                    treeType = -1;
-                                                    break; //Normal
-                                                case 23:
-                                                    treeType = 0;
-                                                    break; //Corruption
-                                                case 60:
-                                                    if (y <= _wvm.CurrentWorld.GroundLevel)
-                                                    {
-                                                        treeType = 1;
-                                                        break; // Jungle
-                                                    }
-                                                    treeType = 5;
-                                                    break; // Underground Jungle
-                                                case 70:
-                                                    treeType = 6;
-                                                    break; // Surface Mushroom
-                                                case 109:
-                                                    treeType = 2;
-                                                    break; // Hallow
-                                                case 147:
-                                                    treeType = 3;
-                                                    break; // Snow
-                                                case 199:
-                                                    treeType = 4;
-                                                    break; // Crimson
-                                                default:
-                                                    found = false;
-                                                    break;
-                                            }
-                                            if (found)
-                                                break;
-                                        }
-                                    }
-                                    if (isTreeSpecial)
-                                    {
-                                        int treeStyle = 0; // default branches and tops
-                                        switch (treeType)
-                                        {
-                                            case -1:
-                                                if (x <= _wvm.CurrentWorld.TreeX0)
-                                                    treeStyle = _wvm.CurrentWorld.TreeStyle0;
-                                                else if (x <= _wvm.CurrentWorld.TreeX1)
-                                                    treeStyle = _wvm.CurrentWorld.TreeStyle1;
-                                                else if (x <= _wvm.CurrentWorld.TreeX2)
-                                                    treeStyle = _wvm.CurrentWorld.TreeStyle2;
-                                                else
-                                                    treeStyle = _wvm.CurrentWorld.TreeStyle3;
-                                                if (treeStyle == 0)
-                                                {
-                                                    break;
-                                                }
-                                                if (treeStyle == 5)
-                                                {
-                                                    treeStyle = 10;
-                                                    break;
-                                                }
-                                                treeStyle = 5 + treeStyle;
-                                                break;
-                                            case 0:
-                                                treeStyle = 1;
-                                                break;
-                                            case 1:
-                                                treeStyle = 2;
-                                                if (_wvm.CurrentWorld.BgJungle == 1)
-                                                    treeStyle = 11;
-                                                break;
-                                            case 2:
-                                                treeStyle = 3;
-                                                break;
-                                            case 3:
-                                                treeStyle = 4;
-                                                if (_wvm.CurrentWorld.BgSnow == 0)
-                                                {
-                                                    treeStyle = 12;
-                                                    if (x % 10 == 0)
-                                                        treeStyle = 18;
-                                                }
-                                                if (_wvm.CurrentWorld.BgSnow != 2 && _wvm.CurrentWorld.BgSnow != 3 && _wvm.CurrentWorld.BgSnow != 32 && _wvm.CurrentWorld.BgSnow != 4 && _wvm.CurrentWorld.BgSnow != 42)
-                                                {
-                                                    break;
-                                                }
-                                                if (_wvm.CurrentWorld.BgSnow % 2 == 0)
-                                                {
-                                                    if (x < _wvm.CurrentWorld.TilesWide / 2)
-                                                    {
-                                                        treeStyle = 16;
-                                                        break;
-                                                    }
-                                                    treeStyle = 17;
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    if (x > _wvm.CurrentWorld.TilesWide / 2)
-                                                    {
-                                                        treeStyle = 16;
-                                                        break;
-                                                    }
-                                                    treeStyle = 17;
-                                                    break;
-                                                }
-                                            case 4:
-                                                treeStyle = 5;
-                                                break;
-                                            case 5:
-                                                treeStyle = 13;
-                                                break;
-                                            case 6:
-                                                treeStyle = 14;
-                                                break;
-                                        }
-                                        //Abuse uvTileCache to remember what type of tree it is, since potentially scanning a hundred of blocks PER tree tile sounds slow
-                                        curtile.uvTileCache = (ushort)((0x00 << 8) + 0x01 * treeStyle);
-                                        if (isBase)
-                                        {
-                                            tileTex = (Texture2D)_textureDictionary.GetTreeTops(treeStyle);
-                                        }
-                                        else
-                                        {
-                                            tileTex = (Texture2D)_textureDictionary.GetTreeBranches(treeStyle);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        tileTex = _textureDictionary.GetTree(treeType);
-                                    }
-                                }
-                                // Gem Trees (583-589), Vanity Trees (596, 616), Ash Trees (634)
-                                // These use the same foliage detection as normal trees but with fixed texture indices
-                                else if (_gemTreeTileIds.Contains(curtile.Type) || _vanityTreeTileIds.Contains(curtile.Type) || curtile.Type == AshTreeTileId)
-                                {
-                                    // Foliage detection: same as normal trees (frameY >= 198 && frameX >= 22)
-                                    if (curtile.U >= 22 && curtile.V >= 198)
-                                    {
-                                        isTreeSpecial = true;
-                                        switch (curtile.U)
-                                        {
-                                            case 22:
-                                                isBase = true;
-                                                break;
-                                            case 44:
-                                                isLeft = true;
-                                                break;
-                                            case 66:
-                                                isRight = true;
-                                                break;
-                                        }
-
-                                        // Determine tree style based on tile type
-                                        int treeStyle;
-                                        if (_gemTreeTileIds.Contains(curtile.Type))
-                                            treeStyle = GetGemTreeStyle(curtile.Type);
-                                        else if (_vanityTreeTileIds.Contains(curtile.Type))
-                                            treeStyle = GetVanityTreeStyle(curtile.Type);
-                                        else
-                                            treeStyle = GetAshTreeStyle();
-
-                                        // Cache tree style in uvTileCache
-                                        curtile.uvTileCache = (ushort)((0x00 << 8) + 0x01 * treeStyle);
-
-                                        if (isBase)
-                                            tileTex = (Texture2D)_textureDictionary.GetTreeTops(treeStyle);
-                                        else
-                                            tileTex = (Texture2D)_textureDictionary.GetTreeBranches(treeStyle);
-                                    }
-                                }
-                                if (curtile.Type == (int)TileType.MushroomTree && curtile.U >= 36)
-                                {
-                                    isMushroom = true;
-                                    tileTex = (Texture2D)_textureDictionary.GetShroomTop(0);
-                                }
-                                if (curtile.Type == (int)TileType.PalmTree)
-                                {
-                                    if (curtile.U >= 88 && curtile.U <= 132)
-                                    {
-                                        isTreeSpecial = true;
-                                        isBase = true;
-                                        tileTex = (Texture2D)_textureDictionary.GetTreeTops(15);
-                                    }
-                                    int treeType = 0;
-                                    for (int i = 0; i < 100; i++)
-                                    {
-                                        Tile checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x, y + i] : null;
-                                        if (checkTile != null && checkTile.IsActive)
-                                        {
-                                            bool found = true;
-                                            switch (checkTile.Type)
-                                            {
-                                                case 53:
-                                                    treeType = 0;
-                                                    break; //Palm
-                                                case 112:
-                                                    treeType = 3;
-                                                    break; //Ebonsand Palm
-                                                case 116:
-                                                    treeType = 2;
-                                                    break; //Pearlsand Palm
-                                                case 234:
-                                                    treeType = 1;
-                                                    break; //Crimsand Palm
-                                                default:
-                                                    found = false;
-                                                    break;
-                                            }
-                                            if (found)
-                                                break;
-                                        }
-                                    }
-                                    curtile.uvTileCache = (ushort)((0x00 << 8) + 0x01 * treeType);
-                                }
-
-                                if (tileTex != null)
-                                {
-                                    if ((curtile.Type == (int)TileType.MannequinLegacy || curtile.Type == (int)TileType.WomannequinLegacy) && curtile.U >= 100)
-                                    {
-                                        int armor = curtile.U / 100;
-                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                        switch (curtile.V / 18)
-                                        {
-                                            case 0:
-                                                tileTex = (Texture2D)_textureDictionary.GetArmorHead(armor);
-                                                source = new Rectangle(2, 0, 36, 36);
-                                                dest.Width = (int)(_zoom * source.Width / 16f);
-                                                dest.Height = (int)(_zoom * source.Height / 16f);
-                                                dest.Y += (int)(((16 - source.Height - 4) / 2F) * _zoom / 16);
-                                                dest.X -= (int)((2 * _zoom / 16));
-                                                break;
-                                            case 1:
-                                                if (curtile.Type == (int)TileType.MannequinLegacy)
-                                                    tileTex = (Texture2D)_textureDictionary.GetArmorBody(armor);
-                                                else
-                                                    tileTex = (Texture2D)_textureDictionary.GetArmorFemale(armor);
-                                                source = new Rectangle(2, 0, 36, 54);
-                                                dest.Width = (int)(_zoom * source.Width / 16f);
-                                                dest.Height = (int)(_zoom * source.Height / 16f);
-                                                dest.Y += (int)(((16 - source.Height - 18) / 2F) * _zoom / 16);
-                                                dest.X -= (int)((2 * _zoom / 16));
-                                                break;
-                                            case 2:
-                                                tileTex = (Texture2D)_textureDictionary.GetArmorLegs(armor);
-                                                source = new Rectangle(2, 42, 36, 12);
-                                                dest.Width = (int)(_zoom * source.Width / 16f);
-                                                dest.Height = (int)(_zoom * source.Height / 16f);
-                                                dest.Y -= (int)((2 * _zoom / 16));
-                                                dest.X -= (int)((2 * _zoom / 16));
-                                                break;
-                                        }
-                                        if (curtile.U % 100 < 36)
-                                        {
-                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                            {
-                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.FlipHorizontally, LayerTileTrack);
-                                            }
-                                            else
-                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.FlipHorizontally, LayerTileTrack);
-                                        }
-                                        else
-                                        {
-                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                            {
-                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                            else
-                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                        }
-                                        tileTex = _textureDictionary.GetTile(curtile.Type);
-                                        source = new Rectangle((curtile.U % 100), curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                    }
-                                    else if ((curtile.Type == (int)TileType.WeaponRackLegacy) && curtile.U >= 5000)
-                                    {
-                                        if (_wvm.CurrentWorld.Tiles[x + 1, y].U >= 5000)
-                                        {
-                                            int weapon = (curtile.U % 5000) - 100;
-                                            tileTex = (Texture2D)_textureDictionary.GetItem(weapon);
-                                            int flip = curtile.U / 5000;
-                                            float scale = 1f;
-                                            if (tileTex.Width > 40 || tileTex.Height > 40)
-                                            {
-                                                if (tileTex.Width > tileTex.Height)
-                                                    scale = 40f / (float)tileTex.Width;
-                                                else
-                                                    scale = 40f / (float)tileTex.Height;
-                                            }
-                                            if (WorldConfiguration.ItemLookupTable.TryGetValue(weapon, out var itemProps))
-                                            {
-                                                scale *= itemProps?.Scale ?? 1.0f;
-                                            }
-                                            source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
-                                            SpriteEffects effect = SpriteEffects.None;
-                                            if (flip >= 3)
-                                            {
-                                                effect = SpriteEffects.FlipHorizontally;
-                                            }
-
-                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                            {
-                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                _spriteBatch.Draw(grayTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, effect, LayerTileTrack);
-                                            }
-                                            else
-                                                _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), source, tilePaintColor, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, effect, LayerTileTrack);
-                                        }
-                                        source = new Rectangle(((curtile.U / 5000) - 1) * 18, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                                        tileTex = _textureDictionary.GetTile(curtile.Type);
-                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                    }
-                                    else if (curtile.Type == (int)TileType.ItemFrame && curtile.V == 0 && curtile.U % 36 == 0)
-                                    {
-                                        TileEntity entity = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
-                                        if (entity != null)
-                                        {
-                                            int item = entity.NetId;
-                                            if (item > 0)
-                                            {
-                                                tileTex = (Texture2D)_textureDictionary.GetItem(item);
-                                                float scale = 1f;
-                                                if (tileTex.Width > 20 || tileTex.Height > 20)
-                                                {
-                                                    if (tileTex.Width > tileTex.Height)
-                                                        scale = 20f / (float)tileTex.Width;
-                                                    else
-                                                        scale = 20f / (float)tileTex.Height;
-                                                }
-                                                if (WorldConfiguration.ItemLookupTable.TryGetValue(item, out var itemProps))
-                                                {
-                                                    scale *= itemProps?.Scale ?? 1.0f;
-                                                }
-                                                source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    _spriteBatch.Draw(grayTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), source, Color.White, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, SpriteEffects.None, LayerTileTrack);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), source, Color.White, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                        }
-                                        source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                                        tileTex = _textureDictionary.GetTile(curtile.Type);
-                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                    }
-                                    else if (curtile.Type == (int)TileType.FoodPlatter)
-                                    {
-                                        SpriteEffects effect = SpriteEffects.None;
-                                        if (curtile.U == 0)
-                                        {
-                                            effect = SpriteEffects.FlipHorizontally;
-                                        }
-
-
-                                        TileEntity entity = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
-                                        if (entity != null)
-                                        {
-                                            int item = entity.NetId;
-                                            if (item > 0)
-                                            {
-                                                tileTex = (Texture2D)_textureDictionary.GetItem(item);
-                                                bool isFood = false;
-                                                if (WorldConfiguration.ItemLookupTable.TryGetValue(item, out var itemData))
-                                                {
-                                                    isFood = itemData?.IsFood ?? false;
-
-                                                }
-                                                source = !isFood ? tileTex.Frame(1, 1, 0, 0, 0, 0) : tileTex.Frame(1, 3, 0, 2, 0, 0);
-
-                                                float scale = 1f;
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                    _spriteBatch.Draw(grayTex, new Vector2(1 + (int)((_scrollPosition.X + x + 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, new Vector2((float)(source.Width / 2), (float)(source.Height)), scale * _zoom / 16f, effect, LayerTileTrack);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), source, tilePaintColor, 0f, new Vector2((float)(source.Width / 2), (float)(source.Height)), scale * _zoom / 16f, effect, LayerTileTrack);
-                                            }
-                                            //else
-                                            {
-                                                tileTex = _textureDictionary.GetTile(curtile.Type);
-                                                source = (curtile.U == 0) ? tileTex.Frame(2, 1, 0, 0, 0, 0) : tileTex.Frame(2, 1, 1, 0, 0, 0);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                    _spriteBatch.Draw(grayTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom), 1 + (int)((_scrollPosition.Y + y + 0.5) * _zoom)), new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), 1f * _zoom / 16f, effect, LayerTileTextures);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom), 1 + (int)((_scrollPosition.Y + y + 0.5) * _zoom)), source, tilePaintColor, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), 1f * _zoom / 16f, effect, LayerTileTextures);
-                                            }
-                                        }
-                                    }
-                                    else if (curtile.Type == (int)TileType.ChristmasTree) // Christmas Tree
-                                    {
-                                        if (curtile.U >= 10)
-                                        {
-                                            int star = curtile.V & 7;
-                                            int garland = (curtile.V >> 3) & 7;
-                                            int bulb = (curtile.V >> 6) & 0xf;
-                                            int light = (curtile.V >> 10) & 0xf;
-                                            source = new Rectangle(0, 0, 64, 128);
-                                            dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom * 4, (int)_zoom * 8);
-                                            if (star > 0)
-                                            {
-                                                tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_3");
-                                                source.X = 66 * (star - 1);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                            if (garland > 0)
-                                            {
-                                                tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_1");
-                                                source.X = 66 * (garland - 1);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                            if (bulb > 0)
-                                            {
-                                                tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_2");
-                                                source.X = 66 * (bulb - 1);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                            if (light > 0)
-                                            {
-                                                tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_4");
-                                                source.X = 66 * (light - 1);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                            source.X = 0;
-                                            tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_0");
-                                        }
-                                    }
-                                    else if (curtile.Type == (int)TileType.MinecartTrack)
-                                    {
-                                        source = new Rectangle(0, 0, 16, 16);
-                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                        if (curtile.V >= 0) // Switch Track, Y is back tile if not -1
-                                        {
-                                            Vector2Int32 uvback = TrackUV(curtile.V);
-                                            source.X = uvback.X * (source.Width + 2);
-                                            source.Y = uvback.Y * (source.Height + 2);
-
-                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                            {
-                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrackBack);
-                                            }
-                                            else
-                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrackBack);
-                                        }
-                                        if ((curtile.U >= 2 && curtile.U <= 3) || (curtile.U >= 10 && curtile.U <= 13))
-                                        { // Adding regular endcap
-                                            dest.Y = 1 + (int)((_scrollPosition.Y + y - 1) * _zoom);
-                                            source.X = 0;
-                                            source.Y = 126;
-
-                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                            {
-                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                            else
-                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                        }
-                                        if (curtile.U >= 24 && curtile.U <= 29)
-                                        { // Adding bumper endcap
-                                            dest.Y = 1 + (int)((_scrollPosition.Y + y - 1) * _zoom);
-                                            source.X = 18;
-                                            source.Y = 126;
-
-                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                            {
-                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                            else
-                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
-                                        }
-                                        if (curtile.U == 4 || curtile.U == 9 || curtile.U == 10 || curtile.U == 16 || curtile.U == 26 || curtile.U == 33 || curtile.U == 35 || curtile.V == 4)
-                                        { // Adding angle track bottom right
-                                            dest.Y = 1 + (int)((_scrollPosition.Y + y + 1) * _zoom);
-                                            source.X = 0;
-                                            source.Y = 108;
-                                            for (int slice = 0; slice < 6; slice++)
-                                            {
-                                                Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 12 - slice * 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                    _spriteBatch.Draw(grayTex, destSlice, sourceSlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                        }
-                                        if (curtile.U == 5 || curtile.U == 8 || curtile.U == 11 || curtile.U == 17 || curtile.U == 27 || curtile.U == 32 || curtile.U == 34 || curtile.V == 5)
-                                        { // Adding angle track bottom left
-                                            dest.Y = 1 + (int)((_scrollPosition.Y + y + 1) * _zoom);
-                                            source.X = 18;
-                                            source.Y = 108;
-                                            for (int slice = 2; slice < 8; slice++)
-                                            {
-                                                Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 - 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                                    _spriteBatch.Draw(grayTex, destSlice, sourceSlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
-                                            }
-                                        }
-                                        dest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom);
-                                        Vector2Int32 uv = TrackUV(curtile.U);
-                                        source.X = uv.X * (source.Width + 2);
-                                        source.Y = uv.Y * (source.Height + 2);
-
-                                    }
-                                    else if (isTreeSpecial)
-                                    {
-                                        source = new Rectangle(0, 0, 40, 40);
-                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                        FrameAnchor frameAnchor = FrameAnchor.None;
-
-                                        int treeStyle = (curtile.uvTileCache & 0x00FF);
-                                        // Tree frame determines which variant to show (0, 1, or 2)
-                                        // This is position-based to give visual variety, matching Terraria's GetTreeFrame
-                                        int treeFrame = x % 3;
-                                        if (isBase)
-                                        {
-                                            source.Width = 80;
-                                            source.Height = 80;
-                                            if (curtile.Type == 323)
-                                            {
-                                                source.Y = treeStyle * (source.Height + 2);
-                                                source.X = ((curtile.U - 88) / 22) * (source.Width + 2);
-                                                dest.X += (int)(curtile.V * _zoom / 16);
-                                            }
-                                            else
-                                            {
-                                                switch (treeStyle)
-                                                {
-                                                    case 2:
-                                                    case 11:
-                                                    case 13:
-                                                        source.Width = 114;
-                                                        source.Height = 96;
-                                                        break;
-                                                    case 3:
-                                                        source.X = (x % 3) * (82 * 3);
-                                                        source.Height = 140;
-                                                        break;
-                                                    // Gem trees (styles 22-28): 116x96
-                                                    case 22:
-                                                    case 23:
-                                                    case 24:
-                                                    case 25:
-                                                    case 26:
-                                                    case 27:
-                                                    case 28:
-                                                    // Ash tree (style 31): 116x96
-                                                    case 31:
-                                                        source.Width = 116;
-                                                        source.Height = 96;
-                                                        break;
-                                                    // Vanity trees (styles 29-30): 118x96
-                                                    case 29:
-                                                    case 30:
-                                                        source.Width = 118;
-                                                        source.Height = 96;
-                                                        break;
-                                                }
-                                                // Use position-based frame for visual variety
-                                                source.X += treeFrame * (source.Width + 2);
-                                            }
-                                            frameAnchor = FrameAnchor.Bottom;
-                                        }
-                                        else if (isLeft)
-                                        {
-                                            source.X = 0;
-                                            switch (treeStyle)
-                                            {
-                                                case 3:
-                                                    source.Y = (x % 3) * (42 * 3);
-                                                    break;
-                                            }
-                                            frameAnchor = FrameAnchor.Right;
-                                            // Use position-based frame for branch variety
-                                            source.Y += treeFrame * (source.Height + 2);
-                                        }
-                                        else if (isRight)
-                                        {
-                                            source.X = 42;
-                                            switch (treeStyle)
-                                            {
-                                                case 3:
-                                                    source.Y = (x % 3) * (42 * 3);
-                                                    break;
-                                            }
-                                            frameAnchor = FrameAnchor.Left;
-                                            // Use position-based frame for branch variety
-                                            source.Y += treeFrame * (source.Height + 2);
-                                        }
-                                        dest.Width = (int)(_zoom * source.Width / 16f);
-                                        dest.Height = (int)(_zoom * source.Height / 16f);
-                                        switch (frameAnchor)
-                                        {
-                                            case FrameAnchor.None:
-                                                dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
-                                                dest.Y += (int)(((16 - source.Height) / 2F) * _zoom / 16);
-                                                break;
-                                            case FrameAnchor.Left:
-                                                dest.Y += (int)(((16 - source.Height) / 2F) * _zoom / 16);
-                                                break;
-                                            case FrameAnchor.Right:
-                                                dest.X += (int)((16 - source.Width) * _zoom / 16);
-                                                dest.Y += (int)(((16 - source.Height) / 2F) * _zoom / 16);
-                                                break;
-                                            case FrameAnchor.Top:
-                                                dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
-                                                break;
-                                            case FrameAnchor.Bottom:
-                                                dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
-                                                dest.Y += (int)((16 - source.Height) * _zoom / 16);
-                                                break;
-                                        }
-                                    }
-                                    else if (isMushroom)
-                                    {
-                                        source = new Rectangle(0, 0, 60, 42);
-                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-
-                                        source.X = (curtile.V / 18) * 62;
-
-                                        dest.Width = (int)(_zoom * source.Width / 16f);
-                                        dest.Height = (int)(_zoom * source.Height / 16f);
-                                        dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
-                                        dest.Y += (int)((16 - source.Height) * _zoom / 16);
-                                    }
-                                    else if ((curtile.Type >= 373 && curtile.Type <= 375) || curtile.Type == 461)
-                                    {
-                                        //skip rendering drips
-                                    }
-                                    else
-                                    {
-                                        var type = curtile.Type;
-                                        var renderUV = TileProperty.GetRenderUV(curtile.Type, curtile.U, curtile.V);
-
-                                        // Render selected chest as "open" by adding 38 to frameY
-                                        // Chests are 2x2, so check if current tile is within the selected chest area
-                                        if (curtile.IsChest() && _selectedChestPosition.X >= 0)
-                                        {
-                                            int chestX = _selectedChestPosition.X;
-                                            int chestY = _selectedChestPosition.Y;
-                                            if (x >= chestX && x <= chestX + 1 && y >= chestY && y <= chestY + 1)
-                                            {
-                                                renderUV.Y += 38;
-                                            }
-                                        }
-
-                                        source = new Rectangle(renderUV.X, renderUV.Y, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                                        if (source.Width <= 0)
-                                            source.Width = 16;
-                                        if (source.Height <= 0)
-                                            source.Height = 16;
-
-                                        if (source.Bottom > tileTex.Height)
-                                            source.Height -= (source.Bottom - tileTex.Height);
-                                        if (source.Right > tileTex.Width)
-                                            source.Width -= (source.Right - tileTex.Width);
-
-                                        if (source.Width <= 0 || source.Height <= 0)
-                                            continue;
-
-                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                        if (curtile.Type == 323)
-                                        {
-                                            dest.X += (int)(curtile.V * _zoom / 16);
-                                            int treeType = (curtile.uvTileCache & 0x000F);
-                                            source.Y = 22 * treeType;
-                                        }
-                                        var texsize = tileprop.TextureGrid;
-                                        if (texsize.X != 16 || texsize.Y != 16)
-                                        {
-                                            dest.Width = (int)(texsize.X * (_zoom / 16));
-                                            dest.Height = (int)(texsize.Y * (_zoom / 16));
-
-                                            var frame = (tileprop.Frames.FirstOrDefault(f => f.UV == new Vector2Short(curtile.U, curtile.V)));
-                                            var frameAnchor = FrameAnchor.None;
-                                            if (frame != null)
-                                                frameAnchor = frame.Anchor;
-                                            switch (frameAnchor)
-                                            {
-                                                case FrameAnchor.None:
-                                                    dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
-                                                    dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
-                                                    break;
-                                                case FrameAnchor.Left:
-                                                    //position.X += (16 - texsize.X) / 2;
-                                                    dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
-                                                    break;
-                                                case FrameAnchor.Right:
-                                                    dest.X += (int)((16 - texsize.X) * _zoom / 16);
-                                                    dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
-                                                    break;
-                                                case FrameAnchor.Top:
-                                                    dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
-                                                    //position.Y += (16 - texsize.Y);
-                                                    break;
-                                                case FrameAnchor.Bottom:
-                                                    dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
-                                                    dest.Y += (int)((16 - texsize.Y) * _zoom / 16);
-                                                    break;
-                                            }
-                                        }
-                                    }
-
-                                    // Grass/plant/vine rendering: horizontal flip on alternating X
-                                    var spriteEffect = SpriteEffects.None;
-                                    if (_spriteFlipTileIds.Contains(curtile.Type) && x % 2 == 0)
-                                        spriteEffect = SpriteEffects.FlipHorizontally;
-
-                                    // Apply tile render offsets (vines, position offset tiles)
-                                    ApplyTileRenderOffset(ref dest, curtile.Type, curtile.U, curtile.V, _zoom);
-
-                                    if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                    {
-                                        // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                        Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                        Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
-                                        _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, spriteEffect, LayerTileTextures);
-                                    }
-                                    else
-                                        _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
-
-                                    // Actuator Overlay
-                                    if (curtile.Actuator && _wvm.ShowActuators)
-                                    {
-                                        if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                        {
-                                            // Get or create grayscale version of this subtexture.
-                                            Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, _textureDictionary.Actuator, source);
-                                            _spriteBatch.Draw(grayTex, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
-                                        }
-                                        else
-                                            _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
-                                    }
-                                }
-                            }
-                            else if (tileprop.IsPlatform)
-                            {
-                                var tileTex = _textureDictionary.GetTile(curtile.Type);
-
-                                if (tileTex != null)
-                                {
-                                    Vector2Int32 uv;
-                                    if (curtile.uvTileCache == 0xFFFF)
-                                    {
-                                        uv = new Vector2Int32(0, 0);
-                                        byte state = 0x00;
-                                        state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == curtile.Type) ? 0x01 : 0x00);
-                                        state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && WorldConfiguration.GetTileProperties(neighborTile[w].Type).HasSlopes && neighborTile[w].Type != curtile.Type) ? 0x02 : 0x00);
-                                        state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == curtile.Type) ? 0x04 : 0x00);
-                                        state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && WorldConfiguration.GetTileProperties(neighborTile[e].Type).HasSlopes && neighborTile[e].Type != curtile.Type) ? 0x08 : 0x00);
-                                        switch (state)
-                                        {
-                                            case 0x00:
-                                            case 0x0A:
-                                                uv.X = 5;
-                                                break;
-                                            case 0x01:
-                                                uv.X = 1;
-                                                break;
-                                            case 0x02:
-                                                uv.X = 6;
-                                                break;
-                                            case 0x04:
-                                                uv.X = 2;
-                                                break;
-                                            case 0x05:
-                                                uv.X = 0;
-                                                break;
-                                            case 0x06:
-                                                uv.X = 3;
-                                                break;
-                                            case 0x08:
-                                                uv.X = 7;
-                                                break;
-                                            case 0x09:
-                                                uv.X = 4;
-                                                break;
-                                        }
-                                        uv.Y = blendRules.randomVariation.Next(3);
-                                        curtile.uvTileCache = (ushort)((uv.Y << 8) + uv.X);
-                                    }
-
-                                    var texsize = new Vector2Int32(tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                                    if (texsize.X == 0 || texsize.Y == 0)
-                                    {
-                                        texsize = new Vector2Int32(16, 16);
-                                    }
-                                    var source = new Rectangle((curtile.uvTileCache & 0x00FF) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
-                                    var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-
-                                    if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                    {
-                                        // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                        Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                        Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
-                                        _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
-                                    }
-                                    else
-                                        _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
-
-                                    // Actuator Overlay
-                                    if (curtile.Actuator && _wvm.ShowActuators)
-                                    {
-                                        if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                        {
-                                            // Get or create grayscale version of this subtexture.
-                                            Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, _textureDictionary.Actuator, source);
-                                            _spriteBatch.Draw(grayTex, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
-                                        }
-                                        else
-                                            _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
-                                    }
-                                }
-                            }
-                            else if (tileprop.IsCactus)
-                            {
-
-                                var tileTex = _textureDictionary.GetTile(curtile.Type);
-
-                                if ((curtile.uvTileCache & 0x00FF) >= 24)
-                                {
-                                    tileTex = (Texture2D)_textureDictionary.GetMisc("Crimson_Cactus");
-                                }
-                                else if ((curtile.uvTileCache & 0x00FF) >= 16)
-                                {
-                                    tileTex = (Texture2D)_textureDictionary.GetMisc("Evil_Cactus");
-                                }
-                                else if ((curtile.uvTileCache & 0x00FF) >= 8)
-                                {
-                                    tileTex = (Texture2D)_textureDictionary.GetMisc("Good_Cactus");
-                                }
-
-                                if (tileTex != null)
-                                {
-                                    Vector2Int32 uv;
-                                    if (curtile.uvTileCache == 0xFFFF || curtile.hasLazyChecked == false)
-                                    {
-                                        bool isLeft = false, isRight = false, isBase = false;
-
-                                        //Has this cactus been base-evaluated yet?
-                                        int neighborX = (neighborTile[w].uvTileCache & 0x00FF) % 8; //Why % 8? If X >= 8, use hallow, If X >= 16, use corruption
-                                        if (neighborX == 0 || neighborX == 1 || neighborX == 4 || neighborX == 5)
-                                        {
-                                            isRight = true;
-                                        }
-                                        neighborX = neighborTile[e].uvTileCache & 0x00FF;
-                                        if (neighborX == 0 || neighborX == 1 || neighborX == 4 || neighborX == 5)
-                                        {
-                                            isLeft = true;
-                                        }
-                                        neighborX = curtile.uvTileCache & 0x00FF;
-                                        if (neighborX == 0 || neighborX == 1 || neighborX == 4 || neighborX == 5)
-                                        {
-                                            isBase = true;
-                                        }
-
-                                        //Evaluate Base
-                                        if (isLeft == false && isRight == false && isBase == false)
-                                        {
-                                            int length1 = 0;
-                                            int length2 = 0;
-                                            while (true)
-                                            {
-                                                Tile checkTile = (y + length1) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x, y + length1] : null;
-                                                if (checkTile == null || checkTile.IsActive == false || checkTile.Type != curtile.Type)
-                                                {
-                                                    break;
-                                                }
-                                                length1++;
-                                            }
-                                            if (x + 1 < _wvm.CurrentWorld.TilesWide)
-                                            {
-                                                while (true)
-                                                {
-                                                    Tile checkTile = (y + length2) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + 1, y + length2] : null;
-                                                    if (checkTile == null || checkTile.IsActive == false || checkTile.Type != curtile.Type)
-                                                    {
-                                                        break;
-                                                    }
-                                                    length2++;
-                                                }
-                                            }
-                                            int baseX = 0;
-                                            int baseY = length1;
-                                            isBase = true;
-                                            if (length2 >= length1)
-                                            {
-                                                baseX = 1;
-                                                baseY = length2;
-                                                isBase = false;
-                                                isLeft = true;
-                                            }
-                                            for (int cy = y; cy < y + baseY; cy++)
-                                            {
-                                                if (_wvm.CurrentWorld.Tiles[x + baseX, cy].uvTileCache == 0xFFFF)
-                                                {
-                                                    if (cy == y)
-                                                    {
-                                                        _wvm.CurrentWorld.Tiles[x + baseX, cy].uvTileCache = 0x00 << 8 + 0x00;
-                                                    }
-                                                    else
-                                                    {
-                                                        _wvm.CurrentWorld.Tiles[x + baseX, cy].uvTileCache = 0x01 << 8 + 0x00;
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                        uv = new Vector2Int32(0, 0);
-                                        byte state = 0x00;
-                                        state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == curtile.Type) ? 0x01 : 0x00);
-                                        state |= (byte)((neighborTile[n] != null && neighborTile[n].IsActive && neighborTile[n].Type == curtile.Type) ? 0x02 : 0x00);
-                                        state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == curtile.Type) ? 0x04 : 0x00);
-                                        state |= (byte)((neighborTile[s] != null && neighborTile[s].IsActive && neighborTile[s].Type == curtile.Type) ? 0x08 : 0x00);
-                                        //state |= (byte)((neighborTile[ne] != null && neighborTile[ne].IsActive && neighborTile[ne].Type == curtile.Type) ? 0x10 : 0x00);
-                                        //state |= (byte)((neighborTile[nw] != null && neighborTile[nw].IsActive && neighborTile[nw].Type == curtile.Type) ? 0x20 : 0x00);
-                                        state |= (byte)((neighborTile[sw] != null && neighborTile[sw].IsActive && neighborTile[sw].Type == curtile.Type) ? 0x40 : 0x00);
-                                        state |= (byte)((neighborTile[se] != null && neighborTile[se].IsActive && neighborTile[se].Type == curtile.Type) ? 0x80 : 0x00);
-
-                                        if (isLeft)
-                                        {
-                                            uv.X = 3;
-                                            if ((state & 0x08) != 0x00) //s
-                                            {
-                                                if ((state & 0x02) != 0x00) //n
-                                                {
-                                                    uv.Y = 1;
-                                                }
-                                                else //!n
-                                                {
-                                                    uv.Y = 0;
-                                                }
-                                            }
-                                            else //!s
-                                            {
-                                                if ((state & 0x02) != 0x00) //n
-                                                {
-                                                    uv.Y = 2;
-                                                }
-                                                else //!n
-                                                {
-                                                    uv.X = 6;
-                                                    uv.Y = 2;
-                                                }
-                                            }
-                                        }
-                                        if (isRight)
-                                        {
-                                            uv.X = 2;
-                                            if ((state & 0x08) != 0x00) //s
-                                            {
-                                                if ((state & 0x02) != 0x00) //n
-                                                {
-                                                    uv.Y = 1;
-                                                }
-                                                else //!n
-                                                {
-                                                    uv.Y = 0;
-                                                }
-                                            }
-                                            else //!s
-                                            {
-                                                if ((state & 0x02) != 0x00) //n
-                                                {
-                                                    uv.Y = 2;
-                                                }
-                                                else //!n
-                                                {
-                                                    uv.X = 6;
-                                                    uv.Y = 1;
-                                                }
-                                            }
-                                        }
-                                        if (isBase)
-                                        {
-                                            if ((state & 0x02) != 0x00) //n
-                                            {
-                                                uv.Y = 2;
-                                                if ((state & 0x04) != 0x00 && (state & 0x40) == 0x00 && ((state & 0x01) == 0x00 || (state & 0x80) != 0x00)) //w !sw (!e or se)
-                                                {
-                                                    uv.X = 4;
-                                                }
-                                                else if ((state & 0x01) != 0x00 && (state & 0x80) == 0x00 && ((state & 0x04) == 0x00 || (state & 0x40) != 0x00)) //e !se (!w or sw)
-                                                {
-                                                    uv.X = 1;
-                                                }
-                                                else if ((state & 0x04) != 0x00 && (state & 0x40) == 0x00 && (state & 0x01) != 0x00 && (state & 0x80) == 0x00) //w !sw e !se
-                                                {
-                                                    uv.X = 5;
-                                                }
-                                                else
-                                                {
-                                                    uv.X = 0;
-                                                    uv.Y = 1;
-                                                }
-                                            }
-                                            else //!n
-                                            {
-                                                uv.Y = 0;
-                                                if ((state & 0x04) != 0x00 && (state & 0x40) == 0x00 && ((state & 0x01) == 0x00 || (state & 0x80) != 0x00)) //w !sw (!e or se)
-                                                {
-                                                    uv.X = 4;
-                                                }
-                                                else if ((state & 0x01) != 0x00 && (state & 0x80) == 0x00 && ((state & 0x04) == 0x00 || (state & 0x40) != 0x00)) //e !se (!w or sw)
-                                                {
-                                                    uv.X = 1;
-                                                }
-                                                else if ((state & 0x04) != 0x00 && (state & 0x40) == 0x00 && (state & 0x01) != 0x00 && (state & 0x80) == 0x00) //w !sw e !se
-                                                {
-                                                    uv.X = 5;
-                                                }
-                                                else
-                                                {
-                                                    uv.X = 0;
-                                                    uv.Y = 0;
-                                                }
-                                            }
-                                        }
-
-                                        //Check if cactus is good or evil
-                                        for (int i = 0; i < 100; i++)
-                                        {
-                                            int baseX = (isLeft) ? 1 : (isRight) ? -1 : 0;
-                                            Tile checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + baseX, y + i] : null;
-                                            if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.CrimsandBlock) //Crimson
-                                            {
-                                                uv.X += 24;
-                                                break;
-                                            }
-                                            if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.EbonsandBlock) //Corruption
-                                            {
-                                                uv.X += 16;
-                                                break;
-                                            }
-                                            else if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.PearlsandBlock) //Hallow
-                                            {
-                                                uv.X += 8;
-                                                break;
-                                            }
-                                        }
-                                        curtile.hasLazyChecked = true;
-
-                                        curtile.uvTileCache = (ushort)((uv.Y << 8) + uv.X);
-                                    }
-
-                                    var texsize = new Vector2Int32(tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                                    if (texsize.X == 0 || texsize.Y == 0)
-                                    {
-                                        texsize = new Vector2Int32(16, 16);
-                                    }
-                                    var source = new Rectangle(((curtile.uvTileCache & 0x00FF) % 8) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
-                                    var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-
-                                    if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                    {
-                                        // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                        Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                        Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
-                                        _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
-                                    }
-                                    else
-                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
-                                }
-                            }
-                            else if (tileprop.CanBlend || !(tileprop.IsFramed || tileprop.IsAnimated))
-                            {
-                                var tileTex = _textureDictionary.GetTile(curtile.Type);
-
-                                if (tileTex != null)
-                                {
-                                    if (curtile.uvTileCache == 0xFFFF || curtile.hasLazyChecked == false)
-                                    {
-                                        int sameStyle = 0x00000000;
-                                        int mergeMask = 0x00000000;
-                                        int strictness = 0;
-                                        if (tileprop.MergeWith.HasValue && tileprop.MergeWith.Value == -1) //Basically for cobweb
-                                        {
-                                            sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive) ? 0x0001 : 0x0000;
-                                            sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive) ? 0x0010 : 0x0000;
-                                            sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive) ? 0x0100 : 0x0000;
-                                            sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive) ? 0x1000 : 0x0000;
-                                        }
-                                        else if (tileprop.IsStone) //Stone & Gems
-                                        {
-                                            sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && WorldConfiguration.GetTileProperties(neighborTile[e].Type).IsStone) ? 0x0001 : 0x0000;
-                                            sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && WorldConfiguration.GetTileProperties(neighborTile[n].Type).IsStone) ? 0x0010 : 0x0000;
-                                            sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && WorldConfiguration.GetTileProperties(neighborTile[w].Type).IsStone) ? 0x0100 : 0x0000;
-                                            sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && WorldConfiguration.GetTileProperties(neighborTile[s].Type).IsStone) ? 0x1000 : 0x0000;
-                                            sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && WorldConfiguration.GetTileProperties(neighborTile[ne].Type).IsStone) ? 0x00010000 : 0x00000000;
-                                            sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && WorldConfiguration.GetTileProperties(neighborTile[nw].Type).IsStone) ? 0x00100000 : 0x00000000;
-                                            sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && WorldConfiguration.GetTileProperties(neighborTile[sw].Type).IsStone) ? 0x01000000 : 0x00000000;
-                                            sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && WorldConfiguration.GetTileProperties(neighborTile[se].Type).IsStone) ? 0x10000000 : 0x00000000;
-                                        }
-                                        else //Everything else
-                                        {
-                                            //Join to nearby tiles if their merge type is this tile's type
-                                            sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Type))) ? 0x0001 : 0x0000;
-                                            sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Type))) ? 0x0010 : 0x0000;
-                                            sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Type))) ? 0x0100 : 0x0000;
-                                            sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Type))) ? 0x1000 : 0x0000;
-                                            sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[ne].Type))) ? 0x00010000 : 0x00000000;
-                                            sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[nw].Type))) ? 0x00100000 : 0x00000000;
-                                            sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[sw].Type))) ? 0x01000000 : 0x00000000;
-                                            sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[se].Type))) ? 0x10000000 : 0x00000000;
-                                            //Join if nearby tiles have the same type as this tile's type
-                                            sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && curtile.Type == neighborTile[e].Type) ? 0x0001 : 0x0000;
-                                            sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && curtile.Type == neighborTile[n].Type) ? 0x0010 : 0x0000;
-                                            sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && curtile.Type == neighborTile[w].Type) ? 0x0100 : 0x0000;
-                                            sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && curtile.Type == neighborTile[s].Type) ? 0x1000 : 0x0000;
-                                            sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && curtile.Type == neighborTile[ne].Type) ? 0x00010000 : 0x00000000;
-                                            sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && curtile.Type == neighborTile[nw].Type) ? 0x00100000 : 0x00000000;
-                                            sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && curtile.Type == neighborTile[sw].Type) ? 0x01000000 : 0x00000000;
-                                            sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && curtile.Type == neighborTile[se].Type) ? 0x10000000 : 0x00000000;
-                                        }
-                                        if (curtile.hasLazyChecked == false)
-                                        {
-                                            bool lazyCheckReady = true;
-                                            lazyCheckReady &= (neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Type))) ? true : (neighborTile[e].lazyMergeId != 0xFF);
-                                            lazyCheckReady &= (neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Type))) ? true : (neighborTile[n].lazyMergeId != 0xFF);
-                                            lazyCheckReady &= (neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Type))) ? true : (neighborTile[w].lazyMergeId != 0xFF);
-                                            lazyCheckReady &= (neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Type))) ? true : (neighborTile[s].lazyMergeId != 0xFF);
-                                            if (lazyCheckReady)
-                                            {
-                                                sameStyle &= 0x11111110 | ((neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Type))) ? 0x00000001 : ((neighborTile[e].lazyMergeId & 0x04) >> 2));
-                                                sameStyle &= 0x11111101 | ((neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Type))) ? 0x00000010 : ((neighborTile[n].lazyMergeId & 0x08) << 1));
-                                                sameStyle &= 0x11111011 | ((neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Type))) ? 0x00000100 : ((neighborTile[w].lazyMergeId & 0x01) << 8));
-                                                sameStyle &= 0x11110111 | ((neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Type))) ? 0x00001000 : ((neighborTile[s].lazyMergeId & 0x02) << 11));
-                                                curtile.hasLazyChecked = true;
-                                            }
-                                        }
-                                        if (tileprop.MergeWith.HasValue && tileprop.MergeWith.Value > -1) //Merges with a specific type
-                                        {
-                                            mergeMask |= (neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == tileprop.MergeWith.Value) ? 0x0001 : 0x0000;
-                                            mergeMask |= (neighborTile[n] != null && neighborTile[n].IsActive && neighborTile[n].Type == tileprop.MergeWith.Value) ? 0x0010 : 0x0000;
-                                            mergeMask |= (neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == tileprop.MergeWith.Value) ? 0x0100 : 0x0000;
-                                            mergeMask |= (neighborTile[s] != null && neighborTile[s].IsActive && neighborTile[s].Type == tileprop.MergeWith.Value) ? 0x1000 : 0x0000;
-                                            mergeMask |= (neighborTile[ne] != null && neighborTile[ne].IsActive && neighborTile[ne].Type == tileprop.MergeWith.Value) ? 0x00010000 : 0x00000000;
-                                            mergeMask |= (neighborTile[nw] != null && neighborTile[nw].IsActive && neighborTile[nw].Type == tileprop.MergeWith.Value) ? 0x00100000 : 0x00000000;
-                                            mergeMask |= (neighborTile[sw] != null && neighborTile[sw].IsActive && neighborTile[sw].Type == tileprop.MergeWith.Value) ? 0x01000000 : 0x00000000;
-                                            mergeMask |= (neighborTile[se] != null && neighborTile[se].IsActive && neighborTile[se].Type == tileprop.MergeWith.Value) ? 0x10000000 : 0x00000000;
-                                            strictness = 1;
-                                        }
-                                        if (tileprop.IsGrass)
-                                        {
-                                            strictness = 2;
-                                        }
-
-                                        Vector2Int32 uvBlend = blendRules.GetUVForMasks((uint)sameStyle, (uint)mergeMask, strictness);
-                                        curtile.uvTileCache = (ushort)((uvBlend.Y << 8) + uvBlend.X);
-                                        curtile.lazyMergeId = blendRules.lazyMergeValidation[uvBlend.Y, uvBlend.X];
-                                    }
-
-                                    var texsize = new Vector2Int32(tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                                    if (texsize.X == 0 || texsize.Y == 0)
-                                    {
-                                        texsize = new Vector2Int32(16, 16);
-                                    }
-                                    var source = new Rectangle((curtile.uvTileCache & 0x00FF) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
-                                    var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-
-                                    // Render liquid behind tiles if adjacent tile has liquid
-                                    if (_wvm.ShowLiquid)
-                                    {
-                                        Tile adjacentLiquidTile = null;
-                                        int adjacentX = x, adjacentY = y;
-
-                                        if (y > 0)
-                                        {
-                                            var aboveTile = _wvm.CurrentWorld.Tiles[x, y - 1];
-                                            if (aboveTile.LiquidAmount > 0 && !FilterManager.LiquidIsNotAllowed(aboveTile.LiquidType))
-                                            {
-                                                adjacentLiquidTile = aboveTile;
-                                                adjacentY = y - 1;
-                                            }
-                                        }
-                                        // For horizontal liquid, render if one side has liquid AND other side has liquid or solid tile (not air/plants)
-                                        if (adjacentLiquidTile == null && x > 0 && x < _wvm.CurrentWorld.TilesWide - 1)
-                                        {
-                                            var leftTile = _wvm.CurrentWorld.Tiles[x - 1, y];
-                                            var rightTile = _wvm.CurrentWorld.Tiles[x + 1, y];
-                                            bool leftIsSolid = leftTile.IsActive && WorldConfiguration.GetTileProperties(leftTile.Type).IsSolid;
-                                            bool rightIsSolid = rightTile.IsActive && WorldConfiguration.GetTileProperties(rightTile.Type).IsSolid;
-                                            // Left has liquid, right has liquid or solid tile
-                                            if (leftTile.LiquidAmount > 0 && (rightTile.LiquidAmount > 0 || rightIsSolid)
-                                                && !FilterManager.LiquidIsNotAllowed(leftTile.LiquidType))
-                                            {
-                                                adjacentLiquidTile = leftTile;
-                                                adjacentX = x - 1;
-                                            }
-                                            // Right has liquid, left has liquid or solid tile
-                                            else if (rightTile.LiquidAmount > 0 && (leftTile.LiquidAmount > 0 || leftIsSolid)
-                                                && !FilterManager.LiquidIsNotAllowed(rightTile.LiquidType))
-                                            {
-                                                adjacentLiquidTile = rightTile;
-                                                adjacentX = x + 1;
-                                            }
-                                        }
-
-                                        if (adjacentLiquidTile != null)
-                                        {
-                                            Texture2D liquidTex = null;
-                                            var liquidColor = Color.White;
-                                            float alpha = 0.5f;
-
-                                            if (adjacentLiquidTile.LiquidType == LiquidType.Lava)
-                                            {
-                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(1);
-                                                alpha = 0.85f;
-                                            }
-                                            else if (adjacentLiquidTile.LiquidType == LiquidType.Honey)
-                                            {
-                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(11);
-                                            }
-                                            else if (adjacentLiquidTile.LiquidType == LiquidType.Shimmer)
-                                            {
-                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(14);
-                                                liquidColor = new Color(WorldConfiguration.GlobalColors["Shimmer"].PackedValue);
-                                            }
-                                            else
-                                            {
-                                                liquidTex = (Texture2D)_textureDictionary.GetLiquid(0);
-                                            }
-
-                                            if (liquidTex != null)
-                                            {
-                                                // Use same texture as the adjacent tile would use for its own rendering
-                                                // Check if adjacent tile has liquid above IT (at adjacentX, adjacentY - 1)
-                                                var liquidSource = new Rectangle(0, 8, 16, 8); // Default to body
-                                                var liquidDest = dest;
-                                                bool adjacentHasLiquidAbove = adjacentY > 0 && _wvm.CurrentWorld.Tiles[adjacentX, adjacentY - 1].LiquidAmount > 0;
-
-                                                if (!adjacentHasLiquidAbove)
-                                                {
-                                                    // Adjacent liquid is at the top - use surface texture with variable height
-                                                    liquidSource.Y = 0;
-                                                    liquidSource.Height = 4 + ((int)Math.Round(adjacentLiquidTile.LiquidAmount * 6f / 255f)) * 2;
-                                                    // Also adjust destination height and position like DrawTileLiquid does
-                                                    liquidDest.Height = (int)(liquidSource.Height * _zoom / 16f);
-                                                    liquidDest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom + ((16 - liquidSource.Height) * _zoom / 16f));
-                                                }
-                                                _spriteBatch.Draw(liquidTex, liquidDest, liquidSource, liquidColor * alpha, 0f, default, SpriteEffects.None, LayerTileSlopeLiquid);
-                                            }
-                                        }
-                                    }
-
-                                    // hack for some slopes
-                                    switch (curtile.BrickStyle)
-                                    {
-
-                                        case BrickStyle.HalfBrick:
-                                            source.Height /= 2;
-                                            dest.Y += (int)(_zoom * 0.5);
-                                            dest.Height = (int)(_zoom / 2.0f);
-
-                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                            {
-                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
-                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
-                                            }
-                                            else
-                                                _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
-                                            break;
-                                        case BrickStyle.SlopeTopRight:
-
-                                            for (int slice = 0; slice < 8; slice++)
-                                            {
-                                                Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + slice * _zoom / 8.0f));
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
-
-                                                    // Compute region relative to the grayscale texture.
-                                                    Rectangle graySlice = new Rectangle(sourceSlice.Value.X - source.X, sourceSlice.Value.Y - source.Y, sourceSlice.Value.Width, sourceSlice.Value.Height);
-
-                                                    _spriteBatch.Draw(grayTex, destSlice, graySlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
-                                            }
-
-                                            break;
-                                        case BrickStyle.SlopeTopLeft:
-                                            for (int slice = 0; slice < 8; slice++)
-                                            {
-                                                Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + (7 - slice) * _zoom / 8.0f));
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
-
-                                                    // Compute region relative to the grayscale texture.
-                                                    Rectangle graySlice = new Rectangle(sourceSlice.Value.X - source.X, sourceSlice.Value.Y - source.Y, sourceSlice.Value.Width, sourceSlice.Value.Height);
-
-                                                    _spriteBatch.Draw(grayTex, destSlice, graySlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
-                                            }
-
-                                            break;
-                                        case BrickStyle.SlopeBottomRight:
-                                            for (int slice = 0; slice < 8; slice++)
-                                            {
-                                                Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y + slice * 2, 2, 16 - slice * 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
-
-                                                    // Compute region relative to the grayscale texture.
-                                                    Rectangle graySlice = new Rectangle(sourceSlice.Value.X - source.X, sourceSlice.Value.Y - source.Y, sourceSlice.Value.Width, sourceSlice.Value.Height);
-
-                                                    _spriteBatch.Draw(grayTex, destSlice, graySlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
-                                            }
-
-                                            break;
-                                        case BrickStyle.SlopeBottomLeft:
-                                            for (int slice = 0; slice < 8; slice++)
-                                            {
-                                                Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
-
-                                                    // Compute region relative to the grayscale texture.
-                                                    Rectangle graySlice = new Rectangle(sourceSlice.Value.X - source.X, sourceSlice.Value.Y - source.Y, sourceSlice.Value.Width, sourceSlice.Value.Height);
-
-                                                    _spriteBatch.Draw(grayTex, destSlice, graySlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
-                                            }
-
-                                            break;
-                                        case BrickStyle.Full:
-                                        default:
-                                            {
-
-                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                                {
-                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
-                                                    _spriteBatch.Draw(grayTex, dest, _textureDictionary.ZeroSixteenRectangle, grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
-                                                }
-                                                else
-                                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
-                                                break;
-                                            }
-                                    }
-
-                                    // Actuator Overlay
-                                    if (curtile.Actuator && _wvm.ShowActuators)
-                                    {
-                                        if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                        {
-                                            // Get or create grayscale version of this subtexture.
-                                            Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, _textureDictionary.Actuator, source);
-                                            _spriteBatch.Draw(grayTex, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
-                                        }
-                                        else
-                                            _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    if (anyFilter) _spriteBatch.ForceGrayscale = false;
                 }
                 catch (Exception)
                 {
@@ -5916,6 +4185,7 @@ public partial class WorldRenderXna : UserControl
         BlendRules blendRules = BlendRules.Instance;
         var width = _wvm.CurrentWorld.TilesWide;
         var height = _wvm.CurrentWorld.TilesHigh;
+        bool anyFilter = FilterManager.AnyFilterActive;
 
         //Extended the viewing space to give tiles time to cache their UV's
         for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -5935,151 +4205,32 @@ public partial class WorldRenderXna : UserControl
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
 
-                    //Neighbor tiles are often used when dynamically determining which UV position to render
-#pragma warning disable CS0219 // Variable is assigned but its value is never used
-                    int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
-#pragma warning restore CS0219 // Variable is assigned but its value is never used
-                    //Tile[] neighborTile = new Tile[8];
-                    neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
-                    neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
-                    neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
-                    neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
-
-                    if (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)
+                    // Per-wire filter checks
+                    bool allowRed = true, allowBlue = true, allowGreen = true, allowYellow = true;
+                    bool forceRedGray = false, forceBlueGray = false, forceGreenGray = false, forceYellowGray = false;
+                    if (anyFilter)
                     {
-                        var tileTex = (Texture2D)_textureDictionary.GetMisc("WiresNew");
-                        if (tileTex != null)
+                        if (curtile.WireRed && FilterManager.WireIsNotAllowed(FilterManager.WireType.Red))
                         {
-                            int voffset = 0;
-                            if (curtile.Type == 424)
-                                voffset = (curtile.U / 18 + 1) * 72;
-                            if (curtile.Type == 445)
-                                voffset = 72;
-                            if (curtile.WireRed && _wvm.ShowRedWires)
-                            {
-                                var source = new Rectangle(0, 0, 16, 16);
-                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-
-                                byte state = 0x00;
-                                state |= (byte)((neighborTile[n] != null && neighborTile[n].WireRed == true) ? 0x01 : 0x00);
-                                state |= (byte)((neighborTile[e] != null && neighborTile[e].WireRed == true) ? 0x02 : 0x00);
-                                state |= (byte)((neighborTile[s] != null && neighborTile[s].WireRed == true) ? 0x04 : 0x00);
-                                state |= (byte)((neighborTile[w] != null && neighborTile[w].WireRed == true) ? 0x08 : 0x00);
-                                source.X = state * 18;
-                                source.Y = voffset;
-
-                                var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed && (_wvm.ShowBlueWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
-
-                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerRedWires);
-                            }
-                            if (curtile.WireBlue && _wvm.ShowBlueWires)
-                            {
-                                var source = new Rectangle(0, 0, 16, 16);
-                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-
-                                byte state = 0x00;
-                                state |= (byte)((neighborTile[n] != null && neighborTile[n].WireBlue == true) ? 0x01 : 0x00);
-                                state |= (byte)((neighborTile[e] != null && neighborTile[e].WireBlue == true) ? 0x02 : 0x00);
-                                state |= (byte)((neighborTile[s] != null && neighborTile[s].WireBlue == true) ? 0x04 : 0x00);
-                                state |= (byte)((neighborTile[w] != null && neighborTile[w].WireBlue == true) ? 0x08 : 0x00);
-                                source.X = state * 18;
-                                source.Y = 18 + voffset;
-
-                                var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed && (_wvm.ShowRedWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
-                                _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerBlueWires);
-                            }
-                            if (curtile.WireGreen && _wvm.ShowGreenWires)
-                            {
-                                var source = new Rectangle(0, 0, 16, 16);
-                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-
-                                byte state = 0x00;
-                                state |= (byte)((neighborTile[n] != null && neighborTile[n].WireGreen == true) ? 0x01 : 0x00);
-                                state |= (byte)((neighborTile[e] != null && neighborTile[e].WireGreen == true) ? 0x02 : 0x00);
-                                state |= (byte)((neighborTile[s] != null && neighborTile[s].WireGreen == true) ? 0x04 : 0x00);
-                                state |= (byte)((neighborTile[w] != null && neighborTile[w].WireGreen == true) ? 0x08 : 0x00);
-                                source.X = state * 18;
-                                source.Y = 36 + voffset;
-
-                                var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
-                                _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerGreenWires);
-                            }
-                            if (curtile.WireYellow && _wvm.ShowYellowWires)
-                            {
-                                var source = new Rectangle(0, 0, 16, 16);
-                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-
-                                byte state = 0x00;
-                                state |= (byte)((neighborTile[n] != null && neighborTile[n].WireYellow == true) ? 0x01 : 0x00);
-                                state |= (byte)((neighborTile[e] != null && neighborTile[e].WireYellow == true) ? 0x02 : 0x00);
-                                state |= (byte)((neighborTile[s] != null && neighborTile[s].WireYellow == true) ? 0x04 : 0x00);
-                                state |= (byte)((neighborTile[w] != null && neighborTile[w].WireYellow == true) ? 0x08 : 0x00);
-                                source.X = state * 18;
-                                source.Y = 54 + voffset;
-
-                                var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue || curtile.WireGreen) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires)) ? Translucent : Color.White;
-                                _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerYellowWires);
-                            }
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowRed = false;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceRedGray = true;
+                        }
+                        if (curtile.WireBlue && FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue))
+                        {
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowBlue = false;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceBlueGray = true;
+                        }
+                        if (curtile.WireGreen && FilterManager.WireIsNotAllowed(FilterManager.WireType.Green))
+                        {
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowGreen = false;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGreenGray = true;
+                        }
+                        if (curtile.WireYellow && FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow))
+                        {
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowYellow = false;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceYellowGray = true;
                         }
                     }
-                }
-                catch (Exception)
-                {
-                    // failed to render tile? log?
-                }
-            }
-        }
-    }
-    private void DrawTileWiresFiltered()
-    {
-        Rectangle visibleBounds = GetViewingArea();
-        BlendRules blendRules = BlendRules.Instance;
-        var width = _wvm.CurrentWorld.TilesWide;
-        var height = _wvm.CurrentWorld.TilesHigh;
-
-        //Extended the viewing space to give tiles time to cache their UV's
-        for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
-        {
-            for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
-            {
-                try
-                {
-                    if (x < 0 ||
-                        y < 0 ||
-                        x >= _wvm.CurrentWorld.TilesWide ||
-                        y >= _wvm.CurrentWorld.TilesHigh)
-                    {
-                        continue;
-                    }
-
-                    var curtile = _wvm.CurrentWorld.Tiles[x, y];
-                    if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
-
-                    // Hide all wires not within a filter when enabled.
-                    bool allowRed = true;
-                    bool forceRedGrayscale = false;
-                    if (curtile.WireRed)
-                        if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Red))
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowRed = false;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceRedGrayscale = true;
-                    bool allowBlue = true;
-                    bool forceBlueGrayscale = false;
-                    if (curtile.WireBlue)
-                        if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue))
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowBlue = false;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceBlueGrayscale = true;
-                    bool allowGreen = true;
-                    bool forceGreenGrayscale = false;
-                    if (curtile.WireGreen)
-                        if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Green))
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowGreen = false;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGreenGrayscale = true;
-                    bool allowYellow = true;
-                    bool forceYellowGrayscale = false;
-                    if (curtile.WireYellow)
-                        if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow))
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowYellow = false;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceYellowGrayscale = true;
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
@@ -6103,6 +4254,7 @@ public partial class WorldRenderXna : UserControl
                                 voffset = 72;
                             if (curtile.WireRed && _wvm.ShowRedWires && allowRed)
                             {
+                                if (anyFilter) _spriteBatch.ForceGrayscale = forceRedGray;
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
@@ -6116,18 +4268,11 @@ public partial class WorldRenderXna : UserControl
 
                                 var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed && (_wvm.ShowBlueWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
 
-                                if (forceRedGrayscale) // Check if to force grayscale via the filter manager.
-                                {
-                                    // Get or create grayscale version of this subtexture.
-                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
-                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerRedWires);
-                                }
-                                else
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerRedWires);
+                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerRedWires);
                             }
                             if (curtile.WireBlue && _wvm.ShowBlueWires && allowBlue)
                             {
+                                if (anyFilter) _spriteBatch.ForceGrayscale = forceBlueGray;
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
@@ -6140,19 +4285,11 @@ public partial class WorldRenderXna : UserControl
                                 source.Y = 18 + voffset;
 
                                 var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed && (_wvm.ShowRedWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
-
-                                if (forceBlueGrayscale) // Check if to force grayscale via the filter manager.
-                                {
-                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
-                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerBlueWires);
-                                }
-                                else
-                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerBlueWires);
+                                _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerBlueWires);
                             }
                             if (curtile.WireGreen && _wvm.ShowGreenWires && allowGreen)
                             {
+                                if (anyFilter) _spriteBatch.ForceGrayscale = forceGreenGray;
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
@@ -6165,19 +4302,11 @@ public partial class WorldRenderXna : UserControl
                                 source.Y = 36 + voffset;
 
                                 var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
-
-                                if (forceGreenGrayscale) // Check if to force grayscale via the filter manager.
-                                {
-                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
-                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerGreenWires);
-                                }
-                                else
-                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerGreenWires);
+                                _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerGreenWires);
                             }
                             if (curtile.WireYellow && _wvm.ShowYellowWires && allowYellow)
                             {
+                                if (anyFilter) _spriteBatch.ForceGrayscale = forceYellowGray;
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
@@ -6190,17 +4319,9 @@ public partial class WorldRenderXna : UserControl
                                 source.Y = 54 + voffset;
 
                                 var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue || curtile.WireGreen) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires)) ? Translucent : Color.White;
-
-                                if (forceYellowGrayscale) // Check if to force grayscale via the filter manager.
-                                {
-                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
-                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerYellowWires);
-                                }
-                                else
-                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerYellowWires);
+                                _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerYellowWires);
                             }
+                            if (anyFilter) _spriteBatch.ForceGrayscale = false;
                         }
                     }
                 }
@@ -6215,6 +4336,7 @@ public partial class WorldRenderXna : UserControl
     private void DrawTileLiquid()
     {
         Rectangle visibleBounds = GetViewingArea();
+        bool anyFilter = FilterManager.AnyFilterActive;
 
         //Extended the viewing space to give tiles time to cache their UV's
         for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -6233,6 +4355,18 @@ public partial class WorldRenderXna : UserControl
 
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
+
+                    // Filter check: hide or grayscale liquids not allowed by the filter
+                    if (anyFilter)
+                    {
+                        _spriteBatch.ForceGrayscale = false;
+                        if (FilterManager.LiquidIsNotAllowed(curtile.LiquidType))
+                        {
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)
+                                _spriteBatch.ForceGrayscale = true;
+                        }
+                    }
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
@@ -6295,9 +4429,13 @@ public partial class WorldRenderXna : UserControl
                                         var aboveRight = _wvm.CurrentWorld.Tiles[x + 1, y - 1];
                                         bool aboveLeftIsSolid = aboveLeft.IsActive && WorldConfiguration.GetTileProperties(aboveLeft.Type).IsSolid;
                                         bool aboveRightIsSolid = aboveRight.IsActive && WorldConfiguration.GetTileProperties(aboveRight.Type).IsSolid;
-                                        // Same liquid type check for extended liquid
-                                        if ((aboveLeft.LiquidAmount > 0 && aboveLeft.LiquidType == curtile.LiquidType && (aboveRight.LiquidAmount > 0 || aboveRightIsSolid)) ||
-                                            (aboveRight.LiquidAmount > 0 && aboveRight.LiquidType == curtile.LiquidType && (aboveLeft.LiquidAmount > 0 || aboveLeftIsSolid)))
+                                        // Same liquid type check for extended liquid (also check filter)
+                                        if ((aboveLeft.LiquidAmount > 0 && aboveLeft.LiquidType == curtile.LiquidType
+                                                && (!anyFilter || !FilterManager.LiquidIsNotAllowed(aboveLeft.LiquidType))
+                                                && (aboveRight.LiquidAmount > 0 || aboveRightIsSolid)) ||
+                                            (aboveRight.LiquidAmount > 0 && aboveRight.LiquidType == curtile.LiquidType
+                                                && (!anyFilter || !FilterManager.LiquidIsNotAllowed(aboveRight.LiquidType))
+                                                && (aboveLeft.LiquidAmount > 0 || aboveLeftIsSolid)))
                                         {
                                             hasLiquidAbove = true;
                                         }
@@ -6320,139 +4458,7 @@ public partial class WorldRenderXna : UserControl
                             }
                         }
                     }
-                }
-                catch (Exception)
-                {
-                    // failed to render tile? log?
-                }
-            }
-        }
-    }
-    private void DrawTileLiquidFiltered()
-    {
-        Rectangle visibleBounds = GetViewingArea();
-
-        //Extended the viewing space to give tiles time to cache their UV's
-        for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
-        {
-            for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
-            {
-                try
-                {
-                    if (x < 0 ||
-                        y < 0 ||
-                        x >= _wvm.CurrentWorld.TilesWide ||
-                        y >= _wvm.CurrentWorld.TilesHigh)
-                    {
-                        continue;
-                    }
-
-                    var curtile = _wvm.CurrentWorld.Tiles[x, y];
-                    if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
-
-                    // Hide all liquids not within a filter when enabled.
-                    bool forceGrayscale = false;
-                    if (FilterManager.LiquidIsNotAllowed(curtile.LiquidType))
-                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
-                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGrayscale = true;
-
-                    //Neighbor tiles are often used when dynamically determining which UV position to render
-#pragma warning disable CS0219 // Variable is assigned but its value is never used
-                    int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
-#pragma warning restore CS0219 // Variable is assigned but its value is never used
-                    //Tile[] neighborTile = new Tile[8];
-
-                    neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
-
-                    if (_wvm.ShowLiquid)
-                    {
-                        if (curtile.LiquidAmount > 0)
-                        {
-                            var liquidColor = Color.White;
-                            Texture2D tileTex = null;
-                            if (curtile.LiquidType == LiquidType.Lava)
-                            {
-                                tileTex = (Texture2D)_textureDictionary.GetLiquid(1);
-                            }
-                            else if (curtile.LiquidType == LiquidType.Honey)
-                            {
-                                tileTex = (Texture2D)_textureDictionary.GetLiquid(11); // Not sure if yellow Desert water, or Honey, but looks fine.
-                            }
-                            else if (curtile.LiquidType == LiquidType.Shimmer)
-                            {
-                                tileTex = (Texture2D)_textureDictionary.GetLiquid(14);
-                                liquidColor = new Color(WorldConfiguration.GlobalColors["Shimmer"].PackedValue);
-                            }
-                            else
-                            {
-                                tileTex = (Texture2D)_textureDictionary.GetLiquid(0);
-                            }
-
-                            if (tileTex != null)
-                            {
-                                var source = new Rectangle(0, 0, 16, 16);
-                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                float alpha = 1f;
-
-                                if (curtile.LiquidType != LiquidType.Lava)
-                                {
-                                    alpha = 0.5f;
-                                }
-                                else
-                                {
-                                    alpha = 0.85f;
-                                }
-
-                                // Check if there's liquid above (either actual or extended horizontal)
-                                // Check if there's liquid above (either actual or extended horizontal)
-                                bool hasLiquidAbove = neighborTile[n] != null && neighborTile[n].LiquidAmount > 0;
-
-                                // Also check for extended horizontal liquid above (only if tile above is solid, not plants)
-                                if (!hasLiquidAbove && y > 0 && neighborTile[n] != null && neighborTile[n].IsActive
-                                    && WorldConfiguration.GetTileProperties(neighborTile[n].Type).IsSolid)
-                                {
-                                    // Tile above is solid - check if it would have extended horizontal liquid
-                                    if (x > 0 && x < _wvm.CurrentWorld.TilesWide - 1)
-                                    {
-                                        var aboveLeft = _wvm.CurrentWorld.Tiles[x - 1, y - 1];
-                                        var aboveRight = _wvm.CurrentWorld.Tiles[x + 1, y - 1];
-                                        bool aboveLeftIsSolid = aboveLeft.IsActive && WorldConfiguration.GetTileProperties(aboveLeft.Type).IsSolid;
-                                        bool aboveRightIsSolid = aboveRight.IsActive && WorldConfiguration.GetTileProperties(aboveRight.Type).IsSolid;
-                                        // Same liquid type check for extended liquid (also check filter)
-                                        if ((aboveLeft.LiquidAmount > 0 && aboveLeft.LiquidType == curtile.LiquidType && !FilterManager.LiquidIsNotAllowed(aboveLeft.LiquidType) && (aboveRight.LiquidAmount > 0 || aboveRightIsSolid)) ||
-                                            (aboveRight.LiquidAmount > 0 && aboveRight.LiquidType == curtile.LiquidType && !FilterManager.LiquidIsNotAllowed(aboveRight.LiquidType) && (aboveLeft.LiquidAmount > 0 || aboveLeftIsSolid)))
-                                        {
-                                            hasLiquidAbove = true;
-                                        }
-                                    }
-                                }
-
-                                if (hasLiquidAbove)
-                                {
-                                    source.Y = 8;
-                                    source.Height = 8;
-                                }
-                                else
-                                {
-                                    source.Height = 4 + ((int)Math.Round(curtile.LiquidAmount * 6f / 255f)) * 2;
-                                    dest.Height = (int)(source.Height * _zoom / 16f);
-                                    dest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom + ((16 - source.Height) * _zoom / 16f));
-                                }
-
-                                Color color = liquidColor * alpha;
-
-                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
-                                {
-                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
-                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
-                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
-                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerLiquid);
-                                }
-                                else
-                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerLiquid);
-                            }
-                        }
-                    }
+                    if (anyFilter) _spriteBatch.ForceGrayscale = false;
                 }
                 catch (Exception)
                 {
