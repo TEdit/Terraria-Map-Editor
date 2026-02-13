@@ -54,21 +54,14 @@ public partial class MainWindow : Window
         if (shouldAsk)
         {
             var result = MessageBox.Show(
-                "TEdit can send anonymous error reports to help improve stability.\n\n" +
-                "What is collected:\n" +
-                "  \u2022 Error details (exception type and stack trace)\n" +
-                "  \u2022 App version and OS version\n\n" +
-                "What is NOT collected:\n" +
-                "  \u2022 No personal information or file paths\n" +
-                "  \u2022 No usage tracking or fingerprinting\n" +
-                "  \u2022 All paths are obfuscated before sending\n\n" +
-                "Would you like to enable error reporting?",
-                "TEdit Error Reporting",
+                Properties.Language.telemetry_prompt_message,
+                Properties.Language.telemetry_prompt_title,
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
+                UserSettingsService.Current.Telemetry = 1;
                 _vm.EnableTelemetry = true;
             }
             else
@@ -323,6 +316,13 @@ public partial class MainWindow : Window
             UVEditorWindow uvEditorWindow = new(tileList, _vm);
             uvEditorWindow.ShowDialog();
         }
+    }
+
+    private void SettingsMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        var settingsWindow = new SettingsWindow(_vm);
+        settingsWindow.Owner = this;
+        settingsWindow.ShowDialog();
     }
 
     private void FilterMenuItem_Click(object sender, RoutedEventArgs e)

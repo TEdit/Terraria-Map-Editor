@@ -40,7 +40,7 @@ public class TerrariaDataStore
     public Dictionary<int, ItemProperty> ItemById { get; } = new();
     public Dictionary<string, int> NpcIdByName { get; } = new();
     public Dictionary<int, string> NpcNameById { get; } = new();
-    public Dictionary<int, Vector2Short> NpcFrames { get; } = new();
+    public Dictionary<int, NpcData> NpcById { get; } = new();
     public Dictionary<byte, string> PrefixById { get; } = new();
     public Dictionary<string, TEditColor> GlobalColors { get; } = new();
 
@@ -310,13 +310,13 @@ public class TerrariaDataStore
     {
         NpcIdByName.Clear();
         NpcNameById.Clear();
-        NpcFrames.Clear();
+        NpcById.Clear();
 
         foreach (var npc in npcs)
         {
             NpcIdByName[npc.Name] = npc.Id;
             NpcNameById[npc.Id] = npc.Name;
-            NpcFrames[npc.Id] = npc.Size;
+            NpcById[npc.Id] = npc;
         }
     }
 

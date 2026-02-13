@@ -4724,52 +4724,48 @@ public partial class WorldRenderXna : UserControl
             return;
         }
 
-        var npcData = WorldConfiguration.BestiaryData.NpcById[npcId];
-        string npcName = WorldConfiguration.BestiaryData.NpcById[npcId].BestiaryId;
+        var bestiaryData = WorldConfiguration.BestiaryData.NpcById[npcId];
+        string npcName = bestiaryData.BestiaryId;
         bool isPartying = _wvm.CurrentWorld.PartyingNPCs.Contains(npcId);
 
-        Texture2D npcTexture = npcData.IsTownNpc ?
+        Texture2D npcTexture = bestiaryData.IsTownNpc ?
                 _textureDictionary.GetTownNPC(npcName, npcId, variant: npc.TownNpcVariationIndex, partying: isPartying) :
                 null;
 
         if (npcTexture != null)
         {
-            var size = WorldConfiguration.NpcFrames?[npcId] ?? Vector2Short.Zero;
-            short height = size.Y > 0 ? size.Y : (short)55; // default 55 for normal height people
+            // Get source rect from NPC data, or default to full texture width and estimated height
+            Rectangle sourceRect;
+            if (WorldConfiguration.NpcById.TryGetValue(npcId, out var npcData) && npcData.SourceRect.Width > 0)
+            {
+                sourceRect = new Rectangle(
+                    npcData.SourceRect.X,
+                    npcData.SourceRect.Y,
+                    npcData.SourceRect.Width,
+                    npcData.SourceRect.Height);
+            }
+            else
+            {
+                // Fallback: use full texture width, estimate first frame height (55 for humanoids)
+                int estimatedHeight = Math.Min(55, npcTexture.Height);
+                sourceRect = new Rectangle(0, 0, npcTexture.Width, estimatedHeight);
+            }
 
-            size = new Vector2Short(size.X, height);
-            var frames = npcTexture.Height / size.Y;
-            int width = npcTexture.Width;
+            // Normal scaling like tiles, but clamp minimum to 0.5
+            float scale = Math.Max(0.5f, _zoom / 16f);
 
-            if (npc.SpriteId == 638) // Fix Texture Dog
-            {
-                height = 37;
-            }
-            if (npc.SpriteId == 637 || npc.SpriteId == 656) // Fix Texture For Cat And Bunny
-            {
-                height = 39;
-            }
-            if (npc.SpriteId == 485 || npc.SpriteId == 486 || npc.SpriteId == 487) // Fix Texture For Buggy, Grubby, And Sluggy
-            {
-                height = 17;
-            }
-            if (npc.SpriteId == 357 || npc.SpriteId == 448 || npc.SpriteId == 606) // Fix Texture For Worm, Gold Worm, And Maggot
-            {
-                height = 7;
-            }
-            if (npc.SpriteId == 446 || npc.SpriteId == 377) // Fix Texture For Grasshopper, And Gold Grasshopper
-            {
-                height = 11;
-            }
-            if (npc.SpriteId == 484) // Fix Texture For Enchanted Nightcrawler
-            {
-                height = 9;
-            }
-            float scale = 1.0f * _zoom / 16;
-            if (scale < _minNpcScale)
-                scale = _minNpcScale;
-            Vector2 home = GetNpcLocation(npc.Home.X, npc.Home.Y, width, (int)(height * scale));
-            _spriteBatch.Draw(npcTexture, home, new Rectangle(0, 0, width, height), Color.White, 0.0f, new Vector2(0, 0), scale, SpriteEffects.None, LayerLocations);
+            // Get tile offset from NPC data (default 0)
+            int tileOffsetY = 0;
+            if (WorldConfiguration.NpcById.TryGetValue(npcId, out var npcDataForOffset))
+                tileOffsetY = npcDataForOffset.TileOffsetY;
+
+            // Position: bottom-left of sprite at top of tile
+            float scaledHeight = sourceRect.Height * scale;
+            Vector2 position = new Vector2(
+                (_scrollPosition.X + npc.Home.X) * _zoom,
+                (_scrollPosition.Y + npc.Home.Y + tileOffsetY) * _zoom - scaledHeight);
+
+            _spriteBatch.Draw(npcTexture, position, sourceRect, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, LayerLocations);
         }
         else
         {
@@ -4779,19 +4775,51 @@ public partial class WorldRenderXna : UserControl
 
     private void DrawNpcOverlay(NPC npc)
     {
-        //string npcName = npc.Name;
         int npcId = npc.SpriteId;
         var tex = _textureDictionary.GetNPC(npcId);
         if (tex != null)
         {
+            // Get source rect from NPC data, or default to full texture
+            Rectangle sourceRect;
+            bool hasNpcData = WorldConfiguration.NpcById.TryGetValue(npcId, out var npcData) && npcData.SourceRect.Width > 0;
+
+            if (hasNpcData)
+            {
+                sourceRect = new Rectangle(
+                    npcData.SourceRect.X,
+                    npcData.SourceRect.Y,
+                    npcData.SourceRect.Width,
+                    npcData.SourceRect.Height);
+            }
+            else
+            {
+                // Fallback: use full texture (legacy behavior for NPCs without SourceRect)
+                sourceRect = tex.Bounds;
+            }
+
+            // Use full opacity for NPCs we have data for, transparency for unknown NPCs
+            var color = hasNpcData ? Color.White : Color.FromNonPremultiplied(255, 255, 255, 128);
+
+            // Normal scaling like tiles, but clamp minimum to 0.5
+            float scale = Math.Max(0.5f, _zoom / 16f);
+
+            // Get tile offset from NPC data (default 0)
+            int tileOffsetY = hasNpcData ? npcData.TileOffsetY : 0;
+
+            // Position: bottom-left of sprite at top of tile
+            float scaledHeight = sourceRect.Height * scale;
+            Vector2 position = new Vector2(
+                (_scrollPosition.X + npc.Home.X) * _zoom,
+                (_scrollPosition.Y + npc.Home.Y + tileOffsetY) * _zoom - scaledHeight);
+
             _spriteBatch.Draw(
                 tex,
-                GetOverlayLocation(npc.Home.X, npc.Home.Y),
-                tex.Bounds,
-                Color.FromNonPremultiplied(255, 255, 255, 128),
+                position,
+                sourceRect,
+                color,
                 0f,
                 Vector2.Zero,
-                Vector2.One,
+                scale,
                 SpriteEffects.None,
                 LayerLocations);
         }
@@ -4806,9 +4834,11 @@ public partial class WorldRenderXna : UserControl
 
     private Vector2 GetNpcLocation(int x, int y, int width, int height)
     {
+        // Position NPC sprite with bottom at tile location
+        // +16 to move down by 1 tile (NPCs were appearing 1 tile too high)
         return new Vector2(
             (_scrollPosition.X + x) * _zoom - 6,
-            (_scrollPosition.Y + y) * _zoom - height + 4);
+            (_scrollPosition.Y + y) * _zoom - height + 4 + 16);
     }
 
     private void DrawToolPreview()

@@ -55,7 +55,7 @@ public class WorldConfiguration
 
     private static readonly Dictionary<string, TEditColor> _globalColors = new Dictionary<string, TEditColor>();
     private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
-    private static readonly Dictionary<int, Vector2Short> _npcFrames = new Dictionary<int, Vector2Short>();
+    private static readonly Dictionary<int, NpcData> _npcById = new Dictionary<int, NpcData>();
     private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
     private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
     private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
@@ -226,7 +226,7 @@ public class WorldConfiguration
         foreach (var kv in store.GlobalColors) _globalColors[kv.Key] = kv.Value;
         foreach (var kv in store.NpcIdByName) _npcIds[kv.Key] = kv.Value;
         foreach (var kv in store.NpcNameById) _npcNames[kv.Key] = kv.Value;
-        foreach (var kv in store.NpcFrames) _npcFrames[kv.Key] = kv.Value;
+        foreach (var kv in store.NpcById) _npcById[kv.Key] = kv.Value;
         foreach (var kv in store.PrefixById) _prefix[kv.Key] = kv.Value;
     }
 
@@ -244,7 +244,7 @@ public class WorldConfiguration
         _globalColors.Clear();
         _npcIds.Clear();
         _npcNames.Clear();
-        _npcFrames.Clear();
+        _npcById.Clear();
         _prefix.Clear();
         _itemLookup.Clear();
         _tallynames.Clear();
@@ -512,9 +512,9 @@ public class WorldConfiguration
         get { return _rackableItems; }
     }
 
-    public static Dictionary<int, Vector2Short> NpcFrames
+    public static Dictionary<int, NpcData> NpcById
     {
-        get { return _npcFrames; }
+        get { return _npcById; }
     }
 
     public static Dictionary<byte, string> ItemPrefix

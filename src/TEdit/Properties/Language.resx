@@ -411,7 +411,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Open Log File</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Update Settings.xml</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>Update</value>
@@ -452,6 +452,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>Actuators</value>
   </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>Backgrounds</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Layout Grid</value>
   </data>
@@ -472,9 +475,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_layers_walls" xml:space="preserve">
     <value>Walls</value>
-  </data>
-  <data name="menu_layers_backgrounds" xml:space="preserve">
-    <value>Backgrounds</value>
   </data>
   <data name="menu_layers_wire_all" xml:space="preserve">
     <value>All Wires</value>
@@ -578,6 +578,171 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Wire</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>Enable Autosave</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>Periodically save the world automatically</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>Layers</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>Paths</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>Rendering</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>Check for Updates</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>Automatically check for new versions on startup</value>
+  </data>
+  <data name="settings_close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>Enable Error Reporting</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>Send anonymous error reports to help improve stability</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>Set the application display language</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>Use Realistic Colors</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>Render tiles using texture-sampled colors (requires restart)</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>Search settings...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>Show Actuators</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>Toggle actuator visibility</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>Show All Wires</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>Toggle all wire layers at once</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>Show Backgrounds</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>Toggle background rendering</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>Show Blue Wires</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>Toggle blue wire visibility</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>Show Coatings</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>Toggle coating layer visibility</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>Show Green Wires</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>Toggle green wire visibility</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>Show Grid</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>Toggle grid overlay</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>Show Liquid</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>Toggle liquid layer visibility</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>Show News</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>Show news and announcements in the editor</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>Show Points</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>Toggle spawn/NPC point markers</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>Show Red Wires</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>Toggle red wire visibility</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>Show Textures</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>Toggle tile texture rendering</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>Show Tiles</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>Toggle tile layer visibility</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>Show Walls</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>Toggle wall layer visibility</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>Show Yellow Wires</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>Toggle yellow wire visibility</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>Sprite Thumbnail Size</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>Size of sprite thumbnails in the sprite picker</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Terraria Content Path</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Path to Terraria's Content folder for texture loading</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>Texture Visibility Zoom Level</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>Minimum zoom level before tile textures become visible</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>Wire Transparency</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>Render wires with transparency</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -1595,5 +1760,22 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>TEdit Error Reporting</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit can send anonymous error reports to help improve stability.
+
+What is collected:
+  &#x2022; Error details (exception type and stack trace)
+  &#x2022; App version and OS version
+
+What is NOT collected:
+  &#x2022; No personal information or file paths
+  &#x2022; No usage tracking or fingerprinting
+  &#x2022; All paths are obfuscated before sending
+
+Would you like to enable error reporting?</value>
   </data>
 </root>

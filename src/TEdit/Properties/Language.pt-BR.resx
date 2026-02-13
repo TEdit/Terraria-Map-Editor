@@ -411,7 +411,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
     <value>Abrir o arquivo de registros</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Atualizar Settings.xml</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>Atualizar</value>
@@ -451,6 +451,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>Atuadores</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>Contextos</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Grade de layout</value>
@@ -575,6 +578,171 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Fio</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>Habilitar salvamento automático</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>Salve o mundo periodicamente automaticamente</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>Camadas</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>Caminhos</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>Privacidade</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>Renderização</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>Verifique as atualizações</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>Verifique automaticamente novas versões ao iniciar</value>
+  </data>
+  <data name="settings_close" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>Habilitar relatório de erros</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>Envie relatórios anônimos de erro para ajudar a melhorar a estabilidade</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>Língua</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>Defina a linguagem de exibição da aplicação</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>Use cores realistas</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>Renderizar tiles usando cores amostradas por textura (requer reinicio)</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>Configurações de busca...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>Atuadores de Exibição</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>Visibilidade do atuador de alavanca</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>Mostrar Todos os Fios</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>Alterne todas as camadas de fio de uma vez</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>Antecedentes do Programa</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>Alternar renderização em segundo plano</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>Mostrar Fios Azuis</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>Alternar visibilidade do fio azul</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>Revestimentos de Exposição</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>Visibilidade da camada de revestimento alternante</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>Fios Verdes de Exposição</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>Visibilidade de fio verde para alternar</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>Grade de Exposição</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>Sobreposição de grade alternante</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>Show Liquid</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>Alternar a visibilidade da camada líquida</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>Notícias do programa</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>Exiba notícias e anúncios no editor</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>Pontos do Espetáculo</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>Marcadores de pontos de spawn/NPC para alternar</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>Mostrar Fios Vermelhos</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>Visibilidade do fio vermelho com toggle</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>Mostrar Texturas</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>Renderização de texturas de tiles com alternância</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>Mostrar Peças</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>Alternar a visibilidade da camada de tiles</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>Muros de Exposição</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>Alternar a visibilidade da camada de parede</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>Fios Amarelos de Exibição</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>Visibilidade do fio amarelo com toggle</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>Tamanho da Miniatura do Sprite</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>Tamanho das miniaturas de sprites no sprite picker</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Caminho de Conteúdo do Terraria</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Caminho para a pasta Content do Terraria para carregamento de texturas</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>Nível de Zoom de Visibilidade de Textura</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>Nível mínimo de zoom antes que as texturas dos tiles fiquem visíveis</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>Transparência aramada</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>Renderizar fios com transparência</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Cancelar</value>
@@ -734,6 +902,23 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Geração do Time Amarelo</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>O TEdit pode enviar relatórios de erros anônimos para ajudar a melhorar a estabilidade.
+
+O que é coletado:
+  • Detalhes do erro (tipo de exceção e rastreamento de pilha)
+  • Versão do aplicativo e versão do sistema operacional
+
+O que NÃO é coletado:
+  • Nenhuma informação pessoal ou caminhos de arquivos
+  • Nenhum rastreamento de uso ou identificação
+  • Todos os caminhos são ofuscados antes do envio
+
+Você gostaria de ativar o relatório de erros?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>Relatório de Erros do TEdit</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analisar</value>

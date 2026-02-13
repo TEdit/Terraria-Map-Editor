@@ -71,11 +71,6 @@
                     <MenuItem Header="{x:Static p:Language.menu_file_saveas}" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
                     <MenuItem Header="{x:Static p:Language.menu_file_saveasversion}" Icon="{StaticResource TB_SaveAsVersionIcon}" Command="{Binding SaveAsVersionCommand}"/>
                     <Separator Margin="1"/>
-                    <MenuItem Header="{x:Static p:Language.menu_file_autosave}" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
-                    <MenuItem Header="{x:Static p:Language.menu_file_autoupdate}" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
-                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Command="{Binding CheckUpdatesCommand}" />
-                    <MenuItem Header="{x:Static p:Language.menu_telemetry}" IsCheckable="True" IsChecked="{Binding EnableTelemetry}" />
-                    <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_language}">
                         <MenuItem Header="{x:Static p:Language.menu_language_en}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.English}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.English}"  />
                         <MenuItem Header="{x:Static p:Language.menu_language_ru}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.Russian}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.Russian}"  />
@@ -87,6 +82,8 @@
                         <MenuItem Header="{x:Static p:Language.menu_language_es}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.Spanish}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.Spanish}"  />
                     </MenuItem>
 
+                    <Separator Margin="1"/>
+                    <MenuItem Header="{x:Static p:Language.menu_help_settings}" Icon="{StaticResource TB_UpdateXmlIcon}" Click="SettingsMenuItem_Click" />
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_exit}" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>
@@ -140,7 +137,6 @@
                     <MenuItem Header="{x:Static p:Language.menu_help_wiki}" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"/>
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_help_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
-                    <MenuItem Header="{x:Static p:Language.menu_help_settings}" Icon="{StaticResource TB_UpdateXmlIcon}"  Command="{Binding UpdateCommand}" />
                     <MenuItem Header="{x:Static p:Language.menu_help_log}" Command="{Binding ViewLogCommand}" Icon="{StaticResource TB_LogIcon}"/>
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_help_about}" />

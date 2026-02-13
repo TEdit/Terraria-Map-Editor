@@ -411,7 +411,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Logbuch-Datei öffnen</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Settings.xml aktualisieren</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>Aktualisieren</value>
@@ -451,6 +451,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>Aktoren</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>Hintergründe</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Gitternetzlinien</value>
@@ -575,6 +578,171 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Kabel</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>Autospeichern aktivieren</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>Die Welt regelmäßig automatisch speichern</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>Allgemein</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>Ansicht</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>Pfade</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>Datenschutz</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>Rendering</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>Nach Updates suchen</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>Automatisch beim Start nach neuen Versionen suchen</value>
+  </data>
+  <data name="settings_close" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>Fehlermeldungen aktivieren</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>Anonyme Fehlerberichte senden, um die Stabilität zu verbessern</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>Stellen Sie die Anzeigesprache der Anwendung ein</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>Verwenden Sie realistische Farben</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>Kacheln mit texturproben Farben rendern (Neustart erforderlich)</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>Such Einstellungen...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>Aktuatoren anzeigen</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>Sichtbarkeit der Aktuatoren umschalten</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>Alle Drähte anzeigen</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>Alle Drahtschichten gleichzeitig umschalten</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>Hintergründe anzeigen</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>Hintergrund-Rendering umschalten</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>Blaue Drähte anzeigen</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>Sichtbarkeit der blauen Drähte umschalten</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>Beschichtungen anzeigen</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>Beschichtungsebene Sichtbarkeit umschalten</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>Grüne Drähte anzeigen</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>Grüne Drahtsichtbarkeit umschalten</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>Raster anzeigen</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>Rasterüberlagerung umschalten</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>Flüssigkeit anzeigen</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>Flüssigkeitsebene Sichtbarkeit umschalten</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>Nachrichten anzeigen</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>Nachrichten und Ankündigungen im Editor anzeigen</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>Punkte anzeigen</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>Spawn-/NPC-Punktmarkierungen umschalten</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>Rote Drähte anzeigen</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>Sichtbarkeit der roten Drähte umschalten</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>Texturen anzeigen</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>Textur-Rendering der Kacheln umschalten</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>Fliesen anzeigen</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>Fliesenebene Sichtbarkeit umschalten</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>Wände anzeigen</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>Wandebene Sichtbarkeit umschalten</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>Gelbe Drähte anzeigen</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>Gelbe Drahtsichtbarkeit umschalten</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>Größe der Sprite-Vorschaubilder</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>Größe der Sprite-Vorschaubilder im Sprite-Auswahlwerkzeug</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Terraria-Inhaltsverzeichnis</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Pfad zum Inhaltsordner von Terraria für das Laden von Texturen</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>Zoomstufe der Textursichtbarkeit</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>Minimale Zoomstufe, bevor Kacheltexturen sichtbar werden</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>Kabelsichtbarkeit</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>Drähte mit Transparenz rendern</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Abbrechen</value>
@@ -734,6 +902,23 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Gelbes Team Spawn</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit kann anonyme Fehlerberichte senden, um die Stabilität zu verbessern.
+
+Was gesammelt wird:
+  • Fehlermeldungen (Ausnahmetyp und Stack-Trace)
+  • App-Version und OS-Version
+
+Was NICHT gesammelt wird:
+  • Keine persönlichen Informationen oder Dateipfade
+  • Keine Nutzungsverfolgung oder Fingerabdrücke
+  • Alle Pfade werden vor dem Senden obfuskiert
+
+Möchten Sie die Fehlerberichterstattung aktivieren?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>TEdit Fehlerberichterstattung</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analysieren</value>

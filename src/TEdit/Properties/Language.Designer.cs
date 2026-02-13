@@ -926,7 +926,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Settings.xml.
+        ///   Looks up a localized string similar to Settings....
         /// </summary>
         public static string menu_help_settings {
             get {
@@ -1412,6 +1412,501 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Autosave.
+        /// </summary>
+        public static string settings_autosave {
+            get {
+                return ResourceManager.GetString("settings_autosave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Periodically save the world automatically.
+        /// </summary>
+        public static string settings_autosave_desc {
+            get {
+                return ResourceManager.GetString("settings_autosave_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string settings_category_general {
+            get {
+                return ResourceManager.GetString("settings_category_general", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layers.
+        /// </summary>
+        public static string settings_category_layers {
+            get {
+                return ResourceManager.GetString("settings_category_layers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paths.
+        /// </summary>
+        public static string settings_category_paths {
+            get {
+                return ResourceManager.GetString("settings_category_paths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Privacy.
+        /// </summary>
+        public static string settings_category_privacy {
+            get {
+                return ResourceManager.GetString("settings_category_privacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rendering.
+        /// </summary>
+        public static string settings_category_rendering {
+            get {
+                return ResourceManager.GetString("settings_category_rendering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for Updates.
+        /// </summary>
+        public static string settings_check_updates {
+            get {
+                return ResourceManager.GetString("settings_check_updates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically check for new versions on startup.
+        /// </summary>
+        public static string settings_check_updates_desc {
+            get {
+                return ResourceManager.GetString("settings_check_updates_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string settings_close {
+            get {
+                return ResourceManager.GetString("settings_close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Error Reporting.
+        /// </summary>
+        public static string settings_error_reporting {
+            get {
+                return ResourceManager.GetString("settings_error_reporting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send anonymous error reports to help improve stability.
+        /// </summary>
+        public static string settings_error_reporting_desc {
+            get {
+                return ResourceManager.GetString("settings_error_reporting_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string settings_language {
+            get {
+                return ResourceManager.GetString("settings_language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the application display language.
+        /// </summary>
+        public static string settings_language_desc {
+            get {
+                return ResourceManager.GetString("settings_language_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Realistic Colors.
+        /// </summary>
+        public static string settings_realistic_colors {
+            get {
+                return ResourceManager.GetString("settings_realistic_colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render tiles using texture-sampled colors (requires restart).
+        /// </summary>
+        public static string settings_realistic_colors_desc {
+            get {
+                return ResourceManager.GetString("settings_realistic_colors_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search settings....
+        /// </summary>
+        public static string settings_search_placeholder {
+            get {
+                return ResourceManager.GetString("settings_search_placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Actuators.
+        /// </summary>
+        public static string settings_show_actuators {
+            get {
+                return ResourceManager.GetString("settings_show_actuators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle actuator visibility.
+        /// </summary>
+        public static string settings_show_actuators_desc {
+            get {
+                return ResourceManager.GetString("settings_show_actuators_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show All Wires.
+        /// </summary>
+        public static string settings_show_all_wires {
+            get {
+                return ResourceManager.GetString("settings_show_all_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle all wire layers at once.
+        /// </summary>
+        public static string settings_show_all_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_all_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Backgrounds.
+        /// </summary>
+        public static string settings_show_backgrounds {
+            get {
+                return ResourceManager.GetString("settings_show_backgrounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle background rendering.
+        /// </summary>
+        public static string settings_show_backgrounds_desc {
+            get {
+                return ResourceManager.GetString("settings_show_backgrounds_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Blue Wires.
+        /// </summary>
+        public static string settings_show_blue_wires {
+            get {
+                return ResourceManager.GetString("settings_show_blue_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle blue wire visibility.
+        /// </summary>
+        public static string settings_show_blue_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_blue_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Coatings.
+        /// </summary>
+        public static string settings_show_coatings {
+            get {
+                return ResourceManager.GetString("settings_show_coatings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle coating layer visibility.
+        /// </summary>
+        public static string settings_show_coatings_desc {
+            get {
+                return ResourceManager.GetString("settings_show_coatings_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Green Wires.
+        /// </summary>
+        public static string settings_show_green_wires {
+            get {
+                return ResourceManager.GetString("settings_show_green_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle green wire visibility.
+        /// </summary>
+        public static string settings_show_green_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_green_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Grid.
+        /// </summary>
+        public static string settings_show_grid {
+            get {
+                return ResourceManager.GetString("settings_show_grid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle grid overlay.
+        /// </summary>
+        public static string settings_show_grid_desc {
+            get {
+                return ResourceManager.GetString("settings_show_grid_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Liquid.
+        /// </summary>
+        public static string settings_show_liquid {
+            get {
+                return ResourceManager.GetString("settings_show_liquid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle liquid layer visibility.
+        /// </summary>
+        public static string settings_show_liquid_desc {
+            get {
+                return ResourceManager.GetString("settings_show_liquid_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show News.
+        /// </summary>
+        public static string settings_show_news {
+            get {
+                return ResourceManager.GetString("settings_show_news", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show news and announcements in the editor.
+        /// </summary>
+        public static string settings_show_news_desc {
+            get {
+                return ResourceManager.GetString("settings_show_news_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Points.
+        /// </summary>
+        public static string settings_show_points {
+            get {
+                return ResourceManager.GetString("settings_show_points", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle spawn/NPC point markers.
+        /// </summary>
+        public static string settings_show_points_desc {
+            get {
+                return ResourceManager.GetString("settings_show_points_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Red Wires.
+        /// </summary>
+        public static string settings_show_red_wires {
+            get {
+                return ResourceManager.GetString("settings_show_red_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle red wire visibility.
+        /// </summary>
+        public static string settings_show_red_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_red_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Textures.
+        /// </summary>
+        public static string settings_show_textures {
+            get {
+                return ResourceManager.GetString("settings_show_textures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle tile texture rendering.
+        /// </summary>
+        public static string settings_show_textures_desc {
+            get {
+                return ResourceManager.GetString("settings_show_textures_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Tiles.
+        /// </summary>
+        public static string settings_show_tiles {
+            get {
+                return ResourceManager.GetString("settings_show_tiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle tile layer visibility.
+        /// </summary>
+        public static string settings_show_tiles_desc {
+            get {
+                return ResourceManager.GetString("settings_show_tiles_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Walls.
+        /// </summary>
+        public static string settings_show_walls {
+            get {
+                return ResourceManager.GetString("settings_show_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle wall layer visibility.
+        /// </summary>
+        public static string settings_show_walls_desc {
+            get {
+                return ResourceManager.GetString("settings_show_walls_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Yellow Wires.
+        /// </summary>
+        public static string settings_show_yellow_wires {
+            get {
+                return ResourceManager.GetString("settings_show_yellow_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle yellow wire visibility.
+        /// </summary>
+        public static string settings_show_yellow_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_yellow_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sprite Thumbnail Size.
+        /// </summary>
+        public static string settings_sprite_thumbnail {
+            get {
+                return ResourceManager.GetString("settings_sprite_thumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of sprite thumbnails in the sprite picker.
+        /// </summary>
+        public static string settings_sprite_thumbnail_desc {
+            get {
+                return ResourceManager.GetString("settings_sprite_thumbnail_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terraria Content Path.
+        /// </summary>
+        public static string settings_terraria_path {
+            get {
+                return ResourceManager.GetString("settings_terraria_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to Terraria&apos;s Content folder for texture loading.
+        /// </summary>
+        public static string settings_terraria_path_desc {
+            get {
+                return ResourceManager.GetString("settings_terraria_path_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Texture Visibility Zoom Level.
+        /// </summary>
+        public static string settings_texture_zoom {
+            get {
+                return ResourceManager.GetString("settings_texture_zoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum zoom level before tile textures become visible.
+        /// </summary>
+        public static string settings_texture_zoom_desc {
+            get {
+                return ResourceManager.GetString("settings_texture_zoom_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire Transparency.
+        /// </summary>
+        public static string settings_wire_transparency {
+            get {
+                return ResourceManager.GetString("settings_wire_transparency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render wires with transparency.
+        /// </summary>
+        public static string settings_wire_transparency_desc {
+            get {
+                return ResourceManager.GetString("settings_wire_transparency_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string specialtile_button_cancel {
@@ -1885,6 +2380,35 @@ namespace TEdit.Properties {
         public static string TeamSpawn_Yellow {
             get {
                 return ResourceManager.GetString("TeamSpawn_Yellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEdit can send anonymous error reports to help improve stability.
+        ///
+        ///What is collected:
+        ///  • Error details (exception type and stack trace)
+        ///  • App version and OS version
+        ///
+        ///What is NOT collected:
+        ///  • No personal information or file paths
+        ///  • No usage tracking or fingerprinting
+        ///  • All paths are obfuscated before sending
+        ///
+        ///Would you like to enable error reporting?.
+        /// </summary>
+        public static string telemetry_prompt_message {
+            get {
+                return ResourceManager.GetString("telemetry_prompt_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEdit Error Reporting.
+        /// </summary>
+        public static string telemetry_prompt_title {
+            get {
+                return ResourceManager.GetString("telemetry_prompt_title", resourceCulture);
             }
         }
         

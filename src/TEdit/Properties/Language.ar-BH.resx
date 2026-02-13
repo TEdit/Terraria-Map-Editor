@@ -411,7 +411,7 @@
     <value>فتح ملف السجل</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>تحديث الإعدادات.xml</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>تحديث</value>
@@ -451,6 +451,9 @@
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>المشغلات</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>الخلفيات</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>شبكة التخطيط</value>
@@ -575,6 +578,171 @@
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>سلك</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>تمكين الحفظ التلقائي</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>احفظ العالم تلقائيًا بشكل دوري</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>عام</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>الطبقات</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>المسارات</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>الخصوصية</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>الرسم</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>تحقق من التحديثات</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>تحقق تلقائيًا من الإصدارات الجديدة عند بدء التشغيل</value>
+  </data>
+  <data name="settings_close" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>تمكين الإبلاغ عن الأخطاء</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>إرسال تقارير الأخطاء بشكل مجهول للمساعدة في تحسين الاستقرار</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>حدد لغة عرض التطبيق</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>استخدام ألوان واقعية</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>عرض البلاط باستخدام ألوان مأخوذة من القوام (يتطلب إعادة تشغيل)</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>إعدادات البحث...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>عرض المحركات</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>تبديل رؤية المحركات</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>عرض جميع الأسلاك</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>تبديل جميع طبقات الأسلاك دفعة واحدة</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>عرض الخلفيات</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>تبديل عرض الخلفيات</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>عرض الأسلاك الزرقاء</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>تبديل رؤية الأسلاك الزرقاء</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>عرض الطلاءات</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>تبديل رؤية طبقة الطلاء</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>عرض الأسلاك الخضراء</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>تبديل رؤية الأسلاك الخضراء</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>عرض الشبكة</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>تبديل تراكب الشبكة</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>عرض السوائل</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>تبديل رؤية طبقة السوائل</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>عرض الأخبار</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>عرض الأخبار والإعلانات في المحرر</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>عرض النقاط</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>تبديل علامات نقاط الظهور / NPC</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>عرض الأسلاك الحمراء</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>تبديل رؤية الأسلاك الحمراء</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>عرض القوام</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>تبديل عرض قوام البلاط</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>عرض البلاط</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>تبديل رؤية طبقة البلاط</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>عرض الجدران</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>تبديل رؤية طبقة الجدران</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>عرض الأسلاك الصفراء</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>تبديل رؤية الأسلاك الصفراء</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>حجم صورة مصغرة للسبرايت</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>حجم صور مصغرة للسبرايت في مختار السبرايت</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>مسار محتوى Terraria</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>مسار مجلد محتوى Terraria لتحميل القوام</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>مستوى تكبير رؤية القوام</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>أدنى مستوى تكبير قبل أن تصبح قوام البلاط مرئية</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>شفافية الأسلاك</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>عرض الأسلاك بشفافية</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>إلغاء الأمر</value>
@@ -734,6 +902,23 @@
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>نسل الفريق الأصفر</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>يمكن لـ TEdit إرسال تقارير أخطاء مجهولة الهوية للمساعدة في تحسين الاستقرار.
+
+ما يتم جمعه:
+  • تفاصيل الخطأ (نوع الاستثناء وأثر المكدس)
+  • إصدار التطبيق وإصدار نظام التشغيل
+
+ما لا يتم جمعه:
+  • لا توجد معلومات شخصية أو مسارات ملفات
+  • لا يوجد تتبع للاستخدام أو بصمات
+  • جميع المسارات مشوشة قبل الإرسال
+
+هل ترغب في تفعيل تقرير الأخطاء؟</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>تقرير أخطاء TEdit</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>حلل</value>

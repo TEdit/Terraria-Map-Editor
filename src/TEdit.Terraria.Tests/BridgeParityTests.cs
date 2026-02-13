@@ -124,9 +124,9 @@ public class BridgeParityTests : IDisposable
     }
 
     [Fact]
-    public void NpcFrames_CountMatches()
+    public void NpcById_CountMatches()
     {
-        WorldConfiguration.NpcFrames.Count.ShouldBe(_store.NpcFrames.Count);
+        WorldConfiguration.NpcById.Count.ShouldBe(_store.NpcById.Count);
     }
 
     [Fact]

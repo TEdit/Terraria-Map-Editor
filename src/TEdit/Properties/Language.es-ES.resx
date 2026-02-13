@@ -411,7 +411,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Abrir archivo de registro</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Actualizar Settings.xml</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>Actualizar</value>
@@ -451,6 +451,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>Actuadores</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>Fondos</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Cuadrícula</value>
@@ -575,6 +578,171 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Cable</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>Habilitar autoguardado</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>Guardar el mundo periódicamente de forma automática</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>Capas</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>Rutas</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>Privacidad</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>Renderizado</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>Buscar actualizaciones</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>Comprobar automáticamente si hay nuevas versiones al iniciar</value>
+  </data>
+  <data name="settings_close" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>Habilitar el informe de errores</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>Envía informes anónimos de errores para ayudar a mejorar la estabilidad</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>Establecer el idioma de visualización de la aplicación</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>Usar colores realistas</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>Renderizar los bloques utilizando colores muestreados de texturas (requiere reinicio)</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>Buscar configuraciones...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>Mostrar actuadores</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>Alternar visibilidad de actuadores</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>Mostrar todos los cables</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>Alternar todas las capas de cables a la vez</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>Mostrar Fondos</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>Alternar la representación de fondos</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>Mostrar cables azules</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>Alternar visibilidad de cables azules</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>Mostrar recubrimientos</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>Alternar visibilidad de la capa de recubrimientos</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>Mostrar cables verdes</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>Alternar visibilidad del cable verde</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>Mostrar Cuadrícula</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>Alternar la superposición de la cuadrícula</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>Mostrar líquido</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>Alternar visibilidad de la capa de líquido</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>Mostrar noticias</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>Mostrar noticias y anuncios en el editor</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>Puntos del espectáculo</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>Marcadores de puntos de aparición o NPC para alternar</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>Mostrar cables rojos</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>Alternar visibilidad de cables rojos</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>Mostrar Texturas</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>Alternar la representación de texturas de los bloques</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>Mostrar azulejos</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>Alternar visibilidad de la capa de azulejos</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>Mostrar Paredes</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>Alternar visibilidad de la capa de paredes</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>Mostrar cables amarillos</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>Alternar visibilidad del cable amarillo</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>Tamaño de miniaturas de sprites</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>Tamaño de las miniaturas de sprites en el selector de sprites</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Ruta de contenido de Terraria</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Ruta hacia la carpeta Content de Terraria para cargar texturas</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>Nivel de zoom de visibilidad de texturas</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>Nivel de zoom mínimo antes de que las texturas de los bloques se vuelvan visibles</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>Transparencia de cables</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>Renderizar cables con transparencia</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Cancelar</value>
@@ -734,6 +902,23 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Aparición del equipo amarillo</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit puede enviar informes de errores anónimos para ayudar a mejorar la estabilidad.
+
+Qué se recopila:
+  • Detalles del error (tipo de excepción y traza de pila)
+  • Versión de la aplicación y versión del sistema operativo
+
+Qué NO se recopila:
+  • No se recopila información personal ni rutas de archivos
+  • No se realiza seguimiento de uso ni huellas digitales
+  • Todas las rutas se ofuscan antes de enviarse
+
+¿Te gustaría habilitar el informe de errores?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>Informe de errores de TEdit</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analizar</value>

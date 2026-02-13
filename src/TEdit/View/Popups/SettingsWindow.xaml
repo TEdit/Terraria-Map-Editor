@@ -1,0 +1,119 @@
+<Window x:Class="TEdit.View.Popups.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:TEdit.ViewModel"
+        xmlns:p="clr-namespace:TEdit.Properties"
+        Title="{x:Static p:Language.menu_help_settings}"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow"
+        ResizeMode="CanResizeWithGrip"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{DynamicResource TextBrush}"
+        Icon="/TEdit;component/Images/tedit.ico"
+        Width="500" Height="600"
+        MinWidth="400" MinHeight="300">
+
+    <Window.Resources>
+        <!-- Template selector for setting editor types -->
+        <DataTemplate x:Key="CheckBoxTemplate" DataType="{x:Type vm:SettingItem}">
+            <DockPanel Margin="4,3">
+                <CheckBox DockPanel.Dock="Right" IsChecked="{Binding Value, Mode=TwoWay}" VerticalAlignment="Center" />
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Name}" Foreground="Snow" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="11" TextWrapping="Wrap" />
+                </StackPanel>
+            </DockPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SliderTemplate" DataType="{x:Type vm:SettingItem}">
+            <StackPanel Margin="4,3">
+                <TextBlock Text="{Binding Name}" Foreground="Snow" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="11" TextWrapping="Wrap" />
+                <DockPanel Margin="0,4,0,0">
+                    <TextBlock DockPanel.Dock="Right" Text="{Binding Value, StringFormat={}{0:0}}" Foreground="Snow"
+                               Width="30" TextAlignment="Right" VerticalAlignment="Center" Margin="8,0,0,0" />
+                    <Slider Minimum="{Binding SliderMin}" Maximum="{Binding SliderMax}"
+                            TickFrequency="{Binding SliderStep}" IsSnapToTickEnabled="True"
+                            Value="{Binding Value, Mode=TwoWay}" VerticalAlignment="Center" />
+                </DockPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ComboBoxTemplate" DataType="{x:Type vm:SettingItem}">
+            <StackPanel Margin="4,3">
+                <TextBlock Text="{Binding Name}" Foreground="Snow" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="11" TextWrapping="Wrap" />
+                <ComboBox ItemsSource="{Binding ComboBoxItems}" SelectedItem="{Binding Value, Mode=TwoWay}"
+                          Margin="0,4,0,0" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PathTemplate" DataType="{x:Type vm:SettingItem}">
+            <StackPanel Margin="4,3">
+                <TextBlock Text="{Binding Name}" Foreground="Snow" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="11" TextWrapping="Wrap" />
+                <DockPanel Margin="0,4,0,0">
+                    <Button DockPanel.Dock="Right" Content="..." Width="30" Margin="4,0,0,0"
+                            Click="BrowsePath_Click" Tag="{Binding}" />
+                    <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+                </DockPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Search Box -->
+        <Grid Grid.Row="0" Margin="0,0,0,8">
+            <TextBox x:Name="SearchBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                     Padding="4" VerticalContentAlignment="Center" />
+            <TextBlock Text="{x:Static p:Language.settings_search_placeholder}" IsHitTestVisible="False" Foreground="Gray"
+                       VerticalAlignment="Center" Margin="6,0,0,0">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=SearchBox, Converter={x:Static vm:StringNotEmptyConverter.Instance}}" Value="True">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+
+        <!-- Settings List -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding SettingsView}">
+                <ItemsControl.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="Bold"
+                                           Foreground="{DynamicResource TextBrush}" Margin="2,8,0,4"
+                                           Padding="0,0,0,2" />
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ItemsControl.GroupStyle>
+                <ItemsControl.ItemTemplateSelector>
+                    <vm:SettingEditorTemplateSelector
+                        CheckBoxTemplate="{StaticResource CheckBoxTemplate}"
+                        SliderTemplate="{StaticResource SliderTemplate}"
+                        ComboBoxTemplate="{StaticResource ComboBoxTemplate}"
+                        PathTemplate="{StaticResource PathTemplate}" />
+                </ItemsControl.ItemTemplateSelector>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!-- Close Button -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+            <Button Content="{x:Static p:Language.settings_close}" Width="80" Padding="4" Click="Close_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

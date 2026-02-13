@@ -411,7 +411,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Otwórz Logi</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Zaktualizuj settings.xml</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>Zaaktualizuj</value>
@@ -451,6 +451,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>Aktorzy</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>Tło</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Warstwowa Siatka</value>
@@ -575,6 +578,171 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Kabel</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>Aktywuj Autozapis</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>Okresowo ratuj świat automatycznie</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>Ogólne</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>Warstwa</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>Ścieżki</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>Prywatność</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>Renderowanie</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>Sprawdź aktualizacje</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>Automatycznie sprawdzaj nowe wersje przy starcie</value>
+  </data>
+  <data name="settings_close" xml:space="preserve">
+    <value>Zamknij</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>Włącz Raportowanie Błędów</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>Wysyłaj anonimowe raporty o błędach, aby poprawić stabilność</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>Język</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>Ustaw język wyświetlania aplikacji</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>Użyj realistycznych kolorów</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>Renderowanie kafelków z użyciem kolorów próbkowanych teksturami (wymaga restartu)</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>Ustawienia wyszukiwania...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>Siłowniki pokazowe</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>Widoczność siłownika przełącznika</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>Pokaż wszystkie przewody</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>Przełącz wszystkie warstwy przewodów naraz</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>Tło serialu</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>Przełączanie renderowania tła</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>Pokaż Blue Wires</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>Przełączaj widoczność niebieskiego przewodu</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>Powłoki pokazowe</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>Widoczność warstwy powłoki przełączającej</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>Pokaż Green Wires</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>Przełączaj widoczność na zielonym przewodzie</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>Siatka pokazowa</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>Nakładka siatki przełączającej</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>Show Liquid</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>Widoczność warstw cieczy w trybie przełączania</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>Wiadomości z programu</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>Wiadomości i ogłoszenia w edytorze</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>Punkty pokazowe</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>Przełączaj znaczniki punktów pojawiania się NPC</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>Pokaż Red Wires</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>Przełączaj widoczność czerwonego przewodu</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>Tekstury pokazów</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>Przełączanie tekstur kafelków</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>Kafelki pokazowe</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>Widoczność warstwy kafelków typu toggle</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>Ściany pokazowe</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>Widoczność warstwy ściany przełączającej</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>Pokaż Żółte Druty</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>Przełączaj widoczność żółtego przewodu</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>Rozmiar miniaturki sprite'a</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>Rozmiar miniatur sprite'ów w pickerze sprite'ów</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Ścieżka zawartości Terrarii</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Ścieżka do folderu Content Terrarii do ładowania tekstur</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>Poziom powiększenia widoczności tekstur</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>Minimalny poziom powiększenia, zanim tekstury kafelków staną się widoczne</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>Przezroczystość przewodu</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>Renderujące przewody z przezroczystością</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Anuluj</value>
@@ -734,6 +902,23 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Potomek Żółtej Drużyny</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit może wysyłać anonimowe raporty błędów, aby pomóc w poprawie stabilności.
+
+Co jest zbierane:
+  • Szczegóły błędu (typ wyjątku i ślad stosu)
+  • Wersja aplikacji i wersja systemu operacyjnego
+
+Co NIE jest zbierane:
+  • Żadne dane osobowe ani ścieżki plików
+  • Brak śledzenia użycia lub identyfikacji
+  • Wszystkie ścieżki są zanonimizowane przed wysłaniem
+
+Czy chcesz włączyć raportowanie błędów?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>Raportowanie błędów TEdit</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analiza</value>

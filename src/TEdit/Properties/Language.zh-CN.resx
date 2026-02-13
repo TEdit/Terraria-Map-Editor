@@ -411,7 +411,7 @@
     <value>打开日志文件</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>更新Settings.xml文件</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>更新</value>
@@ -451,6 +451,9 @@
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>制动器</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>背景</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>布局网格</value>
@@ -575,6 +578,171 @@
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>电线</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>启用自动保存</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>定期自动拯救世界</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>概述</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>图层</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>路径</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>隐私</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>渲染</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>请查看最新消息</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>启动时自动检查是否有新版本</value>
+  </data>
+  <data name="settings_close" xml:space="preserve">
+    <value>结束</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>启用错误报告</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>发送匿名错误报告以帮助提升稳定性</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>设置应用显示语言</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>使用实际颜色</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>使用纹理采样颜色渲染瓷砖（需要重启）</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>搜索设置......</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>表演执行器</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>切换执行器可见性</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>显示所有线路</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>一次性切换所有线路层</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>节目背景</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>切换背景渲染</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>《蓝线秀》</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>切换蓝线可见性</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>展览涂层</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>切换涂层层可见性</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>《绿线秀》</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>切换绿线可见性</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>展会发车阵</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>切换网格叠加</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>秀液</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>切换液体层可见性</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>节目新闻</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>在编辑器中展示新闻和公告</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>展示要点</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>切换刷新点/NPC点标记</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>展示红线</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>切换红线可见性</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>节目纹理</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>切换瓦片纹理渲染</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>展示瓷砖</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>切换瓦片图层的可见性</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>展墙</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>切换墙面图层可见性</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>展示黄色线路</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>切换黄色线可见性</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>精灵缩略图尺寸</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>精灵选择器中精灵缩略图的大小</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Terraria内容路径</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Terraria内容文件夹的路径用于纹理加载</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>纹理可见性缩放级别</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>在瓦片纹理变得可见之前的最小缩放级别</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>电线透明度</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>渲染带有透明度的线缆</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>取消</value>
@@ -734,6 +902,23 @@
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>黄队刷新</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit 可以发送匿名错误报告以帮助提高稳定性。
+
+收集内容：
+  • 错误详情（异常类型和堆栈跟踪）
+  • 应用版本和操作系统版本
+
+不收集内容：
+  • 不收集个人信息或文件路径
+  • 不进行使用跟踪或指纹识别
+  • 所有路径在发送前都会被混淆
+
+您想启用错误报告吗？</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>TEdit 错误报告</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>分析</value>

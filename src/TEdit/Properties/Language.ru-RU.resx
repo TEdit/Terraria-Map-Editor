@@ -411,7 +411,7 @@
     <value>Открыть логи</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Обновить Settings.xml</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>Обновить</value>
@@ -451,6 +451,9 @@
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>Активаторы</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>Предыстория</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Сетка</value>
@@ -575,6 +578,171 @@
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Провода</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>Включить автосохранение</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>Периодически автоматически спасая мир</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>Общие заведения</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>Слои</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>Пути</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>Конфиденциальность</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>Рендеринг</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>Проверяйте обновления</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>Автоматически проверяйте новые версии при запуске</value>
+  </data>
+  <data name="settings_close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>Включить отчеты об ошибках</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>Отправляйте анонимные отчёты об ошибках для повышения стабильности</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>Задайте язык отображения приложений</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>Используйте реалистичные цвета</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>Рендеринг тайлов с использованием текстур-сэмплинговых цветов (требуется перезапуск)</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>Настройки поиска...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>Актуаторы шоу</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>Видимость актуатора переключения</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>Показать все провода</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>Переключите все слои проводов одновременно</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>Предыстория шоу</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>Переключение фонового рендеринга</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>Показать синие провода</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>Переключение видимости по синим проводу</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>Покрытия для шоу</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>Видимость слоя переключения покрытия</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>Показать зелёные провода</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>Переключение видимости зелёного провода</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>Сетка шоу</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>Наложение переключательной сетки</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>Show Liquid</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>Переключение видимости жидкостного слоя</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>Новости шоу</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>Показывайте новости и объявления в редакторе</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>Очки шоу</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>Переключатели спавна/маркеры точек NPC</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>Показать красные провода</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>Переключение видимости красного провода</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>Текстуры шоу</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>Переключение рендеринга текстур тайлов</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>Показать плитки</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>Переключение видимости слоя тайлов</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>Стены шоу</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>Видимость слоя стены с переключением</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>Показать жёлтые провода</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>Переключение видимости жёлтого провода</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>Размер миниатюры спрайта</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>Размер миниатюр спрайтов в спрайт-пикере</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Путь содержания Terraria</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Путь к папке Content Terraria для загрузки текстур</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>Видимость текстуры Уровень зума</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>Минимальный уровень масштабирования до того, как текстуры тайлов станут видимыми</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>Прозрачность проводов</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>Рендеринг проводов с прозрачностью</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Отменить</value>
@@ -734,6 +902,23 @@
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Жёлтая команда появляется</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit может отправлять анонимные отчеты об ошибках, чтобы помочь улучшить стабильность.
+
+Что собирается:
+  • Подробности об ошибке (тип исключения и трассировка стека)
+  • Версия приложения и версия ОС
+
+Что НЕ собирается:
+  • Никакая личная информация или пути к файлам
+  • Никакого отслеживания использования или отпечатков
+  • Все пути шифруются перед отправкой
+
+Хотите включить отчет об ошибках?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>Отчет об ошибках TEdit</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Анализ</value>
