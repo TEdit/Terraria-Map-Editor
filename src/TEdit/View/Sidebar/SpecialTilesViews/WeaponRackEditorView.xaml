@@ -44,7 +44,7 @@
                   SelectedValue="{Binding NetId, Mode=TwoWay}"
                   IsEditable="true"
                   SelectedValuePath="Key"
-                  DisplayMemberPath="Value"
+                  ItemTemplate="{StaticResource RarityDictItemTemplate}"
                   IsSynchronizedWithCurrentItem="False"
                   HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         </StackPanel>

@@ -59,16 +59,16 @@ public class WorldConfiguration
     private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
     private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
     private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
-    private static readonly Dictionary<int, string> _armorHeadNames = new Dictionary<int, string>();
-    private static readonly Dictionary<int, string> _foodNames = new Dictionary<int, string>();
-    private static readonly Dictionary<int, string> _kiteNames = new Dictionary<int, string>();
-    private static readonly Dictionary<int, string> _critterNames = new Dictionary<int, string>();
-    private static readonly Dictionary<int, string> _accessoryNames = new Dictionary<int, string>();
-    private static readonly Dictionary<int, string> _dyeNames = new Dictionary<int, string>();
-    private static readonly Dictionary<int, string> _armorBodyNames = new Dictionary<int, string>();
-    private static readonly Dictionary<int, string> _armorLegsNames = new Dictionary<int, string>();
-    private static readonly Dictionary<int, string> _rackable = new Dictionary<int, string>();
-    private static readonly Dictionary<int, string> _mountNames = new Dictionary<int, string>();
+    private static readonly Dictionary<int, ItemProperty> _armorHeadItems = new Dictionary<int, ItemProperty>();
+    private static readonly Dictionary<int, ItemProperty> _foodItems = new Dictionary<int, ItemProperty>();
+    private static readonly Dictionary<int, ItemProperty> _kiteItems = new Dictionary<int, ItemProperty>();
+    private static readonly Dictionary<int, ItemProperty> _critterItems = new Dictionary<int, ItemProperty>();
+    private static readonly Dictionary<int, ItemProperty> _accessoryItems = new Dictionary<int, ItemProperty>();
+    private static readonly Dictionary<int, ItemProperty> _dyeItems = new Dictionary<int, ItemProperty>();
+    private static readonly Dictionary<int, ItemProperty> _armorBodyItems = new Dictionary<int, ItemProperty>();
+    private static readonly Dictionary<int, ItemProperty> _armorLegsItems = new Dictionary<int, ItemProperty>();
+    private static readonly Dictionary<int, ItemProperty> _rackableItems = new Dictionary<int, ItemProperty>();
+    private static readonly Dictionary<int, ItemProperty> _mountItems = new Dictionary<int, ItemProperty>();
 
 
     private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
@@ -197,16 +197,16 @@ public class WorldConfiguration
             _itemLookup[item.Id] = item;
 
             if (item.Tally > 0) _tallynames[item.Tally] = item.Name;
-            if (item.Head.HasValue) _armorHeadNames[item.Id] = item.Name;
-            if (item.Body.HasValue) _armorBodyNames[item.Id] = item.Name;
-            if (item.Legs.HasValue) _armorLegsNames[item.Id] = item.Name;
-            if (item.IsRackable) _rackable[item.Id] = item.Name;
-            if (item.IsFood) _foodNames[item.Id] = item.Name;
-            if (item.IsCritter) _critterNames[item.Id] = item.Name;
-            if (item.IsKite) _kiteNames[item.Id] = item.Name;
-            if (item.IsAccessory) _accessoryNames[item.Id] = item.Name;
-            if (item.IsMount) _mountNames[item.Id] = item.Name;
-            if (item.Name.Contains("Dye")) _dyeNames[item.Id] = item.Name;
+            if (item.Head.HasValue) _armorHeadItems[item.Id] = item;
+            if (item.Body.HasValue) _armorBodyItems[item.Id] = item;
+            if (item.Legs.HasValue) _armorLegsItems[item.Id] = item;
+            if (item.IsRackable) _rackableItems[item.Id] = item;
+            if (item.IsFood) _foodItems[item.Id] = item;
+            if (item.IsCritter) _critterItems[item.Id] = item;
+            if (item.IsKite) _kiteItems[item.Id] = item;
+            if (item.IsAccessory) _accessoryItems[item.Id] = item;
+            if (item.IsMount) _mountItems[item.Id] = item;
+            if (item.Name.Contains("Dye")) _dyeItems[item.Id] = item;
         }
 
         // Add paints directly (already PaintProperty)
@@ -248,16 +248,16 @@ public class WorldConfiguration
         _itemLookup.Clear();
         _tallynames.Clear();
         _frameNames.Clear();
-        _armorHeadNames.Clear();
-        _armorBodyNames.Clear();
-        _armorLegsNames.Clear();
-        _foodNames.Clear();
-        _critterNames.Clear();
-        _kiteNames.Clear();
-        _accessoryNames.Clear();
-        _mountNames.Clear();
-        _dyeNames.Clear();
-        _rackable.Clear();
+        _armorHeadItems.Clear();
+        _armorBodyItems.Clear();
+        _armorLegsItems.Clear();
+        _foodItems.Clear();
+        _critterItems.Clear();
+        _kiteItems.Clear();
+        _accessoryItems.Clear();
+        _mountItems.Clear();
+        _dyeItems.Clear();
+        _rackableItems.Clear();
     }
 
     /// <summary>
@@ -463,53 +463,52 @@ public class WorldConfiguration
         get { return _npcNames; }
     }
 
-    public static Dictionary<int, string> ArmorHeadNames
+    public static Dictionary<int, ItemProperty> ArmorHeadItems
     {
-        get { return _armorHeadNames; }
+        get { return _armorHeadItems; }
     }
 
-
-    public static Dictionary<int, string> MountNames
+    public static Dictionary<int, ItemProperty> MountItems
     {
-        get { return _mountNames; }
+        get { return _mountItems; }
     }
 
-    public static Dictionary<int, string> AccessoryNames
+    public static Dictionary<int, ItemProperty> AccessoryItems
     {
-        get { return _accessoryNames; }
+        get { return _accessoryItems; }
     }
 
-    public static Dictionary<int, string> FoodNames
+    public static Dictionary<int, ItemProperty> FoodItems
     {
-        get { return _foodNames; }
+        get { return _foodItems; }
     }
 
-    public static Dictionary<int, string> CritterNames
+    public static Dictionary<int, ItemProperty> CritterItems
     {
-        get { return _critterNames; }
+        get { return _critterItems; }
     }
 
-    public static Dictionary<int, string> KiteNames
+    public static Dictionary<int, ItemProperty> KiteItems
     {
-        get { return _kiteNames; }
+        get { return _kiteItems; }
     }
 
-    public static Dictionary<int, string> ArmorBodyNames
+    public static Dictionary<int, ItemProperty> ArmorBodyItems
     {
-        get { return _armorBodyNames; }
+        get { return _armorBodyItems; }
     }
-    public static Dictionary<int, string> ArmorLegsNames
+    public static Dictionary<int, ItemProperty> ArmorLegsItems
     {
-        get { return _armorLegsNames; }
+        get { return _armorLegsItems; }
     }
 
-    public static Dictionary<int, string> DyeNames
+    public static Dictionary<int, ItemProperty> DyeItems
     {
-        get { return _dyeNames; }
+        get { return _dyeItems; }
     }
-    public static Dictionary<int, string> Rackable
+    public static Dictionary<int, ItemProperty> RackableItems
     {
-        get { return _rackable; }
+        get { return _rackableItems; }
     }
 
     public static Dictionary<int, Vector2Short> NpcFrames

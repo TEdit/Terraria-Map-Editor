@@ -45,16 +45,16 @@ public class TerrariaDataStore
     public Dictionary<string, TEditColor> GlobalColors { get; } = new();
 
     // Category dictionaries (for UI dropdowns)
-    public Dictionary<int, string> ArmorHeadNames { get; } = new();
-    public Dictionary<int, string> ArmorBodyNames { get; } = new();
-    public Dictionary<int, string> ArmorLegsNames { get; } = new();
-    public Dictionary<int, string> FoodNames { get; } = new();
-    public Dictionary<int, string> CritterNames { get; } = new();
-    public Dictionary<int, string> KiteNames { get; } = new();
-    public Dictionary<int, string> AccessoryNames { get; } = new();
-    public Dictionary<int, string> MountNames { get; } = new();
-    public Dictionary<int, string> DyeNames { get; } = new();
-    public Dictionary<int, string> Rackable { get; } = new();
+    public Dictionary<int, ItemProperty> ArmorHeadItems { get; } = new();
+    public Dictionary<int, ItemProperty> ArmorBodyItems { get; } = new();
+    public Dictionary<int, ItemProperty> ArmorLegsItems { get; } = new();
+    public Dictionary<int, ItemProperty> FoodItems { get; } = new();
+    public Dictionary<int, ItemProperty> CritterItems { get; } = new();
+    public Dictionary<int, ItemProperty> KiteItems { get; } = new();
+    public Dictionary<int, ItemProperty> AccessoryItems { get; } = new();
+    public Dictionary<int, ItemProperty> MountItems { get; } = new();
+    public Dictionary<int, ItemProperty> DyeItems { get; } = new();
+    public Dictionary<int, ItemProperty> RackableItems { get; } = new();
     public Dictionary<int, string> TallyNames { get; } = new();
 
     // Version management
@@ -219,7 +219,17 @@ public class TerrariaDataStore
         }
         catch (FileNotFoundException) { }
 
+        ResolveRarityColors();
         RebuildFrameImportant();
+    }
+
+    private void ResolveRarityColors()
+    {
+        foreach (var item in Items)
+        {
+            if (GlobalColors.TryGetValue("Rarity_" + item.Rarity, out var color))
+                item.RarityColor = color;
+        }
     }
 
     internal void PopulateTiles(List<TileProperty> tiles)
@@ -265,16 +275,16 @@ public class TerrariaDataStore
     {
         Items.Clear();
         ItemById.Clear();
-        ArmorHeadNames.Clear();
-        ArmorBodyNames.Clear();
-        ArmorLegsNames.Clear();
-        FoodNames.Clear();
-        CritterNames.Clear();
-        KiteNames.Clear();
-        AccessoryNames.Clear();
-        MountNames.Clear();
-        DyeNames.Clear();
-        Rackable.Clear();
+        ArmorHeadItems.Clear();
+        ArmorBodyItems.Clear();
+        ArmorLegsItems.Clear();
+        FoodItems.Clear();
+        CritterItems.Clear();
+        KiteItems.Clear();
+        AccessoryItems.Clear();
+        MountItems.Clear();
+        DyeItems.Clear();
+        RackableItems.Clear();
         TallyNames.Clear();
 
         foreach (var item in items)
@@ -283,16 +293,16 @@ public class TerrariaDataStore
             ItemById[item.Id] = item;
 
             if (item.Tally > 0) TallyNames[item.Tally] = item.Name;
-            if (item.Head.HasValue) ArmorHeadNames[item.Id] = item.Name;
-            if (item.Body.HasValue) ArmorBodyNames[item.Id] = item.Name;
-            if (item.Legs.HasValue) ArmorLegsNames[item.Id] = item.Name;
-            if (item.IsRackable) Rackable[item.Id] = item.Name;
-            if (item.IsFood) FoodNames[item.Id] = item.Name;
-            if (item.IsCritter) CritterNames[item.Id] = item.Name;
-            if (item.IsKite) KiteNames[item.Id] = item.Name;
-            if (item.IsAccessory) AccessoryNames[item.Id] = item.Name;
-            if (item.IsMount) MountNames[item.Id] = item.Name;
-            if (item.Name.Contains("Dye")) DyeNames[item.Id] = item.Name;
+            if (item.Head.HasValue) ArmorHeadItems[item.Id] = item;
+            if (item.Body.HasValue) ArmorBodyItems[item.Id] = item;
+            if (item.Legs.HasValue) ArmorLegsItems[item.Id] = item;
+            if (item.IsRackable) RackableItems[item.Id] = item;
+            if (item.IsFood) FoodItems[item.Id] = item;
+            if (item.IsCritter) CritterItems[item.Id] = item;
+            if (item.IsKite) KiteItems[item.Id] = item;
+            if (item.IsAccessory) AccessoryItems[item.Id] = item;
+            if (item.IsMount) MountItems[item.Id] = item;
+            if (item.Name.Contains("Dye")) DyeItems[item.Id] = item;
         }
     }
 

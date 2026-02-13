@@ -184,3 +184,115 @@ public class SaveVersionDataTests
         frames[5].ShouldBe(true);
     }
 }
+
+public class BackgroundStyleTests
+{
+    private static readonly JsonSerializerOptions Options = TEditJsonSerializer.DefaultOptions;
+
+    [Fact]
+    public void RoundTrip_SimpleBackground()
+    {
+        var original = new BackgroundStyle { Id = 0, Name = "Default", Textures = [12, 13, 14] };
+        var json = JsonSerializer.Serialize(original, Options);
+        var restored = JsonSerializer.Deserialize<BackgroundStyle>(json, Options)!;
+
+        restored.Id.ShouldBe(0);
+        restored.Name.ShouldBe("Default");
+        restored.Textures.ShouldBe([12, 13, 14]);
+    }
+
+    [Fact]
+    public void RoundTrip_DualArrayBackground()
+    {
+        var original = new BackgroundStyle
+        {
+            Id = 0,
+            Name = "Default",
+            Textures = [9, 10, 11],
+            SecondaryTextures = [7, 8]
+        };
+        var json = JsonSerializer.Serialize(original, Options);
+        var restored = JsonSerializer.Deserialize<BackgroundStyle>(json, Options)!;
+
+        restored.Textures.ShouldBe([9, 10, 11]);
+        restored.SecondaryTextures.ShouldBe([7, 8]);
+    }
+
+    [Fact]
+    public void RoundTrip_DesertWithVariants()
+    {
+        var original = new BackgroundStyle
+        {
+            Id = 51,
+            Name = "Multi-Biome A",
+            Textures = [306, 303, -1],
+            CorruptTextures = [310, 307, -1],
+            HallowTextures = [314, 311, -1],
+            CrimsonTextures = [318, 315, -1]
+        };
+        var json = JsonSerializer.Serialize(original, Options);
+        var restored = JsonSerializer.Deserialize<BackgroundStyle>(json, Options)!;
+
+        restored.CorruptTextures.ShouldBe([310, 307, -1]);
+        restored.HallowTextures.ShouldBe([314, 311, -1]);
+        restored.CrimsonTextures.ShouldBe([318, 315, -1]);
+    }
+
+    [Fact]
+    public void GetPreviewTextureIndex_ReturnsFirstValidTexture()
+    {
+        var bg = new BackgroundStyle { Textures = [12, 13, 14] };
+        bg.GetPreviewTextureIndex().ShouldBe(12);
+    }
+
+    [Fact]
+    public void GetPreviewTextureIndex_SkipsNegativeTextures()
+    {
+        var bg = new BackgroundStyle { Textures = [-1, -1, -1], SecondaryTextures = [93, 94] };
+        bg.GetPreviewTextureIndex().ShouldBe(93);
+    }
+}
+
+public class BackgroundStyleConfigurationTests
+{
+    [Fact]
+    public void Load_FromEmbeddedResource_LoadsAllBiomes()
+    {
+        using var stream = typeof(BackgroundStyleConfiguration).Assembly
+            .GetManifestResourceStream("TEdit.Terraria.Data.backgroundStyles.json")!;
+
+        var config = BackgroundStyleConfiguration.Load(stream);
+
+        config.Version.ShouldBe("1.4.5.4");
+        config.TreeStyles.Count.ShouldBe(6);
+        config.ForestBackgrounds.Count.ShouldBe(19);
+        config.CorruptionBackgrounds.Count.ShouldBe(7);
+        config.JungleBackgrounds.Count.ShouldBe(7);
+        config.SnowBackgrounds.Count.ShouldBe(15);
+        config.HallowBackgrounds.Count.ShouldBe(6);
+        config.CrimsonBackgrounds.Count.ShouldBe(7);
+        config.DesertBackgrounds.Count.ShouldBe(8);
+        config.OceanBackgrounds.Count.ShouldBe(8);
+        config.MushroomBackgrounds.Count.ShouldBe(5);
+        config.UnderworldBackgrounds.Count.ShouldBe(3);
+        config.CaveBackgrounds.Count.ShouldBe(8);
+        config.IceBackgrounds.Count.ShouldBe(4);
+        config.JungleUndergroundBackgrounds.Count.ShouldBe(2);
+        config.HellBackgrounds.Count.ShouldBe(3);
+    }
+
+    [Fact]
+    public void Load_BuildsIndexes()
+    {
+        using var stream = typeof(BackgroundStyleConfiguration).Assembly
+            .GetManifestResourceStream("TEdit.Terraria.Data.backgroundStyles.json")!;
+
+        var config = BackgroundStyleConfiguration.Load(stream);
+
+        config.TreeStyleById[0].Name.ShouldBe("Oak");
+        config.ForestBackgroundById[0].Name.ShouldBe("Default");
+        config.CorruptionBackgroundById[51].Name.ShouldBe("Remix 1");
+        config.CaveBackgroundById[7].UndergroundIndex.ShouldBe(10);
+        config.HellBackgroundById[0].BottomTexture.ShouldBe(185);
+    }
+}

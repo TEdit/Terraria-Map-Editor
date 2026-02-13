@@ -11,6 +11,24 @@
         <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True"
                                 VirtualizingStackPanel.VirtualizationMode="Recycling" />
     </ItemsPanelTemplate>
+    <!-- Rarity-tinted item template for category dictionaries (KeyValuePair<int, ItemProperty>) -->
+    <DataTemplate x:Key="RarityDictItemTemplate">
+        <Border Padding="2,0">
+            <Border.Background>
+                <SolidColorBrush Color="{Binding Value.RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3" />
+            </Border.Background>
+            <TextBlock Text="{Binding Value.Name}" />
+        </Border>
+    </DataTemplate>
+    <!-- Rarity-tinted item template for ItemProperty objects directly (chest editor) -->
+    <DataTemplate x:Key="RarityItemTemplate">
+        <Border Padding="2,0">
+            <Border.Background>
+                <SolidColorBrush Color="{Binding RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3" />
+            </Border.Background>
+            <TextBlock Text="{Binding Name}" />
+        </Border>
+    </DataTemplate>
     <DataTemplate x:Key="ItemFrameItemTemplate">
         <Grid HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -34,7 +52,7 @@
             <ComboBox Grid.Column="2" ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
                       SelectedValue="{Binding NetId, Mode=TwoWay}"
                       SelectedValuePath="Id"
-                      DisplayMemberPath="Name"
+                      ItemTemplate="{StaticResource RarityItemTemplate}"
                       IsEditable="true"
                       IsSynchronizedWithCurrentItem="False"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />

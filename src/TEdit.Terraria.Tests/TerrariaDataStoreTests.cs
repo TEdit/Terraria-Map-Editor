@@ -211,17 +211,17 @@ public class TerrariaDataStoreTests : IDisposable
         var store = TerrariaDataStore.Initialize();
 
         // At least some armor should exist
-        store.ArmorHeadNames.Count.ShouldBeGreaterThan(0);
-        store.ArmorBodyNames.Count.ShouldBeGreaterThan(0);
-        store.ArmorLegsNames.Count.ShouldBeGreaterThan(0);
+        store.ArmorHeadItems.Count.ShouldBeGreaterThan(0);
+        store.ArmorBodyItems.Count.ShouldBeGreaterThan(0);
+        store.ArmorLegsItems.Count.ShouldBeGreaterThan(0);
 
         // Food, accessories should exist
-        store.FoodNames.Count.ShouldBeGreaterThan(0);
-        store.AccessoryNames.Count.ShouldBeGreaterThan(0);
-        store.Rackable.Count.ShouldBeGreaterThan(0);
+        store.FoodItems.Count.ShouldBeGreaterThan(0);
+        store.AccessoryItems.Count.ShouldBeGreaterThan(0);
+        store.RackableItems.Count.ShouldBeGreaterThan(0);
 
         // Dye names derived from name containing "Dye"
-        store.DyeNames.Count.ShouldBeGreaterThan(0);
+        store.DyeItems.Count.ShouldBeGreaterThan(0);
     }
 
     [Fact]

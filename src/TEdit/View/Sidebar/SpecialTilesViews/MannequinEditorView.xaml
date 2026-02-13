@@ -61,7 +61,8 @@
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <ComboBox Grid.Row="1" Grid.Column="3" ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Body -->
@@ -78,7 +79,8 @@
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <ComboBox Grid.Row="2" Grid.Column="3" ItemsSource="{Binding Source={StaticResource MannBodyCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Legs -->
@@ -95,7 +97,8 @@
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <ComboBox Grid.Row="3" Grid.Column="3" ItemsSource="{Binding Source={StaticResource MannLegsCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Item2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 1 -->
@@ -112,7 +115,8 @@
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <ComboBox Grid.Row="4" Grid.Column="3" ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Item3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 2 -->
@@ -129,7 +133,8 @@
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <ComboBox Grid.Row="5" Grid.Column="3" ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Item4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 3 -->
@@ -146,7 +151,8 @@
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <ComboBox Grid.Row="6" Grid.Column="3" ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Item5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 4 -->
@@ -163,7 +169,8 @@
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <ComboBox Grid.Row="7" Grid.Column="3" ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Item6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 5 -->
@@ -180,7 +187,8 @@
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <ComboBox Grid.Row="8" Grid.Column="3" ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Item7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Weapon -->
@@ -197,14 +205,16 @@
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <ComboBox Grid.Row="9" Grid.Column="3" ItemsSource="{Binding Source={StaticResource RackCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Weapon.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Mount -->
         <TextBlock Grid.Row="10" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_mount}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
         <ComboBox Grid.Row="10" Grid.Column="3" ItemsSource="{Binding Source={StaticResource MountCollection}}"
               SelectedValue="{Binding SelectedTileEntity.Mount.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
+              IsEditable="true" SelectedValuePath="Key"
+              ItemTemplate="{StaticResource RarityDictItemTemplate}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Buttons -->

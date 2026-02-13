@@ -34,6 +34,10 @@ public class ItemProperty : ITile
     // Item rarity name (Master, Expert, Quest, Gray, White, Blue, Green, etc.)
     public string Rarity { get; set; } = "White";
 
+    // Resolved rarity color (set after data load from GlobalColors)
+    [JsonIgnore]
+    public TEditColor RarityColor { get; set; } = TEditColor.White;
+
     // Legacy properties (for compatibility)
     [JsonIgnore]
     public Vector2Short UV { get; set; }

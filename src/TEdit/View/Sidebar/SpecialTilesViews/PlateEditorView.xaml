@@ -32,7 +32,7 @@
                     <ComboBox Grid.Column="2" ItemsSource="{Binding Source={StaticResource FoodCollection}}"
                               SelectedValue="{Binding NetId, Mode=TwoWay}"
                               SelectedValuePath="Key"
-                              DisplayMemberPath="Value"
+                              ItemTemplate="{StaticResource RarityDictItemTemplate}"
                               IsEditable="true"
                               IsSynchronizedWithCurrentItem="False"
                               HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />

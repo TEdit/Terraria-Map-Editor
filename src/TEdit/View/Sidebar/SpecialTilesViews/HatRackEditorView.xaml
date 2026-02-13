@@ -55,7 +55,7 @@
                   SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                   IsEditable="true"
                   SelectedValuePath="Key"
-                  DisplayMemberPath="Value"
+                  ItemTemplate="{StaticResource RarityDictItemTemplate}"
                   IsSynchronizedWithCurrentItem="False"
                   HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         </StackPanel>
@@ -82,7 +82,7 @@
                   SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                   IsEditable="true"
                   SelectedValuePath="Key"
-                  DisplayMemberPath="Value"
+                  ItemTemplate="{StaticResource RarityDictItemTemplate}"
                   IsSynchronizedWithCurrentItem="False"
                   HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         </StackPanel>

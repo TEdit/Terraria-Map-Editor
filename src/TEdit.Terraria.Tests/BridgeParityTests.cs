@@ -219,11 +219,11 @@ public class BridgeParityTests : IDisposable
         var expectedFoodCount = items.Count(i => i.IsFood);
         var expectedRackableCount = items.Count(i => i.IsRackable);
 
-        WorldConfiguration.ArmorHeadNames.Count.ShouldBe(expectedHeadCount);
-        WorldConfiguration.ArmorBodyNames.Count.ShouldBe(expectedBodyCount);
-        WorldConfiguration.ArmorLegsNames.Count.ShouldBe(expectedLegsCount);
-        WorldConfiguration.FoodNames.Count.ShouldBe(expectedFoodCount);
-        WorldConfiguration.Rackable.Count.ShouldBe(expectedRackableCount);
+        WorldConfiguration.ArmorHeadItems.Count.ShouldBe(expectedHeadCount);
+        WorldConfiguration.ArmorBodyItems.Count.ShouldBe(expectedBodyCount);
+        WorldConfiguration.ArmorLegsItems.Count.ShouldBe(expectedLegsCount);
+        WorldConfiguration.FoodItems.Count.ShouldBe(expectedFoodCount);
+        WorldConfiguration.RackableItems.Count.ShouldBe(expectedRackableCount);
     }
 
     [Fact]
