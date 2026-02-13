@@ -89,6 +89,14 @@ public partial class WorldRenderXna : UserControl
     // Vine tile IDs that need -2px Y offset and horizontal flip on alternating X
     private static readonly HashSet<int> _vineTileIds = new HashSet<int> { 52, 62, 115, 205, 382, 528, 636, 638 };
 
+    // Grass/plant tiles that need horizontal flip on alternating X (includes vines)
+    // Reference: docs/custom-rendered-tiles.md Section 5
+    private static readonly HashSet<int> _spriteFlipTileIds = new HashSet<int>
+    {
+        3, 20, 24, 52, 61, 62, 71, 73, 74, 81, 82, 83, 84, 110, 113, 115, 127,
+        201, 205, 227, 270, 271, 382, 528, 572, 581, 590, 595, 636, 637, 638, 703
+    };
+
     // Deferred texture loading
     private bool _texturesFullyLoaded = false;
     private CancellationTokenSource _textureLoadCancellation;
@@ -3480,14 +3488,14 @@ public partial class WorldRenderXna : UserControl
                                         }
                                     }
 
-                                    // Vine rendering: -2px Y offset and horizontal flip on alternating X
+                                    // Grass/plant/vine rendering: horizontal flip on alternating X
                                     var spriteEffect = SpriteEffects.None;
+                                    if (_spriteFlipTileIds.Contains(curtile.Type) && x % 2 == 0)
+                                        spriteEffect = SpriteEffects.FlipHorizontally;
+
+                                    // Vine-specific: -2px Y offset
                                     if (_vineTileIds.Contains(curtile.Type))
-                                    {
-                                        dest.Y -= (int)(2 * _zoom / 16); // -2px offset
-                                        if (x % 2 == 0)
-                                            spriteEffect = SpriteEffects.FlipHorizontally;
-                                    }
+                                        dest.Y -= (int)(2 * _zoom / 16);
 
                                     _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
                                     // Actuator Overlay
@@ -4901,14 +4909,14 @@ public partial class WorldRenderXna : UserControl
                                         }
                                     }
 
-                                    // Vine rendering: -2px Y offset and horizontal flip on alternating X
+                                    // Grass/plant/vine rendering: horizontal flip on alternating X
                                     var spriteEffect = SpriteEffects.None;
+                                    if (_spriteFlipTileIds.Contains(curtile.Type) && x % 2 == 0)
+                                        spriteEffect = SpriteEffects.FlipHorizontally;
+
+                                    // Vine-specific: -2px Y offset
                                     if (_vineTileIds.Contains(curtile.Type))
-                                    {
-                                        dest.Y -= (int)(2 * _zoom / 16); // -2px offset
-                                        if (x % 2 == 0)
-                                            spriteEffect = SpriteEffects.FlipHorizontally;
-                                    }
+                                        dest.Y -= (int)(2 * _zoom / 16);
 
                                     if (forceGrayscale) // Check if to force grayscale via the filter manager.
                                     {
