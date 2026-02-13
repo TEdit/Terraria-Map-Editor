@@ -33,6 +33,7 @@ public class Textures
     /// </summary>
     public bool TexturesFullyLoaded => _loadingState.IsComplete;
 
+    public Dictionary<int, Texture2D> Extra { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Moon { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Tiles { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Underworld { get; } = new Dictionary<int, Texture2D>();
@@ -211,6 +212,8 @@ public class Textures
     public Texture2D GetItem(int num) => GetTextureById(Item, num, "Images\\Item_{0}");
 
     public Texture2D GetMoon(int num) => GetTextureById(Moon, num, "Images\\Moon_{0}");
+
+    public Texture2D GetExtra(int num) => GetTextureById(Extra, num, "Images\\Extra_{0}");
 
     private Texture2D GetTextureById<T>(Dictionary<T, Texture2D> collection, T id, string path)
     {

@@ -821,6 +821,9 @@ namespace SettingsFileUpdater.TerrariaHost
                 var maxUV = new Vector2Short((short)maxU, (short)maxV);
                 if (maxUV.X >= texture.Width || maxUV.Y >= texture.Height)
                 {
+                    // Skip Relic Base
+                    if (id == 617) continue;
+
                     var textureGrid = obj["textureGrid"]?.AsArray();
                     var frameGap = obj["frameGap"]?.AsArray();
                     if (textureGrid == null || frameGap == null || textureGrid.Count < 2 || frameGap.Count < 2) continue;

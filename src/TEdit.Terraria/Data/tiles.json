@@ -16636,8 +16636,7 @@
       { "name": "Deerclops Relic", "variety": "Right", "uv": [1458, 72] }
     ],
     "name": "Relic Base",
-    "color": "#7E6C2CFF",
-    "textureWrap": { "axis": "U", "offsetIncrement": 144, "wrapThreshold": 54 }
+    "color": "#7E6C2CFF"
   },
   {
     "id": 618,
