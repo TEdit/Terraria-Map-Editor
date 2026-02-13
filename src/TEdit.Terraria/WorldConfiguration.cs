@@ -38,6 +38,7 @@ public class WorldConfiguration
     public static SaveVersionManager SaveConfiguration { get; private set; }
     public static BestiaryConfiguration BestiaryData { get; private set; }
     public static MorphConfiguration MorphSettings { get; private set; }
+    public static BackgroundStyleConfiguration BackgroundStyles => _store?.BackgroundStyles;
 
     // Tracks what we actually applied (handy for UI / warnings).
     public static uint ActiveWorldVersion  { get; private set; }

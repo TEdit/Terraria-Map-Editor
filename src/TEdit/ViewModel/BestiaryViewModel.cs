@@ -174,7 +174,6 @@ public partial class BestiaryViewModel : ReactiveObject
         var killTally = _wvm.CurrentWorld.KilledMobs.ToArray();
         try
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(CompleteBestiary));
             var bestiaryEdits = new Bestiary();
 
             foreach (string line in WorldConfiguration.BestiaryData.BestiaryKilledIDs)
@@ -223,7 +222,6 @@ public partial class BestiaryViewModel : ReactiveObject
         var killTally = _wvm.CurrentWorld.KilledMobs.ToArray();
         try
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(ResetBestiary));
             var bestiaryEdits = new Bestiary();
             _wvm.CurrentWorld.Bestiary = bestiaryEdits;
             _wvm.CurrentWorld.KilledMobs.Clear();
@@ -260,8 +258,6 @@ public partial class BestiaryViewModel : ReactiveObject
         var killTally = _wvm.CurrentWorld.KilledMobs.ToArray();
         try
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(SaveBestiary));
-
             var bestiaryEdits = new Bestiary();
 
             foreach (var line in BestiaryData)

@@ -2236,7 +2236,6 @@ public partial class WorldViewModel : ReactiveObject
     {
         Task.Factory.StartNew(async () =>
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(SaveWorldThreaded));
             try
             {
                 OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Validating World..."));
@@ -2493,8 +2492,6 @@ public partial class WorldViewModel : ReactiveObject
             {
                 if (CurrentWorld != null)
                 {
-                    ErrorLogging.TelemetryClient?.TrackEvent(nameof(LoadWorld));
-
                     PixelMap = t.Result;
                     UpdateTitle();
                     RefreshPoints();

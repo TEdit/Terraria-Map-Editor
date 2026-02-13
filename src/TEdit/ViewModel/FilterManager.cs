@@ -1,11 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Data;
 using TEdit.Terraria;
 using System;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 
 namespace TEdit.ViewModel
 {
@@ -234,25 +235,19 @@ namespace TEdit.ViewModel
     /// <summary>
     /// Represents an item (such as a tile, wall, liquid, or wire) that can be filtered
     /// in the TEdit filter popup window. Each item has an ID, a display name, and a
-    /// check state indicating whether it is included in the filter. Implements
-    /// INotifyPropertyChanged so that WPF data binding reflects changes in checkboxes
-    /// in the UI.
-    /// 
+    /// check state indicating whether it is included in the filter.
+    ///
     /// Example usage:
     /// - Used as the data model for each checkbox row in the filter lists.
     /// - Supports binding to the IsChecked property to track filter selections.
     /// </summary>
-    public class FilterCheckItem : INotifyPropertyChanged
+    public partial class FilterCheckItem : ReactiveObject
     {
         public string Name { get; }
         public int Id { get; }
-        private bool _isChecked;
 
-        public bool IsChecked
-        {
-            get => _isChecked;
-            set { _isChecked = value; OnPropertyChanged(nameof(IsChecked)); }
-        }
+        [Reactive]
+        private bool _isChecked;
 
         public FilterCheckItem(int id, string name, bool isChecked = false)
         {
@@ -260,10 +255,6 @@ namespace TEdit.ViewModel
             Name = name;
             IsChecked = isChecked;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string prop)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }
 
     /// <summary>

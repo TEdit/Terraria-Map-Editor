@@ -92,7 +92,6 @@ public partial class WorldViewModel
         {
             try
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(NpcRemove), properties: new Dictionary<string, string> { ["ID"] = npc.SpriteId.ToString(), ["Name"] = npc.Name });
                 CurrentWorld.NPCs.Remove(npc);
                 Points.Remove(npc.Name);
                 MessageBox.Show(string.Format("{1} ({0}) removed.", npc.Name, npc.DisplayName), "NPC Removed");
@@ -122,7 +121,6 @@ public partial class WorldViewModel
         {
             if (SelectedTileEntity != null)
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(SaveTileEntity), properties: new Dictionary<string, string> { ["ID"] = SelectedTileEntity.NetId.ToString(), ["StackSize"] = SelectedTileEntity.StackSize.ToString() });
                 if (SelectedTileEntity.NetId != 0 && SelectedTileEntity.StackSize == 0) { SelectedTileEntity.StackSize = 1; }
                 foreach (var item in SelectedTileEntity.Items)
                 {
@@ -153,8 +151,6 @@ public partial class WorldViewModel
         {
             if (SelectedXmas != null)
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(SaveXmasTree));
-
                 int tree = SelectedXmasStar;
                 tree += (SelectedXmasGarland << 3);
                 tree += (SelectedXmasBulb << 6);
@@ -217,8 +213,6 @@ public partial class WorldViewModel
         string url = "https://www.binaryconstruct.com/tedit/#download";
         try
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(Update));
-
             System.Diagnostics.Process.Start(url);
         }
         catch (Exception ex)
@@ -306,7 +300,6 @@ public partial class WorldViewModel
     private void ExecuteSetLanguage(LanguageSelection language)
     {
         CurrentLanguage = language;
-        ErrorLogging.TelemetryClient?.TrackEvent(nameof(SetLanguage), properties: new Dictionary<string, string> { ["language"] = language.ToString() });
         Settings.Default.Language = language;
         try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
 
@@ -513,8 +506,6 @@ public partial class WorldViewModel
             var killTally = world.KilledMobs.ToArray();
             try
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportKillsAndBestiary));
-
                 World.ImportKillsAndBestiary(world, ofd.FileName);
                 TallyCount = KillTally.LoadTally(CurrentWorld);
             }
@@ -544,8 +535,6 @@ public partial class WorldViewModel
 
         if ((bool)ofd.ShowDialog())
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportSchematic));
-
             foreach (var file in ofd.FileNames)
             {
                 try
@@ -573,7 +562,6 @@ public partial class WorldViewModel
         {
             try
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(ExportSchematicFile));
                 buffer.Buffer.Save(sfd.FileName, this.CurrentWorld?.Version ?? WorldConfiguration.CompatibleVersion);
             }
             catch (Exception ex)

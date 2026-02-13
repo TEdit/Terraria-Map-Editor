@@ -130,4 +130,16 @@ internal sealed partial class Settings : global::System.Configuration.Applicatio
             this["SpriteThumbnailSize"] = value;
         }
     }
+
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("")]
+    public string TelemetryDeclinedVersion {
+        get {
+            return ((string)(this["TelemetryDeclinedVersion"]));
+        }
+        set {
+            this["TelemetryDeclinedVersion"] = value;
+        }
+    }
 }

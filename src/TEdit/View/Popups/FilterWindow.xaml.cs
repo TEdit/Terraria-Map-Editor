@@ -1,17 +1,19 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.ComponentModel;
 using System.Windows.Media;
-using TEdit.Terraria; // For WorldConfiguration.TileBricks, WallProperties, LiquidType.
-using TEdit.ViewModel;     // For FilterItem, FilterManager, etc.
+using TEdit.Terraria;
+using TEdit.ViewModel;
 using System.Windows;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 
 namespace TEdit.View.Popups
 {
-    public partial class FilterWindow : Window, INotifyPropertyChanged
+    [IReactiveObject]
+    public partial class FilterWindow : Window
     {
         // WVM
         private readonly WorldViewModel _wvm;
@@ -19,51 +21,74 @@ namespace TEdit.View.Popups
         // Tiles
         public ObservableCollection<FilterCheckItem> TileItems { get; } = [];
         public ObservableCollection<FilterCheckItem> FilteredTileItems { get; } = [];
+        [Reactive]
         private string _tileSearchText;
-        public string TileSearchText { get => _tileSearchText; set { _tileSearchText = value; OnPropertyChanged(nameof(TileSearchText)); FilterTileItems(); } }
 
         // Walls
         public ObservableCollection<FilterCheckItem> WallItems { get; } = [];
         public ObservableCollection<FilterCheckItem> FilteredWallItems { get; } = [];
+        [Reactive]
         private string _wallSearchText;
-        public string WallSearchText { get => _wallSearchText; set { _wallSearchText = value; OnPropertyChanged(nameof(WallSearchText)); FilterWallItems(); } }
 
         // Liquids
         public ObservableCollection<FilterCheckItem> LiquidItems { get; } = [];
         public ObservableCollection<FilterCheckItem> FilteredLiquidItems { get; } = [];
+        [Reactive]
         private string _liquidSearchText;
-        public string LiquidSearchText { get => _liquidSearchText; set { _liquidSearchText = value; OnPropertyChanged(nameof(LiquidSearchText)); FilterLiquidItems(); } }
 
         // Wires
         public ObservableCollection<FilterCheckItem> WireItems { get; } = [];
         public ObservableCollection<FilterCheckItem> FilteredWireItems { get; } = [];
+        [Reactive]
         private string _wireSearchText;
-        public string WireSearchText { get => _wireSearchText; set { _wireSearchText = value; OnPropertyChanged(nameof(WireSearchText)); FilterWireItems(); } }
 
         // Sprites
         public ObservableCollection<FilterCheckItem> SpriteItems { get; } = [];
         public ObservableCollection<FilterCheckItem> FilteredSpriteItems { get; } = [];
+        [Reactive]
         private string _spriteSearchText;
-        public string SpriteSearchText { get => _spriteSearchText; set { _spriteSearchText = value; OnPropertyChanged(nameof(SpriteSearchText)); FilterSpriteItems(); } }
 
         // Checkboxes
+        [Reactive]
         private bool _isFilterClipboardEnabled;
-        public bool IsFilterClipboardEnabled { get => _isFilterClipboardEnabled; set { _isFilterClipboardEnabled = value; OnPropertyChanged(nameof(IsFilterClipboardEnabled)); } }
 
         // RadioButtons
+        [Reactive]
         private FilterManager.FilterMode _pendingFilterMode;
+        [Reactive]
         private FilterManager.BackgroundMode _pendingBackgroundMode;
 
-        public FilterManager.FilterMode PendingFilterMode { get => _pendingFilterMode; set { _pendingFilterMode = value; OnPropertyChanged(nameof(PendingFilterMode)); } }
-        public FilterManager.FilterMode CurrentFilterMode { get => FilterManager.CurrentFilterMode; set { if (FilterManager.CurrentFilterMode != value) { FilterManager.CurrentFilterMode = value; OnPropertyChanged(nameof(CurrentFilterMode)); } } }
-        public FilterManager.BackgroundMode PendingBackgroundMode { get => _pendingBackgroundMode; set { _pendingBackgroundMode = value; OnPropertyChanged(nameof(PendingBackgroundMode)); } }
-        public FilterManager.BackgroundMode CurrentBackgroundMode { get => FilterManager.CurrentBackgroundMode; set { if (FilterManager.CurrentBackgroundMode != value) { FilterManager.CurrentBackgroundMode = value; OnPropertyChanged(nameof(CurrentBackgroundMode)); } } }
+        public FilterManager.FilterMode CurrentFilterMode
+        {
+            get => FilterManager.CurrentFilterMode;
+            set
+            {
+                if (FilterManager.CurrentFilterMode != value)
+                {
+                    FilterManager.CurrentFilterMode = value;
+                    this.RaisePropertyChanged();
+                }
+            }
+        }
+
+        public FilterManager.BackgroundMode CurrentBackgroundMode
+        {
+            get => FilterManager.CurrentBackgroundMode;
+            set
+            {
+                if (FilterManager.CurrentBackgroundMode != value)
+                {
+                    FilterManager.CurrentBackgroundMode = value;
+                    this.RaisePropertyChanged();
+                }
+            }
+        }
 
         // This will hold the selected color for custom modes.
-        private Color _customModeColor       = Colors.Transparent;
+        [Reactive]
+        private Color _customModeColor = Colors.Transparent;
+        [Reactive]
         private Color _customBackgroundColor = Colors.Lime;
-        public Color CustomModeColor { get => _customModeColor; set { if (_customModeColor != value) { _customModeColor = value; OnPropertyChanged(nameof(CustomModeColor)); } } }
-        public Color CustomBackgroundColor { get => _customBackgroundColor; set { if (_customBackgroundColor != value) { _customBackgroundColor = value; OnPropertyChanged(nameof(CustomBackgroundColor)); } } }
 
         // Helper for quickly converting Windows.Media.Color to Xna.Framework.Color.
         public static Microsoft.Xna.Framework.Color ToXnaColor(System.Windows.Media.Color c) => new(c.R, c.G, c.B, c.A);
@@ -80,6 +105,13 @@ namespace TEdit.View.Popups
             InitializeComponent();
             _wvm = worldViewModel;
             DataContext = this;
+
+            // Wire up search filtering subscriptions
+            this.WhenAnyValue(x => x.TileSearchText).Subscribe(_ => FilterTileItems());
+            this.WhenAnyValue(x => x.WallSearchText).Subscribe(_ => FilterWallItems());
+            this.WhenAnyValue(x => x.LiquidSearchText).Subscribe(_ => FilterLiquidItems());
+            this.WhenAnyValue(x => x.WireSearchText).Subscribe(_ => FilterWireItems());
+            this.WhenAnyValue(x => x.SpriteSearchText).Subscribe(_ => FilterSpriteItems());
 
             #region Populate Tiles
 
@@ -445,10 +477,5 @@ namespace TEdit.View.Popups
                 FilterManager.BackgroundModeCustomColor = ToXnaColor(CustomBackgroundColor);
             }
         }
-
-        // INotifyPropertyChanged.
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string prop) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }
 }

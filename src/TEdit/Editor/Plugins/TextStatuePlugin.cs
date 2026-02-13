@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
-using System.Windows.Media.Imaging;
 using TEdit.Terraria;
 using TEdit.Editor.Clipboard;
 using TEdit.Geometry;
 using TEdit.Terraria.Editor;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
+using ReactiveUI.SourceGenerators;
 
 namespace TEdit.Editor.Plugins;
 
-public class TextStatuePlugin : BasePlugin, INotifyPropertyChanged
+public partial class TextStatuePlugin : BasePlugin
 {
     Dictionary<char, SpriteItem> _textFrames = new();
     private TileProperty _textStatueTileProperties;
@@ -26,12 +24,8 @@ public class TextStatuePlugin : BasePlugin, INotifyPropertyChanged
         Name = "Generate Text Statues";
     }
 
+    [Reactive]
     private ClipboardBuffer _generatedSchematic;
-    public ClipboardBuffer GeneratredSchematic
-    {
-        get { return _generatedSchematic; }
-        set { _generatedSchematic = value; OnPropertyChanged(); }
-    }
 
     public override void Execute()
     {
@@ -158,11 +152,4 @@ public class TextStatuePlugin : BasePlugin, INotifyPropertyChanged
         }
     }
 
-    public new event PropertyChangedEventHandler PropertyChanged;
-    // Create the OnPropertyChanged method to raise the event
-    // The calling member's name will be used as the parameter.
-    protected void OnPropertyChanged([CallerMemberName] string name = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-    }
 }

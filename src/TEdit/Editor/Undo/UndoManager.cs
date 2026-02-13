@@ -11,7 +11,6 @@ using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using YamlDotNet.Core;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace TEdit.Editor.Undo;
 
@@ -365,8 +364,6 @@ public partial class UndoManager : ReactiveObject, IDisposable
         if (_currentIndex <= 0)
             return;
 
-        ErrorLogging.TelemetryClient?.TrackEvent(nameof(Undo));
-
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
         string undoFileName = string.Format(UndoFile, _currentIndex - 1); // load previous undo file
@@ -417,8 +414,6 @@ public partial class UndoManager : ReactiveObject, IDisposable
     {
         if (_currentIndex > _maxIndex || _currentIndex <= 0)
             return;
-
-        ErrorLogging.TelemetryClient?.TrackEvent(nameof(Redo));
 
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 

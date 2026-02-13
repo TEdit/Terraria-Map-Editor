@@ -68,9 +68,9 @@ public partial class HouseGenPlugin : BasePlugin
 
         [Reactive] private HouseGenTemplate _selectedTemplate;
 
-        [Reactive] private ClipboardBufferPreview _generatredSchematic;
+        [Reactive] private ClipboardBufferPreview _generatedSchematic;
 
-        public WriteableBitmap Preview => GeneratredSchematic?.Preview;
+        public WriteableBitmap Preview => GeneratedSchematic?.Preview;
 
         private Vector2Int32 _generatedSchematicSize;
         public Vector2Int32 GeneratedSchematicSize
@@ -82,7 +82,7 @@ public partial class HouseGenPlugin : BasePlugin
             this.WhenAnyValue(x => x.SelectedTemplate).Select(t => t != null);
 
         private IObservable<bool> CanCopy =>
-            this.WhenAnyValue(x => x.GeneratredSchematic).Select(s => s?.Preview != null);
+            this.WhenAnyValue(x => x.GeneratedSchematic).Select(s => s?.Preview != null);
 
         [ReactiveCommand]
         private void Import() => ImportTemplateSchematic();
@@ -91,7 +91,7 @@ public partial class HouseGenPlugin : BasePlugin
         private void Generate() => GenerateFromTemplate(SelectedTemplate);
 
         [ReactiveCommand(CanExecute = nameof(CanCopy))]
-        private void Copy() => _clipboardManagerLoadedBuffers.Add(GeneratredSchematic);
+        private void Copy() => _clipboardManagerLoadedBuffers.Add(GeneratedSchematic);
 
         public HouseGenViewModel(ObservableCollection<ClipboardBufferPreview> loadedBuffers)
         {
@@ -114,9 +114,6 @@ public partial class HouseGenPlugin : BasePlugin
                 if ((bool)ofd.ShowDialog())
                 {
                     string filename = Path.GetFileNameWithoutExtension(ofd.FileName);
-
-                    //Schematic Loading
-                    ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportTemplateSchematic));
 
                     _templates.Add(LoadTemplate(ofd.FileName));
                     SelectedTemplate = _templates[_templates.Count - 1];
@@ -204,7 +201,7 @@ public partial class HouseGenPlugin : BasePlugin
                 }
             }
 
-            GeneratredSchematic = new ClipboardBufferPreview(bufferData);
+            GeneratedSchematic = new ClipboardBufferPreview(bufferData);
         }
 
         private static HouseGenTemplate LoadTemplate(string path)

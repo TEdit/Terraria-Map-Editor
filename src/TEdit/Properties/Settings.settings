@@ -29,5 +29,8 @@
     <Setting Name="SpriteThumbnailSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">64</Value>
     </Setting>
+    <Setting Name="TelemetryDeclinedVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

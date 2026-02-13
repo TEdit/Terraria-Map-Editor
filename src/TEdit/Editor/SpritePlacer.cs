@@ -1,4 +1,3 @@
-﻿using System.Collections.Generic;
 using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Render;
@@ -11,8 +10,6 @@ public static class SpritePlacer
 {
     public static void Place(this SpriteItem spriteSub, int destinationX, int destinationY, WorldViewModel wvm)
     {
-        ErrorLogging.TelemetryClient?.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = spriteSub.Tile.ToString(), ["UV"] = spriteSub.UV.ToString() });
-
         if (spriteSub.Tile == (ushort)TileType.ChristmasTree)
         {
             for (int x = 0; x < spriteSub.SizeTiles.X; x++)
@@ -63,8 +60,6 @@ public static class SpritePlacer
 
     public static void Place(this SpriteItem spriteSub, int destinationX, int destinationY, ITileData world)
     {
-        ErrorLogging.TelemetryClient?.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = spriteSub.Tile.ToString(), ["UV"] = spriteSub.UV.ToString() });
-
         if (spriteSub.Tile == (ushort)TileType.ChristmasTree)
         {
             for (int x = 0; x < spriteSub.SizeTiles.X; x++)

@@ -36,9 +36,48 @@ public partial class MainWindow : Window
 
     void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
-        if (Settings.Default.Telemetry == -1)
+        bool shouldAsk = false;
+        string currentVersion = App.Version.ToString();
+
+        switch (Settings.Default.Telemetry)
         {
-            _vm.EnableTelemetry = true;
+            case -1: // first run
+                shouldAsk = true;
+                break;
+            case 0: // previously declined
+                shouldAsk = Settings.Default.TelemetryDeclinedVersion != currentVersion;
+                break;
+            case 1: // approved permanently
+                break;
+        }
+
+        if (shouldAsk)
+        {
+            var result = MessageBox.Show(
+                "TEdit can send anonymous error reports to help improve stability.\n\n" +
+                "What is collected:\n" +
+                "  \u2022 Error details (exception type and stack trace)\n" +
+                "  \u2022 App version and OS version\n\n" +
+                "What is NOT collected:\n" +
+                "  \u2022 No personal information or file paths\n" +
+                "  \u2022 No usage tracking or fingerprinting\n" +
+                "  \u2022 All paths are obfuscated before sending\n\n" +
+                "Would you like to enable error reporting?",
+                "TEdit Error Reporting",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _vm.EnableTelemetry = true;
+            }
+            else
+            {
+                Settings.Default.Telemetry = 0;
+                Settings.Default.TelemetryDeclinedVersion = currentVersion;
+                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                _vm.EnableTelemetry = false;
+            }
         }
     }
 

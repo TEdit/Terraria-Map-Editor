@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.Xna.Framework;
 using TEdit.Terraria;
 using TEdit.Geometry;

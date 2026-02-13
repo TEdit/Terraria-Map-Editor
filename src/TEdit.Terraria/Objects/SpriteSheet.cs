@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using ReactiveUI;
 using TEdit.Common;
 using TEdit.Geometry;
 
@@ -74,7 +75,7 @@ public class SpriteSheet
     }
 }
 
-public class SpriteItem
+public partial class SpriteItem : ReactiveObject
 {
     public ushort Tile { get; set; }
     public int Style { get; set; }

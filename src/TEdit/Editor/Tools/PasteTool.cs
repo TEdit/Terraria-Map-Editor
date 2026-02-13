@@ -49,8 +49,6 @@ public sealed class PasteTool : BaseTool
 
     private void PasteClipboard(Vector2Int32 anchor)
     {
-        ErrorLogging.TelemetryClient?.TrackEvent("Paste");
-
         _wvm.Clipboard.PasteBufferIntoWorld(_wvm.CurrentWorld, anchor);
         _wvm.UpdateRenderRegion(new RectangleInt32(anchor, _wvm.Clipboard.Buffer.Buffer.Size));
 

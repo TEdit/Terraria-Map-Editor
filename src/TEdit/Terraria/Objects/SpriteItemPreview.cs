@@ -1,68 +1,32 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System;
+using System.Reactive.Linq;
 using System.Windows.Media.Imaging;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria.Objects;
 
-public class SpriteItemPreview : SpriteItem, INotifyPropertyChanged
+public partial class SpriteItemPreview : SpriteItem
 {
-    private WriteableBitmap _preview;
-    private WriteableBitmap[] _biomePreviews;
-    private int _selectedBiomeIndex;
-
     /// <summary>
     /// Default preview bitmap (for tiles without biome variants, or biome index 0).
     /// </summary>
-    public WriteableBitmap Preview
-    {
-        get => _preview;
-        set
-        {
-            if (_preview != value)
-            {
-                _preview = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(CurrentPreview));
-            }
-        }
-    }
+    [Reactive]
+    private WriteableBitmap _preview;
 
     /// <summary>
     /// Array of preview bitmaps for each biome variant (null if tile has no biome variants).
     /// Index corresponds to BiomeVariants list in TileProperty.
     /// </summary>
-    public WriteableBitmap[] BiomePreviews
-    {
-        get => _biomePreviews;
-        set
-        {
-            if (_biomePreviews != value)
-            {
-                _biomePreviews = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(CurrentPreview));
-                OnPropertyChanged(nameof(HasBiomeVariants));
-            }
-        }
-    }
+    [Reactive]
+    private WriteableBitmap[] _biomePreviews;
 
     /// <summary>
     /// Currently selected biome variant index.
     /// </summary>
-    public int SelectedBiomeIndex
-    {
-        get => _selectedBiomeIndex;
-        set
-        {
-            if (_selectedBiomeIndex != value)
-            {
-                _selectedBiomeIndex = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(CurrentPreview));
-            }
-        }
-    }
+    [Reactive]
+    private int _selectedBiomeIndex;
 
     /// <summary>
     /// Whether this sprite has biome variants available.
@@ -84,10 +48,14 @@ public class SpriteItemPreview : SpriteItem, INotifyPropertyChanged
         }
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    public SpriteItemPreview()
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        // Subscribe to changes that affect computed properties
+        this.WhenAnyValue(x => x.Preview, x => x.BiomePreviews, x => x.SelectedBiomeIndex)
+            .Subscribe(_ =>
+            {
+                this.RaisePropertyChanged(nameof(HasBiomeVariants));
+                this.RaisePropertyChanged(nameof(CurrentPreview));
+            });
     }
 }
