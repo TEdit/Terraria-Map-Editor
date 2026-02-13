@@ -612,6 +612,12 @@
   <data name="specialtile_label_chesttype" xml:space="preserve">
     <value>Тип сундука</value>
   </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>Маленький зверёк</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>Флакон с предметом</value>
+  </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Редактировать выбранный предмет</value>
   </data>
@@ -620,6 +626,9 @@
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
     <value>Содержимое рамки</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>Воздушный змей</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
     <value>Ноги</value>
@@ -648,15 +657,6 @@
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Предмет на стойке</value>
   </data>
-  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
-    <value>Флакон с предметом</value>
-  </data>
-  <data name="specialtile_label_critter" xml:space="preserve">
-    <value>Маленький зверёк</value>
-  </data>
-  <data name="specialtile_label_kite" xml:space="preserve">
-    <value>Воздушный змей</value>
-  </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>Лампочки</value>
   </data>
@@ -674,6 +674,12 @@
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>С помощью Стрелки нажмите правой кнопкой мыши на табличку, сундук, манекен, стойку для оружия, рамку или новогоднюю ёлку.</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>Авто</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>Биом:</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Фильтр</value>

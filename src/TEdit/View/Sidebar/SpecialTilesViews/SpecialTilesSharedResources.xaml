@@ -1,0 +1,46 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:TEdit.Converters"
+    xmlns:p="clr-namespace:TEdit.Properties">
+
+    <Image x:Key="TB_CopyIcon" x:Shared="false" Source="/Images/Toolbar/copy.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+    <Image x:Key="TB_PasteIcon" x:Shared="false" Source="/Images/Toolbar/paste.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+    <converters:ShortIntConverter x:Key="ShortIntConverter" />
+    <converters:FirstOrNullConverter x:Key="FirstOrNullConverter" />
+    <ItemsPanelTemplate x:Key="Template_ComboPanel">
+        <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True"
+                                VirtualizingStackPanel.VirtualizationMode="Recycling" />
+    </ItemsPanelTemplate>
+    <DataTemplate x:Key="ItemFrameItemTemplate">
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45" />
+                <ColumnDefinition Width="53" />
+                <ColumnDefinition Width="116" />
+                <ColumnDefinition Width="22" />
+                <ColumnDefinition Width="22" />
+                <ColumnDefinition Width="22" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalAlignment="Stretch" />
+            <ComboBox Grid.Column="1" ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                      SelectedValue="{Binding Prefix, Mode=TwoWay}"
+                      SelectedValuePath="Key"
+                      DisplayMemberPath="Value"
+                      IsEditable="true"
+                      HorizontalAlignment="Stretch"
+                      IsSynchronizedWithCurrentItem="False"
+                      Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+            <ComboBox Grid.Column="2" ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+                      SelectedValue="{Binding NetId, Mode=TwoWay}"
+                      SelectedValuePath="Id"
+                      DisplayMemberPath="Name"
+                      IsEditable="true"
+                      IsSynchronizedWithCurrentItem="False"
+                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+            <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+            <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+            <Button Grid.Column="5" Content="^" ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

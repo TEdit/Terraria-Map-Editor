@@ -612,6 +612,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="specialtile_label_chesttype" xml:space="preserve">
     <value>Tipo do baú</value>
   </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>Criatura</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>Item Frasco</value>
+  </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Editar item selecionado</value>
   </data>
@@ -620,6 +626,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
     <value>Conteúdo da moldura do item</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>Papagaio</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
     <value>Pernas</value>
@@ -648,15 +657,6 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Item da prateleira de armas</value>
   </data>
-  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
-    <value>Item Frasco</value>
-  </data>
-  <data name="specialtile_label_critter" xml:space="preserve">
-    <value>Criatura</value>
-  </data>
-  <data name="specialtile_label_kite" xml:space="preserve">
-    <value>Papagaio</value>
-  </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>Bolas</value>
   </data>
@@ -674,6 +674,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>Com a ferramenta de seta, clique em uma placa, baú, manequim, prateleira de armas, moldura do item ou árvore de natal.</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>Bioma:</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Filtro</value>

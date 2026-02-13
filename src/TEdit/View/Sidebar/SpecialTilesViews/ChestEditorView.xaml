@@ -1,0 +1,124 @@
+<UserControl x:Class="TEdit.View.Sidebar.SpecialTilesViews.ChestEditorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:p="clr-namespace:TEdit.Properties"
+    mc:Ignorable="d"
+    d:DesignWidth="340">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SpecialTilesSharedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="FastChestItem">
+                <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="45" />
+                        <ColumnDefinition Width="53" />
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="22" />
+                        <ColumnDefinition Width="22" />
+                        <ColumnDefinition Width="22" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Foreground="White" Text="{Binding StackSize}" Width="30" Margin="2" />
+                    <TextBlock Grid.Column="1" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
+                    <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Name}" Margin="2" />
+                    <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}"  ToolTip="{x:Static p:Language.menu_edit_copy}"  Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+                    <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}"></Button>
+                    <Button Grid.Column="5" Content="^"                             ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}"></Button>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="ChestItemTemplate">
+                <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="45" />
+                        <ColumnDefinition Width="53" />
+                        <ColumnDefinition Width="116" />
+                        <ColumnDefinition Width="22" />
+                        <ColumnDefinition Width="22" />
+                        <ColumnDefinition Width="22" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             HorizontalAlignment="Stretch" />
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                              SelectedValue="{Binding Prefix, Mode=TwoWay}"
+                              SelectedValuePath="Key"
+                              DisplayMemberPath="Value"
+                              IsEditable="true"
+                              HorizontalAlignment="Stretch"
+                              IsSynchronizedWithCurrentItem="False"
+                              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox Grid.Column="2" ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+                              SelectedValue="{Binding NetId, Mode=TwoWay}"
+                              SelectedValuePath="Id"
+                              DisplayMemberPath="Name"
+                              IsEditable="true"
+                              IsSynchronizedWithCurrentItem="False"
+                              HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+                    <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}"></Button>
+                    <Button Grid.Column="5" Content="^" ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}"></Button>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Text="{x:Static p:Language.specialtile_label_chestname}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+            <TextBox Margin="2" Width="100px" Height="20px" MaxLength="100" MaxLines="1" Text="{Binding SelectedChest.Name}" />
+            <Button Margin="2,0,0,0" Height="20" Width="32" Content="{StaticResource TB_CopyIcon}"
+                    ToolTip="{x:Static p:Language.menu_copyfirstitem}"
+                    Command="{Binding CopyChestItemCommand}"
+                    CommandParameter="{Binding SelectedChest.Items, Converter={StaticResource FirstOrNullConverter}}" />
+            <Button Margin="2,0,0,0" Height="20" Width="32" Content="{StaticResource TB_PasteIcon}"
+                    ToolTip="{x:Static p:Language.menu_pasteall}"
+                    Command="{Binding PasteChestItemCommand}"
+                    CommandParameter="{Binding SelectedChest.Items}" />
+            <Button Margin="2,0,0,0" Height="20" Width="32" Content="^"
+                    ToolTip="{x:Static p:Language.chest_max_stack}"
+                    Command="{Binding ChestItemSetToMaxStackCommand}"
+                    CommandParameter="{Binding SelectedChest.Items}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="{x:Static p:Language.specialtile_label_chestcontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+            <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="({0}, {1})">
+                        <Binding Path="SelectedChest.X" />
+                        <Binding Path="SelectedChest.Y" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
+        <ListBox Grid.Row="3" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
+          ItemsSource="{Binding SelectedChest.Items}"
+          SelectionMode="Extended"
+          ScrollViewer.CanContentScroll="True"
+          VirtualizingStackPanel.IsVirtualizing="True"
+          ItemTemplate="{StaticResource FastChestItem}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <StackPanel Grid.Row="4">
+            <TextBlock Text="{x:Static p:Language.specialtile_label_editselecteditem}" Margin="2" Foreground="{DynamicResource TextBrush}" />
+            <ContentControl ContentTemplate="{StaticResource ChestItemTemplate}" Content="{Binding ElementName=ChestList, Path=SelectedItem}" />
+        </StackPanel>
+        <UniformGrid Columns="2" Grid.Row="5">
+            <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveChestCommand}" CommandParameter="{StaticResource False}" />
+            <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveChestCommand}" CommandParameter="{StaticResource True}" />
+        </UniformGrid>
+    </Grid>
+</UserControl>

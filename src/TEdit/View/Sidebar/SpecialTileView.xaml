@@ -1,167 +1,15 @@
-﻿<UserControl x:Class="TEdit.View.SpecialTileView"
+<UserControl x:Class="TEdit.View.SpecialTileView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
-    xmlns:System="clr-namespace:System;assembly=mscorlib"
-    xmlns:p="clr-namespace:TEdit.Properties"
-    xmlns:converters="clr-namespace:TEdit.Converters"
+    xmlns:views="clr-namespace:TEdit.View.Sidebar.SpecialTilesViews"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
 
     <UserControl.Resources>
-        <Image x:Key="TB_CopyIcon" x:Shared="false" Source="/Images/Toolbar/copy.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_PasteIcon" x:Shared="false" Source="/Images/Toolbar/paste.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <converters:ShortIntConverter x:Key="ShortIntConverter" />
-        <converters:FirstOrNullConverter x:Key="FirstOrNullConverter" />
-        <ItemsPanelTemplate x:Key="Template_ComboPanel">
-            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True"
-                                    VirtualizingStackPanel.VirtualizationMode="Recycling" />
-        </ItemsPanelTemplate>
-        <DataTemplate x:Key="FastChestItem">
-            <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="45" />
-                    <ColumnDefinition Width="53" />
-                    <ColumnDefinition Width="90" />
-                    <ColumnDefinition Width="22" />
-                    <ColumnDefinition Width="22" />
-                    <ColumnDefinition Width="22" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Foreground="White" Text="{Binding StackSize}" Width="30" Margin="2" />
-                <TextBlock Grid.Column="1" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
-                <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Name}" Margin="2" />
-                <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}"  ToolTip="{x:Static p:Language.menu_edit_copy}"  Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
-                <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}"></Button>
-                <Button Grid.Column="5" Content="^"                             ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}"></Button>
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="FoodItemTemplate">
-            <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="75" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         HorizontalAlignment="Stretch" />
-                <ComboBox Grid.Column="1" ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding Prefix, Mode=TwoWay}"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsEditable="true"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                <ComboBox Grid.Column="2" ItemsSource="{Binding Source={StaticResource FoodCollection}}"
-                          SelectedValue="{Binding NetId, Mode=TwoWay}"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsEditable="true"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="KiteItemTemplate">
-            <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="75" />
-                </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource KiteCollection}}"
-                          SelectedValue="{Binding NetId, Mode=TwoWay}"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsEditable="true"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="CritterItemTemplate">
-            <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="75" />
-                </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource CritterCollection}}"
-                          SelectedValue="{Binding NetId, Mode=TwoWay}"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsEditable="true"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="ChestItemTemplate">
-            <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="45" />
-                    <ColumnDefinition Width="53" />
-                    <ColumnDefinition Width="116" />
-                    <ColumnDefinition Width="22" />
-                    <ColumnDefinition Width="22" />
-                    <ColumnDefinition Width="22" />
-                </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         HorizontalAlignment="Stretch" />
-                <ComboBox Grid.Column="1" ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding Prefix, Mode=TwoWay}"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsEditable="true"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                <ComboBox Grid.Column="2" ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
-                          SelectedValue="{Binding NetId, Mode=TwoWay}"
-                          SelectedValuePath="Id"
-                          DisplayMemberPath="Name"
-                          IsEditable="true"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
-                <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}"></Button>
-                <Button Grid.Column="5" Content="^" ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}"></Button>
-
-
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="ItemFrameItemTemplate">
-          <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="45" />
-              <ColumnDefinition Width="53" />
-              <ColumnDefinition Width="116" />
-              <ColumnDefinition Width="22" />
-              <ColumnDefinition Width="22" />
-              <ColumnDefinition Width="22" />
-            </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             HorizontalAlignment="Stretch" />
-            <ComboBox Grid.Column="1" ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                              SelectedValue="{Binding Prefix, Mode=TwoWay}"
-                              SelectedValuePath="Key"
-                              DisplayMemberPath="Value"
-                              IsEditable="true"
-                              HorizontalAlignment="Stretch"
-                              IsSynchronizedWithCurrentItem="False"
-                              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-            <ComboBox Grid.Column="2" ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
-                              SelectedValue="{Binding NetId, Mode=TwoWay}"
-                              SelectedValuePath="Id"
-                              DisplayMemberPath="Name"
-                              IsEditable="true"
-                              IsSynchronizedWithCurrentItem="False"
-                              HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-            <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
-            <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
-            <Button Grid.Column="5" Content="^" ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
-
-
-          </Grid>
-        </DataTemplate>
-    <Style TargetType="{x:Type GroupBox}" x:Key="InstructionsVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+        <Style TargetType="{x:Type GroupBox}" x:Key="InstructionsVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="-1">
@@ -201,6 +49,38 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="PlateVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedTileEntity.Type}" Value="6">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="MannequinVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="3">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="HatRackVisibility" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedTileEntity.Type}" Value="5">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="WeaponRackVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="4">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="KiteVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
@@ -217,38 +97,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="{x:Type GroupBox}" x:Key="HatRackVisibility" BasedOn="{StaticResource {x:Type GroupBox}}">
-            <Setter Property="Visibility" Value="Collapsed" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedTileEntity.Type}" Value="5">
-                    <Setter Property="Visibility" Value="Visible" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="{x:Type GroupBox}" x:Key="MannequinVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
-            <Setter Property="Visibility" Value="Collapsed" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="3">
-                    <Setter Property="Visibility" Value="Visible" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="{x:Type GroupBox}" x:Key="PlateVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
-            <Setter Property="Visibility" Value="Collapsed" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedTileEntity.Type}" Value="6">
-                    <Setter Property="Visibility" Value="Visible" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-        <Style TargetType="{x:Type GroupBox}" x:Key="WeaponRackVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
-            <Setter Property="Visibility" Value="Collapsed" />
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="4">
-                    <Setter Property="Visibility" Value="Visible" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="XmasVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
@@ -257,786 +105,43 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <enum:EnumItemList x:Key="XmasStarCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="0">None</enum:EnumItem>
-            <enum:EnumItem Value="1">Star Topper 1</enum:EnumItem>
-            <enum:EnumItem Value="2">Star Topper 2</enum:EnumItem>
-            <enum:EnumItem Value="3">Star Topper 3</enum:EnumItem>
-            <enum:EnumItem Value="4">Bow Topper</enum:EnumItem>
-        </enum:EnumItemList>
-        <enum:EnumItemList x:Key="XmasGarlandCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="0">None</enum:EnumItem>
-            <enum:EnumItem Value="1">White</enum:EnumItem>
-            <enum:EnumItem Value="2">White and Red</enum:EnumItem>
-            <enum:EnumItem Value="3">Red</enum:EnumItem>
-            <enum:EnumItem Value="4">Red and Green</enum:EnumItem>
-            <enum:EnumItem Value="5">Green</enum:EnumItem>
-            <enum:EnumItem Value="6">Green and White</enum:EnumItem>
-        </enum:EnumItemList>
-        <enum:EnumItemList x:Key="XmasBulbCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="0">None</enum:EnumItem>
-            <enum:EnumItem Value="1">Multicolored</enum:EnumItem>
-            <enum:EnumItem Value="2">Red</enum:EnumItem>
-            <enum:EnumItem Value="3">Yellow</enum:EnumItem>
-            <enum:EnumItem Value="4">Green</enum:EnumItem>
-            <enum:EnumItem Value="5">Red and Green</enum:EnumItem>
-            <enum:EnumItem Value="6">Yellow and Green</enum:EnumItem>
-            <enum:EnumItem Value="7">Red and Yellow</enum:EnumItem>
-            <enum:EnumItem Value="8">White</enum:EnumItem>
-            <enum:EnumItem Value="9">White and Red</enum:EnumItem>
-            <enum:EnumItem Value="10">White and Yellow</enum:EnumItem>
-            <enum:EnumItem Value="11">White and Green</enum:EnumItem>
-        </enum:EnumItemList>
-        <enum:EnumItemList x:Key="XmasLightCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
-            <enum:EnumItem Value="0">None</enum:EnumItem>
-            <enum:EnumItem Value="1">Multicolored</enum:EnumItem>
-            <enum:EnumItem Value="2">Red</enum:EnumItem>
-            <enum:EnumItem Value="3">Green</enum:EnumItem>
-            <enum:EnumItem Value="4">Blue</enum:EnumItem>
-            <enum:EnumItem Value="5">Yellow</enum:EnumItem>
-            <enum:EnumItem Value="6">Red and Yellow</enum:EnumItem>
-            <enum:EnumItem Value="7">Red and Green</enum:EnumItem>
-            <enum:EnumItem Value="8">Yellow and Green</enum:EnumItem>
-            <enum:EnumItem Value="9">Blue and Green</enum:EnumItem>
-            <enum:EnumItem Value="10">Red and Blue</enum:EnumItem>
-            <enum:EnumItem Value="11">Blue and Yellow</enum:EnumItem>
-        </enum:EnumItemList>
     </UserControl.Resources>
     <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <GroupBox BorderThickness="0" Style="{StaticResource InstructionsVisiblity}">
-            <TextBlock Text="{x:Static p:Language.specialtile_tooltip}" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="3" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"/>
+            <views:InstructionsView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource SignVisiblity}">
-            <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <!--<StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_signtype}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox Width="150px"
-                      ItemsSource="{Binding Source={StaticResource SignsCollection}}"
-                      SelectedValue="{Binding SelectedSign.SignId, Mode=TwoWay}"
-                      SelectedValuePath="SignId"
-                      DisplayMemberPath="Name"
-                      IsSynchronizedWithCurrentItem="False"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>-->
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_signtext}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" >
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedSign.X" />
-                                <Binding Path="SelectedSign.Y" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <TextBox Grid.Row="2" Text="{Binding SelectedSign.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="150"
-                  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
-                  Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
-                <UniformGrid Columns="2" Grid.Row="4">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}"  Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:SignEditorView />
         </GroupBox>
-        <GroupBox Style="{StaticResource ChestVisiblity}" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_chestname}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <TextBox Margin="2" Width="100px" Height="20px" MaxLength="100" MaxLines="1" Text="{Binding SelectedChest.Name}" />
-                    <Button Margin="2,0,0,0" Height="20" Width="32" Content="{StaticResource TB_CopyIcon}"
-                            ToolTip="{x:Static p:Language.menu_copyfirstitem}"
-                            Command="{Binding CopyChestItemCommand}"
-                            CommandParameter="{Binding SelectedChest.Items, Converter={StaticResource FirstOrNullConverter}}" />
-                    <Button Margin="2,0,0,0" Height="20" Width="32" Content="{StaticResource TB_PasteIcon}"
-                            ToolTip="{x:Static p:Language.menu_pasteall}"
-                            Command="{Binding PasteChestItemCommand}"
-                            CommandParameter="{Binding SelectedChest.Items}" />
-                    <Button Margin="2,0,0,0" Height="20" Width="32" Content="^"
-                            ToolTip="{x:Static p:Language.chest_max_stack}"
-                            Command="{Binding ChestItemSetToMaxStackCommand}"
-                            CommandParameter="{Binding SelectedChest.Items}" />
-                </StackPanel>
-                <!--<StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_chesttype}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox Width="150px"
-                      ItemsSource="{Binding Source={StaticResource ChestsCollection}}"
-                      SelectedValue="{Binding SelectedChest.ChestId, Mode=TwoWay}"
-                      SelectedValuePath="ChestId"
-                      DisplayMemberPath="Name"
-                      IsSynchronizedWithCurrentItem="False"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}">
-                    </ComboBox>
-                </StackPanel>-->
-                <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_chestcontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedChest.X" />
-                                <Binding Path="SelectedChest.Y" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <ListBox Grid.Row="3" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
-                  ItemsSource="{Binding SelectedChest.Items}"
-                  SelectionMode="Extended"
-                  ScrollViewer.CanContentScroll="True"
-                  VirtualizingStackPanel.IsVirtualizing="True"
-                  ItemTemplate="{StaticResource FastChestItem}">
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-                </ListBox>
-                <StackPanel Grid.Row="4">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_editselecteditem}" Margin="2" Foreground="{DynamicResource TextBrush}" />
-                    <ContentControl ContentTemplate="{StaticResource ChestItemTemplate}" Content="{Binding ElementName=ChestList, Path=SelectedItem}" />
-                </StackPanel>
-                <UniformGrid Columns="2" Grid.Row="5">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveChestCommand}" CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveChestCommand}" CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+        <GroupBox BorderThickness="0" Style="{StaticResource ChestVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <views:ChestEditorView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource TileFrameVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_itemframecontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedTileEntity.PosX" />
-                                <Binding Path="SelectedTileEntity.PosY" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource ItemFrameItemTemplate}"
-                    Content="{Binding Path=SelectedTileEntity}" />
-                <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:ItemFrameEditorView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource DeadCellsJarVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_deadcells_jar}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedTileEntity.PosX" />
-                                <Binding Path="SelectedTileEntity.PosY" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource ItemFrameItemTemplate}"
-                    Content="{Binding Path=SelectedTileEntity}" />
-                <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:DeadCellsJarEditorView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource PlateVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_platecontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedTileEntity.PosX" />
-                                <Binding Path="SelectedTileEntity.PosY" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource FoodItemTemplate}"  Content="{Binding Path=SelectedTileEntity}" />
-                <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:PlateEditorView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource MannequinVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_mannequin}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedTileEntity.PosX" />
-                                <Binding Path="SelectedTileEntity.PosY" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_head}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item0.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_body}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item1.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannBodyCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_legs}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item2.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannLegsCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="4">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc1}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item3.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="5">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc2}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item4.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="6">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc3}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item5.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="7">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc4}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item6.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="8">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc5}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item7.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-
-              <StackPanel Orientation="Horizontal" Grid.Row="9">
-          <TextBlock Text="{x:Static p:Language.specialtile_label_weapon}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                  SelectedValue="{Binding SelectedTileEntity.WeaponDye.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                  IsEditable="true"
-                  SelectedValuePath="Key"
-                  DisplayMemberPath="Value"
-                  HorizontalAlignment="Stretch"
-                  IsSynchronizedWithCurrentItem="False"
-                  Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                SelectedValue="{Binding SelectedTileEntity.Weapon.Prefix, Mode=TwoWay}"
-                IsEditable="true"
-                SelectedValuePath="Key"
-                DisplayMemberPath="Value"
-                HorizontalAlignment="Stretch"
-                IsSynchronizedWithCurrentItem="False"
-                Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                <ComboBox Width="150px"
-                ItemsSource="{Binding Source={StaticResource RackCollection}}"
-                SelectedValue="{Binding SelectedTileEntity.Weapon.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                IsEditable="true"
-                SelectedValuePath="Key"
-                DisplayMemberPath="Value"
-                IsSynchronizedWithCurrentItem="False"
-                HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-              </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="10">
-          <TextBlock Text="{x:Static p:Language.specialtile_label_mount}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-
-          <ComboBox Width="150px"
-                ItemsSource="{Binding Source={StaticResource MountCollection}}"
-                SelectedValue="{Binding SelectedTileEntity.Mount.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                IsEditable="true"
-                SelectedValuePath="Key"
-                DisplayMemberPath="Value"
-                IsSynchronizedWithCurrentItem="False"
-                HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-        </StackPanel>
-
-        <UniformGrid Columns="2" Grid.Row="11">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:MannequinEditorView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource HatRackVisibility}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_mannequinclothing}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedTileEntity.PosX" />
-                                <Binding Path="SelectedTileEntity.PosY" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_head}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item0.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_head}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item1.Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                          ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <UniformGrid Columns="2" Grid.Row="3">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:HatRackEditorView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource WeaponRackVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_weaponrack}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0:N}, {1:N})">
-                                <Binding Path="SelectedTileEntity.PosX" />
-                                <Binding Path="SelectedTileEntity.PosY" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1" DataContext="{Binding SelectedTileEntity}">
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding Prefix, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="False"
-                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource RackCollection}}"
-                          SelectedValue="{Binding NetId, Mode=TwoWay}"
-                          IsEditable="true"
-                          SelectedValuePath="Key"
-                          DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="False"
-                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:WeaponRackEditorView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource KiteVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_kite}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedTileEntity.PosX" />
-                                <Binding Path="SelectedTileEntity.PosY" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource KiteItemTemplate}"
-                        Content="{Binding Path=SelectedTileEntity}" />
-                <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:KiteEditorView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource CritterVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_critter}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedTileEntity.PosX" />
-                                <Binding Path="SelectedTileEntity.PosY" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource CritterItemTemplate}"
-                        Content="{Binding Path=SelectedTileEntity}" />
-                <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
-                        CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:CritterEditorView />
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource XmasVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_deco}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="({0:D}, {1:D})">
-                                <Binding Path="SelectedXmas.PosX" />
-                                <Binding Path="SelectedXmas.PosY" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_star}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
-                    <ComboBox Width="150px"
-                      ItemsSource="{StaticResource XmasStarCollection}"
-                      SelectedValue="{Binding SelectedXmasStar, Mode=TwoWay}"
-                      SelectedValuePath="Value"
-                      IsSynchronizedWithCurrentItem="False"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_garland}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
-                    <ComboBox Width="150px"
-                      ItemsSource="{StaticResource XmasGarlandCollection}"
-                      SelectedValue="{Binding SelectedXmasGarland, Mode=TwoWay}"
-                      SelectedValuePath="Value"
-                      IsSynchronizedWithCurrentItem="False"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_bulbs}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
-                    <ComboBox Width="150px"
-                      ItemsSource="{StaticResource XmasBulbCollection}"
-                      SelectedValue="{Binding SelectedXmasBulb, Mode=TwoWay}"
-                      SelectedValuePath="Value"
-                      IsSynchronizedWithCurrentItem="False"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="4">
-                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_lights}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
-                    <ComboBox Width="150px"
-                      ItemsSource="{StaticResource XmasLightCollection}"
-                      SelectedValue="{Binding SelectedXmasLight, Mode=TwoWay}"
-                      SelectedValuePath="Value"
-                      IsSynchronizedWithCurrentItem="False"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <UniformGrid Columns="2" Grid.Row="5">
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveXmasCommand}"
-                        CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveXmasCommand}"
-                        CommandParameter="{StaticResource True}" />
-                </UniformGrid>
-            </Grid>
+            <views:XmasEditorView />
         </GroupBox>
     </Grid>
 </UserControl>

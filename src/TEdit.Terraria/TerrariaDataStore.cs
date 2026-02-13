@@ -61,6 +61,7 @@ public class TerrariaDataStore
     public DataModel.SaveVersionManager? VersionManager { get; private set; }
     public BestiaryNpcConfiguration? Bestiary { get; private set; }
     public DataModel.MorphConfiguration? Morphs { get; private set; }
+    public DataModel.BackgroundStyleConfiguration? BackgroundStyles { get; private set; }
 
     // Bestiary-derived lookups
     public Dictionary<int, BestiaryNpcData> BestiaryNpcById { get; } = new();
@@ -207,6 +208,14 @@ public class TerrariaDataStore
         {
             using var stream = JsonDataLoader.GetDataStream("morphBiomes.json", dataPath);
             Morphs = DataModel.MorphConfiguration.Load(stream);
+        }
+        catch (FileNotFoundException) { }
+
+        // Load background styles
+        try
+        {
+            using var stream = JsonDataLoader.GetDataStream("backgroundStyles.json", dataPath);
+            BackgroundStyles = DataModel.BackgroundStyleConfiguration.Load(stream);
         }
         catch (FileNotFoundException) { }
 

@@ -31,6 +31,7 @@ using TEdit.Geometry;
 using TEdit.Common;
 using TEdit.UI;
 using TEdit.View.Popups;
+using TEdit.Terraria.DataModel;
 
 namespace TEdit.View;
 
@@ -454,10 +455,11 @@ public partial class WorldRenderXna : UserControl
             ErrorLogging.LogException(ex);
         }
 
-        // Initialize sprite views once all textures are queued
+        // Initialize sprite views and style previews once all textures are queued
         DispatcherHelper.CheckBeginInvokeOnUI(() =>
         {
             _wvm.InitSpriteViews();
+            GenerateStylePreviews();
             // Note: "Textures loaded" shown when DispatcherTimer finishes processing
         });
     }
@@ -1331,6 +1333,466 @@ public partial class WorldRenderXna : UserControl
         }
         _wvm.InitSpriteViews();
 
+    }
+
+    /// <summary>
+    /// Generate scaled texture previews for world properties comboboxes.
+    /// Called after textures are loaded.
+    /// </summary>
+    private void GenerateStylePreviews()
+    {
+        if (!_textureDictionary.Valid) return;
+
+        try
+        {
+            // Tree Style mapping: value 0 -> Tree_Tops_0, values 1-5 -> Tree_Tops_6-10
+            int[] treeStyleTextureMap = { 0, 6, 7, 8, 9, 10 };
+
+            // Generate Tree Style previews
+            _wvm.TreeStylePreviews.Clear();
+            for (int style = 0; style <= 5; style++)
+            {
+                int textureIndex = treeStyleTextureMap[style];
+                var tex = (Texture2D)_textureDictionary.GetTreeTops(textureIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.TreeStylePreviews.Add(new StylePreviewItem
+                    {
+                        Value = style,
+                        DisplayName = $"Style {style}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Generate Tree Top previews (direct texture index mapping)
+            _wvm.TreeTopPreviews.Clear();
+            for (int i = 0; i <= 21; i++)
+            {
+                var tex = (Texture2D)_textureDictionary.GetTreeTops(i);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.TreeTopPreviews.Add(new StylePreviewItem
+                    {
+                        Value = i,
+                        DisplayName = $"{i}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Forest BG: Values 0-13, 31, 51, 71-73 mapped to Background_X textures
+            // Mapping based on Terraria's SetForestBGSet - using representative texture for each style
+            _wvm.ForestBgPreviews.Clear();
+            var forestBgMapping = new (int value, int textureIndex)[]
+            {
+                (0, 9),    // Default: treeSet[0] = 9
+                (1, 50),   // treeSet[0] = 50
+                (2, 53),   // treeSet[0] = 53
+                (3, 91),   // treeSet[0] = 91
+                (4, 93),   // mountainSet[0] = 93 (no tree)
+                (5, 93),   // mountainSet[0] = 93
+                (6, 173),  // treeSet[0] = 173
+                (7, 178),  // treeSet[0] = 178
+                (8, 184),  // treeSet[0] = 184
+                (9, 279),  // treeSet[0] = 279
+                (10, 282), // treeSet[0] = 282
+                (11, 330), // treeSet[0] = 330
+                (12, 335), // treeSet[0] = 335
+                (13, 343), // treeSet[0] = 343
+                (31, 91),  // treeSet[0] = 91
+                (51, 93),  // mountainSet[0] = 93
+                (71, 178), // treeSet[0] = 178
+                (72, 178), // treeSet[0] = 178
+                (73, 178), // treeSet[0] = 178
+            };
+            foreach (var (val, texIndex) in forestBgMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.ForestBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Snow BG: Values with correct texture mappings from Terraria's setBG (byte property)
+            _wvm.SnowBgPreviews.Clear();
+            var snowBgMapping = new (int value, int textureIndex)[]
+            {
+                (0, 37),   // Default: snowBG = {37, 38, 39}
+                (1, 97),   // snowBG = {97, 96, 95}
+                (2, 98),   // snowMntBG = {98, 99}
+                (3, 98),   // snowMntBG = {98, 100}
+                (4, 98),   // snowMntBG = {98, 101}
+                (5, 258),  // snowBG = {258, 259, 260}
+                (6, 263),  // snowBG = {263, 264, 265}
+                (7, 267),  // snowBG = {267, 266, 268}
+                (8, 299),  // snowBG = {299, 298, -1}
+                (21, 95),  // snowBG = {95, 96, 97}
+                (22, 37),  // snowBG = {37, 38, 39}
+                (31, 95),  // snowBG = {95, 96, 97}
+                (32, 37),  // snowBG = {37, 38, 39}
+                (41, 95),  // snowBG = {95, 96, 97}
+                (42, 37),  // snowBG = {37, 38, 39}
+            };
+            foreach (var (val, texIndex) in snowBgMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.SnowBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Jungle BG: Values 0-6 with texture mappings from Terraria's setBG (byte property)
+            _wvm.JungleBgPreviews.Clear();
+            var jungleBgMapping = new (int value, int textureIndex)[]
+            {
+                (0, 15),   // jungleBG = {15, 16, 17}
+                (1, 59),   // jungleBG = {59, 60, 61}
+                (2, 222),  // jungleBG = {222, 223, 224}
+                (3, 237),  // jungleBG = {237, 238, 239}
+                (4, 284),  // jungleBG = {284, 285, 286}
+                (5, 271),  // jungleBG = {271, 272, 273}
+                (6, 302),  // jungleBG = {302, 301, 300}
+            };
+            foreach (var (val, texIndex) in jungleBgMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.JungleBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Corruption BG: Values 0-4, 51-52 with texture mappings from Terraria's setBG (byte property)
+            _wvm.CorruptionBgPreviews.Clear();
+            var corruptionBgMapping = new (int value, int textureIndex)[]
+            {
+                (0, 12),   // corruptBG = {12, 13, 14}
+                (1, 56),   // corruptBG = {56, 57, 58}
+                (2, 211),  // corruptBG = {211, 212, 213}
+                (3, 225),  // corruptBG = {225, 226, 227}
+                (4, 240),  // corruptBG = {240, 241, 242}
+                (51, 324), // corruptBG = {324, 323, 322}
+                (52, 324), // corruptBG = {324, 226, 322}
+            };
+            foreach (var (val, texIndex) in corruptionBgMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.CorruptionBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Crimson BG: Values 0-6 with texture mappings from Terraria's setBG (byte property)
+            _wvm.CrimsonBgPreviews.Clear();
+            var crimsonBgMapping = new (int value, int textureIndex)[]
+            {
+                (0, 43),   // crimsonBG = {43, 44, 45}
+                (1, 105),  // crimsonBG = {105, 106, 107}
+                (2, 174),  // crimsonBG = {174, -1, 175}
+                (3, 214),  // crimsonBG = {214, 215, 216}
+                (4, 229),  // crimsonBG = {-1, 229, 230}
+                (5, 255),  // crimsonBG = {255, 256, 257}
+                (6, 339),  // crimsonBG = {339, 338, 337}
+            };
+            foreach (var (val, texIndex) in crimsonBgMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.CrimsonBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Hallow BG: Values 0-5 with texture mappings from Terraria's setBG (byte property)
+            _wvm.HallowBgPreviews.Clear();
+            var hallowBgMapping = new (int value, int textureIndex)[]
+            {
+                (0, 29),   // hallowBG = {29, 30, 31}
+                (1, 102),  // hallowBG = {102, 103, 104}
+                (2, 219),  // hallowBG = {219, 220, 221}
+                (3, 243),  // hallowBG = {243, 244, 245}
+                (4, 261),  // hallowBG = {-1, 261, 262}
+                (5, 327),  // hallowBG = {327, 326, 325}
+            };
+            foreach (var (val, texIndex) in hallowBgMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.HallowBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Desert BG: Values 0-4, 51-53 with texture mappings from Terraria's setBG (byte property)
+            _wvm.DesertBgPreviews.Clear();
+            var desertBgMapping = new (int value, int textureIndex)[]
+            {
+                (0, 21),   // desertBG Pure = {21, 20, -1}
+                (1, 108),  // desertBG Pure = {108, 109, -1}
+                (2, 207),  // desertBG Pure = {207, 208, -1}
+                (3, 217),  // desertBG Pure = {217, 218, -1}
+                (4, 248),  // desertBG Pure = {248, 249, 250}
+                (51, 306), // desertBG Pure = {306, 303, -1} (multi-biome)
+                (52, 306), // desertBG Pure = {306, 304, -1} (multi-biome)
+                (53, 306), // desertBG Pure = {306, 305, -1} (multi-biome)
+            };
+            foreach (var (val, texIndex) in desertBgMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.DesertBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Ocean BG: Values 0-7 with texture mappings from Terraria's setBG (byte property)
+            _wvm.OceanBgPreviews.Clear();
+            var oceanBgMapping = new (int value, int textureIndex)[]
+            {
+                (0, 28),   // oceanBG = 28
+                (1, 110),  // oceanBG = 110
+                (2, 111),  // oceanBG = 111
+                (3, 209),  // oceanBG = 209
+                (4, 210),  // oceanBG = 210
+                (5, 283),  // oceanBG = 283
+                (6, 332),  // oceanBG = 332
+                (7, 340),  // oceanBG = 340
+            };
+            foreach (var (val, texIndex) in oceanBgMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.OceanBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Mushroom BG: Values 0-4 with texture mappings from Terraria's setBG (byte property)
+            _wvm.MushroomBgPreviews.Clear();
+            var mushroomBgMapping = new (int value, int textureIndex)[]
+            {
+                (0, 46),   // mushroomBG = {46, 47, 48}
+                (1, 231),  // mushroomBG = {231, 232, 233}
+                (2, 234),  // mushroomBG = {234, 235, 236}
+                (3, 287),  // mushroomBG = {287, 288, 289}
+                (4, 321),  // mushroomBG = {321, 320, 319}
+            };
+            foreach (var (val, texIndex) in mushroomBgMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.MushroomBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Underworld BG: 0-2 (uses Underworld textures, byte property)
+            _wvm.UnderworldBgPreviews.Clear();
+            for (int i = 0; i <= 2; i++)
+            {
+                var tex = _textureDictionary.GetUnderworld(i);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.UnderworldBgPreviews.Add(new StylePreviewItem
+                    {
+                        Value = (byte)i,
+                        DisplayName = $"{i}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Cave Style previews: 0-7 - mapped from Main.cs undergroundBackground switch
+            // caveBackStyle + 3 = undergroundBackground index, textures from tempBack[0]
+            _wvm.CaveStylePreviews.Clear();
+            var caveStyleMapping = new (int value, int textureIndex)[]
+            {
+                (0, 66),   // undergroundBackground 3: tempBack[0] = 66
+                (1, 70),   // undergroundBackground 4: tempBack[0] = 70
+                (2, 73),   // undergroundBackground 5: tempBack[0] = 73
+                (3, 77),   // undergroundBackground 6: tempBack[0] = 77
+                (4, 77),   // undergroundBackground 7: tempBack[0] = 77
+                (5, 83),   // undergroundBackground 8: tempBack[0] = 83
+                (6, 83),   // undergroundBackground 9: tempBack[0] = 83
+                (7, 121),  // undergroundBackground 10: tempBack[0] = 121
+            };
+            foreach (var (val, texIndex) in caveStyleMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.CaveStylePreviews.Add(new StylePreviewItem
+                    {
+                        Value = val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Ice Back Style: 0-3 (deep ice cave backgrounds from Main.cs iceBackStyle switch)
+            _wvm.IceBackStylePreviews.Clear();
+            var iceBackMapping = new (int value, int textureIndex)[]
+            {
+                (0, 33),   // tempBack[1] = 33, tempBack[2] = 34
+                (1, 160),  // tempBack[1] = 160, tempBack[2] = 161
+                (2, 162),  // tempBack[1] = 162, tempBack[2] = 163
+                (3, 162),  // tempBack[1] = 162, tempBack[2] = 163 (same as 2)
+            };
+            foreach (var (val, texIndex) in iceBackMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.IceBackStylePreviews.Add(new StylePreviewItem
+                    {
+                        Value = val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Jungle Back Style: 0-1 (deep jungle cave backgrounds from Main.cs jungleBackStyle)
+            // jungleBackStyle 0: {153, 147, 148, 149}, jungleBackStyle 1: {146, 154, 155, 156}
+            _wvm.JungleBackStylePreviews.Clear();
+            var jungleBackMapping = new (int value, int textureIndex)[]
+            {
+                (0, 153),  // tempBack[0] = 153
+                (1, 146),  // tempBack[0] = 146
+            };
+            foreach (var (val, texIndex) in jungleBackMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.JungleBackStylePreviews.Add(new StylePreviewItem
+                    {
+                        Value = val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            // Hell Back Style: 0-2 (underworld/hell backgrounds from Main.cs hellBackStyle)
+            // hellBackStyle 0: tempBack[5] = 125, hellBackStyle 1: = 126, hellBackStyle 2: = 127
+            _wvm.HellBackStylePreviews.Clear();
+            var hellBackMapping = new (int value, int textureIndex)[]
+            {
+                (0, 125),  // tempBack[5] = 125
+                (1, 126),  // tempBack[5] = 126
+                (2, 127),  // tempBack[5] = 127
+            };
+            foreach (var (val, texIndex) in hellBackMapping)
+            {
+                var tex = _textureDictionary.GetBackground(texIndex);
+                if (tex != null && tex != _textureDictionary.DefaultTexture)
+                {
+                    var preview = CreateScaledPreview(tex, 128);
+                    _wvm.HellBackStylePreviews.Add(new StylePreviewItem
+                    {
+                        Value = val,
+                        DisplayName = $"{val}",
+                        Preview = preview
+                    });
+                }
+            }
+
+            ErrorLogging.Log($"GenerateStylePreviews complete: {_wvm.TreeStylePreviews.Count} tree styles, {_wvm.ForestBgPreviews.Count} forest BG");
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+    }
+
+    /// <summary>
+    /// Create a scaled preview bitmap from an XNA texture.
+    /// Preserves aspect ratio, scaling to fit within maxDimension.
+    /// </summary>
+    private WriteableBitmap CreateScaledPreview(Texture2D texture, int maxDimension)
+    {
+        if (texture == null || texture == _textureDictionary.DefaultTexture)
+            return null;
+
+        var bitmap = texture.Texture2DToWriteableBitmap();
+
+        // Calculate scale to fit within maxDimension while preserving aspect ratio
+        double scale = Math.Min(
+            (double)maxDimension / bitmap.PixelWidth,
+            (double)maxDimension / bitmap.PixelHeight);
+
+        if (scale >= 1.0) return bitmap; // No scaling needed if already smaller
+
+        int newWidth = Math.Max(1, (int)(bitmap.PixelWidth * scale));
+        int newHeight = Math.Max(1, (int)(bitmap.PixelHeight * scale));
+
+        return bitmap.Resize(newWidth, newHeight, WriteableBitmapExtensions.Interpolation.NearestNeighbor);
     }
 
 

@@ -612,6 +612,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="specialtile_label_chesttype" xml:space="preserve">
     <value>Chest Type</value>
   </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>Critter</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>Item Flask</value>
+  </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Edit Selected Item</value>
   </data>
@@ -620,6 +626,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
     <value>Item Frame Contents</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>Kite</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
     <value>Legs</value>
@@ -648,15 +657,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Weapon Rack Item</value>
   </data>
-  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
-    <value>Item Flask</value>
-  </data>
-  <data name="specialtile_label_critter" xml:space="preserve">
-    <value>Critter</value>
-  </data>
-  <data name="specialtile_label_kite" xml:space="preserve">
-    <value>Kite</value>
-  </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>Bulbs</value>
   </data>
@@ -674,6 +674,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree.</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>Biome:</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Filter</value>

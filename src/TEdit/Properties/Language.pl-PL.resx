@@ -612,6 +612,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="specialtile_label_chesttype" xml:space="preserve">
     <value>Typ Skrzyni</value>
   </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>Kreatura</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>Przedmiot Kolba</value>
+  </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Edytuj Zaznaczony Przedmiot</value>
   </data>
@@ -620,6 +626,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
     <value>Obramówka Przedmiotów</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>Drapieżnik</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
     <value>Nogi</value>
@@ -648,15 +657,6 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Stelaż Na Broń</value>
   </data>
-  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
-    <value>Przedmiot Kolba</value>
-  </data>
-  <data name="specialtile_label_critter" xml:space="preserve">
-    <value>Kreatura</value>
-  </data>
-  <data name="specialtile_label_kite" xml:space="preserve">
-    <value>Drapieżnik</value>
-  </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>Bulba</value>
   </data>
@@ -674,6 +674,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>Za pomocą Narzędzia Strzałki kliknij prawym przyciskiem myszy na znak, skrzynię, manekina, stojak na broń, ramkę na przedmioty lub choinkę.</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>Automatyczny</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>Biom:</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Filtruj</value>

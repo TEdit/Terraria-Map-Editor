@@ -612,6 +612,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="specialtile_label_chesttype" xml:space="preserve">
     <value>Truhenart</value>
   </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>Kreatur</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>Artikel Flasche</value>
+  </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Ausgewählten Gegenstand bearbeiten</value>
   </data>
@@ -620,6 +626,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
     <value>Item-Frame-Inhalte</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>Drachen</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
     <value>Beine</value>
@@ -648,15 +657,6 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Waffenregalgegenstand</value>
   </data>
-  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
-    <value>Artikel Flasche</value>
-  </data>
-  <data name="specialtile_label_critter" xml:space="preserve">
-    <value>Kreatur</value>
-  </data>
-  <data name="specialtile_label_kite" xml:space="preserve">
-    <value>Drachen</value>
-  </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>Glühbirnen</value>
   </data>
@@ -674,6 +674,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>Wähle das Pfeilwerkzeug aus und rechtsklicke auf einem Spruchschild, einer Schaufensterpuppe, einem Waffenregal, einem Item-Frame oder einem Weihnachtsbaum.</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>Automatisch</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>Biom:</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Filter</value>

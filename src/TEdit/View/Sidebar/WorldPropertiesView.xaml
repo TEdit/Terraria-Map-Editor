@@ -18,6 +18,18 @@
     <UserControl.Resources>
         <converters:ByteIntConverter x:Key="ByteIntConverter" />
         <converters:TeamIndexToNameConverter x:Key="TeamIndexToNameConverter" />
+        <!-- DataTemplate for style preview comboboxes (tree styles, backgrounds, caves) -->
+        <DataTemplate x:Key="StylePreviewItemTemplate">
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <Image Source="{Binding Preview}"
+                       MaxWidth="128" MaxHeight="64"
+                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                       VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <TextBlock Text="{Binding DisplayName}"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource TextBrush}"/>
+            </StackPanel>
+        </DataTemplate>
         <enum:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="0">None</enum:EnumItem>
             <enum:EnumItem Value="1">Goblin Invasion</enum:EnumItem>
@@ -711,12 +723,36 @@
         <DockPanel>
             <TextBlock Text="{x:Static p:Language.tool_wp_style_treestyles}" HorizontalAlignment="Right" />
         </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle0, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle1, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle2, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle3, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
-        </DockPanel>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="0:" VerticalAlignment="Center" Width="20"/>
+                <ComboBox MinWidth="150" ItemsSource="{Binding TreeStylePreviews}"
+                          SelectedValue="{Binding CurrentWorld.TreeStyle0, Mode=TwoWay}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="1:" VerticalAlignment="Center" Width="20"/>
+                <ComboBox MinWidth="150" ItemsSource="{Binding TreeStylePreviews}"
+                          SelectedValue="{Binding CurrentWorld.TreeStyle1, Mode=TwoWay}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="2:" VerticalAlignment="Center" Width="20"/>
+                <ComboBox MinWidth="150" ItemsSource="{Binding TreeStylePreviews}"
+                          SelectedValue="{Binding CurrentWorld.TreeStyle2, Mode=TwoWay}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="3:" VerticalAlignment="Center" Width="20"/>
+                <ComboBox MinWidth="150" ItemsSource="{Binding TreeStylePreviews}"
+                          SelectedValue="{Binding CurrentWorld.TreeStyle3, Mode=TwoWay}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+            </StackPanel>
+        </StackPanel>
         <Separator Grid.ColumnSpan="2" />
         <DockPanel>
             <TextBlock Text="{x:Static p:Language.tool_wp_style_cavex0}" HorizontalAlignment="Right" />
@@ -742,59 +778,139 @@
         <DockPanel>
             <TextBlock Text="{x:Static p:Language.tool_wp_style_cavestyles}" HorizontalAlignment="Right" />
         </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle0, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle1, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle2, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle3, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
-        </DockPanel>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="0:" VerticalAlignment="Center" Width="20"/>
+                <ComboBox MinWidth="150" ItemsSource="{Binding CaveStylePreviews}"
+                          SelectedValue="{Binding CurrentWorld.CaveBackStyle0, Mode=TwoWay}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="1:" VerticalAlignment="Center" Width="20"/>
+                <ComboBox MinWidth="150" ItemsSource="{Binding CaveStylePreviews}"
+                          SelectedValue="{Binding CurrentWorld.CaveBackStyle1, Mode=TwoWay}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="2:" VerticalAlignment="Center" Width="20"/>
+                <ComboBox MinWidth="150" ItemsSource="{Binding CaveStylePreviews}"
+                          SelectedValue="{Binding CurrentWorld.CaveBackStyle2, Mode=TwoWay}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="3:" VerticalAlignment="Center" Width="20"/>
+                <ComboBox MinWidth="150" ItemsSource="{Binding CaveStylePreviews}"
+                          SelectedValue="{Binding CurrentWorld.CaveBackStyle3, Mode=TwoWay}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+            </StackPanel>
+        </StackPanel>
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_deepice}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource IceBackStyleList}" SelectedValue="{Binding CurrentWorld.IceBackStyle, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding IceBackStylePreviews}"
+                  SelectedValue="{Binding CurrentWorld.IceBackStyle, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_deepjungle}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource JungleBackStyleList}" SelectedValue="{Binding CurrentWorld.JungleBackStyle, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding JungleBackStylePreviews}"
+                  SelectedValue="{Binding CurrentWorld.JungleBackStyle, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_hell}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource HellBackStyleList}" SelectedValue="{Binding CurrentWorld.HellBackStyle, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding HellBackStylePreviews}"
+                  SelectedValue="{Binding CurrentWorld.HellBackStyle, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_forest}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding ForestBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgTree, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_corrupt}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CorruptBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCorruption, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding CorruptionBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgCorruption, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_jungle}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource JungleBackStyleList}" SelectedValue="{Binding CurrentWorld.BgJungle, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding JungleBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgJungle, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_snow}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource SnowBGStyleList}" SelectedValue="{Binding CurrentWorld.BgSnow, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding SnowBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgSnow, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_hallow}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource HallowBGStyleList}" SelectedValue="{Binding CurrentWorld.BgHallow, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding HallowBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgHallow, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_crimson}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CrimsonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCrimson, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding CrimsonBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgCrimson, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_desert}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource DesertBGStyleList}" SelectedValue="{Binding CurrentWorld.BgDesert, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding DesertBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgDesert, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_ocean}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource OceanBGStyleList}" SelectedValue="{Binding CurrentWorld.BgOcean, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding OceanBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgOcean, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_mushroom}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource MushroomBGStyleList}" SelectedValue="{Binding CurrentWorld.MushroomBg, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding MushroomBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.MushroomBg, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_underworld}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource UnderworldBGStyleList}" SelectedValue="{Binding CurrentWorld.UnderworldBg, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding UnderworldBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.UnderworldBg, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_tree2}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree2, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding ForestBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgTree2, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_tree3}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree3, Mode=TwoWay}" SelectedValuePath="Value" />
-        <TextBlock Text="{x:Static p:Language.tool_wp_bg_tree2}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree2, Mode=TwoWay}" SelectedValuePath="Value" />
-        <TextBlock Text="{x:Static p:Language.tool_wp_bg_tree3}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree3, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding ForestBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgTree3, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_bg_tree4}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree4, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding ForestBgPreviews}"
+                  SelectedValue="{Binding CurrentWorld.BgTree4, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_style_treetop_1}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.TreeTop1, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding TreeTopPreviews}"
+                  SelectedValue="{Binding CurrentWorld.TreeTop1, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_style_treetop_2}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.TreeTop2, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding TreeTopPreviews}"
+                  SelectedValue="{Binding CurrentWorld.TreeTop2, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_style_treetop_3}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.TreeTop3, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding TreeTopPreviews}"
+                  SelectedValue="{Binding CurrentWorld.TreeTop3, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
         <TextBlock Text="{x:Static p:Language.tool_wp_style_treetop_4}" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.TreeTop4, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+        <ComboBox MinWidth="150" HorizontalAlignment="Left" ItemsSource="{Binding TreeTopPreviews}"
+                  SelectedValue="{Binding CurrentWorld.TreeTop4, Mode=TwoWay}"
+                  SelectedValuePath="Value"
+                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
 
     </tedit:AutoGrid>
 </UserControl>

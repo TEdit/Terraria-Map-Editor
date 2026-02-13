@@ -108,8 +108,23 @@ public partial class WorldViewModel : ReactiveObject
     private int _lastUserSavedUndoIndex = 0;
     private bool _hasUnsavedUserPropertyChanges = false;
 
-
-
+    // Style preview collections for world properties comboboxes
+    public ObservableCollection<StylePreviewItem> TreeStylePreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> TreeTopPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> ForestBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> SnowBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> JungleBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> CorruptionBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> CrimsonBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> HallowBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> DesertBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> OceanBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> MushroomBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> UnderworldBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> CaveStylePreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> IceBackStylePreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> JungleBackStylePreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> HellBackStylePreviews { get; } = new();
 
     static WorldViewModel()
     {

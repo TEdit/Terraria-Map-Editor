@@ -34,11 +34,11 @@
             <!-- Biome variant selector (only shown for tiles with biome variants) -->
             <StackPanel Orientation="Horizontal" Margin="2"
                         Visibility="{Binding HasBiomeVariants, Converter={StaticResource BoolToVisibilityConverter}}">
-                <TextBlock Text="Biome:" Margin="3,2" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static p:Language.sprite_biome_label}" Margin="3,2" VerticalAlignment="Center"/>
                 <ComboBox ItemsSource="{Binding BiomeVariantNames}"
                           SelectedIndex="{Binding SelectedBiomeVariantIndex, Mode=TwoWay}"
                           MinWidth="100" Margin="2"/>
-                <CheckBox Content="Auto" IsChecked="{Binding IsBiomeAutoMode, Mode=TwoWay}"
+                <CheckBox Content="{x:Static p:Language.sprite_biome_auto}" IsChecked="{Binding IsBiomeAutoMode, Mode=TwoWay}"
                           VerticalAlignment="Center" Margin="5,0"/>
             </StackPanel>
             <ListBox x:Name="s" DockPanel.Dock="Bottom" Height="300"

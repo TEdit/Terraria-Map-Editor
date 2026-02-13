@@ -612,6 +612,12 @@
   <data name="specialtile_label_chesttype" xml:space="preserve">
     <value>箱子类型</value>
   </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>小动物</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>物品罐</value>
+  </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>编辑选择物品</value>
   </data>
@@ -620,6 +626,9 @@
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
     <value>物品框内容</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>风筝</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
     <value>腿部</value>
@@ -648,15 +657,6 @@
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>武器架物品</value>
   </data>
-  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
-    <value>物品罐</value>
-  </data>
-  <data name="specialtile_label_critter" xml:space="preserve">
-    <value>小动物</value>
-  </data>
-  <data name="specialtile_label_kite" xml:space="preserve">
-    <value>风筝</value>
-  </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>灯泡</value>
   </data>
@@ -674,6 +674,12 @@
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>使用“箭头工具”右键单击标牌，箱子，人体模型，武器架，物品框架或圣诞树。</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>自动</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>生物群系：</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>筛选</value>
