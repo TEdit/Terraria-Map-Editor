@@ -4931,7 +4931,7 @@ public partial class WorldRenderXna : UserControl
             if (WorldConfiguration.NpcById.TryGetValue(npcId, out var npcDataForOffset))
                 tileOffsetY = npcDataForOffset.TileOffsetY;
 
-            // Position: bottom-left of sprite at top of tile
+            // Position: bottom of sprite aligns with bottom of home tile
             float scaledHeight = sourceRect.Height * scale;
             Vector2 position = new Vector2(
                 (_scrollPosition.X + npc.Home.X) * _zoom,
@@ -4978,7 +4978,7 @@ public partial class WorldRenderXna : UserControl
             // Get tile offset from NPC data (default 0)
             int tileOffsetY = hasNpcData ? npcData.TileOffsetY : 0;
 
-            // Position: bottom-left of sprite at top of tile
+            // Position: bottom of sprite aligns with bottom of home tile
             float scaledHeight = sourceRect.Height * scale;
             Vector2 position = new Vector2(
                 (_scrollPosition.X + npc.Home.X) * _zoom,

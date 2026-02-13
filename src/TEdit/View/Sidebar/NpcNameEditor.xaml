@@ -6,6 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:converters="clr-namespace:TEdit.Converters"
+             xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
     <UserControl.Resources>
@@ -13,8 +14,19 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
     <Grid>
-        <ListBox MinHeight="100" ItemsSource="{Binding AllNpcsView}"
-                 HorizontalContentAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{x:Static p:Language.tool_npc_hint}"
+                   Margin="4" Opacity="0.7" TextWrapping="Wrap" />
+        <ListBox Grid.Row="1" MinHeight="100" ItemsSource="{Binding AllNpcsView}"
+                 Grid.IsSharedSizeScope="True">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListBox.ItemContainerStyle>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding NpcSelectCommand}"
@@ -25,10 +37,10 @@
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="24" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="ButtonCol" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="ImageCol" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="LabelCol" />
                         </Grid.ColumnDefinitions>
 
                         <!-- Add button: visible when NPC is NOT on the map -->
@@ -64,30 +76,34 @@
                             </Button.Style>
                         </Button>
 
-                        <!-- NPC preview image -->
-                        <Image Grid.Column="1"
-                               Source="{Binding SpriteId, Converter={StaticResource NpcIdToPreviewConverter}}"
-                               MaxWidth="32" MaxHeight="32"
-                               Stretch="Uniform"
-                               RenderOptions.BitmapScalingMode="NearestNeighbor"
-                               Margin="2"
-                               VerticalAlignment="Center">
-                            <Image.Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="Opacity" Value="0.35" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsOnMap}" Value="True">
-                                            <Setter Property="Opacity" Value="1.0" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Image.Style>
-                        </Image>
+                        <!-- NPC preview image: natural size, scale down only if too large -->
+                        <Viewbox Grid.Column="1"
+                                 Width="32" Height="32"
+                                 Stretch="Uniform"
+                                 StretchDirection="DownOnly"
+                                 Margin="2"
+                                 VerticalAlignment="Center">
+                            <Image Source="{Binding SpriteId, Converter={StaticResource NpcIdToPreviewConverter}}"
+                                   Stretch="None"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Opacity" Value="0.35" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsOnMap}" Value="True">
+                                                <Setter Property="Opacity" Value="1.0" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Viewbox>
 
                         <!-- Editable display name (only when on map) -->
                         <TextBox Grid.Column="2"
                                  Text="{Binding WorldNpc.DisplayName, UpdateSourceTrigger=PropertyChanged}"
-                                 MinWidth="120" Margin="2,0"
+                                 MaxWidth="150" Margin="2,0"
+                                 HorizontalAlignment="Stretch"
                                  VerticalAlignment="Center"
                                  IsEnabled="{Binding IsOnMap}"
                                  Visibility="{Binding IsOnMap, Converter={StaticResource BoolToVis}}" />
@@ -109,11 +125,11 @@
                             </TextBlock.Style>
                         </TextBlock>
 
-                        <!-- NPC type name -->
+                        <!-- NPC type name, right-aligned -->
                         <TextBlock Grid.Column="3"
                                    Text="{Binding DefaultName}"
                                    HorizontalAlignment="Right"
-                                   Margin="4,0"
+                                   Margin="8,0,4,0"
                                    VerticalAlignment="Center"
                                    Visibility="{Binding IsOnMap, Converter={StaticResource BoolToVis}}" />
                     </Grid>

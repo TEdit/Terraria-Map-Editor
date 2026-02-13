@@ -1073,6 +1073,9 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="tool_npc_add" xml:space="preserve">
     <value>Adicionar NPC</value>
   </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>Clique no NPC e defina sua localização com o mouse</value>
+  </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>Nome</value>
   </data>

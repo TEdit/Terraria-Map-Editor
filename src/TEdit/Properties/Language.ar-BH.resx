@@ -1073,6 +1073,9 @@
   <data name="tool_npc_add" xml:space="preserve">
     <value>إضافة NPC</value>
   </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>انقر على الشخصية غير القابلة للعب وحدد موقعها باستخدام الفأرة</value>
+  </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>اسم</value>
   </data>

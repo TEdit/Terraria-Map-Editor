@@ -393,7 +393,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Name</value>
   </data>
   <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
-    <value>Deaktivieren Sie „Alle“.</value>
+    <value>Alle abwählen</value>
   </data>
   <data name="menu_filter_title" xml:space="preserve">
     <value>Erweiterter Filter</value>
@@ -1072,6 +1072,9 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="tool_npc_add" xml:space="preserve">
     <value>NPC hinzufügen</value>
+  </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>Klicke auf den NPC und setze seinen Standort mit der Maus</value>
   </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>Name</value>

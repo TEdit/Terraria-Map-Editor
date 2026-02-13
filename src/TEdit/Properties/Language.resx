@@ -903,6 +903,23 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Yellow Team Spawn</value>
   </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit can send anonymous error reports to help improve stability.
+
+What is collected:
+  • Error details (exception type and stack trace)
+  • App version and OS version
+
+What is NOT collected:
+  • No personal information or file paths
+  • No usage tracking or fingerprinting
+  • All paths are obfuscated before sending
+
+Would you like to enable error reporting?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>TEdit Error Reporting</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analyze</value>
   </data>
@@ -1058,6 +1075,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>Click NPC and set their location with mouse</value>
   </data>
   <data name="tool_paint_actuator" xml:space="preserve">
     <value>Is Actuator</value>
@@ -1760,22 +1780,5 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
-  </data>
-  <data name="telemetry_prompt_title" xml:space="preserve">
-    <value>TEdit Error Reporting</value>
-  </data>
-  <data name="telemetry_prompt_message" xml:space="preserve">
-    <value>TEdit can send anonymous error reports to help improve stability.
-
-What is collected:
-  &#x2022; Error details (exception type and stack trace)
-  &#x2022; App version and OS version
-
-What is NOT collected:
-  &#x2022; No personal information or file paths
-  &#x2022; No usage tracking or fingerprinting
-  &#x2022; All paths are obfuscated before sending
-
-Would you like to enable error reporting?</value>
   </data>
 </root>

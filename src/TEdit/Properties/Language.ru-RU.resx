@@ -1073,6 +1073,9 @@
   <data name="tool_npc_add" xml:space="preserve">
     <value>Добавить НИПа</value>
   </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>Щелкните по NPC и установите его местоположение с помощью мыши</value>
+  </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>Имя</value>
   </data>

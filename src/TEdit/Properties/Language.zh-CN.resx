@@ -628,7 +628,7 @@
     <value>使用纹理采样颜色渲染瓷砖（需要重启）</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
-    <value>搜索设置......</value>
+    <value>搜索设置...</value>
   </data>
   <data name="settings_show_actuators" xml:space="preserve">
     <value>表演执行器</value>
@@ -1072,6 +1072,9 @@
   </data>
   <data name="tool_npc_add" xml:space="preserve">
     <value>添加NPC</value>
+  </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>点击 NPC 并使用鼠标设置他们的位置</value>
   </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>名字</value>

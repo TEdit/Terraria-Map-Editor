@@ -2872,6 +2872,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click NPC and set their location with mouse.
+        /// </summary>
+        public static string tool_npc_hint {
+            get {
+                return ResourceManager.GetString("tool_npc_hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string tool_npc_name {

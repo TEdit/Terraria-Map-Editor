@@ -1073,6 +1073,9 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="tool_npc_add" xml:space="preserve">
     <value>Dodaj NPC</value>
   </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>Kliknij NPC i ustaw jego lokalizację za pomocą myszy</value>
+  </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>Imie</value>
   </data>

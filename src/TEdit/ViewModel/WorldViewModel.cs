@@ -169,6 +169,9 @@ public partial class WorldViewModel : ReactiveObject
         // 3 minute save timer
         _saveTimer.Interval = 3 * 60 * 1000;
 
+        // Populate NPC list from static config (world-specific state synced on load)
+        RefreshAllNpcs();
+
         // Test File Association and command line
         if (Application.Current.Properties["OpenFile"] != null)
         {

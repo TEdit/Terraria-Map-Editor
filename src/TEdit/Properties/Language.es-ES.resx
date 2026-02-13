@@ -841,7 +841,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Estrella</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
-    <value>Con la herramienta Flecha haz clic derecho en un letrero, cofre, maniquí, estante de armas, marco o árbol de Navidad para editarlos</value>
+    <value>Con la herramienta de flecha, haz clic derecho en un cartel, cofre, maniquí, estante de armas, marco de objetos o árbol de Navidad.</value>
   </data>
   <data name="sprite_biome_auto" xml:space="preserve">
     <value>Automático</value>
@@ -1073,6 +1073,9 @@ Qué NO se recopila:
   <data name="tool_npc_add" xml:space="preserve">
     <value>Añadir PNJ</value>
   </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>Haz clic en el NPC y establece su ubicación con el ratón</value>
+  </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>Nombre</value>
   </data>
@@ -1101,10 +1104,10 @@ Qué NO se recopila:
     <value>Agregue la caja de conexiones de intersección orientada hacia la izquierda.</value>
   </data>
   <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>Normal</value>
+    <value>Agregar caja de unión predeterminada.</value>
   </data>
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
-    <value>Hacia la derecha</value>
+    <value>Agregar caja de unión de intersección orientada a la derecha.</value>
   </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>Máscara</value>
@@ -1119,13 +1122,13 @@ Qué NO se recopila:
     <value>Bloque</value>
   </data>
   <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
-    <value>Agregar potenciador a la pista existente, úsalo con Borrador para eliminar solo el potenciador</value>
+    <value>Agregar potenciador a la pista existente, úsalo con Borrador para eliminar solo el potenciador.</value>
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
-    <value>Utiliza Martillo para modificar los extremos de las vías, las intersecciones y la dirección del potenciador</value>
+    <value>Utiliza Martillo para modificar los extremos de las vías, las intersecciones y la dirección del potenciador.</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
-    <value>Agregar placa de presión a la pista existente, úsalo con el Borrador para quitar solo la placa</value>
+    <value>Agregar placa de presión a la pista existente, úsalo con el Borrador para quitar solo la placa.</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Pared</value>
