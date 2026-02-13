@@ -1,5 +1,6 @@
 [
   {
+    "id": 0,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],

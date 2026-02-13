@@ -1,5 +1,5 @@
 [
-  { "name": "Sky", "color": "#00000000" },
+  { "id": 0, "name": "Sky", "color": "#00000000" },
   { "id": 1, "name": "Stone Wall", "color": "#353535FF" },
   { "id": 2, "name": "Dirt Wall (natural)", "color": "#573C30FF" },
   { "id": 3, "name": "Ebonstone Wall (natural)", "color": "#2F2935FF" },

@@ -1,7 +1,5 @@
 [
-  {
-    "name": "None"
-  },
+  { "id": 0, "name": "None", "color": "#FFFFFF00" },
   { "id": 1, "name": "Red", "color": "#FF0000FF" },
   { "id": 2, "name": "Orange", "color": "#FF7F00FF" },
   { "id": 3, "name": "Yellow", "color": "#FFFF00FF" },
