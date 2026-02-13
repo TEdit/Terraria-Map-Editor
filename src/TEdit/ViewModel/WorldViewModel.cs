@@ -255,7 +255,7 @@ public partial class WorldViewModel : ReactiveObject
                 Offset = new Geometry.Vector2Short(-10, 0) // Jar renders with -10px X offset
             };
         }
-        // Tree tiles (tile 5) - identify tree tops and branches using TileDrawing.cs logic:
+        // Tree tiles (tile 5) - identify tree tops and branches logic:
         // frameY >= 198 AND frameX >= 22 triggers tree foliage rendering
         // frameX == 22: tree top (uses Tree_Tops texture)
         // frameX == 44: left branch (uses Tree_Branches texture)
@@ -362,6 +362,100 @@ public partial class WorldViewModel : ReactiveObject
                     Offset = new Geometry.Vector2Short(-2, -2) // Adjust for 20x20 frame vs 16x16 tile
                 };
             }
+        }
+        // Gem Trees (583-589), Vanity Trees (596, 616), Ash Tree (634)
+        // Same foliage detection as regular trees but with fixed tree style indices
+        else if (tile.Id >= 583 && tile.Id <= 589)
+        {
+            // Gem trees: style = tileId - 583 + 22 (indices 22-28)
+            int treeStyle = tile.Id - 583 + 22;
+            ConfigureTreePreview(spriteItem, frame.UV.X, frame.UV.Y, treeStyle);
+        }
+        else if (tile.Id == 596 || tile.Id == 616)
+        {
+            // Vanity trees: 596 Sakura = 29, 616 Willow = 30
+            int treeStyle = tile.Id == 596 ? 29 : 30;
+            ConfigureTreePreview(spriteItem, frame.UV.X, frame.UV.Y, treeStyle);
+        }
+        else if (tile.Id == 634)
+        {
+            // Ash tree: style = 31
+            ConfigureTreePreview(spriteItem, frame.UV.X, frame.UV.Y, 31);
+        }
+    }
+
+    private static void ConfigureTreePreview(SpriteItem spriteItem, int frameX, int frameY, int treeStyle)
+    {
+        // Tree foliage: frameY >= 198 AND frameX >= 22
+        if (frameY >= 198 && frameX >= 22)
+        {
+            // Calculate variant index from frameY (0, 1, or 2)
+            int variant = (frameY - 198) / 22;
+
+            if (frameX == 22)
+            {
+                // Tree top - use Tree_Tops texture
+                // Dimensions vary by tree style:
+                // - Gem trees (22-28), Ash tree (31): 116x96
+                // - Vanity trees (29-30): 118x96
+                // - Default (normal trees): 80x80
+                int topWidth, topHeight;
+                if (treeStyle >= 22 && treeStyle <= 28 || treeStyle == 31)
+                {
+                    topWidth = 116;
+                    topHeight = 96;
+                }
+                else if (treeStyle == 29 || treeStyle == 30)
+                {
+                    topWidth = 118;
+                    topHeight = 96;
+                }
+                else
+                {
+                    topWidth = 80;
+                    topHeight = 80;
+                }
+
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.TreeTops,
+                    TextureStyle = treeStyle,
+                    SourceRect = new System.Drawing.Rectangle(variant * (topWidth + 2), 0, topWidth, topHeight),
+                    Offset = new Geometry.Vector2Short((short)(-topWidth / 2), (short)(-topHeight + 16))
+                };
+            }
+            else if (frameX == 44)
+            {
+                // Left branch - use Tree_Branches texture
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.TreeBranch,
+                    TextureStyle = treeStyle,
+                    SourceRect = new System.Drawing.Rectangle(0, variant * 42, 40, 40),
+                    Offset = new Geometry.Vector2Short(-24, -12)
+                };
+            }
+            else if (frameX == 66)
+            {
+                // Right branch - use Tree_Branches texture
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.TreeBranch,
+                    TextureStyle = treeStyle,
+                    SourceRect = new System.Drawing.Rectangle(42, variant * 42, 40, 40),
+                    Offset = new Geometry.Vector2Short(0, -12)
+                };
+            }
+        }
+        else
+        {
+            // Tree trunk tiles - use the tile's own texture
+            spriteItem.PreviewConfig = new PreviewConfig
+            {
+                TextureType = PreviewTextureType.Tile,
+                SourceRect = new System.Drawing.Rectangle(frameX, frameY, 20, 20),
+                Offset = new Geometry.Vector2Short(-2, -2)
+            };
         }
     }
 

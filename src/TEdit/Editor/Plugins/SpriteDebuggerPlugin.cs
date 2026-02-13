@@ -33,8 +33,16 @@ public sealed class SpriteDebuggerPlugin : BasePlugin
                  spriteTilesY = sprite.SizeTiles[0].Y;
             }
 
-            // loop to next column
-            if (y + spriteTilesY > _wvm.CurrentWorld.TilesHigh)
+            // Calculate max Y extent including style offsets
+            int maxStyleOffsetY = 0;
+            foreach (var style in sprite.Styles)
+            {
+                var tileOffset = style.UV / style.SizePixelsInterval;
+                if (tileOffset.Y > maxStyleOffsetY) maxStyleOffsetY = tileOffset.Y;
+            }
+
+            // loop to next column - account for style offsets
+            if (y + spriteTilesY + maxStyleOffsetY >= _wvm.CurrentWorld.TilesHigh)
             {
                 x = x + currentMaxX;
                 currentMaxX = 0;
@@ -42,7 +50,6 @@ public sealed class SpriteDebuggerPlugin : BasePlugin
             }
 
             if (spriteTilesX > currentMaxX) { currentMaxX = spriteTilesX; }
-
 
             foreach (var style in sprite.Styles)
             {

@@ -97,6 +97,162 @@ public partial class WorldRenderXna : UserControl
         201, 205, 227, 270, 271, 382, 528, 572, 581, 590, 595, 636, 637, 638, 703
     };
 
+    // Selected chest position cache - used to render the selected chest as "open"
+    // Set to (-1, -1) when no chest is selected
+    private Vector2Int32 _selectedChestPosition = new Vector2Int32(-1, -1);
+
+    // Gem tree tile IDs (583-589): Topaz, Amethyst, Sapphire, Emerald, Ruby, Diamond, Amber
+    // These render like normal trees but with fixed texture indices 22-28
+    private static readonly HashSet<int> _gemTreeTileIds = new HashSet<int> { 583, 584, 585, 586, 587, 588, 589 };
+
+    // Vanity tree tile IDs (596 Sakura, 616 Willow)
+    private static readonly HashSet<int> _vanityTreeTileIds = new HashSet<int> { 596, 616 };
+
+    // Ash tree tile ID (634) - has glow mask overlay
+    private const int AshTreeTileId = 634;
+
+    /// <summary>
+    /// Checks if a tile type is a tree that renders foliage (top/branches).
+    /// Includes normal trees (5), gem trees (583-589), vanity trees (596, 616), and ash trees (634).
+    /// </summary>
+    private static bool IsTreeWithFoliage(int tileType)
+    {
+        return tileType == (int)TileType.Tree ||
+               _gemTreeTileIds.Contains(tileType) ||
+               _vanityTreeTileIds.Contains(tileType) ||
+               tileType == AshTreeTileId;
+    }
+
+    /// <summary>
+    /// Gets the tree top/branch texture index for gem trees.
+    /// Gem trees use texture indices 22-28 (type - 583 + 22).
+    /// </summary>
+    private static int GetGemTreeStyle(int tileType)
+    {
+        return tileType - 583 + 22;
+    }
+
+    /// <summary>
+    /// Gets the tree top/branch texture index for vanity trees.
+    /// 596 (Sakura) = 29, 616 (Willow) = 30
+    /// </summary>
+    private static int GetVanityTreeStyle(int tileType)
+    {
+        return tileType == 596 ? 29 : 30;
+    }
+
+    /// <summary>
+    /// Gets the tree top/branch texture index for ash trees.
+    /// Ash tree (634) = 31
+    /// </summary>
+    private static int GetAshTreeStyle()
+    {
+        return 31;
+    }
+
+    /// <summary>
+    /// Applies render position offsets for special tiles (vines, position offset tiles).
+    /// Reference: docs/custom-rendered-tiles.md and TileDrawing.cs
+    /// </summary>
+    private static void ApplyTileRenderOffset(ref Rectangle dest, int tileType, short frameX, short frameY, float zoom)
+    {
+        float scale = zoom / 16f;
+
+        // Vine tiles: -2px Y offset
+        if (_vineTileIds.Contains(tileType))
+            dest.Y -= (int)(2 * scale);
+
+        // Position offset tiles
+        switch (tileType)
+        {
+            case 114: // Tiki Torch - height +2px when frameY > 0
+                if (frameY > 0)
+                    dest.Y += (int)(2 * scale);
+                break;
+            case 136: // Switch - X offset based on frameX
+                dest.X += (int)((frameX / 18 == 0 ? -2 : 2) * scale);
+                break;
+            case 442: // Item Pedestal - X +2px when frameX/22 == 3
+                if (frameX / 22 == 3)
+                    dest.X += (int)(2 * scale);
+                break;
+            case 723: // Echo Block variant 1
+                if (frameX == 0)
+                    dest.Y += (int)(2 * scale);
+                else if (frameX == 18)
+                    dest.Y -= (int)(2 * scale);
+                break;
+            case 724: // Echo Block variant 2
+                if (frameY == 0)
+                    dest.X += (int)(2 * scale);
+                else if (frameY == 18)
+                    dest.X -= (int)(2 * scale);
+                break;
+            case 751: // Terragrim Pedestal - (+11, -8) at anchor
+                if (frameX % 54 == 0 && frameY % 72 == 0)
+                {
+                    dest.X += (int)(11 * scale);
+                    dest.Y -= (int)(8 * scale);
+                }
+                break;
+            case 752: // Seedling - (+8, 0) at anchor
+                if (frameX % 36 == 0 && frameY % 38 == 0)
+                    dest.X += (int)(8 * scale);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Applies render position offsets for preview (uses Vector2 ref).
+    /// </summary>
+    private static void ApplyTileRenderOffset(ref Vector2 position, int tileType, short frameX, short frameY, float zoom)
+    {
+        float scale = zoom / 16f;
+
+        // Vine tiles: -2px Y offset
+        if (_vineTileIds.Contains(tileType))
+            position.Y -= 2 * scale;
+
+        // Position offset tiles
+        switch (tileType)
+        {
+            case 114: // Tiki Torch - height +2px when frameY > 0
+                if (frameY > 0)
+                    position.Y += 2 * scale;
+                break;
+            case 136: // Switch - X offset based on frameX
+                position.X += (frameX / 18 == 0 ? -2 : 2) * scale;
+                break;
+            case 442: // Item Pedestal - X +2px when frameX/22 == 3
+                if (frameX / 22 == 3)
+                    position.X += 2 * scale;
+                break;
+            case 723: // Echo Block variant 1
+                if (frameX == 0)
+                    position.Y += 2 * scale;
+                else if (frameX == 18)
+                    position.Y -= 2 * scale;
+                break;
+            case 724: // Echo Block variant 2
+                if (frameY == 0)
+                    position.X += 2 * scale;
+                else if (frameY == 18)
+                    position.X -= 2 * scale;
+                break;
+            case 751: // Terragrim Pedestal - (+11, -8) at anchor
+                if (frameX % 54 == 0 && frameY % 72 == 0)
+                {
+                    position.X += 11 * scale;
+                    position.Y -= 8 * scale;
+                }
+                break;
+            case 752: // Seedling - (+8, 0) at anchor
+                if (frameX % 36 == 0 && frameY % 38 == 0)
+                    position.X += 8 * scale;
+                break;
+        }
+    }
+
     // Deferred texture loading
     private bool _texturesFullyLoaded = false;
     private CancellationTokenSource _textureLoadCancellation;
@@ -173,6 +329,14 @@ public partial class WorldRenderXna : UserControl
         if (e.PropertyName == "CurrentWorld")
         {
             Zoom(0);
+        }
+        else if (e.PropertyName == "SelectedChest")
+        {
+            // Cache selected chest position for rendering as "open"
+            if (_wvm.SelectedChest != null)
+                _selectedChestPosition = new Vector2Int32(_wvm.SelectedChest.X, _wvm.SelectedChest.Y);
+            else
+                _selectedChestPosition = new Vector2Int32(-1, -1);
         }
     }
 
@@ -711,8 +875,11 @@ public partial class WorldRenderXna : UserControl
                 {
                     case PreviewTextureType.TreeTops:
                         // Tree tops use different texture files per biome style
-                        // Map biome variant index to tree style
-                        int treeStyle = GetTreeStyleForBiomeVariant(variantIndex);
+                        // If TextureStyle is set (gem/vanity/ash trees), use it directly
+                        // Otherwise map biome variant index to tree style (regular trees)
+                        int treeStyle = previewConfig.TextureStyle > 0
+                            ? previewConfig.TextureStyle
+                            : GetTreeStyleForBiomeVariant(variantIndex);
                         variantTexture = (Texture2D)_textureDictionary.GetTreeTops(treeStyle);
                         sourceRect = previewConfig.SourceRect.HasValue
                             ? new Rectangle(previewConfig.SourceRect.Value.X, previewConfig.SourceRect.Value.Y,
@@ -724,7 +891,10 @@ public partial class WorldRenderXna : UserControl
 
                     case PreviewTextureType.TreeBranch:
                         // Tree branches use different texture files per biome style
-                        int branchStyle = GetTreeStyleForBiomeVariant(variantIndex);
+                        // If TextureStyle is set (gem/vanity/ash trees), use it directly
+                        int branchStyle = previewConfig.TextureStyle > 0
+                            ? previewConfig.TextureStyle
+                            : GetTreeStyleForBiomeVariant(variantIndex);
                         variantTexture = (Texture2D)_textureDictionary.GetTreeBranches(branchStyle);
                         sourceRect = previewConfig.SourceRect.HasValue
                             ? new Rectangle(previewConfig.SourceRect.Value.X, previewConfig.SourceRect.Value.Y,
@@ -2897,6 +3067,45 @@ public partial class WorldRenderXna : UserControl
                                         tileTex = _textureDictionary.GetTree(treeType);
                                     }
                                 }
+                                // Gem Trees (583-589), Vanity Trees (596, 616), Ash Trees (634)
+                                // These use the same foliage detection as normal trees but with fixed texture indices
+                                else if (_gemTreeTileIds.Contains(curtile.Type) || _vanityTreeTileIds.Contains(curtile.Type) || curtile.Type == AshTreeTileId)
+                                {
+                                    // Foliage detection: same as normal trees (frameY >= 198 && frameX >= 22)
+                                    if (curtile.U >= 22 && curtile.V >= 198)
+                                    {
+                                        isTreeSpecial = true;
+                                        switch (curtile.U)
+                                        {
+                                            case 22:
+                                                isBase = true;
+                                                break;
+                                            case 44:
+                                                isLeft = true;
+                                                break;
+                                            case 66:
+                                                isRight = true;
+                                                break;
+                                        }
+
+                                        // Determine tree style based on tile type
+                                        int treeStyle;
+                                        if (_gemTreeTileIds.Contains(curtile.Type))
+                                            treeStyle = GetGemTreeStyle(curtile.Type);
+                                        else if (_vanityTreeTileIds.Contains(curtile.Type))
+                                            treeStyle = GetVanityTreeStyle(curtile.Type);
+                                        else
+                                            treeStyle = GetAshTreeStyle();
+
+                                        // Cache tree style in uvTileCache
+                                        curtile.uvTileCache = (ushort)((0x00 << 8) + 0x01 * treeStyle);
+
+                                        if (isBase)
+                                            tileTex = (Texture2D)_textureDictionary.GetTreeTops(treeStyle);
+                                        else
+                                            tileTex = (Texture2D)_textureDictionary.GetTreeBranches(treeStyle);
+                                    }
+                                }
                                 if (curtile.Type == (int)TileType.MushroomTree && curtile.U >= 36)
                                 {
                                     isMushroom = true;
@@ -3326,7 +3535,7 @@ public partial class WorldRenderXna : UserControl
                                         dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                         FrameAnchor frameAnchor = FrameAnchor.None;
 
-                                        int treeStyle = (curtile.uvTileCache & 0x000F);
+                                        int treeStyle = (curtile.uvTileCache & 0x00FF);
                                         // Tree frame determines which variant to show (0, 1, or 2)
                                         // This is position-based to give visual variety, matching Terraria's GetTreeFrame
                                         int treeFrame = x % 3;
@@ -3353,6 +3562,25 @@ public partial class WorldRenderXna : UserControl
                                                     case 3:
                                                         source.X = (x % 3) * (82 * 3);
                                                         source.Height = 140;
+                                                        break;
+                                                    // Gem trees (styles 22-28): 116x96
+                                                    case 22:
+                                                    case 23:
+                                                    case 24:
+                                                    case 25:
+                                                    case 26:
+                                                    case 27:
+                                                    case 28:
+                                                    // Ash tree (style 31): 116x96
+                                                    case 31:
+                                                        source.Width = 116;
+                                                        source.Height = 96;
+                                                        break;
+                                                    // Vanity trees (styles 29-30): 118x96
+                                                    case 29:
+                                                    case 30:
+                                                        source.Width = 118;
+                                                        source.Height = 96;
                                                         break;
                                                 }
                                                 // Use position-based frame for visual variety
@@ -3431,6 +3659,18 @@ public partial class WorldRenderXna : UserControl
                                         var type = curtile.Type;
                                         var renderUV = TileProperty.GetRenderUV(curtile.Type, curtile.U, curtile.V);
 
+                                        // Render selected chest as "open" by adding 38 to frameY
+                                        // Chests are 2x2, so check if current tile is within the selected chest area
+                                        if (curtile.IsChest() && _selectedChestPosition.X >= 0)
+                                        {
+                                            int chestX = _selectedChestPosition.X;
+                                            int chestY = _selectedChestPosition.Y;
+                                            if (x >= chestX && x <= chestX + 1 && y >= chestY && y <= chestY + 1)
+                                            {
+                                                renderUV.Y += 38;
+                                            }
+                                        }
+
                                         source = new Rectangle(renderUV.X, renderUV.Y, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                         if (source.Width <= 0)
                                             source.Width = 16;
@@ -3493,9 +3733,8 @@ public partial class WorldRenderXna : UserControl
                                     if (_spriteFlipTileIds.Contains(curtile.Type) && x % 2 == 0)
                                         spriteEffect = SpriteEffects.FlipHorizontally;
 
-                                    // Vine-specific: -2px Y offset
-                                    if (_vineTileIds.Contains(curtile.Type))
-                                        dest.Y -= (int)(2 * _zoom / 16);
+                                    // Apply tile render offsets (vines, position offset tiles)
+                                    ApplyTileRenderOffset(ref dest, curtile.Type, curtile.U, curtile.V, _zoom);
 
                                     _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
                                     // Actuator Overlay
@@ -4328,6 +4567,45 @@ public partial class WorldRenderXna : UserControl
                                         tileTex = _textureDictionary.GetTree(treeType);
                                     }
                                 }
+                                // Gem Trees (583-589), Vanity Trees (596, 616), Ash Trees (634)
+                                // These use the same foliage detection as normal trees but with fixed texture indices
+                                else if (_gemTreeTileIds.Contains(curtile.Type) || _vanityTreeTileIds.Contains(curtile.Type) || curtile.Type == AshTreeTileId)
+                                {
+                                    // Foliage detection: same as normal trees (frameY >= 198 && frameX >= 22)
+                                    if (curtile.U >= 22 && curtile.V >= 198)
+                                    {
+                                        isTreeSpecial = true;
+                                        switch (curtile.U)
+                                        {
+                                            case 22:
+                                                isBase = true;
+                                                break;
+                                            case 44:
+                                                isLeft = true;
+                                                break;
+                                            case 66:
+                                                isRight = true;
+                                                break;
+                                        }
+
+                                        // Determine tree style based on tile type
+                                        int treeStyle;
+                                        if (_gemTreeTileIds.Contains(curtile.Type))
+                                            treeStyle = GetGemTreeStyle(curtile.Type);
+                                        else if (_vanityTreeTileIds.Contains(curtile.Type))
+                                            treeStyle = GetVanityTreeStyle(curtile.Type);
+                                        else
+                                            treeStyle = GetAshTreeStyle();
+
+                                        // Cache tree style in uvTileCache
+                                        curtile.uvTileCache = (ushort)((0x00 << 8) + 0x01 * treeStyle);
+
+                                        if (isBase)
+                                            tileTex = (Texture2D)_textureDictionary.GetTreeTops(treeStyle);
+                                        else
+                                            tileTex = (Texture2D)_textureDictionary.GetTreeBranches(treeStyle);
+                                    }
+                                }
                                 if (curtile.Type == (int)TileType.MushroomTree && curtile.U >= 36)
                                 {
                                     isMushroom = true;
@@ -4747,7 +5025,7 @@ public partial class WorldRenderXna : UserControl
                                         dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                         FrameAnchor frameAnchor = FrameAnchor.None;
 
-                                        int treeStyle = (curtile.uvTileCache & 0x000F);
+                                        int treeStyle = (curtile.uvTileCache & 0x00FF);
                                         // Tree frame determines which variant to show (0, 1, or 2)
                                         // This is position-based to give visual variety, matching Terraria's GetTreeFrame
                                         int treeFrame = x % 3;
@@ -4774,6 +5052,25 @@ public partial class WorldRenderXna : UserControl
                                                     case 3:
                                                         source.X = (x % 3) * (82 * 3);
                                                         source.Height = 140;
+                                                        break;
+                                                    // Gem trees (styles 22-28): 116x96
+                                                    case 22:
+                                                    case 23:
+                                                    case 24:
+                                                    case 25:
+                                                    case 26:
+                                                    case 27:
+                                                    case 28:
+                                                    // Ash tree (style 31): 116x96
+                                                    case 31:
+                                                        source.Width = 116;
+                                                        source.Height = 96;
+                                                        break;
+                                                    // Vanity trees (styles 29-30): 118x96
+                                                    case 29:
+                                                    case 30:
+                                                        source.Width = 118;
+                                                        source.Height = 96;
                                                         break;
                                                 }
                                                 // Use position-based frame for visual variety
@@ -4852,6 +5149,18 @@ public partial class WorldRenderXna : UserControl
                                         var type = curtile.Type;
                                         var renderUV = TileProperty.GetRenderUV(curtile.Type, curtile.U, curtile.V);
 
+                                        // Render selected chest as "open" by adding 38 to frameY
+                                        // Chests are 2x2, so check if current tile is within the selected chest area
+                                        if (curtile.IsChest() && _selectedChestPosition.X >= 0)
+                                        {
+                                            int chestX = _selectedChestPosition.X;
+                                            int chestY = _selectedChestPosition.Y;
+                                            if (x >= chestX && x <= chestX + 1 && y >= chestY && y <= chestY + 1)
+                                            {
+                                                renderUV.Y += 38;
+                                            }
+                                        }
+
                                         source = new Rectangle(renderUV.X, renderUV.Y, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                         if (source.Width <= 0)
                                             source.Width = 16;
@@ -4914,9 +5223,8 @@ public partial class WorldRenderXna : UserControl
                                     if (_spriteFlipTileIds.Contains(curtile.Type) && x % 2 == 0)
                                         spriteEffect = SpriteEffects.FlipHorizontally;
 
-                                    // Vine-specific: -2px Y offset
-                                    if (_vineTileIds.Contains(curtile.Type))
-                                        dest.Y -= (int)(2 * _zoom / 16);
+                                    // Apply tile render offsets (vines, position offset tiles)
+                                    ApplyTileRenderOffset(ref dest, curtile.Type, curtile.U, curtile.V, _zoom);
 
                                     if (forceGrayscale) // Check if to force grayscale via the filter manager.
                                     {
@@ -6559,6 +6867,9 @@ public partial class WorldRenderXna : UserControl
                 }
             }
 
+            // Apply render offsets for special tiles (vines, position offset tiles)
+            ApplyTileRenderOffset(ref position, (int)_wvm.SelectedSpriteSheet.Tile, _wvm.SelectedSpriteItem.UV.X, _wvm.SelectedSpriteItem.UV.Y, _zoom);
+
             // For tree sprites, dynamically determine tree style based on cursor position biome
             var previewConfig = _wvm.SelectedSpriteItem?.PreviewConfig;
 
@@ -6566,8 +6877,11 @@ public partial class WorldRenderXna : UserControl
                 (previewConfig.TextureType == PreviewTextureType.TreeTops || previewConfig.TextureType == PreviewTextureType.TreeBranch) &&
                 _wvm.CurrentWorld != null)
             {
-                var mousePos = _wvm.MouseOverTile.MouseState.Location;
-                int dynamicStyle = _wvm.CurrentWorld.GetTreeStyleAtPosition(mousePos.X, mousePos.Y);
+                // If TextureStyle is set (gem/vanity/ash trees), use it directly
+                // Otherwise determine dynamically from cursor position biome (regular trees)
+                int dynamicStyle = previewConfig.TextureStyle > 0
+                    ? previewConfig.TextureStyle
+                    : _wvm.CurrentWorld.GetTreeStyleAtPosition(_wvm.MouseOverTile.MouseState.Location.X, _wvm.MouseOverTile.MouseState.Location.Y);
 
                 // Get texture with dynamic style
                 var tex = previewConfig.TextureType == PreviewTextureType.TreeTops
@@ -6596,6 +6910,24 @@ public partial class WorldRenderXna : UserControl
                             case 3: // Snow (style 3 only, other snow styles use default)
                                 sourceWidth = 80;
                                 sourceHeight = 140;
+                                break;
+                            // Gem trees (styles 22-28), Ash tree (style 31): 116x96
+                            case 22:
+                            case 23:
+                            case 24:
+                            case 25:
+                            case 26:
+                            case 27:
+                            case 28:
+                            case 31:
+                                sourceWidth = 116;
+                                sourceHeight = 96;
+                                break;
+                            // Vanity trees (styles 29-30): 118x96
+                            case 29:
+                            case 30:
+                                sourceWidth = 118;
+                                sourceHeight = 96;
                                 break;
                             default:
                                 sourceWidth = 80;
