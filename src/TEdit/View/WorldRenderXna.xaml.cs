@@ -2020,11 +2020,8 @@ public partial class WorldRenderXna : UserControl
         // Draw layers based on whether textures are visible
         if (_wvm.ShowTextures && _textureDictionary.Valid && AreTexturesVisible())
         {
-            // When textures visible: draw gradient background (panning) first
-            if (_wvm.ShowBackgrounds)
-            {
-                DrawBackgroundGradient();
-            }
+            // Gradient background always shows when textures are visible (panning depth zones)
+            DrawBackgroundGradient();
         }
         else
         {
