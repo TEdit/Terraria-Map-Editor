@@ -56,14 +56,22 @@ public class NpcListItem : ReactiveObject
     public bool IsShimmered
     {
         get => _world != null
+            && SpriteId >= 0
             && SpriteId < _world.ShimmeredTownNPCs.Count
             && _world.ShimmeredTownNPCs[SpriteId] != 0;
         set
         {
-            if (_world != null && SpriteId < _world.ShimmeredTownNPCs.Count)
+            if (_world != null && SpriteId >= 0)
             {
-                _world.ShimmeredTownNPCs[SpriteId] = value ? 1 : 0;
-                this.RaisePropertyChanged();
+                // Pad collection if NPC ID is beyond current size
+                while (_world.ShimmeredTownNPCs.Count <= SpriteId)
+                {
+                    _world.ShimmeredTownNPCs.Add(0);
+                }
+
+                int newVal = value ? 1 : 0;
+                _world.ShimmeredTownNPCs[SpriteId] = newVal;
+                this.RaisePropertyChanged(nameof(IsShimmered));
             }
         }
     }
@@ -75,11 +83,12 @@ public class NpcListItem : ReactiveObject
         {
             if (_world != null)
             {
-                if (value && !_world.PartyingNPCs.Contains(SpriteId))
+                bool current = _world.PartyingNPCs.Contains(SpriteId);
+                if (value && !current)
                     _world.PartyingNPCs.Add(SpriteId);
-                else if (!value)
+                else if (!value && current)
                     _world.PartyingNPCs.Remove(SpriteId);
-                this.RaisePropertyChanged();
+                this.RaisePropertyChanged(nameof(IsPartying));
             }
         }
     }

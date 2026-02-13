@@ -10,6 +10,7 @@ namespace TEdit.Render;
 public static class NpcPreviewCache
 {
     private static readonly ConcurrentDictionary<int, WriteableBitmap> _previews = new();
+    private static readonly ConcurrentDictionary<(int NpcId, int Variant), WriteableBitmap> _variantPreviews = new();
 
     /// <summary>
     /// Gets whether the cache has been populated.
@@ -19,8 +20,6 @@ public static class NpcPreviewCache
     /// <summary>
     /// Gets a preview bitmap for an NPC by ID.
     /// </summary>
-    /// <param name="npcId">The NPC sprite ID.</param>
-    /// <returns>The preview bitmap, or null if not available.</returns>
     public static WriteableBitmap GetPreview(int npcId)
     {
         _previews.TryGetValue(npcId, out var preview);
@@ -30,11 +29,26 @@ public static class NpcPreviewCache
     /// <summary>
     /// Sets a preview bitmap for an NPC.
     /// </summary>
-    /// <param name="npcId">The NPC sprite ID.</param>
-    /// <param name="preview">The preview bitmap.</param>
     public static void SetPreview(int npcId, WriteableBitmap preview)
     {
         _previews[npcId] = preview;
+    }
+
+    /// <summary>
+    /// Gets a preview bitmap for a specific NPC variant.
+    /// </summary>
+    public static WriteableBitmap GetVariantPreview(int npcId, int variantIndex)
+    {
+        _variantPreviews.TryGetValue((npcId, variantIndex), out var preview);
+        return preview;
+    }
+
+    /// <summary>
+    /// Sets a preview bitmap for a specific NPC variant.
+    /// </summary>
+    public static void SetVariantPreview(int npcId, int variantIndex, WriteableBitmap preview)
+    {
+        _variantPreviews[(npcId, variantIndex)] = preview;
     }
 
     /// <summary>
@@ -51,6 +65,7 @@ public static class NpcPreviewCache
     public static void Clear()
     {
         _previews.Clear();
+        _variantPreviews.Clear();
         IsPopulated = false;
     }
 }

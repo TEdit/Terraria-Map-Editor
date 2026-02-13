@@ -11,6 +11,7 @@
              d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
     <UserControl.Resources>
         <converters:NpcIdToPreviewConverter x:Key="NpcIdToPreviewConverter" />
+        <converters:NpcVariantPreviewConverter x:Key="NpcVariantPreviewConverter" />
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
     <Grid>
@@ -80,13 +81,27 @@
                             </Button.Style>
                         </Button>
 
-                        <!-- NPC preview image: natural size, scale down only if too large -->
+                        <!-- NPC preview: static image for non-variant NPCs -->
                         <Viewbox Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
                                  Width="32" Height="32"
                                  Stretch="Uniform"
                                  StretchDirection="DownOnly"
                                  Margin="2"
                                  VerticalAlignment="Center">
+                            <Viewbox.Style>
+                                <Style TargetType="Viewbox">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding HasVariants}" Value="True" />
+                                                <Condition Binding="{Binding IsOnMap}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Viewbox.Style>
                             <Image Source="{Binding SpriteId, Converter={StaticResource NpcIdToPreviewConverter}}"
                                    Stretch="None"
                                    RenderOptions.BitmapScalingMode="NearestNeighbor">
@@ -102,6 +117,45 @@
                                 </Image.Style>
                             </Image>
                         </Viewbox>
+
+                        <!-- Variant selector ComboBox: replaces icon for NPCs with variants when on map -->
+                        <ComboBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
+                                  ItemsSource="{Binding AvailableVariants}"
+                                  SelectedIndex="{Binding VariantIndex, Mode=TwoWay}"
+                                  Margin="2"
+                                  VerticalAlignment="Center">
+                            <ComboBox.Style>
+                                <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding HasVariants}" Value="True" />
+                                                <Condition Binding="{Binding IsOnMap}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ComboBox.Style>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Viewbox Width="28" Height="28"
+                                             Stretch="Uniform" StretchDirection="DownOnly"
+                                             ToolTip="{Binding}">
+                                        <Image Stretch="None"
+                                               RenderOptions.BitmapScalingMode="NearestNeighbor">
+                                            <Image.Source>
+                                                <MultiBinding Converter="{StaticResource NpcVariantPreviewConverter}">
+                                                    <Binding Path="DataContext.SpriteId" RelativeSource="{RelativeSource AncestorType=ComboBox}" />
+                                                    <Binding />
+                                                </MultiBinding>
+                                            </Image.Source>
+                                        </Image>
+                                    </Viewbox>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
 
                         <!-- Row 0: Editable display name (only when on map) -->
                         <TextBox Grid.Row="0" Grid.Column="2"
@@ -137,47 +191,20 @@
                                    VerticalAlignment="Center"
                                    Visibility="{Binding IsOnMap, Converter={StaticResource BoolToVis}}" />
 
-                        <!-- Row 1: Variant/Shimmer/Party controls (only when on map) -->
+                        <!-- Row 1: Shimmer/Party controls (only when on map) -->
                         <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
                                     Orientation="Horizontal" Margin="2,1,2,1"
                                     Visibility="{Binding IsOnMap, Converter={StaticResource BoolToVis}}">
 
-                            <!-- Variant selector -->
-                            <ComboBox ItemsSource="{Binding AvailableVariants}"
-                                      SelectedIndex="{Binding VariantIndex}"
-                                      MinWidth="80" Margin="0,0,4,0"
-                                      VerticalAlignment="Center">
-                                <ComboBox.Style>
-                                    <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding HasVariants}" Value="True">
-                                                <Setter Property="Visibility" Value="Visible" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ComboBox.Style>
-                            </ComboBox>
-
                             <!-- Shimmer toggle -->
                             <CheckBox Content="Shimmered"
-                                      IsChecked="{Binding IsShimmered}"
-                                      VerticalAlignment="Center" Margin="0,0,4,0">
-                                <CheckBox.Style>
-                                    <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding CanShimmer}" Value="True">
-                                                <Setter Property="Visibility" Value="Visible" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </CheckBox.Style>
-                            </CheckBox>
+                                      IsChecked="{Binding IsShimmered, Mode=TwoWay}"
+                                      Visibility="{Binding CanShimmer, Converter={StaticResource BoolToVis}}"
+                                      VerticalAlignment="Center" Margin="0,0,4,0" />
 
                             <!-- Party toggle -->
                             <CheckBox Content="Partying"
-                                      IsChecked="{Binding IsPartying}"
+                                      IsChecked="{Binding IsPartying, Mode=TwoWay}"
                                       VerticalAlignment="Center" />
                         </StackPanel>
                     </Grid>

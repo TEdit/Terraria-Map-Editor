@@ -153,7 +153,8 @@ public class Textures
 
 
 
-            string texturePath = $"Images\\TownNPCs\\{name}_{variantName}";
+            string basePath = $"Images\\TownNPCs\\{name}_{variantName}";
+            string texturePath = basePath;
 
             if (partying && shimmered)
             {
@@ -169,10 +170,16 @@ public class Textures
             }
 
             var tex = LoadTexture(texturePath);
-            if (tex == null)
+
+            // Fallback chain: party/shimmer variant → base town NPC texture → NPC_{id}
+            // Note: LoadTexture returns _defaultTexture (1x1 transparent) for missing files, never null
+            if ((tex == null || tex == _defaultTexture) && texturePath != basePath)
             {
-                TownNpcs[key] = LoadTexture($"Images\\NPC_{npcId}");
-                Debug.WriteLine($"Loading ID {npcId} texture for NPC {name}:{variant}");
+                tex = LoadTexture(basePath);
+            }
+            if (tex == null || tex == _defaultTexture)
+            {
+                tex = LoadTexture($"Images\\NPC_{npcId}");
             }
 
             TownNpcs[key] = tex;

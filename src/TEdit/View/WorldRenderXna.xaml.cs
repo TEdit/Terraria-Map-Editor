@@ -735,10 +735,76 @@ public partial class WorldRenderXna : UserControl
             });
         }
 
+        // Generate variant previews for town NPCs
+        GenerateNpcVariantPreviews();
+
         DispatcherHelper.CheckBeginInvokeOnUI(() =>
         {
             NpcPreviewCache.MarkPopulated();
         });
+    }
+
+    /// <summary>
+    /// Generate preview bitmaps for each variant of town NPCs that have variants.
+    /// </summary>
+    private void GenerateNpcVariantPreviews()
+    {
+        foreach (var kvp in WorldConfiguration.NpcById)
+        {
+            var npcData = kvp.Value;
+            if (npcData.Variants == null || npcData.Variants.Count <= 1)
+                continue;
+
+            // Get the bestiary name for texture loading
+            if (!WorldConfiguration.BestiaryData.NpcById.TryGetValue(npcData.Id, out var bestiaryData))
+                continue;
+            if (!bestiaryData.IsTownNpc)
+                continue;
+
+            string bestiaryName = bestiaryData.BestiaryId;
+
+            for (int variantIndex = 0; variantIndex < npcData.Variants.Count; variantIndex++)
+            {
+                var tex = _textureDictionary.GetTownNPC(bestiaryName, npcData.Id, variant: variantIndex);
+                if (tex == null || tex == _textureDictionary.DefaultTexture)
+                    continue;
+
+                // Use SourceRect from NpcData, or fallback to estimated first frame
+                int x = npcData.SourceRect.X;
+                int y = npcData.SourceRect.Y;
+                int w = npcData.SourceRect.Width > 0 ? npcData.SourceRect.Width : tex.Width;
+                int h = npcData.SourceRect.Height > 0 ? npcData.SourceRect.Height : Math.Min(55, tex.Height);
+
+                // Clamp to texture bounds
+                if (x + w > tex.Width) w = tex.Width - x;
+                if (y + h > tex.Height) h = tex.Height - y;
+                if (w <= 0 || h <= 0) continue;
+
+                var xnaRect = new Rectangle(x, y, w, h);
+                var pixelData = new int[w * h];
+
+                try
+                {
+                    tex.GetData(0, xnaRect, pixelData, 0, pixelData.Length);
+                }
+                catch
+                {
+                    continue;
+                }
+
+                var wCopy = w;
+                var hCopy = h;
+                var pixelsCopy = pixelData;
+                var npcIdCopy = npcData.Id;
+                var viCopy = variantIndex;
+
+                DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                {
+                    var preview = CreateWriteableBitmapFromPixelData(pixelsCopy, wCopy, hCopy);
+                    NpcPreviewCache.SetVariantPreview(npcIdCopy, viCopy, preview);
+                });
+            }
+        }
     }
 
     /// <summary>
