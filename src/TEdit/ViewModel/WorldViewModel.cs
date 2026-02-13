@@ -229,6 +229,7 @@ public partial class WorldViewModel : ReactiveObject
 
             var sprite = (SpriteSheet)o;
 
+            if (int.TryParse(_spriteFilter, out var id) && sprite.Tile == id) return true;
 
             string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -262,6 +263,8 @@ public partial class WorldViewModel : ReactiveObject
 
             if (_spriteTileFilter > 0 && sprite.Tile != _spriteTileFilter) return false;
             if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
+
+            if (int.TryParse(_spriteFilter, out var id) && sprite.Tile == id) return true;
 
             string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string _spriteWord in _spriteFilterSplit)
