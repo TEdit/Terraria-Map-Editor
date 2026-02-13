@@ -118,4 +118,16 @@ internal sealed partial class Settings : global::System.Configuration.Applicatio
             this["RealisticColors"] = value;
         }
     }
+
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("64")]
+    public int SpriteThumbnailSize {
+        get {
+            return ((int)(this["SpriteThumbnailSize"]));
+        }
+        set {
+            this["SpriteThumbnailSize"] = value;
+        }
+    }
 }

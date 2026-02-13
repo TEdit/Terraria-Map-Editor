@@ -1,30 +1,28 @@
-﻿<UserControl x:Class="TEdit.View.SpriteView2"
+<UserControl x:Class="TEdit.View.SpriteView2"
+             x:Name="SpriteViewRoot"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:p="clr-namespace:TEdit.Properties"
-             xmlns:viewModel="clr-namespace:TEdit.ViewModel"             
-             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria" xmlns:tedit="clr-namespace:TEdit.UI.Xaml" mc:Ignorable="d" 
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             xmlns:vwp="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
+             mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}"
-             d:DesignHeight="600" d:DesignWidth="300" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}">
-    <UserControl.Resources>
-        <DataTemplate x:Key="ItemDataTemplate">
-            <Image 
-                        Source="{Binding Path=Preview}" 
-                        Height="{Binding Path=Preview.PixelHeight}" 
-                        Width="{Binding Path=Preview.PixelWidth}"
-                        RenderOptions.BitmapScalingMode="NearestNeighbor" 
-                        ToolTip="{Binding Path=Name}" />
-        </DataTemplate>
-    </UserControl.Resources>
+             d:DesignHeight="600" d:DesignWidth="340" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}">
     <DockPanel>
 
+        <!-- Filter and Size Controls -->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="2">
-            <TextBlock Margin="3,2" HorizontalAlignment="Center" Text="{x:Static p:Language.sprite_filter_label}" />
-            <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" MinWidth="160" KeyUp="TextBox_KeyUp" Width="160" />
-            <Button Content="{x:Static p:Language.sprite_filter_button}" Margin="1" Padding="10,2" />
-            <Button Content="{x:Static p:Language.bestiary_clear}" Margin="1" Padding="10,2" Command="{Binding ClearSpriteSelectionCommand}" />
+            <TextBlock Margin="3,2" VerticalAlignment="Center" Text="{x:Static p:Language.sprite_filter_label}" />
+            <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}" MinWidth="100" Width="100" />
+            <Button Content="{x:Static p:Language.bestiary_clear}" Margin="1" Padding="6,2" Command="{Binding ClearSpriteSelectionCommand}" ToolTip="Clear selection" />
+            <TextBlock Text="Size:" VerticalAlignment="Center" Margin="8,0,4,0"/>
+            <Slider Value="{Binding SpriteThumbnailSize}"
+                    Minimum="16" Maximum="128" Width="60"
+                    TickFrequency="16" IsSnapToTickEnabled="True"
+                    VerticalAlignment="Center"
+                    ToolTip="{Binding SpriteThumbnailSize, StringFormat='{}{0}px'}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
             <TextBlock>
@@ -41,61 +39,75 @@
                 <CheckBox Content="{x:Static p:Language.sprite_biome_auto}" IsChecked="{Binding IsBiomeAutoMode, Mode=TwoWay}"
                           VerticalAlignment="Center" Margin="5,0"/>
             </StackPanel>
-            <ListBox x:Name="s" DockPanel.Dock="Bottom" Height="300"
-            Style="{DynamicResource ListBoxWrapPanel}"
-            HorizontalAlignment="Stretch"  
-            ItemsSource="{Binding SpriteStylesView}" 
-            SelectedItem="{Binding SelectedSpriteItem, Mode=TwoWay}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox x:Name="SpriteStylesList" Height="300"
+                     Style="{DynamicResource ListBoxWrapPanel}"
+                     HorizontalAlignment="Stretch"
+                     ItemsSource="{Binding SpriteStylesView}"
+                     SelectedItem="{Binding SelectedSpriteItem, Mode=TwoWay}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Image
-                            Source="{Binding Path=CurrentPreview}"
-                            Height="{Binding Path=CurrentPreview.PixelHeight}"
-                            Width="{Binding Path=CurrentPreview.PixelWidth}"
-                            RenderOptions.BitmapScalingMode="NearestNeighbor"
-                            ToolTip="{Binding Path=Name}" />
+                        <Image Source="{Binding Path=CurrentPreview}"
+                               Stretch="None"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               ToolTipService.InitialShowDelay="100"
+                               ToolTipService.ShowDuration="30000">
+                            <Image.ToolTip>
+                                <StackPanel MaxWidth="200">
+                                    <Image Source="{Binding CurrentPreview}"
+                                           MaxWidth="128" MaxHeight="128"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                           HorizontalAlignment="Center"
+                                           Margin="0,0,0,4"/>
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold"
+                                               TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Style, StringFormat='Style: {0}'}"
+                                               Foreground="Gray" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Image.ToolTip>
+                        </Image>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
 
         <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.sprite_tiletype}"/>
-        <ListBox 
-                Style="{DynamicResource ListBoxWrapPanel}"
-                ItemsSource="{Binding SpriteSheetView}" 
-                SelectedItem="{Binding Mode=TwoWay, Path=SelectedSpriteSheet}" 
-                SelectedIndex="0">
-            <ListBox.ItemTemplate>
+        <vwp:GridView x:Name="SpriteSheetList"
+                ItemsSource="{Binding SpriteSheetView}"
+                SelectedItem="{Binding Mode=TwoWay, Path=SelectedSpriteSheet}"
+                SpacingMode="None"
+                Background="{StaticResource ControlBackgroundBrush}">
+            <vwp:GridView.ItemTemplate>
                 <DataTemplate>
-                    <Border IsHitTestVisible="true" Background="{StaticResource ControlBackgroundBrush}">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Path=Name}" />
-                                <TextBlock>:</TextBlock>
-                                <TextBlock Text="{Binding Path=Tile}" />
+                    <Grid Width="{Binding DataContext.SpriteThumbnailSize, ElementName=SpriteViewRoot}"
+                          Height="{Binding DataContext.SpriteThumbnailSize, ElementName=SpriteViewRoot}"
+                          Background="{StaticResource ControlBackgroundBrush}"
+                          ToolTipService.InitialShowDelay="100"
+                          ToolTipService.ShowDuration="30000">
+                        <Image Source="{Binding Path=Default.Preview}"
+                               Stretch="Uniform"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <Grid.ToolTip>
+                            <StackPanel MaxWidth="200">
+                                <Image Source="{Binding Default.Preview}"
+                                       MaxWidth="128" MaxHeight="128"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,4"/>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold"
+                                           TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Tile, StringFormat='Tile ID: {0}'}"
+                                           Foreground="Gray" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Styles.Count, StringFormat='{}{0} styles'}"
+                                           Foreground="Gray" HorizontalAlignment="Center"/>
                             </StackPanel>
-                            <Image 
-                                    HorizontalAlignment="Left"
-                                    Source="{Binding Path=Default.Preview}" 
-                                    Height="{Binding Path=Default.Preview.PixelHeight}" 
-                                    Width="{Binding Path=Default.Preview.PixelWidth}"
-                                    RenderOptions.BitmapScalingMode="NearestNeighbor" 
-                                    ToolTip="{Binding Path=Name}" />
-                        </StackPanel>
-                    </Border>
+                        </Grid.ToolTip>
+                    </Grid>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-        <!--<ScrollViewer DockPanel.Dock="Bottom" Height="300" HorizontalAlignment="Stretch">
-        <Image 
-            Source="{Binding Path=SelectedSpriteSheet.Preview}" 
-            Height="{Binding Path=SelectedSpriteSheet.Preview.PixelHeight}" 
-            Width="{Binding Path=SelectedSpriteSheet.Preview.PixelWidth}"
-            RenderOptions.BitmapScalingMode="NearestNeighbor" 
-            ToolTip="{Binding Path=SelectedSpriteSheetName}" />
-        </ScrollViewer>-->
+            </vwp:GridView.ItemTemplate>
+        </vwp:GridView>
 
     </DockPanel>
 </UserControl>

@@ -87,7 +87,7 @@ public class SettingsXmlMigrationTests
         return json;
     }
 
-    [Fact]
+    [Fact(Skip = "Run manually to sync data from settings.xml")]
     public void MigrateAllDataFromSettingsXml()
     {
         var repoRoot = GetRepoRoot();

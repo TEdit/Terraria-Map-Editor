@@ -30,6 +30,7 @@
     <PackageReference Include="NetEscapades.Configuration.Yaml" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Semver" Version="3.0.0" />
+    <PackageReference Include="VirtualizingWrapPanel" Version="2.4.0-beta" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Images/**/*" />

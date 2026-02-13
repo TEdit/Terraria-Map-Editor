@@ -428,8 +428,8 @@ namespace TEdit.View.Popups
                 return;
             }
 
-            main.MapView.DrawTileWallsFiltered();
-            main.MapView.DrawTileTexturesFiltered();
+            main.MapView.DrawTileWalls();
+            main.MapView.DrawTileTextures();
 
             _wvm.UpdateRenderWorldUsingFilter();                                      // Re-render map.
             _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld, true); // Update Minimap.

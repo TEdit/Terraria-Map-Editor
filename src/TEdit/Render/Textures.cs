@@ -299,6 +299,14 @@ public class Textures
     {
         try
         {
+            string texturePath = Path.Join(ContentManager.RootDirectory, path + ".xnb");
+
+            if (!File.Exists(texturePath))
+            {
+                ErrorLogging.Log($"Missing texture: {path}");
+                return _defaultTexture;
+            }
+
             var loadTexture = ContentManager.Load<Texture2D>(path);
             var pixels = new Color[loadTexture.Height * loadTexture.Width];
             loadTexture.GetData(pixels);

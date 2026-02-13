@@ -26,5 +26,8 @@
     <Setting Name="RealisticColors" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SpriteThumbnailSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">64</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

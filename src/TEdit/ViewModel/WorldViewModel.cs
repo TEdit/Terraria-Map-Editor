@@ -471,24 +471,32 @@ public partial class WorldViewModel : ReactiveObject
         _spriteSheetView = (ListCollectionView)CollectionViewSource.GetDefaultView(WorldConfiguration.Sprites2);
         _spriteSheetView.Filter = o =>
         {
-
             if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
             var sprite = (SpriteSheet)o;
+            var filter = _spriteFilter.Trim();
 
-
-            string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (sprite.Tile.ToString().StartsWith(_spriteFilter)) return true;
-
-            foreach (string _spriteWord in _spriteFilterSplit)
+            // Exact tile ID match (if filter is purely numeric)
+            if (ushort.TryParse(filter, out ushort tileId))
             {
-                if (sprite.Name == _spriteWord) return true;
-                if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                if (sprite.Tile == tileId) return true;
+            }
 
+            // Split by delimiters for multi-term search (added space delimiter)
+            string[] filterTerms = filter.Split(new char[] { '/', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string term in filterTerms)
+            {
+                // Tile ID prefix match (for searching "5" to find 50, 51, etc.)
+                if (sprite.Tile.ToString().StartsWith(term)) return true;
+
+                // Case-insensitive name match
+                if (sprite.Name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+
+                // Match against any child style name
                 foreach (var style in sprite.Styles)
                 {
-                    if (style.Name != null && style.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                    if (style.Name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0) return true;
                 }
             }
             return false;
@@ -505,23 +513,63 @@ public partial class WorldViewModel : ReactiveObject
         {
             var sprite = (SpriteItemPreview)o;
 
-            if (_spriteTileFilter <= 0 && string.IsNullOrWhiteSpace(_spriteFilter)) { return false; }
+            // If no tile filter AND no text filter, hide everything
+            if (_spriteTileFilter <= 0 && string.IsNullOrWhiteSpace(_spriteFilter)) return false;
 
+            // Must pass tile filter if one is set
             if (_spriteTileFilter > 0 && sprite.Tile != _spriteTileFilter) return false;
-            if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
-            string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string _spriteWord in _spriteFilterSplit)
+            // If tile filter matches and no text filter, show all styles for this tile
+            if (_spriteTileFilter > 0 && sprite.Tile == _spriteTileFilter)
             {
-                if (sprite.Name == _spriteWord) return true;
-                if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
+
+                // If text filter exists, check if PARENT sprite sheet name matches
+                // This fixes the "tree styles hidden" bug - show all styles when parent matches search
+                var parentSheet = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == sprite.Tile);
+                if (parentSheet != null)
+                {
+                    string[] filterTerms = _spriteFilter.Split(new char[] { '/', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string term in filterTerms)
+                    {
+                        // If parent name matches, show all its styles
+                        if (parentSheet.Name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+                            return true;
+                        // Also check if tile ID matches
+                        if (parentSheet.Tile.ToString() == term.Trim())
+                            return true;
+                    }
+                }
+
+                // Otherwise, filter by style's own name
+                return MatchesSpriteFilter(sprite.Name, _spriteFilter);
             }
-            return false;
+
+            // No tile filter - only show if text filter matches style name or tile ID
+            return MatchesSpriteFilter(sprite.Name, _spriteFilter) ||
+                   sprite.Tile.ToString() == _spriteFilter.Trim();
         };
 
         // Notify UI that the views have been recreated
         this.RaisePropertyChanged(nameof(SpriteSheetView));
         this.RaisePropertyChanged(nameof(SpriteStylesView));
+    }
+
+    /// <summary>
+    /// Helper method to check if a name matches the sprite filter terms.
+    /// </summary>
+    private bool MatchesSpriteFilter(string name, string filter)
+    {
+        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(filter))
+            return false;
+
+        string[] terms = filter.Split(new char[] { '/', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (string term in terms)
+        {
+            if (name.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+                return true;
+        }
+        return false;
     }
 
     public WriteableBitmap MinimapImage
@@ -552,6 +600,21 @@ public partial class WorldViewModel : ReactiveObject
         {
             this.RaiseAndSetIfChanged(ref _spriteTileFilter, value);
             SpriteStylesView.Refresh();
+        }
+    }
+
+    private int _spriteThumbnailSize = Settings.Default.SpriteThumbnailSize;
+    public int SpriteThumbnailSize
+    {
+        get { return _spriteThumbnailSize; }
+        set
+        {
+            var clamped = Math.Clamp(value, 16, 128);
+            if (this.RaiseAndSetIfChanged(ref _spriteThumbnailSize, clamped) != clamped)
+            {
+                Settings.Default.SpriteThumbnailSize = clamped;
+                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+            }
         }
     }
 
