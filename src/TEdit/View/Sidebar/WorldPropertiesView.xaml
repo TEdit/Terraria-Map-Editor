@@ -423,12 +423,12 @@
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_surface_level}" HorizontalAlignment="Right" />
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="6" Maximum="{Binding CurrentWorld.MaxGroundLevel}" SmallChange="6" Width="120" IsSnapToTickEnabled="True" TickFrequency="6" />
+      <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="6" Maximum="{Binding CurrentWorld.MaxGroundLevel}" SmallChange="6" Width="165" IsSnapToTickEnabled="True" TickFrequency="6" />
             <TextBox Text="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <TextBlock Text="{x:Static p:Language.tool_wp_cavern_level}" HorizontalAlignment="Right" />
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="12" Maximum="{Binding CurrentWorld.MaxCavernLevel}" SmallChange="6" Width="120" IsSnapToTickEnabled="True" TickFrequency="6" />
+      <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="12" Maximum="{Binding CurrentWorld.MaxCavernLevel}" SmallChange="6" Width="165" IsSnapToTickEnabled="True" TickFrequency="6" />
             <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <TextBlock  />
@@ -707,21 +707,21 @@
             <TextBlock Text="{x:Static p:Language.tool_wp_style_treex0}" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.TreeX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="120" />
+      <Slider Value="{Binding CurrentWorld.TreeX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="165" />
             <TextBox Text="{Binding CurrentWorld.TreeX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="{x:Static p:Language.tool_wp_style_treex1}" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.TreeX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="120" />
+      <Slider Value="{Binding CurrentWorld.TreeX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="165" />
             <TextBox Text="{Binding CurrentWorld.TreeX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="{x:Static p:Language.tool_wp_style_treex2}" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.TreeX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="120" />
+      <Slider Value="{Binding CurrentWorld.TreeX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="165" />
             <TextBox Text="{Binding CurrentWorld.TreeX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -762,21 +762,21 @@
             <TextBlock Text="{x:Static p:Language.tool_wp_style_cavex0}" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.CaveBackX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="120" />
+      <Slider Value="{Binding CurrentWorld.CaveBackX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="165" />
             <TextBox Text="{Binding CurrentWorld.CaveBackX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="{x:Static p:Language.tool_wp_style_cavex1}" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.CaveBackX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="120" />
+            <Slider Value="{Binding CurrentWorld.CaveBackX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="165" />
             <TextBox Text="{Binding CurrentWorld.CaveBackX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="{x:Static p:Language.tool_wp_style_cavex2}" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.CaveBackX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="120" />
+      <Slider Value="{Binding CurrentWorld.CaveBackX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" Width="165" />
             <TextBox Text="{Binding CurrentWorld.CaveBackX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
