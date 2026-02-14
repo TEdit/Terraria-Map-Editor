@@ -215,16 +215,18 @@ public class SpriteDataTests : IDisposable
 
         foreach (var tile in WorldConfiguration.TileProperties)
         {
-            if (tile.Frames == null || tile.Frames.Count == 0 || tile.Id == 617) continue;
+            if (tile.Frames == null || tile.Frames.Count == 0) continue;
 
             var path = Path.Combine(Directory.GetCurrentDirectory(), "Images", $"Tiles_{tile.Id}.png");
             if (!File.Exists(path)) continue;
             using var img = Image.FromFile(path);
-            var texture = new Vector2Short((short)img.Width, (short)img.Height);
+            using var bitmap = new Bitmap(img);
+            var texSize = new Vector2Short((short)img.Width, (short)img.Height);
 
             var overlapsIssues = new HashSet<string>();
             var outOfBoundsIssues = new HashSet<string>();
             var duplicatesIssues = new HashSet<string>();
+            var noNamesIssues = new HashSet<string>();
 
             var rects = tile.Frames
                 .Select(frame =>
@@ -240,7 +242,7 @@ public class SpriteDataTests : IDisposable
                         size.X * (tile.TextureGrid.X + tile.FrameGap.X),
                         size.Y * (tile.TextureGrid.Y + tile.FrameGap.Y));
 
-                    return new { Frame = frame, Rect = rect, RenderUv = renderUv };
+                    return new { Frame = frame, Rect = rect, RenderUV = renderUv };
                 })
                 .ToList();
 
@@ -258,14 +260,17 @@ public class SpriteDataTests : IDisposable
                 var current = rects[i];
                 var rect = current.Rect;
                 var frame = current.Frame;
-                var renderUv = current.RenderUv;
+                var renderUv = current.RenderUV;
 
                 // out of bounds
                 if (rect.Left < 0 || rect.Top < 0 ||
-                    rect.Right > texture.Width + tile.TextureGrid.X ||
-                    rect.Bottom > texture.Height + tile.TextureGrid.Y)
+                    rect.Right > texSize.Width + tile.TextureGrid.X ||
+                    rect.Bottom > texSize.Height + tile.TextureGrid.Y)
                 {
-                    outOfBoundsIssues.Add($"{frame.Name} @ ({frame.UV.X},{frame.UV.Y}) out of bounds ({renderUv.X},{renderUv.Y})");
+                    if (tile.Id != 617)
+                    {
+                        outOfBoundsIssues.Add($"{frame.Name} @ ({frame.UV.X},{frame.UV.Y}) out of bounds ({renderUv.X},{renderUv.Y})");
+                    }
                 }
 
                 // overlaps
@@ -278,12 +283,62 @@ public class SpriteDataTests : IDisposable
                 }
             }
 
+            // no names
+            var renderUVSet = new HashSet<Vector2Short>(rects.Select(r => r.RenderUV));
+            if (!tile.IsAnimated && tile.FrameSize != null && tile.FrameSize.Length > 0)
+            {
+                var baseStep = tile.FrameSize[0] * (tile.TextureGrid + tile.FrameGap);
+
+                if (baseStep.X > 0 && baseStep.Y > 0)
+                {
+                    for (int pY = 0; pY < texSize.Height;)
+                    {
+                        var rowSize = tile.GetFrameSize((short)pY);
+                        var rowStep = rowSize * (tile.TextureGrid + tile.FrameGap);
+                        var stepY = rowStep.Y > 0 ? rowStep.Y : baseStep.Y;
+                        var stepX = rowStep.X > 0 ? rowStep.X : baseStep.X;
+
+                        for (int pX = 0; pX < texSize.Width;)
+                        {
+                            var maxX = Math.Min(pX + stepX, texSize.Width);
+                            var maxY = Math.Min(pY + stepY, texSize.Height);
+                            var hasColor = false;
+
+                            for (int x = pX; x < maxX && !hasColor; x++)
+                            {
+                                for (int y = pY; y < maxY; y++)
+                                {
+                                    if (bitmap.GetPixel(x, y).A > 0)
+                                    {
+                                        hasColor = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (hasColor)
+                            {
+                                var renderUV = new Vector2Short((short)pX, (short)pY);
+                                if (!renderUVSet.Contains(renderUV))
+                                {
+                                    // noNamesIssues.Add($"{renderUV.X},{renderUV.Y}");
+                                }
+                            }
+
+                            pX += stepX;
+                        }
+                        pY += stepY;
+                    }
+                }
+            }
+
             if (overlapsIssues.Count > 0) overlaps[tile.Id] = overlapsIssues;
             if (outOfBoundsIssues.Count > 0) outOfBounds[tile.Id] = outOfBoundsIssues;
             if (duplicatesIssues.Count > 0) duplicates[tile.Id] = duplicatesIssues;
+            if (noNamesIssues.Count > 0) noNames[tile.Id] = noNamesIssues;
         }
 
-        if (overlaps.Count > 0 || outOfBounds.Count > 0 || duplicates.Count > 0)
+        if (overlaps.Count > 0 || outOfBounds.Count > 0 || duplicates.Count > 0 || noNames.Count > 0)
         {
             var sections = new List<string>();
             if (overlaps.Count > 0)
@@ -306,6 +361,13 @@ public class SpriteDataTests : IDisposable
                 sections.Add(string.Join(
                     Environment.NewLine,
                     duplicates.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}")));
+            }
+            if (noNames.Count > 0)
+            {
+                sections.Add("No names:");
+                sections.Add(string.Join(
+                    Environment.NewLine,
+                    noNames.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}")));
             }
 
             throw new Exception(string.Join(Environment.NewLine, sections));
