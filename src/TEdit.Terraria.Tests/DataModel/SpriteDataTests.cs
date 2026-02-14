@@ -211,6 +211,7 @@ public class SpriteDataTests : IDisposable
         var overlaps = new Dictionary<int, HashSet<string>>();
         var outOfBounds = new Dictionary<int, HashSet<string>>();
         var duplicates = new Dictionary<int, HashSet<string>>();
+        var noNames = new Dictionary<int, HashSet<string>>();
 
         foreach (var tile in WorldConfiguration.TileProperties)
         {
@@ -243,44 +244,43 @@ public class SpriteDataTests : IDisposable
                 })
                 .ToList();
 
+            // duplicates
+            foreach (var group in tile.Frames.GroupBy(f => new { f.Name, f.Variety, f.Anchor }))
+            {
+                if (group.Count() > 1)
+                {
+                    duplicatesIssues.Add($"{group.Key.Name} @ {group.Key.Variety} [{group.Key.Anchor}]");
+                }
+            }
+
             for (int i = 0; i < rects.Count; i++)
             {
                 var current = rects[i];
-                var thisRect = current.Rect;
+                var rect = current.Rect;
+                var frame = current.Frame;
                 var renderUv = current.RenderUv;
 
                 // out of bounds
-                if (thisRect.Left < 0 || thisRect.Top < 0 ||
-                    thisRect.Right > texture.Width + tile.TextureGrid.X ||
-                    thisRect.Bottom > texture.Height + tile.TextureGrid.Y)
+                if (rect.Left < 0 || rect.Top < 0 ||
+                    rect.Right > texture.Width + tile.TextureGrid.X ||
+                    rect.Bottom > texture.Height + tile.TextureGrid.Y)
                 {
-                    outOfBoundsIssues.Add($"{current.Frame.Name} @ ({current.Frame.UV.X},{current.Frame.UV.Y}) out of bounds ({renderUv.X},{renderUv.Y})");
-                }
-
-                // duplicates
-                if (tile.IsAnimated &&
-                    tile.Frames.Any(f =>
-                        f != current.Frame &&
-                        f.Anchor == current.Frame.Anchor &&
-                        f.Name == current.Frame.Name &&
-                        f.Variety == current.Frame.Name))
-                {
-                    duplicatesIssues.Add($"{current.Frame.Name}");
+                    outOfBoundsIssues.Add($"{frame.Name} @ ({frame.UV.X},{frame.UV.Y}) out of bounds ({renderUv.X},{renderUv.Y})");
                 }
 
                 // overlaps
                 for (int j = i + 1; j < rects.Count; j++)
                 {
-                    if (thisRect.IntersectsWith(rects[j].Rect))
+                    if (rect.IntersectsWith(rects[j].Rect))
                     {
-                        overlapsIssues.Add($"{current.Frame.Name} @ ({current.Frame.UV.X},{current.Frame.UV.Y}) overlaps {rects[j].Frame.Name} @ ({rects[j].Frame.UV.X},{rects[j].Frame.UV.Y})");
+                        overlapsIssues.Add($"{frame.Name} @ ({frame.UV.X},{frame.UV.Y}) overlaps {rects[j].Frame.Name} @ ({rects[j].Frame.UV.X},{rects[j].Frame.UV.Y})");
                     }
                 }
             }
 
-            if (outOfBoundsIssues.Count > 0) outOfBounds[tile.Id] = outOfBoundsIssues;
             if (overlapsIssues.Count > 0) overlaps[tile.Id] = overlapsIssues;
-            if (duplicates.Count > 0) duplicates[tile.Id] = duplicatesIssues;
+            if (outOfBoundsIssues.Count > 0) outOfBounds[tile.Id] = outOfBoundsIssues;
+            if (duplicatesIssues.Count > 0) duplicates[tile.Id] = duplicatesIssues;
         }
 
         if (overlaps.Count > 0 || outOfBounds.Count > 0 || duplicates.Count > 0)
@@ -302,7 +302,7 @@ public class SpriteDataTests : IDisposable
             }
             if (duplicates.Count > 0)
             {
-                sections.Add("Animated duplicates:");
+                sections.Add("Duplicates:");
                 sections.Add(string.Join(
                     Environment.NewLine,
                     duplicates.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}")));
