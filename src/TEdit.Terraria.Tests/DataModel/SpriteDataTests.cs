@@ -205,61 +205,12 @@ public class SpriteDataTests : IDisposable
         store.Tiles[87].Name.ShouldBe(WorldConfiguration.TileProperties[87].Name);
     }
 
-    [Fact(Skip = "Run manually to find overlap frames")]
-    public void SpriteData_FrameDoNotOverlap()
-    {
-        var tileOverlaps = new Dictionary<int, List<string>>();
-
-        foreach (var tile in WorldConfiguration.TileProperties)
-        {
-            if (tile.Frames == null || tile.Frames.Count == 0) continue;
-
-            var overlaps = new List<string>();
-            var rects = tile.Frames
-                .Select(frame =>
-                {
-                    var size = frame.Size.X > 0 && frame.Size.Y > 0
-                        ? frame.Size
-                        : tile.GetFrameSize(frame.UV.Y);
-
-                    var rect = new Rectangle(
-                        frame.UV.X,
-                        frame.UV.Y,
-                        size.X * (tile.TextureGrid.X + tile.FrameGap.X),
-                        size.Y * (tile.TextureGrid.Y + tile.FrameGap.Y));
-
-                    return new { Frame = frame, Rect = rect };
-                })
-                .ToList();
-
-            for (int i = 0; i < rects.Count; i++)
-            {
-                for (int j = i + 1; j < rects.Count; j++)
-                {
-                    if (rects[i].Rect.IntersectsWith(rects[j].Rect))
-                    {
-                        overlaps.Add($"{rects[i].Frame.Name} @ ({rects[i].Frame.UV.X},{rects[i].Frame.UV.Y}) overlaps {rects[j].Frame.Name} @ ({rects[j].Frame.UV.X},{rects[j].Frame.UV.Y})");
-                    }
-                }
-            }
-
-            if (overlaps.Count > 0) tileOverlaps[tile.Id] = overlaps;
-        }
-
-        if (tileOverlaps.Count > 0)
-        {
-            var message = string.Join(
-                Environment.NewLine,
-                tileOverlaps.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}"));
-
-            throw new Exception($"Sprite frame overlapping:{Environment.NewLine}{message}");
-        }
-    }
-
     [Fact]
-    public void SpriteData_FrameRectsWithinTexture()
+    public void SpriteData_FrameVerify()
     {
-        var outOfBounds = new Dictionary<int, List<string>>();
+        var overlaps = new Dictionary<int, HashSet<string>>();
+        var outOfBounds = new Dictionary<int, HashSet<string>>();
+        var duplicates = new Dictionary<int, HashSet<string>>();
 
         foreach (var tile in WorldConfiguration.TileProperties)
         {
@@ -270,36 +221,94 @@ public class SpriteDataTests : IDisposable
             using var img = Image.FromFile(path);
             var texture = new Vector2Short((short)img.Width, (short)img.Height);
 
-            var issues = new List<string>();
-            foreach (var frame in tile.Frames)
-            {
-                var renderUv = TileProperty.GetRenderUV((ushort)tile.Id, frame.UV.X, frame.UV.Y);
-                var size = frame.Size.X > 0 && frame.Size.Y > 0
-                    ? frame.Size
-                    : tile.GetFrameSize(renderUv.Y);
+            var overlapsIssues = new HashSet<string>();
+            var outOfBoundsIssues = new HashSet<string>();
+            var duplicatesIssues = new HashSet<string>();
 
-                var rect = new Rectangle(
-                    renderUv.X,
-                    renderUv.Y,
-                    size.X * (tile.TextureGrid.X + tile.FrameGap.X),
-                    size.Y * (tile.TextureGrid.Y + tile.FrameGap.Y));
-
-                if (rect.Left < 0 || rect.Top < 0 || rect.Right > texture.Width + tile.TextureGrid.X || rect.Bottom > texture.Height + tile.TextureGrid.Y)
+            var rects = tile.Frames
+                .Select(frame =>
                 {
-                    issues.Add($"{frame.Name} @ ({frame.UV.X},{frame.UV.Y}) -> ({renderUv.X},{renderUv.Y})");
+                    var renderUv = TileProperty.GetRenderUV((ushort)tile.Id, frame.UV.X, frame.UV.Y);
+                    var size = frame.Size.X > 0 && frame.Size.Y > 0
+                        ? frame.Size
+                        : tile.GetFrameSize(renderUv.Y);
+
+                    var rect = new Rectangle(
+                        renderUv.X,
+                        renderUv.Y,
+                        size.X * (tile.TextureGrid.X + tile.FrameGap.X),
+                        size.Y * (tile.TextureGrid.Y + tile.FrameGap.Y));
+
+                    return new { Frame = frame, Rect = rect, RenderUv = renderUv };
+                })
+                .ToList();
+
+            for (int i = 0; i < rects.Count; i++)
+            {
+                var current = rects[i];
+                var thisRect = current.Rect;
+                var renderUv = current.RenderUv;
+
+                // out of bounds
+                if (thisRect.Left < 0 || thisRect.Top < 0 ||
+                    thisRect.Right > texture.Width + tile.TextureGrid.X ||
+                    thisRect.Bottom > texture.Height + tile.TextureGrid.Y)
+                {
+                    outOfBoundsIssues.Add($"{current.Frame.Name} @ ({current.Frame.UV.X},{current.Frame.UV.Y}) out of bounds ({renderUv.X},{renderUv.Y})");
+                }
+
+                // duplicates
+                if (tile.IsAnimated &&
+                    tile.Frames.Any(f =>
+                        f != current.Frame &&
+                        f.Anchor == current.Frame.Anchor &&
+                        f.Name == current.Frame.Name &&
+                        f.Variety == current.Frame.Name))
+                {
+                    duplicatesIssues.Add($"{current.Frame.Name}");
+                }
+
+                // overlaps
+                for (int j = i + 1; j < rects.Count; j++)
+                {
+                    if (thisRect.IntersectsWith(rects[j].Rect))
+                    {
+                        overlapsIssues.Add($"{current.Frame.Name} @ ({current.Frame.UV.X},{current.Frame.UV.Y}) overlaps {rects[j].Frame.Name} @ ({rects[j].Frame.UV.X},{rects[j].Frame.UV.Y})");
+                    }
                 }
             }
 
-            if (issues.Count > 0) outOfBounds[tile.Id] = issues;
+            if (outOfBoundsIssues.Count > 0) outOfBounds[tile.Id] = outOfBoundsIssues;
+            if (overlapsIssues.Count > 0) overlaps[tile.Id] = overlapsIssues;
+            if (duplicates.Count > 0) duplicates[tile.Id] = duplicatesIssues;
         }
 
-        if (outOfBounds.Count > 0)
+        if (overlaps.Count > 0 || outOfBounds.Count > 0 || duplicates.Count > 0)
         {
-            var message = string.Join(
-                Environment.NewLine,
-                outOfBounds.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}"));
+            var sections = new List<string>();
+            if (overlaps.Count > 0)
+            {
+                sections.Add("Overlaps:");
+                sections.Add(string.Join(
+                    Environment.NewLine,
+                    overlaps.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}")));
+            }
+            if (outOfBounds.Count > 0)
+            {
+                sections.Add("Out of bounds:");
+                sections.Add(string.Join(
+                    Environment.NewLine,
+                    outOfBounds.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}")));
+            }
+            if (duplicates.Count > 0)
+            {
+                sections.Add("Animated duplicates:");
+                sections.Add(string.Join(
+                    Environment.NewLine,
+                    duplicates.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}")));
+            }
 
-            throw new Exception($"Sprite frame out of bounds:{Environment.NewLine}{message}");
+            throw new Exception(string.Join(Environment.NewLine, sections));
         }
     }
 }
