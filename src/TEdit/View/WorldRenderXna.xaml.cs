@@ -2679,8 +2679,98 @@ public partial class WorldRenderXna : UserControl
                 case TileEntityType.TeleportationPylon:
                     break;
                 case TileEntityType.KiteAnchor:
+                    {
+                        if (te.NetId <= 0) break;
+
+                        var kiteTile = _wvm.CurrentWorld.Tiles[te.PosX, te.PosY];
+                        if (!kiteTile.IsActive || kiteTile.Type != (int)TileType.KiteAnchor)
+                            break;
+
+                        var itemTex = (Texture2D)_textureDictionary.GetItem(te.NetId);
+                        if (itemTex == null || itemTex == _textureDictionary.DefaultTexture)
+                            break;
+
+                        // Get item scale from lookup table
+                        float scale = 1f;
+                        if (WorldConfiguration.ItemLookupTable.TryGetValue(te.NetId, out var itemProps) && itemProps.Scale > 0)
+                            scale = itemProps.Scale;
+
+                        // For animated items (height > width * 3), only show first frame
+                        int sourceHeight = itemTex.Height;
+                        if (itemTex.Height > itemTex.Width * 3)
+                            sourceHeight = itemTex.Width; // First frame height = width (common pattern)
+
+                        // Calculate position - center item 1 tile above anchor so kite doesn't overlap
+                        int drawX = (int)((_scrollPosition.X + te.PosX + 0.5f) * _zoom);
+                        int drawY = (int)((_scrollPosition.Y + te.PosY - 0.5f) * _zoom);
+
+                        // Scale texture to fit, maintaining aspect ratio
+                        float texScale = scale * _zoom / 16f;
+                        int drawWidth = (int)(itemTex.Width * texScale);
+                        int drawHeight = (int)(sourceHeight * texScale);
+
+                        var sourceRect = new Rectangle(0, 0, itemTex.Width, sourceHeight);
+                        var dest = new Rectangle(
+                            1 + drawX - drawWidth / 2,
+                            1 + drawY - drawHeight / 2,
+                            drawWidth,
+                            drawHeight);
+
+                        _spriteBatch.Draw(itemTex, dest, sourceRect, Color.White, 0f, Vector2.Zero, SpriteEffects.None, LayerTileTrack);
+                    }
                     break;
                 case TileEntityType.CritterAnchor:
+                    {
+                        if (te.NetId <= 0) break;
+
+                        var critterTile = _wvm.CurrentWorld.Tiles[te.PosX, te.PosY];
+                        if (!critterTile.IsActive || critterTile.Type != (int)TileType.CritterAnchor)
+                            break;
+
+                        var itemTex = (Texture2D)_textureDictionary.GetItem(te.NetId);
+                        if (itemTex == null || itemTex == _textureDictionary.DefaultTexture)
+                            break;
+
+                        // Get orientation offset based on frameX
+                        int orientation = critterTile.U / 18;
+                        float offsetX = 0, offsetY = 0;
+                        switch (orientation)
+                        {
+                            case 0: offsetY = 2f; break;   // Bottom
+                            case 1: offsetY = -2f; break;  // Top
+                            case 2: offsetX = -2f; break;  // Left
+                            case 3: offsetX = 2f; break;   // Right
+                        }
+
+                        // Get item scale from lookup table
+                        float scale = 1f;
+                        if (WorldConfiguration.ItemLookupTable.TryGetValue(te.NetId, out var itemProps) && itemProps.Scale > 0)
+                            scale = itemProps.Scale;
+
+                        // For animated items (height > width * 1.5), only show first frame
+                        // Many critter sprites have multiple animation frames stacked vertically
+                        int sourceHeight = itemTex.Height;
+                        if (itemTex.Height > itemTex.Width * 3)
+                            sourceHeight = itemTex.Width; // First frame height = width (common pattern)
+
+                        // Calculate position - center item on tile
+                        int drawX = (int)((_scrollPosition.X + te.PosX + 0.5f) * _zoom + offsetX * _zoom / 16f);
+                        int drawY = (int)((_scrollPosition.Y + te.PosY + 0.5f) * _zoom + offsetY * _zoom / 16f);
+
+                        // Scale texture to fit, maintaining aspect ratio
+                        float texScale = scale * _zoom / 16f;
+                        int drawWidth = (int)(itemTex.Width * texScale);
+                        int drawHeight = (int)(sourceHeight * texScale);
+
+                        var sourceRect = new Rectangle(0, 0, itemTex.Width, sourceHeight);
+                        var dest = new Rectangle(
+                            1 + drawX - drawWidth / 2,
+                            1 + drawY - drawHeight / 2,
+                            drawWidth,
+                            drawHeight);
+
+                        _spriteBatch.Draw(itemTex, dest, sourceRect, Color.White, 0f, Vector2.Zero, SpriteEffects.None, LayerTileTrack);
+                    }
                     break;
             }
         }
