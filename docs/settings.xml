@@ -148,7 +148,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,0" Variety="Grass Three Small" />
         <Frame UV="72,0" Variety="Grass Single Blade" />
         <Frame UV="90,0" Variety="Grass Three Large" />
-        <Frame UV="144,0" Name="Mushroom" />
+        <Frame UV="144,0" Variety="Mushroom" />
         <Frame UV="108,0" Variety="Magenta Flower A" />
         <Frame UV="540,0" Variety="Magenta Flower B" />
         <Frame UV="558,0" Variety="Magenta Flower C" />
@@ -3587,7 +3587,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,0" Variety="Grass Three Small" />
         <Frame UV="72,0" Variety="Grass Single Blade" />
         <Frame UV="90,0" Variety="Grass Three Large" />
-        <Frame UV="144,0" Name="Vile Mushroom" />
+        <Frame UV="144,0" Variety="Vile Mushroom" />
         <Frame UV="108,0" Variety="Flower A" />
         <Frame UV="126,0" Variety="Flower B" />
         <Frame UV="162,0" Variety="Flower C" />
@@ -4270,8 +4270,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="90,0" Variety="Grass Three Large" />
         <Frame UV="108,0" Variety="Flower A" />
         <Frame UV="126,0" Variety="Flower B" />
-        <Frame UV="144,0" Name="Jungle Spore" />
-        <Frame UV="162,0" Name="Nature's Gift" />
+        <Frame UV="144,0" Variety="Jungle Spore" />
+        <Frame UV="162,0" Variety="Nature's Gift" />
         <Frame UV="180,0" Variety="Flower C" />
         <Frame UV="198,0" Variety="Flower D" />
         <Frame UV="216,0" Variety="Flower E" />
@@ -5890,7 +5890,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,0" Variety="Grass Three Small" />
         <Frame UV="90,0" Variety="Grass Three Large" />
         <Frame UV="162,0" Variety="Grass Small Y" />
-        <Frame UV="144,0" Name="Mushroom (growing)" />
+        <Frame UV="144,0" Variety="Mushroom (growing)" />
         <Frame UV="72,0" Variety="Flower A" />
         <Frame UV="108,0" Variety="Flower B" />
         <Frame UV="126,0" Variety="Flower C" />
@@ -6026,10 +6026,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="306,18" Variety="Large Purple B" Anchor="Top" />
         <Frame UV="306,36" Variety="Large Purple B" Anchor="Right" />
         <Frame UV="306,54" Variety="Large Purple B" Anchor="Left" />
-        <Frame UV="324,0" Name="Gelatin Crystal" Anchor="Bottom" />
-        <Frame UV="324,18" Name="Gelatin Crystal" Anchor="Top" />
-        <Frame UV="324,36" Name="Gelatin Crystal" Anchor="Right" />
-        <Frame UV="324,54" Name="Gelatin Crystal" Anchor="Left" />
+        <Frame UV="324,0" Variety="Gelatin Crystal" Anchor="Bottom" />
+        <Frame UV="324,18" Variety="Gelatin Crystal" Anchor="Top" />
+        <Frame UV="324,36" Variety="Gelatin Crystal" Anchor="Right" />
+        <Frame UV="324,54" Variety="Gelatin Crystal" Anchor="Left" />
       </Frames>
     </Tile>
     <Tile Id="130" Color="#FFA0A0A0" Name="Active Stone Block" Solid="true" Blends="true"
@@ -7123,7 +7123,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="216,0" Variety="Grass Thick E" />
         <Frame UV="234,0" Variety="Grass Thick F" />
         <Frame UV="252,0" Variety="Grass Thick G" />
-        <Frame UV="270,0" Name="Vile Mushroom" />
+        <Frame UV="270,0" Variety="Vile Mushroom" />
         <Frame UV="288,0" Variety="Flower A" />
         <Frame UV="306,0" Variety="Flower B" />
         <Frame UV="324,0" Variety="Flower C" />
@@ -11467,8 +11467,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="90,0" Variety="Grass Three Large (Echo)" />
         <Frame UV="108,0" Variety="Flower A (Echo)" />
         <Frame UV="126,0" Variety="Flower B (Echo)" />
-        <Frame UV="144,0" Name="Jungle Spore (Echo)" />
-        <Frame UV="162,0" Name="Nature's Gift (Echo)" />
+        <Frame UV="144,0" Variety="Jungle Spore (Echo)" />
+        <Frame UV="162,0" Variety="Nature's Gift (Echo)" />
         <Frame UV="180,0" Variety="Flower C (Echo)" />
         <Frame UV="198,0" Variety="Flower D (Echo)" />
         <Frame UV="216,0" Variety="Flower E (Echo)" />
@@ -11582,7 +11582,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="716" Name="Friendly Boulder" Color="#Ff7ad9e8" Solid="true" Framed="true" Size="2,2">
       <Frames>
-        <Frame Name="Friendly Boulder" UV="0, 0" />
+        <Frame Name="Friendly Boulder" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="717" Name="Lava Cloud" Color="#Ff7ad9e8" Light="true" Solid="true" />
@@ -11611,7 +11611,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18, 0" Anchor="Top" />
         <Frame UV="36, 0" Anchor="Left" />
         <Frame UV="54, 0" Anchor="Right" />
-        <Frame UV="72, 0" />
+        <Frame UV="72, 0" Anchor="Center"/>
       </Frames>
     </Tile>
     <Tile Id="724" Name="Critter Anchor" Color="#Ffb45252" Framed="true" Size="1,1">
@@ -11620,27 +11620,27 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18, 0" Variety="A" Anchor="Top" />
         <Frame UV="36, 0" Variety="A" Anchor="Left" />
         <Frame UV="54, 0" Variety="A" Anchor="Right" />
-        <Frame UV="72, 0" Variety="A" />
+        <Frame UV="72, 0" Variety="A" Anchor="Center" />
         <Frame UV="0, 18" Variety="B" Anchor="Bottom" />
         <Frame UV="18, 18" Variety="B" Anchor="Top" />
         <Frame UV="36, 18" Variety="B" Anchor="Left" />
         <Frame UV="54, 18" Variety="B" Anchor="Right" />
-        <Frame UV="72, 18" Variety="B" />
+        <Frame UV="72, 18" Variety="B" Anchor="Center" />
         <Frame UV="0, 36" Variety="C" Anchor="Bottom" />
         <Frame UV="18, 36" Variety="C" Anchor="Top" />
         <Frame UV="36, 36" Variety="C" Anchor="Left" />
         <Frame UV="54, 36" Variety="C" Anchor="Right" />
-        <Frame UV="72, 36" Variety="C" />
+        <Frame UV="72, 36" Variety="C" Anchor="Center" />
         <Frame UV="0, 54" Variety="D" Anchor="Bottom" />
         <Frame UV="18, 54" Variety="D" Anchor="Top" />
         <Frame UV="36, 54" Variety="D" Anchor="Left" />
         <Frame UV="54, 54" Variety="D" Anchor="Right" />
-        <Frame UV="72, 54" Variety="D" />
+        <Frame UV="72, 54" Variety="D" Anchor="Center" />
         <Frame UV="0, 72" Variety="E" Anchor="Bottom" />
         <Frame UV="18, 72" Variety="E" Anchor="Top" />
         <Frame UV="36, 72" Variety="E" Anchor="Left" />
         <Frame UV="54, 72" Variety="E" Anchor="Right" />
-        <Frame UV="72, 72" Variety="E" />
+        <Frame UV="72, 72" Variety="E" Anchor="Center" />
       </Frames>
     </Tile>
     <Tile Id="725" Name="Film Projector" Color="#Ff716ccd" Framed="true" Size="2,3" IsAnimated="true">
@@ -11685,7 +11685,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="748" Name="Aquarium Block" Color="#Ff365314" Solid="true" />
     <Tile Id="749" Name="Boulder Block" Color="#Ff7ad9e8" Solid="true" />
     <Tile Id="750" Name="Sharp Spike Block" Color="#Ff7ad9e8" Solid="true" />
-    <Tile Id="751" Name="Sleeping Digtoise" Color="#Ffbaa854" Framed="true" Size="3,3" IsAnimated="true">
+    <Tile Id="751" Name="Sleeping Digtoise" Color="#Ffbaa854" Framed="true" Size="3,3" IsAnimated="true" TextureGrid="28,23" FrameGap="0,0">
       <Frames>
         <Frame Name="Sleeping Digtoise" UV="0, 0" />
       </Frames>

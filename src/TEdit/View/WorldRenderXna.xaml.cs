@@ -1010,10 +1010,13 @@ public partial class WorldRenderXna : UserControl
     /// This method only extracts preview images from the loaded texture.
     /// </summary>
     private static int _previewsSetCount = 0;
-    private void UpdateSpritePreviewsForTile(TileProperty tile, Texture2D tileTex, GraphicsDeviceEventArgs e)
+    private void UpdateSpritePreviewsForTile(TileProperty tile, Texture2D tileTexture, GraphicsDeviceEventArgs e)
     {
         try
         {
+            Texture2D tileTex = tileTexture;
+            Texture2D extraTex = null;
+
             // Find the existing sprite sheet for this tile (created from config)
             SpriteSheet sprite;
             lock (WorldConfiguration.Sprites2Lock)
@@ -1146,21 +1149,85 @@ public partial class WorldRenderXna : UserControl
                                     case 2: sourceY = sourceY % 54 + 54 * 20; break;
                                 }
                             }
+                            // Handle Relic Base (tiles 617) special case
+                            else if (sprite.Tile == 617)
+                            {
+                                if (y == 3)
+                                {
+                                    tileTex = tileTexture;
+                                    sourceX %= 54;
+                                }
+                                else
+                                {
+                                    extraTex ??= _textureDictionary.LoadTextureImmediate($"Images\\Extra_198");
+                                    tileTex = extraTex;
+                                    sourceX = x * 16;
+                                    sourceY = y * 16 + uv.X / 54 * 50;
+                                }
+                            }
+                            // Handle Pylons (tiles 597) special case
+                            else if (sprite.Tile == 597)
+                            {
+                                var pylonType = uv.X / 54;
+
+                                extraTex ??= _textureDictionary.LoadTextureImmediate($"Images\\Extra_181");
+
+                                if (extraTex != null)
+                                {
+                                    var extraTargetRect = new Rectangle(9, 0, 30, 46);
+                                    var extraIntersectRect = Rectangle.Intersect(new Rectangle(x * 16, y * 16, 16, 16), extraTargetRect);
+                                    var tileLocalRect = new Rectangle(extraIntersectRect.X - x * 16, extraIntersectRect.Y - y * 16, extraIntersectRect.Width, extraIntersectRect.Height);
+
+                                    if (extraIntersectRect.Width > 0 && extraIntersectRect.Height > 0)
+                                    {
+                                        var extraOffset = new Vector2Int32(extraIntersectRect.X - extraTargetRect.X, extraIntersectRect.Y - extraTargetRect.Y);
+                                        var extraSourceRect = new Rectangle(extraOffset.X + (pylonType + 3) * 30, extraOffset.Y, extraIntersectRect.Width, extraIntersectRect.Height);
+
+                                        var tileSourceRect = new Rectangle(sourceX + tileLocalRect.X, sourceY + tileLocalRect.Y, tileLocalRect.Width, tileLocalRect.Height);
+
+                                        var extraPixels = new Color[extraIntersectRect.Width * extraIntersectRect.Height];
+                                        extraTex.GetData(0, extraSourceRect, extraPixels, 0, extraPixels.Length);
+
+                                        var tilePixels = new Color[tileSourceRect.Width * tileSourceRect.Height];
+                                        tileTex.GetData(0, tileSourceRect, tilePixels, 0, tilePixels.Length);
+
+                                        bool changed = false;
+                                        for (int i = 0; i < tilePixels.Length; i++)
+                                        {
+                                            if (tilePixels[i].A == 0 && extraPixels[i].A > 0)
+                                            {
+                                                tilePixels[i] = extraPixels[i];
+                                                changed = true;
+                                            }
+                                        }
+
+                                        if (changed) tileTex.SetData(0, tileSourceRect, tilePixels, 0, tilePixels.Length);
+                                    }
+                                }
+                            }
+                            // Handle Magic Droppers (tiles 373, 374, 375, 461, 709) special case
+                            else if (sprite.Tile == 373 || sprite.Tile == 374 || sprite.Tile == 375 || sprite.Tile == 461 || sprite.Tile == 709)
+                            {
+                                var goreType = sprite.Tile switch { 373 => 706, 374 => 716, 375 => 717, 461 => 943, 709 => 1383, _ => 0 };
+                                extraTex ??= _textureDictionary.LoadTextureImmediate($"Images\\Gore_{goreType}");
+                                tileTex = extraTex;
+                                sourceY = 80;
+                            }
 
                             var source = new Rectangle(sourceX, sourceY, renderX, renderY);
 
                             // Out of bounds checks
-                            if (source.Bottom > sourceTexture.Height)
-                                source.Height -= (source.Bottom - sourceTexture.Height);
-                            if (source.Right > sourceTexture.Width)
-                                source.Width -= (source.Right - sourceTexture.Width);
+                            if (source.Bottom > tileTex.Height)
+                                source.Height -= (source.Bottom - tileTex.Height);
+                            if (source.Right > tileTex.Width)
+                                source.Width -= (source.Right - tileTex.Width);
                             if (source.Height <= 0 || source.Width <= 0)
                                 continue;
 
                             var colorData = new Color[source.Height * source.Width];
                             var dest = new Rectangle(destX, destY, source.Width, source.Height);
 
-                            sourceTexture.GetData(0, source, colorData, 0, colorData.Length);
+                            tileTex.GetData(0, source, colorData, 0, colorData.Length);
                             previewTexture.SetData(0, dest, colorData, 0, colorData.Length);
 
                             if (!hasColorData)
@@ -3757,10 +3824,6 @@ public partial class WorldRenderXna : UserControl
                                         dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
                                         dest.Y += (int)((16 - source.Height) * _zoom / 16);
                                     }
-                                    else if ((curtile.Type >= 373 && curtile.Type <= 375) || curtile.Type == 461)
-                                    {
-                                        //skip rendering drips
-                                    }
                                     else
                                     {
                                         var type = curtile.Type;
@@ -3779,6 +3842,62 @@ public partial class WorldRenderXna : UserControl
                                         }
 
                                         source = new Rectangle(renderUV.X, renderUV.Y, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+
+                                        if (type == 323)
+                                        {
+                                            dest.X += (int)(curtile.V * _zoom / 16);
+                                            int treeType = (curtile.uvTileCache & 0x000F);
+                                            source.Y = 22 * treeType;
+                                        }
+                                        // Handle Chimney (tiles 406) special case
+                                        else if (type == 406)
+                                        {
+                                            switch (renderUV.Y / 54)
+                                            {
+                                                // On A
+                                                case 0: break;
+                                                // On B
+                                                case 1: source.Y = source.Y % 54 + 56; break;
+                                                // Off
+                                                case 2: source.Y = source.Y % 54 + 56 * 6; break;
+                                            }
+                                        }
+                                        // Handle Aether Monolith (tiles 658) special case
+                                        else if (type == 658)
+                                        {
+                                            switch (renderUV.Y / 54)
+                                            {
+                                                // On A
+                                                case 0: break;
+                                                // On B
+                                                case 1: source.Y = source.Y % 54 + 54 * 10; break;
+                                                // Off
+                                                case 2: source.Y = source.Y % 54 + 54 * 20; break;
+                                            }
+                                        }
+                                        // Handle Relic Base (tiles 617) special case
+                                        else if (type == 617)
+                                        {
+                                            if (renderUV.Y == 54 || renderUV.Y == 126)
+                                            {
+                                                source.X %= 54;
+                                            }
+                                            else
+                                            {
+                                                tileTex = _textureDictionary.GetExtra(198);
+                                                source.X = renderUV.X % 54 / 18 * 16;
+                                                source.Y = renderUV.Y % 72 / 18 * 16 + renderUV.X / 54 * 50;
+                                            }
+                                        }
+                                        // Handle Magic Droppers (tiles 373, 374, 375, 461, 709) special case
+                                        else if (type == 373 || type == 374 || type == 375 || type == 461 || type == 709)
+                                        {
+                                            var goreType = type switch { 373 => 706, 374 => 716, 375 => 717, 461 => 943, 709 => 1383, _ => 0 };
+                                            tileTex = _textureDictionary.GetGore(goreType);
+                                            source.Y = 80;
+                                        }
+
                                         if (source.Width <= 0)
                                             source.Width = 16;
                                         if (source.Height <= 0)
@@ -3792,13 +3911,6 @@ public partial class WorldRenderXna : UserControl
                                         if (source.Width <= 0 || source.Height <= 0)
                                             continue;
 
-                                        dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                        if (curtile.Type == 323)
-                                        {
-                                            dest.X += (int)(curtile.V * _zoom / 16);
-                                            int treeType = (curtile.uvTileCache & 0x000F);
-                                            source.Y = 22 * treeType;
-                                        }
                                         var texsize = tileprop.TextureGrid;
                                         if (texsize.X != 16 || texsize.Y != 16)
                                         {
