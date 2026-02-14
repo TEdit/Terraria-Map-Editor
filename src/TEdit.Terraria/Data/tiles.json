@@ -3359,8 +3359,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 1]],
     "frames": [
-      { "name": "Piggy Bank", "size": [2, 1], "anchor": "Bottom" },
-      { "name": "Piggy Bank", "uv": [0, 18], "size": [2, 1], "anchor": "Bottom" }
+      { "name": "Piggy Bank", "size": [2, 1], "anchor": "Bottom" }
     ],
     "name": "Piggy Bank",
     "color": "#AF6980FF",
@@ -4470,8 +4469,7 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
-      { "name": "Clay Pot", "size": [1, 1], "anchor": "Bottom" },
-      { "name": "Clay Pot", "uv": [0, 18], "size": [1, 1], "anchor": "Bottom" }
+      { "name": "Clay Pot", "size": [1, 1], "anchor": "Bottom" }
     ],
     "name": "Clay Pot",
     "color": "#796E61FF",
@@ -4734,8 +4732,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Loom", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Loom", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Loom", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Loom",
     "color": "#BF8E6FFF",
@@ -5619,8 +5616,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Keg", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Keg", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Keg", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Keg",
     "color": "#BF8E6FFF",
@@ -5665,8 +5661,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Safe", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Safe", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Safe", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Safe",
     "color": "#909490FF",
@@ -5681,8 +5676,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Skull Lantern", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Skull Lantern", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Skull Lantern", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Skull Lantern",
     "color": "#FDDD03FF",
@@ -5932,8 +5926,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 4]],
     "frames": [
-      { "name": "Throne", "size": [3, 4], "anchor": "Bottom" },
-      { "name": "Throne", "uv": [0, 72], "size": [3, 4], "anchor": "Bottom" }
+      { "name": "Throne", "size": [3, 4], "anchor": "Bottom" }
     ],
     "name": "Throne",
     "color": "#E5D449FF",
@@ -6347,8 +6340,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Tinkerer\u0027s Workshop", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Tinkerer\u0027s Workshop", "uv": [0, 38], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Tinkerer\u0027s Workshop", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Tinkerer\u0027s Workshop",
     "color": "#BF8E6FFF",
@@ -6470,8 +6462,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Crystal Ball", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Crystal Ball", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Crystal Ball", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Crystal Ball",
     "color": "#8DAFFFFF",
@@ -6763,8 +6754,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Boulder", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Boulder", "uv": [0, 38], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Boulder", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Boulder",
     "color": "#606060FF",
@@ -7012,8 +7002,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Inlet Pump", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Inlet Pump", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Inlet Pump", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Inlet Pump",
     "color": "#909490FF",
@@ -7026,8 +7015,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Outlet Pump", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Outlet Pump", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Outlet Pump", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Outlet Pump",
     "color": "#909490FF",
@@ -8542,8 +8530,7 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
-      { "name": "Land Mine", "size": [1, 1], "anchor": "Bottom" },
-      { "name": "Land Mine", "uv": [0, 18], "size": [1, 1], "anchor": "Bottom" }
+      { "name": "Land Mine", "size": [1, 1], "anchor": "Bottom" }
     ],
     "name": "Land Mine",
     "color": "#C03B3BFF",
@@ -8935,8 +8922,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Lihzahrd Altar", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Lihzahrd Altar", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Lihzahrd Altar", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Lihzahrd Altar",
     "color": "#FFF133FF",
@@ -9799,8 +9785,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Heavy Assembler", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Heavy Assembler", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Heavy Assembler", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Heavy Work Bench",
     "color": "#808080FF",
@@ -9854,8 +9839,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Ammo Box", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Ammo Box", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Ammo Box", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Ammo Box",
     "color": "#4F8011FF",
@@ -10097,8 +10081,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Living Loom", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Living Loom", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Living Loom", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Living Loom",
     "color": "#909490FF",
@@ -10296,8 +10279,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Ship in a Bottle", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Ship in a Bottle", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Ship in a Bottle", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Ship in a Bottle",
     "color": "#604430FF",
@@ -10310,8 +10292,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Seaweed Planter", "size": [2, 3], "anchor": "Bottom" },
-      { "name": "Seaweed Planter", "uv": [0, 54], "size": [2, 3], "anchor": "Bottom" }
+      { "name": "Seaweed Planter", "size": [2, 3], "anchor": "Bottom" }
     ],
     "name": "Seaweed Planter",
     "color": "#CBB997FF",
@@ -10505,8 +10486,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Fireworks Box", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Fireworks Box", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Fireworks Box", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Fireworks Box",
     "color": "#D9AE89FF",
@@ -10579,8 +10559,7 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 2]],
     "frames": [
-      { "name": "Firework Fountain", "size": [1, 2], "anchor": "Bottom" },
-      { "name": "Firework Fountain", "uv": [0, 36], "size": [1, 2], "anchor": "Bottom" }
+      { "name": "Firework Fountain", "size": [1, 2], "anchor": "Bottom" }
     ],
     "name": "Firework Fountain",
     "color": "#55FFA0FF",
@@ -10804,8 +10783,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Enchanted Sundial", "size": [2, 3], "anchor": "Bottom" },
-      { "name": "Enchanted Sundial", "uv": [0, 54], "size": [2, 3], "anchor": "Bottom" }
+      { "name": "Enchanted Sundial", "size": [2, 3], "anchor": "Bottom" }
     ],
     "name": "Enchanted Sundial",
     "color": "#E9CB18FF",
@@ -11246,8 +11224,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 1]],
     "frames": [
-      { "name": "Trap Door", "size": [2, 1], "anchor": "Left" },
-      { "name": "Trap Door", "uv": [0, 18], "size": [2, 1], "anchor": "Left" }
+      { "name": "Trap Door", "size": [2, 1], "anchor": "Left" }
     ],
     "name": "Trap Door (Closed)",
     "color": "#7F5C45FF",
@@ -11565,8 +11542,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Ancient Manipulator", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Ancient Manipulator", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Ancient Manipulator", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Lunar Crafting Station",
     "color": "#4B8BA6FF",
@@ -12434,8 +12410,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Bee Hive", "size": [2, 2], "anchor": "Top" },
-      { "name": "Bee Hive", "uv": [0, 36], "size": [2, 2], "anchor": "Top" }
+      { "name": "Bee Hive", "size": [2, 2], "anchor": "Top" }
     ],
     "name": "Bee Hive",
     "color": "#bfb07cFF",
@@ -12654,8 +12629,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 1]],
     "frames": [
-      { "name": "Desert Spirit Lamp", "size": [2, 1], "anchor": "Bottom" },
-      { "name": "Desert Spirit Lamp", "uv": [0, 18], "size": [2, 1], "anchor": "Bottom" }
+      { "name": "Desert Spirit Lamp", "size": [2, 1], "anchor": "Bottom" }
     ],
     "name": "Desert Spirit Lamp",
     "color": "#E7B21CFF",
@@ -12697,8 +12671,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "War Table Banner", "size": [2, 3], "anchor": "Top" },
-      { "name": "War Table Banner", "uv": [0, 54], "size": [2, 3], "anchor": "Top" }
+      { "name": "War Table Banner", "size": [2, 3], "anchor": "Top" }
     ],
     "name": "War Table Banner",
     "color": "#3354C3FF",
@@ -12711,8 +12684,7 @@
     "frameGap": [2, 2],
     "frameSize": [[5, 4]],
     "frames": [
-      { "name": "Eternia Crystal Stand", "size": [5, 4], "anchor": "Bottom" },
-      { "name": "Eternia Crystal Stand", "uv": [0, 72], "size": [5, 4], "anchor": "Bottom" }
+      { "name": "Eternia Crystal Stand", "size": [5, 4], "anchor": "Bottom" }
     ],
     "name": "Elder Cystal Stand",
     "color": "#CD9949FF",
@@ -12948,8 +12920,7 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
-      { "name": "Golf Cup", "size": [1, 1], "anchor": "Bottom" },
-      { "name": "Golf Cup", "uv": [0, 20], "size": [1, 1], "anchor": "Bottom" }
+      { "name": "Golf Cup", "size": [1, 1], "anchor": "Bottom" }
     ],
     "name": "Golf Cup",
     "color": "#85909AFF",
@@ -13040,8 +13011,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Rolling Cactus", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Rolling Cactus", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Rolling Cactus", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Rolling Cactus",
     "color": "#737E3DFF",
@@ -13070,8 +13040,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Drum Set", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Drum Set", "uv": [0, 38], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Drum Set", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Drum Set",
     "color": "#7A775CFF",
@@ -13184,8 +13153,7 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
-      { "name": "Golf Tee", "size": [1, 1], "anchor": "Bottom" },
-      { "name": "Golf Tee", "uv": [0, 18], "size": [1, 1], "anchor": "Bottom" }
+      { "name": "Golf Tee", "size": [1, 1], "anchor": "Bottom" }
     ],
     "name": "Golf Tee",
     "color": "#A5A4B6FF",
@@ -14124,8 +14092,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Boulder Statue", "size": [2, 3], "anchor": "Top" },
-      { "name": "Boulder Statue", "uv": [0, 54], "size": [2, 3], "anchor": "Top" }
+      { "name": "Boulder Statue", "size": [2, 3], "anchor": "Top" }
     ],
     "name": "Boulder Statue",
     "color": "#6B6B6BFF",
@@ -15692,15 +15659,15 @@
       { "name": "Vanity Tree Sakura", "variety": "Top Jagged A", "uv": [0, 198] },
       { "name": "Vanity Tree Sakura", "variety": "Top Jagged B", "uv": [0, 220] },
       { "name": "Vanity Tree Sakura", "variety": "Top Jagged C", "uv": [0, 242] },
-      { "variety": "Tree Top A", "uv": [22, 198] },
-      { "variety": "Tree Top B", "uv": [22, 220] },
-      { "variety": "Tree Top C", "uv": [22, 242] },
-      { "variety": "Branch Left A", "uv": [44, 198] },
-      { "variety": "Branch Left B", "uv": [44, 220] },
-      { "variety": "Branch Left C", "uv": [44, 242] },
-      { "variety": "Branch Right A", "uv": [66, 198] },
-      { "variety": "Branch Right B", "uv": [66, 220] },
-      { "variety": "Branch Right C", "uv": [66, 242] }
+      { "name": "Vanity Tree Sakura", "variety": "Tree Top A", "uv": [22, 198] },
+      { "name": "Vanity Tree Sakura", "variety": "Tree Top B", "uv": [22, 220] },
+      { "name": "Vanity Tree Sakura", "variety": "Tree Top C", "uv": [22, 242] },
+      { "name": "Vanity Tree Sakura", "variety": "Branch Left A", "uv": [44, 198] },
+      { "name": "Vanity Tree Sakura", "variety": "Branch Left B", "uv": [44, 220] },
+      { "name": "Vanity Tree Sakura", "variety": "Branch Left C", "uv": [44, 242] },
+      { "name": "Vanity Tree Sakura", "variety": "Branch Right A", "uv": [66, 198] },
+      { "name": "Vanity Tree Sakura", "variety": "Branch Right B", "uv": [66, 220] },
+      { "name": "Vanity Tree Sakura", "variety": "Branch Right C", "uv": [66, 242] }
     ],
     "name": "Vanity Tree Sakura",
     "color": "#6E5B4DFF"
@@ -16204,8 +16171,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Slice of Cake", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Slice of Cake", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Slice of Cake", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Slice of Cake",
     "color": "#8E6A67FF",
@@ -16218,8 +16184,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Teapot", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Teapot", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Teapot", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Teapot",
     "color": "#918D6AFF",
@@ -17086,8 +17051,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "TNT Barrel", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "TNT Barrel", "uv": [0, 38], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "TNT Barrel", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "TNT Barrel",
     "color": "#8F6768FF",

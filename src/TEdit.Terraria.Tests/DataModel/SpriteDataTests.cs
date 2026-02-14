@@ -255,4 +255,51 @@ public class SpriteDataTests : IDisposable
             throw new Exception($"Sprite frame overlapping:{Environment.NewLine}{message}");
         }
     }
+
+    [Fact]
+    public void SpriteData_FrameRectsWithinTexture()
+    {
+        var outOfBounds = new Dictionary<int, List<string>>();
+
+        foreach (var tile in WorldConfiguration.TileProperties)
+        {
+            if (tile.Frames == null || tile.Frames.Count == 0 || tile.Id == 617) continue;
+
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "Images", $"Tiles_{tile.Id}.png");
+            if (!File.Exists(path)) continue;
+            using var img = Image.FromFile(path);
+            var texture = new Vector2Short((short)img.Width, (short)img.Height);
+
+            var issues = new List<string>();
+            foreach (var frame in tile.Frames)
+            {
+                var renderUv = TileProperty.GetRenderUV((ushort)tile.Id, frame.UV.X, frame.UV.Y);
+                var size = frame.Size.X > 0 && frame.Size.Y > 0
+                    ? frame.Size
+                    : tile.GetFrameSize(renderUv.Y);
+
+                var rect = new Rectangle(
+                    renderUv.X,
+                    renderUv.Y,
+                    size.X * (tile.TextureGrid.X + tile.FrameGap.X),
+                    size.Y * (tile.TextureGrid.Y + tile.FrameGap.Y));
+
+                if (rect.Left < 0 || rect.Top < 0 || rect.Right > texture.Width + tile.TextureGrid.X || rect.Bottom > texture.Height + tile.TextureGrid.Y)
+                {
+                    issues.Add($"{frame.Name} @ ({frame.UV.X},{frame.UV.Y}) -> ({renderUv.X},{renderUv.Y})");
+                }
+            }
+
+            if (issues.Count > 0) outOfBounds[tile.Id] = issues;
+        }
+
+        if (outOfBounds.Count > 0)
+        {
+            var message = string.Join(
+                Environment.NewLine,
+                outOfBounds.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}"));
+
+            throw new Exception($"Sprite frame out of bounds:{Environment.NewLine}{message}");
+        }
+    }
 }
