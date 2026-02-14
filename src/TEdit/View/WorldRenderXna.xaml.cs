@@ -2476,54 +2476,79 @@ public partial class WorldRenderXna : UserControl
                     break;
                 case TileEntityType.DisplayDoll:
                     {
-                        // Only render if we have items
                         if (te.Items == null || te.Items.Count == 0) break;
 
-                        // Mannequin is 2 tiles wide x 3 tiles tall
-                        // Render up to 3 main armor pieces + weapon
-                        float[] yOffsets = { 0.5f, 1.5f, 2.5f }; // Head, body, legs positions
-                        int[] armorSlots = { 0, 1, 2 };          // Corresponding slots
+                        Rectangle dest;
+                        // Determine facing: odd frames = womannequin/right-facing, even = mannequin/left-facing
+                        bool isWomannequin = (curtile.U / 36) % 2 != 0;
+                        SpriteEffects dollEffect = isWomannequin ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-                        for (int i = 0; i < armorSlots.Length && i < te.Items.Count; i++)
+                        // Render head (Items[0])
+                        var headItem = te.Items.Count > 0 ? te.Items[0] : null;
+                        if (headItem != null && headItem.Id > 0 && headItem.StackSize > 0 &&
+                            WorldConfiguration.ItemLookupTable.TryGetValue(headItem.Id, out var headProps) &&
+                            headProps?.Head != null)
                         {
-                            var item = te.Items[armorSlots[i]];
-                            if (item == null || item.Id <= 0 || item.StackSize <= 0) continue;
-
-                            tileTex = (Texture2D)_textureDictionary.GetItem(item.Id);
-                            if (tileTex == null) continue;
-
-                            WorldConfiguration.ItemLookupTable.TryGetValue(item.Id, out var itemProps);
-                            float scale = itemProps?.Scale ?? 1.0f;
-
-                            // Constrain to fit in mannequin (max ~24px)
-                            float maxDimension = Math.Max(tileTex.Width, tileTex.Height) * scale;
-                            if (maxDimension > 24)
+                            tileTex = (Texture2D)_textureDictionary.GetArmorHead(headProps.Head.Value);
+                            if (tileTex != null)
                             {
-                                scale *= 24f / maxDimension;
+                                source = new Rectangle(2, 0, 36, 36);
+                                dest = new Rectangle(
+                                    1 + (int)((_scrollPosition.X + x) * _zoom),
+                                    1 + (int)((_scrollPosition.Y + y) * _zoom),
+                                    (int)(_zoom * source.Width / 16f),
+                                    (int)(_zoom * source.Height / 16f));
+                                dest.Y += (int)(((16 - source.Height - 4) / 2F) * _zoom / 16);
+                                dest.X -= (int)(2 * _zoom / 16);
+                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
                             }
-
-                            // Center on mannequin (2 tiles wide = center at +1 tile)
-                            Vector2 position = new Vector2(
-                                1 + (int)((_scrollPosition.X + x + 1f) * _zoom),
-                                1 + (int)((_scrollPosition.Y + y + yOffsets[i]) * _zoom)
-                            );
-
-                            source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
-
-                            _spriteBatch.Draw(
-                                tileTex,
-                                position,
-                                source,
-                                Color.White,
-                                0f,
-                                new Vector2(tileTex.Width / 2f, tileTex.Height / 2f),
-                                scale * _zoom / 16f,
-                                SpriteEffects.None,
-                                LayerTileTrack
-                            );
                         }
 
-                        // Render weapon from Misc[0] if present
+                        // Render body (Items[1])
+                        var bodyItem = te.Items.Count > 1 ? te.Items[1] : null;
+                        if (bodyItem != null && bodyItem.Id > 0 && bodyItem.StackSize > 0 &&
+                            WorldConfiguration.ItemLookupTable.TryGetValue(bodyItem.Id, out var bodyProps) &&
+                            bodyProps?.Body != null)
+                        {
+                            tileTex = isWomannequin
+                                ? (Texture2D)_textureDictionary.GetArmorFemale(bodyProps.Body.Value)
+                                : (Texture2D)_textureDictionary.GetArmorBody(bodyProps.Body.Value);
+                            if (tileTex != null)
+                            {
+                                source = new Rectangle(2, 0, 36, 54);
+                                dest = new Rectangle(
+                                    1 + (int)((_scrollPosition.X + x) * _zoom),
+                                    1 + (int)((_scrollPosition.Y + y + 1) * _zoom),
+                                    (int)(_zoom * source.Width / 16f),
+                                    (int)(_zoom * source.Height / 16f));
+                                dest.Y += (int)(((16 - source.Height - 18) / 2F) * _zoom / 16);
+                                dest.X -= (int)(2 * _zoom / 16);
+                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                            }
+                        }
+
+                        // Render legs (Items[2])
+                        var legsItem = te.Items.Count > 2 ? te.Items[2] : null;
+                        if (legsItem != null && legsItem.Id > 0 && legsItem.StackSize > 0 &&
+                            WorldConfiguration.ItemLookupTable.TryGetValue(legsItem.Id, out var legsProps) &&
+                            legsProps?.Legs != null)
+                        {
+                            tileTex = (Texture2D)_textureDictionary.GetArmorLegs(legsProps.Legs.Value);
+                            if (tileTex != null)
+                            {
+                                source = new Rectangle(2, 42, 36, 12);
+                                dest = new Rectangle(
+                                    1 + (int)((_scrollPosition.X + x) * _zoom),
+                                    1 + (int)((_scrollPosition.Y + y + 2) * _zoom),
+                                    (int)(_zoom * source.Width / 16f),
+                                    (int)(_zoom * source.Height / 16f));
+                                dest.Y -= (int)(2 * _zoom / 16);
+                                dest.X -= (int)(2 * _zoom / 16);
+                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                            }
+                        }
+
+                        // Render weapon from Misc[0] if present (item icon is correct for weapons)
                         if (te.Misc != null && te.Misc.Count > 0)
                         {
                             var weapon = te.Misc[0];
@@ -2537,29 +2562,16 @@ public partial class WorldRenderXna : UserControl
 
                                     float maxDim = Math.Max(tileTex.Width, tileTex.Height) * weaponScale;
                                     if (maxDim > 32)
-                                    {
                                         weaponScale *= 32f / maxDim;
-                                    }
 
-                                    // Position weapon to the right side of mannequin
                                     Vector2 weaponPos = new Vector2(
                                         1 + (int)((_scrollPosition.X + x + 2f) * _zoom),
-                                        1 + (int)((_scrollPosition.Y + y + 1.5f) * _zoom)
-                                    );
+                                        1 + (int)((_scrollPosition.Y + y + 1.5f) * _zoom));
 
                                     source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
-
-                                    _spriteBatch.Draw(
-                                        tileTex,
-                                        weaponPos,
-                                        source,
-                                        Color.White,
-                                        0f,
+                                    _spriteBatch.Draw(tileTex, weaponPos, source, Color.White, 0f,
                                         new Vector2(tileTex.Width / 2f, tileTex.Height / 2f),
-                                        weaponScale * _zoom / 16f,
-                                        SpriteEffects.None,
-                                        LayerTileTrack
-                                    );
+                                        weaponScale * _zoom / 16f, SpriteEffects.None, LayerTileTrack);
                                 }
                             }
                         }
@@ -2595,6 +2607,62 @@ public partial class WorldRenderXna : UserControl
                     }
                     break;
                 case TileEntityType.HatRack:
+                    {
+                        if (te.Items == null || te.Items.Count == 0) break;
+
+                        Rectangle dest;
+                        // Hat rack is 3x4 tiles, U=0 normal, U=54 flipped
+                        SpriteEffects rackEffect = curtile.U >= 54 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+                        // Two hat slots positioned on the rack's two pegs
+                        float[] hatXOffsets = { 0.75f, 1.75f };
+
+                        for (int i = 0; i < 2 && i < te.Items.Count; i++)
+                        {
+                            var hatItem = te.Items[i];
+                            if (hatItem == null || hatItem.Id <= 0 || hatItem.StackSize <= 0) continue;
+
+                            if (WorldConfiguration.ItemLookupTable.TryGetValue(hatItem.Id, out var hatProps) &&
+                                hatProps?.Head != null)
+                            {
+                                // Render as armor head sprite
+                                tileTex = (Texture2D)_textureDictionary.GetArmorHead(hatProps.Head.Value);
+                                if (tileTex != null)
+                                {
+                                    source = new Rectangle(2, 0, 36, 36);
+                                    dest = new Rectangle(
+                                        1 + (int)((_scrollPosition.X + x + hatXOffsets[i]) * _zoom),
+                                        1 + (int)((_scrollPosition.Y + y + 0.5f) * _zoom),
+                                        (int)(_zoom * source.Width / 16f),
+                                        (int)(_zoom * source.Height / 16f));
+                                    dest.X -= (int)(source.Width / 2f * _zoom / 16f);
+                                    dest.Y -= (int)(source.Height / 2f * _zoom / 16f);
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, rackEffect, LayerTileTrack);
+                                }
+                            }
+                            else
+                            {
+                                // Non-hat item: fall back to item icon
+                                tileTex = (Texture2D)_textureDictionary.GetItem(hatItem.Id);
+                                if (tileTex != null)
+                                {
+                                    float scale = hatProps?.Scale ?? 1.0f;
+                                    float maxDim = Math.Max(tileTex.Width, tileTex.Height) * scale;
+                                    if (maxDim > 24)
+                                        scale *= 24f / maxDim;
+
+                                    Vector2 pos = new Vector2(
+                                        1 + (int)((_scrollPosition.X + x + hatXOffsets[i]) * _zoom),
+                                        1 + (int)((_scrollPosition.Y + y + 0.5f) * _zoom));
+
+                                    source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+                                    _spriteBatch.Draw(tileTex, pos, source, Color.White, 0f,
+                                        new Vector2(tileTex.Width / 2f, tileTex.Height / 2f),
+                                        scale * _zoom / 16f, rackEffect, LayerTileTrack);
+                                }
+                            }
+                        }
+                    }
                     break;
                 case TileEntityType.FoodPlatter:
                     break;
