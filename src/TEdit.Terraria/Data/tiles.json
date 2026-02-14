@@ -717,8 +717,6 @@
       { "name": "Lihzahrd Locked Door", "uv": [36, 594], "anchor": "Left" },
       { "name": "Balloon Door", "uv": [72, 594], "anchor": "Right" },
       { "name": "Balloon Door", "uv": [108, 594], "anchor": "Left" },
-      { "name": "Lihzahrd Door", "uv": [0, 648], "anchor": "Right" },
-      { "name": "Lihzahrd Door", "uv": [36, 648], "anchor": "Left" },
       { "name": "Ash Wood Door", "uv": [72, 648], "anchor": "Right" },
       { "name": "Ash Wood Door", "uv": [108, 648], "anchor": "Left" },
       { "name": "Aetherium Door", "uv": [72, 702], "anchor": "Right" },
@@ -773,8 +771,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Repaired Life Crystal", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Repaired Life Crystal", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Repaired Life Crystal", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Crystal Heart",
     "color": "#AE1845FF",
@@ -998,11 +995,7 @@
     "name": "Chairs",
     "color": "#BF8E6FFF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 2040
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 2040 }
   },
   {
     "id": 16,
@@ -1112,11 +1105,7 @@
     "name": "Work Benches",
     "color": "#BF8E6FFF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "U",
-      "offsetIncrement": 20,
-      "wrapThreshold": 2016
-    }
+    "textureWrap": { "axis": "U", "offsetIncrement": 20, "wrapThreshold": 2016 }
   },
   {
     "id": 19,
@@ -3303,7 +3292,6 @@
       { "name": "Corruption Pot", "variety": "B3", "uv": [72, 612] },
       { "name": "Corruption Pot", "variety": "C1", "uv": [0, 648] },
       { "name": "Corruption Pot", "variety": "C2", "uv": [36, 648] },
-      { "name": "Corruption Pot", "variety": "C2", "uv": [36, 648] },
       { "name": "Corruption Pot", "variety": "C3", "uv": [72, 648] },
       { "name": "Spider Cave Pot", "variety": "A1", "uv": [0, 684] },
       { "name": "Spider Cave Pot", "variety": "A2", "uv": [36, 684] },
@@ -3377,11 +3365,7 @@
     "name": "Piggy Bank",
     "color": "#AF6980FF",
     "placement": "surface",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 18
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 18 }
   },
   {
     "id": 30,
@@ -3723,26 +3707,26 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Jack 'O Lantern", "variety": "A On", "uv": [0, 0] },
-      { "name": "Jack 'O Lantern", "variety": "A Off", "uv": [36, 0] },
-      { "name": "Jack 'O Lantern", "variety": "B On", "uv": [0, 36] },
-      { "name": "Jack 'O Lantern", "variety": "B Off", "uv": [36, 36] },
-      { "name": "Jack 'O Lantern", "variety": "C On", "uv": [0, 72] },
-      { "name": "Jack 'O Lantern", "variety": "C Off", "uv": [36, 72] },
-      { "name": "Jack 'O Lantern", "variety": "D On", "uv": [0, 108] },
-      { "name": "Jack 'O Lantern", "variety": "D Off", "uv": [36, 108] },
-      { "name": "Jack 'O Lantern", "variety": "E On", "uv": [0, 144] },
-      { "name": "Jack 'O Lantern", "variety": "E Off", "uv": [36, 144] },
-      { "name": "Jack 'O Lantern", "variety": "F On", "uv": [0, 180] },
-      { "name": "Jack 'O Lantern", "variety": "F Off", "uv": [36, 180] },
-      { "name": "Jack 'O Lantern", "variety": "G On", "uv": [0, 216] },
-      { "name": "Jack 'O Lantern", "variety": "G Off", "uv": [36, 216] },
-      { "name": "Jack 'O Lantern", "variety": "H On", "uv": [0, 252] },
-      { "name": "Jack 'O Lantern", "variety": "H Off", "uv": [36, 252] },
-      { "name": "Jack 'O Lantern", "variety": "I On", "uv": [0, 288] },
-      { "name": "Jack 'O Lantern", "variety": "I Off", "uv": [36, 288] }
+      { "name": "Jack \u0027O Lantern", "variety": "A On", "uv": [0, 0] },
+      { "name": "Jack \u0027O Lantern", "variety": "A Off", "uv": [36, 0] },
+      { "name": "Jack \u0027O Lantern", "variety": "B On", "uv": [0, 36] },
+      { "name": "Jack \u0027O Lantern", "variety": "B Off", "uv": [36, 36] },
+      { "name": "Jack \u0027O Lantern", "variety": "C On", "uv": [0, 72] },
+      { "name": "Jack \u0027O Lantern", "variety": "C Off", "uv": [36, 72] },
+      { "name": "Jack \u0027O Lantern", "variety": "D On", "uv": [0, 108] },
+      { "name": "Jack \u0027O Lantern", "variety": "D Off", "uv": [36, 108] },
+      { "name": "Jack \u0027O Lantern", "variety": "E On", "uv": [0, 144] },
+      { "name": "Jack \u0027O Lantern", "variety": "E Off", "uv": [36, 144] },
+      { "name": "Jack \u0027O Lantern", "variety": "F On", "uv": [0, 180] },
+      { "name": "Jack \u0027O Lantern", "variety": "F Off", "uv": [36, 180] },
+      { "name": "Jack \u0027O Lantern", "variety": "G On", "uv": [0, 216] },
+      { "name": "Jack \u0027O Lantern", "variety": "G Off", "uv": [36, 216] },
+      { "name": "Jack \u0027O Lantern", "variety": "H On", "uv": [0, 252] },
+      { "name": "Jack \u0027O Lantern", "variety": "H Off", "uv": [36, 252] },
+      { "name": "Jack \u0027O Lantern", "variety": "I On", "uv": [0, 288] },
+      { "name": "Jack \u0027O Lantern", "variety": "I Off", "uv": [36, 288] }
     ],
-    "name": "Jack 'O Lantern",
+    "name": "Jack \u0027O Lantern",
     "color": "#C5D8DBFF"
   },
   {
@@ -3844,8 +3828,8 @@
       { "name": "Oil Rag Sconse", "variety": "Off", "uv": [18, 216] },
       { "name": "Star in a Bottle", "variety": "On", "uv": [0, 252] },
       { "name": "Star in a Bottle", "variety": "Off", "uv": [18, 252] },
-      { "name": "Hanging Jack 'O Lantern", "variety": "On", "uv": [0, 288] },
-      { "name": "Hanging Jack 'O Lantern", "variety": "Off", "uv": [18, 288] },
+      { "name": "Hanging Jack \u0027O Lantern", "variety": "On", "uv": [0, 288] },
+      { "name": "Hanging Jack \u0027O Lantern", "variety": "Off", "uv": [18, 288] },
       { "name": "Heart Lantern", "variety": "On", "uv": [0, 324] },
       { "name": "Heart Lantern", "variety": "Off", "uv": [18, 324] },
       { "name": "Cactus Lantern", "variety": "On", "uv": [0, 360] },
@@ -3974,11 +3958,7 @@
     "name": "Lanterns",
     "color": "#FBEB7FFF",
     "placement": "ceiling",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 2016
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 2016 }
   },
   {
     "id": 43,
@@ -4212,7 +4192,7 @@
       { "name": "Jungle Short Plants", "variety": "Flower A", "uv": [108, 0] },
       { "name": "Jungle Short Plants", "variety": "Flower B", "uv": [126, 0] },
       { "name": "Jungle Short Plants", "variety": "Jungle Spore", "uv": [144, 0] },
-      { "name": "Jungle Short Plants", "variety": "Nature's Gift", "uv": [162, 0] },
+      { "name": "Jungle Short Plants", "variety": "Nature\u0027s Gift", "uv": [162, 0] },
       { "name": "Jungle Short Plants", "variety": "Flower C", "uv": [180, 0] },
       { "name": "Jungle Short Plants", "variety": "Flower D", "uv": [198, 0] },
       { "name": "Jungle Short Plants", "variety": "Flower E", "uv": [216, 0] },
@@ -4496,11 +4476,7 @@
     "name": "Clay Pot",
     "color": "#796E61FF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 18,
-      "wrapThreshold": 18
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 18, "wrapThreshold": 18 }
   },
   {
     "id": 79,
@@ -4643,11 +4619,7 @@
     "name": "Beds",
     "color": "#BF8E6FFF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 144,
-      "wrapThreshold": 2016
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 144, "wrapThreshold": 2016 }
   },
   {
     "id": 80,
@@ -4768,11 +4740,7 @@
     "name": "Loom",
     "color": "#BF8E6FFF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 36 }
   },
   {
     "id": 87,
@@ -4781,11 +4749,7 @@
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
-    "textureWrap": {
-      "axis": "U",
-      "offsetIncrement": 36,
-      "wrapThreshold": 1998
-    },
+    "textureWrap": { "axis": "U", "offsetIncrement": 36, "wrapThreshold": 1998 },
     "frames": [
       { "name": "Wooden Piano", "uv": [0, 0] },
       { "name": "Ebonwood Piano", "uv": [54, 0] },
@@ -4864,11 +4828,7 @@
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
-    "textureWrap": {
-      "axis": "U",
-      "offsetIncrement": 36,
-      "wrapThreshold": 1998
-    },
+    "textureWrap": { "axis": "U", "offsetIncrement": 36, "wrapThreshold": 1998 },
     "frames": [
       { "name": "Wooden Dresser", "uv": [0, 0] },
       { "name": "Ebonwood Dresser", "uv": [54, 0] },
@@ -4946,11 +4906,7 @@
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
-    "textureWrap": {
-      "axis": "U",
-      "offsetIncrement": 36,
-      "wrapThreshold": 1998
-    },
+    "textureWrap": { "axis": "U", "offsetIncrement": 36, "wrapThreshold": 1998 },
     "frames": [
       { "name": "Wooden Bench", "uv": [0, 0] },
       { "name": "Wooden Sofa", "uv": [54, 0] },
@@ -4995,7 +4951,7 @@
       { "name": "Stardust Sofa", "uv": [2160, 0] },
       { "name": "Sandstone Sofa", "uv": [2214, 0] },
       { "name": "Bamboo Sofa", "uv": [2268, 0] },
-      { "name": "Chippy's Couch", "uv": [2322, 0] },
+      { "name": "Chippy\u0027s Couch", "uv": [2322, 0] },
       { "name": "Reef Sofa", "uv": [2376, 0] },
       { "name": "Balloon Sofa", "uv": [2430, 0] },
       { "name": "Ash Wood Sofa", "uv": [2484, 0] },
@@ -5167,11 +5123,7 @@
     "name": "Bathtubs",
     "color": "#909490FF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 144,
-      "wrapThreshold": 2016
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 144, "wrapThreshold": 2016 }
   },
   {
     "id": 91,
@@ -5324,7 +5276,7 @@
       { "name": "Monster Banner", "variety": "Headless Horseman Banner", "uv": [540, 54] },
       { "name": "Monster Banner", "variety": "Hell Armored Bones Banner", "uv": [558, 54] },
       { "name": "Monster Banner", "variety": "Hellhound Banner", "uv": [576, 54] },
-      { "name": "Monster Banner", "variety": "Hoppin' Jack Banner", "uv": [594, 54] },
+      { "name": "Monster Banner", "variety": "Hoppin\u0027 Jack Banner", "uv": [594, 54] },
       { "name": "Monster Banner", "variety": "Ice Bat Banner", "uv": [612, 54] },
       { "name": "Monster Banner", "variety": "Ice Golem Banner", "uv": [630, 54] },
       { "name": "Monster Banner", "variety": "Ice Slime Banner", "uv": [648, 54] },
@@ -5460,7 +5412,7 @@
       { "name": "Monster Banner", "variety": "Angry Tumbler Banner", "uv": [990, 108] },
       { "name": "Monster Banner", "variety": "Etherian Goblin Bomber Banner", "uv": [1008, 108] },
       { "name": "Monster Banner", "variety": "Etherian Goblin Banner", "uv": [1026, 108] },
-      { "name": "Monster Banner", "variety": "Old One's Skeleton Banner", "uv": [1044, 108] },
+      { "name": "Monster Banner", "variety": "Old One\u0027s Skeleton Banner", "uv": [1044, 108] },
       { "name": "Monster Banner", "variety": "Drakin Banner", "uv": [1062, 108] },
       { "name": "Monster Banner", "variety": "Kobold Glider Banner", "uv": [1080, 108] },
       { "name": "Monster Banner", "variety": "Kobold Banner", "uv": [1098, 108] },
@@ -5523,11 +5475,7 @@
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[1, 3]],
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 1998
-    },
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 1998 },
     "frames": [
       { "name": "Tiki Torch", "variety": "On", "uv": [0, 0] },
       { "name": "Tiki Torch", "variety": "Off", "uv": [18, 0] },
@@ -5677,11 +5625,7 @@
     "name": "Keg",
     "color": "#BF8E6FFF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 95,
@@ -5727,11 +5671,7 @@
     "name": "Safe",
     "color": "#909490FF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 98,
@@ -5747,11 +5687,7 @@
     "name": "Skull Lantern",
     "color": "#FDDD03FF",
     "placement": "floorSurface",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 99,
@@ -5908,11 +5844,7 @@
     "name": "Candelabras",
     "color": "#FDDD03FF",
     "placement": "surface",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 72,
-      "wrapThreshold": 2016
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 72, "wrapThreshold": 2016 }
   },
   {
     "id": 101,
@@ -5921,11 +5853,7 @@
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[3, 4]],
-    "textureWrap": {
-      "axis": "U",
-      "offsetIncrement": 72,
-      "wrapThreshold": 1998
-    },
+    "textureWrap": { "axis": "U", "offsetIncrement": 72, "wrapThreshold": 1998 },
     "frames": [
       { "name": "Wooden Bookcase", "uv": [0, 0] },
       { "name": "Blue Dungeon Bookcase", "uv": [54, 0] },
@@ -6010,11 +5938,7 @@
     "name": "Throne",
     "color": "#E5D449FF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 72
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 72 }
   },
   {
     "id": 103,
@@ -6109,11 +6033,7 @@
     "name": "Clocks",
     "color": "#BF8E6FFF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "U",
-      "offsetIncrement": 90,
-      "wrapThreshold": 2016
-    }
+    "textureWrap": { "axis": "U", "offsetIncrement": 90, "wrapThreshold": 2016 }
   },
   {
     "id": 105,
@@ -6427,16 +6347,12 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Tinkerer's Workshop", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Tinkerer's Workshop", "uv": [0, 38], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Tinkerer\u0027s Workshop", "size": [3, 2], "anchor": "Bottom" },
+      { "name": "Tinkerer\u0027s Workshop", "uv": [0, 38], "size": [3, 2], "anchor": "Bottom" }
     ],
-    "name": "Tinkerer's Workshop",
+    "name": "Tinkerer\u0027s Workshop",
     "color": "#BF8E6FFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 36 }
   },
   {
     "id": 115,
@@ -6559,11 +6475,7 @@
     ],
     "name": "Crystal Ball",
     "color": "#8DAFFFFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 126,
@@ -6760,7 +6672,7 @@
   {
     "id": 135,
     "isFramed": true,
-    "textureGrid": [16, 18],
+    "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
@@ -6856,11 +6768,7 @@
     ],
     "name": "Boulder",
     "color": "#606060FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 139,
@@ -6947,8 +6855,8 @@
       { "name": "Music Box (Goblin Invasion)", "variety": "On", "uv": [36, 1332] },
       { "name": "Music Box (Sandstorm)", "variety": "Off", "uv": [0, 1368] },
       { "name": "Music Box (Sandstorm)", "variety": "On", "uv": [36, 1368] },
-      { "name": "Music Box (Old One's Army)", "variety": "Off", "uv": [0, 1404] },
-      { "name": "Music Box (Old One's Army)", "variety": "On", "uv": [36, 1404] },
+      { "name": "Music Box (Old One\u0027s Army)", "variety": "Off", "uv": [0, 1404] },
+      { "name": "Music Box (Old One\u0027s Army)", "variety": "On", "uv": [36, 1404] },
       { "name": "Music Box (Ocean Night)", "variety": "Off", "uv": [0, 1440] },
       { "name": "Music Box (Ocean Night)", "variety": "On", "uv": [36, 1440] },
       { "name": "Music Box (Slime Rain)", "variety": "Off", "uv": [0, 1476] },
@@ -6963,8 +6871,8 @@
       { "name": "Music Box (Windy Day)", "variety": "On", "uv": [36, 1620] },
       { "name": "Music Box (Day Remix)", "variety": "Off", "uv": [0, 1656] },
       { "name": "Music Box (Day Remix)", "variety": "On", "uv": [36, 1656] },
-      { "name": "Music Box (Journey's Beginning)", "variety": "Off", "uv": [0, 1692] },
-      { "name": "Music Box (Journey's Beginning)", "variety": "On", "uv": [36, 1692] },
+      { "name": "Music Box (Journey\u0027s Beginning)", "variety": "Off", "uv": [0, 1692] },
+      { "name": "Music Box (Journey\u0027s Beginning)", "variety": "On", "uv": [36, 1692] },
       { "name": "Music Box (Storm)", "variety": "Off", "uv": [0, 1728] },
       { "name": "Music Box (Storm)", "variety": "On", "uv": [36, 1728] },
       { "name": "Music Box (Graveyard)", "variety": "Off", "uv": [0, 1764] },
@@ -7039,8 +6947,8 @@
       { "name": "Otherworldly Music Box (Wall of Flesh)", "variety": "On", "uv": [36, 2988] },
       { "name": "Otherworldly Music Box (Hallow)", "variety": "Off", "uv": [0, 3024] },
       { "name": "Otherworldly Music Box (Hallow)", "variety": "On", "uv": [36, 3024] },
-      { "name": "Music Box (Journey's End)", "variety": "Off", "uv": [0, 3060] },
-      { "name": "Music Box (Journey's End)", "variety": "On", "uv": [36, 3060] },
+      { "name": "Music Box (Journey\u0027s End)", "variety": "Off", "uv": [0, 3060] },
+      { "name": "Music Box (Journey\u0027s End)", "variety": "On", "uv": [36, 3060] },
       { "name": "Music Box (Deerclops)", "variety": "Off", "uv": [0, 3096] },
       { "name": "Music Box (Deerclops)", "variety": "On", "uv": [36, 3096] },
       { "name": "Music Box (Aether)", "variety": "Off", "uv": [0, 3132] },
@@ -7070,11 +6978,7 @@
     ],
     "name": "Music Boxes",
     "color": "#BF8E6FFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 72,
-      "wrapThreshold": 2016
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 72, "wrapThreshold": 2016 }
   },
   {
     "id": 140,
@@ -7113,11 +7017,7 @@
     ],
     "name": "Inlet Pump",
     "color": "#909490FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 143,
@@ -7131,11 +7031,7 @@
     ],
     "name": "Outlet Pump",
     "color": "#909490FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 144,
@@ -7589,16 +7485,11 @@
     "frameGap": [2, 2],
     "frameSize": [[4, 8]],
     "frames": [
-      { "name": "Christmas Tree", "size": [4, 8], "anchor": "Bottom" },
-      { "name": "Christmas Tree", "uv": [0, 128], "size": [4, 8], "anchor": "Bottom" }
+      { "name": "Christmas Tree", "size": [4, 8], "anchor": "Bottom" }
     ],
     "name": "Christmas Tree",
     "color": "#218755FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 72,
-      "wrapThreshold": 0
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 72, "wrapThreshold": 0 }
   },
   {
     "id": 172,
@@ -7677,11 +7568,7 @@
     "name": "Sinks",
     "color": "#B5C2D9FF",
     "placement": "floor",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 2014
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 2014 }
   },
   {
     "id": 173,
@@ -8056,11 +7943,7 @@
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[1, 1], [2, 1]],
-    "textureWrap": {
-      "axis": "U",
-      "offsetIncrement": 18,
-      "conditionalV": 18
-    },
+    "textureWrap": { "axis": "U", "offsetIncrement": 18, "conditionalV": 18 },
     "frames": [
       { "name": "Small Decos", "variety": "Small Stone A", "uv": [0, 0] },
       { "name": "Small Decos", "variety": "Small Stone B", "uv": [18, 0] },
@@ -8261,11 +8144,7 @@
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
-    "textureWrap": {
-      "axis": "U",
-      "offsetIncrement": 36,
-      "wrapThreshold": 1890
-    },
+    "textureWrap": { "axis": "U", "offsetIncrement": 36, "wrapThreshold": 1890 },
     "frames": [
       { "name": "Decos (3x2) (Group 2)", "variety": "Jungle Stone A", "uv": [0, 0] },
       { "name": "Decos (3x2) (Group 2)", "variety": "Jungle Stone B", "uv": [54, 0] },
@@ -8668,11 +8547,7 @@
     ],
     "name": "Land Mine",
     "color": "#C03B3BFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 18,
-      "wrapThreshold": 18
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 18, "wrapThreshold": 18 }
   },
   {
     "id": 211,
@@ -9065,11 +8940,7 @@
     ],
     "name": "Lihzahrd Altar",
     "color": "#FFF133FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 36 }
   },
   {
     "id": 238,
@@ -9079,9 +8950,11 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "238" }
+      {
+        "name": "238"
+      }
     ],
-    "name": "Plantera's Bulb",
+    "name": "Plantera\u0027s Bulb",
     "color": "#E180CEFF",
     "isAnimated": true
   },
@@ -9152,7 +9025,7 @@
       { "name": "Painting", "variety": "Sunflowers", "uv": [1080, 0] },
       { "name": "Painting", "variety": "Terrarian Gothic", "uv": [1134, 0] },
       { "name": "Painting", "variety": "Guide Picasso", "uv": [1188, 0] },
-      { "name": "Painting", "variety": "The Guardian's Gaze", "uv": [1242, 0] },
+      { "name": "Painting", "variety": "The Guardian\u0027s Gaze", "uv": [1242, 0] },
       { "name": "Painting", "variety": "Father of Someone", "uv": [1296, 0] },
       { "name": "Painting", "variety": "Nurse Lisa", "uv": [1350, 0] },
       { "name": "Painting", "variety": "Discover", "uv": [1404, 0] },
@@ -9176,7 +9049,7 @@
       { "name": "Rack", "variety": "Spear Rack", "uv": [432, 54] },
       { "name": "Rack", "variety": "Sword Rack", "uv": [486, 54] },
       { "name": "Hanging", "variety": "Life Preserver", "uv": [540, 54] },
-      { "name": "Hanging", "variety": "Ship's Wheel", "uv": [594, 54] },
+      { "name": "Hanging", "variety": "Ship\u0027s Wheel", "uv": [594, 54] },
       { "name": "Hanging", "variety": "Compass Rose", "uv": [648, 54] },
       { "name": "Hanging", "variety": "Wall Anchor", "uv": [702, 54] },
       { "name": "Fishing Trophy", "variety": "Goldfish Trophy", "uv": [756, 54] },
@@ -9189,7 +9062,7 @@
       { "name": "Boss Trophy", "variety": "Martian Saucer Trophy", "uv": [1134, 54] },
       { "name": "Boss Trophy", "variety": "Flying Dutchman Trophy", "uv": [1188, 54] },
       { "name": "Boss Trophy", "variety": "Moon Lord Trophy", "uv": [1242, 54] },
-      { "name": "Boss Trophy", "variety": "Betsy Trophy", "uv": [1295, 54] },
+      { "name": "Boss Trophy", "variety": "Betsy Trophy", "uv": [1296, 54] },
       { "name": "Boss Trophy", "variety": "Dark Mage Trophy", "uv": [1350, 54] },
       { "name": "Boss Trophy", "variety": "Ogre Trophy", "uv": [1404, 54] },
       { "name": "Painting", "variety": "Andrew Sphinx", "uv": [1458, 54] },
@@ -9212,7 +9085,7 @@
       { "name": "Painting", "variety": "Suspiciously Sparkly", "uv": [432, 108] },
       { "name": "Painting", "variety": "Requiem", "uv": [486, 108] },
       { "name": "Painting", "variety": "Cat Sword", "uv": [540, 108] },
-      { "name": "Painting", "variety": "Kargoh's Summon", "uv": [594, 108] },
+      { "name": "Painting", "variety": "Kargoh\u0027s Summon", "uv": [594, 108] },
       { "name": "Painting", "variety": "High Pitch", "uv": [648, 108] },
       { "name": "Painting", "variety": "A Machine for Terrarians", "uv": [702, 108] },
       { "name": "Painting", "variety": "Terra Blade Chronicles", "uv": [756, 108] },
@@ -9281,7 +9154,7 @@
       { "name": "Painting", "variety": "Jacking Skeletron", "uv": [0, 1224] },
       { "name": "Painting", "variety": "Bitter Harvest", "uv": [0, 1296] },
       { "name": "Painting", "variety": "Blood Moon Countess", "uv": [0, 1368] },
-      { "name": "Painting", "variety": "Hallow's Eve", "uv": [0, 1440] },
+      { "name": "Painting", "variety": "Hallow\u0027s Eve", "uv": [0, 1440] },
       { "name": "Painting", "variety": "Morbid Curiosity", "uv": [0, 1512] },
       { "name": "Hanging", "variety": "Tiger Skin", "uv": [0, 1584] },
       { "name": "Hanging", "variety": "Leopard Skin", "uv": [0, 1656] },
@@ -9320,7 +9193,7 @@
       { "name": "Painting", "variety": "Dread of the Red Sea", "uv": [216, 144] },
       { "name": "Painting", "variety": "Do Not Eat the Vile Mushroom!", "uv": [216, 216] },
       { "name": "Painting", "variety": "Yuuma, The Blue Tiger", "uv": [216, 288] },
-      { "name": "Painting", "variety": "Moonman & Company", "uv": [216, 360] },
+      { "name": "Painting", "variety": "Moonman \u0026 Company", "uv": [216, 360] },
       { "name": "Painting", "variety": "Sunshine of Israpony", "uv": [216, 432] },
       { "name": "Painting", "variety": "Purity", "uv": [216, 504] },
       { "name": "Painting", "variety": "Lady Of The Lake", "uv": [216, 576] },
@@ -9406,7 +9279,7 @@
       { "name": "Painting", "variety": "Hail to the King", "uv": [1008, 0] },
       { "name": "Painting", "variety": "Crystallize", "uv": [1044, 0] },
       { "name": "Painting", "variety": "Stickman vs Terr Terr", "uv": [1080, 0] },
-      { "name": "Painting", "variety": "It's Scragglin' Time", "uv": [1116, 0] }
+      { "name": "Painting", "variety": "It\u0027s Scragglin\u0027 Time", "uv": [1116, 0] }
     ],
     "name": "Paintings 2x3",
     "color": "#63321EFF"
@@ -9418,7 +9291,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Painting", "variety": "Demon's Eye", "uv": [0, 0] },
+      { "name": "Painting", "variety": "Demon\u0027s Eye", "uv": [0, 0] },
       { "name": "Painting", "variety": "Finding Gold", "uv": [0, 36] },
       { "name": "Painting", "variety": "First Encounter", "uv": [0, 72] },
       { "name": "Painting", "variety": "Good Morning", "uv": [0, 108] },
@@ -9752,11 +9625,7 @@
     "name": "Firefly in a Bottle",
     "color": "#7AD9E8FF",
     "isAnimated": true,
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 18,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 18, "wrapThreshold": 36 }
   },
   {
     "id": 271,
@@ -9772,11 +9641,7 @@
     "name": "Lightning Bug in a Bottle",
     "color": "#7AD9E8FF",
     "isAnimated": true,
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 18,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 18, "wrapThreshold": 36 }
   },
   {
     "id": 272,
@@ -9939,11 +9804,7 @@
     ],
     "name": "Heavy Work Bench",
     "color": "#808080FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 54
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 54 }
   },
   {
     "id": 284,
@@ -9998,11 +9859,7 @@
     ],
     "name": "Ammo Box",
     "color": "#4F8011FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 288,
@@ -10245,11 +10102,7 @@
     ],
     "name": "Living Loom",
     "color": "#909490FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 54
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 54 }
   },
   {
     "id": 305,
@@ -10448,11 +10301,7 @@
     ],
     "name": "Ship in a Bottle",
     "color": "#604430FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 320,
@@ -10466,11 +10315,7 @@
     ],
     "name": "Seaweed Planter",
     "color": "#CBB997FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 54
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 54 }
   },
   {
     "id": 321,
@@ -10665,11 +10510,7 @@
     ],
     "name": "Fireworks Box",
     "color": "#D9AE89FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 336,
@@ -10743,11 +10584,7 @@
     ],
     "name": "Firework Fountain",
     "color": "#55FFA0FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 18,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 18, "wrapThreshold": 36 }
   },
   {
     "id": 339,
@@ -10972,11 +10809,7 @@
     ],
     "name": "Enchanted Sundial",
     "color": "#E9CB18FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 54
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 54 }
   },
   {
     "id": 357,
@@ -11418,11 +11251,7 @@
     ],
     "name": "Trap Door (Closed)",
     "color": "#7F5C45FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 18
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 18 }
   },
   {
     "id": 388,
@@ -11741,11 +11570,7 @@
     ],
     "name": "Lunar Crafting Station",
     "color": "#4B8BA6FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 54
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 54 }
   },
   {
     "id": 413,
@@ -12022,7 +11847,7 @@
   {
     "id": 428,
     "isFramed": true,
-    "textureGrid": [16, 18],
+    "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
@@ -12614,11 +12439,7 @@
     ],
     "name": "Bee Hive",
     "color": "#bfb07cFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 445,
@@ -12838,11 +12659,7 @@
     ],
     "name": "Desert Spirit Lamp",
     "color": "#E7B21CFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 18
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 18 }
   },
   {
     "id": 463,
@@ -12852,10 +12669,10 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 4]],
     "frames": [
-      { "name": "Defender's Forge", "size": [3, 4], "anchor": "Bottom" },
-      { "name": "Defender's Forge", "uv": [0, 72], "size": [3, 4], "anchor": "Bottom" }
+      { "name": "Defender\u0027s Forge", "size": [3, 4], "anchor": "Bottom" },
+      { "name": "Defender\u0027s Forge", "uv": [0, 72], "size": [3, 4], "anchor": "Bottom" }
     ],
-    "name": "Defender's Forge",
+    "name": "Defender\u0027s Forge",
     "color": "#9BD6F0FF",
     "isAnimated": true
   },
@@ -12885,11 +12702,7 @@
     ],
     "name": "War Table Banner",
     "color": "#3354C3FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 54
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 54 }
   },
   {
     "id": 466,
@@ -12903,11 +12716,7 @@
     ],
     "name": "Elder Cystal Stand",
     "color": "#CD9949FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 90,
-      "wrapThreshold": 72
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 90, "wrapThreshold": 72 }
   },
   {
     "id": 467,
@@ -12920,7 +12729,7 @@
       { "name": "Golden Chest", "uv": [36, 0] },
       { "name": "Spider Chest", "uv": [72, 0] },
       { "name": "Lesion Chest", "uv": [108, 0] },
-      { "name": "Dead Man's Chest", "uv": [144, 0] },
+      { "name": "Dead Man\u0027s Chest", "uv": [144, 0] },
       { "name": "Solar Chest", "uv": [180, 0] },
       { "name": "Vortex Chest", "uv": [216, 0] },
       { "name": "Nebula Chest", "uv": [252, 0] },
@@ -12971,7 +12780,7 @@
       { "name": "Trapped Golden Chest", "uv": [36, 0] },
       { "name": "Trapped Spider Chest", "uv": [72, 0] },
       { "name": "Trapped Lesion Chest", "uv": [108, 0] },
-      { "name": "Trapped Dead Man's Chest (unused - DO NOT USE)", "uv": [144, 0] },
+      { "name": "Trapped Dead Man\u0027s Chest (unused - DO NOT USE)", "uv": [144, 0] },
       { "name": "Trapped Solar Chest", "uv": [180, 0] },
       { "name": "Trapped Vortex Chest", "uv": [216, 0] },
       { "name": "Trapped Nebula Chest", "uv": [252, 0] },
@@ -13144,11 +12953,7 @@
     ],
     "name": "Golf Cup",
     "color": "#85909AFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 22,
-      "wrapThreshold": 20
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 22, "wrapThreshold": 20 }
   },
   {
     "id": 477,
@@ -13240,11 +13045,7 @@
     ],
     "name": "Rolling Cactus",
     "color": "#737E3DFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 485,
@@ -13274,11 +13075,7 @@
     ],
     "name": "Drum Set",
     "color": "#7A775CFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 36 }
   },
   {
     "id": 487,
@@ -13347,11 +13144,7 @@
     "name": "Void Vault",
     "color": "#8149B1FF",
     "isAnimated": true,
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 54
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 54 }
   },
   {
     "id": 492,
@@ -13396,11 +13189,7 @@
     ],
     "name": "Golf Tee",
     "color": "#A5A4B6FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 18,
-      "wrapThreshold": 18
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 18, "wrapThreshold": 18 }
   },
   {
     "id": 495,
@@ -13562,11 +13351,7 @@
     ],
     "name": "Toilets",
     "color": "#356D40FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 2040
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 2040 }
   },
   {
     "id": 498,
@@ -14344,11 +14129,7 @@
     ],
     "name": "Boulder Statue",
     "color": "#6B6B6BFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 54
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 54 }
   },
   {
     "id": 532,
@@ -15056,11 +14837,7 @@
     "name": "Lavafly in a Bottle",
     "color": "#747179FF",
     "isAnimated": true,
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 18,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 18, "wrapThreshold": 36 }
   },
   {
     "id": 582,
@@ -16204,11 +15981,7 @@
     "name": "Potted Ember Tendrils",
     "color": "#724D31FF",
     "isAnimated": true,
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 54,
-      "wrapThreshold": 108
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 54, "wrapThreshold": 108 }
   },
   {
     "id": 615,
@@ -16436,11 +16209,7 @@
     ],
     "name": "Slice of Cake",
     "color": "#8E6A67FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 622,
@@ -16454,11 +16223,7 @@
     ],
     "name": "Teapot",
     "color": "#918D6AFF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 623,
@@ -16484,7 +16249,7 @@
     "frames": [
       { "name": "624", "size": [1, 1], "anchor": "Bottom" }
     ],
-    "name": "Abigail's Flower",
+    "name": "Abigail\u0027s Flower",
     "color": "#BC5543FF"
   },
   {
@@ -17255,7 +17020,6 @@
       { "name": "Corruption Pot", "variety": "B3", "uv": [72, 612] },
       { "name": "Corruption Pot", "variety": "C1", "uv": [0, 648] },
       { "name": "Corruption Pot", "variety": "C2", "uv": [36, 648] },
-      { "name": "Corruption Pot", "variety": "C2", "uv": [36, 648] },
       { "name": "Corruption Pot", "variety": "C3", "uv": [72, 648] },
       { "name": "Spider Cave Pot", "variety": "A1", "uv": [0, 684] },
       { "name": "Spider Cave Pot", "variety": "A2", "uv": [36, 684] },
@@ -17327,11 +17091,7 @@
     ],
     "name": "TNT Barrel",
     "color": "#8F6768FF",
-    "textureWrap": {
-      "axis": "V",
-      "offsetIncrement": 36,
-      "wrapThreshold": 36
-    }
+    "textureWrap": { "axis": "V", "offsetIncrement": 36, "wrapThreshold": 36 }
   },
   {
     "id": 655,
@@ -18011,7 +17771,7 @@
       { "name": "Jungle Plants Echo", "variety": "Flower A (Echo)", "uv": [108, 0] },
       { "name": "Jungle Plants Echo", "variety": "Flower B (Echo)", "uv": [126, 0] },
       { "name": "Jungle Plants Echo", "variety": "Jungle Spore (Echo)", "uv": [144, 0] },
-      { "name": "Jungle Plants Echo", "variety": "Nature's Gift (Echo)", "uv": [162, 0] },
+      { "name": "Jungle Plants Echo", "variety": "Nature\u0027s Gift (Echo)", "uv": [162, 0] },
       { "name": "Jungle Plants Echo", "variety": "Flower C (Echo)", "uv": [180, 0] },
       { "name": "Jungle Plants Echo", "variety": "Flower D (Echo)", "uv": [198, 0] },
       { "name": "Jungle Plants Echo", "variety": "Flower E (Echo)", "uv": [216, 0] },

@@ -1,4 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 using Shouldly;
+using TEdit.Geometry;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria.Tests.DataModel;
@@ -197,5 +203,56 @@ public class SpriteDataTests : IDisposable
         // Spot check a few tiles
         store.Tiles[0].Name.ShouldBe(WorldConfiguration.TileProperties[0].Name);
         store.Tiles[87].Name.ShouldBe(WorldConfiguration.TileProperties[87].Name);
+    }
+
+    [Fact(Skip = "Run manually to find overlap frames")]
+    public void SpriteData_FrameDoNotOverlap()
+    {
+        var tileOverlaps = new Dictionary<int, List<string>>();
+
+        foreach (var tile in WorldConfiguration.TileProperties)
+        {
+            if (tile.Frames == null || tile.Frames.Count == 0) continue;
+
+            var overlaps = new List<string>();
+            var rects = tile.Frames
+                .Select(frame =>
+                {
+                    var size = frame.Size.X > 0 && frame.Size.Y > 0
+                        ? frame.Size
+                        : tile.GetFrameSize(frame.UV.Y);
+
+                    var rect = new Rectangle(
+                        frame.UV.X,
+                        frame.UV.Y,
+                        size.X * (tile.TextureGrid.X + tile.FrameGap.X),
+                        size.Y * (tile.TextureGrid.Y + tile.FrameGap.Y));
+
+                    return new { Frame = frame, Rect = rect };
+                })
+                .ToList();
+
+            for (int i = 0; i < rects.Count; i++)
+            {
+                for (int j = i + 1; j < rects.Count; j++)
+                {
+                    if (rects[i].Rect.IntersectsWith(rects[j].Rect))
+                    {
+                        overlaps.Add($"{rects[i].Frame.Name} @ ({rects[i].Frame.UV.X},{rects[i].Frame.UV.Y}) overlaps {rects[j].Frame.Name} @ ({rects[j].Frame.UV.X},{rects[j].Frame.UV.Y})");
+                    }
+                }
+            }
+
+            if (overlaps.Count > 0) tileOverlaps[tile.Id] = overlaps;
+        }
+
+        if (tileOverlaps.Count > 0)
+        {
+            var message = string.Join(
+                Environment.NewLine,
+                tileOverlaps.Select(kvp => $"Tile {kvp.Key}:\n{string.Join(", ", kvp.Value)}"));
+
+            throw new Exception($"Sprite frame overlapping:{Environment.NewLine}{message}");
+        }
     }
 }
