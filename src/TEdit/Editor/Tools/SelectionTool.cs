@@ -5,6 +5,7 @@ using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.UI;
 using TEdit.ViewModel;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -21,6 +22,7 @@ public class SelectionTool : BaseTool
         _preview.SetPixel(0, 0, 127, 0, 90, 255);
 
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/shape_square.png"));
+        SymbolIcon = SymbolRegular.SelectObject24;
         Name = "Selection";
         IsActive = false;
         ToolType = ToolType.Pixel;

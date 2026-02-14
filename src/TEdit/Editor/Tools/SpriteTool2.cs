@@ -8,6 +8,7 @@ using TEdit.Terraria.Editor;
 using TEdit.Terraria.Objects;
 using TEdit.UI;
 using TEdit.ViewModel;
+using Wpf.Ui.Controls;
 namespace TEdit.Editor.Tools;
 
 public sealed class SpriteTool2 : BaseTool
@@ -20,6 +21,7 @@ public sealed class SpriteTool2 : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/sprite.png"));
+        SymbolIcon = SymbolRegular.Image24;
         Name = "Sprite2";
         IsActive = false;
         ToolType = ToolType.Pixel;

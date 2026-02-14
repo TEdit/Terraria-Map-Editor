@@ -487,6 +487,7 @@ public partial class WorldRenderXna : UserControl
         _wvm.RequestZoomEvent += _wvm_RequestZoom;
         _wvm.RequestPanEvent += _wvm_RequestPan;
         _wvm.RequestScrollEvent += _wvm_RequestScroll;
+        _wvm.RequestMapRedrawEvent += _wvm_RequestMapRedraw;
 
         // Cancel background texture loading and preview timer when control is unloaded
         Unloaded += (s, e) =>
@@ -494,6 +495,23 @@ public partial class WorldRenderXna : UserControl
             _textureLoadCancellation?.Cancel();
             _previewProcessingTimer?.Stop();
         };
+    }
+
+    private void _wvm_RequestMapRedraw(object sender, Framework.Events.EventArgs<bool> e)
+    {
+        DrawTileWalls();
+        DrawTileTextures();
+
+        if (e.Value1)
+        {
+            _wvm.UpdateRenderWorldUsingFilter();
+            _wvm.MinimapImage = RenderMiniMap.Render(_wvm.CurrentWorld, true);
+        }
+        else
+        {
+            _wvm.UpdateRenderWorld();
+            _wvm.MinimapImage = RenderMiniMap.Render(_wvm.CurrentWorld);
+        }
     }
 
     private void _wvm_RequestPan(object sender, EventArgs<bool> e) => SetPanMode(e.Value1);
@@ -616,7 +634,7 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
     {
         // Abort rendering if in design mode or if gameTimer is already running
-        // TODO: add design mode check and return here
+        if (DesignerProperties.GetIsInDesignMode(this)) { return; }
         if (_gameTimer.IsRunning) { return; }
 
         InitializeGraphicsComponents(e);
@@ -2202,13 +2220,17 @@ public partial class WorldRenderXna : UserControl
 
     private void xnaViewport_RenderXna(object sender, GraphicsDeviceEventArgs e)
     {
-        // Abort rendering if in design mode or if gameTimer is not running
-        if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null)
-            return;
+        if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
+
+        
 
         // Clear the graphics device and texture buffer
         e.GraphicsDevice.Clear(_backgroundColor);
 
+
+        // Abort rendering if in design mode or if gameTimer is not running
+        if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null)
+            return;
 
 
         Update(e);

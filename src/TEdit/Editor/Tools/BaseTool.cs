@@ -4,6 +4,7 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.UI;
 using TEdit.ViewModel;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -30,6 +31,8 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     public virtual ToolType ToolType { get; protected set; }
 
     public virtual BitmapImage Icon { get; protected set; }
+
+    public virtual SymbolRegular SymbolIcon { get; protected set; } = SymbolRegular.Empty;
 
     [Reactive]
     private bool _isActive;

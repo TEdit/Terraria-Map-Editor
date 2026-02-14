@@ -10,6 +10,7 @@ using TEdit.Terraria;
 using TEdit.Render;
 using TEdit.UI;
 using TEdit.Terraria.DataModel;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -34,6 +35,7 @@ public sealed class MorphTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/biome_new.png"));
+        SymbolIcon = SymbolRegular.TreeEvergreen20;
         Name = "Morph";
         ToolType = ToolType.Brush;
     }

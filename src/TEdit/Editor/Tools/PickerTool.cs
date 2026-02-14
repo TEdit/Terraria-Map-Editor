@@ -9,6 +9,7 @@ using TEdit.Terraria.Objects;
 using TEdit.Terraria.Editor;
 using TEdit.Terraria;
 using TEdit.UI;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -18,6 +19,7 @@ public sealed class PickerTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/eyedropper.png"));
+        SymbolIcon = SymbolRegular.Eyedropper24;
         ToolType = ToolType.Pixel;
         Name = "Picker";
     }

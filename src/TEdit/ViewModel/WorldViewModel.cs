@@ -145,7 +145,7 @@ public partial class WorldViewModel : ReactiveObject
 
     public WorldViewModel()
     {
-        if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) { return; }
+        if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
         CheckUpdates = UserSettingsService.Current.CheckUpdates;
 

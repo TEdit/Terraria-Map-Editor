@@ -8,7 +8,6 @@
         mc:Ignorable="d"
         xmlns:p="clr-namespace:TEdit.Properties"
         d:Width="320"
-        Background="{StaticResource ControlBackgroundBrush}"
         d:DataContext="{d:DesignInstance Type=viewModel:BannerViewModel}">
 
     <UserControl.Resources>

@@ -10,6 +10,7 @@ using TEdit.Terraria;
 using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.UI;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -27,6 +28,7 @@ public class BrushToolBase : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintbrush.png"));
+        SymbolIcon = SymbolRegular.PaintBrush24;
         ToolType = ToolType.Brush;
     }
 

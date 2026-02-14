@@ -1,5 +1,6 @@
 ﻿using System.Windows.Media.Imaging;
 using TEdit.UI;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -7,6 +8,7 @@ public interface ITool
 {
     ToolType ToolType { get; }
     BitmapImage Icon { get; }
+    SymbolRegular SymbolIcon { get; }
     bool IsActive { get; set; }
     string Name { get; }
     string Title { get; }

@@ -8,6 +8,7 @@ using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.UI;
 using TEdit.Editor.Clipboard;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -17,6 +18,7 @@ public sealed class PasteTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paste.png"));
+        SymbolIcon = SymbolRegular.ClipboardPaste24;
         Name = "Paste";
         IsActive = false;
         ToolType = ToolType.Pixel;

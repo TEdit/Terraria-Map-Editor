@@ -1026,7 +1026,6 @@ namespace SettingsFileUpdater.TerrariaHost
                 {
                     Id = npc.netID,
                     Name = Localize(npc.FullName),
-                    Size = new Vector2Short((short)npc.width, (short)npc.height)
                 });
             }
 

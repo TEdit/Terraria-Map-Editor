@@ -1,35 +1,41 @@
-﻿<Window x:Class="TEdit.MainWindow"
+﻿<ui:FluentWindow x:Class="TEdit.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEdit.View" x:Name="Shell"
-        Title="{Binding WindowTitle}" Height="800" Width="1600" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:View="clr-namespace:TEdit.View" x:Name="Shell"
+        Title="{Binding WindowTitle}" Height="1080" Width="1920"
         MaxWidth="4339"
         Loaded="MainWindow_Loaded"
-        UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEdit;component/Images/tedit.ico"
+        UseLayoutRounding="True" Icon="/TEdit;component/Images/tedit.ico"
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:vm="clr-namespace:TEdit.ViewModel"
         xmlns:cv="clr-namespace:TEdit.Converters"
         AllowDrop="True"
         Drop="WorldFileDrop"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        Background="{DynamicResource ControlBackgroundBrush}"
+        WindowCornerPreference="Round"
    >
     <Window.Resources>
-        <Image x:Key="TB_LogIcon" x:Shared="false" Source="/Images/Toolbar/report_magnify.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_NewIcon" x:Shared="false" Source="/Images/Toolbar/new.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_SaveIcon" x:Shared="false" Source="/Images/Toolbar/save.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_SaveAsIcon" x:Shared="false" Source="/Images/Toolbar/saveas.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_SaveAsVersionIcon" x:Shared="false" Source="/Images/Toolbar/saveasversion.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_OpenIcon" x:Shared="false" Source="/Images/Toolbar/open.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_HelpIcon" x:Shared="false" Source="/Images/Toolbar/help.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_UpdateIcon" x:Shared="false" Source="/Images/Toolbar/update.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_UpdateXmlIcon" x:Shared="false" Source="/Images/Toolbar/update_xml.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_CopyIcon" x:Shared="false" Source="/Images/Toolbar/copy.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_PasteIcon" x:Shared="false" Source="/Images/Toolbar/paste.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_UndoIcon" x:Shared="false" Source="/Images/Toolbar/arrow_undo.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_RedoIcon" x:Shared="false" Source="/Images/Toolbar/arrow_redo.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_DeleteIcon" x:Shared="false" Source="/Images/Toolbar/delete.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_ZoomInIcon" x:Shared="false" Source="/Images/Tools/zoom_in.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_ZoomOutIcon" x:Shared="false" Source="/Images/Tools/zoom_out.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_CropIcon" x:Shared="false" Source="Images/Toolbar/crop.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-        <Image x:Key="TB_ExpandIcon" x:Shared="false" Source="Images/Toolbar/expand.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <ui:SymbolIcon x:Key="TB_LogIcon" x:Shared="false" Symbol="DocumentSearch20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_NewIcon" x:Shared="false" Symbol="DocumentAdd20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_SaveIcon" x:Shared="false" Symbol="Save20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_SaveAsIcon" x:Shared="false" Symbol="SaveEdit20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_SaveAsVersionIcon" x:Shared="false" Symbol="SaveMultiple20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_OpenIcon" x:Shared="false" Symbol="FolderOpen20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_HelpIcon" x:Shared="false" Symbol="QuestionCircle20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_UpdateIcon" x:Shared="false" Symbol="ArrowSync20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_UpdateXmlIcon" x:Shared="false" Symbol="Settings20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_CopyIcon" x:Shared="false" Symbol="Copy20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_PasteIcon" x:Shared="false" Symbol="ClipboardPaste20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_UndoIcon" x:Shared="false" Symbol="ArrowUndo20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_RedoIcon" x:Shared="false" Symbol="ArrowRedo20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_DeleteIcon" x:Shared="false" Symbol="Delete20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_ZoomInIcon" x:Shared="false" Symbol="ZoomIn20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_ZoomOutIcon" x:Shared="false" Symbol="ZoomOut20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_CropIcon" x:Shared="false" Symbol="Crop20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_ExpandIcon" x:Shared="false" Symbol="ArrowExpand20" FontSize="16"/>
         <cv:EnumToBoolConverter x:Key="boolEnumConverter" />
         <DataTemplate x:Key="MenuItemTemplate">
             <MenuItem Command="" CommandParameter="{Binding}">
@@ -49,19 +55,31 @@
             <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="AllowDrop" Value="true" />
-            <Setter Property="Template" Value="{DynamicResource TextBoxTemplate}" />
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
             <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-            <Setter Property="BorderBrush" Value="#FF000000" />
+            <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Selection.IsActive}" Value="True">
-                    <Setter Property="BorderBrush" Value="#FFFFFF00" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource SelectedBackgroundBrush}" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
     <Grid>
-        <DockPanel LastChildFill="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- WPF UI Title Bar -->
+        <ui:TitleBar Title="{Binding WindowTitle}" Grid.Row="0">
+            <ui:TitleBar.Icon>
+                <ui:ImageIcon Source="/TEdit;component/Images/tedit.ico" />
+            </ui:TitleBar.Icon>
+        </ui:TitleBar>
+
+        <!-- Main Content -->
+        <DockPanel Grid.Row="1" LastChildFill="True">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="{x:Static p:Language.menu_file}">
                     <MenuItem Header="{x:Static p:Language.menu_file_new}" Icon="{StaticResource TB_NewIcon}" Command="{Binding NewWorldCommand}" />
@@ -142,7 +160,7 @@
                     <MenuItem Header="{x:Static p:Language.menu_help_about}" />
                 </MenuItem>
             </Menu>
-            <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2" Foreground="{StaticResource TextBrush}">
+            <StatusBar DockPanel.Dock="Bottom"  Background="{x:Null}" Padding="0" Foreground="{StaticResource TextBrush}">
                 <StatusBarItem HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{x:Static p:Language.statusbar_position_label}" VerticalAlignment="Center" Margin="5,0"/>
@@ -169,30 +187,52 @@
                 </StatusBarItem>
             </StatusBar>
             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="1">
-                <Button Content="{StaticResource TB_NewIcon}" ToolTip="{x:Static p:Language.menu_file_new}" Padding="3" Command="{Binding NewWorldCommand}" Margin="1" Height="24" Width="24"/>
-                <Button Content="{StaticResource TB_OpenIcon}" ToolTip="{x:Static p:Language.menu_file_open}" Padding="3" Command="{Binding OpenCommand}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_SaveIcon}" ToolTip="{x:Static p:Language.menu_file_save}" Padding="3" Command="{Binding SaveCommand}" Margin="1" Height="24" Width="24" />
+                <ui:Button ToolTip="{x:Static p:Language.menu_file_new}" Padding="3" Command="{Binding NewWorldCommand}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="DocumentAdd24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
+                <ui:Button ToolTip="{x:Static p:Language.menu_file_open}" Padding="3" Command="{Binding OpenCommand}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="FolderOpen24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
+                <ui:Button ToolTip="{x:Static p:Language.menu_file_save}" Padding="3" Command="{Binding SaveCommand}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="Save24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
                 <Separator Height="2" />
-                <Button Content="{StaticResource TB_ZoomInIcon}" ToolTip="{x:Static p:Language.menu_toolbar_zoom_in}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource True}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_ZoomOutIcon}" ToolTip="{x:Static p:Language.menu_toolbar_zoom_out}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource False}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_UndoIcon}" ToolTip="{x:Static p:Language.menu_edit_undo}" Padding="3" Command="{Binding UndoCommand}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_RedoIcon}" ToolTip="{x:Static p:Language.menu_edit_redo}" Padding="3" Command="{Binding RedoCommand}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_DeleteIcon}" ToolTip="{x:Static p:Language.menu_edit_delete}" Padding="3" Command="{Binding DeleteCommand}" Margin="1" Height="24" Width="24" />
+                <ui:Button ToolTip="{x:Static p:Language.menu_toolbar_zoom_in}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource True}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="ZoomIn24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
+                <ui:Button ToolTip="{x:Static p:Language.menu_toolbar_zoom_out}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource False}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="ZoomOut24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
+                <ui:Button ToolTip="{x:Static p:Language.menu_edit_undo}" Padding="3" Command="{Binding UndoCommand}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowUndo24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
+                <ui:Button ToolTip="{x:Static p:Language.menu_edit_redo}" Padding="3" Command="{Binding RedoCommand}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowRedo24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
+                <ui:Button ToolTip="{x:Static p:Language.menu_edit_delete}" Padding="3" Command="{Binding DeleteCommand}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="Delete24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
                 <Separator Height="2" />
-                <Button Content="{StaticResource TB_CropIcon}" ToolTip="{x:Static p:Language.menu_edit_crop}" Padding="3" Command="{Binding CropCommand}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_ExpandIcon}" ToolTip="{x:Static p:Language.menu_edit_expand}" Padding="3" Command="{Binding ExpandCommand}" Margin="1" Height="24" Width="24" />
+                <ui:Button ToolTip="{x:Static p:Language.menu_edit_crop}" Padding="3" Command="{Binding CropCommand}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="Crop24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
+                <ui:Button ToolTip="{x:Static p:Language.menu_edit_expand}" Padding="3" Command="{Binding ExpandCommand}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowExpand24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
                 <Separator Height="2" />
-                <Button Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Padding="3" Command="{Binding CopyCommand}" Margin="1" Height="24" Width="24" />
+                <ui:Button ToolTip="{x:Static p:Language.menu_edit_copy}" Padding="3" Command="{Binding CopyCommand}" Margin="1" Height="32" Width="32">
+                    <ui:Button.Icon><ui:SymbolIcon Symbol="Copy24" FontSize="20"/></ui:Button.Icon>
+                </ui:Button>
                 <View:ToolSelectorView />
             </StackPanel>
             <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                     <Border  BorderThickness="1" BorderBrush="{StaticResource SolidBorderBrush}" Background="{StaticResource ControlBackgroundBrush}">
-                        <Grid  Width="300" Height="100">
+                        <Grid  Width="300" Height="130">
                             <Image Source="{Binding MinimapImage}" Stretch="None" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderOptions.BitmapScalingMode="HighQuality" MouseDown="Image_MouseDown" />
                         </Grid>
                     </Border>
-                    <View:Sponsor Width="140" VerticalAlignment="Center" Margin="2 0 2 0"></View:Sponsor>
+                    <View:Sponsor Width="140" VerticalAlignment="Stretch" Margin="2 0 2 0"></View:Sponsor>
                 </StackPanel>
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Height="110">
                     <StackPanel Orientation="Horizontal">
@@ -259,43 +299,105 @@
                     </StackPanel>
                 </ScrollViewer>
             </DockPanel>
-            <Expander Header="{x:Static p:Language.editor_utilities_label}" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
-                <TabControl TabStripPlacement="Top" Width="340" Foreground="{DynamicResource TextBrush}" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                    <TabItem Header="{x:Static p:Language.editor_tabs_worldproperties}" >
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-                        </ScrollViewer>
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.editor_tabs_special}">
-                        <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.editor_tabs_sprites}">
-                        <View:SpriteView2 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.editor_tabs_clipboard}">
-                        <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.editor_tabs_npc}" >
-                        <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.editor_tabs_analysis}">
-                        <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.editor_tabs_tally}">
-                        <View:BestiaryEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.editor_tabs_banners}">
-                        <View:BannerEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.editor_tabs_tileentities}">
-                        <View:TileEntityExaminer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.editor_tabs_creative}">
-                        <View:CreativePowers HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </TabItem>
-                </TabControl>
-            </Expander>
-            <View:WorldRenderXna x:Name="MapView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <!-- Main content area with resizable side panel -->
+            <Grid x:Name="ContentGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="440" MinWidth="32" MaxWidth="600" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Map View -->
+                <View:WorldRenderXna x:Name="MapView" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+                <!-- GridSplitter for resizing -->
+                <GridSplitter x:Name="SidePanelSplitter" Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                              Background="{DynamicResource NormalBorderBrush}" Cursor="SizeWE" />
+
+                <!-- Side Panel -->
+                <Grid x:Name="SidePanel" Grid.Column="2" Background="{DynamicResource ControlBackgroundBrush}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Panel Header with collapse button -->
+                    <DockPanel Grid.Row="0" Background="{DynamicResource NormalBrush}" Height="32">
+                        <Button x:Name="SidePanelToggle" DockPanel.Dock="Left" Width="32" Height="32"
+                                Click="SidePanelToggle_Click" ToolTip="Toggle Panel"
+                                Background="Transparent" BorderThickness="0" Cursor="Hand">
+                            <Path x:Name="SidePanelToggleIcon" Data="M8,0 L0,5 L8,10"
+                                  Stroke="{DynamicResource TextBrush}" StrokeThickness="1.5"
+                                  Fill="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Button>
+                        <TextBlock x:Name="SidePanelHeaderText" Text="{x:Static p:Language.editor_utilities_label}" VerticalAlignment="Center"
+                                   Foreground="{DynamicResource TextBrush}" Margin="4,0,0,0" FontWeight="SemiBold" />
+                    </DockPanel>
+
+                    <!-- Vertical text shown when collapsed -->
+                    <TextBlock x:Name="SidePanelVerticalText" Grid.Row="1" Text="{x:Static p:Language.editor_utilities_label}"
+                               Foreground="{DynamicResource TextBrush}" FontWeight="SemiBold" FontSize="12"
+                               Visibility="Collapsed" HorizontalAlignment="Center" Margin="0,8,0,0">
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="90" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+
+                    <!-- Tab Control - Icon Style -->
+                    <TabControl x:Name="SidePanelTabs" Grid.Row="1" TabStripPlacement="Top"
+                                Style="{StaticResource IconTabControl}"
+                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_worldproperties}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Globe20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                            </ScrollViewer>
+                        </TabItem>
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_special}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Sparkle20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        </TabItem>
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_sprites}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Couch20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <View:SpriteView2 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        </TabItem>
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_clipboard}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Clipboard20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        </TabItem>
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_npc}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="People20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </TabItem>
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_analysis}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="ChartMultiple20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <View:WorldAnalysis HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </TabItem>
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_tally}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Trophy20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <View:BestiaryEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        </TabItem>
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_banners}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Flag20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <View:BannerEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        </TabItem>
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_tileentities}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Grid20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <View:TileEntityExaminer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        </TabItem>
+                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_creative}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Lightbulb20" Filled="True" FontSize="18"/></TabItem.Header>
+                            <View:CreativePowers HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </Grid>
         </DockPanel>
+
+        <!-- WPF UI Snackbar for notifications -->
+        <ui:SnackbarPresenter x:Name="SnackbarPresenter" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,40" />
+
+        <!-- WPF UI Dialog host -->
+        <ContentPresenter x:Name="RootContentDialog" Grid.Row="0" Grid.RowSpan="2" />
     </Grid>
-</Window>
+</ui:FluentWindow>

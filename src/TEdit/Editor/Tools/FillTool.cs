@@ -8,6 +8,7 @@ using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.UI;
 using TEdit.Common.Geometry;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -23,6 +24,7 @@ public sealed class FillTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintcan.png"));
+        SymbolIcon = SymbolRegular.PaintBucket24;
         Name = "Fill";
         ToolType = ToolType.Pixel;
     }

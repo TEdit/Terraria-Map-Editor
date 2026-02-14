@@ -2,9 +2,200 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:tedit="clr-namespace:TEdit.UI.Xaml">
 
-    <!-- Global font for Unicode support -->
+    <!-- Fallback brushes for Fluent theme compatibility -->
+    <Color x:Key="BlackColor">#FF000000</Color>
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FF1E1E1E" />
+    <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#FF2D2D2D" />
+    <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="GlyphBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="NormalBrush" Color="#FF333333" />
+    <SolidColorBrush x:Key="NormalBorderBrush" Color="#FF555555" />
+    <SolidColorBrush x:Key="SolidBorderBrush" Color="#FF555555" />
+    <SolidColorBrush x:Key="DefaultedBorderBrush" Color="#FF666666" />
+    <SolidColorBrush x:Key="HoverBrush" Color="#FF444444" />
+    <SolidColorBrush x:Key="MouseOverBrush" Color="#FF444444" />
+    <SolidColorBrush x:Key="HoverShineBrush" Color="#FF505050" />
+    <SolidColorBrush x:Key="ShineBrush" Color="#FF404040" />
+    <SolidColorBrush x:Key="ShadeBrush" Color="#FF1A1A1A" />
+    <SolidColorBrush x:Key="LightBrush" Color="#FF4A4A4A" />
+    <SolidColorBrush x:Key="PressedBrush" Color="#FF222222" />
+    <SolidColorBrush x:Key="PressedBorderBrush" Color="#FF333333" />
+    <SolidColorBrush x:Key="SelectedBackgroundBrush" Color="#FF0078D4" />
+    <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FF888888" />
+    <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#FF2D2D2D" />
+    <SolidColorBrush x:Key="DisabledBorderBrush" Color="#FF444444" />
+    <SolidColorBrush x:Key="ButtonNormalBackground" Color="#FF333333" />
+    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF555555" />
+
+    <!-- Global font for Unicode support (YaHei for CJK, similar metrics to Segoe UI) -->
     <Style TargetType="{x:Type Window}">
-        <Setter Property="FontFamily" Value="Segoe UI, Arial Unicode MS"/>
+        <Setter Property="FontFamily" Value="Segoe UI, Microsoft YaHei, Arial Unicode MS"/>
+    </Style>
+
+    <!-- Menu styles for dark theme (designer fix) -->
+    <Style TargetType="{x:Type Menu}">
+        <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+    </Style>
+    <Style TargetType="{x:Type MenuItem}">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+    </Style>
+
+    <!-- ListView styles for Fluent theme -->
+    <Style TargetType="{x:Type ListView}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    </Style>
+
+    <Style TargetType="{x:Type ListViewItem}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="Margin" Value="0,1" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AccentFillColorDefaultBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ListBox styles for Fluent theme -->
+    <Style TargetType="{x:Type ListBox}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    </Style>
+
+    <Style TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="Margin" Value="0,1" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
+            </Trigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AccentFillColorDefaultBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- GridViewColumnHeader for ListView GridView mode -->
+    <Style TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="0,0,1,1" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ControlFillColorTertiaryBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Icon-style TabControl: square tabs, horizontal, no wrap -->
+    <Style x:Key="IconTabControl" TargetType="{x:Type TabControl}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid KeyboardNavigation.TabNavigation="Local">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!-- Horizontal tab strip, no wrap -->
+                        <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                BorderThickness="0,0,0,1" Padding="2">
+                            <StackPanel x:Name="HeaderPanel"
+                                        Orientation="Horizontal"
+                                        IsItemsHost="True"/>
+                        </Border>
+                        <!-- Content area -->
+                        <Border Grid.Row="1"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter x:Name="PART_SelectedContentHost"
+                                              ContentSource="SelectedContent"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Stretch"
+                                              VerticalAlignment="Stretch"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Icon-style TabItem: square, compact, fast tooltips -->
+    <Style x:Key="IconTabItem" TargetType="{x:Type TabItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+        <Setter Property="Padding" Value="6"/>
+        <Setter Property="Margin" Value="1,0"/>
+        <Setter Property="MinWidth" Value="34"/>
+        <Setter Property="MinHeight" Value="34"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="ToolTipService.InitialShowDelay" Value="200"/>
+        <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="{TemplateBinding Padding}"
+                            MinWidth="{TemplateBinding MinWidth}"
+                            MinHeight="{TemplateBinding MinHeight}">
+                        <ContentPresenter x:Name="ContentSite"
+                                          ContentSource="Header"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource AccentFillColorDefaultBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <LinearGradientBrush x:Key="DayGradient" EndPoint="1,0.5" StartPoint="0,0.5">
@@ -224,6 +415,5 @@
         </Style.Triggers>
     </Style>
     <Style TargetType="{x:Type tedit:DropDownButton}" BasedOn="{StaticResource {x:Type ToggleButton}}" />
-
 
 </ResourceDictionary>

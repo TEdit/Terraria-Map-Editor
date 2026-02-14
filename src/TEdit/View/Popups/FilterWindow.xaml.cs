@@ -445,26 +445,12 @@ namespace TEdit.View.Popups
         /// <summary>
         /// Forces a complete re-render of the map display in TEdit to reflect current filters or edits.
         /// </summary>
-        private void RedrawMap(bool loadDefualt = false)
+        private void RedrawMap(bool loadDefault = false)
         {
-            var main = (MainWindow)Application.Current.MainWindow;
-            
-            // Reload the map without any filtration applied.
-            if (loadDefualt)
-            {
-                main.MapView.DrawTileWalls();
-                main.MapView.DrawTileTextures();
-
-                _wvm.UpdateRenderWorld();                                             // Re-render map.
-                _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld);   // Update Minimap.
-                return;
-            }
-
-            main.MapView.DrawTileWalls();
-            main.MapView.DrawTileTextures();
-
-            _wvm.UpdateRenderWorldUsingFilter();                                      // Re-render map.
-            _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld, true); // Update Minimap.
+            // Use the ViewModel's command to request a map redraw.
+            // The View (WorldRenderXna) subscribes to this event and handles the actual drawing.
+            // Parameter: true = use filter, false = no filter (default rendering)
+            _wvm.RequestMapRedrawCommand.Execute(!loadDefault);
         }
 
         // Custom color picker logic for the map backdrop.

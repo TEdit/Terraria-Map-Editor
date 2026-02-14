@@ -9,8 +9,8 @@
              xmlns:vwp="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}"
-             d:DesignHeight="600" d:DesignWidth="340" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}">
-    <DockPanel>
+             d:DesignHeight="600" d:DesignWidth="340">
+    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
         <!-- Filter and Size Controls -->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="2">
@@ -40,11 +40,21 @@
                           VerticalAlignment="Center" Margin="5,0"/>
             </StackPanel>
             <ListBox x:Name="SpriteStylesList" Height="300"
-                     Style="{DynamicResource ListBoxWrapPanel}"
                      HorizontalAlignment="Stretch"
                      ItemsSource="{Binding SpriteStylesView}"
                      SelectedItem="{Binding SelectedSpriteItem, Mode=TwoWay}"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <Setter Property="Padding" Value="1"/>
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Image Source="{Binding Path=CurrentPreview}"
@@ -72,16 +82,20 @@
         </StackPanel>
 
         <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.sprite_tiletype}"/>
-        <vwp:GridView x:Name="SpriteSheetList"
-                ItemsSource="{Binding SpriteSheetView}"
-                SelectedItem="{Binding Mode=TwoWay, Path=SelectedSpriteSheet}"
-                SpacingMode="None"
-                Background="{StaticResource ControlBackgroundBrush}">
+        <Border BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                Background="{DynamicResource ControlFillColorDefaultBrush}">
+            <vwp:GridView x:Name="SpriteSheetList"
+                    ItemsSource="{Binding SpriteSheetView}"
+                    SelectedItem="{Binding Mode=TwoWay, Path=SelectedSpriteSheet}"
+                    SpacingMode="Uniform"
+                    Background="Transparent"
+                    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                    BorderThickness="0">
             <vwp:GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Width="{Binding DataContext.SpriteThumbnailSize, ElementName=SpriteViewRoot}"
                           Height="{Binding DataContext.SpriteThumbnailSize, ElementName=SpriteViewRoot}"
-                          Background="{StaticResource ControlBackgroundBrush}"
                           ToolTipService.InitialShowDelay="100"
                           ToolTipService.ShowDuration="30000">
                         <Image Source="{Binding Path=Default.Preview}"
@@ -107,7 +121,8 @@
                     </Grid>
                 </DataTemplate>
             </vwp:GridView.ItemTemplate>
-        </vwp:GridView>
+            </vwp:GridView>
+        </Border>
 
     </DockPanel>
 </UserControl>

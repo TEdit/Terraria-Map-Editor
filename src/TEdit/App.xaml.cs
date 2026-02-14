@@ -18,6 +18,7 @@ using ReactiveUI;
 using ReactiveUI.Builder;
 using TEdit.Terraria;
 using TEdit.ViewModel;
+using Wpf.Ui.Appearance;
 
 namespace TEdit;
 
@@ -72,6 +73,10 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
+        // Initialize WPF UI theme
+        ApplicationThemeManager.Apply(ApplicationTheme.Dark);
+        ApplicationAccentColorManager.Apply(System.Windows.Media.Color.FromRgb(0x00, 0xA0, 0x00), ApplicationTheme.Dark);
+
         // Read settings immediately.
         LoadAppSettings();
 

@@ -5,6 +5,7 @@ using TEdit.Geometry;
 using TEdit.ViewModel;
 using TEdit.Render;
 using TEdit.UI;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -19,6 +20,7 @@ public sealed class PencilTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/pencil.png"));
+        SymbolIcon = SymbolRegular.Edit24;
         Name = "Pencil";
         IsActive = false;
         ToolType = ToolType.Pixel;

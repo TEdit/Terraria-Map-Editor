@@ -6,6 +6,7 @@ using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.UI;
 using TEdit.ViewModel;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -15,6 +16,7 @@ public sealed class PointTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/point.png"));
+        SymbolIcon = SymbolRegular.Location24;
         Name = "Point";
         IsActive = false;
         ToolType = ToolType.Npc;

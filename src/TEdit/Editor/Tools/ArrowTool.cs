@@ -6,6 +6,7 @@ using TEdit.ViewModel;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.UI;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -17,6 +18,7 @@ public sealed class ArrowTool : BaseTool
     public ArrowTool(WorldViewModel worldViewModel) : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/cursor.png"));
+        SymbolIcon = SymbolRegular.Cursor24;
         ToolType = ToolType.Pixel;
         Name = "Arrow";
     }

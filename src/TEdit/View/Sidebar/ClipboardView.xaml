@@ -22,7 +22,7 @@
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-    <DockPanel LastChildFill="True">
+    <DockPanel LastChildFill="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <StackPanel Orientation="Vertical" DockPanel.Dock="Top" HorizontalAlignment="Stretch">
             <Button Content="{x:Static p:Language.tool_clipboard_empty}"  Padding="2,4" Margin="2" Command="{Binding EmptyClipboardCommand}" />
             <Button Content="{x:Static p:Language.tool_clipboard_importschematic}" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource False}" />
@@ -47,7 +47,7 @@
                 <CheckBox Grid.Row="2" Grid.Column="0" Content="{x:Static p:Language.tool_clipboard_replace}" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteOverTiles}"/>
             </Grid>
         </StackPanel>
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <ItemsControl HorizontalAlignment="Stretch" ItemTemplate="{StaticResource clipboardItemView}" ItemsSource="{Binding Clipboard.LoadedBuffers}" />
         </ScrollViewer>
     </DockPanel>

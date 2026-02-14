@@ -1,20 +1,25 @@
-﻿<Application x:Class="TEdit.App"
+<Application x:Class="TEdit.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="Themes\GroupBoxFix.xaml" />-->
-                <ResourceDictionary Source="Themes\ExpressionDark.xaml" />
+                <!-- WPF UI theme resources (designer-safe) -->
+                <ui:ThemesDictionary Theme="Dark" />
+                <ui:ControlsDictionary />
+                <!-- Custom overrides after WPF UI -->
                 <ResourceDictionary Source="Themes\GlobalStyles.xaml" />
                 <ResourceDictionary Source="Themes\Templates.xaml" />
-                <!--<ResourceDictionary Source="Themes\Whistler.xaml" />-->
                 <ResourceDictionary>
                     <system:Boolean x:Key="True">True</system:Boolean>
                     <system:Boolean x:Key="False">False</system:Boolean>
-
+                    <!-- Compact control sizing (WPF UI default is 10,8,10,7) -->
+                    <Thickness x:Key="TextControlThemePadding">5,2,5,2</Thickness>
+                    <!-- Segoe Fluent Icons font for additional icons -->
+                    <FontFamily x:Key="SegoeFluentIcons">pack://application:,,,/TEdit;component/Fonts/#Segoe Fluent Icons</FontFamily>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

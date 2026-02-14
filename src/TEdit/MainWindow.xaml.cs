@@ -14,6 +14,7 @@ using TEdit.View.Popups;
 using System.IO;
 using System.Windows.Controls;
 using TEdit.View;
+using Wpf.Ui.Controls;
 
 namespace TEdit;
 
@@ -21,7 +22,7 @@ namespace TEdit;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow : FluentWindow
 {
 
     private WorldViewModel _vm;
@@ -53,13 +54,13 @@ public partial class MainWindow : Window
 
         if (shouldAsk)
         {
-            var result = MessageBox.Show(
+            var result = System.Windows.MessageBox.Show(
                 Properties.Language.telemetry_prompt_message,
                 Properties.Language.telemetry_prompt_title,
-                MessageBoxButton.YesNo,
+                System.Windows.MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
 
-            if (result == MessageBoxResult.Yes)
+            if (result == System.Windows.MessageBoxResult.Yes)
             {
                 UserSettingsService.Current.Telemetry = 1;
                 _vm.EnableTelemetry = true;
@@ -173,42 +174,42 @@ public partial class MainWindow : Window
                     }
                     break;
                 case "scrollup":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Up, 10);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Up, 10);
                     _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollupfast":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Up, 50);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Up, 50);
                     _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollright":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Right, 10);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Right, 10);
                     _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollrightfast":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Right, 50);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Right, 50);
                     _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrolldown":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Down, 10);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Down, 10);
                     _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrolldownfast":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Down, 50);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Down, 50);
                     _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollleft":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Left, 10);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Left, 10);
                     _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollleftfast":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Left, 50);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Left, 50);
                     _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
@@ -337,5 +338,37 @@ public partial class MainWindow : Window
         // Launch the advanced filter popup.
         FilterWindow filterWindow = new(_vm);
         filterWindow.ShowDialog();
+    }
+
+    private GridLength _previousSidePanelWidth = new GridLength(440);
+    private bool _isSidePanelCollapsed = false;
+
+    private void SidePanelToggle_Click(object sender, RoutedEventArgs e)
+    {
+        var sidePanelColumn = ContentGrid.ColumnDefinitions[2];
+
+        if (_isSidePanelCollapsed)
+        {
+            // Expand
+            sidePanelColumn.Width = _previousSidePanelWidth;
+            SidePanelTabs.Visibility = Visibility.Visible;
+            SidePanelHeaderText.Visibility = Visibility.Visible;
+            SidePanelVerticalText.Visibility = Visibility.Collapsed;
+            SidePanelSplitter.IsEnabled = true;
+            SidePanelToggleIcon.Data = System.Windows.Media.Geometry.Parse("M8,0 L0,5 L8,10");
+            _isSidePanelCollapsed = false;
+        }
+        else
+        {
+            // Collapse
+            _previousSidePanelWidth = sidePanelColumn.Width;
+            sidePanelColumn.Width = new GridLength(32);
+            SidePanelTabs.Visibility = Visibility.Collapsed;
+            SidePanelHeaderText.Visibility = Visibility.Collapsed;
+            SidePanelVerticalText.Visibility = Visibility.Visible;
+            SidePanelSplitter.IsEnabled = false;
+            SidePanelToggleIcon.Data = System.Windows.Media.Geometry.Parse("M0,0 L8,5 L0,10");
+            _isSidePanelCollapsed = true;
+        }
     }
 }

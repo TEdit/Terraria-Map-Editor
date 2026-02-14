@@ -28,6 +28,7 @@ public partial class WorldViewModel
     public event EventHandler<EventArgs<bool>> RequestZoomEvent;
     public event EventHandler<EventArgs<bool>> RequestPanEvent;
     public event EventHandler<ScrollEventArgs> RequestScrollEvent;
+    public event EventHandler<EventArgs<bool>> RequestMapRedrawEvent;
 
     protected virtual void OnRequestZoom(object sender, EventArgs<bool> e)
     {
@@ -43,6 +44,14 @@ public partial class WorldViewModel
     {
         RequestScrollEvent?.Invoke(sender, e);
     }
+
+    protected virtual void OnRequestMapRedraw(object sender, EventArgs<bool> e)
+    {
+        RequestMapRedrawEvent?.Invoke(sender, e);
+    }
+
+    [ReactiveCommand]
+    private void RequestMapRedraw(bool useFilter) => OnRequestMapRedraw(this, new EventArgs<bool>(useFilter));
 
     [ReactiveCommand]
     private void ClearSpriteSelection()

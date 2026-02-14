@@ -23,7 +23,7 @@
 
   <DataTemplate x:Key="ColorPickerTemplate" >
         <DockPanel LastChildFill="True">
-            <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" >
+            <Border BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" >
                 <Rectangle Height="12" Width="12">
                     <Rectangle.Fill>
             <SolidColorBrush Color="{Binding Path=Color, Converter={StaticResource TEditColorToMediaColorConverter}}" />
@@ -39,9 +39,6 @@
             <TextBlock Text="{Binding Path=Text}" Margin="2,0" HorizontalAlignment="Stretch"  />
         </Grid>
     </DataTemplate>
-
-    <System:Boolean x:Key="True">True</System:Boolean>
-    <System:Boolean x:Key="False">False</System:Boolean>
 
     <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ItemPrefix}, Mode=OneTime}" x:Key="PrefixCollection" >
         <CollectionViewSource.SortDescriptions>
