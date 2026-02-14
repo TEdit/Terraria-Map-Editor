@@ -18644,7 +18644,7 @@
   {
     "id": 751,
     "isFramed": true,
-    "textureGrid": [28, 23],
+    "textureGrid": [18, 18],
     "frameGap": [0, 0],
     "frameSize": [[2, 2]],
     "frames": [
@@ -18657,8 +18657,8 @@
   {
     "id": 752,
     "isFramed": true,
-    "textureGrid": [16, 16],
-    "frameGap": [2, 2],
+    "textureGrid": [18, 18],
+    "frameGap": [0, 0],
     "frameSize": [[2, 2]],
     "frames": [
       { "name": "Chillet Egg", "uv": [0, 0] }

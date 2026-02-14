@@ -267,6 +267,30 @@ public partial class WorldViewModel : ReactiveObject
                 Offset = new Geometry.Vector2Short(-10, 0) // Jar renders with -10px X offset
             };
         }
+        // Sleeping Digtoise (tile 751) - 56x46 texture with 7 animation frames
+        // Only render from anchor tile (frameX == 0 && frameY == 0)
+        // Center 56x46 sprite over 32x32 tile area: offset -12px X, -7px Y
+        else if (tile.Id == 751)
+        {
+            spriteItem.PreviewConfig = new PreviewConfig
+            {
+                TextureType = PreviewTextureType.Tile,
+                SourceRect = new System.Drawing.Rectangle(0, 0, 56, 46),
+                Offset = new Geometry.Vector2Short(-12, -7)
+            };
+        }
+        // Chillet Egg (tile 752) - 36x38 texture
+        // Only render from anchor tile (frameX == 0 && frameY == 0)
+        // Offset: -2px X, +5px Y
+        else if (tile.Id == 752)
+        {
+            spriteItem.PreviewConfig = new PreviewConfig
+            {
+                TextureType = PreviewTextureType.Tile,
+                SourceRect = new System.Drawing.Rectangle(0, 0, 36, 38),
+                Offset = new Geometry.Vector2Short(-2, 2)
+            };
+        }
         // Tree tiles (tile 5) - identify tree tops and branches logic:
         // frameY >= 198 AND frameX >= 22 triggers tree foliage rendering
         // frameX == 22: tree top (uses Tree_Tops texture)

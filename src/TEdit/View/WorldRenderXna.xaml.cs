@@ -422,17 +422,8 @@ public partial class WorldRenderXna : UserControl
                 else if (frameY == 18)
                     dest.X -= (int)(2 * scale);
                 break;
-            case 751: // Terragrim Pedestal - (+11, -8) at anchor
-                if (frameX % 54 == 0 && frameY % 72 == 0)
-                {
-                    dest.X += (int)(11 * scale);
-                    dest.Y -= (int)(8 * scale);
-                }
-                break;
-            case 752: // Seedling - (+8, 0) at anchor
-                if (frameX % 36 == 0 && frameY % 38 == 0)
-                    dest.X += (int)(8 * scale);
-                break;
+            // Note: Tiles 751 (Sleeping Digtoise) and 752 (Chillet Egg) are handled
+            // by custom rendering code in DrawTileTextures and PreviewConfig
         }
     }
 
@@ -473,17 +464,8 @@ public partial class WorldRenderXna : UserControl
                 else if (frameY == 18)
                     position.X -= 2 * scale;
                 break;
-            case 751: // Terragrim Pedestal - (+11, -8) at anchor
-                if (frameX % 54 == 0 && frameY % 72 == 0)
-                {
-                    position.X += 11 * scale;
-                    position.Y -= 8 * scale;
-                }
-                break;
-            case 752: // Seedling - (+8, 0) at anchor
-                if (frameX % 36 == 0 && frameY % 38 == 0)
-                    position.X += 8 * scale;
-                break;
+            // Note: Tiles 751 (Sleeping Digtoise) and 752 (Chillet Egg) are handled
+            // by custom rendering code in DrawTileTextures and PreviewConfig
         }
     }
 
@@ -3701,7 +3683,110 @@ public partial class WorldRenderXna : UserControl
                                     }
                                     else if (curtile.Type == (int)TileType.DeadCellsDisplayJar && curtile.V != 0)
                                     {
-                                        // Bottom tile of DisplayJar - skip rendering (handled by top tile)
+                                        // Bottom tile of DisplayJar - skip if anchor exists and is same type
+                                        int tileOffsetY = curtile.V / 18;
+                                        int anchorY = y - tileOffsetY;
+                                        if (anchorY >= 0 && anchorY < _wvm.CurrentWorld.TilesHigh)
+                                        {
+                                            var anchorTile = _wvm.CurrentWorld.Tiles[x, anchorY];
+                                            if (anchorTile.IsActive && anchorTile.Type == (int)TileType.DeadCellsDisplayJar && anchorTile.V == 0)
+                                                continue;
+                                        }
+                                        // Anchor missing/different - render 16x16 portion from sprite
+                                        // Jar variants at X=0,38,76 based on U. Offset is (-10, 0).
+                                        int variant = curtile.U / 18;
+                                        int sourceX = variant * 38 + 10; // 10 = abs(offset)
+                                        int sourceY = tileOffsetY * 16;
+                                        tileTex = _textureDictionary.GetTile(curtile.Type);
+                                        source = new Rectangle(sourceX, sourceY, 16, 16);
+                                        dest = new Rectangle(
+                                            1 + (int)((_scrollPosition.X + x) * _zoom),
+                                            1 + (int)((_scrollPosition.Y + y) * _zoom),
+                                            (int)_zoom,
+                                            (int)_zoom);
+                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                        continue;
+                                    }
+                                    else if (curtile.Type == 751 && curtile.U == 0 && curtile.V == 0)
+                                    {
+                                        // Sleeping Digtoise: 2x2 tiles (32x32px), visual 56x46px
+                                        // Only render from anchor (top-left) tile
+                                        // Sleeping Digtoise: 7 animation frames based on position
+                                        // Frame = (x + y * 2) % 7, each frame is 46px tall
+                                        int digtFrame = (x + y * 2) % 7;
+                                        tileTex = _textureDictionary.GetTile(751);
+                                        source = new Rectangle(0, digtFrame * 46, 56, 46);
+                                        dest = new Rectangle(
+                                            1 + (int)((_scrollPosition.X + x) * _zoom) - (int)(12 * _zoom / 16f),
+                                            1 + (int)((_scrollPosition.Y + y) * _zoom) - (int)(7 * _zoom / 16f),
+                                            (int)(56 * _zoom / 16f),
+                                            (int)(46 * _zoom / 16f));
+                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                        continue;
+                                    }
+                                    else if (curtile.Type == 751 && (curtile.U != 0 || curtile.V != 0))
+                                    {
+                                        // Non-anchor tile of Sleeping Digtoise - skip if anchor exists and is same type
+                                        int tileOffsetX = curtile.U / 18;
+                                        int tileOffsetY = curtile.V / 18;
+                                        int anchorX = x - tileOffsetX;
+                                        int anchorY = y - tileOffsetY;
+                                        if (anchorX >= 0 && anchorY >= 0 && anchorX < _wvm.CurrentWorld.TilesWide && anchorY < _wvm.CurrentWorld.TilesHigh)
+                                        {
+                                            var anchorTile = _wvm.CurrentWorld.Tiles[anchorX, anchorY];
+                                            if (anchorTile.IsActive && anchorTile.Type == 751 && anchorTile.U == 0 && anchorTile.V == 0)
+                                                continue;
+                                        }
+                                        // Anchor missing/different - render 16x16 portion from sprite
+                                        // Sprite offset is (-12, -7), so source starts at (12 + tileOffsetX*16, 7 + tileOffsetY*16)
+                                        tileTex = _textureDictionary.GetTile(751);
+                                        source = new Rectangle(12 + tileOffsetX * 16, 7 + tileOffsetY * 16, 16, 16);
+                                        dest = new Rectangle(
+                                            1 + (int)((_scrollPosition.X + x) * _zoom),
+                                            1 + (int)((_scrollPosition.Y + y) * _zoom),
+                                            (int)_zoom,
+                                            (int)_zoom);
+                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                        continue;
+                                    }
+                                    else if (curtile.Type == 752 && curtile.U == 0 && curtile.V == 0)
+                                    {
+                                        // Chillet Egg: 2x2 tiles (32x32px), visual 36x38px
+                                        // Only render from anchor (top-left) tile
+                                        // Offset: -2px X, +2px Y
+                                        tileTex = _textureDictionary.GetTile(752);
+                                        source = new Rectangle(0, 0, 36, 38);
+                                        dest = new Rectangle(
+                                            1 + (int)((_scrollPosition.X + x) * _zoom) - (int)(2 * _zoom / 16f),
+                                            1 + (int)((_scrollPosition.Y + y) * _zoom) + (int)(2 * _zoom / 16f),
+                                            (int)(36 * _zoom / 16f),
+                                            (int)(38 * _zoom / 16f));
+                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                        continue;
+                                    }
+                                    else if (curtile.Type == 752 && (curtile.U != 0 || curtile.V != 0))
+                                    {
+                                        // Non-anchor tile of Chillet Egg - skip if anchor exists and is same type
+                                        int tileOffsetX = curtile.U / 18;
+                                        int tileOffsetY = curtile.V / 18;
+                                        int anchorX = x - tileOffsetX;
+                                        int anchorY = y - tileOffsetY;
+                                        if (anchorX >= 0 && anchorY >= 0 && anchorX < _wvm.CurrentWorld.TilesWide && anchorY < _wvm.CurrentWorld.TilesHigh)
+                                        {
+                                            var anchorTile = _wvm.CurrentWorld.Tiles[anchorX, anchorY];
+                                            if (anchorTile.IsActive && anchorTile.Type == 752 && anchorTile.U == 0 && anchorTile.V == 0)
+                                                continue;
+                                        }
+                                        // Anchor missing/different - render 16x16 portion from sprite
+                                        // Sprite offset is (-2, -3), so source starts at (2 + tileOffsetX*16, 3 + tileOffsetY*16)
+                                        tileTex = _textureDictionary.GetTile(752);
+                                        source = new Rectangle(2 + tileOffsetX * 16, 3 + tileOffsetY * 16, 16, 16);
+                                        dest = new Rectangle(
+                                            1 + (int)((_scrollPosition.X + x) * _zoom),
+                                            1 + (int)((_scrollPosition.Y + y) * _zoom),
+                                            (int)_zoom,
+                                            (int)_zoom);
+                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
                                         continue;
                                     }
                                     else if (curtile.Type == (int)TileType.ChristmasTree) // Christmas Tree
@@ -5315,6 +5400,70 @@ public partial class WorldRenderXna : UserControl
             _wvm.SelectedSpriteItem != null &&
             _wvm.SelectedSpriteSheet != null)
         {
+            // Handle tiles with custom rendering BEFORE anchor adjustments
+            // These tiles need direct offset application to match in-world rendering
+            var previewConfigEarly = _wvm.SelectedSpriteItem?.PreviewConfig;
+
+            // Sleeping Digtoise (751) - position-based animation, direct offset
+            if (_wvm.SelectedSpriteSheet.Tile == 751 && previewConfigEarly?.SourceRect != null)
+            {
+                int cursorX = _wvm.MouseOverTile.MouseState.Location.X;
+                int cursorY = _wvm.MouseOverTile.MouseState.Location.Y;
+                int digtFrame = (cursorX + cursorY * 2) % 7;
+
+                var tex = _textureDictionary.GetTile(751);
+                if (tex != null)
+                {
+                    // Apply direct offset matching in-world renderer (-12, -7)
+                    var drawPos = position;
+                    drawPos.X += previewConfigEarly.Offset.X * _zoom / 16f;
+                    drawPos.Y += previewConfigEarly.Offset.Y * _zoom / 16f;
+
+                    var srcRect = new Rectangle(0, digtFrame * 46, 56, 46);
+                    _spriteBatch.Draw(
+                        tex,
+                        drawPos,
+                        srcRect,
+                        Color.White,
+                        0,
+                        Vector2.Zero,
+                        _zoom / 16f,
+                        SpriteEffects.None,
+                        LayerTools);
+                }
+                return;
+            }
+
+            // Chillet Egg (752) - direct offset, no anchor adjustments
+            if (_wvm.SelectedSpriteSheet.Tile == 752 && previewConfigEarly?.SourceRect != null)
+            {
+                var tex = _textureDictionary.GetTile(752);
+                if (tex != null)
+                {
+                    // Apply direct offset matching in-world renderer (-2, +2)
+                    var drawPos = position;
+                    drawPos.X += previewConfigEarly.Offset.X * _zoom / 16f;
+                    drawPos.Y += previewConfigEarly.Offset.Y * _zoom / 16f;
+
+                    var srcRect = new Rectangle(
+                        previewConfigEarly.SourceRect.Value.X,
+                        previewConfigEarly.SourceRect.Value.Y,
+                        previewConfigEarly.SourceRect.Value.Width,
+                        previewConfigEarly.SourceRect.Value.Height);
+                    _spriteBatch.Draw(
+                        tex,
+                        drawPos,
+                        srcRect,
+                        Color.White,
+                        0,
+                        Vector2.Zero,
+                        _zoom / 16f,
+                        SpriteEffects.None,
+                        LayerTools);
+                }
+                return;
+            }
+
             var texsize = _wvm.SelectedSpriteSheet.SizePixelsRender;
             if (texsize.X != 16 || texsize.Y != 16)
             {
