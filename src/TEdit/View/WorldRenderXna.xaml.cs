@@ -3975,7 +3975,7 @@ public partial class WorldRenderXna : UserControl
                                         // Handle Relic Base (tiles 617) special case
                                         else if (type == 617)
                                         {
-                                            if (renderUV.Y == 54 || renderUV.Y == 126)
+                                            if (renderUV.Y % 72 == 54)
                                             {
                                                 source.X %= 54;
                                             }
