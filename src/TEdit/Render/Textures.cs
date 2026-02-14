@@ -197,9 +197,9 @@ public class Textures
 
     public Texture GetArmorHead(int num) => GetTextureById(ArmorHead, num, "Images\\Armor_Head_{0}");
 
-    public Texture GetArmorBody(int num) => GetTextureById(ArmorBody, num, "Images\\Armor_Body_{0}");
+    public Texture GetArmorBody(int num) => GetTextureById(ArmorBody, num, "Images\\Armor\\Armor_{0}");
 
-    public Texture GetArmorFemale(int num) => GetTextureById(ArmorFemale, num, "Images\\Female_Body_{0}");
+    public Texture GetArmorFemale(int num) => GetTextureById(ArmorFemale, num, "Images\\Armor\\Armor_Female_{0}");
 
     public Texture GetArmorLegs(int num) => GetTextureById(ArmorLegs, num, "Images\\Armor_Legs_{0}");
 
