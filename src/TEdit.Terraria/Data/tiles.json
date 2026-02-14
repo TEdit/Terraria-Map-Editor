@@ -1020,8 +1020,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Furnace", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Furnace", "uv": [0, 38], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Furnace", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Furnace",
     "color": "#909490FF",
@@ -4454,8 +4453,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Hellforge", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Hellforge", "uv": [0, 38], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Hellforge", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Hellforge",
     "color": "#EE5546FF",
@@ -6213,8 +6211,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Sawmill", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Sawmill", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Sawmill", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Sawmill",
     "color": "#BF8E6FFF",
@@ -6525,6 +6522,10 @@
       { "name": "Crystal Shard", "variety": "Small Pink A", "uv": [54, 18], "anchor": "Top" },
       { "name": "Crystal Shard", "variety": "Small Pink A", "uv": [54, 36], "anchor": "Right" },
       { "name": "Crystal Shard", "variety": "Small Pink A", "uv": [54, 54], "anchor": "Left" },
+      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [270, 0], "anchor": "Bottom" },
+      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [270, 18], "anchor": "Top" },
+      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [270, 36], "anchor": "Right" },
+      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [270, 54], "anchor": "Left" },
       { "name": "Crystal Shard", "variety": "Medium Pink B", "uv": [162, 0], "anchor": "Bottom" },
       { "name": "Crystal Shard", "variety": "Medium Pink B", "uv": [162, 18], "anchor": "Top" },
       { "name": "Crystal Shard", "variety": "Medium Pink B", "uv": [162, 36], "anchor": "Right" },
@@ -6533,34 +6534,30 @@
       { "name": "Crystal Shard", "variety": "Small Pink B", "uv": [216, 18], "anchor": "Top" },
       { "name": "Crystal Shard", "variety": "Small Pink B", "uv": [216, 36], "anchor": "Right" },
       { "name": "Crystal Shard", "variety": "Small Pink B", "uv": [216, 54], "anchor": "Left" },
-      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [270, 0], "anchor": "Bottom" },
-      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [270, 18], "anchor": "Top" },
-      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [270, 36], "anchor": "Right" },
-      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [270, 54], "anchor": "Left" },
-      { "name": "Crystal Shard", "variety": "Large Pink A", "uv": [18, 0], "anchor": "Bottom" },
-      { "name": "Crystal Shard", "variety": "Large Pink A", "uv": [18, 18], "anchor": "Top" },
-      { "name": "Crystal Shard", "variety": "Large Pink A", "uv": [18, 36], "anchor": "Right" },
-      { "name": "Crystal Shard", "variety": "Large Pink A", "uv": [18, 54], "anchor": "Left" },
-      { "name": "Crystal Shard", "variety": "Medium Pink A", "uv": [126, 0], "anchor": "Bottom" },
-      { "name": "Crystal Shard", "variety": "Medium Pink A", "uv": [126, 18], "anchor": "Top" },
-      { "name": "Crystal Shard", "variety": "Medium Pink A", "uv": [126, 36], "anchor": "Right" },
-      { "name": "Crystal Shard", "variety": "Medium Pink A", "uv": [126, 54], "anchor": "Left" },
-      { "name": "Crystal Shard", "variety": "Small Pink A", "uv": [72, 0], "anchor": "Bottom" },
-      { "name": "Crystal Shard", "variety": "Small Pink A", "uv": [72, 18], "anchor": "Top" },
-      { "name": "Crystal Shard", "variety": "Small Pink A", "uv": [72, 36], "anchor": "Right" },
-      { "name": "Crystal Shard", "variety": "Small Pink A", "uv": [72, 54], "anchor": "Left" },
-      { "name": "Crystal Shard", "variety": "Medium Pink B", "uv": [180, 0], "anchor": "Bottom" },
-      { "name": "Crystal Shard", "variety": "Medium Pink B", "uv": [180, 18], "anchor": "Top" },
-      { "name": "Crystal Shard", "variety": "Medium Pink B", "uv": [180, 36], "anchor": "Right" },
-      { "name": "Crystal Shard", "variety": "Medium Pink B", "uv": [180, 54], "anchor": "Left" },
-      { "name": "Crystal Shard", "variety": "Small Pink B", "uv": [234, 0], "anchor": "Bottom" },
-      { "name": "Crystal Shard", "variety": "Small Pink B", "uv": [234, 18], "anchor": "Top" },
-      { "name": "Crystal Shard", "variety": "Small Pink B", "uv": [234, 36], "anchor": "Right" },
-      { "name": "Crystal Shard", "variety": "Small Pink B", "uv": [234, 54], "anchor": "Left" },
-      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [288, 0], "anchor": "Bottom" },
-      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [288, 18], "anchor": "Top" },
-      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [288, 36], "anchor": "Right" },
-      { "name": "Crystal Shard", "variety": "Large Pink B", "uv": [288, 54], "anchor": "Left" },
+      { "name": "Crystal Shard", "variety": "Large Pink C", "uv": [18, 0], "anchor": "Bottom" },
+      { "name": "Crystal Shard", "variety": "Large Pink C", "uv": [18, 18], "anchor": "Top" },
+      { "name": "Crystal Shard", "variety": "Large Pink C", "uv": [18, 36], "anchor": "Right" },
+      { "name": "Crystal Shard", "variety": "Large Pink C", "uv": [18, 54], "anchor": "Left" },
+      { "name": "Crystal Shard", "variety": "Medium Pink C", "uv": [126, 0], "anchor": "Bottom" },
+      { "name": "Crystal Shard", "variety": "Medium Pink C", "uv": [126, 18], "anchor": "Top" },
+      { "name": "Crystal Shard", "variety": "Medium Pink C", "uv": [126, 36], "anchor": "Right" },
+      { "name": "Crystal Shard", "variety": "Medium Pink C", "uv": [126, 54], "anchor": "Left" },
+      { "name": "Crystal Shard", "variety": "Small Pink C", "uv": [72, 0], "anchor": "Bottom" },
+      { "name": "Crystal Shard", "variety": "Small Pink C", "uv": [72, 18], "anchor": "Top" },
+      { "name": "Crystal Shard", "variety": "Small Pink C", "uv": [72, 36], "anchor": "Right" },
+      { "name": "Crystal Shard", "variety": "Small Pink C", "uv": [72, 54], "anchor": "Left" },
+      { "name": "Crystal Shard", "variety": "Large Pink D", "uv": [288, 0], "anchor": "Bottom" },
+      { "name": "Crystal Shard", "variety": "Large Pink D", "uv": [288, 18], "anchor": "Top" },
+      { "name": "Crystal Shard", "variety": "Large Pink D", "uv": [288, 36], "anchor": "Right" },
+      { "name": "Crystal Shard", "variety": "Large Pink D", "uv": [288, 54], "anchor": "Left" },
+      { "name": "Crystal Shard", "variety": "Medium Pink D", "uv": [180, 0], "anchor": "Bottom" },
+      { "name": "Crystal Shard", "variety": "Medium Pink D", "uv": [180, 18], "anchor": "Top" },
+      { "name": "Crystal Shard", "variety": "Medium Pink D", "uv": [180, 36], "anchor": "Right" },
+      { "name": "Crystal Shard", "variety": "Medium Pink D", "uv": [180, 54], "anchor": "Left" },
+      { "name": "Crystal Shard", "variety": "Small Pink D", "uv": [234, 0], "anchor": "Bottom" },
+      { "name": "Crystal Shard", "variety": "Small Pink D", "uv": [234, 18], "anchor": "Top" },
+      { "name": "Crystal Shard", "variety": "Small Pink D", "uv": [234, 36], "anchor": "Right" },
+      { "name": "Crystal Shard", "variety": "Small Pink D", "uv": [234, 54], "anchor": "Left" },
       { "name": "Crystal Shard", "variety": "Large Purple A", "uv": [36, 0], "anchor": "Bottom" },
       { "name": "Crystal Shard", "variety": "Large Purple A", "uv": [36, 18], "anchor": "Top" },
       { "name": "Crystal Shard", "variety": "Large Purple A", "uv": [36, 36], "anchor": "Right" },
@@ -6573,6 +6570,10 @@
       { "name": "Crystal Shard", "variety": "Small Purple A", "uv": [90, 18], "anchor": "Top" },
       { "name": "Crystal Shard", "variety": "Small Purple A", "uv": [90, 36], "anchor": "Right" },
       { "name": "Crystal Shard", "variety": "Small Purple A", "uv": [90, 54], "anchor": "Left" },
+      { "name": "Crystal Shard", "variety": "Large Purple B", "uv": [306, 0], "anchor": "Bottom" },
+      { "name": "Crystal Shard", "variety": "Large Purple B", "uv": [306, 18], "anchor": "Top" },
+      { "name": "Crystal Shard", "variety": "Large Purple B", "uv": [306, 36], "anchor": "Right" },
+      { "name": "Crystal Shard", "variety": "Large Purple B", "uv": [306, 54], "anchor": "Left" },
       { "name": "Crystal Shard", "variety": "Medium Purple B", "uv": [198, 0], "anchor": "Bottom" },
       { "name": "Crystal Shard", "variety": "Medium Purple B", "uv": [198, 18], "anchor": "Top" },
       { "name": "Crystal Shard", "variety": "Medium Purple B", "uv": [198, 36], "anchor": "Right" },
@@ -6581,10 +6582,6 @@
       { "name": "Crystal Shard", "variety": "Small Purple B", "uv": [252, 18], "anchor": "Top" },
       { "name": "Crystal Shard", "variety": "Small Purple B", "uv": [252, 36], "anchor": "Right" },
       { "name": "Crystal Shard", "variety": "Small Purple B", "uv": [252, 54], "anchor": "Left" },
-      { "name": "Crystal Shard", "variety": "Large Purple B", "uv": [306, 0], "anchor": "Bottom" },
-      { "name": "Crystal Shard", "variety": "Large Purple B", "uv": [306, 18], "anchor": "Top" },
-      { "name": "Crystal Shard", "variety": "Large Purple B", "uv": [306, 36], "anchor": "Right" },
-      { "name": "Crystal Shard", "variety": "Large Purple B", "uv": [306, 54], "anchor": "Left" },
       { "name": "Crystal Shard", "variety": "Gelatin Crystal", "uv": [324, 0], "anchor": "Bottom" },
       { "name": "Crystal Shard", "variety": "Gelatin Crystal", "uv": [324, 18], "anchor": "Top" },
       { "name": "Crystal Shard", "variety": "Gelatin Crystal", "uv": [324, 36], "anchor": "Right" },
@@ -8644,8 +8641,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Blend-O-Matic", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Blend-O-Matic", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Blend-O-Matic", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Blend-O-Matic",
     "color": "#909490FF",
@@ -8658,8 +8654,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Meat Grinder", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Meat Grinder", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Meat Grinder", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Meat Grinder",
     "color": "#909490FF",
@@ -8672,8 +8667,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Extractinator", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Extractinator", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Extractinator", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Extractinator",
     "color": "#909490FF",
@@ -8686,8 +8680,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Solidifier", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Solidifier", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Solidifier", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Solidifier",
     "color": "#909490FF",
@@ -8789,8 +8782,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Dye Vat", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Dye Vat", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Dye Vat", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Dye Vat",
     "color": "#909490FF",
@@ -8893,8 +8885,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 1]],
     "frames": [
-      { "name": "Teleporter", "size": [3, 1], "anchor": "Bottom" },
-      { "name": "Teleporter", "uv": [0, 18], "size": [3, 1], "anchor": "Bottom" }
+      { "name": "Teleporter", "size": [3, 1], "anchor": "Bottom" }
     ],
     "name": "Teleporter",
     "color": "#D6B82EFF",
@@ -9206,8 +9197,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Imbuing Station", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Imbuing Station", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Imbuing Station", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Imbuing Station",
     "color": "#8CB3FEFF",
@@ -9325,8 +9315,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Autohammer", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Autohammer", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Autohammer", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Autohammer",
     "color": "#8C9696FF",
@@ -9605,8 +9594,7 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 2]],
     "frames": [
-      { "name": "Firefly in a Bottle", "size": [1, 2], "anchor": "Top" },
-      { "name": "Firefly in a Bottle", "uv": [0, 36], "size": [1, 2], "anchor": "Top" }
+      { "name": "Firefly in a Bottle", "size": [1, 2], "anchor": "Top" }
     ],
     "name": "Firefly in a Bottle",
     "color": "#7AD9E8FF",
@@ -9621,8 +9609,7 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 2]],
     "frames": [
-      { "name": "Lightning Bug in a Bottle", "size": [1, 2], "anchor": "Top" },
-      { "name": "Lightning Bug in a Bottle", "uv": [0, 36], "size": [1, 2], "anchor": "Top" }
+      { "name": "Lightning Bug in a Bottle", "size": [1, 2], "anchor": "Top" }
     ],
     "name": "Lightning Bug in a Bottle",
     "color": "#7AD9E8FF",
@@ -9667,8 +9654,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Bunny Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Bunny Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Bunny Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Bunny Cage",
     "color": "#7AD9E8FF",
@@ -9682,8 +9668,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Squirrel Cage",
     "color": "#7AD9E8FF",
@@ -9697,8 +9682,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Mallard Duck Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Mallard Duck Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Mallard Duck Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Mallard Duck Cage",
     "color": "#7AD9E8FF",
@@ -9712,8 +9696,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Duck Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Duck Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Duck Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Duck Cage",
     "color": "#7AD9E8FF",
@@ -9727,8 +9710,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Bird Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Bird Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Bird Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Bird Cage",
     "color": "#7AD9E8FF",
@@ -9742,8 +9724,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Blue Jay Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Blue Jay Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Blue Jay Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Blue Jay Cage",
     "color": "#7AD9E8FF",
@@ -9757,8 +9738,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Cardinal Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Cardinal Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Cardinal Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Cardinal Cage",
     "color": "#7AD9E8FF",
@@ -9771,8 +9751,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Fish Bowl", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Fish Bowl", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Fish Bowl", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Fish Bowl",
     "color": "#7AD9E8FF",
@@ -9809,8 +9788,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Snail Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Snail Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Snail Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Snail Cage",
     "color": "#7AD9E8FF",
@@ -9825,8 +9803,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Glowing Snail Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Glowing Snail Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Glowing Snail Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Glowing Snail Cage",
     "color": "#7AD9E8FF",
@@ -9852,8 +9829,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Monarch Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Monarch Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Monarch Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Monarch Butterfly Jar",
     "color": "#7AD9E8FF",
@@ -9866,8 +9842,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Purple Emperor Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Purple Emperor Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Purple Emperor Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Purple Emperor Butterfly Jar",
     "color": "#7AD9E8FF",
@@ -9880,8 +9855,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Red Admiral Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Red Admiral Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Red Admiral Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Red Admiral Butterfly Jar",
     "color": "#7AD9E8FF",
@@ -9894,8 +9868,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Ulysses Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Ulysses Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Ulysses Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Ulysses Butterfly Jar",
     "color": "#7AD9E8FF",
@@ -9908,8 +9881,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Sulphur Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Sulphur Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Sulphur Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Sulphur Butterfly Jar",
     "color": "#7AD9E8FF",
@@ -9922,8 +9894,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Tree Nymph Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Tree Nymph Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Tree Nymph Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Tree Nymph Butterfly Jar",
     "color": "#7AD9E8FF",
@@ -9936,8 +9907,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Zebra Swallowtail Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Zebra Swallowtail Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Zebra Swallowtail Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Zebra Swallowtail Butterfly Jar",
     "color": "#7AD9E8FF",
@@ -9950,8 +9920,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Julia Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Julia Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Julia Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Julia Butterfly Jar",
     "color": "#7AD9E8FF",
@@ -9965,8 +9934,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Scorpion Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Scorpion Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Scorpion Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Scorpion Cage",
     "color": "#7AD9E8FF",
@@ -9980,8 +9948,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Black Scorpion Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Black Scorpion Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Black Scorpion Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Black Scorpion Cage",
     "color": "#7AD9E8FF",
@@ -9995,8 +9962,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Frog Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Frog Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Frog Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Frog Cage",
     "color": "#7AD9E8FF",
@@ -10010,8 +9976,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Mouse Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Mouse Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Mouse Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Mouse Cage",
     "color": "#7AD9E8FF",
@@ -10024,8 +9989,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Bone Welder", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Bone Welder", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Bone Welder", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Bone Welder",
     "color": "#909490FF",
@@ -10038,8 +10002,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Flesh Cloning Vat", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Flesh Cloning Vat", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Flesh Cloning Vat", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Flesh Cloning Vat",
     "color": "#909490FF",
@@ -10053,8 +10016,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Glass Kiln", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Glass Kiln", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Glass Kiln", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Glass Kiln",
     "color": "#909490FF",
@@ -10067,8 +10029,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Lihzahrd Furnace", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Lihzahrd Furnace", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Lihzahrd Furnace", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Lihzahrd Furnace",
     "color": "#909490FF",
@@ -10094,8 +10055,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Sky Mill", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Sky Mill", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Sky Mill", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Sky Mill",
     "color": "#909490FF",
@@ -10108,8 +10068,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Ice Machine", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Ice Machine", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Ice Machine", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Ice Machine",
     "color": "#909490FF",
@@ -10122,8 +10081,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Steampunk Boiler", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Steampunk Boiler", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Steampunk Boiler", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Steampunk Boiler",
     "color": "#909490FF",
@@ -10136,8 +10094,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Honey Dispenser", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Honey Dispenser", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Honey Dispenser", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Honey Dispenser",
     "color": "#909490FF",
@@ -10151,8 +10108,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Penguin Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Penguin Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Penguin Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Penguin Cage",
     "color": "#7AD9E8FF",
@@ -10166,8 +10122,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Worm Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Worm Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Worm Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Worm Cage",
     "color": "#7AD9E8FF",
@@ -10235,8 +10190,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Blue Jellyfish Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Blue Jellyfish Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Blue Jellyfish Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Blue Jellyfish Jar",
     "color": "#7AD9E8FF",
@@ -10250,8 +10204,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Green Jellyfish Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Green Jellyfish Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Green Jellyfish Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Green Jellyfish Jar",
     "color": "#7AD9E8FF",
@@ -10265,8 +10218,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Pink Jellyfish Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Pink Jellyfish Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Pink Jellyfish Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Pink Jellyfish Jar",
     "color": "#7AD9E8FF",
@@ -10573,8 +10525,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Grasshopper Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Grasshopper Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Grasshopper Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Grasshopper Cage",
     "color": "#7AD9E8FF",
@@ -10754,8 +10705,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Bewitching Table", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Bewitching Table", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Bewitching Table", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Bewitching Table",
     "color": "#8D6B59FF",
@@ -10768,8 +10718,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Alchemy Table", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Alchemy Table", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Alchemy Table", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Alchemy Table",
     "color": "#8D6B59FF",
@@ -10807,8 +10756,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Gold Bird Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Gold Bird Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Gold Bird Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Gold Bird Cage",
     "color": "#7AD9E8FF",
@@ -10822,8 +10770,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Gold Bunny Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Gold Bunny Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Gold Bunny Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Gold Bunny Cage",
     "color": "#7AD9E8FF",
@@ -10836,8 +10783,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Gold Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Gold Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Gold Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Gold Butterfly Cage",
     "color": "#7AD9E8FF",
@@ -10851,8 +10797,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Gold Frog Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Gold Frog Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Gold Frog Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Gold Frog Cage",
     "color": "#7AD9E8FF",
@@ -10866,8 +10811,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Gold Grasshopper Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Gold Grasshopper Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Gold Grasshopper Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Gold Grasshopper Cage",
     "color": "#7AD9E8FF",
@@ -10881,8 +10825,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Gold Mouse Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Gold Mouse Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Gold Mouse Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Gold Mouse Cage",
     "color": "#7AD9E8FF",
@@ -10896,8 +10839,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Gold Worm Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Gold Worm Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Gold Worm Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Gold Worm Cage",
     "color": "#7AD9E8FF",
@@ -11266,8 +11208,7 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 2]],
     "frames": [
-      { "name": "Lava Lamp", "size": [1, 2], "anchor": "Bottom" },
-      { "name": "Lava Lamp", "uv": [0, 36], "size": [1, 2], "anchor": "Bottom" }
+      { "name": "Lava Lamp", "size": [1, 2], "anchor": "Bottom" }
     ],
     "name": "Lava Lamp",
     "color": "#FD2003FF",
@@ -11282,8 +11223,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Enchanted Nightcrawler Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Enchanted Nightcrawler Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Enchanted Nightcrawler Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Cage Enchanted Nightcrawler",
     "color": "#7AD9E8FF",
@@ -11297,8 +11237,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Buggy Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Buggy Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Buggy Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Buggy Cage",
     "color": "#7AD9E8FF",
@@ -11312,8 +11251,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Grubby Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Grubby Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Grubby Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Grubby Cage",
     "color": "#7AD9E8FF",
@@ -11327,8 +11265,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Sluggy Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Sluggy Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Sluggy Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Sluggy Cage",
     "color": "#7AD9E8FF",
@@ -11345,7 +11282,7 @@
       { "name": "Item Frame", "variety": "Hanging", "uv": [36, 0], "anchor": "Bottom" },
       { "name": "Item Frame", "variety": "Left Side", "uv": [72, 0], "anchor": "Left" },
       { "name": "Item Frame", "variety": "Right Side", "uv": [108, 0], "anchor": "Right" },
-      { "name": "Item Frame", "variety": "Wall", "uv": [144, 0] }
+      { "name": "Item Frame", "variety": "Wall", "uv": [144, 0], "anchor": "Center" }
     ],
     "name": "Item Frame",
     "color": "#BF8E6FFF"
@@ -11556,8 +11493,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Red Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Red Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Red Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Red Squirrel Cage",
     "color": "#7AD9E8FF",
@@ -11571,8 +11507,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Gold Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Gold Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Gold Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Gold Squirrel Cage",
     "color": "#7AD9E8FF",
@@ -12529,8 +12464,7 @@
     "frameGap": [2, 2],
     "frameSize": [[4, 3]],
     "frames": [
-      { "name": "Pigronata", "size": [4, 3], "anchor": "Top" },
-      { "name": "Pigronata", "uv": [0, 54], "size": [4, 3], "anchor": "Top" }
+      { "name": "Pigronata", "size": [4, 3], "anchor": "Top" }
     ],
     "name": "Pigronata",
     "color": "#ae10b0FF",
@@ -12557,8 +12491,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Silly Tied Bundle of Balloons", "size": [2, 3], "anchor": "Bottom" },
-      { "name": "Silly Tied Bundle of Balloons", "uv": [0, 54], "size": [2, 3], "anchor": "Bottom" }
+      { "name": "Silly Tied Bundle of Balloons", "size": [2, 3], "anchor": "Bottom" }
     ],
     "name": "Silly Tied Bundle of Balloons",
     "color": "#b384ffFF",
@@ -12643,8 +12576,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 4]],
     "frames": [
-      { "name": "Defender\u0027s Forge", "size": [3, 4], "anchor": "Bottom" },
-      { "name": "Defender\u0027s Forge", "uv": [0, 72], "size": [3, 4], "anchor": "Bottom" }
+      { "name": "Defender\u0027s Forge", "size": [3, 4], "anchor": "Bottom" }
     ],
     "name": "Defender\u0027s Forge",
     "color": "#9BD6F0FF",
@@ -12657,8 +12589,7 @@
     "frameGap": [2, 2],
     "frameSize": [[5, 4]],
     "frames": [
-      { "name": "War Table", "size": [5, 4], "anchor": "Bottom" },
-      { "name": "War Table", "uv": [0, 72], "size": [5, 4], "anchor": "Bottom" }
+      { "name": "War Table", "size": [5, 4], "anchor": "Bottom" }
     ],
     "name": "War Table",
     "color": "#E9B780FF",
@@ -13078,8 +13009,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Pin Wheel", "size": [2, 3], "anchor": "Bottom" },
-      { "name": "Pin Wheel", "uv": [0, 54], "size": [2, 3], "anchor": "Bottom" }
+      { "name": "Pin Wheel", "size": [2, 3], "anchor": "Bottom" }
     ],
     "name": "Pin Wheel",
     "color": "#545A83FF",
@@ -13092,8 +13022,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Weather Vane", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Weather Vane", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Weather Vane", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Weather Vane",
     "color": "#808789FF",
@@ -13107,8 +13036,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Void Vault", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Void Vault", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Void Vault", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Void Vault",
     "color": "#8149B1FF",
@@ -13338,8 +13266,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Decay Chamber", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Decay Chamber", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Decay Chamber", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Decay Chamber",
     "color": "#8F9475FF",
@@ -13404,8 +13331,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Gold Fish Bowl", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Gold Fish Bowl", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Gold Fish Bowl", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Gold Fish Bowl",
     "color": "#73898CFF",
@@ -13852,8 +13778,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Black Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Black Dragonfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Black Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Black Dragonfly Jar",
     "color": "#496A6EFF",
@@ -13866,8 +13791,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Blue Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Blue Dragonfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Blue Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Blue Dragonfly Jar",
     "color": "#49727DFF",
@@ -13880,8 +13804,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Green Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Green Dragonfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Green Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Green Dragonfly Jar",
     "color": "#477874FF",
@@ -13894,8 +13817,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Orange Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Orange Dragonfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Orange Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Orange Dragonfly Jar",
     "color": "#5E7167FF",
@@ -13908,8 +13830,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Red Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Red Dragonfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Red Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Red Dragonfly Jar",
     "color": "#576870FF",
@@ -13922,8 +13843,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Yellow Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Yellow Dragonfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Yellow Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Yellow Dragonfly Jar",
     "color": "#516D5FFF",
@@ -13936,8 +13856,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Gold Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Gold Dragonfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Gold Dragonfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Gold Dragonfly Jar",
     "color": "#627C5AFF",
@@ -14106,8 +14025,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Maggot Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Maggot Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Maggot Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Maggot Cage",
     "color": "#59756EFF",
@@ -14121,8 +14039,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Rat Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Rat Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Rat Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Rat Cage",
     "color": "#697476FF",
@@ -14192,8 +14109,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Ladybug Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Ladybug Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Ladybug Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Ladybug Cage",
     "color": "#555F60FF",
@@ -14245,8 +14161,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Owl Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Owl Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Owl Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Owl Cage",
     "color": "#6A7867FF",
@@ -14259,8 +14174,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Pupfish Bowl", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Pupfish Bowl", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Pupfish Bowl", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Pupfish Bowl",
     "color": "#509DB7FF",
@@ -14274,8 +14188,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Gold Ladybug Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Gold Ladybug Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Gold Ladybug Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Gold Ladybug Cage",
     "color": "#657D60FF",
@@ -14375,8 +14288,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Turtle Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Turtle Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Turtle Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Turtle Cage",
     "color": "#476B65FF",
@@ -14390,8 +14302,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Jungle Turtle Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Jungle Turtle Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Jungle Turtle Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Jungle Turtle Cage",
     "color": "#42735FFF",
@@ -14420,8 +14331,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Grebe Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Grebe Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Grebe Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Grebe Cage",
     "color": "#616B64FF",
@@ -14435,8 +14345,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Seagull Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Seagull Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Seagull Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Seagull Cage",
     "color": "#6F817BFF",
@@ -14450,8 +14359,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Water Strider Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Water Strider Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Water Strider Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Water Strider Cage",
     "color": "#497B90FF",
@@ -14465,8 +14373,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Gold Water Strider Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Gold Water Strider Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Gold Water Strider Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Gold Water Strider Cage",
     "color": "#6A886FFF",
@@ -14490,8 +14397,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Seahorse Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Seahorse Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Seahorse Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Seahorse Cage",
     "color": "#657F89FF",
@@ -14505,8 +14411,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Gold Seahorse Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Gold Seahorse Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Gold Seahorse Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Gold Seahorse Cage",
     "color": "#71927EFF",
@@ -14616,8 +14521,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Pink Fairy Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Pink Fairy Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Pink Fairy Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Pink Fairy Jar",
     "color": "#7E88A0FF",
@@ -14631,8 +14535,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Green Fairy Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Green Fairy Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Green Fairy Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Green Fairy Jar",
     "color": "#7798A4FF",
@@ -14646,8 +14549,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Blue Fairy Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Blue Fairy Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Blue Fairy Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Blue Fairy Jar",
     "color": "#7594A7FF",
@@ -14783,8 +14685,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Hell Butterfly Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Hell Butterfly Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Hell Butterfly Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Hell Butterfly Jar",
     "color": "#6E5D5DFF",
@@ -14798,8 +14699,7 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 2]],
     "frames": [
-      { "name": "Lavafly in a Bottle", "size": [1, 2], "anchor": "Top" },
-      { "name": "Lavafly in a Bottle", "uv": [0, 36], "size": [1, 2], "anchor": "Top" }
+      { "name": "Lavafly in a Bottle", "size": [1, 2], "anchor": "Top" }
     ],
     "name": "Lavafly in a Bottle",
     "color": "#747179FF",
@@ -14815,8 +14715,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Magma Snail Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Magma Snail Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Magma Snail Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Magma Snail Cage",
     "color": "#6A6769FF",
@@ -15529,8 +15428,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 3]],
     "frames": [
-      { "name": "Hanging Brazier", "size": [2, 3], "anchor": "Top" },
-      { "name": "Hanging Brazier", "uv": [0, 54], "size": [2, 3], "anchor": "Top" }
+      { "name": "Hanging Brazier", "size": [2, 3], "anchor": "Top" }
     ],
     "name": "Hanging Brazier",
     "color": "#A57345FF",
@@ -15544,8 +15442,14 @@
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
-      { "name": "Mini Volcano", "size": [1, 1], "anchor": "Bottom" },
-      { "name": "Mini Volcano", "uv": [0, 18], "size": [1, 1], "anchor": "Bottom" }
+      { "name": "Mini Volcano", "variety": "Off", "size": [1, 1], "anchor": "Bottom" },
+      {
+        "name": "Mini Volcano",
+        "variety": "On",
+        "uv": [0, 18],
+        "size": [1, 1],
+        "anchor": "Bottom"
+      }
     ],
     "name": "Mini Volcano",
     "color": "#684C43FF",
@@ -15559,8 +15463,14 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Large Volcano", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Large Volcano", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Large Volcano", "variety": "Off", "size": [2, 2], "anchor": "Bottom" },
+      {
+        "name": "Large Volcano",
+        "variety": "On",
+        "uv": [0, 36],
+        "size": [2, 2],
+        "anchor": "Bottom"
+      }
     ],
     "name": "Large Volcano",
     "color": "#745540FF",
@@ -15703,8 +15613,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Lava Serpent Bowl", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Lava Serpent Bowl", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Lava Serpent Bowl", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Lava Serpent Bowl",
     "color": "#92726FFF",
@@ -15718,8 +15627,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Amethyst Bunny Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Amethyst Bunny Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Amethyst Bunny Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Amethyst Bunny Cage",
     "color": "#7886A1FF",
@@ -15733,8 +15641,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Topaz Bunny Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Topaz Bunny Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Topaz Bunny Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Topaz Bunny Cage",
     "color": "#7B8E85FF",
@@ -15748,8 +15655,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Sapphire Bunny Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Sapphire Bunny Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Sapphire Bunny Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Sapphire Bunny Cage",
     "color": "#638B9CFF",
@@ -15763,8 +15669,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Emerald Bunny Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Emerald Bunny Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Emerald Bunny Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Emerald Bunny Cage",
     "color": "#628F90FF",
@@ -15778,8 +15683,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Ruby Bunny Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Ruby Bunny Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Ruby Bunny Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Ruby Bunny Cage",
     "color": "#7B838AFF",
@@ -15793,8 +15697,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Diamond Bunny Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Diamond Bunny Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Diamond Bunny Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Diamond Bunny Cage",
     "color": "#73909FFF",
@@ -15808,8 +15711,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Amber Bunny Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Amber Bunny Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Amber Bunny Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Amber Bunny Cage",
     "color": "#7A8B84FF",
@@ -15823,8 +15725,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Amethyst Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Amethyst Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Amethyst Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Amethyst Squirrel Cage",
     "color": "#7F8CA5FF",
@@ -15838,8 +15739,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Topaz Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Topaz Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Topaz Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Topaz Squirrel Cage",
     "color": "#839587FF",
@@ -15853,8 +15753,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Sapphire Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Sapphire Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Sapphire Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Sapphire Squirrel Cage",
     "color": "#6B93A5FF",
@@ -15868,8 +15767,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Emerald Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Emerald Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Emerald Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Emerald Squirrel Cage",
     "color": "#6D9990FF",
@@ -15883,8 +15781,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Ruby Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Ruby Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Ruby Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Ruby Squirrel Cage",
     "color": "#84888CFF",
@@ -15898,8 +15795,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Diamond Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Diamond Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Diamond Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Diamond Squirrel Cage",
     "color": "#73939EFF",
@@ -15913,8 +15809,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Amber Squirrel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Amber Squirrel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Amber Squirrel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Amber Squirrel Cage",
     "color": "#838C82FF",
@@ -15942,8 +15837,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 6]],
     "frames": [
-      { "name": "Potted Ember Tendrils", "size": [3, 6], "anchor": "Bottom" },
-      { "name": "Potted Ember Tendrils", "uv": [0, 108], "size": [3, 6], "anchor": "Bottom" }
+      { "name": "Potted Ember Tendrils", "size": [3, 6], "anchor": "Bottom" }
     ],
     "name": "Potted Ember Tendrils",
     "color": "#724D31FF",
@@ -16142,8 +16036,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Truffle Worm Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Truffle Worm Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Truffle Worm Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Truffle Worm Cage",
     "color": "#557381FF",
@@ -16157,8 +16050,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Prismatic Lacewing Jar", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Prismatic Lacewing Jar", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Prismatic Lacewing Jar", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Prismatic Lacewing Jar",
     "color": "#485563FF",
@@ -16281,8 +16173,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 2]],
     "frames": [
-      { "name": "Stinkbug Cage", "size": [3, 2], "anchor": "Bottom" },
-      { "name": "Stinkbug Cage", "uv": [0, 36], "size": [3, 2], "anchor": "Bottom" }
+      { "name": "Stinkbug Cage", "size": [3, 2], "anchor": "Bottom" }
     ],
     "name": "Stinkbug Cage",
     "color": "#4C6C60FF",
@@ -16328,8 +16219,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Scarlet Macaw Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Scarlet Macaw Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Scarlet Macaw Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Scarlet Macaw Cage",
     "color": "#6D7B71FF",
@@ -16496,8 +16386,7 @@
     "frameGap": [2, 2],
     "frameSize": [[2, 2]],
     "frames": [
-      { "name": "Repaired Mana Crystal", "size": [2, 2], "anchor": "Bottom" },
-      { "name": "Repaired Mana Crystal", "uv": [0, 36], "size": [2, 2], "anchor": "Bottom" }
+      { "name": "Repaired Mana Crystal", "size": [2, 2], "anchor": "Bottom" }
     ],
     "name": "Mana Crystal",
     "color": "#5357A1FF",
@@ -16511,8 +16400,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Blue Macaw Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Blue Macaw Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Blue Macaw Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Blue Macaw Cage",
     "color": "#678478FF",
@@ -16535,8 +16423,7 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Chlorophyte Extractinator", "size": [3, 3], "anchor": "Bottom" },
-      { "name": "Chlorophyte Extractinator", "uv": [0, 54], "size": [3, 3], "anchor": "Bottom" }
+      { "name": "Chlorophyte Extractinator", "size": [3, 3], "anchor": "Bottom" }
     ],
     "name": "Chlorophyte Extractinator",
     "color": "#6E8B81FF",
@@ -16550,8 +16437,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Toucan Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Toucan Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Toucan Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Toucan Cage",
     "color": "#767A6EFF",
@@ -16565,8 +16451,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Yellow Cockatiel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Yellow Cockatiel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Yellow Cockatiel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Yellow Cockatiel Cage",
     "color": "#757D67FF",
@@ -16580,8 +16465,7 @@
     "frameGap": [2, 2],
     "frameSize": [[6, 3]],
     "frames": [
-      { "name": "Gray Cockatiel Cage", "size": [6, 3], "anchor": "Bottom" },
-      { "name": "Gray Cockatiel Cage", "uv": [0, 54], "size": [6, 3], "anchor": "Bottom" }
+      { "name": "Gray Cockatiel Cage", "size": [6, 3], "anchor": "Bottom" }
     ],
     "name": "Gray Cockatiel Cage",
     "color": "#6A7D6EFF",
