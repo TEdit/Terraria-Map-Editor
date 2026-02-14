@@ -16351,7 +16351,7 @@
     "id": 637,
     "isFramed": true,
     "isLight": true,
-    "textureGrid": [16, 16],
+    "textureGrid": [16, 20],
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
@@ -17606,7 +17606,7 @@
     "id": 703,
     "isFramed": true,
     "isLight": true,
-    "textureGrid": [16, 16],
+    "textureGrid": [16, 20],
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
@@ -17996,7 +17996,7 @@
     "isFramed": true,
     "isSolid": true,
     "canBlend": true,
-    "textureGrid": [16, 16],
+    "textureGrid": [20, 20],
     "frameGap": [2, 2],
     "frameSize": [[1, 1]],
     "frames": [
