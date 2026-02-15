@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
+using TEdit.Input;
 using TEdit.ViewModel;
 
 namespace TEdit.Configuration;
@@ -16,6 +19,7 @@ public class UserSettings : INotifyPropertyChanged
     private bool _realisticColors = false;
     private int _spriteThumbnailSize = 64;
     private string _telemetryDeclinedVersion = "";
+    private Dictionary<string, List<InputBinding>> _inputBindings = new();
 
     public string TerrariaPath
     {
@@ -75,6 +79,13 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _telemetryDeclinedVersion;
         set => SetField(ref _telemetryDeclinedVersion, value ?? "");
+    }
+
+    [JsonConverter(typeof(InputBindingsDictionaryJsonConverter))]
+    public Dictionary<string, List<InputBinding>> InputBindings
+    {
+        get => _inputBindings;
+        set => SetField(ref _inputBindings, value ?? new());
     }
 
     public event PropertyChangedEventHandler PropertyChanged;

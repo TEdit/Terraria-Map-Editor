@@ -77,6 +77,55 @@
                 </DockPanel>
             </StackPanel>
         </DataTemplate>
+
+        <DataTemplate x:Key="SettingKeybindingTemplate" DataType="{x:Type vm:SettingItem}">
+            <Grid Margin="4,2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Action Name -->
+                <TextBlock Grid.Column="0" Text="{Binding Name}" Foreground="Snow"
+                           VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
+                           ToolTip="{Binding Description}" />
+
+                <!-- Keybindings -->
+                <ItemsControl Grid.Column="1" ItemsSource="{Binding Bindings}" VerticalAlignment="Center">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="#3A3A3A" CornerRadius="3" Padding="6,2" Margin="0,1,4,1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding}" Foreground="Snow" VerticalAlignment="Center" FontSize="11" />
+                                    <Button Content="x" Padding="2,0" Margin="4,0,0,0" FontSize="10"
+                                            Background="Transparent" Foreground="Gray" BorderThickness="0"
+                                            Click="RemoveKeybinding_Click"
+                                            Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}"
+                                            ToolTip="Remove this binding" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- Add/Reset Buttons -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="+" Width="24" Height="22" Padding="0" FontWeight="Bold"
+                            Click="AddKeybinding_Click" Tag="{Binding}"
+                            ToolTip="Add a new keybinding" />
+                    <Button Content="Reset" Height="22" Padding="6,0" Margin="4,0,0,0" FontSize="10"
+                            Click="ResetKeybinding_Click" Tag="{Binding}"
+                            ToolTip="Reset to default bindings" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid Margin="10">
@@ -110,13 +159,38 @@
             <ItemsControl ItemsSource="{Binding SettingsView}">
                 <ItemsControl.GroupStyle>
                     <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="Bold"
-                                           Foreground="{DynamicResource TextBrush}" Margin="2,8,0,4"
-                                           Padding="0,0,0,2" />
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander Margin="0,4,0,0"
+                                                      Expanded="CategoryExpander_Expanded"
+                                                      Collapsed="CategoryExpander_Collapsed">
+                                                <Expander.IsExpanded>
+                                                    <MultiBinding Converter="{x:Static vm:CategoryExpandedConverter.Instance}" Mode="OneWay">
+                                                        <Binding Path="Name" Mode="OneWay" />
+                                                        <Binding RelativeSource="{RelativeSource AncestorType=Window}" Path="DataContext" Mode="OneWay" />
+                                                    </MultiBinding>
+                                                </Expander.IsExpanded>
+                                                <Expander.Header>
+                                                    <TextBlock Text="{Binding Name}"
+                                                               FontSize="14" FontWeight="Bold"
+                                                               Foreground="{DynamicResource TextBrush}" />
+                                                </Expander.Header>
+                                                <!-- Darker background for settings items -->
+                                                <Border Background="#1A1A1A"
+                                                        CornerRadius="4"
+                                                        Margin="0,4,0,8"
+                                                        Padding="4">
+                                                    <ItemsPresenter />
+                                                </Border>
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
                     </GroupStyle>
                 </ItemsControl.GroupStyle>
                 <ItemsControl.ItemTemplateSelector>
@@ -124,7 +198,8 @@
                         SettingCheckBoxTemplate="{StaticResource SettingCheckBoxTemplate}"
                         SettingSliderTemplate="{StaticResource SettingSliderTemplate}"
                         SettingComboBoxTemplate="{StaticResource SettingComboBoxTemplate}"
-                        SettingPathTemplate="{StaticResource SettingPathTemplate}" />
+                        SettingPathTemplate="{StaticResource SettingPathTemplate}"
+                        SettingKeybindingTemplate="{StaticResource SettingKeybindingTemplate}" />
                 </ItemsControl.ItemTemplateSelector>
             </ItemsControl>
         </ScrollViewer>

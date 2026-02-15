@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using TEdit.Input;
 
 namespace TEdit.ViewModel;
 
@@ -13,7 +16,8 @@ public enum SettingEditorType
     CheckBox,
     Slider,
     ComboBox,
-    Path
+    Path,
+    Keybinding
 }
 
 public class SettingItem : INotifyPropertyChanged
@@ -47,6 +51,10 @@ public class SettingItem : INotifyPropertyChanged
     // Path-specific
     public string Placeholder { get; set; }
 
+    // Keybinding-specific
+    public string ActionId { get; set; }
+    public ObservableCollection<InputBinding> Bindings { get; set; } = new();
+
     public event PropertyChangedEventHandler PropertyChanged;
 
     public void RaiseValueChanged() =>
@@ -59,6 +67,7 @@ public class SettingEditorTemplateSelector : DataTemplateSelector
     public DataTemplate SettingSliderTemplate { get; set; }
     public DataTemplate SettingComboBoxTemplate { get; set; }
     public DataTemplate SettingPathTemplate { get; set; }
+    public DataTemplate SettingKeybindingTemplate { get; set; }
 
     public override DataTemplate SelectTemplate(object item, DependencyObject container)
     {
@@ -70,6 +79,7 @@ public class SettingEditorTemplateSelector : DataTemplateSelector
             SettingEditorType.Slider => SettingSliderTemplate,
             SettingEditorType.ComboBox => SettingComboBoxTemplate,
             SettingEditorType.Path => SettingPathTemplate,
+            SettingEditorType.Keybinding => SettingKeybindingTemplate,
             _ => base.SelectTemplate(item, container)
         };
     }

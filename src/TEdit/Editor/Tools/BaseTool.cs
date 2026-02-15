@@ -1,7 +1,10 @@
+using System.Collections.Generic;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Input;
 using TEdit.UI;
 using TEdit.ViewModel;
 using Wpf.Ui.Controls;
@@ -33,6 +36,8 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     public virtual BitmapImage Icon { get; protected set; }
 
     public virtual SymbolRegular SymbolIcon { get; protected set; } = SymbolRegular.Empty;
+
+    public virtual ImageSource? VectorIcon { get; protected set; }
 
     [Reactive]
     private bool _isActive;
@@ -67,6 +72,47 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     public virtual bool PreviewIsTexture
     {
         get { return false; }
+    }
+
+    #endregion
+
+    #region Input Helpers
+
+    /// <summary>
+    /// Gets active editor actions based on current mouse state and keyboard modifiers.
+    /// </summary>
+    protected List<string> GetActiveActions(TileMouseState e)
+    {
+        var actions = new List<string>();
+        var modifiers = Keyboard.Modifiers;
+
+        // Check left button
+        if (e.LeftButton == MouseButtonState.Pressed)
+        {
+            actions.AddRange(App.Input.HandleMouseButton(TEditMouseButton.Left, modifiers, TEdit.Input.InputScope.Editor));
+        }
+
+        // Check right button
+        if (e.RightButton == MouseButtonState.Pressed)
+        {
+            actions.AddRange(App.Input.HandleMouseButton(TEditMouseButton.Right, modifiers, TEdit.Input.InputScope.Editor));
+        }
+
+        // Check middle button
+        if (e.MiddleButton == MouseButtonState.Pressed)
+        {
+            actions.AddRange(App.Input.HandleMouseButton(TEditMouseButton.Middle, modifiers, TEdit.Input.InputScope.Editor));
+        }
+
+        return actions;
+    }
+
+    /// <summary>
+    /// Checks if a specific action is active based on current input.
+    /// </summary>
+    protected bool IsActionActive(TileMouseState e, string actionId)
+    {
+        return GetActiveActions(e).Contains(actionId);
     }
 
     #endregion

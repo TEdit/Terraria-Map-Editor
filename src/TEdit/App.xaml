@@ -13,6 +13,7 @@
         <!-- Custom overrides after WPF UI -->
         <ResourceDictionary Source="Themes\GlobalStyles.xaml" />
         <ResourceDictionary Source="Themes\Templates.xaml" />
+        <ResourceDictionary Source="Themes\Icons.xaml" />
         <ResourceDictionary>
           <sys:Boolean x:Key="True">True</sys:Boolean>
           <sys:Boolean x:Key="False">False</sys:Boolean>

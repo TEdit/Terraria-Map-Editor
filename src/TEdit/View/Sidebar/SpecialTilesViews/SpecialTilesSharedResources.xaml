@@ -61,28 +61,26 @@
 
     <!-- Rarity-tinted item template for category dictionaries (KeyValuePair<int, ItemProperty>) -->
     <DataTemplate x:Key="RarityDictItemTemplate">
-        <TextBlock Text="{Binding Value.Name}" Margin="2,2,2,2" />
+        <Grid Margin="-2,-2,-2,-2">
+            <Grid.Background>
+                <SolidColorBrush Color="{Binding Value.RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3"/>
+            </Grid.Background>
+            <TextBlock Text="{Binding Value.Name}" Margin="4,2,4,2" />
+        </Grid>
     </DataTemplate>
     <!-- Rarity-tinted item template for ItemProperty objects directly (chest editor) -->
     <DataTemplate x:Key="RarityItemTemplate">
-        <TextBlock Text="{Binding Name}" Margin="2,2,2,2" />
+        <Grid Margin="-2,-2,-2,-2">
+            <Grid.Background>
+                <SolidColorBrush Color="{Binding RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3"/>
+            </Grid.Background>
+            <TextBlock Text="{Binding Name}" Margin="4,2,4,2" />
+        </Grid>
     </DataTemplate>
 
-    <!-- ItemContainerStyles that bind ComboBoxItem.Background to rarity color -->
-    <Style x:Key="RarityDictItemContainerStyle" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource RarityComboBoxItem}">
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{Binding Value.RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3"/>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="RarityItemContainerStyle" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource RarityComboBoxItem}">
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="{Binding RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3"/>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <!-- ItemContainerStyles for rarity-colored items (background now in DataTemplate) -->
+    <Style x:Key="RarityDictItemContainerStyle" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource RarityComboBoxItem}"/>
+    <Style x:Key="RarityItemContainerStyle" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource RarityComboBoxItem}"/>
     <DataTemplate x:Key="ItemFrameItemTemplate">
         <Grid HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>

@@ -33,6 +33,7 @@ using TEdit.Common;
 using TEdit.UI;
 using TEdit.View.Popups;
 using TEdit.Terraria.DataModel;
+using TEdit.Input;
 
 namespace TEdit.View;
 
@@ -5970,9 +5971,21 @@ public partial class WorldRenderXna : UserControl
 
     private void xnaViewport_HwndMouseWheel(object sender, HwndMouseEventArgs e)
     {
-        bool useAlternateZoomFunctionality = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
-        //TODO: if (settings option to use old zoom functionality by default is checked) useAlternateZoomFunctionality = !useAlternateZoomFunctionality;
-        Zoom(e.WheelDelta, e.Position.X, e.Position.Y, useAlternateZoomFunctionality);
+        // Check for actions bound to mouse wheel
+        var modifiers = Keyboard.Modifiers;
+        var actions = App.Input.HandleMouseWheel(e.WheelDelta, modifiers, TEdit.Input.InputScope.Application);
+
+        // Handle zoom if bound
+        if (actions.Contains("nav.zoom.in") || actions.Contains("nav.zoom.out"))
+        {
+            bool useAlternateZoomFunctionality = modifiers.HasFlag(ModifierKeys.Shift);
+            Zoom(e.WheelDelta, e.Position.X, e.Position.Y, useAlternateZoomFunctionality);
+            return;
+        }
+
+        // Fallback to default behavior if no binding matched
+        bool useAlternateZoomFallback = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
+        Zoom(e.WheelDelta, e.Position.X, e.Position.Y, useAlternateZoomFallback);
     }
 
     public void Zoom(int direction, double x = -1, double y = -1, bool useAlternateZoomFunctionality = false)

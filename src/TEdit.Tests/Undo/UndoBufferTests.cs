@@ -1,7 +1,6 @@
 using Xunit;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Terraria;
 using TEdit.Editor.Undo;
 using System.IO;
 
@@ -259,7 +258,7 @@ public class UndoBufferTests : IDisposable
         var tile = new Tile
         {
             IsActive = true,
-            Type = 123,
+            Type = 19,  // Platforms - isFramed=true (U/V serialized) and isSolid=true (BrickStyle preserved)
             Wall = 45,
             TileColor = 7,
             WallColor = 3,

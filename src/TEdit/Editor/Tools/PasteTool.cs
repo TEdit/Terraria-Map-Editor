@@ -54,6 +54,9 @@ public sealed class PasteTool : BaseTool
         _wvm.Clipboard.PasteBufferIntoWorld(_wvm.CurrentWorld, anchor);
         _wvm.UpdateRenderRegion(new RectangleInt32(anchor, _wvm.Clipboard.Buffer.Buffer.Size));
 
+        // Clear selected chest to prevent rendering "open" offset on pasted chest tiles
+        _wvm.SelectedChest = null;
+
         /* Heathtech */
         BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Buffer.Size.X, _wvm.Clipboard.Buffer.Buffer.Size.Y);
     }

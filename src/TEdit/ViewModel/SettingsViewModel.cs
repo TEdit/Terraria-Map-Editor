@@ -1,11 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
+using TEdit.Input;
 using TEdit.Properties;
 
 namespace TEdit.ViewModel;
@@ -14,6 +17,9 @@ namespace TEdit.ViewModel;
 public partial class SettingsViewModel
 {
     public ObservableCollection<SettingItem> AllSettings { get; } = [];
+
+    // Track manual expansion state (only applies when not searching)
+    private readonly Dictionary<string, bool> _categoryExpansionState = new();
 
     [Reactive]
     private string _searchText;
@@ -24,13 +30,45 @@ public partial class SettingsViewModel
     {
         PopulateSettings(wvm);
 
+        // Initialize all categories as expanded
+        foreach (var category in AllSettings.Select(s => s.Category).Distinct())
+            _categoryExpansionState[category] = true;
+
         var cvs = new CollectionViewSource { Source = AllSettings };
         SettingsView = cvs.View;
         SettingsView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(SettingItem.Category)));
         SettingsView.Filter = FilterSetting;
 
         this.WhenAnyValue(x => x.SearchText)
-            .Subscribe(_ => SettingsView.Refresh());
+            .Subscribe(_ =>
+            {
+                SettingsView.Refresh();
+                // Notify that expansion states may have changed due to search
+                this.RaisePropertyChanged(nameof(SearchText));
+            });
+    }
+
+    /// <summary>
+    /// Checks if a category should be expanded.
+    /// When searching, auto-expands categories with matching items.
+    /// Otherwise, uses manual expansion state.
+    /// </summary>
+    public bool IsCategoryExpanded(string category)
+    {
+        // If searching, expand categories with matching items
+        if (!string.IsNullOrWhiteSpace(SearchText))
+            return AllSettings.Any(s => s.Category == category && FilterSetting(s));
+
+        // Otherwise use manual state (default: expanded)
+        return _categoryExpansionState.GetValueOrDefault(category, true);
+    }
+
+    /// <summary>
+    /// Sets the manual expansion state for a category.
+    /// </summary>
+    public void SetCategoryExpanded(string category, bool expanded)
+    {
+        _categoryExpansionState[category] = expanded;
     }
 
     private bool FilterSetting(object obj)
@@ -199,6 +237,33 @@ public partial class SettingsViewModel
             Getter = () => UserSettingsService.Current.TerrariaPath,
             Setter = v => UserSettingsService.Current.TerrariaPath = (string)v
         });
+
+        // ── Keybindings ──
+        PopulateKeybindings();
+    }
+
+    private void PopulateKeybindings()
+    {
+        var registry = App.Input.Registry;
+        var actionsByCategory = registry.GetActionsByCategory();
+
+        foreach (var (category, actions) in actionsByCategory.OrderBy(kvp => kvp.Key))
+        {
+            foreach (var action in actions.OrderBy(a => a.Name))
+            {
+                var bindings = new ObservableCollection<InputBinding>(registry.GetBindings(action.Id));
+
+                AllSettings.Add(new SettingItem
+                {
+                    Name = action.Name,
+                    Description = action.Description ?? "",
+                    Category = $"Keybindings - {category}",
+                    EditorType = SettingEditorType.Keybinding,
+                    ActionId = action.Id,
+                    Bindings = bindings
+                });
+            }
+        }
     }
 
     private void AddLayerCheckBox(string name, string description, string category,
@@ -213,5 +278,27 @@ public partial class SettingsViewModel
             Getter = () => getter(),
             Setter = v => setter((bool)v)
         });
+    }
+}
+
+/// <summary>
+/// Converter for binding Expander.IsExpanded to SettingsViewModel's category expansion state.
+/// </summary>
+public class CategoryExpandedConverter : IMultiValueConverter
+{
+    public static CategoryExpandedConverter Instance { get; } = new();
+
+    public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+    {
+        // values[0] = category name (from CollectionViewGroup.Name)
+        // values[1] = SettingsViewModel
+        if (values[0] is string category && values[1] is SettingsViewModel vm)
+            return vm.IsCategoryExpanded(category);
+        return true;
+    }
+
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+    {
+        throw new NotSupportedException("CategoryExpandedConverter is one-way only");
     }
 }

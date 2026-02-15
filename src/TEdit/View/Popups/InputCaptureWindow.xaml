@@ -1,0 +1,29 @@
+<Window x:Class="TEdit.View.Popups.InputCaptureWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Press a key or click a mouse button"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        Background="{StaticResource ControlBackgroundBrush}"
+        Foreground="{DynamicResource TextBrush}"
+        Width="350" Height="150"
+        PreviewKeyDown="Window_PreviewKeyDown"
+        PreviewMouseDown="Window_PreviewMouseDown"
+        PreviewMouseWheel="Window_PreviewMouseWheel">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Press a key, mouse button, or scroll wheel..."
+                       FontSize="14" Foreground="Snow" TextAlignment="Center" />
+            <TextBlock Text="(with optional Ctrl, Shift, or Alt modifiers)"
+                       FontSize="11" Foreground="Gray" TextAlignment="Center" Margin="0,4,0,0" />
+            <TextBlock x:Name="CapturedText" Text=""
+                       FontSize="16" Foreground="LightGreen" FontWeight="Bold"
+                       TextAlignment="Center" Margin="0,12,0,0" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
+                <Button Content="Cancel" Width="80" Padding="4" Click="Cancel_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

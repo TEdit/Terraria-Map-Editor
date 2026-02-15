@@ -13,6 +13,7 @@ using TEdit.Configuration;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Framework.Threading;
+using TEdit.Input;
 using TEdit.Utility;
 using ReactiveUI;
 using ReactiveUI.Builder;
@@ -207,6 +208,7 @@ public partial class App : Application
     }
 
     public static KeyboardShortcuts ShortcutKeys { get; } = new KeyboardShortcuts();
+    public static InputService Input { get; } = new InputService();
     public static AppSettings AppConfig { get; private set; }
     public static IConfiguration Configuration { get; private set; }
 
@@ -238,6 +240,9 @@ public partial class App : Application
                 ErrorLogging.Log($"[Settings] Duplicate shortcut {modifiers}+{key} -> using first binding, ignoring '{action}'.");
             }
         }
+
+        // Initialize the new InputService (registers default actions and loads user customizations)
+        Input.Initialize();
     }
 
     private static void ParseShortcut(string combo, out Key key, out ModifierKeys modifiers)
