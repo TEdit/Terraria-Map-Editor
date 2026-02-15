@@ -1,16 +1,22 @@
-﻿<Window x:Name="MainWindow"
+<Window x:Name="MainWindow"
         x:Class="TEdit.Editor.Plugins.ImageToPixelartEditorView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:view="clr-namespace:TEdit.View"
+        xmlns:local="clr-namespace:TEdit.Editor.Plugins"
+        xmlns:cv="clr-namespace:TEdit.Converters"
         Title="Image To Pixel-Art To Schematic v0.1 | Coded By: D.RUSS#2430 | Terraria Modding"
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico"
-        ResizeMode="CanResizeWithGrip" 
+        ResizeMode="CanResizeWithGrip"
         Topmost="False"
-        Width="1470"
-        Height="764">
+        Width="1600"
+        Height="800">
+
+  <Window.Resources>
+    <cv:EnumToBoolConverter x:Key="EnumToBoolConverter"/>
+  </Window.Resources>
 
   <!-- Main Container -->
   <Grid x:Name="MainGrid" Background="{StaticResource ControlBackgroundBrush}">
@@ -35,7 +41,9 @@
         <Border.Background>
           <ImageBrush x:Name="TiledBackground1" TileMode="Tile" Viewport="0,0,59,59" ViewportUnits="Absolute" ImageSource="/TEdit;component/Images/Pixelart/etp.jpg" />
         </Border.Background>
-        <Image x:Name="BackgroundImage1" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform" Source="/TEdit;component/Images/Pixelart/globeTest.png" AllowDrop="True" Drop="BackgroundImage1_Drop" DragEnter="BackgroundImage1_DragEnter" />
+        <Image x:Name="BackgroundImage1" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform"
+               Source="{Binding BackgroundImage1Source}"
+               AllowDrop="True" Drop="BackgroundImage1_Drop" DragEnter="BackgroundImage1_DragEnter" />
       </Border>
 
       <!-- Second Tiled Background Image -->
@@ -43,7 +51,8 @@
         <Border.Background>
           <ImageBrush x:Name="TiledBackground2" TileMode="Tile" Viewport="0,0,59,59" ViewportUnits="Absolute" ImageSource="/TEdit;component/Images/Pixelart/etp.jpg" />
         </Border.Background>
-        <Image x:Name="BackgroundImage2" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform" />
+        <Image x:Name="BackgroundImage2" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform"
+               Source="{Binding BackgroundImage2Source}" />
       </Border>
     </Grid>
 
@@ -70,30 +79,30 @@
           <!-- Column 0: Spacing -->
           <StackPanel Grid.Column="0" Grid.Row="0" >
             <TextBlock Text="Spacing" FontSize="11" Margin="2"/>
-            <ui:NumberBox x:Name="SpacingNumberBox" Value="4" Minimum="1" Maximum="100" SmallChange="1" MaxDecimalPlaces="0"  TabIndex="1" Margin="2" HorizontalAlignment="Stretch"/>
+            <ui:NumberBox x:Name="SpacingNumberBox" Value="{Binding Spacing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" TabIndex="1" Margin="2" HorizontalAlignment="Stretch"/>
           </StackPanel>
 
           <!-- Column 1: New Ratio % Level -->
-          <StackPanel Grid.Column="1" Grid.Row="0"  VerticalAlignment="Bottom">
+          <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal">
               <TextBlock Text="New Ratio % Level: " FontSize="11" Margin="2"/>
-              <TextBlock x:Name="NewRatioPercentLevelData" Text="0" FontSize="11" Margin="2" />
+              <TextBlock Text="{Binding NewRatioPercentLevelData}" FontSize="11" Margin="2" />
             </StackPanel>
-            <ui:NumberBox x:Name="RatioNumberBox" Value="0" Minimum="-200" Maximum="200" SmallChange="1" MaxDecimalPlaces="0" TabIndex="2" Margin="2" HorizontalAlignment="Stretch"/>
+            <ui:NumberBox x:Name="RatioNumberBox" Value="{Binding RatioValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="-200" Maximum="200" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" TabIndex="2" Margin="2" HorizontalAlignment="Stretch" IsEnabled="{Binding IsRatioNumberBoxEnabled}"/>
           </StackPanel>
 
           <!-- Column 2: Copy To Clipboard -->
-          <Button x:Name="CopyToClipboard" Grid.Column="2" Grid.Row="0" Content="Copy To Clipboard" Click="CopyToClipboard_Click" IsEnabled="False" ToolTip="Copy the generated pixel art to the clipboard." TabIndex="3" Margin="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="2" Grid.Row="0" Content="Copy To Clipboard" Command="{Binding CopyToClipboardCommand}" IsEnabled="{Binding IsCopyToClipboardEnabled}" ToolTip="Copy the generated pixel art to the clipboard." TabIndex="3" Margin="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
 
           <!-- Row 1: Save Image, Set New Ratio -->
-          <Button x:Name="SaveImage" Grid.Column="0" Grid.Row="1" Content="Save Image" Click="SaveImage_Click" ToolTip="Save the generated pixel art as an image." TabIndex="4" Margin="2" HorizontalAlignment="Stretch"/>
-          <Button x:Name="RefreshRatio" Grid.Column="1" Grid.Row="1" Content="Set New Ratio" Click="RefreshRatio_Click" ToolTip="Set new image zoom ratio." TabIndex="5" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="0" Grid.Row="1" Content="Save Image" Command="{Binding SaveImageCommand}" ToolTip="Save the generated pixel art as an image." TabIndex="4" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="1" Grid.Row="1" Content="Set New Ratio" Command="{Binding RefreshRatioCommand}" IsEnabled="{Binding IsRefreshRatioEnabled}" ToolTip="Set new image zoom ratio." TabIndex="5" Margin="2" HorizontalAlignment="Stretch"/>
 
           <!-- Row 2: Open New Image, Convert To Pixel Art, Save Schematic -->
-          <Button x:Name="OpenNewImage" Grid.Column="0" Grid.Row="2" Content="Open New Image" Click="OpenNewImage_Click" ToolTip="Open a new image for conversion." TabIndex="6" Margin="2" HorizontalAlignment="Stretch"/>
-          <Button x:Name="ConvertToPixelArt" Grid.Column="1" Grid.Row="2" Content="Convert To Pixel Art" Click="ConvertToPixelArt_Click" ToolTip="Convert the current image to pixel art." TabIndex="7" Margin="2" HorizontalAlignment="Stretch"/>
-          <Button x:Name="OverwriteExistingFile" Grid.Column="2" Grid.Row="1" Content="Overwrite Existing File" Click="OverwriteExistingFile_Click" IsEnabled="False" ToolTip="Overwrite the existing schematic." TabIndex="8" Margin="2" HorizontalAlignment="Stretch"/>
-          <Button x:Name="SaveSchematicToFile"   Grid.Column="2" Grid.Row="2" Content="Save Schematic To File" Click="SaveSchematicToFile_Click" IsEnabled="False" TabIndex="9" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="0" Grid.Row="2" Content="Open New Image" Command="{Binding OpenNewImageCommand}" IsEnabled="{Binding IsOpenNewImageEnabled}" ToolTip="Open a new image for conversion." TabIndex="6" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="1" Grid.Row="2" Content="{Binding ConvertButtonText}" Command="{Binding ConvertToPixelArtCommand}" IsEnabled="{Binding IsConvertEnabled}" ToolTip="Convert the current image to pixel art." TabIndex="7" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="2" Grid.Row="1" Content="Overwrite Existing File" Command="{Binding OverwriteExistingFileCommand}" IsEnabled="{Binding IsOverwriteEnabled}" ToolTip="Overwrite the existing schematic." TabIndex="8" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="2" Grid.Row="2" Content="Save Schematic To File" Command="{Binding SaveSchematicToFileCommand}" IsEnabled="{Binding IsSaveSchematicEnabled}" TabIndex="9" Margin="2" HorizontalAlignment="Stretch"/>
         </Grid>
       </GroupBox>
 
@@ -113,10 +122,14 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
               </Grid.RowDefinitions>
-              <RadioButton x:Name="Rotation0" Grid.Row="0" Grid.Column="0" Content="No Rotation" TabIndex="17" Margin="0,0,8,4"/>
-              <RadioButton x:Name="Rotation90" Grid.Row="0" Grid.Column="1" Content="90 Degrees" TabIndex="18" Margin="0,0,0,4"/>
-              <RadioButton x:Name="Rotation180" Grid.Row="1" Grid.Column="0" Content="180 Degrees" TabIndex="19" Margin="0,0,8,4"/>
-              <RadioButton x:Name="Rotation270" Grid.Row="1" Grid.Column="1" Content="270 Degrees" TabIndex="20" Margin="0,0,0,4"/>
+              <RadioButton Grid.Row="0" Grid.Column="0" Content="No Rotation" TabIndex="17" Margin="0,0,8,4"
+                           IsChecked="{Binding RotationAngle, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:RotationAngle.None}}"/>
+              <RadioButton Grid.Row="0" Grid.Column="1" Content="90 Degrees" TabIndex="18" Margin="0,0,0,4"
+                           IsChecked="{Binding RotationAngle, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:RotationAngle.Rotate90}}"/>
+              <RadioButton Grid.Row="1" Grid.Column="0" Content="180 Degrees" TabIndex="19" Margin="0,0,8,4"
+                           IsChecked="{Binding RotationAngle, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:RotationAngle.Rotate180}}"/>
+              <RadioButton Grid.Row="1" Grid.Column="1" Content="270 Degrees" TabIndex="20" Margin="0,0,0,4"
+                           IsChecked="{Binding RotationAngle, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:RotationAngle.Rotate270}}"/>
             </Grid>
 
             <GroupBox BorderBrush="White" Margin="0,4,0,0">
@@ -124,8 +137,10 @@
                 <TextBlock Text="World Axis:" Foreground="White"/>
               </GroupBox.Header>
               <StackPanel Orientation="Horizontal" Margin="4">
-                <RadioButton x:Name="XAxis" Content="X-Axis" TabIndex="21" Margin="0,0,16,0"/>
-                <RadioButton x:Name="YAxis" Content="Y-Axis" TabIndex="22"/>
+                <RadioButton Content="X-Axis" TabIndex="21" Margin="0,0,16,0"
+                             IsChecked="{Binding WorldAxis, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:WorldAxis.XAxis}}"/>
+                <RadioButton Content="Y-Axis" TabIndex="22"
+                             IsChecked="{Binding WorldAxis, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:WorldAxis.YAxis}}"/>
               </StackPanel>
             </GroupBox>
           </StackPanel>
@@ -136,8 +151,8 @@
             <TextBlock Text="Color Filter Tools:" Foreground="White"/>
           </GroupBox.Header>
           <StackPanel Orientation="Horizontal" Margin="4">
-            <Button x:Name="DelNullColors" Content="Del Null Colors" Click="DelNullColors_Click" ToolTip="Remove colors from filter not in rendered pixel art." TabIndex="23" Margin="0,0,4,0"/>
-            <Button x:Name="ResetColors" Content="Reset Colors" Click="ResetColors_Click" ToolTip="Reset the color filter to defined settings." TabIndex="24"/>
+            <Button Content="Del Null Colors" Command="{Binding DelNullColorsCommand}" ToolTip="Remove colors from filter not in rendered pixel art." TabIndex="23" Margin="0,0,4,0"/>
+            <Button Content="Reset Colors" Command="{Binding ResetColorsCommand}" ToolTip="Reset the color filter to defined settings." TabIndex="24"/>
           </StackPanel>
         </GroupBox>
       </StackPanel>
@@ -149,17 +164,17 @@
         </GroupBox.Header>
         <StackPanel Margin="4">
           <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
-            <CheckBox x:Name="ShowGrid" Content="Show Grid" TabIndex="25" ToolTip="Place a grid over the rendered pixel art." Margin="0,0,8,0"/>
-            <CheckBox x:Name="Backdrop" Content="Backdrop" TabIndex="26" ToolTip="Add a backdrop to the transparent pixels."/>
+            <CheckBox Content="Show Grid" IsChecked="{Binding ShowGrid}" TabIndex="25" ToolTip="Place a grid over the rendered pixel art." Margin="0,0,8,0"/>
+            <CheckBox Content="Backdrop" IsChecked="{Binding Backdrop}" TabIndex="26" ToolTip="Add a backdrop to the transparent pixels."/>
           </StackPanel>
 
-          <Button x:Name="PickGridColor" Background="Red" Click="PickGridColor_Click" Content="Grid Color" ToolTip="Change the grid color." TabIndex="27" Margin="0,0,0,8"/>
+          <Button Background="{Binding GridColorBrush}" Command="{Binding PickGridColorCommand}" Content="Grid Color" ToolTip="Change the grid color." TabIndex="27" Margin="0,0,0,8"/>
 
           <TextBlock Text="Grid Y Offset:" FontSize="11" Margin="0,0,0,2"/>
-          <ui:NumberBox x:Name="GridYOffsetNumberBox" Value="0" Minimum="0" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" HorizontalAlignment="Stretch" Margin="2" ToolTip="Offset the grid Y-Axis." TabIndex="28"/>
+          <ui:NumberBox Value="{Binding GridYOffset, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" HorizontalAlignment="Stretch" Margin="2" ToolTip="Offset the grid Y-Axis." TabIndex="28"/>
 
           <TextBlock Text="Grid X Offset:" FontSize="11" Margin="0,0,0,2"/>
-          <ui:NumberBox x:Name="GridXOffsetNumberBox" Value="0" Minimum="0" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" HorizontalAlignment="Stretch" Margin="2" ToolTip="Offset the grid X-Axis." TabIndex="29"/>
+          <ui:NumberBox Value="{Binding GridXOffset, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" HorizontalAlignment="Stretch" Margin="2" ToolTip="Offset the grid X-Axis." TabIndex="29"/>
         </StackPanel>
       </GroupBox>
 
@@ -183,16 +198,23 @@
             <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
 
-          <RadioButton x:Name="Bilinear" Grid.Row="0" Grid.Column="0" Content="Bilinear" TabIndex="30" Margin="0,0,0,2"/>
-          <RadioButton x:Name="NearestNeighbor" Grid.Row="1" Grid.Column="0" Content="Nearest Neighbor" TabIndex="31" Margin="0,0,0,2"/>
-          <RadioButton x:Name="Bicubic" Grid.Row="2" Grid.Column="0" Content="Bicubic" TabIndex="32" Margin="0,0,0,2"/>
-          <RadioButton x:Name="Lanczos" Grid.Row="3" Grid.Column="0" Content="Lanczos" TabIndex="33" Checked="RadioButton_Checked" Unchecked="RadioButton_Unchecked" Margin="0,0,0,2"/>
-          <RadioButton x:Name="Hermite" Grid.Row="4" Grid.Column="0" Content="Hermite" TabIndex="34" Margin="0,0,0,2"/>
-          <RadioButton x:Name="Spline" Grid.Row="5" Grid.Column="0" Content="Spline" TabIndex="35" Margin="0,0,0,2"/>
-          <RadioButton x:Name="Gaussian" Grid.Row="6" Grid.Column="0" Content="Gaussian" TabIndex="36" Checked="RadioButton_Checked" Unchecked="RadioButton_Unchecked"/>
+          <RadioButton Grid.Row="0" Grid.Column="0" Content="Bilinear" TabIndex="30" Margin="0,0,0,2"
+                       IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Bilinear}}"/>
+          <RadioButton Grid.Row="1" Grid.Column="0" Content="Nearest Neighbor" TabIndex="31" Margin="0,0,0,2"
+                       IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.NearestNeighbor}}"/>
+          <RadioButton Grid.Row="2" Grid.Column="0" Content="Bicubic" TabIndex="32" Margin="0,0,0,2"
+                       IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Bicubic}}"/>
+          <RadioButton Grid.Row="3" Grid.Column="0" Content="Lanczos" TabIndex="33" Margin="0,0,0,2"
+                       IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Lanczos}}"/>
+          <RadioButton Grid.Row="4" Grid.Column="0" Content="Hermite" TabIndex="34" Margin="0,0,0,2"
+                       IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Hermite}}"/>
+          <RadioButton Grid.Row="5" Grid.Column="0" Content="Spline" TabIndex="35" Margin="0,0,0,2"
+                       IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Spline}}"/>
+          <RadioButton Grid.Row="6" Grid.Column="0" Content="Gaussian" TabIndex="36"
+                       IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Gaussian}}"/>
 
-          <TextBox x:Name="AEquals" Grid.Row="3" Grid.Column="1" Height="20" Width="38" IsReadOnly="True" Text="3" TextChanged="AEquals_TextChanged" ToolTip="Change the A=." TabIndex="37" Margin="8,0,0,2" VerticalAlignment="Center"/>
-          <TextBox x:Name="SigmaEquals" Grid.Row="6" Grid.Column="1" Height="20" Width="38" IsReadOnly="True" Text="1.0" TextChanged="SigmaEquals_TextChanged" ToolTip="Change the Sigma=." TabIndex="38" Margin="8,0,0,0" VerticalAlignment="Center"/>
+          <TextBox Grid.Row="3" Grid.Column="1" Height="20" Width="38" IsEnabled="{Binding IsLanczosAEnabled}" Text="{Binding LanczosA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Change the A=." TabIndex="37" Margin="8,0,0,2" VerticalAlignment="Center"/>
+          <TextBox Grid.Row="6" Grid.Column="1" Height="20" Width="38" IsEnabled="{Binding IsSigmaEnabled}" Text="{Binding GaussianSigma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Change the Sigma=." TabIndex="38" Margin="8,0,0,0" VerticalAlignment="Center"/>
         </Grid>
       </GroupBox>
 
@@ -203,10 +225,10 @@
             <TextBlock Text="Color Filter Settings:" Foreground="White"/>
           </GroupBox.Header>
           <StackPanel Margin="4">
-            <CheckBox x:Name="UseTiles" Content="Use Tiles" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" TabIndex="39" Margin="0,0,0,4"/>
-            <CheckBox x:Name="UseWalls" Content="Use Walls" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" TabIndex="40" Margin="0,0,0,4"/>
-            <CheckBox x:Name="BuildSafe" Content="Build Safe" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" TabIndex="41" Margin="0,0,0,4"/>
-            <CheckBox x:Name="UniqueColors" Content="Unique Colors" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" TabIndex="42"/>
+            <CheckBox Content="Use Tiles" IsChecked="{Binding UseTiles}" TabIndex="39" Margin="0,0,0,4"/>
+            <CheckBox Content="Use Walls" IsChecked="{Binding UseWalls}" TabIndex="40" Margin="0,0,0,4"/>
+            <CheckBox Content="Build Safe" IsChecked="{Binding BuildSafe}" TabIndex="41" Margin="0,0,0,4"/>
+            <CheckBox Content="Unique Colors" IsChecked="{Binding UniqueColors}" TabIndex="42"/>
           </StackPanel>
         </GroupBox>
 
@@ -225,9 +247,9 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Total Colors:" FontSize="11" Margin="0,0,8,2"/>
-            <TextBlock x:Name="TotalColorsData" Grid.Row="0" Grid.Column="1" Text="0" FontSize="11" Margin="0,0,0,2"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TotalColorsData}" FontSize="11" Margin="0,0,0,2"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Filtered Colors:" FontSize="11" Margin="0,0,8,0"/>
-            <TextBlock x:Name="FilteredColorsData" Grid.Row="1" Grid.Column="1" Text="0" FontSize="11"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FilteredColorsData}" FontSize="11"/>
           </Grid>
         </GroupBox>
       </StackPanel>
@@ -254,28 +276,28 @@
 
           <!-- Stats column -->
           <TextBlock Grid.Row="0" Grid.Column="0" Text="Total Height:" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
-          <TextBlock x:Name="TotalHeightData" Grid.Row="0" Grid.Column="1" Text="0" FontSize="11" Margin="0,0,0,2" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TotalHeightData}" FontSize="11" Margin="0,0,0,2" VerticalAlignment="Center"/>
           <TextBlock Grid.Row="1" Grid.Column="0" Text="Total Width:" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
-          <TextBlock x:Name="TotalWidthData" Grid.Row="1" Grid.Column="1" Text="0" FontSize="11" Margin="0,0,0,2" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TotalWidthData}" FontSize="11" Margin="0,0,0,2" VerticalAlignment="Center"/>
           <TextBlock Grid.Row="2" Grid.Column="0" Text="Total Blocks:" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
-          <TextBlock x:Name="TotalBlocksData" Grid.Row="2" Grid.Column="1" Text="0" FontSize="11" Margin="0,0,0,2" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TotalBlocksData}" FontSize="11" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
           <!-- Checkboxes column -->
-          <CheckBox x:Name="GenerateSchematic" Grid.Row="0" Grid.Column="2" Content="Generate Schematic" ToolTip="Generate schematic file while rendering pixel art (slight speed impact)." TabIndex="53" Margin="16,0,0,2"/>
-          <CheckBox x:Name="GatherStatistics" Grid.Row="1" Grid.Column="2" Content="Gather Statistics" ToolTip="Record pixelart statistics." TabIndex="54" Margin="16,0,0,2"/>
-          <CheckBox x:Name="ProgressBar" Grid.Row="2" Grid.Column="2" Content="Progress Bar" ToolTip="Show the pixel art progression (slight speed impact)." TabIndex="55" Margin="16,0,0,2"/>
+          <CheckBox Grid.Row="0" Grid.Column="2" Content="Generate Schematic" IsChecked="{Binding GenerateSchematic}" ToolTip="Generate schematic file while rendering pixel art (slight speed impact)." TabIndex="53" Margin="16,0,0,2"/>
+          <CheckBox Grid.Row="1" Grid.Column="2" Content="Gather Statistics" IsChecked="{Binding GatherStatistics}" ToolTip="Record pixelart statistics." TabIndex="54" Margin="16,0,0,2"/>
+          <CheckBox Grid.Row="2" Grid.Column="2" Content="Progress Bar" IsChecked="{Binding ShowProgressBar}" ToolTip="Show the pixel art progression (slight speed impact)." TabIndex="55" Margin="16,0,0,2"/>
 
           <!-- Current Image row -->
           <TextBlock Grid.Row="3" Grid.Column="0" Text="Current Image:" FontSize="11" Margin="0,8,8,2" VerticalAlignment="Center"/>
-          <TextBox x:Name="CurrentImageData" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="11" IsReadOnly="True" Text="Default" TabIndex="57" Margin="0,8,0,2"/>
+          <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="11" IsReadOnly="True" Text="{Binding CurrentImageData}" TabIndex="57" Margin="0,8,0,2"/>
 
           <!-- Save Directory row -->
           <TextBlock Grid.Row="4" Grid.Column="0" Text="Save Directory:" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
-          <TextBox x:Name="SaveDirectoryData" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontSize="11" IsReadOnly="True" Text="None" TabIndex="59" Margin="0,0,0,2"/>
+          <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontSize="11" IsReadOnly="True" Text="{Binding SaveDirectoryData}" TabIndex="59" Margin="0,0,0,2"/>
 
           <!-- Progress row -->
           <TextBlock Grid.Row="5" Grid.Column="0" Text="Progress:" FontSize="11" Margin="0,0,8,0" VerticalAlignment="Center"/>
-          <ProgressBar x:Name="ProgressBar1" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Height="18" Minimum="0" Maximum="100" Value="{Binding Path=ProgressValue}"/>
+          <ProgressBar Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Height="18" Minimum="0" Maximum="{Binding ProgressMaximum}" Value="{Binding ProgressValue}"/>
         </Grid>
       </GroupBox>
 
