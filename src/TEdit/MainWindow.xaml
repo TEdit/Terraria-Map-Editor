@@ -71,10 +71,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- WPF UI Title Bar -->
-        <ui:TitleBar Title="{Binding WindowTitle}" Grid.Row="0">
+        <!-- WPF UI Title Bar (compact) -->
+        <ui:TitleBar Title="{Binding WindowTitle}" Grid.Row="0"
+                     Padding="0" Margin="0"
+                     FontSize="12" Height="24">
             <ui:TitleBar.Icon>
-                <ui:ImageIcon Source="/TEdit;component/Images/tedit.ico" />
+                <ui:ImageIcon Source="/TEdit;component/Images/tedit.ico" Width="16" Height="16" />
             </ui:TitleBar.Icon>
         </ui:TitleBar>
 
@@ -234,7 +236,7 @@
                     </Border>
                     <View:Sponsor Width="140" VerticalAlignment="Stretch" Margin="2 0 2 0"></View:Sponsor>
                 </StackPanel>
-                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Height="110">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" >
                     <StackPanel Orientation="Horizontal">
                         <View:NpcSelectorView>
                             <View:NpcSelectorView.Style>
@@ -304,7 +306,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="440" MinWidth="32" MaxWidth="600" />
+                    <ColumnDefinition x:Name="SidePanelColumn" Width="440" MinWidth="50" MaxWidth="600" />
                 </Grid.ColumnDefinitions>
 
                 <!-- Map View -->
@@ -314,83 +316,55 @@
                 <GridSplitter x:Name="SidePanelSplitter" Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"
                               Background="{DynamicResource NormalBorderBrush}" Cursor="SizeWE" />
 
-                <!-- Side Panel -->
-                <Grid x:Name="SidePanel" Grid.Column="2" Background="{DynamicResource ControlBackgroundBrush}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <!-- Panel Header with collapse button -->
-                    <DockPanel Grid.Row="0" Background="{DynamicResource NormalBrush}" Height="32">
-                        <Button x:Name="SidePanelToggle" DockPanel.Dock="Left" Width="32" Height="32"
-                                Click="SidePanelToggle_Click" ToolTip="Toggle Panel"
-                                Background="Transparent" BorderThickness="0" Cursor="Hand">
-                            <Path x:Name="SidePanelToggleIcon" Data="M8,0 L0,5 L8,10"
-                                  Stroke="{DynamicResource TextBrush}" StrokeThickness="1.5"
-                                  Fill="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                        </Button>
-                        <TextBlock x:Name="SidePanelHeaderText" Text="{x:Static p:Language.editor_utilities_label}" VerticalAlignment="Center"
-                                   Foreground="{DynamicResource TextBrush}" Margin="4,0,0,0" FontWeight="SemiBold" />
-                    </DockPanel>
-
-                    <!-- Vertical text shown when collapsed -->
-                    <TextBlock x:Name="SidePanelVerticalText" Grid.Row="1" Text="{x:Static p:Language.editor_utilities_label}"
-                               Foreground="{DynamicResource TextBrush}" FontWeight="SemiBold" FontSize="12"
-                               Visibility="Collapsed" HorizontalAlignment="Center" Margin="0,8,0,0">
-                        <TextBlock.LayoutTransform>
-                            <RotateTransform Angle="90" />
-                        </TextBlock.LayoutTransform>
-                    </TextBlock>
-
-                    <!-- Tab Control - Icon Style -->
-                    <TabControl x:Name="SidePanelTabs" Grid.Row="1" TabStripPlacement="Top"
-                                Style="{StaticResource IconTabControl}"
-                                SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_worldproperties}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Globe20" Filled="True" FontSize="18"/></TabItem.Header>
-                            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                <!-- Side Panel: Activity Bar + Content (click active tab to collapse) -->
+                <TabControl x:Name="SidePanelTabs" Grid.Column="2"
+                            Style="{StaticResource ActivityBarTabControl}"
+                            Background="{DynamicResource ControlBackgroundBrush}"
+                            SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}"
+                            PreviewMouseLeftButtonDown="SidePanelTabs_PreviewMouseLeftButtonDown">
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_worldproperties}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Globe20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" >
+                                <View:WorldPropertiesView VerticalAlignment="Top"/>
                             </ScrollViewer>
                         </TabItem>
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_special}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Sparkle20" Filled="True" FontSize="18"/></TabItem.Header>
-                            <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_special}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Sparkle20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <View:SpecialTileView />
                         </TabItem>
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_sprites}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Couch20" Filled="True" FontSize="18"/></TabItem.Header>
-                            <View:SpriteView2 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_sprites}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Couch20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <View:SpriteView2 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                         </TabItem>
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_clipboard}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Clipboard20" Filled="True" FontSize="18"/></TabItem.Header>
-                            <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_clipboard}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Clipboard20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <View:ClipboardView HorizontalAlignment="Stretch" />
                         </TabItem>
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_npc}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="People20" Filled="True" FontSize="18"/></TabItem.Header>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_npc}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="People20" Filled="True" FontSize="24"/></TabItem.Header>
                             <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                         </TabItem>
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_analysis}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="ChartMultiple20" Filled="True" FontSize="18"/></TabItem.Header>
-                            <View:WorldAnalysis HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_analysis}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="ChartMultiple20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <View:WorldAnalysis />
                         </TabItem>
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_tally}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Trophy20" Filled="True" FontSize="18"/></TabItem.Header>
-                            <View:BestiaryEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_tally}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Trophy20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <View:BestiaryEditor />
                         </TabItem>
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_banners}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Flag20" Filled="True" FontSize="18"/></TabItem.Header>
-                            <View:BannerEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_banners}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Flag20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <View:BannerEditor />
                         </TabItem>
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_tileentities}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Grid20" Filled="True" FontSize="18"/></TabItem.Header>
-                            <View:TileEntityExaminer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_tileentities}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Grid20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <View:TileEntityExaminer />
                         </TabItem>
-                        <TabItem Style="{StaticResource IconTabItem}" ToolTip="{x:Static p:Language.editor_tabs_creative}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Lightbulb20" Filled="True" FontSize="18"/></TabItem.Header>
-                            <View:CreativePowers HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_creative}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Lightbulb20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <View:CreativePowers />
                         </TabItem>
-                    </TabControl>
-                </Grid>
+                </TabControl>
             </Grid>
         </DockPanel>
 

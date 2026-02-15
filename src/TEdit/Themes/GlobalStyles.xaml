@@ -6,8 +6,8 @@
     <Color x:Key="BlackColor">#FF000000</Color>
     <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FF1E1E1E" />
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#FF2D2D2D" />
-    <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="GlyphBrush" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="TextBrush" Color="#FFCCCCCC" />
+    <SolidColorBrush x:Key="GlyphBrush" Color="#FFCCCCCC" />
     <SolidColorBrush x:Key="NormalBrush" Color="#FF333333" />
     <SolidColorBrush x:Key="NormalBorderBrush" Color="#FF555555" />
     <SolidColorBrush x:Key="SolidBorderBrush" Color="#FF555555" />
@@ -32,13 +32,307 @@
         <Setter Property="FontFamily" Value="Segoe UI, Microsoft YaHei, Arial Unicode MS"/>
     </Style>
 
-    <!-- Menu styles for dark theme (designer fix) -->
+    <!-- VS-style compact menu bar -->
     <Style TargetType="{x:Type Menu}">
         <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Padding" Value="0"/>
     </Style>
+
+    <!-- Override WPF-UI MenuItem templates: compact, flat (no rounded corners), VS-style -->
+
+    <!-- TopLevelHeader: menu bar items that have submenus (File, Edit, etc.) -->
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" Margin="0" Padding="8,3" Background="Transparent" CornerRadius="4">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="0,0,4,0"
+                                      VerticalAlignment="Center" Content="{TemplateBinding Icon}" />
+                    <ContentPresenter x:Name="Header" Grid.Column="1" VerticalAlignment="Center"
+                                      ContentSource="Header" RecognizesAccessKey="True"
+                                      TextElement.Foreground="{TemplateBinding Foreground}" />
+                </Grid>
+                <Popup x:Name="Popup" Grid.Row="1" AllowsTransparency="True" Focusable="False"
+                       HorizontalOffset="-4" IsOpen="{TemplateBinding IsSubmenuOpen}"
+                       Placement="Bottom" PlacementTarget="{Binding ElementName=Border}"
+                       PopupAnimation="None" VerticalOffset="1">
+                    <Grid>
+                        <Border x:Name="SubmenuBorder" Margin="4,0,4,12" Padding="0,2,0,2"
+                                Background="{DynamicResource FlyoutBackground}"
+                                BorderBrush="{DynamicResource FlyoutBorderBrush}"
+                                BorderThickness="1" CornerRadius="4" SnapsToDevicePixels="True">
+                            <Border.RenderTransform>
+                                <TranslateTransform />
+                            </Border.RenderTransform>
+                            <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                            </ScrollViewer>
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="12" Direction="270" Opacity="0.2" ShadowDepth="4" Color="#000000" />
+                            </Border.Effect>
+                        </Border>
+                    </Grid>
+                </Popup>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundPressed}" />
+            </MultiTrigger>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource TextFillColorDisabled}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsSubmenuOpen" Value="True">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- TopLevelItem: menu bar items without submenus -->
+    <ControlTemplate x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" Margin="0" Padding="8,3" Background="Transparent" CornerRadius="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="0,0,4,0"
+                                  VerticalAlignment="Center" Content="{TemplateBinding Icon}" />
+                <ContentPresenter x:Name="Header" Grid.Column="1" VerticalAlignment="Center"
+                                  ContentSource="Header" RecognizesAccessKey="True"
+                                  TextElement.Foreground="{TemplateBinding Foreground}" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundPressed}" />
+            </MultiTrigger>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource TextFillColorDisabled}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- SubmenuItem: dropdown items (New, Open, Save, etc.) -->
+    <ControlTemplate x:Key="{x:Static MenuItem.SubmenuItemTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Border x:Name="Border" Margin="2,0" Padding="8,3" Background="Transparent" CornerRadius="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="CheckBoxIconBorder" Grid.Column="0" Width="16" Height="16"
+                        Margin="0,0,4,0" VerticalAlignment="Center"
+                        Background="{DynamicResource CheckBoxBackground}"
+                        BorderBrush="{DynamicResource CheckBoxBorderBrush}"
+                        BorderThickness="1" CornerRadius="2" Visibility="Collapsed">
+                    <TextBlock x:Name="CheckBoxIcon" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontFamily="{DynamicResource FluentSystemIcons}" FontSize="12"
+                               Text="" TextAlignment="Center" />
+                </Border>
+                <ContentPresenter x:Name="Icon" Grid.Column="1" Margin="0,0,6,0"
+                                  VerticalAlignment="Center" Content="{TemplateBinding Icon}" />
+                <ContentPresenter x:Name="Header" Grid.Column="2" ContentSource="Header"
+                                  RecognizesAccessKey="True"
+                                  TextElement.Foreground="{TemplateBinding Foreground}" />
+                <TextBlock x:Name="InputGesture" Grid.Column="3" Margin="20,0,0,0"
+                           VerticalAlignment="Center" FontSize="11"
+                           Foreground="{DynamicResource TextFillColorDisabledBrush}"
+                           Text="{TemplateBinding InputGestureText}" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundPressed}" />
+            </MultiTrigger>
+            <Trigger Property="IsHighlighted" Value="True">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </Trigger>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsCheckable" Value="True">
+                <Setter TargetName="CheckBoxIconBorder" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="CheckBoxIcon" Property="Text" Value="&#xF294;" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource TextFillColorDisabled}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="InputGestureText" Value="">
+                <Setter TargetName="InputGesture" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- SubmenuHeader: submenu items that have child submenus (e.g. Language >) -->
+    <ControlTemplate x:Key="{x:Static MenuItem.SubmenuHeaderTemplateKey}" TargetType="{x:Type MenuItem}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border x:Name="Border" Grid.Row="1" Margin="2,0" Padding="6,3"
+                    Background="Transparent" CornerRadius="2">
+                <Grid x:Name="MenuItemContent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="0,0,6,0"
+                                      VerticalAlignment="Center" Content="{TemplateBinding Icon}" />
+                    <ContentPresenter x:Name="Header" Grid.Column="1" ContentSource="Header"
+                                      RecognizesAccessKey="True"
+                                      TextElement.Foreground="{TemplateBinding Foreground}" />
+                    <TextBlock Grid.Column="2" Margin="8,0,0,0" VerticalAlignment="Center"
+                               FontFamily="{DynamicResource SegoeFluentIcons}" FontSize="10"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="&#xE76C;" />
+                </Grid>
+            </Border>
+            <Popup x:Name="Popup" Grid.Row="1" AllowsTransparency="True" Focusable="False"
+                   IsOpen="{TemplateBinding IsSubmenuOpen}" Placement="Right"
+                   PlacementTarget="{Binding ElementName=MenuItemContent}"
+                   PopupAnimation="None" VerticalOffset="-8">
+                <Grid>
+                    <Border x:Name="SubmenuBorder" Margin="4,0,4,12" Padding="0,2,0,2"
+                            Background="{DynamicResource FlyoutBackground}"
+                            BorderBrush="{DynamicResource FlyoutBorderBrush}"
+                            BorderThickness="1" CornerRadius="4" SnapsToDevicePixels="True">
+                        <Border.RenderTransform>
+                            <TranslateTransform />
+                        </Border.RenderTransform>
+                        <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                        </ScrollViewer>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="12" Direction="270" Opacity="0.2" ShadowDepth="4" Color="#000000" />
+                        </Border.Effect>
+                    </Border>
+                </Grid>
+            </Popup>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Icon" Value="{x:Null}">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="Icon" Property="Margin" Value="0" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="true">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsPressed" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MenuBarItemBackgroundPressed}" />
+            </MultiTrigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource TextFillColorDisabled}" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Implicit MenuItem style: override WPF-UI's UiMenuItem to use our compact templates -->
     <Style TargetType="{x:Type MenuItem}">
-        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelHeaderTemplateKey}}" />
+                <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.TopLevelItemTemplateKey}}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.SubmenuHeaderTemplateKey}}" />
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuItem">
+                <Setter Property="Template" Value="{StaticResource {x:Static MenuItem.SubmenuItemTemplateKey}}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- ListView styles for Fluent theme -->
@@ -55,8 +349,8 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="8,4" />
-        <Setter Property="Margin" Value="0,1" />
+        <Setter Property="Padding" Value="4,2" />
+        <Setter Property="Margin" Value="0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -83,8 +377,8 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Padding" Value="8,4" />
-        <Setter Property="Margin" Value="0,1" />
+        <Setter Property="Padding" Value="4,2" />
+        <Setter Property="Margin" Value="0,0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -103,7 +397,7 @@
         <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeColorDefaultBrush}" />
         <Setter Property="BorderThickness" Value="0,0,1,1" />
-        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="Padding" Value="4,2" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -116,36 +410,44 @@
     </Style>
 
     <!-- Icon-style TabControl: square tabs, horizontal, no wrap -->
-    <Style x:Key="IconTabControl" TargetType="{x:Type TabControl}">
+    <!-- VS Code-style Activity Bar TabControl: vertical icon strip on left, content on right -->
+    <Style x:Key="ActivityBarTabControl" TargetType="{x:Type TabControl}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="0"/>
+        <Setter Property="TabStripPlacement" Value="Right"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">
-                    <Grid KeyboardNavigation.TabNavigation="Local">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <!-- Horizontal tab strip, no wrap -->
-                        <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                    <Grid ClipToBounds="True" SnapsToDevicePixels="True"
+                          KeyboardNavigation.TabNavigation="Local">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition x:Name="ColumnDefinition0" Width="*"/>
+                            <ColumnDefinition x:Name="ColumnDefinition1" Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- Content area fills remaining space -->
+                        <ContentControl x:Name="ContentPanel" Grid.Column="0"
+                                Content="{Binding SelectedContent, RelativeSource={RelativeSource TemplatedParent}}"
+                                ContentTemplate="{Binding SelectedContentTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                                ContentTemplateSelector="{Binding SelectedContentTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Focusable="False"
+                                IsTabStop="False"
+                                KeyboardNavigation.DirectionalNavigation="Contained"
+                                KeyboardNavigation.TabIndex="2"
+                                KeyboardNavigation.TabNavigation="Local"/>
+                        <!-- Activity bar: vertical icon strip (right side) -->
+                        <Border Grid.Column="1" Background="#FF2D2D2D"
                                 BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
-                                BorderThickness="0,0,0,1" Padding="2">
-                            <StackPanel x:Name="HeaderPanel"
-                                        Orientation="Horizontal"
-                                        IsItemsHost="True"/>
-                        </Border>
-                        <!-- Content area -->
-                        <Border Grid.Row="1"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter x:Name="PART_SelectedContentHost"
-                                              ContentSource="SelectedContent"
-                                              Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="Stretch"
-                                              VerticalAlignment="Stretch"/>
+                                BorderThickness="1,0,0,0">
+                            <TabPanel x:Name="HeaderPanel"
+                                      IsItemsHost="True"
+                                      KeyboardNavigation.TabIndex="1"/>
                         </Border>
                     </Grid>
                 </ControlTemplate>
@@ -153,44 +455,48 @@
         </Setter>
     </Style>
 
-    <!-- Icon-style TabItem: square, compact, fast tooltips -->
-    <Style x:Key="IconTabItem" TargetType="{x:Type TabItem}">
+    <!-- VS Code-style Activity Bar item: tall icon button with left active indicator -->
+    <Style x:Key="ActivityBarItem" TargetType="{x:Type TabItem}">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
-        <Setter Property="Padding" Value="6"/>
-        <Setter Property="Margin" Value="1,0"/>
-        <Setter Property="MinWidth" Value="34"/>
-        <Setter Property="MinHeight" Value="34"/>
+        <Setter Property="Foreground" Value="#FF858585"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Width" Value="48"/>
+        <Setter Property="Height" Value="48"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="ToolTipService.InitialShowDelay" Value="200"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="ToolTipService.InitialShowDelay" Value="400"/>
         <Setter Property="ToolTipService.ShowDuration" Value="10000"/>
+        <Setter Property="ToolTipService.Placement" Value="Right"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Border x:Name="Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="4"
-                            Padding="{TemplateBinding Padding}"
-                            MinWidth="{TemplateBinding MinWidth}"
-                            MinHeight="{TemplateBinding MinHeight}">
-                        <ContentPresenter x:Name="ContentSite"
-                                          ContentSource="Header"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          RecognizesAccessKey="True"/>
-                    </Border>
+                    <Grid>
+                        <!-- Right active indicator bar (accent color) -->
+                        <Border x:Name="ActiveIndicator"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Width="2" Height="24"
+                                Background="{DynamicResource AccentFillColorDefaultBrush}"
+                                CornerRadius="1,0,0,1"
+                                Visibility="Collapsed"/>
+                        <!-- Icon area -->
+                        <Border x:Name="IconBorder"
+                                Background="{TemplateBinding Background}"
+                                Padding="12">
+                            <ContentPresenter x:Name="ContentSite"
+                                              ContentSource="Header"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}"/>
+                            <Setter Property="Foreground" Value="#FFCCCCCC"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}"/>
-                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource AccentFillColorDefaultBrush}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter TargetName="ActiveIndicator" Property="Visibility" Value="Visible"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

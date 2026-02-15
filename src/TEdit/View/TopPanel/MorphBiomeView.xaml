@@ -9,7 +9,7 @@
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
              d:DesignWidth="400"
-             d:DesignHeight="100"
+             d:DesignHeight="150"
              Background="{StaticResource WindowBackgroundBrush}"
              Foreground="{StaticResource TextBrush}"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"             

@@ -342,33 +342,44 @@ public partial class MainWindow : FluentWindow
 
     private GridLength _previousSidePanelWidth = new GridLength(440);
     private bool _isSidePanelCollapsed = false;
+    private int _lastSelectedTabIndex = 0;
 
-    private void SidePanelToggle_Click(object sender, RoutedEventArgs e)
+    private void SidePanelTabs_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        var sidePanelColumn = ContentGrid.ColumnDefinitions[2];
+        // Find if a TabItem was clicked
+        var clickedElement = e.OriginalSource as DependencyObject;
+        while (clickedElement != null && clickedElement is not TabItem)
+            clickedElement = System.Windows.Media.VisualTreeHelper.GetParent(clickedElement);
+
+        if (clickedElement is not TabItem clickedTab)
+            return;
+
+        int clickedIndex = SidePanelTabs.Items.IndexOf(clickedTab);
+        if (clickedIndex < 0)
+            return;
+
+        var sidePanelColumn = SidePanelColumn;
 
         if (_isSidePanelCollapsed)
         {
-            // Expand
+            // Expand to the clicked tab
             sidePanelColumn.Width = _previousSidePanelWidth;
-            SidePanelTabs.Visibility = Visibility.Visible;
-            SidePanelHeaderText.Visibility = Visibility.Visible;
-            SidePanelVerticalText.Visibility = Visibility.Collapsed;
+            sidePanelColumn.MinWidth = 200;
             SidePanelSplitter.IsEnabled = true;
-            SidePanelToggleIcon.Data = System.Windows.Media.Geometry.Parse("M8,0 L0,5 L8,10");
             _isSidePanelCollapsed = false;
         }
-        else
+        else if (clickedIndex == SidePanelTabs.SelectedIndex)
         {
-            // Collapse
+            // Clicking the already-selected tab: collapse
             _previousSidePanelWidth = sidePanelColumn.Width;
-            sidePanelColumn.Width = new GridLength(32);
-            SidePanelTabs.Visibility = Visibility.Collapsed;
-            SidePanelHeaderText.Visibility = Visibility.Collapsed;
-            SidePanelVerticalText.Visibility = Visibility.Visible;
+            // Shrink to just the activity bar width (48px + border)
+            sidePanelColumn.Width = new GridLength(50);
+            sidePanelColumn.MinWidth = 50;
             SidePanelSplitter.IsEnabled = false;
-            SidePanelToggleIcon.Data = System.Windows.Media.Geometry.Parse("M0,0 L8,5 L0,10");
             _isSidePanelCollapsed = true;
+            e.Handled = true; // prevent tab from re-selecting
         }
+
+        _lastSelectedTabIndex = clickedIndex;
     }
 }
