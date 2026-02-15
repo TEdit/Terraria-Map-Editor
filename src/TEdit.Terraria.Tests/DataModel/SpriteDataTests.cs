@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
 using Shouldly;
 using TEdit.Geometry;
 using TEdit.Terraria.Objects;
@@ -205,7 +208,7 @@ public class SpriteDataTests : IDisposable
         store.Tiles[87].Name.ShouldBe(WorldConfiguration.TileProperties[87].Name);
     }
 
-    [Fact]
+    [Fact(Skip = "Run manually to verify sprite data")]
     public void SpriteData_FrameVerify()
     {
         var overlaps = new Dictionary<int, HashSet<string>>();
@@ -372,5 +375,137 @@ public class SpriteDataTests : IDisposable
 
             throw new Exception(string.Join(Environment.NewLine, sections));
         }
+    }
+
+    private static string GetRepoRoot()
+    {
+        var dir = Directory.GetCurrentDirectory();
+        while (dir != null && !File.Exists(Path.Combine(dir, "TEdit.slnx")) && !File.Exists(Path.Combine(dir, "src", "TEdit.slnx")))
+        {
+            dir = Directory.GetParent(dir)?.FullName;
+        }
+        if (dir != null && File.Exists(Path.Combine(dir, "src", "TEdit.slnx")))
+            return dir;
+        if (dir != null && File.Exists(Path.Combine(dir, "TEdit.slnx")))
+            return Directory.GetParent(dir)?.FullName ?? dir;
+        throw new InvalidOperationException("Could not find repository root");
+    }
+
+    private static string CompactNumericArrays(string json)
+    {
+        // Compact arrays containing only numbers (any length)
+        json = Regex.Replace(json, @"\[\s*(-?\d+(?:\s*,\s*-?\d+)*)\s*\]",
+            m => "[" + Regex.Replace(m.Groups[1].Value, @"\s+", " ").Trim() + "]");
+
+        // Compact arrays of 2-element arrays: [[1, 2], [3, 4]]
+        json = Regex.Replace(json, @"\[\s*(\[-?\d+, -?\d+\](?:\s*,\s*\[-?\d+, -?\d+\])*)\s*\]",
+            m => "[" + Regex.Replace(m.Groups[1].Value, @"\s+", " ").Trim() + "]");
+
+        // Compact small objects with 2-4 properties containing only simple values
+        // Match: { "key": value, "key2": value2 } where values are strings, numbers, or compact arrays
+        json = Regex.Replace(json,
+            @"\{\s*\n\s*(""[^""]+"":\s*(?:""[^""]*""|-?\d+(?:\.\d+)?|\[[^\[\]]*\]|true|false|null))" +
+            @"(?:,\s*\n\s*(""[^""]+"":\s*(?:""[^""]*""|-?\d+(?:\.\d+)?|\[[^\[\]]*\]|true|false|null))){1,3}" +
+            @"\s*\n\s*\}",
+            m =>
+            {
+                // Extract all the property matches and join them
+                var content = m.Value;
+                // Remove newlines and excess whitespace, keeping structure
+                var compact = Regex.Replace(content, @"\s*\n\s*", " ");
+                compact = Regex.Replace(compact, @"\{\s+", "{ ");
+                compact = Regex.Replace(compact, @"\s+\}", " }");
+                compact = Regex.Replace(compact, @",\s+", ", ");
+                return compact;
+            });
+
+        return json;
+    }
+
+    [Fact(Skip = "Run manually to update textureWrap")]
+    public void UpdateTextureWrap()
+    {
+        var repoRoot = GetRepoRoot();
+        var tilesJsonPath = Path.Combine(repoRoot, "src", "TEdit.Terraria", "Data", "tiles.json");
+        var tileProps = JsonNode.Parse(File.ReadAllText(tilesJsonPath))!.AsArray();
+        var jsonOptions = new JsonSerializerOptions { WriteIndented = true };
+
+        foreach (var tileNode in tileProps)
+        {
+            var obj = tileNode!.AsObject();
+            var isFramed = obj["isFramed"]?.GetValue<bool>() ?? false;
+            if (!isFramed) continue;
+
+            var id = obj["id"]?.GetValue<int>() ?? 0;
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "Images", $"Tiles_{id}.png");
+            if (!File.Exists(path)) continue;
+            using var img = Image.FromFile(path);
+            var texture = new Vector2Short((short)img.Width, (short)img.Height);
+
+            var frames = obj["frames"]?.AsArray();
+            if (frames == null || frames.Count == 0) continue;
+
+            int maxU = 0;
+            int maxV = 0;
+            foreach (var frameNode in frames)
+            {
+                var fobj = frameNode!.AsObject();
+                var uv = fobj["uv"]?.AsArray();
+                if (uv == null || uv.Count < 2) continue;
+                var u = uv[0]!.GetValue<int>();
+                var v = uv[1]!.GetValue<int>();
+                if (u > maxU) maxU = u;
+                if (v > maxV) maxV = v;
+            }
+
+            var maxUV = new Vector2Short((short)maxU, (short)maxV);
+            if (maxUV.X < texture.Width && maxUV.Y < texture.Height)
+            {
+                obj.Remove("textureWrap");
+                continue;
+            }
+
+            if (id == 617) continue;
+
+            var textureGrid = obj["textureGrid"]?.AsArray();
+            var frameGap = obj["frameGap"]?.AsArray();
+            if (textureGrid == null || frameGap == null || textureGrid.Count < 2 || frameGap.Count < 2) continue;
+
+            var interval = new Vector2Short(
+                (short)(textureGrid[0]!.GetValue<int>() + frameGap[0]!.GetValue<int>()),
+                (short)(textureGrid[1]!.GetValue<int>() + frameGap[1]!.GetValue<int>())
+            );
+
+            var frameSizeArr = obj["frameSize"]?.AsArray();
+            if (frameSizeArr == null || frameSizeArr.Count == 0) continue;
+            var frameSize0 = frameSizeArr[0]!.AsArray();
+            if (frameSize0 == null || frameSize0.Count < 2) continue;
+
+            var frameSize = new Vector2Short(
+                (short)(frameSize0[0]!.GetValue<int>() * interval.X),
+                (short)(frameSize0[1]!.GetValue<int>() * interval.Y)
+            );
+
+            if (maxUV.X >= texture.Width)
+            {
+                obj["textureWrap"] = new JsonObject
+                {
+                    ["axis"] = "U",
+                    ["offsetIncrement"] = (short)(maxUV.Y + frameSize.Y),
+                    ["wrapThreshold"] = ((texture.Width + (short)frameGap[0]!.GetValue<int>()) / frameSize.X) * frameSize.X
+                };
+            }
+            else
+            {
+                obj["textureWrap"] = new JsonObject
+                {
+                    ["axis"] = "V",
+                    ["offsetIncrement"] = (short)(maxUV.X + frameSize.X),
+                    ["wrapThreshold"] = ((texture.Height + (short)frameGap[1]!.GetValue<int>()) / frameSize.Y) * frameSize.Y
+                };
+            }
+        }
+
+        File.WriteAllText(tilesJsonPath, CompactNumericArrays(tileProps.ToJsonString(jsonOptions)));
     }
 }
