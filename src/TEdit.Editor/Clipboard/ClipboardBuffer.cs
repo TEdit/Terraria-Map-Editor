@@ -305,8 +305,9 @@ public partial class ClipboardBuffer : ITileData
     private static void UpdateWorldTileFromBuffer(PasteOptions pasteOptions, Tile worldTile, Tile pasteTile)
     {
         // paste regular tiles or sprites if pasteSprites active
-        if ((pasteOptions.PasteTiles && !WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type]) ||
-            (pasteOptions.PasteSprites && WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type]))
+        if ( pasteTile.Type < WorldConfiguration.SettingsTileFrameImportant.Length &&
+            ((pasteOptions.PasteTiles && !WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type]) ||
+            (pasteOptions.PasteSprites && WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type])))
         {
             worldTile.IsActive        = pasteTile.IsActive;
             worldTile.Type            = pasteTile.Type;

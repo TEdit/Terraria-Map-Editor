@@ -68,7 +68,7 @@ public partial class TileEntity : ReactiveObject
                 break;
             case (int)TileType.CritterAnchor:
                 TE.Type = (byte)TileEntityType.CritterAnchor;
-                TE.NetId = (int)LeashedCritters.NormalButterfly1;
+                TE.NetId = (int)LeashedCritters.Bunny;
                 break;
             case (int)TileType.KiteAnchor:
                 TE.Type = (byte)TileEntityType.KiteAnchor;

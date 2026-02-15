@@ -14,7 +14,7 @@
             <DataTemplate x:Key="CritterItemTemplate">
                 <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource CritterCollection}}"
                               SelectedValue="{Binding NetId, Mode=TwoWay}"
