@@ -89,6 +89,7 @@ public class FindTileWithPlugin : BasePlugin
                 {
                     locations.Add(new Tuple<string, Vector2Float>("HALTING! Too Many Entrees!: ", new Vector2Float(0, 0)));
                     FindTileLocationResultView resultView0 = new FindTileLocationResultView(locations, ItemsFound + "+");
+                    resultView0.Owner = System.Windows.Application.Current.MainWindow;
                     resultView0.Show();
                     return;
                 }
@@ -125,6 +126,7 @@ public class FindTileWithPlugin : BasePlugin
 
         // show the result view with the list of locations
         FindTileLocationResultView resultView1 = new FindTileLocationResultView(locations, ItemsFound.ToString());
+        resultView1.Owner = System.Windows.Application.Current.MainWindow;
         resultView1.Show();
     }
 }

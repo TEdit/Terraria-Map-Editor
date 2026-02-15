@@ -60,6 +60,7 @@ public class FindChestWithPlugin : BasePlugin
 
         // show the result view with the list of locations
         FindLocationResultView resultView = new FindLocationResultView(locations);
+        resultView.Owner = System.Windows.Application.Current.MainWindow;
         resultView.Show();
     }
 }

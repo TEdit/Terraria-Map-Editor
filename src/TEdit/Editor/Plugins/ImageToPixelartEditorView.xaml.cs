@@ -131,237 +131,6 @@ namespace TEdit.Editor.Plugins
         }
         #endregion
 
-        #region Numeric Updown Logic
-
-        #region Spacing
-
-        readonly int minvalue1 = 1;
-        readonly int maxvalue1 = 100;
-        readonly int startvalue1 = 4;
-
-        private void NUDButtonUP1_Click(object sender, RoutedEventArgs e)
-        {
-            int number;
-            if (NUDTextBox1.Text != "") number = Convert.ToInt32(NUDTextBox1.Text);
-            else number = 0;
-            if (number < maxvalue1)
-                NUDTextBox1.Text = Convert.ToString(number + 1);
-        }
-
-        private void NUDButtonDown1_Click(object sender, RoutedEventArgs e)
-        {
-            int number;
-            if (NUDTextBox1.Text != "") number = Convert.ToInt32(NUDTextBox1.Text);
-            else number = 0;
-            if (number > minvalue1)
-                NUDTextBox1.Text = Convert.ToString(number - 1);
-        }
-
-        private void NUDTextBox1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int number = 0;
-            if (NUDTextBox1.Text != "")
-                if (!int.TryParse(NUDTextBox1.Text, out number)) NUDTextBox1.Text = startvalue1.ToString();
-            if (number > maxvalue1) NUDTextBox1.Text = maxvalue1.ToString();
-            if (number < minvalue1) NUDTextBox1.Text = minvalue1.ToString();
-            NUDTextBox1.SelectionStart = NUDTextBox1.Text.Length;
-        }
-
-        private void NUDTextBox1_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (int.TryParse(NUDTextBox1.Text, out int number))
-            {
-                if (e.Delta > 0) // Scroll up
-                {
-                    if (number < maxvalue1)
-                        NUDTextBox1.Text = Convert.ToString(number + 1);
-                }
-                else if (e.Delta < 0) // Scroll down
-                {
-                    if (number > minvalue1)
-                        NUDTextBox1.Text = Convert.ToString(number - 1);
-                }
-            }
-            else
-            {
-                NUDTextBox1.Text = startvalue1.ToString(); // Fallback in case of invalid input
-            }
-            e.Handled = true; // Mark the event as handled to prevent further processing
-        }
-        #endregion
-
-        #region New Ratio
-
-        readonly int minvalue2 = -200;
-        readonly int maxvalue2 = 200;
-        readonly int startvalue2 = 0;
-
-        private void NUDButtonUP2_Click(object sender, RoutedEventArgs e)
-        {
-            int number;
-            if (NUDTextBox2.Text != "") number = Convert.ToInt32(NUDTextBox2.Text);
-            else number = 0;
-            if (number < maxvalue2)
-                NUDTextBox2.Text = Convert.ToString(number + 1);
-        }
-
-        private void NUDButtonDown2_Click(object sender, RoutedEventArgs e)
-        {
-            int number;
-            if (NUDTextBox2.Text != "") number = Convert.ToInt32(NUDTextBox2.Text);
-            else number = 0;
-            if (number > minvalue2)
-                NUDTextBox2.Text = Convert.ToString(number - 1);
-        }
-
-        private void NUDTextBox2_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int number = 0;
-            if (NUDTextBox2.Text != "")
-                if (!int.TryParse(NUDTextBox2.Text, out number)) NUDTextBox2.Text = startvalue2.ToString();
-            if (number > maxvalue2) NUDTextBox2.Text = maxvalue2.ToString();
-            if (number < minvalue2) NUDTextBox2.Text = minvalue2.ToString();
-            NUDTextBox2.SelectionStart = NUDTextBox2.Text.Length;
-        }
-
-        private void NUDTextBox2_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (int.TryParse(NUDTextBox2.Text, out int number))
-            {
-                if (e.Delta > 0) // Scroll up
-                {
-                    if (number < maxvalue2)
-                        NUDTextBox2.Text = Convert.ToString(number + 1);
-                }
-                else if (e.Delta < 0) // Scroll down
-                {
-                    if (number > minvalue2)
-                        NUDTextBox2.Text = Convert.ToString(number - 1);
-                }
-            }
-            else
-            {
-                NUDTextBox2.Text = startvalue1.ToString(); // Fallback in case of invalid input
-            }
-            e.Handled = true; // Mark the event as handled to prevent further processing
-        }
-        #endregion
-
-        #region Grid Y Offset
-
-        readonly int minvalue3 = 0;
-        readonly int maxvalue3 = 100;
-        readonly int startvalue3 = 0;
-
-        private void NUDButtonUP3_Click(object sender, RoutedEventArgs e)
-        {
-            int number;
-            if (NUDTextBox3.Text != "") number = Convert.ToInt32(NUDTextBox3.Text);
-            else number = 0;
-            if (number < maxvalue3)
-                NUDTextBox3.Text = Convert.ToString(number + 1);
-        }
-
-        private void NUDButtonDown3_Click(object sender, RoutedEventArgs e)
-        {
-            int number;
-            if (NUDTextBox3.Text != "") number = Convert.ToInt32(NUDTextBox3.Text);
-            else number = 0;
-            if (number > minvalue3)
-                NUDTextBox3.Text = Convert.ToString(number - 1);
-        }
-
-        private void NUDTextBox3_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int number = 0;
-            if (NUDTextBox3.Text != "")
-                if (!int.TryParse(NUDTextBox3.Text, out number)) NUDTextBox3.Text = startvalue3.ToString();
-            if (number > maxvalue3) NUDTextBox3.Text = maxvalue3.ToString();
-            if (number < minvalue3) NUDTextBox3.Text = minvalue3.ToString();
-            NUDTextBox3.SelectionStart = NUDTextBox3.Text.Length;
-        }
-
-        private void NUDTextBox3_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (int.TryParse(NUDTextBox3.Text, out int number))
-            {
-                if (e.Delta > 0) // Scroll up
-                {
-                    if (number < maxvalue3)
-                        NUDTextBox3.Text = Convert.ToString(number + 1);
-                }
-                else if (e.Delta < 0) // Scroll down
-                {
-                    if (number > minvalue3)
-                        NUDTextBox3.Text = Convert.ToString(number - 1);
-                }
-            }
-            else
-            {
-                NUDTextBox3.Text = startvalue1.ToString(); // Fallback in case of invalid input
-            }
-            e.Handled = true; // Mark the event as handled to prevent further processing
-        }
-        #endregion
-
-        #region Grid X Offset
-
-        readonly int minvalue4 = 0;
-        readonly int maxvalue4 = 100;
-        readonly int startvalue4 = 0;
-
-        private void NUDButtonUP4_Click(object sender, RoutedEventArgs e)
-        {
-            int number;
-            if (NUDTextBox4.Text != "") number = Convert.ToInt32(NUDTextBox4.Text);
-            else number = 0;
-            if (number < maxvalue4)
-                NUDTextBox4.Text = Convert.ToString(number + 1);
-        }
-
-        private void NUDButtonDown4_Click(object sender, RoutedEventArgs e)
-        {
-            int number;
-            if (NUDTextBox4.Text != "") number = Convert.ToInt32(NUDTextBox4.Text);
-            else number = 0;
-            if (number > minvalue4)
-                NUDTextBox4.Text = Convert.ToString(number - 1);
-        }
-
-        private void NUDTextBox4_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int number = 0;
-            if (NUDTextBox4.Text != "")
-                if (!int.TryParse(NUDTextBox4.Text, out number)) NUDTextBox4.Text = startvalue4.ToString();
-            if (number > maxvalue4) NUDTextBox4.Text = maxvalue4.ToString();
-            if (number < minvalue4) NUDTextBox4.Text = minvalue4.ToString();
-            NUDTextBox4.SelectionStart = NUDTextBox4.Text.Length;
-        }
-
-        private void NUDTextBox4_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            if (int.TryParse(NUDTextBox4.Text, out int number))
-            {
-                if (e.Delta > 0) // Scroll up
-                {
-                    if (number < maxvalue4)
-                        NUDTextBox4.Text = Convert.ToString(number + 1);
-                }
-                else if (e.Delta < 0) // Scroll down
-                {
-                    if (number > minvalue4)
-                        NUDTextBox4.Text = Convert.ToString(number - 1);
-                }
-            }
-            else
-            {
-                NUDTextBox4.Text = startvalue1.ToString(); // Fallback in case of invalid input
-            }
-            e.Handled = true; // Mark the event as handled to prevent further processing
-        }
-        #endregion
-
-        #endregion
 
         #region Scaling Mode Textbox Radiobutton Logic
 
@@ -516,20 +285,18 @@ namespace TEdit.Editor.Plugins
                 Dispatcher.Invoke(() =>
                 {
                     // Set the labels data.
-                    NewRatioPercentLevelData.Content = "Calc...";
+                    NewRatioPercentLevelData.Text = "Calc...";
 
                     // Gather the values from the UI thread.
                     bitmapImage = new Bitmap(BitmapFromSource((BitmapSource)OriginalImageSource));
-                    zoomFactor = int.Parse(NUDTextBox2.Text);
+                    zoomFactor = (int)(RatioNumberBox.Value ?? 0);
 
                     // Disable ratio, convert, and open buttons.
                     ConvertToPixelArt.IsEnabled = false;
                     OpenNewImage.IsEnabled = false;
                     RefreshRatio.IsEnabled = false;
 
-                    NUDTextBox2.IsEnabled = false;
-                    NUDButtonUP2.IsEnabled = false;
-                    NUDButtonDown2.IsEnabled = false;
+                    RatioNumberBox.IsEnabled = false;
                 });
 
                 await Task.Run(() =>
@@ -541,7 +308,7 @@ namespace TEdit.Editor.Plugins
                         Dispatcher.Invoke(() =>
                         {
                             // Set the labels data.
-                            NewRatioPercentLevelData.Content = int.Parse(NUDTextBox2.Text);
+                            NewRatioPercentLevelData.Text = ((int)(RatioNumberBox.Value ?? 0)).ToString();
 
                             // Set image to the original.
                             BackgroundImage1.Source = OriginalImageSource;
@@ -551,9 +318,7 @@ namespace TEdit.Editor.Plugins
                             OpenNewImage.IsEnabled = true;
                             RefreshRatio.IsEnabled = true;
 
-                            NUDTextBox2.IsEnabled = true;
-                            NUDButtonUP2.IsEnabled = true;
-                            NUDButtonDown2.IsEnabled = true;
+                            RatioNumberBox.IsEnabled = true;
                         });
                         return;
                     }
@@ -574,7 +339,7 @@ namespace TEdit.Editor.Plugins
                     Dispatcher.Invoke(() =>
                     {
                         // Set the labels data.
-                        NewRatioPercentLevelData.Content = int.Parse(NUDTextBox2.Text);
+                        NewRatioPercentLevelData.Text = ((int)(RatioNumberBox.Value ?? 0)).ToString();
 
                         // Set the new image.
                         BackgroundImage1.Source = BitmapToImageSource(resizedImage);
@@ -584,9 +349,7 @@ namespace TEdit.Editor.Plugins
                         OpenNewImage.IsEnabled = true;
                         RefreshRatio.IsEnabled = true;
 
-                        NUDTextBox2.IsEnabled = true;
-                        NUDButtonUP2.IsEnabled = true;
-                        NUDButtonDown2.IsEnabled = true;
+                        RatioNumberBox.IsEnabled = true;
                     });
                 });
             }
@@ -1021,8 +784,8 @@ namespace TEdit.Editor.Plugins
                 // Populate filter data in the UI thread.
                 Dispatcher.Invoke(() =>
                 {
-                    TotalColorsData.Content = TileWallDataList.Count;
-                    FilteredColorsData.Content = Clrs.Length;
+                    TotalColorsData.Text = TileWallDataList.Count.ToString();
+                    FilteredColorsData.Text = Clrs.Length.ToString();
 
                     // This gets annoying so its disabled.
                     // MessageBox.Show("Unused colors have been removed from the filter.");
@@ -1193,7 +956,7 @@ namespace TEdit.Editor.Plugins
                 // Populate the colorlist with custom definitions.
                 // await BuildColorFilter();
 
-                int num = int.Parse(NUDTextBox1.Text);
+                int num = (int)(SpacingNumberBox.Value ?? 4);
 
                 btm = new Bitmap(BitmapFromSource((BitmapSource)BackgroundImage1.Source));
                 bBt = new Bitmap(btm.Width, btm.Height);
@@ -1235,9 +998,9 @@ namespace TEdit.Editor.Plugins
 
                 Dispatcher.Invoke(() =>
                 {
-                    TotalHeightData.Content = (isRotation90Checked || isRotation270Checked) ? blocksPerRow.ToString() : blocksPerColumn.ToString(); // Check if axis is rotated.
-                    TotalWidthData.Content = (isRotation90Checked || isRotation270Checked) ? blocksPerColumn.ToString() : blocksPerRow.ToString(); // Check if axis is rotated.
-                    TotalBlocksData.Content = "Calculating...";
+                    TotalHeightData.Text = (isRotation90Checked || isRotation270Checked) ? blocksPerRow.ToString() : blocksPerColumn.ToString(); // Check if axis is rotated.
+                    TotalWidthData.Text = (isRotation90Checked || isRotation270Checked) ? blocksPerColumn.ToString() : blocksPerRow.ToString(); // Check if axis is rotated.
+                    TotalBlocksData.Text = "Calculating...";
                 });
 
                 if (isProgressBarChecked)
@@ -1379,7 +1142,7 @@ namespace TEdit.Editor.Plugins
                             {
                                 Dispatcher.Invoke(() =>
                                 {
-                                    HighlightCells(g, bBt.Width, num, int.Parse(NUDTextBox3.Text), int.Parse(NUDTextBox4.Text));
+                                    HighlightCells(g, bBt.Width, num, (int)(GridYOffsetNumberBox.Value ?? 0), (int)(GridXOffsetNumberBox.Value ?? 0));
                                 });
                             }
 
@@ -1402,9 +1165,9 @@ namespace TEdit.Editor.Plugins
                                 // Populate Stats
                                 if (isGatherStatisticsChecked)
                                 {
-                                    // TotalHeightData.Content = (isRotation90Checked || isRotation270Checked) ? blocksPerRow.ToString() : blocksPerColumn.ToString(); // Check if axis is rotated.
-                                    // TotalWidthData.Content = (isRotation90Checked || isRotation270Checked) ? blocksPerColumn.ToString() : blocksPerRow.ToString(); // Check if axis is rotated.
-                                    TotalBlocksData.Content = renderedCount.ToString();
+                                    // TotalHeightData.Text = (isRotation90Checked || isRotation270Checked) ? blocksPerRow.ToString() : blocksPerColumn.ToString(); // Check if axis is rotated.
+                                    // TotalWidthData.Text = (isRotation90Checked || isRotation270Checked) ? blocksPerColumn.ToString() : blocksPerRow.ToString(); // Check if axis is rotated.
+                                    TotalBlocksData.Text = renderedCount.ToString();
                                 }
 
                                 // Enable schematic controls.
@@ -1426,7 +1189,7 @@ namespace TEdit.Editor.Plugins
                     MessageBox.Show("Rendering operation was cancled!");
 
                     // Update some controls.
-                    TotalBlocksData.Content = "0";
+                    TotalBlocksData.Text = "0";
                 }
             }
             catch (Exception ex)
@@ -1820,8 +1583,8 @@ namespace TEdit.Editor.Plugins
                 // Populate filter data.
                 Dispatcher.Invoke(() =>
                 {
-                    TotalColorsData.Content = TileWallDataList.Count;
-                    FilteredColorsData.Content = filteredList.Count;
+                    TotalColorsData.Text = TileWallDataList.Count.ToString();
+                    FilteredColorsData.Text = filteredList.Count.ToString();
                 });
 
                 // Set the filtered colors count.
