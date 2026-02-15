@@ -1,22 +1,24 @@
-<Window x:Class="TEdit.View.Popups.FilterWindow"
+<ui:FluentWindow x:Class="TEdit.View.Popups.FilterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:filter="clr-namespace:TEdit.ViewModel"
         xmlns:local="clr-namespace:TEdit.View.Popups"
         xmlns:p="clr-namespace:TEdit.Properties"
         Title="{x:Static p:Language.menu_filter_title}"
         WindowStartupLocation="CenterOwner"
-        WindowStyle="ToolWindow"
         ResizeMode="NoResize"
-        Background="{StaticResource WindowBackgroundBrush}"
-        Foreground="{DynamicResource TextBrush}"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        Background="{DynamicResource ControlBackgroundBrush}"
         Icon="/TEdit;component/Images/tedit.ico"
-        Height="500" Width="600">
+        Height="500" Width="710">
 
-    <Window.Resources>
+    <ui:FluentWindow.Resources>
         <filter:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
-    </Window.Resources>
+        <filter:BindingProxy x:Key="DataContextProxy" Data="{Binding}"/>
+    </ui:FluentWindow.Resources>
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -184,7 +186,7 @@
                             <DataTrigger Binding="{Binding IsChecked, ElementName=CustomRadio}" Value="True">
                                 <Setter Property="Foreground">
                                     <Setter.Value>
-                                        <SolidColorBrush Color="{Binding CustomBackgroundColor}"/>
+                                        <SolidColorBrush Color="{Binding Data.CustomBackgroundColor, Source={StaticResource DataContextProxy}}"/>
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>
@@ -196,9 +198,7 @@
                     x:Name="PickColorButton"
                     Grid.Row="2" Grid.Column="7"
                     IsEnabled="{Binding IsChecked, ElementName=CustomRadio}"
-                    ToolTip="Pick Color"
-                    Width="28"
-                    Height="20"
+                    ToolTip="Pick Color"      
                     VerticalAlignment="Center"
                     Click="PickCustomColor_Click"/>
           
@@ -207,10 +207,10 @@
                 <CheckBox x:Name="FilterClipboardCheckBox" Content="{x:Static p:Language.menu_filter_filterclipboard}" VerticalAlignment="Bottom" IsChecked="{Binding IsFilterClipboardEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.RowSpan="3" Grid.Column="10" HorizontalAlignment="Right">
-                <Button Content="{x:Static p:Language.menu_filter_cancel}" Width="55" Margin="0,0,8,0" Click="Cancel_Click"/>
-                <Button Content="{x:Static p:Language.menu_filter_disable}" Width="55" Margin="0,0,8,0" Click="Disable_Click"/>
-                <Button Content="{x:Static p:Language.menu_filter_apply}" Width="55" Margin="0,0,0,0" Click="ApplyFilter_Click"/>
+                <Button Content="{x:Static p:Language.menu_filter_cancel}"  Margin="0,0,8,0" Click="Cancel_Click"/>
+                <Button Content="{x:Static p:Language.menu_filter_disable}"  Margin="0,0,8,0" Click="Disable_Click"/>
+                <Button Content="{x:Static p:Language.menu_filter_apply}"  Margin="0,0,0,0" Click="ApplyFilter_Click"/>
             </StackPanel>
         </Grid>
     </Grid>
-</Window>
+</ui:FluentWindow>

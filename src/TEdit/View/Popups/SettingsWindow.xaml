@@ -1,19 +1,18 @@
-<Window x:Class="TEdit.View.Popups.SettingsWindow"
+<ui:FluentWindow x:Class="TEdit.View.Popups.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:vm="clr-namespace:TEdit.ViewModel"
         xmlns:p="clr-namespace:TEdit.Properties"
         Title="{x:Static p:Language.menu_help_settings}"
         WindowStartupLocation="CenterOwner"
-        WindowStyle="ToolWindow"
-        ResizeMode="CanResizeWithGrip"
-        Background="{StaticResource ControlBackgroundBrush}"
-        Foreground="{DynamicResource TextBrush}"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
         Icon="/TEdit;component/Images/tedit.ico"
         Width="500" Height="600"
         MinWidth="400" MinHeight="300">
 
-    <Window.Resources>
+    <ui:FluentWindow.Resources>
         <!-- Template selector for setting editor types -->
         <DataTemplate x:Key="SettingCheckBoxTemplate" DataType="{x:Type vm:SettingItem}">
             <DockPanel Margin="4,3">
@@ -126,7 +125,7 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
-    </Window.Resources>
+    </ui:FluentWindow.Resources>
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -204,9 +203,10 @@
             </ItemsControl>
         </ScrollViewer>
 
-        <!-- Close Button -->
+        <!-- Save/Cancel Buttons -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
-            <Button Content="{x:Static p:Language.settings_close}" Width="80" Padding="4" Click="Close_Click" />
+            <Button Content="{x:Static p:Language.settings_cancel}" Width="80" Padding="4" Margin="0,0,8,0" Click="Cancel_Click" />
+            <Button Content="{x:Static p:Language.settings_save}" Width="80" Padding="4" Click="Save_Click" />
         </StackPanel>
     </Grid>
-</Window>
+</ui:FluentWindow>

@@ -633,8 +633,11 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Comprobar automáticamente si hay nuevas versiones al iniciar</value>
   </data>
-  <data name="settings_close" xml:space="preserve">
-    <value>Cerrar</value>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Guardar</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Habilitar el informe de errores</value>

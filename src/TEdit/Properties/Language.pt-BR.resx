@@ -633,8 +633,11 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Verifique automaticamente novas versões ao iniciar</value>
   </data>
-  <data name="settings_close" xml:space="preserve">
-    <value>Fechar</value>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Salvar</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Habilitar relatório de erros</value>

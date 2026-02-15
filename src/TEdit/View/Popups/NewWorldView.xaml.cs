@@ -4,13 +4,14 @@ using System.Windows.Controls;
 using TEdit.Terraria;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
+using Wpf.Ui.Controls;
 
 namespace TEdit.View.Popups
 {
     /// <summary>
     /// Interaction logic for NewWorldView.xaml
     /// </summary>
-    public partial class NewWorldView : Window
+    public partial class NewWorldView : FluentWindow
     {
         private readonly World _newWorld;
         public NewWorldView()

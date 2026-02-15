@@ -1,9 +1,12 @@
-﻿<Window x:Class="TEdit.Editor.Plugins.FindChestWithPluginView"
+﻿<ui:FluentWindow x:Class="TEdit.Editor.Plugins.FindChestWithPluginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
-        Title="FindChestWithPlugin" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico">
-    <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
+        Title="Find Chest With" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica">
+    <StackPanel>
         <TextBlock Text="Enter the name of the item you are looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <TextBox x:Name="ItemLookup"></TextBox>
         <UniformGrid Rows="1" HorizontalAlignment="Stretch" Margin="5">
@@ -14,4 +17,4 @@
             <Button Margin="5" Content="Search" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="SearchButtonClick" />
         </Grid>
     </StackPanel>
-</Window>
+</ui:FluentWindow>

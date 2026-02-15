@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Xna.Framework;
+using Wpf.Ui.Controls;
+using TextBlock = System.Windows.Controls.TextBlock;
 
 namespace TEdit.Editor.Plugins;
 
 /// <summary>
-/// Interaction logic for ReplaceAllPlugin.xaml
+/// Interaction logic for FindLocationResultView.xaml
 /// </summary>
-public partial class FindLocationResultView : Window
+public partial class FindLocationResultView : FluentWindow
 {
     private char[] splitters = new char[] { ',' };
     public FindLocationResultView(List<Tuple<Vector2, string>> locations)

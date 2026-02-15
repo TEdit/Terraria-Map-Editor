@@ -858,7 +858,20 @@ public partial class WorldRenderXna : UserControl
         {
             if (_textureDictionary?.Valid == true)
             {
+                // Process more textures per frame for faster loading
                 var processed = _textureDictionary.ProcessTextureQueue(maxOperationsPerFrame: 10);
+
+                // Update progress based on actual loaded count (not queued count)
+                var loadedCount = _textureDictionary.LoadingState.LoadedCount;
+                var totalTextures = _textureDictionary.LoadingState.TotalTextures;
+                var progress = (int)_textureDictionary.LoadingState.ProgressPercent;
+
+                if (totalTextures > 0 && loadedCount < totalTextures)
+                {
+                    _wvm.Progress = new ProgressChangedEventArgs(progress,
+                        $"Loading textures: {loadedCount}/{totalTextures}");
+                }
+
                 if (processed == 0 && _texturesFullyLoaded)
                 {
                     _previewProcessingTimer.Stop();
@@ -882,8 +895,8 @@ public partial class WorldRenderXna : UserControl
         while (!cancellationToken.IsCancellationRequested &&
                _textureDictionary.LoadingState.HasPendingLoads())
         {
-            // Get batch of textures to load
-            var batch = _textureDictionary.LoadingState.GetNextBatch(10);
+            // Get batch of textures to queue
+            var batch = _textureDictionary.LoadingState.GetNextBatch(15);
 
             if (batch.Count == 0)
             {
@@ -970,18 +983,10 @@ public partial class WorldRenderXna : UserControl
                 });
             }
 
-            // Update progress on UI thread
-            var loadedCount = _textureDictionary.LoadingState.LoadedCount;
-            var totalTextures = _textureDictionary.LoadingState.TotalTextures;
-            var progress = (int)_textureDictionary.LoadingState.ProgressPercent;
+            // Progress is now updated in StartPreviewProcessing where textures are actually loaded
+            // This background task only queues texture loads; actual loading happens on the timer
 
-            DispatcherHelper.CheckBeginInvokeOnUI(() =>
-            {
-                _wvm.Progress = new ProgressChangedEventArgs(progress,
-                    $"Loading textures: {loadedCount}/{totalTextures}");
-            });
-
-            await Task.Delay(16, cancellationToken); // Throttle to ~60 fps
+            // No delay needed - UI thread timer throttles processing at its own pace
         }
 
         _texturesFullyLoaded = true;

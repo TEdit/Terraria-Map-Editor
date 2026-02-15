@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using Microsoft.Xna.Framework;
-using TEdit.Terraria;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 
@@ -19,6 +19,7 @@ public sealed class BlockShufflePlugin : BasePlugin //Originally: HackedPlugin, 
 
         //Show settings window / get settings
         BlockShufflePluginView settingsView = new(_wvm.Selection.IsActive);
+        settingsView.Owner = Application.Current.MainWindow;
         if (settingsView.ShowDialog() == false)
             return;
 

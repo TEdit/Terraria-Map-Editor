@@ -1511,6 +1511,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string settings_cancel {
+            get {
+                return ResourceManager.GetString("settings_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
         public static string settings_category_general {
@@ -1574,15 +1583,6 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        public static string settings_close {
-            get {
-                return ResourceManager.GetString("settings_close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enable Error Reporting.
         /// </summary>
         public static string settings_error_reporting {
@@ -1633,6 +1633,15 @@ namespace TEdit.Properties {
         public static string settings_realistic_colors_desc {
             get {
                 return ResourceManager.GetString("settings_realistic_colors_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string settings_save {
+            get {
+                return ResourceManager.GetString("settings_save", resourceCulture);
             }
         }
         

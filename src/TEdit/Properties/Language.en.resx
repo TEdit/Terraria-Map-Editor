@@ -633,8 +633,11 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Automatically check for new versions on startup</value>
   </data>
-  <data name="settings_close" xml:space="preserve">
-    <value>Close</value>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Enable Error Reporting</value>

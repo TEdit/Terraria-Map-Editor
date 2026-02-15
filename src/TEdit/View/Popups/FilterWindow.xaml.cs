@@ -9,11 +9,12 @@ using System;
 using System.Collections.Generic;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using Wpf.Ui.Controls;
 
 namespace TEdit.View.Popups
 {
     [IReactiveObject]
-    public partial class FilterWindow : Window
+    public partial class FilterWindow : FluentWindow
     {
         // WVM
         private readonly WorldViewModel _wvm;

@@ -1,23 +1,24 @@
-﻿/* 
+﻿/*
 Copyright (c) 2021 ReconditeDeity
- 
+
 This source is subject to the Microsoft Public License.
 See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL.
 All other rights reserved.
 
-THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
-EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED 
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Plugins;
 
 /// <summary>
 /// Interaction logic for HouseGenPluginView.xaml
 /// </summary>
-public partial class HouseGenPluginView : Window
+public partial class HouseGenPluginView : FluentWindow
 {
     public HouseGenPluginView()
     {

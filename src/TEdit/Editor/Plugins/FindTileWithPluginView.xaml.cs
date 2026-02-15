@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Plugins;
 
 /// <summary>
-/// Interaction logic for ReplaceAllPlugin.xaml
+/// Interaction logic for FindTileWithPluginView.xaml
 /// </summary>
-public partial class FindTileWithPluginView : Window
+public partial class FindTileWithPluginView : FluentWindow
 {
     public string BlockToFind { get; private set; }
     public string WallToFind { get; private set; }

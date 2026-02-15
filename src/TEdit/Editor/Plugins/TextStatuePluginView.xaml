@@ -1,18 +1,20 @@
-﻿<Window x:Class="TEdit.Editor.Plugins.TextStatuePluginView"
+﻿<ui:FluentWindow x:Class="TEdit.Editor.Plugins.TextStatuePluginView"
        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:tedit="clr-namespace:TEdit.UI.Xaml" 
-        xmlns:plugins="clr-namespace:TEdit.Editor.Plugins" 
+        xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+        xmlns:plugins="clr-namespace:TEdit.Editor.Plugins"
         SizeToContent="WidthAndHeight"
         Title="Text Statue Generator"
-        ResizeMode="CanResizeWithGrip" 
+        ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterOwner"
-        Icon="/TEdit;component/Images/tedit.ico" 
-        Topmost="True" 
+        Icon="/TEdit;component/Images/tedit.ico"
+        Topmost="True"
         mc:Ignorable="d"
-        Background="{StaticResource ControlBackgroundBrush}"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
         d:DataContext="{d:DesignInstance Type=plugins:TextStatusPluginViewModel}">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
@@ -40,4 +42,4 @@
             <Button Margin="5" Content="Add to Clipboard" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="Ok" />
         </Grid>
     </Grid>
-</Window>
+</ui:FluentWindow>

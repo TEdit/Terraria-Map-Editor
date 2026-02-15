@@ -14,6 +14,7 @@ using TEdit.Framework.Threading;
 using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.Terraria;
+using TEdit.UI.Xaml.Dialog;
 using TEdit.Utility;
 using TEdit.View.Popups;
 using ReactiveUI;
@@ -75,20 +76,22 @@ public partial class WorldViewModel
 
         bool addBorders = false;
 
-        if (MessageBox.Show(
+        var cropResult = App.DialogService.ShowMessage(
             "This will generate a new world within the selected region.\nAll progress outside of the cropped zone will be lost., Continue?",
             "Crop World?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (cropResult != DialogResponse.Yes)
             return;
 
-        if (MessageBox.Show(
+        var borderResult = App.DialogService.ShowMessage(
             "Add \"edge of world\" boundaries?",
             "Crop World:",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) == MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (borderResult == DialogResponse.Yes)
         { addBorders = true; };
 
         // Create clipboard
@@ -133,7 +136,7 @@ public partial class WorldViewModel
             currentHeight: CurrentWorld.TilesHigh
         )
         {
-            // Owner = Application.Current.MainWindow
+            Owner = Application.Current.MainWindow
         };
 
         if (dlg.ShowDialog() != true)

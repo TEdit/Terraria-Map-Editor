@@ -1,11 +1,12 @@
 ﻿using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Plugins;
 
 /// <summary>
-/// Interaction logic for ReplaceAllPlugin.xaml
+/// Interaction logic for ReplaceAllPluginView.xaml
 /// </summary>
-public partial class ReplaceAllPluginView : Window
+public partial class ReplaceAllPluginView : FluentWindow
 {
     public ReplaceAllPluginView()
     {

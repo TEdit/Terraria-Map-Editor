@@ -1,11 +1,12 @@
 ﻿using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Plugins;
 
 /// <summary>
-/// Interaction logic for ReplaceAllPlugin.xaml
+/// Interaction logic for TextStatuePluginView.xaml
 /// </summary>
-public partial class TextStatuePluginView : Window
+public partial class TextStatuePluginView : FluentWindow
 {
     public TextStatusPluginViewModel ViewModel { get; private set; }
     public TextStatuePluginView()

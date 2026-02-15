@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Plugins;
 
 /// <summary>
 /// Interaction logic for RemoveTileWithPluginView.xaml
 /// </summary>
-public partial class RemoveTileWithPluginView : Window
+public partial class RemoveTileWithPluginView : FluentWindow
 {
     public string BlockToRemove { get; private set; }
     public string WallToRemove { get; private set; }

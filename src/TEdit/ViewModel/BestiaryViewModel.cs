@@ -7,6 +7,7 @@ using System.Windows;
 using TEdit.Helper;
 using TEdit.Terraria;
 using TEdit.Terraria;
+using TEdit.UI.Xaml.Dialog;
 
 namespace TEdit.ViewModel;
 
@@ -161,12 +162,13 @@ public partial class BestiaryViewModel : ReactiveObject
     {
         if (_wvm.CurrentWorld == null) { return; }
 
-        if (MessageBox.Show(
+        var confirmResult = App.DialogService.ShowMessage(
             "This will completely replace your currently loaded world Bestiary and Kill Tally with a completed bestiary. Continue?",
             "Complete Bestiary?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (confirmResult != DialogResponse.Yes)
             return;
 
         // make a backup
@@ -200,7 +202,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.Bestiary = bestiary;
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
-            MessageBox.Show($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
+            App.DialogService.ShowMessage($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
         }
     }
 
@@ -209,12 +211,13 @@ public partial class BestiaryViewModel : ReactiveObject
     {
         if (_wvm.CurrentWorld == null) { return; }
 
-        if (MessageBox.Show(
+        var resetResult = App.DialogService.ShowMessage(
             "This will completely replace your currently loaded world Bestiary and Kill Tally with a reset bestiary. Continue?",
             "Reset Bestiary?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (resetResult != DialogResponse.Yes)
             return;
 
         // make a backup
@@ -233,7 +236,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.Bestiary = bestiary;
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
-            MessageBox.Show($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
+            App.DialogService.ShowMessage($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
         }
     }
 
@@ -245,12 +248,13 @@ public partial class BestiaryViewModel : ReactiveObject
     {
         if (_wvm.CurrentWorld == null) { return; }
 
-        if (MessageBox.Show(
+        var saveResult = App.DialogService.ShowMessage(
             "Are you sure you wish to save Bestiary changes?",
             "Save Bestiary?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (saveResult != DialogResponse.Yes)
             return;
 
         // make a backup
@@ -275,7 +279,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.Bestiary = bestiary;
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
-            MessageBox.Show($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
+            App.DialogService.ShowMessage($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
         }
     }
 }

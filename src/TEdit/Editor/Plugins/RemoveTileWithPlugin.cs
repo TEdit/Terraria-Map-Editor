@@ -21,6 +21,7 @@ namespace TEdit.Editor.Plugins
             if (_wvm.CurrentWorld == null) return;
 
             RemoveTileWithPluginView view = new RemoveTileWithPluginView();
+            view.Owner = Application.Current.MainWindow;
             if (view.ShowDialog() == false)
             {
                 return;

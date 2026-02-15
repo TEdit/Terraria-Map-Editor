@@ -17,6 +17,7 @@ using TEdit.Geometry;
 using TEdit.Helper;
 using TEdit.Configuration;
 using TEdit.Terraria;
+using TEdit.UI.Xaml.Dialog;
 
 namespace TEdit.ViewModel;
 
@@ -339,7 +340,13 @@ public partial class WorldViewModel
         CurrentLanguage = language;
         UserSettingsService.Current.Language = language;
 
-        if (MessageBox.Show($"Language changed to {language}. Do you wish to restart now?", "Restart to change language", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+        var result = App.DialogService.ShowMessage(
+            $"Language changed to {language}. Do you wish to restart now?",
+            "Restart to change language",
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (result == DialogResponse.Yes)
         {
             System.Windows.Forms.Application.Restart();
             System.Windows.Application.Current.Shutdown();
@@ -517,12 +524,13 @@ public partial class WorldViewModel
     {
         if (CurrentWorld == null) return; // Ensure world is loaded first
 
-        if (MessageBox.Show(
+        var confirmResult = App.DialogService.ShowMessage(
             "This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?",
             "Load Bestiary?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (confirmResult != DialogResponse.Yes)
             return;
 
         var ofd = new OpenFileDialog();
@@ -550,7 +558,11 @@ public partial class WorldViewModel
                 world.Bestiary = bestiary;
                 world.KilledMobs.Clear();
                 world.KilledMobs.AddRange(killTally);
-                MessageBox.Show($"Error importing Bestiary data from {ofd.FileName}. Your current bestiary has been restored.\r\n{ex.Message}");
+                App.DialogService.ShowMessage(
+                    $"Error importing Bestiary data from {ofd.FileName}. Your current bestiary has been restored.\r\n{ex.Message}",
+                    "Import Error",
+                    DialogButton.OK,
+                    DialogImage.Error);
             }
         }
     }
@@ -579,7 +591,7 @@ public partial class WorldViewModel
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Schematic File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    App.DialogService.ShowMessage(ex.Message, "Schematic File Error", DialogButton.OK, DialogImage.Error);
                 }
             }
         }
@@ -602,7 +614,7 @@ public partial class WorldViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error Saving Schematic");
+                App.DialogService.ShowMessage(ex.Message, "Error Saving Schematic", DialogButton.OK, DialogImage.Error);
             }
 
         }

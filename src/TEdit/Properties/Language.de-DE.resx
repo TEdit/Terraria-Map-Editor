@@ -633,8 +633,11 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Automatisch beim Start nach neuen Versionen suchen</value>
   </data>
-  <data name="settings_close" xml:space="preserve">
-    <value>Schließen</value>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Speichern</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Fehlermeldungen aktivieren</value>

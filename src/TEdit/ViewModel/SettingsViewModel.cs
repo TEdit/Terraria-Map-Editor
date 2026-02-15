@@ -21,6 +21,10 @@ public partial class SettingsViewModel
     // Track manual expansion state (only applies when not searching)
     private readonly Dictionary<string, bool> _categoryExpansionState = new();
 
+    // Store original values for Cancel functionality
+    private readonly Dictionary<SettingItem, object> _originalValues = new();
+    private readonly Dictionary<SettingItem, List<InputBinding>> _originalBindings = new();
+
     [Reactive]
     private string _searchText;
 
@@ -29,6 +33,7 @@ public partial class SettingsViewModel
     public SettingsViewModel(WorldViewModel wvm)
     {
         PopulateSettings(wvm);
+        CaptureOriginalValues();
 
         // Initialize all categories as expanded
         foreach (var category in AllSettings.Select(s => s.Category).Distinct())
@@ -69,6 +74,60 @@ public partial class SettingsViewModel
     public void SetCategoryExpanded(string category, bool expanded)
     {
         _categoryExpansionState[category] = expanded;
+    }
+
+    /// <summary>
+    /// Captures the current values of all settings for Cancel functionality.
+    /// </summary>
+    private void CaptureOriginalValues()
+    {
+        foreach (var setting in AllSettings)
+        {
+            if (setting.EditorType == SettingEditorType.Keybinding)
+            {
+                // For keybindings, capture a copy of the bindings list
+                _originalBindings[setting] = new List<InputBinding>(setting.Bindings);
+            }
+            else if (setting.Getter != null)
+            {
+                _originalValues[setting] = setting.Getter();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Reverts all settings to their original values (called on Cancel).
+    /// </summary>
+    public void RevertChanges()
+    {
+        foreach (var setting in AllSettings)
+        {
+            if (setting.EditorType == SettingEditorType.Keybinding)
+            {
+                // Restore keybindings
+                if (_originalBindings.TryGetValue(setting, out var originalBindings))
+                {
+                    setting.Bindings.Clear();
+                    foreach (var binding in originalBindings)
+                        setting.Bindings.Add(binding);
+
+                    // Persist the restored bindings
+                    App.Input.Registry.SetUserBindings(setting.ActionId, originalBindings);
+                }
+            }
+            else if (_originalValues.TryGetValue(setting, out var originalValue))
+            {
+                // Only revert if value has changed
+                var currentValue = setting.Getter?.Invoke();
+                if (!Equals(currentValue, originalValue))
+                {
+                    setting.Setter?.Invoke(originalValue);
+                }
+            }
+        }
+
+        // Save keybinding changes
+        App.Input.SaveUserCustomizations();
     }
 
     private bool FilterSetting(object obj)

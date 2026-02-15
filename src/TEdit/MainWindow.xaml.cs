@@ -9,6 +9,7 @@ using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Input;
+using TEdit.Services;
 using TEdit.ViewModel;
 using TEdit.Configuration;
 using TEdit.UI.Xaml;
@@ -42,8 +43,12 @@ public partial class MainWindow : FluentWindow
             .Subscribe(_ => ExpandSidePanel());
     }
 
-    void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
+        // Initialize dialog and snackbar services with UI elements
+        App.DialogService.SetDialogHost(RootContentDialog);
+        App.SnackbarService.SetSnackbarPresenter(SnackbarPresenter);
+
         bool shouldAsk = false;
         string currentVersion = App.Version.ToString();
 
@@ -61,13 +66,11 @@ public partial class MainWindow : FluentWindow
 
         if (shouldAsk)
         {
-            var result = System.Windows.MessageBox.Show(
-                Properties.Language.telemetry_prompt_message,
+            var result = await App.DialogService.ShowConfirmationAsync(
                 Properties.Language.telemetry_prompt_title,
-                System.Windows.MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
+                Properties.Language.telemetry_prompt_message);
 
-            if (result == System.Windows.MessageBoxResult.Yes)
+            if (result)
             {
                 UserSettingsService.Current.Telemetry = 1;
                 _vm.EnableTelemetry = true;
@@ -534,6 +537,7 @@ public partial class MainWindow : FluentWindow
 
             // Pass the tile data onto the new controller.
             UVEditorWindow uvEditorWindow = new(tileList, _vm);
+            uvEditorWindow.Owner = this;
             uvEditorWindow.ShowDialog();
         }
     }
@@ -556,6 +560,7 @@ public partial class MainWindow : FluentWindow
 
         // Launch the advanced filter popup.
         FilterWindow filterWindow = new(_vm);
+        filterWindow.Owner = this;
         filterWindow.ShowDialog();
     }
 

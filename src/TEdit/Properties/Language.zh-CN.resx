@@ -633,8 +633,11 @@
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>启动时自动检查是否有新版本</value>
   </data>
-  <data name="settings_close" xml:space="preserve">
-    <value>结束</value>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>保存</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>启用错误报告</value>

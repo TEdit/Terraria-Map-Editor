@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using System.Windows;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using System;
 using TEdit.Geometry;
-using TEdit.Terraria;
 
 namespace TEdit.Editor.Plugins;
 
@@ -20,6 +20,7 @@ public class FindTileWithPlugin : BasePlugin
         if (_wvm.CurrentWorld == null) return;
 
         FindTileWithPluginView view = new FindTileWithPluginView();
+        view.Owner = Application.Current.MainWindow;
         if (view.ShowDialog() == false)
         {
             return;

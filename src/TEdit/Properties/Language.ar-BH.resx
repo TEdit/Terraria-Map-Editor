@@ -633,8 +633,11 @@
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>تحقق تلقائيًا من الإصدارات الجديدة عند بدء التشغيل</value>
   </data>
-  <data name="settings_close" xml:space="preserve">
-    <value>إغلاق</value>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>حفظ</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>تمكين الإبلاغ عن الأخطاء</value>

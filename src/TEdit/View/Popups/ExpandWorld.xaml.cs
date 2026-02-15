@@ -1,8 +1,9 @@
 using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace TEdit.View.Popups
 {
-    public partial class ExpandWorldView : Window
+    public partial class ExpandWorldView : FluentWindow
     {
         public int _minWidth { get; }
         public int _maxWidth { get; }

@@ -34,9 +34,9 @@ using TEdit.UI;
 using TEdit.UI.Xaml;
 using TEdit.Utility;
 using TEdit.View.Popups;
+using TEdit.UI.Xaml.Dialog;
 using static TEdit.Terraria.CreativePowers;
 using Application = System.Windows.Application;
-using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
@@ -813,20 +813,24 @@ public partial class WorldViewModel : ReactiveObject
     /* SBLogic - catch exception if browser can't be launched */
     public static void LaunchUrl(string url)
     {
-        System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.None;
+        DialogResponse result = DialogResponse.None;
         try
         {
             Process.Start(url);
         }
         catch
         {
-            result = System.Windows.Forms.MessageBox.Show("Unable to open external browser.  Copy to clipboard?", "Link Error", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation);
+            result = App.DialogService.ShowMessage(
+                "Unable to open external browser. Copy to clipboard?",
+                "Link Error",
+                DialogButton.YesNo,
+                DialogImage.Exclamation);
         }
 
         // Just in case
         try
         {
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            if (result == DialogResponse.Yes)
             {
                 System.Windows.Clipboard.SetText(url);
             }
@@ -1352,7 +1356,11 @@ public partial class WorldViewModel : ReactiveObject
         {
             this.RaisePropertyChanged(nameof(RealisticColors));
             UserSettingsService.Current.RealisticColors = value;
-            MessageBox.Show(Properties.Language.messagebox_restartrequired, Properties.Language.messagebox_restartrequired, MessageBoxButton.OK, MessageBoxImage.Information);
+            App.DialogService.ShowMessage(
+                Properties.Language.messagebox_restartrequired,
+                Properties.Language.messagebox_restartrequired,
+                DialogButton.OK,
+                DialogImage.Information);
         }
     }
 
@@ -1474,7 +1482,7 @@ public partial class WorldViewModel : ReactiveObject
         }
         catch (Exception)
         {
-            MessageBox.Show("Unable to check version.", "Update Check Failed");
+            App.DialogService.ShowMessage("Unable to check version.", "Update Check Failed", DialogButton.OK, DialogImage.Warning);
         }
 
 
@@ -1482,7 +1490,13 @@ public partial class WorldViewModel : ReactiveObject
         if (isOutdated)
         {
 #if !DEBUG
-            if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            var updateResult = App.DialogService.ShowMessage(
+                "You are using an outdated version of TEdit. Do you wish to download the update?",
+                "Update?",
+                DialogButton.YesNo,
+                DialogImage.Question);
+
+            if (updateResult == DialogResponse.Yes)
             {
                 try
                 {
@@ -1494,7 +1508,7 @@ public partial class WorldViewModel : ReactiveObject
         }
         else if (!auto)
         {
-            MessageBox.Show("TEdit is up to date.", "Update");
+            App.SnackbarService.ShowSuccess("TEdit is up to date.", "Update");
         }
     }
 
@@ -1654,6 +1668,7 @@ public partial class WorldViewModel : ReactiveObject
 
         // Open the dialog for creating a new world and check if user clicked 'OK'
         var nwDialog = new NewWorldView();
+        nwDialog.Owner = Application.Current.MainWindow;
         if ((bool)nwDialog.ShowDialog())
         {
             // Reset and start the load timer for performance tracking
@@ -2308,8 +2323,13 @@ public partial class WorldViewModel : ReactiveObject
             return;
         if (CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
         {
-            MessageBoxResult overwrite = MessageBox.Show(_currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?", "World Modified", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-            if (overwrite.Equals(MessageBoxResult.Cancel))
+            var overwriteResult = App.DialogService.ShowMessage(
+                _currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?",
+                "World Modified",
+                DialogButton.OKCancel,
+                DialogImage.Warning);
+
+            if (overwriteResult == DialogResponse.Cancel)
                 return;
         }
 
@@ -2328,13 +2348,15 @@ public partial class WorldViewModel : ReactiveObject
             catch (ArgumentOutOfRangeException err)
             {
                 string msg = "There is a problem in your world.\r\n" + $"{err.ParamName}\r\n" + $"This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
+                var saveResult = App.DialogService.ShowMessage(msg, "World Error", DialogButton.YesNo, DialogImage.Error);
+                if (saveResult != DialogResponse.Yes)
                     return;
             }
             catch (Exception ex)
             {
                 string msg = "There is a problem in your world.\r\n" + $"{ex.Message}\r\n" + "This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
+                var saveResult = App.DialogService.ShowMessage(msg, "World Error", DialogButton.YesNo, DialogImage.Error);
+                if (saveResult != DialogResponse.Yes)
                     return;
             }
 
@@ -2408,13 +2430,14 @@ public partial class WorldViewModel : ReactiveObject
         // perform validations.
         if (CurrentWorld == null)
         {
-            MessageBox.Show("No opened world loaded for reloading.", "World File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            App.DialogService.ShowMessage("No opened world loaded for reloading.", "World File Error", DialogButton.OK, DialogImage.Error);
             return;
         }
         else
         {
             // Prompt for world loading.
-            if (MessageBox.Show("Unsaved work will be lost!", "Reload Current World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+            var reloadResult = App.DialogService.ShowMessage("Unsaved work will be lost!", "Reload Current World?", DialogButton.YesNo, DialogImage.Question);
+            if (reloadResult == DialogResponse.No)
                 return; // if no, abort.
 
             // Load world.
@@ -2446,8 +2469,8 @@ public partial class WorldViewModel : ReactiveObject
                         $"(missing newer tiles/walls/etc may cause issues).\r\n\r\n" +
                         $"Do you want to attempt to load anyway?";
 
-                if (MessageBox.Show(message, "Newer World Version",
-                    MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
+                var newerResult = App.DialogService.ShowMessage(message, "Newer World Version", DialogButton.YesNo, DialogImage.Warning);
+                if (newerResult == DialogResponse.No)
                 {
                     return null;
                 }
@@ -2467,7 +2490,7 @@ public partial class WorldViewModel : ReactiveObject
                     "3. Restore a previously created TEdit checkpoint (.TEdit).\r\n" +
                     "4. Restore a backup via windows file history (if previously enabled).";
 
-                MessageBox.Show(msg, "Corrupt World File", MessageBoxButton.OK, MessageBoxImage.Error);
+                App.DialogService.ShowMessage(msg, "Corrupt World File", DialogButton.OK, DialogImage.Error);
                 return null;
             }
             else if (!validation.IsValid)
@@ -2484,7 +2507,7 @@ public partial class WorldViewModel : ReactiveObject
                     $"The error is :\r\n{validation.Message}";
 
                 // there is no recovering here, so just show the message and return (aka abort)
-                MessageBox.Show(msg, "World File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                App.DialogService.ShowMessage(msg, "World File Error", DialogButton.OK, DialogImage.Error);
                 return null;
             }
 
@@ -2496,7 +2519,8 @@ public partial class WorldViewModel : ReactiveObject
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
 
-                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                var tmodResult = App.DialogService.ShowMessage(message, "Convert File?", DialogButton.YesNo, DialogImage.Question);
+                if (tmodResult == DialogResponse.No)
                 {
                     // if no, abort
                     return null;
@@ -2510,7 +2534,8 @@ public partial class WorldViewModel : ReactiveObject
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
 
-                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                var legacyResult = App.DialogService.ShowMessage(message, "Convert File?", DialogButton.YesNo, DialogImage.Question);
+                if (legacyResult == DialogResponse.No)
                 {
                     return null;
                 }
@@ -2522,7 +2547,8 @@ public partial class WorldViewModel : ReactiveObject
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
 
-                if (MessageBox.Show(message, "Load Mod World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                var modResult = App.DialogService.ShowMessage(message, "Load Mod World?", DialogButton.YesNo, DialogImage.Question);
+                if (modResult == DialogResponse.No)
                 {
                     return null;
                 }
@@ -2560,7 +2586,8 @@ public partial class WorldViewModel : ReactiveObject
                 "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
                 $"The error is :\r\n{error.Message}";
 
-                if (MessageBox.Show(msg, "Load Invalid World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                var invalidResult = App.DialogService.ShowMessage(msg, "Load Invalid World?", DialogButton.YesNo, DialogImage.Question);
+                if (invalidResult == DialogResponse.No)
                 {
                     return null;
                 }

@@ -16,6 +16,7 @@ using System.Reactive;
 using System.Windows;
 using ReactiveUI;
 using TEdit.ViewModel;
+using Wpf.Ui.Controls;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace TEdit.Editor.Plugins;
@@ -23,7 +24,7 @@ namespace TEdit.Editor.Plugins;
 /// <summary>
 /// Interaction logic for ImageToPixelartEditorView.xaml
 /// </summary>
-public partial class ImageToPixelartEditorView : Window
+public partial class ImageToPixelartEditorView : FluentWindow
 {
     public ImageToPixelartEditorViewModel ViewModel { get; }
 

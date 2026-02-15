@@ -1,12 +1,12 @@
 ﻿using System.Windows;
-using System.Windows.Forms;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Plugins;
 
 /// <summary>
-/// Interaction logic for ReplaceAllPlugin.xaml
+/// Interaction logic for FindChestWithPluginView.xaml
 /// </summary>
-public partial class FindChestWithPluginView : Window
+public partial class FindChestWithPluginView : FluentWindow
 {
     public string ItemToFind { get; private set; }
     public bool CalculateDistance { get; private set; }

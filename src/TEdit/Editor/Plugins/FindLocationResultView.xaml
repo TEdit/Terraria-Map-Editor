@@ -1,14 +1,16 @@
-﻿<Window x:Class="TEdit.Editor.Plugins.FindLocationResultView"
+﻿<ui:FluentWindow x:Class="TEdit.Editor.Plugins.FindLocationResultView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:view="clr-namespace:TEdit.View" 
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:view="clr-namespace:TEdit.View"
         SizeToContent="WidthAndHeight"
-        Title="FindChestWithPlugin"
-        ResizeMode="CanResizeWithGrip" 
+        Title="Location Results"
+        ResizeMode="CanResizeWithGrip"
         WindowStartupLocation="CenterOwner"
-        Icon="/TEdit;component/Images/tedit.ico" 
-        Topmost="True" 
-        Background="{StaticResource ControlBackgroundBrush}">
+        Icon="/TEdit;component/Images/tedit.ico"
+        Topmost="True"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
@@ -19,4 +21,4 @@
         <ListBox Name="LocationList" MouseDoubleClick="ListBoxMouseDoubleClick" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Button Margin="5" Content="Close" HorizontalAlignment="Center" Padding="20, 3" Click="CloseButtonClick" Grid.Row="2"/>
     </Grid>
-</Window>
+</ui:FluentWindow>

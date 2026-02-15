@@ -4,10 +4,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using TEdit.Input;
 using TEdit.ViewModel;
+using Wpf.Ui.Controls;
+using Button = System.Windows.Controls.Button;
 
 namespace TEdit.View.Popups;
 
-public partial class SettingsWindow : Window
+public partial class SettingsWindow : FluentWindow
 {
     public SettingsWindow(WorldViewModel wvm)
     {
@@ -96,8 +98,17 @@ public partial class SettingsWindow : Window
         }
     }
 
-    private void Close_Click(object sender, RoutedEventArgs e)
+    private void Save_Click(object sender, RoutedEventArgs e)
     {
+        Close();
+    }
+
+    private void Cancel_Click(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is SettingsViewModel vm)
+        {
+            vm.RevertChanges();
+        }
         Close();
     }
 }

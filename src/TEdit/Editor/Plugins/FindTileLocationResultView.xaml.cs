@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using TEdit.Geometry;
+using Wpf.Ui.Controls;
+using TextBlock = System.Windows.Controls.TextBlock;
 
 namespace TEdit.Editor.Plugins;
 
 /// <summary>
 /// Interaction logic for ReplaceAllPlugin.xaml
 /// </summary>
-public partial class FindTileLocationResultView : Window
+public partial class FindTileLocationResultView : FluentWindow
 {
     private char[] splitters = new char[] { ',' };
     public FindTileLocationResultView(List<Tuple<string, Vector2Float>> locations, string count)

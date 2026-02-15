@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Microsoft.Xna.Framework;
 using TEdit.ViewModel;
 
@@ -19,6 +20,7 @@ public class FindChestWithPlugin : BasePlugin
         if (_wvm.CurrentWorld == null) return;
 
         FindChestWithPluginView view = new FindChestWithPluginView();
+        view.Owner = Application.Current.MainWindow;
         if (view.ShowDialog() == false)
         {
             return;

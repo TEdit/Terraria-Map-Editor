@@ -10,6 +10,7 @@ using System.Reactive.Linq;
 using System.Windows;
 using System.Windows.Data;
 using TEdit.Terraria;
+using TEdit.UI.Xaml.Dialog;
 
 namespace TEdit.ViewModel;
 
@@ -148,12 +149,13 @@ public partial class BannerViewModel : ReactiveObject
     {
         if (_wvm.CurrentWorld == null) return;
 
-        if (MessageBox.Show(
+        var importResult = App.DialogService.ShowMessage(
             "This will replace your current banner counts with data from the selected world file. Continue?",
             "Import Banners?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (importResult != DialogResponse.Yes)
             return;
 
         var ofd = new OpenFileDialog
@@ -181,7 +183,7 @@ public partial class BannerViewModel : ReactiveObject
             {
                 _wvm.CurrentWorld.ClaimableBanners[i] = backup[i];
             }
-            MessageBox.Show($"Error importing banner data from {ofd.FileName}. Your current banners have been restored.\r\n{ex.Message}");
+            App.DialogService.ShowMessage($"Error importing banner data from {ofd.FileName}. Your current banners have been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
         }
     }
 
@@ -190,12 +192,13 @@ public partial class BannerViewModel : ReactiveObject
     {
         if (_wvm.CurrentWorld == null) return;
 
-        if (MessageBox.Show(
+        var saveResult = App.DialogService.ShowMessage(
             "Save banner changes back to the world?",
             "Save Banners?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (saveResult != DialogResponse.Yes)
             return;
 
         // Backup
@@ -217,7 +220,7 @@ public partial class BannerViewModel : ReactiveObject
             {
                 _wvm.CurrentWorld.ClaimableBanners[i] = backup[i];
             }
-            MessageBox.Show($"Error saving banner data. Changes have been restored.\r\n{ex.Message}");
+            App.DialogService.ShowMessage($"Error saving banner data. Changes have been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
         }
     }
 
@@ -226,12 +229,13 @@ public partial class BannerViewModel : ReactiveObject
     {
         if (_wvm.CurrentWorld == null) return;
 
-        if (MessageBox.Show(
+        var maxResult = App.DialogService.ShowMessage(
             "Set all banner counts to maximum (9999)?",
             "Max Out Banners?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (maxResult != DialogResponse.Yes)
             return;
 
         foreach (var item in BannerData)
@@ -245,12 +249,13 @@ public partial class BannerViewModel : ReactiveObject
     {
         if (_wvm.CurrentWorld == null) return;
 
-        if (MessageBox.Show(
+        var resetResult = App.DialogService.ShowMessage(
             "Reset all banner counts to zero?",
             "Reset Banners?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (resetResult != DialogResponse.Yes)
             return;
 
         foreach (var item in BannerData)

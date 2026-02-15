@@ -14,6 +14,7 @@ using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Framework.Threading;
 using TEdit.Input;
+using TEdit.Services;
 using TEdit.Utility;
 using ReactiveUI;
 using ReactiveUI.Builder;
@@ -211,6 +212,16 @@ public partial class App : Application
     public static InputService Input { get; } = new InputService();
     public static AppSettings AppConfig { get; private set; }
     public static IConfiguration Configuration { get; private set; }
+
+    /// <summary>
+    /// WPF-UI based dialog service for styled modal dialogs.
+    /// </summary>
+    public static TEditDialogService DialogService { get; } = new TEditDialogService();
+
+    /// <summary>
+    /// WPF-UI based snackbar service for non-blocking notifications.
+    /// </summary>
+    public static TEditSnackbarService SnackbarService { get; } = new TEditSnackbarService();
 
     public static void LoadAppSettings()
     {

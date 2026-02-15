@@ -633,8 +633,11 @@
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Автоматически проверяйте новые версии при запуске</value>
   </data>
-  <data name="settings_close" xml:space="preserve">
-    <value>Закрыть</value>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Сохранить</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Включить отчеты об ошибках</value>

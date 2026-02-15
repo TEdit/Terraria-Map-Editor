@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Plugins
 {
     /// <summary>
     /// Interaction logic for SimpleOreGeneratorPluginView.xaml
     /// </summary>
-    public partial class SimpleOreGeneratorPluginView : Window
+    public partial class SimpleOreGeneratorPluginView : FluentWindow
     {
         public bool OnlySelection { get; private set; }
         public bool EnableUndo { get; private set; } = true;
