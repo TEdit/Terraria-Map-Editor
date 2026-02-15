@@ -11,24 +11,78 @@
         <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True"
                                 VirtualizingStackPanel.VirtualizationMode="Recycling" />
     </ItemsPanelTemplate>
+    <!-- ComboBoxItem style that shows TemplateBinding Background (for rarity coloring) -->
+    <Style x:Key="RarityComboBoxItem" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Padding" Value="{DynamicResource ComboBoxItemContentMargin}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ComboBoxForeground}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Border.CornerRadius" Value="{DynamicResource ControlCornerRadius}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Grid Background="Transparent">
+                        <Border Name="ContentBorder"
+                                Margin="{DynamicResource ComboBoxItemMargin}"
+                                Padding="0"
+                                Background="{TemplateBinding Background}"
+                                VerticalAlignment="Stretch"
+                                CornerRadius="{TemplateBinding Border.CornerRadius}"
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <ContentPresenter x:Name="PART_ContentPresenter"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="Center"/>
+                                <Rectangle x:Name="ActiveRectangle" Width="3" Height="16"
+                                           HorizontalAlignment="Left" VerticalAlignment="Center"
+                                           Fill="{DynamicResource ComboBoxItemPillFillBrush}"
+                                           RadiusX="2" RadiusY="2" Visibility="Collapsed"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource ComboBoxItemBackgroundSelected}"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="ActiveRectangle" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ComboBoxItemForegroundSelected}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForegroundDisabled}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Rarity-tinted item template for category dictionaries (KeyValuePair<int, ItemProperty>) -->
     <DataTemplate x:Key="RarityDictItemTemplate">
-        <Border Padding="2,0">
-            <Border.Background>
-                <SolidColorBrush Color="{Binding Value.RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3" />
-            </Border.Background>
-            <TextBlock Text="{Binding Value.Name}" />
-        </Border>
+        <TextBlock Text="{Binding Value.Name}" Margin="2,2,2,2" />
     </DataTemplate>
     <!-- Rarity-tinted item template for ItemProperty objects directly (chest editor) -->
     <DataTemplate x:Key="RarityItemTemplate">
-        <Border Padding="2,0">
-            <Border.Background>
-                <SolidColorBrush Color="{Binding RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3" />
-            </Border.Background>
-            <TextBlock Text="{Binding Name}" />
-        </Border>
+        <TextBlock Text="{Binding Name}" Margin="2,2,2,2" />
     </DataTemplate>
+
+    <!-- ItemContainerStyles that bind ComboBoxItem.Background to rarity color -->
+    <Style x:Key="RarityDictItemContainerStyle" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource RarityComboBoxItem}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{Binding Value.RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="RarityItemContainerStyle" TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource RarityComboBoxItem}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{Binding RarityColor, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.3"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <DataTemplate x:Key="ItemFrameItemTemplate">
         <Grid HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -53,12 +107,13 @@
                       SelectedValue="{Binding NetId, Mode=TwoWay}"
                       SelectedValuePath="Id"
                       ItemTemplate="{StaticResource RarityItemTemplate}"
+                      ItemContainerStyle="{StaticResource RarityItemContainerStyle}"
                       IsEditable="true"
                       IsSynchronizedWithCurrentItem="False"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-            <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
-            <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
-            <Button Grid.Column="5" Content="^" ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+            <Button Grid.Column="3" Style="{StaticResource CompactIconButton}" Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"/>
+            <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"/>
+            <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" Content="^" ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"/>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

@@ -312,9 +312,34 @@
                 <!-- Map View -->
                 <View:WorldRenderXna x:Name="MapView" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-                <!-- GridSplitter for resizing -->
+                <!-- GridSplitter for resizing (VS Code style: subtle until hovered/dragged) -->
                 <GridSplitter x:Name="SidePanelSplitter" Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"
-                              Background="{DynamicResource NormalBorderBrush}" Cursor="SizeWE" />
+                              Background="Transparent" Cursor="SizeWE">
+                    <GridSplitter.Style>
+                        <Style TargetType="{x:Type GridSplitter}">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GridSplitter}">
+                                        <Border x:Name="SplitterBorder"
+                                                Background="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                                Width="1" HorizontalAlignment="Center"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="SplitterBorder" Property="Background" Value="{DynamicResource AccentFillColorDefaultBrush}"/>
+                                                <Setter TargetName="SplitterBorder" Property="Width" Value="3"/>
+                                            </Trigger>
+                                            <Trigger Property="IsDragging" Value="True">
+                                                <Setter TargetName="SplitterBorder" Property="Background" Value="{DynamicResource AccentFillColorDefaultBrush}"/>
+                                                <Setter TargetName="SplitterBorder" Property="Width" Value="3"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GridSplitter.Style>
+                </GridSplitter>
 
                 <!-- Side Panel: Activity Bar + Content (click active tab to collapse) -->
                 <TabControl x:Name="SidePanelTabs" Grid.Column="2"

@@ -63,6 +63,7 @@
               SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Body -->
@@ -81,6 +82,7 @@
               SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Legs -->
@@ -99,6 +101,7 @@
               SelectedValue="{Binding SelectedTileEntity.Item2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 1 -->
@@ -117,6 +120,7 @@
               SelectedValue="{Binding SelectedTileEntity.Item3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 2 -->
@@ -135,6 +139,7 @@
               SelectedValue="{Binding SelectedTileEntity.Item4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 3 -->
@@ -153,6 +158,7 @@
               SelectedValue="{Binding SelectedTileEntity.Item5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 4 -->
@@ -171,6 +177,7 @@
               SelectedValue="{Binding SelectedTileEntity.Item6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Acc 5 -->
@@ -189,6 +196,7 @@
               SelectedValue="{Binding SelectedTileEntity.Item7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Weapon -->
@@ -207,6 +215,7 @@
               SelectedValue="{Binding SelectedTileEntity.Weapon.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Mount -->
@@ -215,6 +224,7 @@
               SelectedValue="{Binding SelectedTileEntity.Mount.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
               IsEditable="true" SelectedValuePath="Key"
               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
               IsSynchronizedWithCurrentItem="False"
               Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         <!-- Buttons -->

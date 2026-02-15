@@ -20,6 +20,7 @@
                               SelectedValue="{Binding NetId, Mode=TwoWay}"
                               SelectedValuePath="Key"
                               ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
                               IsEditable="true"
                               IsSynchronizedWithCurrentItem="False"
                               HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />

@@ -26,6 +26,9 @@
           <SolidColorBrush x:Key="TextFillColorPrimaryBrush" Color="#CCCCCC" />
           <SolidColorBrush x:Key="TextFillColorSecondaryBrush" Color="#9E9E9E" />
 
+          <!-- Subtle fill for fluent list selection/hover (6% white) -->
+          <SolidColorBrush x:Key="SubtleFillColorSecondaryBrush" Color="#0FFFFFFF" />
+
           <!-- ============================================= -->
           <!-- Compact UI Overrides for dense tool layout    -->
           <!-- ============================================= -->
@@ -49,8 +52,8 @@
 
           <!-- ComboBox: default padding is 10,8,10,8 -->
           <Thickness x:Key="ComboBoxPadding">4,2,4,2</Thickness>
-          <Thickness x:Key="ComboBoxItemContentMargin">4,2,4,2</Thickness>
-          <Thickness x:Key="ComboBoxItemMargin">3,1,3,0</Thickness>
+          <Thickness x:Key="ComboBoxItemContentMargin">4,1,4,1</Thickness>
+          <Thickness x:Key="ComboBoxItemMargin">3,0,3,0</Thickness>
           <Thickness x:Key="ComboBoxChevronMargin">4,0,6,0</Thickness>
           <sys:Double x:Key="ComboBoxMinHeight">24</sys:Double>
 
@@ -115,6 +118,22 @@
         <Setter Property="MinWidth" Value="0" />
         <Setter Property="MinHeight" Value="0" />
         <Setter Property="Padding" Value="2,1,2,1" />
+      </Style>
+
+      <!-- ComboBox: enable scrollbar in dropdown (WPF-UI defaults to Hidden) -->
+      <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource DefaultComboBoxStyle}">
+        <Setter Property="MaxDropDownHeight" Value="300" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+      </Style>
+
+      <!-- Compact icon-only button: minimal padding for tight layouts (e.g. chest editor) -->
+      <Style x:Key="CompactIconButton" TargetType="{x:Type Button}" BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="Width" Value="22"/>
+        <Setter Property="Height" Value="22"/>
       </Style>
 
     </ResourceDictionary>

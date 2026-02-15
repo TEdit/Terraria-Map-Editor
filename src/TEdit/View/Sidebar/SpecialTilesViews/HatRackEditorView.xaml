@@ -56,6 +56,7 @@
                   IsEditable="true"
                   SelectedValuePath="Key"
                   ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
                   IsSynchronizedWithCurrentItem="False"
                   HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         </StackPanel>
@@ -83,6 +84,7 @@
                   IsEditable="true"
                   SelectedValuePath="Key"
                   ItemTemplate="{StaticResource RarityDictItemTemplate}"
+                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
                   IsSynchronizedWithCurrentItem="False"
                   HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
         </StackPanel>
