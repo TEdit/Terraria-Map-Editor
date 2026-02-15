@@ -14,7 +14,7 @@
             <DataTemplate x:Key="KiteItemTemplate">
                 <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <ComboBox Grid.Column="0" ItemsSource="{Binding Source={StaticResource KiteCollection}}"
                               SelectedValue="{Binding NetId, Mode=TwoWay}"
