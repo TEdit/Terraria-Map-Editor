@@ -75,6 +75,10 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
+        // Show splash - autoClose fades when main window appears, topMost keeps it above
+        var splashScreen = new SplashScreen("Images/te5-logo.png");
+        splashScreen.Show(autoClose: true, topMost: true);
+
         // Initialize WPF UI theme
         ApplicationThemeManager.Apply(ApplicationTheme.Dark);
         ApplicationAccentColorManager.Apply(System.Windows.Media.Color.FromRgb(0x00, 0xA0, 0x00), ApplicationTheme.Dark);
@@ -194,6 +198,11 @@ public partial class App : Application
         TaskFactoryHelper.Initialize();
 
         base.OnStartup(e);
+
+        // Create main window manually (StartupUri removed from App.xaml)
+        var mainWindow = new MainWindow();
+        MainWindow = mainWindow;
+        mainWindow.Show();
     }
 
 
