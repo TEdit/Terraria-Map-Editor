@@ -52,6 +52,7 @@ public partial class WorldViewModel : ReactiveObject
     private readonly ObservableCollection<IPlugin> _plugins = new ObservableCollection<IPlugin>();
     private readonly ObservableCollection<string> _points = new ObservableCollection<string>();
     private readonly ObservableCollection<NpcListItem> _allNpcs = new ObservableCollection<NpcListItem>();
+    private string _npcSearchText = string.Empty;
     private readonly Timer _saveTimer = new Timer();
     private readonly Selection _selection = new Selection();
     private readonly MorphToolOptions _MorphToolOptions = new MorphToolOptions();
@@ -1022,9 +1023,27 @@ public partial class WorldViewModel : ReactiveObject
                 _allNpcsView = CollectionViewSource.GetDefaultView(_allNpcs);
                 _allNpcsView.SortDescriptions.Add(new SortDescription(nameof(NpcListItem.IsOnMap), ListSortDirection.Descending));
                 _allNpcsView.SortDescriptions.Add(new SortDescription(nameof(NpcListItem.DefaultName), ListSortDirection.Ascending));
+                _allNpcsView.Filter = FilterNpc;
             }
             return _allNpcsView;
         }
+    }
+
+    public string NpcSearchText
+    {
+        get => _npcSearchText;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _npcSearchText, value);
+            AllNpcsView.Refresh();
+        }
+    }
+
+    private bool FilterNpc(object obj)
+    {
+        if (obj is not NpcListItem item) return false;
+        if (string.IsNullOrWhiteSpace(NpcSearchText)) return true;
+        return item.DefaultName.Contains(NpcSearchText, StringComparison.OrdinalIgnoreCase);
     }
 
     public string SelectedPoint

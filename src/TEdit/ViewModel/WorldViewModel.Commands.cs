@@ -123,6 +123,16 @@ public partial class WorldViewModel
         }
     }
 
+    [ReactiveCommand]
+    private void NpcGoTo(NpcListItem item)
+    {
+        if (item?.IsOnMap != true) return;
+
+        int tileX = (int)(item.WorldNpc.Position.X / 16);
+        int tileY = (int)(item.WorldNpc.Position.Y / 16);
+        ZoomFocus?.Invoke(tileX, tileY);
+    }
+
     private void ActivateNpcPointTool(string npcName)
     {
         var pointTool = Tools.FirstOrDefault(t => t is PointTool);

@@ -6,6 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:converters="clr-namespace:TEdit.Converters"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
@@ -20,6 +21,10 @@
 
         <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.tool_npc_hint}"
                    Margin="4" Opacity="0.7" TextWrapping="Wrap" />
+        <ui:TextBox DockPanel.Dock="Top"
+                    PlaceholderText="Search..."
+                    Text="{Binding NpcSearchText, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="4,0,4,4" />
         <ListBox MinHeight="100" ItemsSource="{Binding AllNpcsView}"
                  Grid.IsSharedSizeScope="True">
             <ListBox.ItemContainerStyle>
@@ -35,7 +40,12 @@
             </i:Interaction.Triggers>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Stretch">
+                    <Grid HorizontalAlignment="Stretch" Background="Transparent">
+                        <Grid.InputBindings>
+                            <MouseBinding MouseAction="RightClick"
+                                          Command="{Binding DataContext.NpcGoToCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                          CommandParameter="{Binding}" />
+                        </Grid.InputBindings>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
