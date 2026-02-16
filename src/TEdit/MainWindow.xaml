@@ -8,7 +8,7 @@
         Title="{Binding WindowTitle}" Height="1080" Width="1920"
         MaxWidth="4339"
         Loaded="MainWindow_Loaded"
-        UseLayoutRounding="True" Icon="/TEdit;component/Images/tedit.ico"
+        UseLayoutRounding="True" Icon="/TEdit;component/Images/te.ico"
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:vm="clr-namespace:TEdit.ViewModel"
         xmlns:cv="clr-namespace:TEdit.Converters"
@@ -78,7 +78,7 @@
                      Padding="0" Margin="0"
                      FontSize="12" Height="24">
             <ui:TitleBar.Icon>
-                <ui:ImageIcon Source="/TEdit;component/Images/tedit.ico" Width="16" Height="16" VerticalAlignment="Center" Margin="4,0" />
+                <ui:ImageIcon Source="/TEdit;component/Images/te.ico" Width="16" Height="16" VerticalAlignment="Center" Margin="4,0" />
             </ui:TitleBar.Icon>
         </ui:TitleBar>
 
