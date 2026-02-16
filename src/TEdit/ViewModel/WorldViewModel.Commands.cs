@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
@@ -142,7 +143,7 @@ public partial class WorldViewModel
     private void SaveTileEntity(bool save) => ExecuteSaveTileEntity(save);
 
     [ReactiveCommand]
-    private void ImportBestiary() => ImportKillsAndBestiary();
+    private Task ImportBestiary() => ImportKillsAndBestiaryAsync();
 
     private void ExecuteSaveTileEntity(bool save)
     {
@@ -242,7 +243,9 @@ public partial class WorldViewModel
         string url = "https://www.binaryconstruct.com/tedit/#download";
         try
         {
-            System.Diagnostics.Process.Start(url);
+            var process =new System.Diagnostics.ProcessStartInfo(url);
+            process.UseShellExecute = true;
+            System.Diagnostics.Process.Start(process);
         }
         catch (Exception ex)
         {
@@ -261,16 +264,16 @@ public partial class WorldViewModel
     private void Open() => OpenWorld();
 
     [ReactiveCommand]
-    private void Save() => SaveWorld();
+    private Task Save() => SaveWorldAsync();
 
     [ReactiveCommand]
-    private void SaveAs() => SaveWorldAs();
+    private Task SaveAs() => SaveWorldAsAsync();
 
     [ReactiveCommand]
-    private void SaveAsVersion() => SaveWorldAsVersion();
+    private Task SaveAsVersion() => SaveWorldAsVersionAsync();
 
     [ReactiveCommand]
-    private void Reload() => ReloadWorld();
+    private Task Reload() => ReloadWorldAsync();
 
     [ReactiveCommand]
     private void Copy() => EditCopy();
@@ -282,7 +285,7 @@ public partial class WorldViewModel
     private void Delete() => EditDelete();
 
     [ReactiveCommand]
-    private void Crop() => CropWorld();
+    private Task Crop() => CropWorldAsync();
 
     [ReactiveCommand]
     private void Expand() => ExpandWorld();
@@ -310,28 +313,12 @@ public partial class WorldViewModel
     private void SetTool(ITool tool) => SetActiveTool(tool);
 
     [ReactiveCommand]
-    private void SetLanguage(LanguageSelection language) => ExecuteSetLanguage(language);
-
-    private LanguageSelection _currentLanguage;
-
-    public LanguageSelection CurrentLanguage
-    {
-
-        get { return _currentLanguage; }
-        set
-        {
-            this.RaiseAndSetIfChanged(ref _currentLanguage, value);
-            UpdateRenderWorld();
-        }
-
-    }
-
-    private void ExecuteSetLanguage(LanguageSelection language)
+    private async Task SetLanguage(LanguageSelection language)
     {
         CurrentLanguage = language;
         UserSettingsService.Current.Language = language;
 
-        var result = App.DialogService.ShowMessage(
+        var result = await App.DialogService.ShowMessageAsync(
             $"Language changed to {language}. Do you wish to restart now?",
             "Restart to change language",
             DialogButton.YesNo,
@@ -341,6 +328,18 @@ public partial class WorldViewModel
         {
             System.Windows.Forms.Application.Restart();
             System.Windows.Application.Current.Shutdown();
+        }
+    }
+
+    private LanguageSelection _currentLanguage;
+
+    public LanguageSelection CurrentLanguage
+    {
+        get { return _currentLanguage; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _currentLanguage, value);
+            UpdateRenderWorld();
         }
     }
 
@@ -476,10 +475,10 @@ public partial class WorldViewModel
     private void RemoveSchematic(ClipboardBufferPreview buffer) => _clipboard?.Remove(buffer);
 
     [ReactiveCommand]
-    private void ExportSchematic(ClipboardBufferPreview buffer) => ExportSchematicFile(buffer);
+    private Task ExportSchematic(ClipboardBufferPreview buffer) => ExportSchematicAsync(buffer);
 
     [ReactiveCommand]
-    private void ImportSchematic(bool isFalseColor) => ExecuteImportSchematic(isFalseColor);
+    private Task ImportSchematic(bool isFalseColor) => ImportSchematicAsync(isFalseColor);
 
     [ReactiveCommand]
     private void EmptyClipboard() => _clipboard?.ClearBuffers();
@@ -511,11 +510,11 @@ public partial class WorldViewModel
         EditPaste();
     }
 
-    private void ImportKillsAndBestiary()
+    private async Task ImportKillsAndBestiaryAsync()
     {
-        if (CurrentWorld == null) return; // Ensure world is loaded first
+        if (CurrentWorld == null) return;
 
-        var confirmResult = App.DialogService.ShowMessage(
+        var confirmResult = await App.DialogService.ShowMessageAsync(
             "This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?",
             "Load Bestiary?",
             DialogButton.YesNo,
@@ -549,7 +548,7 @@ public partial class WorldViewModel
                 world.Bestiary = bestiary;
                 world.KilledMobs.Clear();
                 world.KilledMobs.AddRange(killTally);
-                App.DialogService.ShowMessage(
+                await App.DialogService.ShowMessageAsync(
                     $"Error importing Bestiary data from {ofd.FileName}. Your current bestiary has been restored.\r\n{ex.Message}",
                     "Import Error",
                     DialogButton.OK,
@@ -558,7 +557,7 @@ public partial class WorldViewModel
         }
     }
 
-    private void ExecuteImportSchematic(bool isFalseColor)
+    private async Task ImportSchematicAsync(bool isFalseColor)
     {
         var ofd = new OpenFileDialog
         {
@@ -582,13 +581,13 @@ public partial class WorldViewModel
                 }
                 catch (Exception ex)
                 {
-                    App.DialogService.ShowMessage(ex.Message, "Schematic File Error", DialogButton.OK, DialogImage.Error);
+                    await App.DialogService.ShowExceptionAsync(ex.Message);
                 }
             }
         }
     }
 
-    private void ExportSchematicFile(ClipboardBufferPreview buffer)
+    private async Task ExportSchematicAsync(ClipboardBufferPreview buffer)
     {
         var sfd = new SaveFileDialog();
         sfd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png";
@@ -605,9 +604,8 @@ public partial class WorldViewModel
             }
             catch (Exception ex)
             {
-                App.DialogService.ShowMessage(ex.Message, "Error Saving Schematic", DialogButton.OK, DialogImage.Error);
+                await App.DialogService.ShowExceptionAsync(ex.Message);
             }
-
         }
     }
 

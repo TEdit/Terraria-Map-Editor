@@ -45,8 +45,9 @@ public partial class MainWindow : FluentWindow
 
     async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
-        // Initialize dialog and snackbar services with UI elements
-        App.DialogService.SetDialogHost(RootContentDialog);
+        // Initialize snackbar service with UI element
+        // Note: DialogService uses WPF-UI MessageBox (separate window) to avoid
+        // WPF airspace issues with the DirectX/XNA WorldRenderXna control
         App.SnackbarService.SetSnackbarPresenter(SnackbarPresenter);
 
         // Set up navigation delegates for Find sidebar

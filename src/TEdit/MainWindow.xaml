@@ -67,11 +67,20 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid>
+    <!-- Root Grid with explicit row/column to ensure overlay elements stretch properly -->
+    <Grid x:Name="RootLayoutGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!-- Main content Grid -->
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
         <!-- WPF UI Title Bar (compact) -->
         <ui:TitleBar Title="{Binding WindowTitle}" Grid.Row="0"
@@ -420,11 +429,13 @@
                 </TabControl>
             </Grid>
         </DockPanel>
+        </Grid>
 
-        <!-- WPF UI Snackbar for notifications -->
-        <ui:SnackbarPresenter x:Name="SnackbarPresenter" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,40" />
+        <!-- WPF UI Snackbar for notifications - at top to avoid DirectX airspace issue -->
+        <ui:SnackbarPresenter x:Name="SnackbarPresenter" Grid.Row="0" Grid.Column="0"
+                              VerticalAlignment="Top" Margin="0,60,0,0" Panel.ZIndex="100" />
 
-        <!-- WPF UI Dialog host -->
-        <ContentPresenter x:Name="RootContentDialog" Grid.Row="0" Grid.RowSpan="2" />
+        <!-- WPF UI Dialog host - overlays everything -->
+        <ui:ContentDialogHost x:Name="RootContentDialogHost" Grid.Row="0" Grid.Column="0" Panel.ZIndex="9999" />
     </Grid>
 </ui:FluentWindow>

@@ -818,10 +818,10 @@ public partial class WorldViewModel : ReactiveObject
     }
 
     [ReactiveCommand]
-    private void LaunchWiki() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki");
+    private Task LaunchWiki() => LaunchUrlAsync("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki");
 
     /* SBLogic - catch exception if browser can't be launched */
-    public static void LaunchUrl(string url)
+    public static async Task LaunchUrlAsync(string url)
     {
         DialogResponse result = DialogResponse.None;
         try
@@ -830,7 +830,7 @@ public partial class WorldViewModel : ReactiveObject
         }
         catch
         {
-            result = App.DialogService.ShowMessage(
+            result = await App.DialogService.ShowMessageAsync(
                 "Unable to open external browser. Copy to clipboard?",
                 "Link Error",
                 DialogButton.YesNo,
@@ -1366,11 +1366,9 @@ public partial class WorldViewModel : ReactiveObject
         {
             this.RaisePropertyChanged(nameof(RealisticColors));
             UserSettingsService.Current.RealisticColors = value;
-            App.DialogService.ShowMessage(
+            _ = App.DialogService.ShowAlertAsync(
                 Properties.Language.messagebox_restartrequired,
-                Properties.Language.messagebox_restartrequired,
-                DialogButton.OK,
-                DialogImage.Information);
+                Properties.Language.messagebox_restartrequired);
         }
     }
 
@@ -1443,9 +1441,9 @@ public partial class WorldViewModel : ReactiveObject
         if (IsAutoSaveEnabled && HasUnsavedChanges)
         {
             if (!string.IsNullOrWhiteSpace(CurrentFile))
-                SaveWorldThreaded(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"), GetSaveVersion_MaxConfig());
+                _ = SaveWorldThreadedAsync(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"), GetSaveVersion_MaxConfig());
             else
-                SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave.tmp"), GetSaveVersion_MaxConfig());
+                _ = SaveWorldThreadedAsync(Path.Combine(TempPath, "newworld.autosave.tmp"), GetSaveVersion_MaxConfig());
         }
     }
 
@@ -1492,15 +1490,13 @@ public partial class WorldViewModel : ReactiveObject
         }
         catch (Exception)
         {
-            App.DialogService.ShowMessage("Unable to check version.", "Update Check Failed", DialogButton.OK, DialogImage.Warning);
+            await App.DialogService.ShowWarningAsync("Update Check Failed", "Unable to check version.");
         }
-
-
 
         if (isOutdated)
         {
 #if !DEBUG
-            var updateResult = App.DialogService.ShowMessage(
+            var updateResult = await App.DialogService.ShowMessageAsync(
                 "You are using an outdated version of TEdit. Do you wish to download the update?",
                 "Update?",
                 DialogButton.YesNo,
@@ -2229,17 +2225,17 @@ public partial class WorldViewModel : ReactiveObject
     }
     #endregion
 
-    private void SaveWorld()
+    private async Task SaveWorldAsync()
     {
         if (CurrentWorld == null) return;
 
         if (string.IsNullOrWhiteSpace(CurrentFile))
-            SaveWorldAs();
+            await SaveWorldAsAsync();
         else
-            SaveWorldFile();
+            await SaveWorldFileAsync();
     }
 
-    private void SaveWorldAsVersion()
+    private async Task SaveWorldAsVersionAsync()
     {
         if (CurrentWorld == null) return;
 
@@ -2259,11 +2255,11 @@ public partial class WorldViewModel : ReactiveObject
         if (pickVersion && (bool)sfd.ShowDialog())
         {
             CurrentFile = sfd.FileName;
-            SaveWorldFile(GetSaveVersion_MaxConfig(version)); // Clamp to the max config version.
+            await SaveWorldFileAsync(GetSaveVersion_MaxConfig(version)); // Clamp to the max config version.
         }
     }
 
-    private void SaveWorldAs()
+    private async Task SaveWorldAsAsync()
     {
         if (CurrentWorld == null) return;
 
@@ -2309,7 +2305,7 @@ public partial class WorldViewModel : ReactiveObject
 
                         if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(selectedGameVersion, out uint versionOverride))
                         {
-                            SaveWorldFile(versionOverride);
+                            await SaveWorldFileAsync(versionOverride);
                             return;
                         }
                     }
@@ -2322,18 +2318,17 @@ public partial class WorldViewModel : ReactiveObject
 
             // Maintain the existing world version.
             // This is also the fallback for parsing failures.
-            // SaveWorldFile(CurrentWorld.Version);
-            SaveWorldFile(GetSaveVersion_MaxConfig());
+            await SaveWorldFileAsync(GetSaveVersion_MaxConfig());
         }
     }
 
-    private void SaveWorldFile(uint version = 0)
+    private async Task SaveWorldFileAsync(uint version = 0)
     {
         if (CurrentWorld == null)
             return;
         if (CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
         {
-            var overwriteResult = App.DialogService.ShowMessage(
+            var overwriteResult = await App.DialogService.ShowMessageAsync(
                 _currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?",
                 "World Modified",
                 DialogButton.OKCancel,
@@ -2343,12 +2338,12 @@ public partial class WorldViewModel : ReactiveObject
                 return;
         }
 
-        SaveWorldThreaded(CurrentFile, GetSaveVersion_MaxConfig(version));
+        await SaveWorldThreadedAsync(CurrentFile, GetSaveVersion_MaxConfig(version));
     }
 
-    private void SaveWorldThreaded(string filename, uint version = 0)
+    private async Task SaveWorldThreadedAsync(string filename, uint version = 0)
     {
-        Task.Factory.StartNew(async () =>
+        await Task.Run(async () =>
         {
             try
             {
@@ -2358,14 +2353,16 @@ public partial class WorldViewModel : ReactiveObject
             catch (ArgumentOutOfRangeException err)
             {
                 string msg = "There is a problem in your world.\r\n" + $"{err.ParamName}\r\n" + $"This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
-                var saveResult = App.DialogService.ShowMessage(msg, "World Error", DialogButton.YesNo, DialogImage.Error);
+                var saveResult = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowMessageAsync(msg, "World Error", DialogButton.YesNo, DialogImage.Error)).Task.Unwrap();
                 if (saveResult != DialogResponse.Yes)
                     return;
             }
             catch (Exception ex)
             {
                 string msg = "There is a problem in your world.\r\n" + $"{ex.Message}\r\n" + "This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
-                var saveResult = App.DialogService.ShowMessage(msg, "World Error", DialogButton.YesNo, DialogImage.Error);
+                var saveResult = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowMessageAsync(msg, "World Error", DialogButton.YesNo, DialogImage.Error)).Task.Unwrap();
                 if (saveResult != DialogResponse.Yes)
                     return;
             }
@@ -2374,7 +2371,7 @@ public partial class WorldViewModel : ReactiveObject
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
             }));
-        }).Unwrap().ContinueWith(t =>
+        }).ContinueWith(t =>
         {
             if (t.IsCompletedSuccessfully && _undoManager != null)
             {
@@ -2435,24 +2432,22 @@ public partial class WorldViewModel : ReactiveObject
         return v;
     }
 
-    public void ReloadWorld()
+    public async Task ReloadWorldAsync()
     {
         // perform validations.
         if (CurrentWorld == null)
         {
-            App.DialogService.ShowMessage("No opened world loaded for reloading.", "World File Error", DialogButton.OK, DialogImage.Error);
+            await App.DialogService.ShowExceptionAsync("No opened world loaded for reloading.");
             return;
         }
-        else
-        {
-            // Prompt for world loading.
-            var reloadResult = App.DialogService.ShowMessage("Unsaved work will be lost!", "Reload Current World?", DialogButton.YesNo, DialogImage.Question);
-            if (reloadResult == DialogResponse.No)
-                return; // if no, abort.
 
-            // Load world.
-            LoadWorld(CurrentFile);
-        }
+        // Prompt for world loading.
+        var confirm = await App.DialogService.ShowConfirmationAsync("Reload Current World?", "Unsaved work will be lost!");
+        if (!confirm)
+            return; // if no, abort.
+
+        // Load world.
+        LoadWorld(CurrentFile);
     }
 
     public void LoadWorld(string filename)
@@ -2461,10 +2456,9 @@ public partial class WorldViewModel : ReactiveObject
         _loadTimer.Start();
         _saveTimer.Stop();
         CurrentFile = filename;
-        //CurrentWorld = null;
         GC.WaitForFullGCComplete();
 
-        Task.Factory.StartNew(() =>
+        Task.Run(async () =>
         {
             // perform validations
             var validation = World.ValidateWorldFile(filename);
@@ -2479,11 +2473,10 @@ public partial class WorldViewModel : ReactiveObject
                         $"(missing newer tiles/walls/etc may cause issues).\r\n\r\n" +
                         $"Do you want to attempt to load anyway?";
 
-                var newerResult = App.DialogService.ShowMessage(message, "Newer World Version", DialogButton.YesNo, DialogImage.Warning);
-                if (newerResult == DialogResponse.No)
-                {
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Newer World Version", message)).Task.Unwrap();
+                if (!confirm)
                     return null;
-                }
 
                 // Apply only after user accepts.
                 WorldConfiguration.ApplyForWorldVersion(validation.Version, out _);
@@ -2500,24 +2493,22 @@ public partial class WorldViewModel : ReactiveObject
                     "3. Restore a previously created TEdit checkpoint (.TEdit).\r\n" +
                     "4. Restore a backup via windows file history (if previously enabled).";
 
-                App.DialogService.ShowMessage(msg, "Corrupt World File", DialogButton.OK, DialogImage.Error);
+                await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowExceptionAsync(msg)).Task.Unwrap();
                 return null;
             }
             else if (!validation.IsValid)
             {
-                //ErrorLogging.LogException(err);
                 string msg =
                     "There was an error reading the world file.\r\n" +
                     "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
                     $"TEdit v{TEdit.App.Version}\r\n" +
                     $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
                     $"Current World: {validation.Version}\r\n\r\n" +
-                    "Do you wish to force it to load anyway?\r\n\r\n" +
-                    "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
                     $"The error is :\r\n{validation.Message}";
 
-                // there is no recovering here, so just show the message and return (aka abort)
-                App.DialogService.ShowMessage(msg, "World File Error", DialogButton.OK, DialogImage.Error);
+                await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowExceptionAsync(msg)).Task.Unwrap();
                 return null;
             }
 
@@ -2529,43 +2520,37 @@ public partial class WorldViewModel : ReactiveObject
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
 
-                var tmodResult = App.DialogService.ShowMessage(message, "Convert File?", DialogButton.YesNo, DialogImage.Question);
-                if (tmodResult == DialogResponse.No)
-                {
-                    // if no, abort
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Load Legacy TModLoader World?", message)).Task.Unwrap();
+                if (!confirm)
                     return null;
-                }
             }
             else if (validation.IsLegacy)
             {
-                // Reworked "IsLegacy" to be versions < 1.0.
                 string message = $"You are loading a legacy world version: {validation.Version}.\r\n" +
                     $"Editing legacy files could cause unexpected results.\r\n" +
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
 
-                var legacyResult = App.DialogService.ShowMessage(message, "Convert File?", DialogButton.YesNo, DialogImage.Question);
-                if (legacyResult == DialogResponse.No)
-                {
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Load Legacy World?", message)).Task.Unwrap();
+                if (!confirm)
                     return null;
-                }
             }
             else if (validation.IsTModLoader)
             {
-                string message = $"You are loading a TModLoader world." +
+                string message = $"You are loading a TModLoader world. " +
                     $"Editing modded worlds is unsupported.\r\n" +
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
 
-                var modResult = App.DialogService.ShowMessage(message, "Load Mod World?", DialogButton.YesNo, DialogImage.Question);
-                if (modResult == DialogResponse.No)
-                {
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Load Mod World?", message)).Task.Unwrap();
+                if (!confirm)
                     return null;
-                }
             }
 
             // Create a single backup of the original world file (if it doesn't already exist)
-            // This preserves the unedited state when first opening a world
             try
             {
                 string backupPath = filename + ".TEdit";
@@ -2573,34 +2558,30 @@ public partial class WorldViewModel : ReactiveObject
                 {
                     File.Copy(filename, backupPath, false);
                 }
-
-                // Clean up old timestamped backup files
                 FileMaintenance.CleanupOldWorldBackups(filename);
             }
             catch (Exception ex)
             {
                 ErrorLogging.LogException(ex);
-                // Continue loading even if backup fails
             }
 
             var (world, error) = World.LoadWorld(filename);
             if (error != null)
             {
                 string msg =
-                "There was an error reading the world file.\r\n" +
-                "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                $"TEdit v{TEdit.App.Version}\r\n" +
-                $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
-                $"Current World: {validation.Version}\r\n\r\n" +
-                "Do you wish to force it to load anyway?\r\n\r\n" +
-                "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
-                $"The error is :\r\n{error.Message}";
+                    "There was an error reading the world file.\r\n" +
+                    "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
+                    $"TEdit v{TEdit.App.Version}\r\n" +
+                    $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
+                    $"Current World: {validation.Version}\r\n\r\n" +
+                    "Do you wish to force it to load anyway?\r\n\r\n" +
+                    "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
+                    $"The error is :\r\n{error.Message}";
 
-                var invalidResult = App.DialogService.ShowMessage(msg, "Load Invalid World?", DialogButton.YesNo, DialogImage.Question);
-                if (invalidResult == DialogResponse.No)
-                {
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Load Invalid World?", msg)).Task.Unwrap();
+                if (!confirm)
                     return null;
-                }
             }
 
             return world;
@@ -2639,7 +2620,6 @@ public partial class WorldViewModel : ReactiveObject
             }
             finally
             {
-
                 _loadTimer.Stop();
             }
 

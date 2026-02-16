@@ -3,9 +3,9 @@ using ReactiveUI.SourceGenerators;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using TEdit.Helper;
-using TEdit.Terraria;
 using TEdit.Terraria;
 using TEdit.UI.Xaml.Dialog;
 
@@ -158,17 +158,15 @@ public partial class BestiaryViewModel : ReactiveObject
     }
 
     [ReactiveCommand]
-    private void CompleteBestiary()
+    private async Task CompleteBestiary()
     {
         if (_wvm.CurrentWorld == null) { return; }
 
-        var confirmResult = App.DialogService.ShowMessage(
-            "This will completely replace your currently loaded world Bestiary and Kill Tally with a completed bestiary. Continue?",
+        var confirm = await App.DialogService.ShowConfirmationAsync(
             "Complete Bestiary?",
-            DialogButton.YesNo,
-            DialogImage.Question);
+            "This will completely replace your currently loaded world Bestiary and Kill Tally with a completed bestiary. Continue?");
 
-        if (confirmResult != DialogResponse.Yes)
+        if (!confirm)
             return;
 
         // make a backup
@@ -202,22 +200,20 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.Bestiary = bestiary;
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
-            App.DialogService.ShowMessage($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
+            await App.DialogService.ShowExceptionAsync($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
         }
     }
 
     [ReactiveCommand]
-    private void ResetBestiary()
+    private async Task ResetBestiary()
     {
         if (_wvm.CurrentWorld == null) { return; }
 
-        var resetResult = App.DialogService.ShowMessage(
-            "This will completely replace your currently loaded world Bestiary and Kill Tally with a reset bestiary. Continue?",
+        var confirm = await App.DialogService.ShowConfirmationAsync(
             "Reset Bestiary?",
-            DialogButton.YesNo,
-            DialogImage.Question);
+            "This will completely replace your currently loaded world Bestiary and Kill Tally with a reset bestiary. Continue?");
 
-        if (resetResult != DialogResponse.Yes)
+        if (!confirm)
             return;
 
         // make a backup
@@ -236,7 +232,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.Bestiary = bestiary;
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
-            App.DialogService.ShowMessage($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
+            await App.DialogService.ShowExceptionAsync($"Error resetting Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
         }
     }
 
@@ -244,17 +240,15 @@ public partial class BestiaryViewModel : ReactiveObject
     /// Save Bestiary data back to world
     /// </summary>
     [ReactiveCommand]
-    private void SaveBestiary()
+    private async Task SaveBestiary()
     {
         if (_wvm.CurrentWorld == null) { return; }
 
-        var saveResult = App.DialogService.ShowMessage(
-            "Are you sure you wish to save Bestiary changes?",
+        var confirm = await App.DialogService.ShowConfirmationAsync(
             "Save Bestiary?",
-            DialogButton.YesNo,
-            DialogImage.Question);
+            "Are you sure you wish to save Bestiary changes?");
 
-        if (saveResult != DialogResponse.Yes)
+        if (!confirm)
             return;
 
         // make a backup
@@ -279,7 +273,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.Bestiary = bestiary;
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
-            App.DialogService.ShowMessage($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
+            await App.DialogService.ShowExceptionAsync($"Error saving Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
 using TEdit.ViewModel;
 
@@ -14,18 +14,18 @@ public partial class Sponsor : UserControl
         InitializeComponent();
     }
 
-    private void PatreonButtonClick(object sender, RoutedEventArgs e)
+    private async void PatreonButtonClick(object sender, RoutedEventArgs e)
     {
-        WorldViewModel.LaunchUrl("https://www.patreon.com/bePatron?u=2278324");
+        await WorldViewModel.LaunchUrlAsync("https://www.patreon.com/bePatron?u=2278324");
     }
 
-    private void GithubButtonClick(object sender, RoutedEventArgs e)
+    private async void GithubButtonClick(object sender, RoutedEventArgs e)
     {
-        WorldViewModel.LaunchUrl("https://github.com/TEdit/Terraria-Map-Editor");
+        await WorldViewModel.LaunchUrlAsync("https://github.com/TEdit/Terraria-Map-Editor");
     }
 
-    private void TwitterButtonClick(object sender, RoutedEventArgs e)
+    private async void TwitterButtonClick(object sender, RoutedEventArgs e)
     {
-        WorldViewModel.LaunchUrl("https://twitter.com/binaryconstruct");
+        await WorldViewModel.LaunchUrlAsync("https://twitter.com/binaryconstruct");
     }
 }

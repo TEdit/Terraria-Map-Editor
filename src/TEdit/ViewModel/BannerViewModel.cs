@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using TEdit.Terraria;
@@ -145,17 +146,15 @@ public partial class BannerViewModel : ReactiveObject
     /// Import banner data from a different world file.
     /// </summary>
     [ReactiveCommand]
-    private void ImportBanners()
+    private async Task ImportBanners()
     {
         if (_wvm.CurrentWorld == null) return;
 
-        var importResult = App.DialogService.ShowMessage(
-            "This will replace your current banner counts with data from the selected world file. Continue?",
+        var confirm = await App.DialogService.ShowConfirmationAsync(
             "Import Banners?",
-            DialogButton.YesNo,
-            DialogImage.Question);
+            "This will replace your current banner counts with data from the selected world file. Continue?");
 
-        if (importResult != DialogResponse.Yes)
+        if (!confirm)
             return;
 
         var ofd = new OpenFileDialog
@@ -183,22 +182,20 @@ public partial class BannerViewModel : ReactiveObject
             {
                 _wvm.CurrentWorld.ClaimableBanners[i] = backup[i];
             }
-            App.DialogService.ShowMessage($"Error importing banner data from {ofd.FileName}. Your current banners have been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
+            await App.DialogService.ShowExceptionAsync($"Error importing banner data from {ofd.FileName}. Your current banners have been restored.\r\n{ex.Message}");
         }
     }
 
     [ReactiveCommand]
-    private void SaveBanners()
+    private async Task SaveBanners()
     {
         if (_wvm.CurrentWorld == null) return;
 
-        var saveResult = App.DialogService.ShowMessage(
-            "Save banner changes back to the world?",
+        var confirm = await App.DialogService.ShowConfirmationAsync(
             "Save Banners?",
-            DialogButton.YesNo,
-            DialogImage.Question);
+            "Save banner changes back to the world?");
 
-        if (saveResult != DialogResponse.Yes)
+        if (!confirm)
             return;
 
         // Backup
@@ -220,22 +217,20 @@ public partial class BannerViewModel : ReactiveObject
             {
                 _wvm.CurrentWorld.ClaimableBanners[i] = backup[i];
             }
-            App.DialogService.ShowMessage($"Error saving banner data. Changes have been restored.\r\n{ex.Message}", "Error", DialogButton.OK, DialogImage.Error);
+            await App.DialogService.ShowExceptionAsync($"Error saving banner data. Changes have been restored.\r\n{ex.Message}");
         }
     }
 
     [ReactiveCommand]
-    private void MaxOutBanners()
+    private async Task MaxOutBanners()
     {
         if (_wvm.CurrentWorld == null) return;
 
-        var maxResult = App.DialogService.ShowMessage(
-            "Set all banner counts to maximum (9999)?",
+        var confirm = await App.DialogService.ShowConfirmationAsync(
             "Max Out Banners?",
-            DialogButton.YesNo,
-            DialogImage.Question);
+            "Set all banner counts to maximum (9999)?");
 
-        if (maxResult != DialogResponse.Yes)
+        if (!confirm)
             return;
 
         foreach (var item in BannerData)
@@ -245,17 +240,15 @@ public partial class BannerViewModel : ReactiveObject
     }
 
     [ReactiveCommand]
-    private void ResetBanners()
+    private async Task ResetBanners()
     {
         if (_wvm.CurrentWorld == null) return;
 
-        var resetResult = App.DialogService.ShowMessage(
-            "Reset all banner counts to zero?",
+        var confirm = await App.DialogService.ShowConfirmationAsync(
             "Reset Banners?",
-            DialogButton.YesNo,
-            DialogImage.Question);
+            "Reset all banner counts to zero?");
 
-        if (resetResult != DialogResponse.Yes)
+        if (!confirm)
             return;
 
         foreach (var item in BannerData)

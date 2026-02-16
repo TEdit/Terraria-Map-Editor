@@ -68,7 +68,7 @@ public partial class WorldViewModel
         this.SelectedTabIndex = 3; // Open the clipboard tab.
     }
 
-    public async void CropWorld()
+    public async Task CropWorldAsync()
     {
         if (CurrentWorld == null) return;
         if (!CanCopy())
@@ -76,23 +76,16 @@ public partial class WorldViewModel
 
         bool addBorders = false;
 
-        var cropResult = App.DialogService.ShowMessage(
-            "This will generate a new world within the selected region.\nAll progress outside of the cropped zone will be lost., Continue?",
+        var confirm = await App.DialogService.ShowConfirmationAsync(
             "Crop World?",
-            DialogButton.YesNo,
-            DialogImage.Question);
+            "This will generate a new world within the selected region.\nAll progress outside of the cropped zone will be lost. Continue?");
 
-        if (cropResult != DialogResponse.Yes)
+        if (!confirm)
             return;
 
-        var borderResult = App.DialogService.ShowMessage(
-            "Add \"edge of world\" boundaries?",
+        addBorders = await App.DialogService.ShowConfirmationAsync(
             "Crop World:",
-            DialogButton.YesNo,
-            DialogImage.Question);
-
-        if (borderResult == DialogResponse.Yes)
-        { addBorders = true; };
+            "Add \"edge of world\" boundaries?");
 
         // Create clipboard
         //_clipboard.Buffer = _clipboard.GetSelectionBuffer();
