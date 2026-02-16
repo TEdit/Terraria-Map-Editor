@@ -28,6 +28,9 @@ jobs:
         with:
           dotnet-version: "10.0.x"
 
+      - name: Install Velopack CLI
+        run: dotnet tool install -g vpk
+
       - name: Build and package
         shell: pwsh
         run: ./build.ps1
