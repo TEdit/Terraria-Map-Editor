@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Editor;
+using TEdit.Editor.Tools;
 using TEdit.Input;
 using TEdit.Services;
 using TEdit.ViewModel;
@@ -44,6 +45,9 @@ public partial class MainWindow : FluentWindow
     private nint _hwnd;
 
     private WorldViewModel _vm;
+    private ITool _toolBeforePicker;
+    private DateTime _pickerKeyDownTime;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -165,6 +169,14 @@ public partial class MainWindow : FluentWindow
         {
             case "nav.pan":
                 _vm.RequestPanCommand.Execute(false).Subscribe();
+                return true;
+            case "tool.picker":
+                var held = (DateTime.UtcNow - _pickerKeyDownTime).TotalMilliseconds > _vm.PickerHoldThresholdMs;
+                if (held && _toolBeforePicker != null)
+                {
+                    _vm.SetActiveTool(_toolBeforePicker);
+                }
+                _toolBeforePicker = null;
                 return true;
             default:
                 return false;
@@ -481,7 +493,12 @@ public partial class MainWindow : FluentWindow
                 SetActiveTool("Fill");
                 return true;
             case "tool.picker":
-                SetActiveTool("Picker");
+                if (!e.IsRepeat)
+                {
+                    _toolBeforePicker = _vm.ActiveTool?.Name == "Picker" ? null : _vm.ActiveTool;
+                    _pickerKeyDownTime = DateTime.UtcNow;
+                    SetActiveTool("Picker");
+                }
                 return true;
             case "tool.point":
                 SetActiveTool("Point");

@@ -663,6 +663,20 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
+    private int _pickerHoldThresholdMs = UserSettingsService.Current.PickerHoldThresholdMs;
+    public int PickerHoldThresholdMs
+    {
+        get { return _pickerHoldThresholdMs; }
+        set
+        {
+            var clamped = Math.Clamp(value, 100, 500);
+            if (this.RaiseAndSetIfChanged(ref _pickerHoldThresholdMs, clamped) != clamped)
+            {
+                UserSettingsService.Current.PickerHoldThresholdMs = clamped;
+            }
+        }
+    }
+
     public SpriteItemPreview SelectedSpriteItem
     {
         get { return _selectedSpriteItem; }

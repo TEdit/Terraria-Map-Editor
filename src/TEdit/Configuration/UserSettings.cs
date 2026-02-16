@@ -20,6 +20,7 @@ public class UserSettings : INotifyPropertyChanged
     private bool _showNews = true;
     private bool _realisticColors = false;
     private int _spriteThumbnailSize = 64;
+    private int _pickerHoldThresholdMs = 150;
     private string _telemetryDeclinedVersion = "";
     private UpdateChannel _updateChannel = UpdateChannel.Stable;
     private Dictionary<string, List<InputBinding>> _inputBindings = new();
@@ -76,6 +77,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _spriteThumbnailSize;
         set => SetField(ref _spriteThumbnailSize, value);
+    }
+
+    public int PickerHoldThresholdMs
+    {
+        get => _pickerHoldThresholdMs;
+        set => SetField(ref _pickerHoldThresholdMs, Math.Clamp(value, 100, 500));
     }
 
     public string TelemetryDeclinedVersion

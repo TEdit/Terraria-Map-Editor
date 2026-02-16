@@ -729,6 +729,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>Show news and announcements in the editor</value>
   </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>Picker Hold Threshold (ms)</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>How long to hold the Picker key before it becomes a temporary pick (100-500ms)</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>Show Points</value>
   </data>

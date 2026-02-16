@@ -1664,6 +1664,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Picker Hold Threshold (ms).
+        /// </summary>
+        public static string settings_picker_hold_threshold {
+            get {
+                return ResourceManager.GetString("settings_picker_hold_threshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How long to hold the Picker key before it becomes a temporary pick (100-500ms).
+        /// </summary>
+        public static string settings_picker_hold_threshold_desc {
+            get {
+                return ResourceManager.GetString("settings_picker_hold_threshold_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use Realistic Colors.
         /// </summary>
         public static string settings_realistic_colors {

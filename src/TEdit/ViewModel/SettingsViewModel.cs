@@ -200,6 +200,19 @@ public partial class SettingsViewModel
             Setter = v => wvm.ShowNews = (bool)v
         });
 
+        AllSettings.Add(new SettingItem
+        {
+            Name = Language.settings_picker_hold_threshold,
+            Description = Language.settings_picker_hold_threshold_desc,
+            Category = Language.settings_category_general,
+            EditorType = SettingEditorType.Slider,
+            SliderMin = 100,
+            SliderMax = 500,
+            SliderStep = 50,
+            Getter = () => (double)wvm.PickerHoldThresholdMs,
+            Setter = v => wvm.PickerHoldThresholdMs = (int)(double)v
+        });
+
         // ── Rendering ──
         AllSettings.Add(new SettingItem
         {
