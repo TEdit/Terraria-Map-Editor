@@ -31,6 +31,7 @@ public static class ViewModelLocator
     // Singleton instances for sidebar viewmodels that need to persist state
     private static FilterSidebarViewModel? _filterSidebarViewModel;
     private static FindSidebarViewModel? _findSidebarViewModel;
+    private static ScriptingSidebarViewModel? _scriptingSidebarViewModel;
 
     public static FilterSidebarViewModel GetFilterSidebarViewModel()
     {
@@ -42,6 +43,12 @@ public static class ViewModelLocator
     {
         _findSidebarViewModel ??= new FindSidebarViewModel(WorldViewModel);
         return _findSidebarViewModel;
+    }
+
+    public static ScriptingSidebarViewModel GetScriptingSidebarViewModel()
+    {
+        _scriptingSidebarViewModel ??= new ScriptingSidebarViewModel(WorldViewModel);
+        return _scriptingSidebarViewModel;
     }
 
     private static WorldViewModel CreateWorldViewModel()

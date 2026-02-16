@@ -195,7 +195,7 @@
                         <TextBlock Text="{x:Static p:Language.statusbar_paint_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.Paint, Mode=OneWay}" Width="180" IsReadOnly="True" />
                         <TextBlock Text="{x:Static p:Language.statusbar_selection_label}" VerticalAlignment="Center" Margin="5,0"/>
-                        <TextBox Text="{Binding Selection.SelectionArea.Size, Mode=OneWay}" Width="180" IsReadOnly="True" Style="{DynamicResource TextBoxStyle1}" />
+                        <TextBox Text="{Binding Selection.SelectionArea.Size, Mode=OneWay}" Width="180" IsReadOnly="True"  />
                     </StackPanel>
                 </StatusBarItem>
                 <StatusBarItem HorizontalAlignment="Right">
@@ -425,6 +425,10 @@
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="Find">
                             <TabItem.Header><ui:SymbolIcon Symbol="Search20" Filled="True" FontSize="24"/></TabItem.Header>
                             <Sidebar:FindSidebarView />
+                        </TabItem>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="Scripting">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Code20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <Sidebar:ScriptingSidebarView />
                         </TabItem>
                 </TabControl>
             </Grid>

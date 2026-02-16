@@ -22,7 +22,7 @@
   <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
   <DataTemplate x:Key="ColorPickerTemplate" >
-        <DockPanel LastChildFill="True">
+        <DockPanel LastChildFill="True" MinWidth="220">
             <Border BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" >
                 <Rectangle Height="12" Width="12">
                     <Rectangle.Fill>

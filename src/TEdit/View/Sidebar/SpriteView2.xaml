@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:vwp="clr-namespace:WpfToolkit.Controls;assembly=VirtualizingWrapPanel"
@@ -26,19 +27,40 @@
         <TextBlock Grid.Row="0" Text="{x:Static p:Language.tool_sprite2_title}" Style="{DynamicResource SidebarPanelTitle}" />
 
         <!-- Row 1: Filter Controls -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="2">
-            <TextBlock Margin="3,2" VerticalAlignment="Center" Text="{x:Static p:Language.sprite_filter_label}" />
-            <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}" MinWidth="100" Width="100" />
-            <Button Content="{x:Static p:Language.bestiary_clear}" Margin="1" Padding="6,2" Command="{Binding ClearSpriteSelectionCommand}" ToolTip="Clear selection" />
-        </StackPanel>
+        <Grid Grid.Row="1" Margin="8,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="{x:Static p:Language.sprite_filter_label}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,8,0"
+                       Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <TextBox Grid.Column="1"
+                     Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}"/>
+            <ui:Button Grid.Column="2"
+                       Content="{x:Static p:Language.bestiary_clear}"
+                       Margin="8,0,0,0"
+                       Padding="8,4"
+                       Command="{Binding ClearSpriteSelectionCommand}"
+                       ToolTip="Clear selection"/>
+        </Grid>
 
         <!-- Row 2: Tile Type Label + Size Slider -->
-        <Grid Grid.Row="2" Margin="2">
-            <TextBlock Text="{x:Static p:Language.sprite_tiletype}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Grid Grid.Row="2" Margin="8,4">
+            <TextBlock Text="{x:Static p:Language.sprite_tiletype}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="Size:" VerticalAlignment="Center" Margin="4,0"/>
+                <TextBlock Text="Size:"
+                           VerticalAlignment="Center"
+                           Margin="0,0,8,0"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
                 <Slider Value="{Binding SpriteThumbnailSize}"
-                        Minimum="16" Maximum="128" Width="60"
+                        Minimum="16" Maximum="128" Width="80"
                         TickFrequency="16" IsSnapToTickEnabled="True"
                         VerticalAlignment="Center"
                         ToolTip="{Binding SpriteThumbnailSize, StringFormat='{}{0}px'}"/>
@@ -47,6 +69,7 @@
 
         <!-- Row 3: Tile Type Listbox (GridView) -->
         <Border Grid.Row="3"
+                Margin="8,0"
                 BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
                 BorderThickness="1"
                 Background="{DynamicResource SidebarBackgroundBrush}">
@@ -91,35 +114,45 @@
 
         <!-- Row 4: GridSplitter -->
         <GridSplitter Grid.Row="4"
-                      Height="5"
+                      Height="6"
+                      Margin="8,4"
                       HorizontalAlignment="Stretch"
                       Background="{DynamicResource ControlStrokeColorDefaultBrush}"
                       ResizeDirection="Rows"/>
 
         <!-- Row 5: Style Label -->
-        <TextBlock Grid.Row="5" Margin="2">
+        <TextBlock Grid.Row="5" Margin="8,4"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}">
             <Run Text="{Binding SelectedSpriteSheet.Name, Mode=OneWay}"/>
             <Run Text="{x:Static p:Language.sprite_styletype}"/>
         </TextBlock>
 
         <!-- Row 6: Biome Selector + Auto Checkbox -->
-        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="2"
+        <StackPanel Grid.Row="6" Orientation="Horizontal" Margin="8,4"
                     Visibility="{Binding HasBiomeVariants, Converter={StaticResource BoolToVisibilityConverter}}">
-            <TextBlock Text="{x:Static p:Language.sprite_biome_label}" Margin="3,2" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Static p:Language.sprite_biome_label}"
+                       Margin="0,0,8,0"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
             <ComboBox ItemsSource="{Binding BiomeVariantNames}"
                       SelectedIndex="{Binding SelectedBiomeVariantIndex, Mode=TwoWay}"
-                      MinWidth="100" Margin="2"/>
-            <CheckBox Content="{x:Static p:Language.sprite_biome_auto}" IsChecked="{Binding IsBiomeAutoMode, Mode=TwoWay}"
-                      VerticalAlignment="Center" Margin="5,0"/>
+                      MinWidth="120"/>
+            <CheckBox Content="{x:Static p:Language.sprite_biome_auto}"
+                      IsChecked="{Binding IsBiomeAutoMode, Mode=TwoWay}"
+                      VerticalAlignment="Center"
+                      Margin="12,0,0,0"/>
         </StackPanel>
 
         <!-- Row 7: Style Listbox -->
         <ListBox Grid.Row="7" x:Name="SpriteStylesList"
+                 Margin="8,0,8,8"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch"
                  ItemsSource="{Binding SpriteStylesView}"
                  SelectedItem="{Binding SelectedSpriteItem, Mode=TwoWay}"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 BorderThickness="1"
+                 BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                     <Setter Property="Padding" Value="1"/>

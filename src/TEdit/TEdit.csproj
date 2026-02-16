@@ -31,6 +31,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Semver" Version="3.0.0" />
     <PackageReference Include="VirtualizingWrapPanel" Version="2.4.0-beta" />
+    <PackageReference Include="Jint" Version="4.2.1" />
+    <PackageReference Include="LuaCSharp" Version="0.4.2" />
     <PackageReference Include="WPF-UI" Version="4.2.0" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +140,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\Sidebar\SpecialTilesViews\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripting\Examples\*.js" />
+    <EmbeddedResource Include="Scripting\Examples\*.lua" />
   </ItemGroup>
   <Target Name="Sign" AfterTargets="Publish" Condition=" $(signcert) != '' ">
     <Exec Command="signtool.exe sign /v /fd sha256 /n &quot;$(signcert)&quot; /t http://timestamp.digicert.com &quot;$(PublishDir)$(TargetFileName)&quot; " Condition="$(TargetFileName) != ''" ContinueOnError="WarnAndContinue" />
