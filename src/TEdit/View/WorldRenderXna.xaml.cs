@@ -666,6 +666,9 @@ public partial class WorldRenderXna : UserControl
 
         // Generate NPC preview bitmaps for UI
         GenerateNpcPreviews();
+
+        // Generate item preview bitmaps for UI
+        GenerateItemPreviews();
     }
 
     /// <summary>
@@ -789,6 +792,110 @@ public partial class WorldRenderXna : UserControl
                 });
             }
         }
+    }
+
+    /// <summary>
+    /// Generate preview bitmaps for all items, scaled to fit within 24x24.
+    /// </summary>
+    private void GenerateItemPreviews()
+    {
+        const int PreviewSize = 24;
+
+        foreach (var item in WorldConfiguration.ItemProperties)
+        {
+            if (item.Id <= 0) continue;
+
+            var texture = _textureDictionary.GetItem(item.Id);
+            if (texture == null || texture == _textureDictionary.DefaultTexture)
+                continue;
+
+            int width = texture.Width;
+            int height = texture.Height;
+            if (width <= 0 || height <= 0) continue;
+
+            var pixelData = new int[width * height];
+            try
+            {
+                texture.GetData(pixelData);
+            }
+            catch
+            {
+                continue;
+            }
+
+            var widthCopy = width;
+            var heightCopy = height;
+            var pixelDataCopy = pixelData;
+            var itemIdCopy = item.Id;
+
+            DispatcherHelper.CheckBeginInvokeOnUI(() =>
+            {
+                var preview = CreateScaledItemPreview(pixelDataCopy, widthCopy, heightCopy, PreviewSize);
+                ItemPreviewCache.SetPreview(itemIdCopy, preview);
+            });
+        }
+
+        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+        {
+            ItemPreviewCache.MarkPopulated();
+        });
+    }
+
+    /// <summary>
+    /// Creates a WriteableBitmap scaled to fit within maxSize x maxSize using nearest-neighbor.
+    /// Small items are not upscaled; they are centered within the output.
+    /// </summary>
+    private static WriteableBitmap CreateScaledItemPreview(int[] pixelData, int srcWidth, int srcHeight, int maxSize)
+    {
+        // Calculate scale factor (only downscale, never upscale)
+        double scale = 1.0;
+        if (srcWidth > maxSize || srcHeight > maxSize)
+        {
+            scale = Math.Min((double)maxSize / srcWidth, (double)maxSize / srcHeight);
+        }
+
+        int dstWidth = Math.Max(1, (int)(srcWidth * scale));
+        int dstHeight = Math.Max(1, (int)(srcHeight * scale));
+
+        // Center within maxSize x maxSize
+        int offsetX = (maxSize - dstWidth) / 2;
+        int offsetY = (maxSize - dstHeight) / 2;
+
+        var output = new int[maxSize * maxSize];
+
+        for (int dy = 0; dy < dstHeight; dy++)
+        {
+            int srcY = (int)(dy / scale);
+            if (srcY >= srcHeight) srcY = srcHeight - 1;
+
+            for (int dx = 0; dx < dstWidth; dx++)
+            {
+                int srcX = (int)(dx / scale);
+                if (srcX >= srcWidth) srcX = srcWidth - 1;
+
+                int abgr = pixelData[srcY * srcWidth + srcX];
+                int a = (abgr >> 24) & 0xFF;
+                int b = (abgr >> 16) & 0xFF;
+                int g = (abgr >> 8) & 0xFF;
+                int r = abgr & 0xFF;
+
+                output[(offsetY + dy) * maxSize + (offsetX + dx)] = (a << 24) | (r << 16) | (g << 8) | b;
+            }
+        }
+
+        var bmp = new WriteableBitmap(maxSize, maxSize, 96, 96, WpfPixelFormats.Bgra32, null);
+        bmp.Lock();
+        unsafe
+        {
+            var pixels = (int*)bmp.BackBuffer;
+            for (int i = 0; i < output.Length; i++)
+            {
+                pixels[i] = output[i];
+            }
+        }
+        bmp.AddDirtyRect(new Int32Rect(0, 0, maxSize, maxSize));
+        bmp.Unlock();
+        return bmp;
     }
 
     /// <summary>

@@ -4,6 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
     mc:Ignorable="d"
     d:DesignWidth="340">
     <UserControl.Resources>
@@ -30,8 +31,19 @@
                 </TextBlock.Text>
             </TextBlock>
         </StackPanel>
-        <ContentControl Grid.Row="1" ContentTemplate="{StaticResource ItemFrameItemTemplate}"
-            Content="{Binding Path=SelectedTileEntity}" />
+        <controls:ItemEditorControl Grid.Row="1"
+            ItemId="{Binding SelectedTileEntity.NetId, Mode=TwoWay}"
+            StackSize="{Binding SelectedTileEntity.StackSize, Mode=TwoWay}"
+            Prefix="{Binding SelectedTileEntity.Prefix, Mode=TwoWay}"
+            ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+            ItemsSourceType="ItemPropertyList"
+            PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
+            CopyCommand="{Binding CopyChestItemCommand}"
+            CommandParameter="{Binding SelectedTileEntity}"
+            PasteCommand="{Binding PasteChestItemCommand}"
+            PasteCommandParameter="{Binding SelectedTileEntity}"
+            MaxStackCommand="{Binding ChestItemSetToMaxStackCommand}"
+            MaxStackCommandParameter="{Binding SelectedTileEntity}" />
         <UniformGrid Columns="2" Grid.Row="2">
             <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                 CommandParameter="{StaticResource False}" />

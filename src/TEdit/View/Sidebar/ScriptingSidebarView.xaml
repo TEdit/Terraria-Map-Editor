@@ -7,6 +7,8 @@
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:cv="clr-namespace:TEdit.Converters"
+             xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:scripting="clr-namespace:TEdit.Scripting"
              mc:Ignorable="d"
              d:DesignHeight="700" d:DesignWidth="400"
              d:DataContext="{d:DesignInstance Type=viewModel:ScriptingSidebarViewModel}">
@@ -21,6 +23,7 @@
             <RowDefinition Height="36"/>      <!-- Script selector -->
             <RowDefinition Height="36"/>      <!-- Engine selector -->
             <RowDefinition Height="*"/>         <!-- Code editor -->
+            <RowDefinition Height="Auto"/>      <!-- API Reference panel -->
             <RowDefinition Height="6"/>      <!-- GridSplitter -->
             <RowDefinition Height="40"/>      <!-- Run/Stop buttons -->
             <RowDefinition Height="Auto"/>      <!-- Progress bar -->
@@ -74,6 +77,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
@@ -84,25 +89,85 @@
             <ComboBox Grid.Column="1"
                       ItemsSource="{Binding EngineNames}"
                       SelectedIndex="{Binding SelectedEngineIndex}"/>
+            <ui:Button Grid.Column="2"
+                       Content="API"
+                       Command="{Binding ToggleApiReferenceCommand}"
+                       Padding="8,4"
+                       Margin="4,0,0,0"
+                       ToolTip="Toggle API reference panel"/>
+            <ui:Button Grid.Column="3"
+                       Command="{Binding GenerateDocsCommand}"
+                       Padding="8,4"
+                       Margin="4,0,0,0"
+                       ToolTip="Generate API_REFERENCE.md">
+                <ui:SymbolIcon Symbol="Document20" FontSize="16"/>
+            </ui:Button>
         </Grid>
 
-        <!-- Code editor -->
-        <TextBox Grid.Row="3"
-                 Margin="8,4"
-                 Text="{Binding ScriptCode, UpdateSourceTrigger=PropertyChanged}"
-                 AcceptsReturn="True"
-                 AcceptsTab="True"
-                 VerticalScrollBarVisibility="Auto"
-                 HorizontalScrollBarVisibility="Auto"
-                 FontFamily="Consolas"
-                 FontSize="12"
-                 TextWrapping="NoWrap"
-                 SpellCheck.IsEnabled="False"
-                 BorderThickness="1"
-                 BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"/>
+        <!-- Code editor (AvalonEdit) -->
+        <avalonedit:TextEditor x:Name="CodeEditor"
+                               Grid.Row="3"
+                               Margin="8,4"
+                               FontFamily="Consolas"
+                               FontSize="12"
+                               ShowLineNumbers="True"
+                               WordWrap="False"
+                               HorizontalScrollBarVisibility="Auto"
+                               VerticalScrollBarVisibility="Auto"
+                               Background="{DynamicResource ControlFillColorDefaultBrush}"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                               BorderThickness="1"
+                               BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"/>
+
+        <!-- API Reference panel (collapsible) -->
+        <Border Grid.Row="4"
+                Margin="8,0,8,4"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                Background="{DynamicResource ControlFillColorDefaultBrush}"
+                MaxHeight="250"
+                Visibility="{Binding ShowApiReference, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{x:Static scripting:ScriptApiMetadata.Modules}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Expander IsExpanded="False" Margin="4,2">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                                        <TextBlock Text=" — "
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <TextBlock Text="{Binding Description}"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                    </StackPanel>
+                                </Expander.Header>
+                                <ItemsControl ItemsSource="{Binding Methods}" Margin="16,0,0,0">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="0,2">
+                                                <TextBlock Text="{Binding Signature}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="11"
+                                                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                                                <TextBlock Text="{Binding Description}"
+                                                           FontSize="11"
+                                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                                           Margin="8,0,0,0"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
 
         <!-- GridSplitter -->
-        <GridSplitter Grid.Row="4"
+        <GridSplitter Grid.Row="5"
                       Height="6"
                       Margin="8,2"
                       HorizontalAlignment="Stretch"
@@ -110,7 +175,7 @@
                       ResizeDirection="Rows"/>
 
         <!-- Run/Stop buttons -->
-        <Grid Grid.Row="5" Margin="8,4">
+        <Grid Grid.Row="6" Margin="8,4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -135,7 +200,7 @@
         </Grid>
 
         <!-- Progress bar -->
-        <ProgressBar Grid.Row="6"
+        <ProgressBar Grid.Row="7"
                      Value="{Binding Progress}"
                      Minimum="0" Maximum="100"
                      Height="4"
@@ -143,7 +208,7 @@
                      Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}"/>
 
         <!-- Output log -->
-        <Grid Grid.Row="7" Margin="8,0,8,8">
+        <Grid Grid.Row="8" Margin="8,0,8,8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

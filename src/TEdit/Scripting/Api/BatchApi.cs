@@ -4,6 +4,7 @@ using TEdit.Editor;
 using TEdit.Editor.Undo;
 using TEdit.Scripting.Engine;
 using TEdit.Terraria;
+using TEdit.Terraria.Objects;
 
 namespace TEdit.Scripting.Api;
 
@@ -133,7 +134,7 @@ public class BatchApi
         return replaced;
     }
 
-    public List<Dictionary<string, int>> FindTilesByType(int tileType)
+    public List<Dictionary<string, int>> FindTilesByType(int tileType, bool anchorOnly = false)
     {
         var results = new List<Dictionary<string, int>>();
         int w = _world.TilesWide;
@@ -141,6 +142,10 @@ public class BatchApi
         long total = (long)w * h;
         long count = 0;
         const int maxResults = 10_000;
+
+        TileProperty? tileProp = null;
+        if (anchorOnly && tileType < WorldConfiguration.TileProperties.Count)
+            tileProp = WorldConfiguration.TileProperties[tileType];
 
         for (int x = 0; x < w; x++)
         {
@@ -151,6 +156,12 @@ public class BatchApi
                 var tile = _world.Tiles[x, y];
                 if (tile.IsActive && tile.Type == tileType)
                 {
+                    if (anchorOnly && tileProp is { IsFramed: true })
+                    {
+                        if (!tileProp.IsOrigin(tile.GetUV()))
+                            goto next;
+                    }
+
                     results.Add(new Dictionary<string, int> { { "x", x }, { "y", y } });
                     if (results.Count >= maxResults)
                     {
@@ -159,6 +170,7 @@ public class BatchApi
                     }
                 }
 
+                next:
                 count++;
                 if (count % 100_000 == 0)
                     _context.OnProgress?.Invoke((double)count / total);

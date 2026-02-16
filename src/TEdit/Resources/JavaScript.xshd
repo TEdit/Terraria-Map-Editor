@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<SyntaxDefinition name="JavaScript-Dark" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+  <Color name="Comment" foreground="#6A9955" />
+  <Color name="String" foreground="#CE9178" />
+  <Color name="Keyword" foreground="#569CD6" fontWeight="bold" />
+  <Color name="ControlFlow" foreground="#C586C0" />
+  <Color name="Value" foreground="#569CD6" />
+  <Color name="Number" foreground="#B5CEA8" />
+  <Color name="Function" foreground="#DCDCAA" />
+  <Color name="Type" foreground="#4EC9B0" />
+  <Color name="Operator" foreground="#D4D4D4" />
+  <Color name="Regex" foreground="#D16969" />
+  <Color name="Variable" foreground="#9CDCFE" />
+
+  <RuleSet>
+    <!-- Block comments -->
+    <Span color="Comment" multiline="true">
+      <Begin>/\*</Begin>
+      <End>\*/</End>
+    </Span>
+
+    <!-- Line comments -->
+    <Span color="Comment">
+      <Begin>//</Begin>
+    </Span>
+
+    <!-- Template literals -->
+    <Span color="String" multiline="true">
+      <Begin>`</Begin>
+      <End>`</End>
+      <RuleSet>
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+
+    <!-- Double-quoted strings -->
+    <Span color="String">
+      <Begin>"</Begin>
+      <End>"</End>
+      <RuleSet>
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+
+    <!-- Single-quoted strings -->
+    <Span color="String">
+      <Begin>'</Begin>
+      <End>'</End>
+      <RuleSet>
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+
+    <!-- Declaration keywords -->
+    <Keywords color="Keyword">
+      <Word>var</Word>
+      <Word>let</Word>
+      <Word>const</Word>
+      <Word>function</Word>
+      <Word>class</Word>
+      <Word>extends</Word>
+      <Word>new</Word>
+      <Word>delete</Word>
+      <Word>typeof</Word>
+      <Word>instanceof</Word>
+      <Word>in</Word>
+      <Word>of</Word>
+      <Word>void</Word>
+      <Word>this</Word>
+      <Word>super</Word>
+      <Word>static</Word>
+      <Word>get</Word>
+      <Word>set</Word>
+      <Word>async</Word>
+      <Word>await</Word>
+      <Word>yield</Word>
+      <Word>import</Word>
+      <Word>export</Word>
+      <Word>from</Word>
+      <Word>default</Word>
+      <Word>with</Word>
+    </Keywords>
+
+    <!-- Control flow -->
+    <Keywords color="ControlFlow">
+      <Word>if</Word>
+      <Word>else</Word>
+      <Word>for</Word>
+      <Word>while</Word>
+      <Word>do</Word>
+      <Word>switch</Word>
+      <Word>case</Word>
+      <Word>break</Word>
+      <Word>continue</Word>
+      <Word>return</Word>
+      <Word>throw</Word>
+      <Word>try</Word>
+      <Word>catch</Word>
+      <Word>finally</Word>
+    </Keywords>
+
+    <!-- Values / literals -->
+    <Keywords color="Value">
+      <Word>true</Word>
+      <Word>false</Word>
+      <Word>null</Word>
+      <Word>undefined</Word>
+      <Word>NaN</Word>
+      <Word>Infinity</Word>
+    </Keywords>
+
+    <!-- Built-in types / globals -->
+    <Keywords color="Type">
+      <Word>Array</Word>
+      <Word>Object</Word>
+      <Word>String</Word>
+      <Word>Number</Word>
+      <Word>Boolean</Word>
+      <Word>Symbol</Word>
+      <Word>Map</Word>
+      <Word>Set</Word>
+      <Word>WeakMap</Word>
+      <Word>WeakSet</Word>
+      <Word>Promise</Word>
+      <Word>RegExp</Word>
+      <Word>Error</Word>
+      <Word>TypeError</Word>
+      <Word>RangeError</Word>
+      <Word>JSON</Word>
+      <Word>Math</Word>
+      <Word>Date</Word>
+      <Word>Int8Array</Word>
+      <Word>Uint8Array</Word>
+      <Word>Float32Array</Word>
+      <Word>Float64Array</Word>
+      <Word>ArrayBuffer</Word>
+    </Keywords>
+
+    <!-- Built-in functions -->
+    <Keywords color="Function">
+      <Word>print</Word>
+      <Word>console</Word>
+      <Word>parseInt</Word>
+      <Word>parseFloat</Word>
+      <Word>isNaN</Word>
+      <Word>isFinite</Word>
+      <Word>encodeURI</Word>
+      <Word>decodeURI</Word>
+      <Word>encodeURIComponent</Word>
+      <Word>decodeURIComponent</Word>
+    </Keywords>
+
+    <!-- TEdit API globals (variable color for discoverability) -->
+    <Keywords color="Variable">
+      <Word>tile</Word>
+      <Word>batch</Word>
+      <Word>geometry</Word>
+      <Word>selection</Word>
+      <Word>chests</Word>
+      <Word>signs</Word>
+      <Word>npcs</Word>
+      <Word>world</Word>
+      <Word>metadata</Word>
+      <Word>log</Word>
+      <Word>finder</Word>
+      <Word>tools</Word>
+    </Keywords>
+
+    <!-- Numbers -->
+    <Rule color="Number">
+      \b0[xX][0-9a-fA-F]+\b|\b0[oO][0-7]+\b|\b0[bB][01]+\b|\b[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?\b
+    </Rule>
+
+    <!-- Regex literals (basic — after division disambiguation isn't possible in xshd) -->
+    <Rule color="Regex">
+      (?&lt;=[=(,:\[!&amp;|?+\-~*/^%])\s*/[^/\*].*?/[gimsuvy]*
+    </Rule>
+  </RuleSet>
+</SyntaxDefinition>

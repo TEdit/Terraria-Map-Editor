@@ -11,11 +11,14 @@ public static class FileMaintenance
     {
         try
         {
-            string tempPath = WorldViewModel.TempPath;
-            if (!Directory.Exists(tempPath))
+            string autosavePath = WorldViewModel.AutoSavePath;
+            if (!Directory.Exists(autosavePath))
                 return;
 
-            var autosaveFiles = Directory.GetFiles(tempPath, "*.autosave*")
+            // Also clean up legacy autosaves from the root TEdit folder
+            CleanupLegacyAutosaves();
+
+            var autosaveFiles = Directory.GetFiles(autosavePath, "*.autosave*")
                 .Where(f => f.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase) ||
                            f.EndsWith(".autosave.tmp", StringComparison.OrdinalIgnoreCase))
                 .ToList();
@@ -153,6 +156,38 @@ public static class FileMaintenance
             else
             {
                 ErrorLogging.Log("No .TEdit backup files found");
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+    }
+
+    private static void CleanupLegacyAutosaves()
+    {
+        try
+        {
+            string tempPath = WorldViewModel.TempPath;
+            if (!Directory.Exists(tempPath))
+                return;
+
+            var legacyFiles = Directory.GetFiles(tempPath, "*.autosave*")
+                .Where(f => f.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase) ||
+                           f.EndsWith(".autosave.tmp", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            foreach (var file in legacyFiles)
+            {
+                try
+                {
+                    File.Delete(file);
+                    ErrorLogging.Log($"Deleted legacy autosave from root folder: {Path.GetFileName(file)}");
+                }
+                catch
+                {
+                    // Ignore errors deleting individual files
+                }
             }
         }
         catch (Exception ex)

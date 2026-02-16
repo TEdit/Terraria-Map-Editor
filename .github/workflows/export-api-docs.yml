@@ -1,0 +1,34 @@
+name: Export API Docs
+
+on:
+  push:
+    branches: ["*"]
+    paths:
+      - "src/TEdit/Scripting/ScriptApiMetadata.cs"
+      - "src/TEdit/Scripting/ScriptApiDocGenerator.cs"
+      - "tools/DocExport/**"
+      - ".github/workflows/export-api-docs.yml"
+  workflow_dispatch:
+
+jobs:
+  export-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Generate API_REFERENCE.md
+        run: dotnet run --project tools/DocExport -- API_REFERENCE.md
+
+      - name: Upload API docs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-reference-docs
+          path: API_REFERENCE.md
+          retention-days: 90

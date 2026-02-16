@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Scripting;
 using TEdit.Scripting.Api;
 using TEdit.Scripting.Engine;
 
@@ -26,6 +27,7 @@ public partial class ScriptingSidebarViewModel
     [Reactive] private double _progress;
     [Reactive] private int _selectedEngineIndex;
     [Reactive] private string? _selectedScriptPath;
+    [Reactive] private bool _showApiReference;
 
     public ObservableCollection<ScriptFileInfo> Scripts { get; } = new();
 
@@ -73,13 +75,37 @@ public partial class ScriptingSidebarViewModel
 
         AppendLog($"[{engine.Name}] Running script...");
 
+        var findVm = ViewModelLocator.GetFindSidebarViewModel();
+
         var context = new ScriptExecutionContext
         {
             CancellationToken = _cts.Token,
             OnLog = msg => _dispatcher.BeginInvoke(() => AppendLog(msg)),
             OnWarn = msg => _dispatcher.BeginInvoke(() => AppendLog($"[Warn] {msg}")),
             OnError = msg => _dispatcher.BeginInvoke(() => AppendLog($"[Error] {msg}")),
-            OnProgress = p => _dispatcher.BeginInvoke(() => Progress = p * 100)
+            OnProgress = p => _dispatcher.BeginInvoke(() => Progress = p * 100),
+            OnFindResult = (name, x, y, type, extra) => _dispatcher.BeginInvoke(() =>
+            {
+                findVm.Results.Add(new FindResultItem(name, x, y, type, extra));
+            }),
+            OnFindClear = () => _dispatcher.BeginInvoke(() =>
+            {
+                findVm.Results.Clear();
+                findVm.CurrentResultIndex = -1;
+                findVm.ShowCrosshair = false;
+            }),
+            OnFindNavigate = index => _dispatcher.BeginInvoke(() =>
+            {
+                if (index >= 0 && index < findVm.Results.Count)
+                {
+                    findVm.CurrentResultIndex = index;
+                    findVm.SelectedResult = findVm.Results[index];
+                    findVm.CrosshairTileX = findVm.Results[index].X;
+                    findVm.CrosshairTileY = findVm.Results[index].Y;
+                    findVm.ShowCrosshair = true;
+                    _wvm.PanTo?.Invoke(findVm.Results[index].X, findVm.Results[index].Y);
+                }
+            }),
         };
 
         ScriptResult result;
@@ -141,6 +167,21 @@ public partial class ScriptingSidebarViewModel
         File.WriteAllText(_selectedScriptPath!, _scriptCode);
         AppendLog($"Saved: {Path.GetFileName(_selectedScriptPath)}");
         LoadScriptFiles();
+    }
+
+    [ReactiveCommand]
+    private void ToggleApiReference()
+    {
+        ShowApiReference = !ShowApiReference;
+    }
+
+    [ReactiveCommand]
+    private void GenerateDocs()
+    {
+        var dir = GetScriptsDirectory();
+        var path = Path.Combine(dir, "API_REFERENCE.md");
+        File.WriteAllText(path, ScriptApiDocGenerator.GenerateMarkdown());
+        AppendLog($"Generated: API_REFERENCE.md");
     }
 
     [ReactiveCommand]
@@ -211,27 +252,25 @@ public partial class ScriptingSidebarViewModel
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();
         var prefix = "TEdit.Scripting.Examples.";
 
-        var extracted = false;
         foreach (var resourceName in assembly.GetManifestResourceNames()
             .Where(n => n.StartsWith(prefix)))
         {
             var fileName = resourceName[prefix.Length..];
             var destPath = Path.Combine(dir, fileName);
 
-            if (!File.Exists(destPath))
+            using var stream = assembly.GetManifestResourceStream(resourceName);
+            if (stream != null)
             {
-                using var stream = assembly.GetManifestResourceStream(resourceName);
-                if (stream != null)
-                {
-                    using var fs = File.Create(destPath);
-                    stream.CopyTo(fs);
-                    extracted = true;
-                }
+                using var fs = File.Create(destPath);
+                stream.CopyTo(fs);
             }
         }
 
-        if (extracted)
-            LoadScriptFiles();
+        // Always regenerate API reference
+        var docsPath = Path.Combine(dir, "API_REFERENCE.md");
+        File.WriteAllText(docsPath, ScriptApiDocGenerator.GenerateMarkdown());
+
+        LoadScriptFiles();
     }
 }
 

@@ -4,7 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:p="clr-namespace:TEdit.Properties"
-    xmlns:converters="clr-namespace:TEdit.Converters"
+    xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
     mc:Ignorable="d"
     d:DesignWidth="340">
     <UserControl.Resources>
@@ -31,24 +31,14 @@
                 </TextBlock.Text>
             </TextBlock>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" DataContext="{Binding SelectedTileEntity}">
-            <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                  SelectedValue="{Binding Prefix, Mode=TwoWay}"
-                  IsEditable="true"
-                  SelectedValuePath="Key"
-                  DisplayMemberPath="Value"
-                  HorizontalAlignment="Stretch"
-                  IsSynchronizedWithCurrentItem="False"
-                  Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-            <ComboBox ItemsSource="{Binding Source={StaticResource RackCollection}}"
-                  SelectedValue="{Binding NetId, Mode=TwoWay}"
-                  IsEditable="true"
-                  SelectedValuePath="Key"
-                  ItemTemplate="{StaticResource RarityDictItemTemplate}"
-                              ItemContainerStyle="{StaticResource RarityDictItemContainerStyle}"
-                  IsSynchronizedWithCurrentItem="False"
-                  HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-        </StackPanel>
+        <controls:ItemEditorControl Grid.Row="1"
+            ItemId="{Binding SelectedTileEntity.NetId, Mode=TwoWay}"
+            Prefix="{Binding SelectedTileEntity.Prefix, Mode=TwoWay}"
+            ItemsSource="{Binding Source={StaticResource RackCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
+            ShowStackSize="False"
+            ShowActionButtons="False" />
         <UniformGrid Columns="2" Grid.Row="2">
             <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                 CommandParameter="{StaticResource False}" />

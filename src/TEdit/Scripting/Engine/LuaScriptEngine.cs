@@ -46,6 +46,7 @@ public class LuaScriptEngine : IScriptEngine
             RegisterApi(state, "log", api.Log);
             RegisterApi(state, "batch", api.Batch);
             RegisterApi(state, "tools", api.Tools);
+            RegisterApi(state, "finder", api.Finder);
 
             // print() convenience
             state.Environment["print"] = new LuaFunction((ctx, buffer, ct) =>

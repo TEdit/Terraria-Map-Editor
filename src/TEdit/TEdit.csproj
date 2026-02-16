@@ -35,6 +35,7 @@
     <PackageReference Include="Jint" Version="4.2.1" />
     <PackageReference Include="LuaCSharp" Version="0.4.2" />
     <PackageReference Include="WPF-UI" Version="4.2.0" />
+    <PackageReference Include="AvalonEdit" Version="6.3.1.120" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Images/**/*" />
@@ -145,6 +146,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Scripting\Examples\*.js" />
     <EmbeddedResource Include="Scripting\Examples\*.lua" />
+    <EmbeddedResource Include="Resources\Lua.xshd" />
+    <EmbeddedResource Include="Resources\JavaScript.xshd" />
   </ItemGroup>
   <Target Name="Sign" AfterTargets="Publish" Condition=" $(signcert) != '' ">
     <Exec Command="signtool.exe sign /v /fd sha256 /n &quot;$(signcert)&quot; /t http://timestamp.digicert.com &quot;$(PublishDir)$(TargetFileName)&quot; " Condition="$(TargetFileName) != ''" ContinueOnError="WarnAndContinue" />

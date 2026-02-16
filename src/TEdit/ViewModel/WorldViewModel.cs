@@ -149,6 +149,10 @@ public partial class WorldViewModel : ReactiveObject
         {
             Directory.CreateDirectory(TempPath);
         }
+        if (!Directory.Exists(AutoSavePath))
+        {
+            Directory.CreateDirectory(AutoSavePath);
+        }
     }
 
     public WorldViewModel()
@@ -854,6 +858,11 @@ public partial class WorldViewModel : ReactiveObject
         get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TEdit"); }
     }
 
+    public static string AutoSavePath
+    {
+        get { return Path.Combine(TempPath, "autosave"); }
+    }
+
     public int SelectedTabIndex
     {
         get { return _selectedTabIndex; }
@@ -1490,9 +1499,9 @@ public partial class WorldViewModel : ReactiveObject
         if (IsAutoSaveEnabled && HasUnsavedChanges)
         {
             if (!string.IsNullOrWhiteSpace(CurrentFile))
-                _ = SaveWorldThreadedAsync(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"), GetSaveVersion_MaxConfig());
+                _ = SaveWorldThreadedAsync(Path.Combine(AutoSavePath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"), GetSaveVersion_MaxConfig());
             else
-                _ = SaveWorldThreadedAsync(Path.Combine(TempPath, "newworld.autosave.tmp"), GetSaveVersion_MaxConfig());
+                _ = SaveWorldThreadedAsync(Path.Combine(AutoSavePath, "newworld.autosave.tmp"), GetSaveVersion_MaxConfig());
         }
     }
 

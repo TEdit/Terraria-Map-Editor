@@ -22,6 +22,7 @@ public class ScriptApi : IDisposable
     public LogApi Log { get; }
     public BatchApi Batch { get; }
     public ToolsApi? Tools { get; }
+    public FinderApi Finder { get; }
 
     public ScriptApi(WorldViewModel wvm, ScriptExecutionContext context)
     {
@@ -40,6 +41,7 @@ public class ScriptApi : IDisposable
         Log = new LogApi(context);
         Batch = new BatchApi(world, wvm.Selection, undo, context);
         Tools = new ToolsApi(wvm);
+        Finder = new FinderApi(context);
     }
 
     /// <summary>
@@ -60,6 +62,7 @@ public class ScriptApi : IDisposable
         Log = new LogApi(context);
         Batch = new BatchApi(world, selection, undo, context);
         Tools = null;
+        Finder = new FinderApi(context);
     }
 
     public void BeginExecution()

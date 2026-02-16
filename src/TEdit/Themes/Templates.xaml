@@ -20,6 +20,7 @@
     <enum:EnumItemList x:Key="WireReplaceModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:WireReplaceMode}" SortBy="Value"  />
   <cv:TEditColorToMediaColorConverter x:Key="TEditColorToMediaColorConverter" />
   <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+  <cv:ItemIdToPreviewConverter x:Key="ItemIdToPreviewConverter" />
 
   <DataTemplate x:Key="ColorPickerTemplate" >
         <DockPanel LastChildFill="True" MinWidth="220">
