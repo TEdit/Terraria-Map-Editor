@@ -24,6 +24,7 @@
     <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FF888888" />
     <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#FF2D2D2D" />
     <SolidColorBrush x:Key="DisabledBorderBrush" Color="#FF444444" />
+    <SolidColorBrush x:Key="ActivityBarIconBrush" Color="#FF858585" />
     <SolidColorBrush x:Key="ButtonNormalBackground" Color="#FF333333" />
     <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF555555" />
 
@@ -525,10 +526,9 @@
                     <Grid>
                         <!-- Right active indicator bar (accent color) -->
                         <Border x:Name="ActiveIndicator"
-                                HorizontalAlignment="Right" VerticalAlignment="Center"
-                                Width="2" Height="24"
+                                HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                                Width="3"
                                 Background="{DynamicResource AccentFillColorDefaultBrush}"
-                                CornerRadius="1,0,0,1"
                                 Visibility="Collapsed"/>
                         <!-- Icon area -->
                         <Border x:Name="IconBorder"

@@ -357,7 +357,11 @@
                             </ScrollViewer>
                         </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_special}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Sparkle20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <TabItem.Header>
+                                <Path Data="{StaticResource ChestIconGeometry}"
+                                      Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                      Width="24" Height="24" Stretch="Uniform"/>
+                            </TabItem.Header>
                             <View:SpecialTileView />
                         </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_sprites}">
@@ -381,15 +385,23 @@
                             <View:BestiaryEditor />
                         </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_banners}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Flag20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <TabItem.Header>
+                                <Path Data="{StaticResource BannerIconGeometry}"
+                                      Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                      Width="24" Height="24" Stretch="Uniform"/>
+                            </TabItem.Header>
                             <View:BannerEditor />
                         </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_tileentities}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Grid20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <TabItem.Header>
+                                <Path Data="{StaticResource TileEntityIconGeometry}"
+                                      Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                      Width="24" Height="24" Stretch="Uniform"/>
+                            </TabItem.Header>
                             <View:TileEntityExaminer />
                         </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_creative}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="Lightbulb20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <TabItem.Header><ui:SymbolIcon Symbol="Sparkle20" Filled="True" FontSize="24"/></TabItem.Header>
                             <View:CreativePowers />
                         </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="Filter">
