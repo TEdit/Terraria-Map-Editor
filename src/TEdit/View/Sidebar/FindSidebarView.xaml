@@ -16,7 +16,10 @@
         <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
 
-    <DockPanel Background="{DynamicResource ControlBackgroundBrush}">
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}">
+
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.sidebar_find_title}" Style="{DynamicResource SidebarPanelTitle}" />
 
         <!-- Results section at bottom -->
         <DockPanel DockPanel.Dock="Bottom" Margin="8">

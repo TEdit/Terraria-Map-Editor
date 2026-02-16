@@ -169,7 +169,7 @@
     <value>Разговаривать</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
-    <value>Обновление убивает</value>
+    <value>Обновить</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Заполнить блок</value>
@@ -612,6 +612,9 @@
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>Периодически автоматически спасая мир</value>
   </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Общие заведения</value>
   </data>
@@ -633,12 +636,6 @@
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Автоматически проверяйте новые версии при запуске</value>
   </data>
-  <data name="settings_cancel" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
-  <data name="settings_save" xml:space="preserve">
-    <value>Сохранить</value>
-  </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Включить отчеты об ошибках</value>
   </data>
@@ -656,6 +653,9 @@
   </data>
   <data name="settings_realistic_colors_desc" xml:space="preserve">
     <value>Рендеринг тайлов с использованием текстур-сэмплинговых цветов (требуется перезапуск)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Сохранить</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Настройки поиска...</value>
@@ -773,6 +773,18 @@
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Рендеринг проводов с прозрачностью</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>Баннеры</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>Найти и заменить</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>Объект плитки</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>Параметры мира</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Отменить</value>

@@ -169,7 +169,7 @@
     <value>Falar</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
-    <value>Atualizar mortes</value>
+    <value>Atualizar</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Tijolo inteiro</value>
@@ -612,6 +612,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>Salve o mundo periodicamente automaticamente</value>
   </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Geral</value>
   </data>
@@ -633,12 +636,6 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Verifique automaticamente novas versões ao iniciar</value>
   </data>
-  <data name="settings_cancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="settings_save" xml:space="preserve">
-    <value>Salvar</value>
-  </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Habilitar relatório de erros</value>
   </data>
@@ -656,6 +653,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="settings_realistic_colors_desc" xml:space="preserve">
     <value>Renderizar tiles usando cores amostradas por textura (requer reinicio)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Salvar</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Configurações de busca...</value>
@@ -773,6 +773,18 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Renderizar fios com transparência</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>Bandeiras</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>Encontrar e Substituir</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>Entidade de Bloco</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>Propriedades do mundo</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Cancelar</value>

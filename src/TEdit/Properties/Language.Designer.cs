@@ -214,7 +214,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Kills.
+        ///   Looks up a localized string similar to Update.
         /// </summary>
         public static string bestiary_tally {
             get {
@@ -1993,6 +1993,42 @@ namespace TEdit.Properties {
         public static string settings_wire_transparency_desc {
             get {
                 return ResourceManager.GetString("settings_wire_transparency_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Banners.
+        /// </summary>
+        public static string sidebar_banner_title {
+            get {
+                return ResourceManager.GetString("sidebar_banner_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find &amp; Replace.
+        /// </summary>
+        public static string sidebar_find_title {
+            get {
+                return ResourceManager.GetString("sidebar_find_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile Entity.
+        /// </summary>
+        public static string sidebar_tileentity_title {
+            get {
+                return ResourceManager.GetString("sidebar_tileentity_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Properties.
+        /// </summary>
+        public static string sidebar_worldprops_title {
+            get {
+                return ResourceManager.GetString("sidebar_worldprops_title", resourceCulture);
             }
         }
         

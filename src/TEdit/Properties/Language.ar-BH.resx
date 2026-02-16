@@ -169,7 +169,7 @@
     <value>تكلم</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
-    <value>تحديث يقتل</value>
+    <value>تحديث</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>الطوب الكامل</value>
@@ -612,6 +612,9 @@
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>احفظ العالم تلقائيًا بشكل دوري</value>
   </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>عام</value>
   </data>
@@ -633,12 +636,6 @@
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>تحقق تلقائيًا من الإصدارات الجديدة عند بدء التشغيل</value>
   </data>
-  <data name="settings_cancel" xml:space="preserve">
-    <value>إلغاء</value>
-  </data>
-  <data name="settings_save" xml:space="preserve">
-    <value>حفظ</value>
-  </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>تمكين الإبلاغ عن الأخطاء</value>
   </data>
@@ -656,6 +653,9 @@
   </data>
   <data name="settings_realistic_colors_desc" xml:space="preserve">
     <value>عرض البلاط باستخدام ألوان مأخوذة من القوام (يتطلب إعادة تشغيل)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>حفظ</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>إعدادات البحث...</value>
@@ -773,6 +773,18 @@
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>عرض الأسلاك بشفافية</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>الرايات</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>بحث واستبدال</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>كيان البلاط</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>عقارات العالم</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>إلغاء الأمر</value>

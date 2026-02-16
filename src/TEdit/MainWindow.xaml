@@ -380,7 +380,7 @@
                             <TabItem.Header><ui:SymbolIcon Symbol="ChartMultiple20" Filled="True" FontSize="24"/></TabItem.Header>
                             <View:WorldAnalysis />
                         </TabItem>
-                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_tally}">
+          <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.tool_bestiary_title}">
                             <TabItem.Header><ui:SymbolIcon Symbol="Trophy20" Filled="True" FontSize="24"/></TabItem.Header>
                             <View:BestiaryEditor />
                         </TabItem>

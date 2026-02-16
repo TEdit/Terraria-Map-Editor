@@ -1,9 +1,10 @@
 ﻿<UserControl x:Class="TEdit.View.CreativePowers"
 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:tedit="clr-namespace:TEdit.UI.Xaml" 
+             xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
              xmlns:converters="clr-namespace:TEdit.Converters"
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
@@ -16,14 +17,18 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              Background="{StaticResource WindowBackgroundBrush}"
              Foreground="{StaticResource TextBrush}"
              d:DataContext="{d:DesignInstance Type=viewModel:CreativePowersViewModel}">
-    <DockPanel Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-        <UniformGrid Columns="2" DockPanel.Dock="Top">
-            <Button Content="{x:Static p:Language.bestiary_load}" Padding="3" Margin="2" VerticalAlignment="Center" Command="{Binding LoadPowersCommand}" />
-            <Button Content="{x:Static p:Language.bestiary_save}" Padding="3" Margin="2" VerticalAlignment="Center" Command="{Binding SavePowersCommand}" />
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.editor_tabs_creative}" Style="{DynamicResource SidebarPanelTitle}" />
+
+        <!-- Toolbar -->
+        <UniformGrid Columns="2" DockPanel.Dock="Top" Style="{DynamicResource SidebarButtonRow}">
+            <ui:Button Content="{x:Static p:Language.bestiary_load}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding LoadPowersCommand}" />
+            <ui:Button Content="{x:Static p:Language.bestiary_save}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding SavePowersCommand}" />
         </UniformGrid>
         <tedit:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
             <tedit:AutoGrid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </tedit:AutoGrid.ColumnDefinitions>
 
@@ -31,7 +36,6 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             <TextBlock Text="{x:Static p:Language.tool_creative_value}" HorizontalAlignment="Center" />
             <Separator Grid.ColumnSpan="2" />
             
-            <TextBlock  HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding Path=IsTimeFrozen, Mode=TwoWay}" Content="{x:Static p:Language.tool_creative_timefrozen}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
 
             <TextBlock  HorizontalAlignment="Right" />
@@ -42,6 +46,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 
             <TextBlock  HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding Path=IsBiomeSpreadFrozen, Mode=TwoWay}" Content="{x:Static p:Language.tool_creative_biomespread}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+            <TextBlock  HorizontalAlignment="Right" />
 
             <Separator Grid.ColumnSpan="2" />
 

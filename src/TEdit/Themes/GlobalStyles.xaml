@@ -6,6 +6,7 @@
     <Color x:Key="BlackColor">#FF000000</Color>
     <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FF1E1E1E" />
     <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#FF2D2D2D" />
+    <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="#FF181818" />
     <SolidColorBrush x:Key="TextBrush" Color="#FFCCCCCC" />
     <SolidColorBrush x:Key="GlyphBrush" Color="#FFCCCCCC" />
     <SolidColorBrush x:Key="NormalBrush" Color="#FF333333" />
@@ -694,5 +695,20 @@
         </Setter>
     </Style>
     <Style TargetType="{x:Type tedit:DropDownButton}" BasedOn="{StaticResource {x:Type ToggleButton}}" />
+
+    <!-- Sidebar Panel Styles -->
+
+    <!-- Sidebar Panel Title (Title Case) -->
+    <Style x:Key="SidebarPanelTitle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+        <Setter Property="Margin" Value="8,6" />
+    </Style>
+
+    <!-- Sidebar Button Row -->
+    <Style x:Key="SidebarButtonRow" TargetType="{x:Type UniformGrid}">
+        <Setter Property="Margin" Value="4,2" />
+    </Style>
 
 </ResourceDictionary>

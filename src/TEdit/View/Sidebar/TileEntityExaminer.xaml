@@ -7,13 +7,11 @@
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.sidebar_tileentity_title}" Style="{DynamicResource SidebarPanelTitle}" />
 
-        <ListBox Grid.Row="1" MinHeight="100" ItemsSource="{Binding CurrentWorld.TileEntities}" HorizontalContentAlignment="Stretch">
+        <ListBox MinHeight="100" ItemsSource="{Binding CurrentWorld.TileEntities}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
@@ -44,5 +42,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-    </Grid>
+    </DockPanel>
 </UserControl>

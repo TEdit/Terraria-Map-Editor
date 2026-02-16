@@ -4,6 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:views="clr-namespace:TEdit.View.Sidebar.SpecialTilesViews"
+    xmlns:p="clr-namespace:TEdit.Properties"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="300">
@@ -106,7 +107,11 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.editor_tabs_special}" Style="{DynamicResource SidebarPanelTitle}" />
+
+        <Grid>
         <GroupBox BorderThickness="0" Style="{StaticResource InstructionsVisiblity}">
             <views:InstructionsView />
         </GroupBox>
@@ -143,5 +148,6 @@
         <GroupBox BorderThickness="0" Style="{StaticResource XmasVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <views:XmasEditorView />
         </GroupBox>
-    </Grid>
+        </Grid>
+    </DockPanel>
 </UserControl>

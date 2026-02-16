@@ -169,7 +169,7 @@
     <value>Ansprechen</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
-    <value>Update-Kills</value>
+    <value>Aktualisieren</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Voller Block</value>
@@ -612,6 +612,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>Die Welt regelmäßig automatisch speichern</value>
   </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Allgemein</value>
   </data>
@@ -633,12 +636,6 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Automatisch beim Start nach neuen Versionen suchen</value>
   </data>
-  <data name="settings_cancel" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
-  <data name="settings_save" xml:space="preserve">
-    <value>Speichern</value>
-  </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Fehlermeldungen aktivieren</value>
   </data>
@@ -656,6 +653,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="settings_realistic_colors_desc" xml:space="preserve">
     <value>Kacheln mit texturproben Farben rendern (Neustart erforderlich)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Speichern</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Such Einstellungen...</value>
@@ -773,6 +773,18 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Drähte mit Transparenz rendern</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>Banner</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>Suchen &amp; Ersetzen</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>Fliese-Entität</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>Welteigenschaften</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Abbrechen</value>

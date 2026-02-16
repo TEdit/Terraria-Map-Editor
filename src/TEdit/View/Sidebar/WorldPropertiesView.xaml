@@ -12,8 +12,7 @@
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
              d:DesignWidth="450"
-             Background="{StaticResource WindowBackgroundBrush}"
-             Foreground="{StaticResource TextBrush}"
+             Foreground="{DynamicResource TextBrush}"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
   <UserControl.Resources>
     <converters:ByteIntConverter x:Key="ByteIntConverter" />
@@ -285,6 +284,10 @@
       <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
   </UserControl.Resources>
+  <DockPanel Background="{DynamicResource SidebarBackgroundBrush}">
+    <!-- Title -->
+    <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.sidebar_worldprops_title}" Style="{DynamicResource SidebarPanelTitle}" />
+
   <tedit:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
     <tedit:AutoGrid.ColumnDefinitions>
       <ColumnDefinition Width="145" />
@@ -949,4 +952,5 @@
                   ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
 
   </tedit:AutoGrid>
+  </DockPanel>
 </UserControl>

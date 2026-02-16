@@ -169,7 +169,7 @@
     <value>Mówić</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
-    <value>Aktualizacja Zabójstw</value>
+    <value>Zaaktualizuj</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Pełny Blok</value>
@@ -612,6 +612,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_autosave_desc" xml:space="preserve">
     <value>Okresowo ratuj świat automatycznie</value>
   </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Ogólne</value>
   </data>
@@ -633,12 +636,6 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Automatycznie sprawdzaj nowe wersje przy starcie</value>
   </data>
-  <data name="settings_cancel" xml:space="preserve">
-    <value>Anuluj</value>
-  </data>
-  <data name="settings_save" xml:space="preserve">
-    <value>Zapisz</value>
-  </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Włącz Raportowanie Błędów</value>
   </data>
@@ -656,6 +653,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="settings_realistic_colors_desc" xml:space="preserve">
     <value>Renderowanie kafelków z użyciem kolorów próbkowanych teksturami (wymaga restartu)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Zapisz</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Ustawienia wyszukiwania...</value>
@@ -773,6 +773,18 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Renderujące przewody z przezroczystością</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>Sztandary</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>Znajdź i zamień</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>Obiekt kafelka</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>Właściwości Świata</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Anuluj</value>

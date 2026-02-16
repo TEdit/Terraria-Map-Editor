@@ -10,7 +10,10 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}"
              d:DesignHeight="600" d:DesignWidth="340">
-    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.tool_sprite2_title}" Style="{DynamicResource SidebarPanelTitle}" />
 
         <!-- Filter and Size Controls -->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="2">
@@ -84,7 +87,7 @@
         <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.sprite_tiletype}"/>
         <Border BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
                 BorderThickness="1"
-                Background="{DynamicResource ControlFillColorDefaultBrush}">
+                Background="{DynamicResource SidebarBackgroundBrush}">
             <vwp:GridView x:Name="SpriteSheetList"
                     ItemsSource="{Binding SpriteSheetView}"
                     SelectedItem="{Binding Mode=TwoWay, Path=SelectedSpriteSheet}"

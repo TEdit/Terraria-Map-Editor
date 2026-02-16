@@ -14,14 +14,13 @@
         <converters:NpcVariantPreviewConverter x:Key="NpcVariantPreviewConverter" />
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{x:Static p:Language.tool_npc_hint}"
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.editor_tabs_npc}" Style="{DynamicResource SidebarPanelTitle}" />
+
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.tool_npc_hint}"
                    Margin="4" Opacity="0.7" TextWrapping="Wrap" />
-        <ListBox Grid.Row="1" MinHeight="100" ItemsSource="{Binding AllNpcsView}"
+        <ListBox MinHeight="100" ItemsSource="{Binding AllNpcsView}"
                  Grid.IsSharedSizeScope="True">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
@@ -211,5 +210,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-    </Grid>
+    </DockPanel>
 </UserControl>

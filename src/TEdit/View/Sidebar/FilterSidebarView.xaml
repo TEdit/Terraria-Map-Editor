@@ -17,7 +17,10 @@
         <viewModel:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
     </UserControl.Resources>
 
-    <DockPanel Background="{DynamicResource ControlBackgroundBrush}">
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}">
+
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.menu_filter}" Style="{DynamicResource SidebarPanelTitle}" />
 
         <!-- Bottom panel: Mode settings and buttons -->
         <StackPanel DockPanel.Dock="Bottom" Margin="8">
