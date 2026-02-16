@@ -66,6 +66,7 @@ public partial class WorldRenderXna : UserControl
     private const float LayerLocations = 1 - 0.20f;
     private const float LayerSelection = 1 - 0.25f;
     private const float LayerTools = 1 - 0.30f;
+    private const float LayerFindCrosshair = 1 - 0.35f;
 
     private Color _backgroundColor = Color.FromNonPremultiplied(32, 32, 32, 255);
     private readonly GameTimer _gameTimer;
@@ -488,7 +489,6 @@ public partial class WorldRenderXna : UserControl
         _wvm.RequestZoomEvent += _wvm_RequestZoom;
         _wvm.RequestPanEvent += _wvm_RequestPan;
         _wvm.RequestScrollEvent += _wvm_RequestScroll;
-        _wvm.RequestMapRedrawEvent += _wvm_RequestMapRedraw;
 
         // Cancel background texture loading and preview timer when control is unloaded
         Unloaded += (s, e) =>
@@ -496,23 +496,6 @@ public partial class WorldRenderXna : UserControl
             _textureLoadCancellation?.Cancel();
             _previewProcessingTimer?.Stop();
         };
-    }
-
-    private void _wvm_RequestMapRedraw(object sender, Framework.Events.EventArgs<bool> e)
-    {
-        DrawTileWalls();
-        DrawTileTextures();
-
-        if (e.Value1)
-        {
-            _wvm.UpdateRenderWorldUsingFilter();
-            _wvm.MinimapImage = RenderMiniMap.Render(_wvm.CurrentWorld, true);
-        }
-        else
-        {
-            _wvm.UpdateRenderWorld();
-            _wvm.MinimapImage = RenderMiniMap.Render(_wvm.CurrentWorld);
-        }
     }
 
     private void _wvm_RequestPan(object sender, EventArgs<bool> e) => SetPanMode(e.Value1);
@@ -5361,6 +5344,52 @@ public partial class WorldRenderXna : UserControl
             Vector2.One,
             SpriteEffects.None,
             LayerLocations);
+
+        // Draw Find result crosshair
+        DrawFindCrosshair();
+    }
+
+    private void DrawFindCrosshair()
+    {
+        var findViewModel = ViewModelLocator.GetFindSidebarViewModel();
+        if (findViewModel == null || !findViewModel.ShowCrosshair)
+            return;
+
+        var whiteTex = _textureDictionary.WhitePixelTexture;
+        if (whiteTex == null) return;
+
+        // Get crosshair position in tile coordinates
+        int tileX = findViewModel.CrosshairTileX;
+        int tileY = findViewModel.CrosshairTileY;
+
+        // Convert tile center to screen coordinates
+        float screenCenterX = (_scrollPosition.X + tileX + 0.5f) * _zoom;
+        float screenCenterY = (_scrollPosition.Y + tileY + 0.5f) * _zoom;
+
+        // Fixed size crosshair that doesn't scale with zoom (minimum 24px, max 48px)
+        const int minCrosshairSize = 24;
+        const int maxCrosshairSize = 48;
+        int crosshairSize = Math.Clamp((int)(_zoom * 3), minCrosshairSize, maxCrosshairSize);
+        int outlineThickness = 3; // Fixed thickness
+
+        // Center the crosshair on the tile
+        int screenX = (int)(screenCenterX - crosshairSize / 2);
+        int screenY = (int)(screenCenterY - crosshairSize / 2);
+
+        var crosshairColor = Color.Red;
+
+        // Top edge
+        _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, crosshairSize, outlineThickness),
+            null, crosshairColor, 0f, default, SpriteEffects.None, LayerFindCrosshair);
+        // Bottom edge
+        _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY + crosshairSize - outlineThickness, crosshairSize, outlineThickness),
+            null, crosshairColor, 0f, default, SpriteEffects.None, LayerFindCrosshair);
+        // Left edge
+        _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, outlineThickness, crosshairSize),
+            null, crosshairColor, 0f, default, SpriteEffects.None, LayerFindCrosshair);
+        // Right edge
+        _spriteBatch.Draw(whiteTex, new Rectangle(screenX + crosshairSize - outlineThickness, screenY, outlineThickness, crosshairSize),
+            null, crosshairColor, 0f, default, SpriteEffects.None, LayerFindCrosshair);
     }
 
     private void DrawNpcTexture(NPC npc)

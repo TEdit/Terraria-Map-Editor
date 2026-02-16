@@ -28,6 +28,22 @@ public static class ViewModelLocator
     public static BannerViewModel GetBannerViewModel() => new BannerViewModel();
     public static CreativePowersViewModel GetCreativePowersViewModel() => new CreativePowersViewModel();
 
+    // Singleton instances for sidebar viewmodels that need to persist state
+    private static FilterSidebarViewModel? _filterSidebarViewModel;
+    private static FindSidebarViewModel? _findSidebarViewModel;
+
+    public static FilterSidebarViewModel GetFilterSidebarViewModel()
+    {
+        _filterSidebarViewModel ??= new FilterSidebarViewModel(WorldViewModel);
+        return _filterSidebarViewModel;
+    }
+
+    public static FindSidebarViewModel GetFindSidebarViewModel()
+    {
+        _findSidebarViewModel ??= new FindSidebarViewModel(WorldViewModel);
+        return _findSidebarViewModel;
+    }
+
     private static WorldViewModel CreateWorldViewModel()
     {
         var wvm = new WorldViewModel();
@@ -50,9 +66,6 @@ public static class ViewModelLocator
         //Sorted by Plugin-Name
         wvm.Plugins.Add(new BlockShufflePlugin(wvm));
         wvm.Plugins.Add(new CleanseWorldPlugin(wvm));
-        wvm.Plugins.Add(new FindChestWithPlugin(wvm));
-        wvm.Plugins.Add(new FindPlanteraBulbPlugin(wvm));
-        wvm.Plugins.Add(new FindTileWithPlugin(wvm));
         wvm.Plugins.Add(new HouseGenPlugin(wvm));
         wvm.Plugins.Add(new ImageToPixelartEditor(wvm));
         wvm.Plugins.Add(new PlayerMapRenderer(wvm));

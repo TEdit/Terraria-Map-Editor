@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -7,9 +8,30 @@ namespace TEdit.UI.Xaml;
 
 public class FilteredComboBox : ComboBox
 {
+    static FilteredComboBox()
+    {
+        // Enable virtualization for the dropdown items
+        ItemsPanelProperty.OverrideMetadata(
+            typeof(FilteredComboBox),
+            new FrameworkPropertyMetadata(CreateVirtualizingItemsPanel()));
+    }
+
+    private static ItemsPanelTemplate CreateVirtualizingItemsPanel()
+    {
+        var factory = new FrameworkElementFactory(typeof(VirtualizingStackPanel));
+        factory.SetValue(VirtualizingPanel.IsVirtualizingProperty, true);
+        factory.SetValue(VirtualizingPanel.VirtualizationModeProperty, VirtualizationMode.Recycling);
+        return new ItemsPanelTemplate(factory);
+    }
+
     public FilteredComboBox()
     {
         SetResourceReference(StyleProperty, typeof(ComboBox));
+
+        // Enable virtualization properties on this instance
+        VirtualizingPanel.SetIsVirtualizing(this, true);
+        VirtualizingPanel.SetVirtualizationMode(this, VirtualizationMode.Recycling);
+        VirtualizingPanel.SetScrollUnit(this, ScrollUnit.Pixel);
     }
 
     private string oldFilter = string.Empty;

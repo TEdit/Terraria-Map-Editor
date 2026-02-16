@@ -509,6 +509,27 @@ public partial class WorldViewModel
                 OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
             });
     }
+
+    /// <summary>
+    /// Refreshes all renderings: pixel map and minimap. Use this after applying filters.
+    /// </summary>
+    /// <param name="useFilter">If true, apply current FilterManager settings</param>
+    public void RefreshAllRenderings(bool useFilter)
+    {
+        if (CurrentWorld == null) return;
+
+        if (useFilter)
+        {
+            UpdateRenderWorldUsingFilter();
+            MinimapImage = Render.RenderMiniMap.Render(CurrentWorld, true);
+        }
+        else
+        {
+            UpdateRenderWorld();
+            MinimapImage = Render.RenderMiniMap.Render(CurrentWorld);
+        }
+    }
+
     public void UpdateRenderPixel(Vector2Int32 p)
     {
         UpdateRenderPixel(p.X, p.Y);

@@ -2,7 +2,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-        xmlns:View="clr-namespace:TEdit.View" x:Name="Shell"
+        xmlns:View="clr-namespace:TEdit.View"
+        xmlns:Sidebar="clr-namespace:TEdit.View.Sidebar"
+        x:Name="Shell"
         Title="{Binding WindowTitle}" Height="1080" Width="1920"
         MaxWidth="4339"
         Loaded="MainWindow_Loaded"
@@ -150,6 +152,7 @@
                     </MenuItem>
         </MenuItem>
         <MenuItem Header="{x:Static p:Language.menu_filter}" Click="FilterMenuItem_Click" />
+        <MenuItem Header="Find" Click="FindMenuItem_Click" />
         <MenuItem Header="{x:Static p:Language.menu_plugins}" ItemsSource="{Binding Plugins}" ItemContainerStyle="{StaticResource SubmenuItemStyle}">
 
                 </MenuItem>
@@ -388,6 +391,14 @@
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_creative}">
                             <TabItem.Header><ui:SymbolIcon Symbol="Lightbulb20" Filled="True" FontSize="24"/></TabItem.Header>
                             <View:CreativePowers />
+                        </TabItem>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="Filter">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Filter20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <Sidebar:FilterSidebarView />
+                        </TabItem>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="Find">
+                            <TabItem.Header><ui:SymbolIcon Symbol="Search20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <Sidebar:FindSidebarView />
                         </TabItem>
                 </TabControl>
             </Grid>

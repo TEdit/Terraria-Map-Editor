@@ -1,0 +1,121 @@
+<UserControl x:Class="TEdit.View.Sidebar.FilterSidebarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
+             xmlns:cv="clr-namespace:TEdit.Converters"
+             xmlns:p="clr-namespace:TEdit.Properties"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="400"
+             d:DataContext="{d:DesignInstance Type=viewModel:FilterSidebarViewModel}">
+
+    <UserControl.Resources>
+        <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <viewModel:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+    </UserControl.Resources>
+
+    <DockPanel Background="{DynamicResource ControlBackgroundBrush}">
+
+        <!-- Bottom panel: Mode settings and buttons -->
+        <StackPanel DockPanel.Dock="Bottom" Margin="8">
+
+            <!-- Filter Mode -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                <TextBlock Text="Filter Mode:"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <RadioButton Content="Hide"
+                             GroupName="FilterMode"
+                             VerticalAlignment="Center"
+                             Margin="0,0,15,0"
+                             IsChecked="{Binding FilterMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Hide}" />
+                <RadioButton Content="Grayscale"
+                             GroupName="FilterMode"
+                             VerticalAlignment="Center"
+                             IsChecked="{Binding FilterMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Grayscale}" />
+            </StackPanel>
+
+            <!-- Background Mode -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                <TextBlock Text="Background:"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <RadioButton Content="Normal"
+                             GroupName="BackgroundMode"
+                             VerticalAlignment="Center"
+                             Margin="0,0,10,0"
+                             IsChecked="{Binding BackgroundMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Normal}" />
+                <RadioButton Content="Transparent"
+                             GroupName="BackgroundMode"
+                             VerticalAlignment="Center"
+                             Margin="0,0,10,0"
+                             IsChecked="{Binding BackgroundMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Transparent}" />
+                <RadioButton x:Name="CustomRadio"
+                             Content="Custom"
+                             GroupName="BackgroundMode"
+                             VerticalAlignment="Center"
+                             Margin="0,0,5,0"
+                             IsChecked="{Binding BackgroundMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Custom}" />
+                <ui:Button Content="..."
+                           Padding="8,4"
+                           IsEnabled="{Binding IsChecked, ElementName=CustomRadio}"
+                           Command="{Binding PickCustomColorCommand}"
+                           ToolTip="Pick custom background color" />
+                <Border Width="20" Height="20"
+                        Margin="5,0,0,0"
+                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        Visibility="{Binding IsChecked, ElementName=CustomRadio, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Rectangle>
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding CustomBackgroundColor}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+            </StackPanel>
+
+            <!-- Filter Clipboard checkbox -->
+            <CheckBox Content="Filter Clipboard"
+                      IsChecked="{Binding FilterClipboardEnabled}"
+                      Margin="0,0,0,10" />
+
+            <!-- Action buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <ui:Button Content="Disable"
+                           Command="{Binding DisableCommand}"
+                           Margin="0,0,8,0"
+                           Padding="12,6" />
+                <ui:Button Content="Apply"
+                           Appearance="Primary"
+                           Command="{Binding ApplyCommand}"
+                           Padding="12,6" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Main content: Tab control with pickers -->
+        <TabControl SelectedIndex="{Binding SelectedTabIndex}"
+                    Margin="0">
+            <TabItem Header="Tiles">
+                <controls:TileWallPickerControl DataContext="{Binding TilePicker}" />
+            </TabItem>
+            <TabItem Header="Walls">
+                <controls:TileWallPickerControl DataContext="{Binding WallPicker}" />
+            </TabItem>
+            <TabItem Header="Liquids">
+                <controls:TileWallPickerControl DataContext="{Binding LiquidPicker}" />
+            </TabItem>
+            <TabItem Header="Wires">
+                <controls:TileWallPickerControl DataContext="{Binding WirePicker}" />
+            </TabItem>
+            <TabItem Header="Sprites">
+                <controls:SpriteTreePickerControl DataContext="{Binding SpritePicker}" />
+            </TabItem>
+        </TabControl>
+
+    </DockPanel>
+</UserControl>

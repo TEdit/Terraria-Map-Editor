@@ -135,6 +135,16 @@ public partial class WorldViewModel : ReactiveObject
     /// </summary>
     public Action? ExportTexturesAction { get; set; }
 
+    /// <summary>
+    /// Action to zoom and focus on a specific tile coordinate. Set by MainWindow to delegate to MapView.
+    /// </summary>
+    public Action<int, int>? ZoomFocus { get; set; }
+
+    /// <summary>
+    /// Action to pan (center) on a specific tile coordinate without changing zoom. Set by MainWindow to delegate to MapView.
+    /// </summary>
+    public Action<int, int>? PanTo { get; set; }
+
     static WorldViewModel()
     {
         if (!Directory.Exists(TempPath))
