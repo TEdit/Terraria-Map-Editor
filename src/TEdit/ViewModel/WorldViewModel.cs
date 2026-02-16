@@ -826,7 +826,12 @@ public partial class WorldViewModel : ReactiveObject
         DialogResponse result = DialogResponse.None;
         try
         {
-            Process.Start(url);
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            };
+            Process.Start(psi);
         }
         catch
         {
