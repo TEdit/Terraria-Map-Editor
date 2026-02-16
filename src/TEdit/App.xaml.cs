@@ -91,7 +91,6 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        // Show splash - autoClose fades when main window appears, topMost keeps it above
         var splashScreen = new SplashScreen("Images/te5-logo.png");
         splashScreen.Show(autoClose: true, topMost: true);
 
@@ -216,8 +215,6 @@ public partial class App : Application
         base.OnStartup(e);
 
         // Create main window manually (StartupUri removed from App.xaml)
-        // TEMP: Using TestWindow to debug ContentDialogHost
-        //var mainWindow = new TestWindow();
         var mainWindow = new MainWindow();
         MainWindow = mainWindow;
         mainWindow.Show();

@@ -5,18 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
-             xmlns:converters="clr-namespace:TEdit.Converters"
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
              x:Name="Root"
              d:DesignHeight="26" d:DesignWidth="320">
     <UserControl.Resources>
-        <converters:ItemIdToPreviewConverter x:Key="ItemIdToPreviewConverter" />
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
     <Grid HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
@@ -24,18 +21,12 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <!-- Item preview thumbnail -->
-        <Image Grid.Column="0"
-               Source="{Binding ItemId, ElementName=Root, Converter={StaticResource ItemIdToPreviewConverter}}"
-               Width="24" Height="24" Stretch="Uniform" Margin="1,0"
-               RenderOptions.BitmapScalingMode="NearestNeighbor"
-               Visibility="{Binding ShowPreviewImage, ElementName=Root, Converter={StaticResource BoolToVis}}" />
         <!-- Stack size -->
-        <TextBox Grid.Column="1" Width="40" Margin="1,0"
+        <TextBox Grid.Column="0" Width="40" Margin="1,0"
                  Text="{Binding StackSize, ElementName=Root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Visibility="{Binding ShowStackSize, ElementName=Root, Converter={StaticResource BoolToVis}}" />
         <!-- Prefix (filterable) -->
-        <tedit:FilteredComboBox Grid.Column="2" x:Name="PrefixCombo" Width="50" Margin="1,0"
+        <tedit:FilteredComboBox Grid.Column="1" x:Name="PrefixCombo" Width="65" Margin="1,0"
                   IsEditable="True"
                   SelectedValuePath="Key" DisplayMemberPath="Value"
                   FilterMemberPath="Value"
@@ -43,26 +34,25 @@
                   MaxDropDownHeight="300"
                   SelectedValue="{Binding Prefix, ElementName=Root, Mode=TwoWay}"
                   Visibility="{Binding ShowPrefix, ElementName=Root, Converter={StaticResource BoolToVis}}" />
-        <!-- Item ComboBox (filterable) -->
-        <tedit:FilteredComboBox Grid.Column="3" x:Name="ItemCombo" Margin="1,0"
-                  IsEditable="True"
+        <!-- Item ComboBox (filterable, shows images via ItemTemplate) -->
+        <tedit:FilteredComboBox Grid.Column="2" x:Name="ItemCombo" Margin="1,0"
                   IsSynchronizedWithCurrentItem="False"
                   MaxDropDownHeight="400"
                   HorizontalAlignment="Stretch" />
         <!-- Action buttons -->
-        <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+        <Button Grid.Column="3" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                 Command="{Binding CopyCommand, ElementName=Root}"
                 CommandParameter="{Binding CommandParameter, ElementName=Root}"
                 Visibility="{Binding ShowActionButtons, ElementName=Root, Converter={StaticResource BoolToVis}}">
             <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
         </Button>
-        <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+        <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
                 Command="{Binding PasteCommand, ElementName=Root}"
                 CommandParameter="{Binding PasteCommandParameter, ElementName=Root}"
                 Visibility="{Binding ShowActionButtons, ElementName=Root, Converter={StaticResource BoolToVis}}">
             <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
         </Button>
-        <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
+        <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
                 Command="{Binding MaxStackCommand, ElementName=Root}"
                 CommandParameter="{Binding MaxStackCommandParameter, ElementName=Root}"
                 Visibility="{Binding ShowActionButtons, ElementName=Root, Converter={StaticResource BoolToVis}}">

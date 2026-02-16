@@ -17,13 +17,15 @@ public class KeybindingConverter : IValueConverter
         if (parameter is not string actionId)
             return value;
 
+        var label = value as string;
         var bindings = App.Input?.Registry?.GetBindings(actionId);
+
         if (bindings == null || bindings.Count == 0)
-            return value;
+            return label ?? string.Empty;
 
         var shortcut = bindings[0].ToString();
 
-        if (value is string label && !string.IsNullOrEmpty(label))
+        if (!string.IsNullOrEmpty(label))
             return $"{label} ({shortcut})";
 
         return shortcut;

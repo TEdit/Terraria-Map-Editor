@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Threading;
 using ReactiveUI;
 using System.Windows.Input;
 using System.Collections.Generic;
@@ -27,6 +30,18 @@ namespace TEdit;
 /// </summary>
 public partial class MainWindow : FluentWindow
 {
+    [DllImport("user32.dll")]
+    private static extern nint SendMessage(nint hWnd, uint msg, nint wParam, nint lParam);
+
+    [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
+    private static extern nint ExtractIcon(nint hInst, string lpszExeFileName, int nIconIndex);
+
+    private const uint WM_SETICON = 0x0080;
+    private const nint ICON_SMALL = 0;
+    private const nint ICON_BIG = 1;
+
+    private nint _appIcon;
+    private nint _hwnd;
 
     private WorldViewModel _vm;
     public MainWindow()
@@ -41,6 +56,36 @@ public partial class MainWindow : FluentWindow
         _vm.WhenAnyValue(vm => vm.SelectedTabIndex)
             .Skip(1)  // Skip initial value
             .Subscribe(_ => ExpandSidePanel());
+
+        SourceInitialized += MainWindow_SourceInitialized;
+        Loaded += MainWindow_IconFixLoaded;
+    }
+
+    private void MainWindow_SourceInitialized(object? sender, EventArgs e)
+    {
+        _hwnd = new WindowInteropHelper(this).Handle;
+        if (_hwnd == nint.Zero) return;
+
+        // Extract the app icon once from the exe resource
+        var exePath = Environment.ProcessPath;
+        if (exePath != null)
+            _appIcon = ExtractIcon(nint.Zero, exePath, 0);
+    }
+
+    private void MainWindow_IconFixLoaded(object sender, RoutedEventArgs e)
+    {
+        Loaded -= MainWindow_IconFixLoaded;
+
+        // FluentWindow's Loaded handler removes WS_SYSMENU which clears the taskbar icon.
+        // Use BeginInvoke to re-apply after all Loaded handlers have completed.
+        Dispatcher.BeginInvoke(DispatcherPriority.Input, () =>
+        {
+            if (_appIcon != nint.Zero && _hwnd != nint.Zero)
+            {
+                SendMessage(_hwnd, WM_SETICON, ICON_BIG, _appIcon);
+                SendMessage(_hwnd, WM_SETICON, ICON_SMALL, _appIcon);
+            }
+        });
     }
 
     async void MainWindow_Loaded(object sender, RoutedEventArgs e)

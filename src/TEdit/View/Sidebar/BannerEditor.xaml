@@ -23,9 +23,9 @@
         <!-- Toolbar -->
         <UniformGrid Columns="4" DockPanel.Dock="Top" Style="{DynamicResource SidebarButtonRow}">
             <ui:Button Content="{x:Static p:Language.banner_import}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding ImportBannersCommand}" />
-            <ui:Button Content="{x:Static p:Language.banner_save}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding SaveBannersCommand}" />
             <ui:Button Content="{x:Static p:Language.banner_maxout}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding MaxOutBannersCommand}" />
-            <ui:Button Content="{x:Static p:Language.banner_reset}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding ResetBannersCommand}" />
+            <ui:Button Content="{x:Static p:Language.banner_save}" Appearance="Success" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding SaveBannersCommand}" />
+            <ui:Button Content="{x:Static p:Language.banner_reset}" Appearance="Danger" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding ResetBannersCommand}" />
         </UniformGrid>
 
         <!-- Filter bar -->

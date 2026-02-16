@@ -4,6 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
     mc:Ignorable="d"
     d:DesignWidth="340">
@@ -31,7 +32,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <!-- Header -->
@@ -48,11 +49,12 @@
         </StackPanel>
         <!-- Head -->
         <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_head}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-              SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
-              IsSynchronizedWithCurrentItem="False"
-              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        <controls:ItemEditorControl Grid.Row="1" Grid.Column="1"
+            ItemId="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+            ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            DisplayMode="ImageOnly"
+            ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <controls:ItemEditorControl Grid.Row="1" Grid.Column="2"
             ItemId="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
             Prefix="{Binding SelectedTileEntity.Item0.Prefix, Mode=TwoWay}"
@@ -62,11 +64,12 @@
             ShowStackSize="False" ShowActionButtons="False" />
         <!-- Body -->
         <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_body}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-              SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
-              IsSynchronizedWithCurrentItem="False"
-              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        <controls:ItemEditorControl Grid.Row="2" Grid.Column="1"
+            ItemId="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+            ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            DisplayMode="ImageOnly"
+            ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <controls:ItemEditorControl Grid.Row="2" Grid.Column="2"
             ItemId="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
             Prefix="{Binding SelectedTileEntity.Item1.Prefix, Mode=TwoWay}"
@@ -76,11 +79,12 @@
             ShowStackSize="False" ShowActionButtons="False" />
         <!-- Legs -->
         <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_legs}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-              SelectedValue="{Binding SelectedTileEntity.Dye2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
-              IsSynchronizedWithCurrentItem="False"
-              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        <controls:ItemEditorControl Grid.Row="3" Grid.Column="1"
+            ItemId="{Binding SelectedTileEntity.Dye2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+            ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            DisplayMode="ImageOnly"
+            ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <controls:ItemEditorControl Grid.Row="3" Grid.Column="2"
             ItemId="{Binding SelectedTileEntity.Item2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
             Prefix="{Binding SelectedTileEntity.Item2.Prefix, Mode=TwoWay}"
@@ -90,11 +94,12 @@
             ShowStackSize="False" ShowActionButtons="False" />
         <!-- Acc 1 -->
         <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_acc1}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-              SelectedValue="{Binding SelectedTileEntity.Dye3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
-              IsSynchronizedWithCurrentItem="False"
-              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        <controls:ItemEditorControl Grid.Row="4" Grid.Column="1"
+            ItemId="{Binding SelectedTileEntity.Dye3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+            ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            DisplayMode="ImageOnly"
+            ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <controls:ItemEditorControl Grid.Row="4" Grid.Column="2"
             ItemId="{Binding SelectedTileEntity.Item3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
             Prefix="{Binding SelectedTileEntity.Item3.Prefix, Mode=TwoWay}"
@@ -104,11 +109,12 @@
             ShowStackSize="False" ShowActionButtons="False" />
         <!-- Acc 2 -->
         <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_acc2}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-              SelectedValue="{Binding SelectedTileEntity.Dye4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
-              IsSynchronizedWithCurrentItem="False"
-              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        <controls:ItemEditorControl Grid.Row="5" Grid.Column="1"
+            ItemId="{Binding SelectedTileEntity.Dye4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+            ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            DisplayMode="ImageOnly"
+            ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <controls:ItemEditorControl Grid.Row="5" Grid.Column="2"
             ItemId="{Binding SelectedTileEntity.Item4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
             Prefix="{Binding SelectedTileEntity.Item4.Prefix, Mode=TwoWay}"
@@ -118,11 +124,12 @@
             ShowStackSize="False" ShowActionButtons="False" />
         <!-- Acc 3 -->
         <TextBlock Grid.Row="6" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_acc3}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-              SelectedValue="{Binding SelectedTileEntity.Dye5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
-              IsSynchronizedWithCurrentItem="False"
-              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        <controls:ItemEditorControl Grid.Row="6" Grid.Column="1"
+            ItemId="{Binding SelectedTileEntity.Dye5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+            ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            DisplayMode="ImageOnly"
+            ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <controls:ItemEditorControl Grid.Row="6" Grid.Column="2"
             ItemId="{Binding SelectedTileEntity.Item5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
             Prefix="{Binding SelectedTileEntity.Item5.Prefix, Mode=TwoWay}"
@@ -132,11 +139,12 @@
             ShowStackSize="False" ShowActionButtons="False" />
         <!-- Acc 4 -->
         <TextBlock Grid.Row="7" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_acc4}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="7" Grid.Column="1" ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-              SelectedValue="{Binding SelectedTileEntity.Dye6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
-              IsSynchronizedWithCurrentItem="False"
-              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        <controls:ItemEditorControl Grid.Row="7" Grid.Column="1"
+            ItemId="{Binding SelectedTileEntity.Dye6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+            ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            DisplayMode="ImageOnly"
+            ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <controls:ItemEditorControl Grid.Row="7" Grid.Column="2"
             ItemId="{Binding SelectedTileEntity.Item6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
             Prefix="{Binding SelectedTileEntity.Item6.Prefix, Mode=TwoWay}"
@@ -146,11 +154,12 @@
             ShowStackSize="False" ShowActionButtons="False" />
         <!-- Acc 5 -->
         <TextBlock Grid.Row="8" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_acc5}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="8" Grid.Column="1" ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-              SelectedValue="{Binding SelectedTileEntity.Dye7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
-              IsSynchronizedWithCurrentItem="False"
-              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        <controls:ItemEditorControl Grid.Row="8" Grid.Column="1"
+            ItemId="{Binding SelectedTileEntity.Dye7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+            ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            DisplayMode="ImageOnly"
+            ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <controls:ItemEditorControl Grid.Row="8" Grid.Column="2"
             ItemId="{Binding SelectedTileEntity.Item7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
             Prefix="{Binding SelectedTileEntity.Item7.Prefix, Mode=TwoWay}"
@@ -160,11 +169,12 @@
             ShowStackSize="False" ShowActionButtons="False" />
         <!-- Weapon -->
         <TextBlock Grid.Row="9" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_weapon}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="9" Grid.Column="1" ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-              SelectedValue="{Binding SelectedTileEntity.WeaponDye.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
-              IsEditable="true" SelectedValuePath="Key" DisplayMemberPath="Value"
-              IsSynchronizedWithCurrentItem="False"
-              Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        <controls:ItemEditorControl Grid.Row="9" Grid.Column="1"
+            ItemId="{Binding SelectedTileEntity.WeaponDye.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+            ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+            ItemsSourceType="DictionaryKvp"
+            DisplayMode="ImageOnly"
+            ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <controls:ItemEditorControl Grid.Row="9" Grid.Column="2"
             ItemId="{Binding SelectedTileEntity.Weapon.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
             Prefix="{Binding SelectedTileEntity.Weapon.Prefix, Mode=TwoWay}"
@@ -181,9 +191,11 @@
             ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
         <!-- Buttons -->
         <UniformGrid Columns="2" Grid.Row="11" Grid.ColumnSpan="3">
-            <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
+            <ui:Button Margin="5" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
+                HorizontalAlignment="Stretch" Appearance="Danger"
                 CommandParameter="{StaticResource False}" />
-            <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
+            <ui:Button Margin="5" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
+                HorizontalAlignment="Stretch" Appearance="Success"
                 CommandParameter="{StaticResource True}" />
         </UniformGrid>
     </Grid>

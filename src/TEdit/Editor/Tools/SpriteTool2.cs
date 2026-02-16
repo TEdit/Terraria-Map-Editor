@@ -24,7 +24,7 @@ public sealed class SpriteTool2 : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/sprite.png"));
-        SymbolIcon = SymbolRegular.Image24;
+        SymbolIcon = SymbolRegular.Couch20;
         Name = "Sprite2";
         IsActive = false;
         ToolType = ToolType.Pixel;

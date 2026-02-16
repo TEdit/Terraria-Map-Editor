@@ -2231,6 +2231,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hat Rack.
+        /// </summary>
+        public static string specialtile_label_hatrack {
+            get {
+                return ResourceManager.GetString("specialtile_label_hatrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Head.
         /// </summary>
         public static string specialtile_label_head {

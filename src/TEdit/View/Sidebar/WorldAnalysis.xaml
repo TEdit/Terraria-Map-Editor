@@ -13,7 +13,7 @@
 
         <!-- Toolbar -->
         <UniformGrid DockPanel.Dock="Top" Columns="2" Style="{DynamicResource SidebarButtonRow}">
-            <ui:Button Content="{x:Static p:Language.tool_analyze_analyze_button}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding AnalyzeWorldCommand}" />
+            <ui:Button Content="{x:Static p:Language.tool_analyze_analyze_button}" Appearance="Info" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding AnalyzeWorldCommand}" />
             <ui:Button Content="{x:Static p:Language.tool_analyze_save_button}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding AnalyzeWorldSaveCommand}" />
         </UniformGrid>
 

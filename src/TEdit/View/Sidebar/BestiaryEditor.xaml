@@ -8,7 +8,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
         xmlns:p="clr-namespace:TEdit.Properties"
-        d:Width="350"
+        d:Width="360"
         d:Height="400"
         d:DataContext="{d:DesignInstance Type=viewModel:BestiaryViewModel}">
 
@@ -25,8 +25,8 @@
             <ui:Button Content="{x:Static p:Language.bestiary_load}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding LoadBestiaryCommand}" />
             <ui:Button Content="{x:Static p:Language.bestiary_clear}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding ResetBestiaryCommand}" />
             <ui:Button Content="{x:Static p:Language.bestiary_complete}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding CompleteBestiaryCommand}" />
-            <ui:Button Content="{x:Static p:Language.bestiary_save}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding SaveBestiaryCommand}" />
-            <ui:Button Content="{x:Static p:Language.bestiary_tally}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding UpdateKillTallyCommand}" />
+            <ui:Button Content="{x:Static p:Language.bestiary_save}" Appearance="Success" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding SaveBestiaryCommand}" />
+            <ui:Button Content="{x:Static p:Language.bestiary_tally}" Appearance="Danger" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding UpdateKillTallyCommand}" />
         </UniformGrid>
 
         <ListView 

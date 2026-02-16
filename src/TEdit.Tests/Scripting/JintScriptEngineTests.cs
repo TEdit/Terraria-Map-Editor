@@ -113,7 +113,6 @@ public class JintScriptEngineTests
         var result = _engine.Execute("while(true) {}", api, new ScriptExecutionContext
         {
             TimeoutMs = 500,
-            MaxStatements = int.MaxValue,
             CancellationToken = CancellationToken.None
         });
 

@@ -23,8 +23,8 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 
         <!-- Toolbar -->
         <UniformGrid Columns="2" DockPanel.Dock="Top" Style="{DynamicResource SidebarButtonRow}">
-            <ui:Button Content="{x:Static p:Language.bestiary_load}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding LoadPowersCommand}" />
-            <ui:Button Content="{x:Static p:Language.bestiary_save}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding SavePowersCommand}" />
+            <ui:Button Content="{x:Static p:Language.bestiary_load}" Margin="2" Padding="5" HorizontalAlignment="Stretch" Command="{Binding LoadPowersCommand}" />
+            <ui:Button Content="{x:Static p:Language.bestiary_save}" Appearance="Success" Margin="2" Padding="5" HorizontalAlignment="Stretch" Command="{Binding SavePowersCommand}" />
         </UniformGrid>
         <tedit:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
             <tedit:AutoGrid.ColumnDefinitions>

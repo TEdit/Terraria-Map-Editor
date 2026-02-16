@@ -4,6 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     mc:Ignorable="d"
     d:DesignWidth="340">
     <UserControl.Resources>
@@ -39,11 +40,13 @@
                   IsEditable="True"
                   IsSynchronizedWithCurrentItem="False"
                   ItemsPanel="{StaticResource Template_ComboPanel}" />
-        <UniformGrid Columns="2" Grid.Row="2" Margin="0">
-            <Button Margin="10,0" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
-                    CommandParameter="{StaticResource False}" HorizontalAlignment="Stretch" />
-            <Button Margin="10,0" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
-                    CommandParameter="{StaticResource True}" HorizontalAlignment="Stretch" />
+        <UniformGrid Columns="2" Grid.Row="2">
+            <ui:Button Margin="5" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
+                HorizontalAlignment="Stretch" Appearance="Danger"
+                CommandParameter="{StaticResource False}" />
+            <ui:Button Margin="5" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
+                HorizontalAlignment="Stretch" Appearance="Success"
+                CommandParameter="{StaticResource True}" />
         </UniformGrid>
     </Grid>
 </UserControl>

@@ -651,12 +651,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Automatically check for new versions on startup</value>
   </data>
-  <data name="settings_update_channel" xml:space="preserve">
-    <value>Update Channel</value>
-  </data>
-  <data name="settings_update_channel_desc" xml:space="preserve">
-    <value>Choose which release channel to receive updates from (Stable, Beta, or Alpha)</value>
-  </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Enable Error Reporting</value>
   </data>
@@ -789,6 +783,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>Minimum zoom level before tile textures become visible</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>Update Channel</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>Choose which release channel to receive updates from (Stable, Beta, or Alpha)</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Wire Transparency</value>
   </data>
@@ -851,6 +851,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Edit Selected Item</value>
+  </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>Hat Rack</value>
   </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>Head</value>

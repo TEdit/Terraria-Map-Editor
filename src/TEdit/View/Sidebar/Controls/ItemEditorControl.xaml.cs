@@ -13,6 +13,13 @@ public enum ItemsSourceType
     DictionaryKvp
 }
 
+public enum ItemDisplayMode
+{
+    ImageAndText,
+    ImageOnly,
+    TextOnly
+}
+
 public partial class ItemEditorControl : UserControl
 {
     public ItemEditorControl()
@@ -82,14 +89,14 @@ public partial class ItemEditorControl : UserControl
         set => SetValue(ShowActionButtonsProperty, value);
     }
 
-    public static readonly DependencyProperty ShowPreviewImageProperty =
-        DependencyProperty.Register(nameof(ShowPreviewImage), typeof(bool), typeof(ItemEditorControl),
-            new PropertyMetadata(true));
+    public static readonly DependencyProperty DisplayModeProperty =
+        DependencyProperty.Register(nameof(DisplayMode), typeof(ItemDisplayMode), typeof(ItemEditorControl),
+            new PropertyMetadata(ItemDisplayMode.ImageAndText, OnDisplayModeChanged));
 
-    public bool ShowPreviewImage
+    public ItemDisplayMode DisplayMode
     {
-        get => (bool)GetValue(ShowPreviewImageProperty);
-        set => SetValue(ShowPreviewImageProperty, value);
+        get => (ItemDisplayMode)GetValue(DisplayModeProperty);
+        set => SetValue(DisplayModeProperty, value);
     }
 
     public static readonly DependencyProperty ItemsSourceProperty =
@@ -190,6 +197,12 @@ public partial class ItemEditorControl : UserControl
             control.ConfigureItemCombo();
     }
 
+    private static void OnDisplayModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is ItemEditorControl control)
+            control.ConfigureItemCombo();
+    }
+
     private static void OnPrefixSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is ItemEditorControl control)
@@ -210,18 +223,32 @@ public partial class ItemEditorControl : UserControl
         {
             combo.SelectedValuePath = "Key";
             combo.FilterMemberPath = "Value.Name";
-            combo.ItemTemplate = TryFindResource("RarityDictItemWithPreviewTemplate") as DataTemplate
-                              ?? TryFindResource("RarityDictItemTemplate") as DataTemplate;
+            combo.ItemTemplate = DisplayMode switch
+            {
+                ItemDisplayMode.ImageOnly => TryFindResource("RarityDictItemImageOnlyTemplate") as DataTemplate,
+                ItemDisplayMode.TextOnly => TryFindResource("RarityDictItemTemplate") as DataTemplate,
+                _ => TryFindResource("RarityDictItemWithPreviewTemplate") as DataTemplate
+                     ?? TryFindResource("RarityDictItemTemplate") as DataTemplate,
+            };
             combo.ItemContainerStyle = TryFindResource("RarityDictItemContainerStyle") as Style;
         }
         else
         {
             combo.SelectedValuePath = "Id";
             combo.FilterMemberPath = "Name";
-            combo.ItemTemplate = TryFindResource("RarityItemWithPreviewTemplate") as DataTemplate
-                              ?? TryFindResource("RarityItemTemplate") as DataTemplate;
+            combo.ItemTemplate = DisplayMode switch
+            {
+                ItemDisplayMode.ImageOnly => TryFindResource("RarityItemImageOnlyTemplate") as DataTemplate,
+                ItemDisplayMode.TextOnly => TryFindResource("RarityItemTemplate") as DataTemplate,
+                _ => TryFindResource("RarityItemWithPreviewTemplate") as DataTemplate
+                     ?? TryFindResource("RarityItemTemplate") as DataTemplate,
+            };
             combo.ItemContainerStyle = TryFindResource("RarityItemContainerStyle") as Style;
         }
+
+        // ImageOnly/ImageAndText: non-editable (selection box renders ItemTemplate)
+        // TextOnly: editable (text input for filtering)
+        combo.IsEditable = DisplayMode == ItemDisplayMode.TextOnly;
 
         // Bind SelectedValue to ItemId
         var binding = new Binding(nameof(ItemId))

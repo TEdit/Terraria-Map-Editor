@@ -4,6 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     mc:Ignorable="d"
     d:DesignWidth="340">
     <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
@@ -28,8 +29,12 @@
           HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
           Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
         <UniformGrid Columns="2" Grid.Row="4">
-            <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}"  Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource False}" />
-            <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
+            <ui:Button Margin="5" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveSignCommand}"
+                HorizontalAlignment="Stretch" Appearance="Danger"
+                CommandParameter="{StaticResource False}" />
+            <ui:Button Margin="5" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveSignCommand}"
+                HorizontalAlignment="Stretch" Appearance="Success"
+                CommandParameter="{StaticResource True}" />
         </UniformGrid>
     </Grid>
 </UserControl>
