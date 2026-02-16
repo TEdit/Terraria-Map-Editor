@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using TEdit.UI.Xaml;
 
 namespace TEdit.View.Sidebar.Controls;
 
@@ -208,6 +209,7 @@ public partial class ItemEditorControl : UserControl
         if (ItemsSourceType == ItemsSourceType.DictionaryKvp)
         {
             combo.SelectedValuePath = "Key";
+            combo.FilterMemberPath = "Value.Name";
             combo.ItemTemplate = TryFindResource("RarityDictItemWithPreviewTemplate") as DataTemplate
                               ?? TryFindResource("RarityDictItemTemplate") as DataTemplate;
             combo.ItemContainerStyle = TryFindResource("RarityDictItemContainerStyle") as Style;
@@ -215,6 +217,7 @@ public partial class ItemEditorControl : UserControl
         else
         {
             combo.SelectedValuePath = "Id";
+            combo.FilterMemberPath = "Name";
             combo.ItemTemplate = TryFindResource("RarityItemWithPreviewTemplate") as DataTemplate
                               ?? TryFindResource("RarityItemTemplate") as DataTemplate;
             combo.ItemContainerStyle = TryFindResource("RarityItemContainerStyle") as Style;

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +22,20 @@ public class FilteredComboBox : ComboBox
         factory.SetValue(VirtualizingPanel.IsVirtualizingProperty, true);
         factory.SetValue(VirtualizingPanel.VirtualizationModeProperty, VirtualizationMode.Recycling);
         return new ItemsPanelTemplate(factory);
+    }
+
+    /// <summary>
+    /// Dot-delimited property path used for filtering (e.g. "Value.Name").
+    /// When not set, falls back to ToString().
+    /// </summary>
+    public static readonly DependencyProperty FilterMemberPathProperty =
+        DependencyProperty.Register(nameof(FilterMemberPath), typeof(string), typeof(FilteredComboBox),
+            new PropertyMetadata(null));
+
+    public string FilterMemberPath
+    {
+        get => (string)GetValue(FilterMemberPathProperty);
+        set => SetValue(FilterMemberPathProperty, value);
     }
 
     public FilteredComboBox()
@@ -157,10 +171,6 @@ public class FilteredComboBox : ComboBox
         if (Items.Count == 0) { RevertToPrevious(); }
         ClearFilter();
 
-        //var temp = SelectedIndex;
-        //SelectedIndex = -1;
-        //Text = string.Empty;
-        //SelectedIndex = temp;
         base.OnPreviewLostKeyboardFocus(e);
     }
 
@@ -184,6 +194,25 @@ public class FilteredComboBox : ComboBox
         if (value == null) return false;
         if (Text.Length == 0) return true;
 
-        return value.ToString().ToLower().Contains(Text.ToLower());
+        string displayText = GetFilterText(value);
+        return displayText.Contains(Text, System.StringComparison.OrdinalIgnoreCase);
+    }
+
+    private string GetFilterText(object value)
+    {
+        if (string.IsNullOrEmpty(FilterMemberPath))
+            return value.ToString() ?? string.Empty;
+
+        // Walk dot-delimited property path
+        object current = value;
+        foreach (var segment in FilterMemberPath.Split('.'))
+        {
+            if (current == null) return string.Empty;
+            var prop = current.GetType().GetProperty(segment);
+            if (prop == null) return value.ToString() ?? string.Empty;
+            current = prop.GetValue(current);
+        }
+
+        return current?.ToString() ?? string.Empty;
     }
 }
