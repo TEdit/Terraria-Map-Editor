@@ -24,7 +24,8 @@ public sealed class PointTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed)
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.draw"))
         {
             NPC npc = _wvm.CurrentWorld.NPCs.FirstOrDefault(n => n.Name == _wvm.SelectedPoint);
 

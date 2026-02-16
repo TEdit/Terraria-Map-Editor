@@ -16,9 +16,12 @@ namespace TEdit.Editor.Tools;
 
 public sealed class MorphTool : BaseTool
 {
-
-    private bool _isLeftDown;
-    private bool _isRightDown;
+    private bool _isDrawing;
+    private bool _isConstraining;
+    private bool _isLineMode;
+    private bool _constrainVertical;
+    private bool _constrainDirectionLocked;
+    private Vector2Int32 _anchorPoint;
     private Vector2Int32 _startPoint;
     private Vector2Int32 _endPoint;
 
@@ -42,12 +45,16 @@ public sealed class MorphTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
+        var actions = GetActiveActions(e);
+
         _targetBiome = null;
-        if (!_isRightDown && !_isLeftDown)
+        if (!_isDrawing && !_isConstraining && !_isLineMode)
         {
             WorldConfiguration.MorphSettings.Biomes.TryGetValue(_wvm.MorphToolOptions.TargetBiome, out _targetBiome);
             _biomeMorpher = MorphBiomeDataApplier.GetMorpher(_targetBiome);
             _startPoint = e.Location;
+            _anchorPoint = e.Location;
+            _constrainDirectionLocked = false;
             _dirtLayer = (int)_wvm.CurrentWorld.GroundLevel;
             _rockLayer = (int)_wvm.CurrentWorld.RockLevel;
             _deepRockLayer = (int)(_wvm.CurrentWorld.RockLevel + ((_wvm.CurrentWorld.TilesHigh - _wvm.CurrentWorld.RockLevel) / 2));
@@ -55,23 +62,30 @@ public sealed class MorphTool : BaseTool
             _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
         }
 
-        _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
-        _isRightDown = (e.RightButton == MouseButtonState.Pressed);
-        CheckDirectionandDraw(e.Location);
+        _isDrawing = actions.Contains("editor.draw");
+        _isConstraining = actions.Contains("editor.draw.constrain");
+        _isLineMode = actions.Contains("editor.draw.line");
+
+        ProcessDraw(e.Location);
     }
 
     public override void MouseMove(TileMouseState e)
     {
-        _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
-        _isRightDown = (e.RightButton == MouseButtonState.Pressed);
-        CheckDirectionandDraw(e.Location);
+        var actions = GetActiveActions(e);
+        _isDrawing = actions.Contains("editor.draw");
+        _isConstraining = actions.Contains("editor.draw.constrain");
+        _isLineMode = actions.Contains("editor.draw.line");
+        ProcessDraw(e.Location);
     }
 
     public override void MouseUp(TileMouseState e)
     {
-        CheckDirectionandDraw(e.Location);
-        _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
-        _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+        ProcessDraw(e.Location);
+        var actions = GetActiveActions(e);
+        _isDrawing = actions.Contains("editor.draw");
+        _isConstraining = actions.Contains("editor.draw.constrain");
+        _isLineMode = actions.Contains("editor.draw.line");
+        _constrainDirectionLocked = false;
         _wvm.UndoManager.SaveUndo();
     }
 
@@ -89,33 +103,41 @@ public sealed class MorphTool : BaseTool
         return _preview;
     }
 
-    private void CheckDirectionandDraw(Vector2Int32 tile)
+    private void ProcessDraw(Vector2Int32 tile)
     {
         Vector2Int32 p = tile;
-        Vector2Int32 p2 = tile;
-        if (_isRightDown)
+
+        if (_isConstraining)
         {
-            if (_isLeftDown)
-                p.X = _startPoint.X;
+            if (!_constrainDirectionLocked)
+            {
+                int dx = Math.Abs(tile.X - _anchorPoint.X);
+                int dy = Math.Abs(tile.Y - _anchorPoint.Y);
+                if (dx > 1 || dy > 1)
+                {
+                    _constrainVertical = dx < dy;
+                    _constrainDirectionLocked = true;
+                }
+            }
+
+            if (_constrainVertical)
+                p.X = _anchorPoint.X;
             else
-                p.Y = _startPoint.Y;
+                p.Y = _anchorPoint.Y;
 
             DrawLine(p);
             _startPoint = p;
         }
-        else if (_isLeftDown)
+        else if (_isLineMode)
         {
-            if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
-            {
-                DrawLine(p);
-                _startPoint = p;
-                _endPoint = p;
-            }
-            else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
-            {
-                DrawLineP2P(p2);
-                _endPoint = p2;
-            }
+            DrawLineP2P(tile);
+            _endPoint = tile;
+        }
+        else if (_isDrawing)
+        {
+            DrawLine(p);
+            _startPoint = p;
+            _endPoint = p;
         }
     }
 

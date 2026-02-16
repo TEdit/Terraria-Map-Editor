@@ -26,26 +26,20 @@ public sealed class PickerTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed)
-        {
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.draw"))
             PickTile(e.Location.X, e.Location.Y);
-        }
-        else if (e.RightButton == MouseButtonState.Pressed)
-        {
+        else if (actions.Contains("editor.secondary"))
             PickmaskTile(e.Location.X, e.Location.Y);
-        }
     }
 
     public override void MouseMove(TileMouseState e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed)
-        {
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.draw"))
             PickTile(e.Location.X, e.Location.Y);
-        }
-        else if (e.RightButton == MouseButtonState.Pressed)
-        {
+        else if (actions.Contains("editor.secondary"))
             PickmaskTile(e.Location.X, e.Location.Y);
-        }
     }
 
     private void PickTile(int x, int y)

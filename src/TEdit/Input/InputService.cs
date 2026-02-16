@@ -64,6 +64,15 @@ public class InputService
         // === File Operations ===
         Register(new InputAction
         {
+            Id = "file.new",
+            Name = "New World",
+            Category = InputCategory.File,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.N, ModifierKeys.Control) }
+        });
+
+        Register(new InputAction
+        {
             Id = "file.open",
             Name = "Open",
             Category = InputCategory.File,
@@ -87,6 +96,15 @@ public class InputService
             Category = InputCategory.File,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.S, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "file.saveasversion",
+            Name = "Save As Version",
+            Category = InputCategory.File,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.S, ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Shift) }
         });
 
         Register(new InputAction
@@ -161,6 +179,30 @@ public class InputService
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Delete) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "edit.crop",
+            Name = "Crop World",
+            Category = InputCategory.Editing,
+            Scope = InputScope.Application,
+        });
+
+        Register(new InputAction
+        {
+            Id = "edit.expand",
+            Name = "Expand World",
+            Category = InputCategory.Editing,
+            Scope = InputScope.Application,
+        });
+
+        Register(new InputAction
+        {
+            Id = "app.settings",
+            Name = "Settings",
+            Category = InputCategory.File,
+            Scope = InputScope.Application,
         });
 
         // === Navigation ===
@@ -421,11 +463,11 @@ public class InputService
 
         Register(new InputAction
         {
-            Id = "editor.erase",
-            Name = "Erase / Secondary Action",
+            Id = "editor.secondary",
+            Name = "Secondary Action",
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Editor,
-            Description = "Secondary/erase action in tools",
+            Description = "Secondary action in tools (inspect, deselect, pick mask, etc.)",
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Right) }
         });
 
@@ -457,6 +499,16 @@ public class InputService
             Scope = InputScope.Editor,
             Description = "Drag to pan the viewport",
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Middle) }
+        });
+
+        // === Help ===
+        Register(new InputAction
+        {
+            Id = "help.wiki",
+            Name = "Wiki / Help",
+            Category = InputCategory.Help,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.F1) }
         });
     }
 

@@ -14,7 +14,7 @@
                                       Command="{Binding DataContext.SetToolCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                       CommandParameter="{Binding}" IsChecked="{Binding IsActive}" >
                 <tedit:ToggleButtonDataBound.ToolTip>
-                    <TextBlock Text="{Binding Title}" FocusVisualStyle="{x:Null}"/>
+                    <TextBlock Text="{Binding ToolTipText}" FocusVisualStyle="{x:Null}"/>
                 </tedit:ToggleButtonDataBound.ToolTip>
                 <Grid>
                     <!-- Priority 1: Vector Icon (DrawingImage from resources) -->

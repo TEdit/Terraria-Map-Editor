@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -30,6 +31,22 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     public string Name { get; protected set; }
 
     public string Title => Properties.Language.ResourceManager.GetString($"tool_{Name.ToLower()}_title") ?? Name;
+
+    public string ToolTipText
+    {
+        get
+        {
+            var actionId = $"tool.{Name.ToLower()}";
+            // SpriteTool2 has Name "Sprite2" but action ID "tool.sprite"
+            if (Name == "Sprite2") actionId = "tool.sprite";
+
+            var bindings = App.Input.Registry.GetBindings(actionId);
+            if (bindings.Count > 0)
+                return $"{Title} ({bindings[0]})";
+
+            return Title;
+        }
+    }
 
     public virtual ToolType ToolType { get; protected set; }
 
@@ -78,13 +95,38 @@ public abstract partial class BaseTool : ReactiveObject, ITool
 
     #region Input Helpers
 
+    [DllImport("user32.dll")]
+    private static extern short GetKeyState(int nVirtKey);
+
+    private const int VK_SHIFT = 0x10;
+    private const int VK_CONTROL = 0x11;
+    private const int VK_MENU = 0x12; // Alt
+
+    /// <summary>
+    /// Gets the current modifier keys using Win32 GetKeyState directly.
+    /// WPF's Keyboard.Modifiers and Keyboard.IsKeyDown both query the WPF
+    /// InputManager which misses key state when the XNA HwndHost has native focus.
+    /// GetKeyState reads the thread message queue state and always works.
+    /// </summary>
+    public static ModifierKeys GetModifiers()
+    {
+        var modifiers = ModifierKeys.None;
+        if ((GetKeyState(VK_CONTROL) & 0x8000) != 0)
+            modifiers |= ModifierKeys.Control;
+        if ((GetKeyState(VK_SHIFT) & 0x8000) != 0)
+            modifiers |= ModifierKeys.Shift;
+        if ((GetKeyState(VK_MENU) & 0x8000) != 0)
+            modifiers |= ModifierKeys.Alt;
+        return modifiers;
+    }
+
     /// <summary>
     /// Gets active editor actions based on current mouse state and keyboard modifiers.
     /// </summary>
     protected List<string> GetActiveActions(TileMouseState e)
     {
         var actions = new List<string>();
-        var modifiers = Keyboard.Modifiers;
+        var modifiers = GetModifiers();
 
         // Check left button
         if (e.LeftButton == MouseButtonState.Pressed)

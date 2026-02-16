@@ -14,7 +14,9 @@ public sealed class PencilTool : BaseTool
     private bool _isDrawing;
     private bool _isConstraining;
     private bool _isLineMode;
-    private bool _constrainVertical; // true = vertical, false = horizontal
+    private bool _constrainVertical;
+    private bool _constrainDirectionLocked;
+    private Vector2Int32 _anchorPoint;
     private Vector2Int32 _startPoint;
     private Vector2Int32 _endPoint;
 
@@ -32,23 +34,17 @@ public sealed class PencilTool : BaseTool
     {
         var actions = GetActiveActions(e);
 
-        // Start new stroke if not already drawing
         if (!_isDrawing && !_isConstraining && !_isLineMode)
         {
             _startPoint = e.Location;
+            _anchorPoint = e.Location;
+            _constrainDirectionLocked = false;
             _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
         }
 
-        // Determine drawing mode from actions
         _isDrawing = actions.Contains("editor.draw");
         _isConstraining = actions.Contains("editor.draw.constrain");
         _isLineMode = actions.Contains("editor.draw.line");
-
-        // If starting constrain mode, determine direction based on first movement
-        if (_isConstraining && !_isDrawing)
-        {
-            // Will determine direction on first move
-        }
 
         ProcessDraw(e.Location);
     }
@@ -71,6 +67,7 @@ public sealed class PencilTool : BaseTool
         _isDrawing = actions.Contains("editor.draw");
         _isConstraining = actions.Contains("editor.draw.constrain");
         _isLineMode = actions.Contains("editor.draw.line");
+        _constrainDirectionLocked = false;
 
         _wvm.UndoManager.SaveUndo();
     }
@@ -81,30 +78,32 @@ public sealed class PencilTool : BaseTool
 
         if (_isConstraining)
         {
-            // Constrained drawing - determine direction and lock to axis
-            int dx = Math.Abs(tile.X - _startPoint.X);
-            int dy = Math.Abs(tile.Y - _startPoint.Y);
-
-            // Auto-detect direction based on movement
-            _constrainVertical = dx < dy;
+            if (!_constrainDirectionLocked)
+            {
+                int dx = Math.Abs(tile.X - _anchorPoint.X);
+                int dy = Math.Abs(tile.Y - _anchorPoint.Y);
+                if (dx > 1 || dy > 1)
+                {
+                    _constrainVertical = dx < dy;
+                    _constrainDirectionLocked = true;
+                }
+            }
 
             if (_constrainVertical)
-                p.X = _startPoint.X; // Lock X for vertical line
+                p.X = _anchorPoint.X;
             else
-                p.Y = _startPoint.Y; // Lock Y for horizontal line
+                p.Y = _anchorPoint.Y;
 
             DrawLine(p);
             _startPoint = p;
         }
         else if (_isLineMode)
         {
-            // Point-to-point line drawing (preview line from start to current)
             DrawLineP2P(tile);
             _endPoint = tile;
         }
         else if (_isDrawing)
         {
-            // Freehand drawing
             DrawLine(p);
             _startPoint = p;
             _endPoint = p;

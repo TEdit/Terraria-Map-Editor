@@ -23,19 +23,20 @@ public sealed class ArrowTool : BaseTool
         Name = "Arrow";
     }
 
-    private bool _rightClick;
+    private bool _secondaryClick;
     public override void MouseDown(TileMouseState e)
     {
-        if (e.RightButton == MouseButtonState.Pressed)
-            _rightClick = true;
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.secondary"))
+            _secondaryClick = true;
     }
 
     public override void MouseUp(TileMouseState e)
     {
-        if (!_rightClick)
+        if (!_secondaryClick)
             return;
 
-        _rightClick = false;
+        _secondaryClick = false;
 
         Tile curTile = _wvm.CurrentWorld.Tiles[e.Location.X, e.Location.Y];
         if (curTile.IsChest())

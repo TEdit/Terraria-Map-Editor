@@ -43,4 +43,5 @@ public static class InputCategory
     public const string ToolDrawing = "Tool Drawing";
     public const string Toggles = "Toggles";
     public const string View = "View";
+    public const string Help = "Help";
 }

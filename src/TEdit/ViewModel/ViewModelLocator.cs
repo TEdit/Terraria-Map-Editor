@@ -69,6 +69,7 @@ public static class ViewModelLocator
         wvm.Tools.Add(new SpriteTool2(wvm));
         wvm.Tools.Add(new MorphTool(wvm));
         wvm.ActiveTool = defaultTool;
+        defaultTool.IsActive = true;
 
         //Sorted by Plugin-Name
         wvm.Plugins.Add(new BlockShufflePlugin(wvm));

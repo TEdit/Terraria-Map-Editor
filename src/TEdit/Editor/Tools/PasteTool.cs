@@ -26,15 +26,11 @@ public sealed class PasteTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed)
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.draw"))
         {
             if (_wvm.Clipboard.Buffer != null)
                 PasteClipboard(e.Location);
-        }
-        if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
-        {
-           
-            _wvm.SetActiveTool(_wvm.Tools.FirstOrDefault(t => t.Name == "Arrow"));
         }
     }
 

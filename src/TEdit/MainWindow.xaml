@@ -39,6 +39,7 @@
         <ui:SymbolIcon x:Key="TB_CropIcon" x:Shared="false" Symbol="Crop20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_ExpandIcon" x:Shared="false" Symbol="ArrowExpand20" FontSize="16"/>
         <cv:EnumToBoolConverter x:Key="boolEnumConverter" />
+        <cv:KeybindingConverter x:Key="KeybindingConverter" />
         <DataTemplate x:Key="MenuItemTemplate">
             <MenuItem Command="" CommandParameter="{Binding}">
                 <MenuItem.HeaderTemplate>
@@ -95,12 +96,17 @@
         <DockPanel Grid.Row="1" LastChildFill="True">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="{x:Static p:Language.menu_file}">
-                    <MenuItem Header="{x:Static p:Language.menu_file_new}" Icon="{StaticResource TB_NewIcon}" Command="{Binding NewWorldCommand}" />
-                    <MenuItem Header="{x:Static p:Language.menu_file_open}" Icon="{StaticResource TB_OpenIcon}" Command="{Binding OpenCommand}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_new}" Icon="{StaticResource TB_NewIcon}" Command="{Binding NewWorldCommand}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=file.new}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_open}" Icon="{StaticResource TB_OpenIcon}" Command="{Binding OpenCommand}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=file.open}" />
                     <Separator Margin="1"/>
-                    <MenuItem Header="{x:Static p:Language.menu_file_save}" Icon="{StaticResource TB_SaveIcon}" Command="{Binding SaveCommand}"/>
-                    <MenuItem Header="{x:Static p:Language.menu_file_saveas}" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
-                    <MenuItem Header="{x:Static p:Language.menu_file_saveasversion}" Icon="{StaticResource TB_SaveAsVersionIcon}" Command="{Binding SaveAsVersionCommand}"/>
+                    <MenuItem Header="{x:Static p:Language.menu_file_save}" Icon="{StaticResource TB_SaveIcon}" Command="{Binding SaveCommand}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=file.save}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_saveas}" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=file.saveas}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_saveasversion}" Icon="{StaticResource TB_SaveAsVersionIcon}" Command="{Binding SaveAsVersionCommand}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=file.saveasversion}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_language}">
                         <MenuItem Header="{x:Static p:Language.menu_language_en}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.English}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.English}"  />
@@ -119,18 +125,24 @@
                     </MenuItem>
 
                     <Separator Margin="1"/>
-                    <MenuItem Header="{x:Static p:Language.menu_help_settings}" Icon="{StaticResource TB_UpdateXmlIcon}" Click="SettingsMenuItem_Click" />
+                    <MenuItem Header="{x:Static p:Language.menu_help_settings}" Icon="{StaticResource TB_UpdateXmlIcon}" Click="SettingsMenuItem_Click"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=app.settings}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_exit}" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_edit}">
-                    <MenuItem Header="{x:Static p:Language.menu_edit_undo}" Command="{Binding UndoCommand}" Icon="{StaticResource TB_UndoIcon}" />
-                    <MenuItem Header="{x:Static p:Language.menu_edit_redo}" Command="{Binding RedoCommand}" Icon="{StaticResource TB_RedoIcon}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_undo}" Command="{Binding UndoCommand}" Icon="{StaticResource TB_UndoIcon}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.undo}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_redo}" Command="{Binding RedoCommand}" Icon="{StaticResource TB_RedoIcon}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.redo}" />
                     <Separator Margin="1" />
-                    <MenuItem Header="{x:Static p:Language.menu_edit_copy}" Command="{Binding CopyCommand}" Icon="{StaticResource TB_CopyIcon}" />
-                    <MenuItem Header="{x:Static p:Language.menu_edit_paste}" Command="{Binding PasteCommand}" Icon="{StaticResource TB_PasteIcon}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_copy}" Command="{Binding CopyCommand}" Icon="{StaticResource TB_CopyIcon}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.copy}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_paste}" Command="{Binding PasteCommand}" Icon="{StaticResource TB_PasteIcon}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.paste}" />
                     <Separator Margin="1" />
-                    <MenuItem Header="{x:Static p:Language.menu_edit_delete}" Command="{Binding DeleteCommand}" Icon="{StaticResource TB_DeleteIcon}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_delete}" Command="{Binding DeleteCommand}" Icon="{StaticResource TB_DeleteIcon}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=selection.delete}" />
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_layers}">
                     <MenuItem Header="{x:Static p:Language.menu_layers_textures}" IsCheckable="True" IsChecked="{Binding ShowTextures}" />
@@ -169,7 +181,8 @@
 
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_help}">
-                    <MenuItem Header="{x:Static p:Language.menu_help_wiki}" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"/>
+                    <MenuItem Header="{x:Static p:Language.menu_help_wiki}" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=help.wiki}" />
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_help_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
                     <MenuItem Header="{x:Static p:Language.menu_help_log}" Command="{Binding ViewLogCommand}" Icon="{StaticResource TB_LogIcon}"/>
@@ -204,40 +217,40 @@
                 </StatusBarItem>
             </StatusBar>
             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="1">
-                <ui:Button ToolTip="{x:Static p:Language.menu_file_new}" Padding="3" Command="{Binding NewWorldCommand}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_file_new}, Converter={StaticResource KeybindingConverter}, ConverterParameter=file.new}" Padding="3" Command="{Binding NewWorldCommand}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="DocumentAdd24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
-                <ui:Button ToolTip="{x:Static p:Language.menu_file_open}" Padding="3" Command="{Binding OpenCommand}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_file_open}, Converter={StaticResource KeybindingConverter}, ConverterParameter=file.open}" Padding="3" Command="{Binding OpenCommand}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="FolderOpen24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
-                <ui:Button ToolTip="{x:Static p:Language.menu_file_save}" Padding="3" Command="{Binding SaveCommand}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_file_save}, Converter={StaticResource KeybindingConverter}, ConverterParameter=file.save}" Padding="3" Command="{Binding SaveCommand}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="Save24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
                 <Separator Height="2" />
-                <ui:Button ToolTip="{x:Static p:Language.menu_toolbar_zoom_in}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource True}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_toolbar_zoom_in}, Converter={StaticResource KeybindingConverter}, ConverterParameter=nav.zoom.in}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource True}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="ZoomIn24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
-                <ui:Button ToolTip="{x:Static p:Language.menu_toolbar_zoom_out}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource False}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_toolbar_zoom_out}, Converter={StaticResource KeybindingConverter}, ConverterParameter=nav.zoom.out}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource False}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="ZoomOut24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
-                <ui:Button ToolTip="{x:Static p:Language.menu_edit_undo}" Padding="3" Command="{Binding UndoCommand}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_edit_undo}, Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.undo}" Padding="3" Command="{Binding UndoCommand}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowUndo24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
-                <ui:Button ToolTip="{x:Static p:Language.menu_edit_redo}" Padding="3" Command="{Binding RedoCommand}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_edit_redo}, Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.redo}" Padding="3" Command="{Binding RedoCommand}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowRedo24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
-                <ui:Button ToolTip="{x:Static p:Language.menu_edit_delete}" Padding="3" Command="{Binding DeleteCommand}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_edit_delete}, Converter={StaticResource KeybindingConverter}, ConverterParameter=selection.delete}" Padding="3" Command="{Binding DeleteCommand}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="Delete24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
                 <Separator Height="2" />
-                <ui:Button ToolTip="{x:Static p:Language.menu_edit_crop}" Padding="3" Command="{Binding CropCommand}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_edit_crop}, Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.crop}" Padding="3" Command="{Binding CropCommand}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="Crop24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
-                <ui:Button ToolTip="{x:Static p:Language.menu_edit_expand}" Padding="3" Command="{Binding ExpandCommand}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_edit_expand}, Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.expand}" Padding="3" Command="{Binding ExpandCommand}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="ArrowExpand24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
                 <Separator Height="2" />
-                <ui:Button ToolTip="{x:Static p:Language.menu_edit_copy}" Padding="3" Command="{Binding CopyCommand}" Margin="1" Height="32" Width="32">
+                <ui:Button ToolTip="{Binding Source={x:Static p:Language.menu_edit_copy}, Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.copy}" Padding="3" Command="{Binding CopyCommand}" Margin="1" Height="32" Width="32">
                     <ui:Button.Icon><ui:SymbolIcon Symbol="Copy24" FontSize="20"/></ui:Button.Icon>
                 </ui:Button>
                 <View:ToolSelectorView />

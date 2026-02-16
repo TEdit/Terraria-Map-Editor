@@ -12,7 +12,8 @@ namespace TEdit.Editor.Tools;
 public class SelectionTool : BaseTool
 {
     private Vector2Int32 _startSelection;
-    private Vector2Int32 _modifySelection;
+    private bool _isDragging;
+    private bool _isConstraining;
 
     public SelectionTool(WorldViewModel worldViewModel) : base(worldViewModel)
     {
@@ -30,19 +31,49 @@ public class SelectionTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
-        if ((e.LeftButton == MouseButtonState.Pressed) && (Keyboard.IsKeyUp(Key.LeftShift) && Keyboard.IsKeyUp(Key.RightShift)))
-            _startSelection = e.Location;
-        if ((Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
-            _modifySelection= e.Location;
-        if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
+        var actions = GetActiveActions(e);
+
+        if (actions.Contains("editor.secondary"))
+        {
             _wvm.Selection.IsActive = false;
-        if (e.RightButton == MouseButtonState.Pressed && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
-            _wvm.Selection.IsActive = true;
+            return;
+        }
+
+        if (actions.Contains("editor.draw") || actions.Contains("editor.draw.constrain"))
+        {
+            _startSelection = e.Location;
+            _isDragging = true;
+            _isConstraining = actions.Contains("editor.draw.constrain");
+        }
     }
 
     public override void MouseMove(TileMouseState e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed)
-            _wvm.Selection.SetRectangle(_startSelection, e.Location);
+        if (!_isDragging) return;
+
+        var actions = GetActiveActions(e);
+        _isConstraining = actions.Contains("editor.draw.constrain");
+
+        var endPoint = e.Location;
+        if (_isConstraining)
+            endPoint = ConstrainToSquare(_startSelection, endPoint);
+
+        _wvm.Selection.SetRectangle(_startSelection, endPoint);
+    }
+
+    public override void MouseUp(TileMouseState e)
+    {
+        _isDragging = false;
+        _isConstraining = false;
+    }
+
+    private static Vector2Int32 ConstrainToSquare(Vector2Int32 start, Vector2Int32 end)
+    {
+        int dx = end.X - start.X;
+        int dy = end.Y - start.Y;
+        int side = Math.Max(Math.Abs(dx), Math.Abs(dy));
+        return new Vector2Int32(
+            start.X + side * Math.Sign(dx),
+            start.Y + side * Math.Sign(dy));
     }
 }

@@ -6006,7 +6006,9 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_HwndMouseWheel(object sender, HwndMouseEventArgs e)
     {
         // Check for actions bound to mouse wheel
-        var modifiers = Keyboard.Modifiers;
+        // Use BaseTool.GetModifiers() which P/Invokes Win32 GetKeyState directly,
+        // bypassing WPF's InputManager that misses keys when XNA HwndHost has focus.
+        var modifiers = Editor.Tools.BaseTool.GetModifiers();
         var actions = App.Input.HandleMouseWheel(e.WheelDelta, modifiers, TEdit.Input.InputScope.Application);
 
         // Handle zoom if bound
@@ -6018,8 +6020,7 @@ public partial class WorldRenderXna : UserControl
         }
 
         // Fallback to default behavior if no binding matched
-        bool useAlternateZoomFallback = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
-        Zoom(e.WheelDelta, e.Position.X, e.Position.Y, useAlternateZoomFallback);
+        Zoom(e.WheelDelta, e.Position.X, e.Position.Y, modifiers.HasFlag(ModifierKeys.Shift));
     }
 
     public void Zoom(int direction, double x = -1, double y = -1, bool useAlternateZoomFunctionality = false)
