@@ -74,6 +74,9 @@ public class TileProperty : ITile
     public string Name { get; set; } = "UNKNOWN";
 
     [JsonPropertyOrder(2)]
+    public string? Key { get; set; }
+
+    [JsonPropertyOrder(3)]
     public TEditColor Color { get; set; }
 
     public Vector2Short TextureGrid { get; set; } = new Vector2Short(16, 16);

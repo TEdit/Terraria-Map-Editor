@@ -471,7 +471,22 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
+  </data>
+  <data name="menu_language_zh_hant" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="menu_language_fr" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="menu_language_it" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="menu_language_ja" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="menu_language_ko" xml:space="preserve">
+    <value>한국어</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Layers</value>

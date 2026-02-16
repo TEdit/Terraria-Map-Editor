@@ -1079,6 +1079,42 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Français.
+        /// </summary>
+        public static string menu_language_fr {
+            get {
+                return ResourceManager.GetString("menu_language_fr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italiano.
+        /// </summary>
+        public static string menu_language_it {
+            get {
+                return ResourceManager.GetString("menu_language_it", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 日本語.
+        /// </summary>
+        public static string menu_language_ja {
+            get {
+                return ResourceManager.GetString("menu_language_ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 한국어.
+        /// </summary>
+        public static string menu_language_ko {
+            get {
+                return ResourceManager.GetString("menu_language_ko", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Polski.
         /// </summary>
         public static string menu_language_pl {
@@ -1106,11 +1142,20 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 中文.
+        ///   Looks up a localized string similar to 中文 (简体).
         /// </summary>
         public static string menu_language_zh {
             get {
                 return ResourceManager.GetString("menu_language_zh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 中文 (繁體).
+        /// </summary>
+        public static string menu_language_zh_hant {
+            get {
+                return ResourceManager.GetString("menu_language_zh_hant", resourceCulture);
             }
         }
         

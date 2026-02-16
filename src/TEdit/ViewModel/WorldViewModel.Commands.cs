@@ -621,8 +621,13 @@ public enum LanguageSelection
     Russian,
     Arabic,
     Chinese,
+    ChineseTraditional,
     Polish,
     German,
+    French,
+    Italian,
+    Japanese,
+    Korean,
     Portuguese,
     Spanish
 }

@@ -105,8 +105,9 @@ public class WorldConfiguration
 
             try
             {
-                // Load data from TerrariaDataStore
-                _store = TerrariaDataStore.Initialize();
+                // Load data from TerrariaDataStore with locale from current UI culture
+                var locale = Loaders.LocalizationLoader.GetLocaleFromCurrentCulture();
+                _store = TerrariaDataStore.Initialize(locale: locale);
                 PopulateFromStore(_store);
 
                 // Apply MAX config version at startup

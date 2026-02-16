@@ -103,10 +103,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Language.ar-BH.resx</DependentUpon>
     </Compile>
-    <Compile Update="Properties\Language.zh-CN.Designer.cs">
+    <Compile Update="Properties\Language.zh-Hans.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Language.zh-CN.resx</DependentUpon>
+      <DependentUpon>Language.zh-Hans.resx</DependentUpon>
     </Compile>
     <Compile Update="Properties\Language.pl-PL.Designer.cs">
       <DesignTime>True</DesignTime>

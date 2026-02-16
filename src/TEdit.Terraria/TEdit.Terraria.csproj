@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Data\*.json" />
+    <EmbeddedResource Include="Data\Localization\*.json" />
   </ItemGroup>
 
 </Project>

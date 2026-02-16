@@ -56,7 +56,7 @@ public partial class App : Application
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pl-PL");
                 break;
             case LanguageSelection.Chinese:
-                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-Hans");
                 break;
             case LanguageSelection.German:
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de-DE");
@@ -66,6 +66,21 @@ public partial class App : Application
                 break;
             case LanguageSelection.Spanish:
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-ES");
+                break;
+            case LanguageSelection.French:
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR");
+                break;
+            case LanguageSelection.Italian:
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("it-IT");
+                break;
+            case LanguageSelection.Japanese:
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ja-JP");
+                break;
+            case LanguageSelection.Korean:
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ko-KR");
+                break;
+            case LanguageSelection.ChineseTraditional:
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-Hant");
                 break;
 
         }

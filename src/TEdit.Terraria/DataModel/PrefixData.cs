@@ -10,5 +10,8 @@ public class PrefixData
     [JsonPropertyOrder(1)]
     public string Name { get; set; } = "";
 
+    [JsonPropertyOrder(2)]
+    public string? Key { get; set; }
+
     public override string ToString() => Name;
 }

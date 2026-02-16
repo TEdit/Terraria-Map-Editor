@@ -57,11 +57,18 @@ public class TerrariaDataStore
     public Dictionary<int, ItemProperty> RackableItems { get; } = new();
     public Dictionary<int, string> TallyNames { get; } = new();
 
+    // Localization
+    public DataModel.LocalizationData? Localization { get; private set; }
+    public string CurrentLocale { get; private set; } = "en-US";
+
     // Version management
     public DataModel.SaveVersionManager? VersionManager { get; private set; }
     public BestiaryNpcConfiguration? Bestiary { get; private set; }
     public DataModel.MorphConfiguration? Morphs { get; private set; }
     public DataModel.BackgroundStyleConfiguration? BackgroundStyles { get; private set; }
+
+    // Prefix data for key resolution during localization
+    private List<PrefixData> _prefixDataList = [];
 
     // Bestiary-derived lookups
     public Dictionary<int, BestiaryNpcData> BestiaryNpcById { get; } = new();
@@ -79,12 +86,13 @@ public class TerrariaDataStore
     /// <summary>
     /// Initialize the data store from embedded resources or a filesystem data path.
     /// </summary>
-    public static TerrariaDataStore Initialize(string? dataPath = null)
+    public static TerrariaDataStore Initialize(string? dataPath = null, string locale = "en-US")
     {
         lock (_initLock)
         {
             var store = new TerrariaDataStore();
             store.LoadAll(dataPath);
+            store.LoadLocalization(locale, dataPath);
             _instance = store;
             return store;
         }
@@ -330,6 +338,7 @@ public class TerrariaDataStore
     internal void PopulatePrefixes(List<PrefixData> prefixes)
     {
         PrefixById.Clear();
+        _prefixDataList = prefixes;
         foreach (var prefix in prefixes)
             PrefixById[(byte)prefix.Id] = prefix.Name;
     }
@@ -359,6 +368,74 @@ public class TerrariaDataStore
             if (npc.IsCritter) BestiaryNearIDs.Add(npc.BestiaryId);
             if (npc.IsKillCredit) BestiaryKilledIDs.Add(npc.BestiaryId);
         }
+    }
+
+    public void LoadLocalization(string locale, string? dataPath = null)
+    {
+        CurrentLocale = locale;
+
+        if (locale == "en-US")
+        {
+            Localization = null;
+            return;
+        }
+
+        var data = Loaders.LocalizationLoader.LoadLocalization(locale, dataPath);
+        Localization = data;
+        ApplyLocalization(data);
+    }
+
+    private void ApplyLocalization(DataModel.LocalizationData data)
+    {
+        // Build key→object lookups from the Key property on each model
+        var itemsByKey = Items
+            .Where(i => i.Key != null)
+            .ToDictionary(i => i.Key!);
+        var tilesByKey = Tiles
+            .Where(t => t.Key != null)
+            .ToDictionary(t => t.Key!);
+        var wallsByKey = Walls
+            .Where(w => w.Key != null)
+            .ToDictionary(w => w.Key!);
+        var npcsByKey = NpcById.Values
+            .Where(n => n.Key != null)
+            .ToDictionary(n => n.Key!);
+        var prefixKeyToId = _prefixDataList
+            .Where(p => p.Key != null)
+            .ToDictionary(p => p.Key!, p => (byte)p.Id);
+
+        // Apply item names
+        foreach (var kv in data.Items)
+            if (itemsByKey.TryGetValue(kv.Key, out var item))
+                item.Name = kv.Value;
+
+        // Apply tile names
+        foreach (var kv in data.Tiles)
+            if (tilesByKey.TryGetValue(kv.Key, out var tile))
+                tile.Name = kv.Value;
+
+        // Apply wall names
+        foreach (var kv in data.Walls)
+            if (wallsByKey.TryGetValue(kv.Key, out var wall))
+                wall.Name = kv.Value;
+
+        // Apply NPC names (+ maintain reverse lookups)
+        foreach (var kv in data.Npcs)
+        {
+            if (npcsByKey.TryGetValue(kv.Key, out var npc))
+            {
+                var oldName = npc.Name;
+                npc.Name = kv.Value;
+                NpcNameById[npc.Id] = kv.Value;
+                if (NpcIdByName.Remove(oldName))
+                    NpcIdByName[kv.Value] = npc.Id;
+            }
+        }
+
+        // Apply prefix names
+        foreach (var kv in data.Prefixes)
+            if (prefixKeyToId.TryGetValue(kv.Key, out var id))
+                PrefixById[id] = kv.Value;
     }
 
     private void RebuildFrameImportant()

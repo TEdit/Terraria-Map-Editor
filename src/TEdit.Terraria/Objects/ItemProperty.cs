@@ -12,6 +12,9 @@ public class ItemProperty : ITile
     [JsonPropertyOrder(1)]
     public string Name { get; set; } = "UNKNOWN";
 
+    [JsonPropertyOrder(2)]
+    public string? Key { get; set; }
+
     public float Scale { get; set; } = 1f;
     public int MaxStackSize { get; set; }
 

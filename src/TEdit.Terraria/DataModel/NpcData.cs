@@ -12,6 +12,9 @@ public class NpcData
     [JsonPropertyOrder(1)]
     public string Name { get; set; } = "UNKNOWN";
 
+    [JsonPropertyOrder(2)]
+    public string? Key { get; set; }
+
     /// <summary>
     /// Source rectangle for the first frame of the NPC sprite sheet.
     /// Format: [x, y, width, height]. If not specified, uses full texture.

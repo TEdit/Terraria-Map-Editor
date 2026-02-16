@@ -461,6 +461,18 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_language_es" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="menu_language_fr" xml:space="preserve">
+    <value>Francés</value>
+  </data>
+  <data name="menu_language_it" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="menu_language_ja" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="menu_language_ko" xml:space="preserve">
+    <value>한국어</value>
+  </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polski</value>
   </data>
@@ -472,6 +484,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="menu_language_zh" xml:space="preserve">
     <value>中文</value>
+  </data>
+  <data name="menu_language_zh_hant" xml:space="preserve">
+    <value>中文 (繁體)</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Capas</value>
