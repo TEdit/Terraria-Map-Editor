@@ -8,14 +8,14 @@ TEdit - Terraria Map Editor is a stand alone, open source map editor for Terrari
 
 ## Important Links
 
-- [TEdit Documentation](https://docs.binaryconstruct.com/)
+- [TEdit Documentation](https://docs.tedit.dev/)
 - [Join us on Discord](https://discord.gg/xHcHd7mfpn)
-- [Homepage](http://binaryconstruct.com/)
+- [Dev Blog](http://binaryconstruct.com/)
 
 ## Download
 
 - [Source](http://github.com/TEdit/Terraria-Map-Editor)
-- [Download](http://www.binaryconstruct.com/downloads/) 
+- [Download](https://github.com/TEdit/Terraria-Map-Editor/releases/latest)
 - [GitHub Releases](https://github.com/TEdit/Terraria-Map-Editor/releases)
 - [Change Log](http://github.com/TEdit/Terraria-Map-Editor/commits/master)
 
