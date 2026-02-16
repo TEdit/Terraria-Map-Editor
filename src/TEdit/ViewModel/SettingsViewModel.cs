@@ -171,6 +171,17 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
+            Name = Language.settings_update_channel,
+            Description = Language.settings_update_channel_desc,
+            Category = Language.settings_category_general,
+            EditorType = SettingEditorType.ComboBox,
+            Getter = () => wvm.UpdateChannel,
+            Setter = v => wvm.UpdateChannel = (UpdateChannel)v,
+            ComboBoxItems = Enum.GetValues<UpdateChannel>()
+        });
+
+        AllSettings.Add(new SettingItem
+        {
             Name = Language.settings_autosave,
             Description = Language.settings_autosave_desc,
             Category = Language.settings_category_general,

@@ -6,8 +6,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -158,9 +156,6 @@ public partial class WorldViewModel : ReactiveObject
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
         CheckUpdates = UserSettingsService.Current.CheckUpdates;
-
-        if (CheckUpdates)
-            CheckVersion();
 
 
         IsAutoSaveEnabled = UserSettingsService.Current.Autosave;
@@ -1359,7 +1354,45 @@ public partial class WorldViewModel : ReactiveObject
     }
 
     [ReactiveCommand]
-    private async Task CheckUpdatesAsync() => await CheckVersion(false);
+    private async Task CheckUpdatesAsync()
+    {
+        try
+        {
+            var updateService = new Services.UpdateService(UserSettingsService.Current.UpdateChannel);
+
+            if (!updateService.IsInstalled)
+            {
+                App.SnackbarService.ShowInfo("Auto-update is not available for portable installs.", "Update");
+                return;
+            }
+
+            App.SnackbarService.ShowInfo("Checking for updates...", "Update");
+
+            bool downloaded = await updateService.CheckAndDownloadAsync();
+            if (downloaded)
+            {
+                var result = await App.DialogService.ShowMessageAsync(
+                    "A new version of TEdit has been downloaded. Restart now to apply the update?",
+                    "Update Available",
+                    UI.Xaml.Dialog.DialogButton.YesNo,
+                    UI.Xaml.Dialog.DialogImage.Question);
+
+                if (result == UI.Xaml.Dialog.DialogResponse.Yes)
+                {
+                    updateService.ApplyAndRestart();
+                }
+            }
+            else
+            {
+                App.SnackbarService.ShowSuccess("TEdit is up to date.", "Update");
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+            App.SnackbarService.ShowWarning("Update check failed.", "Update");
+        }
+    }
 
     [ReactiveCommand]
     private void ViewLog() => ErrorLogging.ViewLog();
@@ -1384,6 +1417,17 @@ public partial class WorldViewModel : ReactiveObject
         {
             this.RaiseAndSetIfChanged(ref _checkUpdates, value);
             UserSettingsService.Current.CheckUpdates = value;
+        }
+    }
+
+    private UpdateChannel _updateChannel = UserSettingsService.Current.UpdateChannel;
+    public UpdateChannel UpdateChannel
+    {
+        get => _updateChannel;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _updateChannel, value);
+            UserSettingsService.Current.UpdateChannel = value;
         }
     }
 
@@ -1474,54 +1518,6 @@ public partial class WorldViewModel : ReactiveObject
         WindowTitle = $"TEdit v{App.Version} {fileName}{dirtyIndicator}";
     }
 
-    public async Task CheckVersion(bool auto = true)
-    {
-        bool isOutdated = false;
-
-        const string versionRegex = @"""tag_name"":\s?""(?<version>[^\""]*)""";
-        try
-        {
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/4.0");
-                string githubReleases = await client.GetStringAsync("https://api.github.com/repos/TEdit/Terraria-map-Editor/releases");
-                var versions = Regex.Match(githubReleases, versionRegex);
-
-                var githubVersion = Semver.SemVersion.Parse(versions?.Groups?[1].Value, Semver.SemVersionStyles.Any);
-                var appVersion = App.Version;
-
-                isOutdated = appVersion.ComparePrecedenceTo(githubVersion) < 0;
-            }
-        }
-        catch (Exception)
-        {
-            await App.DialogService.ShowWarningAsync("Update Check Failed", "Unable to check version.");
-        }
-
-        if (isOutdated)
-        {
-#if !DEBUG
-            var updateResult = await App.DialogService.ShowMessageAsync(
-                "You are using an outdated version of TEdit. Do you wish to download the update?",
-                "Update?",
-                DialogButton.YesNo,
-                DialogImage.Question);
-
-            if (updateResult == DialogResponse.Yes)
-            {
-                try
-                {
-                    Process.Start("http://www.binaryconstruct.com/downloads/");
-                }
-                catch { }
-            }
-#endif
-        }
-        else if (!auto)
-        {
-            App.SnackbarService.ShowSuccess("TEdit is up to date.", "Update");
-        }
-    }
 
     [ReactiveCommand]
     private void AnalyzeWorldSave()

@@ -461,6 +461,18 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_language_es" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="menu_language_fr" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="menu_language_it" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="menu_language_ja" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="menu_language_ko" xml:space="preserve">
+    <value>한국어</value>
+  </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polski</value>
   </data>
@@ -475,18 +487,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_language_zh_hant" xml:space="preserve">
     <value>中文 (繁體)</value>
-  </data>
-  <data name="menu_language_fr" xml:space="preserve">
-    <value>Français</value>
-  </data>
-  <data name="menu_language_it" xml:space="preserve">
-    <value>Italiano</value>
-  </data>
-  <data name="menu_language_ja" xml:space="preserve">
-    <value>日本語</value>
-  </data>
-  <data name="menu_language_ko" xml:space="preserve">
-    <value>한국어</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Layers</value>
@@ -650,6 +650,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_check_updates_desc" xml:space="preserve">
     <value>Automatically check for new versions on startup</value>
+  </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>Update Channel</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>Choose which release channel to receive updates from (Stable, Beta, or Alpha)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Enable Error Reporting</value>

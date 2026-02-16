@@ -2024,6 +2024,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Channel.
+        /// </summary>
+        public static string settings_update_channel {
+            get {
+                return ResourceManager.GetString("settings_update_channel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose which release channel to receive updates from (Stable, Beta, or Alpha).
+        /// </summary>
+        public static string settings_update_channel_desc {
+            get {
+                return ResourceManager.GetString("settings_update_channel_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wire Transparency.
         /// </summary>
         public static string settings_wire_transparency {

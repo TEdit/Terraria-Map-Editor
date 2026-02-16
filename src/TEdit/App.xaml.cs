@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 using Microsoft.Extensions.Configuration;
 using TEdit.Configuration;
@@ -220,6 +221,40 @@ public partial class App : Application
         var mainWindow = new MainWindow();
         MainWindow = mainWindow;
         mainWindow.Show();
+
+        // Fire-and-forget background update check
+        if (UserSettingsService.Current.CheckUpdates)
+        {
+            _ = CheckForUpdatesAsync();
+        }
+    }
+
+    private static async Task CheckForUpdatesAsync()
+    {
+        try
+        {
+            var updateService = new Services.UpdateService(UserSettingsService.Current.UpdateChannel);
+            if (!updateService.IsInstalled) return;
+
+            bool downloaded = await updateService.CheckAndDownloadAsync();
+            if (downloaded)
+            {
+                var result = await DialogService.ShowMessageAsync(
+                    "A new version of TEdit has been downloaded. Restart now to apply the update?",
+                    "Update Available",
+                    UI.Xaml.Dialog.DialogButton.YesNo,
+                    UI.Xaml.Dialog.DialogImage.Question);
+
+                if (result == UI.Xaml.Dialog.DialogResponse.Yes)
+                {
+                    updateService.ApplyAndRestart();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.Log($"[Update] Background check failed: {ex.Message}");
+        }
     }
 
 

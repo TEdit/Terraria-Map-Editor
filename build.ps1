@@ -1,6 +1,7 @@
 param(
     [string] $ReleasePath = ".\release",
-    [string] $Version = ""
+    [string] $Version = "",
+    [string] $Channel = ""
 )
 
 # Derive version from git tags if not explicitly provided
@@ -26,6 +27,18 @@ if ([String]::IsNullOrWhitespace($Version)) {
     Write-Host "Derived version: $Version"
 }
 
+# Auto-detect channel from version suffix if not explicitly provided
+if ([String]::IsNullOrWhitespace($Channel)) {
+    if ($Version -match '-alpha') {
+        $Channel = "alpha"
+    } elseif ($Version -match '-(beta|rc)') {
+        $Channel = "beta"
+    } else {
+        $Channel = "stable"
+    }
+    Write-Host "Auto-detected channel: $Channel"
+}
+
 $versionfixed = $Version.Replace("/", "_");
 $versionSplit = $versionfixed.Split("-");
 
@@ -40,5 +53,5 @@ if ($versionSplit.Length -gt 1) {
 if (Test-Path -Path ".\$ReleasePath") { Remove-Item -Path ".\$ReleasePath" -Force -Recurse }
 New-Item -Path ".\$ReleasePath\" -Force -ItemType "directory"
 
-.\build-legacy.ps1 -ReleasePath $ReleasePath -VersionPrefix $VersionPrefix -VersionSuffix $VersionSuffix
+.\build-legacy.ps1 -ReleasePath $ReleasePath -VersionPrefix $VersionPrefix -VersionSuffix $VersionSuffix -Channel $Channel
 # .\build-avalonia.ps1 -ReleasePath $ReleasePath -VersionPrefix $VersionPrefix -VersionSuffix $VersionSuffix

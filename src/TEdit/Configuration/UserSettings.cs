@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using TEdit.Input;
 using TEdit.ViewModel;
@@ -19,6 +21,7 @@ public class UserSettings : INotifyPropertyChanged
     private bool _realisticColors = false;
     private int _spriteThumbnailSize = 64;
     private string _telemetryDeclinedVersion = "";
+    private UpdateChannel _updateChannel = UpdateChannel.Stable;
     private Dictionary<string, List<InputBinding>> _inputBindings = new();
 
     public string TerrariaPath
@@ -81,6 +84,13 @@ public class UserSettings : INotifyPropertyChanged
         set => SetField(ref _telemetryDeclinedVersion, value ?? "");
     }
 
+    [JsonConverter(typeof(UpdateChannelJsonConverter))]
+    public UpdateChannel UpdateChannel
+    {
+        get => _updateChannel;
+        set => SetField(ref _updateChannel, value);
+    }
+
     [JsonConverter(typeof(InputBindingsDictionaryJsonConverter))]
     public Dictionary<string, List<InputBinding>> InputBindings
     {
@@ -95,5 +105,35 @@ public class UserSettings : INotifyPropertyChanged
         if (Equals(field, value)) return;
         field = value;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+
+/// <summary>
+/// Handles migration from the old string-based UpdateChannel (e.g. "") to the new enum.
+/// Falls back to Stable for unrecognized or empty values.
+/// </summary>
+public class UpdateChannelJsonConverter : JsonConverter<UpdateChannel>
+{
+    public override UpdateChannel Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType == JsonTokenType.String)
+        {
+            var value = reader.GetString();
+            if (Enum.TryParse<UpdateChannel>(value, ignoreCase: true, out var channel))
+                return channel;
+        }
+        else if (reader.TokenType == JsonTokenType.Number)
+        {
+            var intValue = reader.GetInt32();
+            if (Enum.IsDefined(typeof(UpdateChannel), intValue))
+                return (UpdateChannel)intValue;
+        }
+
+        return UpdateChannel.Stable;
+    }
+
+    public override void Write(Utf8JsonWriter writer, UpdateChannel value, JsonSerializerOptions options)
+    {
+        writer.WriteStringValue(value.ToString());
     }
 }

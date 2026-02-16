@@ -238,18 +238,46 @@ public partial class WorldViewModel
     }
 
     [ReactiveCommand]
-    private void Update()
+    private async Task Update()
     {
-        string url = "https://www.binaryconstruct.com/tedit/#download";
         try
         {
-            var process =new System.Diagnostics.ProcessStartInfo(url);
-            process.UseShellExecute = true;
-            System.Diagnostics.Process.Start(process);
+            var updateService = new Services.UpdateService(UserSettingsService.Current.UpdateChannel);
+
+            if (!updateService.IsInstalled)
+            {
+                // Not a Velopack install (portable zip user) — open download page
+                var process = new System.Diagnostics.ProcessStartInfo("https://github.com/TEdit/Terraria-Map-Editor/releases");
+                process.UseShellExecute = true;
+                System.Diagnostics.Process.Start(process);
+                return;
+            }
+
+            App.SnackbarService.ShowInfo("Checking for updates...", "Update");
+
+            bool downloaded = await updateService.CheckAndDownloadAsync();
+            if (downloaded)
+            {
+                var result = await App.DialogService.ShowMessageAsync(
+                    "A new version of TEdit has been downloaded. Restart now to apply the update?",
+                    "Update Available",
+                    UI.Xaml.Dialog.DialogButton.YesNo,
+                    UI.Xaml.Dialog.DialogImage.Question);
+
+                if (result == UI.Xaml.Dialog.DialogResponse.Yes)
+                {
+                    updateService.ApplyAndRestart();
+                }
+            }
+            else
+            {
+                App.SnackbarService.ShowSuccess("TEdit is up to date.", "Update");
+            }
         }
         catch (Exception ex)
         {
             ErrorLogging.LogException(ex);
+            App.SnackbarService.ShowWarning("Update check failed.", "Update");
         }
     }
 
@@ -610,6 +638,13 @@ public partial class WorldViewModel
     }
 
     #endregion
+}
+
+public enum UpdateChannel
+{
+    Stable,
+    Beta,
+    Alpha
 }
 
 public enum LanguageSelection

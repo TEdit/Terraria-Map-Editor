@@ -562,27 +562,6 @@ public partial class MainWindow : FluentWindow
         settingsWindow.ShowDialog();
     }
 
-    private void FilterMenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        // Ensure a world is loaded.
-        if (_vm.CurrentWorld == null)
-            return;
-
-        // Switch to the Filter sidebar tab (index 10)
-        ExpandSidePanel();
-        _vm.SelectedTabIndex = 10;
-    }
-
-    private void FindMenuItem_Click(object sender, RoutedEventArgs e)
-    {
-        // Ensure a world is loaded.
-        if (_vm.CurrentWorld == null)
-            return;
-
-        // Switch to the Find sidebar tab (index 11)
-        ExpandSidePanel();
-        _vm.SelectedTabIndex = 11;
-    }
 
     private GridLength _previousSidePanelWidth = new GridLength(440);
     private bool _isSidePanelCollapsed = false;

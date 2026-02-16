@@ -1,10 +1,12 @@
 param(
     [string] $ReleasePath = ".\release",
     [string] $VersionPrefix = "5.1.0",
-    [string] $VersionSuffix = $null
+    [string] $VersionSuffix = $null,
+    [string] $Channel = "stable"
 )
 
-$publishPath = "publish\legacy"
+$velopackPublishPath = "publish\velopack"
+$zipPublishPath = "publish\legacy"
 
 $platforms = $(
     ## linux builds ##
@@ -20,10 +22,42 @@ $platforms = $(
     # "osx-arm64"
 )
 
-if (Test-Path -Path ".\$publishPath") { Remove-Item -Path ".\$publishPath" -Force -Recurse }
+if (Test-Path -Path ".\publish") { Remove-Item -Path ".\publish" -Force -Recurse }
+
+$fullVersion = $VersionPrefix
+if (![String]::IsNullOrWhitespace($VersionSuffix)) {
+    $fullVersion = "$VersionPrefix-$VersionSuffix"
+}
 
 $platforms | ForEach-Object {
-    $buildArgs = @(
+    # 1. Velopack publish (non-single-file, needed for delta packages)
+    $velopackArgs = @(
+        "publish"
+        "-c"
+        "Release"
+        "-r"
+        $_
+        "--self-contained"
+        "true"
+        "-o"
+        ".\$velopackPublishPath\$_"
+        "/p:VersionPrefix=""$VersionPrefix"""
+    )
+
+    if (![String]::IsNullOrWhitespace($VersionSuffix)) {
+        $velopackArgs += "--version-suffix"
+        $velopackArgs += """$VersionSuffix"""
+    }
+
+    $velopackArgs += ".\src\TEdit\TEdit.csproj"
+
+    Write-Host "Publishing for Velopack ($_ )..."
+    & dotnet $velopackArgs
+
+    if (Test-Path -Path ".\schematics") { Copy-Item -Path ".\schematics" -Destination ".\$velopackPublishPath\$_\" -Recurse }
+
+    # 2. Zip publish (single-file for portable users)
+    $zipArgs = @(
         "publish"
         "-c"
         "Release"
@@ -33,28 +67,32 @@ $platforms | ForEach-Object {
         "true"
         "-p:PublishSingleFile=true"
         "-o"
-        ".\$publishPath\$_"
+        ".\$zipPublishPath\$_"
         "/p:VersionPrefix=""$VersionPrefix"""
     )
 
     if (![String]::IsNullOrWhitespace($VersionSuffix)) {
-        $buildArgs += "--version-suffix"
-        $buildArgs += """$VersionSuffix"""
+        $zipArgs += "--version-suffix"
+        $zipArgs += """$VersionSuffix"""
     }
 
-    $buildArgs += ".\src\TEdit\TEdit.csproj"
+    $zipArgs += ".\src\TEdit\TEdit.csproj"
 
-    & dotnet $buildArgs
+    Write-Host "Publishing for portable zip ($_ )..."
+    & dotnet $zipArgs
 
-    if (Test-Path -Path ".\schematics") { Copy-Item -Path ".\schematics" -Destination ".\$publishPath\$_\" -Recurse }
+    if (Test-Path -Path ".\schematics") { Copy-Item -Path ".\schematics" -Destination ".\$zipPublishPath\$_\" -Recurse }
 
-    # Create ZIP Release
-
+    # 3. Create ZIP release (portable)
     $filename = ".\$ReleasePath\TEdit-$VersionPrefix.zip"
 
     if (![String]::IsNullOrWhitespace($VersionSuffix)) {
         $filename = ".\$ReleasePath\TEdit-$VersionPrefix-$VersionSuffix.zip"
     }
 
-    Compress-Archive -Path ".\$publishPath\$_\*" -DestinationPath $filename
+    Compress-Archive -Path ".\$zipPublishPath\$_\*" -DestinationPath $filename
+
+    # 4. Pack with Velopack
+    Write-Host "Packing with Velopack (channel: $Channel)..."
+    vpk pack -u TEdit -v $fullVersion -p ".\$velopackPublishPath\$_" --channel $Channel -o ".\$ReleasePath"
 }
