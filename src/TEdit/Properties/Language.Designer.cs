@@ -19,7 +19,7 @@ namespace TEdit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Language {
@@ -57,6 +57,78 @@ namespace TEdit.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category:.
+        /// </summary>
+        public static string banner_category {
+            get {
+                return ResourceManager.GetString("banner_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count.
+        /// </summary>
+        public static string banner_count {
+            get {
+                return ResourceManager.GetString("banner_count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string banner_filter {
+            get {
+                return ResourceManager.GetString("banner_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string banner_import {
+            get {
+                return ResourceManager.GetString("banner_import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kills.
+        /// </summary>
+        public static string banner_kills {
+            get {
+                return ResourceManager.GetString("banner_kills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Out.
+        /// </summary>
+        public static string banner_maxout {
+            get {
+                return ResourceManager.GetString("banner_maxout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string banner_reset {
+            get {
+                return ResourceManager.GetString("banner_reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string banner_save {
+            get {
+                return ResourceManager.GetString("banner_save", resourceCulture);
             }
         }
         
@@ -142,7 +214,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Kills.
+        ///   Looks up a localized string similar to Update.
         /// </summary>
         public static string bestiary_tally {
             get {
@@ -278,6 +350,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Banners.
+        /// </summary>
+        public static string editor_tabs_banners {
+            get {
+                return ResourceManager.GetString("editor_tabs_banners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clipboard.
         /// </summary>
         public static string editor_tabs_clipboard {
@@ -323,7 +404,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tally.
+        ///   Looks up a localized string similar to Bestiary.
         /// </summary>
         public static string editor_tabs_tally {
             get {
@@ -926,7 +1007,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Settings.xml.
+        ///   Looks up a localized string similar to Settings....
         /// </summary>
         public static string menu_help_settings {
             get {
@@ -998,6 +1079,42 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Français.
+        /// </summary>
+        public static string menu_language_fr {
+            get {
+                return ResourceManager.GetString("menu_language_fr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italiano.
+        /// </summary>
+        public static string menu_language_it {
+            get {
+                return ResourceManager.GetString("menu_language_it", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 日本語.
+        /// </summary>
+        public static string menu_language_ja {
+            get {
+                return ResourceManager.GetString("menu_language_ja", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 한국어.
+        /// </summary>
+        public static string menu_language_ko {
+            get {
+                return ResourceManager.GetString("menu_language_ko", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Polski.
         /// </summary>
         public static string menu_language_pl {
@@ -1025,11 +1142,20 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 中文.
+        ///   Looks up a localized string similar to 中文 (简体).
         /// </summary>
         public static string menu_language_zh {
             get {
                 return ResourceManager.GetString("menu_language_zh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 中文 (繁體).
+        /// </summary>
+        public static string menu_language_zh_hant {
+            get {
+                return ResourceManager.GetString("menu_language_zh_hant", resourceCulture);
             }
         }
         
@@ -1048,6 +1174,24 @@ namespace TEdit.Properties {
         public static string menu_layers_actuators {
             get {
                 return ResourceManager.GetString("menu_layers_actuators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backgrounds.
+        /// </summary>
+        public static string menu_layers_backgrounds {
+            get {
+                return ResourceManager.GetString("menu_layers_backgrounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buff Radii.
+        /// </summary>
+        public static string menu_layers_buff_radii {
+            get {
+                return ResourceManager.GetString("menu_layers_buff_radii", resourceCulture);
             }
         }
         
@@ -1403,6 +1547,600 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Autosave.
+        /// </summary>
+        public static string settings_autosave {
+            get {
+                return ResourceManager.GetString("settings_autosave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Periodically save the world automatically.
+        /// </summary>
+        public static string settings_autosave_desc {
+            get {
+                return ResourceManager.GetString("settings_autosave_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string settings_cancel {
+            get {
+                return ResourceManager.GetString("settings_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string settings_category_general {
+            get {
+                return ResourceManager.GetString("settings_category_general", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Layers.
+        /// </summary>
+        public static string settings_category_layers {
+            get {
+                return ResourceManager.GetString("settings_category_layers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paths.
+        /// </summary>
+        public static string settings_category_paths {
+            get {
+                return ResourceManager.GetString("settings_category_paths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Privacy.
+        /// </summary>
+        public static string settings_category_privacy {
+            get {
+                return ResourceManager.GetString("settings_category_privacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rendering.
+        /// </summary>
+        public static string settings_category_rendering {
+            get {
+                return ResourceManager.GetString("settings_category_rendering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for Updates.
+        /// </summary>
+        public static string settings_check_updates {
+            get {
+                return ResourceManager.GetString("settings_check_updates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically check for new versions on startup.
+        /// </summary>
+        public static string settings_check_updates_desc {
+            get {
+                return ResourceManager.GetString("settings_check_updates_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Error Reporting.
+        /// </summary>
+        public static string settings_error_reporting {
+            get {
+                return ResourceManager.GetString("settings_error_reporting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send anonymous error reports to help improve stability.
+        /// </summary>
+        public static string settings_error_reporting_desc {
+            get {
+                return ResourceManager.GetString("settings_error_reporting_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string settings_language {
+            get {
+                return ResourceManager.GetString("settings_language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set the application display language.
+        /// </summary>
+        public static string settings_language_desc {
+            get {
+                return ResourceManager.GetString("settings_language_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Picker Hold Threshold (ms).
+        /// </summary>
+        public static string settings_picker_hold_threshold {
+            get {
+                return ResourceManager.GetString("settings_picker_hold_threshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How long to hold the Picker key before it becomes a temporary pick (100-500ms).
+        /// </summary>
+        public static string settings_picker_hold_threshold_desc {
+            get {
+                return ResourceManager.GetString("settings_picker_hold_threshold_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Realistic Colors.
+        /// </summary>
+        public static string settings_realistic_colors {
+            get {
+                return ResourceManager.GetString("settings_realistic_colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render tiles using texture-sampled colors (requires restart).
+        /// </summary>
+        public static string settings_realistic_colors_desc {
+            get {
+                return ResourceManager.GetString("settings_realistic_colors_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string settings_save {
+            get {
+                return ResourceManager.GetString("settings_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search settings....
+        /// </summary>
+        public static string settings_search_placeholder {
+            get {
+                return ResourceManager.GetString("settings_search_placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Actuators.
+        /// </summary>
+        public static string settings_show_actuators {
+            get {
+                return ResourceManager.GetString("settings_show_actuators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle actuator visibility.
+        /// </summary>
+        public static string settings_show_actuators_desc {
+            get {
+                return ResourceManager.GetString("settings_show_actuators_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show All Weapon Rack Items.
+        /// </summary>
+        public static string settings_show_all_weapon_rack_items {
+            get {
+                return ResourceManager.GetString("settings_show_all_weapon_rack_items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show all items in weapon rack editor instead of only rackable items.
+        /// </summary>
+        public static string settings_show_all_weapon_rack_items_desc {
+            get {
+                return ResourceManager.GetString("settings_show_all_weapon_rack_items_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show All Wires.
+        /// </summary>
+        public static string settings_show_all_wires {
+            get {
+                return ResourceManager.GetString("settings_show_all_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle all wire layers at once.
+        /// </summary>
+        public static string settings_show_all_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_all_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Backgrounds.
+        /// </summary>
+        public static string settings_show_backgrounds {
+            get {
+                return ResourceManager.GetString("settings_show_backgrounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle background rendering.
+        /// </summary>
+        public static string settings_show_backgrounds_desc {
+            get {
+                return ResourceManager.GetString("settings_show_backgrounds_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Blue Wires.
+        /// </summary>
+        public static string settings_show_blue_wires {
+            get {
+                return ResourceManager.GetString("settings_show_blue_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle blue wire visibility.
+        /// </summary>
+        public static string settings_show_blue_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_blue_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Coatings.
+        /// </summary>
+        public static string settings_show_coatings {
+            get {
+                return ResourceManager.GetString("settings_show_coatings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle coating layer visibility.
+        /// </summary>
+        public static string settings_show_coatings_desc {
+            get {
+                return ResourceManager.GetString("settings_show_coatings_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Green Wires.
+        /// </summary>
+        public static string settings_show_green_wires {
+            get {
+                return ResourceManager.GetString("settings_show_green_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle green wire visibility.
+        /// </summary>
+        public static string settings_show_green_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_green_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Grid.
+        /// </summary>
+        public static string settings_show_grid {
+            get {
+                return ResourceManager.GetString("settings_show_grid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle grid overlay.
+        /// </summary>
+        public static string settings_show_grid_desc {
+            get {
+                return ResourceManager.GetString("settings_show_grid_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Liquid.
+        /// </summary>
+        public static string settings_show_liquid {
+            get {
+                return ResourceManager.GetString("settings_show_liquid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle liquid layer visibility.
+        /// </summary>
+        public static string settings_show_liquid_desc {
+            get {
+                return ResourceManager.GetString("settings_show_liquid_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show News.
+        /// </summary>
+        public static string settings_show_news {
+            get {
+                return ResourceManager.GetString("settings_show_news", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show news and announcements in the editor.
+        /// </summary>
+        public static string settings_show_news_desc {
+            get {
+                return ResourceManager.GetString("settings_show_news_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Points.
+        /// </summary>
+        public static string settings_show_points {
+            get {
+                return ResourceManager.GetString("settings_show_points", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle spawn/NPC point markers.
+        /// </summary>
+        public static string settings_show_points_desc {
+            get {
+                return ResourceManager.GetString("settings_show_points_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Red Wires.
+        /// </summary>
+        public static string settings_show_red_wires {
+            get {
+                return ResourceManager.GetString("settings_show_red_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle red wire visibility.
+        /// </summary>
+        public static string settings_show_red_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_red_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Textures.
+        /// </summary>
+        public static string settings_show_textures {
+            get {
+                return ResourceManager.GetString("settings_show_textures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle tile texture rendering.
+        /// </summary>
+        public static string settings_show_textures_desc {
+            get {
+                return ResourceManager.GetString("settings_show_textures_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Tiles.
+        /// </summary>
+        public static string settings_show_tiles {
+            get {
+                return ResourceManager.GetString("settings_show_tiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle tile layer visibility.
+        /// </summary>
+        public static string settings_show_tiles_desc {
+            get {
+                return ResourceManager.GetString("settings_show_tiles_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Walls.
+        /// </summary>
+        public static string settings_show_walls {
+            get {
+                return ResourceManager.GetString("settings_show_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle wall layer visibility.
+        /// </summary>
+        public static string settings_show_walls_desc {
+            get {
+                return ResourceManager.GetString("settings_show_walls_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Yellow Wires.
+        /// </summary>
+        public static string settings_show_yellow_wires {
+            get {
+                return ResourceManager.GetString("settings_show_yellow_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle yellow wire visibility.
+        /// </summary>
+        public static string settings_show_yellow_wires_desc {
+            get {
+                return ResourceManager.GetString("settings_show_yellow_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sprite Thumbnail Size.
+        /// </summary>
+        public static string settings_sprite_thumbnail {
+            get {
+                return ResourceManager.GetString("settings_sprite_thumbnail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of sprite thumbnails in the sprite picker.
+        /// </summary>
+        public static string settings_sprite_thumbnail_desc {
+            get {
+                return ResourceManager.GetString("settings_sprite_thumbnail_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terraria Content Path.
+        /// </summary>
+        public static string settings_terraria_path {
+            get {
+                return ResourceManager.GetString("settings_terraria_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to Terraria&apos;s Content folder for texture loading.
+        /// </summary>
+        public static string settings_terraria_path_desc {
+            get {
+                return ResourceManager.GetString("settings_terraria_path_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Texture Visibility Zoom Level.
+        /// </summary>
+        public static string settings_texture_zoom {
+            get {
+                return ResourceManager.GetString("settings_texture_zoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum zoom level before tile textures become visible.
+        /// </summary>
+        public static string settings_texture_zoom_desc {
+            get {
+                return ResourceManager.GetString("settings_texture_zoom_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Channel.
+        /// </summary>
+        public static string settings_update_channel {
+            get {
+                return ResourceManager.GetString("settings_update_channel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose which release channel to receive updates from (Stable, Beta, or Alpha).
+        /// </summary>
+        public static string settings_update_channel_desc {
+            get {
+                return ResourceManager.GetString("settings_update_channel_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire Transparency.
+        /// </summary>
+        public static string settings_wire_transparency {
+            get {
+                return ResourceManager.GetString("settings_wire_transparency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render wires with transparency.
+        /// </summary>
+        public static string settings_wire_transparency_desc {
+            get {
+                return ResourceManager.GetString("settings_wire_transparency_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Banners.
+        /// </summary>
+        public static string sidebar_banner_title {
+            get {
+                return ResourceManager.GetString("sidebar_banner_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find &amp; Replace.
+        /// </summary>
+        public static string sidebar_find_title {
+            get {
+                return ResourceManager.GetString("sidebar_find_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile Entity.
+        /// </summary>
+        public static string sidebar_tileentity_title {
+            get {
+                return ResourceManager.GetString("sidebar_tileentity_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Properties.
+        /// </summary>
+        public static string sidebar_worldprops_title {
+            get {
+                return ResourceManager.GetString("sidebar_worldprops_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string specialtile_button_cancel {
@@ -1511,11 +2249,38 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Critter.
+        /// </summary>
+        public static string specialtile_label_critter {
+            get {
+                return ResourceManager.GetString("specialtile_label_critter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Flask.
+        /// </summary>
+        public static string specialtile_label_deadcells_jar {
+            get {
+                return ResourceManager.GetString("specialtile_label_deadcells_jar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Selected Item.
         /// </summary>
         public static string specialtile_label_editselecteditem {
             get {
                 return ResourceManager.GetString("specialtile_label_editselecteditem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hat Rack.
+        /// </summary>
+        public static string specialtile_label_hatrack {
+            get {
+                return ResourceManager.GetString("specialtile_label_hatrack", resourceCulture);
             }
         }
         
@@ -1534,6 +2299,15 @@ namespace TEdit.Properties {
         public static string specialtile_label_itemframecontents {
             get {
                 return ResourceManager.GetString("specialtile_label_itemframecontents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kite.
+        /// </summary>
+        public static string specialtile_label_kite {
+            get {
+                return ResourceManager.GetString("specialtile_label_kite", resourceCulture);
             }
         }
         
@@ -1565,6 +2339,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mount.
+        /// </summary>
+        public static string specialtile_label_mount {
+            get {
+                return ResourceManager.GetString("specialtile_label_mount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plate Contents.
         /// </summary>
         public static string specialtile_label_platecontents {
@@ -1588,6 +2371,15 @@ namespace TEdit.Properties {
         public static string specialtile_label_signtype {
             get {
                 return ResourceManager.GetString("specialtile_label_signtype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weapon.
+        /// </summary>
+        public static string specialtile_label_weapon {
+            get {
+                return ResourceManager.GetString("specialtile_label_weapon", resourceCulture);
             }
         }
         
@@ -1646,11 +2438,38 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show All Items.
+        /// </summary>
+        public static string specialtile_show_all_items {
+            get {
+                return ResourceManager.GetString("specialtile_show_all_items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree..
         /// </summary>
         public static string specialtile_tooltip {
             get {
                 return ResourceManager.GetString("specialtile_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto.
+        /// </summary>
+        public static string sprite_biome_auto {
+            get {
+                return ResourceManager.GetString("sprite_biome_auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Biome:.
+        /// </summary>
+        public static string sprite_biome_label {
+            get {
+                return ResourceManager.GetString("sprite_biome_label", resourceCulture);
             }
         }
         
@@ -1759,6 +2578,89 @@ namespace TEdit.Properties {
         public static string tab_bestiary {
             get {
                 return ResourceManager.GetString("tab_bestiary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Blue {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Green {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pink Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Pink {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Pink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Red {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_White {
+            get {
+                return ResourceManager.GetString("TeamSpawn_White", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow Team Spawn.
+        /// </summary>
+        public static string TeamSpawn_Yellow {
+            get {
+                return ResourceManager.GetString("TeamSpawn_Yellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEdit can send anonymous error reports to help improve stability.
+        ///
+        ///What is collected:
+        ///  • Error details (exception type and stack trace)
+        ///  • App version and OS version
+        ///
+        ///What is NOT collected:
+        ///  • No personal information or file paths
+        ///  • No usage tracking or fingerprinting
+        ///  • All paths are obfuscated before sending
+        ///
+        ///Would you like to enable error reporting?.
+        /// </summary>
+        public static string telemetry_prompt_message {
+            get {
+                return ResourceManager.GetString("telemetry_prompt_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEdit Error Reporting.
+        /// </summary>
+        public static string telemetry_prompt_title {
+            get {
+                return ResourceManager.GetString("telemetry_prompt_title", resourceCulture);
             }
         }
         
@@ -1925,6 +2827,33 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string tool_clipboard_export {
+            get {
+                return ResourceManager.GetString("tool_clipboard_export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip X.
+        /// </summary>
+        public static string tool_clipboard_flipx {
+            get {
+                return ResourceManager.GetString("tool_clipboard_flipx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Y.
+        /// </summary>
+        public static string tool_clipboard_flipy {
+            get {
+                return ResourceManager.GetString("tool_clipboard_flipy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import False Color Image.
         /// </summary>
         public static string tool_clipboard_importfalsecolor {
@@ -1997,11 +2926,38 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        public static string tool_clipboard_paste {
+            get {
+                return ResourceManager.GetString("tool_clipboard_paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string tool_clipboard_remove {
+            get {
+                return ResourceManager.GetString("tool_clipboard_remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Replace Existing Tiles.
         /// </summary>
         public static string tool_clipboard_replace {
             get {
                 return ResourceManager.GetString("tool_clipboard_replace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate.
+        /// </summary>
+        public static string tool_clipboard_rotate {
+            get {
+                return ResourceManager.GetString("tool_clipboard_rotate", resourceCulture);
             }
         }
         
@@ -2164,6 +3120,15 @@ namespace TEdit.Properties {
         public static string tool_npc_add {
             get {
                 return ResourceManager.GetString("tool_npc_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click NPC and set their location with mouse.
+        /// </summary>
+        public static string tool_npc_hint {
+            get {
+                return ResourceManager.GetString("tool_npc_hint", resourceCulture);
             }
         }
         
@@ -2479,6 +3444,15 @@ namespace TEdit.Properties {
         public static string tool_wp_altars {
             get {
                 return ResourceManager.GetString("tool_wp_altars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apocalypse (Moon Lord Spawning).
+        /// </summary>
+        public static string tool_wp_apocalypse {
+            get {
+                return ResourceManager.GetString("tool_wp_apocalypse", resourceCulture);
             }
         }
         
@@ -2897,6 +3871,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cloud BG Active.
+        /// </summary>
+        public static string tool_wp_cloud_bg_active {
+            get {
+                return ResourceManager.GetString("tool_wp_cloud_bg_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cobalt Tier.
         /// </summary>
         public static string tool_wp_cobalt {
@@ -2951,6 +3934,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cultist Delay.
+        /// </summary>
+        public static string tool_wp_cultist_delay {
+            get {
+                return ResourceManager.GetString("tool_wp_cultist_delay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difficulty.
         /// </summary>
         public static string tool_wp_difficulty {
@@ -2983,6 +3975,15 @@ namespace TEdit.Properties {
         public static string tool_wp_drunk {
             get {
                 return ResourceManager.GetString("tool_wp_drunk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dungeon Point.
+        /// </summary>
+        public static string tool_wp_dungeon_point {
+            get {
+                return ResourceManager.GetString("tool_wp_dungeon_point", resourceCulture);
             }
         }
         
@@ -3059,11 +4060,29 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Force Halloween Forever.
+        /// </summary>
+        public static string tool_wp_holiday_halloween_forever {
+            get {
+                return ResourceManager.GetString("tool_wp_holiday_halloween_forever", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to XMas.
         /// </summary>
         public static string tool_wp_holiday_xmas {
             get {
                 return ResourceManager.GetString("tool_wp_holiday_xmas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Christmas Forever.
+        /// </summary>
+        public static string tool_wp_holiday_xmas_forever {
+            get {
+                return ResourceManager.GetString("tool_wp_holiday_xmas_forever", resourceCulture);
             }
         }
         
@@ -3455,6 +4474,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NPCs Saved.
+        /// </summary>
+        public static string tool_wp_npc_saved_label {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_saved_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blue Slime.
         /// </summary>
         public static string tool_wp_npc_slime_blue {
@@ -3644,6 +4672,51 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nebula Pillar.
+        /// </summary>
+        public static string tool_wp_pillar_nebula {
+            get {
+                return ResourceManager.GetString("tool_wp_pillar_nebula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solar Pillar.
+        /// </summary>
+        public static string tool_wp_pillar_solar {
+            get {
+                return ResourceManager.GetString("tool_wp_pillar_solar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stardust Pillar.
+        /// </summary>
+        public static string tool_wp_pillar_stardust {
+            get {
+                return ResourceManager.GetString("tool_wp_pillar_stardust", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vortex Pillar.
+        /// </summary>
+        public static string tool_wp_pillar_vortex {
+            get {
+                return ResourceManager.GetString("tool_wp_pillar_vortex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pillars Active.
+        /// </summary>
+        public static string tool_wp_pillars_active {
+            get {
+                return ResourceManager.GetString("tool_wp_pillars_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pre-Hardmode.
         /// </summary>
         public static string tool_wp_prehardmode {
@@ -3770,6 +4843,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dual Dungeons.
+        /// </summary>
+        public static string tool_wp_seed_dualdungeons {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_dualdungeons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infected.
+        /// </summary>
+        public static string tool_wp_seed_infected {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_infected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Traps.
         /// </summary>
         public static string tool_wp_seed_notraps {
@@ -3788,6 +4879,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skyblock.
+        /// </summary>
+        public static string tool_wp_seed_skyblock {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_skyblock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vampire.
+        /// </summary>
+        public static string tool_wp_seed_vampire {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_vampire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zenith.
         /// </summary>
         public static string tool_wp_seed_zenith {
@@ -3802,6 +4911,15 @@ namespace TEdit.Properties {
         public static string tool_wp_silver {
             get {
                 return ResourceManager.GetString("tool_wp_silver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spawn Point.
+        /// </summary>
+        public static string tool_wp_spawn_point {
+            get {
+                return ResourceManager.GetString("tool_wp_spawn_point", resourceCulture);
             }
         }
         
@@ -3923,6 +5041,33 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Team Spawns.
+        /// </summary>
+        public static string tool_wp_teamspawns {
+            get {
+                return ResourceManager.GetString("tool_wp_teamspawns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team Based Spawns Enabled.
+        /// </summary>
+        public static string tool_wp_teamspawns_enabled {
+            get {
+                return ResourceManager.GetString("tool_wp_teamspawns_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team Spawn Locations.
+        /// </summary>
+        public static string tool_wp_teamspawns_locations {
+            get {
+                return ResourceManager.GetString("tool_wp_teamspawns_locations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tenth Anniversary.
         /// </summary>
         public static string tool_wp_tenthanniversary {
@@ -4036,6 +5181,51 @@ namespace TEdit.Properties {
         public static string TrackMode_Track {
             get {
                 return ResourceManager.GetString("TrackMode_Track", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string WireReplaceMode_Blue {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string WireReplaceMode_Green {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string WireReplaceMode_Off {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string WireReplaceMode_Red {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow.
+        /// </summary>
+        public static string WireReplaceMode_Yellow {
+            get {
+                return ResourceManager.GetString("WireReplaceMode_Yellow", resourceCulture);
             }
         }
         

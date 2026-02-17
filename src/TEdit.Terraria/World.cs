@@ -1,12 +1,11 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TEdit.Common.Exceptions;
-using TEdit.Common.Reactive;
-using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria.IO;
 using TEdit.Terraria.Objects;
@@ -15,6 +14,9 @@ namespace TEdit.Terraria;
 
 public partial class World
 {
+    public static readonly string[] TeamNames = ["Red", "Green", "Blue", "Yellow", "Pink", "White"];
+    public const int TeamCount = 6;
+
     private SemaphoreSlim _fileSemaphore = new SemaphoreSlim(0, 1);
     private static readonly object _fileLock = new object();
 
@@ -30,6 +32,18 @@ public partial class World
         Chests.Clear();
         CharacterNames.Clear();
         TileFrameImportant = WorldConfiguration.SettingsTileFrameImportant.ToArray(); // clone for "new" world. Loaded worlds will replace this with file data
+
+        this.WhenAnyValue(x => x.TeamBasedSpawnsSeed)
+            .Subscribe(enabled =>
+            {
+                if (enabled && TeamSpawns.Count == 0)
+                {
+                    for (int i = 0; i < TeamCount; i++)
+                    {
+                        TeamSpawns.Add(new Vector2Int32Observable(SpawnX, SpawnY));
+                    }
+                }
+            });
     }
 
     public World(int height, int width, string title, int seed = -1)
@@ -265,11 +279,13 @@ public partial class World
                             var readerPos = b.BaseStream.Position;
 
                             // Check if the world file contains all-zeros (corrupt).
+                            // Use b.BaseStream (the active stream) instead of fs,
+                            // because for console worlds fs may be closed after decompression.
                             const int BufferSize = 8192;
                             var buffer = new byte[BufferSize];
                             bool foundNonZero = false;
                             int read;
-                            while ((read = fs.Read(buffer, 0, BufferSize)) > 0)
+                            while ((read = b.BaseStream.Read(buffer, 0, BufferSize)) > 0)
                             {
                                 for (int i = 0; i < read; i++)
                                     if (buffer[i] != 0)
@@ -318,6 +334,11 @@ public partial class World
                         if (w.IsChinese)
                         {
                             status.IsChinese = true;
+                        }
+
+                        if (w.Version > WorldConfiguration.CompatibleVersion)
+                        {
+                            status.IsPreeminent = true;
                         }
                     }
                 }
@@ -659,5 +680,123 @@ public partial class World
 
 
         return false;
+    }
+
+    /// <summary>
+    /// Determines tree type based on biome at position.
+    /// Used for tree trunk textures (Tiles_5_{type}).
+    /// </summary>
+    /// <param name="x">X position in world</param>
+    /// <param name="y">Y position in world</param>
+    /// <returns>Tree type (-1 to 6) for use with GetTree()</returns>
+    public int GetTreeTypeAtPosition(int x, int y)
+    {
+        // Bounds check
+        if (x < 0 || x >= TilesWide || y < 0 || y >= TilesHigh)
+            return -1;
+
+        // Find biome tile by scanning downward (up to 100 tiles)
+        for (int i = 0; i < 100; i++)
+        {
+            if (y + i >= TilesHigh) break;
+            var tile = Tiles[x, y + i];
+            if (tile == null || !tile.IsActive) continue;
+
+            switch (tile.Type)
+            {
+                case 2:   return -1; // Normal grass (default tree)
+                case 23:  return 0;  // Corruption grass
+                case 60:  return (y + i > GroundLevel) ? 5 : 1; // Jungle grass (underground vs surface)
+                case 70:  return 6;  // Mushroom grass
+                case 109: return 2;  // Hallow grass
+                case 147: return 3;  // Snow block
+                case 199: return 4;  // Crimson grass
+                default: continue; // Keep scanning if not a recognized biome tile
+            }
+        }
+        return -1; // Default to normal tree
+    }
+
+    /// <summary>
+    /// Determines tree style based on biome at position.
+    /// Used for tree top/branch textures (Tree_Tops_X, Tree_Branches_X).
+    /// </summary>
+    /// <param name="x">X position in world</param>
+    /// <param name="y">Y position in world</param>
+    /// <returns>Tree style index (0-18) for use with GetTreeTops/GetTreeBranches</returns>
+    public int GetTreeStyleAtPosition(int x, int y)
+    {
+        int treeType = GetTreeTypeAtPosition(x, y);
+
+        // Map tree type to tree style
+        return treeType switch
+        {
+            0 => 1,  // Corruption
+            1 => BgJungle == 1 ? 11 : 2,  // Jungle (variant based on background)
+            2 => 3,  // Hallow
+            3 => GetSnowTreeStyle(x),  // Snow (complex variants)
+            4 => 5,  // Crimson
+            5 => 13, // Underground Jungle
+            6 => 14, // Mushroom
+            _ => GetNormalTreeStyle(x)  // Normal forest (varies by X position)
+        };
+    }
+
+    /// <summary>
+    /// Gets normal forest tree style based on X position and world tree style settings.
+    /// </summary>
+    private int GetNormalTreeStyle(int x)
+    {
+        int style = x <= TreeX0 ? TreeStyle0 :
+                    x <= TreeX1 ? TreeStyle1 :
+                    x <= TreeX2 ? TreeStyle2 : TreeStyle3;
+        if (style == 0) return 0;
+        return style == 5 ? 10 : 5 + style;
+    }
+
+    /// <summary>
+    /// Gets snow tree style with complex variants based on X position and background setting.
+    /// </summary>
+    private int GetSnowTreeStyle(int x)
+    {
+        if (BgSnow == 0) return x % 10 == 0 ? 18 : 12;
+        if (BgSnow is 2 or 3 or 32 or 4 or 42)
+        {
+            bool isLeft = x < TilesWide / 2;
+            return BgSnow % 2 == 0 ? (isLeft ? 16 : 17) : (isLeft ? 17 : 16);
+        }
+        return 4;
+    }
+
+    /// <summary>
+    /// Determines palm tree type based on sand biome at position.
+    /// Used for palm tree textures (Tiles_323 and Tree_Tops_15).
+    /// </summary>
+    /// <param name="x">X position in world</param>
+    /// <param name="y">Y position in world</param>
+    /// <returns>Palm tree type (0-3) based on sand type below</returns>
+    public int GetPalmTreeTypeAtPosition(int x, int y)
+    {
+        // Bounds check
+        if (x < 0 || x >= TilesWide || y < 0 || y >= TilesHigh)
+            return 0;
+
+        // Find sand tile by scanning downward (up to 100 tiles)
+        for (int i = 0; i < 100; i++)
+        {
+            if (y + i >= TilesHigh) break;
+            var tile = Tiles[x, y + i];
+            if (tile == null || !tile.IsActive) continue;
+
+            switch (tile.Type)
+            {
+                case 53:  return 0; // Sand (normal palm)
+                case 234: return 1; // Crimsand (crimson palm)
+                case 116: return 2; // Pearlsand (hallowed palm)
+                case 112: return 3; // Ebonsand (corruption palm)
+                default: continue; // Keep scanning if not a recognized sand tile
+            }
+        }
+        return 0; // Default to normal palm
     }
 }

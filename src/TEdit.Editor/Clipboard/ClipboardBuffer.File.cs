@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
@@ -93,7 +93,7 @@ public partial class ClipboardBuffer
         World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
         World.SaveChests(Chests, bw, (int)version);
         World.SaveSigns(Signs, bw, (int)version);
-        World.SaveTileEntities(TileEntities, bw);
+        World.SaveTileEntities(TileEntities, bw, version);
 
         bw.Write(Name);
         bw.Write(WorldConfiguration.CompatibleVersion);
@@ -132,7 +132,7 @@ public partial class ClipboardBuffer
         World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
         World.SaveChests(Chests, bw, (int)version);
         World.SaveSigns(Signs, bw, (int)version);
-        World.SaveTileEntities(TileEntities, bw);
+        World.SaveTileEntities(TileEntities, bw,version);
 
         bw.Write(Name);
         bw.Write(version);
@@ -149,7 +149,7 @@ public partial class ClipboardBuffer
         buffer.Name = name;
 
         buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, tileFrameImportant);
-        buffer.Chests.AddRange(World.LoadChestData(b));
+        buffer.Chests.AddRange(World.LoadChestData(b, (uint)version));
         buffer.Signs.AddRange(World.LoadSignData(b));
         buffer.TileEntities.AddRange(World.LoadTileEntityData(b, (uint)version));
 
@@ -181,7 +181,7 @@ public partial class ClipboardBuffer
 
         var frames = WorldConfiguration.SaveConfiguration.GetData(version).GetFrames();
         buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, WorldConfiguration.SettingsTileFrameImportant);
-        buffer.Chests.AddRange(World.LoadChestData(b));
+        buffer.Chests.AddRange(World.LoadChestData(b, (uint)version));
         buffer.Signs.AddRange(World.LoadSignData(b));
         buffer.TileEntities.AddRange(World.LoadTileEntityData(b, (uint)version));
 
@@ -211,7 +211,7 @@ public partial class ClipboardBuffer
 
         var frames = WorldConfiguration.SaveConfiguration.GetData(version).GetFrames();
         buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, WorldConfiguration.SettingsTileFrameImportant);
-        buffer.Chests.AddRange(World.LoadChestData(b));
+        buffer.Chests.AddRange(World.LoadChestData(b, (uint)version));
         buffer.Signs.AddRange(World.LoadSignData(b));
 
         string verifyName = b.ReadString();
@@ -525,9 +525,9 @@ public partial class ClipboardBuffer
                     if (b.ReadBoolean())
                     {
                         var chest = new Chest(b.ReadInt32(), b.ReadInt32());
-                        for (int slot = 0; slot < Chest.MaxItems; slot++)
+                        for (int slot = 0; slot < Chest.LegacyMaxItems; slot++)
                         {
-                            if (slot < Chest.MaxItems)
+                            if (slot < Chest.LegacyMaxItems)
                             {
                                 int stackSize = (int)b.ReadInt16();
                                 chest.Items[slot].StackSize = stackSize;

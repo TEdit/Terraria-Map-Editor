@@ -8,6 +8,7 @@
 #endregion
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -344,6 +345,7 @@ public class GraphicsDeviceControl : HwndHost
 
     void XnaWindowHost_Loaded(object sender, RoutedEventArgs e)
     {
+        if (DesignerProperties.GetIsInDesignMode(this)) { return; }
         InitGraphicsDevice();
     }
 

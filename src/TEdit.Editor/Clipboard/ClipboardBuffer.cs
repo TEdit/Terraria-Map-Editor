@@ -1,10 +1,12 @@
 ﻿using System.Linq;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using System.Collections.Generic;
 using TEdit.Editor.Undo;
 using System;
+using TEdit.Terraria.Objects;
+using System.Text.RegularExpressions;
 
 namespace TEdit.Editor.Clipboard;
 
@@ -14,7 +16,7 @@ public partial class ClipboardBuffer : ITileData
     private Vector2Int32 _size;
 
     public ClipboardBuffer(
-        Vector2Int32 size, 
+        Vector2Int32 size,
         bool initTiles = false,
         bool[] tileFrameImportant = null)
     {
@@ -303,8 +305,9 @@ public partial class ClipboardBuffer : ITileData
     private static void UpdateWorldTileFromBuffer(PasteOptions pasteOptions, Tile worldTile, Tile pasteTile)
     {
         // paste regular tiles or sprites if pasteSprites active
-        if ((pasteOptions.PasteTiles && !WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type]) ||
-            (pasteOptions.PasteSprites && WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type]))
+        if ( pasteTile.Type < WorldConfiguration.SettingsTileFrameImportant.Length &&
+            ((pasteOptions.PasteTiles && !WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type]) ||
+            (pasteOptions.PasteSprites && WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type])))
         {
             worldTile.IsActive        = pasteTile.IsActive;
             worldTile.Type            = pasteTile.Type;
@@ -318,7 +321,7 @@ public partial class ClipboardBuffer : ITileData
 
         // paste over walls only if pasteOverTiles is true
         if (pasteOptions.PasteWalls)
-        { 
+        {
             worldTile.Wall            = pasteTile.Wall;
             worldTile.WallColor       = pasteTile.WallColor;
             worldTile.FullBrightWall  = pasteTile.FullBrightWall;
@@ -330,7 +333,7 @@ public partial class ClipboardBuffer : ITileData
         {
             worldTile.LiquidAmount    = pasteTile.LiquidAmount;
             worldTile.LiquidType      = pasteTile.LiquidType;
-        }                             
+        }
 
         if (pasteOptions.PasteWires)
         {
@@ -351,8 +354,8 @@ public partial class ClipboardBuffer : ITileData
     public static ClipboardBuffer Flip(ClipboardBuffer buffer, bool flipX, bool rotate)
     {
         ClipboardBuffer flippedBuffer = new ClipboardBuffer(buffer.Size);
-        //var sprites = new Dictionary<Vector2Int32, Sprite>();
-        var spriteSizes = new Dictionary<Vector2Int32, Vector2Short>();
+        var tileFrameProps = new Dictionary<Vector2Int32, (TileProperty Tile, FrameProperty Frame)>();
+        // var spriteSizes = new Dictionary<Vector2Int32, Vector2Short>();
         int maxX = buffer.Size.X - 1;
         int maxY = buffer.Size.Y - 1;
         for (int x = 0; x <= maxX; x++)
@@ -381,92 +384,165 @@ public partial class ClipboardBuffer : ITileData
                 if (tileProperties.IsFramed)
                 {
                     var loc = new Vector2Int32(x, y);
-                    if (tileProperties.IsOrigin(tile.GetUV()))
+                    if (tileProperties.IsOrigin(tile.GetUV(), out var frameProp))
                     {
-                        Vector2Short tileSize = tileProperties.GetFrameSize(tile.V);
-                        spriteSizes[loc] = tileSize;
+                        // Vector2Short tileSize = tileProperties.GetFrameSize(tile.V);
+                        // spriteSizes[loc] = tileSize;
+
+                        tileFrameProps[loc] = (tileProperties, frameProp);
+                    }
+                }
+
+                if (flipX)
+                {
+                    //  Ignore multi-width objects when flipping on x-axis
+
+                    // Flip brick-style
+                    switch (tile.BrickStyle)
+                    {
+                        case BrickStyle.SlopeTopRight:
+                            tile.BrickStyle = BrickStyle.SlopeTopLeft;
+                            break;
+                        case BrickStyle.SlopeTopLeft:
+                            tile.BrickStyle = BrickStyle.SlopeTopRight;
+                            break;
+                        case BrickStyle.SlopeBottomRight:
+                            tile.BrickStyle = BrickStyle.SlopeBottomLeft;
+                            break;
+                        case BrickStyle.SlopeBottomLeft:
+                            tile.BrickStyle = BrickStyle.SlopeBottomRight;
+                            break;
                     }
                 }
                 else
                 {
-                    if (flipX)
+                    //  Ignore multi-height tiles when flipping on y-axis
+
+                    // Flip brick-style
+                    switch (tile.BrickStyle)
                     {
-                        //  Ignore multi-width objects when flipping on x-axis
-
-                        // Flip brick-style
-                        switch (tile.BrickStyle)
-                        {
-                            case BrickStyle.SlopeTopRight:
-                                tile.BrickStyle = BrickStyle.SlopeTopLeft;
-                                break;
-                            case BrickStyle.SlopeTopLeft:
-                                tile.BrickStyle = BrickStyle.SlopeTopRight;
-                                break;
-                            case BrickStyle.SlopeBottomRight:
-                                tile.BrickStyle = BrickStyle.SlopeBottomLeft;
-                                break;
-                            case BrickStyle.SlopeBottomLeft:
-                                tile.BrickStyle = BrickStyle.SlopeBottomRight;
-                                break;
-                        }
+                        case BrickStyle.SlopeTopRight:
+                            tile.BrickStyle = BrickStyle.SlopeBottomRight;
+                            break;
+                        case BrickStyle.SlopeTopLeft:
+                            tile.BrickStyle = BrickStyle.SlopeBottomLeft;
+                            break;
+                        case BrickStyle.SlopeBottomRight:
+                            tile.BrickStyle = BrickStyle.SlopeTopRight;
+                            break;
+                        case BrickStyle.SlopeBottomLeft:
+                            tile.BrickStyle = BrickStyle.SlopeTopLeft;
+                            break;
                     }
-
-                    else
-                    {
-                        //  Ignore multi-height tiles when flipping on y-axis
-
-                        // Flip brick-style
-                        switch (tile.BrickStyle)
-                        {
-                            case BrickStyle.SlopeTopRight:
-                                tile.BrickStyle = BrickStyle.SlopeBottomRight;
-                                break;
-                            case BrickStyle.SlopeTopLeft:
-                                tile.BrickStyle = BrickStyle.SlopeBottomLeft;
-                                break;
-                            case BrickStyle.SlopeBottomRight:
-                                tile.BrickStyle = BrickStyle.SlopeTopRight;
-                                break;
-                            case BrickStyle.SlopeBottomLeft:
-                                tile.BrickStyle = BrickStyle.SlopeTopLeft;
-                                break;
-                        }
-                    }
-
-
                 }
             }
         }
 
-        foreach (var item in spriteSizes)
+        foreach (var item in tileFrameProps)
         {
-            var flipOrigin = FlipFramed(buffer.Size, item.Key, item.Value, flipX);
+            var tileProp = item.Value.Tile;
+            var frameProp = item.Value.Frame;
+            var tileSize = tileProp.GetFrameSize(frameProp.UV.Y);
+            var flipOrigin = FlipFramed(buffer.Size, item.Key, tileSize, flipX);
 
-            for (int y = 0; y < item.Value.Y; y++)
+            // Find the sprite symmetrical to the current sprite.
+            FrameProperty flipFrame = null;
+            if (frameProp.Anchor != FrameAnchor.None && frameProp.Anchor != FrameAnchor.Center)
             {
-                int sourceY = y + item.Key.Y;
-                int targetY = y + flipOrigin.Y;
-
-                for (int x = 0; x < item.Value.X; x++)
+                var findAnchor = FrameAnchor.None;
+                if (flipX && (frameProp.Anchor == FrameAnchor.Left || frameProp.Anchor == FrameAnchor.Right))
                 {
-                    try
+                    findAnchor = frameProp.Anchor == FrameAnchor.Left ? FrameAnchor.Right : FrameAnchor.Left;
+                }
+                else if(!flipX && (frameProp.Anchor == FrameAnchor.Top || frameProp.Anchor == FrameAnchor.Bottom))
+                {
+                    findAnchor = frameProp.Anchor == FrameAnchor.Top ? FrameAnchor.Bottom : FrameAnchor.Top;
+                }
+                if (findAnchor != FrameAnchor.None)
+                {
+                    var findFrames = tileProp.Frames.Where(f =>
+                        f.Anchor == findAnchor &&
+                        (f.Name == frameProp.Name || f.Name == FlipName(frameProp.Name ?? "", flipX)) &&
+                        (f.Variety == frameProp.Variety || f.Variety == FlipName(frameProp.Variety ?? "", flipX)) &&
+                        f != frameProp
+                    ).ToList();
+                    if (findFrames.Count == 1) flipFrame = findFrames.First();
+                }
+            }
+            else if (IsFlipName(frameProp.Name ?? "", flipX) || IsFlipName(frameProp.Variety ?? "", flipX))
+            {
+                var findFrames = tileProp.Frames.Where(f =>
+                    (f.Name == frameProp.Name || f.Name == FlipName(frameProp.Name ?? "", flipX)) &&
+                    (f.Variety == frameProp.Variety || f.Variety == FlipName(frameProp.Variety ?? "", flipX)) &&
+                    !(f.Name == frameProp.Name && f.Variety == frameProp.Variety) &&
+                    f != frameProp
+                ).ToList();
+                if (findFrames.Count == 1) flipFrame = findFrames.First();
+            }
+
+            // Flip the Sprite based on the name, Variety, and Anchor.
+            if (flipFrame != null)
+            {
+                var sprites = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == tileProp.Id);
+                var sprite = sprites.Styles.FirstOrDefault(s => s.UV == flipFrame.UV);
+                Vector2Short[,] tiles = sprite.GetTiles();
+
+                for (int x = 0; x < sprite.SizeTiles.X; x++)
+                {
+                    int tilex = x + flipOrigin.X;
+                    for (int y = 0; y < sprite.SizeTiles.Y; y++)
                     {
-                        int sourceX = x + item.Key.X;
-                        int targetX = x + flipOrigin.X;
-
-                        Tile tile = (Tile)buffer.Tiles[sourceX, sourceY].Clone();
-
-                        if (tile.Type == (uint)TileType.JunctionBox)
+                        try
                         {
-                            if (tile.U == 18) { tile.U = 36; }
-                            else if (tile.U == 36) { tile.U = 18; }
+                            int tiley = y + flipOrigin.Y;
+                            Tile curTile = flippedBuffer.Tiles[tilex, tiley];
+                            curTile.IsActive = true;
+                            curTile.Type = sprite.Tile;
+                            curTile.U = tiles[x, y].X;
+                            curTile.V = tiles[x, y].Y;
                         }
+                        catch (Exception)
+                        {
 
-                        flippedBuffer.Tiles[targetX, targetY] = (Tile)tile;
+                        }
                     }
-                    catch (Exception)
-                    {
+                }
+            }
+            // Copy the Sprite without flip.
+            else
+            {
+                for (int y = 0; y < tileSize.Y; y++)
+                {
+                    int sourceY = y + item.Key.Y;
+                    int targetY = y + flipOrigin.Y;
 
+                    for (int x = 0; x < tileSize.X; x++)
+                    {
+                        try
+                        {
+                            int sourceX = x + item.Key.X;
+                            int targetX = x + flipOrigin.X;
+
+                            Tile sourceTile = buffer.Tiles[sourceX, sourceY];
+                            Tile targetTile = flippedBuffer.Tiles[targetX, targetY];
+
+                            targetTile.IsActive = sourceTile.IsActive;
+                            targetTile.Type = sourceTile.Type;
+                            targetTile.U = sourceTile.U;
+                            targetTile.V = sourceTile.V;
+
+                            /*
+                            if (targetTile.Type == (uint)TileType.JunctionBox)
+                            {
+                                if (targetTile.U == 18) { targetTile.U = 36; }
+                                else if (targetTile.U == 36) { targetTile.U = 18; }
+                            }
+                            */
+                        }
+                        catch (Exception)
+                        {
+
+                        }
                     }
                 }
             }
@@ -499,42 +575,74 @@ public partial class ClipboardBuffer : ITileData
             flippedBuffer.TileEntities.Add(te);
         }
 
+        if (rotate)
+        {
+            ClipboardBuffer rotatedBuffer = new ClipboardBuffer(new Vector2Int32(flippedBuffer.Size.Y, flippedBuffer.Size.X));
+            // Attempt to make a new buffer
+            int FlipmaxX = flippedBuffer.Size.X - 1;
+            int FlipmaxY = flippedBuffer.Size.Y - 1;
 
-            if (rotate)
+            // Get buffer horizontal
+            for (int x = 0; x <= FlipmaxX; x++)
             {
-                ClipboardBuffer rotatedBuffer = new ClipboardBuffer(new Vector2Int32(flippedBuffer.Size.Y, flippedBuffer.Size.X));
-                // Attempt to make a new buffer
-                int FlipmaxX = flippedBuffer.Size.X - 1;
-                int FlipmaxY = flippedBuffer.Size.Y - 1;
-
-                // Get buffer horizontal
-                for (int x = 0; x <= FlipmaxX; x++)
+                // Get buffer vertical
+                for (int y = 0; y <= FlipmaxY; y++)
                 {
-                    // Get buffer vertical
-                    for (int y = 0; y <= FlipmaxY; y++)
+                    // Offet tiles 90
+                    Tile tile = (Tile)flippedBuffer.Tiles[x, y].Clone();
+                    var tileProperties = WorldConfiguration.TileProperties[tile.Type];
+
+                    // kill sprites
+                    if (tileProperties.IsFramed)
                     {
-                        // Offet tiles 90
-                        Tile tile = (Tile)flippedBuffer.Tiles[x, y].Clone();
-                        var tileProperties = WorldConfiguration.TileProperties[tile.Type];
-
-                        // kill sprites
-                        if (tileProperties.IsFramed)
-                        {
-                            tile.IsActive = false;
-                        }
-                        rotatedBuffer.Tiles[y, x] = (Tile)tile; // Flipping x & y causes a rotation of 90 to the right
+                        tile.IsActive = false;
                     }
+                    rotatedBuffer.Tiles[y, x] = (Tile)tile; // Flipping x & y causes a rotation of 90 to the right
                 }
+            }
 
-                // Replace Buffers
-                return rotatedBuffer;
-            }
-            else
-            {
-                return flippedBuffer;
-            }
+            // Replace Buffers
+            return rotatedBuffer;
         }
-    
+        else
+        {
+            return flippedBuffer;
+        }
+    }
+
+    private static bool IsFlipName(string name, bool flipX)
+    {
+        if (flipX) return name.Contains("Left") || name.Contains("Right");
+        else return name.Contains("Top") || name.Contains("Bottom") || name.Contains("Up") || name.Contains("Down");
+    }
+
+    private static string FlipName(string name, bool flipX)
+    {
+        if (flipX)
+        {
+            return Regex.Replace(name, "Right|Left", m => {
+                return m.Value switch
+                {
+                    "Right" => "Left",
+                    "Left" => "Right",
+                    _ => "",
+                };
+            });
+        }
+        else
+        {
+            return Regex.Replace(name, "Bottom|Top|Down|Up", m => {
+                return m.Value switch
+                {
+                    "Bottom" => "Top",
+                    "Top" => "Bottom",
+                    "Up" => "Down",
+                    "Down" => "Up",
+                    _ => "",
+                };
+            });
+        }
+    }
 
     private static Vector2Int32 FlipFramed(Vector2Int32 totalSize, Vector2Int32 origin, Vector2Short spriteSize, bool flipX)
     {

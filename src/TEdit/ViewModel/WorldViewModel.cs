@@ -6,8 +6,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -15,9 +13,9 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using TEdit.Common.Reactive;
-using TEdit.Common.Reactive.Command;
-using TEdit.Configuration;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
+using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Editor.Plugins;
@@ -25,6 +23,7 @@ using TEdit.Editor.Tools;
 using TEdit.Editor.Undo;
 using TEdit.Framework.Threading;
 using TEdit.Geometry;
+using TEdit.Configuration;
 using TEdit.Properties;
 using TEdit.Render;
 using TEdit.Terraria;
@@ -33,24 +32,27 @@ using TEdit.UI;
 using TEdit.UI.Xaml;
 using TEdit.Utility;
 using TEdit.View.Popups;
+using TEdit.UI.Xaml.Dialog;
 using static TEdit.Terraria.CreativePowers;
 using Application = System.Windows.Application;
-using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
+using static TEdit.Terraria.WorldConfiguration;
 
 namespace TEdit.ViewModel;
 
 
 
-public partial class WorldViewModel : ViewModelBase
+public partial class WorldViewModel : ReactiveObject
 {
     private readonly BrushSettings _brush = new BrushSettings();
     private readonly Stopwatch _loadTimer = new Stopwatch();
     private readonly MouseTile _mouseOverTile = new MouseTile();
     private readonly ObservableCollection<IPlugin> _plugins = new ObservableCollection<IPlugin>();
     private readonly ObservableCollection<string> _points = new ObservableCollection<string>();
+    private readonly ObservableCollection<NpcListItem> _allNpcs = new ObservableCollection<NpcListItem>();
+    private string _npcSearchText = string.Empty;
     private readonly Timer _saveTimer = new Timer();
     private readonly Selection _selection = new Selection();
     private readonly MorphToolOptions _MorphToolOptions = new MorphToolOptions();
@@ -63,10 +65,11 @@ public partial class WorldViewModel : ViewModelBase
     public static World _currentWorld;
     private ClipboardManager _clipboard;
     private bool _isAutoSaveEnabled = true;
-    private ICommand _launchWikiCommand;
     private WriteableBitmap _minimapImage;
     private string _morphBiomeTarget;
     private PixelMapManager _pixelMap;
+    private PixelMapManager _filterOverlayMap;
+    public BuffTileCache BuffTileCache { get; } = new BuffTileCache();
     private ProgressChangedEventArgs _progress;
     private Chest _selectedChest;
     private Item _selectedChestItem;
@@ -89,6 +92,7 @@ public partial class WorldViewModel : ViewModelBase
     private bool _showTiles = true;
     private bool _showCoatings = true;
     private bool _showWalls = true;
+    private bool _showBackgrounds = true;
     private bool _showActuators = true;
     private bool _showRedWires = true;
     private bool _showBlueWires = true;
@@ -100,17 +104,47 @@ public partial class WorldViewModel : ViewModelBase
     private ushort _spriteTileFilter;
     private ListCollectionView _spriteSheetView;
     private ListCollectionView _spriteStylesView;
-    private ICommand _viewLogCommand;
-    private ICommand _showNewsCommand;
     private string _windowTitle;
-    private ICommand _checkUpdatesCommand;
+    private int? _selectedBiomeVariantIndex; // null = Auto (follows cursor), 0+ = manual selection
+    private int _currentAutoBiomeIndex; // Tracks biome at cursor position
     private int _lastSavedUndoIndex = 0;
     private bool _hasUnsavedPropertyChanges = false;
     private int _lastUserSavedUndoIndex = 0;
     private bool _hasUnsavedUserPropertyChanges = false;
 
+    // Style preview collections for world properties comboboxes
+    public ObservableCollection<StylePreviewItem> TreeStylePreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> TreeTopPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> ForestBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> SnowBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> JungleBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> CorruptionBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> CrimsonBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> HallowBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> DesertBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> OceanBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> MushroomBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> UnderworldBgPreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> CaveStylePreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> IceBackStylePreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> JungleBackStylePreviews { get; } = new();
+    public ObservableCollection<StylePreviewItem> HellBackStylePreviews { get; } = new();
 
+    /// <summary>
+    /// Action to export all textures to PNG files. Set by WorldRenderXna when textures are loaded.
+    /// Only available in DEBUG builds.
+    /// </summary>
+    public Action? ExportTexturesAction { get; set; }
 
+    /// <summary>
+    /// Action to zoom and focus on a specific tile coordinate. Set by MainWindow to delegate to MapView.
+    /// </summary>
+    public Action<int, int>? ZoomFocus { get; set; }
+
+    /// <summary>
+    /// Action to pan (center) on a specific tile coordinate without changing zoom. Set by MainWindow to delegate to MapView.
+    /// </summary>
+    public Action<int, int>? PanTo { get; set; }
 
     static WorldViewModel()
     {
@@ -118,35 +152,27 @@ public partial class WorldViewModel : ViewModelBase
         {
             Directory.CreateDirectory(TempPath);
         }
+        if (!Directory.Exists(AutoSavePath))
+        {
+            Directory.CreateDirectory(AutoSavePath);
+        }
     }
 
     public WorldViewModel()
     {
-        if (IsInDesignModeStatic)
-        {
-            return;
-        }
+        if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
-        // Clean up accumulated autosave files on startup
-        CleanupOldAutosaves();
-
-        // Log existing .TEdit backup files on startup
-        LogWorldBackupFiles();
-
-        CheckUpdates = Settings.Default.CheckUpdates;
-
-        if (CheckUpdates)
-            CheckVersion();
+        CheckUpdates = UserSettingsService.Current.CheckUpdates;
 
 
-        IsAutoSaveEnabled = Settings.Default.Autosave;
-
-
-
+        IsAutoSaveEnabled = UserSettingsService.Current.Autosave;
 
         World.ProgressChanged += OnProgressChanged;
         Brush.BrushChanged += OnPreviewChanged;
         UpdateTitle();
+
+        // Build sprites from tile config (Frames data), not from textures
+        BuildSpritesFromConfig();
 
         InitSpriteViews();
 
@@ -154,6 +180,9 @@ public partial class WorldViewModel : ViewModelBase
         _saveTimer.Elapsed += SaveTimerTick;
         // 3 minute save timer
         _saveTimer.Interval = 3 * 60 * 1000;
+
+        // Populate NPC list from static config (world-specific state synced on load)
+        RefreshAllNpcs();
 
         // Test File Association and command line
         if (Application.Current.Properties["OpenFile"] != null)
@@ -163,59 +192,438 @@ public partial class WorldViewModel : ViewModelBase
         }
     }
 
+    /// <summary>
+    /// Build SpriteSheet objects from TileProperty.Frames config data (not from textures).
+    /// Preview images are set later when textures are loaded.
+    /// </summary>
+    public void BuildSpritesFromConfig()
+    {
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            WorldConfiguration.Sprites2.Clear();
+
+            // Debug: Log how many framed tiles we have
+            var framedTiles = WorldConfiguration.TileProperties.Where(t => t.IsFramed).ToList();
+            var framedWithFrames = framedTiles.Where(t => t.Frames != null && t.Frames.Count > 0).ToList();
+            ErrorLogging.Log($"BuildSpritesFromConfig: {framedTiles.Count} framed tiles, {framedWithFrames.Count} with frames data");
+
+            if (framedWithFrames.Count == 0 && framedTiles.Count > 0)
+            {
+                // Log first few framed tiles to see their state
+                foreach (var t in framedTiles.Take(5))
+                {
+                    ErrorLogging.Log($"  Tile {t.Id} ({t.Name}): IsFramed={t.IsFramed}, Frames={t.Frames?.Count ?? -1}");
+                }
+            }
+
+            foreach (var tile in WorldConfiguration.TileProperties.Where(t => t.IsFramed && t.Frames != null && t.Frames.Count > 0))
+            {
+                var sprite = new SpriteSheet
+                {
+                    Tile = (ushort)tile.Id,
+                    Name = tile.Name,
+                    SizeTiles = tile.FrameSize,
+                    SizePixelsRender = tile.TextureGrid,
+                    SizePixelsInterval = tile.TextureGrid + tile.FrameGap,
+                    IsAnimated = tile.IsAnimated
+                };
+
+                // Add a SpriteItemPreview for each frame from config
+                int styleIndex = 0;
+                foreach (var frame in tile.Frames)
+                {
+                    var spriteItem = new SpriteItemPreview
+                    {
+                        Tile = sprite.Tile,
+                        Style = styleIndex++,
+                        Name = frame.ToString(),
+                        UV = frame.UV,
+                        SizeTiles = frame.Size.X > 0 && frame.Size.Y > 0 ? frame.Size : tile.FrameSize[0],
+                        SizePixelsInterval = sprite.SizePixelsInterval,
+                        Anchor = frame.Anchor,
+                        StyleColor = frame.Color.A > 0 ? frame.Color : tile.Color,
+                        Preview = null // Set later when textures load
+                    };
+
+                    // Set custom preview config for special tiles
+                    ConfigureSpecialTilePreview(spriteItem, tile, frame);
+
+                    sprite.Styles.Add(spriteItem);
+                }
+
+                WorldConfiguration.Sprites2.Add(sprite);
+            }
+        }
+
+        ErrorLogging.Log($"BuildSpritesFromConfig: {WorldConfiguration.Sprites2.Count} sprite sheets created from config");
+    }
+
+    /// <summary>
+    /// Configure custom preview settings for special tiles that need non-standard preview rendering.
+    /// </summary>
+    private static void ConfigureSpecialTilePreview(SpriteItemPreview spriteItem, TileProperty tile, FrameProperty frame)
+    {
+        // DeadCellsDisplayJar (tile 698) - texture has 3 layers stacked vertically
+        // Y=0: Main jar (36x44px), Y=46: Foreground border, Y=92: Background glow
+        // Preview should only show the main jar layer (Y=0)
+        // Tile UV.X values are 0, 18, 36 for variants 0, 1, 2
+        // But jar texture has variants at X=0, 38, 76 (each 38px apart)
+        if (tile.Id == (int)TileType.DeadCellsDisplayJar)
+        {
+            int variant = frame.UV.X / 18;  // 0, 18, 36 -> 0, 1, 2
+            int sourceX = variant * 38;      // 0, 1, 2 -> 0, 38, 76
+            spriteItem.PreviewConfig = new PreviewConfig
+            {
+                TextureType = PreviewTextureType.Tile,
+                SourceRect = new System.Drawing.Rectangle(sourceX, 0, 36, 44),
+                Offset = new Geometry.Vector2Short(-10, 0) // Jar renders with -10px X offset
+            };
+        }
+        // Sleeping Digtoise (tile 751) - 56x46 texture with 7 animation frames
+        // Only render from anchor tile (frameX == 0 && frameY == 0)
+        // Center 56x46 sprite over 32x32 tile area: offset -12px X, -7px Y
+        else if (tile.Id == 751)
+        {
+            spriteItem.PreviewConfig = new PreviewConfig
+            {
+                TextureType = PreviewTextureType.Tile,
+                SourceRect = new System.Drawing.Rectangle(0, 0, 56, 46),
+                Offset = new Geometry.Vector2Short(-12, -7)
+            };
+        }
+        // Chillet Egg (tile 752) - 36x38 texture
+        // Only render from anchor tile (frameX == 0 && frameY == 0)
+        // Offset: -2px X, +5px Y
+        else if (tile.Id == 752)
+        {
+            spriteItem.PreviewConfig = new PreviewConfig
+            {
+                TextureType = PreviewTextureType.Tile,
+                SourceRect = new System.Drawing.Rectangle(0, 0, 36, 38),
+                Offset = new Geometry.Vector2Short(-2, 2)
+            };
+        }
+        // Tree tiles (tile 5) - identify tree tops and branches logic:
+        // frameY >= 198 AND frameX >= 22 triggers tree foliage rendering
+        // frameX == 22: tree top (uses Tree_Tops texture)
+        // frameX == 44: left branch (uses Tree_Branches texture)
+        // frameX == 66: right branch (uses Tree_Branches texture)
+        // Variant index = (frameY - 198) / 22 gives 0, 1, or 2 for variants A, B, C
+        else if (tile.Id == 5)
+        {
+            int frameX = frame.UV.X;
+            int frameY = frame.UV.Y;
+
+            // Tree foliage: frameY >= 198 AND frameX >= 22
+            if (frameY >= 198 && frameX >= 22)
+            {
+                // Calculate variant index from frameY (0, 1, or 2)
+                int variant = (frameY - 198) / 22;
+
+                if (frameX == 22)
+                {
+                    // Tree top - use Tree_Tops_0 texture
+                    // Variants are arranged horizontally at 82px intervals (80px width + 2px gap)
+                    // Offset: Bottom anchor - center X, anchor Y at bottom of tile
+                    // X = (16-80)/2 = -32, Y = (16-80) = -64
+                    spriteItem.PreviewConfig = new PreviewConfig
+                    {
+                        TextureType = PreviewTextureType.TreeTops,
+                        TextureStyle = 0, // Forest tree style
+                        SourceRect = new System.Drawing.Rectangle(variant * 82, 0, 80, 80),
+                        Offset = new Geometry.Vector2Short(-32, -64)
+                    };
+                }
+                else if (frameX == 44)
+                {
+                    // Left branch - use Tree_Branches_0 texture, left side (X=0)
+                    // Variants are arranged vertically at 42px intervals (40px height + 2px gap)
+                    // Offset: Right anchor - anchor X at right of tile, center Y
+                    // X = (16-40) = -24, Y = (16-40)/2 = -12
+                    spriteItem.PreviewConfig = new PreviewConfig
+                    {
+                        TextureType = PreviewTextureType.TreeBranch,
+                        TextureStyle = 0,
+                        SourceRect = new System.Drawing.Rectangle(0, variant * 42, 40, 40),
+                        Offset = new Geometry.Vector2Short(-24, -12)
+                    };
+                }
+                else if (frameX == 66)
+                {
+                    // Right branch - use Tree_Branches_0 texture, right side (X=42)
+                    // Variants are arranged vertically at 42px intervals (40px height + 2px gap)
+                    // Offset: Left anchor - anchor X at left of tile, center Y
+                    // X = 0, Y = (16-40)/2 = -12
+                    spriteItem.PreviewConfig = new PreviewConfig
+                    {
+                        TextureType = PreviewTextureType.TreeBranch,
+                        TextureStyle = 0,
+                        SourceRect = new System.Drawing.Rectangle(42, variant * 42, 40, 40),
+                        Offset = new Geometry.Vector2Short(0, -12)
+                    };
+                }
+            }
+            else
+            {
+                // Tree trunk tiles - use Tiles_5_{treeType} texture based on biome
+                // SourceRect uses the tile's UV coordinates
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.Tree,
+                    TextureStyle = -1, // Default forest tree, will be overridden dynamically
+                    SourceRect = new System.Drawing.Rectangle(frameX, frameY, 16, 16),
+                    Offset = new Geometry.Vector2Short(0, 0)
+                };
+            }
+        }
+        // Palm trees (tile 323) - similar to regular trees but uses sand-based biomes
+        // Palm tops: U >= 88 && U <= 132 (use Tree_Tops_15)
+        // Palm trunks: everything else (use Tiles_323)
+        else if (tile.Id == 323)
+        {
+            int frameX = frame.UV.X;
+            int frameY = frame.UV.Y;
+
+            if (frameX >= 88 && frameX <= 132)
+            {
+                // Palm tree top - use Tree_Tops_15 texture
+                // source.X = frame variant based on U, source.Y = treeType * 82
+                int frameVariant = (frameX - 88) / 22; // 0, 1, or 2
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.PalmTreeTop,
+                    TextureStyle = 0, // Will be determined dynamically for source.Y
+                    SourceRect = new System.Drawing.Rectangle(frameVariant * 82, 0, 80, 80),
+                    Offset = new Geometry.Vector2Short(-32, -64) // Bottom anchor
+                };
+            }
+            else
+            {
+                // Palm tree trunk - use Tiles_323 texture
+                // source.Y is replaced by treeType * 22 (not added)
+                // Frame size is 20x20 (textureGrid), srcRect.X is preserved for horizontal position
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.PalmTree,
+                    TextureStyle = 0, // Will be determined dynamically
+                    SourceRect = new System.Drawing.Rectangle(frameX, 0, 20, 20), // Y=0 will be replaced by palmType * 22
+                    Offset = new Geometry.Vector2Short(-2, -2) // Adjust for 20x20 frame vs 16x16 tile
+                };
+            }
+        }
+        // Gem Trees (583-589), Vanity Trees (596, 616), Ash Tree (634)
+        // Same foliage detection as regular trees but with fixed tree style indices
+        else if (tile.Id >= 583 && tile.Id <= 589)
+        {
+            // Gem trees: style = tileId - 583 + 22 (indices 22-28)
+            int treeStyle = tile.Id - 583 + 22;
+            ConfigureTreePreview(spriteItem, frame.UV.X, frame.UV.Y, treeStyle);
+        }
+        else if (tile.Id == 596 || tile.Id == 616)
+        {
+            // Vanity trees: 596 Sakura = 29, 616 Willow = 30
+            int treeStyle = tile.Id == 596 ? 29 : 30;
+            ConfigureTreePreview(spriteItem, frame.UV.X, frame.UV.Y, treeStyle);
+        }
+        else if (tile.Id == 634)
+        {
+            // Ash tree: style = 31
+            ConfigureTreePreview(spriteItem, frame.UV.X, frame.UV.Y, 31);
+        }
+    }
+
+    private static void ConfigureTreePreview(SpriteItem spriteItem, int frameX, int frameY, int treeStyle)
+    {
+        // Tree foliage: frameY >= 198 AND frameX >= 22
+        if (frameY >= 198 && frameX >= 22)
+        {
+            // Calculate variant index from frameY (0, 1, or 2)
+            int variant = (frameY - 198) / 22;
+
+            if (frameX == 22)
+            {
+                // Tree top - use Tree_Tops texture
+                // Dimensions vary by tree style:
+                // - Gem trees (22-28), Ash tree (31): 116x96
+                // - Vanity trees (29-30): 118x96
+                // - Default (normal trees): 80x80
+                int topWidth, topHeight;
+                if (treeStyle >= 22 && treeStyle <= 28 || treeStyle == 31)
+                {
+                    topWidth = 116;
+                    topHeight = 96;
+                }
+                else if (treeStyle == 29 || treeStyle == 30)
+                {
+                    topWidth = 118;
+                    topHeight = 96;
+                }
+                else
+                {
+                    topWidth = 80;
+                    topHeight = 80;
+                }
+
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.TreeTops,
+                    TextureStyle = treeStyle,
+                    SourceRect = new System.Drawing.Rectangle(variant * (topWidth + 2), 0, topWidth, topHeight),
+                    Offset = new Geometry.Vector2Short((short)(-topWidth / 2), (short)(-topHeight + 16))
+                };
+            }
+            else if (frameX == 44)
+            {
+                // Left branch - use Tree_Branches texture
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.TreeBranch,
+                    TextureStyle = treeStyle,
+                    SourceRect = new System.Drawing.Rectangle(0, variant * 42, 40, 40),
+                    Offset = new Geometry.Vector2Short(-24, -12)
+                };
+            }
+            else if (frameX == 66)
+            {
+                // Right branch - use Tree_Branches texture
+                spriteItem.PreviewConfig = new PreviewConfig
+                {
+                    TextureType = PreviewTextureType.TreeBranch,
+                    TextureStyle = treeStyle,
+                    SourceRect = new System.Drawing.Rectangle(42, variant * 42, 40, 40),
+                    Offset = new Geometry.Vector2Short(0, -12)
+                };
+            }
+        }
+        else
+        {
+            // Tree trunk tiles - use the tile's own texture
+            spriteItem.PreviewConfig = new PreviewConfig
+            {
+                TextureType = PreviewTextureType.Tile,
+                SourceRect = new System.Drawing.Rectangle(frameX, frameY, 20, 20),
+                Offset = new Geometry.Vector2Short(-2, -2)
+            };
+        }
+    }
+
     public void InitSpriteViews()
     {
+        int spriteCount;
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            spriteCount = WorldConfiguration.Sprites2.Count;
+        }
+        ErrorLogging.Log($"InitSpriteViews: {spriteCount} sprites loaded");
+
         _spriteSheetView = (ListCollectionView)CollectionViewSource.GetDefaultView(WorldConfiguration.Sprites2);
         _spriteSheetView.Filter = o =>
         {
-
             if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
             var sprite = (SpriteSheet)o;
+            var filter = _spriteFilter.Trim();
 
-
-            string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (sprite.Tile.ToString().StartsWith(_spriteFilter)) return true;
-
-            foreach (string _spriteWord in _spriteFilterSplit)
+            // Exact tile ID match (if filter is purely numeric)
+            if (ushort.TryParse(filter, out ushort tileId))
             {
-                if (sprite.Name == _spriteWord) return true;
-                if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                if (sprite.Tile == tileId) return true;
+            }
 
+            // Split by delimiters for multi-term search (added space delimiter)
+            string[] filterTerms = filter.Split(new char[] { '/', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string term in filterTerms)
+            {
+                // Tile ID prefix match (for searching "5" to find 50, 51, etc.)
+                if (sprite.Tile.ToString().StartsWith(term)) return true;
+
+                // Case-insensitive name match
+                if (sprite.Name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+
+                // Match against any child style name
                 foreach (var style in sprite.Styles)
                 {
-                    if (style.Name != null && style.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                    if (style.Name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0) return true;
                 }
             }
             return false;
         };
 
-        _spriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<SpriteItemPreview>(WorldConfiguration.Sprites2.SelectMany(s => s.Styles).Select(s => (SpriteItemPreview)s).ToList()));
+        List<SpriteItemPreview> styles;
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            styles = WorldConfiguration.Sprites2.SelectMany(s => s.Styles).Select(s => (SpriteItemPreview)s).ToList();
+        }
+        _spriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<SpriteItemPreview>(styles));
         _spriteStylesView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
         _spriteStylesView.Filter = (o) =>
         {
             var sprite = (SpriteItemPreview)o;
 
-            if (_spriteTileFilter <= 0 && string.IsNullOrWhiteSpace(_spriteFilter)) { return false; }
+            // If no tile filter AND no text filter, hide everything
+            if (_spriteTileFilter <= 0 && string.IsNullOrWhiteSpace(_spriteFilter)) return false;
 
+            // Must pass tile filter if one is set
             if (_spriteTileFilter > 0 && sprite.Tile != _spriteTileFilter) return false;
-            if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
-            string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string _spriteWord in _spriteFilterSplit)
+            // If tile filter matches and no text filter, show all styles for this tile
+            if (_spriteTileFilter > 0 && sprite.Tile == _spriteTileFilter)
             {
-                if (sprite.Name == _spriteWord) return true;
-                if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
+
+                // If text filter exists, check if PARENT sprite sheet name matches
+                // This fixes the "tree styles hidden" bug - show all styles when parent matches search
+                var parentSheet = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == sprite.Tile);
+                if (parentSheet != null)
+                {
+                    string[] filterTerms = _spriteFilter.Split(new char[] { '/', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string term in filterTerms)
+                    {
+                        // If parent name matches, show all its styles
+                        if (parentSheet.Name?.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+                            return true;
+                        // Also check if tile ID matches
+                        if (parentSheet.Tile.ToString() == term.Trim())
+                            return true;
+                    }
+                }
+
+                // Otherwise, filter by style's own name
+                return MatchesSpriteFilter(sprite.Name, _spriteFilter);
             }
-            return false;
+
+            // No tile filter - only show if text filter matches style name or tile ID
+            return MatchesSpriteFilter(sprite.Name, _spriteFilter) ||
+                   sprite.Tile.ToString() == _spriteFilter.Trim();
         };
+
+        // Notify UI that the views have been recreated
+        this.RaisePropertyChanged(nameof(SpriteSheetView));
+        this.RaisePropertyChanged(nameof(SpriteStylesView));
+    }
+
+    /// <summary>
+    /// Helper method to check if a name matches the sprite filter terms.
+    /// </summary>
+    private bool MatchesSpriteFilter(string name, string filter)
+    {
+        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(filter))
+            return false;
+
+        string[] terms = filter.Split(new char[] { '/', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (string term in terms)
+        {
+            if (name.IndexOf(term, StringComparison.OrdinalIgnoreCase) >= 0)
+                return true;
+        }
+        return false;
     }
 
     public WriteableBitmap MinimapImage
     {
         get { return _minimapImage; }
-        set { Set(nameof(MinimapImage), ref _minimapImage, value); }
+        set { this.RaiseAndSetIfChanged(ref _minimapImage, value); }
     }
 
     public ListCollectionView SpriteSheetView => _spriteSheetView;
@@ -227,7 +635,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _spriteFilter; }
         set
         {
-            Set(nameof(SpriteFilter), ref _spriteFilter, value);
+            this.RaiseAndSetIfChanged(ref _spriteFilter, value);
             SpriteSheetView.Refresh();
             SpriteStylesView.Refresh();
         }
@@ -238,8 +646,36 @@ public partial class WorldViewModel : ViewModelBase
         get { return _spriteTileFilter; }
         set
         {
-            Set(nameof(SpriteFilter), ref _spriteTileFilter, value);
+            this.RaiseAndSetIfChanged(ref _spriteTileFilter, value);
             SpriteStylesView.Refresh();
+        }
+    }
+
+    private int _spriteThumbnailSize = UserSettingsService.Current.SpriteThumbnailSize;
+    public int SpriteThumbnailSize
+    {
+        get { return _spriteThumbnailSize; }
+        set
+        {
+            var clamped = Math.Clamp(value, 16, 128);
+            if (this.RaiseAndSetIfChanged(ref _spriteThumbnailSize, clamped) != clamped)
+            {
+                UserSettingsService.Current.SpriteThumbnailSize = clamped;
+            }
+        }
+    }
+
+    private int _pickerHoldThresholdMs = UserSettingsService.Current.PickerHoldThresholdMs;
+    public int PickerHoldThresholdMs
+    {
+        get { return _pickerHoldThresholdMs; }
+        set
+        {
+            var clamped = Math.Clamp(value, 100, 500);
+            if (this.RaiseAndSetIfChanged(ref _pickerHoldThresholdMs, clamped) != clamped)
+            {
+                UserSettingsService.Current.PickerHoldThresholdMs = clamped;
+            }
         }
     }
 
@@ -248,7 +684,12 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedSpriteItem; }
         set
         {
-            Set("SelectedSpriteItem", ref _selectedSpriteItem, value);
+            this.RaiseAndSetIfChanged(ref _selectedSpriteItem, value);
+            // Sync biome index to the new sprite item
+            if (value != null)
+            {
+                value.SelectedBiomeIndex = SelectedBiomeVariantIndex;
+            }
             PreviewChange();
         }
     }
@@ -258,7 +699,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedSpriteSheet; }
         set
         {
-            Set("SelectedSpriteSheet", ref _selectedSpriteSheet, value);
+            this.RaiseAndSetIfChanged(ref _selectedSpriteSheet, value);
 
             if (value == null) { SpriteTileFilter = 0; }
             else { SpriteTileFilter = value.Tile; }
@@ -274,32 +715,153 @@ public partial class WorldViewModel : ViewModelBase
             }
 
             PreviewChange();
+            UpdateBiomeVariants();
         }
     }
 
-
-    public ICommand LaunchWikiCommand
+    /// <summary>
+    /// Whether the currently selected tile has biome variants available.
+    /// </summary>
+    public bool HasBiomeVariants
     {
-        get { return _launchWikiCommand ??= new RelayCommand(() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki")); }
+        get
+        {
+            if (_selectedSpriteSheet == null) return false;
+            var tileProperty = WorldConfiguration.TileProperties.FirstOrDefault(t => t.Id == _selectedSpriteSheet.Tile);
+            return tileProperty?.BiomeVariants?.Count > 0;
+        }
     }
 
-    /* SBLogic - catch exception if browser can't be launched */
-    public static void LaunchUrl(string url)
+    /// <summary>
+    /// List of biome variant names for the dropdown (includes "Auto" at index 0).
+    /// </summary>
+    public List<string> BiomeVariantNames
     {
-        System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.None;
+        get
+        {
+            var names = new List<string>();
+            if (_selectedSpriteSheet == null) return names;
+
+            var tileProperty = WorldConfiguration.TileProperties.FirstOrDefault(t => t.Id == _selectedSpriteSheet.Tile);
+            if (tileProperty?.BiomeVariants != null)
+            {
+                foreach (var variant in tileProperty.BiomeVariants)
+                {
+                    names.Add(variant.Name);
+                }
+            }
+            return names;
+        }
+    }
+
+    /// <summary>
+    /// Selected biome variant index. When IsBiomeAutoMode is true, this follows CurrentAutoBiomeIndex.
+    /// </summary>
+    public int SelectedBiomeVariantIndex
+    {
+        get => _selectedBiomeVariantIndex ?? _currentAutoBiomeIndex;
+        set
+        {
+            if (_selectedBiomeVariantIndex != value)
+            {
+                _selectedBiomeVariantIndex = value;
+                this.RaisePropertyChanged();
+                UpdateSpriteItemBiomeIndex(value);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Whether biome selection follows cursor position automatically.
+    /// </summary>
+    public bool IsBiomeAutoMode
+    {
+        get => _selectedBiomeVariantIndex == null;
+        set
+        {
+            if (value)
+            {
+                _selectedBiomeVariantIndex = null;
+                this.RaisePropertyChanged(nameof(SelectedBiomeVariantIndex));
+            }
+            else
+            {
+                _selectedBiomeVariantIndex = _currentAutoBiomeIndex;
+            }
+            this.RaisePropertyChanged();
+        }
+    }
+
+    /// <summary>
+    /// Updates the auto-detected biome index based on cursor position.
+    /// Called from mouse move handler.
+    /// </summary>
+    public void UpdateAutoBiomeIndex(int biomeIndex)
+    {
+        if (_currentAutoBiomeIndex != biomeIndex)
+        {
+            _currentAutoBiomeIndex = biomeIndex;
+            if (IsBiomeAutoMode)
+            {
+                this.RaisePropertyChanged(nameof(SelectedBiomeVariantIndex));
+                UpdateSpriteItemBiomeIndex(biomeIndex);
+            }
+        }
+    }
+
+    private void UpdateBiomeVariants()
+    {
+        this.RaisePropertyChanged(nameof(HasBiomeVariants));
+        this.RaisePropertyChanged(nameof(BiomeVariantNames));
+        this.RaisePropertyChanged(nameof(SelectedBiomeVariantIndex));
+    }
+
+    private void UpdateSpriteItemBiomeIndex(int biomeIndex)
+    {
+        // Update ALL sprite items in the current sheet, not just the selected one
+        if (_selectedSpriteSheet?.Styles != null)
+        {
+            foreach (var style in _selectedSpriteSheet.Styles)
+            {
+                if (style is SpriteItemPreview preview)
+                {
+                    preview.SelectedBiomeIndex = biomeIndex;
+                }
+            }
+            // Refresh the collection view to update the UI
+            SpriteStylesView?.Refresh();
+        }
+    }
+
+    [ReactiveCommand]
+    private Task LaunchWiki() => LaunchUrlAsync("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki");
+
+    /* SBLogic - catch exception if browser can't be launched */
+    public static async Task LaunchUrlAsync(string url)
+    {
+        DialogResponse result = DialogResponse.None;
         try
         {
-            Process.Start(url);
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = url,
+                UseShellExecute = true
+            };
+            Process.Start(psi);
         }
         catch
         {
-            result = System.Windows.Forms.MessageBox.Show("Unable to open external browser.  Copy to clipboard?", "Link Error", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation);
+            result = await App.DialogService.ShowMessageAsync(
+                "Unable to open external browser. Copy to clipboard?",
+                "Link Error",
+                DialogButton.YesNo,
+                DialogImage.Exclamation);
         }
 
         // Just in case
         try
         {
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            if (result == DialogResponse.Yes)
             {
                 System.Windows.Clipboard.SetText(url);
             }
@@ -313,16 +875,21 @@ public partial class WorldViewModel : ViewModelBase
         get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TEdit"); }
     }
 
+    public static string AutoSavePath
+    {
+        get { return Path.Combine(TempPath, "autosave"); }
+    }
+
     public int SelectedTabIndex
     {
         get { return _selectedTabIndex; }
-        set { Set(nameof(SelectedTabIndex), ref _selectedTabIndex, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedTabIndex, value); }
     }
 
     public int SelectedSpecialTile
     {
         get { return _selectedSpecialTile; }
-        set { Set(nameof(SelectedSpecialTile), ref _selectedSpecialTile, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedSpecialTile, value); }
     }
 
     public Vector2Int32 SelectedXmas
@@ -330,34 +897,34 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedXmas; }
         set
         {
-            Set(nameof(SelectedXmas), ref _selectedXmas, value);
+            this.RaiseAndSetIfChanged(ref _selectedXmas, value);
             SelectedTabIndex = 1;
-            SelectedSpecialTile = 10;
+            SelectedSpecialTile = 11;
         }
     }
 
     public int SelectedXmasStar
     {
         get { return _selectedXmasStar; }
-        set { Set(nameof(SelectedXmasStar), ref _selectedXmasStar, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedXmasStar, value); }
     }
 
     public int SelectedXmasGarland
     {
         get { return _selectedXmasGarland; }
-        set { Set(nameof(SelectedXmasGarland), ref _selectedXmasGarland, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedXmasGarland, value); }
     }
 
     public int SelectedXmasBulb
     {
         get { return _selectedXmasBulb; }
-        set { Set(nameof(SelectedXmasBulb), ref _selectedXmasBulb, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedXmasBulb, value); }
     }
 
     public int SelectedXmasLight
     {
         get { return _selectedXmasLight; }
-        set { Set(nameof(SelectedXmasLight), ref _selectedXmasLight, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedXmasLight, value); }
     }
 
     public Sign SelectedSign
@@ -365,9 +932,9 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedSign; }
         set
         {
-            Set(nameof(SelectedSign), ref _selectedSign, value);
+            this.RaiseAndSetIfChanged(ref _selectedSign, value);
             SelectedTabIndex = 1;
-            SelectedSpecialTile = 11;
+            SelectedSpecialTile = 12;
         }
     }
 
@@ -376,9 +943,9 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedChest; }
         set
         {
-            Set(nameof(SelectedChest), ref _selectedChest, value);
+            this.RaiseAndSetIfChanged(ref _selectedChest, value);
             SelectedTabIndex = 1;
-            SelectedSpecialTile = 12;
+            SelectedSpecialTile = 13;
         }
     }
 
@@ -387,7 +954,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _selectedTileEntity; }
         set
         {
-            Set(nameof(SelectedTileEntity), ref _selectedTileEntity, value);
+            this.RaiseAndSetIfChanged(ref _selectedTileEntity, value);
             SelectedTabIndex = 1;
             SelectedSpecialTile = (int)value?.EntityType;
         }
@@ -401,7 +968,7 @@ public partial class WorldViewModel : ViewModelBase
     public string MorphBiomeTarget
     {
         get { return _morphBiomeTarget; }
-        set { Set(nameof(MorphBiomeTarget), ref _morphBiomeTarget, value); }
+        set { this.RaiseAndSetIfChanged(ref _morphBiomeTarget, value); }
     }
 
     public bool IsAutoSaveEnabled
@@ -409,9 +976,8 @@ public partial class WorldViewModel : ViewModelBase
         get { return _isAutoSaveEnabled; }
         set
         {
-            Set(nameof(IsAutoSaveEnabled), ref _isAutoSaveEnabled, value);
-            Settings.Default.Autosave = _isAutoSaveEnabled;
-            try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+            this.RaiseAndSetIfChanged(ref _isAutoSaveEnabled, value);
+            UserSettingsService.Current.Autosave = _isAutoSaveEnabled;
         }
     }
 
@@ -444,13 +1010,13 @@ public partial class WorldViewModel : ViewModelBase
     public bool ShowGrid
     {
         get { return _showGrid; }
-        set { Set(nameof(ShowGrid), ref _showGrid, value); }
+        set { this.RaiseAndSetIfChanged(ref _showGrid, value); }
     }
 
     public bool ShowTextures
     {
         get { return _showTextures; }
-        set { Set(nameof(ShowTextures), ref _showTextures, value); }
+        set { this.RaiseAndSetIfChanged(ref _showTextures, value); }
     }
 
     public ObservableCollection<string> Points
@@ -458,17 +1024,103 @@ public partial class WorldViewModel : ViewModelBase
         get { return _points; }
     }
 
+    public ObservableCollection<NpcListItem> AllNpcs
+    {
+        get { return _allNpcs; }
+    }
+
+    private ICollectionView _allNpcsView;
+    public ICollectionView AllNpcsView
+    {
+        get
+        {
+            if (_allNpcsView == null)
+            {
+                _allNpcsView = CollectionViewSource.GetDefaultView(_allNpcs);
+                _allNpcsView.SortDescriptions.Add(new SortDescription(nameof(NpcListItem.IsOnMap), ListSortDirection.Descending));
+                _allNpcsView.SortDescriptions.Add(new SortDescription(nameof(NpcListItem.DefaultName), ListSortDirection.Ascending));
+                _allNpcsView.Filter = FilterNpc;
+            }
+            return _allNpcsView;
+        }
+    }
+
+    public string NpcSearchText
+    {
+        get => _npcSearchText;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _npcSearchText, value);
+            AllNpcsView.Refresh();
+        }
+    }
+
+    private bool FilterNpc(object obj)
+    {
+        if (obj is not NpcListItem item) return false;
+        if (string.IsNullOrWhiteSpace(NpcSearchText)) return true;
+        return item.DefaultName.Contains(NpcSearchText, StringComparison.OrdinalIgnoreCase);
+    }
+
     public string SelectedPoint
     {
         get { return _selectedPoint; }
-        set { Set(nameof(SelectedPoint), ref _selectedPoint, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedPoint, value); }
+    }
+
+    private void RefreshPoints()
+    {
+        Points.Clear();
+        Points.Add("Spawn");
+        Points.Add("Dungeon");
+
+        if (CurrentWorld?.TeamBasedSpawnsSeed == true)
+        {
+            for (int i = 0; i < World.TeamNames.Length; i++)
+            {
+                Points.Add($"Team {World.TeamNames[i]}");
+            }
+        }
+
+        if (CurrentWorld != null)
+        {
+            foreach (NPC npc in CurrentWorld.NPCs)
+            {
+                Points.Add(npc.Name);
+            }
+        }
+
+        RefreshAllNpcs();
+    }
+
+    private void RefreshAllNpcs()
+    {
+        if (_allNpcs.Count == 0)
+        {
+            foreach (var kvp in WorldConfiguration.NpcNames.OrderBy(x => x.Value))
+            {
+                WorldConfiguration.NpcById.TryGetValue(kvp.Key, out var npcData);
+                _allNpcs.Add(new NpcListItem(
+                    kvp.Key, kvp.Value,
+                    npcData?.Variants,
+                    npcData?.CanShimmer ?? false));
+            }
+        }
+
+        foreach (var item in _allNpcs)
+        {
+            item.World = CurrentWorld;
+            item.WorldNpc = CurrentWorld?.NPCs.FirstOrDefault(n => n.SpriteId == item.SpriteId);
+        }
+
+        AllNpcsView.Refresh();
     }
 
 
     public Item SelectedChestItem
     {
         get { return _selectedChestItem; }
-        set { Set(nameof(SelectedChestItem), ref _selectedChestItem, value); }
+        set { this.RaiseAndSetIfChanged(ref _selectedChestItem, value); }
     }
 
     public UndoManager UndoManager
@@ -479,7 +1131,7 @@ public partial class WorldViewModel : ViewModelBase
     public ClipboardManager Clipboard
     {
         get { return _clipboard; }
-        set { Set(nameof(Clipboard), ref _clipboard, value); }
+        set { this.RaiseAndSetIfChanged(ref _clipboard, value); }
     }
 
     public Selection Selection
@@ -495,7 +1147,7 @@ public partial class WorldViewModel : ViewModelBase
     public string CurrentFile
     {
         get { return _currentFile; }
-        set { Set(nameof(CurrentFile), ref _currentFile, value); }
+        set { this.RaiseAndSetIfChanged(ref _currentFile, value); }
     }
 
     private ClipboardManager _clipboardManager;
@@ -510,7 +1162,7 @@ public partial class WorldViewModel : ViewModelBase
                 _currentWorld.PropertyChanged -= OnWorldPropertyChanged;
             }
 
-            Set(nameof(CurrentWorld), ref _currentWorld, value);
+            this.RaiseAndSetIfChanged(ref _currentWorld, value);
 
             if (value != null)
             {
@@ -550,7 +1202,7 @@ public partial class WorldViewModel : ViewModelBase
                     {
                         Clipboard.LoadedBuffers.Add(buffer);
                     }
-                
+
                     // Preserve the current active buffer if it's not null.
                     if (_clipboardManager.Buffer != null)
                     {
@@ -575,13 +1227,13 @@ public partial class WorldViewModel : ViewModelBase
     public ProgressChangedEventArgs Progress
     {
         get { return _progress; }
-        set { Set(nameof(Progress), ref _progress, value); }
+        set { this.RaiseAndSetIfChanged(ref _progress, value); }
     }
 
     public string WindowTitle
     {
         get { return _windowTitle; }
-        set { Set(nameof(WindowTitle), ref _windowTitle, value); }
+        set { this.RaiseAndSetIfChanged(ref _windowTitle, value); }
     }
 
     public BrushSettings Brush
@@ -601,13 +1253,19 @@ public partial class WorldViewModel : ViewModelBase
     public ITool ActiveTool
     {
         get { return _activeTool; }
-        set { Set(nameof(ActiveTool), ref _activeTool, value); }
+        set { this.RaiseAndSetIfChanged(ref _activeTool, value); }
     }
 
     public PixelMapManager PixelMap
     {
         get { return _pixelMap; }
-        set { Set(nameof(PixelMap), ref _pixelMap, value); }
+        set { this.RaiseAndSetIfChanged(ref _pixelMap, value); }
+    }
+
+    public PixelMapManager FilterOverlayMap
+    {
+        get { return _filterOverlayMap; }
+        set { this.RaiseAndSetIfChanged(ref _filterOverlayMap, value); }
     }
 
     public bool ShowRedWires
@@ -615,7 +1273,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showRedWires; }
         set
         {
-            Set(nameof(ShowRedWires), ref _showRedWires, value);
+            this.RaiseAndSetIfChanged(ref _showRedWires, value);
             UpdateRenderWorld();
         }
     }
@@ -625,7 +1283,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showBlueWires; }
         set
         {
-            Set(nameof(ShowBlueWires), ref _showBlueWires, value);
+            this.RaiseAndSetIfChanged(ref _showBlueWires, value);
             UpdateRenderWorld();
         }
     }
@@ -635,7 +1293,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showGreenWires; }
         set
         {
-            Set(nameof(ShowGreenWires), ref _showGreenWires, value);
+            this.RaiseAndSetIfChanged(ref _showGreenWires, value);
             UpdateRenderWorld();
         }
     }
@@ -645,22 +1303,22 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showYellowWires; }
         set
         {
-            Set(nameof(ShowYellowWires), ref _showYellowWires, value);
+            this.RaiseAndSetIfChanged(ref _showYellowWires, value);
             UpdateRenderWorld();
         }
     }
-    
+
     public bool ShowAllWires
     {
         get { return _showAllWires; }
         set
         {
-            Set(nameof(ShowAllWires), ref _showAllWires, value);
+            this.RaiseAndSetIfChanged(ref _showAllWires, value);
             ToggleWireStates(_showAllWires);
             UpdateRenderWorld();
         }
     }
-    
+
     public void ToggleWireStates(bool state)
     {
         ShowRedWires = state;
@@ -668,13 +1326,13 @@ public partial class WorldViewModel : ViewModelBase
         ShowGreenWires = state;
         ShowYellowWires = state;
     }
-    
+
     public bool ShowWireTransparency
     {
         get { return _showWireTransparency; }
         set
         {
-            Set(nameof(ShowWireTransparency), ref _showWireTransparency, value);
+            this.RaiseAndSetIfChanged(ref _showWireTransparency, value);
             UpdateRenderWorld();
         }
     }
@@ -684,7 +1342,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showActuators; }
         set
         {
-            Set(nameof(ShowActuators), ref _showActuators, value);
+            this.RaiseAndSetIfChanged(ref _showActuators, value);
             UpdateRenderWorld();
         }
     }
@@ -692,7 +1350,17 @@ public partial class WorldViewModel : ViewModelBase
     public bool ShowPoints
     {
         get { return _showPoints; }
-        set { Set(nameof(ShowPoints), ref _showPoints, value); }
+        set { this.RaiseAndSetIfChanged(ref _showPoints, value); }
+    }
+
+    public bool ShowBuffRadii
+    {
+        get { return UserSettingsService.Current.ShowBuffRadii; }
+        set
+        {
+            UserSettingsService.Current.ShowBuffRadii = value;
+            this.RaisePropertyChanged(nameof(ShowBuffRadii));
+        }
     }
 
     public bool ShowLiquid
@@ -700,7 +1368,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showLiquid; }
         set
         {
-            Set(nameof(ShowLiquid), ref _showLiquid, value);
+            this.RaiseAndSetIfChanged(ref _showLiquid, value);
             UpdateRenderWorld();
         }
     }
@@ -710,7 +1378,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showCoatings; }
         set
         {
-            Set(nameof(ShowCoatings), ref _showCoatings, value);
+            this.RaiseAndSetIfChanged(ref _showCoatings, value);
             UpdateRenderWorld();
         }
     }
@@ -720,7 +1388,7 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showTiles; }
         set
         {
-            Set(nameof(ShowTiles), ref _showTiles, value);
+            this.RaiseAndSetIfChanged(ref _showTiles, value);
             UpdateRenderWorld();
         }
     }
@@ -730,34 +1398,75 @@ public partial class WorldViewModel : ViewModelBase
         get { return _showWalls; }
         set
         {
-            Set(nameof(ShowWalls), ref _showWalls, value);
+            this.RaiseAndSetIfChanged(ref _showWalls, value);
             UpdateRenderWorld();
         }
     }
-    public ICommand ShowNewsCommand
+
+    public bool ShowBackgrounds
     {
-        get { return _showNewsCommand ??= new RelayCommand(ShowNewsDialog); }
+        get { return _showBackgrounds; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _showBackgrounds, value);
+            UpdateRenderWorld();
+        }
     }
 
-    public ICommand CheckUpdatesCommand
+    [ReactiveCommand]
+    private async Task CheckUpdatesAsync()
     {
-        get { return _checkUpdatesCommand ??= new RelayCommand(async () => await CheckVersion(false)); }
+        try
+        {
+            var updateService = new Services.UpdateService(UserSettingsService.Current.UpdateChannel);
+
+            if (!updateService.IsInstalled)
+            {
+                App.SnackbarService.ShowInfo("Auto-update is not available for portable installs.", "Update");
+                return;
+            }
+
+            App.SnackbarService.ShowInfo("Checking for updates...", "Update");
+
+            bool downloaded = await updateService.CheckAndDownloadAsync();
+            if (downloaded)
+            {
+                var result = await App.DialogService.ShowMessageAsync(
+                    "A new version of TEdit has been downloaded. Restart now to apply the update?",
+                    "Update Available",
+                    UI.Xaml.Dialog.DialogButton.YesNo,
+                    UI.Xaml.Dialog.DialogImage.Question);
+
+                if (result == UI.Xaml.Dialog.DialogResponse.Yes)
+                {
+                    updateService.ApplyAndRestart();
+                }
+            }
+            else
+            {
+                App.SnackbarService.ShowSuccess("TEdit is up to date.", "Update");
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+            App.SnackbarService.ShowWarning("Update check failed.", "Update");
+        }
     }
 
-    public ICommand ViewLogCommand
-    {
-        get { return _viewLogCommand ??= new RelayCommand(ViewLog); }
-    }
+    [ReactiveCommand]
+    private void ViewLog() => ErrorLogging.ViewLog();
 
     public bool RealisticColors
     {
-        get { return Settings.Default.RealisticColors; }
+        get { return UserSettingsService.Current.RealisticColors; }
         set
         {
-            RaisePropertyChanged(nameof(RealisticColors), Settings.Default.RealisticColors, value);
-            Settings.Default.RealisticColors = value;
-            try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
-            MessageBox.Show(Properties.Language.messagebox_restartrequired, Properties.Language.messagebox_restartrequired, MessageBoxButton.OK, MessageBoxImage.Information);
+            this.RaisePropertyChanged(nameof(RealisticColors));
+            UserSettingsService.Current.RealisticColors = value;
+            _ = App.DialogService.ShowAlertAsync(
+                Properties.Language.messagebox_restartrequired,
+                Properties.Language.messagebox_restartrequired);
         }
     }
 
@@ -766,54 +1475,61 @@ public partial class WorldViewModel : ViewModelBase
         get { return _checkUpdates; }
         set
         {
-            Set(nameof(CheckUpdates), ref _checkUpdates, value);
-            Settings.Default.CheckUpdates = value;
-            try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+            this.RaiseAndSetIfChanged(ref _checkUpdates, value);
+            UserSettingsService.Current.CheckUpdates = value;
         }
     }
 
-    public float _textureVisibilityZoomLevel = Settings.Default.TextureVisibilityZoomLevel;
+    private UpdateChannel _updateChannel = UserSettingsService.Current.UpdateChannel;
+    public UpdateChannel UpdateChannel
+    {
+        get => _updateChannel;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _updateChannel, value);
+            UserSettingsService.Current.UpdateChannel = value;
+        }
+    }
+
+    public float _textureVisibilityZoomLevel = UserSettingsService.Current.TextureVisibilityZoomLevel;
     public float TextureVisibilityZoomLevel
     {
         get => _textureVisibilityZoomLevel;
         set
         {
             value = (float)Math.Floor(MathHelper.Clamp(value, 3, 64));
-            if (Set(nameof(TextureVisibilityZoomLevel), ref _textureVisibilityZoomLevel, value))
+            if (this.RaiseAndSetIfChanged(ref _textureVisibilityZoomLevel, value) != value)
             {
-                Settings.Default.TextureVisibilityZoomLevel = value;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                UserSettingsService.Current.TextureVisibilityZoomLevel = value;
             }
         }
     }
 
-    private bool _showNews = Settings.Default.ShowNews;
+    private bool _showNews = UserSettingsService.Current.ShowNews;
 
     public bool ShowNews
     {
         get { return _showNews; }
         set
         {
-            if (Set(nameof(EnableTelemetry), ref _showNews, value))
+            if (this.RaiseAndSetIfChanged(ref _showNews, value) != value)
             {
-                Settings.Default.ShowNews = value;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                UserSettingsService.Current.ShowNews = value;
             }
         }
     }
 
 
-    private bool _enableTelemetry = Settings.Default.Telemetry != 0;
+    private bool _enableTelemetry = UserSettingsService.Current.Telemetry != 0;
 
     public bool EnableTelemetry
     {
         get { return _enableTelemetry; }
         set
         {
-            if (Set(nameof(EnableTelemetry), ref _enableTelemetry, value))
+            if (this.RaiseAndSetIfChanged(ref _enableTelemetry, value) != value)
             {
-                Settings.Default.Telemetry = value ? 1 : 0;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                UserSettingsService.Current.Telemetry = value ? 1 : 0;
                 ErrorLogging.InitializeTelemetry();
             }
         }
@@ -829,193 +1545,14 @@ public partial class WorldViewModel : ViewModelBase
         UpdateTitle();
     }
 
-    private void CleanupOldAutosaves()
-    {
-        try
-        {
-            if (!Directory.Exists(TempPath))
-                return;
-
-            // Find all autosave files (including old .tmp files)
-            var autosaveFiles = Directory.GetFiles(TempPath, "*.autosave*")
-                .Where(f => f.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase) ||
-                           f.EndsWith(".autosave.tmp", StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            int totalAutosaveCount = autosaveFiles.Count;
-            long totalAutosaveSize = autosaveFiles.Sum(f => new FileInfo(f).Length);
-
-            ErrorLogging.Log($"Autosave cleanup: Found {totalAutosaveCount} autosave files using {FormatFileSize(totalAutosaveSize)}");
-
-            // Group by base world name (everything before .autosave)
-            var groupedFiles = autosaveFiles
-                .GroupBy(f =>
-                {
-                    string filename = Path.GetFileName(f);
-                    int idx = filename.IndexOf(".autosave", StringComparison.OrdinalIgnoreCase);
-                    return idx >= 0 ? filename.Substring(0, idx) : filename;
-                });
-
-            int deletedCount = 0;
-            long deletedSize = 0;
-
-            foreach (var group in groupedFiles)
-            {
-                // Sort by last write time, newest first
-                var sortedFiles = group.OrderByDescending(f => File.GetLastWriteTimeUtc(f)).ToList();
-
-                // Keep the most recent .autosave file (not .tmp)
-                var keepFile = sortedFiles.FirstOrDefault(f => f.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase));
-
-                // Delete all others
-                foreach (var file in sortedFiles)
-                {
-                    if (file != keepFile)
-                    {
-                        try
-                        {
-                            long fileSize = new FileInfo(file).Length;
-                            File.Delete(file);
-                            deletedCount++;
-                            deletedSize += fileSize;
-                            ErrorLogging.Log($"Deleted old autosave: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
-                        }
-                        catch
-                        {
-                            // Ignore errors deleting individual files
-                        }
-                    }
-                }
-            }
-
-            if (deletedCount > 0)
-            {
-                ErrorLogging.Log($"Autosave cleanup complete: Deleted {deletedCount} old autosave files, freed {FormatFileSize(deletedSize)}");
-            }
-            else
-            {
-                ErrorLogging.Log("Autosave cleanup complete: No old autosave files to delete");
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorLogging.LogException(ex);
-        }
-    }
-
-    private void CleanupOldWorldBackups(string worldFilePath)
-    {
-        try
-        {
-            if (!File.Exists(worldFilePath))
-                return;
-
-            string directory = Path.GetDirectoryName(worldFilePath);
-            string baseFilename = Path.GetFileName(worldFilePath);
-
-            // Find all timestamped backup files for this world (format: worldname.wld.yyyyMMddHHmmss.TEdit)
-            var backupFiles = Directory.GetFiles(directory, baseFilename + ".*.TEdit")
-                .Where(f =>
-                {
-                    string pattern = baseFilename + ".";
-                    string remaining = Path.GetFileName(f).Substring(pattern.Length);
-                    // Check if it matches the timestamp pattern (14 digits followed by .TEdit)
-                    return remaining.Length >= 14 &&
-                           remaining.Substring(0, 14).All(char.IsDigit) &&
-                           remaining.EndsWith(".TEdit", StringComparison.OrdinalIgnoreCase);
-                })
-                .ToList();
-
-            if (backupFiles.Count > 0)
-            {
-                long totalBackupSize = backupFiles.Sum(f => new FileInfo(f).Length);
-                ErrorLogging.Log($"Found {backupFiles.Count} old timestamped backup(s) for {baseFilename} using {FormatFileSize(totalBackupSize)}");
-            }
-
-            // Keep only the newest backup file (non-timestamped .TEdit file)
-            string keepFile = worldFilePath + ".TEdit";
-
-            int deletedCount = 0;
-            long deletedSize = 0;
-
-            // Delete all timestamped backups
-            foreach (var file in backupFiles)
-            {
-                try
-                {
-                    long fileSize = new FileInfo(file).Length;
-                    File.Delete(file);
-                    deletedCount++;
-                    deletedSize += fileSize;
-                    ErrorLogging.Log($"Deleted old backup: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
-                }
-                catch
-                {
-                    // Ignore errors deleting individual files
-                }
-            }
-
-            if (deletedCount > 0)
-            {
-                ErrorLogging.Log($"Backup cleanup complete: Deleted {deletedCount} old backup(s), freed {FormatFileSize(deletedSize)}");
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorLogging.LogException(ex);
-        }
-    }
-
-    private static string FormatFileSize(long bytes)
-    {
-        string[] sizes = { "B", "KB", "MB", "GB", "TB" };
-        double len = bytes;
-        int order = 0;
-        while (len >= 1024 && order < sizes.Length - 1)
-        {
-            order++;
-            len = len / 1024;
-        }
-        return $"{len:0.##} {sizes[order]}";
-    }
-
-    private void LogWorldBackupFiles()
-    {
-        try
-        {
-            string worldsPath = DependencyChecker.PathToWorlds;
-            if (!Directory.Exists(worldsPath))
-                return;
-
-            // Find all .TEdit backup files in the Terraria worlds directory
-            var backupFiles = Directory.GetFiles(worldsPath, "*.TEdit", SearchOption.TopDirectoryOnly).ToList();
-
-            int totalBackupCount = backupFiles.Count;
-            long totalBackupSize = backupFiles.Sum(f => new FileInfo(f).Length);
-
-            if (totalBackupCount > 0)
-            {
-                ErrorLogging.Log($"Found {totalBackupCount} .TEdit backup files using {FormatFileSize(totalBackupSize)}");
-            }
-            else
-            {
-                ErrorLogging.Log("No .TEdit backup files found");
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorLogging.LogException(ex);
-        }
-    }
-
     private void SaveTimerTick(object sender, ElapsedEventArgs e)
     {
         if (IsAutoSaveEnabled && HasUnsavedChanges)
         {
             if (!string.IsNullOrWhiteSpace(CurrentFile))
-                SaveWorldThreaded(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"));
+                _ = SaveWorldThreadedAsync(Path.Combine(AutoSavePath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"), GetSaveVersion_MaxConfig());
             else
-                SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave.tmp"));
+                _ = SaveWorldThreadedAsync(Path.Combine(AutoSavePath, "newworld.autosave.tmp"), GetSaveVersion_MaxConfig());
         }
     }
 
@@ -1029,22 +1566,9 @@ public partial class WorldViewModel : ViewModelBase
         // Mark as having unsaved changes for both autosave and user save tracking
         _hasUnsavedPropertyChanges = true;
         _hasUnsavedUserPropertyChanges = true;
-        RaisePropertyChanged(nameof(HasUnsavedChanges));
-        RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+        this.RaisePropertyChanged(nameof(HasUnsavedChanges));
+        this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
         UpdateTitle();
-    }
-
-    private void ShowNewsDialog()
-    {
-        var w = new NotificationsWindow();
-        w.Owner = Application.Current.MainWindow;
-        w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        w.ShowDialog();
-    }
-
-    private void ViewLog()
-    {
-        ErrorLogging.ViewLog();
     }
 
     private void UpdateTitle()
@@ -1054,66 +1578,8 @@ public partial class WorldViewModel : ViewModelBase
         WindowTitle = $"TEdit v{App.Version} {fileName}{dirtyIndicator}";
     }
 
-    public async Task CheckVersion(bool auto = true)
-    {
-        bool isOutdated = false;
 
-        const string versionRegex = @"""tag_name"":\s?""(?<version>[^\""]*)""";
-        try
-        {
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/4.0");
-                string githubReleases = await client.GetStringAsync("https://api.github.com/repos/TEdit/Terraria-map-Editor/releases");
-                var versions = Regex.Match(githubReleases, versionRegex);
-
-                var githubVersion = Semver.SemVersion.Parse(versions?.Groups?[1].Value, Semver.SemVersionStyles.Any);
-                var appVersion = App.Version;
-
-                isOutdated = appVersion.ComparePrecedenceTo(githubVersion) < 0;
-            }
-        }
-        catch (Exception)
-        {
-            MessageBox.Show("Unable to check version.", "Update Check Failed");
-        }
-
-
-
-        if (isOutdated)
-        {
-#if !DEBUG
-            if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    Process.Start("http://www.binaryconstruct.com/downloads/");
-                }
-                catch { }
-            }
-#else
-            MessageBox.Show("This is a debug build, version checking disabled.", "Update");
-#endif
-
-        }
-        else if (!auto)
-        {
-            MessageBox.Show("TEdit is up to date.", "Update");
-        }
-    }
-
-    private ICommand _analyzeWorldCommand;
-    private ICommand _analyzeWorldSaveCommand;
-    private ICommand _tallyCountCommand;
-
-    /// <summary>
-    /// Relay command to execute AnalyzeWorldSave.
-    /// </summary>
-    public ICommand AnalyzeWorldSaveCommand
-    {
-        get { return _analyzeWorldSaveCommand ??= new RelayCommand(AnalyzeWorldSave); }
-    }
-
+    [ReactiveCommand]
     private void AnalyzeWorldSave()
     {
         if (CurrentWorld == null) return;
@@ -1130,14 +1596,7 @@ public partial class WorldViewModel : ViewModelBase
         }
     }
 
-    /// <summary>
-    /// Relay command to execute AnalizeWorld.
-    /// </summary>
-    public ICommand AnalyzeWorldCommand
-    {
-        get { return _analyzeWorldCommand ??= new RelayCommand(AnalyzeWorld); }
-    }
-
+    [ReactiveCommand]
     private void AnalyzeWorld()
     {
         WorldAnalysis = Editor.WorldAnalysis.AnalyzeWorld(CurrentWorld);
@@ -1149,19 +1608,21 @@ public partial class WorldViewModel : ViewModelBase
     public string WorldAnalysis
     {
         get { return _worldAnalysis; }
-        set { Set(nameof(WorldAnalysis), ref _worldAnalysis, value); }
+        set { this.RaiseAndSetIfChanged(ref _worldAnalysis, value); }
     }
 
     /* SBLogic - Relay command to execute KillTally */
 
-    public ICommand LoadTallyCommand
-    {
-        get { return _tallyCountCommand ??= new RelayCommand(GetTallyCount); }
-    }
-
-    private void GetTallyCount()
+    [ReactiveCommand]
+    private void LoadTally()
     {
         TallyCount = KillTally.LoadTally(CurrentWorld);
+    }
+
+    [ReactiveCommand]
+    private void EditBestiary()
+    {
+        SelectedTabIndex = 6; // Navigate to Bestiary tab
     }
 
     private string _tallyCount;
@@ -1170,7 +1631,7 @@ public partial class WorldViewModel : ViewModelBase
     public string TallyCount
     {
         get { return _tallyCount; }
-        set { Set(nameof(TallyCount), ref _tallyCount, value); }
+        set { this.RaiseAndSetIfChanged(ref _tallyCount, value); }
     }
 
     public event EventHandler PreviewChanged;
@@ -1185,7 +1646,7 @@ public partial class WorldViewModel : ViewModelBase
         if (PreviewChanged != null) PreviewChanged(sender, e);
     }
 
-    private void SetActiveTool(ITool tool)
+    internal void SetActiveTool(ITool tool)
     {
         if (ActiveTool != tool)
         {
@@ -1266,6 +1727,7 @@ public partial class WorldViewModel : ViewModelBase
         }
     }
 
+    [ReactiveCommand]
     private void NewWorld()
     {
         // Define the bool for prompting ore generation plugin
@@ -1273,6 +1735,7 @@ public partial class WorldViewModel : ViewModelBase
 
         // Open the dialog for creating a new world and check if user clicked 'OK'
         var nwDialog = new NewWorldView();
+        nwDialog.Owner = Application.Current.MainWindow;
         if ((bool)nwDialog.ShowDialog())
         {
             // Reset and start the load timer for performance tracking
@@ -1352,13 +1815,7 @@ public partial class WorldViewModel : ViewModelBase
                 CurrentFile = null;
                 PixelMap = t.Result; // Set the pixel map for the world
                 UpdateTitle(); // Update the window title with the current world name
-                Points.Clear(); // Clear previous points
-                Points.Add("Spawn"); // Add default points to the list
-                Points.Add("Dungeon");
-                foreach (NPC npc in CurrentWorld.NPCs)
-                {
-                    Points.Add(npc.Name); // Add NPC names to points
-                }
+                RefreshPoints();
                 MinimapImage = RenderMiniMap.Render(CurrentWorld); // Render and set the minimap image
                 _loadTimer.Stop(); // Stop the load timer
                 OnProgressChanged(this, new ProgressChangedEventArgs(0, $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds.")); // Report completion
@@ -1829,17 +2286,17 @@ public partial class WorldViewModel : ViewModelBase
     }
     #endregion
 
-    private void SaveWorld()
+    private async Task SaveWorldAsync()
     {
         if (CurrentWorld == null) return;
 
         if (string.IsNullOrWhiteSpace(CurrentFile))
-            SaveWorldAs();
+            await SaveWorldAsAsync();
         else
-            SaveWorldFile();
+            await SaveWorldFileAsync();
     }
 
-    private void SaveWorldAsVersion()
+    private async Task SaveWorldAsVersionAsync()
     {
         if (CurrentWorld == null) return;
 
@@ -1859,69 +2316,96 @@ public partial class WorldViewModel : ViewModelBase
         if (pickVersion && (bool)sfd.ShowDialog())
         {
             CurrentFile = sfd.FileName;
-            SaveWorldFile(version);
+            await SaveWorldFileAsync(GetSaveVersion_MaxConfig(version)); // Clamp to the max config version.
         }
     }
 
-    private void SaveWorldAs()
+    private async Task SaveWorldAsAsync()
     {
         if (CurrentWorld == null) return;
 
-        var sfd = new SaveFileDialog();
-        sfd.Filter =
-            "Terraria World File|*.wld|" +
-            string.Join("|", WorldConfiguration.SaveConfiguration.SaveVersions.Values.Reverse().Select(vers => $"Terraria {vers.GameVersion}|*.wld"));
+        // Build "Save As" targets from gameVersionToSaveVersion keys.
+        // Sort descending so newest versions appear first.
+        var versionKeys = WorldConfiguration.SaveConfiguration?.GameVersionToSaveVersion?.Keys
+            ?.Select(v => v.Trim())
+            .Where(v => !string.IsNullOrWhiteSpace(v))
+            .OrderByDescending(v => v, DottedVersionComparer.Instance)
+            .ToList()
+            ?? [];
 
-        sfd.Title = "Save World As";
-        sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-        sfd.FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()));
+        var sfd = new SaveFileDialog
+        {
+            // FilterIndex:
+            // 1 = "Terraria World File"
+            // 2 = first game version entry
+            // 3 = second game version entry
+            // ...
+            Filter =
+                "Terraria World File|*.wld|" +
+                string.Join("|", versionKeys.Select(v => $"Terraria v{v}|*.wld")),
+
+            Title = "Save World As",
+            InitialDirectory = DependencyChecker.PathToWorlds,
+            FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()))
+        };
+
         if ((bool)sfd.ShowDialog())
         {
             CurrentFile = sfd.FileName;
 
+            // If they picked a specific Terraria version filter, use that gameVersion -> saveVersion mapping.
             if (sfd.FilterIndex > 1)
             {
                 try
                 {
-                    var parts = sfd.Filter.Split('|');
-                    var desc = parts[(sfd.FilterIndex - 1) * 2];
-                    var key = desc.Replace("Terraria v", "");
+                    int idx = sfd.FilterIndex - 2; // map FilterIndex to versionKeys index
 
-                    if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(key, out uint versionOverride))
+                    if (idx >= 0 && idx < versionKeys.Count)
                     {
-                        SaveWorldFile(versionOverride);
-                        return;
+                        string selectedGameVersion = versionKeys[idx];
+
+                        if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(selectedGameVersion, out uint versionOverride))
+                        {
+                            await SaveWorldFileAsync(versionOverride);
+                            return;
+                        }
                     }
                 }
                 catch (Exception)
-                { }
+                {
+                    // fall through to default
+                }
             }
 
             // Maintain the existing world version.
             // This is also the fallback for parsing failures.
-            SaveWorldFile(CurrentWorld.Version);
+            await SaveWorldFileAsync(GetSaveVersion_MaxConfig());
         }
     }
 
-    private void SaveWorldFile(uint version = 0)
+    private async Task SaveWorldFileAsync(uint version = 0)
     {
         if (CurrentWorld == null)
             return;
         if (CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
         {
-            MessageBoxResult overwrite = MessageBox.Show(_currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?", "World Modified", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-            if (overwrite.Equals(MessageBoxResult.Cancel))
+            var overwriteResult = await App.DialogService.ShowMessageAsync(
+                _currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?",
+                "World Modified",
+                DialogButton.OKCancel,
+                DialogImage.Warning);
+
+            if (overwriteResult == DialogResponse.Cancel)
                 return;
         }
 
-        SaveWorldThreaded(CurrentFile, version);
+        await SaveWorldThreadedAsync(CurrentFile, GetSaveVersion_MaxConfig(version));
     }
 
-    private void SaveWorldThreaded(string filename, uint version = 0)
+    private async Task SaveWorldThreadedAsync(string filename, uint version = 0)
     {
-        Task.Factory.StartNew(async () =>
+        await Task.Run(async () =>
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(SaveWorldThreaded));
             try
             {
                 OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Validating World..."));
@@ -1930,13 +2414,17 @@ public partial class WorldViewModel : ViewModelBase
             catch (ArgumentOutOfRangeException err)
             {
                 string msg = "There is a problem in your world.\r\n" + $"{err.ParamName}\r\n" + $"This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
+                var saveResult = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowMessageAsync(msg, "World Error", DialogButton.YesNo, DialogImage.Error)).Task.Unwrap();
+                if (saveResult != DialogResponse.Yes)
                     return;
             }
             catch (Exception ex)
             {
                 string msg = "There is a problem in your world.\r\n" + $"{ex.Message}\r\n" + "This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
+                var saveResult = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowMessageAsync(msg, "World Error", DialogButton.YesNo, DialogImage.Error)).Task.Unwrap();
+                if (saveResult != DialogResponse.Yes)
                     return;
             }
 
@@ -1970,7 +2458,7 @@ public partial class WorldViewModel : ViewModelBase
                     // Only reset autosave tracking, keep user save tracking
                     _lastSavedUndoIndex = _undoManager.CurrentIndex;
                     _hasUnsavedPropertyChanges = false;
-                    RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedChanges));
                 }
                 else
                 {
@@ -1979,8 +2467,8 @@ public partial class WorldViewModel : ViewModelBase
                     _hasUnsavedPropertyChanges = false;
                     _lastUserSavedUndoIndex = _undoManager.CurrentIndex;
                     _hasUnsavedUserPropertyChanges = false;
-                    RaisePropertyChanged(nameof(HasUnsavedChanges));
-                    RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
                     UpdateTitle();
                 }
             }
@@ -1988,23 +2476,39 @@ public partial class WorldViewModel : ViewModelBase
         }, TaskFactoryHelper.UiTaskScheduler);
     }
 
-    public void ReloadWorld()
+    private uint GetSaveVersion_MaxConfig(uint requested = 0)
+    {
+        // Make sure config is loaded (safe even if already initialized).
+        WorldConfiguration.Initialize();
+
+        uint max = WorldConfiguration.CompatibleVersion;
+        if (max == 0) return requested; // ultra-defensive
+
+        // If caller didn't request a version, default to MAX config version.
+        uint v = (requested == 0) ? max : requested;
+
+        // Never allow saving above config max.
+        if (v > max) v = max;
+
+        return v;
+    }
+
+    public async Task ReloadWorldAsync()
     {
         // perform validations.
         if (CurrentWorld == null)
         {
-            MessageBox.Show("No opened world loaded for reloading.", "World File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            await App.DialogService.ShowExceptionAsync("No opened world loaded for reloading.");
             return;
         }
-        else
-        {
-            // Prompt for world loading.
-            if (MessageBox.Show("Unsaved work will be lost!", "Reload Current World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                return; // if no, abort.
 
-            // Load world.
-            LoadWorld(CurrentFile);
-        }
+        // Prompt for world loading.
+        var confirm = await App.DialogService.ShowConfirmationAsync("Reload Current World?", "Unsaved work will be lost!");
+        if (!confirm)
+            return; // if no, abort.
+
+        // Load world.
+        LoadWorld(CurrentFile);
     }
 
     public void LoadWorld(string filename)
@@ -2013,14 +2517,32 @@ public partial class WorldViewModel : ViewModelBase
         _loadTimer.Start();
         _saveTimer.Stop();
         CurrentFile = filename;
-        //CurrentWorld = null;
         GC.WaitForFullGCComplete();
 
-        Task.Factory.StartNew(() =>
+        Task.Run(async () =>
         {
             // perform validations
             var validation = World.ValidateWorldFile(filename);
-            if (validation.IsCorrupt)
+
+            if (validation.IsPreeminent)
+            {
+                string message =
+                        $"This world version is NEWER than supported by TEdit's config.\r\n\r\n" +
+                        $"World version: {validation.Version}\r\n" +
+                        $"Max supported: {WorldConfiguration.CompatibleVersion}\r\n\r\n" +
+                        $"TEdit will fall back to config version {WorldConfiguration.CompatibleVersion} " +
+                        $"(missing newer tiles/walls/etc may cause issues).\r\n\r\n" +
+                        $"Do you want to attempt to load anyway?";
+
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Newer World Version", message)).Task.Unwrap();
+                if (!confirm)
+                    return null;
+
+                // Apply only after user accepts.
+                WorldConfiguration.ApplyForWorldVersion(validation.Version, out _);
+            }
+            else if (validation.IsCorrupt)
             {
                 // The world file contains all-zeros (corrupt).
                 string msg =
@@ -2032,24 +2554,22 @@ public partial class WorldViewModel : ViewModelBase
                     "3. Restore a previously created TEdit checkpoint (.TEdit).\r\n" +
                     "4. Restore a backup via windows file history (if previously enabled).";
 
-                MessageBox.Show(msg, "Corrupt World File", MessageBoxButton.OK, MessageBoxImage.Error);
+                await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowExceptionAsync(msg)).Task.Unwrap();
                 return null;
             }
             else if (!validation.IsValid)
             {
-                //ErrorLogging.LogException(err);
                 string msg =
                     "There was an error reading the world file.\r\n" +
                     "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
                     $"TEdit v{TEdit.App.Version}\r\n" +
                     $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
                     $"Current World: {validation.Version}\r\n\r\n" +
-                    "Do you wish to force it to load anyway?\r\n\r\n" +
-                    "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
                     $"The error is :\r\n{validation.Message}";
 
-                // there is no recovering here, so just show the message and return (aka abort)
-                MessageBox.Show(msg, "World File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowExceptionAsync(msg)).Task.Unwrap();
                 return null;
             }
 
@@ -2061,40 +2581,37 @@ public partial class WorldViewModel : ViewModelBase
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
 
-                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                {
-                    // if no, abort
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Load Legacy TModLoader World?", message)).Task.Unwrap();
+                if (!confirm)
                     return null;
-                }
             }
             else if (validation.IsLegacy)
             {
-                // Reworked "IsLegacy" to be versions < 1.0.
                 string message = $"You are loading a legacy world version: {validation.Version}.\r\n" +
                     $"Editing legacy files could cause unexpected results.\r\n" +
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
-                
-                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                {
+
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Load Legacy World?", message)).Task.Unwrap();
+                if (!confirm)
                     return null;
-                }
             }
             else if (validation.IsTModLoader)
             {
-                string message = $"You are loading a TModLoader world." +
+                string message = $"You are loading a TModLoader world. " +
                     $"Editing modded worlds is unsupported.\r\n" +
                     "Please make a backup as you may experience world file corruption.\r\n" +
                     "Do you wish to continue?";
 
-                if (MessageBox.Show(message, "Load Mod World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                {
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Load Mod World?", message)).Task.Unwrap();
+                if (!confirm)
                     return null;
-                }
             }
 
             // Create a single backup of the original world file (if it doesn't already exist)
-            // This preserves the unedited state when first opening a world
             try
             {
                 string backupPath = filename + ".TEdit";
@@ -2102,33 +2619,30 @@ public partial class WorldViewModel : ViewModelBase
                 {
                     File.Copy(filename, backupPath, false);
                 }
-
-                // Clean up old timestamped backup files
-                CleanupOldWorldBackups(filename);
+                FileMaintenance.CleanupOldWorldBackups(filename);
             }
             catch (Exception ex)
             {
                 ErrorLogging.LogException(ex);
-                // Continue loading even if backup fails
             }
 
             var (world, error) = World.LoadWorld(filename);
             if (error != null)
             {
                 string msg =
-                "There was an error reading the world file.\r\n" +
-                "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                $"TEdit v{TEdit.App.Version}\r\n" +
-                $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
-                $"Current World: {validation.Version}\r\n\r\n" +
-                "Do you wish to force it to load anyway?\r\n\r\n" +
-                "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
-                $"The error is :\r\n{error.Message}";
+                    "There was an error reading the world file.\r\n" +
+                    "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
+                    $"TEdit v{TEdit.App.Version}\r\n" +
+                    $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
+                    $"Current World: {validation.Version}\r\n\r\n" +
+                    "Do you wish to force it to load anyway?\r\n\r\n" +
+                    "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
+                    $"The error is :\r\n{error.Message}";
 
-                if (MessageBox.Show(msg, "Load Invalid World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                {
+                var confirm = await Application.Current.Dispatcher.InvokeAsync(async () =>
+                    await App.DialogService.ShowConfirmationAsync("Load Invalid World?", msg)).Task.Unwrap();
+                if (!confirm)
                     return null;
-                }
             }
 
             return world;
@@ -2141,17 +2655,9 @@ public partial class WorldViewModel : ViewModelBase
             {
                 if (CurrentWorld != null)
                 {
-                    ErrorLogging.TelemetryClient?.TrackEvent(nameof(LoadWorld));
-
                     PixelMap = t.Result;
                     UpdateTitle();
-                    Points.Clear();
-                    Points.Add("Spawn");
-                    Points.Add("Dungeon");
-                    foreach (NPC npc in CurrentWorld.NPCs)
-                    {
-                        Points.Add(npc.Name);
-                    }
+                    RefreshPoints();
                     MinimapImage = RenderMiniMap.Render(CurrentWorld);
                     _loadTimer.Stop();
 
@@ -2160,8 +2666,8 @@ public partial class WorldViewModel : ViewModelBase
                     _hasUnsavedPropertyChanges = false;
                     _lastUserSavedUndoIndex = _undoManager?.CurrentIndex ?? 0;
                     _hasUnsavedUserPropertyChanges = false;
-                    RaisePropertyChanged(nameof(HasUnsavedChanges));
-                    RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
                     UpdateTitle();
 
                     OnProgressChanged(this, new ProgressChangedEventArgs(0,
@@ -2175,7 +2681,6 @@ public partial class WorldViewModel : ViewModelBase
             }
             finally
             {
-
                 _loadTimer.Stop();
             }
 

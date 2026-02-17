@@ -1,0 +1,57 @@
+<UserControl x:Class="TEdit.View.Sidebar.SpecialTilesViews.DeadCellsJarEditorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
+    mc:Ignorable="d"
+    d:DesignWidth="340">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SpecialTilesSharedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Text="{x:Static p:Language.specialtile_label_deadcells_jar}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+            <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="({0}, {1})">
+                        <Binding Path="SelectedTileEntity.PosX" />
+                        <Binding Path="SelectedTileEntity.PosY" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
+        <controls:ItemEditorControl Grid.Row="1"
+            ItemId="{Binding SelectedTileEntity.NetId, Mode=TwoWay}"
+            StackSize="{Binding SelectedTileEntity.StackSize, Mode=TwoWay}"
+            Prefix="{Binding SelectedTileEntity.Prefix, Mode=TwoWay}"
+            ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+            ItemsSourceType="ItemPropertyList"
+            PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
+            CopyCommand="{Binding CopyChestItemCommand}"
+            CommandParameter="{Binding SelectedTileEntity}"
+            PasteCommand="{Binding PasteChestItemCommand}"
+            PasteCommandParameter="{Binding SelectedTileEntity}"
+            MaxStackCommand="{Binding ChestItemSetToMaxStackCommand}"
+            MaxStackCommandParameter="{Binding SelectedTileEntity}" />
+        <UniformGrid Columns="2" Grid.Row="2">
+            <ui:Button Margin="5" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
+                HorizontalAlignment="Stretch" Appearance="Danger"
+                CommandParameter="{StaticResource False}" />
+            <ui:Button Margin="5" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
+                HorizontalAlignment="Stretch" Appearance="Success"
+                CommandParameter="{StaticResource True}" />
+        </UniformGrid>
+    </Grid>
+</UserControl>

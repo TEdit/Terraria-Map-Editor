@@ -1,39 +1,20 @@
-﻿using System.IO;
-using TEdit.Common.Reactive;
-using TEdit.Configuration;
+using System.IO;
 
 namespace TEdit.Terraria;
 
-public class MapTile : ObservableObject
+public partial class MapTile : ReactiveObject
 {
+    [Reactive]
     private byte _type;
+
+    [Reactive]
     private byte _light;
+
+    [Reactive]
     private byte _misc;
+
+    [Reactive]
     private byte _misc2;
-
-    public byte Misc2
-    {
-        get { return _misc2; }
-        set { Set("Misc2", ref _misc2, value); }
-    }
-
-    public byte Misc
-    {
-        get { return _misc; }
-        set { Set(nameof(Misc), ref _misc, value); }
-    }
-
-    public byte Light
-    {
-        get { return _light; }
-        set { Set(nameof(Light), ref _light, value); }
-    }
-
-    public byte Type
-    {
-        get { return _type; }
-        set { Set(nameof(Type), ref _type, value); }
-    }
 
     public object Clone()
     {
@@ -54,49 +35,29 @@ public class MapTile : ObservableObject
     }
 }
 
-public class Map : ObservableObject
+public partial class Map : ReactiveObject
 {
+    [Reactive]
     private string _worldName;
+
+    [Reactive]
     private int _worldId;
+
+    [Reactive]
     private int _maxTilesX;
+
+    [Reactive]
     private int _maxTilesY;
+
+    [Reactive]
     private int _version;
+
     public MapTile[,] Tiles;
 
     public MapTile this[int x, int y]
     {
         get { return Tiles[x, y]; }
         set { Tiles[x, y] = value; }
-    }
-
-    public int Version
-    {
-        get { return _version; }
-        set { Set(nameof(Version), ref _version, value); }
-    }
-
-    public int MaxTilesY
-    {
-        get { return _maxTilesY; }
-        set { Set(nameof(MaxTilesY), ref _maxTilesY, value); }
-    }
-
-    public int MaxTilesX
-    {
-        get { return _maxTilesX; }
-        set { Set(nameof(MaxTilesX), ref _maxTilesX, value); }
-    }
-
-    public int WorldId
-    {
-        get { return _worldId; }
-        set { Set(nameof(WorldId), ref _worldId, value); }
-    }
-
-    public string WorldName
-    {
-        get { return _worldName; }
-        set { Set(nameof(WorldName), ref _worldName, value); }
     }
 
     public static Map Load(string filename)

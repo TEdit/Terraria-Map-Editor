@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<SyntaxDefinition name="Lua" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+  <Color name="Comment" foreground="#6A9955" />
+  <Color name="String" foreground="#CE9178" />
+  <Color name="Keyword" foreground="#569CD6" fontWeight="bold" />
+  <Color name="ControlFlow" foreground="#C586C0" />
+  <Color name="Value" foreground="#569CD6" />
+  <Color name="Number" foreground="#B5CEA8" />
+  <Color name="Function" foreground="#DCDCAA" />
+
+  <RuleSet>
+    <!-- Block comments -->
+    <Span color="Comment" multiline="true">
+      <Begin>--\[\[</Begin>
+      <End>\]\]</End>
+    </Span>
+
+    <!-- Line comments -->
+    <Span color="Comment">
+      <Begin>--</Begin>
+    </Span>
+
+    <!-- Double-quoted strings -->
+    <Span color="String">
+      <Begin>"</Begin>
+      <End>"</End>
+      <RuleSet>
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+
+    <!-- Single-quoted strings -->
+    <Span color="String">
+      <Begin>'</Begin>
+      <End>'</End>
+      <RuleSet>
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+
+    <!-- Long strings -->
+    <Span color="String" multiline="true">
+      <Begin>\[\[</Begin>
+      <End>\]\]</End>
+    </Span>
+
+    <!-- Keywords -->
+    <Keywords color="Keyword">
+      <Word>and</Word>
+      <Word>function</Word>
+      <Word>in</Word>
+      <Word>local</Word>
+      <Word>not</Word>
+      <Word>or</Word>
+      <Word>end</Word>
+      <Word>do</Word>
+      <Word>then</Word>
+    </Keywords>
+
+    <!-- Control flow -->
+    <Keywords color="ControlFlow">
+      <Word>break</Word>
+      <Word>else</Word>
+      <Word>elseif</Word>
+      <Word>for</Word>
+      <Word>goto</Word>
+      <Word>if</Word>
+      <Word>repeat</Word>
+      <Word>return</Word>
+      <Word>until</Word>
+      <Word>while</Word>
+    </Keywords>
+
+    <!-- Values -->
+    <Keywords color="Value">
+      <Word>true</Word>
+      <Word>false</Word>
+      <Word>nil</Word>
+    </Keywords>
+
+    <!-- Built-in functions -->
+    <Keywords color="Function">
+      <Word>print</Word>
+      <Word>type</Word>
+      <Word>tostring</Word>
+      <Word>tonumber</Word>
+      <Word>pairs</Word>
+      <Word>ipairs</Word>
+      <Word>next</Word>
+      <Word>select</Word>
+      <Word>unpack</Word>
+      <Word>error</Word>
+      <Word>pcall</Word>
+      <Word>xpcall</Word>
+      <Word>assert</Word>
+      <Word>rawget</Word>
+      <Word>rawset</Word>
+      <Word>setmetatable</Word>
+      <Word>getmetatable</Word>
+      <Word>require</Word>
+    </Keywords>
+
+    <!-- Numbers -->
+    <Rule color="Number">
+      \b0[xX][0-9a-fA-F]+\b|\b[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?\b
+    </Rule>
+  </RuleSet>
+</SyntaxDefinition>

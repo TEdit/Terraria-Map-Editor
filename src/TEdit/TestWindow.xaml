@@ -1,0 +1,77 @@
+<ui:FluentWindow x:Class="TEdit.TestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        x:Name="Shell"
+        Title="Dialog Test" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Loaded="TestWindow_Loaded"
+        UseLayoutRounding="True"
+        AllowDrop="True"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        Background="{DynamicResource ControlBackgroundBrush}"
+        WindowCornerPreference="Round">
+
+    <Window.Resources>
+        <ui:SymbolIcon x:Key="TB_TestIcon" x:Shared="false" Symbol="Settings20" FontSize="16"/>
+        <Style x:Key="TestStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        </Style>
+    </Window.Resources>
+
+    <!-- Matches MainWindow structure: Root Grid with nested content Grid -->
+    <Grid x:Name="RootLayoutGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Inner content Grid (like MainWindow) -->
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- TitleBar (like MainWindow) -->
+            <ui:TitleBar Title="WPF-UI Test Window" Grid.Row="0"
+                         Padding="0" Margin="0"
+                         FontSize="12" Height="24" />
+
+            <!-- Main content in DockPanel (like MainWindow) -->
+            <DockPanel Grid.Row="1" LastChildFill="True">
+                <Menu DockPanel.Dock="Top">
+                    <MenuItem Header="File">
+                        <MenuItem Header="New" />
+                        <MenuItem Header="Open" />
+                        <MenuItem Header="Save" />
+                    </MenuItem>
+                    <MenuItem Header="Edit">
+                        <MenuItem Header="Undo" />
+                        <MenuItem Header="Redo" />
+                    </MenuItem>
+                </Menu>
+
+                <!-- Inner content area -->
+                <Grid>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="WPF-UI Test Window" FontSize="24" Margin="0,0,0,20" />
+                        <Button x:Name="ShowDialogButton" Content="Show ContentDialog" Click="ShowDialogButton_Click" Padding="20,10" Margin="0,0,0,10" />
+                        <Button x:Name="ShowMessageBoxButton" Content="Show MessageBox" Click="ShowMessageBoxButton_Click" Padding="20,10" Margin="0,0,0,10" />
+                        <Button x:Name="ShowSnackbarButton" Content="Show Snackbar" Click="ShowSnackbarButton_Click" Padding="20,10" />
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+        </Grid>
+
+        <!-- Snackbar -->
+        <ui:SnackbarPresenter x:Name="SnackbarPresenter" Grid.Row="0" Grid.Column="0"
+                              VerticalAlignment="Bottom" Margin="0,0,0,20" Panel.ZIndex="100" />
+
+        <!-- Dialog host -->
+        <ui:ContentDialogHost x:Name="RootContentDialogHost" Grid.Row="0" Grid.Column="0" Panel.ZIndex="9999" />
+    </Grid>
+</ui:FluentWindow>

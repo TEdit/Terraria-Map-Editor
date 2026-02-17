@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="banner_category" xml:space="preserve">
+    <value>الفئة:</value>
+  </data>
+  <data name="banner_count" xml:space="preserve">
+    <value>الكونت</value>
+  </data>
+  <data name="banner_filter" xml:space="preserve">
+    <value>راووق:</value>
+  </data>
+  <data name="banner_import" xml:space="preserve">
+    <value>استورد</value>
+  </data>
+  <data name="banner_kills" xml:space="preserve">
+    <value>القتلات</value>
+  </data>
+  <data name="banner_maxout" xml:space="preserve">
+    <value>ماكس آوت</value>
+  </data>
+  <data name="banner_reset" xml:space="preserve">
+    <value>إعادة التعيين</value>
+  </data>
+  <data name="banner_save" xml:space="preserve">
+    <value>أنقذ</value>
+  </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>ثَرْثَرَ</value>
   </data>
@@ -145,7 +169,7 @@
     <value>تكلم</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
-    <value>تحديث يقتل</value>
+    <value>تحديث</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>الطوب الكامل</value>
@@ -193,6 +217,9 @@
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>تحليل</value>
+  </data>
+  <data name="editor_tabs_banners" xml:space="preserve">
+    <value>الرايات</value>
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
     <value>حافظة</value>
@@ -281,6 +308,9 @@
   <data name="MaskMode_Off" xml:space="preserve">
     <value>تعطيل القناع</value>
   </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>نسخ البند الأول</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>حرر</value>
   </data>
@@ -290,11 +320,11 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>عالم المحاصيل</value>
   </data>
-  <data name="menu_edit_expand" xml:space="preserve">
-    <value>توسيع العالم</value>
-  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>حذف التحديد</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>توسيع العالم</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>معجون</value>
@@ -335,6 +365,69 @@
   <data name="menu_file_update" xml:space="preserve">
     <value>التحقق من وجود تحديثات الآن</value>
   </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>فلتر</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>يتقدم</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>وضع الخلفية</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>يلغي</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>مخصص</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>إبطال</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>تصفية الحافظة</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>وضع التصفية</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>تدرج الرمادي</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>السوائل</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>العفاريت</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>البلاط</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>الجدران</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>الأسلاك</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>يخفي</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>طبيعي</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>تحقق من الكل</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>قم بإلغاء تحديد الكل</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>مرشح متقدم</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>شفاف</value>
+  </data>
   <data name="menu_help" xml:space="preserve">
     <value>تعليمات</value>
   </data>
@@ -345,7 +438,7 @@
     <value>فتح ملف السجل</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>تحديث الإعدادات.xml</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>تحديث</value>
@@ -368,6 +461,18 @@
   <data name="menu_language_es" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="menu_language_fr" xml:space="preserve">
+    <value>فرانسيس</value>
+  </data>
+  <data name="menu_language_it" xml:space="preserve">
+    <value>إيطاليانو</value>
+  </data>
+  <data name="menu_language_ja" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="menu_language_ko" xml:space="preserve">
+    <value>한국어</value>
+  </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polski</value>
   </data>
@@ -380,11 +485,17 @@
   <data name="menu_language_zh" xml:space="preserve">
     <value>中文</value>
   </data>
+  <data name="menu_language_zh_hant" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
   <data name="menu_layers" xml:space="preserve">
     <value>الطبقات</value>
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>المشغلات</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>الخلفيات</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>شبكة التخطيط</value>
@@ -425,6 +536,9 @@
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>سلك أصفر</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>لصق في جميع الفتحات</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>الإضافات</value>
   </data>
@@ -436,6 +550,33 @@
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>تصغير</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>إلغاء الأمر</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>نقل كافة الإطارات</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>كمية النقل (الإطارات)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>يعيد</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>إطارات مختارة</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>تعيين الأشعة فوق البنفسجية اليدوية على الكل</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>تعيين القيم</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>محرر الأشعة فوق البنفسجية</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>إعادة التشغيل مطلوبة</value>
@@ -480,6 +621,186 @@
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>سلك</value>
   </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>تمكين الحفظ التلقائي</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>احفظ العالم تلقائيًا بشكل دوري</value>
+  </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>عام</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>الطبقات</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>المسارات</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>الخصوصية</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>الرسم</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>تحقق من التحديثات</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>تحقق تلقائيًا من الإصدارات الجديدة عند بدء التشغيل</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>تمكين الإبلاغ عن الأخطاء</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>إرسال تقارير الأخطاء بشكل مجهول للمساعدة في تحسين الاستقرار</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>حدد لغة عرض التطبيق</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>استخدام ألوان واقعية</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>عرض البلاط باستخدام ألوان مأخوذة من القوام (يتطلب إعادة تشغيل)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>إعدادات البحث...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>عرض المحركات</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>تبديل رؤية المحركات</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>عرض جميع الأسلاك</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>تبديل جميع طبقات الأسلاك دفعة واحدة</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>عرض الخلفيات</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>تبديل عرض الخلفيات</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>عرض الأسلاك الزرقاء</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>تبديل رؤية الأسلاك الزرقاء</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>عرض الطلاءات</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>تبديل رؤية طبقة الطلاء</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>عرض الأسلاك الخضراء</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>تبديل رؤية الأسلاك الخضراء</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>عرض الشبكة</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>تبديل تراكب الشبكة</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>عرض السوائل</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>تبديل رؤية طبقة السوائل</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>عرض الأخبار</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>عرض الأخبار والإعلانات في المحرر</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>عرض النقاط</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>تبديل علامات نقاط الظهور / NPC</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>عرض الأسلاك الحمراء</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>تبديل رؤية الأسلاك الحمراء</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>عرض القوام</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>تبديل عرض قوام البلاط</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>عرض البلاط</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>تبديل رؤية طبقة البلاط</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>عرض الجدران</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>تبديل رؤية طبقة الجدران</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>عرض الأسلاك الصفراء</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>تبديل رؤية الأسلاك الصفراء</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>حجم صورة مصغرة للسبرايت</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>حجم صور مصغرة للسبرايت في مختار السبرايت</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>مسار محتوى Terraria</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>مسار مجلد محتوى Terraria لتحميل القوام</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>مستوى تكبير رؤية القوام</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>أدنى مستوى تكبير قبل أن تصبح قوام البلاط مرئية</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>شفافية الأسلاك</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>عرض الأسلاك بشفافية</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>الرايات</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>بحث واستبدال</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>كيان البلاط</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>عقارات العالم</value>
+  </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>إلغاء الأمر</value>
   </data>
@@ -516,6 +837,12 @@
   <data name="specialtile_label_chesttype" xml:space="preserve">
     <value>نوع الصدر</value>
   </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>حيوان صغير</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>زجاجة العنصر</value>
+  </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>تحرير العنصر المحدد</value>
   </data>
@@ -524,6 +851,9 @@
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
     <value>محتويات إطار العنصر</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>طائرة ورقية</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
     <value>السيقان</value>
@@ -534,6 +864,9 @@
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
     <value>ملابس عارضات الأزياء</value>
   </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>الجبل</value>
+  </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>محتويات اللوحة</value>
   </data>
@@ -542,6 +875,9 @@
   </data>
   <data name="specialtile_label_signtype" xml:space="preserve">
     <value>نوع التوقيع</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>السلاح</value>
   </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>سلاح رف البند</value>
@@ -563,6 +899,12 @@
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>مع السهم أداة انقر بزر الماوس الأيمن على علامة، الصدر، عارضة أزياء، رف سلاح، إطار البند أو شجرة عيد الميلاد.</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>تلقائي</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>النظام البيئي:</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>راووق</value>
@@ -599,6 +941,41 @@
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>بيستاري</value>
+  </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>نسل الفريق الأزرق</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>نسل الفريق الأخضر</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>نسل فريق الوردي</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>فريق الأحمر سباون</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>نسل الفريق الأبيض</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>نسل الفريق الأصفر</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>يمكن لـ TEdit إرسال تقارير أخطاء مجهولة الهوية للمساعدة في تحسين الاستقرار.
+
+ما يتم جمعه:
+  • تفاصيل الخطأ (نوع الاستثناء وأثر المكدس)
+  • إصدار التطبيق وإصدار نظام التشغيل
+
+ما لا يتم جمعه:
+  • لا توجد معلومات شخصية أو مسارات ملفات
+  • لا يوجد تتبع للاستخدام أو بصمات
+  • جميع المسارات مشوشة قبل الإرسال
+
+هل ترغب في تفعيل تقرير الأخطاء؟</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>تقرير أخطاء TEdit</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>حلل</value>
@@ -654,6 +1031,15 @@
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>الحافظة الفارغة</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>التصدير</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>فليب إكس</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>فليب Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>استيراد صورة لون زائفة</value>
   </data>
@@ -678,8 +1064,17 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>لصق الأسلاك</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>معجون</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>إزالة</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>استبدال اللوحات الموجودة</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>تدوير</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>تجميد انتشار بيوم</value>
@@ -734,6 +1129,9 @@
   </data>
   <data name="tool_npc_add" xml:space="preserve">
     <value>إضافة NPC</value>
+  </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>انقر على الشخصية غير القابلة للعب وحدد موقعها باستخدام الفأرة</value>
   </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>اسم</value>
@@ -839,6 +1237,9 @@
   </data>
   <data name="tool_wp_altars" xml:space="preserve">
     <value>المذابح حطمت</value>
+  </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>نهاية العالم (ظهور سيد القمر)</value>
   </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>الفاسدة BG</value>
@@ -978,6 +1379,9 @@
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>النسخة الصينية العالمية</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Active</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>مستوى الكوبالت</value>
   </data>
@@ -996,6 +1400,9 @@
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>قرمزي</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>تأخير الطائفة</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>حرج</value>
   </data>
@@ -1007,6 +1414,9 @@
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>العالم في حالة سكر</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>نقطة الزنزانة</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>حدث</value>
@@ -1032,8 +1442,14 @@
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>هالوين</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>هالوين القوة إلى الأبد</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>عيد الميلاد</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>عيد الميلاد القسري إلى الأبد</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>معرف العالم</value>
@@ -1164,6 +1580,9 @@
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>NPCs المحفوظة</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>NPCs المحفوظة</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>الوحل الأزرق</value>
   </data>
@@ -1227,6 +1646,21 @@
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>حقيبة البائع المتجول</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>الأعمدة النشطة</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>سديم عمود</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>عمود شمسي</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>عمود ستاردست</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>دوامة عمود</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>ما قبل هاردمود</value>
   </data>
@@ -1269,17 +1703,32 @@
   <data name="tool_wp_seed" xml:space="preserve">
     <value>بذرة</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>زنزانات مزدوجة</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>المصابون</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>لا الفخاخ</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>ريميكس</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>سكاي بلوك</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>مصاص الدماء</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>سَمْت</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>الطبقة الفضية</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>نقطة الظهور</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>أنماط الكهف</value>
@@ -1320,6 +1769,15 @@
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>مستوى السطح</value>
   </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>ظهور الفرق</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>تمكين الظهور القائم على الفرق</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>مواقع ظهور الفرق</value>
+  </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>الذكرى العاشرة</value>
   </data>
@@ -1359,103 +1817,22 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>المسار</value>
   </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>أزرق</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>أخضر</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>انطلق</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>أحمر</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>أصفر</value>
+  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
-  </data>
-  <data name="menu_filter_header_tiles" xml:space="preserve">
-    <value>البلاط</value>
-  </data>
-  <data name="menu_filter_header_walls" xml:space="preserve">
-    <value>الجدران</value>
-  </data>
-  <data name="menu_filter_header_liquids" xml:space="preserve">
-    <value>السوائل</value>
-  </data>
-  <data name="menu_filter_header_wires" xml:space="preserve">
-    <value>الأسلاك</value>
-  </data>
-  <data name="menu_filter_tab_searchname" xml:space="preserve">
-    <value>اسم</value>
-  </data>
-  <data name="menu_filter_tab_check_all" xml:space="preserve">
-    <value>تحقق من الكل</value>
-  </data>
-  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
-    <value>قم بإلغاء تحديد الكل</value>
-  </data>
-  <data name="menu_filter_filtermode" xml:space="preserve">
-    <value>وضع التصفية</value>
-  </data>
-  <data name="menu_filter_backgroundmode" xml:space="preserve">
-    <value>وضع الخلفية</value>
-  </data>
-  <data name="menu_filter_hide" xml:space="preserve">
-    <value>يخفي</value>
-  </data>
-  <data name="menu_filter_grayscale" xml:space="preserve">
-    <value>تدرج الرمادي</value>
-  </data>
-  <data name="menu_filter_normal" xml:space="preserve">
-    <value>طبيعي</value>
-  </data>
-  <data name="menu_filter_transparent" xml:space="preserve">
-    <value>شفاف</value>
-  </data>
-  <data name="menu_filter_custom" xml:space="preserve">
-    <value>مخصص</value>
-  </data>
-  <data name="menu_filter_cancel" xml:space="preserve">
-    <value>يلغي</value>
-  </data>
-  <data name="menu_filter_disable" xml:space="preserve">
-    <value>إبطال</value>
-  </data>
-  <data name="menu_filter_apply" xml:space="preserve">
-    <value>يتقدم</value>
-  </data>
-  <data name="menu_uveditor_moveallframes" xml:space="preserve">
-    <value>نقل كافة الإطارات</value>
-  </data>
-  <data name="menu_uveditor_moveamount" xml:space="preserve">
-    <value>كمية النقل (الإطارات)</value>
-  </data>
-  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
-    <value>تعيين الأشعة فوق البنفسجية اليدوية على الكل</value>
-  </data>
-  <data name="menu_uveditor_selectedframes" xml:space="preserve">
-    <value>إطارات مختارة</value>
-  </data>
-  <data name="menu_uveditor_setvalues" xml:space="preserve">
-    <value>تعيين القيم</value>
-  </data>
-  <data name="menu_uveditor_cancel" xml:space="preserve">
-    <value>إلغاء الأمر</value>
-  </data>
-  <data name="menu_uveditor_restore" xml:space="preserve">
-    <value>يعيد</value>
-  </data>
-  <data name="menu_uveditor_ok" xml:space="preserve">
-    <value>نعم</value>
-  </data>
-  <data name="menu_filter" xml:space="preserve">
-    <value>فلتر</value>
-  </data>
-  <data name="menu_filter_title" xml:space="preserve">
-    <value>مرشح متقدم</value>
-  </data>
-  <data name="menu_uveditor_title" xml:space="preserve">
-    <value>محرر الأشعة فوق البنفسجية</value>
-  </data>
-  <data name="menu_filter_filterclipboard" xml:space="preserve">
-    <value>تصفية الحافظة</value>
-  </data>
-  <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>العفاريت</value>
-  </data>
-  <data name="menu_pasteall" xml:space="preserve">
-    <value>لصق في جميع الفتحات</value>
-  </data>
-  <data name="menu_copyfirstitem" xml:space="preserve">
-    <value>نسخ البند الأول</value>
   </data>
 </root>

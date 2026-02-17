@@ -1,0 +1,25 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Custom vector icons from Pictogrammers Material Design Icons (Apache 2.0 License) -->
+    <!-- Browse icons at: https://pictogrammers.com/library/mdi/ -->
+
+    <!-- Hammer icon for HammerAreaTool (hammer-screwdriver variant, screwdriver removed) -->
+    <DrawingImage x:Key="HammerIcon">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{DynamicResource TextFillColorPrimaryBrush}"
+                             Geometry="M2.3,20.28L11.9,10.68L10.5,9.26L9.78,9.97C9.39,10.36 8.76,10.36 8.37,9.97L7.66,9.26C7.27,8.87 7.27,8.24 7.66,7.85L13.32,2.19C13.71,1.8 14.34,1.8 14.73,2.19L15.44,2.9C15.83,3.29 15.83,3.92 15.44,4.31L14.73,5L16.15,6.43C16.54,6.04 17.17,6.04 17.56,6.43C17.95,6.82 17.95,7.46 17.56,7.85L18.97,9.26L19.68,8.55C20.07,8.16 20.71,8.16 21.1,8.55L21.8,9.26C22.19,9.65 22.19,10.29 21.8,10.68L16.15,16.33C15.76,16.72 15.12,16.72 14.73,16.33L14.03,15.63C13.63,15.24 13.63,14.6 14.03,14.21L14.73,13.5L13.32,12.09L3.71,21.7C3.32,22.09 2.69,22.09 2.3,21.7C1.91,21.31 1.91,20.67 2.3,20.28Z" />
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- Chest icon geometry for Special Tiles sidebar (treasure-chest variant) -->
+    <!-- Use with Path element to inherit Foreground from parent style -->
+    <Geometry x:Key="ChestIconGeometry">M2 20H22V7C22 6.2 21.68 5.44 21.12 4.88C20.56 4.32 19.8 4 19 4H5C4.2 4 3.44 4.32 2.88 4.88C2.32 5.44 2 6.2 2 7V20M20 11H15V9H9V11H4V7C4 6.74 4.11 6.5 4.29 6.29C4.5 6.11 4.74 6 5 6H19C19.27 6 19.5 6.11 19.71 6.29C19.9 6.5 20 6.74 20 7V11M15 13H20V18H4V13H9L11 15H13L15 13M11 11H13V13H11V11Z</Geometry>
+
+    <!-- Tile Entity icon geometry (family-tree variant, adjusted) -->
+    <Geometry x:Key="TileEntityIconGeometry">M 18.33 7.78 A 1 1 0 0 0 16.66 8.89 A 2 2 0 1 1 13 10 V 7.82 A 3 3 0 1 0 11 7.82 V 14 A 2 2 0 1 1 7.34 12.89 A 1 1 0 1 0 5.67 11.78 A 4 4 0 0 0 11 17.46 V 20 A 2 2 0 0 0 9 22 H 15 A 2 2 0 0 0 13 20 V 13.46 A 4 4 0 0 0 18.33 7.78 M 12 4 A 1 1 0 1 1 11 5 A 1 1 0 0 1 12 4 Z</Geometry>
+
+    <!-- Banner icon geometry (simple pennant) -->
+    <Geometry x:Key="BannerIconGeometry">M 0 0 V -10 H 6 V 0 L 3 -4 L 0 0</Geometry>
+
+</ResourceDictionary>

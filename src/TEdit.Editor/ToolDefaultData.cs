@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Xml.Linq;
 
 namespace TEdit.Editor;
@@ -71,6 +72,50 @@ public partial class ToolDefaultData
     private static Enum ToEnum(Type type, string name)
     {
         return (Enum)Enum.Parse(type, name, true);
+    }
+
+    public static void LoadSettingsJson(JsonElement tools)
+    {
+        if (tools.TryGetProperty("paint", out var paint))
+        {
+            if (paint.TryGetProperty("mode", out var mode))
+                _paintMode = (PaintMode)ToEnum(typeof(PaintMode), mode.GetString() ?? "TileAndWall");
+        }
+
+        if (tools.TryGetProperty("brush", out var brush))
+        {
+            if (brush.TryGetProperty("width", out var w)) _brushWidth = w.GetInt32();
+            if (brush.TryGetProperty("height", out var h)) _brushHeight = h.GetInt32();
+            if (brush.TryGetProperty("outline", out var o)) _brushOutline = o.GetInt32();
+            if (brush.TryGetProperty("shape", out var s))
+                _brushShape = (BrushShape)ToEnum(typeof(BrushShape), s.GetString() ?? "Square");
+        }
+
+        if (tools.TryGetProperty("tile", out var tile))
+        {
+            if (tile.TryGetProperty("tile", out var t)) _paintTile = t.GetInt32();
+            if (tile.TryGetProperty("mask", out var m)) _paintTileMask = m.GetInt32();
+            if (tile.TryGetProperty("active", out var a)) _paintTileActive = a.GetBoolean();
+            if (tile.TryGetProperty("mode", out var md))
+                _paintTileMaskMode = (MaskMode)ToEnum(typeof(MaskMode), md.GetString() ?? "Off");
+        }
+
+        if (tools.TryGetProperty("wall", out var wall))
+        {
+            if (wall.TryGetProperty("wall", out var w)) _paintWall = w.GetInt32();
+            if (wall.TryGetProperty("mask", out var m)) _paintWallMask = m.GetInt32();
+            if (wall.TryGetProperty("active", out var a)) _paintWallActive = a.GetBoolean();
+            if (wall.TryGetProperty("mode", out var md))
+                _paintWallMaskMode = (MaskMode)ToEnum(typeof(MaskMode), md.GetString() ?? "Off");
+        }
+
+        if (tools.TryGetProperty("wire", out var wire))
+        {
+            if (wire.TryGetProperty("red", out var r)) _redWire = r.GetBoolean();
+            if (wire.TryGetProperty("green", out var g)) _greenWire = g.GetBoolean();
+            if (wire.TryGetProperty("blue", out var b)) _blueWire = b.GetBoolean();
+            if (wire.TryGetProperty("yellow", out var y)) _yellowWire = y.GetBoolean();
+        }
     }
 
     public static PaintMode PaintMode

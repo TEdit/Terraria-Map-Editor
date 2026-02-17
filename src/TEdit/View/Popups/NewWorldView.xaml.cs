@@ -2,15 +2,16 @@
 using System.Windows;
 using System.Windows.Controls;
 using TEdit.Terraria;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Terraria.Objects;
+using Wpf.Ui.Controls;
 
 namespace TEdit.View.Popups
 {
     /// <summary>
     /// Interaction logic for NewWorldView.xaml
     /// </summary>
-    public partial class NewWorldView : Window
+    public partial class NewWorldView : FluentWindow
     {
         private readonly World _newWorld;
         public NewWorldView()
@@ -110,33 +111,6 @@ namespace TEdit.View.Popups
         {
             DialogResult = true;
             Close();
-        }
-		
-	    private void ToggleWorldGenerationClick(object sender, RoutedEventArgs e)
-        {
-            // Check if the property is currently visible.
-            if (WorldGeneration.Visibility == Visibility.Collapsed)
-            {
-                // Change the window size.
-                NewWorldWindow.Height = 592;
-
-                // Toggle the property state.
-                WorldGeneration.Visibility = Visibility.Visible;
-
-                // Change button name.
-                ToggleWorldGeneration.Content = "↑ Collapse World Generation ↑";
-            }
-            else if (WorldGeneration.Visibility == Visibility.Visible)
-            {
-                // Change the window size.
-                NewWorldWindow.Height = 250;
-
-                // Toggle the property state.
-                WorldGeneration.Visibility = Visibility.Collapsed;
-
-                // Change button name.
-                ToggleWorldGeneration.Content = "↓ Expand World Generation ↓";
-            }
         }
     }
 }

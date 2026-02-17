@@ -5,13 +5,18 @@ using TEdit.Geometry;
 using TEdit.ViewModel;
 using TEdit.Render;
 using TEdit.UI;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
 public sealed class PencilTool : BaseTool
 {
-    private bool _isLeftDown;
-    private bool _isRightDown;
+    private bool _isDrawing;
+    private bool _isConstraining;
+    private bool _isLineMode;
+    private bool _constrainVertical;
+    private bool _constrainDirectionLocked;
+    private Vector2Int32 _anchorPoint;
     private Vector2Int32 _startPoint;
     private Vector2Int32 _endPoint;
 
@@ -19,6 +24,7 @@ public sealed class PencilTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/pencil.png"));
+        SymbolIcon = SymbolRegular.Edit24;
         Name = "Pencil";
         IsActive = false;
         ToolType = ToolType.Pixel;
@@ -26,63 +32,81 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
-        if (!_isRightDown && !_isLeftDown)
+        var actions = GetActiveActions(e);
+
+        if (!_isDrawing && !_isConstraining && !_isLineMode)
         {
             _startPoint = e.Location;
-            System.Diagnostics.Debug.WriteLine($"Update _startpoint {_startPoint} MouseDown");
-
+            _anchorPoint = e.Location;
+            _constrainDirectionLocked = false;
             _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
         }
 
-        _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
-        _isRightDown = (e.RightButton == MouseButtonState.Pressed);
-        CheckDirectionandDraw(e.Location);
+        _isDrawing = actions.Contains("editor.draw");
+        _isConstraining = actions.Contains("editor.draw.constrain");
+        _isLineMode = actions.Contains("editor.draw.line");
+
+        ProcessDraw(e.Location);
     }
 
     public override void MouseMove(TileMouseState e)
     {
-        _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
-        _isRightDown = (e.RightButton == MouseButtonState.Pressed);
-        CheckDirectionandDraw(e.Location);
+        var actions = GetActiveActions(e);
+        _isDrawing = actions.Contains("editor.draw");
+        _isConstraining = actions.Contains("editor.draw.constrain");
+        _isLineMode = actions.Contains("editor.draw.line");
+
+        ProcessDraw(e.Location);
     }
 
     public override void MouseUp(TileMouseState e)
     {
-        CheckDirectionandDraw(e.Location);
-        _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
-        _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+        ProcessDraw(e.Location);
+
+        var actions = GetActiveActions(e);
+        _isDrawing = actions.Contains("editor.draw");
+        _isConstraining = actions.Contains("editor.draw.constrain");
+        _isLineMode = actions.Contains("editor.draw.line");
+        _constrainDirectionLocked = false;
+
         _wvm.UndoManager.SaveUndo();
     }
 
-    private void CheckDirectionandDraw(Vector2Int32 tile)
+    private void ProcessDraw(Vector2Int32 tile)
     {
         Vector2Int32 p = tile;
-        Vector2Int32 p2 = tile;
-        if (_isRightDown)
+
+        if (_isConstraining)
         {
-            if (_isLeftDown)
-                p.X = _startPoint.X;
+            if (!_constrainDirectionLocked)
+            {
+                int dx = Math.Abs(tile.X - _anchorPoint.X);
+                int dy = Math.Abs(tile.Y - _anchorPoint.Y);
+                if (dx > 1 || dy > 1)
+                {
+                    _constrainVertical = dx < dy;
+                    _constrainDirectionLocked = true;
+                }
+            }
+
+            if (_constrainVertical)
+                p.X = _anchorPoint.X;
             else
-                p.Y = _startPoint.Y;
+                p.Y = _anchorPoint.Y;
 
             DrawLine(p);
             _startPoint = p;
-            System.Diagnostics.Debug.WriteLine($"Update _startpoint {_startPoint} CheckDirectionandDraw _isRightDown");
         }
-        else if (_isLeftDown)
+        else if (_isLineMode)
         {
-            if (Keyboard.IsKeyUp(Key.LeftShift) && Keyboard.IsKeyUp(Key.RightShift))
-            {
-                DrawLine(p);
-                _startPoint = p;
-                System.Diagnostics.Debug.WriteLine($"Update _startpoint {_startPoint} CheckDirectionandDraw _isLeftDown");
-                _endPoint = p;
-            }
-            else if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
-            {
-                DrawLineP2P(p2);
-                _endPoint = p2;
-            }
+            DrawLineP2P(tile);
+            _endPoint = tile;
+        }
+        else if (_isDrawing)
+        {
+            DrawLine(p);
+            _startPoint = p;
+            _endPoint = p;
         }
     }
 

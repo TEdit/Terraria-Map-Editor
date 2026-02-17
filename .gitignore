@@ -55,3 +55,10 @@ build/
 .idea/
 nul
 .claude
+*.diff
+ref/*
+/.generated/*
+.generated/
+/src/SettingsFileUpdater/TEdit.Terraria/Data/
+*.wld.TEdit
+*.diagsession

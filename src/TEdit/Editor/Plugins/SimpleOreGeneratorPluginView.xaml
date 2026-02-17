@@ -1,15 +1,18 @@
-﻿<Window x:Class="TEdit.Editor.Plugins.SimpleOreGeneratorPluginView"
+﻿<ui:FluentWindow x:Class="TEdit.Editor.Plugins.SimpleOreGeneratorPluginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:view="clr-namespace:TEdit.View"
         SizeToContent="WidthAndHeight"
         Title="Simple Ore Generator"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
         Height="640" Width="279">
 
-    <Border Background="{StaticResource ControlBackgroundBrush}" Padding="10">
+    <Border Padding="10">
         <StackPanel>
 
             <!-- Tier 1 Ores -->
@@ -186,4 +189,4 @@
 
         </StackPanel>
     </Border>
-</Window>
+</ui:FluentWindow>

@@ -7,7 +7,7 @@ using Microsoft.Win32;
 
 using TEdit.Terraria;
 using TEdit.ViewModel;
-using TEdit.Configuration;
+using TEdit.Terraria;
 
 using Color = Microsoft.Xna.Framework.Color;
 
@@ -269,28 +269,38 @@ namespace TEdit.Editor.Plugins
                             else
                             {
                                 paintColor = 0;
-                                tileData = MapHelper.tileLookup[350]; // Default to Space (MartianConduitPlating)
 
-                                // Determine the layer and set appropriate tileData
-                                if (y <= world.GroundLevel * 0.3499999940395355) // Space Layer
+                                // IMPORTANT:
+                                // Terraria map backgrounds are NOT encoded as tile IDs.
+                                // They're encoded using "type codes" (b5) where:
+                                //   6 = Sky gradient (above surface) OR hell background (below surface).
+                                //   7 = Dirt/rock background (dirt vs rock chosen by y), with a 0..255 "snowiness" parameter.
+
+                                int underworldStart = world.TilesHigh - 200;
+
+                                if (y < world.GroundLevel)
                                 {
-                                    tileData = MapHelper.tileLookup[350]; // MartianConduitPlating
+                                    // SKY GRADIENT: Game computes gradient from y; you must encode type=6 and NOT write tileData.
+                                    colorOffset = 6;
+                                    hasLight = false; // (this is the "write type bytes" flag).
+                                    tileData = 0;     // Ignored for type=6.
                                 }
-                                else if (y <= world.GroundLevel && y > world.GroundLevel * 0.3499999940395355) // Sky Layer
+                                else if (y >= underworldStart)
                                 {
-                                    tileData = MapHelper.tileLookup[126]; // DiscoBall
+                                    // HELL BACKGROUND: Also type=6 and no tileData stored.
+                                    colorOffset = 6;
+                                    hasLight = false;
+                                    tileData = 0;
                                 }
-                                else if (y >= world.GroundLevel && y < world.RockLevel) // Ground Layer
+                                else
                                 {
-                                    tileData = MapHelper.wallLookup[2]; // DirtUnsafe
-                                }
-                                else if (y >= world.RockLevel && y < (world.TilesHigh - 200)) // Cavern Layer
-                                {
-                                    tileData = MapHelper.wallLookup[1]; // StoneWall
-                                }
-                                else if (y >= (world.TilesHigh - 200)) // Underground Layer
-                                {
-                                    tileData = MapHelper.tileLookup[234]; // Crimson Sand // TE - Wall:87 LihzahrdBrickUnsafe
+                                    // DIRT/ROCK BACKGROUND: type=7 and you store a single byte 0..255 (snowiness).
+                                    colorOffset = 7;
+                                    hasLight = true;
+
+                                    // 0 = normal (no snow). If you want snow blending, set 255 when near snow/ice tiles.
+                                    // tileData = 0;
+                                    tileData = ComputeSnowiness(world, x, y);
                                 }
                             }
 
@@ -373,6 +383,31 @@ namespace TEdit.Editor.Plugins
                     deflateStream.Write(buffer, 0, bufferPosition);
                 }
             }
+
+            private static ushort ComputeSnowiness(World world, int x, int y)
+            {
+                // Vanilla snow-related tile IDs used for background snowiness influence:
+                // 147, 161, 162, 163, 164, 200
+                int radius = 36;
+
+                for (int sx = x - radius; sx <= x + 30; sx += 10)
+                {
+                    for (int sy = y - radius; sy <= y + 30; sy += 10)
+                    {
+                        if (sx < 0 || sy < 0 || sx >= world.TilesWide || sy >= world.TilesHigh)
+                            continue;
+
+                        var t = world.Tiles[sx, sy];
+                        if (!t.IsActive) continue;
+
+                        ushort type = t.Type;
+                        if (type == 147 || type == 161 || type == 162 || type == 163 || type == 164 || type == 200)
+                            return 255; // Full snow background.
+                    }
+                }
+
+                return 0;
+            }
             #endregion
         }
 
@@ -395,10 +430,12 @@ namespace TEdit.Editor.Plugins
                     Color[][] tileArray = new Color[(int)maxTileID][];
                     for (int i = 0; i < (int)maxTileID; i++)
                     {
-                        tileArray[i] = new Color[12];
+                        tileArray[i] = new Color[13];
                     }
                     tileArray[656][0] = new Color(21, 124, 212);
+                    tileArray[701][0] = tileArray[656][0];
                     tileArray[624][0] = new Color(210, 91, 77);
+                    tileArray[700][0] = tileArray[624][0];
                     tileArray[621][0] = new Color(250, 250, 250);
                     tileArray[622][0] = new Color(235, 235, 249);
                     tileArray[518][0] = new Color(26, 196, 84);
@@ -417,12 +454,12 @@ namespace TEdit.Editor.Plugins
                     tileArray[529][2] = new Color(34, 129, 168);
                     tileArray[529][3] = new Color(180, 82, 82);
                     tileArray[529][4] = new Color(113, 108, 205);
-                    Color color = new(151, 107, 75);
+                    Color color = new Color(151, 107, 75);
                     tileArray[0][0] = color;
                     tileArray[668][0] = color;
                     tileArray[5][0] = color;
                     tileArray[5][1] = new Color(182, 175, 130);
-                    Color color2 = new(127, 127, 127);
+                    Color color2 = new Color(127, 127, 127);
                     tileArray[583][0] = color2;
                     tileArray[584][0] = color2;
                     tileArray[585][0] = color2;
@@ -449,6 +486,12 @@ namespace TEdit.Editor.Plugins
                     tileArray[130][0] = color;
                     tileArray[138][0] = color;
                     tileArray[664][0] = color;
+                    tileArray[711][0] = color;
+                    tileArray[712][0] = color;
+                    tileArray[713][0] = color;
+                    tileArray[714][0] = color;
+                    tileArray[715][0] = color;
+                    tileArray[716][0] = color;
                     tileArray[273][0] = color;
                     tileArray[283][0] = color;
                     tileArray[618][0] = color;
@@ -520,6 +563,7 @@ namespace TEdit.Editor.Plugins
                     tileArray[120][0] = color;
                     tileArray[60][0] = new Color(143, 215, 29);
                     tileArray[61][0] = new Color(135, 196, 26);
+                    tileArray[703][0] = tileArray[61][0];
                     tileArray[74][0] = new Color(96, 197, 27);
                     tileArray[62][0] = new Color(121, 176, 24);
                     tileArray[233][0] = new Color(107, 182, 29);
@@ -688,6 +732,7 @@ namespace TEdit.Editor.Plugins
                     tileArray[234][0] = new Color(53, 44, 41);
                     tileArray[235][0] = new Color(214, 184, 46);
                     tileArray[236][0] = new Color(149, 232, 87);
+                    tileArray[702][0] = tileArray[236][0];
                     tileArray[237][0] = new Color(255, 241, 51);
                     tileArray[238][0] = new Color(225, 128, 206);
                     tileArray[655][0] = new Color(225, 128, 206);
@@ -747,6 +792,7 @@ namespace TEdit.Editor.Plugins
                     tileArray[643][0] = color;
                     tileArray[644][0] = color;
                     tileArray[645][0] = color;
+                    tileArray[710][0] = color;
                     tileArray[358][0] = color;
                     tileArray[359][0] = color;
                     tileArray[360][0] = color;
@@ -842,6 +888,7 @@ namespace TEdit.Editor.Plugins
                     tileArray[469][0] = color;
                     tileArray[486][0] = color;
                     tileArray[488][0] = new Color(127, 92, 69);
+                    tileArray[704][0] = tileArray[488][0];
                     tileArray[487][0] = color;
                     tileArray[487][1] = color;
                     tileArray[15][0] = color;
@@ -919,6 +966,8 @@ namespace TEdit.Editor.Plugins
                     tileArray[16][0] = new Color(140, 130, 116);
                     tileArray[26][0] = new Color(119, 101, 125);
                     tileArray[26][1] = new Color(214, 127, 133);
+                    tileArray[695][0] = tileArray[26][0];
+                    tileArray[695][1] = tileArray[26][1];
                     tileArray[36][0] = new Color(230, 89, 92);
                     tileArray[28][0] = new Color(151, 79, 80);
                     tileArray[28][1] = new Color(90, 139, 140);
@@ -935,11 +984,16 @@ namespace TEdit.Editor.Plugins
                     }
                     tileArray[29][0] = new Color(175, 105, 128);
                     tileArray[51][0] = new Color(192, 202, 203);
+                    tileArray[697][0] = tileArray[51][0];
+                    tileArray[698][0] = new Color(200, 200, 200);
                     tileArray[31][0] = new Color(141, 120, 168);
                     tileArray[31][1] = new Color(212, 105, 105);
+                    tileArray[696][0] = tileArray[31][0];
+                    tileArray[696][1] = tileArray[31][1];
                     tileArray[32][0] = new Color(151, 135, 183);
                     tileArray[42][0] = new Color(251, 235, 127);
                     tileArray[50][0] = new Color(170, 48, 114);
+                    tileArray[707][0] = tileArray[50][0];
                     tileArray[85][0] = new Color(192, 192, 192);
                     tileArray[69][0] = new Color(190, 150, 92);
                     tileArray[77][0] = new Color(238, 85, 70);
@@ -1060,6 +1114,11 @@ namespace TEdit.Editor.Plugins
                     tileArray[165][1] = new Color(100, 100, 100);
                     tileArray[165][2] = new Color(152, 152, 152);
                     tileArray[165][3] = new Color(227, 125, 22);
+                    for (int n = 0; n < tileArray[693].Length; n++)
+                    {
+                        tileArray[693][n] = tileArray[165][n];
+                        tileArray[694][n] = tileArray[165][n];
+                    }
                     tileArray[178][0] = new Color(208, 94, 201);
                     tileArray[178][1] = new Color(233, 146, 69);
                     tileArray[178][2] = new Color(71, 146, 251);
@@ -1114,25 +1173,30 @@ namespace TEdit.Editor.Plugins
                     tileArray[185][10] = color;
                     tileArray[186][10] = color;
                     tileArray[187][10] = color;
-                    Color[] array2 = tileArray[647];
-                    for (int n = 0; n < array2.Length; n++)
+                    color = tileArray[53][0];
+                    tileArray[185][11] = color;
+                    tileArray[186][11] = color;
+                    tileArray[187][11] = color;
+                    Color[] tileArray2 = tileArray[647];
+                    for (int num = 0; num < tileArray2.Length; num++)
                     {
-                        array2[n] = tileArray[186][n];
+                        tileArray2[num] = tileArray[186][num];
                     }
-                    array2 = tileArray[648];
-                    for (int num = 0; num < array2.Length; num++)
+                    tileArray2 = tileArray[648];
+                    for (int num2 = 0; num2 < tileArray2.Length; num2++)
                     {
-                        array2[num] = tileArray[187][num];
+                        tileArray2[num2] = tileArray[187][num2];
                     }
-                    array2 = tileArray[650];
-                    for (int num2 = 0; num2 < array2.Length; num2++)
+                    tileArray[706][0] = tileArray[648][4];
+                    tileArray2 = tileArray[650];
+                    for (int num3 = 0; num3 < tileArray2.Length; num3++)
                     {
-                        array2[num2] = tileArray[185][num2];
+                        tileArray2[num3] = tileArray[185][num3];
                     }
-                    array2 = tileArray[649];
-                    for (int num3 = 0; num3 < array2.Length; num3++)
+                    tileArray2 = tileArray[649];
+                    for (int num4 = 0; num4 < tileArray2.Length; num4++)
                     {
-                        array2[num3] = tileArray[185][num3];
+                        tileArray2[num4] = tileArray[185][num4];
                     }
                     tileArray[227][0] = new Color(74, 197, 155);
                     tileArray[227][1] = new Color(54, 153, 88);
@@ -1183,6 +1247,7 @@ namespace TEdit.Editor.Plugins
                     tileArray[352][0] = new Color(238, 97, 94);
                     tileArray[354][0] = new Color(141, 107, 89);
                     tileArray[355][0] = new Color(141, 107, 89);
+                    tileArray[699][0] = new Color(141, 107, 89);
                     tileArray[463][0] = new Color(155, 214, 240);
                     tileArray[491][0] = new Color(60, 20, 160);
                     tileArray[464][0] = new Color(233, 183, 128);
@@ -1239,6 +1304,12 @@ namespace TEdit.Editor.Plugins
                     tileArray[432][0] = new Color(242, 221, 100);
                     tileArray[433][0] = new Color(224, 100, 242);
                     tileArray[434][0] = new Color(197, 193, 216);
+                    tileArray[727][0] = new Color(119, 22, 52);
+                    tileArray[728][0] = new Color(23, 119, 79);
+                    tileArray[729][0] = new Color(23, 54, 119);
+                    tileArray[730][0] = new Color(119, 68, 23);
+                    tileArray[731][0] = new Color(74, 23, 119);
+                    tileArray[732][0] = new Color(78, 82, 109);
                     tileArray[427][0] = new Color(183, 53, 62);
                     tileArray[435][0] = new Color(54, 183, 111);
                     tileArray[436][0] = new Color(54, 109, 183);
@@ -1275,6 +1346,12 @@ namespace TEdit.Editor.Plugins
                     tileArray[657][0] = new Color(35, 205, 215);
                     tileArray[658][0] = new Color(200, 105, 230);
                     tileArray[412][0] = new Color(75, 139, 166);
+                    tileArray[720][0] = new Color(164, 175, 175);
+                    tileArray[721][0] = new Color(77, 176, 144);
+                    tileArray[725][0] = new Color(229, 65, 65);
+                    tileArray[733][0] = new Color(115, 69, 27);
+                    tileArray[751][0] = Color.Gray;
+                    tileArray[752][0] = Color.Gray;
                     tileArray[443][0] = new Color(144, 148, 144);
                     tileArray[442][0] = new Color(3, 144, 201);
                     tileArray[444][0] = new Color(191, 176, 124);
@@ -1299,6 +1376,9 @@ namespace TEdit.Editor.Plugins
                     tileArray[458][0] = new Color(211, 198, 111);
                     tileArray[459][0] = new Color(190, 223, 232);
                     tileArray[460][0] = new Color(141, 163, 181);
+                    tileArray[717][0] = new Color(126, 102, 118);
+                    tileArray[718][0] = new Color(245, 215, 196);
+                    tileArray[719][0] = new Color(223, 255, 255);
                     tileArray[462][0] = new Color(231, 178, 28);
                     tileArray[467][0] = new Color(129, 56, 121);
                     tileArray[467][1] = new Color(255, 249, 59);
@@ -1312,11 +1392,13 @@ namespace TEdit.Editor.Plugins
                     tileArray[467][9] = new Color(190, 200, 200);
                     tileArray[467][10] = new Color(230, 170, 100);
                     tileArray[467][11] = new Color(165, 168, 26);
-                    for (int num4 = 0; num4 < 12; num4++)
+                    tileArray[467][12] = tileArray[21][0];
+                    for (int num5 = 0; num5 < 13; num5++)
                     {
-                        tileArray[468][num4] = tileArray[467][num4];
+                        tileArray[468][num5] = tileArray[467][num5];
                     }
                     tileArray[472][0] = new Color(190, 160, 140);
+                    tileArray[726][0] = new Color(30, 30, 36);
                     tileArray[473][0] = new Color(85, 114, 123);
                     tileArray[474][0] = new Color(116, 94, 97);
                     tileArray[478][0] = new Color(108, 34, 35);
@@ -1348,6 +1430,10 @@ namespace TEdit.Editor.Plugins
                     tileArray[530][1] = new Color(23, 154, 209);
                     tileArray[530][2] = new Color(238, 97, 94);
                     tileArray[530][3] = new Color(113, 108, 205);
+                    tileArray[705][0] = tileArray[530][0];
+                    tileArray[705][1] = tileArray[530][1];
+                    tileArray[705][2] = tileArray[530][2];
+                    tileArray[705][3] = tileArray[530][3];
                     tileArray[546][0] = new Color(60, 60, 60);
                     tileArray[557][0] = new Color(60, 60, 60);
                     tileArray[547][0] = new Color(120, 110, 100);
@@ -1367,8 +1453,10 @@ namespace TEdit.Editor.Plugins
                     tileArray[597][6] = new Color(142, 227, 234);
                     tileArray[597][7] = new Color(98, 111, 223);
                     tileArray[597][8] = new Color(241, 233, 158);
+                    tileArray[597][9] = new Color(238, 85, 70);
+                    tileArray[597][10] = new Color(247, 228, 254);
                     tileArray[617][0] = new Color(233, 207, 94);
-                    Color color3 = new(250, 100, 50);
+                    Color color3 = new Color(250, 100, 50);
                     tileArray[548][1] = color3;
                     tileArray[613][0] = color3;
                     tileArray[614][0] = color3;
@@ -1377,14 +1465,34 @@ namespace TEdit.Editor.Plugins
                     tileArray[662][0] = new Color(208, 80, 80);
                     tileArray[666][0] = new Color(115, 60, 40);
                     tileArray[667][0] = new Color(247, 228, 254);
+                    tileArray[708][0] = new Color(237, 218, 244);
+                    tileArray[709][0] = new Color(247, 228, 254);
+                    tileArray[722][0] = new Color(185, 190, 20);
+                    tileArray[723][0] = new Color(185, 190, 20);
+                    tileArray[724][0] = new Color(185, 190, 20);
+                    tileArray[734][0] = new Color(160, 115, 80);
+                    tileArray[735][0] = new Color(235, 200, 20);
+                    tileArray[736][0] = new Color(240, 130, 160);
+                    tileArray[737][0] = new Color(65, 75, 65);
+                    tileArray[738][0] = new Color(210, 170, 215);
+                    tileArray[739][0] = new Color(90, 125, 235);
+                    tileArray[740][0] = Color.LightGray;
+                    tileArray[741][0] = new Color(160, 90, 50);
+                    tileArray[742][0] = new Color(26, 141, 204);
+                    tileArray[743][0] = new Color(227, 227, 227);
+                    tileArray[744][0] = new Color(106, 103, 96);
+                    tileArray[745][0] = new Color(120, 114, 108);
+                    tileArray[746][0] = new Color(122, 78, 21);
+                    tileArray[747][0] = new Color(231, 178, 28);
+                    tileArray[748][0] = new Color(2, 114, 206);
+                    tileArray[749][0] = tileArray[138][0] * 0.95f;
+                    tileArray[750][0] = tileArray[48][0] * 0.95f;
 
                     #endregion
 
                     #region Define Wall Color Table
 
                     // "Array4"
-                    color = new Color(151, 107, 75);
-
                     Color[][] wallArray = new Color[(int)maxWallID][];
                     for (int i = 0; i < (int)maxWallID; i++)
                     {
@@ -1430,6 +1538,8 @@ namespace TEdit.Editor.Plugins
                     wallArray[44][0] = color;
                     wallArray[346][0] = color;
                     wallArray[5][0] = color;
+                    wallArray[349][0] = color;
+                    wallArray[350][0] = new Color(0, 255, 0);
                     color = new Color(88, 61, 46);
                     wallArray[2][0] = color;
                     wallArray[16][0] = color;
@@ -1597,7 +1707,7 @@ namespace TEdit.Editor.Plugins
                     wallArray[149][0] = new Color(73, 59, 50);
                     wallArray[151][0] = new Color(102, 75, 34);
                     wallArray[167][0] = new Color(70, 68, 51);
-                    Color color4 = new(125, 100, 100);
+                    Color color4 = new Color(125, 100, 100);
                     wallArray[316][0] = color4;
                     wallArray[317][0] = color4;
                     wallArray[172][0] = new Color(163, 96, 0);
@@ -1741,6 +1851,25 @@ namespace TEdit.Editor.Plugins
                     wallArray[320][0] = new Color(75, 30, 15);
                     wallArray[321][0] = new Color(91, 108, 130);
                     wallArray[322][0] = new Color(91, 108, 130);
+                    wallArray[347][0] = new Color(100, 65, 130);
+                    wallArray[348][0] = new Color(120, 75, 75);
+                    float num7 = 0.5f;
+                    wallArray[351][0] = tileArray[734][0] * num7;
+                    wallArray[352][0] = tileArray[735][0] * num7;
+                    wallArray[353][0] = tileArray[170][0] * num7;
+                    wallArray[354][0] = tileArray[736][0] * num7;
+                    wallArray[355][0] = tileArray[737][0] * num7;
+                    wallArray[356][0] = tileArray[738][0] * num7;
+                    wallArray[357][0] = tileArray[739][0] * num7;
+                    wallArray[358][0] = tileArray[741][0] * num7;
+                    wallArray[359][0] = tileArray[742][0] * num7;
+                    wallArray[360][0] = new Color(73, 93, 116);
+                    wallArray[361][0] = tileArray[744][0] * num7;
+                    wallArray[362][0] = tileArray[745][0] * num7;
+                    wallArray[363][0] = tileArray[746][0] * num7;
+                    wallArray[364][0] = tileArray[747][0] * num7;
+                    wallArray[365][0] = tileArray[748][0] * num7;
+                    wallArray[366][0] = tileArray[749][0] * num7;
 
                     #endregion
 

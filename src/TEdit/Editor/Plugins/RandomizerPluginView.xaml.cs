@@ -1,13 +1,13 @@
-﻿
-using System;
+﻿using System;
 using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Plugins;
 
 /// <summary>
 /// Interaction logic for RandomizerPluginView.xaml
 /// </summary>
-public partial class RandomizerPluginView : Window
+public partial class RandomizerPluginView : FluentWindow
 {
     public int Seed { get; private set; }
     public bool OnlySelection { get; private set; }

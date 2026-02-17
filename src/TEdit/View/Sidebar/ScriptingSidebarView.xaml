@@ -1,0 +1,236 @@
+<UserControl x:Class="TEdit.View.Sidebar.ScriptingSidebarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:p="clr-namespace:TEdit.Properties"
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             xmlns:cv="clr-namespace:TEdit.Converters"
+             xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:scripting="clr-namespace:TEdit.Scripting"
+             mc:Ignorable="d"
+             d:DesignHeight="700" d:DesignWidth="400"
+             d:DataContext="{d:DesignInstance Type=viewModel:ScriptingSidebarViewModel}">
+
+    <UserControl.Resources>
+        <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Background="{DynamicResource SidebarBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>      <!-- Title -->
+            <RowDefinition Height="36"/>      <!-- Script selector -->
+            <RowDefinition Height="36"/>      <!-- Engine selector -->
+            <RowDefinition Height="*"/>         <!-- Code editor -->
+            <RowDefinition Height="Auto"/>      <!-- API Reference panel -->
+            <RowDefinition Height="6"/>      <!-- GridSplitter -->
+            <RowDefinition Height="40"/>      <!-- Run/Stop buttons -->
+            <RowDefinition Height="Auto"/>      <!-- Progress bar -->
+            <RowDefinition Height="180" MinHeight="80"/>  <!-- Output log -->
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Grid.Row="0"
+                   Text="Scripting"
+                   Style="{DynamicResource SidebarPanelTitle}"/>
+
+        <!-- Script file selector -->
+        <Grid Grid.Row="1" Margin="8,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="0"
+                      ItemsSource="{Binding Scripts}"
+                      SelectedValue="{Binding SelectedScriptPath}"
+                      SelectedValuePath="FullPath"
+                      Height="28"
+                      DisplayMemberPath="Name"/>
+
+            <ui:Button Grid.Column="1"
+                       Content="New"
+                       Command="{Binding NewScriptCommand}"
+                       Padding="8,4"
+                       Margin="4,0,0,0"
+                       ToolTip="New script"/>
+            <ui:Button Grid.Column="2"
+                       Content="Save"
+                       Command="{Binding SaveScriptCommand}"
+                       Padding="8,4"
+                       Margin="4,0,0,0"
+                       ToolTip="Save script"/>
+            <ui:Button Grid.Column="3"
+                       Command="{Binding OpenScriptsFolderCommand}"
+                       Padding="8,4"
+                       Margin="4,0,0,0"
+                       ToolTip="Open scripts folder">
+                <ui:SymbolIcon Symbol="FolderOpen20" FontSize="16"/>
+            </ui:Button>
+        </Grid>
+
+        <!-- Engine selector -->
+        <Grid Grid.Row="2" Margin="8,0,8,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Engine:"
+                       VerticalAlignment="Center"
+                       Margin="0,0,8,0"
+                       Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+            <ComboBox Grid.Column="1"
+                      ItemsSource="{Binding EngineNames}"
+                      SelectedIndex="{Binding SelectedEngineIndex}"/>
+            <ui:Button Grid.Column="2"
+                       Content="API"
+                       Command="{Binding ToggleApiReferenceCommand}"
+                       Padding="8,4"
+                       Margin="4,0,0,0"
+                       ToolTip="Toggle API reference panel"/>
+            <ui:Button Grid.Column="3"
+                       Command="{Binding GenerateDocsCommand}"
+                       Padding="8,4"
+                       Margin="4,0,0,0"
+                       ToolTip="Generate API_REFERENCE.md">
+                <ui:SymbolIcon Symbol="Document20" FontSize="16"/>
+            </ui:Button>
+        </Grid>
+
+        <!-- Code editor (AvalonEdit) -->
+        <avalonedit:TextEditor x:Name="CodeEditor"
+                               Grid.Row="3"
+                               Margin="8,4"
+                               FontFamily="Consolas"
+                               FontSize="12"
+                               ShowLineNumbers="True"
+                               WordWrap="False"
+                               HorizontalScrollBarVisibility="Auto"
+                               VerticalScrollBarVisibility="Auto"
+                               Background="{DynamicResource ControlFillColorDefaultBrush}"
+                               Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                               BorderThickness="1"
+                               BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"/>
+
+        <!-- API Reference panel (collapsible) -->
+        <Border Grid.Row="4"
+                Margin="8,0,8,4"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                Background="{DynamicResource ControlFillColorDefaultBrush}"
+                MaxHeight="250"
+                Visibility="{Binding ShowApiReference, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{x:Static scripting:ScriptApiMetadata.Modules}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Expander IsExpanded="False" Margin="4,2">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                                        <TextBlock Text=" — "
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <TextBlock Text="{Binding Description}"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                    </StackPanel>
+                                </Expander.Header>
+                                <ItemsControl ItemsSource="{Binding Methods}" Margin="16,0,0,0">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="0,2">
+                                                <TextBlock Text="{Binding Signature}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="11"
+                                                           Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+                                                <TextBlock Text="{Binding Description}"
+                                                           FontSize="11"
+                                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                                           Margin="8,0,0,0"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+
+        <!-- GridSplitter -->
+        <GridSplitter Grid.Row="5"
+                      Height="6"
+                      Margin="8,2"
+                      HorizontalAlignment="Stretch"
+                      Background="{DynamicResource ControlStrokeColorDefaultBrush}"
+                      ResizeDirection="Rows"/>
+
+        <!-- Run/Stop buttons -->
+        <Grid Grid.Row="6" Margin="8,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:Button Grid.Column="0"
+                       Content="Run Script"
+                       Icon="{ui:SymbolIcon Play20}"
+                       Command="{Binding RunScriptCommand}"
+                       HorizontalAlignment="Stretch"
+                       Padding="8,6"
+                       Margin="0,0,4,0"
+                       Appearance="Primary"/>
+
+            <ui:Button Grid.Column="1"
+                       Content="Stop"
+                       Icon="{ui:SymbolIcon Stop20}"
+                       Command="{Binding StopScriptCommand}"
+                       IsEnabled="{Binding IsRunning}"
+                       Padding="8,6"
+                       Appearance="Danger"/>
+        </Grid>
+
+        <!-- Progress bar -->
+        <ProgressBar Grid.Row="7"
+                     Value="{Binding Progress}"
+                     Minimum="0" Maximum="100"
+                     Height="4"
+                     Margin="8,0,8,4"
+                     Visibility="{Binding IsRunning, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
+        <!-- Output log -->
+        <Grid Grid.Row="8" Margin="8,0,8,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Output"
+                       Margin="0,0,0,4"
+                       FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
+
+            <TextBox Grid.Row="1"
+                     Text="{Binding OutputLog, Mode=OneWay}"
+                     IsReadOnly="True"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     FontFamily="Consolas"
+                     FontSize="11"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     BorderThickness="1"
+                     BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"/>
+        </Grid>
+    </Grid>
+</UserControl>

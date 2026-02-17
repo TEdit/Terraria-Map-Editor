@@ -6,7 +6,7 @@ using Avalonia.Skia;
 using SkiaSharp;
 using System;
 using TEdit.Common;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Terraria;
 
 namespace TEdit5.Controls.WorldRenderEngine.Layers;
@@ -107,7 +107,7 @@ public class MinimapPixelsCustomDrawOp : ICustomDrawOperation
         using var paint = new SKPaint
         {
             IsAntialias = true,
-            FilterQuality = SKFilterQuality.High,
+            FilterQuality = SKFilterQuality.Medium,
             IsDither = false,
             Color = SKColors.White,
             Style = SKPaintStyle.Fill,

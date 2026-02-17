@@ -1,14 +1,19 @@
-﻿using System.Windows.Media;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEdit.Common.Reactive;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
+using TEdit.Input;
 using TEdit.UI;
 using TEdit.ViewModel;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
-public abstract class BaseTool : ObservableObject, ITool
+public abstract partial class BaseTool : ReactiveObject, ITool
 {
-    protected bool _isActive;
     protected WriteableBitmap _preview;
     protected WorldViewModel _wvm;
     private double _previewScale = 1;
@@ -27,15 +32,32 @@ public abstract class BaseTool : ObservableObject, ITool
 
     public string Title => Properties.Language.ResourceManager.GetString($"tool_{Name.ToLower()}_title") ?? Name;
 
+    public string ToolTipText
+    {
+        get
+        {
+            var actionId = $"tool.{Name.ToLower()}";
+            // SpriteTool2 has Name "Sprite2" but action ID "tool.sprite"
+            if (Name == "Sprite2") actionId = "tool.sprite";
+
+            var bindings = App.Input.Registry.GetBindings(actionId);
+            if (bindings.Count > 0)
+                return $"{Title} ({bindings[0]})";
+
+            return Title;
+        }
+    }
+
     public virtual ToolType ToolType { get; protected set; }
 
     public virtual BitmapImage Icon { get; protected set; }
 
-    public virtual bool IsActive
-    {
-        get { return _isActive; }
-        set { Set(nameof(IsActive), ref _isActive, value); }
-    }
+    public virtual SymbolRegular SymbolIcon { get; protected set; } = SymbolRegular.Empty;
+
+    public virtual ImageSource? VectorIcon { get; protected set; }
+
+    [Reactive]
+    private bool _isActive;
 
     public virtual void MouseDown(TileMouseState e)
     {
@@ -67,6 +89,72 @@ public abstract class BaseTool : ObservableObject, ITool
     public virtual bool PreviewIsTexture
     {
         get { return false; }
+    }
+
+    #endregion
+
+    #region Input Helpers
+
+    [DllImport("user32.dll")]
+    private static extern short GetKeyState(int nVirtKey);
+
+    private const int VK_SHIFT = 0x10;
+    private const int VK_CONTROL = 0x11;
+    private const int VK_MENU = 0x12; // Alt
+
+    /// <summary>
+    /// Gets the current modifier keys using Win32 GetKeyState directly.
+    /// WPF's Keyboard.Modifiers and Keyboard.IsKeyDown both query the WPF
+    /// InputManager which misses key state when the XNA HwndHost has native focus.
+    /// GetKeyState reads the thread message queue state and always works.
+    /// </summary>
+    public static ModifierKeys GetModifiers()
+    {
+        var modifiers = ModifierKeys.None;
+        if ((GetKeyState(VK_CONTROL) & 0x8000) != 0)
+            modifiers |= ModifierKeys.Control;
+        if ((GetKeyState(VK_SHIFT) & 0x8000) != 0)
+            modifiers |= ModifierKeys.Shift;
+        if ((GetKeyState(VK_MENU) & 0x8000) != 0)
+            modifiers |= ModifierKeys.Alt;
+        return modifiers;
+    }
+
+    /// <summary>
+    /// Gets active editor actions based on current mouse state and keyboard modifiers.
+    /// </summary>
+    protected List<string> GetActiveActions(TileMouseState e)
+    {
+        var actions = new List<string>();
+        var modifiers = GetModifiers();
+
+        // Check left button
+        if (e.LeftButton == MouseButtonState.Pressed)
+        {
+            actions.AddRange(App.Input.HandleMouseButton(TEditMouseButton.Left, modifiers, TEdit.Input.InputScope.Editor));
+        }
+
+        // Check right button
+        if (e.RightButton == MouseButtonState.Pressed)
+        {
+            actions.AddRange(App.Input.HandleMouseButton(TEditMouseButton.Right, modifiers, TEdit.Input.InputScope.Editor));
+        }
+
+        // Check middle button
+        if (e.MiddleButton == MouseButtonState.Pressed)
+        {
+            actions.AddRange(App.Input.HandleMouseButton(TEditMouseButton.Middle, modifiers, TEdit.Input.InputScope.Editor));
+        }
+
+        return actions;
+    }
+
+    /// <summary>
+    /// Checks if a specific action is active based on current input.
+    /// </summary>
+    protected bool IsActionActive(TileMouseState e, string actionId)
+    {
+        return GetActiveActions(e).Contains(actionId);
     }
 
     #endregion

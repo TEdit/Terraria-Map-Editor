@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Windows;
+using Wpf.Ui.Controls;
+using MessageBox = System.Windows.MessageBox;
+using MessageBoxButton = System.Windows.MessageBoxButton;
 
 namespace TEdit.Editor.Plugins;
 
-public partial class BlockShufflePluginView : Window
+public partial class BlockShufflePluginView : FluentWindow
 {
     public int Seed { get; private set; }
     public bool OnlySelection { get; private set; }

@@ -4,39 +4,48 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net48</TargetFramework>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="favorites.json" />
-    <None Remove="settings.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="favorites.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Content Include="settings.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="10.0.3" />
+    <None Include="C:\Program Files %28x86%29\Steam\steamapps\common\Terraria\ReLogic.Native.dll" Link="ReLogic.Native.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="10.0.2" />
+    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
-    <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="TerrariaServer">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Terraria\TerrariaServer.exe</HintPath>
+      <Private>True</Private>
     </Reference>
+
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="settings2.xml">
+    <None Update="serverconfig.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

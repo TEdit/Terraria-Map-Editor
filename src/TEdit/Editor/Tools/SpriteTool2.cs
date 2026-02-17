@@ -1,25 +1,30 @@
 using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using TEdit.Configuration;
-using TEdit.Geometry;
 using TEdit.Terraria;
+using TEdit.Geometry;
 using TEdit.Terraria.Editor;
 using TEdit.Terraria.Objects;
 using TEdit.UI;
 using TEdit.ViewModel;
+using Wpf.Ui.Controls;
 namespace TEdit.Editor.Tools;
 
 public sealed class SpriteTool2 : BaseTool
 {
-    private bool _isLeftDown;
-    private bool _isRightDown;
+    private bool _isDrawing;
+    private bool _isConstraining;
+    private bool _isLineMode;
+    private bool _constrainVertical;
+    private bool _constrainDirectionLocked;
+    private Vector2Int32 _anchorPoint;
     private Vector2Int32 _startPoint;
     private Vector2Int32 _endPoint;
     public SpriteTool2(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/sprite.png"));
+        SymbolIcon = SymbolRegular.Couch20;
         Name = "Sprite2";
         IsActive = false;
         ToolType = ToolType.Pixel;
@@ -32,22 +37,24 @@ public sealed class SpriteTool2 : BaseTool
         if (_wvm.SelectedSpriteItem == null)
             return;
 
-        var x = e.Location.X;
-        var y = e.Location.Y;
+        var actions = GetActiveActions(e);
 
-        if (!_isRightDown && !_isLeftDown)
+        if (!_isDrawing && !_isConstraining && !_isLineMode)
         {
             _startPoint = e.Location;
+            _anchorPoint = e.Location;
+            _constrainDirectionLocked = false;
             _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
         }
 
-        _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
-        _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+        _isDrawing = actions.Contains("editor.draw");
+        _isConstraining = actions.Contains("editor.draw.constrain");
+        _isLineMode = actions.Contains("editor.draw.line");
 
         if (_wvm.SelectedSpriteItem.SizeTiles.X == 1 && _wvm.SelectedSpriteItem.SizeTiles.Y == 1)
-            CheckDirectionandDraw(e.Location);
-        else
-            PlaceSelectedSprite(x, y);
+            ProcessDraw(e.Location);
+        else if (_isDrawing || _isConstraining || _isLineMode)
+            PlaceSelectedSprite(e.Location.X, e.Location.Y);
     }
 
     private void PlaceSelectedSprite(int x, int y)
@@ -60,7 +67,7 @@ public sealed class SpriteTool2 : BaseTool
         {
             // if the tile entity is not the same as it was, create a new TE.
             var existingTe = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
-            if (existingTe == null || (ushort)existingTe.TileType != _wvm.SelectedSpriteSheet.Tile)
+            if (existingTe == null || (ushort)existingTe.TileType != tileId)
             {
                 var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[x, y], x, y, 0);
                 TileEntity.PlaceEntity(te, _wvm.CurrentWorld); // this will also remove the existing if there is one
@@ -86,56 +93,75 @@ public sealed class SpriteTool2 : BaseTool
 
     public override void MouseMove(TileMouseState e)
     {
-        _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
-        _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+        if (_wvm.SelectedSpriteItem == null) return;
 
-        if (_wvm.SelectedSpriteItem == null) { return; }
+        var actions = GetActiveActions(e);
+        _isDrawing = actions.Contains("editor.draw");
+        _isConstraining = actions.Contains("editor.draw.constrain");
+        _isLineMode = actions.Contains("editor.draw.line");
+
         if (_wvm.SelectedSpriteItem.SizeTiles.X == 1 && _wvm.SelectedSpriteItem.SizeTiles.Y == 1)
         {
-            CheckDirectionandDraw(e.Location);
+            ProcessDraw(e.Location);
         }
     }
 
     public override void MouseUp(TileMouseState e)
     {
-        if (_wvm.SelectedSpriteItem == null) { return; }
+        if (_wvm.SelectedSpriteItem == null) return;
+
         if (_wvm.SelectedSpriteItem.SizeTiles.X == 1 && _wvm.SelectedSpriteItem.SizeTiles.Y == 1)
         {
-            CheckDirectionandDraw(e.Location);
+            ProcessDraw(e.Location);
         }
 
-        _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
-        _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+        var actions = GetActiveActions(e);
+        _isDrawing = actions.Contains("editor.draw");
+        _isConstraining = actions.Contains("editor.draw.constrain");
+        _isLineMode = actions.Contains("editor.draw.line");
+        _constrainDirectionLocked = false;
+
         _wvm.UndoManager.SaveUndo();
     }
-    private void CheckDirectionandDraw(Vector2Int32 tile)
+
+    private void ProcessDraw(Vector2Int32 tile)
     {
         Vector2Int32 p = tile;
-        Vector2Int32 p2 = tile;
-        if (_isRightDown)
+
+        if (_isConstraining)
         {
-            if (_isLeftDown)
-                p.X = _startPoint.X;
+            if (!_constrainDirectionLocked)
+            {
+                int dx = Math.Abs(tile.X - _anchorPoint.X);
+                int dy = Math.Abs(tile.Y - _anchorPoint.Y);
+                if (dx > 1 || dy > 1)
+                {
+                    _constrainVertical = dx < dy;
+                    _constrainDirectionLocked = true;
+                }
+            }
+
+            if (_constrainVertical)
+                p.X = _anchorPoint.X;
             else
-                p.Y = _startPoint.Y;
+                p.Y = _anchorPoint.Y;
+
             DrawLine(p);
             _startPoint = p;
         }
-        else if (_isLeftDown)
+        else if (_isLineMode)
         {
-            if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
-            {
-                DrawLine(p);
-                _startPoint = p;
-                _endPoint = p;
-            }
-            else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
-            {
-                DrawLineP2P(p2);
-                _endPoint = p2;
-            }
+            DrawLineP2P(tile);
+            _endPoint = tile;
+        }
+        else if (_isDrawing)
+        {
+            DrawLine(p);
+            _startPoint = p;
+            _endPoint = p;
         }
     }
+
     private void DrawLine(Vector2Int32 to)
     {
         foreach (Vector2Int32 pixel in Shape.DrawLineTool(_startPoint, to))
@@ -168,7 +194,6 @@ public sealed class SpriteTool2 : BaseTool
                 {
                     if (_wvm.SelectedSpriteSheet == null)
                         return;
-
 
                     PlaceSelectedSprite(pixel.X, pixel.Y);
                 }

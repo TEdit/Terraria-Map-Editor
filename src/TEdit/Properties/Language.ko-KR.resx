@@ -1,0 +1,1768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="banner_category" xml:space="preserve">
+    <value>카테고리:</value>
+  </data>
+  <data name="banner_count" xml:space="preserve">
+    <value>백작</value>
+  </data>
+  <data name="banner_filter" xml:space="preserve">
+    <value>필터:</value>
+  </data>
+  <data name="banner_import" xml:space="preserve">
+    <value>수입</value>
+  </data>
+  <data name="banner_kills" xml:space="preserve">
+    <value>킬</value>
+  </data>
+  <data name="banner_maxout" xml:space="preserve">
+    <value>맥스 아웃</value>
+  </data>
+  <data name="banner_reset" xml:space="preserve">
+    <value>리셋</value>
+  </data>
+  <data name="banner_save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>대화</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>비켜</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>완전</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>패배</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>부하</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>근처입니다</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>토크</value>
+  </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="BrickStyle_Full" xml:space="preserve">
+    <value>풀 브릭</value>
+  </data>
+  <data name="BrickStyle_HalfBrick" xml:space="preserve">
+    <value>하프 브릭</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
+    <value>경사 왼쪽 하단</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
+    <value>오른쪽 아래 경사면</value>
+  </data>
+  <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
+    <value>경사면 왼쪽 상단</value>
+  </data>
+  <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
+    <value>오른쪽 위 경사면</value>
+  </data>
+  <data name="BrushShape_Left" xml:space="preserve">
+    <value>대각선 좌측</value>
+  </data>
+  <data name="BrushShape_Right" xml:space="preserve">
+    <value>대각선 오른쪽</value>
+  </data>
+  <data name="BrushShape_Round" xml:space="preserve">
+    <value>타원형</value>
+  </data>
+  <data name="BrushShape_Square" xml:space="preserve">
+    <value>직사각형</value>
+  </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>맥스</value>
+  </data>
+  <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
+    <value>디렉토리에는 테라리아 콘텐츠가 포함되어 있지 않은 것으로 보입니다.
+새 폴더를 선택하려면 재시도 버튼을 누르거나, 테라리아 경로로 {0} 사용하려면 취소하세요.</value>
+  </data>
+  <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
+    <value>테라리아 콘텐츠 찾을 수 없습니다</value>
+  </data>
+  <data name="editor_tabs_analysis" xml:space="preserve">
+    <value>분석</value>
+  </data>
+  <data name="editor_tabs_banners" xml:space="preserve">
+    <value>깃발</value>
+  </data>
+  <data name="editor_tabs_clipboard" xml:space="preserve">
+    <value>클립보드</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>창의적 역량</value>
+  </data>
+  <data name="editor_tabs_npc" xml:space="preserve">
+    <value>NPC 데이터</value>
+  </data>
+  <data name="editor_tabs_special" xml:space="preserve">
+    <value>특수 타일</value>
+  </data>
+  <data name="editor_tabs_sprites" xml:space="preserve">
+    <value>스프라이트</value>
+  </data>
+  <data name="editor_tabs_tally" xml:space="preserve">
+    <value>베스티어리</value>
+  </data>
+  <data name="editor_tabs_tileentities" xml:space="preserve">
+    <value>타일 엔티티</value>
+  </data>
+  <data name="editor_tabs_worldproperties" xml:space="preserve">
+    <value>월드 재산</value>
+  </data>
+  <data name="editor_utilities_label" xml:space="preserve">
+    <value>유틸리티</value>
+  </data>
+  <data name="global_enjoytedit" xml:space="preserve">
+    <value>TEdit을 즐기시나요? 우리를 응원해 주세요!</value>
+  </data>
+  <data name="HalfBlockMode_HalfBLock" xml:space="preserve">
+    <value>하프 블록</value>
+  </data>
+  <data name="HalfBlockMode_NoAction" xml:space="preserve">
+    <value>변화 없음</value>
+  </data>
+  <data name="HalfBlockMode_RampLeft" xml:space="preserve">
+    <value>램프 좌측</value>
+  </data>
+  <data name="HalfBlockMode_RampRight" xml:space="preserve">
+    <value>램프 오른쪽</value>
+  </data>
+  <data name="HalfBlockMode_Solid" xml:space="preserve">
+    <value>셋 고단히</value>
+  </data>
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
+    <value>좌측 방향</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>전혀 없습니다</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>정상</value>
+  </data>
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
+    <value>우측 방향</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>접속 박스:</value>
+  </data>
+  <data name="LiquidType_Honey" xml:space="preserve">
+    <value>여보</value>
+  </data>
+  <data name="LiquidType_Lava" xml:space="preserve">
+    <value>용암</value>
+  </data>
+  <data name="LiquidType_None" xml:space="preserve">
+    <value>액체 없음</value>
+  </data>
+  <data name="LiquidType_Water" xml:space="preserve">
+    <value>물</value>
+  </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>액체 양:</value>
+  </data>
+  <data name="MaskMode_Empty" xml:space="preserve">
+    <value>수정: 빈 상태</value>
+  </data>
+  <data name="MaskMode_Match" xml:space="preserve">
+    <value>편집: 매칭</value>
+  </data>
+  <data name="MaskMode_NotMatching" xml:space="preserve">
+    <value>수정: 일치하지 않음</value>
+  </data>
+  <data name="MaskMode_Off" xml:space="preserve">
+    <value>마스크 비활성화</value>
+  </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>첫 번째 항목 복사</value>
+  </data>
+  <data name="menu_edit" xml:space="preserve">
+    <value>수정</value>
+  </data>
+  <data name="menu_edit_copy" xml:space="preserve">
+    <value>알겠습니다</value>
+  </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>크롭 월드</value>
+  </data>
+  <data name="menu_edit_delete" xml:space="preserve">
+    <value>선택 삭제</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>세계 확장</value>
+  </data>
+  <data name="menu_edit_paste" xml:space="preserve">
+    <value>페이스트</value>
+  </data>
+  <data name="menu_edit_redo" xml:space="preserve">
+    <value>다시 한 번</value>
+  </data>
+  <data name="menu_edit_undo" xml:space="preserve">
+    <value>되돌리기</value>
+  </data>
+  <data name="menu_file" xml:space="preserve">
+    <value>파일</value>
+  </data>
+  <data name="menu_file_autosave" xml:space="preserve">
+    <value>자동 저장 활성화</value>
+  </data>
+  <data name="menu_file_autoupdate" xml:space="preserve">
+    <value>시작 시 업데이트를 확인하세요</value>
+  </data>
+  <data name="menu_file_exit" xml:space="preserve">
+    <value>출구</value>
+  </data>
+  <data name="menu_file_new" xml:space="preserve">
+    <value>신규</value>
+  </data>
+  <data name="menu_file_open" xml:space="preserve">
+    <value>오픈</value>
+  </data>
+  <data name="menu_file_save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="menu_file_saveas" xml:space="preserve">
+    <value>다른 이름으로 저장</value>
+  </data>
+  <data name="menu_file_saveasversion" xml:space="preserve">
+    <value>버전 저장</value>
+  </data>
+  <data name="menu_file_update" xml:space="preserve">
+    <value>지금 업데이트를 확인하세요</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>필터</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>지원</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>배경모드</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>관습</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>비활성화</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>필터 클립보드</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>필터 모드</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>그레이스케일</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>액체</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>스프라이트</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>타일</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>성벽</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>전선</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>숨어</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>정상</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>모두 확인</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>모두 체크 해제</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>고급 필터</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>투명</value>
+  </data>
+  <data name="menu_help" xml:space="preserve">
+    <value>도와주세요</value>
+  </data>
+  <data name="menu_help_about" xml:space="preserve">
+    <value>소개</value>
+  </data>
+  <data name="menu_help_log" xml:space="preserve">
+    <value>오픈 로그 파일</value>
+  </data>
+  <data name="menu_help_settings" xml:space="preserve">
+    <value>설정...</value>
+  </data>
+  <data name="menu_help_update" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="menu_help_wiki" xml:space="preserve">
+    <value>위키</value>
+  </data>
+  <data name="menu_language" xml:space="preserve">
+    <value>언어</value>
+  </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>독일어</value>
+  </data>
+  <data name="menu_language_en" xml:space="preserve">
+    <value>영어</value>
+  </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>에스파뇰</value>
+  </data>
+  <data name="menu_language_fr" xml:space="preserve">
+    <value>프랑스</value>
+  </data>
+  <data name="menu_language_it" xml:space="preserve">
+    <value>이탈리아노</value>
+  </data>
+  <data name="menu_language_ja" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="menu_language_ko" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="menu_language_pl" xml:space="preserve">
+    <value>폴스키</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>포르투게스</value>
+  </data>
+  <data name="menu_language_ru" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="menu_language_zh" xml:space="preserve">
+    <value>中文 (简体)</value>
+  </data>
+  <data name="menu_language_zh_hant" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="menu_layers" xml:space="preserve">
+    <value>층</value>
+  </data>
+  <data name="menu_layers_actuators" xml:space="preserve">
+    <value>액추에이터</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>배경</value>
+  </data>
+  <data name="menu_layers_grid" xml:space="preserve">
+    <value>레이아웃 그리드</value>
+  </data>
+  <data name="menu_layers_liquid" xml:space="preserve">
+    <value>액체</value>
+  </data>
+  <data name="menu_layers_points" xml:space="preserve">
+    <value>관광 명소</value>
+  </data>
+  <data name="menu_layers_textures" xml:space="preserve">
+    <value>텍스처</value>
+  </data>
+  <data name="menu_layers_tiles" xml:space="preserve">
+    <value>타일</value>
+  </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>사실적인 색상을 사용하세요</value>
+  </data>
+  <data name="menu_layers_walls" xml:space="preserve">
+    <value>성벽</value>
+  </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>모든 전선</value>
+  </data>
+  <data name="menu_layers_wire_blue" xml:space="preserve">
+    <value>블루 와이어</value>
+  </data>
+  <data name="menu_layers_wire_green" xml:space="preserve">
+    <value>그린 와이어</value>
+  </data>
+  <data name="menu_layers_wire_red" xml:space="preserve">
+    <value>레드 와이어</value>
+  </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>와이어 투명성</value>
+  </data>
+  <data name="menu_layers_wire_yellow" xml:space="preserve">
+    <value>옐로우 와이어</value>
+  </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>모든 슬롯에 붙여넣기</value>
+  </data>
+  <data name="menu_plugins" xml:space="preserve">
+    <value>플러그인</value>
+  </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>오류 보고 활성화</value>
+  </data>
+  <data name="menu_toolbar_zoom_in" xml:space="preserve">
+    <value>확대 인(zoom In)</value>
+  </data>
+  <data name="menu_toolbar_zoom_out" xml:space="preserve">
+    <value>줌아웃</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>모든 프레임 이동</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>이동량 (프레임)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>알겠어</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>복원</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>선택된 프레임</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>수동 UV를 모두 설정하세요</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>세트 가치</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>UV 편집기</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>재시작 필요</value>
+  </data>
+  <data name="MorphBiome_Corruption" xml:space="preserve">
+    <value>부패</value>
+  </data>
+  <data name="MorphBiome_Crimson" xml:space="preserve">
+    <value>크림슨</value>
+  </data>
+  <data name="MorphBiome_Custom" xml:space="preserve">
+    <value>관습</value>
+  </data>
+  <data name="MorphBiome_Desert" xml:space="preserve">
+    <value>사막</value>
+  </data>
+  <data name="MorphBiome_Hallow" xml:space="preserve">
+    <value>할로우</value>
+  </data>
+  <data name="MorphBiome_Jungle" xml:space="preserve">
+    <value>정글</value>
+  </data>
+  <data name="MorphBiome_Purify" xml:space="preserve">
+    <value>정화</value>
+  </data>
+  <data name="PaintMode_Liquid" xml:space="preserve">
+    <value>액체</value>
+  </data>
+  <data name="PaintMode_TileAndWall" xml:space="preserve">
+    <value>타일/벽</value>
+  </data>
+  <data name="PaintMode_Track" xml:space="preserve">
+    <value>트랙</value>
+  </data>
+  <data name="PaintMode_Wire" xml:space="preserve">
+    <value>와이어</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>자동 저장 활성화</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>주기적으로 자동으로 세상을 구하세요</value>
+  </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>일반</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>층</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>경로</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>프라이버시</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>렌더링</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>업데이트 확인해 보세요</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>시작 시 자동으로 새 버전 확인</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>오류 보고 활성화</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>익명 오류 보고서를 보내 안정성 향상에 도움을 주세요</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>언어</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>애플리케이션 표시 언어 설정</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>사실적인 색상을 사용하세요</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>텍스처 샘플링 색상으로 타일을 렌더링하기 (재시작 필요)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>설정...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>쇼 액추에이터</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>토글 액추에이터 가시성</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>모든 전선 표시</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>모든 와이어 레이어를 한꺼번에 토글하세요</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>쇼 배경</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>배경 렌더링 토글</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>블루 와이어즈 쇼</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>블루 와이어 가시성 토글</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>쇼 코팅</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>토글 코팅 층 가시성</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>그린 와이어즈 쇼</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>녹색 와이어 가시성 토글</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>쇼 그리드</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>토글 그리드 오버레이</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>쇼 리퀴드</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>액체층 가시성 토글</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>쇼 뉴스</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>뉴스와 공지를 편집기에서 보여주세요</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>쇼 포인트</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>스폰/NPC 포인트 마커 토글</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>레드 와이어스 쇼</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>빨간 와이어 가시성 토글</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>텍스처 쇼</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>타일 텍스처 렌더링 토글</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>타일 쇼</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>타일 레이어 가시성 토글</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>쇼 월</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>벽 레이어 가시성 토글</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>노란 선을 보여주기</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>노란색 와이어 가시성 토글</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>스프라이트 썸네일 크기</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>스프라이트 선택기에서 스프라이트 썸네일 크기</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>테라리아 콘텐츠 경로</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>텍스처 로딩을 위한 Terraria의 콘텐츠 폴더로 가는 경로</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>텍스처 가시성 줌 레벨</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>타일 텍스처가 보이기 전 최소 줌 레벨</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>와이어 투명성</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>투명도가 있는 와이어 렌더링</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>깃발</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>찾아서 교체하기</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>타일 엔티티</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>월드 재산</value>
+  </data>
+  <data name="specialtile_button_cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="specialtile_button_save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="specialtile_label_acc1" xml:space="preserve">
+    <value>acc1</value>
+  </data>
+  <data name="specialtile_label_acc2" xml:space="preserve">
+    <value>악 2</value>
+  </data>
+  <data name="specialtile_label_acc3" xml:space="preserve">
+    <value>Acc3</value>
+  </data>
+  <data name="specialtile_label_acc4" xml:space="preserve">
+    <value>Acc4</value>
+  </data>
+  <data name="specialtile_label_acc5" xml:space="preserve">
+    <value>acc5</value>
+  </data>
+  <data name="specialtile_label_acc6" xml:space="preserve">
+    <value>악동 6</value>
+  </data>
+  <data name="specialtile_label_body" xml:space="preserve">
+    <value>본문</value>
+  </data>
+  <data name="specialtile_label_chestcontents" xml:space="preserve">
+    <value>상자 내용물</value>
+  </data>
+  <data name="specialtile_label_chestname" xml:space="preserve">
+    <value>상자 이름</value>
+  </data>
+  <data name="specialtile_label_chesttype" xml:space="preserve">
+    <value>가슴 유형</value>
+  </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>크리터</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>아이템 플라스크</value>
+  </data>
+  <data name="specialtile_label_editselecteditem" xml:space="preserve">
+    <value>선택 항목 편집</value>
+  </data>
+  <data name="specialtile_label_head" xml:space="preserve">
+    <value>머리</value>
+  </data>
+  <data name="specialtile_label_itemframecontents" xml:space="preserve">
+    <value>아이템 프레임 내용</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>연</value>
+  </data>
+  <data name="specialtile_label_legs" xml:space="preserve">
+    <value>다리</value>
+  </data>
+  <data name="specialtile_label_mannequin" xml:space="preserve">
+    <value>마네킹</value>
+  </data>
+  <data name="specialtile_label_mannequinclothing" xml:space="preserve">
+    <value>마네킹 의류</value>
+  </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>마운트</value>
+  </data>
+  <data name="specialtile_label_platecontents" xml:space="preserve">
+    <value>플레이트 내용물</value>
+  </data>
+  <data name="specialtile_label_signtext" xml:space="preserve">
+    <value>서명 텍스트</value>
+  </data>
+  <data name="specialtile_label_signtype" xml:space="preserve">
+    <value>표지판 유형</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>무기</value>
+  </data>
+  <data name="specialtile_label_weaponrack" xml:space="preserve">
+    <value>무기 걸이 아이템</value>
+  </data>
+  <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
+    <value>구근</value>
+  </data>
+  <data name="specialtile_label_xmas_deco" xml:space="preserve">
+    <value>크리스마스 트리 장식</value>
+  </data>
+  <data name="specialtile_label_xmas_garland" xml:space="preserve">
+    <value>화환</value>
+  </data>
+  <data name="specialtile_label_xmas_lights" xml:space="preserve">
+    <value>조명</value>
+  </data>
+  <data name="specialtile_label_xmas_star" xml:space="preserve">
+    <value>스타</value>
+  </data>
+  <data name="specialtile_tooltip" xml:space="preserve">
+    <value>화살표 도구로 표지판, 상자, 마네킹, 무기 거치대, 아이템 프레임 또는 크리스마스 트리를 우클릭하세요.</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>자동차</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>생물군계:</value>
+  </data>
+  <data name="sprite_filter_button" xml:space="preserve">
+    <value>필터</value>
+  </data>
+  <data name="sprite_filter_label" xml:space="preserve">
+    <value>필터:</value>
+  </data>
+  <data name="sprite_styletype" xml:space="preserve">
+    <value>스타일</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>타일 유형 필터</value>
+  </data>
+  <data name="statusbar_extra_label" xml:space="preserve">
+    <value>특별</value>
+  </data>
+  <data name="statusbar_frame_label" xml:space="preserve">
+    <value>프레임</value>
+  </data>
+  <data name="statusbar_paint_label" xml:space="preserve">
+    <value>페인트</value>
+  </data>
+  <data name="statusbar_position_label" xml:space="preserve">
+    <value>위치</value>
+  </data>
+  <data name="statusbar_selection_label" xml:space="preserve">
+    <value>선정</value>
+  </data>
+  <data name="statusbar_tile_label" xml:space="preserve">
+    <value>타일</value>
+  </data>
+  <data name="statusbar_wall_label" xml:space="preserve">
+    <value>벽</value>
+  </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>베스티어리</value>
+  </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>블루 팀 스폰</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>그린 팀 스폰</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>핑크 팀 스폰</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>레드 팀 스폰</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>화이트 팀 스폰</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>옐로우 팀 스폰</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit은 안정성 향상을 돕기 위해 익명 오류 보고서를 보낼 수 있습니다.
+
+수집된 내용:
+  • 오류 세부 정보 (예외 유형 및 스택 트레이스)
+  • 앱 버전 및 OS 버전
+
+징수되지 않는 것:
+  • 개인 정보나 파일 경로가 없습니다
+  • 사용 추적 및 지문 채취 없음
+  • 전송 전에 모든 경로가 난독화됩니다
+
+오류 보고를 활성화하고 싶으신가요?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>TEdit 오류 보고</value>
+  </data>
+  <data name="tool_analyze_analyze_button" xml:space="preserve">
+    <value>분석</value>
+  </data>
+  <data name="tool_analyze_save" xml:space="preserve">
+    <value>세이브 분석</value>
+  </data>
+  <data name="tool_analyze_save_button" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="tool_analyze_title" xml:space="preserve">
+    <value>세계 분석</value>
+  </data>
+  <data name="tool_arrow_title" xml:space="preserve">
+    <value>애로우</value>
+  </data>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>수정</value>
+  </data>
+  <data name="tool_bestiary_import" xml:space="preserve">
+    <value>수입</value>
+  </data>
+  <data name="tool_bestiary_save" xml:space="preserve">
+    <value>세이브 베스티어리</value>
+  </data>
+  <data name="tool_bestiary_scan" xml:space="preserve">
+    <value>스캔</value>
+  </data>
+  <data name="tool_bestiary_title" xml:space="preserve">
+    <value>베스티어리</value>
+  </data>
+  <data name="tool_brush_height_label" xml:space="preserve">
+    <value>높이</value>
+  </data>
+  <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
+    <value>정사각형 너비와 높이</value>
+  </data>
+  <data name="tool_brush_outline_thickness_label" xml:space="preserve">
+    <value>개요</value>
+  </data>
+  <data name="tool_brush_outline_tooltip" xml:space="preserve">
+    <value>토글 드로우 아웃라인 (방)</value>
+  </data>
+  <data name="tool_brush_shape_label" xml:space="preserve">
+    <value>형태</value>
+  </data>
+  <data name="tool_brush_title" xml:space="preserve">
+    <value>브러시</value>
+  </data>
+  <data name="tool_brush_width_label" xml:space="preserve">
+    <value>폭</value>
+  </data>
+  <data name="tool_clipboard_empty" xml:space="preserve">
+    <value>빈 클립보드</value>
+  </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>수출</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>플립 X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>플립 Y</value>
+  </data>
+  <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
+    <value>가짜 색상 이미지 가져오기</value>
+  </data>
+  <data name="tool_clipboard_importschematic" xml:space="preserve">
+    <value>회로도 또는 이미지 가져오기</value>
+  </data>
+  <data name="tool_clipboard_ispasteempty" xml:space="preserve">
+    <value>빈 타일 페이스트</value>
+  </data>
+  <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
+    <value>페이스트 액체</value>
+  </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>페이스트 스프라이트</value>
+  </data>
+  <data name="tool_clipboard_ispastetiles" xml:space="preserve">
+    <value>페이스트 타일</value>
+  </data>
+  <data name="tool_clipboard_ispastewalls" xml:space="preserve">
+    <value>페이스트 월즈</value>
+  </data>
+  <data name="tool_clipboard_ispastewire" xml:space="preserve">
+    <value>페이스트 와이어</value>
+  </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>페이스트</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>제거</value>
+  </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>기존 타일 교체</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>회전</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>냉동 생물군계 확산</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>적 난이도</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>적 난이도 활성화</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>스폰 속도 활성화</value>
+  </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>시간 속도 활성화</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>신 모드</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>사거리 증가</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>전력</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>얼어붙은 비</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>출현률</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>시간 동결</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>시간 속도</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>가치</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>프리즈 윈드</value>
+  </data>
+  <data name="tool_fill_title" xml:space="preserve">
+    <value>채우기</value>
+  </data>
+  <data name="tool_morph_label" xml:space="preserve">
+    <value>생물군계로의 변신</value>
+  </data>
+  <data name="tool_morph_title" xml:space="preserve">
+    <value>생물군계 변형</value>
+  </data>
+  <data name="tool_npc_add" xml:space="preserve">
+    <value>NPC 추가</value>
+  </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>NPC를 클릭하고 마우스로 위치를 설정하세요</value>
+  </data>
+  <data name="tool_npc_name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="tool_paint_actuator" xml:space="preserve">
+    <value>이 액추에이터는</value>
+  </data>
+  <data name="tool_paint_brickstyle" xml:space="preserve">
+    <value>벽돌 양식</value>
+  </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>코팅</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>에코</value>
+  </data>
+  <data name="tool_paint_extras" xml:space="preserve">
+    <value>부가 영상</value>
+  </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>일루미넌트</value>
+  </data>
+  <data name="tool_paint_inactive" xml:space="preserve">
+    <value>액추에이터/타일 비활성화</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>왼쪽을 향한 교차로 분기함을 추가하세요.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>분리 전역을 추가하세요.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>오른쪽을 향한 교차로 분기함(junction box)을 추가하세요.</value>
+  </data>
+  <data name="tool_paint_mask" xml:space="preserve">
+    <value>가면</value>
+  </data>
+  <data name="tool_paint_maskmode" xml:space="preserve">
+    <value>마스크 모드</value>
+  </data>
+  <data name="tool_paint_mode" xml:space="preserve">
+    <value>페인트 모드</value>
+  </data>
+  <data name="tool_paint_tile_title" xml:space="preserve">
+    <value>타일</value>
+  </data>
+  <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
+    <value>기존 트랙에 부스터를 추가하고, 이레이저와 함께 부스터만 제거하세요.</value>
+  </data>
+  <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
+    <value>해머를 사용해 선로 끝, 교차로, 부스터 방향을 수정하세요.</value>
+  </data>
+  <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
+    <value>기존 트랙에 압력판을 추가하고, 지우개와 함께 판만 제거하세요.</value>
+  </data>
+  <data name="tool_paint_wall_title" xml:space="preserve">
+    <value>벽</value>
+  </data>
+  <data name="tool_paint_wire_blue" xml:space="preserve">
+    <value>파란색</value>
+  </data>
+  <data name="tool_paint_wire_green" xml:space="preserve">
+    <value>그린</value>
+  </data>
+  <data name="tool_paint_wire_red" xml:space="preserve">
+    <value>빨간색</value>
+  </data>
+  <data name="tool_paint_wire_yellow" xml:space="preserve">
+    <value>노란색</value>
+  </data>
+  <data name="tool_paste_title" xml:space="preserve">
+    <value>페이스트</value>
+  </data>
+  <data name="tool_pencil_title" xml:space="preserve">
+    <value>연필</value>
+  </data>
+  <data name="tool_picker_title" xml:space="preserve">
+    <value>픽커 - 타일 색상 선택</value>
+  </data>
+  <data name="tool_point_title" xml:space="preserve">
+    <value>특별 관심 점수</value>
+  </data>
+  <data name="tool_sprite2_title" xml:space="preserve">
+    <value>스프라이트 플레이서</value>
+  </data>
+  <data name="tool_sprite_filter_button" xml:space="preserve">
+    <value>필터</value>
+  </data>
+  <data name="tool_sprite_filter_label" xml:space="preserve">
+    <value>필터:</value>
+  </data>
+  <data name="tool_sprite_style_label" xml:space="preserve">
+    <value>스타일:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>타일 유형 필터:</value>
+  </data>
+  <data name="tool_sprite_title" xml:space="preserve">
+    <value>스프라이트 플레이서 (OLD)</value>
+  </data>
+  <data name="tool_wp_adamantite" xml:space="preserve">
+    <value>아다만타이트 계층</value>
+  </data>
+  <data name="tool_wp_altars" xml:space="preserve">
+    <value>제단이 부서졌다</value>
+  </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>아포칼립스 (문 로드 스폰)</value>
+  </data>
+  <data name="tool_wp_bg_corrupt" xml:space="preserve">
+    <value>부패한 BG</value>
+  </data>
+  <data name="tool_wp_bg_crimson" xml:space="preserve">
+    <value>크림슨 BG</value>
+  </data>
+  <data name="tool_wp_bg_deepice" xml:space="preserve">
+    <value>딥 아이스 BG</value>
+  </data>
+  <data name="tool_wp_bg_deepjungle" xml:space="preserve">
+    <value>딥 정글 BG</value>
+  </data>
+  <data name="tool_wp_bg_desert" xml:space="preserve">
+    <value>사막 전투 부대</value>
+  </data>
+  <data name="tool_wp_bg_forest" xml:space="preserve">
+    <value>숲 BG</value>
+  </data>
+  <data name="tool_wp_bg_hallow" xml:space="preserve">
+    <value>할로우 BG</value>
+  </data>
+  <data name="tool_wp_bg_hell" xml:space="preserve">
+    <value>지옥 BG</value>
+  </data>
+  <data name="tool_wp_bg_jungle" xml:space="preserve">
+    <value>정글 BG</value>
+  </data>
+  <data name="tool_wp_bg_mushroom" xml:space="preserve">
+    <value>버섯 배드</value>
+  </data>
+  <data name="tool_wp_bg_ocean" xml:space="preserve">
+    <value>오션 BG</value>
+  </data>
+  <data name="tool_wp_bg_snow" xml:space="preserve">
+    <value>눈 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree2" xml:space="preserve">
+    <value>트리 2 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree3" xml:space="preserve">
+    <value>트리 3 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree4" xml:space="preserve">
+    <value>트리 4 BG</value>
+  </data>
+  <data name="tool_wp_bg_underworld" xml:space="preserve">
+    <value>언더월드 BG</value>
+  </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>사슴 꼬리</value>
+  </data>
+  <data name="tool_wp_boss_destroyer" xml:space="preserve">
+    <value>디스트로이어</value>
+  </data>
+  <data name="tool_wp_boss_downed" xml:space="preserve">
+    <value>보스 전락</value>
+  </data>
+  <data name="tool_wp_boss_dukefishron" xml:space="preserve">
+    <value>듀크 피슈론</value>
+  </data>
+  <data name="tool_wp_boss_eaterofworlds" xml:space="preserve">
+    <value>세계를 먹는 자</value>
+  </data>
+  <data name="tool_wp_boss_empressoflight" xml:space="preserve">
+    <value>빛의 황후</value>
+  </data>
+  <data name="tool_wp_boss_everscream" xml:space="preserve">
+    <value>에버스크림</value>
+  </data>
+  <data name="tool_wp_boss_eyeofcthulhu" xml:space="preserve">
+    <value>크툴루의 눈</value>
+  </data>
+  <data name="tool_wp_boss_flyingdutchman" xml:space="preserve">
+    <value>플라잉 더치맨</value>
+  </data>
+  <data name="tool_wp_boss_golem" xml:space="preserve">
+    <value>골렘</value>
+  </data>
+  <data name="tool_wp_boss_icequeen" xml:space="preserve">
+    <value>아이스 퀸</value>
+  </data>
+  <data name="tool_wp_boss_kingslime" xml:space="preserve">
+    <value>킹 슬라임</value>
+  </data>
+  <data name="tool_wp_boss_lunaticcultist" xml:space="preserve">
+    <value>광신 숭배자</value>
+  </data>
+  <data name="tool_wp_boss_moonlord" xml:space="preserve">
+    <value>문 로드</value>
+  </data>
+  <data name="tool_wp_boss_mourningwood" xml:space="preserve">
+    <value>애도의 나무</value>
+  </data>
+  <data name="tool_wp_boss_nebulapillar" xml:space="preserve">
+    <value>성운 기둥</value>
+  </data>
+  <data name="tool_wp_boss_plantera" xml:space="preserve">
+    <value>플랜테라</value>
+  </data>
+  <data name="tool_wp_boss_pumpking" xml:space="preserve">
+    <value>펌킹</value>
+  </data>
+  <data name="tool_wp_boss_queenbee" xml:space="preserve">
+    <value>퀸 비</value>
+  </data>
+  <data name="tool_wp_boss_queenslime" xml:space="preserve">
+    <value>퀸 슬라임</value>
+  </data>
+  <data name="tool_wp_boss_santank1" xml:space="preserve">
+    <value>산타 NK1</value>
+  </data>
+  <data name="tool_wp_boss_skeletron" xml:space="preserve">
+    <value>스켈레트론</value>
+  </data>
+  <data name="tool_wp_boss_skeletronprime" xml:space="preserve">
+    <value>스켈레트론 프라임</value>
+  </data>
+  <data name="tool_wp_boss_solarpillar" xml:space="preserve">
+    <value>태양 기둥</value>
+  </data>
+  <data name="tool_wp_boss_stardustpillar" xml:space="preserve">
+    <value>스타더스트 필러</value>
+  </data>
+  <data name="tool_wp_boss_twins" xml:space="preserve">
+    <value>쌍둥이</value>
+  </data>
+  <data name="tool_wp_boss_vortexpillar" xml:space="preserve">
+    <value>소용돌이 기둥</value>
+  </data>
+  <data name="tool_wp_boss_walloffflesh" xml:space="preserve">
+    <value>살의 벽</value>
+  </data>
+  <data name="tool_wp_cavern_level" xml:space="preserve">
+    <value>동굴 레벨</value>
+  </data>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>중국 세계 버전</value>
+  </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>클라우드 BG 활성</value>
+  </data>
+  <data name="tool_wp_cobalt" xml:space="preserve">
+    <value>코발트 티어</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>전투 서적</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>전투 북 2권</value>
+  </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>콘솔 월드 버전</value>
+  </data>
+  <data name="tool_wp_copper" xml:space="preserve">
+    <value>구리층</value>
+  </data>
+  <data name="tool_wp_crimson" xml:space="preserve">
+    <value>크림슨</value>
+  </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>컬티스트 딜레이</value>
+  </data>
+  <data name="tool_wp_difficulty" xml:space="preserve">
+    <value>난이도</value>
+  </data>
+  <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
+    <value>하드모드</value>
+  </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>세상을 굶주리지 마</value>
+  </data>
+  <data name="tool_wp_drunk" xml:space="preserve">
+    <value>드렁크 월드</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>던전 포인트</value>
+  </data>
+  <data name="tool_wp_event" xml:space="preserve">
+    <value>행사</value>
+  </data>
+  <data name="tool_wp_gamemode" xml:space="preserve">
+    <value>게임 모드</value>
+  </data>
+  <data name="tool_wp_gold" xml:space="preserve">
+    <value>골드 티어</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>더 워디를 위해 (FTW)</value>
+  </data>
+  <data name="tool_wp_guid" xml:space="preserve">
+    <value>세계 가이드</value>
+  </data>
+  <data name="tool_wp_hardmode" xml:space="preserve">
+    <value>하드모드</value>
+  </data>
+  <data name="tool_wp_holiday" xml:space="preserve">
+    <value>포스 홀리데이</value>
+  </data>
+  <data name="tool_wp_holiday_halloween" xml:space="preserve">
+    <value>할로윈</value>
+  </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>포스 할로윈 포에버</value>
+  </data>
+  <data name="tool_wp_holiday_xmas" xml:space="preserve">
+    <value>엑스마스</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>포스 크리스마스 포에버</value>
+  </data>
+  <data name="tool_wp_id" xml:space="preserve">
+    <value>월드 ID</value>
+  </data>
+  <data name="tool_wp_invasion" xml:space="preserve">
+    <value>침공</value>
+  </data>
+  <data name="tool_wp_invasion_frostlegion" xml:space="preserve">
+    <value>프로스트 군단</value>
+  </data>
+  <data name="tool_wp_invasion_goblinarmy" xml:space="preserve">
+    <value>고블린 군대</value>
+  </data>
+  <data name="tool_wp_invasion_martianmadness" xml:space="preserve">
+    <value>화성 광기</value>
+  </data>
+  <data name="tool_wp_invasion_pirateinvasion" xml:space="preserve">
+    <value>해적 침공</value>
+  </data>
+  <data name="tool_wp_invasion_size" xml:space="preserve">
+    <value>침공 규모</value>
+  </data>
+  <data name="tool_wp_invasion_type" xml:space="preserve">
+    <value>침공 유형</value>
+  </data>
+  <data name="tool_wp_invasion_x" xml:space="preserve">
+    <value>인베이전 X 타겟</value>
+  </data>
+  <data name="tool_wp_iron" xml:space="preserve">
+    <value>아이언 티어</value>
+  </data>
+  <data name="tool_wp_journeysend" xml:space="preserve">
+    <value>여정의 끝</value>
+  </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>등불의 밤</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>랜턴 나이트 쿨다운</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>랜턴 나이트 진짜</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>랜턴 나이트 매뉴얼</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>다음 랜턴 나이트는 진짜다</value>
+  </data>
+  <data name="tool_wp_meteor" xml:space="preserve">
+    <value>메테오</value>
+  </data>
+  <data name="tool_wp_meteor_spawn" xml:space="preserve">
+    <value>스폰 메테오</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>달시계 쿨타임</value>
+  </data>
+  <data name="tool_wp_moon_blood" xml:space="preserve">
+    <value>블러드 문</value>
+  </data>
+  <data name="tool_wp_moon_eclipse" xml:space="preserve">
+    <value>이클립스는</value>
+  </data>
+  <data name="tool_wp_moon_phase" xml:space="preserve">
+    <value>달 위상</value>
+  </data>
+  <data name="tool_wp_moon_style" xml:space="preserve">
+    <value>문스타일</value>
+  </data>
+  <data name="tool_wp_mythril" xml:space="preserve">
+    <value>미스릴 티어</value>
+  </data>
+  <data name="tool_wp_name" xml:space="preserve">
+    <value>월드 네임</value>
+  </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>비즈 월드가 아니야</value>
+  </data>
+  <data name="tool_wp_npc_angler" xml:space="preserve">
+    <value>낚시꾼</value>
+  </data>
+  <data name="tool_wp_npc_angler_mission" xml:space="preserve">
+    <value>낚시꾼 미션</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>무기상</value>
+  </data>
+  <data name="tool_wp_npc_bought" xml:space="preserve">
+    <value>구매한 NPC</value>
+  </data>
+  <data name="tool_wp_npc_bunny" xml:space="preserve">
+    <value>토끼</value>
+  </data>
+  <data name="tool_wp_npc_cat" xml:space="preserve">
+    <value>고양이</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>폭파 기사</value>
+  </data>
+  <data name="tool_wp_npc_dog" xml:space="preserve">
+    <value>개</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>다이 트레이더</value>
+  </data>
+  <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
+    <value>고블린 땜장이</value>
+  </data>
+  <data name="tool_wp_npc_golfer" xml:space="preserve">
+    <value>골퍼</value>
+  </data>
+  <data name="tool_wp_npc_mechanic" xml:space="preserve">
+    <value>정비사</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>상인</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>간호사</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>파티 걸</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>공주</value>
+  </data>
+  <data name="tool_wp_npc_saved" xml:space="preserve">
+    <value>구출된 NPC</value>
+  </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>구출된 NPC</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>블루 슬라임</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>구리 점액</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>그린 슬라임</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>올드 슬라임</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>퍼플 슬라임</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>무지개 슬라임</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>붉은 슬라임</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>노란 슬라임</value>
+  </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC 스폰 잠금 해제</value>
+  </data>
+  <data name="tool_wp_npc_stylist" xml:space="preserve">
+    <value>스타일리스트</value>
+  </data>
+  <data name="tool_wp_npc_tavernkeep" xml:space="preserve">
+    <value>선술집</value>
+  </data>
+  <data name="tool_wp_npc_taxcollector" xml:space="preserve">
+    <value>세금 징수관</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>트러플</value>
+  </data>
+  <data name="tool_wp_npc_wizard" xml:space="preserve">
+    <value>마법사</value>
+  </data>
+  <data name="tool_wp_oldonesarmy" xml:space="preserve">
+    <value>올드 원의 군대</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t1" xml:space="preserve">
+    <value>1단계</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t2" xml:space="preserve">
+    <value>2단계</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t3" xml:space="preserve">
+    <value>3단계</value>
+  </data>
+  <data name="tool_wp_orbs" xml:space="preserve">
+    <value>구슬이 부서졌다</value>
+  </data>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>파운의 당</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>행상인의 가방</value>
+  </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>기둥 활동</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>성운 기둥</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>태양 기둥</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>스타더스트 필러</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>소용돌이 기둥</value>
+  </data>
+  <data name="tool_wp_prehardmode" xml:space="preserve">
+    <value>하드모드 이전</value>
+  </data>
+  <data name="tool_wp_rain" xml:space="preserve">
+    <value>비</value>
+  </data>
+  <data name="tool_wp_rain_active" xml:space="preserve">
+    <value>비가 내리고 있어요</value>
+  </data>
+  <data name="tool_wp_rain_max" xml:space="preserve">
+    <value>맥스 레인</value>
+  </data>
+  <data name="tool_wp_rain_slime" xml:space="preserve">
+    <value>슬라임 레인 타임</value>
+  </data>
+  <data name="tool_wp_rain_time" xml:space="preserve">
+    <value>레인 타임</value>
+  </data>
+  <data name="tool_wp_revision" xml:space="preserve">
+    <value>개정</value>
+  </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>안전 값만 사용하세요</value>
+  </data>
+  <data name="tool_wp_sandstorm" xml:space="preserve">
+    <value>모래폭풍</value>
+  </data>
+  <data name="tool_wp_sandstorm_active" xml:space="preserve">
+    <value>폭풍이 몰아치고 있다</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity" xml:space="preserve">
+    <value>심각도</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
+    <value>경각성</value>
+  </data>
+  <data name="tool_wp_sandstorm_time" xml:space="preserve">
+    <value>남은 시간</value>
+  </data>
+  <data name="tool_wp_seed" xml:space="preserve">
+    <value>시드</value>
+  </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>듀얼 던전</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>감염자</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>함정 금지</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>리믹스</value>
+  </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>스카이블록</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>뱀파이어</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>제니스</value>
+  </data>
+  <data name="tool_wp_silver" xml:space="preserve">
+    <value>실버 티어</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>스폰 포인트</value>
+  </data>
+  <data name="tool_wp_style_cavestyles" xml:space="preserve">
+    <value>동굴 양식</value>
+  </data>
+  <data name="tool_wp_style_cavex0" xml:space="preserve">
+    <value>동굴 X 0</value>
+  </data>
+  <data name="tool_wp_style_cavex1" xml:space="preserve">
+    <value>동굴 X 1</value>
+  </data>
+  <data name="tool_wp_style_cavex2" xml:space="preserve">
+    <value>동굴 X 2</value>
+  </data>
+  <data name="tool_wp_style_treestyles" xml:space="preserve">
+    <value>나무 스타일</value>
+  </data>
+  <data name="tool_wp_style_treetop_1" xml:space="preserve">
+    <value>트리 1 꼭대기</value>
+  </data>
+  <data name="tool_wp_style_treetop_2" xml:space="preserve">
+    <value>트리 2 꼭대기</value>
+  </data>
+  <data name="tool_wp_style_treetop_3" xml:space="preserve">
+    <value>트리 3 꼭대기</value>
+  </data>
+  <data name="tool_wp_style_treetop_4" xml:space="preserve">
+    <value>트리 4 꼭대기</value>
+  </data>
+  <data name="tool_wp_style_treex0" xml:space="preserve">
+    <value>트리 X 0</value>
+  </data>
+  <data name="tool_wp_style_treex1" xml:space="preserve">
+    <value>트리 X 1</value>
+  </data>
+  <data name="tool_wp_style_treex2" xml:space="preserve">
+    <value>트리 X 2</value>
+  </data>
+  <data name="tool_wp_surface_level" xml:space="preserve">
+    <value>표면 수준</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>팀 스폰</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>팀 기반 스폰 활성화</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>팀 스폰 위치</value>
+  </data>
+  <data name="tool_wp_tenthanniversary" xml:space="preserve">
+    <value>10주년 기념</value>
+  </data>
+  <data name="tool_wp_time_day" xml:space="preserve">
+    <value>낮 시간이야</value>
+  </data>
+  <data name="tool_wp_time_label" xml:space="preserve">
+    <value>시간</value>
+  </data>
+  <data name="tool_wp_time_sundial" xml:space="preserve">
+    <value>선다이얼 사용</value>
+  </data>
+  <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
+    <value>해시계 쿨타임</value>
+  </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>안전하지 않은 가치 허용</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>문다이얼을 사용하세요</value>
+  </data>
+  <data name="tool_wp_weather_clouds" xml:space="preserve">
+    <value>숫자 구름</value>
+  </data>
+  <data name="tool_wp_weather_windspeed" xml:space="preserve">
+    <value>풍속</value>
+  </data>
+  <data name="TrackMode_Booster" xml:space="preserve">
+    <value>부스터</value>
+  </data>
+  <data name="TrackMode_Hammer" xml:space="preserve">
+    <value>망치</value>
+  </data>
+  <data name="TrackMode_Pressure" xml:space="preserve">
+    <value>압력</value>
+  </data>
+  <data name="TrackMode_Track" xml:space="preserve">
+    <value>트랙</value>
+  </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>파란색</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>그린</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>꺼</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>빨간색</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>노란색</value>
+  </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>배경 갭 수정</value>
+  </data>
+</root>

@@ -1,0 +1,1768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="banner_category" xml:space="preserve">
+    <value>カテゴリ:</value>
+  </data>
+  <data name="banner_count" xml:space="preserve">
+    <value>伯爵</value>
+  </data>
+  <data name="banner_filter" xml:space="preserve">
+    <value>フィルター:</value>
+  </data>
+  <data name="banner_import" xml:space="preserve">
+    <value>輸入</value>
+  </data>
+  <data name="banner_kills" xml:space="preserve">
+    <value>殺害</value>
+  </data>
+  <data name="banner_maxout" xml:space="preserve">
+    <value>マックスアウト</value>
+  </data>
+  <data name="banner_reset" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="banner_save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>チャット</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>敗北</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>負荷</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>近い</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>トーク</value>
+  </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>アップデート</value>
+  </data>
+  <data name="BrickStyle_Full" xml:space="preserve">
+    <value>フルブリック</value>
+  </data>
+  <data name="BrickStyle_HalfBrick" xml:space="preserve">
+    <value>ハーフブリック</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
+    <value>左下の斜面</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
+    <value>右下の斜面</value>
+  </data>
+  <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
+    <value>左上斜面</value>
+  </data>
+  <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
+    <value>右上斜面</value>
+  </data>
+  <data name="BrushShape_Left" xml:space="preserve">
+    <value>斜め左翼</value>
+  </data>
+  <data name="BrushShape_Right" xml:space="preserve">
+    <value>斜め右</value>
+  </data>
+  <data name="BrushShape_Round" xml:space="preserve">
+    <value>楕円</value>
+  </data>
+  <data name="BrushShape_Square" xml:space="preserve">
+    <value>長方形</value>
+  </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>マックス</value>
+  </data>
+  <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
+    <value>ディレクトリにはテラリアのコンテンツは含まれていないようです。
+新しいフォルダを選ぶには再試行ボタンを押すか、テラリアパスとして{0}を使うにはキャンセルしてください。</value>
+  </data>
+  <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
+    <value>テラリアのコンテンツが見つかりません</value>
+  </data>
+  <data name="editor_tabs_analysis" xml:space="preserve">
+    <value>分析</value>
+  </data>
+  <data name="editor_tabs_banners" xml:space="preserve">
+    <value>バナー</value>
+  </data>
+  <data name="editor_tabs_clipboard" xml:space="preserve">
+    <value>クリップボード</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>クリエイティブ・パワーズ</value>
+  </data>
+  <data name="editor_tabs_npc" xml:space="preserve">
+    <value>NPCデータ</value>
+  </data>
+  <data name="editor_tabs_special" xml:space="preserve">
+    <value>スペシャルタイル</value>
+  </data>
+  <data name="editor_tabs_sprites" xml:space="preserve">
+    <value>スプライト</value>
+  </data>
+  <data name="editor_tabs_tally" xml:space="preserve">
+    <value>動物誌</value>
+  </data>
+  <data name="editor_tabs_tileentities" xml:space="preserve">
+    <value>タイル・エンティティ</value>
+  </data>
+  <data name="editor_tabs_worldproperties" xml:space="preserve">
+    <value>世界の性質</value>
+  </data>
+  <data name="editor_utilities_label" xml:space="preserve">
+    <value>ユーティリティ</value>
+  </data>
+  <data name="global_enjoytedit" xml:space="preserve">
+    <value>TEditを楽しんでますか?応援してください!</value>
+  </data>
+  <data name="HalfBlockMode_HalfBLock" xml:space="preserve">
+    <value>ハーフブロック</value>
+  </data>
+  <data name="HalfBlockMode_NoAction" xml:space="preserve">
+    <value>変化なし</value>
+  </data>
+  <data name="HalfBlockMode_RampLeft" xml:space="preserve">
+    <value>ランプ左</value>
+  </data>
+  <data name="HalfBlockMode_RampRight" xml:space="preserve">
+    <value>ランプ右</value>
+  </data>
+  <data name="HalfBlockMode_Solid" xml:space="preserve">
+    <value>セット・ソリッド</value>
+  </data>
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
+    <value>左向き</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>全くありません</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>ノーマル</value>
+  </data>
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
+    <value>右向き</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>ジャンクションボックス:</value>
+  </data>
+  <data name="LiquidType_Honey" xml:space="preserve">
+    <value>ハニー</value>
+  </data>
+  <data name="LiquidType_Lava" xml:space="preserve">
+    <value>溶岩</value>
+  </data>
+  <data name="LiquidType_None" xml:space="preserve">
+    <value>液体はなし</value>
+  </data>
+  <data name="LiquidType_Water" xml:space="preserve">
+    <value>水</value>
+  </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>液体の量:</value>
+  </data>
+  <data name="MaskMode_Empty" xml:space="preserve">
+    <value>編集:空</value>
+  </data>
+  <data name="MaskMode_Match" xml:space="preserve">
+    <value>編集:マッチング</value>
+  </data>
+  <data name="MaskMode_NotMatching" xml:space="preserve">
+    <value>編集:マッチしていません</value>
+  </data>
+  <data name="MaskMode_Off" xml:space="preserve">
+    <value>マスクを無効化</value>
+  </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>最初の項目をコピーしてください</value>
+  </data>
+  <data name="menu_edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="menu_edit_copy" xml:space="preserve">
+    <value>了解</value>
+  </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>クロップワールド</value>
+  </data>
+  <data name="menu_edit_delete" xml:space="preserve">
+    <value>選択を削除</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>ワールドを拡大</value>
+  </data>
+  <data name="menu_edit_paste" xml:space="preserve">
+    <value>ペースト</value>
+  </data>
+  <data name="menu_edit_redo" xml:space="preserve">
+    <value>やり直し</value>
+  </data>
+  <data name="menu_edit_undo" xml:space="preserve">
+    <value>元に戻す</value>
+  </data>
+  <data name="menu_file" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
+  <data name="menu_file_autosave" xml:space="preserve">
+    <value>オートセーブを有効にする</value>
+  </data>
+  <data name="menu_file_autoupdate" xml:space="preserve">
+    <value>起動時の更新を確認してください</value>
+  </data>
+  <data name="menu_file_exit" xml:space="preserve">
+    <value>退場</value>
+  </data>
+  <data name="menu_file_new" xml:space="preserve">
+    <value>新作</value>
+  </data>
+  <data name="menu_file_open" xml:space="preserve">
+    <value>開けて</value>
+  </data>
+  <data name="menu_file_save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="menu_file_saveas" xml:space="preserve">
+    <value>保存ファイル</value>
+  </data>
+  <data name="menu_file_saveasversion" xml:space="preserve">
+    <value>バージョンとして保存</value>
+  </data>
+  <data name="menu_file_update" xml:space="preserve">
+    <value>今すぐ更新をチェックしてください</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>応募してください</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>背景モード</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>習慣</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>無効化</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>フィルタークリップボード</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>フィルターモード</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>グレースケール</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>液体</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>スプライト</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>タイル</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>壁</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>ワイヤー</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>隠れて</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>ノーマル</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>全てチェック</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>すべてチェックを外す</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>アドバンスドフィルター</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>透明</value>
+  </data>
+  <data name="menu_help" xml:space="preserve">
+    <value>助けて</value>
+  </data>
+  <data name="menu_help_about" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="menu_help_log" xml:space="preserve">
+    <value>ログファイルを開く</value>
+  </data>
+  <data name="menu_help_settings" xml:space="preserve">
+    <value>設定...</value>
+  </data>
+  <data name="menu_help_update" xml:space="preserve">
+    <value>アップデート</value>
+  </data>
+  <data name="menu_help_wiki" xml:space="preserve">
+    <value>ウィキ</value>
+  </data>
+  <data name="menu_language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>ドイツ語</value>
+  </data>
+  <data name="menu_language_en" xml:space="preserve">
+    <value>英語</value>
+  </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>スペイン語</value>
+  </data>
+  <data name="menu_language_fr" xml:space="preserve">
+    <value>フランス</value>
+  </data>
+  <data name="menu_language_it" xml:space="preserve">
+    <value>イタリアーノ</value>
+  </data>
+  <data name="menu_language_ja" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="menu_language_ko" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="menu_language_pl" xml:space="preserve">
+    <value>ポルスキ</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>ポルトゲ</value>
+  </data>
+  <data name="menu_language_ru" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="menu_language_zh" xml:space="preserve">
+    <value>中文 (简体)</value>
+  </data>
+  <data name="menu_language_zh_hant" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="menu_layers" xml:space="preserve">
+    <value>層</value>
+  </data>
+  <data name="menu_layers_actuators" xml:space="preserve">
+    <value>アクチュエーター</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="menu_layers_grid" xml:space="preserve">
+    <value>レイアウトグリッド</value>
+  </data>
+  <data name="menu_layers_liquid" xml:space="preserve">
+    <value>液体</value>
+  </data>
+  <data name="menu_layers_points" xml:space="preserve">
+    <value>見どころ</value>
+  </data>
+  <data name="menu_layers_textures" xml:space="preserve">
+    <value>テクスチャ</value>
+  </data>
+  <data name="menu_layers_tiles" xml:space="preserve">
+    <value>タイル</value>
+  </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>リアルな色を使いましょう</value>
+  </data>
+  <data name="menu_layers_walls" xml:space="preserve">
+    <value>壁</value>
+  </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>全線</value>
+  </data>
+  <data name="menu_layers_wire_blue" xml:space="preserve">
+    <value>ブルーワイヤー</value>
+  </data>
+  <data name="menu_layers_wire_green" xml:space="preserve">
+    <value>グリーンワイヤー</value>
+  </data>
+  <data name="menu_layers_wire_red" xml:space="preserve">
+    <value>レッドワイヤー</value>
+  </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>ワイヤートランスペアレンシー</value>
+  </data>
+  <data name="menu_layers_wire_yellow" xml:space="preserve">
+    <value>イエローワイヤー</value>
+  </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>すべてのスロットに貼り付けてください</value>
+  </data>
+  <data name="menu_plugins" xml:space="preserve">
+    <value>プラグイン</value>
+  </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>エラー報告を有効にする</value>
+  </data>
+  <data name="menu_toolbar_zoom_in" xml:space="preserve">
+    <value>ズームイン</value>
+  </data>
+  <data name="menu_toolbar_zoom_out" xml:space="preserve">
+    <value>ズームアウト</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>全フレームを移動</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>移動量(フレーム数)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>わかった</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>リストア</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>選定フレーム</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>手動UVを全てに設定</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>セット・バリューズ</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>UVエディター</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>再スタートが必要です</value>
+  </data>
+  <data name="MorphBiome_Corruption" xml:space="preserve">
+    <value>腐敗</value>
+  </data>
+  <data name="MorphBiome_Crimson" xml:space="preserve">
+    <value>クリムゾン</value>
+  </data>
+  <data name="MorphBiome_Custom" xml:space="preserve">
+    <value>習慣</value>
+  </data>
+  <data name="MorphBiome_Desert" xml:space="preserve">
+    <value>砂漠</value>
+  </data>
+  <data name="MorphBiome_Hallow" xml:space="preserve">
+    <value>ハロー</value>
+  </data>
+  <data name="MorphBiome_Jungle" xml:space="preserve">
+    <value>ジャングル</value>
+  </data>
+  <data name="MorphBiome_Purify" xml:space="preserve">
+    <value>浄化</value>
+  </data>
+  <data name="PaintMode_Liquid" xml:space="preserve">
+    <value>液体</value>
+  </data>
+  <data name="PaintMode_TileAndWall" xml:space="preserve">
+    <value>タイル/壁</value>
+  </data>
+  <data name="PaintMode_Track" xml:space="preserve">
+    <value>陸上競技</value>
+  </data>
+  <data name="PaintMode_Wire" xml:space="preserve">
+    <value>ワイヤー</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>オートセーブを有効にする</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>定期的に世界を自動で救う</value>
+  </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>層</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>道</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>プライバシー</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>レンダリング</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>更新をチェックしてください</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>起動時に新しいバージョンを自動的にチェックします</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>エラー報告を有効にする</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>安定性向上のために匿名のエラー報告を送信しましょう</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>アプリケーションの表示言語を設定する</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>リアルな色を使いましょう</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>テクスチャサンプリングカラーでタイルをレンダリングする(再起動が必要)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>検索設定...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>ショーアクチュエータ</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>トグルアクチュエータの可視性</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>全線表示</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>すべての配線層を一度に切り替えてください</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>番組の背景</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>背景レンダリングのトグル</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>ブルーワイヤーズをショー</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>青いワイヤーの可視性を切り替える</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>ショーコーティング</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>コーティング層の可視性を切り替える</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>グリーンワイヤーズをショー</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>グリーンワイヤーの可視性を切り替えます</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>ショーグリッド</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>トグルグリッドオーバーレイ</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>ショーリキッド</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>液体層の可視性を切り替える</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>番組ニュース</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>ニュースやアナウンスをエディターで表示</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>ショーポイント</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>スポーン/NPCポイントマーカーを切り替える</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>赤いワイヤーズをショー</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>赤線の可視性を切り替える</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>テクスチャ表示</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>タイルテクスチャレンダリングのトグル</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>ショータイル</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>タイルレイヤーの可視化を切り替える</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>ショーウォール</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>壁層の可視性を切り替える</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>黄色いワイヤーを見せて</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>黄色線の可視性を切り替える</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>スプライトサムネイルサイズ</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>スプライトピッカーにおけるスプライトサムネイルのサイズ</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>テラリアのコンテンツパス</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>テクスチャ読み込み用のTerrariaのコンテンツフォルダへのパス</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>テクスチャ可視ズームレベル</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>タイルテクスチャが見えるようになるまでの最小ズームレベル</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>ワイヤートランスペアレンシー</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>透過でワイヤーをレンダリングする</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>バナー</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>検索・置き換え</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>タイルエンティティ</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>世界の性質</value>
+  </data>
+  <data name="specialtile_button_cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="specialtile_button_save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="specialtile_label_acc1" xml:space="preserve">
+    <value>ACC1</value>
+  </data>
+  <data name="specialtile_label_acc2" xml:space="preserve">
+    <value>Acc2</value>
+  </data>
+  <data name="specialtile_label_acc3" xml:space="preserve">
+    <value>ACC3</value>
+  </data>
+  <data name="specialtile_label_acc4" xml:space="preserve">
+    <value>acc4</value>
+  </data>
+  <data name="specialtile_label_acc5" xml:space="preserve">
+    <value>acc5</value>
+  </data>
+  <data name="specialtile_label_acc6" xml:space="preserve">
+    <value>acc6</value>
+  </data>
+  <data name="specialtile_label_body" xml:space="preserve">
+    <value>本文</value>
+  </data>
+  <data name="specialtile_label_chestcontents" xml:space="preserve">
+    <value>箱の中身</value>
+  </data>
+  <data name="specialtile_label_chestname" xml:space="preserve">
+    <value>チェストネーム</value>
+  </data>
+  <data name="specialtile_label_chesttype" xml:space="preserve">
+    <value>胸部タイプ</value>
+  </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>クリッター</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>アイテムフラスコ</value>
+  </data>
+  <data name="specialtile_label_editselecteditem" xml:space="preserve">
+    <value>選択項目を編集</value>
+  </data>
+  <data name="specialtile_label_head" xml:space="preserve">
+    <value>ヘッド</value>
+  </data>
+  <data name="specialtile_label_itemframecontents" xml:space="preserve">
+    <value>アイテムフレームの内容</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>凧</value>
+  </data>
+  <data name="specialtile_label_legs" xml:space="preserve">
+    <value>脚</value>
+  </data>
+  <data name="specialtile_label_mannequin" xml:space="preserve">
+    <value>マネキン</value>
+  </data>
+  <data name="specialtile_label_mannequinclothing" xml:space="preserve">
+    <value>マネキン衣装</value>
+  </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>マウント</value>
+  </data>
+  <data name="specialtile_label_platecontents" xml:space="preserve">
+    <value>プレートの内容物</value>
+  </data>
+  <data name="specialtile_label_signtext" xml:space="preserve">
+    <value>署名文</value>
+  </data>
+  <data name="specialtile_label_signtype" xml:space="preserve">
+    <value>標識の種類</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>武器</value>
+  </data>
+  <data name="specialtile_label_weaponrack" xml:space="preserve">
+    <value>武器ラックアイテム</value>
+  </data>
+  <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
+    <value>電球</value>
+  </data>
+  <data name="specialtile_label_xmas_deco" xml:space="preserve">
+    <value>クリスマスツリーの飾り付け</value>
+  </data>
+  <data name="specialtile_label_xmas_garland" xml:space="preserve">
+    <value>ガーランド</value>
+  </data>
+  <data name="specialtile_label_xmas_lights" xml:space="preserve">
+    <value>照明</value>
+  </data>
+  <data name="specialtile_label_xmas_star" xml:space="preserve">
+    <value>スター</value>
+  </data>
+  <data name="specialtile_tooltip" xml:space="preserve">
+    <value>矢印ツールで看板、チェスト、マネキン、武器ラック、アイテムフレーム、クリスマスツリーを右クリックします。</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>自動車</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>バイオーム:</value>
+  </data>
+  <data name="sprite_filter_button" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="sprite_filter_label" xml:space="preserve">
+    <value>フィルター:</value>
+  </data>
+  <data name="sprite_styletype" xml:space="preserve">
+    <value>スタイル</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>タイルタイプフィルター</value>
+  </data>
+  <data name="statusbar_extra_label" xml:space="preserve">
+    <value>特典</value>
+  </data>
+  <data name="statusbar_frame_label" xml:space="preserve">
+    <value>フレーム</value>
+  </data>
+  <data name="statusbar_paint_label" xml:space="preserve">
+    <value>塗料</value>
+  </data>
+  <data name="statusbar_position_label" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="statusbar_selection_label" xml:space="preserve">
+    <value>選考</value>
+  </data>
+  <data name="statusbar_tile_label" xml:space="preserve">
+    <value>タイル</value>
+  </data>
+  <data name="statusbar_wall_label" xml:space="preserve">
+    <value>壁</value>
+  </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>動物誌</value>
+  </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>ブルーチームのスポーン</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>グリーンチームのスポーン</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>ピンクチームのスポーン</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>レッドチームの出現</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>ホワイトチームのスポーン</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>イエローチームのスポーン</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEditは安定性向上のために匿名のエラー報告を送信できます。
+
+収集されるもの:
+  ・エラー詳細(例外タイプおよびスタックトレース)
+  • アプリバージョンおよびOSバージョン
+
+収集されないもの:
+  ・個人情報やファイル経路の禁止
+  • 使用追跡や指紋採取がない
+  • 送信前にすべてのパスが難読化されています
+
+エラーレポートを有効にしたいですか?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>TEditエラー報告</value>
+  </data>
+  <data name="tool_analyze_analyze_button" xml:space="preserve">
+    <value>分析</value>
+  </data>
+  <data name="tool_analyze_save" xml:space="preserve">
+    <value>セーブ分析</value>
+  </data>
+  <data name="tool_analyze_save_button" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="tool_analyze_title" xml:space="preserve">
+    <value>世界分析</value>
+  </data>
+  <data name="tool_arrow_title" xml:space="preserve">
+    <value>矢</value>
+  </data>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="tool_bestiary_import" xml:space="preserve">
+    <value>輸入</value>
+  </data>
+  <data name="tool_bestiary_save" xml:space="preserve">
+    <value>セーブ・ベスティアリー</value>
+  </data>
+  <data name="tool_bestiary_scan" xml:space="preserve">
+    <value>スキャン</value>
+  </data>
+  <data name="tool_bestiary_title" xml:space="preserve">
+    <value>動物誌</value>
+  </data>
+  <data name="tool_brush_height_label" xml:space="preserve">
+    <value>高さ</value>
+  </data>
+  <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
+    <value>正方形の幅と高さ</value>
+  </data>
+  <data name="tool_brush_outline_thickness_label" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="tool_brush_outline_tooltip" xml:space="preserve">
+    <value>トグルドローアウトライン(部屋)</value>
+  </data>
+  <data name="tool_brush_shape_label" xml:space="preserve">
+    <value>形状</value>
+  </data>
+  <data name="tool_brush_title" xml:space="preserve">
+    <value>ブラシ</value>
+  </data>
+  <data name="tool_brush_width_label" xml:space="preserve">
+    <value>幅</value>
+  </data>
+  <data name="tool_clipboard_empty" xml:space="preserve">
+    <value>空のクリップボード</value>
+  </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>輸出</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>フリップX</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>フリップY</value>
+  </data>
+  <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
+    <value>偽色画像のインポート</value>
+  </data>
+  <data name="tool_clipboard_importschematic" xml:space="preserve">
+    <value>回路図または画像のインポート</value>
+  </data>
+  <data name="tool_clipboard_ispasteempty" xml:space="preserve">
+    <value>空のタイルを貼り付ける</value>
+  </data>
+  <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
+    <value>ペーストリキッド</value>
+  </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>ペーストスプライト</value>
+  </data>
+  <data name="tool_clipboard_ispastetiles" xml:space="preserve">
+    <value>ペーストタイル</value>
+  </data>
+  <data name="tool_clipboard_ispastewalls" xml:space="preserve">
+    <value>ペーストウォール</value>
+  </data>
+  <data name="tool_clipboard_ispastewire" xml:space="preserve">
+    <value>ペーストワイヤー</value>
+  </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>ペースト</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>既存のタイルの交換</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>回転</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>凍結バイオーム拡散</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>敵の難易度</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>敵の難易度を有効にする</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>スポーン率を有効にする</value>
+  </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>タイムスピードを有効にする</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>ゴッドモード</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>射程を拡大する</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>パワー</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>フリーズレイン</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>スポーン率</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>フリーズタイム</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>時間速度</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>価値</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>フリーズ・ウィンド</value>
+  </data>
+  <data name="tool_fill_title" xml:space="preserve">
+    <value>埋め立て</value>
+  </data>
+  <data name="tool_morph_label" xml:space="preserve">
+    <value>バイオームへの変形</value>
+  </data>
+  <data name="tool_morph_title" xml:space="preserve">
+    <value>バイオーム・モーフ</value>
+  </data>
+  <data name="tool_npc_add" xml:space="preserve">
+    <value>NPCを追加</value>
+  </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>NPCをクリックしてマウスで位置を設定します</value>
+  </data>
+  <data name="tool_npc_name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="tool_paint_actuator" xml:space="preserve">
+    <value>アクチュエータは</value>
+  </data>
+  <data name="tool_paint_brickstyle" xml:space="preserve">
+    <value>レンガ様式</value>
+  </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>コーティング</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>エコー</value>
+  </data>
+  <data name="tool_paint_extras" xml:space="preserve">
+    <value>特典</value>
+  </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>イルミュラント</value>
+  </data>
+  <data name="tool_paint_inactive" xml:space="preserve">
+    <value>アクチュエーター/タイルの非アクティブ</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>左向きの交差点接続ボックスを追加してください。</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>デフォルト接続箱を追加してください。</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>右向きの交差点接続ボックスを追加してください。</value>
+  </data>
+  <data name="tool_paint_mask" xml:space="preserve">
+    <value>マスク</value>
+  </data>
+  <data name="tool_paint_maskmode" xml:space="preserve">
+    <value>マスクモード</value>
+  </data>
+  <data name="tool_paint_mode" xml:space="preserve">
+    <value>ペイントモード</value>
+  </data>
+  <data name="tool_paint_tile_title" xml:space="preserve">
+    <value>タイル</value>
+  </data>
+  <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
+    <value>既存のトラックにブースターを追加し、イレーサーでブースターだけを外す。</value>
+  </data>
+  <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
+    <value>Hammerを使って線路の端、交差点、ブースターの方向を修正できます。</value>
+  </data>
+  <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
+    <value>既存の線路に圧力板を追加し、イレーサーでプレートだけを取り外してください。</value>
+  </data>
+  <data name="tool_paint_wall_title" xml:space="preserve">
+    <value>壁</value>
+  </data>
+  <data name="tool_paint_wire_blue" xml:space="preserve">
+    <value>青</value>
+  </data>
+  <data name="tool_paint_wire_green" xml:space="preserve">
+    <value>緑</value>
+  </data>
+  <data name="tool_paint_wire_red" xml:space="preserve">
+    <value>赤</value>
+  </data>
+  <data name="tool_paint_wire_yellow" xml:space="preserve">
+    <value>黄色</value>
+  </data>
+  <data name="tool_paste_title" xml:space="preserve">
+    <value>ペースト</value>
+  </data>
+  <data name="tool_pencil_title" xml:space="preserve">
+    <value>鉛筆</value>
+  </data>
+  <data name="tool_picker_title" xml:space="preserve">
+    <value>ピッカー - タイルの色を選択する</value>
+  </data>
+  <data name="tool_point_title" xml:space="preserve">
+    <value>特別関心ポイント</value>
+  </data>
+  <data name="tool_sprite2_title" xml:space="preserve">
+    <value>スプライト・プレイサー</value>
+  </data>
+  <data name="tool_sprite_filter_button" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="tool_sprite_filter_label" xml:space="preserve">
+    <value>フィルター:</value>
+  </data>
+  <data name="tool_sprite_style_label" xml:space="preserve">
+    <value>スタイル:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>タイルタイプフィルター:</value>
+  </data>
+  <data name="tool_sprite_title" xml:space="preserve">
+    <value>スプライトプレイサー(旧)</value>
+  </data>
+  <data name="tool_wp_adamantite" xml:space="preserve">
+    <value>アダマンタイト階層</value>
+  </data>
+  <data name="tool_wp_altars" xml:space="preserve">
+    <value>祭壇が砕けた</value>
+  </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>黙示録(ムーンロードスポーン)</value>
+  </data>
+  <data name="tool_wp_bg_corrupt" xml:space="preserve">
+    <value>腐敗したBG</value>
+  </data>
+  <data name="tool_wp_bg_crimson" xml:space="preserve">
+    <value>クリムゾンBG</value>
+  </data>
+  <data name="tool_wp_bg_deepice" xml:space="preserve">
+    <value>ディープアイスBG</value>
+  </data>
+  <data name="tool_wp_bg_deepjungle" xml:space="preserve">
+    <value>ディープジャングルBG</value>
+  </data>
+  <data name="tool_wp_bg_desert" xml:space="preserve">
+    <value>砂漠のBG</value>
+  </data>
+  <data name="tool_wp_bg_forest" xml:space="preserve">
+    <value>森林BG</value>
+  </data>
+  <data name="tool_wp_bg_hallow" xml:space="preserve">
+    <value>ハロウ・ゲイ</value>
+  </data>
+  <data name="tool_wp_bg_hell" xml:space="preserve">
+    <value>地獄のBG</value>
+  </data>
+  <data name="tool_wp_bg_jungle" xml:space="preserve">
+    <value>ジャングルBG</value>
+  </data>
+  <data name="tool_wp_bg_mushroom" xml:space="preserve">
+    <value>マッシュルームBG</value>
+  </data>
+  <data name="tool_wp_bg_ocean" xml:space="preserve">
+    <value>海洋BG</value>
+  </data>
+  <data name="tool_wp_bg_snow" xml:space="preserve">
+    <value>雪のBG</value>
+  </data>
+  <data name="tool_wp_bg_tree2" xml:space="preserve">
+    <value>ツリー2 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree3" xml:space="preserve">
+    <value>ツリー3 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree4" xml:space="preserve">
+    <value>ツリー4 BG</value>
+  </data>
+  <data name="tool_wp_bg_underworld" xml:space="preserve">
+    <value>アンダーワールドBG</value>
+  </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>シカツボ</value>
+  </data>
+  <data name="tool_wp_boss_destroyer" xml:space="preserve">
+    <value>破壊者</value>
+  </data>
+  <data name="tool_wp_boss_downed" xml:space="preserve">
+    <value>倒れたボスたち</value>
+  </data>
+  <data name="tool_wp_boss_dukefishron" xml:space="preserve">
+    <value>フィシュロン公爵</value>
+  </data>
+  <data name="tool_wp_boss_eaterofworlds" xml:space="preserve">
+    <value>世界の喰い</value>
+  </data>
+  <data name="tool_wp_boss_empressoflight" xml:space="preserve">
+    <value>光の皇后</value>
+  </data>
+  <data name="tool_wp_boss_everscream" xml:space="preserve">
+    <value>エヴァースクリーム</value>
+  </data>
+  <data name="tool_wp_boss_eyeofcthulhu" xml:space="preserve">
+    <value>クトゥルフの目</value>
+  </data>
+  <data name="tool_wp_boss_flyingdutchman" xml:space="preserve">
+    <value>フライング・ダッチマン</value>
+  </data>
+  <data name="tool_wp_boss_golem" xml:space="preserve">
+    <value>ゴーレム</value>
+  </data>
+  <data name="tool_wp_boss_icequeen" xml:space="preserve">
+    <value>アイス・クイーン</value>
+  </data>
+  <data name="tool_wp_boss_kingslime" xml:space="preserve">
+    <value>キング・スライム</value>
+  </data>
+  <data name="tool_wp_boss_lunaticcultist" xml:space="preserve">
+    <value>狂人カルト信者</value>
+  </data>
+  <data name="tool_wp_boss_moonlord" xml:space="preserve">
+    <value>ムーンロード</value>
+  </data>
+  <data name="tool_wp_boss_mourningwood" xml:space="preserve">
+    <value>モーニング・ウッド</value>
+  </data>
+  <data name="tool_wp_boss_nebulapillar" xml:space="preserve">
+    <value>星雲柱</value>
+  </data>
+  <data name="tool_wp_boss_plantera" xml:space="preserve">
+    <value>プランテラ</value>
+  </data>
+  <data name="tool_wp_boss_pumpking" xml:space="preserve">
+    <value>パンプキング</value>
+  </data>
+  <data name="tool_wp_boss_queenbee" xml:space="preserve">
+    <value>クイーンビー</value>
+  </data>
+  <data name="tool_wp_boss_queenslime" xml:space="preserve">
+    <value>クイーン・スライム</value>
+  </data>
+  <data name="tool_wp_boss_santank1" xml:space="preserve">
+    <value>サンタNK1</value>
+  </data>
+  <data name="tool_wp_boss_skeletron" xml:space="preserve">
+    <value>スケルトロン</value>
+  </data>
+  <data name="tool_wp_boss_skeletronprime" xml:space="preserve">
+    <value>スケルトロンプライム</value>
+  </data>
+  <data name="tool_wp_boss_solarpillar" xml:space="preserve">
+    <value>ソーラーピラー</value>
+  </data>
+  <data name="tool_wp_boss_stardustpillar" xml:space="preserve">
+    <value>星屑の柱</value>
+  </data>
+  <data name="tool_wp_boss_twins" xml:space="preserve">
+    <value>ツインズ</value>
+  </data>
+  <data name="tool_wp_boss_vortexpillar" xml:space="preserve">
+    <value>渦柱</value>
+  </data>
+  <data name="tool_wp_boss_walloffflesh" xml:space="preserve">
+    <value>肉の壁</value>
+  </data>
+  <data name="tool_wp_cavern_level" xml:space="preserve">
+    <value>洞窟レベル</value>
+  </data>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>中国語世界版</value>
+  </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>クラウドBGアクティブ</value>
+  </data>
+  <data name="tool_wp_cobalt" xml:space="preserve">
+    <value>コバルト層</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>コンバット・ブック</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>コンバット・ブック 第2巻</value>
+  </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>コンソールワールド版</value>
+  </data>
+  <data name="tool_wp_copper" xml:space="preserve">
+    <value>銅層</value>
+  </data>
+  <data name="tool_wp_crimson" xml:space="preserve">
+    <value>クリムゾン</value>
+  </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>カルト教団の遅延</value>
+  </data>
+  <data name="tool_wp_difficulty" xml:space="preserve">
+    <value>難易度</value>
+  </data>
+  <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
+    <value>ハードモード</value>
+  </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>世界を飢えさせるな</value>
+  </data>
+  <data name="tool_wp_drunk" xml:space="preserve">
+    <value>ドランク・ワールド</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>ダンジョンポイント</value>
+  </data>
+  <data name="tool_wp_event" xml:space="preserve">
+    <value>イベント</value>
+  </data>
+  <data name="tool_wp_gamemode" xml:space="preserve">
+    <value>ゲームモード</value>
+  </data>
+  <data name="tool_wp_gold" xml:space="preserve">
+    <value>ゴールドティア</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>フォー・ザ・ワージー(FTW)</value>
+  </data>
+  <data name="tool_wp_guid" xml:space="preserve">
+    <value>ワールド・ガイド</value>
+  </data>
+  <data name="tool_wp_hardmode" xml:space="preserve">
+    <value>ハードモード</value>
+  </data>
+  <data name="tool_wp_holiday" xml:space="preserve">
+    <value>フォース・ホリデーズ</value>
+  </data>
+  <data name="tool_wp_holiday_halloween" xml:space="preserve">
+    <value>ハロウィン</value>
+  </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>フォース・ハロウィン・フォーエバー</value>
+  </data>
+  <data name="tool_wp_holiday_xmas" xml:space="preserve">
+    <value>XMas</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>フォース・クリスマス・フォーエバー</value>
+  </data>
+  <data name="tool_wp_id" xml:space="preserve">
+    <value>ワールドID</value>
+  </data>
+  <data name="tool_wp_invasion" xml:space="preserve">
+    <value>侵攻</value>
+  </data>
+  <data name="tool_wp_invasion_frostlegion" xml:space="preserve">
+    <value>フロスト・リージョン</value>
+  </data>
+  <data name="tool_wp_invasion_goblinarmy" xml:space="preserve">
+    <value>ゴブリン軍</value>
+  </data>
+  <data name="tool_wp_invasion_martianmadness" xml:space="preserve">
+    <value>火星の狂気</value>
+  </data>
+  <data name="tool_wp_invasion_pirateinvasion" xml:space="preserve">
+    <value>海賊侵略</value>
+  </data>
+  <data name="tool_wp_invasion_size" xml:space="preserve">
+    <value>侵攻規模</value>
+  </data>
+  <data name="tool_wp_invasion_type" xml:space="preserve">
+    <value>侵攻タイプ</value>
+  </data>
+  <data name="tool_wp_invasion_x" xml:space="preserve">
+    <value>侵略Xターゲット</value>
+  </data>
+  <data name="tool_wp_iron" xml:space="preserve">
+    <value>鉄層</value>
+  </data>
+  <data name="tool_wp_journeysend" xml:space="preserve">
+    <value>旅の終わり</value>
+  </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>ランタンナイト</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>ランタンナイトクールダウン</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>ランタンナイト 本物</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>ランタンナイトマニュアル</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>ランタンナイトは本物だ</value>
+  </data>
+  <data name="tool_wp_meteor" xml:space="preserve">
+    <value>メテオ</value>
+  </data>
+  <data name="tool_wp_meteor_spawn" xml:space="preserve">
+    <value>スポーンメテオ</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>ムーンダイアル・クールダウン</value>
+  </data>
+  <data name="tool_wp_moon_blood" xml:space="preserve">
+    <value>ブラッドムーン</value>
+  </data>
+  <data name="tool_wp_moon_eclipse" xml:space="preserve">
+    <value>エクリプスは</value>
+  </data>
+  <data name="tool_wp_moon_phase" xml:space="preserve">
+    <value>月の位相</value>
+  </data>
+  <data name="tool_wp_moon_style" xml:space="preserve">
+    <value>月流</value>
+  </data>
+  <data name="tool_wp_mythril" xml:space="preserve">
+    <value>ミスリル階層</value>
+  </data>
+  <data name="tool_wp_name" xml:space="preserve">
+    <value>ワールド・ネーム</value>
+  </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>ビーズ・ワールドではない</value>
+  </data>
+  <data name="tool_wp_npc_angler" xml:space="preserve">
+    <value>アングラー</value>
+  </data>
+  <data name="tool_wp_npc_angler_mission" xml:space="preserve">
+    <value>アングラーミッション</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>武器商人</value>
+  </data>
+  <data name="tool_wp_npc_bought" xml:space="preserve">
+    <value>購入したNPC</value>
+  </data>
+  <data name="tool_wp_npc_bunny" xml:space="preserve">
+    <value>バニー</value>
+  </data>
+  <data name="tool_wp_npc_cat" xml:space="preserve">
+    <value>猫</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>爆破兵</value>
+  </data>
+  <data name="tool_wp_npc_dog" xml:space="preserve">
+    <value>犬</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>ダイ・トレーダー</value>
+  </data>
+  <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
+    <value>ゴブリンのティンカー</value>
+  </data>
+  <data name="tool_wp_npc_golfer" xml:space="preserve">
+    <value>ゴルファー</value>
+  </data>
+  <data name="tool_wp_npc_mechanic" xml:space="preserve">
+    <value>メカニック</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>商人</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>看護師</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>パーティーガール</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>王女</value>
+  </data>
+  <data name="tool_wp_npc_saved" xml:space="preserve">
+    <value>救済したNPCたち</value>
+  </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>救済したNPCたち</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>ブルースライム</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>銅スライム</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>グリーンスライム</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>オールド・スライム</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>パープルスライム</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>レインボースライム</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>赤いスライム</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>イエロースライム</value>
+  </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPCスポーンがアンロックされました</value>
+  </data>
+  <data name="tool_wp_npc_stylist" xml:space="preserve">
+    <value>スタイリスト</value>
+  </data>
+  <data name="tool_wp_npc_tavernkeep" xml:space="preserve">
+    <value>酒場経営</value>
+  </data>
+  <data name="tool_wp_npc_taxcollector" xml:space="preserve">
+    <value>税務徴収官</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>トリュフ</value>
+  </data>
+  <data name="tool_wp_npc_wizard" xml:space="preserve">
+    <value>ウィザード</value>
+  </data>
+  <data name="tool_wp_oldonesarmy" xml:space="preserve">
+    <value>古き者の軍</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t1" xml:space="preserve">
+    <value>ティア1</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t2" xml:space="preserve">
+    <value>ティア2</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t3" xml:space="preserve">
+    <value>ティア3</value>
+  </data>
+  <data name="tool_wp_orbs" xml:space="preserve">
+    <value>オーブが砕け散った</value>
+  </data>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>破滅の党</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>ペドラーズサッチェル</value>
+  </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>柱の活動</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>星雲柱</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>ソーラーピラー</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>星屑の柱</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>渦柱</value>
+  </data>
+  <data name="tool_wp_prehardmode" xml:space="preserve">
+    <value>ハードモード前</value>
+  </data>
+  <data name="tool_wp_rain" xml:space="preserve">
+    <value>雨</value>
+  </data>
+  <data name="tool_wp_rain_active" xml:space="preserve">
+    <value>雨が降っている</value>
+  </data>
+  <data name="tool_wp_rain_max" xml:space="preserve">
+    <value>マックス・レイン</value>
+  </data>
+  <data name="tool_wp_rain_slime" xml:space="preserve">
+    <value>スライムレインタイム</value>
+  </data>
+  <data name="tool_wp_rain_time" xml:space="preserve">
+    <value>雨の時間</value>
+  </data>
+  <data name="tool_wp_revision" xml:space="preserve">
+    <value>改訂</value>
+  </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>安全な数値のみを使用してください</value>
+  </data>
+  <data name="tool_wp_sandstorm" xml:space="preserve">
+    <value>砂嵐</value>
+  </data>
+  <data name="tool_wp_sandstorm_active" xml:space="preserve">
+    <value>嵐が来ている</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity" xml:space="preserve">
+    <value>重症度</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
+    <value>重度が減った</value>
+  </data>
+  <data name="tool_wp_sandstorm_time" xml:space="preserve">
+    <value>残された時間</value>
+  </data>
+  <data name="tool_wp_seed" xml:space="preserve">
+    <value>種</value>
+  </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>デュアルダンジョン</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>感染者</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>罠はなし</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>リミックス</value>
+  </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>スカイブロック</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>ヴァンパイア</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>ゼニス</value>
+  </data>
+  <data name="tool_wp_silver" xml:space="preserve">
+    <value>シルバーティア</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>スポーンポイント</value>
+  </data>
+  <data name="tool_wp_style_cavestyles" xml:space="preserve">
+    <value>洞窟様式</value>
+  </data>
+  <data name="tool_wp_style_cavex0" xml:space="preserve">
+    <value>洞窟X 0</value>
+  </data>
+  <data name="tool_wp_style_cavex1" xml:space="preserve">
+    <value>洞窟X 1</value>
+  </data>
+  <data name="tool_wp_style_cavex2" xml:space="preserve">
+    <value>洞窟X 2</value>
+  </data>
+  <data name="tool_wp_style_treestyles" xml:space="preserve">
+    <value>ツリースタイル</value>
+  </data>
+  <data name="tool_wp_style_treetop_1" xml:space="preserve">
+    <value>ツリー1の頂点</value>
+  </data>
+  <data name="tool_wp_style_treetop_2" xml:space="preserve">
+    <value>ツリー2の頂点</value>
+  </data>
+  <data name="tool_wp_style_treetop_3" xml:space="preserve">
+    <value>ツリー3の頂点</value>
+  </data>
+  <data name="tool_wp_style_treetop_4" xml:space="preserve">
+    <value>ツリー4の頂点</value>
+  </data>
+  <data name="tool_wp_style_treex0" xml:space="preserve">
+    <value>木 X 0</value>
+  </data>
+  <data name="tool_wp_style_treex1" xml:space="preserve">
+    <value>ツリーX 1</value>
+  </data>
+  <data name="tool_wp_style_treex2" xml:space="preserve">
+    <value>ツリーX 2</value>
+  </data>
+  <data name="tool_wp_surface_level" xml:space="preserve">
+    <value>表面レベル</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>チームスポーン</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>チームベースのスポーン有効</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>チームのスポーン場所</value>
+  </data>
+  <data name="tool_wp_tenthanniversary" xml:space="preserve">
+    <value>10周年</value>
+  </data>
+  <data name="tool_wp_time_day" xml:space="preserve">
+    <value>昼間は</value>
+  </data>
+  <data name="tool_wp_time_label" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="tool_wp_time_sundial" xml:space="preserve">
+    <value>サンダイアルを使う</value>
+  </data>
+  <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
+    <value>サンダイアル・クールダウン</value>
+  </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>安全でない値を許容する</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>ムーンダイアルを使いましょう</value>
+  </data>
+  <data name="tool_wp_weather_clouds" xml:space="preserve">
+    <value>ナンバークラウド</value>
+  </data>
+  <data name="tool_wp_weather_windspeed" xml:space="preserve">
+    <value>風速</value>
+  </data>
+  <data name="TrackMode_Booster" xml:space="preserve">
+    <value>ブースター</value>
+  </data>
+  <data name="TrackMode_Hammer" xml:space="preserve">
+    <value>ハンマー</value>
+  </data>
+  <data name="TrackMode_Pressure" xml:space="preserve">
+    <value>圧力</value>
+  </data>
+  <data name="TrackMode_Track" xml:space="preserve">
+    <value>陸上競技</value>
+  </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>青</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>緑</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>消えろ</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>赤</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>黄色</value>
+  </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>バックグラウンドギャップの修正</value>
+  </data>
+</root>

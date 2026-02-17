@@ -16,20 +16,80 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       # Install the .NET Core workload
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.0.x"
+          dotnet-version: "10.0.x"
 
-      # Create the app package by building and packaging the Windows Application Packaging project
+      - name: Install Velopack CLI
+        run: dotnet tool install -g vpk
+
+      - name: Detect channel
+        id: channel
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          if ($tag -match '-alpha') {
+            "name=alpha" >> $env:GITHUB_OUTPUT
+          } elseif ($tag -match '-(beta|rc)') {
+            "name=beta" >> $env:GITHUB_OUTPUT
+          } else {
+            "name=stable" >> $env:GITHUB_OUTPUT
+          }
+          Write-Host "Channel: $($tag)"
+
+      # Create the app package by building and packaging
       - name: Create the app package
         shell: pwsh
-        run: ./build.ps1 -Version ${{ github.ref_name }}
+        run: ./build.ps1 -Version ${{ github.ref_name }} -Channel ${{ steps.channel.outputs.name }}
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1
+      - name: Download previous release (for delta packages)
+        shell: pwsh
+        run: |
+          vpk download github --repoUrl https://github.com/${{ github.repository }} --token ${{ secrets.GITHUB_TOKEN }} --channel ${{ steps.channel.outputs.name }} -o release
+        continue-on-error: true
+
+      - name: Get Terraria version info
+        id: terraria
+        shell: pwsh
+        run: |
+          $data = Get-Content src/TEdit.Terraria/Data/versions.json | ConvertFrom-Json
+          $map = $data.gameVersionToSaveVersion
+          $last = ($map.PSObject.Properties | Select-Object -Last 1)
+          "gameVersion=$($last.Name)" >> $env:GITHUB_OUTPUT
+          "saveVersion=$($last.Value)" >> $env:GITHUB_OUTPUT
+
+      - name: Generate release notes
+        id: git-cliff
+        uses: orhun/git-cliff-action@v4
         with:
-          artifacts: "release/TEdit*.zip"
-          generateReleaseNotes: true
+          config: cliff.toml
+          args: >-
+            --verbose --latest --strip header
+            ${{ !contains(github.ref_name, '-') && '--ignore-tags "-(alpha|beta|rc)"' || '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Velopack to GitHub Releases
+        shell: pwsh
+        run: |
+          vpk upload github --repoUrl https://github.com/${{ github.repository }} --publish --releaseName "TEdit ${{ github.ref_name }}" --tag ${{ github.ref_name }} --token ${{ secrets.GITHUB_TOKEN }} --channel ${{ steps.channel.outputs.name }} -o release
+
+      - name: Update release notes and attach portable zip
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $body = @"
+          > [!IMPORTANT]
+          > Supports Terraria **${{ steps.terraria.outputs.gameVersion }}** (world file version ${{ steps.terraria.outputs.saveVersion }})
+
+          ${{ steps.git-cliff.outputs.content }}
+          "@
+
+          gh release edit ${{ github.ref_name }} --notes "$body" ${{ contains(github.ref_name, '-') && '--prerelease' || '' }}
+          gh release upload ${{ github.ref_name }} release/TEdit*.zip --clobber

@@ -3,26 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:local="clr-namespace:TEdit.View"
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="140">
-    <StackPanel>
-        <TextBlock HorizontalAlignment="Center" Margin="2" Text="{x:Static p:Language.global_enjoytedit}" />
-        <Button HorizontalAlignment="Stretch"  Click="PatreonButtonClick">
+    <StackPanel >
+    <TextBlock HorizontalAlignment="Center" Margin="2" Text="{x:Static p:Language.global_enjoytedit}" FontSize="12"  />
+        <Button HorizontalAlignment="Stretch"  Click="PatreonButtonClick" Padding="0">
             <Image Source="/TEdit;component/Images/Toolbar/becomepatron.png" Width="140"></Image>
         </Button>
-        <Button HorizontalAlignment="Stretch" Margin="0,2" Click="TwitterButtonClick" Padding="2">
-            <StackPanel Orientation="Horizontal" >
-                <Image Source="/TEdit;component/Images/Toolbar/twitter.png" Width="16" Margin="0 0 5 0" />
-                <TextBlock>@BinaryConstruct</TextBlock>
-            </StackPanel>
-        </Button>
-        <Button HorizontalAlignment="Stretch" Margin="0,2" Click="GithubButtonClick" Padding="2">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="/TEdit;component/Images/Toolbar/github.png" Width="16" Margin="0 0 5 0" />
-                <TextBlock>TEdit GitHub</TextBlock>
-            </StackPanel>
-        </Button>
+        <ui:Button HorizontalAlignment="Stretch" Margin="0,1" Click="TwitterButtonClick" Padding="1" Content="@BinaryConstruct">
+            <ui:Button.Icon>
+                <ui:ImageIcon Source="/TEdit;component/Images/Toolbar/twitter.png" Width="16" Height="16" />
+            </ui:Button.Icon>
+        </ui:Button>
+        <ui:Button HorizontalAlignment="Stretch" Margin="0,1" Click="GithubButtonClick" Padding="1" Content="TEdit GitHub">
+            <ui:Button.Icon>
+                <ui:ImageIcon Source="/TEdit;component/Images/Toolbar/github.png" Width="16" Height="16" />
+            </ui:Button.Icon>
+        </ui:Button>
     </StackPanel>
 </UserControl>

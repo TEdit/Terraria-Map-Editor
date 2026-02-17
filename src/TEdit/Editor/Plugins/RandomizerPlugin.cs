@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.ApplicationInsights.DataContracts;
+using System.Windows;
 using Microsoft.Xna.Framework;
-using TEdit.Configuration;
-using TEdit.Geometry;
 using TEdit.Terraria;
+using TEdit.Geometry;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
 
@@ -27,6 +26,7 @@ public class RandomizerPlugin : BasePlugin
         bool activeSelection = _wvm.Selection.IsActive;
 
         RandomizerPluginView view = new(activeSelection);
+        view.Owner = Application.Current.MainWindow;
         if (view.ShowDialog() == false)
             return;
 

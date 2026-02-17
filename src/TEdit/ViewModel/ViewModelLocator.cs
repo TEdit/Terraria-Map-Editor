@@ -25,7 +25,31 @@ public static class ViewModelLocator
     }
     
     public static BestiaryViewModel GetBestiaryViewModel() => new BestiaryViewModel();
+    public static BannerViewModel GetBannerViewModel() => new BannerViewModel();
     public static CreativePowersViewModel GetCreativePowersViewModel() => new CreativePowersViewModel();
+
+    // Singleton instances for sidebar viewmodels that need to persist state
+    private static FilterSidebarViewModel? _filterSidebarViewModel;
+    private static FindSidebarViewModel? _findSidebarViewModel;
+    private static ScriptingSidebarViewModel? _scriptingSidebarViewModel;
+
+    public static FilterSidebarViewModel GetFilterSidebarViewModel()
+    {
+        _filterSidebarViewModel ??= new FilterSidebarViewModel(WorldViewModel);
+        return _filterSidebarViewModel;
+    }
+
+    public static FindSidebarViewModel GetFindSidebarViewModel()
+    {
+        _findSidebarViewModel ??= new FindSidebarViewModel(WorldViewModel);
+        return _findSidebarViewModel;
+    }
+
+    public static ScriptingSidebarViewModel GetScriptingSidebarViewModel()
+    {
+        _scriptingSidebarViewModel ??= new ScriptingSidebarViewModel(WorldViewModel);
+        return _scriptingSidebarViewModel;
+    }
 
     private static WorldViewModel CreateWorldViewModel()
     {
@@ -45,13 +69,11 @@ public static class ViewModelLocator
         wvm.Tools.Add(new SpriteTool2(wvm));
         wvm.Tools.Add(new MorphTool(wvm));
         wvm.ActiveTool = defaultTool;
+        defaultTool.IsActive = true;
 
         //Sorted by Plugin-Name
         wvm.Plugins.Add(new BlockShufflePlugin(wvm));
         wvm.Plugins.Add(new CleanseWorldPlugin(wvm));
-        wvm.Plugins.Add(new FindChestWithPlugin(wvm));
-        wvm.Plugins.Add(new FindPlanteraBulbPlugin(wvm));
-        wvm.Plugins.Add(new FindTileWithPlugin(wvm));
         wvm.Plugins.Add(new HouseGenPlugin(wvm));
         wvm.Plugins.Add(new ImageToPixelartEditor(wvm));
         wvm.Plugins.Add(new PlayerMapRenderer(wvm));
@@ -63,6 +85,9 @@ public static class ViewModelLocator
         wvm.Plugins.Add(new SandSettlePlugin(wvm));
         wvm.Plugins.Add(new SimpleOreGeneratorPlugin(wvm));
         wvm.Plugins.Add(new SpriteDebuggerPlugin(wvm));
+#if DEBUG
+        wvm.Plugins.Add(new TextureExportDebugPlugin(wvm));
+#endif
         wvm.Plugins.Add(new TextStatuePlugin(wvm));
         wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
         

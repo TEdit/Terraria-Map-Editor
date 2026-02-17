@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Windows;
 using TEdit.ViewModel;
 using TEdit.Geometry;
 
@@ -30,6 +31,7 @@ namespace TEdit.Editor.Plugins
 
             // Show the view.
             SimpleOreGeneratorPluginView view = new(activeSelection);
+            view.Owner = Application.Current.MainWindow;
             if (view.ShowDialog() == false)
                 return;
 

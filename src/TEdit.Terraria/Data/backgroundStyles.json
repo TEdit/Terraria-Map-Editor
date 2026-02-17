@@ -1,0 +1,162 @@
+{
+  "version": "1.4.5.4",
+  "treeStyles": [
+    { "id": 0, "name": "Oak", "textures": [0] },
+    { "id": 1, "name": "Boreal", "textures": [6] },
+    { "id": 2, "name": "Jungle-like", "textures": [7] },
+    { "id": 3, "name": "Sakura", "textures": [8] },
+    { "id": 4, "name": "Willow", "textures": [9] },
+    { "id": 5, "name": "Palm-like", "textures": [10] }
+  ],
+  "forestBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [9, 10, 11], "secondaryTextures": [7, 8] },
+    { "id": 1, "name": "Variant 1", "textures": [50, 51, 52], "secondaryTextures": [7, 8] },
+    { "id": 2, "name": "Variant 2", "textures": [53, 54, 55], "secondaryTextures": [7, 8] },
+    { "id": 3, "name": "Variant 3", "textures": [91, -1, 92], "secondaryTextures": [7, 90] },
+    { "id": 4, "name": "Mountains Only", "textures": [-1, -1, -1], "secondaryTextures": [93, 94] },
+    { "id": 5, "name": "Mountains \u002B Tree", "textures": [-1, -1, 55], "secondaryTextures": [93, 94] },
+    { "id": 6, "name": "Variant 6", "textures": [173, -1, -1], "secondaryTextures": [171, 172] },
+    { "id": 7, "name": "Variant 7", "textures": [178, -1, -1], "secondaryTextures": [176, 177] },
+    { "id": 8, "name": "Variant 8", "textures": [184, -1, -1], "secondaryTextures": [179, 180] },
+    { "id": 9, "name": "Variant 9", "textures": [279, -1, -1], "secondaryTextures": [277, 278] },
+    { "id": 10, "name": "Variant 10", "textures": [282, -1, -1], "secondaryTextures": [280, 281] },
+    { "id": 11, "name": "Variant 11", "textures": [330, 329, 328], "secondaryTextures": [7, 331] },
+    { "id": 12, "name": "Variant 12", "textures": [335, 334, 333], "secondaryTextures": [7, 336] },
+    { "id": 13, "name": "Variant 13", "textures": [343, 342, 341], "secondaryTextures": [7, -1] },
+    { "id": 31, "name": "Variant 3 Alt", "textures": [91, -1, 11], "secondaryTextures": [7, 90] },
+    { "id": 51, "name": "Mountains Alt", "textures": [-1, -1, 11], "secondaryTextures": [93, 94] },
+    { "id": 71, "name": "Variant 7 Alt A", "textures": [178, -1, 11], "secondaryTextures": [176, 177] },
+    { "id": 72, "name": "Variant 7 Alt B", "textures": [178, -1, 52], "secondaryTextures": [176, 177] },
+    { "id": 73, "name": "Variant 7 Alt C", "textures": [178, -1, 55], "secondaryTextures": [176, 177] }
+  ],
+  "corruptionBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [12, 13, 14] },
+    { "id": 1, "name": "Variant 1", "textures": [56, 57, 58] },
+    { "id": 2, "name": "Variant 2", "textures": [211, 212, 213] },
+    { "id": 3, "name": "Variant 3", "textures": [225, 226, 227] },
+    { "id": 4, "name": "Variant 4", "textures": [240, 241, 242] },
+    { "id": 51, "name": "Remix 1", "textures": [324, 323, 322] },
+    { "id": 52, "name": "Remix 2", "textures": [324, 226, 322] }
+  ],
+  "jungleBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [15, 16, 17] },
+    { "id": 1, "name": "Variant 1", "textures": [59, 60, 61] },
+    { "id": 2, "name": "Variant 2", "textures": [222, 223, 224] },
+    { "id": 3, "name": "Variant 3", "textures": [237, 238, 239] },
+    { "id": 4, "name": "Variant 4", "textures": [284, 285, 286] },
+    { "id": 5, "name": "Variant 5", "textures": [271, 272, 273] },
+    { "id": 6, "name": "Variant 6", "textures": [302, 301, 300] }
+  ],
+  "snowBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [37, 38, 39], "secondaryTextures": [35, 36] },
+    { "id": 1, "name": "Variant 1", "textures": [97, 96, 95], "secondaryTextures": [35, 36] },
+    { "id": 2, "name": "Mountains Only A", "textures": [-1, -1, -1], "secondaryTextures": [98, 99] },
+    { "id": 3, "name": "Mountains Only B", "textures": [-1, -1, -1], "secondaryTextures": [98, 100] },
+    { "id": 4, "name": "Mountains Only C", "textures": [-1, -1, -1], "secondaryTextures": [98, 101] },
+    { "id": 5, "name": "Trees Only A", "textures": [258, 259, 260], "secondaryTextures": [-1, -1] },
+    { "id": 6, "name": "Trees Only B", "textures": [263, 264, 265], "secondaryTextures": [-1, -1] },
+    { "id": 7, "name": "Variant 7", "textures": [267, 266, 268], "secondaryTextures": [269, 270] },
+    { "id": 8, "name": "Variant 8", "textures": [299, 298, -1], "secondaryTextures": [35, 36] },
+    { "id": 21, "name": "Mnt 2 \u002B Trees", "textures": [95, 96, 97], "secondaryTextures": [98, 99] },
+    { "id": 22, "name": "Mnt 2 \u002B Default Trees", "textures": [37, 38, 39], "secondaryTextures": [98, 99] },
+    { "id": 31, "name": "Mnt 3 \u002B Trees", "textures": [95, 96, 97], "secondaryTextures": [98, 100] },
+    { "id": 32, "name": "Mnt 3 \u002B Default Trees", "textures": [37, 38, 39], "secondaryTextures": [98, 100] },
+    { "id": 41, "name": "Mnt 4 \u002B Trees", "textures": [95, 96, 97], "secondaryTextures": [98, 101] },
+    { "id": 42, "name": "Mnt 4 \u002B Default Trees", "textures": [37, 38, 39], "secondaryTextures": [98, 101] }
+  ],
+  "hallowBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [29, 30, 31] },
+    { "id": 1, "name": "Variant 1", "textures": [102, 103, 104] },
+    { "id": 2, "name": "Variant 2", "textures": [219, 220, 221] },
+    { "id": 3, "name": "Variant 3", "textures": [243, 244, 245] },
+    { "id": 4, "name": "Variant 4", "textures": [-1, 261, 262] },
+    { "id": 5, "name": "Variant 5", "textures": [327, 326, 325] }
+  ],
+  "crimsonBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [43, 44, 45] },
+    { "id": 1, "name": "Variant 1", "textures": [105, 106, 107] },
+    { "id": 2, "name": "Variant 2", "textures": [174, -1, 175] },
+    { "id": 3, "name": "Variant 3", "textures": [214, 215, 216] },
+    { "id": 4, "name": "Variant 4", "textures": [-1, 229, 230] },
+    { "id": 5, "name": "Variant 5", "textures": [255, 256, 257] },
+    { "id": 6, "name": "Variant 6", "textures": [339, 338, 337] }
+  ],
+  "desertBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [21, 20, -1] },
+    { "id": 1, "name": "Variant 1", "textures": [108, 109, -1] },
+    { "id": 2, "name": "Variant 2", "textures": [207, 208, -1] },
+    { "id": 3, "name": "Variant 3", "textures": [217, 218, -1] },
+    { "id": 4, "name": "Variant 4", "textures": [248, 249, 250] },
+    {
+      "id": 51,
+      "name": "Multi-Biome A",
+      "textures": [306, 303, -1],
+      "corruptTextures": [310, 307, -1],
+      "hallowTextures": [314, 311, -1],
+      "crimsonTextures": [318, 315, -1]
+    },
+    {
+      "id": 52,
+      "name": "Multi-Biome B",
+      "textures": [306, 304, -1],
+      "corruptTextures": [310, 308, -1],
+      "hallowTextures": [314, 312, -1],
+      "crimsonTextures": [318, 316, -1]
+    },
+    {
+      "id": 53,
+      "name": "Multi-Biome C",
+      "textures": [306, 305, -1],
+      "corruptTextures": [310, 309, -1],
+      "hallowTextures": [314, 313, -1],
+      "crimsonTextures": [318, 317, -1]
+    }
+  ],
+  "oceanBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [28] },
+    { "id": 1, "name": "Variant 1", "textures": [110] },
+    { "id": 2, "name": "Variant 2", "textures": [111] },
+    { "id": 3, "name": "Variant 3", "textures": [209] },
+    { "id": 4, "name": "Variant 4", "textures": [210] },
+    { "id": 5, "name": "Variant 5", "textures": [283] },
+    { "id": 6, "name": "Variant 6", "textures": [332] },
+    { "id": 7, "name": "Variant 7", "textures": [340] }
+  ],
+  "mushroomBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [46, 47, 48] },
+    { "id": 1, "name": "Variant 1", "textures": [231, 232, 233] },
+    { "id": 2, "name": "Variant 2", "textures": [234, 235, 236] },
+    { "id": 3, "name": "Variant 3", "textures": [287, 288, 289] },
+    { "id": 4, "name": "Variant 4", "textures": [321, 320, 319] }
+  ],
+  "underworldBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [0, 1, 2, 3, 4] },
+    { "id": 1, "name": "Variant 1", "textures": [5, 6, 7, 8, 9] },
+    { "id": 2, "name": "Variant 2", "textures": [10, 11, 12, 13, 9] }
+  ],
+  "caveBackgrounds": [
+    { "id": 0, "name": "Stone", "textures": [66, 67, 68, 69], "undergroundIndex": 3 },
+    { "id": 1, "name": "Gray", "textures": [70, 71, 68, 72], "undergroundIndex": 4 },
+    { "id": 2, "name": "Brown", "textures": [73, 74, 75, 76], "undergroundIndex": 5 },
+    { "id": 3, "name": "Blue", "textures": [77, 78, 79, 80], "undergroundIndex": 6 },
+    { "id": 4, "name": "Blue Alt", "textures": [77, 81, 79, 82], "undergroundIndex": 7 },
+    { "id": 5, "name": "Green", "textures": [83, 84, 85, 86], "undergroundIndex": 8 },
+    { "id": 6, "name": "Green Alt", "textures": [83, 87, 88, 89], "undergroundIndex": 9 },
+    { "id": 7, "name": "Purple", "textures": [121, 122, 123, 124], "undergroundIndex": 10 }
+  ],
+  "iceBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [33, 34] },
+    { "id": 1, "name": "Variant 1", "textures": [160, 161] },
+    { "id": 2, "name": "Variant 2", "textures": [162, 163] },
+    { "id": 3, "name": "Variant 3", "textures": [162, 163] }
+  ],
+  "jungleUndergroundBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [153, 147, 148, 149] },
+    { "id": 1, "name": "Variant 1", "textures": [146, 154, 155, 156] }
+  ],
+  "hellBackgrounds": [
+    { "id": 0, "name": "Default", "textures": [125], "bottomTexture": 185 },
+    { "id": 1, "name": "Variant 1", "textures": [126], "bottomTexture": 186 },
+    { "id": 2, "name": "Variant 2", "textures": [127], "bottomTexture": 187 }
+  ]
+}

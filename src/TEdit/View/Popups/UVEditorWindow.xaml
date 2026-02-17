@@ -9,7 +9,7 @@
         Background="{StaticResource WindowBackgroundBrush}"
         Foreground="{DynamicResource TextBrush}"
         Icon="/TEdit;component/Images/tedit.ico"
-        Height="530"
+        Height="550"
         Width="350">
 
     <Grid Margin="10">
@@ -43,10 +43,10 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Arrows -->
-                <Button x:Name="UpButton" Content="^" Width="30" Height="30" Grid.Row="0" Grid.Column="1" Click="Button_Click"/>
-                <Button x:Name="LeftButton" Content="&lt;" Width="30" Height="30" Grid.Row="1" Grid.Column="0" Click="Button_Click"/>
-                <Button x:Name="RightButton" Content="&gt;" Width="30" Height="30" Grid.Row="1" Grid.Column="2" Click="Button_Click"/>
-                <Button x:Name="DownButton" Content="v" Width="30" Height="30" Grid.Row="2" Grid.Column="1" Click="Button_Click"/>
+                <Button x:Name="UpButton" Content="^" Width="32" Height="32" Grid.Row="0" Grid.Column="1" Click="Button_Click"/>
+                <Button x:Name="LeftButton" Content="&lt;" Width="32" Height="32" Grid.Row="1" Grid.Column="0" Click="Button_Click"/>
+                <Button x:Name="RightButton" Content="&gt;" Width="32" Height="32" Grid.Row="1" Grid.Column="2" Click="Button_Click"/>
+                <Button x:Name="DownButton" Content="v" Width="32" Height="32" Grid.Row="2" Grid.Column="1" Click="Button_Click"/>
             </Grid>
         </StackPanel>
 
@@ -96,7 +96,7 @@
         </Grid>
 
         <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
-            <Button Content="{x:Static p:Language.menu_uveditor_setvalues}" Width="75" Height="25" IsDefault="True" Click="SetValuesButton_Click"/>
+            <Button Content="{x:Static p:Language.menu_uveditor_setvalues}" Width="95" IsDefault="True" Click="SetValuesButton_Click"/>
         </StackPanel>
 
         <!-- Separator -->
@@ -112,9 +112,9 @@
 
         <!-- Ok/Cancel Buttons -->
         <StackPanel Grid.Row="7" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
-            <Button Content="{x:Static p:Language.menu_uveditor_cancel}" Width="75" Height="25" Margin="5" Click="CancelButton_Click"/>
-            <Button Content="{x:Static p:Language.menu_uveditor_restore}" Width="75" Height="25" Margin="5" Click="RestoreButton_Click"/>
-            <Button Content="{x:Static p:Language.menu_uveditor_ok}" Width="75" Height="25" Margin="5" IsDefault="True" Click="OkButton_Click"/>
+            <Button Content="{x:Static p:Language.menu_uveditor_cancel}" Width="75" Margin="5" Click="CancelButton_Click"/>
+            <Button Content="{x:Static p:Language.menu_uveditor_restore}" Width="75" Margin="5" Click="RestoreButton_Click"/>
+            <Button Content="{x:Static p:Language.menu_uveditor_ok}" Width="75" Margin="5" IsDefault="True" Click="OkButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

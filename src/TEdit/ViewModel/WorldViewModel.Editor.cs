@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms.VisualStyles;
 using TEdit.Common;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Editor.Undo;
 using TEdit.Framework.Threading;
 using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.Terraria;
+using TEdit.UI.Xaml.Dialog;
 using TEdit.Utility;
 using TEdit.View.Popups;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 
 namespace TEdit.ViewModel;
 
@@ -65,7 +68,7 @@ public partial class WorldViewModel
         this.SelectedTabIndex = 3; // Open the clipboard tab.
     }
 
-    public async void CropWorld()
+    public async Task CropWorldAsync()
     {
         if (CurrentWorld == null) return;
         if (!CanCopy())
@@ -73,21 +76,16 @@ public partial class WorldViewModel
 
         bool addBorders = false;
 
-        if (MessageBox.Show(
-            "This will generate a new world within the selected region.\nAll progress outside of the cropped zone will be lost., Continue?",
+        var confirm = await App.DialogService.ShowConfirmationAsync(
             "Crop World?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            "This will generate a new world within the selected region.\nAll progress outside of the cropped zone will be lost. Continue?");
+
+        if (!confirm)
             return;
 
-        if (MessageBox.Show(
-            "Add \"edge of world\" boundaries?",
+        addBorders = await App.DialogService.ShowConfirmationAsync(
             "Crop World:",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) == MessageBoxResult.Yes)
-        { addBorders = true; };
+            "Add \"edge of world\" boundaries?");
 
         // Create clipboard
         //_clipboard.Buffer = _clipboard.GetSelectionBuffer();
@@ -131,7 +129,7 @@ public partial class WorldViewModel
             currentHeight: CurrentWorld.TilesHigh
         )
         {
-            // Owner = Application.Current.MainWindow
+            Owner = Application.Current.MainWindow
         };
 
         if (dlg.ShowDialog() != true)
@@ -192,6 +190,7 @@ public partial class WorldViewModel
 
             // w.ResetTime();
             w.CreationTime = System.DateTime.Now.ToBinary();
+            w.LastPlayed = System.DateTime.Now.ToBinary();
             w.TilesHigh = worldHeight;
             w.TilesWide = worldWidth;
 
@@ -352,13 +351,7 @@ public partial class WorldViewModel
         PixelMap = RenderEntireWorld();
         UpdateTitle();
 
-        Points.Clear();
-        Points.Add("Spawn");
-        Points.Add("Dungeon");
-        foreach (NPC npc in CurrentWorld.NPCs)
-        {
-            Points.Add(npc.Name);
-        }
+        RefreshPoints();
 
         MinimapImage = RenderMiniMap.Render(CurrentWorld);
 
@@ -388,7 +381,7 @@ public partial class WorldViewModel
         set
         {
             _worldEditor = value;
-            RaisePropertyChanged("TilePicker");
+            this.RaisePropertyChanged(nameof(TilePicker));
         }
     }
 
@@ -418,10 +411,12 @@ public partial class WorldViewModel
                         }
                     }
                 }
+
+                BuffTileCache.RebuildFromWorld(CurrentWorld);
                 OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
             });
     }
-    // OPTION: This can simply be combined with 'UpdateRenderWorld'.
+    // Renders the PixelMap with Hide filter support. Darken is handled by the overlay.
     public void UpdateRenderWorldUsingFilter()
     {
         Task.Factory.StartNew(
@@ -435,7 +430,6 @@ public partial class WorldViewModel
                         OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
                         for (int x = 0; x < CurrentWorld.TilesWide; x++)
                         {
-                            // Define defualt bools.
                             bool showWalls      = _showWalls;
                             bool showTiles      = _showTiles;
                             bool showLiquids    = _showLiquid;
@@ -444,71 +438,71 @@ public partial class WorldViewModel
                             bool showGreenWire  = _showGreenWires;
                             bool showYellowWire = _showYellowWires;
 
-                            bool wallGrayscale       = false;
-                            bool tileGrayscale       = false;
-                            bool liquidGrayscale     = false;
-                            bool redWireGrayscale    = false;
-                            bool blueWireGrayscale   = false;
-                            bool greenWireGrayscale  = false;
-                            bool yellowWireGrayscale = false;
-
-                            // Test the the filter for walls, tiles, liquids, wires, and sprites. 
-                            if (FilterManager.WallIsNotAllowed(CurrentWorld.Tiles[x, y].Wall))                                                      // Check if this wall is not in the list.
-                                if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)               showWalls = false;              // Hide walls not in list.
-                                else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)     wallGrayscale = true;           // Grayscale walls not in list.
-
-                            if (FilterManager.TileIsNotAllowed(CurrentWorld.Tiles[x, y].Type)                                                       // Since sprites are under the tile denomination, we combine them.
-                                && FilterManager.SpriteIsNotAllowed(CurrentWorld.Tiles[x, y].Type))                                                 // Check if this block / sprite is not in the list.
-                                if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)               showTiles = false;              // Hide blocks not in list.
-                                else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)     tileGrayscale = true;           // Grayscale blocks not in list.
-
-                            if (FilterManager.LiquidIsNotAllowed(CurrentWorld.Tiles[x, y].LiquidType))                                              // Check if this liquid is not in the list.
-                                if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)               showLiquids = false;            // Hide liquids not in list.
-                                else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)     liquidGrayscale = true;         // Grayscale liquids not in list.
-
-                            // Use the HasWire bool to save on processing speed.
-                            if (CurrentWorld.Tiles[x, y].HasWire)
+                            // Hide mode: remove filtered elements from PixelMap entirely.
+                            // Darken mode: overlay handles darkening separately — no DarkenColor in PixelMap.
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)
                             {
-                                if (CurrentWorld.Tiles[x, y].WireRed)                                                                               // Check if this tile contains a red wire.
-                                    if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Red))                                                 // Check if this wire is not in the list.
-                                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           showRedWire = false;        // Hide wires not in list.
-                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) redWireGrayscale = true;    // Grayscale wires not in list.
+                                if (FilterManager.WallIsNotAllowed(CurrentWorld.Tiles[x, y].Wall))
+                                    showWalls = false;
 
-                                if (CurrentWorld.Tiles[x, y].WireBlue)                                                                              // Check if this tile contains a red wire.
-                                    if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue))                                                // Check if this wire is not in the list.
-                                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           showBlueWire = false;       // Hide wires not in list.
-                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) blueWireGrayscale = true;   // Grayscale wires not in list.
+                                if (FilterManager.TileIsNotAllowed(CurrentWorld.Tiles[x, y].Type)
+                                    && FilterManager.SpriteIsNotAllowed(CurrentWorld.Tiles[x, y].Type))
+                                    showTiles = false;
 
-                                if (CurrentWorld.Tiles[x, y].WireGreen)                                                                             // Check if this tile contains a red wire.
-                                    if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Green))                                               // Check if this wire is not in the list.
-                                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           showGreenWire = false;      // Hide wires not in list.
-                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) greenWireGrayscale = true;  // Grayscale wires not in list.
+                                if (FilterManager.LiquidIsNotAllowed(CurrentWorld.Tiles[x, y].LiquidType))
+                                    showLiquids = false;
 
-                                if (CurrentWorld.Tiles[x, y].WireYellow)                                                                            // Check if this tile contains a red wire.
-                                    if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow))                                              // Check if this wire is not in the list.
-                                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           showYellowWire = false;     // Hide wires not in list.
-                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) yellowWireGrayscale = true; // Grayscale wires not in list.
+                                if (CurrentWorld.Tiles[x, y].HasWire)
+                                {
+                                    if (CurrentWorld.Tiles[x, y].WireRed && FilterManager.WireIsNotAllowed(FilterManager.WireType.Red))
+                                        showRedWire = false;
+                                    if (CurrentWorld.Tiles[x, y].WireBlue && FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue))
+                                        showBlueWire = false;
+                                    if (CurrentWorld.Tiles[x, y].WireGreen && FilterManager.WireIsNotAllowed(FilterManager.WireType.Green))
+                                        showGreenWire = false;
+                                    if (CurrentWorld.Tiles[x, y].WireYellow && FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow))
+                                        showYellowWire = false;
+                                }
                             }
 
-                            // Test the the filter for custom background (solid color) mode.
+                            // Custom background mode.
                             if (FilterManager.CurrentBackgroundMode == FilterManager.BackgroundMode.Transparent)
                                 curBgColor = Color.Transparent;
                             else if (FilterManager.CurrentBackgroundMode == FilterManager.BackgroundMode.Custom)
                                 curBgColor = FilterManager.BackgroundModeCustomColor;
 
-                            // Define the color based on the filter results.
-                            Color color = Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, showWalls, showTiles, showLiquids, showRedWire, showBlueWire, showGreenWire, showYellowWire,
-                                    wallGrayscale: wallGrayscale, tileGrayscale: tileGrayscale, liquidGrayscale: liquidGrayscale,
-                                    redWireGrayscale: redWireGrayscale, blueWireGrayscale: blueWireGrayscale, greenWireGrayscale: greenWireGrayscale, yellowWireGrayscale: yellowWireGrayscale);
+                            Color color = Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, showWalls, showTiles, showLiquids, showRedWire, showBlueWire, showGreenWire, showYellowWire);
 
-                            // Set the pixel data.
                             PixelMap.SetPixelColor(x, y, color);
                         }
                     }
                 }
+
+                BuffTileCache.RebuildFromWorld(CurrentWorld);
                 OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
             });
     }
+
+    /// <summary>
+    /// Refreshes all renderings: pixel map and minimap. Use this after applying filters.
+    /// </summary>
+    /// <param name="useFilter">If true, apply current FilterManager settings</param>
+    public void RefreshAllRenderings(bool useFilter)
+    {
+        if (CurrentWorld == null) return;
+
+        if (useFilter)
+        {
+            UpdateRenderWorldUsingFilter();
+            MinimapImage = Render.RenderMiniMap.Render(CurrentWorld, true);
+        }
+        else
+        {
+            UpdateRenderWorld();
+            MinimapImage = Render.RenderMiniMap.Render(CurrentWorld);
+        }
+    }
+
     public void UpdateRenderPixel(Vector2Int32 p)
     {
         UpdateRenderPixel(p.X, p.Y);
@@ -517,6 +511,8 @@ public partial class WorldViewModel
     {
         Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
+        UpdateFilterOverlayPixel(x, y);
+        BuffTileCache.UpdateTile(x, y, CurrentWorld.Tiles[x, y]);
     }
 
     public void UpdateRenderRegion(RectangleInt32 area)
@@ -537,6 +533,7 @@ public partial class WorldViewModel
                     for (int x = bounded.Left; x < bounded.Right; x++)
                     {
                         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
+                        BuffTileCache.UpdateTile(x, y, CurrentWorld.Tiles[x, y]);
                     }
                 }
             }
@@ -553,6 +550,11 @@ public partial class WorldViewModel
         {
             pixels.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
 
+            // Initialize FilterOverlayMap with the same dimensions
+            var overlay = new PixelMapManager();
+            overlay.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
+            FilterOverlayMap = overlay;
+
             for (int y = 0; y < CurrentWorld.TilesHigh; y++)
             {
                 Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
@@ -566,8 +568,109 @@ public partial class WorldViewModel
                 }
             }
         }
+
+        BuffTileCache.RebuildFromWorld(CurrentWorld);
         OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
         return pixels;
+    }
+
+    /// <summary>
+    /// Computes the filter overlay color for a single tile and updates the FilterOverlayMap.
+    /// </summary>
+    public void UpdateFilterOverlayPixel(int x, int y)
+    {
+        if (FilterOverlayMap == null || CurrentWorld == null) return;
+        FilterOverlayMap.SetPixelColor(x, y, ComputeFilterOverlayColor(CurrentWorld.Tiles[x, y]));
+    }
+
+    private static Color ComputeFilterOverlayColor(Tile tile)
+    {
+        if (!FilterManager.AnyFilterActive || FilterManager.CurrentFilterMode != FilterManager.FilterMode.Darken)
+            return Color.Transparent;
+
+        bool hasAllowed = false;
+        if (tile.Wall > 0 && !FilterManager.WallIsNotAllowed(tile.Wall)) hasAllowed = true;
+        if (tile.IsActive && (!FilterManager.TileIsNotAllowed(tile.Type) || !FilterManager.SpriteIsNotAllowed(tile.Type))) hasAllowed = true;
+        if (tile.LiquidAmount > 0 && !FilterManager.LiquidIsNotAllowed(tile.LiquidType)) hasAllowed = true;
+        if (tile.HasWire)
+        {
+            if (tile.WireRed && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Red)) hasAllowed = true;
+            if (tile.WireBlue && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue)) hasAllowed = true;
+            if (tile.WireGreen && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Green)) hasAllowed = true;
+            if (tile.WireYellow && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow)) hasAllowed = true;
+        }
+
+        if (hasAllowed)
+            return Color.Transparent;
+
+        byte alpha = (byte)(FilterManager.DarkenAmount * 255f);
+        return new Color((int)0, (int)0, (int)0, (int)alpha);
+    }
+
+    /// <summary>
+    /// Rebuilds the entire filter overlay map. Runs on a background thread.
+    /// Also computes per-chunk ChunkStatus for rendering optimization.
+    /// </summary>
+    public void RebuildFilterOverlay()
+    {
+        if (CurrentWorld == null) return;
+
+        var overlay = FilterOverlayMap;
+        if (overlay == null)
+        {
+            overlay = new PixelMapManager();
+            overlay.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
+            FilterOverlayMap = overlay;
+        }
+
+        Task.Factory.StartNew(() =>
+        {
+            bool filterActive = FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken;
+            byte darkenAlpha = (byte)(FilterManager.DarkenAmount * 255f);
+            var darkenColor = new Color((int)0, (int)0, (int)0, (int)darkenAlpha);
+
+            for (int chunkIdx = 0; chunkIdx < overlay.TilesX * overlay.TilesY; chunkIdx++)
+            {
+                int chunkCol = chunkIdx % overlay.TilesX;
+                int chunkRow = chunkIdx / overlay.TilesX;
+                int startX = chunkCol * overlay.TileWidth;
+                int startY = chunkRow * overlay.TileHeight;
+                int endX = Math.Min(startX + overlay.TileWidth, CurrentWorld.TilesWide);
+                int endY = Math.Min(startY + overlay.TileHeight, CurrentWorld.TilesHigh);
+
+                int clearCount = 0;
+                int darkenCount = 0;
+                int totalPixels = overlay.TileWidth * overlay.TileHeight;
+
+                for (int y = startY; y < endY; y++)
+                {
+                    for (int x = startX; x < endX; x++)
+                    {
+                        Color c;
+                        if (!filterActive)
+                        {
+                            c = Color.Transparent;
+                        }
+                        else
+                        {
+                            c = ComputeFilterOverlayColor(CurrentWorld.Tiles[x, y]);
+                        }
+
+                        overlay.SetPixelColor(x, y, c);
+
+                        if (c == Color.Transparent) clearCount++;
+                        else if (c == darkenColor) darkenCount++;
+                    }
+                }
+
+                if (clearCount == totalPixels)
+                    overlay.ChunkStates[chunkIdx] = ChunkStatus.AllClear;
+                else if (darkenCount == totalPixels)
+                    overlay.ChunkStates[chunkIdx] = ChunkStatus.AllDarkened;
+                else
+                    overlay.ChunkStates[chunkIdx] = ChunkStatus.Mixed;
+            }
+        });
     }
 
     public TEditColor GetBackgroundColor(int y)

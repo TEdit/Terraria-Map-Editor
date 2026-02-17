@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using TEdit.Common.Reactive.Command;
-using TEdit.Configuration;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
+using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Editor.Plugins;
@@ -15,169 +16,151 @@ using TEdit.Editor.Tools;
 using TEdit.Framework.Events;
 using TEdit.Geometry;
 using TEdit.Helper;
-using TEdit.Properties;
+using TEdit.Configuration;
 using TEdit.Terraria;
+using TEdit.UI.Xaml.Dialog;
 
 namespace TEdit.ViewModel;
 
 public partial class WorldViewModel
 {
-    private ICommand _saveAsVersionCommand;
-    private ICommand _saveAsCommand;
-    private ICommand _saveCommand;
-    private ICommand _setTool;
-    private ICommand _closeApplication;
-    private ICommand _commandOpenWorld;
-    private ICommand _commandReloadWorld;
-    private ICommand _deleteCommand;
-    private ICommand _pasteCommand;
-    private ICommand _copyCommand;
-    private ICommand _cropCommand;
-    private ICommand _expandCommand;
-    private ICommand _undoCommand;
-    private ICommand _redoCommand;
-    private ICommand _newWorldCommand;
-    private ICommand _runPluginCommand;
-    private ICommand _saveChestCommand;
-    private ICommand _saveSignCommand;
-    private ICommand _saveXmasCommand;
-    private ICommand _saveTileEntityCommand;
-    private ICommand _npcRemoveCommand;
-    private ICommand _importBestiaryCommand;
-    private ICommand _clearSpriteSelection;
-    private ICommand _npcAddCommand;
-    private ICommand _requestZoomCommand;
-    private ICommand _requestScrollCommand;
-    private ICommand _requestPanCommand;
 
 
 
-    public event EventHandler<EventArgs<bool>> RequestZoom;
-    public event EventHandler<EventArgs<bool>> RequestPan;
-    public event EventHandler<ScrollEventArgs> RequestScroll;
+    public event EventHandler<EventArgs<bool>> RequestZoomEvent;
+    public event EventHandler<EventArgs<bool>> RequestPanEvent;
+    public event EventHandler<ScrollEventArgs> RequestScrollEvent;
 
     protected virtual void OnRequestZoom(object sender, EventArgs<bool> e)
     {
-        if (RequestZoom != null) RequestZoom(sender, e);
+        RequestZoomEvent?.Invoke(sender, e);
     }
 
     protected virtual void OnRequestPan(object sender, EventArgs<bool> e)
     {
-        if (RequestPan != null) RequestPan(sender, e);
+        RequestPanEvent?.Invoke(sender, e);
     }
 
     protected virtual void OnRequestScroll(object sender, ScrollEventArgs e)
     {
-        if (RequestScroll != null) RequestScroll(sender, e);
+        RequestScrollEvent?.Invoke(sender, e);
     }
 
-    public ICommand ClearSpriteSelection
+    [ReactiveCommand]
+    private void ClearSpriteSelection()
     {
-        get
+        SpriteFilter = string.Empty;
+        SelectedSpriteSheet = null;
+        SpriteStylesView.Refresh();
+    }
+
+    [ReactiveCommand]
+    private void RequestPan(bool value) => OnRequestPan(this, new EventArgs<bool>(value));
+
+    [ReactiveCommand]
+    private void RequestZoom(bool value) => OnRequestZoom(this, new EventArgs<bool>(value));
+
+    [ReactiveCommand]
+    private void RequestScroll(ScrollEventArgs args) => OnRequestScroll(this, new ScrollEventArgs(args.Direction, args.Amount));
+
+    [ReactiveCommand]
+    private void NpcAdd(int npcId)
+    {
+        if (CurrentWorld == null || !WorldConfiguration.NpcNames.ContainsKey(npcId))
+            return;
+
+        string name = WorldConfiguration.NpcNames[npcId];
+        if (CurrentWorld.NPCs.Any(n => n.SpriteId == npcId))
+            return;
+
+        var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
+        var npc = new NPC
         {
-            return _clearSpriteSelection ??= new RelayCommand(
-                () =>
-                {
-                    SpriteFilter = string.Empty;
-                    SelectedSpriteSheet = null;
-                    SpriteStylesView.Refresh();
-                });
+            Home = spawn,
+            IsHomeless = true,
+            DisplayName = name,
+            Name = name,
+            Position = new Vector2FloatObservable(spawn.X * 16, spawn.Y * 16),
+            SpriteId = npcId
+        };
+        CurrentWorld.NPCs.Add(npc);
+        Points.Add(name);
+
+        var listItem = AllNpcs.FirstOrDefault(i => i.SpriteId == npcId);
+        if (listItem != null)
+            listItem.WorldNpc = npc;
+
+        AllNpcsView.Refresh();
+        ActivateNpcPointTool(name);
+    }
+
+    [ReactiveCommand]
+    private void NpcRemove(int npcId)
+    {
+        if (CurrentWorld == null)
+            return;
+
+        var npc = CurrentWorld.NPCs.FirstOrDefault(n => n.SpriteId == npcId);
+        if (npc == null)
+            return;
+
+        CurrentWorld.NPCs.Remove(npc);
+        Points.Remove(npc.Name);
+
+        var listItem = AllNpcs.FirstOrDefault(i => i.SpriteId == npcId);
+        if (listItem != null)
+            listItem.WorldNpc = null;
+
+        AllNpcsView.Refresh();
+    }
+
+    [ReactiveCommand]
+    private void NpcSelect(NpcListItem item)
+    {
+        if (item?.IsOnMap == true)
+        {
+            ActivateNpcPointTool(item.WorldNpc.Name);
         }
     }
 
-    public ICommand RequestPanCommand
+    [ReactiveCommand]
+    private void NpcGoTo(NpcListItem item)
     {
-        get { return _requestPanCommand ??= new RelayCommand<bool>(o => OnRequestPan(this, new EventArgs<bool>(o))); }
+        if (item?.IsOnMap != true) return;
+
+        int tileX = (int)(item.WorldNpc.Position.X / 16);
+        int tileY = (int)(item.WorldNpc.Position.Y / 16);
+        ZoomFocus?.Invoke(tileX, tileY);
     }
 
-    public ICommand RequestZoomCommand
+    private void ActivateNpcPointTool(string npcName)
     {
-        get { return _requestZoomCommand ??= new RelayCommand<bool>(o => OnRequestZoom(this, new EventArgs<bool>(o))); }
-    }
-
-    public ICommand RequestScrollCommand
-    {
-        get { return _requestScrollCommand ??= new RelayCommand<ScrollEventArgs>(o => OnRequestScroll(this, new ScrollEventArgs(o.Direction, o.Amount))); }
-    }
-
-    public ICommand NpcAddCommand
-    {
-        get { return _npcAddCommand ??= new RelayCommand<int>(AddNpc); }
-    }
-
-    private void AddNpc(int npcId)
-    {
-        if (CurrentWorld != null && WorldConfiguration.NpcNames.ContainsKey(npcId))
+        var pointTool = Tools.FirstOrDefault(t => t is PointTool);
+        if (pointTool != null)
         {
-            string name = WorldConfiguration.NpcNames[npcId];
-            if (CurrentWorld.NPCs.All(n => n.SpriteId != npcId))
-            {
-                var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
-                CurrentWorld.NPCs.Add(new NPC { Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position = new Vector2Float(spawn.X * 16, spawn.Y * 16), SpriteId = npcId });
-                Points.Add(name);
-                MessageBox.Show($"{name} added to spawn.", "NPC Added");
-            }
-            else
-            {
-                MessageBox.Show($"{name} is already on the map.", "NPC Exists");
-            }
-        }
-        else
-        {
-            MessageBox.Show($"Choose an NPC. NPC {npcId} not found.", "NPC Error");
+            SetActiveTool(pointTool);
+            SelectedPoint = npcName;
         }
     }
 
-    public ICommand NpcRemoveCommand
-    {
-        get { return _npcRemoveCommand ??= new RelayCommand<NPC>(RemoveNpc); }
-    }
+    [ReactiveCommand]
+    private void SaveSign(bool save) => ExecuteSaveSign(save);
 
-    private void RemoveNpc(NPC npc)
-    {
-        if (CurrentWorld != null)
-        {
-            try
-            {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(RemoveNpc), properties: new Dictionary<string, string> { ["ID"] = npc.SpriteId.ToString(), ["Name"] = npc.Name });
-                CurrentWorld.NPCs.Remove(npc);
-                Points.Remove(npc.Name);
-                MessageBox.Show(string.Format("{1} ({0}) removed.", npc.Name, npc.DisplayName), "NPC Removed");
-            }
-            catch (InvalidOperationException)
-            {
-                MessageBox.Show(string.Format("{1} ({0}) was not on the map.", npc.Name, npc.DisplayName), "NPC Doesn't Exist");
-            }
-        }
-    }
+    [ReactiveCommand]
+    private void SaveXmas(bool save) => SaveXmasTree(save);
 
-    public ICommand SaveSignCommand
-    {
-        get { return _saveSignCommand ??= new RelayCommand<bool>(SaveSign); }
-    }
+    [ReactiveCommand]
+    private void SaveTileEntity(bool save) => ExecuteSaveTileEntity(save);
 
-    public ICommand SaveXmasCommand
-    {
-        get { return _saveXmasCommand ??= new RelayCommand<bool>(SaveXmasTree); }
-    }
+    [ReactiveCommand]
+    private Task ImportBestiary() => ImportKillsAndBestiaryAsync();
 
-    public ICommand SaveTileEntityCommand
-    {
-        get { return _saveTileEntityCommand ??= new RelayCommand<bool>(SaveTileEntity); }
-    }
-
-    public ICommand ImportBestiaryCommand
-    {
-        get { return _importBestiaryCommand ??= new RelayCommand(ImportKillsAndBestiary); }
-    }
-
-    private void SaveTileEntity(bool save)
+    private void ExecuteSaveTileEntity(bool save)
     {
         if (save)
         {
             if (SelectedTileEntity != null)
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(SaveTileEntity), properties: new Dictionary<string, string> { ["ID"] = SelectedTileEntity.NetId.ToString(), ["StackSize"] = SelectedTileEntity.StackSize.ToString() });
                 if (SelectedTileEntity.NetId != 0 && SelectedTileEntity.StackSize == 0) { SelectedTileEntity.StackSize = 1; }
                 foreach (var item in SelectedTileEntity.Items)
                 {
@@ -208,8 +191,6 @@ public partial class WorldViewModel
         {
             if (SelectedXmas != null)
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(SaveXmasTree));
-
                 int tree = SelectedXmasStar;
                 tree += (SelectedXmasGarland << 3);
                 tree += (SelectedXmasBulb << 6);
@@ -223,7 +204,7 @@ public partial class WorldViewModel
         }
     }
 
-    private void SaveSign(bool save)
+    private void ExecuteSaveSign(bool save)
     {
         if (save)
         {
@@ -243,6 +224,7 @@ public partial class WorldViewModel
         }
     }
 
+    [ReactiveCommand]
     private void SaveChest(bool save)
     {
         if (save)
@@ -265,176 +247,150 @@ public partial class WorldViewModel
         }
     }
 
-    private ICommand _updateCommand;
-    public ICommand UpdateCommand
+    [ReactiveCommand]
+    private async Task Update()
     {
-        get { return _updateCommand ??= new RelayCommand(Update); }
-    }
-
-    public void Update()
-    {
-        string url = "http://www.binaryconstruct.com/downloads/";
         try
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(Update));
+            var updateService = new Services.UpdateService(UserSettingsService.Current.UpdateChannel);
 
-            System.Diagnostics.Process.Start(url);
+            if (!updateService.IsInstalled)
+            {
+                // Not a Velopack install (portable zip user) — open download page
+                var process = new System.Diagnostics.ProcessStartInfo("https://github.com/TEdit/Terraria-Map-Editor/releases");
+                process.UseShellExecute = true;
+                System.Diagnostics.Process.Start(process);
+                return;
+            }
+
+            App.SnackbarService.ShowInfo("Checking for updates...", "Update");
+
+            bool downloaded = await updateService.CheckAndDownloadAsync();
+            if (downloaded)
+            {
+                var result = await App.DialogService.ShowMessageAsync(
+                    "A new version of TEdit has been downloaded. Restart now to apply the update?",
+                    "Update Available",
+                    UI.Xaml.Dialog.DialogButton.YesNo,
+                    UI.Xaml.Dialog.DialogImage.Question);
+
+                if (result == UI.Xaml.Dialog.DialogResponse.Yes)
+                {
+                    updateService.ApplyAndRestart();
+                }
+            }
+            else
+            {
+                App.SnackbarService.ShowSuccess("TEdit is up to date.", "Update");
+            }
         }
         catch (Exception ex)
         {
             ErrorLogging.LogException(ex);
+            App.SnackbarService.ShowWarning("Update check failed.", "Update");
         }
     }
 
-    public ICommand SaveChestCommand
-    {
-        get { return _saveChestCommand ??= new RelayCommand<bool>(SaveChest); }
-    }
-
-    public ICommand RunPluginCommand
-    {
-        get { return _runPluginCommand ??= new RelayCommand<IPlugin>(RunPlugin); }
-    }
-
+    [ReactiveCommand]
     private void RunPlugin(IPlugin plugin)
     {
         plugin.Execute();
     }
 
-    public ICommand NewWorldCommand
-    {
-        get { return _newWorldCommand ??= new RelayCommand(NewWorld); }
-    }
-    public ICommand RedoCommand
-    {
-        get { return _redoCommand ??= new RelayCommand(() => UndoManager?.Redo()); }
-    }
+    // Command wrappers for methods defined in other files
+    [ReactiveCommand]
+    private void Open() => OpenWorld();
 
-    public ICommand UndoCommand
-    {
-        get { return _undoCommand ??= new RelayCommand(() => UndoManager?.Undo()); }
-    }
+    [ReactiveCommand]
+    private Task Save() => SaveWorldAsync();
 
-    public ICommand CopyCommand
-    {
-        get { return _copyCommand ??= new RelayCommand(EditCopy); }
-    }
+    [ReactiveCommand]
+    private Task SaveAs() => SaveWorldAsAsync();
 
-    public ICommand CropCommand
-    {
-        get { return _cropCommand ??= new RelayCommand(CropWorld); }
-    }
-    public ICommand ExpandCommand
-    {
-        get { return _expandCommand ??= new RelayCommand(ExpandWorld); }
-    }
+    [ReactiveCommand]
+    private Task SaveAsVersion() => SaveWorldAsVersionAsync();
+
+    [ReactiveCommand]
+    private Task Reload() => ReloadWorldAsync();
+
+    [ReactiveCommand]
+    private void Copy() => EditCopy();
+
+    [ReactiveCommand]
+    private void Paste() => EditPaste();
+
+    [ReactiveCommand]
+    private void Delete() => EditDelete();
+
+    [ReactiveCommand]
+    private Task Crop() => CropWorldAsync();
+
+    [ReactiveCommand]
+    private void Expand() => ExpandWorld();
+
+    [ReactiveCommand]
+    private void Redo() => UndoManager?.Redo();
+
+    [ReactiveCommand]
+    private void Undo() => UndoManager?.Undo();
 
     private bool CanCopy()
     {
         return _selection.IsActive;
     }
 
-    public ICommand PasteCommand
-    {
-        get { return _pasteCommand ??= new RelayCommand(EditPaste); }
-    }
     private bool CanPaste()
     {
         return Clipboard != null && _clipboard.Buffer != null;
     }
-    public ICommand DeleteCommand
-    {
-        get { return _deleteCommand ??= new RelayCommand(EditDelete); }
-    }
 
-    public ICommand CloseApplicationCommand
-    {
-        get { return _closeApplication ??= new RelayCommand(Application.Current.Shutdown); }
-    }
+    [ReactiveCommand]
+    private void CloseApplication() => Application.Current.Shutdown();
 
-    public ICommand OpenCommand
-    {
-        get { return _commandOpenWorld ??= new RelayCommand(OpenWorld); }
-    }
+    [ReactiveCommand]
+    private void SetTool(ITool tool) => SetActiveTool(tool);
 
-    public ICommand ReloadCommand
-    {
-        get { return _commandReloadWorld ??= new RelayCommand(ReloadWorld); }
-    }
-
-    public ICommand SaveAsVersionCommand
-    {
-        get { return _saveAsVersionCommand ??= new RelayCommand(SaveWorldAsVersion); }
-    }
-
-    public ICommand SaveAsCommand
-    {
-        get { return _saveAsCommand ??= new RelayCommand(SaveWorldAs); }
-    }
-
-    public ICommand SaveCommand
-    {
-        get { return _saveCommand ??= new RelayCommand(SaveWorld); }
-    }
-
-    public ICommand SetTool
-    {
-        get { return _setTool ??= new RelayCommand<ITool>(SetActiveTool); }
-    }
-
-    public ICommand SetLanguageCommand
-    {
-        get { return _setLanguage ??= new RelayCommand<LanguageSelection>(SetLanguage); }
-    }
-
-    private LanguageSelection _currentLanguage;
-
-    public LanguageSelection CurrentLanguage
-    {
-
-        get { return _currentLanguage; }
-        set
-        {
-            Set(nameof(CurrentLanguage), ref _currentLanguage, value);
-            UpdateRenderWorld();
-        }
-
-    }
-
-    private void SetLanguage(LanguageSelection language)
+    [ReactiveCommand]
+    private async Task SetLanguage(LanguageSelection language)
     {
         CurrentLanguage = language;
-        ErrorLogging.TelemetryClient?.TrackEvent(nameof(SetLanguage), properties: new Dictionary<string, string> { ["language"] = language.ToString() });
-        Settings.Default.Language = language;
-        try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+        UserSettingsService.Current.Language = language;
 
-        if (MessageBox.Show($"Language changed to {language}. Do you wish to restart now?", "Restart to change language", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+        var result = await App.DialogService.ShowMessageAsync(
+            $"Language changed to {language}. Do you wish to restart now?",
+            "Restart to change language",
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (result == DialogResponse.Yes)
         {
             System.Windows.Forms.Application.Restart();
             System.Windows.Application.Current.Shutdown();
         }
     }
 
+    private LanguageSelection _currentLanguage;
+
+    public LanguageSelection CurrentLanguage
+    {
+        get { return _currentLanguage; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _currentLanguage, value);
+            UpdateRenderWorld();
+        }
+    }
+
     // Chest Commands
-    private ICommand _copyChestItemCommand;
-    private ICommand _pasteChestItemCommand;
-    private ICommand _chestItemSetToMaxStack;
 
-    public ICommand CopyChestItemCommand
-    {
-        get { return _copyChestItemCommand ??= new RelayCommand<object>(CopyChestItems); }
-    }
+    [ReactiveCommand]
+    private void CopyChestItem(object container) => CopyChestItems(container);
 
+    [ReactiveCommand]
+    private void PasteChestItem(object parameter) => PasteChestItems(parameter);
 
-    public ICommand PasteChestItemCommand
-    {
-        get { return _pasteChestItemCommand ??= new RelayCommand<object>(PasteChestItems); }
-    }
-
-    public ICommand ChestItemSetToMaxStack
-    {
-        get { return _chestItemSetToMaxStack ??= new RelayCommand<object>(ChestItemMaxStack); }
-    }
+    [ReactiveCommand]
+    private void ChestItemSetToMaxStack(object container) => ChestItemMaxStack(container);
 
     private Item _chestItemClipboard;
 
@@ -516,11 +472,19 @@ public partial class WorldViewModel
     {
         if (container == null) return;
 
-        if (container is Item item)
+        if (container is System.Collections.IList selectedItems)
+        {
+            foreach (var obj in selectedItems)
+            {
+                if (obj is Item listItem)
+                    SetItemMaxStack(listItem);
+            }
+        }
+        else if (container is Item item)
         {
             SetItemMaxStack(item);
         }
-        if (container is TileEntity te && te.EntityType == TileEntityType.ItemFrame)
+        else if (container is TileEntity te && te.EntityType == TileEntityType.ItemFrame)
         {
             var teItem = new Item(te.StackSize, te.NetId, te.Prefix);
             SetItemMaxStack(teItem);
@@ -542,74 +506,40 @@ public partial class WorldViewModel
 
     #region Clipboard
 
-    private ICommand _emptyClipboardCommand;
-    private ICommand _importSchematicCommand;
-    private ICommand _exportSchematicCommand;
-    private ICommand _removeSchematicCommand;
-    private ICommand _clipboardSetActiveCommand;
-    private ICommand _clipboardFlipXCommand;
-    private ICommand _clipboardFlipYCommand;
-    private ICommand _clipboardRotateCommand;
-    private ICommand _setLanguage;
+    [ReactiveCommand]
+    private void ClipboardSetActive(ClipboardBufferPreview item) => ActivateBuffer(item);
 
-    public ICommand ClipboardSetActiveCommand
+    [ReactiveCommand]
+    private void RemoveSchematic(ClipboardBufferPreview buffer) => _clipboard?.Remove(buffer);
+
+    [ReactiveCommand]
+    private Task ExportSchematic(ClipboardBufferPreview buffer) => ExportSchematicAsync(buffer);
+
+    [ReactiveCommand]
+    private Task ImportSchematic(bool isFalseColor) => ImportSchematicAsync(isFalseColor);
+
+    [ReactiveCommand]
+    private void EmptyClipboard() => _clipboard?.ClearBuffers();
+
+    [ReactiveCommand]
+    private void ClipboardFlipX(ClipboardBufferPreview buffer)
     {
-        get { return _clipboardSetActiveCommand ??= new RelayCommand<ClipboardBufferPreview>(ActivateBuffer); }
+        _clipboard.FlipX(buffer);
+        this.PreviewChange();
     }
 
-    public ICommand RemoveSchematicCommand
+    [ReactiveCommand]
+    private void ClipboardFlipY(ClipboardBufferPreview buffer)
     {
-        get { return _removeSchematicCommand ??= new RelayCommand<ClipboardBufferPreview>((b) => _clipboard?.Remove(b)); }
+        _clipboard.FlipY(buffer);
+        this.PreviewChange();
     }
 
-    public ICommand ExportSchematicCommand
+    [ReactiveCommand]
+    private void ClipboardRotate(ClipboardBufferPreview buffer)
     {
-        get { return _exportSchematicCommand ??= new RelayCommand<ClipboardBufferPreview>(ExportSchematicFile); }
-    }
-
-    public ICommand ImportSchematicCommand
-    {
-        get { return _importSchematicCommand ??= new RelayCommand<bool>(ImportSchematic); }
-    }
-
-    public ICommand EmptyClipboardCommand
-    {
-        get { return _emptyClipboardCommand ??= new RelayCommand(() => _clipboard?.ClearBuffers()); }
-    }
-
-    public ICommand ClipboardFlipXCommand
-    {
-        get
-        {
-            return _clipboardFlipXCommand ??= new RelayCommand<ClipboardBufferPreview>(b =>
-            {
-                _clipboard.FlipX(b);
-                this.PreviewChange();
-            });
-        }
-    }
-
-    public ICommand ClipboardFlipYCommand
-    {
-        get
-        {
-            return _clipboardFlipYCommand ??= new RelayCommand<ClipboardBufferPreview>(b =>
-            {
-                _clipboard.FlipY(b);
-                this.PreviewChange();
-            });
-        }
-    }
-    public ICommand ClipboardRotateCommand
-    {
-        get
-        {
-            return _clipboardRotateCommand ??= new RelayCommand<ClipboardBufferPreview>(b =>
-            {
-                _clipboard.Rotate(b);
-                this.PreviewChange();
-            });
-        }
+        _clipboard.Rotate(buffer);
+        this.PreviewChange();
     }
 
     private void ActivateBuffer(ClipboardBufferPreview item)
@@ -618,16 +548,17 @@ public partial class WorldViewModel
         EditPaste();
     }
 
-    private void ImportKillsAndBestiary()
+    private async Task ImportKillsAndBestiaryAsync()
     {
-        if (CurrentWorld == null) return; // Ensure world is loaded first
+        if (CurrentWorld == null) return;
 
-        if (MessageBox.Show(
+        var confirmResult = await App.DialogService.ShowMessageAsync(
             "This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?",
             "Load Bestiary?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            DialogButton.YesNo,
+            DialogImage.Question);
+
+        if (confirmResult != DialogResponse.Yes)
             return;
 
         var ofd = new OpenFileDialog();
@@ -647,8 +578,6 @@ public partial class WorldViewModel
             var killTally = world.KilledMobs.ToArray();
             try
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportKillsAndBestiary));
-
                 World.ImportKillsAndBestiary(world, ofd.FileName);
                 TallyCount = KillTally.LoadTally(CurrentWorld);
             }
@@ -657,12 +586,16 @@ public partial class WorldViewModel
                 world.Bestiary = bestiary;
                 world.KilledMobs.Clear();
                 world.KilledMobs.AddRange(killTally);
-                MessageBox.Show($"Error importing Bestiary data from {ofd.FileName}. Your current bestiary has been restored.\r\n{ex.Message}");
+                await App.DialogService.ShowMessageAsync(
+                    $"Error importing Bestiary data from {ofd.FileName}. Your current bestiary has been restored.\r\n{ex.Message}",
+                    "Import Error",
+                    DialogButton.OK,
+                    DialogImage.Error);
             }
         }
     }
 
-    private void ImportSchematic(bool isFalseColor)
+    private async Task ImportSchematicAsync(bool isFalseColor)
     {
         var ofd = new OpenFileDialog
         {
@@ -678,8 +611,6 @@ public partial class WorldViewModel
 
         if ((bool)ofd.ShowDialog())
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportSchematic));
-
             foreach (var file in ofd.FileNames)
             {
                 try
@@ -688,13 +619,13 @@ public partial class WorldViewModel
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Schematic File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    await App.DialogService.ShowExceptionAsync(ex.Message);
                 }
             }
         }
     }
 
-    private void ExportSchematicFile(ClipboardBufferPreview buffer)
+    private async Task ExportSchematicAsync(ClipboardBufferPreview buffer)
     {
         var sfd = new SaveFileDialog();
         sfd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png";
@@ -707,18 +638,23 @@ public partial class WorldViewModel
         {
             try
             {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(ExportSchematicFile));
                 buffer.Buffer.Save(sfd.FileName, this.CurrentWorld?.Version ?? WorldConfiguration.CompatibleVersion);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error Saving Schematic");
+                await App.DialogService.ShowExceptionAsync(ex.Message);
             }
-
         }
     }
 
     #endregion
+}
+
+public enum UpdateChannel
+{
+    Stable,
+    Beta,
+    Alpha
 }
 
 public enum LanguageSelection
@@ -728,8 +664,13 @@ public enum LanguageSelection
     Russian,
     Arabic,
     Chinese,
+    ChineseTraditional,
     Polish,
     German,
+    French,
+    Italian,
+    Japanese,
+    Korean,
     Portuguese,
     Spanish
 }

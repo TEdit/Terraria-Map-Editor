@@ -204,6 +204,12 @@ public class Shape
         int xc = center.X;
         int yc = center.Y;
 
+        if (xr <= 0 || yr <= 0)
+        {
+            yield return new Vector2Int32(xc, yc);
+            yield break;
+        }
+
         if (xr >= 1 && yr >= 1)
         {
             // Init vars

@@ -1,0 +1,1768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="banner_category" xml:space="preserve">
+    <value>Categoria:</value>
+  </data>
+  <data name="banner_count" xml:space="preserve">
+    <value>Conte</value>
+  </data>
+  <data name="banner_filter" xml:space="preserve">
+    <value>Filtro:</value>
+  </data>
+  <data name="banner_import" xml:space="preserve">
+    <value>Importazione</value>
+  </data>
+  <data name="banner_kills" xml:space="preserve">
+    <value>Uccisioni</value>
+  </data>
+  <data name="banner_maxout" xml:space="preserve">
+    <value>Max Out</value>
+  </data>
+  <data name="banner_reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="banner_save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>Libero</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>Completa</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>Sconfitto</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>Carico</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>Vicino</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>Parliamo</value>
+  </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>Aggiornamento</value>
+  </data>
+  <data name="BrickStyle_Full" xml:space="preserve">
+    <value>Mattoni pieni</value>
+  </data>
+  <data name="BrickStyle_HalfBrick" xml:space="preserve">
+    <value>Mezzo Mattone</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
+    <value>Pendio in basso a sinistra</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
+    <value>Pendio in basso a destra</value>
+  </data>
+  <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
+    <value>Pendio in alto a sinistra</value>
+  </data>
+  <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
+    <value>Pista in alto a destra</value>
+  </data>
+  <data name="BrushShape_Left" xml:space="preserve">
+    <value>Diagonale a sinistra</value>
+  </data>
+  <data name="BrushShape_Right" xml:space="preserve">
+    <value>Diagonale Destra</value>
+  </data>
+  <data name="BrushShape_Round" xml:space="preserve">
+    <value>Ellisse</value>
+  </data>
+  <data name="BrushShape_Square" xml:space="preserve">
+    <value>Rettangolo</value>
+  </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
+    <value>La directory non sembra contenere contenuti di Terraria.
+Premi riprova per scegliere una nuova cartella o annulla per usare {0} come percorso per Terraria.</value>
+  </data>
+  <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
+    <value>Contenuto di Terraria non trovato</value>
+  </data>
+  <data name="editor_tabs_analysis" xml:space="preserve">
+    <value>Analisi</value>
+  </data>
+  <data name="editor_tabs_banners" xml:space="preserve">
+    <value>Stendardi</value>
+  </data>
+  <data name="editor_tabs_clipboard" xml:space="preserve">
+    <value>Blocco appunti</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>Poteri Creativi</value>
+  </data>
+  <data name="editor_tabs_npc" xml:space="preserve">
+    <value>Dati NPC</value>
+  </data>
+  <data name="editor_tabs_special" xml:space="preserve">
+    <value>Tessere speciali</value>
+  </data>
+  <data name="editor_tabs_sprites" xml:space="preserve">
+    <value>Sprite</value>
+  </data>
+  <data name="editor_tabs_tally" xml:space="preserve">
+    <value>Bestiario</value>
+  </data>
+  <data name="editor_tabs_tileentities" xml:space="preserve">
+    <value>Entità Tile</value>
+  </data>
+  <data name="editor_tabs_worldproperties" xml:space="preserve">
+    <value>Proprietà del mondo</value>
+  </data>
+  <data name="editor_utilities_label" xml:space="preserve">
+    <value>Utenze</value>
+  </data>
+  <data name="global_enjoytedit" xml:space="preserve">
+    <value>Ti è piaciuto TEdit? Sosteneteci!</value>
+  </data>
+  <data name="HalfBlockMode_HalfBLock" xml:space="preserve">
+    <value>Mezza Isola</value>
+  </data>
+  <data name="HalfBlockMode_NoAction" xml:space="preserve">
+    <value>Nessun cambiamento</value>
+  </data>
+  <data name="HalfBlockMode_RampLeft" xml:space="preserve">
+    <value>Rampa a sinistra</value>
+  </data>
+  <data name="HalfBlockMode_RampRight" xml:space="preserve">
+    <value>Rampa a destra</value>
+  </data>
+  <data name="HalfBlockMode_Solid" xml:space="preserve">
+    <value>Set Solid</value>
+  </data>
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
+    <value>Rivolto a sinistra</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>Nessuna</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>Normale</value>
+  </data>
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
+    <value>Rivolto a destra</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>Scatola di derivazione:</value>
+  </data>
+  <data name="LiquidType_Honey" xml:space="preserve">
+    <value>Honey</value>
+  </data>
+  <data name="LiquidType_Lava" xml:space="preserve">
+    <value>Lava</value>
+  </data>
+  <data name="LiquidType_None" xml:space="preserve">
+    <value>Nessun liquido</value>
+  </data>
+  <data name="LiquidType_Water" xml:space="preserve">
+    <value>Acqua</value>
+  </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>Quantità di liquido:</value>
+  </data>
+  <data name="MaskMode_Empty" xml:space="preserve">
+    <value>Modifica: vuoto</value>
+  </data>
+  <data name="MaskMode_Match" xml:space="preserve">
+    <value>Modifica Matching</value>
+  </data>
+  <data name="MaskMode_NotMatching" xml:space="preserve">
+    <value>Modifica: non corrisponde</value>
+  </data>
+  <data name="MaskMode_Off" xml:space="preserve">
+    <value>Disabilita la Maschera</value>
+  </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Copia primo elemento</value>
+  </data>
+  <data name="menu_edit" xml:space="preserve">
+    <value>Modifica</value>
+  </data>
+  <data name="menu_edit_copy" xml:space="preserve">
+    <value>Ricevuto</value>
+  </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>Crop World</value>
+  </data>
+  <data name="menu_edit_delete" xml:space="preserve">
+    <value>Elimina selezione</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Espandi il mondo</value>
+  </data>
+  <data name="menu_edit_paste" xml:space="preserve">
+    <value>Pasta</value>
+  </data>
+  <data name="menu_edit_redo" xml:space="preserve">
+    <value>Ripetizione</value>
+  </data>
+  <data name="menu_edit_undo" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="menu_file" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="menu_file_autosave" xml:space="preserve">
+    <value>Abilita il salvataggio automatico</value>
+  </data>
+  <data name="menu_file_autoupdate" xml:space="preserve">
+    <value>Controlla aggiornamenti sull'avvio</value>
+  </data>
+  <data name="menu_file_exit" xml:space="preserve">
+    <value>Uscita</value>
+  </data>
+  <data name="menu_file_new" xml:space="preserve">
+    <value>Nuovo</value>
+  </data>
+  <data name="menu_file_open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="menu_file_save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="menu_file_saveas" xml:space="preserve">
+    <value>Salva come</value>
+  </data>
+  <data name="menu_file_saveasversion" xml:space="preserve">
+    <value>Salva come versione</value>
+  </data>
+  <data name="menu_file_update" xml:space="preserve">
+    <value>Controlla ora gli aggiornamenti</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Candidati</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>BackgroundMode</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Consuetudine</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Disabilitazione</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>Cartellino del filtro</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>FilterMode</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Scala di grigi</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Liquidi</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>Sprite</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Tessere</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Mura</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>Fili</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Nasconditi</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Normale</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Controlla tutto</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Deseleziona Tutti</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Filtro Avanzato</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Trasparente</value>
+  </data>
+  <data name="menu_help" xml:space="preserve">
+    <value>Aiuto</value>
+  </data>
+  <data name="menu_help_about" xml:space="preserve">
+    <value>Informazioni</value>
+  </data>
+  <data name="menu_help_log" xml:space="preserve">
+    <value>Apri il file di registro</value>
+  </data>
+  <data name="menu_help_settings" xml:space="preserve">
+    <value>Impostazioni...</value>
+  </data>
+  <data name="menu_help_update" xml:space="preserve">
+    <value>Aggiornamento</value>
+  </data>
+  <data name="menu_help_wiki" xml:space="preserve">
+    <value>Wiki</value>
+  </data>
+  <data name="menu_language" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="menu_language_en" xml:space="preserve">
+    <value>Inglese</value>
+  </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="menu_language_fr" xml:space="preserve">
+    <value>Francese</value>
+  </data>
+  <data name="menu_language_it" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="menu_language_ja" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="menu_language_ko" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="menu_language_pl" xml:space="preserve">
+    <value>Polski</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>Portoghese</value>
+  </data>
+  <data name="menu_language_ru" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="menu_language_zh" xml:space="preserve">
+    <value>中文 (简体)</value>
+  </data>
+  <data name="menu_language_zh_hant" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="menu_layers" xml:space="preserve">
+    <value>Strati</value>
+  </data>
+  <data name="menu_layers_actuators" xml:space="preserve">
+    <value>Attuatori</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>Contesti</value>
+  </data>
+  <data name="menu_layers_grid" xml:space="preserve">
+    <value>Griglia di layout</value>
+  </data>
+  <data name="menu_layers_liquid" xml:space="preserve">
+    <value>Liquidi</value>
+  </data>
+  <data name="menu_layers_points" xml:space="preserve">
+    <value>Punti di interesse</value>
+  </data>
+  <data name="menu_layers_textures" xml:space="preserve">
+    <value>Texture</value>
+  </data>
+  <data name="menu_layers_tiles" xml:space="preserve">
+    <value>Tessere</value>
+  </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>Usa colori realistici</value>
+  </data>
+  <data name="menu_layers_walls" xml:space="preserve">
+    <value>Mura</value>
+  </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>Tutti i fili</value>
+  </data>
+  <data name="menu_layers_wire_blue" xml:space="preserve">
+    <value>Filo Blu</value>
+  </data>
+  <data name="menu_layers_wire_green" xml:space="preserve">
+    <value>Filo Verde</value>
+  </data>
+  <data name="menu_layers_wire_red" xml:space="preserve">
+    <value>Red Wire</value>
+  </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>Trasparenza del filo</value>
+  </data>
+  <data name="menu_layers_wire_yellow" xml:space="preserve">
+    <value>Filo Giallo</value>
+  </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Incolla in tutti gli slot</value>
+  </data>
+  <data name="menu_plugins" xml:space="preserve">
+    <value>Plugin</value>
+  </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>Abilita la segnalazione degli errori</value>
+  </data>
+  <data name="menu_toolbar_zoom_in" xml:space="preserve">
+    <value>Ingrandisci</value>
+  </data>
+  <data name="menu_toolbar_zoom_out" xml:space="preserve">
+    <value>Zoom Out</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Sposta tutti i fotogrammi</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Quantità di movimento (frame)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Restauro</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Fotogrammi selezionati</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Imposta i UV manuali su tutti</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Valori di insiemi</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>UV Editor</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>Riavvio richiesto</value>
+  </data>
+  <data name="MorphBiome_Corruption" xml:space="preserve">
+    <value>Corruzione</value>
+  </data>
+  <data name="MorphBiome_Crimson" xml:space="preserve">
+    <value>Cremisi</value>
+  </data>
+  <data name="MorphBiome_Custom" xml:space="preserve">
+    <value>Consuetudine</value>
+  </data>
+  <data name="MorphBiome_Desert" xml:space="preserve">
+    <value>Deserto</value>
+  </data>
+  <data name="MorphBiome_Hallow" xml:space="preserve">
+    <value>Sacro</value>
+  </data>
+  <data name="MorphBiome_Jungle" xml:space="preserve">
+    <value>Giungla</value>
+  </data>
+  <data name="MorphBiome_Purify" xml:space="preserve">
+    <value>Purificare</value>
+  </data>
+  <data name="PaintMode_Liquid" xml:space="preserve">
+    <value>Liquido</value>
+  </data>
+  <data name="PaintMode_TileAndWall" xml:space="preserve">
+    <value>Piastrelle/Muro</value>
+  </data>
+  <data name="PaintMode_Track" xml:space="preserve">
+    <value>Pista</value>
+  </data>
+  <data name="PaintMode_Wire" xml:space="preserve">
+    <value>Filo</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>Abilita il salvataggio automatico</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>Salva periodicamente il mondo automaticamente</value>
+  </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>Generale</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>Strati</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>Sentieri</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>Rendering</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>Controlla per aggiornamenti</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>Controllo automatico delle nuove versioni all'avvio</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>Abilita la segnalazione degli errori</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>Invia segnalazioni di errore anonime per migliorare la stabilità</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>Imposta il linguaggio di visualizzazione dell'applicazione</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>Usa colori realistici</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>Renderizzare le tile usando colori campionati per texture (richiede un riavvio)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>Impostazioni di ricerca...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>Attuatori da mostra</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>Visibilità degli attuatori a toggle</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>Mostra tutti i fili</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>Commuta tutti gli strati di filo contemporaneamente</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>Contesti della serie</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>Rendering a toggle background</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>Mostra i Fili Blu</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>Visibilità a toggle blue wire</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>Rivestimenti per esposizione</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>Visibilità dello strato di rivestimento a interruzione</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>Mostra i fili verdi</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>Visibilità a toggle green wire</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>Griglia di Spettacolo</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>Sovrapposizione a griglia toggle</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>Show Liquid</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>Attiva la visibilità dello strato liquido</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>Notizie dello show</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>Mostra notizie e annunci nel redattore</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>Punti dello spettacolo</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>Toggle spawn/marcatori di punti NPC</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>Mostra i fili rossi</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>Visibilità a toggle red wire</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>Mostra le texture</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>Rendering delle texture delle tile toggle</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>Tessere Mostra</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>Visibilità del layer delle tessere toggle</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>Muri espositivi</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>Visibilità dello strato muro a toggle</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>Mostra fili gialli</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>Visibilità a toggle filo giallo</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>Dimensione della miniatura dello sprite</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>Dimensione delle miniature degli sprite nel sprite picker</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Percorso di contenuto di Terraria</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Percorso verso la cartella Content di Terraria per il caricamento delle texture</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>Visibilità delle texture Livello di zoom</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>Livello minimo di zoom prima che le texture delle tile diventino visibili</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>Trasparenza del filo</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>Renderizza i fili con trasparenza</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>Stendardi</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>Trova e sostituisci</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>Entità Tile</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>Proprietà del mondo</value>
+  </data>
+  <data name="specialtile_button_cancel" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="specialtile_button_save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="specialtile_label_acc1" xml:space="preserve">
+    <value>Acc1</value>
+  </data>
+  <data name="specialtile_label_acc2" xml:space="preserve">
+    <value>Acc2</value>
+  </data>
+  <data name="specialtile_label_acc3" xml:space="preserve">
+    <value>Acc3</value>
+  </data>
+  <data name="specialtile_label_acc4" xml:space="preserve">
+    <value>Acc4</value>
+  </data>
+  <data name="specialtile_label_acc5" xml:space="preserve">
+    <value>Acc5</value>
+  </data>
+  <data name="specialtile_label_acc6" xml:space="preserve">
+    <value>Acc6</value>
+  </data>
+  <data name="specialtile_label_body" xml:space="preserve">
+    <value>Carrozzeria</value>
+  </data>
+  <data name="specialtile_label_chestcontents" xml:space="preserve">
+    <value>Contenuto del baule</value>
+  </data>
+  <data name="specialtile_label_chestname" xml:space="preserve">
+    <value>Nome del baule</value>
+  </data>
+  <data name="specialtile_label_chesttype" xml:space="preserve">
+    <value>Tipo di petto</value>
+  </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>Critter</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>Fiaschetta di oggetti</value>
+  </data>
+  <data name="specialtile_label_editselecteditem" xml:space="preserve">
+    <value>Modifica Elemento selezionato</value>
+  </data>
+  <data name="specialtile_label_head" xml:space="preserve">
+    <value>Testa</value>
+  </data>
+  <data name="specialtile_label_itemframecontents" xml:space="preserve">
+    <value>Contenuti del Frame dell'Oggetto</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>Aquilone</value>
+  </data>
+  <data name="specialtile_label_legs" xml:space="preserve">
+    <value>Gambe</value>
+  </data>
+  <data name="specialtile_label_mannequin" xml:space="preserve">
+    <value>Mannechino</value>
+  </data>
+  <data name="specialtile_label_mannequinclothing" xml:space="preserve">
+    <value>Abbigliamento manichino</value>
+  </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>Montatura</value>
+  </data>
+  <data name="specialtile_label_platecontents" xml:space="preserve">
+    <value>Contenuto della tavola</value>
+  </data>
+  <data name="specialtile_label_signtext" xml:space="preserve">
+    <value>Testo del segno</value>
+  </data>
+  <data name="specialtile_label_signtype" xml:space="preserve">
+    <value>Tipo di Segno</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>Arma</value>
+  </data>
+  <data name="specialtile_label_weaponrack" xml:space="preserve">
+    <value>Oggetto Portaarmi</value>
+  </data>
+  <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
+    <value>Lampadine</value>
+  </data>
+  <data name="specialtile_label_xmas_deco" xml:space="preserve">
+    <value>Decorazioni per alberi di Natale</value>
+  </data>
+  <data name="specialtile_label_xmas_garland" xml:space="preserve">
+    <value>Garland</value>
+  </data>
+  <data name="specialtile_label_xmas_lights" xml:space="preserve">
+    <value>Luci</value>
+  </data>
+  <data name="specialtile_label_xmas_star" xml:space="preserve">
+    <value>Star</value>
+  </data>
+  <data name="specialtile_tooltip" xml:space="preserve">
+    <value>Con lo strumento freccia, clicca con il tasto destro su un cartello, un baule, un manichino, un portaarmi, una cornice per oggetti o un albero di Natale.</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>Bioma:</value>
+  </data>
+  <data name="sprite_filter_button" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="sprite_filter_label" xml:space="preserve">
+    <value>Filtro:</value>
+  </data>
+  <data name="sprite_styletype" xml:space="preserve">
+    <value>Stile</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>Filtro di tipo tile</value>
+  </data>
+  <data name="statusbar_extra_label" xml:space="preserve">
+    <value>Extra</value>
+  </data>
+  <data name="statusbar_frame_label" xml:space="preserve">
+    <value>Telaio</value>
+  </data>
+  <data name="statusbar_paint_label" xml:space="preserve">
+    <value>Vernice</value>
+  </data>
+  <data name="statusbar_position_label" xml:space="preserve">
+    <value>Posizione</value>
+  </data>
+  <data name="statusbar_selection_label" xml:space="preserve">
+    <value>Selezione</value>
+  </data>
+  <data name="statusbar_tile_label" xml:space="preserve">
+    <value>Tile</value>
+  </data>
+  <data name="statusbar_wall_label" xml:space="preserve">
+    <value>Muro</value>
+  </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>Bestiario</value>
+  </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>Spawn della squadra Blu</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>Spawn della Squadra Verde</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>Spawn della Squadra Rosa</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>Spawn della Squadra Rossa</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>Spawn della Squadra Bianca</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>Spawn della Squadra Gialla</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit può inviare segnalazioni di errore anonime per migliorare la stabilità.
+
+Cosa viene raccolto:
+  • Dettagli di errore (tipo di eccezione e traccia dello stack)
+  • Versione app e versione OS
+
+Cosa NON viene raccolto:
+  • Nessuna informazione personale o percorsi di file
+  • Nessun tracciamento dell'uso o impronte digitali
+  • Tutti i percorsi sono oscurati prima dell'invio
+
+Vuoi abilitare la segnalazione degli errori?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>Segnalazione degli errori TEdit</value>
+  </data>
+  <data name="tool_analyze_analyze_button" xml:space="preserve">
+    <value>Analizza</value>
+  </data>
+  <data name="tool_analyze_save" xml:space="preserve">
+    <value>Analisi dei salvataggi</value>
+  </data>
+  <data name="tool_analyze_save_button" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="tool_analyze_title" xml:space="preserve">
+    <value>Analisi del mondo</value>
+  </data>
+  <data name="tool_arrow_title" xml:space="preserve">
+    <value>Arrow</value>
+  </data>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Modifica</value>
+  </data>
+  <data name="tool_bestiary_import" xml:space="preserve">
+    <value>Importazione</value>
+  </data>
+  <data name="tool_bestiary_save" xml:space="preserve">
+    <value>Salva il Bestiario</value>
+  </data>
+  <data name="tool_bestiary_scan" xml:space="preserve">
+    <value>Scansione</value>
+  </data>
+  <data name="tool_bestiary_title" xml:space="preserve">
+    <value>Bestiario</value>
+  </data>
+  <data name="tool_brush_height_label" xml:space="preserve">
+    <value>Altezza</value>
+  </data>
+  <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
+    <value>Larghezza e altezza quadrate</value>
+  </data>
+  <data name="tool_brush_outline_thickness_label" xml:space="preserve">
+    <value>Scaletta</value>
+  </data>
+  <data name="tool_brush_outline_tooltip" xml:space="preserve">
+    <value>Toggle Draw Outline (stanza)</value>
+  </data>
+  <data name="tool_brush_shape_label" xml:space="preserve">
+    <value>Forma</value>
+  </data>
+  <data name="tool_brush_title" xml:space="preserve">
+    <value>Pennello</value>
+  </data>
+  <data name="tool_brush_width_label" xml:space="preserve">
+    <value>Larghezza</value>
+  </data>
+  <data name="tool_clipboard_empty" xml:space="preserve">
+    <value>Cartellino vuoto</value>
+  </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>Esportazione</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>Flip X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>Flip Y</value>
+  </data>
+  <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
+    <value>Importa immagine a colori falsi</value>
+  </data>
+  <data name="tool_clipboard_importschematic" xml:space="preserve">
+    <value>Importare schema o immagine</value>
+  </data>
+  <data name="tool_clipboard_ispasteempty" xml:space="preserve">
+    <value>Incollare le tessere vuote</value>
+  </data>
+  <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
+    <value>Liquidi Paste</value>
+  </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>Sprite Paste</value>
+  </data>
+  <data name="tool_clipboard_ispastetiles" xml:space="preserve">
+    <value>Pasta Tiles</value>
+  </data>
+  <data name="tool_clipboard_ispastewalls" xml:space="preserve">
+    <value>Muri di Pasta</value>
+  </data>
+  <data name="tool_clipboard_ispastewire" xml:space="preserve">
+    <value>Fili di Pasta</value>
+  </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>Pasta</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>Rimuovere</value>
+  </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>Sostituire le piastrelle esistenti</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>Ruota</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>Espansione del Bioma di Congelamento</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>Difficoltà dei nemici</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>Abilita la difficoltà dei nemici</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>Abilita la frequenza di spawn</value>
+  </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>Abilita la velocità temporale</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>Modalità Dio</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>Aumenta la portata</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>Potenza</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>Pioggia gelata</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>Tasso di spawn</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>Congelare il tempo</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>Velocità del tempo</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>Vento Gelato</value>
+  </data>
+  <data name="tool_fill_title" xml:space="preserve">
+    <value>Riempimento</value>
+  </data>
+  <data name="tool_morph_label" xml:space="preserve">
+    <value>Trasformarsi in bioma</value>
+  </data>
+  <data name="tool_morph_title" xml:space="preserve">
+    <value>Morfologia del bioma</value>
+  </data>
+  <data name="tool_npc_add" xml:space="preserve">
+    <value>Aggiungi NPC</value>
+  </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>Clicca su NPC e imposta la loro posizione con il mouse</value>
+  </data>
+  <data name="tool_npc_name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="tool_paint_actuator" xml:space="preserve">
+    <value>È attuatore</value>
+  </data>
+  <data name="tool_paint_brickstyle" xml:space="preserve">
+    <value>Stile mattoni</value>
+  </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>Rivestimento</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>Echo</value>
+  </data>
+  <data name="tool_paint_extras" xml:space="preserve">
+    <value>Extra</value>
+  </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>Illuminante</value>
+  </data>
+  <data name="tool_paint_inactive" xml:space="preserve">
+    <value>Attuatore/Tile Inattivi</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>Aggiungi una scatola di incrocio rivolta a sinistra.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>Aggiungi una scatola di derivazione defualt.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>Aggiungi una scatola di scrocchiamento esposta a destra.</value>
+  </data>
+  <data name="tool_paint_mask" xml:space="preserve">
+    <value>Maschera</value>
+  </data>
+  <data name="tool_paint_maskmode" xml:space="preserve">
+    <value>Modalità Maschera</value>
+  </data>
+  <data name="tool_paint_mode" xml:space="preserve">
+    <value>Modalità Pittura</value>
+  </data>
+  <data name="tool_paint_tile_title" xml:space="preserve">
+    <value>Tile</value>
+  </data>
+  <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
+    <value>Aggiungi il Booster alla pista esistente, usalo con Eraser per rimuovere solo il booster.</value>
+  </data>
+  <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
+    <value>Usa Hammer per modificare le estremità dei binari, gli incroci e la direzione dei booster.</value>
+  </data>
+  <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
+    <value>Aggiungi la piastra di pressione al binario esistente, usa con la gomma solo per rimuovere la piastra di rimozione.</value>
+  </data>
+  <data name="tool_paint_wall_title" xml:space="preserve">
+    <value>Muro</value>
+  </data>
+  <data name="tool_paint_wire_blue" xml:space="preserve">
+    <value>Blu</value>
+  </data>
+  <data name="tool_paint_wire_green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="tool_paint_wire_red" xml:space="preserve">
+    <value>Rosso</value>
+  </data>
+  <data name="tool_paint_wire_yellow" xml:space="preserve">
+    <value>Giallo</value>
+  </data>
+  <data name="tool_paste_title" xml:space="preserve">
+    <value>Pasta</value>
+  </data>
+  <data name="tool_pencil_title" xml:space="preserve">
+    <value>Matita</value>
+  </data>
+  <data name="tool_picker_title" xml:space="preserve">
+    <value>Selezionatore - seleziona il colore delle tessere</value>
+  </data>
+  <data name="tool_point_title" xml:space="preserve">
+    <value>Punti di Interesse Speciale</value>
+  </data>
+  <data name="tool_sprite2_title" xml:space="preserve">
+    <value>Sprite Placer</value>
+  </data>
+  <data name="tool_sprite_filter_button" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="tool_sprite_filter_label" xml:space="preserve">
+    <value>Filtro:</value>
+  </data>
+  <data name="tool_sprite_style_label" xml:space="preserve">
+    <value>Stile:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>Filtro di tipo di piastrella:</value>
+  </data>
+  <data name="tool_sprite_title" xml:space="preserve">
+    <value>Sprite Placer (VECCHIO)</value>
+  </data>
+  <data name="tool_wp_adamantite" xml:space="preserve">
+    <value>Livello Adamantite</value>
+  </data>
+  <data name="tool_wp_altars" xml:space="preserve">
+    <value>Altari distrutti</value>
+  </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>Apocalisse (Spawn del Signore della Luna)</value>
+  </data>
+  <data name="tool_wp_bg_corrupt" xml:space="preserve">
+    <value>Fondo di fondo corrotto</value>
+  </data>
+  <data name="tool_wp_bg_crimson" xml:space="preserve">
+    <value>Crimson BG</value>
+  </data>
+  <data name="tool_wp_bg_deepice" xml:space="preserve">
+    <value>Deep Ice BG</value>
+  </data>
+  <data name="tool_wp_bg_deepjungle" xml:space="preserve">
+    <value>Deep Jungle BG</value>
+  </data>
+  <data name="tool_wp_bg_desert" xml:space="preserve">
+    <value>Desert BG</value>
+  </data>
+  <data name="tool_wp_bg_forest" xml:space="preserve">
+    <value>Forest BG</value>
+  </data>
+  <data name="tool_wp_bg_hallow" xml:space="preserve">
+    <value>Hallow BG</value>
+  </data>
+  <data name="tool_wp_bg_hell" xml:space="preserve">
+    <value>Hell BG</value>
+  </data>
+  <data name="tool_wp_bg_jungle" xml:space="preserve">
+    <value>Jungle BG</value>
+  </data>
+  <data name="tool_wp_bg_mushroom" xml:space="preserve">
+    <value>Funghi BG</value>
+  </data>
+  <data name="tool_wp_bg_ocean" xml:space="preserve">
+    <value>Ocean BG</value>
+  </data>
+  <data name="tool_wp_bg_snow" xml:space="preserve">
+    <value>Snow BG</value>
+  </data>
+  <data name="tool_wp_bg_tree2" xml:space="preserve">
+    <value>Albero 2 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree3" xml:space="preserve">
+    <value>Albero 3 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree4" xml:space="preserve">
+    <value>Albero 4 BG</value>
+  </data>
+  <data name="tool_wp_bg_underworld" xml:space="preserve">
+    <value>Underworld BG</value>
+  </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>Deerclops</value>
+  </data>
+  <data name="tool_wp_boss_destroyer" xml:space="preserve">
+    <value>Il Cacciatorpediniere</value>
+  </data>
+  <data name="tool_wp_boss_downed" xml:space="preserve">
+    <value>Boss abbattuti</value>
+  </data>
+  <data name="tool_wp_boss_dukefishron" xml:space="preserve">
+    <value>Duca Fishron</value>
+  </data>
+  <data name="tool_wp_boss_eaterofworlds" xml:space="preserve">
+    <value>Divoratore di Mondi</value>
+  </data>
+  <data name="tool_wp_boss_empressoflight" xml:space="preserve">
+    <value>Imperatrice della Luce</value>
+  </data>
+  <data name="tool_wp_boss_everscream" xml:space="preserve">
+    <value>Everscream</value>
+  </data>
+  <data name="tool_wp_boss_eyeofcthulhu" xml:space="preserve">
+    <value>Occhio di Cthulhu</value>
+  </data>
+  <data name="tool_wp_boss_flyingdutchman" xml:space="preserve">
+    <value>Olandese Volante</value>
+  </data>
+  <data name="tool_wp_boss_golem" xml:space="preserve">
+    <value>Golem</value>
+  </data>
+  <data name="tool_wp_boss_icequeen" xml:space="preserve">
+    <value>Regina di Ghiaccio</value>
+  </data>
+  <data name="tool_wp_boss_kingslime" xml:space="preserve">
+    <value>Re Slime</value>
+  </data>
+  <data name="tool_wp_boss_lunaticcultist" xml:space="preserve">
+    <value>Cultista Lunatico</value>
+  </data>
+  <data name="tool_wp_boss_moonlord" xml:space="preserve">
+    <value>Signore della Luna</value>
+  </data>
+  <data name="tool_wp_boss_mourningwood" xml:space="preserve">
+    <value>Bosco del Lutto</value>
+  </data>
+  <data name="tool_wp_boss_nebulapillar" xml:space="preserve">
+    <value>Pilastro della Nebulosa</value>
+  </data>
+  <data name="tool_wp_boss_plantera" xml:space="preserve">
+    <value>Plantera</value>
+  </data>
+  <data name="tool_wp_boss_pumpking" xml:space="preserve">
+    <value>Zucca</value>
+  </data>
+  <data name="tool_wp_boss_queenbee" xml:space="preserve">
+    <value>Regina delle Api</value>
+  </data>
+  <data name="tool_wp_boss_queenslime" xml:space="preserve">
+    <value>Regina Slime</value>
+  </data>
+  <data name="tool_wp_boss_santank1" xml:space="preserve">
+    <value>Santa NK1</value>
+  </data>
+  <data name="tool_wp_boss_skeletron" xml:space="preserve">
+    <value>Skeletron</value>
+  </data>
+  <data name="tool_wp_boss_skeletronprime" xml:space="preserve">
+    <value>Skeletron Prime</value>
+  </data>
+  <data name="tool_wp_boss_solarpillar" xml:space="preserve">
+    <value>Pilastro Solare</value>
+  </data>
+  <data name="tool_wp_boss_stardustpillar" xml:space="preserve">
+    <value>Pilastro della Polvere di Stelle</value>
+  </data>
+  <data name="tool_wp_boss_twins" xml:space="preserve">
+    <value>I Gemelli</value>
+  </data>
+  <data name="tool_wp_boss_vortexpillar" xml:space="preserve">
+    <value>Pilastro del Vortice</value>
+  </data>
+  <data name="tool_wp_boss_walloffflesh" xml:space="preserve">
+    <value>Muro di Carne</value>
+  </data>
+  <data name="tool_wp_cavern_level" xml:space="preserve">
+    <value>Livello della Caverna</value>
+  </data>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>Versione cinese del mondo</value>
+  </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Active</value>
+  </data>
+  <data name="tool_wp_cobalt" xml:space="preserve">
+    <value>Livello Cobalto</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>Libro di Combattimento</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>Libro di Combattimento Volume Due</value>
+  </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>Versione Console World</value>
+  </data>
+  <data name="tool_wp_copper" xml:space="preserve">
+    <value>Copper Tier</value>
+  </data>
+  <data name="tool_wp_crimson" xml:space="preserve">
+    <value>Cremisi</value>
+  </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>Ritardo del Cultista</value>
+  </data>
+  <data name="tool_wp_difficulty" xml:space="preserve">
+    <value>Difficoltà</value>
+  </data>
+  <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
+    <value>Modalità difficile</value>
+  </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>Non Famare il Mondo</value>
+  </data>
+  <data name="tool_wp_drunk" xml:space="preserve">
+    <value>Mondo degli Ubriachi</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>Dungeon Point</value>
+  </data>
+  <data name="tool_wp_event" xml:space="preserve">
+    <value>Evento</value>
+  </data>
+  <data name="tool_wp_gamemode" xml:space="preserve">
+    <value>Modalità di gioco</value>
+  </data>
+  <data name="tool_wp_gold" xml:space="preserve">
+    <value>Livello Oro</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>Per i Degni (FTW)</value>
+  </data>
+  <data name="tool_wp_guid" xml:space="preserve">
+    <value>World GUID</value>
+  </data>
+  <data name="tool_wp_hardmode" xml:space="preserve">
+    <value>Modalità difficile</value>
+  </data>
+  <data name="tool_wp_holiday" xml:space="preserve">
+    <value>Vacanze della Forza</value>
+  </data>
+  <data name="tool_wp_holiday_halloween" xml:space="preserve">
+    <value>Halloween</value>
+  </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>Forzare Halloween per sempre</value>
+  </data>
+  <data name="tool_wp_holiday_xmas" xml:space="preserve">
+    <value>XMas</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>Forzare il Natale per Sempre</value>
+  </data>
+  <data name="tool_wp_id" xml:space="preserve">
+    <value>ID del Mondo</value>
+  </data>
+  <data name="tool_wp_invasion" xml:space="preserve">
+    <value>Invasioni</value>
+  </data>
+  <data name="tool_wp_invasion_frostlegion" xml:space="preserve">
+    <value>Legione di Gelo</value>
+  </data>
+  <data name="tool_wp_invasion_goblinarmy" xml:space="preserve">
+    <value>Esercito Goblin</value>
+  </data>
+  <data name="tool_wp_invasion_martianmadness" xml:space="preserve">
+    <value>Follia marziana</value>
+  </data>
+  <data name="tool_wp_invasion_pirateinvasion" xml:space="preserve">
+    <value>Invasione dei Pirati</value>
+  </data>
+  <data name="tool_wp_invasion_size" xml:space="preserve">
+    <value>Dimensione dell'invasione</value>
+  </data>
+  <data name="tool_wp_invasion_type" xml:space="preserve">
+    <value>Tipo di invasione</value>
+  </data>
+  <data name="tool_wp_invasion_x" xml:space="preserve">
+    <value>Obiettivo Invasion X</value>
+  </data>
+  <data name="tool_wp_iron" xml:space="preserve">
+    <value>Iron Tier</value>
+  </data>
+  <data name="tool_wp_journeysend" xml:space="preserve">
+    <value>Fine del viaggio</value>
+  </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>Notte delle lanterne</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>Cooldown della Notte delle Lanterne</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>Notte delle Lanterne Autentica</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>Manuale notturno delle lanterne</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>La Lantern Night Next è autentica</value>
+  </data>
+  <data name="tool_wp_meteor" xml:space="preserve">
+    <value>Meteor</value>
+  </data>
+  <data name="tool_wp_meteor_spawn" xml:space="preserve">
+    <value>Meteorite di generazione</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>Moondial Cooldown</value>
+  </data>
+  <data name="tool_wp_moon_blood" xml:space="preserve">
+    <value>Luna di Sangue</value>
+  </data>
+  <data name="tool_wp_moon_eclipse" xml:space="preserve">
+    <value>È Eclipse</value>
+  </data>
+  <data name="tool_wp_moon_phase" xml:space="preserve">
+    <value>Fase lunare</value>
+  </data>
+  <data name="tool_wp_moon_style" xml:space="preserve">
+    <value>Stile lunare</value>
+  </data>
+  <data name="tool_wp_mythril" xml:space="preserve">
+    <value>Livello Mythril</value>
+  </data>
+  <data name="tool_wp_name" xml:space="preserve">
+    <value>Nome del mondo</value>
+  </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>Non il mondo delle api</value>
+  </data>
+  <data name="tool_wp_npc_angler" xml:space="preserve">
+    <value>Pescatore</value>
+  </data>
+  <data name="tool_wp_npc_angler_mission" xml:space="preserve">
+    <value>Missione Angler</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>Trafficante d'armi</value>
+  </data>
+  <data name="tool_wp_npc_bought" xml:space="preserve">
+    <value>NPC acquistati</value>
+  </data>
+  <data name="tool_wp_npc_bunny" xml:space="preserve">
+    <value>Bunny</value>
+  </data>
+  <data name="tool_wp_npc_cat" xml:space="preserve">
+    <value>Cat</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>Demolizionista</value>
+  </data>
+  <data name="tool_wp_npc_dog" xml:space="preserve">
+    <value>Cane</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>Commerciante di coloranti</value>
+  </data>
+  <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
+    <value>Inventore Goblin</value>
+  </data>
+  <data name="tool_wp_npc_golfer" xml:space="preserve">
+    <value>Golfista</value>
+  </data>
+  <data name="tool_wp_npc_mechanic" xml:space="preserve">
+    <value>Meccanica</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>Mercante</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>Infermiera</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>Ragazza della festa</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>Principessa</value>
+  </data>
+  <data name="tool_wp_npc_saved" xml:space="preserve">
+    <value>NPC salvati</value>
+  </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>NPC salvati</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>Slime Blu</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>Slime di rame</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>Slime Verde</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>Vecchio Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>Slime viola</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>Melma arcobaleno</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>Melma Rossa</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>Slime giallo</value>
+  </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>Spawn NPC sbloccato</value>
+  </data>
+  <data name="tool_wp_npc_stylist" xml:space="preserve">
+    <value>Stylist</value>
+  </data>
+  <data name="tool_wp_npc_tavernkeep" xml:space="preserve">
+    <value>Tavernista</value>
+  </data>
+  <data name="tool_wp_npc_taxcollector" xml:space="preserve">
+    <value>Esattore delle tasse</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>Tartufo</value>
+  </data>
+  <data name="tool_wp_npc_wizard" xml:space="preserve">
+    <value>Mago</value>
+  </data>
+  <data name="tool_wp_oldonesarmy" xml:space="preserve">
+    <value>L'esercito del Vecchio</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t1" xml:space="preserve">
+    <value>Livello 1</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t2" xml:space="preserve">
+    <value>Livello 2</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t3" xml:space="preserve">
+    <value>Livello 3</value>
+  </data>
+  <data name="tool_wp_orbs" xml:space="preserve">
+    <value>Sfere Frantumate</value>
+  </data>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>Partito della Morte</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>Bisaccio del Mercagliante</value>
+  </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>Pilastri attivi</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>Pilastro della Nebulosa</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>Pilastro Solare</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>Pilastro della Polvere di Stelle</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>Pilastro del Vortice</value>
+  </data>
+  <data name="tool_wp_prehardmode" xml:space="preserve">
+    <value>Pre-Hardmode</value>
+  </data>
+  <data name="tool_wp_rain" xml:space="preserve">
+    <value>Pioggia</value>
+  </data>
+  <data name="tool_wp_rain_active" xml:space="preserve">
+    <value>Piove</value>
+  </data>
+  <data name="tool_wp_rain_max" xml:space="preserve">
+    <value>Max Rain</value>
+  </data>
+  <data name="tool_wp_rain_slime" xml:space="preserve">
+    <value>Tempo di Pioggia Slime</value>
+  </data>
+  <data name="tool_wp_rain_time" xml:space="preserve">
+    <value>Tempo di Pioggia</value>
+  </data>
+  <data name="tool_wp_revision" xml:space="preserve">
+    <value>Revisione</value>
+  </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>Usa solo i valori di sicurezza</value>
+  </data>
+  <data name="tool_wp_sandstorm" xml:space="preserve">
+    <value>Tempesta di sabbia</value>
+  </data>
+  <data name="tool_wp_sandstorm_active" xml:space="preserve">
+    <value>Is Storming</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity" xml:space="preserve">
+    <value>Gravità</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
+    <value>Severità Indefinita</value>
+  </data>
+  <data name="tool_wp_sandstorm_time" xml:space="preserve">
+    <value>Tempo rimasto</value>
+  </data>
+  <data name="tool_wp_seed" xml:space="preserve">
+    <value>Seed</value>
+  </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>Doppi Dungeon</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>Infetti</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>Niente trappole</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>Remix</value>
+  </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>Skyblock</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>Vampiro</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>Zenith</value>
+  </data>
+  <data name="tool_wp_silver" xml:space="preserve">
+    <value>Livello Argento</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>Punto di Spawn</value>
+  </data>
+  <data name="tool_wp_style_cavestyles" xml:space="preserve">
+    <value>Stili delle grotte</value>
+  </data>
+  <data name="tool_wp_style_cavex0" xml:space="preserve">
+    <value>Grotta X 0</value>
+  </data>
+  <data name="tool_wp_style_cavex1" xml:space="preserve">
+    <value>Grotta X 1</value>
+  </data>
+  <data name="tool_wp_style_cavex2" xml:space="preserve">
+    <value>Grotta X 2</value>
+  </data>
+  <data name="tool_wp_style_treestyles" xml:space="preserve">
+    <value>Stili degli alberi</value>
+  </data>
+  <data name="tool_wp_style_treetop_1" xml:space="preserve">
+    <value>Cime dell'Albero 1</value>
+  </data>
+  <data name="tool_wp_style_treetop_2" xml:space="preserve">
+    <value>Cime di Albero 2</value>
+  </data>
+  <data name="tool_wp_style_treetop_3" xml:space="preserve">
+    <value>Albero 3 Cime</value>
+  </data>
+  <data name="tool_wp_style_treetop_4" xml:space="preserve">
+    <value>Cime dell'Albero 4</value>
+  </data>
+  <data name="tool_wp_style_treex0" xml:space="preserve">
+    <value>Albero X 0</value>
+  </data>
+  <data name="tool_wp_style_treex1" xml:space="preserve">
+    <value>Albero X 1</value>
+  </data>
+  <data name="tool_wp_style_treex2" xml:space="preserve">
+    <value>Albero X 2</value>
+  </data>
+  <data name="tool_wp_surface_level" xml:space="preserve">
+    <value>Livello superficiale</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>Spawn delle squadre</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>Spawn a squadre abilitati</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>Luoghi di spawn delle squadre</value>
+  </data>
+  <data name="tool_wp_tenthanniversary" xml:space="preserve">
+    <value>Decimo anniversario</value>
+  </data>
+  <data name="tool_wp_time_day" xml:space="preserve">
+    <value>È di giorno</value>
+  </data>
+  <data name="tool_wp_time_label" xml:space="preserve">
+    <value>Tempo</value>
+  </data>
+  <data name="tool_wp_time_sundial" xml:space="preserve">
+    <value>Usa il Sundial</value>
+  </data>
+  <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
+    <value>Tempo di recupero per il Sundial</value>
+  </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>Consentire valori non sicuri</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>Usa Moondial</value>
+  </data>
+  <data name="tool_wp_weather_clouds" xml:space="preserve">
+    <value>Nuvole Numeriche</value>
+  </data>
+  <data name="tool_wp_weather_windspeed" xml:space="preserve">
+    <value>Velocità del vento</value>
+  </data>
+  <data name="TrackMode_Booster" xml:space="preserve">
+    <value>Booster</value>
+  </data>
+  <data name="TrackMode_Hammer" xml:space="preserve">
+    <value>Martello</value>
+  </data>
+  <data name="TrackMode_Pressure" xml:space="preserve">
+    <value>Pressione</value>
+  </data>
+  <data name="TrackMode_Track" xml:space="preserve">
+    <value>Pista</value>
+  </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>Blu</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>Spento</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>Rosso</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>Giallo</value>
+  </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>Correggere il gap di background</value>
+  </data>
+</root>

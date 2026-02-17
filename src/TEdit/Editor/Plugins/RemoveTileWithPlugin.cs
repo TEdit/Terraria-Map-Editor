@@ -4,7 +4,7 @@ using TEdit.ViewModel;
 using System;
 using System.Windows;
 using TEdit.Geometry;
-using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.Editor.Plugins
 {
@@ -21,6 +21,7 @@ namespace TEdit.Editor.Plugins
             if (_wvm.CurrentWorld == null) return;
 
             RemoveTileWithPluginView view = new RemoveTileWithPluginView();
+            view.Owner = Application.Current.MainWindow;
             if (view.ShowDialog() == false)
             {
                 return;

@@ -1,0 +1,137 @@
+<UserControl x:Class="TEdit.View.Sidebar.FindSidebarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
+             xmlns:cv="clr-namespace:TEdit.Converters"
+             xmlns:p="clr-namespace:TEdit.Properties"
+             mc:Ignorable="d"
+             d:DesignHeight="700" d:DesignWidth="400"
+             d:DataContext="{d:DesignInstance Type=viewModel:FindSidebarViewModel}">
+
+    <UserControl.Resources>
+        <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}">
+
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.sidebar_find_title}" Style="{DynamicResource SidebarPanelTitle}" />
+
+        <!-- Results section at bottom -->
+        <DockPanel DockPanel.Dock="Bottom" Margin="8">
+
+            <!-- Navigation bar -->
+            <Grid DockPanel.Dock="Top" Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <ui:Button Grid.Column="0"
+                           Content="Prev"
+                           Icon="{ui:SymbolIcon ChevronLeft20}"
+                           Command="{Binding NavigatePreviousCommand}"
+                           Padding="8,4" />
+
+                <TextBlock Grid.Column="1"
+                           Text="{Binding ResultSummary}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+
+                <ui:Button Grid.Column="2"
+                           Content="Next"
+                           Icon="{ui:SymbolIcon ChevronRight20}"
+                           Command="{Binding NavigateNextCommand}"
+                           Padding="8,4" />
+            </Grid>
+
+            <!-- Results list -->
+            <ListBox ItemsSource="{Binding Results}"
+                     SelectedItem="{Binding SelectedResult}"
+                     Height="150"
+                     VirtualizingPanel.IsVirtualizing="True"
+                     VirtualizingPanel.VirtualizationMode="Recycling"
+                     BorderThickness="1"
+                     BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type viewModel:FindResultItem}">
+                        <TextBlock Text="{Binding DisplayText}"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                                   Margin="4,2" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <Setter Property="Padding" Value="2" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </DockPanel>
+
+        <!-- Search controls section -->
+        <StackPanel DockPanel.Dock="Bottom" Margin="8">
+
+            <!-- Selection summary -->
+            <TextBlock Text="{Binding SelectionSummary}"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                       Margin="0,0,0,8" />
+
+            <!-- Options -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                <CheckBox Content="Calculate Distance"
+                          IsChecked="{Binding CalculateDistance}"
+                          Margin="0,0,15,0" />
+                <CheckBox Content="Auto Zoom"
+                          IsChecked="{Binding AutoZoomOnNavigate}"
+                          ToolTip="Zoom in when navigating to results (off = pan only)" />
+            </StackPanel>
+
+            <!-- Action buttons -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <ui:Button Grid.Column="0"
+                           Content="Search World"
+                           Appearance="Primary"
+                           Icon="{ui:SymbolIcon Search20}"
+                           Command="{Binding ExecuteSearchCommand}"
+                           HorizontalAlignment="Stretch"
+                           Padding="12,8"
+                           Margin="0,0,8,0" />
+
+                <ui:Button Grid.Column="1"
+                           Content="Clear"
+                           Icon="{ui:SymbolIcon Dismiss20}"
+                           Command="{Binding ClearAllSelectionsCommand}"
+                           Padding="12,8" />
+            </Grid>
+        </StackPanel>
+
+        <!-- Main content: Tab control with pickers -->
+        <TabControl SelectedIndex="{Binding SelectedTabIndex}"
+                    Margin="0">
+            <TabItem Header="Items">
+                <controls:TileWallPickerControl DataContext="{Binding ItemPicker}" />
+            </TabItem>
+            <TabItem Header="Tiles">
+                <controls:TileWallPickerControl DataContext="{Binding TilePicker}" />
+            </TabItem>
+            <TabItem Header="Walls">
+                <controls:TileWallPickerControl DataContext="{Binding WallPicker}" />
+            </TabItem>
+            <TabItem Header="Sprites">
+                <controls:SpriteTreePickerControl DataContext="{Binding SpritePicker}" />
+            </TabItem>
+        </TabControl>
+
+    </DockPanel>
+</UserControl>

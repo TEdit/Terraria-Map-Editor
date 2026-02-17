@@ -22,6 +22,7 @@ namespace TEdit.Editor.Plugins
 
             // Initialize and show the ImageToPixelartEditorView window as a non-modal window.
             _view = new ImageToPixelartEditorView(_wvm); // Pass down "_wvm" instance to the new window.
+            _view.Owner = Application.Current.MainWindow;
             _view.Show(); // Open as non-modal window.
 
             // Subscribe to the main window's Closed event.

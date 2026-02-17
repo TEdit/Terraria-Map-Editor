@@ -4,8 +4,9 @@ using System.Windows.Media.Imaging;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Geometry;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.UI;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -17,23 +18,25 @@ public sealed class ArrowTool : BaseTool
     public ArrowTool(WorldViewModel worldViewModel) : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/cursor.png"));
+        SymbolIcon = SymbolRegular.Cursor24;
         ToolType = ToolType.Pixel;
         Name = "Arrow";
     }
 
-    private bool _rightClick;
+    private bool _secondaryClick;
     public override void MouseDown(TileMouseState e)
     {
-        if (e.RightButton == MouseButtonState.Pressed)
-            _rightClick = true;
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.secondary"))
+            _secondaryClick = true;
     }
 
     public override void MouseUp(TileMouseState e)
     {
-        if (!_rightClick)
+        if (!_secondaryClick)
             return;
 
-        _rightClick = false;
+        _secondaryClick = false;
 
         Tile curTile = _wvm.CurrentWorld.Tiles[e.Location.X, e.Location.Y];
         if (curTile.IsChest())

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using TEdit.Properties;
+using TEdit.Configuration;
 using TEdit.ViewModel;
 
 namespace TEdit;
@@ -14,7 +14,7 @@ public static class ErrorLogging
 {
     private static TelemetryClient _telemetry;
     private const string UserPathRegex = @"C:\\Users\\([^\\]*)\\";
-    private const string TelemetryKey = "8c8ff827-554e-4838-a6b6-e3d837519e51";
+    private const string TelemetryConnectionString = "InstrumentationKey=8c8ff827-554e-4838-a6b6-e3d837519e51;IngestionEndpoint=https://dc.services.visualstudio.com";
 
     public static void ViewLog()
     {
@@ -133,11 +133,9 @@ public static class ErrorLogging
         }
     }
 
-    public static TelemetryClient TelemetryClient => _telemetry;
-
     public static void InitializeTelemetry()
     {
-        if (Settings.Default.Telemetry != 0)
+        if (UserSettingsService.Current.Telemetry != 0)
         {
             try
             {
@@ -157,9 +155,8 @@ public static class ErrorLogging
     private static TelemetryClient GetAppInsightsClient()
     {
         var config = new TelemetryConfiguration();
-        config.InstrumentationKey = TelemetryKey;
+        config.ConnectionString = TelemetryConnectionString;
         config.TelemetryChannel = new Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel();
-        //config.TelemetryChannel = new Microsoft.ApplicationInsights.Channel.InMemoryChannel(); // Default channel
         config.TelemetryChannel.DeveloperMode = Debugger.IsAttached;
 #if DEBUG
         config.TelemetryChannel.DeveloperMode = true;
@@ -216,11 +213,12 @@ public static class ErrorLogging
 
             Log($"{ErrorLevel.Error} - {ex.Message}\r\n{ex.StackTrace}");
 
-            if (Settings.Default.Telemetry == 1)
+            if (_telemetry != null && UserSettingsService.Current.Telemetry == 1)
             {
                 var telex = new Microsoft.ApplicationInsights.DataContracts.ExceptionTelemetry(ex);
-                _telemetry?.TrackException(telex);
-                _telemetry?.Flush();
+                telex.Message = Regex.Replace(ex.Message ?? string.Empty, UserPathRegex, "C:\\Users\\[user]\\");
+                _telemetry.TrackException(telex);
+                _telemetry.Flush();
             }
         }
     }

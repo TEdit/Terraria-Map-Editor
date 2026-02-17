@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Linq;
+using System.Reactive.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Threading;
+using ReactiveUI;
 using System.Windows.Input;
 using System.Collections.Generic;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Editor;
+using TEdit.Editor.Tools;
+using TEdit.Input;
+using TEdit.Services;
 using TEdit.ViewModel;
-using TEdit.Properties;
+using TEdit.Configuration;
 using TEdit.UI.Xaml;
 using TEdit.View.Popups;
 using System.IO;
 using System.Windows.Controls;
 using TEdit.View;
+using Wpf.Ui.Controls;
 
 namespace TEdit;
 
@@ -20,10 +29,25 @@ namespace TEdit;
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow : FluentWindow
 {
+    [DllImport("user32.dll")]
+    private static extern nint SendMessage(nint hWnd, uint msg, nint wParam, nint lParam);
+
+    [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
+    private static extern nint ExtractIcon(nint hInst, string lpszExeFileName, int nIconIndex);
+
+    private const uint WM_SETICON = 0x0080;
+    private const nint ICON_SMALL = 0;
+    private const nint ICON_BIG = 1;
+
+    private nint _appIcon;
+    private nint _hwnd;
 
     private WorldViewModel _vm;
+    private ITool _toolBeforePicker;
+    private DateTime _pickerKeyDownTime;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -31,36 +55,131 @@ public partial class MainWindow : Window
         _vm = (WorldViewModel)DataContext;
         AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);
         AddHandler(Keyboard.KeyUpEvent, (KeyEventHandler)HandleKeyUpEvent);
+
+        // Auto-expand side panel when tab is activated programmatically
+        _vm.WhenAnyValue(vm => vm.SelectedTabIndex)
+            .Skip(1)  // Skip initial value
+            .Subscribe(_ => ExpandSidePanel());
+
+        SourceInitialized += MainWindow_SourceInitialized;
+        Loaded += MainWindow_IconFixLoaded;
     }
 
-    void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    private void MainWindow_SourceInitialized(object? sender, EventArgs e)
     {
-        if (Settings.Default.Telemetry == -1)
+        _hwnd = new WindowInteropHelper(this).Handle;
+        if (_hwnd == nint.Zero) return;
+
+        // Extract the app icon once from the exe resource
+        var exePath = Environment.ProcessPath;
+        if (exePath != null)
+            _appIcon = ExtractIcon(nint.Zero, exePath, 0);
+    }
+
+    private void MainWindow_IconFixLoaded(object sender, RoutedEventArgs e)
+    {
+        Loaded -= MainWindow_IconFixLoaded;
+
+        // FluentWindow's Loaded handler removes WS_SYSMENU which clears the taskbar icon.
+        // Use BeginInvoke to re-apply after all Loaded handlers have completed.
+        Dispatcher.BeginInvoke(DispatcherPriority.Input, () =>
         {
-            _vm.EnableTelemetry = true;
+            if (_appIcon != nint.Zero && _hwnd != nint.Zero)
+            {
+                SendMessage(_hwnd, WM_SETICON, ICON_BIG, _appIcon);
+                SendMessage(_hwnd, WM_SETICON, ICON_SMALL, _appIcon);
+            }
+        });
+    }
+
+    async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        // Initialize snackbar service with UI element
+        // Note: DialogService uses WPF-UI MessageBox (separate window) to avoid
+        // WPF airspace issues with the DirectX/XNA WorldRenderXna control
+        App.SnackbarService.SetSnackbarPresenter(SnackbarPresenter);
+
+        // Set up navigation delegates for Find sidebar
+        _vm.ZoomFocus = ZoomFocus;
+        _vm.PanTo = PanTo;
+
+        bool shouldAsk = false;
+        string currentVersion = App.Version.ToString();
+
+        switch (UserSettingsService.Current.Telemetry)
+        {
+            case -1: // first run
+                shouldAsk = true;
+                break;
+            case 0: // previously declined
+                shouldAsk = UserSettingsService.Current.TelemetryDeclinedVersion != currentVersion;
+                break;
+            case 1: // approved permanently
+                break;
         }
 
-        
-        if (Settings.Default.ShowNews)
+        if (shouldAsk)
         {
-            var w = new NotificationsWindow();
-            w.Owner = Application.Current.MainWindow;
-            w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            w.ShowDialog();
+            var result = await App.DialogService.ShowConfirmationAsync(
+                Properties.Language.telemetry_prompt_title,
+                Properties.Language.telemetry_prompt_message);
+
+            if (result)
+            {
+                UserSettingsService.Current.Telemetry = 1;
+                _vm.EnableTelemetry = true;
+            }
+            else
+            {
+                UserSettingsService.Current.Telemetry = 0;
+                UserSettingsService.Current.TelemetryDeclinedVersion = currentVersion;
+                _vm.EnableTelemetry = false;
+            }
         }
     }
 
     private void HandleKeyUpEvent(object sender, KeyEventArgs e)
     {
+        // Try new InputService first
+        var actions = App.Input.HandleKeyboard(e.Key, e.KeyboardDevice.Modifiers, TEdit.Input.InputScope.Application);
+        foreach (var actionId in actions)
+        {
+            if (HandleKeyUpAction(actionId))
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
+        // Fall back to old system for backward compatibility
         var command = App.ShortcutKeys.Get(e);
         if (command == null) return;
 
         switch (command)
         {
             case "pan":
-                if (_vm.RequestPanCommand.CanExecute(false))
-                    _vm.RequestPanCommand.Execute(false);
+                _vm.RequestPanCommand.Execute(false).Subscribe();
                 break;
+        }
+    }
+
+    private bool HandleKeyUpAction(string actionId)
+    {
+        switch (actionId)
+        {
+            case "nav.pan":
+                _vm.RequestPanCommand.Execute(false).Subscribe();
+                return true;
+            case "tool.picker":
+                var held = (DateTime.UtcNow - _pickerKeyDownTime).TotalMilliseconds > _vm.PickerHoldThresholdMs;
+                if (held && _toolBeforePicker != null)
+                {
+                    _vm.SetActiveTool(_toolBeforePicker);
+                }
+                _toolBeforePicker = null;
+                return true;
+            default:
+                return false;
         }
     }
 
@@ -70,6 +189,17 @@ public partial class MainWindow : Window
 
         try
         {
+            // Try new InputService first
+            var actions = App.Input.HandleKeyboard(e.Key, e.KeyboardDevice.Modifiers, TEdit.Input.InputScope.Application);
+            foreach (var actionId in actions)
+            {
+                if (HandleKeyDownAction(actionId, e))
+                {
+                    return;
+                }
+            }
+
+            // Fall back to old system for backward compatibility
             ScrollEventArgs scrollValue = null;
 
             var command = App.ShortcutKeys.Get(e.Key, e.KeyboardDevice.Modifiers);
@@ -78,29 +208,29 @@ public partial class MainWindow : Window
             switch (command)
             {
                 case "copy":
-                    if (_vm.CurrentWorld != null && _vm.CopyCommand.CanExecute(null))
+                    if (_vm.CurrentWorld != null && ((ICommand)_vm.CopyCommand).CanExecute(null))
                     {
-                        _vm.CopyCommand.Execute(null);
+                        ((ICommand)_vm.CopyCommand).Execute(null);
                         _vm.SelectedTabIndex = 3;
                     }
                     break;
                 case "paste":
-                    if (_vm.CurrentWorld != null && _vm.PasteCommand.CanExecute(null))
+                    if (_vm.CurrentWorld != null && ((ICommand)_vm.PasteCommand).CanExecute(null))
                     {
-                        _vm.PasteCommand.Execute(null);
+                        ((ICommand)_vm.PasteCommand).Execute(null);
                         _vm.SelectedTabIndex = 3;
                     }
                     break;
                 case "undo":
                     if (_vm.CurrentWorld != null)
                     {
-                        _vm.UndoCommand.Execute(null);
+                        ((ICommand)_vm.UndoCommand).Execute(null);
                     }
                     break;
                 case "redo":
                     if (_vm.CurrentWorld != null)
                     {
-                        _vm.RedoCommand.Execute(null);
+                        ((ICommand)_vm.RedoCommand).Execute(null);
                     }
                     break;
                 case "selectall":
@@ -118,28 +248,28 @@ public partial class MainWindow : Window
                     }
                     break;
                 case "open":
-                    if (_vm.OpenCommand.CanExecute(null))
-                        _vm.OpenCommand.Execute(null);
+                    if (((ICommand)_vm.OpenCommand).CanExecute(null))
+                        ((ICommand)_vm.OpenCommand).Execute(null);
                     break;
                 case "save":
-                    if (_vm.SaveCommand.CanExecute(null))
-                        _vm.SaveCommand.Execute(null);
+                    if (((ICommand)_vm.SaveCommand).CanExecute(null))
+                        ((ICommand)_vm.SaveCommand).Execute(null);
                     break;
                 case "saveas":
-                    if (_vm.SaveAsCommand.CanExecute(null))
-                        _vm.SaveAsCommand.Execute(null);
+                    if (((ICommand)_vm.SaveAsCommand).CanExecute(null))
+                        ((ICommand)_vm.SaveAsCommand).Execute(null);
                     break;
                 case "saveasversion":
-                    if (_vm.SaveAsVersionCommand.CanExecute(null))
-                        _vm.SaveAsVersionCommand.Execute(null);
+                    if (((ICommand)_vm.SaveAsVersionCommand).CanExecute(null))
+                        ((ICommand)_vm.SaveAsVersionCommand).Execute(null);
                     break;
                 case "reloadworld":
-                    if (_vm.ReloadCommand.CanExecute(null))
-                        _vm.ReloadCommand.Execute(null);
+                    if (((ICommand)_vm.ReloadCommand).CanExecute(null))
+                        ((ICommand)_vm.ReloadCommand).Execute(null);
                     break;
                 case "deleteselection":
-                    if (_vm.DeleteCommand.CanExecute(null))
-                        _vm.DeleteCommand.Execute(null);
+                    if (((ICommand)_vm.DeleteCommand).CanExecute(null))
+                        ((ICommand)_vm.DeleteCommand).Execute(null);
                     break;
                 case "resettool":
                     if (_vm.ActiveTool != null)
@@ -151,64 +281,53 @@ public partial class MainWindow : Window
                     }
                     break;
                 case "scrollup":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Up, 10);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Up, 10);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollupfast":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Up, 50);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Up, 50);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollright":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Right, 10);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Right, 10);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollrightfast":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Right, 50);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Right, 50);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrolldown":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Down, 10);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Down, 10);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrolldownfast":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Down, 50);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Down, 50);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollleft":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Left, 10);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Left, 10);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "scrollleftfast":
-                    scrollValue = new ScrollEventArgs(ScrollDirection.Left, 50);
-                    if (_vm.RequestScrollCommand.CanExecute(scrollValue))
-                        _vm.RequestScrollCommand.Execute(scrollValue);
+                    scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Left, 50);
+                    _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
                     e.Handled = true;
                     break;
                 case "pan":
-                    if (_vm.RequestPanCommand.CanExecute(true))
-                        _vm.RequestPanCommand.Execute(true);
+                    _vm.RequestPanCommand.Execute(true).Subscribe();
                     break;
                 case "zoomin":
-                    if (_vm.RequestZoomCommand.CanExecute(true))
-                        _vm.RequestZoomCommand.Execute(true);
+                    _vm.RequestZoomCommand.Execute(true).Subscribe();
                     break;
                 case "zoomout":
-                    if (_vm.RequestZoomCommand.CanExecute(false))
-                        _vm.RequestZoomCommand.Execute(false);
+                    _vm.RequestZoomCommand.Execute(false).Subscribe();
                     break;
                 case "eraser":
                     _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
@@ -234,12 +353,194 @@ public partial class MainWindow : Window
         }
     }
 
+    private bool HandleKeyDownAction(string actionId, KeyEventArgs e)
+    {
+        ScrollEventArgs scrollValue = null;
+
+        switch (actionId)
+        {
+            // File operations
+            case "file.open":
+                if (((ICommand)_vm.OpenCommand).CanExecute(null))
+                    ((ICommand)_vm.OpenCommand).Execute(null);
+                return true;
+            case "file.save":
+                if (((ICommand)_vm.SaveCommand).CanExecute(null))
+                    ((ICommand)_vm.SaveCommand).Execute(null);
+                return true;
+            case "file.saveas":
+                if (((ICommand)_vm.SaveAsCommand).CanExecute(null))
+                    ((ICommand)_vm.SaveAsCommand).Execute(null);
+                return true;
+            case "file.reload":
+                if (((ICommand)_vm.ReloadCommand).CanExecute(null))
+                    ((ICommand)_vm.ReloadCommand).Execute(null);
+                return true;
+
+            // Editing
+            case "edit.copy":
+                if (_vm.CurrentWorld != null && ((ICommand)_vm.CopyCommand).CanExecute(null))
+                {
+                    ((ICommand)_vm.CopyCommand).Execute(null);
+                    _vm.SelectedTabIndex = 3;
+                }
+                return true;
+            case "edit.paste":
+                if (_vm.CurrentWorld != null && ((ICommand)_vm.PasteCommand).CanExecute(null))
+                {
+                    ((ICommand)_vm.PasteCommand).Execute(null);
+                    _vm.SelectedTabIndex = 3;
+                }
+                return true;
+            case "edit.undo":
+                if (_vm.CurrentWorld != null)
+                    ((ICommand)_vm.UndoCommand).Execute(null);
+                return true;
+            case "edit.redo":
+                if (_vm.CurrentWorld != null)
+                    ((ICommand)_vm.RedoCommand).Execute(null);
+                return true;
+
+            // Selection
+            case "selection.all":
+                if (_vm.CurrentWorld != null)
+                {
+                    _vm.Selection.IsActive = true;
+                    _vm.Selection.SetRectangle(new Vector2Int32(0, 0),
+                        new Vector2Int32(_vm.CurrentWorld.TilesWide - 1, _vm.CurrentWorld.TilesHigh - 1));
+                }
+                return true;
+            case "selection.none":
+                if (_vm.CurrentWorld != null)
+                    _vm.Selection.IsActive = false;
+                return true;
+            case "selection.delete":
+                if (((ICommand)_vm.DeleteCommand).CanExecute(null))
+                    ((ICommand)_vm.DeleteCommand).Execute(null);
+                return true;
+
+            // Navigation
+            case "nav.scroll.up":
+                scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Up, 10);
+                _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
+                e.Handled = true;
+                return true;
+            case "nav.scroll.down":
+                scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Down, 10);
+                _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
+                e.Handled = true;
+                return true;
+            case "nav.scroll.left":
+                scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Left, 10);
+                _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
+                e.Handled = true;
+                return true;
+            case "nav.scroll.right":
+                scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Right, 10);
+                _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
+                e.Handled = true;
+                return true;
+            case "nav.scroll.up.fast":
+                scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Up, 50);
+                _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
+                e.Handled = true;
+                return true;
+            case "nav.scroll.down.fast":
+                scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Down, 50);
+                _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
+                e.Handled = true;
+                return true;
+            case "nav.scroll.left.fast":
+                scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Left, 50);
+                _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
+                e.Handled = true;
+                return true;
+            case "nav.scroll.right.fast":
+                scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Right, 50);
+                _vm.RequestScrollCommand.Execute(scrollValue).Subscribe();
+                e.Handled = true;
+                return true;
+            case "nav.pan":
+                _vm.RequestPanCommand.Execute(true).Subscribe();
+                return true;
+            case "nav.zoom.in":
+                _vm.RequestZoomCommand.Execute(true).Subscribe();
+                return true;
+            case "nav.zoom.out":
+                _vm.RequestZoomCommand.Execute(false).Subscribe();
+                return true;
+            case "nav.reset":
+                if (_vm.ActiveTool != null)
+                {
+                    if (_vm.ActiveTool.Name == "Paste")
+                        SetActiveTool("Arrow");
+                    else
+                        _vm.Selection.IsActive = false;
+                }
+                return true;
+
+            // Tools
+            case "tool.arrow":
+                SetActiveTool("Arrow");
+                return true;
+            case "tool.brush":
+                SetActiveTool("Brush");
+                return true;
+            case "tool.pencil":
+                SetActiveTool("Pencil");
+                return true;
+            case "tool.fill":
+                SetActiveTool("Fill");
+                return true;
+            case "tool.picker":
+                if (!e.IsRepeat)
+                {
+                    _toolBeforePicker = _vm.ActiveTool?.Name == "Picker" ? null : _vm.ActiveTool;
+                    _pickerKeyDownTime = DateTime.UtcNow;
+                    SetActiveTool("Picker");
+                }
+                return true;
+            case "tool.point":
+                SetActiveTool("Point");
+                return true;
+            case "tool.selection":
+                SetActiveTool("Selection");
+                return true;
+            case "tool.sprite":
+                SetActiveTool("Sprite2");
+                return true;
+            case "tool.hammer":
+                SetActiveTool("Hammer");
+                return true;
+            case "tool.morph":
+                SetActiveTool("Morph");
+                return true;
+
+            // Toggles
+            case "toggle.eraser":
+                _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
+                return true;
+            case "toggle.swap":
+                _vm.TilePicker.Swap(Keyboard.Modifiers.HasFlag(ModifierKeys.Shift));
+                return true;
+            case "toggle.tile":
+                _vm.TilePicker.TileStyleActive = !_vm.TilePicker.TileStyleActive;
+                return true;
+            case "toggle.wall":
+                _vm.TilePicker.WallStyleActive = !_vm.TilePicker.WallStyleActive;
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
     private void SetActiveTool(string toolName)
     {
         var tool = _vm.Tools.FirstOrDefault(t => string.Equals(t.Name, toolName, StringComparison.OrdinalIgnoreCase));
         if (tool != null)
         {
-            _vm.SetTool.Execute(tool);
+            _vm.SetActiveTool(tool);
         }
     }
 
@@ -248,6 +549,14 @@ public partial class MainWindow : Window
         if (MapView != null)
         {
             MapView.ZoomFocus(x, y);
+        }
+    }
+
+    public void PanTo(int x, int y)
+    {
+        if (MapView != null)
+        {
+            MapView.CenterOnTile(x, y);
         }
     }
 
@@ -303,21 +612,72 @@ public partial class MainWindow : Window
 
             // Pass the tile data onto the new controller.
             UVEditorWindow uvEditorWindow = new(tileList, _vm);
+            uvEditorWindow.Owner = this;
             uvEditorWindow.ShowDialog();
         }
     }
 
-    private void FilterMenuItem_Click(object sender, RoutedEventArgs e)
+    private void SettingsMenuItem_Click(object sender, RoutedEventArgs e)
     {
-        // Prevent the default focus behavior on clickAdd commentMore actions
-        // e.Handled = true;
+        var settingsWindow = new SettingsWindow(_vm);
+        settingsWindow.Owner = this;
+        settingsWindow.ShowDialog();
+    }
 
-        // Ensure a world is loaded.
-        if (_vm.CurrentWorld == null)
+
+    private GridLength _previousSidePanelWidth = new GridLength(440);
+    private bool _isSidePanelCollapsed = false;
+    private int _lastSelectedTabIndex = 0;
+
+    private void ExpandSidePanel()
+    {
+        if (!_isSidePanelCollapsed)
             return;
 
-        // Launch the advanced filter popup.
-        FilterWindow filterWindow = new(_vm);
-        filterWindow.ShowDialog();
+        var sidePanelColumn = SidePanelColumn;
+        sidePanelColumn.Width = _previousSidePanelWidth;
+        sidePanelColumn.MinWidth = 200;
+        SidePanelSplitter.IsEnabled = true;
+        _isSidePanelCollapsed = false;
+    }
+
+    private void CollapseSidePanel()
+    {
+        if (_isSidePanelCollapsed)
+            return;
+
+        var sidePanelColumn = SidePanelColumn;
+        _previousSidePanelWidth = sidePanelColumn.Width;
+        sidePanelColumn.Width = new GridLength(50);
+        sidePanelColumn.MinWidth = 50;
+        SidePanelSplitter.IsEnabled = false;
+        _isSidePanelCollapsed = true;
+    }
+
+    private void SidePanelTabs_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        // Find if a TabItem was clicked
+        var clickedElement = e.OriginalSource as DependencyObject;
+        while (clickedElement != null && clickedElement is not TabItem)
+            clickedElement = System.Windows.Media.VisualTreeHelper.GetParent(clickedElement);
+
+        if (clickedElement is not TabItem clickedTab)
+            return;
+
+        int clickedIndex = SidePanelTabs.Items.IndexOf(clickedTab);
+        if (clickedIndex < 0)
+            return;
+
+        if (_isSidePanelCollapsed)
+        {
+            ExpandSidePanel();
+        }
+        else if (clickedIndex == SidePanelTabs.SelectedIndex)
+        {
+            CollapseSidePanel();
+            e.Handled = true; // prevent tab from re-selecting
+        }
+
+        _lastSelectedTabIndex = clickedIndex;
     }
 }

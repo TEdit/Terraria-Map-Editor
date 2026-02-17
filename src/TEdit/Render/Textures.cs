@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using TEdit.Configuration;
+using TEdit.Geometry;
 using TEdit.Terraria;
+using TEdit.Terraria.Objects;
 
 namespace TEdit.Render;
 
@@ -16,6 +19,22 @@ public class Textures
 {
     private readonly GraphicsDevice _gdDevice;
 
+    // Deferred texture loading infrastructure
+    private readonly TextureLoadingState _loadingState = new();
+    private readonly ConcurrentQueue<Action> _graphicsThreadQueue = new();
+
+    /// <summary>
+    /// State for tracking async texture loading progress.
+    /// </summary>
+    public TextureLoadingState LoadingState => _loadingState;
+
+    /// <summary>
+    /// Whether async texture loading is complete.
+    /// </summary>
+    public bool TexturesFullyLoaded => _loadingState.IsComplete;
+
+    public Dictionary<int, Texture2D> Gore { get; } = new Dictionary<int, Texture2D>();
+    public Dictionary<int, Texture2D> Extra { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Moon { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Tiles { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Underworld { get; } = new Dictionary<int, Texture2D>();
@@ -45,6 +64,9 @@ public class Textures
 
         _defaultTexture = new Texture2D(_gdDevice, 1, 1);
         _defaultTexture.SetData(new Color[] { Color.Transparent });
+
+        _whitePixelTexture = new Texture2D(_gdDevice, 1, 1);
+        _whitePixelTexture.SetData(new Color[] { Color.White });
 
         if (Directory.Exists(path))
         {
@@ -111,29 +133,12 @@ public class Textures
         if (!TownNpcs.ContainsKey(key))
         {
             string variantName = "Default";
-            if (npcId == 637)// cat
+            if (WorldConfiguration.NpcById.TryGetValue(npcId, out var npcData)
+                && npcData.Variants != null
+                && variant >= 0
+                && variant < npcData.Variants.Count)
             {
-                variantName = WorldConfiguration.BestiaryData.Configuration.Cat[variant];
-            }
-            else if (npcId == 638) // dog
-            {
-                variantName = WorldConfiguration.BestiaryData.Configuration.Dog[variant];
-            }
-            else if (npcId == 656) // bunny
-            {
-                variantName = WorldConfiguration.BestiaryData.Configuration.Bunny[variant];
-            }
-            else if (npcId == 633) // bestiaryGirl
-            {
-                if (variant == 1)
-                {
-                    variantName = "Default_Transformed";
-                }
-                else if (variant == 2)
-                {
-                    variantName = "Default_Credits";
-
-                }
+                variantName = npcData.Variants[variant];
             }
             if (name == "DD2Bartender")
             {
@@ -150,7 +155,8 @@ public class Textures
 
 
 
-            string texturePath = $"Images\\TownNPCs\\{name}_{variantName}";
+            string basePath = $"Images\\TownNPCs\\{name}_{variantName}";
+            string texturePath = basePath;
 
             if (partying && shimmered)
             {
@@ -166,10 +172,16 @@ public class Textures
             }
 
             var tex = LoadTexture(texturePath);
-            if (tex == null)
+
+            // Fallback chain: party/shimmer variant → base town NPC texture → NPC_{id}
+            // Note: LoadTexture returns _defaultTexture (1x1 transparent) for missing files, never null
+            if ((tex == null || tex == _defaultTexture) && texturePath != basePath)
             {
-                TownNpcs[key] = LoadTexture($"Images\\NPC_{npcId}");
-                Debug.WriteLine($"Loading ID {npcId} texture for NPC {name}:{variant}");
+                tex = LoadTexture(basePath);
+            }
+            if (tex == null || tex == _defaultTexture)
+            {
+                tex = LoadTexture($"Images\\NPC_{npcId}");
             }
 
             TownNpcs[key] = tex;
@@ -185,15 +197,39 @@ public class Textures
 
     public Texture GetArmorHead(int num) => GetTextureById(ArmorHead, num, "Images\\Armor_Head_{0}");
 
-    public Texture GetArmorBody(int num) => GetTextureById(ArmorBody, num, "Images\\Armor_Body_{0}");
+    public Texture GetArmorBody(int num) => GetTextureById(ArmorBody, num, "Images\\Armor\\Armor_{0}");
 
-    public Texture GetArmorFemale(int num) => GetTextureById(ArmorFemale, num, "Images\\Female_Body_{0}");
+    public Texture GetArmorFemale(int num) => GetTextureById(ArmorFemale, num, "Images\\Armor\\Armor_Female_{0}");
 
     public Texture GetArmorLegs(int num) => GetTextureById(ArmorLegs, num, "Images\\Armor_Legs_{0}");
 
     public Texture2D GetItem(int num) => GetTextureById(Item, num, "Images\\Item_{0}");
 
     public Texture2D GetMoon(int num) => GetTextureById(Moon, num, "Images\\Moon_{0}");
+
+    public Texture2D GetExtra(int num) => GetTextureById(Extra, num, "Images\\Extra_{0}");
+
+    public Texture2D GetGore(int num) => GetTextureById(Gore, num, "Images\\Gore_{0}");
+
+    /// <summary>
+    /// Get texture for preview based on PreviewConfig settings.
+    /// </summary>
+    public Texture2D GetPreviewTexture(PreviewConfig config, int tileId)
+    {
+        if (config == null)
+            return GetTile(tileId);
+
+        return config.TextureType switch
+        {
+            PreviewTextureType.Tree => GetTree(config.TextureStyle),
+            PreviewTextureType.TreeTops => (Texture2D)GetTreeTops(config.TextureStyle),
+            PreviewTextureType.TreeBranch => (Texture2D)GetTreeBranches(config.TextureStyle),
+            PreviewTextureType.PalmTree => GetTile(323), // Palm tree trunk texture
+            PreviewTextureType.PalmTreeTop => (Texture2D)GetTreeTops(15), // Palm tree top texture
+            PreviewTextureType.Item => GetItem(config.TextureStyle),
+            _ => GetTile(tileId)
+        };
+    }
 
     private Texture2D GetTextureById<T>(Dictionary<T, Texture2D> collection, T id, string path)
     {
@@ -208,14 +244,74 @@ public class Textures
 
     private static Color ColorKey = Color.FromNonPremultiplied(247, 119, 249, 255);
     private Texture2D _defaultTexture;
+    private Texture2D _whitePixelTexture;
     private Texture2D _actuator;
     private readonly Rectangle _zeroSixteenRectangle = new Rectangle(0, 0, 16, 16);
     public Rectangle ZeroSixteenRectangle { get { return _zeroSixteenRectangle; } }
 
-    private Texture2D LoadTexture(string path)
+    /// <summary>
+    /// Get the default transparent texture (used when textures are not yet loaded).
+    /// </summary>
+    public Texture2D DefaultTexture => _defaultTexture;
+
+    /// <summary>
+    /// Get a 1x1 white pixel texture (used for solid color drawing).
+    /// </summary>
+    public Texture2D WhitePixelTexture => _whitePixelTexture;
+
+    /// <summary>
+    /// Queue a texture creation action to be executed on the graphics thread.
+    /// </summary>
+    /// <param name="createAction">Action that creates a texture (must be called on graphics thread)</param>
+    public void QueueTextureCreation(Action createAction)
+    {
+        _graphicsThreadQueue.Enqueue(createAction);
+    }
+
+    /// <summary>
+    /// Process queued texture creations on the graphics thread.
+    /// Call this from the render loop.
+    /// </summary>
+    /// <param name="maxOperationsPerFrame">Maximum number of texture creations per frame</param>
+    /// <returns>Number of operations processed</returns>
+    public int ProcessTextureQueue(int maxOperationsPerFrame = 5)
+    {
+        int processed = 0;
+
+        while (processed < maxOperationsPerFrame && _graphicsThreadQueue.TryDequeue(out var action))
+        {
+            try
+            {
+                action();
+                processed++;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogException(ex);
+            }
+        }
+
+        return processed;
+    }
+
+    /// <summary>
+    /// Load a texture immediately (for use during deferred loading).
+    /// Must be called on the graphics thread.
+    /// </summary>
+    /// <param name="path">Texture path (without extension)</param>
+    /// <returns>Loaded texture or default texture on failure</returns>
+    public Texture2D LoadTextureImmediate(string path)
     {
         try
         {
+            string texturePath = Path.Join(ContentManager.RootDirectory, path + ".xnb");
+
+            if (!File.Exists(texturePath))
+            {
+                ErrorLogging.Log($"Missing texture: {path}");
+                return _defaultTexture;
+            }
+
             var loadTexture = ContentManager.Load<Texture2D>(path);
             var pixels = new Color[loadTexture.Height * loadTexture.Width];
             loadTexture.GetData(pixels);
@@ -236,5 +332,18 @@ public class Textures
         }
 
         return _defaultTexture;
+    }
+
+    /// <summary>
+    /// Private wrapper for backward compatibility with existing code.
+    /// </summary>
+    private Texture2D LoadTexture(string path) => LoadTextureImmediate(path);
+
+    /// <summary>
+    /// Computes and caches WrapThreshold values for all tiles with TextureWrap configured.
+    /// Call this after tile textures have been loaded.
+    /// </summary>
+    public void CacheTextureWrapThresholds()
+    {
     }
 }

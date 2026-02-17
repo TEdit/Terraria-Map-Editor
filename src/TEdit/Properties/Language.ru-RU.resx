@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="banner_category" xml:space="preserve">
+    <value>Категория:</value>
+  </data>
+  <data name="banner_count" xml:space="preserve">
+    <value>Граф</value>
+  </data>
+  <data name="banner_filter" xml:space="preserve">
+    <value>Фильтр:</value>
+  </data>
+  <data name="banner_import" xml:space="preserve">
+    <value>Импортировать</value>
+  </data>
+  <data name="banner_kills" xml:space="preserve">
+    <value>Убийства</value>
+  </data>
+  <data name="banner_maxout" xml:space="preserve">
+    <value>Max Out</value>
+  </data>
+  <data name="banner_reset" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="banner_save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>Чат</value>
   </data>
@@ -145,7 +169,7 @@
     <value>Разговаривать</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
-    <value>Обновление убивает</value>
+    <value>Обновить</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Заполнить блок</value>
@@ -193,6 +217,9 @@
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Анализ</value>
+  </data>
+  <data name="editor_tabs_banners" xml:space="preserve">
+    <value>Баннеры</value>
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
     <value>Буфер обмена</value>
@@ -281,6 +308,9 @@
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Выключить маску</value>
   </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Скопировать первый элемент</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>Редактировать</value>
   </data>
@@ -290,11 +320,11 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Обрезать мир</value>
   </data>
-  <data name="menu_edit_expand" xml:space="preserve">
-    <value>Расширить мир</value>
-  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Удалить выделение</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Расширить мир</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>Вставить</value>
@@ -335,6 +365,69 @@
   <data name="menu_file_update" xml:space="preserve">
     <value>Проверить обновления</value>
   </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Применять</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>Фоновый режим</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Обычай</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Запрещать</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>Фильтровать буфер обмена</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>Режим фильтра</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Оттенки серого</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Жидкости</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>Спрайты</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Плитка</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Стены</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>Провода</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Скрывать</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Нормальный</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Проверить все</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Снимите все флажки</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Расширенный фильтр</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Прозрачный</value>
+  </data>
   <data name="menu_help" xml:space="preserve">
     <value>Помощь</value>
   </data>
@@ -345,7 +438,7 @@
     <value>Открыть логи</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Обновить Settings.xml</value>
+    <value>Settings...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>Обновить</value>
@@ -368,6 +461,18 @@
   <data name="menu_language_es" xml:space="preserve">
     <value>Español</value>
   </data>
+  <data name="menu_language_fr" xml:space="preserve">
+    <value>Франсе</value>
+  </data>
+  <data name="menu_language_it" xml:space="preserve">
+    <value>Итальяно</value>
+  </data>
+  <data name="menu_language_ja" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="menu_language_ko" xml:space="preserve">
+    <value>한국어</value>
+  </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polski</value>
   </data>
@@ -380,11 +485,17 @@
   <data name="menu_language_zh" xml:space="preserve">
     <value>中文</value>
   </data>
+  <data name="menu_language_zh_hant" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Слои</value>
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>Активаторы</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>Предыстория</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Сетка</value>
@@ -425,6 +536,9 @@
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Жёлтые провода</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Вставить во все слоты</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Плагины</value>
   </data>
@@ -436,6 +550,33 @@
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>Отдалить</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Переместить все кадры</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Количество перемещений (кадров)</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>ХОРОШО</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Выбранные кадры</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Установить ручные УФ-фильтры для всех</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Установить значения</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>УФ-редактор</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Требуется перезагрузка</value>
@@ -480,6 +621,186 @@
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Провода</value>
   </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>Включить автосохранение</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>Периодически автоматически спасая мир</value>
+  </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>Общие заведения</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>Слои</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>Пути</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>Конфиденциальность</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>Рендеринг</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>Проверяйте обновления</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>Автоматически проверяйте новые версии при запуске</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>Включить отчеты об ошибках</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>Отправляйте анонимные отчёты об ошибках для повышения стабильности</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>Задайте язык отображения приложений</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>Используйте реалистичные цвета</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>Рендеринг тайлов с использованием текстур-сэмплинговых цветов (требуется перезапуск)</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>Настройки поиска...</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>Актуаторы шоу</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>Видимость актуатора переключения</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>Показать все провода</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>Переключите все слои проводов одновременно</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>Предыстория шоу</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>Переключение фонового рендеринга</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>Показать синие провода</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>Переключение видимости по синим проводу</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>Покрытия для шоу</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>Видимость слоя переключения покрытия</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>Показать зелёные провода</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>Переключение видимости зелёного провода</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>Сетка шоу</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>Наложение переключательной сетки</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>Show Liquid</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>Переключение видимости жидкостного слоя</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>Новости шоу</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>Показывайте новости и объявления в редакторе</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>Очки шоу</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>Переключатели спавна/маркеры точек NPC</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>Показать красные провода</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>Переключение видимости красного провода</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>Текстуры шоу</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>Переключение рендеринга текстур тайлов</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>Показать плитки</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>Переключение видимости слоя тайлов</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>Стены шоу</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>Видимость слоя стены с переключением</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>Показать жёлтые провода</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>Переключение видимости жёлтого провода</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>Размер миниатюры спрайта</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>Размер миниатюр спрайтов в спрайт-пикере</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Путь содержания Terraria</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Путь к папке Content Terraria для загрузки текстур</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>Видимость текстуры Уровень зума</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>Минимальный уровень масштабирования до того, как текстуры тайлов станут видимыми</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>Прозрачность проводов</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>Рендеринг проводов с прозрачностью</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>Баннеры</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>Найти и заменить</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>Объект плитки</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>Параметры мира</value>
+  </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Отменить</value>
   </data>
@@ -516,6 +837,12 @@
   <data name="specialtile_label_chesttype" xml:space="preserve">
     <value>Тип сундука</value>
   </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>Маленький зверёк</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>Флакон с предметом</value>
+  </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Редактировать выбранный предмет</value>
   </data>
@@ -524,6 +851,9 @@
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
     <value>Содержимое рамки</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>Воздушный змей</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
     <value>Ноги</value>
@@ -534,6 +864,9 @@
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
     <value>Одежда на манекене</value>
   </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>Маунт</value>
+  </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Содержимое тарелки</value>
   </data>
@@ -542,6 +875,9 @@
   </data>
   <data name="specialtile_label_signtype" xml:space="preserve">
     <value>Тип таблички</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>Оружие</value>
   </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
     <value>Предмет на стойке</value>
@@ -563,6 +899,12 @@
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>С помощью Стрелки нажмите правой кнопкой мыши на табличку, сундук, манекен, стойку для оружия, рамку или новогоднюю ёлку.</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>Авто</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>Биом:</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Фильтр</value>
@@ -599,6 +941,41 @@
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>Бестиарий</value>
+  </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>Появление синей команды</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>Появление зелёной команды</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>Появление Розовой команды</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>Появление Красной команды</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>Появление белой команды</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>Жёлтая команда появляется</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit может отправлять анонимные отчеты об ошибках, чтобы помочь улучшить стабильность.
+
+Что собирается:
+  • Подробности об ошибке (тип исключения и трассировка стека)
+  • Версия приложения и версия ОС
+
+Что НЕ собирается:
+  • Никакая личная информация или пути к файлам
+  • Никакого отслеживания использования или отпечатков
+  • Все пути шифруются перед отправкой
+
+Хотите включить отчет об ошибках?</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>Отчет об ошибках TEdit</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Анализ</value>
@@ -654,6 +1031,15 @@
   <data name="tool_clipboard_empty" xml:space="preserve">
     <value>Пустой буфер обмена</value>
   </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>Flip X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>Flip Y</value>
+  </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>Импортировать картинку с ложными цветами</value>
   </data>
@@ -678,8 +1064,17 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Вставить провода</value>
   </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Замена существующих плиток</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>Ротация</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>Заморозить распространение биома</value>
@@ -734,6 +1129,9 @@
   </data>
   <data name="tool_npc_add" xml:space="preserve">
     <value>Добавить НИПа</value>
+  </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>Щелкните по NPC и установите его местоположение с помощью мыши</value>
   </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>Имя</value>
@@ -839,6 +1237,9 @@
   </data>
   <data name="tool_wp_altars" xml:space="preserve">
     <value>Алтарей разрушено</value>
+  </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>Апокалипсис (появление Лунного Лорда)</value>
   </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
     <value>Фон искажения</value>
@@ -978,6 +1379,9 @@
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Китайская мировая версия</value>
   </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>Cloud BG Active</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Кобальт</value>
   </data>
@@ -996,6 +1400,9 @@
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>Багрянец</value>
   </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>Культистская задержка</value>
+  </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>Сложность</value>
   </data>
@@ -1007,6 +1414,9 @@
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>Пьяный мир</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>Точка Подземелья</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Нашествие</value>
@@ -1032,8 +1442,14 @@
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>Хэллоуин</value>
   </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>Сила Хэллоуин навсегда</value>
+  </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>Рождество</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>Форсированное Рождество навсегда</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>ID мира</value>
@@ -1164,6 +1580,9 @@
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>НИПы сохранены</value>
   </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>НИПы сохранены</value>
+  </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
     <value>Голубая слизь</value>
   </data>
@@ -1227,6 +1646,21 @@
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>Ранец разносчика</value>
   </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>Активные столпы</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>Башня туманности</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>Башня солнца</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>Башня звёздной пыли</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>Башня вихря</value>
+  </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Дохардмод</value>
   </data>
@@ -1269,17 +1703,32 @@
   <data name="tool_wp_seed" xml:space="preserve">
     <value>Сид мира</value>
   </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>Двойные подземелья</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>Заражённые</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Без ловушек</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>Ремикс</value>
   </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>Skyblock</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>Вампир</value>
+  </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>Зенит</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Серебро</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>Точка появления</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
     <value>Стиль пещер</value>
@@ -1320,6 +1769,15 @@
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>Уровень поверхности</value>
   </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>Появление команд</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>Включены командные спавны</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>Места появления команд</value>
+  </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>Десятая годовщина</value>
   </data>
@@ -1359,103 +1817,22 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Рельсы</value>
   </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>Синие</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>Зелёные</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>Выключение</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>Красные</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>Жёлтые</value>
+  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>
-  </data>
-  <data name="menu_filter_header_tiles" xml:space="preserve">
-    <value>Плитка</value>
-  </data>
-  <data name="menu_filter_header_walls" xml:space="preserve">
-    <value>Стены</value>
-  </data>
-  <data name="menu_filter_header_liquids" xml:space="preserve">
-    <value>Жидкости</value>
-  </data>
-  <data name="menu_filter_header_wires" xml:space="preserve">
-    <value>Провода</value>
-  </data>
-  <data name="menu_filter_tab_searchname" xml:space="preserve">
-    <value>Имя</value>
-  </data>
-  <data name="menu_filter_tab_check_all" xml:space="preserve">
-    <value>Проверить все</value>
-  </data>
-  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
-    <value>Снимите все флажки</value>
-  </data>
-  <data name="menu_filter_filtermode" xml:space="preserve">
-    <value>Режим фильтра</value>
-  </data>
-  <data name="menu_filter_backgroundmode" xml:space="preserve">
-    <value>Фоновый режим</value>
-  </data>
-  <data name="menu_filter_hide" xml:space="preserve">
-    <value>Скрывать</value>
-  </data>
-  <data name="menu_filter_grayscale" xml:space="preserve">
-    <value>Оттенки серого</value>
-  </data>
-  <data name="menu_filter_normal" xml:space="preserve">
-    <value>Нормальный</value>
-  </data>
-  <data name="menu_filter_transparent" xml:space="preserve">
-    <value>Прозрачный</value>
-  </data>
-  <data name="menu_filter_custom" xml:space="preserve">
-    <value>Обычай</value>
-  </data>
-  <data name="menu_filter_cancel" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
-  <data name="menu_filter_disable" xml:space="preserve">
-    <value>Запрещать</value>
-  </data>
-  <data name="menu_filter_apply" xml:space="preserve">
-    <value>Применять</value>
-  </data>
-  <data name="menu_uveditor_moveallframes" xml:space="preserve">
-    <value>Переместить все кадры</value>
-  </data>
-  <data name="menu_uveditor_moveamount" xml:space="preserve">
-    <value>Количество перемещений (кадров)</value>
-  </data>
-  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
-    <value>Установить ручные УФ-фильтры для всех</value>
-  </data>
-  <data name="menu_uveditor_selectedframes" xml:space="preserve">
-    <value>Выбранные кадры</value>
-  </data>
-  <data name="menu_uveditor_setvalues" xml:space="preserve">
-    <value>Установить значения</value>
-  </data>
-  <data name="menu_uveditor_cancel" xml:space="preserve">
-    <value>Отменить</value>
-  </data>
-  <data name="menu_uveditor_restore" xml:space="preserve">
-    <value>Восстановить</value>
-  </data>
-  <data name="menu_uveditor_ok" xml:space="preserve">
-    <value>ХОРОШО</value>
-  </data>
-  <data name="menu_filter" xml:space="preserve">
-    <value>Фильтр</value>
-  </data>
-  <data name="menu_filter_title" xml:space="preserve">
-    <value>Расширенный фильтр</value>
-  </data>
-  <data name="menu_uveditor_title" xml:space="preserve">
-    <value>УФ-редактор</value>
-  </data>
-  <data name="menu_filter_filterclipboard" xml:space="preserve">
-    <value>Фильтровать буфер обмена</value>
-  </data>
-  <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>Спрайты</value>
-  </data>
-  <data name="menu_pasteall" xml:space="preserve">
-    <value>Вставить во все слоты</value>
-  </data>
-  <data name="menu_copyfirstitem" xml:space="preserve">
-    <value>Скопировать первый элемент</value>
   </data>
 </root>

@@ -20,15 +20,16 @@ public struct TEditColor : IEquatable<TEditColor>
     {
         var rgba = Convert.ToUInt32(hex.Substring(1), 16);
 
-        float a = ((int)((rgba & 0xff000000) >> 24) / 255.0f);
-        float r = ((int)((rgba & 0x00ff0000) >> 16) / 255.0f);
-        float g = ((int)((rgba & 0x0000ff00) >> 8) / 255.0f);
-        float b = ((int)(rgba & 0x000000ff) / 255.0f);
+        // RGBA format: #RRGGBBAA
+        float r = ((int)((rgba & 0xff000000) >> 24) / 255.0f);
+        float g = ((int)((rgba & 0x00ff0000) >> 16) / 255.0f);
+        float b = ((int)((rgba & 0x0000ff00) >> 8) / 255.0f);
+        float a = ((int)(rgba & 0x000000ff) / 255.0f);
 
         return new TEditColor(r, g, b, a);
     }
 
-    public static string ToHexString(TEditColor color) => $"#{color.A:X2}{color.R:X2}{color.G:X2}{color.B:X2}";
+    public static string ToHexString(TEditColor color) => $"#{color.R:X2}{color.G:X2}{color.B:X2}{color.A:X2}";
 
     private uint _packedValue;
 
@@ -816,7 +817,6 @@ public struct TEditColor : IEquatable<TEditColor>
     //
     // Summary:
     //     Gets or sets packed value of this Microsoft.Xna.Framework.Color.
-    [CLSCompliant(false)]
     public uint PackedValue
     {
         get
@@ -835,7 +835,9 @@ public struct TEditColor : IEquatable<TEditColor>
 
     static TEditColor()
     {
+#pragma warning disable CS0618 // Intentional initialization of obsolete TransparentBlack
         TransparentBlack = new TEditColor(0u);
+#pragma warning restore CS0618
         Transparent = new TEditColor(0u);
         AliceBlue = new TEditColor(4294965488u);
         AntiqueWhite = new TEditColor(4292340730u);
@@ -988,7 +990,6 @@ public struct TEditColor : IEquatable<TEditColor>
     // Parameters:
     //   packedValue:
     //     The packed value.
-    [CLSCompliant(false)]
     public TEditColor(uint packedValue)
     {
         _packedValue = packedValue;

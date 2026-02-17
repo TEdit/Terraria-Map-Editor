@@ -1,0 +1,1768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="banner_category" xml:space="preserve">
+    <value>分類：</value>
+  </data>
+  <data name="banner_count" xml:space="preserve">
+    <value>伯爵</value>
+  </data>
+  <data name="banner_filter" xml:space="preserve">
+    <value>篩選：</value>
+  </data>
+  <data name="banner_import" xml:space="preserve">
+    <value>進口</value>
+  </data>
+  <data name="banner_kills" xml:space="preserve">
+    <value>擊殺紀錄</value>
+  </data>
+  <data name="banner_maxout" xml:space="preserve">
+    <value>滿載</value>
+  </data>
+  <data name="banner_reset" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="banner_save" xml:space="preserve">
+    <value>存檔</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>聊天室</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>清場</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>完結</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>敗北</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>負載</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>名稱</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>接近</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>存檔</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>談話</value>
+  </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="BrickStyle_Full" xml:space="preserve">
+    <value>全磚</value>
+  </data>
+  <data name="BrickStyle_HalfBrick" xml:space="preserve">
+    <value>半磚</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
+    <value>左下坡</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
+    <value>坡面右下角</value>
+  </data>
+  <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
+    <value>左上坡</value>
+  </data>
+  <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
+    <value>右上方斜坡</value>
+  </data>
+  <data name="BrushShape_Left" xml:space="preserve">
+    <value>斜向左</value>
+  </data>
+  <data name="BrushShape_Right" xml:space="preserve">
+    <value>對角線右</value>
+  </data>
+  <data name="BrushShape_Round" xml:space="preserve">
+    <value>橢圓</value>
+  </data>
+  <data name="BrushShape_Square" xml:space="preserve">
+    <value>矩形</value>
+  </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>麥克斯</value>
+  </data>
+  <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
+    <value>目錄似乎不包含 Terraria 內容。
+按重試鍵選擇新資料夾，或取消{0}作為你的 Terraria 路徑。</value>
+  </data>
+  <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
+    <value>未找到 Terraria 內容</value>
+  </data>
+  <data name="editor_tabs_analysis" xml:space="preserve">
+    <value>分析</value>
+  </data>
+  <data name="editor_tabs_banners" xml:space="preserve">
+    <value>旗幟</value>
+  </data>
+  <data name="editor_tabs_clipboard" xml:space="preserve">
+    <value>夾板</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>創作能力</value>
+  </data>
+  <data name="editor_tabs_npc" xml:space="preserve">
+    <value>NPC 資料</value>
+  </data>
+  <data name="editor_tabs_special" xml:space="preserve">
+    <value>特殊瓷磚</value>
+  </data>
+  <data name="editor_tabs_sprites" xml:space="preserve">
+    <value>精靈圖</value>
+  </data>
+  <data name="editor_tabs_tally" xml:space="preserve">
+    <value>獸譜</value>
+  </data>
+  <data name="editor_tabs_tileentities" xml:space="preserve">
+    <value>瓦片實體</value>
+  </data>
+  <data name="editor_tabs_worldproperties" xml:space="preserve">
+    <value>世界屬性</value>
+  </data>
+  <data name="editor_utilities_label" xml:space="preserve">
+    <value>公用事業</value>
+  </data>
+  <data name="global_enjoytedit" xml:space="preserve">
+    <value>喜歡 TEdit？支持我們！</value>
+  </data>
+  <data name="HalfBlockMode_HalfBLock" xml:space="preserve">
+    <value>半區</value>
+  </data>
+  <data name="HalfBlockMode_NoAction" xml:space="preserve">
+    <value>沒有變化</value>
+  </data>
+  <data name="HalfBlockMode_RampLeft" xml:space="preserve">
+    <value>左坡道</value>
+  </data>
+  <data name="HalfBlockMode_RampRight" xml:space="preserve">
+    <value>右坡道</value>
+  </data>
+  <data name="HalfBlockMode_Solid" xml:space="preserve">
+    <value>穩固</value>
+  </data>
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
+    <value>左向</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>沒有</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
+    <value>右向</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>接線盒：</value>
+  </data>
+  <data name="LiquidType_Honey" xml:space="preserve">
+    <value>親愛的</value>
+  </data>
+  <data name="LiquidType_Lava" xml:space="preserve">
+    <value>熔岩</value>
+  </data>
+  <data name="LiquidType_None" xml:space="preserve">
+    <value>不要液體</value>
+  </data>
+  <data name="LiquidType_Water" xml:space="preserve">
+    <value>水</value>
+  </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>液體量：</value>
+  </data>
+  <data name="MaskMode_Empty" xml:space="preserve">
+    <value>編輯：空白</value>
+  </data>
+  <data name="MaskMode_Match" xml:space="preserve">
+    <value>編輯：匹配</value>
+  </data>
+  <data name="MaskMode_NotMatching" xml:space="preserve">
+    <value>編輯：不匹配</value>
+  </data>
+  <data name="MaskMode_Off" xml:space="preserve">
+    <value>解除面具</value>
+  </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>第一項複製</value>
+  </data>
+  <data name="menu_edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="menu_edit_copy" xml:space="preserve">
+    <value>收到</value>
+  </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>作物世界</value>
+  </data>
+  <data name="menu_edit_delete" xml:space="preserve">
+    <value>刪除選擇</value>
+  </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>擴展世界</value>
+  </data>
+  <data name="menu_edit_paste" xml:space="preserve">
+    <value>黏貼</value>
+  </data>
+  <data name="menu_edit_redo" xml:space="preserve">
+    <value>重來</value>
+  </data>
+  <data name="menu_edit_undo" xml:space="preserve">
+    <value>還原</value>
+  </data>
+  <data name="menu_file" xml:space="preserve">
+    <value>檔案</value>
+  </data>
+  <data name="menu_file_autosave" xml:space="preserve">
+    <value>啟用自動存檔</value>
+  </data>
+  <data name="menu_file_autoupdate" xml:space="preserve">
+    <value>啟動時請查看更新</value>
+  </data>
+  <data name="menu_file_exit" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="menu_file_new" xml:space="preserve">
+    <value>新</value>
+  </data>
+  <data name="menu_file_open" xml:space="preserve">
+    <value>開場</value>
+  </data>
+  <data name="menu_file_save" xml:space="preserve">
+    <value>存檔</value>
+  </data>
+  <data name="menu_file_saveas" xml:space="preserve">
+    <value>另存為</value>
+  </data>
+  <data name="menu_file_saveasversion" xml:space="preserve">
+    <value>另存為版本</value>
+  </data>
+  <data name="menu_file_update" xml:space="preserve">
+    <value>立即查看最新消息</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>濾波器</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>申請</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>背景模式</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>習俗</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>停用</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>濾鏡剪貼板</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>過濾模式</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>灰階</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>液體</value>
+  </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>精靈圖</value>
+  </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>瓷磚</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>城牆</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>電線</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>躲起來</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>查看全部</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>名稱</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>取消勾選全部</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>進階濾波器</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>透明</value>
+  </data>
+  <data name="menu_help" xml:space="preserve">
+    <value>救命</value>
+  </data>
+  <data name="menu_help_about" xml:space="preserve">
+    <value>關於</value>
+  </data>
+  <data name="menu_help_log" xml:space="preserve">
+    <value>開啟日誌檔案</value>
+  </data>
+  <data name="menu_help_settings" xml:space="preserve">
+    <value>設定......</value>
+  </data>
+  <data name="menu_help_update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="menu_help_wiki" xml:space="preserve">
+    <value>維基</value>
+  </data>
+  <data name="menu_language" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>德意志</value>
+  </data>
+  <data name="menu_language_en" xml:space="preserve">
+    <value>英文</value>
+  </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>西班牙語</value>
+  </data>
+  <data name="menu_language_fr" xml:space="preserve">
+    <value>法蘭西</value>
+  </data>
+  <data name="menu_language_it" xml:space="preserve">
+    <value>義大利語</value>
+  </data>
+  <data name="menu_language_ja" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="menu_language_ko" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="menu_language_pl" xml:space="preserve">
+    <value>波蘭</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>葡萄牙人</value>
+  </data>
+  <data name="menu_language_ru" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="menu_language_zh" xml:space="preserve">
+    <value>中文 (简体)</value>
+  </data>
+  <data name="menu_language_zh_hant" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="menu_layers" xml:space="preserve">
+    <value>層次</value>
+  </data>
+  <data name="menu_layers_actuators" xml:space="preserve">
+    <value>執行器</value>
+  </data>
+  <data name="menu_layers_backgrounds" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="menu_layers_grid" xml:space="preserve">
+    <value>佈局格</value>
+  </data>
+  <data name="menu_layers_liquid" xml:space="preserve">
+    <value>液體</value>
+  </data>
+  <data name="menu_layers_points" xml:space="preserve">
+    <value>景點</value>
+  </data>
+  <data name="menu_layers_textures" xml:space="preserve">
+    <value>材質</value>
+  </data>
+  <data name="menu_layers_tiles" xml:space="preserve">
+    <value>瓷磚</value>
+  </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>使用寫實色彩</value>
+  </data>
+  <data name="menu_layers_walls" xml:space="preserve">
+    <value>城牆</value>
+  </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>所有線路</value>
+  </data>
+  <data name="menu_layers_wire_blue" xml:space="preserve">
+    <value>藍線</value>
+  </data>
+  <data name="menu_layers_wire_green" xml:space="preserve">
+    <value>綠線</value>
+  </data>
+  <data name="menu_layers_wire_red" xml:space="preserve">
+    <value>紅線</value>
+  </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>線材透明</value>
+  </data>
+  <data name="menu_layers_wire_yellow" xml:space="preserve">
+    <value>黃線</value>
+  </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>貼上到所有插槽</value>
+  </data>
+  <data name="menu_plugins" xml:space="preserve">
+    <value>插件</value>
+  </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>啟用錯誤回報</value>
+  </data>
+  <data name="menu_toolbar_zoom_in" xml:space="preserve">
+    <value>放大</value>
+  </data>
+  <data name="menu_toolbar_zoom_out" xml:space="preserve">
+    <value>拉遠鏡頭</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>移動所有影格</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>移動量（幀數）</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>好</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>恢復</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>精選框架</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>將手動紫外線設定為全部</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>集合數值</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>UV 編輯器</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>需要重新開始</value>
+  </data>
+  <data name="MorphBiome_Corruption" xml:space="preserve">
+    <value>貪污</value>
+  </data>
+  <data name="MorphBiome_Crimson" xml:space="preserve">
+    <value>深紅</value>
+  </data>
+  <data name="MorphBiome_Custom" xml:space="preserve">
+    <value>習俗</value>
+  </data>
+  <data name="MorphBiome_Desert" xml:space="preserve">
+    <value>沙漠</value>
+  </data>
+  <data name="MorphBiome_Hallow" xml:space="preserve">
+    <value>哈洛</value>
+  </data>
+  <data name="MorphBiome_Jungle" xml:space="preserve">
+    <value>叢林</value>
+  </data>
+  <data name="MorphBiome_Purify" xml:space="preserve">
+    <value>淨化</value>
+  </data>
+  <data name="PaintMode_Liquid" xml:space="preserve">
+    <value>液體</value>
+  </data>
+  <data name="PaintMode_TileAndWall" xml:space="preserve">
+    <value>瓷磚/牆面</value>
+  </data>
+  <data name="PaintMode_Track" xml:space="preserve">
+    <value>田徑</value>
+  </data>
+  <data name="PaintMode_Wire" xml:space="preserve">
+    <value>鋼索</value>
+  </data>
+  <data name="settings_autosave" xml:space="preserve">
+    <value>啟用自動存檔</value>
+  </data>
+  <data name="settings_autosave_desc" xml:space="preserve">
+    <value>定期自動拯救世界</value>
+  </data>
+  <data name="settings_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="settings_category_general" xml:space="preserve">
+    <value>概述</value>
+  </data>
+  <data name="settings_category_layers" xml:space="preserve">
+    <value>層次</value>
+  </data>
+  <data name="settings_category_paths" xml:space="preserve">
+    <value>路徑</value>
+  </data>
+  <data name="settings_category_privacy" xml:space="preserve">
+    <value>隱私</value>
+  </data>
+  <data name="settings_category_rendering" xml:space="preserve">
+    <value>渲染</value>
+  </data>
+  <data name="settings_check_updates" xml:space="preserve">
+    <value>請持續關注最新消息</value>
+  </data>
+  <data name="settings_check_updates_desc" xml:space="preserve">
+    <value>啟動時自動檢查新版本</value>
+  </data>
+  <data name="settings_error_reporting" xml:space="preserve">
+    <value>啟用錯誤回報</value>
+  </data>
+  <data name="settings_error_reporting_desc" xml:space="preserve">
+    <value>發送匿名錯誤回報以提升穩定性</value>
+  </data>
+  <data name="settings_language" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="settings_language_desc" xml:space="preserve">
+    <value>設定應用程式顯示語言</value>
+  </data>
+  <data name="settings_realistic_colors" xml:space="preserve">
+    <value>使用寫實色彩</value>
+  </data>
+  <data name="settings_realistic_colors_desc" xml:space="preserve">
+    <value>使用貼圖取樣色彩渲染圖塊（需要重新啟動）</value>
+  </data>
+  <data name="settings_save" xml:space="preserve">
+    <value>存檔</value>
+  </data>
+  <data name="settings_search_placeholder" xml:space="preserve">
+    <value>搜尋設定......</value>
+  </data>
+  <data name="settings_show_actuators" xml:space="preserve">
+    <value>表演執行器</value>
+  </data>
+  <data name="settings_show_actuators_desc" xml:space="preserve">
+    <value>切換執行器可見性</value>
+  </data>
+  <data name="settings_show_all_wires" xml:space="preserve">
+    <value>顯示所有電線</value>
+  </data>
+  <data name="settings_show_all_wires_desc" xml:space="preserve">
+    <value>一次切換所有線路層</value>
+  </data>
+  <data name="settings_show_backgrounds" xml:space="preserve">
+    <value>節目背景</value>
+  </data>
+  <data name="settings_show_backgrounds_desc" xml:space="preserve">
+    <value>切換背景渲染</value>
+  </data>
+  <data name="settings_show_blue_wires" xml:space="preserve">
+    <value>藍線秀</value>
+  </data>
+  <data name="settings_show_blue_wires_desc" xml:space="preserve">
+    <value>切換藍線可見性</value>
+  </data>
+  <data name="settings_show_coatings" xml:space="preserve">
+    <value>展覽塗層</value>
+  </data>
+  <data name="settings_show_coatings_desc" xml:space="preserve">
+    <value>切換塗層可見性</value>
+  </data>
+  <data name="settings_show_green_wires" xml:space="preserve">
+    <value>綠線秀</value>
+  </data>
+  <data name="settings_show_green_wires_desc" xml:space="preserve">
+    <value>切換綠線可見性</value>
+  </data>
+  <data name="settings_show_grid" xml:space="preserve">
+    <value>展會格子</value>
+  </data>
+  <data name="settings_show_grid_desc" xml:space="preserve">
+    <value>切換網格覆蓋</value>
+  </data>
+  <data name="settings_show_liquid" xml:space="preserve">
+    <value>秀液</value>
+  </data>
+  <data name="settings_show_liquid_desc" xml:space="preserve">
+    <value>切換液體層可見性</value>
+  </data>
+  <data name="settings_show_news" xml:space="preserve">
+    <value>節目新聞</value>
+  </data>
+  <data name="settings_show_news_desc" xml:space="preserve">
+    <value>在編輯器中顯示新聞與公告</value>
+  </data>
+  <data name="settings_show_points" xml:space="preserve">
+    <value>節目重點</value>
+  </data>
+  <data name="settings_show_points_desc" xml:space="preserve">
+    <value>切換生成點/NPC 點標記</value>
+  </data>
+  <data name="settings_show_red_wires" xml:space="preserve">
+    <value>展示紅線</value>
+  </data>
+  <data name="settings_show_red_wires_desc" xml:space="preserve">
+    <value>切換紅線可見性</value>
+  </data>
+  <data name="settings_show_textures" xml:space="preserve">
+    <value>節目材質</value>
+  </data>
+  <data name="settings_show_textures_desc" xml:space="preserve">
+    <value>切換圖塊貼圖渲染</value>
+  </data>
+  <data name="settings_show_tiles" xml:space="preserve">
+    <value>顯示磚</value>
+  </data>
+  <data name="settings_show_tiles_desc" xml:space="preserve">
+    <value>切換圖塊圖層可見性</value>
+  </data>
+  <data name="settings_show_walls" xml:space="preserve">
+    <value>展牆</value>
+  </data>
+  <data name="settings_show_walls_desc" xml:space="preserve">
+    <value>切換牆面圖層可見性</value>
+  </data>
+  <data name="settings_show_yellow_wires" xml:space="preserve">
+    <value>展示黃色電線</value>
+  </data>
+  <data name="settings_show_yellow_wires_desc" xml:space="preserve">
+    <value>切換黃色線路可見性</value>
+  </data>
+  <data name="settings_sprite_thumbnail" xml:space="preserve">
+    <value>精靈縮圖尺寸</value>
+  </data>
+  <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
+    <value>精靈選擇器中精靈縮圖的大小</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Terraria 內容路徑</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>前往 Terraria 的 Content 資料夾，用於材質載入</value>
+  </data>
+  <data name="settings_texture_zoom" xml:space="preserve">
+    <value>貼圖可見性縮放等級</value>
+  </data>
+  <data name="settings_texture_zoom_desc" xml:space="preserve">
+    <value>在磚塊貼圖變得可見前，最小縮放等級</value>
+  </data>
+  <data name="settings_wire_transparency" xml:space="preserve">
+    <value>線材透明</value>
+  </data>
+  <data name="settings_wire_transparency_desc" xml:space="preserve">
+    <value>渲染帶有透明度的線材</value>
+  </data>
+  <data name="sidebar_banner_title" xml:space="preserve">
+    <value>旗幟</value>
+  </data>
+  <data name="sidebar_find_title" xml:space="preserve">
+    <value>尋找並替換</value>
+  </data>
+  <data name="sidebar_tileentity_title" xml:space="preserve">
+    <value>瓦片實體</value>
+  </data>
+  <data name="sidebar_worldprops_title" xml:space="preserve">
+    <value>世界屬性</value>
+  </data>
+  <data name="specialtile_button_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="specialtile_button_save" xml:space="preserve">
+    <value>存檔</value>
+  </data>
+  <data name="specialtile_label_acc1" xml:space="preserve">
+    <value>第一章</value>
+  </data>
+  <data name="specialtile_label_acc2" xml:space="preserve">
+    <value>ACC2</value>
+  </data>
+  <data name="specialtile_label_acc3" xml:space="preserve">
+    <value>《Acc3》</value>
+  </data>
+  <data name="specialtile_label_acc4" xml:space="preserve">
+    <value>Acc4</value>
+  </data>
+  <data name="specialtile_label_acc5" xml:space="preserve">
+    <value>Acc5</value>
+  </data>
+  <data name="specialtile_label_acc6" xml:space="preserve">
+    <value>Acc6</value>
+  </data>
+  <data name="specialtile_label_body" xml:space="preserve">
+    <value>車身</value>
+  </data>
+  <data name="specialtile_label_chestcontents" xml:space="preserve">
+    <value>胸口內容物</value>
+  </data>
+  <data name="specialtile_label_chestname" xml:space="preserve">
+    <value>胸甲名稱</value>
+  </data>
+  <data name="specialtile_label_chesttype" xml:space="preserve">
+    <value>胸部類型</value>
+  </data>
+  <data name="specialtile_label_critter" xml:space="preserve">
+    <value>小動物</value>
+  </data>
+  <data name="specialtile_label_deadcells_jar" xml:space="preserve">
+    <value>物品瓶</value>
+  </data>
+  <data name="specialtile_label_editselecteditem" xml:space="preserve">
+    <value>編輯 精選項目</value>
+  </data>
+  <data name="specialtile_label_head" xml:space="preserve">
+    <value>首領</value>
+  </data>
+  <data name="specialtile_label_itemframecontents" xml:space="preserve">
+    <value>物品框內容</value>
+  </data>
+  <data name="specialtile_label_kite" xml:space="preserve">
+    <value>風箏</value>
+  </data>
+  <data name="specialtile_label_legs" xml:space="preserve">
+    <value>腿部</value>
+  </data>
+  <data name="specialtile_label_mannequin" xml:space="preserve">
+    <value>模特兒</value>
+  </data>
+  <data name="specialtile_label_mannequinclothing" xml:space="preserve">
+    <value>模特兒服裝</value>
+  </data>
+  <data name="specialtile_label_mount" xml:space="preserve">
+    <value>騎乘</value>
+  </data>
+  <data name="specialtile_label_platecontents" xml:space="preserve">
+    <value>車牌內容物</value>
+  </data>
+  <data name="specialtile_label_signtext" xml:space="preserve">
+    <value>手語文字</value>
+  </data>
+  <data name="specialtile_label_signtype" xml:space="preserve">
+    <value>標誌類型</value>
+  </data>
+  <data name="specialtile_label_weapon" xml:space="preserve">
+    <value>武器</value>
+  </data>
+  <data name="specialtile_label_weaponrack" xml:space="preserve">
+    <value>武器架道具</value>
+  </data>
+  <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
+    <value>燈泡</value>
+  </data>
+  <data name="specialtile_label_xmas_deco" xml:space="preserve">
+    <value>聖誕樹裝飾</value>
+  </data>
+  <data name="specialtile_label_xmas_garland" xml:space="preserve">
+    <value>花環</value>
+  </data>
+  <data name="specialtile_label_xmas_lights" xml:space="preserve">
+    <value>燈光</value>
+  </data>
+  <data name="specialtile_label_xmas_star" xml:space="preserve">
+    <value>明星</value>
+  </data>
+  <data name="specialtile_tooltip" xml:space="preserve">
+    <value>用箭頭工具右鍵點擊標牌、寶箱、人體模型、武器架、物品框架或聖誕樹。</value>
+  </data>
+  <data name="sprite_biome_auto" xml:space="preserve">
+    <value>自動</value>
+  </data>
+  <data name="sprite_biome_label" xml:space="preserve">
+    <value>生物群系：</value>
+  </data>
+  <data name="sprite_filter_button" xml:space="preserve">
+    <value>濾波器</value>
+  </data>
+  <data name="sprite_filter_label" xml:space="preserve">
+    <value>篩選：</value>
+  </data>
+  <data name="sprite_styletype" xml:space="preserve">
+    <value>風格</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>磁磚類型過濾器</value>
+  </data>
+  <data name="statusbar_extra_label" xml:space="preserve">
+    <value>快報</value>
+  </data>
+  <data name="statusbar_frame_label" xml:space="preserve">
+    <value>車架</value>
+  </data>
+  <data name="statusbar_paint_label" xml:space="preserve">
+    <value>油漆</value>
+  </data>
+  <data name="statusbar_position_label" xml:space="preserve">
+    <value>職位</value>
+  </data>
+  <data name="statusbar_selection_label" xml:space="preserve">
+    <value>選拔</value>
+  </data>
+  <data name="statusbar_tile_label" xml:space="preserve">
+    <value>瓷磚</value>
+  </data>
+  <data name="statusbar_wall_label" xml:space="preserve">
+    <value>牆</value>
+  </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>獸譜</value>
+  </data>
+  <data name="TeamSpawn_Blue" xml:space="preserve">
+    <value>藍隊重生</value>
+  </data>
+  <data name="TeamSpawn_Green" xml:space="preserve">
+    <value>綠隊重生點</value>
+  </data>
+  <data name="TeamSpawn_Pink" xml:space="preserve">
+    <value>粉紅隊重生</value>
+  </data>
+  <data name="TeamSpawn_Red" xml:space="preserve">
+    <value>紅隊重生點</value>
+  </data>
+  <data name="TeamSpawn_White" xml:space="preserve">
+    <value>白隊生成</value>
+  </data>
+  <data name="TeamSpawn_Yellow" xml:space="preserve">
+    <value>黃隊重生</value>
+  </data>
+  <data name="telemetry_prompt_message" xml:space="preserve">
+    <value>TEdit 可以發送匿名錯誤回報，以協助提升穩定性。
+
+收錄內容：
+  • 錯誤細節（例外類型與堆疊追蹤）
+  • 應用程式版本與作業系統版本
+
+不被收取的事項：
+  • 無個人資訊或檔案路徑
+  • 無使用追蹤或指紋追蹤
+  • 所有路徑在傳送前都會被混淆
+
+你想啟用錯誤回報嗎？</value>
+  </data>
+  <data name="telemetry_prompt_title" xml:space="preserve">
+    <value>TEdit 錯誤回報</value>
+  </data>
+  <data name="tool_analyze_analyze_button" xml:space="preserve">
+    <value>分析</value>
+  </data>
+  <data name="tool_analyze_save" xml:space="preserve">
+    <value>存檔分析</value>
+  </data>
+  <data name="tool_analyze_save_button" xml:space="preserve">
+    <value>存檔</value>
+  </data>
+  <data name="tool_analyze_title" xml:space="preserve">
+    <value>世界分析</value>
+  </data>
+  <data name="tool_arrow_title" xml:space="preserve">
+    <value>箭</value>
+  </data>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="tool_bestiary_import" xml:space="preserve">
+    <value>進口</value>
+  </data>
+  <data name="tool_bestiary_save" xml:space="preserve">
+    <value>拯救怪物圖鑑</value>
+  </data>
+  <data name="tool_bestiary_scan" xml:space="preserve">
+    <value>掃描</value>
+  </data>
+  <data name="tool_bestiary_title" xml:space="preserve">
+    <value>獸譜</value>
+  </data>
+  <data name="tool_brush_height_label" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
+    <value>正方形寬度與高度</value>
+  </data>
+  <data name="tool_brush_outline_thickness_label" xml:space="preserve">
+    <value>大綱</value>
+  </data>
+  <data name="tool_brush_outline_tooltip" xml:space="preserve">
+    <value>切換繪圖輪廓（房間）</value>
+  </data>
+  <data name="tool_brush_shape_label" xml:space="preserve">
+    <value>形狀</value>
+  </data>
+  <data name="tool_brush_title" xml:space="preserve">
+    <value>刷子</value>
+  </data>
+  <data name="tool_brush_width_label" xml:space="preserve">
+    <value>寬度</value>
+  </data>
+  <data name="tool_clipboard_empty" xml:space="preserve">
+    <value>空白夾板</value>
+  </data>
+  <data name="tool_clipboard_export" xml:space="preserve">
+    <value>出口</value>
+  </data>
+  <data name="tool_clipboard_flipx" xml:space="preserve">
+    <value>Flip X</value>
+  </data>
+  <data name="tool_clipboard_flipy" xml:space="preserve">
+    <value>翻轉 Y</value>
+  </data>
+  <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
+    <value>匯入假色影像</value>
+  </data>
+  <data name="tool_clipboard_importschematic" xml:space="preserve">
+    <value>匯入原理圖或映像</value>
+  </data>
+  <data name="tool_clipboard_ispasteempty" xml:space="preserve">
+    <value>貼上空白瓷磚</value>
+  </data>
+  <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
+    <value>膏狀液體</value>
+  </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>貼圖精靈</value>
+  </data>
+  <data name="tool_clipboard_ispastetiles" xml:space="preserve">
+    <value>貼圖磚</value>
+  </data>
+  <data name="tool_clipboard_ispastewalls" xml:space="preserve">
+    <value>膠牆</value>
+  </data>
+  <data name="tool_clipboard_ispastewire" xml:space="preserve">
+    <value>黏貼線</value>
+  </data>
+  <data name="tool_clipboard_paste" xml:space="preserve">
+    <value>黏貼</value>
+  </data>
+  <data name="tool_clipboard_remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>更換現有瓷磚</value>
+  </data>
+  <data name="tool_clipboard_rotate" xml:space="preserve">
+    <value>旋轉</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>凍結生態區擴散</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>敵方難度</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>啟用敵方難度</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>啟用生成率</value>
+  </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>啟用時間速度</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>神模式</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>增加射程</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>動力</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>冰雨</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>生成率</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>凍結時間</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>時間速度</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>價值</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>冰凍之風</value>
+  </data>
+  <data name="tool_fill_title" xml:space="preserve">
+    <value>填土</value>
+  </data>
+  <data name="tool_morph_label" xml:space="preserve">
+    <value>變形為生物群系</value>
+  </data>
+  <data name="tool_morph_title" xml:space="preserve">
+    <value>生態系變形</value>
+  </data>
+  <data name="tool_npc_add" xml:space="preserve">
+    <value>新增NPC</value>
+  </data>
+  <data name="tool_npc_hint" xml:space="preserve">
+    <value>點選NPC，用滑鼠設定他們的位置</value>
+  </data>
+  <data name="tool_npc_name" xml:space="preserve">
+    <value>名稱</value>
+  </data>
+  <data name="tool_paint_actuator" xml:space="preserve">
+    <value>是執行器</value>
+  </data>
+  <data name="tool_paint_brickstyle" xml:space="preserve">
+    <value>磚造風格</value>
+  </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>塗層</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>回聲</value>
+  </data>
+  <data name="tool_paint_extras" xml:space="preserve">
+    <value>額外內容</value>
+  </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>照明兵</value>
+  </data>
+  <data name="tool_paint_inactive" xml:space="preserve">
+    <value>執行器/磁磚非啟用</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>新增面向左側的交叉口接線盒。</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>加裝 defualt 接線盒。</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>新增一個面向右的交叉接線盒。</value>
+  </data>
+  <data name="tool_paint_mask" xml:space="preserve">
+    <value>面具</value>
+  </data>
+  <data name="tool_paint_maskmode" xml:space="preserve">
+    <value>遮罩模式</value>
+  </data>
+  <data name="tool_paint_mode" xml:space="preserve">
+    <value>繪畫模式</value>
+  </data>
+  <data name="tool_paint_tile_title" xml:space="preserve">
+    <value>瓷磚</value>
+  </data>
+  <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
+    <value>在現有軌道上加入增強器，搭配橡皮擦只移除增強功能。</value>
+  </data>
+  <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
+    <value>使用Hammer修改軌道端、交叉口和助推器方向。</value>
+  </data>
+  <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
+    <value>在現有軌道上加裝壓力板，搭配橡皮擦只用來移除壓力板。</value>
+  </data>
+  <data name="tool_paint_wall_title" xml:space="preserve">
+    <value>牆</value>
+  </data>
+  <data name="tool_paint_wire_blue" xml:space="preserve">
+    <value>藍色</value>
+  </data>
+  <data name="tool_paint_wire_green" xml:space="preserve">
+    <value>綠色</value>
+  </data>
+  <data name="tool_paint_wire_red" xml:space="preserve">
+    <value>紅色</value>
+  </data>
+  <data name="tool_paint_wire_yellow" xml:space="preserve">
+    <value>黃色</value>
+  </data>
+  <data name="tool_paste_title" xml:space="preserve">
+    <value>黏貼</value>
+  </data>
+  <data name="tool_pencil_title" xml:space="preserve">
+    <value>鉛筆</value>
+  </data>
+  <data name="tool_picker_title" xml:space="preserve">
+    <value>選擇器 - 選擇圖塊顏色</value>
+  </data>
+  <data name="tool_point_title" xml:space="preserve">
+    <value>特別興趣點</value>
+  </data>
+  <data name="tool_sprite2_title" xml:space="preserve">
+    <value>雪碧砂金</value>
+  </data>
+  <data name="tool_sprite_filter_button" xml:space="preserve">
+    <value>濾波器</value>
+  </data>
+  <data name="tool_sprite_filter_label" xml:space="preserve">
+    <value>篩選：</value>
+  </data>
+  <data name="tool_sprite_style_label" xml:space="preserve">
+    <value>風格：</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>磁磚類型過濾器：</value>
+  </data>
+  <data name="tool_sprite_title" xml:space="preserve">
+    <value>雪碧砂金（舊版）</value>
+  </data>
+  <data name="tool_wp_adamantite" xml:space="preserve">
+    <value>堅鋼階級</value>
+  </data>
+  <data name="tool_wp_altars" xml:space="preserve">
+    <value>祭壇被砸碎</value>
+  </data>
+  <data name="tool_wp_apocalypse" xml:space="preserve">
+    <value>末日（月之主生成）</value>
+  </data>
+  <data name="tool_wp_bg_corrupt" xml:space="preserve">
+    <value>腐敗的BG</value>
+  </data>
+  <data name="tool_wp_bg_crimson" xml:space="preserve">
+    <value>赤紅BG</value>
+  </data>
+  <data name="tool_wp_bg_deepice" xml:space="preserve">
+    <value>深冰BG</value>
+  </data>
+  <data name="tool_wp_bg_deepjungle" xml:space="preserve">
+    <value>深叢林BG</value>
+  </data>
+  <data name="tool_wp_bg_desert" xml:space="preserve">
+    <value>沙漠大隊</value>
+  </data>
+  <data name="tool_wp_bg_forest" xml:space="preserve">
+    <value>森林BG</value>
+  </data>
+  <data name="tool_wp_bg_hallow" xml:space="preserve">
+    <value>聖貝格</value>
+  </data>
+  <data name="tool_wp_bg_hell" xml:space="preserve">
+    <value>地獄的BG</value>
+  </data>
+  <data name="tool_wp_bg_jungle" xml:space="preserve">
+    <value>叢林之戰</value>
+  </data>
+  <data name="tool_wp_bg_mushroom" xml:space="preserve">
+    <value>蘑菇BG</value>
+  </data>
+  <data name="tool_wp_bg_ocean" xml:space="preserve">
+    <value>海洋BG</value>
+  </data>
+  <data name="tool_wp_bg_snow" xml:space="preserve">
+    <value>雪之BG</value>
+  </data>
+  <data name="tool_wp_bg_tree2" xml:space="preserve">
+    <value>樹2 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree3" xml:space="preserve">
+    <value>樹3 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree4" xml:space="preserve">
+    <value>樹 4 BG</value>
+  </data>
+  <data name="tool_wp_bg_underworld" xml:space="preserve">
+    <value>黑幫</value>
+  </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>鹿爪</value>
+  </data>
+  <data name="tool_wp_boss_destroyer" xml:space="preserve">
+    <value>毀滅者</value>
+  </data>
+  <data name="tool_wp_boss_downed" xml:space="preserve">
+    <value>被擊倒的老闆</value>
+  </data>
+  <data name="tool_wp_boss_dukefishron" xml:space="preserve">
+    <value>費什隆公爵</value>
+  </data>
+  <data name="tool_wp_boss_eaterofworlds" xml:space="preserve">
+    <value>世界吞噬者</value>
+  </data>
+  <data name="tool_wp_boss_empressoflight" xml:space="preserve">
+    <value>光明女皇</value>
+  </data>
+  <data name="tool_wp_boss_everscream" xml:space="preserve">
+    <value>伊弗斯克里姆</value>
+  </data>
+  <data name="tool_wp_boss_eyeofcthulhu" xml:space="preserve">
+    <value>克蘇魯之眼</value>
+  </data>
+  <data name="tool_wp_boss_flyingdutchman" xml:space="preserve">
+    <value>飛翔的荷蘭人</value>
+  </data>
+  <data name="tool_wp_boss_golem" xml:space="preserve">
+    <value>魔像</value>
+  </data>
+  <data name="tool_wp_boss_icequeen" xml:space="preserve">
+    <value>冰雪女王</value>
+  </data>
+  <data name="tool_wp_boss_kingslime" xml:space="preserve">
+    <value>史萊姆王</value>
+  </data>
+  <data name="tool_wp_boss_lunaticcultist" xml:space="preserve">
+    <value>瘋狂邪教徒</value>
+  </data>
+  <data name="tool_wp_boss_moonlord" xml:space="preserve">
+    <value>月之主</value>
+  </data>
+  <data name="tool_wp_boss_mourningwood" xml:space="preserve">
+    <value>哀悼木</value>
+  </data>
+  <data name="tool_wp_boss_nebulapillar" xml:space="preserve">
+    <value>星雲柱</value>
+  </data>
+  <data name="tool_wp_boss_plantera" xml:space="preserve">
+    <value>普蘭特拉</value>
+  </data>
+  <data name="tool_wp_boss_pumpking" xml:space="preserve">
+    <value>南瓜</value>
+  </data>
+  <data name="tool_wp_boss_queenbee" xml:space="preserve">
+    <value>蜂后</value>
+  </data>
+  <data name="tool_wp_boss_queenslime" xml:space="preserve">
+    <value>史萊姆女王</value>
+  </data>
+  <data name="tool_wp_boss_santank1" xml:space="preserve">
+    <value>聖塔NK1</value>
+  </data>
+  <data name="tool_wp_boss_skeletron" xml:space="preserve">
+    <value>骷髏超人</value>
+  </data>
+  <data name="tool_wp_boss_skeletronprime" xml:space="preserve">
+    <value>骷髏王 Prime</value>
+  </data>
+  <data name="tool_wp_boss_solarpillar" xml:space="preserve">
+    <value>太陽柱</value>
+  </data>
+  <data name="tool_wp_boss_stardustpillar" xml:space="preserve">
+    <value>星塵柱</value>
+  </data>
+  <data name="tool_wp_boss_twins" xml:space="preserve">
+    <value>雙胞胎</value>
+  </data>
+  <data name="tool_wp_boss_vortexpillar" xml:space="preserve">
+    <value>漩渦柱</value>
+  </data>
+  <data name="tool_wp_boss_walloffflesh" xml:space="preserve">
+    <value>肉牆</value>
+  </data>
+  <data name="tool_wp_cavern_level" xml:space="preserve">
+    <value>洞穴層</value>
+  </data>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>中國世界版</value>
+  </data>
+  <data name="tool_wp_cloud_bg_active" xml:space="preserve">
+    <value>雲端BG主動</value>
+  </data>
+  <data name="tool_wp_cobalt" xml:space="preserve">
+    <value>鈷級</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>戰鬥書</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>戰鬥書第二卷</value>
+  </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>主機世界版</value>
+  </data>
+  <data name="tool_wp_copper" xml:space="preserve">
+    <value>銅層</value>
+  </data>
+  <data name="tool_wp_crimson" xml:space="preserve">
+    <value>深紅</value>
+  </data>
+  <data name="tool_wp_cultist_delay" xml:space="preserve">
+    <value>邪教徒延遲</value>
+  </data>
+  <data name="tool_wp_difficulty" xml:space="preserve">
+    <value>難度</value>
+  </data>
+  <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
+    <value>困難模式</value>
+  </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>別餓死世界</value>
+  </data>
+  <data name="tool_wp_drunk" xml:space="preserve">
+    <value>醉酒世界</value>
+  </data>
+  <data name="tool_wp_dungeon_point" xml:space="preserve">
+    <value>地城點</value>
+  </data>
+  <data name="tool_wp_event" xml:space="preserve">
+    <value>活動</value>
+  </data>
+  <data name="tool_wp_gamemode" xml:space="preserve">
+    <value>遊戲模式</value>
+  </data>
+  <data name="tool_wp_gold" xml:space="preserve">
+    <value>金級</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>為配得上者（FTW）</value>
+  </data>
+  <data name="tool_wp_guid" xml:space="preserve">
+    <value>世界GUID</value>
+  </data>
+  <data name="tool_wp_hardmode" xml:space="preserve">
+    <value>困難模式</value>
+  </data>
+  <data name="tool_wp_holiday" xml:space="preserve">
+    <value>原力假期</value>
+  </data>
+  <data name="tool_wp_holiday_halloween" xml:space="preserve">
+    <value>萬聖節</value>
+  </data>
+  <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
+    <value>萬聖節永遠的原力</value>
+  </data>
+  <data name="tool_wp_holiday_xmas" xml:space="preserve">
+    <value>XMas</value>
+  </data>
+  <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
+    <value>永遠的聖誕節</value>
+  </data>
+  <data name="tool_wp_id" xml:space="preserve">
+    <value>世界識別</value>
+  </data>
+  <data name="tool_wp_invasion" xml:space="preserve">
+    <value>入侵</value>
+  </data>
+  <data name="tool_wp_invasion_frostlegion" xml:space="preserve">
+    <value>冰霜軍團</value>
+  </data>
+  <data name="tool_wp_invasion_goblinarmy" xml:space="preserve">
+    <value>哥布林軍隊</value>
+  </data>
+  <data name="tool_wp_invasion_martianmadness" xml:space="preserve">
+    <value>火星瘋狂</value>
+  </data>
+  <data name="tool_wp_invasion_pirateinvasion" xml:space="preserve">
+    <value>海盜入侵</value>
+  </data>
+  <data name="tool_wp_invasion_size" xml:space="preserve">
+    <value>入侵規模</value>
+  </data>
+  <data name="tool_wp_invasion_type" xml:space="preserve">
+    <value>入侵類型</value>
+  </data>
+  <data name="tool_wp_invasion_x" xml:space="preserve">
+    <value>入侵X目標</value>
+  </data>
+  <data name="tool_wp_iron" xml:space="preserve">
+    <value>鐵階</value>
+  </data>
+  <data name="tool_wp_journeysend" xml:space="preserve">
+    <value>旅程的終點</value>
+  </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>燈籠之夜</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>燈籠之夜冷卻時間</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>燈籠之夜真品</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>燈籠之夜手冊</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>《燈籠之夜》下一版是真正的</value>
+  </data>
+  <data name="tool_wp_meteor" xml:space="preserve">
+    <value>流星</value>
+  </data>
+  <data name="tool_wp_meteor_spawn" xml:space="preserve">
+    <value>生成流星</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>月亮冷卻時間</value>
+  </data>
+  <data name="tool_wp_moon_blood" xml:space="preserve">
+    <value>血月</value>
+  </data>
+  <data name="tool_wp_moon_eclipse" xml:space="preserve">
+    <value>是蝕</value>
+  </data>
+  <data name="tool_wp_moon_phase" xml:space="preserve">
+    <value>月相</value>
+  </data>
+  <data name="tool_wp_moon_style" xml:space="preserve">
+    <value>月亮風格</value>
+  </data>
+  <data name="tool_wp_mythril" xml:space="preserve">
+    <value>秘銀階級</value>
+  </data>
+  <data name="tool_wp_name" xml:space="preserve">
+    <value>世界名稱</value>
+  </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>不是蜜蜂的世界</value>
+  </data>
+  <data name="tool_wp_npc_angler" xml:space="preserve">
+    <value>釣魚者</value>
+  </data>
+  <data name="tool_wp_npc_angler_mission" xml:space="preserve">
+    <value>釣魚者使命</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>軍火商</value>
+  </data>
+  <data name="tool_wp_npc_bought" xml:space="preserve">
+    <value>購買的NPC</value>
+  </data>
+  <data name="tool_wp_npc_bunny" xml:space="preserve">
+    <value>兔子</value>
+  </data>
+  <data name="tool_wp_npc_cat" xml:space="preserve">
+    <value>貓咪</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>拆除專家</value>
+  </data>
+  <data name="tool_wp_npc_dog" xml:space="preserve">
+    <value>狗</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>染料商</value>
+  </data>
+  <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
+    <value>哥布林修補匠</value>
+  </data>
+  <data name="tool_wp_npc_golfer" xml:space="preserve">
+    <value>高爾夫球手</value>
+  </data>
+  <data name="tool_wp_npc_mechanic" xml:space="preserve">
+    <value>機制</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>商人</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>護士</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>派對女孩</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>公主</value>
+  </data>
+  <data name="tool_wp_npc_saved" xml:space="preserve">
+    <value>已救的NPC</value>
+  </data>
+  <data name="tool_wp_npc_saved_label" xml:space="preserve">
+    <value>已救的NPC</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>藍色史萊姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>銅黏液</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>綠色史萊姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>老史萊姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>紫色史萊姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>彩虹史萊姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>紅色史萊姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>黃色史萊姆</value>
+  </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC 出生點已解鎖</value>
+  </data>
+  <data name="tool_wp_npc_stylist" xml:space="preserve">
+    <value>造型師</value>
+  </data>
+  <data name="tool_wp_npc_tavernkeep" xml:space="preserve">
+    <value>酒館老闆</value>
+  </data>
+  <data name="tool_wp_npc_taxcollector" xml:space="preserve">
+    <value>稅務員</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>松露</value>
+  </data>
+  <data name="tool_wp_npc_wizard" xml:space="preserve">
+    <value>巫師</value>
+  </data>
+  <data name="tool_wp_oldonesarmy" xml:space="preserve">
+    <value>古神軍團</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t1" xml:space="preserve">
+    <value>第一級</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t2" xml:space="preserve">
+    <value>第二層級</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t3" xml:space="preserve">
+    <value>第三級</value>
+  </data>
+  <data name="tool_wp_orbs" xml:space="preserve">
+    <value>球體被擊碎</value>
+  </data>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>末日黨</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>小販手包</value>
+  </data>
+  <data name="tool_wp_pillars_active" xml:space="preserve">
+    <value>支柱活躍</value>
+  </data>
+  <data name="tool_wp_pillar_nebula" xml:space="preserve">
+    <value>星雲柱</value>
+  </data>
+  <data name="tool_wp_pillar_solar" xml:space="preserve">
+    <value>太陽柱</value>
+  </data>
+  <data name="tool_wp_pillar_stardust" xml:space="preserve">
+    <value>星塵柱</value>
+  </data>
+  <data name="tool_wp_pillar_vortex" xml:space="preserve">
+    <value>漩渦柱</value>
+  </data>
+  <data name="tool_wp_prehardmode" xml:space="preserve">
+    <value>困難模式前</value>
+  </data>
+  <data name="tool_wp_rain" xml:space="preserve">
+    <value>雨</value>
+  </data>
+  <data name="tool_wp_rain_active" xml:space="preserve">
+    <value>正在下雨</value>
+  </data>
+  <data name="tool_wp_rain_max" xml:space="preserve">
+    <value>麥克斯·雷恩</value>
+  </data>
+  <data name="tool_wp_rain_slime" xml:space="preserve">
+    <value>史萊姆雨時刻</value>
+  </data>
+  <data name="tool_wp_rain_time" xml:space="preserve">
+    <value>雨季</value>
+  </data>
+  <data name="tool_wp_revision" xml:space="preserve">
+    <value>修訂版</value>
+  </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>只使用安全值</value>
+  </data>
+  <data name="tool_wp_sandstorm" xml:space="preserve">
+    <value>沙塵暴</value>
+  </data>
+  <data name="tool_wp_sandstorm_active" xml:space="preserve">
+    <value>風暴正在來</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity" xml:space="preserve">
+    <value>嚴重程度</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
+    <value>嚴重程度</value>
+  </data>
+  <data name="tool_wp_sandstorm_time" xml:space="preserve">
+    <value>剩餘時間</value>
+  </data>
+  <data name="tool_wp_seed" xml:space="preserve">
+    <value>種子</value>
+  </data>
+  <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
+    <value>雙重地城</value>
+  </data>
+  <data name="tool_wp_seed_infected" xml:space="preserve">
+    <value>感染者</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>禁止陷阱</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>混音版本</value>
+  </data>
+  <data name="tool_wp_seed_skyblock" xml:space="preserve">
+    <value>天空封鎖</value>
+  </data>
+  <data name="tool_wp_seed_vampire" xml:space="preserve">
+    <value>吸血鬼</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>天頂</value>
+  </data>
+  <data name="tool_wp_silver" xml:space="preserve">
+    <value>銀級</value>
+  </data>
+  <data name="tool_wp_spawn_point" xml:space="preserve">
+    <value>出生點</value>
+  </data>
+  <data name="tool_wp_style_cavestyles" xml:space="preserve">
+    <value>洞穴風格</value>
+  </data>
+  <data name="tool_wp_style_cavex0" xml:space="preserve">
+    <value>洞穴X 0</value>
+  </data>
+  <data name="tool_wp_style_cavex1" xml:space="preserve">
+    <value>洞穴X 1</value>
+  </data>
+  <data name="tool_wp_style_cavex2" xml:space="preserve">
+    <value>洞穴X 2</value>
+  </data>
+  <data name="tool_wp_style_treestyles" xml:space="preserve">
+    <value>樹種風格</value>
+  </data>
+  <data name="tool_wp_style_treetop_1" xml:space="preserve">
+    <value>樹頂 1</value>
+  </data>
+  <data name="tool_wp_style_treetop_2" xml:space="preserve">
+    <value>樹 2 頂端</value>
+  </data>
+  <data name="tool_wp_style_treetop_3" xml:space="preserve">
+    <value>樹頂 3</value>
+  </data>
+  <data name="tool_wp_style_treetop_4" xml:space="preserve">
+    <value>樹頂 4</value>
+  </data>
+  <data name="tool_wp_style_treex0" xml:space="preserve">
+    <value>樹 X 0</value>
+  </data>
+  <data name="tool_wp_style_treex1" xml:space="preserve">
+    <value>樹 X 1</value>
+  </data>
+  <data name="tool_wp_style_treex2" xml:space="preserve">
+    <value>樹 X 2</value>
+  </data>
+  <data name="tool_wp_surface_level" xml:space="preserve">
+    <value>地表層</value>
+  </data>
+  <data name="tool_wp_teamspawns" xml:space="preserve">
+    <value>隊伍生成</value>
+  </data>
+  <data name="tool_wp_teamspawns_enabled" xml:space="preserve">
+    <value>支援團隊生成</value>
+  </data>
+  <data name="tool_wp_teamspawns_locations" xml:space="preserve">
+    <value>隊伍出生地點</value>
+  </data>
+  <data name="tool_wp_tenthanniversary" xml:space="preserve">
+    <value>十週年紀念</value>
+  </data>
+  <data name="tool_wp_time_day" xml:space="preserve">
+    <value>是白天</value>
+  </data>
+  <data name="tool_wp_time_label" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="tool_wp_time_sundial" xml:space="preserve">
+    <value>使用日晷</value>
+  </data>
+  <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
+    <value>日晷冷卻</value>
+  </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>允許不安全的值</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>使用Moondial</value>
+  </data>
+  <data name="tool_wp_weather_clouds" xml:space="preserve">
+    <value>數字雲</value>
+  </data>
+  <data name="tool_wp_weather_windspeed" xml:space="preserve">
+    <value>風速</value>
+  </data>
+  <data name="TrackMode_Booster" xml:space="preserve">
+    <value>助推器</value>
+  </data>
+  <data name="TrackMode_Hammer" xml:space="preserve">
+    <value>錘子</value>
+  </data>
+  <data name="TrackMode_Pressure" xml:space="preserve">
+    <value>壓力</value>
+  </data>
+  <data name="TrackMode_Track" xml:space="preserve">
+    <value>田徑</value>
+  </data>
+  <data name="WireReplaceMode_Blue" xml:space="preserve">
+    <value>藍色</value>
+  </data>
+  <data name="WireReplaceMode_Green" xml:space="preserve">
+    <value>綠色</value>
+  </data>
+  <data name="WireReplaceMode_Off" xml:space="preserve">
+    <value>關掉</value>
+  </data>
+  <data name="WireReplaceMode_Red" xml:space="preserve">
+    <value>紅色</value>
+  </data>
+  <data name="WireReplaceMode_Yellow" xml:space="preserve">
+    <value>黃色</value>
+  </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>修正背景空隙</value>
+  </data>
+</root>

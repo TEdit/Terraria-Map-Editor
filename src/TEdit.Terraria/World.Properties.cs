@@ -1,14 +1,9 @@
-﻿using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Input;
 using System.Xml.Linq;
-using TEdit.Common.Reactive;
-using TEdit.Common.Reactive.Command;
-using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria.Objects;
 using TEdit.Utility;
@@ -24,6 +19,8 @@ public partial class World : ReactiveObject, ITileData
     public ObservableCollection<int> ShimmeredTownNPCs { get; } = new ObservableCollection<int>(Enumerable.Repeat(0, WorldConfiguration.MaxNpcID));
     public ObservableCollection<NPC> NPCs { get; } = new ObservableCollection<NPC>();
     public ObservableCollection<int> KilledMobs { get; } = new ObservableCollection<int>(Enumerable.Repeat(0, WorldConfiguration.MaxNpcID));
+    public ObservableCollection<ushort> ClaimableBanners { get; } = new ObservableCollection<ushort>(Enumerable.Repeat<ushort>(0, WorldConfiguration.MaxNpcID));
+
     public ObservableCollection<NPC> Mobs { get; } = new ObservableCollection<NPC>();
     public List<Sign> Signs { get; } = new();
     public List<Chest> Chests { get; } = new();
@@ -51,8 +48,7 @@ public partial class World : ReactiveObject, ITileData
         }
         return new NpcName(id, "Unknown");
     }
-    private ICommand _fixLayerGapCommand;
-    public ICommand FixLayerGapCommand => _fixLayerGapCommand ??= new RelayCommand(() => FixLayerGap());
+    [ReactiveCommand]
     private void FixLayerGap()
     {
         var gapModSix = (RockLevel - GroundLevel) % 6;
@@ -61,7 +57,7 @@ public partial class World : ReactiveObject, ITileData
         bool canAdjustCavernDown = RockLevel <= MaxCavernLevel - 6;
         bool canAdjustCavernUp = RockLevel >= 12;
         bool canAdjustGroundUp = GroundLevel > 6;
-        // priority is 
+        // priority is
         // 1) cavern level: down
         // 3) cavern level: up
         // 2) ground level: up
@@ -96,7 +92,7 @@ public partial class World : ReactiveObject, ITileData
         {
             MaxCavernLevel = Calc.Clamp(TilesHigh - WorldConfiguration.CavernLevelToBottomOfWorld, 6, TilesHigh);
             MaxGroundLevel = Calc.Clamp(MaxCavernLevel - 6, 0, TilesHigh);
-            
+
             // Adjust the sliders to reflect new values if over the max.
             if (GroundLevel > MaxGroundLevel)
                 GroundLevel = MaxGroundLevel;
@@ -104,7 +100,7 @@ public partial class World : ReactiveObject, ITileData
                 RockLevel = MaxCavernLevel;
         }
     }
-    
+
     public uint WorldVersion => Version;
     public Random Rand;
     public int[] TreeBG = new int[3];
@@ -133,126 +129,139 @@ public partial class World : ReactiveObject, ITileData
     public Bestiary Bestiary { get; set; } = new Bestiary();
     public CreativePowers CreativePowers { get; set; } = new CreativePowers();
 
-    [Reactive] public UInt64 WorldGenVersion { get; set; }
+    [Reactive] private ulong _worldGenVersion;
 
     #region World
-    [Category("World")]
-    [Reactive] public string Title { get; set; }
+    [property: Category("World")]
+    [Reactive] private string _title;
 
-    [Category("World")]
-    [Reactive] public int WorldId { get; set; }
+    [property: Category("World")]
+    [Reactive] private int _worldId;
 
-    [Category("World")]
-    [Reactive] public Guid WorldGUID { get; set; }
+    [property: Category("World")]
+    [Reactive] private Guid _worldGUID;
 
-    [Category("World")]
-    [Reactive] public uint FileRevision { get; set; }
+    [property: Category("World")]
+    [Reactive] private uint _fileRevision;
 
-    [Category("World")]
-    [Reactive] public string Seed { get; set; }
+    [property: Category("World")]
+    [Reactive] private string _seed;
 
-    [Category("World")]
-    [Reactive] public bool IsFavorite { get; set; }
+    [property: Category("World")]
+    [Reactive] private bool _isFavorite;
 
-    [Category("World")]
-    [Reactive] public bool IsChinese { get; set; }
+    [property: Category("World")]
+    [Reactive] private bool _isChinese;
 
-    [Category("World")]
-    [Reactive] public bool IsConsole { get; set; }
+    [property: Category("World")]
+    [Reactive] private bool _isConsole;
 
-    #endregion 
+    #endregion
 
     #region Moon
 
-    [Category("Moon")]
-    [Reactive] public int MoonPhase { get; set; }
+    [property: Category("Moon")]
+    [Reactive] private int _moonPhase;
 
-    [Category("Moon")]
-    [Reactive] public bool BloodMoon { get; set; }
+    [property: Category("Moon")]
+    [Reactive] private bool _bloodMoon;
 
-    [Category("Moon")]
-    [Reactive] public byte MoonType { get; set; }
+    [property: Category("Moon")]
+    [Reactive] private byte _moonType;
 
-    [Category("Moon")]
-    [Reactive] public bool IsEclipse { get; set; }
+    [property: Category("Moon")]
+    [Reactive] private bool _isEclipse;
 
     #endregion Moon
 
     #region Time
 
-    [Category("Time")]
-    [Reactive] public double Time { get; set; }
+    [property: Category("Time")]
+    [Reactive] private double _time;
 
-    [Category("Time")]
-    [Reactive] public bool DayTime { get; set; }
+    [property: Category("Time")]
+    [Reactive] private bool _dayTime;
 
-    [Category("Time")]
-    [Reactive] public bool FastForwardTime { get; set; } // sundial
+    [property: Category("Time")]
+    [Reactive] private bool _fastForwardTime; // sundial
 
-    [Category("Time")]
-    [Reactive] public byte SundialCooldown { get; set; }
+    [property: Category("Time")]
+    [Reactive] private byte _sundialCooldown;
 
-    [Category("Time")]
-    [Reactive] public bool FastForwardTimeToDusk { get; set; } // moondial
+    [property: Category("Time")]
+    [Reactive] private bool _fastForwardTimeToDusk; // moondial
 
-    [Category("Time")]
-    [Reactive] public byte MoondialCooldown { get; set; }
+    [property: Category("Time")]
+    [Reactive] private byte _moondialCooldown;
     #endregion Time
 
     #region Weather
 
-    [Reactive] public bool IsRaining { get; set; }
+    [property: Category("Weather")]
+    [Reactive] private bool _isRaining;
 
-    [Category("Weather")]
-    [Reactive] public int TempRainTime { get; set; }
+    [property: Category("Weather")]
+    [Reactive] private int _tempRainTime;
 
-    [Category("Weather")]
-    [Reactive] public float TempMaxRain { get; set; }
+    [property: Category("Weather")]
+    [Reactive] private float _tempMaxRain;
 
-    [Category("Weather")]
-    [Reactive] public double SlimeRainTime { get; set; }
+    [property: Category("Weather")]
+    [Reactive] private double _slimeRainTime;
+
+    [property: Category("Weather")]
+    [Reactive] private int _tempMeteorShowerCount;
+    [property: Category("Weather")]
+    [Reactive] private int _tempCoinRain;
+
     #endregion Weather
 
     #region Holidays
 
-    [Category("Weather")]
-    [Reactive] public bool ForceHalloweenForToday { get; set; }
+    [property: Category("Weather")]
+    [Reactive] private bool _forceHalloweenForToday;
 
-    [Category("Weather")]
-    [Reactive] public bool ForceXMasForToday { get; set; }
+    [property: Category("Weather")]
+    [Reactive] private bool _forceXMasForToday;
 
-    [Category("Weather")]
-    [Reactive] public short NumClouds { get; set; }
+    [property: Category("Weather")]
+    [Reactive] private short _numClouds;
 
-    [Category("Weather")]
-    [Reactive] public float WindSpeedSet { get; set; }
+    [property: Category("Weather")]
+    [Reactive] private float _windSpeedSet;
 
-    [Category("Weather")]
-    [Reactive] public float CloudBgActive { get; set; }
+    [property: Category("Weather")]
+    [Reactive] private float _cloudBgActive;
+
+    [property: Category("Difficulty")]
+    [Reactive] private bool _forceHalloweenForever;
+
+    [property: Category("Difficulty")]
+    [Reactive] private bool _forceXMasForever;
     #endregion Holidays
 
     #region Sandstorm
 
-    [Category("Sandstorm")]
-    [Reactive] public bool SandStormHappening { get; set; }
+    [property: Category("Sandstorm")]
+    [Reactive] private bool _sandStormHappening;
 
-    [Category("Sandstorm")]
-    [Reactive] public int SandStormTimeLeft { get; set; }
+    [property: Category("Sandstorm")]
+    [Reactive] private int _sandStormTimeLeft;
 
-    [Category("Sandstorm")]
-    [Reactive] public float SandStormSeverity { get; set; }
+    [property: Category("Sandstorm")]
+    [Reactive] private float _sandStormSeverity;
 
-    [Category("Sandstorm")]
-    [Reactive] public float SandStormIntendedSeverity { get; set; }
+    [property: Category("Sandstorm")]
+    [Reactive] private float _sandStormIntendedSeverity;
 
     #endregion Sandstorm
 
     #region Levels
 
-    [Category("Levels")]
-    [Reactive] public int MaxCavernLevel { get; set; }
-    [Category("Levels")]
-    [Reactive] public int MaxGroundLevel { get; set; }
+    [property: Category("Levels")]
+    [Reactive] private int _maxCavernLevel;
+    [property: Category("Levels")]
+    [Reactive] private int _maxGroundLevel;
 
     [Category("Levels")]
     public double GroundLevel
@@ -288,7 +297,7 @@ public partial class World : ReactiveObject, ITileData
             }
         }
     }
-    
+
     [Category("Levels")]
     public bool SafeGroundLayers
     {
@@ -304,8 +313,8 @@ public partial class World : ReactiveObject, ITileData
 
     #region Difficulty
 
-    [Category("Difficulty")]
-    [Reactive] public bool SpawnMeteor { get; set; }
+    [property: Category("Difficulty")]
+    [Reactive] private bool _spawnMeteor;
 
     [Category("Difficulty")]
     public bool HardMode
@@ -318,101 +327,114 @@ public partial class World : ReactiveObject, ITileData
         }
     }
 
-    [Category("Difficulty")]
-    [Reactive] public int GameMode { get; set; }
+    [property: Category("Difficulty")]
+    [Reactive] private int _gameMode;
 
-    [Category("Difficulty")]
-    [Reactive] public bool CombatBookUsed { get; set; }
+    [property: Category("Difficulty")]
+    [Reactive] private bool _combatBookUsed;
 
-    [Category("Difficulty")]
-    [Reactive] public bool CombatBookVolumeTwoWasUsed { get; set; }
+    [property: Category("Difficulty")]
+    [Reactive] private bool _combatBookVolumeTwoWasUsed;
 
-    [Category("Difficulty")]
-    [Reactive] public bool PeddlersSatchelWasUsed { get; set; }
+    [property: Category("Difficulty")]
+    [Reactive] private bool _peddlersSatchelWasUsed;
 
-    [Category("Difficulty")]
-    [Reactive] public bool PartyOfDoom { get; set; }
+    [property: Category("Difficulty")]
+    [Reactive] private bool _partyOfDoom;
+
 
     #endregion Difficulty
 
     #region Seed
 
-    [Category("Seed")]
-    [Reactive] public bool DrunkWorld { get; set; }
+    [property: Category("Seed")]
+    [Reactive] private bool _drunkWorld;
 
-    [Category("Seed")]
-    [Reactive] public bool GoodWorld { get; set; }
+    [property: Category("Seed")]
+    [Reactive] private bool _goodWorld;
 
-    [Category("Seed")]
-    [Reactive] public bool TenthAnniversaryWorld { get; set; }
+    [property: Category("Seed")]
+    [Reactive] private bool _tenthAnniversaryWorld;
 
-    [Category("Seed")]
-    [Reactive] public bool DontStarveWorld { get; set; }
+    [property: Category("Seed")]
+    [Reactive] private bool _dontStarveWorld;
 
-    [Category("Seed")]
-    [Reactive] public bool NotTheBeesWorld { get; set; }
+    [property: Category("Seed")]
+    [Reactive] private bool _notTheBeesWorld;
 
-    [Category("Seed")]
-    [Reactive] public bool RemixWorld { get; set; }
+    [property: Category("Seed")]
+    [Reactive] private bool _remixWorld;
 
-    [Category("Seed")]
-    [Reactive] public bool NoTrapsWorld { get; set; }
+    [property: Category("Seed")]
+    [Reactive] private bool _noTrapsWorld;
 
-    [Category("Seed")]
-    [Reactive] public bool ZenithWorld { get; set; }
+    [property: Category("Seed")]
+    [Reactive] private bool _zenithWorld;
+
+    [property: Category("Seed")]
+    [Reactive] private bool _skyblockWorld;
+
+    [property: Category("Seed")]
+    [Reactive] private bool _vampireSeed;
+
+    [property: Category("Seed")]
+    [Reactive] private bool _infectedSeed;
+
+    [property: Category("Seed")]
+    [Reactive] private bool _dualDungeonsSeed;
 
     #endregion Seed
 
     #region Ore Tier
 
-    [Category("Ore Tier")]
-    [Reactive] public bool IsCrimson { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private bool _isCrimson;
 
-    [Category("Ore Tier")]
-    [Reactive] public int AltarCount { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private int _altarCount;
 
-    [Category("Ore Tier")]
-    [Reactive] public bool ShadowOrbSmashed { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private bool _shadowOrbSmashed;
 
-    [Category("Ore Tier")]
-    [Reactive] public int SavedOreTiersCopper { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private int _savedOreTiersCopper;
 
-    [Category("Ore Tier")]
-    [Reactive] public int SavedOreTiersIron { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private int _savedOreTiersIron;
 
-    [Category("Ore Tier")]
-    [Reactive] public int SavedOreTiersSilver { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private int _savedOreTiersSilver;
 
-    [Category("Ore Tier")]
-    [Reactive] public int SavedOreTiersGold { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private int _savedOreTiersGold;
 
-    [Category("Ore Tier")]
-    [Reactive] public int SavedOreTiersCobalt { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private int _savedOreTiersCobalt;
 
-    [Category("Ore Tier")]
-    [Reactive] public int SavedOreTiersMythril { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private int _savedOreTiersMythril;
 
-    [Category("Ore Tier")]
-    [Reactive] public int SavedOreTiersAdamantite { get; set; }
+    [property: Category("Ore Tier")]
+    [Reactive] private int _savedOreTiersAdamantite;
 
     #endregion Ore Tier
 
     #region Pre-Hardmode Bosses
 
-    [Category("Pre-Hardmode Bosses")]
-    [Reactive] public bool DownedSlimeKingBoss { get; set; }
+    [property: Category("Pre-Hardmode Bosses")]
+    [Reactive] private bool _downedSlimeKingBoss;
 
-    [Category("Pre-Hardmode Bosses")]
-    [Reactive] public bool DownedBoss1EyeofCthulhu { get; set; }
+    [property: Category("Pre-Hardmode Bosses")]
+    [Reactive] private bool _downedBoss1EyeofCthulhu;
 
-    [Category("Pre-Hardmode Bosses")]
-    [Reactive] public bool DownedBoss2EaterofWorlds { get; set; }
+    [property: Category("Pre-Hardmode Bosses")]
+    [Reactive] private bool _downedBoss2EaterofWorlds;
 
-    [Category("Pre-Hardmode Bosses")]
-    [Reactive] public bool DownedQueenBee { get; set; }
+    [property: Category("Pre-Hardmode Bosses")]
+    [Reactive] private bool _downedQueenBee;
 
-    [Category("Pre-Hardmode Bosses")]
-    [Reactive] public bool DownedBoss3Skeletron { get; set; }
+    [property: Category("Pre-Hardmode Bosses")]
+    [Reactive] private bool _downedBoss3Skeletron;
 
     [Category("Pre-Hardmode Bosses")]
     public bool DownedWallOfFlesh
@@ -469,11 +491,11 @@ public partial class World : ReactiveObject, ITileData
         }
     }
 
-    [Category("Hardmode Bosses")]
-    [Reactive] public bool DownedPlantBoss { get; set; }
+    [property: Category("Hardmode Bosses")]
+    [Reactive] private bool _downedPlantBoss;
 
-    [Category("Hardmode Bosses")]
-    [Reactive] public bool DownedGolemBoss { get; set; }
+    [property: Category("Hardmode Bosses")]
+    [Reactive] private bool _downedGolemBoss;
 
     [Category("Hardmode Bosses")]
     public bool DownedFishron
@@ -486,30 +508,30 @@ public partial class World : ReactiveObject, ITileData
         }
     }
 
-    [Category("Hardmode Bosses")]
-    [Reactive] public bool DownedLunaticCultist { get; set; }
+    [property: Category("Hardmode Bosses")]
+    [Reactive] private bool _downedLunaticCultist;
 
-    [Category("Hardmode Bosses")]
-    [Reactive] public bool DownedMoonlord { get; set; }
+    [property: Category("Hardmode Bosses")]
+    [Reactive] private bool _downedMoonlord;
 
     #endregion Hardmode Bosses
 
     #region Boss Events
 
-    [Category("Boss Events")]
-    [Reactive] public bool DownedHalloweenTree { get; set; } // Mourning Wood
+    [property: Category("Boss Events")]
+    [Reactive] private bool _downedHalloweenTree; // Mourning Wood
 
-    [Category("Boss Events")]
-    [Reactive] public bool DownedHalloweenKing { get; set; } // Pumpking
+    [property: Category("Boss Events")]
+    [Reactive] private bool _downedHalloweenKing; // Pumpking
 
-    [Category("Boss Events")]
-    [Reactive] public bool DownedChristmasTree { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _downedChristmasTree;
 
-    [Category("Boss Events")]
-    [Reactive] public bool DownedSanta { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _downedSanta;
 
-    [Category("Boss Events")]
-    [Reactive] public bool DownedChristmasQueen { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _downedChristmasQueen;
 
     [Category("Boss Events")]
     public bool DownedFlyingDutchman
@@ -522,334 +544,260 @@ public partial class World : ReactiveObject, ITileData
         }
     }
 
-    [Category("Boss Events")]
-    [Reactive] public bool DownedCelestialSolar { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _downedCelestialSolar;
 
-    [Category("Boss Events")]
-    [Reactive] public bool DownedCelestialNebula { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _downedCelestialNebula;
 
-    [Category("Boss Events")]
-    [Reactive] public bool DownedCelestialVortex { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _downedCelestialVortex;
 
-    [Category("Boss Events")]
-    [Reactive] public bool DownedCelestialStardust { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _downedCelestialStardust;
 
-    [Category("Boss Events")]
-    [Reactive] public bool CelestialSolarActive { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _celestialSolarActive;
 
-    [Category("Boss Events")]
-    [Reactive] public bool CelestialVortexActive { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _celestialVortexActive;
 
-    [Category("Boss Events")]
-    [Reactive] public bool CelestialNebulaActive { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _celestialNebulaActive;
 
-    [Category("Boss Events")]
-    [Reactive] public bool CelestialStardustActive { get; set; }
+    [property: Category("Boss Events")]
+    [Reactive] private bool _celestialStardustActive;
 
     #endregion Boss Events
 
+    #region Team Spawns
+
+    [property: Category("Team Spawns")]
+    [Reactive] private bool _teamBasedSpawnsSeed;
+    [Reactive] private ObservableCollection<Vector2Int32Observable> _teamSpawns = new ObservableCollection<Vector2Int32Observable>();
+
+    #endregion
+
     #region Lantern Night
 
-    [Category("Lantern Night")]
-    [Reactive] public int LanternNightCooldown { get; set; }
+    [property: Category("Lantern Night")]
+    [Reactive] private int _lanternNightCooldown;
 
-    [Category("Lantern Night")]
-    [Reactive] public bool LanternNightManual { get; set; }
+    [property: Category("Lantern Night")]
+    [Reactive] private bool _lanternNightManual;
 
-    [Category("Lantern Night")]
-    [Reactive] public bool LanternNightGenuine { get; set; }
+    [property: Category("Lantern Night")]
+    [Reactive] private bool _lanternNightGenuine;
 
-    [Category("Lantern Night")]
-    [Reactive] public bool LanternNightNextNightIsGenuine { get; set; }
+    [property: Category("Lantern Night")]
+    [Reactive] private bool _lanternNightNextNightIsGenuine;
 
     #endregion Lantern Night
 
     #region Journey's End
 
-    [Category("Journey's End")]
-    [Reactive] public bool DownedEmpressOfLight { get; set; }
+    [property: Category("Journey's End")]
+    [Reactive] private bool _downedEmpressOfLight;
 
-    [Category("Journey's End")]
-    [Reactive] public bool DownedQueenSlime { get; set; }
+    [property: Category("Journey's End")]
+    [Reactive] private bool _downedQueenSlime;
 
-    [Category("Journey's End")]
-    [Reactive] public bool DownedDeerclops { get; set; }
+    [property: Category("Journey's End")]
+    [Reactive] private bool _downedDeerclops;
 
     #endregion Journey's End
 
     #region Old One's Army
 
-    [Category("Old One's Army")]
-    [Reactive] public bool DownedDD2InvasionT1 { get; set; }
+    [property: Category("Old One's Army")]
+    [Reactive] private bool _downedDD2InvasionT1;
 
-    [Category("Old One's Army")]
-    [Reactive] public bool DownedDD2InvasionT2 { get; set; }
+    [property: Category("Old One's Army")]
+    [Reactive] private bool _downedDD2InvasionT2;
 
-    [Category("Old One's Army")]
-    [Reactive] public bool DownedDD2InvasionT3 { get; set; }
+    [property: Category("Old One's Army")]
+    [Reactive] private bool _downedDD2InvasionT3;
 
     #endregion Old One's Army
 
     #region NPCs Bought
 
-    [Category("NPCs Bought")]
-    [Reactive] public bool BoughtCat { get; set; }
+    [property: Category("NPCs Bought")]
+    [Reactive] private bool _boughtCat;
 
-    [Category("NPCs Bought")]
-    [Reactive] public bool BoughtDog { get; set; }
+    [property: Category("NPCs Bought")]
+    [Reactive] private bool _boughtDog;
 
-    [Category("NPCs Bought")]
-    [Reactive] public bool BoughtBunny { get; set; }
+    [property: Category("NPCs Bought")]
+    [Reactive] private bool _boughtBunny;
 
     #endregion NPCs Bought
 
     #region NPCs Saved
 
-    [Category("NPCs Saved")]
-    [Reactive] public bool SavedGoblin { get; set; }
+    [property: Category("NPCs Saved")]
+    [Reactive] private bool _savedGoblin;
 
-    [Category("NPCs Saved")]
-    [Reactive] public bool SavedMech { get; set; }
+    [property: Category("NPCs Saved")]
+    [Reactive] private bool _savedMech;
 
-    [Category("NPCs Saved")]
-    [Reactive] public bool SavedWizard { get; set; }
+    [property: Category("NPCs Saved")]
+    [Reactive] private bool _savedWizard;
 
-    [Category("NPCs Saved")]
-    [Reactive] public bool SavedStylist { get; set; }
+    [property: Category("NPCs Saved")]
+    [Reactive] private bool _savedStylist;
 
-    [Category("NPCs Saved")]
-    [Reactive] public bool SavedTaxCollector { get; set; }
+    [property: Category("NPCs Saved")]
+    [Reactive] private bool _savedTaxCollector;
 
-    [Category("NPCs Saved")]
-    [Reactive] public bool SavedBartender { get; set; }
+    [property: Category("NPCs Saved")]
+    [Reactive] private bool _savedBartender;
 
-    [Category("NPCs Saved")]
-    [Reactive] public bool SavedGolfer { get; set; }
+    [property: Category("NPCs Saved")]
+    [Reactive] private bool _savedGolfer;
 
-    [Category("NPCs Saved")]
-    [Reactive] public bool SavedAngler { get; set; }
+    [property: Category("NPCs Saved")]
+    [Reactive] private bool _savedAngler;
 
-    [Category("NPCs Saved")]
-    [Reactive] public int AnglerQuest { get; set; }
+    [property: Category("NPCs Saved")]
+    [Reactive] private int _anglerQuest;
 
     #endregion NPCs Saved
 
     #region NPCs Unlocked
 
-    [Category("NPCs Unlocked")]
-    [Reactive] public bool UnlockedMerchantSpawn { get; set; }
+    [property: Category("NPCs Unlocked")]
+    [Reactive] private bool _unlockedMerchantSpawn;
 
-    [Category("NPCs Unlocked")]
-    [Reactive] public bool UnlockedDemolitionistSpawn { get; set; }
+    [property: Category("NPCs Unlocked")]
+    [Reactive] private bool _unlockedDemolitionistSpawn;
 
-    [Category("NPCs Unlocked")]
-    [Reactive] public bool UnlockedPartyGirlSpawn { get; set; }
+    [property: Category("NPCs Unlocked")]
+    [Reactive] private bool _unlockedPartyGirlSpawn;
 
-    [Category("NPCs Unlocked")]
-    [Reactive] public bool UnlockedDyeTraderSpawn { get; set; }
+    [property: Category("NPCs Unlocked")]
+    [Reactive] private bool _unlockedDyeTraderSpawn;
 
-    [Category("NPCs Unlocked")]
-    [Reactive] public bool UnlockedTruffleSpawn { get; set; }
+    [property: Category("NPCs Unlocked")]
+    [Reactive] private bool _unlockedTruffleSpawn;
 
-    [Category("NPCs Unlocked")]
-    [Reactive] public bool UnlockedArmsDealerSpawn { get; set; }
+    [property: Category("NPCs Unlocked")]
+    [Reactive] private bool _unlockedArmsDealerSpawn;
 
-    [Category("NPCs Unlocked")]
-    [Reactive] public bool UnlockedNurseSpawn { get; set; }
+    [property: Category("NPCs Unlocked")]
+    [Reactive] private bool _unlockedNurseSpawn;
 
-    [Category("NPCs Unlocked")]
-    [Reactive] public bool UnlockedPrincessSpawn { get; set; }
+    [property: Category("NPCs Unlocked")]
+    [Reactive] private bool _unlockedPrincessSpawn;
 
     #endregion NPCs Unlocked
 
     #region Town Slimes Unlocked
 
-    [Category("Town Slimes Unlocked")]
-    [Reactive] public bool UnlockedSlimeBlueSpawn { get; set; }
+    [property: Category("Town Slimes Unlocked")]
+    [Reactive] private bool _unlockedSlimeBlueSpawn;
 
-    [Category("Town Slimes Unlocked")]
-    [Reactive] public bool UnlockedSlimeGreenSpawn { get; set; }
+    [property: Category("Town Slimes Unlocked")]
+    [Reactive] private bool _unlockedSlimeGreenSpawn;
 
-    [Category("Town Slimes Unlocked")]
-    [Reactive] public bool UnlockedSlimeOldSpawn { get; set; }
+    [property: Category("Town Slimes Unlocked")]
+    [Reactive] private bool _unlockedSlimeOldSpawn;
 
-    [Category("Town Slimes Unlocked")]
-    [Reactive] public bool UnlockedSlimePurpleSpawn { get; set; }
+    [property: Category("Town Slimes Unlocked")]
+    [Reactive] private bool _unlockedSlimePurpleSpawn;
 
-    [Category("Town Slimes Unlocked")]
-    [Reactive] public bool UnlockedSlimeRainbowSpawn { get; set; }
+    [property: Category("Town Slimes Unlocked")]
+    [Reactive] private bool _unlockedSlimeRainbowSpawn;
 
-    [Category("Town Slimes Unlocked")]
-    [Reactive] public bool UnlockedSlimeRedSpawn { get; set; }
+    [property: Category("Town Slimes Unlocked")]
+    [Reactive] private bool _unlockedSlimeRedSpawn;
 
-    [Category("Town Slimes Unlocked")]
-    [Reactive] public bool UnlockedSlimeYellowSpawn { get; set; }
+    [property: Category("Town Slimes Unlocked")]
+    [Reactive] private bool _unlockedSlimeYellowSpawn;
 
-    [Category("Town Slimes Unlocked")]
-    [Reactive] public bool UnlockedSlimeCopperSpawn { get; set; }
+    [property: Category("Town Slimes Unlocked")]
+    [Reactive] private bool _unlockedSlimeCopperSpawn;
 
     #endregion Town Slimes Unlocked
 
     #region Invasions
 
-    [Category("Invasions")]
-    [Reactive] public bool DownedGoblins { get; set; }
+    [property: Category("Invasions")]
+    [Reactive] private bool _downedGoblins;
 
-    [Category("Invasions")]
-    [Reactive] public bool DownedFrost { get; set; }
+    [property: Category("Invasions")]
+    [Reactive] private bool _downedFrost;
 
-    [Category("Invasions")]
-    [Reactive] public bool DownedPirates { get; set; }
+    [property: Category("Invasions")]
+    [Reactive] private bool _downedPirates;
 
-    [Category("Invasions")]
-    [Reactive] public bool DownedMartians { get; set; }
+    [property: Category("Invasions")]
+    [Reactive] private bool _downedMartians;
 
-    [Category("Invasions")]
-    [Reactive] public int InvasionType { get; set; }
+    [property: Category("Invasions")]
+    [Reactive] private int _invasionType;
 
-    [Category("Invasions")]
-    [Reactive] public int InvasionSize { get; set; }
+    [property: Category("Invasions")]
+    [Reactive] private int _invasionSize;
 
-    [Category("Invasions")]
-    [Reactive] public double InvasionX { get; set; }
+    [property: Category("Invasions")]
+    [Reactive] private double _invasionX;
 
-    [Category("Invasions")]
-    [ReadOnly(true)]
-    [Reactive] public int InvasionSizeStart { get; set; }
+    [property: Category("Invasions")]
+    [property: ReadOnly(true)]
+    [Reactive] private int _invasionSizeStart;
 
-    [Category("Invasions")]
-    [ReadOnly(true)]
-    [Reactive] public int InvasionDelay { get; set; }
+    [property: Category("Invasions")]
+    [property: ReadOnly(true)]
+    [Reactive] private int _invasionDelay;
 
     #endregion Invasions
 
     #region Custom World Generation
 
-    private double _hillSize;
-    private bool _generateGrass;
-    private bool _generateWalls;
-    private bool _generateCaves;
-    private ObservableCollection<string> _cavePresets;
-    private int _cavePresetIndex;
-    private bool _surfaceCaves;
-    private double _caveNoise;
-    private double _caveMultiplier;
-    private double _caveDensity;
-    private bool _generateUnderworld;
-    private bool _generateAsh;
-    private bool _generateLava;
-    private double _underworldRoofNoise;
-    private double _underworldFloorNoise;
-    private double _underworldLavaNoise;
-    private bool _generateOres;
-
-	public double HillSize
-    {
-        get => _hillSize;
-        set => this.RaiseAndSetIfChanged(ref _hillSize, value);
-    }
-    public bool GenerateGrass
-    {
-        get => _generateGrass;
-        set => this.RaiseAndSetIfChanged(ref _generateGrass, value);
-    }
-    public bool GenerateWalls
-    {
-        get => _generateWalls;
-        set => this.RaiseAndSetIfChanged(ref _generateWalls, value);
-    }
-    public bool GenerateCaves
-    {
-        get => _generateCaves;
-        set => this.RaiseAndSetIfChanged(ref _generateCaves, value);
-    }
-    public int CavePresetIndex
-    {
-        get => _cavePresetIndex;
-        set => this.RaiseAndSetIfChanged(ref _cavePresetIndex, value);
-    }
-    public ObservableCollection<string> CavePresets
-    {
-        get => _cavePresets;
-        set => this.RaiseAndSetIfChanged(ref _cavePresets, value);
-    }
-    public bool SurfaceCaves
-    {
-        get => _surfaceCaves;
-        set => this.RaiseAndSetIfChanged(ref _surfaceCaves, value);
-    }
-    public double CaveNoise
-    {
-        get => _caveNoise;
-        set => this.RaiseAndSetIfChanged(ref _caveNoise, value);
-    }
-    public double CaveMultiplier
-    {
-        get => _caveMultiplier;
-        set => this.RaiseAndSetIfChanged(ref _caveMultiplier, value);
-    }
-    public double CaveDensity
-    {
-        get => _caveDensity;
-        set => this.RaiseAndSetIfChanged(ref _caveDensity, value);
-    }
-    public bool GenerateUnderworld
-    {
-        get => _generateUnderworld;
-        set => this.RaiseAndSetIfChanged(ref _generateUnderworld, value);
-    }
-    public bool GenerateAsh
-    {
-        get => _generateAsh;
-        set => this.RaiseAndSetIfChanged(ref _generateAsh, value);
-    }
-    public bool GenerateLava
-    {
-        get => _generateLava;
-        set => this.RaiseAndSetIfChanged(ref _generateLava, value);
-    }
-    public double UnderworldRoofNoise
-    {
-        get => _underworldRoofNoise;
-        set => this.RaiseAndSetIfChanged(ref _underworldRoofNoise, value);
-    }
-    public double UnderworldFloorNoise
-    {
-        get => _underworldFloorNoise;
-        set => this.RaiseAndSetIfChanged(ref _underworldFloorNoise, value);
-    }
-    public double UnderworldLavaNoise
-    {
-        get => _underworldLavaNoise;
-        set => this.RaiseAndSetIfChanged(ref _underworldLavaNoise, value);
-    }
-    public bool GenerateOres
-    {
-        get => _generateOres;
-        set => this.RaiseAndSetIfChanged(ref _generateOres, value);
-    }
+    [Reactive] private double _hillSize;
+    [Reactive] private bool _generateGrass;
+    [Reactive] private bool _generateWalls;
+    [Reactive] private bool _generateCaves;
+    [Reactive] private ObservableCollection<string> _cavePresets;
+    [Reactive] private int _cavePresetIndex;
+    [Reactive] private bool _surfaceCaves;
+    [Reactive] private double _caveNoise;
+    [Reactive] private double _caveMultiplier;
+    [Reactive] private double _caveDensity;
+    [Reactive] private bool _generateUnderworld;
+    [Reactive] private bool _generateAsh;
+    [Reactive] private bool _generateLava;
+    [Reactive] private double _underworldRoofNoise;
+    [Reactive] private double _underworldFloorNoise;
+    [Reactive] private double _underworldLavaNoise;
+    [Reactive] private bool _generateOres;
     #endregion
 
-    [Reactive] public bool PartyManual { get; set; }
-    [Reactive] public bool PartyGenuine { get; set; }
-    [Reactive] public int PartyCooldown { get; set; }
+    [Reactive] private bool _partyManual;
+    [Reactive] private bool _partyGenuine;
+    [Reactive] private int _partyCooldown;
 
     public int TileEntitiesNumber => TileEntities.Count;
 
-    [Reactive][ReadOnly(true)] public byte[] UnknownData { get; set; }
+    [Reactive] private string _worldManifestData = "";
 
-    [Reactive] public Int64 CreationTime { get; set; }
+    [property: ReadOnly(true)]
+    [Reactive] private byte[] _unknownData;
 
-    [Reactive] public int IceBackStyle { get; set; }
-    [Reactive] public int JungleBackStyle { get; set; }
-    [Reactive] public int HellBackStyle { get; set; }
+    [Reactive] private long _creationTime;
+    [Reactive] private long _lastPlayed;
+
+    [Reactive] private int _iceBackStyle;
+    [Reactive] private int _jungleBackStyle;
+    [Reactive] private int _hellBackStyle;
 
     public int TreeTop1
     {
         get => TreeTopVariations[0];
         set
         {
-            TreeTopVariations[0] = (int)value;
+            TreeTopVariations[0] = value;
             this.RaisePropertyChanged();
         }
     }
@@ -858,7 +806,7 @@ public partial class World : ReactiveObject, ITileData
         get => TreeTopVariations[1];
         set
         {
-            TreeTopVariations[1] = (int)value;
+            TreeTopVariations[1] = value;
             this.RaisePropertyChanged();
         }
     }
@@ -867,41 +815,47 @@ public partial class World : ReactiveObject, ITileData
         get => TreeTopVariations[2];
         set
         {
-
             TreeTopVariations[2] = value;
             this.RaisePropertyChanged();
-
         }
     }
     public int TreeTop4
     {
         get => TreeTopVariations[3];
-        set => TreeTopVariations[3] = (int)value;
+        set
+        {
+            TreeTopVariations[3] = value;
+            this.RaisePropertyChanged();
+        }
     }
 
-    [Reactive] public byte BgOcean { get; set; }
-    [Reactive] public byte BgDesert { get; set; }
-    [Reactive] public byte BgCrimson { get; set; }
-    [Reactive] public byte BgHallow { get; set; }
-    [Reactive] public byte BgSnow { get; set; }
-    [Reactive] public byte BgJungle { get; set; }
-    [Reactive] public byte BgCorruption { get; set; }
-    [Reactive] public byte BgTree { get; set; }
+    [Reactive] private byte _bgOcean;
+    [Reactive] private byte _bgDesert;
+    [Reactive] private byte _bgCrimson;
+    [Reactive] private byte _bgHallow;
+    [Reactive] private byte _bgSnow;
+    [Reactive] private byte _bgJungle;
+    [Reactive] private byte _bgCorruption;
+    [Reactive] private byte _bgTree;
 
     public byte Bg8
     {
         get => BgTree;
-        set => BgTree = value;
+        set
+        {
+            BgTree = value;
+            this.RaisePropertyChanged();
+        }
     }
 
-    [Reactive] public byte BgTree2 { get; set; }
-    [Reactive] public byte BgTree3 { get; set; }
-    [Reactive] public byte BgTree4 { get; set; }
-    [Reactive] public byte UnderworldBg { get; set; }
-    [Reactive] public byte MushroomBg { get; set; }
-    
-    [Reactive] public int TilesWide { get; set; }
-    [Reactive] public int TilesHighReactive { get; set; }
+    [Reactive] private byte _bgTree2;
+    [Reactive] private byte _bgTree3;
+    [Reactive] private byte _bgTree4;
+    [Reactive] private byte _underworldBg;
+    [Reactive] private byte _mushroomBg;
+
+    [Reactive] private int _tilesWide;
+    [Reactive] private int _tilesHighReactive;
     public int TilesHigh
     {
         get => _tilesHigh;
@@ -909,31 +863,29 @@ public partial class World : ReactiveObject, ITileData
         {
             // Update the reactive property to ensure UI and other bindings are notified.
             TilesHighReactive = value;
-            
-            _tilesHigh = value;
             this.RaiseAndSetIfChanged(ref _tilesHigh, value);
             UpdateMaxLayerLevels();
         }
     }
-    [Reactive] public float BottomWorld { get; set; }
-    [Reactive] public float TopWorld { get; set; }
-    [Reactive] public float RightWorld { get; set; }
-    [Reactive] public float LeftWorld { get; set; }
-    [Reactive] public bool IsV0 { get; set; }
-    [Reactive] public int SpawnX { get; set; }
-    [Reactive] public int SpawnY { get; set; }
+    [Reactive] private float _bottomWorld;
+    [Reactive] private float _topWorld;
+    [Reactive] private float _rightWorld;
+    [Reactive] private float _leftWorld;
+    [Reactive] private bool _isV0;
+    [Reactive] private int _spawnX;
+    [Reactive] private int _spawnY;
 
-    [Reactive] public int DungeonX { get; set; }
-    [Reactive] public int DungeonY { get; set; }
+    [Reactive] private int _dungeonX;
+    [Reactive] private int _dungeonY;
 
-    [Reactive] public bool DownedClown { get; set; }
+    [Reactive] private bool _downedClown;
 
     public int ShadowOrbCount
     {
         get => _shadowOrbCount;
         set
         {
-            _shadowOrbCount = value;
+            this.RaiseAndSetIfChanged(ref _shadowOrbCount, value);
             ShadowOrbSmashed = _shadowOrbCount > 0;
         }
     }
@@ -942,9 +894,10 @@ public partial class World : ReactiveObject, ITileData
         get => _treeX0;
         set
         {
-            _treeX0 = value;
-            if (_treeX0 > _treeX1)
-                TreeX0 = _treeX1;
+            var newValue = value;
+            if (newValue > _treeX1)
+                newValue = _treeX1;
+            this.RaiseAndSetIfChanged(ref _treeX0, newValue);
         }
     }
     public int TreeX1
@@ -952,11 +905,12 @@ public partial class World : ReactiveObject, ITileData
         get => _treeX1;
         set
         {
-            _treeX1 = value;
-            if (_treeX1 < _treeX0)
-                TreeX1 = _treeX0;
-            if (_treeX1 > _treeX2)
-                TreeX1 = _treeX2;
+            var newValue = value;
+            if (newValue < _treeX0)
+                newValue = _treeX0;
+            if (newValue > _treeX2)
+                newValue = _treeX2;
+            this.RaiseAndSetIfChanged(ref _treeX1, newValue);
         }
     }
     public int TreeX2
@@ -964,24 +918,26 @@ public partial class World : ReactiveObject, ITileData
         get => _treeX2;
         set
         {
-            _treeX2 = value;
-            if (_treeX2 < _treeX1)
-                TreeX2 = _treeX1;
+            var newValue = value;
+            if (newValue < _treeX1)
+                newValue = _treeX1;
+            this.RaiseAndSetIfChanged(ref _treeX2, newValue);
         }
     }
-    [Reactive] public int TreeStyle0 { get; set; }
-    [Reactive] public int TreeStyle1 { get; set; }
-    [Reactive] public int TreeStyle2 { get; set; }
-    [Reactive] public int TreeStyle3 { get; set; }
+    [Reactive] private int _treeStyle0;
+    [Reactive] private int _treeStyle1;
+    [Reactive] private int _treeStyle2;
+    [Reactive] private int _treeStyle3;
 
     public int CaveBackX0
     {
         get => _caveBackX0;
         set
         {
-            _caveBackX0 = value;
-            if (_caveBackX0 > _caveBackX1)
-                CaveBackX0 = _caveBackX1;
+            var newValue = value;
+            if (newValue > _caveBackX1)
+                newValue = _caveBackX1;
+            this.RaiseAndSetIfChanged(ref _caveBackX0, newValue);
         }
     }
     public int CaveBackX1
@@ -989,11 +945,12 @@ public partial class World : ReactiveObject, ITileData
         get => _caveBackX1;
         set
         {
-            _caveBackX1 = value;
-            if (_caveBackX1 < _caveBackX0)
-                CaveBackX1 = _caveBackX0;
-            if (_caveBackX1 > _caveBackX2)
-                CaveBackX1 = _caveBackX2;
+            var newValue = value;
+            if (newValue < _caveBackX0)
+                newValue = _caveBackX0;
+            if (newValue > _caveBackX2)
+                newValue = _caveBackX2;
+            this.RaiseAndSetIfChanged(ref _caveBackX1, newValue);
         }
     }
     public int CaveBackX2
@@ -1001,15 +958,17 @@ public partial class World : ReactiveObject, ITileData
         get => _caveBackX2;
         set
         {
-            _caveBackX2 = value;
-            if (_caveBackX2 < _caveBackX1)
-                CaveBackX2 = _caveBackX1;
+            var newValue = value;
+            if (newValue < _caveBackX1)
+                newValue = _caveBackX1;
+            this.RaiseAndSetIfChanged(ref _caveBackX2, newValue);
         }
     }
-    [Reactive] public int CaveBackStyle0 { get; set; }
-    [Reactive] public int CaveBackStyle1 { get; set; }
-    [Reactive] public int CaveBackStyle2 { get; set; }
-    [Reactive] public int CaveBackStyle3 { get; set; }
-    [Reactive] public int CultistDelay { get; set; }
-    [Reactive] public bool Apocalypse { get; set; }
+
+    [Reactive] private int _caveBackStyle0;
+    [Reactive] private int _caveBackStyle1;
+    [Reactive] private int _caveBackStyle2;
+    [Reactive] private int _caveBackStyle3;
+    [Reactive] private int _cultistDelay;
+    [Reactive] private bool _apocalypse;
 }

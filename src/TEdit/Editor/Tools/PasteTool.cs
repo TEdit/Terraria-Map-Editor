@@ -8,6 +8,7 @@ using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.UI;
 using TEdit.Editor.Clipboard;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -17,6 +18,7 @@ public sealed class PasteTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paste.png"));
+        SymbolIcon = SymbolRegular.ClipboardPaste24;
         Name = "Paste";
         IsActive = false;
         ToolType = ToolType.Pixel;
@@ -24,15 +26,11 @@ public sealed class PasteTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed)
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.draw"))
         {
             if (_wvm.Clipboard.Buffer != null)
                 PasteClipboard(e.Location);
-        }
-        if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
-        {
-           
-            _wvm.SetTool.Execute(_wvm.Tools.FirstOrDefault(t => t.Name == "Arrow"));
         }
     }
 
@@ -49,10 +47,11 @@ public sealed class PasteTool : BaseTool
 
     private void PasteClipboard(Vector2Int32 anchor)
     {
-        ErrorLogging.TelemetryClient?.TrackEvent("Paste");
-
         _wvm.Clipboard.PasteBufferIntoWorld(_wvm.CurrentWorld, anchor);
         _wvm.UpdateRenderRegion(new RectangleInt32(anchor, _wvm.Clipboard.Buffer.Buffer.Size));
+
+        // Clear selected chest to prevent rendering "open" offset on pasted chest tiles
+        _wvm.SelectedChest = null;
 
         /* Heathtech */
         BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Buffer.Size.X, _wvm.Clipboard.Buffer.Buffer.Size.Y);

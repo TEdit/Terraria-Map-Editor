@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>DocExport</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../src/TEdit/Scripting/ScriptApiMetadata.cs" Link="ScriptApiMetadata.cs" />
+    <Compile Include="../../src/TEdit/Scripting/ScriptApiDocGenerator.cs" Link="ScriptApiDocGenerator.cs" />
+  </ItemGroup>
+</Project>

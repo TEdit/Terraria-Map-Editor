@@ -1,18 +1,17 @@
-﻿using System.Collections.ObjectModel;
-using TEdit.Common.Reactive;
+using System.Collections.ObjectModel;
 
 namespace TEdit.Terraria;
 
-public class Chest : ObservableObject
+public partial class Chest : ReactiveObject
 {
-    public static int MaxItems = 40; 
+    public static int LegacyMaxItems = 40;
     public static int LegacyLimit = 1000;
 
     public Chest()
     {
-        for (int i = 0; i < MaxItems; i++)
+        for (int i = 0; i < LegacyMaxItems; i++)
         {
-            _items.Add(new Item());
+            Items.Add(new Item());
         }
     }
     public Chest(int x, int y)
@@ -30,44 +29,29 @@ public class Chest : ObservableObject
         _name = name;
     }
 
-
+    [Reactive]
     private int _x;
+
+    [Reactive]
     private int _y;
 
+    [Reactive]
+    private int _maxItems = 40;
+
+    [Reactive]
     private string _name = string.Empty;
+
     private int _chestId = -1;
 
-    
+    public ObservableCollection<Item> Items { get; } = [];
 
-    public string Name
-    {
-        get { return _name; }
-        set { Set(nameof(Name), ref _name, value); }
-    }
-    public int Y
-    {
-        get { return _y; }
-        set { Set(nameof(Y), ref _y, value); }
-    }
-
-    public int X
-    {
-        get { return _x; }
-        set { Set(nameof(X), ref _x, value); }
-    }
-
-    private readonly ObservableCollection<Item> _items = new ObservableCollection<Item>();
-    public ObservableCollection<Item> Items
-    {
-        get { return _items; }
-    }
 
     public Chest Copy()
     {
         var chest = new Chest(_x, _y);
         chest.Name = Name;
         //chest.Items.Clear();
-        for (int i = 0; i < MaxItems; i++)
+        for (int i = 0; i < LegacyMaxItems; i++)
         {
             if (Items.Count > i)
                 chest.Items[i] = Items[i].Copy();

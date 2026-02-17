@@ -1,27 +1,32 @@
 ﻿<UserControl x:Class="TEdit.View.BestiaryEditor"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:view="clr-namespace:TEdit.View" 
-        xmlns:viewModel="clr-namespace:TEdit.ViewModel" 
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:view="clr-namespace:TEdit.View"
+        xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        mc:Ignorable="d" 
+        mc:Ignorable="d"
         xmlns:p="clr-namespace:TEdit.Properties"
-        d:Width="350"
-        Background="{StaticResource ControlBackgroundBrush}"
+        d:Width="360"
+        d:Height="400"
         d:DataContext="{d:DesignInstance Type=viewModel:BestiaryViewModel}">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
-    <DockPanel Background="{StaticResource ControlBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-        <UniformGrid Columns="5" DockPanel.Dock="Top">
-            <Button Content="{x:Static p:Language.bestiary_load}" Padding="3" VerticalAlignment="Center" Command="{Binding LoadBestiaryCommand}" />
-            <Button Content="{x:Static p:Language.bestiary_clear}" Padding="3" VerticalAlignment="Center" Command="{Binding ResetBestiaryCommand}" />
-            <Button Content="{x:Static p:Language.bestiary_complete}" Padding="3" VerticalAlignment="Center" Command="{Binding CompleteBestiaryCommand}" />
-            <Button Content="{x:Static p:Language.bestiary_save}" Padding="3" VerticalAlignment="Center" Command="{Binding SaveBestiaryCommand}" />
-            <Button Content="{x:Static p:Language.bestiary_tally}" Padding="3" VerticalAlignment="Center" Command="{Binding UpdateKillTallyCommand}" />
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.tool_bestiary_title}" Style="{DynamicResource SidebarPanelTitle}" />
+
+        <!-- Toolbar -->
+        <UniformGrid Columns="5" DockPanel.Dock="Top" Style="{DynamicResource SidebarButtonRow}">
+            <ui:Button Content="{x:Static p:Language.bestiary_load}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding LoadBestiaryCommand}" />
+            <ui:Button Content="{x:Static p:Language.bestiary_clear}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding ResetBestiaryCommand}" />
+            <ui:Button Content="{x:Static p:Language.bestiary_complete}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding CompleteBestiaryCommand}" />
+            <ui:Button Content="{x:Static p:Language.bestiary_save}" Appearance="Success" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding SaveBestiaryCommand}" />
+            <ui:Button Content="{x:Static p:Language.bestiary_tally}" Appearance="Danger" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding UpdateKillTallyCommand}" />
         </UniformGrid>
 
         <ListView 

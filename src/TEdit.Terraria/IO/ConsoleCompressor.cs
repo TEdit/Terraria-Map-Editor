@@ -34,7 +34,6 @@ public static class ConsoleCompressor
                 b.Write(0x1AA2227E); // Signature
                 b.Write((int)ms.Length);
 
-                // TODO: use net7.0 ZLibStream
                 using (var compressor = new ZLibStream(stream, CompressionLevel.SmallestSize))
                 {
                     ms.Position = 0;
@@ -52,20 +51,16 @@ public static class ConsoleCompressor
 
     public static MemoryStream DecompressStream(FileStream stream)
     {
-        using (var br = new BinaryReader(stream))
+        using (var br = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true))
         {
             int signature = br.ReadInt32(); // 0x1AA2227E
             int outputSize = br.ReadInt32();
 
             var ms = new MemoryStream();
 
-            var decompressor = new ZLibStream(ms, CompressionMode.Decompress);
-
-            byte[] buffer = new byte[BUFFER_SIZE];
-            int n;
-            while ((n = stream.Read(buffer, 0, BUFFER_SIZE)) != 0)
+            using (var decompressor = new ZLibStream(stream, CompressionMode.Decompress, leaveOpen: true))
             {
-                decompressor.Write(buffer, 0, n);
+                decompressor.CopyTo(ms);
             }
 
             ms.Position = 0;

@@ -1,22 +1,22 @@
-<Window x:Class="TEdit.View.Popups.ExpandWorldView"
+<ui:FluentWindow x:Class="TEdit.View.Popups.ExpandWorldView"
         x:Name="ExpandWorldWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
         Title="Expand World"
         WindowStartupLocation="CenterOwner"
-        WindowStyle="ToolWindow"
-        Background="{StaticResource WindowBackgroundBrush}"
-        Foreground="{DynamicResource TextBrush}"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
         Icon="/TEdit;component/Images/tedit.ico"
         Height="140"
-        Width="320">
-  <Window.Resources>
+        Width="390">
+  <ui:FluentWindow.Resources>
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
       <Setter Property="Margin" Value="2" />
       <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
-  </Window.Resources>
+  </ui:FluentWindow.Resources>
   <StackPanel Orientation="Vertical">
 
     <!-- Info Header -->
@@ -59,4 +59,4 @@
       <Button Content="OK"     Click="OkClick"     Padding="4" Margin="2"/>
     </UniformGrid>
   </StackPanel>
-</Window>
+</ui:FluentWindow>

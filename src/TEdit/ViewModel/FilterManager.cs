@@ -1,24 +1,28 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Data;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using System;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 
 namespace TEdit.ViewModel
 {
     /// <summary>
     /// Provides static logic for managing all filter settings in TEdit's advanced filter popup,
-    /// including filtered tiles, walls, liquids, and wires. 
-    /// Maintains filter selection sets, filter modes (Hide, Grayscale), and background display modes.
+    /// including filtered tiles, walls, liquids, and wires.
+    /// Maintains filter selection sets, filter modes (Hide, Darken), and background display modes.
     /// Used for both UI data binding and core filtering logic throughout TEdit.
     /// </summary>
     public static class FilterManager
     {
-        public enum FilterMode { Hide, Grayscale }
+        public enum FilterMode { Hide, Darken }
         public enum BackgroundMode { Normal, Transparent, Custom }
+
+        /// <summary>Monotonically increasing counter. Bumped on every filter mutation so the renderer knows when to rebuild the overlay.</summary>
+        public static int Revision { get; private set; }
 
         // When these sets are empty, it means "no filter" -> show every tile/wall/liquid
         private static readonly HashSet<int> _selectedTileIDs = [];
@@ -35,17 +39,48 @@ namespace TEdit.ViewModel
         public static IReadOnlyCollection<int> SelectedWallIDs => _selectedWallIDs;
         public static IReadOnlyCollection<int> SelectedSpriteIDs => _selectedSpriteIDs;
 
-        public static FilterMode CurrentFilterMode { get; set; }         = FilterMode.Hide;
+        private static FilterMode _currentFilterMode = FilterMode.Darken;
+        public static FilterMode CurrentFilterMode
+        {
+            get => _currentFilterMode;
+            set { if (_currentFilterMode != value) { _currentFilterMode = value; Revision++; } }
+        }
+
         public static Color FilterModeCustomColor { get; set; }          = Color.Transparent;
-        public static BackgroundMode CurrentBackgroundMode { get; set; } = BackgroundMode.Normal;
+
+        private static BackgroundMode _currentBackgroundMode = BackgroundMode.Normal;
+        public static BackgroundMode CurrentBackgroundMode
+        {
+            get => _currentBackgroundMode;
+            set { if (_currentBackgroundMode != value) { _currentBackgroundMode = value; Revision++; } }
+        }
+
         public static Color BackgroundModeCustomColor { get; set; }      = Color.Lime;
+
+        private static float _darkenAmount = 0.6f;
+        /// <summary>Darken overlay opacity (0.0 = invisible, 1.0 = fully black). Default 0.6.</summary>
+        public static float DarkenAmount
+        {
+            get => _darkenAmount;
+            set { if (_darkenAmount != value) { _darkenAmount = value; Revision++; } }
+        }
 
         public static bool FilterClipboard { get; set; } = false;
 
+        private static bool _isEnabled;
         /// <summary>
-        /// Returns true if any tile‐filter is active.
+        /// Master on/off toggle. When false, filters are preserved but not applied.
         /// </summary>
-        public static bool AnyFilterActive => SelectedTileNames.Count > 0 || SelectedWallNames.Count > 0 || SelectedLiquidNames.Count > 0 || SelectedWireNames.Count > 0 || SelectedSpriteNames.Count > 0;
+        public static bool IsEnabled
+        {
+            get => _isEnabled;
+            set { if (_isEnabled != value) { _isEnabled = value; Revision++; } }
+        }
+
+        /// <summary>
+        /// Returns true if filtering is enabled and any tile‐filter is active.
+        /// </summary>
+        public static bool AnyFilterActive => IsEnabled && (SelectedTileNames.Count > 0 || SelectedWallNames.Count > 0 || SelectedLiquidNames.Count > 0 || SelectedWireNames.Count > 0 || SelectedSpriteNames.Count > 0);
 
         /// <summary>
         /// Returns true if tile‐filter is active and the tileId is not in the set.
@@ -78,10 +113,12 @@ namespace TEdit.ViewModel
         public static bool SpriteIsNotAllowed(int spriteId) => (_selectedSpriteIDs.Count > 0 || AnyFilterActive) && !_selectedSpriteIDs.Contains(spriteId);
 
         /// <summary>
-        /// Clears everything – both tile, wall, liquid, and wire filters – and resets the modes to hide & normal.
+        /// Clears all filter selections and disables filtering. Mode preferences are preserved.
         /// </summary>
         public static void ClearAll()
         {
+            IsEnabled = false;
+
             // Clear all filters.
             _selectedTileIDs.Clear();
             _selectedWallIDs.Clear();
@@ -102,12 +139,10 @@ namespace TEdit.ViewModel
             FilterManager.ClearWireFilters();
             FilterManager.ClearSpriteFilters();
 
-            // Reset the filter modes.
-            CurrentFilterMode = FilterManager.FilterMode.Hide;
-            CurrentBackgroundMode = FilterManager.BackgroundMode.Normal;
-
             // Reset the clipboard settings.
             FilterClipboard = false;
+
+            Revision++;
         }
 
         #region Tile Filter Methods
@@ -120,19 +155,19 @@ namespace TEdit.ViewModel
         {
             if (tileId >= -1 && _selectedTileIDs.Add(tileId))
             {
-                // no direct UI work here—UI binds to SelectedTileNames
+                Revision++;
             }
         }
 
         /// <summary>
         /// Remove a tile ID from the filter (i.e. stop showing this ID).
         /// </summary>
-        public static void RemoveTileFilter(int tileId) => _selectedTileIDs.Remove(tileId);
+        public static void RemoveTileFilter(int tileId) { if (_selectedTileIDs.Remove(tileId)) Revision++; }
 
         /// <summary>
         /// Clear all tile filters (i.e. show every tile).
         /// </summary>
-        public static void ClearTileFilters() => _selectedTileIDs.Clear();
+        public static void ClearTileFilters() { _selectedTileIDs.Clear(); Revision++; }
 
         #endregion
 
@@ -145,19 +180,19 @@ namespace TEdit.ViewModel
         {
             if (wallId >= 0 && _selectedWallIDs.Add(wallId))
             {
-                // no direct UI work here—UI binds to SelectedWallNames
+                Revision++;
             }
         }
 
         /// <summary>
         /// Remove a wall ID from the filter.
         /// </summary>
-        public static void RemoveWallFilter(int wallId) => _selectedWallIDs.Remove(wallId);
+        public static void RemoveWallFilter(int wallId) { if (_selectedWallIDs.Remove(wallId)) Revision++; }
 
         /// <summary>
         /// Clear all wall filters.
         /// </summary>
-        public static void ClearWallFilters() => _selectedWallIDs.Clear();
+        public static void ClearWallFilters() { _selectedWallIDs.Clear(); Revision++; }
 
         #endregion
 
@@ -169,18 +204,18 @@ namespace TEdit.ViewModel
         /// </summary>
         public static void AddLiquidFilter(LiquidType liq)
         {
-            if (_selectedLiquids.Add(liq)) { }
+            if (_selectedLiquids.Add(liq)) { Revision++; }
         }
 
         /// <summary>
         /// Remove a liquid ID from the filter.
         /// </summary>
-        public static void RemoveLiquidFilter(LiquidType liq) => _selectedLiquids.Remove(liq);
+        public static void RemoveLiquidFilter(LiquidType liq) { if (_selectedLiquids.Remove(liq)) Revision++; }
 
         /// <summary>
         /// Clear all liquid filters.
         /// </summary>
-        public static void ClearLiquidFilters() => _selectedLiquids.Clear();
+        public static void ClearLiquidFilters() { _selectedLiquids.Clear(); Revision++; }
 
         #endregion
 
@@ -195,12 +230,13 @@ namespace TEdit.ViewModel
             Green = 1 << 2,  // 4.
             Yellow = 1 << 3, // 8.
         }
-        public static void AddWireFilter(WireType wire) { _selectedWires.Add(wire); }
-        public static void RemoveWireFilter(WireType wire) { _selectedWires.Remove(wire); }
+        public static void AddWireFilter(WireType wire) { if (_selectedWires.Add(wire)) Revision++; }
+        public static void RemoveWireFilter(WireType wire) { if (_selectedWires.Remove(wire)) Revision++; }
         public static void ClearWireFilters()
         {
             _selectedWires.Clear();
             SelectedWireNames.Clear();
+            Revision++;
         }
 
         #endregion
@@ -214,19 +250,19 @@ namespace TEdit.ViewModel
         {
             if (spriteId >= -1 && _selectedSpriteIDs.Add(spriteId))
             {
-                // no direct UI work here—UI binds to SelectedSpriteNames
+                Revision++;
             }
         }
 
         /// <summary>
         /// Remove a sprite ID from the filter (i.e. stop showing this ID).
         /// </summary>
-        public static void RemoveSpriteFilter(int spriteId) => _selectedSpriteIDs.Remove(spriteId);
+        public static void RemoveSpriteFilter(int spriteId) { if (_selectedSpriteIDs.Remove(spriteId)) Revision++; }
 
         /// <summary>
         /// Clear all sprite filters (i.e. show every sprite).
         /// </summary>
-        public static void ClearSpriteFilters() => _selectedSpriteIDs.Clear();
+        public static void ClearSpriteFilters() { _selectedSpriteIDs.Clear(); Revision++; }
 
         #endregion
     }
@@ -234,25 +270,19 @@ namespace TEdit.ViewModel
     /// <summary>
     /// Represents an item (such as a tile, wall, liquid, or wire) that can be filtered
     /// in the TEdit filter popup window. Each item has an ID, a display name, and a
-    /// check state indicating whether it is included in the filter. Implements
-    /// INotifyPropertyChanged so that WPF data binding reflects changes in checkboxes
-    /// in the UI.
-    /// 
+    /// check state indicating whether it is included in the filter.
+    ///
     /// Example usage:
     /// - Used as the data model for each checkbox row in the filter lists.
     /// - Supports binding to the IsChecked property to track filter selections.
     /// </summary>
-    public class FilterCheckItem : INotifyPropertyChanged
+    public partial class FilterCheckItem : ReactiveObject
     {
         public string Name { get; }
         public int Id { get; }
-        private bool _isChecked;
 
-        public bool IsChecked
-        {
-            get => _isChecked;
-            set { _isChecked = value; OnPropertyChanged(nameof(IsChecked)); }
-        }
+        [Reactive]
+        private bool _isChecked;
 
         public FilterCheckItem(int id, string name, bool isChecked = false)
         {
@@ -260,10 +290,6 @@ namespace TEdit.ViewModel
             Name = name;
             IsChecked = isChecked;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string prop)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
     }
 
     /// <summary>

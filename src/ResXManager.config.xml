@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Values xmlns="urn:tom-englert.de/Configuration/1/0">
+  <Value Key="SortFileContentOnSave">True</Value>
+  <Value Key="PrefixTranslations">False</Value>
+<Value Key="CultureCountyOverrides">zh=zh-Hant,zh-CHS=zh-Hans-HK</Value></Values>

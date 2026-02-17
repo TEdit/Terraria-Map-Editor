@@ -4,9 +4,12 @@ changelog:
   exclude:
     labels:
       - ignore-for-release
+      - dependencies
     authors:
       - octocat
       - dependabot
+      - renovate[bot]
+      - renovatebot
   categories:
     - title: Breaking Changes 🛠
       labels:
@@ -19,9 +22,6 @@ changelog:
       labels:
         - Semver-Minor
         - enhancement
-    - title: Dependencies 👒
-      labels:
-        - dependencies
     - title: Bugfixes 🐛
       labels:
         - Semver-Patch

@@ -1,15 +1,15 @@
-﻿<Window x:Class="TEdit.Editor.Plugins.HouseGenPluginView"
+﻿<ui:FluentWindow x:Class="TEdit.Editor.Plugins.HouseGenPluginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         SizeToContent="WidthAndHeight"
         Closing="WindowClosing"
-        Title="House Generator" 
-        ResizeMode="NoResize" 
-        WindowStartupLocation="CenterOwner" 
+        Title="House Generator"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico"
-        Background="{StaticResource WindowBackgroundBrush}" 
-        Foreground="{StaticResource TextBrush}" 
-        >
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -79,4 +79,4 @@
             </StackPanel>
         </StackPanel>
     </Grid>
-</Window>
+</ui:FluentWindow>

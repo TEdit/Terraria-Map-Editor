@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using TEdit.Common;
-using TEdit.Configuration;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 
@@ -161,9 +160,16 @@ public static class PixelMap
 
     #endregion
 
+    /// <summary>Darken a color by the configured darken amount.</summary>
+    public static Color DarkenColor(Color c)
+    {
+        float factor = 1f - FilterManager.DarkenAmount;
+        return new Color((byte)(c.R * factor), (byte)(c.G * factor), (byte)(c.B * factor), c.A);
+    }
+
     public static Color GetTileColor(Tile tile, Color background, bool showWall = true, bool showTile = true, bool showLiquid = true, bool showRedWire = true, bool showBlueWire = true, bool showGreenWire = true, bool showYellowWire = true, bool showCoatings = true,
-        bool wallGrayscale = false, bool tileGrayscale = false, bool liquidGrayscale = false,
-        bool redWireGrayscale = false, bool blueWireGrayscale = false, bool greenWireGrayscale = false, bool yellowWireGrayscale = false)
+        bool wallDarken = false, bool tileDarken = false, bool liquidDarken = false,
+        bool redWireDarken = false, bool blueWireDarken = false, bool greenWireDarken = false, bool yellowWireDarken = false)
     {
         var c = new Color(0, 0, 0, 0);
 
@@ -222,8 +228,8 @@ public static class PixelMap
                 c.B = (byte)(c.B * (brightness / 255.0f));
             }
 
-            if (wallGrayscale)
-                c = GrayscaleManager.ToGrayscale(c);
+            if (wallDarken)
+                c = DarkenColor(c);
         }
         else
             c = background;
@@ -278,8 +284,8 @@ public static class PixelMap
                 c.B = (byte)(c.B * (brightness / 255.0f));
             }
 
-            if (tileGrayscale)
-                c = GrayscaleManager.ToGrayscale(c);
+            if (tileDarken)
+                c = DarkenColor(c);
         }
 
         if (tile.LiquidAmount > 0 && showLiquid)
@@ -289,37 +295,37 @@ public static class PixelMap
             else if (tile.LiquidType == LiquidType.Shimmer) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Shimmer"]);
             else c = c.AlphaBlend(WorldConfiguration.GlobalColors["Water"]);
 
-            if (liquidGrayscale)
-                c = GrayscaleManager.ToGrayscale(c);
+            if (liquidDarken)
+                c = DarkenColor(c);
         }
 
         if (tile.WireRed && showRedWire)
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire"]);
 
-            if (redWireGrayscale)
-                c = GrayscaleManager.ToGrayscale(c);
+            if (redWireDarken)
+                c = DarkenColor(c);
         }
         if (tile.WireBlue && showBlueWire)
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire1"]);
 
-            if (blueWireGrayscale)
-                c = GrayscaleManager.ToGrayscale(c);
+            if (blueWireDarken)
+                c = DarkenColor(c);
         }
         if (tile.WireGreen && showGreenWire)
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire2"]);
 
-            if (greenWireGrayscale)
-                c = GrayscaleManager.ToGrayscale(c);
+            if (greenWireDarken)
+                c = DarkenColor(c);
         }
         if (tile.WireYellow && showYellowWire)
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire3"]);
 
-            if (yellowWireGrayscale)
-                c = GrayscaleManager.ToGrayscale(c);
+            if (yellowWireDarken)
+                c = DarkenColor(c);
         }
 
         return c;

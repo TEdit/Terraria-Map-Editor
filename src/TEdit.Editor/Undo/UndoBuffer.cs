@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Terraria;
 
@@ -127,14 +127,8 @@ public class UndoBuffer : IDisposable
         var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
         var tileFrameImportant = world?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
-        int maxTileId = ushort.MaxValue;
-        int maxWallId = ushort.MaxValue;
-        var saveVersions = WorldConfiguration.SaveConfiguration?.SaveVersions;
-        if (saveVersions != null && (int)version < saveVersions.Count)
-        {
-            maxTileId = saveVersions[(int)version].MaxTileId;
-            maxWallId = saveVersions[(int)version].MaxWallId;
-        }
+        int maxTileId = WorldConfiguration.SaveConfiguration.GetData(version).MaxTileId;
+        int maxWallId = WorldConfiguration.SaveConfiguration.GetData(version).MaxWallId;
 
         lock (UndoSaveLock)
         {
@@ -193,7 +187,7 @@ public class UndoBuffer : IDisposable
         SaveTileData();
         World.SaveChests(Chests, _writer, (int)version);
         World.SaveSigns(Signs, _writer, (int)version);
-        World.SaveTileEntities(TileEntities, _writer);
+        World.SaveTileEntities(TileEntities, _writer, version);
         _writer.BaseStream.Position = (long)0;
         _writer.Write(_uniqueTileGroupsWritten);
         _writer.Close();

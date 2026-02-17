@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System.Collections;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -7,14 +8,54 @@ namespace TEdit.UI.Xaml;
 
 public class FilteredComboBox : ComboBox
 {
+    static FilteredComboBox()
+    {
+        // Enable virtualization for the dropdown items
+        ItemsPanelProperty.OverrideMetadata(
+            typeof(FilteredComboBox),
+            new FrameworkPropertyMetadata(CreateVirtualizingItemsPanel()));
+    }
+
+    private static ItemsPanelTemplate CreateVirtualizingItemsPanel()
+    {
+        var factory = new FrameworkElementFactory(typeof(VirtualizingStackPanel));
+        factory.SetValue(VirtualizingPanel.IsVirtualizingProperty, true);
+        factory.SetValue(VirtualizingPanel.VirtualizationModeProperty, VirtualizationMode.Recycling);
+        return new ItemsPanelTemplate(factory);
+    }
+
+    /// <summary>
+    /// Dot-delimited property path used for filtering (e.g. "Value.Name").
+    /// When not set, falls back to ToString().
+    /// </summary>
+    public static readonly DependencyProperty FilterMemberPathProperty =
+        DependencyProperty.Register(nameof(FilterMemberPath), typeof(string), typeof(FilteredComboBox),
+            new PropertyMetadata(null));
+
+    public string FilterMemberPath
+    {
+        get => (string)GetValue(FilterMemberPathProperty);
+        set => SetValue(FilterMemberPathProperty, value);
+    }
+
     public FilteredComboBox()
     {
         SetResourceReference(StyleProperty, typeof(ComboBox));
+
+        // Disable built-in auto-complete; we handle filtering ourselves
+        IsTextSearchEnabled = false;
+
+        // Suppress the red validation error border during filtering
+        Validation.SetErrorTemplate(this, new ControlTemplate());
+
+        // Enable virtualization properties on this instance
+        VirtualizingPanel.SetIsVirtualizing(this, true);
+        VirtualizingPanel.SetVirtualizationMode(this, VirtualizationMode.Recycling);
+        VirtualizingPanel.SetScrollUnit(this, ScrollUnit.Pixel);
     }
 
-    private string oldFilter = string.Empty;
-
     private string currentFilter = string.Empty;
+    private bool _isFiltering;
 
     private object SelectedItemWhenDropDownOpened = null;
     private object SelectedValueWhenDropDownOpened = null;
@@ -25,7 +66,17 @@ public class FilteredComboBox : ComboBox
     {
         SelectedItemWhenDropDownOpened = SelectedItem;
         SelectedValueWhenDropDownOpened = SelectedValue;
-        ClearFilter();
+
+        // Clear the filter so all items are visible, then restore selection
+        currentFilter = string.Empty;
+        var savedItem = SelectedItem;
+        var savedValue = SelectedValue;
+        var savedText = Text;
+        RefreshFilter();
+        SelectedItem = savedItem;
+        SelectedValue = savedValue;
+        Text = savedText;
+
         base.OnDropDownOpened(e);
     }
 
@@ -51,95 +102,124 @@ public class FilteredComboBox : ComboBox
         switch (e.Key)
         {
             case Key.Tab:
-                if (Items.Count == 0) { RevertToPrevious(); }
-                else { SelectedIndex = 0; } // pick the first
-                break;
             case Key.Enter:
+                // Commit: pick the first visible item if filtering, then close
+                if (_isFiltering && Items.Count > 0)
+                    SelectedIndex = 0;
                 IsDropDownOpen = false;
+                _isFiltering = false;
+                e.Handled = true;
                 break;
             case Key.Escape:
                 RevertToPrevious();
+                _isFiltering = false;
+                e.Handled = true;
+                break;
+            case Key.Back:
+                if (!IsEditable && _isFiltering && currentFilter.Length > 0)
+                {
+                    currentFilter = currentFilter[..^1];
+                    RefreshFilter();
+                    e.Handled = true;
+                }
+                else
+                {
+                    if (e.Key == Key.Down) IsDropDownOpen = true;
+                    base.OnPreviewKeyDown(e);
+                }
                 break;
             default:
                 if (e.Key == Key.Down) IsDropDownOpen = true;
-
                 base.OnPreviewKeyDown(e);
                 break;
         }
-
-        // Cache text
-        oldFilter = Text;
     }
 
     private void RevertToPrevious()
     {
         IsDropDownOpen = false;
-        if (SelectedItemWhenDropDownOpened == null) // Invalid Selection Crash Fix
+        if (SelectedItemWhenDropDownOpened == null)
         {
             Text = "";
             SelectedValue = 0;
         }
         else
         {
-            Text = this.SelectedItemWhenDropDownOpened.ToString();
+            Text = GetDisplayText(SelectedItemWhenDropDownOpened);
             SelectedValue = SelectedValueWhenDropDownOpened;
         }
     }
 
+    protected override void OnPreviewTextInput(TextCompositionEventArgs e)
+    {
+        // Handle typing for non-editable mode (no PART_EditableTextBox)
+        if (!IsEditable)
+        {
+            _isFiltering = true;
+            currentFilter += e.Text;
+            RefreshFilter();
+            IsDropDownOpen = true;
+            e.Handled = true;
+            return;
+        }
+
+        base.OnPreviewTextInput(e);
+    }
+
     protected override void OnKeyUp(KeyEventArgs e)
     {
+        if (!IsEditable) return; // non-editable filtering handled in OnPreviewTextInput
+
         switch (e.Key)
         {
             case Key.Up:
             case Key.Down:
-                break;
             case Key.Tab:
             case Key.Enter:
-                if (Items.Count == 0) { RevertToPrevious(); }
-                else { SelectedIndex = 0; } // pick the first
+            case Key.Escape:
                 break;
             default:
-                if (Text != oldFilter)
-                {
-                    var temp = Text;
-                    RefreshFilter(); //RefreshFilter will change Text property
-                    Text = temp;
+                _isFiltering = true;
+                currentFilter = Text;
+                RefreshFilter();
 
-                    if (SelectedIndex != -1 && Text != Items[SelectedIndex].ToString())
-                    {
-                        SelectedIndex = -1; //Clear selection. This line will also clear Text property
-                        Text = temp;
-                    }
-
-
-                    IsDropDownOpen = true;
-
-                    EditableTextBox.SelectionStart = int.MaxValue;
-                }
-
-                //automatically select the item when the input text matches it
-                for (int i = 0; i < Items.Count; i++)
-                {
-                    if (Text == Items[i].ToString())
-                        SelectedIndex = i;
-                }
+                // Restore the typed text (RefreshFilter may alter it)
+                Text = currentFilter;
+                IsDropDownOpen = true;
+                EditableTextBox.SelectionStart = int.MaxValue;
 
                 base.OnKeyUp(e);
-                currentFilter = Text;
                 break;
         }
     }
 
     protected override void OnPreviewLostKeyboardFocus(KeyboardFocusChangedEventArgs e)
     {
-        if (Items.Count == 0) { RevertToPrevious(); }
-        ClearFilter();
+        if (_isFiltering && Items.Count == 0)
+            RevertToPrevious();
 
-        //var temp = SelectedIndex;
-        //SelectedIndex = -1;
-        //Text = string.Empty;
-        //SelectedIndex = temp;
+        _isFiltering = false;
+        ClearFilter();
         base.OnPreviewLostKeyboardFocus(e);
+    }
+
+    protected override void OnSelectionChanged(SelectionChangedEventArgs e)
+    {
+        base.OnSelectionChanged(e);
+
+        // When user clicks an item from the dropdown, stop filtering
+        if (_isFiltering && SelectedIndex >= 0)
+        {
+            _isFiltering = false;
+            currentFilter = string.Empty;
+            IsDropDownOpen = false;
+        }
+
+        // Show the friendly display name instead of ToString() (e.g. KeyValuePair shows "[id, name]")
+        if (IsEditable && !_isFiltering && SelectedItem != null && !string.IsNullOrEmpty(FilterMemberPath))
+        {
+            Text = GetFilterText(SelectedItem);
+        }
     }
 
     private void RefreshFilter()
@@ -152,7 +232,6 @@ public class FilteredComboBox : ComboBox
 
     private void ClearFilter()
     {
-        Text = string.Empty;
         currentFilter = string.Empty;
         RefreshFilter();
     }
@@ -160,8 +239,35 @@ public class FilteredComboBox : ComboBox
     private bool FilterItem(object value)
     {
         if (value == null) return false;
-        if (Text.Length == 0) return true;
+        if (currentFilter.Length == 0) return true;
 
-        return value.ToString().ToLower().Contains(Text.ToLower());
+        string displayText = GetFilterText(value);
+        return displayText.Contains(currentFilter, System.StringComparison.OrdinalIgnoreCase);
+    }
+
+    private string GetDisplayText(object value)
+    {
+        if (value == null) return string.Empty;
+        if (!string.IsNullOrEmpty(FilterMemberPath))
+            return GetFilterText(value);
+        return value.ToString() ?? string.Empty;
+    }
+
+    private string GetFilterText(object value)
+    {
+        if (string.IsNullOrEmpty(FilterMemberPath))
+            return value.ToString() ?? string.Empty;
+
+        // Walk dot-delimited property path
+        object current = value;
+        foreach (var segment in FilterMemberPath.Split('.'))
+        {
+            if (current == null) return string.Empty;
+            var prop = current.GetType().GetProperty(segment);
+            if (prop == null) return value.ToString() ?? string.Empty;
+            current = prop.GetValue(current);
+        }
+
+        return current?.ToString() ?? string.Empty;
     }
 }

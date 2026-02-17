@@ -1,129 +1,103 @@
-using TEdit.Common.Reactive;
+using System;
+using ReactiveUI;
+using ReactiveUI.SourceGenerators;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.UI;
 
-public class MouseTile : ObservableObject
+public partial class MouseTile : ReactiveObject
 {
+    [Reactive]
     private TileMouseState _mouseState = new TileMouseState();
-    private Tile _tile;
-    private Vector2Short _uV;
+
+    [Reactive]
     private string _tileExtras;
+
+    [Reactive]
     private string _tileName;
+
+    [Reactive]
     private string _wallName;
+
+    [Reactive]
     private string _paint;
 
-    public TileMouseState MouseState
+    [Reactive]
+    private Vector2Short _uV;
+
+    [Reactive]
+    private Tile _tile;
+
+    public MouseTile()
     {
-        get { return _mouseState; }
-        set { Set(nameof(MouseState), ref _mouseState, value); }
+        this.WhenAnyValue(x => x.Tile)
+            .Subscribe(tile =>
+            {
+                if (tile == null) return;
+                UpdateTileInfo(tile);
+            });
     }
 
-    public string WallName
+    private void UpdateTileInfo(Tile tile)
     {
-        get { return _wallName; }
-        set { Set(nameof(WallName), ref _wallName, value); }
-    }
-
-    public string TileName
-    {
-        get { return _tileName; }
-        set { Set(nameof(TileName), ref _tileName, value); }
-    }
-
-    public string Paint
-    {
-        get { return _paint; }
-        set { Set(nameof(Paint), ref _paint, value); }
-    }
-
-    public string TileExtras
-    {
-        get { return _tileExtras; }
-        set { Set(nameof(TileExtras), ref _tileExtras, value); }
-    }
-
-    public Vector2Short UV
-    {
-        get { return _uV; }
-        set { Set(nameof(UV), ref _uV, value); }
-    }
-
-    public Tile Tile
-    {
-        get { return _tile; }
-        set
+        // Tile name
+        if (WorldConfiguration.TileProperties.Count > tile.Type)
         {
-            Set(nameof(Tile), ref _tile, value);
+            var tileProperty = WorldConfiguration.TileProperties[tile.Type];
+            TileName = tile.IsActive ? $"{tileProperty.Name} ({tile.Type})" : "[empty]";
+        }
+        else
+        {
+            TileName = $"INVALID TILE ({tile.Type})";
+        }
 
-            if (WorldConfiguration.TileProperties.Count > _tile.Type)
-            {
-                Terraria.Objects.TileProperty tileProperty = WorldConfiguration.TileProperties[_tile.Type];
-                TileName = tileProperty.Name;
+        // Wall name
+        if (WorldConfiguration.WallProperties.Count > tile.Wall)
+            WallName = $"{WorldConfiguration.WallProperties[tile.Wall].Name} ({tile.Wall})";
+        else
+            WallName = $"INVALID WALL ({tile.Wall})";
 
-                // TODO: add sprite names here
-                TileName = _tile.IsActive ? $"{TileName} ({_tile.Type})" : "[empty]";
-            }
-            else
-                TileName = $"INVALID TILE ({_tile.Type})";
+        // UV
+        UV = new Vector2Short(tile.U, tile.V);
 
-            if (WorldConfiguration.WallProperties.Count > _tile.Wall)
-                WallName = $"{WorldConfiguration.WallProperties[_tile.Wall].Name} ({_tile.Wall})";
-            else
-                WallName = $"INVALID WALL ({_tile.Wall})";
+        // Extras
+        var extras = tile.LiquidAmount > 0
+            ? $"{tile.LiquidType}: {tile.LiquidAmount}"
+            : string.Empty;
 
-            UV = new Vector2Short(_tile.U, _tile.V);
-            if (_tile.LiquidAmount > 0)
-            {
-                TileExtras = $"{_tile.LiquidType}: {_tile.LiquidAmount}";
-            }
-            else
-                TileExtras = string.Empty;
+        if (tile.InActive)
+            extras += " Inactive";
 
-            if (_tile.TileColor > 0)
-            {
-                if (_tile.WallColor > 0)
-                    Paint =
-                        $"Tile: {WorldConfiguration.PaintProperties[_tile.TileColor].Name}, Wall: {WorldConfiguration.PaintProperties[_tile.WallColor].Name}";
-                else
-                    Paint = $"Tile: {WorldConfiguration.PaintProperties[_tile.TileColor].Name}";
-            }
-            else if (_tile.WallColor > 0)
-            {
-                Paint = $"Wall: {WorldConfiguration.PaintProperties[_tile.WallColor].Name}";
-            }
-            else
-            {
-                Paint = "None";
-            }
+        if (tile.Actuator)
+            extras += " Actuator";
 
-            if (_tile.InActive)
-            {
-                TileExtras += " Inactive";
-            }
+        if (tile.WireRed || tile.WireBlue || tile.WireGreen || tile.WireYellow)
+        {
+            extras += string.IsNullOrWhiteSpace(extras) ? "Wire " : ", Wire ";
+            if (tile.WireRed) extras += "R";
+            if (tile.WireGreen) extras += "G";
+            if (tile.WireBlue) extras += "B";
+            if (tile.WireYellow) extras += "Y";
+        }
 
-            if (_tile.Actuator)
-            {
-                TileExtras += " Actuator";
-            }
+        TileExtras = extras;
 
-            if (_tile.WireRed || _tile.WireBlue || _tile.WireGreen || _tile.WireYellow)
-            {
-                if (!string.IsNullOrWhiteSpace(TileExtras))
-                    TileExtras += ", Wire ";
-                else
-                    TileExtras += "Wire ";
-                if (_tile.WireRed)
-                    TileExtras += "R";
-                if (_tile.WireGreen)
-                    TileExtras += "G";
-                if (_tile.WireBlue)
-                    TileExtras += "B";
-                if (_tile.WireYellow)
-                    TileExtras += "Y";
-            }
+        // Paint
+        if (tile.TileColor > 0)
+        {
+            Paint = tile.WallColor > 0
+                ? $"Tile: {WorldConfiguration.PaintProperties[tile.TileColor].Name}, Wall: {WorldConfiguration.PaintProperties[tile.WallColor].Name}"
+                : $"Tile: {WorldConfiguration.PaintProperties[tile.TileColor].Name}";
+        }
+        else if (tile.WallColor > 0)
+        {
+            Paint = $"Wall: {WorldConfiguration.PaintProperties[tile.WallColor].Name}";
+        }
+        else
+        {
+            Paint = "None";
         }
     }
 }

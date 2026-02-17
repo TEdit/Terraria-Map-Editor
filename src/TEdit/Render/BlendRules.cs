@@ -248,8 +248,16 @@ class BlendRules
     //Given a set of masks and a strictness, follow the rules until the proper UV is obtained
     public Vector2Int32 GetUVForMasks(uint neighborMask, uint blendMask, int ruleStrictness)
     {
+        return GetUVForMasks(neighborMask, blendMask, ruleStrictness, randomVariation.Next(3));
+    }
+
+    //Overload with deterministic variant selection (0-2) instead of random.
+    //UVPosSet has 3 entries (indices 0-2). Terraria's TileFrameCosmetic uses switch with case 0, case 1,
+    //and default — so phlebas/lazure values 2 and 3 both map to the third variant (index 2).
+    public Vector2Int32 GetUVForMasks(uint neighborMask, uint blendMask, int ruleStrictness, int variant)
+    {
         int bucketId = (int)(((neighborMask & 0x00001000) >> 9) + ((neighborMask & 0x00000100) >> 6) + ((neighborMask & 0x00000010) >> 3) + (neighborMask & 0x00000001));
-        int variationId = randomVariation.Next(3);
+        int variationId = Math.Min(variant, 2);
         switch (ruleStrictness)
         {
             case 0:

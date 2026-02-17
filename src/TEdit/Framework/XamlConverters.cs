@@ -1,9 +1,11 @@
-﻿
+
 using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using TEdit.Common;
+using TEdit.Properties;
+using TEdit.Terraria;
 
 namespace TEdit.Converters;
 
@@ -156,4 +158,45 @@ public class DoublePercentageConverter : IValueConverter
     }
 
     #endregion
+}
+
+public class TeamIndexToNameConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is int index && index >= 0 && index < World.TeamNames.Length)
+        {
+            string key = $"TeamSpawn_{World.TeamNames[index]}";
+            string localized = Properties.Language.ResourceManager.GetString(key, culture);
+            return $"{localized ?? World.TeamNames[index]}:";
+        }
+
+        return $"Team {value}:";
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return DependencyProperty.UnsetValue;
+    }
+}
+
+public class BoolToVisibilityConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is bool boolValue)
+        {
+            return boolValue ? Visibility.Visible : Visibility.Collapsed;
+        }
+        return Visibility.Collapsed;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is Visibility visibility)
+        {
+            return visibility == Visibility.Visible;
+        }
+        return false;
+    }
 }

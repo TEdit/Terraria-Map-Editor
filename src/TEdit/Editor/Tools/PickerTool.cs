@@ -7,8 +7,9 @@ using TEdit.Geometry;
 using System.Collections.Generic;
 using TEdit.Terraria.Objects;
 using TEdit.Terraria.Editor;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.UI;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -18,32 +19,27 @@ public sealed class PickerTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/eyedropper.png"));
+        SymbolIcon = SymbolRegular.Eyedropper24;
         ToolType = ToolType.Pixel;
         Name = "Picker";
     }
 
     public override void MouseDown(TileMouseState e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed)
-        {
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.draw"))
             PickTile(e.Location.X, e.Location.Y);
-        }
-        else if (e.RightButton == MouseButtonState.Pressed)
-        {
+        else if (actions.Contains("editor.secondary"))
             PickmaskTile(e.Location.X, e.Location.Y);
-        }
     }
 
     public override void MouseMove(TileMouseState e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed)
-        {
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.draw"))
             PickTile(e.Location.X, e.Location.Y);
-        }
-        else if (e.RightButton == MouseButtonState.Pressed)
-        {
+        else if (actions.Contains("editor.secondary"))
             PickmaskTile(e.Location.X, e.Location.Y);
-        }
     }
 
     private void PickTile(int x, int y)
@@ -90,6 +86,12 @@ public sealed class PickerTool : BaseTool
         _wvm.TilePicker.YellowWireActive = curTile.WireYellow;
         _wvm.TilePicker.Actuator = curTile.Actuator;
         _wvm.TilePicker.ActuatorInActive = curTile.InActive;
+        _wvm.TilePicker.TileCoatingEcho = curTile.InvisibleBlock;
+        _wvm.TilePicker.TileCoatingIlluminant = curTile.FullBrightBlock;
+        _wvm.TilePicker.WallCoatingEcho = curTile.InvisibleWall;
+        _wvm.TilePicker.WallCoatingIlluminant = curTile.FullBrightWall;
+        _wvm.TilePicker.EnableTileCoating = curTile.InvisibleBlock || curTile.FullBrightBlock;
+        _wvm.TilePicker.EnableWallCoating = curTile.InvisibleWall || curTile.FullBrightWall;
 
         // Get Picker For JunctionBoxes.
         if (curTile.Type != 424)

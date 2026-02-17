@@ -5,9 +5,10 @@ using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Geometry;
 using TEdit.Render;
-using TEdit.Configuration;
+using TEdit.Terraria;
 using TEdit.UI;
 using TEdit.Common.Geometry;
+using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;
 
@@ -23,18 +24,19 @@ public sealed class FillTool : BaseTool
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintcan.png"));
+        SymbolIcon = SymbolRegular.PaintBucket24;
         Name = "Fill";
         ToolType = ToolType.Pixel;
     }
 
     public override void MouseDown(TileMouseState e)
     {
-        if (e.LeftButton == MouseButtonState.Pressed && 
-            (_wvm.TilePicker.PaintMode == PaintMode.TileAndWall || 
+        var actions = GetActiveActions(e);
+        if (actions.Contains("editor.draw") &&
+            (_wvm.TilePicker.PaintMode == PaintMode.TileAndWall ||
              _wvm.TilePicker.PaintMode == PaintMode.Liquid))
         {
             Flood(e.Location);
-            //_wvm.UpdateRenderRegion(new Rectangle(_minX, _minY, _maxX - _minX + 1, _maxY - _minY + 1));
             _wvm.UndoManager.SaveUndo();
         }
     }
