@@ -214,6 +214,13 @@ public partial class App : Application
         FileMaintenance.LogWorldBackupFiles();
         ErrorLogging.Log($"[Startup] LogWorldBackupFiles: {sw.ElapsedMilliseconds}ms");
 
+        sw.Restart();
+        if (!string.IsNullOrEmpty(DependencyChecker.PathToWorlds))
+        {
+            FileMaintenance.MigrateLegacyTEditBackups(DependencyChecker.PathToWorlds, ViewModel.WorldViewModel.BackupPath);
+        }
+        ErrorLogging.Log($"[Startup] MigrateLegacyBackups: {sw.ElapsedMilliseconds}ms");
+
         if (e.Args != null && e.Args.Count() > 0)
         {
             ErrorLogging.Log($"Command Line Open: {e.Args[0]}");

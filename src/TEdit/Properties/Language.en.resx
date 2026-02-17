@@ -497,6 +497,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>Backgrounds</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>Buff Radii</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Layout Grid</value>
   </data>
@@ -505,9 +508,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>Points of Interest</value>
-  </data>
-  <data name="menu_layers_buff_radii" xml:space="preserve">
-    <value>Buff Radii</value>
   </data>
   <data name="menu_layers_textures" xml:space="preserve">
     <value>Textures</value>
@@ -1861,5 +1861,29 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
+  </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>World Explorer...</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>World Explorer</value>
+  </data>
+  <data name="world_explorer_tab_worlds" xml:space="preserve">
+    <value>Worlds</value>
+  </data>
+  <data name="world_explorer_tab_backups" xml:space="preserve">
+    <value>Backups &amp; Autosaves</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>Unpin</value>
   </data>
 </root>

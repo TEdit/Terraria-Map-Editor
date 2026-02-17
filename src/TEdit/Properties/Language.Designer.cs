@@ -791,6 +791,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to World Explorer....
+        /// </summary>
+        public static string menu_file_worlds {
+            get {
+                return ResourceManager.GetString("menu_file_worlds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string menu_filter {
@@ -5226,6 +5235,69 @@ namespace TEdit.Properties {
         public static string WireReplaceMode_Yellow {
             get {
                 return ResourceManager.GetString("WireReplaceMode_Yellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string world_explorer_delete {
+            get {
+                return ResourceManager.GetString("world_explorer_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string world_explorer_open {
+            get {
+                return ResourceManager.GetString("world_explorer_open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pin.
+        /// </summary>
+        public static string world_explorer_pin {
+            get {
+                return ResourceManager.GetString("world_explorer_pin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backups &amp; Autosaves.
+        /// </summary>
+        public static string world_explorer_tab_backups {
+            get {
+                return ResourceManager.GetString("world_explorer_tab_backups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Worlds.
+        /// </summary>
+        public static string world_explorer_tab_worlds {
+            get {
+                return ResourceManager.GetString("world_explorer_tab_worlds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Explorer.
+        /// </summary>
+        public static string world_explorer_title {
+            get {
+                return ResourceManager.GetString("world_explorer_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unpin.
+        /// </summary>
+        public static string world_explorer_unpin {
+            get {
+                return ResourceManager.GetString("world_explorer_unpin", resourceCulture);
             }
         }
         

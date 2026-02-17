@@ -1,12 +1,25 @@
 using System;
 using System.IO;
 using System.Linq;
+using TEdit.Common;
 using TEdit.ViewModel;
 
 namespace TEdit.Utility;
 
 public static class FileMaintenance
 {
+    /// <summary>
+    /// Strips backup extensions (.TEdit, .bak, .autosave, .tmp) iteratively until a .wld file remains.
+    /// </summary>
+    public static string NormalizeWorldFilePath(string filename) =>
+        FilePathUtility.NormalizeWorldFilePath(filename);
+
+    /// <summary>
+    /// Returns true if the file has a backup extension (.TEdit, .bak, .autosave, .tmp).
+    /// </summary>
+    public static bool IsBackupFile(string filename) =>
+        FilePathUtility.IsBackupFile(filename);
+
     public static void CleanupOldAutosaves()
     {
         try
@@ -79,37 +92,39 @@ public static class FileMaintenance
         }
     }
 
-    public static void CleanupOldWorldBackups(string worldFilePath)
+    /// <summary>
+    /// Cleans up old world backups in the backup directory, keeping only the newest N.
+    /// Looks for files matching pattern: WorldBaseName.YYYYMMDDHHMMSS.wld
+    /// </summary>
+    public static void CleanupOldWorldBackups(string worldBaseName, string backupPath, int maxBackups)
     {
         try
         {
-            if (!File.Exists(worldFilePath))
+            if (!Directory.Exists(backupPath))
                 return;
 
-            string directory = Path.GetDirectoryName(worldFilePath);
-            string baseFilename = Path.GetFileName(worldFilePath);
-
-            var backupFiles = Directory.GetFiles(directory, baseFilename + ".*.TEdit")
+            var backupFiles = Directory.GetFiles(backupPath, worldBaseName + ".*.wld")
                 .Where(f =>
                 {
-                    string pattern = baseFilename + ".";
-                    string remaining = Path.GetFileName(f).Substring(pattern.Length);
-                    return remaining.Length >= 14 &&
-                           remaining.Substring(0, 14).All(char.IsDigit) &&
-                           remaining.EndsWith(".TEdit", StringComparison.OrdinalIgnoreCase);
+                    string name = Path.GetFileNameWithoutExtension(f);
+                    string prefix = worldBaseName + ".";
+                    if (!name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                        return false;
+                    string timestamp = name.Substring(prefix.Length);
+                    return timestamp.Length == 14 && timestamp.All(char.IsDigit);
                 })
+                .OrderByDescending(f => Path.GetFileNameWithoutExtension(f))
                 .ToList();
 
-            if (backupFiles.Count > 0)
-            {
-                long totalBackupSize = backupFiles.Sum(f => new FileInfo(f).Length);
-                ErrorLogging.Log($"Found {backupFiles.Count} old timestamped backup(s) for {baseFilename} using {FormatFileSize(totalBackupSize)}");
-            }
+            if (backupFiles.Count <= maxBackups)
+                return;
+
+            var toDelete = backupFiles.Skip(maxBackups).ToList();
 
             int deletedCount = 0;
             long deletedSize = 0;
 
-            foreach (var file in backupFiles)
+            foreach (var file in toDelete)
             {
                 try
                 {
@@ -127,8 +142,70 @@ public static class FileMaintenance
 
             if (deletedCount > 0)
             {
-                ErrorLogging.Log($"Backup cleanup complete: Deleted {deletedCount} old backup(s), freed {FormatFileSize(deletedSize)}");
+                ErrorLogging.Log($"Backup cleanup complete: Deleted {deletedCount} old backup(s) for {worldBaseName}, freed {FormatFileSize(deletedSize)}");
             }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+    }
+
+    /// <summary>
+    /// Migrates legacy .TEdit backup files from next to world files into the centralized backup directory.
+    /// </summary>
+    public static void MigrateLegacyTEditBackups(string worldsPath, string backupPath)
+    {
+        try
+        {
+            if (!Directory.Exists(worldsPath))
+                return;
+
+            if (!Directory.Exists(backupPath))
+                Directory.CreateDirectory(backupPath);
+
+            var legacyFiles = Directory.GetFiles(worldsPath, "*.TEdit", SearchOption.TopDirectoryOnly).ToList();
+
+            if (legacyFiles.Count == 0)
+                return;
+
+            ErrorLogging.Log($"Migrating {legacyFiles.Count} legacy .TEdit backup(s) to {backupPath}");
+
+            int migratedCount = 0;
+            foreach (var legacyFile in legacyFiles)
+            {
+                try
+                {
+                    string fileName = Path.GetFileName(legacyFile);
+                    // Strip all backup extensions to get the world base name
+                    string worldBaseName = Path.GetFileNameWithoutExtension(NormalizeWorldFilePath(fileName));
+
+                    // Use file modification time for the timestamp
+                    var modTime = File.GetLastWriteTimeUtc(legacyFile);
+                    string timestamp = modTime.ToString("yyyyMMddHHmmss");
+
+                    string destPath = Path.Combine(backupPath, $"{worldBaseName}.{timestamp}.wld");
+
+                    if (File.Exists(destPath))
+                    {
+                        // Duplicate timestamp — delete legacy file
+                        File.Delete(legacyFile);
+                        ErrorLogging.Log($"Deleted duplicate legacy backup: {fileName}");
+                    }
+                    else
+                    {
+                        File.Move(legacyFile, destPath);
+                        ErrorLogging.Log($"Migrated legacy backup: {fileName} -> {Path.GetFileName(destPath)}");
+                    }
+                    migratedCount++;
+                }
+                catch (Exception ex)
+                {
+                    ErrorLogging.Log($"Failed to migrate {Path.GetFileName(legacyFile)}: {ex.Message}");
+                }
+            }
+
+            ErrorLogging.Log($"Legacy backup migration complete: {migratedCount} file(s) processed");
         }
         catch (Exception ex)
         {
@@ -196,16 +273,6 @@ public static class FileMaintenance
         }
     }
 
-    public static string FormatFileSize(long bytes)
-    {
-        string[] sizes = { "B", "KB", "MB", "GB", "TB" };
-        double len = bytes;
-        int order = 0;
-        while (len >= 1024 && order < sizes.Length - 1)
-        {
-            order++;
-            len = len / 1024;
-        }
-        return $"{len:0.##} {sizes[order]}";
-    }
+    public static string FormatFileSize(long bytes) =>
+        FilePathUtility.FormatFileSize(bytes);
 }

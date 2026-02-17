@@ -357,6 +357,80 @@ public partial class World
         return status;
     }
 
+    /// <summary>
+    /// Reads only the world header (title, version, dimensions, etc.) without loading tiles/chests/NPCs.
+    /// Returns null if the file cannot be read.
+    /// </summary>
+    public static WorldHeaderInfo ReadWorldHeader(string filename)
+    {
+        lock (_fileLock)
+        {
+            try
+            {
+                var fi = new FileInfo(filename);
+                if (!fi.Exists) return null;
+
+                var w = new World();
+
+                using var fs = File.OpenRead(filename);
+                Stream stream = fs;
+                if (ConsoleCompressor.IsCompressed(fs))
+                {
+                    stream = ConsoleCompressor.DecompressStream(fs);
+                }
+
+                using var b = new BinaryReader(stream);
+
+                string twldPath = Path.Combine(
+                    Path.GetDirectoryName(filename),
+                    Path.GetFileNameWithoutExtension(filename) + ".twld");
+                w.IsTModLoader = File.Exists(twldPath);
+
+                w.Version = b.ReadUInt32();
+
+                if (w.Version > 87)
+                {
+                    // Reset stream and load section header
+                    b.BaseStream.Position = 0;
+                    if (!LoadSectionHeader(b, out _, out var sectionPointers, w))
+                        return null;
+
+                    // Load header flags (title, dimensions, etc.)
+                    LoadHeaderFlags(b, w, sectionPointers[0]);
+                }
+                else
+                {
+                    // Legacy format - read basic info
+                    if (w.Version <= 38)
+                    {
+                        var pos = b.BaseStream.Position;
+                        w.Title = b.ReadString();
+                        b.BaseStream.Position = pos;
+                    }
+                }
+
+                return new WorldHeaderInfo(
+                    Title: w.Title ?? Path.GetFileNameWithoutExtension(filename),
+                    Version: w.Version,
+                    TilesWide: w.TilesWide,
+                    TilesHigh: w.TilesHigh,
+                    LastSave: fi.LastWriteTimeUtc,
+                    FileSizeBytes: fi.Length,
+                    FilePath: filename,
+                    IsTModLoader: w.IsTModLoader,
+                    IsFavorite: w.IsFavorite,
+                    IsCrimson: w.IsCrimson,
+                    GameMode: w.GameMode,
+                    IsHardMode: w.HardMode,
+                    Seed: w.Seed ?? "");
+            }
+            catch
+            {
+                return null;
+            }
+        }
+    }
+
     public static Task<(World World, Exception Error)> LoadWorldAsync(string filename, bool headersOnly = false, IProgress<ProgressChangedEventArgs>? progress = null)
         => Task.Run(() => LoadWorld(filename, headersOnly, progress));
 

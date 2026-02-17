@@ -95,3 +95,14 @@ public class StringNotEmptyConverter : IValueConverter
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
         throw new NotSupportedException();
 }
+
+public class PinIconConverter : IValueConverter
+{
+    public static readonly PinIconConverter Instance = new();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
+        value is true ? "\u2605" : "\u2606"; // ★ vs ☆
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}

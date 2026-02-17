@@ -27,6 +27,9 @@ public class UserSettings : INotifyPropertyChanged
     private bool _showBuffRadii = false;
     private FilterManager.FilterMode _filterMode = FilterManager.FilterMode.Darken;
     private int _filterDarkenAmount = 60;
+    private int _maxBackups = 10;
+    private List<string> _pinnedWorlds = new();
+    private List<string> _recentWorlds = new();
     private Dictionary<string, List<InputBinding>> _inputBindings = new();
 
     public string TerrariaPath
@@ -125,6 +128,24 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _filterDarkenAmount;
         set => SetField(ref _filterDarkenAmount, Math.Clamp(value, 0, 100));
+    }
+
+    public int MaxBackups
+    {
+        get => _maxBackups;
+        set => SetField(ref _maxBackups, Math.Clamp(value, 1, 50));
+    }
+
+    public List<string> PinnedWorlds
+    {
+        get => _pinnedWorlds;
+        set => SetField(ref _pinnedWorlds, value ?? new());
+    }
+
+    public List<string> RecentWorlds
+    {
+        get => _recentWorlds;
+        set => SetField(ref _recentWorlds, value ?? new());
     }
 
     [JsonConverter(typeof(InputBindingsDictionaryJsonConverter))]

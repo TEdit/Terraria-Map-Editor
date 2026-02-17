@@ -62,6 +62,8 @@ public partial class WorldViewModel : ReactiveObject
     private ITool _activeTool;
     private bool _checkUpdates;
     private string _currentFile;
+    private bool _loadedFromBackup;
+    private string _originalBackupPath;
     public static World _currentWorld;
     private ClipboardManager _clipboard;
     private bool _isAutoSaveEnabled = true;
@@ -155,6 +157,10 @@ public partial class WorldViewModel : ReactiveObject
         if (!Directory.Exists(AutoSavePath))
         {
             Directory.CreateDirectory(AutoSavePath);
+        }
+        if (!Directory.Exists(BackupPath))
+        {
+            Directory.CreateDirectory(BackupPath);
         }
     }
 
@@ -880,6 +886,11 @@ public partial class WorldViewModel : ReactiveObject
         get { return Path.Combine(TempPath, "autosave"); }
     }
 
+    public static string BackupPath
+    {
+        get { return Path.Combine(TempPath, "backups"); }
+    }
+
     public int SelectedTabIndex
     {
         get { return _selectedTabIndex; }
@@ -1549,11 +1560,19 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (IsAutoSaveEnabled && HasUnsavedChanges)
         {
-            if (!string.IsNullOrWhiteSpace(CurrentFile))
-                _ = SaveWorldThreadedAsync(Path.Combine(AutoSavePath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"), GetSaveVersion_MaxConfig());
-            else
-                _ = SaveWorldThreadedAsync(Path.Combine(AutoSavePath, "newworld.autosave.tmp"), GetSaveVersion_MaxConfig());
+            string baseName = GetWorldBaseName();
+            _ = SaveWorldThreadedAsync(Path.Combine(AutoSavePath, baseName + ".autosave"), GetSaveVersion_MaxConfig());
         }
+    }
+
+    private string GetWorldBaseName()
+    {
+        if (!string.IsNullOrWhiteSpace(CurrentFile))
+        {
+            string normalized = Utility.FileMaintenance.NormalizeWorldFilePath(CurrentFile);
+            return Path.GetFileNameWithoutExtension(normalized);
+        }
+        return "newworld";
     }
 
     private void OnWorldPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -2387,7 +2406,17 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (CurrentWorld == null)
             return;
-        if (CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
+
+        // If loaded from backup and canonical .wld doesn't exist, prompt Save As
+        if (_loadedFromBackup && !File.Exists(CurrentFile))
+        {
+            _loadedFromBackup = false;
+            _originalBackupPath = null;
+            await SaveWorldAsAsync();
+            return;
+        }
+
+        if (File.Exists(CurrentFile) && CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
         {
             var overwriteResult = await App.DialogService.ShowMessageAsync(
                 _currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?",
@@ -2399,6 +2428,8 @@ public partial class WorldViewModel : ReactiveObject
                 return;
         }
 
+        _loadedFromBackup = false;
+        _originalBackupPath = null;
         await SaveWorldThreadedAsync(CurrentFile, GetSaveVersion_MaxConfig(version));
     }
 
@@ -2436,25 +2467,11 @@ public partial class WorldViewModel : ReactiveObject
         {
             if (t.IsCompletedSuccessfully && _undoManager != null)
             {
-                bool isAutosave = filename.EndsWith(".autosave.tmp", StringComparison.OrdinalIgnoreCase);
+                bool isAutosave = filename.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase);
 
                 if (isAutosave)
                 {
-                    // Autosave: atomically rename temp file to final autosave file
-                    try
-                    {
-                        string finalPath = filename.Substring(0, filename.Length - 4); // Remove ".tmp"
-
-                        // Use File.Move with overwrite for atomic replacement (requires .NET Core 3.0+)
-                        if (File.Exists(finalPath))
-                            File.Delete(finalPath);
-                        File.Move(filename, finalPath);
-                    }
-                    catch (Exception ex)
-                    {
-                        ErrorLogging.LogException(ex);
-                    }
-
+                    // World.SaveAsync handles .tmp → final copy internally, no rename needed here.
                     // Only reset autosave tracking, keep user save tracking
                     _lastSavedUndoIndex = _undoManager.CurrentIndex;
                     _hasUnsavedPropertyChanges = false;
@@ -2516,7 +2533,15 @@ public partial class WorldViewModel : ReactiveObject
         _loadTimer.Reset();
         _loadTimer.Start();
         _saveTimer.Stop();
-        CurrentFile = filename;
+
+        // Detect if opening a backup file and normalize CurrentFile to canonical .wld path
+        bool isBackup = Utility.FileMaintenance.IsBackupFile(filename);
+        string canonicalPath = Utility.FileMaintenance.NormalizeWorldFilePath(filename);
+
+        _loadedFromBackup = isBackup;
+        _originalBackupPath = isBackup ? filename : null;
+        CurrentFile = canonicalPath;
+
         GC.WaitForFullGCComplete();
 
         Task.Run(async () =>
@@ -2611,15 +2636,23 @@ public partial class WorldViewModel : ReactiveObject
                     return null;
             }
 
-            // Create a single backup of the original world file (if it doesn't already exist)
+            // Create a timestamped backup in AppData (only for canonical .wld files, not when opening a backup)
             try
             {
-                string backupPath = filename + ".TEdit";
-                if (!File.Exists(backupPath) && File.Exists(filename))
+                if (!isBackup && File.Exists(filename))
                 {
-                    File.Copy(filename, backupPath, false);
+                    string worldBaseName = Path.GetFileNameWithoutExtension(canonicalPath);
+                    string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmss");
+                    string backupDest = Path.Combine(BackupPath, $"{worldBaseName}.{timestamp}.wld");
+
+                    if (!File.Exists(backupDest))
+                    {
+                        File.Copy(filename, backupDest, false);
+                    }
+
+                    int maxBackups = UserSettingsService.Current.MaxBackups;
+                    FileMaintenance.CleanupOldWorldBackups(worldBaseName, BackupPath, maxBackups);
                 }
-                FileMaintenance.CleanupOldWorldBackups(filename);
             }
             catch (Exception ex)
             {

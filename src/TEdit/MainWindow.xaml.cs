@@ -136,6 +136,12 @@ public partial class MainWindow : FluentWindow
                 _vm.EnableTelemetry = false;
             }
         }
+
+        // Auto-open World Explorer if no file was passed via command line
+        if (Application.Current.Properties["OpenFile"] == null)
+        {
+            Dispatcher.InvokeAsync(() => ShowWorldExplorer(), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+        }
     }
 
     private void HandleKeyUpEvent(object sender, KeyEventArgs e)
@@ -622,6 +628,18 @@ public partial class MainWindow : FluentWindow
         var settingsWindow = new SettingsWindow(_vm);
         settingsWindow.Owner = this;
         settingsWindow.ShowDialog();
+    }
+
+    private void WorldExplorerMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        ShowWorldExplorer();
+    }
+
+    private void ShowWorldExplorer()
+    {
+        var explorerWindow = new WorldExplorerWindow(_vm);
+        explorerWindow.Owner = this;
+        explorerWindow.ShowDialog();
     }
 
 
