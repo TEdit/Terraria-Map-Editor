@@ -308,7 +308,7 @@ public class Textures
 
             if (!File.Exists(texturePath))
             {
-                ErrorLogging.Log($"Missing texture: {path}");
+                ErrorLogging.LogWarn($"Missing texture: {path}");
                 return _defaultTexture;
             }
 
@@ -327,8 +327,8 @@ public class Textures
         }
         catch (Exception err)
         {
-            ErrorLogging.Log($"Failed to load texture: {path}");
-            ErrorLogging.Log(err.Message);
+            ErrorLogging.LogWarn($"Failed to load texture: {path}");
+            ErrorLogging.LogWarn(err.Message);
         }
 
         return _defaultTexture;

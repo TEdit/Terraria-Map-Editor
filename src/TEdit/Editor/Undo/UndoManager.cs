@@ -77,7 +77,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
         {
             if (!Directory.Exists(Dir))
             {
-                ErrorLogging.Log($"Creating Undo cache: {Dir}");
+                ErrorLogging.LogInfo($"Creating Undo cache: {Dir}");
 
                 Directory.CreateDirectory(Dir);
                 File.Create(UndoAliveFile).Close();
@@ -85,7 +85,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
         }
         catch (Exception ex)
         {
-            ErrorLogging.Log("Unable to create undo temp folder.");
+            ErrorLogging.LogWarn("Unable to create undo temp folder.");
             ErrorLogging.LogException(ex);
             System.Windows.Forms.MessageBox.Show($"Unable to create undo temp folder. Application will exit.\r\n{Dir}\r\n{ex.Message}",
                 "Unable to create undo folder.", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
@@ -142,7 +142,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
         {
             foreach (var file in Directory.GetFiles(undoPath).ToList())
             {
-                ErrorLogging.Log($"Removing old undo file: {file}");
+                ErrorLogging.LogDebug($"Removing old undo file: {file}");
                 File.Delete(file);
             }
 
@@ -150,14 +150,14 @@ public partial class UndoManager : ReactiveObject, IDisposable
             {
                 if (!Equals(dir, undoPath) && !IsUndoDirAlive(dir))
                 {
-                    ErrorLogging.Log($"Removing old undo cache: {dir}");
+                    ErrorLogging.LogDebug($"Removing old undo cache: {dir}");
                     Directory.Delete(dir, true);
                 }
             }
 
             if (forceCleanup)
             {
-                ErrorLogging.Log($"Removing undo cache: {undoPath}");
+                ErrorLogging.LogDebug($"Removing undo cache: {undoPath}");
                 Directory.Delete(undoPath, true);
             }
         }

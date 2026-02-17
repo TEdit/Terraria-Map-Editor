@@ -106,25 +106,25 @@ public partial class App : Application
 
         var splashScreen = new SplashScreen("Images/te5-logo.png");
         splashScreen.Show(autoClose: true, topMost: true);
-        ErrorLogging.Log($"[Startup] SplashScreen.Show: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] SplashScreen.Show: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         // Initialize WPF UI theme
         ApplicationThemeManager.Apply(ApplicationTheme.Dark);
         ApplicationAccentColorManager.Apply(System.Windows.Media.Color.FromRgb(0x00, 0xA0, 0x00), ApplicationTheme.Dark);
-        ErrorLogging.Log($"[Startup] Theme init: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] Theme init: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         // Read settings immediately.
         LoadAppSettings();
-        ErrorLogging.Log($"[Startup] LoadAppSettings: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] LoadAppSettings: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         // Enable cross-thread access to Sprites2 collection (modified on graphics thread, bound to UI)
         BindingOperations.EnableCollectionSynchronization(
             WorldConfiguration.Sprites2,
             WorldConfiguration.Sprites2Lock);
-        ErrorLogging.Log($"[Startup] WorldConfiguration.Sprites2 init: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] WorldConfiguration.Sprites2 init: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         Version = SemVersion.Parse(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion, SemVersionStyles.Any);
@@ -132,7 +132,7 @@ public partial class App : Application
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         ErrorLogging.Log($"Starting TEdit {ErrorLogging.Version}");
         ErrorLogging.Log($"OS: {Environment.OSVersion}");
-        ErrorLogging.Log($"[Startup] ErrorLogging init: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] ErrorLogging init: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         try
@@ -141,10 +141,10 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            ErrorLogging.Log("Failed to verify OS Version. TEdit may not run properly.");
+            ErrorLogging.LogWarn("Failed to verify OS Version. TEdit may not run properly.");
             ErrorLogging.LogException(ex);
         }
-        ErrorLogging.Log($"[Startup] GetOsVersion: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] GetOsVersion: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         try
@@ -153,10 +153,10 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            ErrorLogging.Log("Failed to verify .Net Framework Version. TEdit may not run properly.");
+            ErrorLogging.LogWarn("Failed to verify .Net Framework Version. TEdit may not run properly.");
             ErrorLogging.LogException(ex);
         }
-        ErrorLogging.Log($"[Startup] GetDotNetVersion: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] GetDotNetVersion: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         try
@@ -164,15 +164,15 @@ public partial class App : Application
             int directXMajorVersion = DependencyChecker.GetDirectXMajorVersion();
             if (directXMajorVersion < 11)
             {
-                ErrorLogging.Log($"DirectX {directXMajorVersion} unsupported. DirectX 11 or higher is required.");
+                ErrorLogging.LogWarn($"DirectX {directXMajorVersion} unsupported. DirectX 11 or higher is required.");
             }
         }
         catch (Exception ex)
         {
-            ErrorLogging.Log("Failed to verify DirectX Version. TEdit may not run properly.");
+            ErrorLogging.LogWarn("Failed to verify DirectX Version. TEdit may not run properly.");
             ErrorLogging.LogException(ex);
         }
-        ErrorLogging.Log($"[Startup] GetDirectXVersion: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] GetDirectXVersion: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         try
@@ -181,17 +181,17 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            ErrorLogging.Log("Failed to verify Terraria Paths. TEdit may not run properly.");
+            ErrorLogging.LogWarn("Failed to verify Terraria Paths. TEdit may not run properly.");
             ErrorLogging.LogException(ex);
         }
-        ErrorLogging.Log($"[Startup] CheckPaths: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] CheckPaths: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         try
         {
             if (!DependencyChecker.VerifyTerraria())
             {
-                ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
+                ErrorLogging.LogWarn("Unable to locate Terraria. No texture data will be available.");
             }
             else
             {
@@ -201,25 +201,25 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            ErrorLogging.Log("Failed to verify Terraria Paths. No texture data will be available.");
+            ErrorLogging.LogWarn("Failed to verify Terraria Paths. No texture data will be available.");
             ErrorLogging.LogException(ex);
         }
-        ErrorLogging.Log($"[Startup] VerifyTerraria: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] VerifyTerraria: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         FileMaintenance.CleanupOldAutosaves();
-        ErrorLogging.Log($"[Startup] CleanupOldAutosaves: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] CleanupOldAutosaves: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         FileMaintenance.LogWorldBackupFiles();
-        ErrorLogging.Log($"[Startup] LogWorldBackupFiles: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] LogWorldBackupFiles: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
         if (!string.IsNullOrEmpty(DependencyChecker.PathToWorlds))
         {
             FileMaintenance.MigrateLegacyTEditBackups(DependencyChecker.PathToWorlds, ViewModel.WorldViewModel.BackupPath);
         }
-        ErrorLogging.Log($"[Startup] MigrateLegacyBackups: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] MigrateLegacyBackups: {sw.ElapsedMilliseconds}ms");
 
         if (e.Args != null && e.Args.Count() > 0)
         {
@@ -230,7 +230,7 @@ public partial class App : Application
         sw.Restart();
         DispatcherHelper.Initialize();
         TaskFactoryHelper.Initialize();
-        ErrorLogging.Log($"[Startup] DispatcherHelper/TaskFactory init: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] DispatcherHelper/TaskFactory init: {sw.ElapsedMilliseconds}ms");
 
         base.OnStartup(e);
 
@@ -239,9 +239,9 @@ public partial class App : Application
         var mainWindow = new MainWindow();
         MainWindow = mainWindow;
         mainWindow.Show();
-        ErrorLogging.Log($"[Startup] MainWindow create+show: {sw.ElapsedMilliseconds}ms");
+        ErrorLogging.LogDebug($"[Startup] MainWindow create+show: {sw.ElapsedMilliseconds}ms");
 
-        ErrorLogging.Log($"[Startup] === Total OnStartup: {totalSw.ElapsedMilliseconds}ms ===");
+        ErrorLogging.LogDebug($"[Startup] === Total OnStartup: {totalSw.ElapsedMilliseconds}ms ===");
 
         // Fire-and-forget background update check
         if (UserSettingsService.Current.CheckUpdates)
@@ -274,7 +274,7 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
-            ErrorLogging.Log($"[Update] Background check failed: {ex.Message}");
+            ErrorLogging.LogWarn($"[Update] Background check failed: {ex.Message}");
         }
     }
 
@@ -324,13 +324,13 @@ public partial class App : Application
             ParseShortcut(keyCombo, out var key, out var modifiers);
             if (key == Key.None)
             {
-                ErrorLogging.Log($"[Settings] Invalid key in shortcut '{keyCombo}' for action '{action}'; skipping.");
+                ErrorLogging.LogWarn($"[Settings] Invalid key in shortcut '{keyCombo}' for action '{action}'; skipping.");
                 continue;
             }
             bool duplicate = ShortcutKeys.Add(action, key, modifiers);
             if (duplicate)
             {
-                ErrorLogging.Log($"[Settings] Duplicate shortcut {modifiers}+{key} -> using first binding, ignoring '{action}'.");
+                ErrorLogging.LogWarn($"[Settings] Duplicate shortcut {modifiers}+{key} -> using first binding, ignoring '{action}'.");
             }
         }
 

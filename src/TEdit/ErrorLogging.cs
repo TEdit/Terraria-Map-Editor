@@ -94,14 +94,14 @@ public static class ErrorLogging
                     string firstBackup = Path.Combine(logDirectory, $"{baseFileName}.1.txt");
                     File.Move(LogFilePath, firstBackup);
 
-                    Log($"Log file rolled. Previous log saved as {baseFileName}.1.txt");
+                    LogInfo($"Log file rolled. Previous log saved as {baseFileName}.1.txt");
                 }
             }
         }
         catch (Exception ex)
         {
             // If rolling fails, just continue - we'll append to the large file
-            try { Log($"Warning: Failed to roll log file: {ex.Message}"); } catch { }
+            try { LogWarn($"Failed to roll log file: {ex.Message}"); } catch { }
         }
     }
 
@@ -178,8 +178,9 @@ public static class ErrorLogging
 
     public enum ErrorLevel
     {
-        Debug,
         Trace,
+        Debug,
+        Info,
         Warn,
         Error,
         Fatal
@@ -187,16 +188,36 @@ public static class ErrorLogging
 
     #endregion
 
-    public static void Log(string message)
+    private static string LevelTag(ErrorLevel level) => level switch
+    {
+        ErrorLevel.Trace => "[TRC]",
+        ErrorLevel.Debug => "[DBG]",
+        ErrorLevel.Info  => "[INF]",
+        ErrorLevel.Warn  => "[WRN]",
+        ErrorLevel.Error => "[ERR]",
+        ErrorLevel.Fatal => "[FTL]",
+        _                => "[INF]"
+    };
+
+    public static void Log(ErrorLevel level, string message)
     {
         message = Regex.Replace(message, UserPathRegex, "C:\\Users\\[user]\\");
 
         lock (LogFilePath)
         {
             File.AppendAllText(LogFilePath,
-                $"{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")}: {message} {Environment.NewLine}");
+                $"{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")} {LevelTag(level)} {message} {Environment.NewLine}");
         }
     }
+
+    public static void Log(string message) => Log(ErrorLevel.Info, message);
+
+    public static void LogTrace(string message) => Log(ErrorLevel.Trace, message);
+    public static void LogDebug(string message) => Log(ErrorLevel.Debug, message);
+    public static void LogInfo(string message) => Log(ErrorLevel.Info, message);
+    public static void LogWarn(string message) => Log(ErrorLevel.Warn, message);
+    public static void LogError(string message) => Log(ErrorLevel.Error, message);
+    public static void LogFatal(string message) => Log(ErrorLevel.Fatal, message);
 
     public static void LogException(Exception ex)
     {
@@ -211,7 +232,7 @@ public static class ErrorLogging
             if (ex.InnerException != null)
                 LogException(ex.InnerException);
 
-            Log($"{ErrorLevel.Error} - {ex.Message}\r\n{ex.StackTrace}");
+            LogError($"{ex.Message}\r\n{ex.StackTrace}");
 
             if (_telemetry != null && UserSettingsService.Current.Telemetry == 1)
             {

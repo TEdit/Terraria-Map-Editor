@@ -39,7 +39,7 @@ public static class FileMaintenance
             int totalAutosaveCount = autosaveFiles.Count;
             long totalAutosaveSize = autosaveFiles.Sum(f => new FileInfo(f).Length);
 
-            ErrorLogging.Log($"Autosave cleanup: Found {totalAutosaveCount} autosave files using {FormatFileSize(totalAutosaveSize)}");
+            ErrorLogging.LogInfo($"Autosave cleanup: Found {totalAutosaveCount} autosave files using {FormatFileSize(totalAutosaveSize)}");
 
             var groupedFiles = autosaveFiles
                 .GroupBy(f =>
@@ -67,7 +67,7 @@ public static class FileMaintenance
                             File.Delete(file);
                             deletedCount++;
                             deletedSize += fileSize;
-                            ErrorLogging.Log($"Deleted old autosave: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
+                            ErrorLogging.LogDebug($"Deleted old autosave: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
                         }
                         catch
                         {
@@ -79,11 +79,11 @@ public static class FileMaintenance
 
             if (deletedCount > 0)
             {
-                ErrorLogging.Log($"Autosave cleanup complete: Deleted {deletedCount} old autosave files, freed {FormatFileSize(deletedSize)}");
+                ErrorLogging.LogInfo($"Autosave cleanup complete: Deleted {deletedCount} old autosave files, freed {FormatFileSize(deletedSize)}");
             }
             else
             {
-                ErrorLogging.Log("Autosave cleanup complete: No old autosave files to delete");
+                ErrorLogging.LogInfo("Autosave cleanup complete: No old autosave files to delete");
             }
         }
         catch (Exception ex)
@@ -132,7 +132,7 @@ public static class FileMaintenance
                     File.Delete(file);
                     deletedCount++;
                     deletedSize += fileSize;
-                    ErrorLogging.Log($"Deleted old backup: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
+                    ErrorLogging.LogDebug($"Deleted old backup: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
                 }
                 catch
                 {
@@ -142,7 +142,7 @@ public static class FileMaintenance
 
             if (deletedCount > 0)
             {
-                ErrorLogging.Log($"Backup cleanup complete: Deleted {deletedCount} old backup(s) for {worldBaseName}, freed {FormatFileSize(deletedSize)}");
+                ErrorLogging.LogInfo($"Backup cleanup complete: Deleted {deletedCount} old backup(s) for {worldBaseName}, freed {FormatFileSize(deletedSize)}");
             }
         }
         catch (Exception ex)
@@ -169,7 +169,7 @@ public static class FileMaintenance
             if (legacyFiles.Count == 0)
                 return;
 
-            ErrorLogging.Log($"Migrating {legacyFiles.Count} legacy .TEdit backup(s) to {backupPath}");
+            ErrorLogging.LogInfo($"Migrating {legacyFiles.Count} legacy .TEdit backup(s) to {backupPath}");
 
             int migratedCount = 0;
             foreach (var legacyFile in legacyFiles)
@@ -190,22 +190,22 @@ public static class FileMaintenance
                     {
                         // Duplicate timestamp — delete legacy file
                         File.Delete(legacyFile);
-                        ErrorLogging.Log($"Deleted duplicate legacy backup: {fileName}");
+                        ErrorLogging.LogDebug($"Deleted duplicate legacy backup: {fileName}");
                     }
                     else
                     {
                         File.Move(legacyFile, destPath);
-                        ErrorLogging.Log($"Migrated legacy backup: {fileName} -> {Path.GetFileName(destPath)}");
+                        ErrorLogging.LogDebug($"Migrated legacy backup: {fileName} -> {Path.GetFileName(destPath)}");
                     }
                     migratedCount++;
                 }
                 catch (Exception ex)
                 {
-                    ErrorLogging.Log($"Failed to migrate {Path.GetFileName(legacyFile)}: {ex.Message}");
+                    ErrorLogging.LogWarn($"Failed to migrate {Path.GetFileName(legacyFile)}: {ex.Message}");
                 }
             }
 
-            ErrorLogging.Log($"Legacy backup migration complete: {migratedCount} file(s) processed");
+            ErrorLogging.LogInfo($"Legacy backup migration complete: {migratedCount} file(s) processed");
         }
         catch (Exception ex)
         {
@@ -228,11 +228,11 @@ public static class FileMaintenance
 
             if (totalBackupCount > 0)
             {
-                ErrorLogging.Log($"Found {totalBackupCount} .TEdit backup files using {FormatFileSize(totalBackupSize)}");
+                ErrorLogging.LogInfo($"Found {totalBackupCount} .TEdit backup files using {FormatFileSize(totalBackupSize)}");
             }
             else
             {
-                ErrorLogging.Log("No .TEdit backup files found");
+                ErrorLogging.LogInfo("No .TEdit backup files found");
             }
         }
         catch (Exception ex)
@@ -259,7 +259,7 @@ public static class FileMaintenance
                 try
                 {
                     File.Delete(file);
-                    ErrorLogging.Log($"Deleted legacy autosave from root folder: {Path.GetFileName(file)}");
+                    ErrorLogging.LogDebug($"Deleted legacy autosave from root folder: {Path.GetFileName(file)}");
                 }
                 catch
                 {

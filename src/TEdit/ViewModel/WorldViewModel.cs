@@ -211,14 +211,14 @@ public partial class WorldViewModel : ReactiveObject
             // Debug: Log how many framed tiles we have
             var framedTiles = WorldConfiguration.TileProperties.Where(t => t.IsFramed).ToList();
             var framedWithFrames = framedTiles.Where(t => t.Frames != null && t.Frames.Count > 0).ToList();
-            ErrorLogging.Log($"BuildSpritesFromConfig: {framedTiles.Count} framed tiles, {framedWithFrames.Count} with frames data");
+            ErrorLogging.LogDebug($"BuildSpritesFromConfig: {framedTiles.Count} framed tiles, {framedWithFrames.Count} with frames data");
 
             if (framedWithFrames.Count == 0 && framedTiles.Count > 0)
             {
                 // Log first few framed tiles to see their state
                 foreach (var t in framedTiles.Take(5))
                 {
-                    ErrorLogging.Log($"  Tile {t.Id} ({t.Name}): IsFramed={t.IsFramed}, Frames={t.Frames?.Count ?? -1}");
+                    ErrorLogging.LogDebug($"  Tile {t.Id} ({t.Name}): IsFramed={t.IsFramed}, Frames={t.Frames?.Count ?? -1}");
                 }
             }
 
@@ -261,7 +261,7 @@ public partial class WorldViewModel : ReactiveObject
             }
         }
 
-        ErrorLogging.Log($"BuildSpritesFromConfig: {WorldConfiguration.Sprites2.Count} sprite sheets created from config");
+        ErrorLogging.LogDebug($"BuildSpritesFromConfig: {WorldConfiguration.Sprites2.Count} sprite sheets created from config");
     }
 
     /// <summary>
@@ -520,7 +520,7 @@ public partial class WorldViewModel : ReactiveObject
         {
             spriteCount = WorldConfiguration.Sprites2.Count;
         }
-        ErrorLogging.Log($"InitSpriteViews: {spriteCount} sprites loaded");
+        ErrorLogging.LogDebug($"InitSpriteViews: {spriteCount} sprites loaded");
 
         _spriteSheetView = (ListCollectionView)CollectionViewSource.GetDefaultView(WorldConfiguration.Sprites2);
         _spriteSheetView.Filter = o =>

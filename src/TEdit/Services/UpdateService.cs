@@ -31,7 +31,7 @@ public class UpdateService
     {
         if (!_updateManager.IsInstalled)
         {
-            ErrorLogging.Log("[Update] Not a Velopack install — skipping update check.");
+            ErrorLogging.LogInfo("[Update] Not a Velopack install — skipping update check.");
             return false;
         }
 
@@ -40,18 +40,18 @@ public class UpdateService
             var update = await _updateManager.CheckForUpdatesAsync();
             if (update == null)
             {
-                ErrorLogging.Log("[Update] No updates available.");
+                ErrorLogging.LogInfo("[Update] No updates available.");
                 return false;
             }
 
-            ErrorLogging.Log($"[Update] Update available: {update.TargetFullRelease.Version}");
+            ErrorLogging.LogInfo($"[Update] Update available: {update.TargetFullRelease.Version}");
             await _updateManager.DownloadUpdatesAsync(update);
-            ErrorLogging.Log("[Update] Update downloaded. Waiting for user to restart.");
+            ErrorLogging.LogInfo("[Update] Update downloaded. Waiting for user to restart.");
             return true;
         }
         catch (Exception ex)
         {
-            ErrorLogging.Log($"[Update] Check failed: {ex.Message}");
+            ErrorLogging.LogWarn($"[Update] Check failed: {ex.Message}");
             ErrorLogging.LogException(ex);
             return false;
         }
@@ -71,7 +71,7 @@ public class UpdateService
         }
         catch (Exception ex)
         {
-            ErrorLogging.Log($"[Update] Apply failed: {ex.Message}");
+            ErrorLogging.LogWarn($"[Update] Apply failed: {ex.Message}");
             ErrorLogging.LogException(ex);
         }
     }

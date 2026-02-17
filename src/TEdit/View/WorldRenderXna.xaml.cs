@@ -925,7 +925,7 @@ public partial class WorldRenderXna : UserControl
         int tileCount = WorldConfiguration.TileProperties.Count;
         int wallCount = WorldConfiguration.WallProperties.Count;
         int framedCount = WorldConfiguration.TileProperties.Count(t => t.IsFramed);
-        ErrorLogging.Log($"StartDeferredTextureLoading: {tileCount} tiles ({framedCount} framed), {wallCount} walls");
+        ErrorLogging.LogDebug($"StartDeferredTextureLoading: {tileCount} tiles ({framedCount} framed), {wallCount} walls");
         _textureDictionary.LoadingState.Initialize(tileCount, wallCount);
 
         // Queue walls for loading
@@ -981,13 +981,13 @@ public partial class WorldRenderXna : UserControl
                 if (processed == 0 && _texturesFullyLoaded)
                 {
                     _previewProcessingTimer.Stop();
-                    ErrorLogging.Log("Preview processing complete - timer stopped");
+                    ErrorLogging.LogDebug("Preview processing complete - timer stopped");
                     _wvm.Progress = new ProgressChangedEventArgs(100, "Textures loaded");
                 }
             }
         };
         _previewProcessingTimer.Start();
-        ErrorLogging.Log("Preview processing timer started");
+        ErrorLogging.LogDebug("Preview processing timer started");
     }
 
     /// <summary>
@@ -1116,7 +1116,7 @@ public partial class WorldRenderXna : UserControl
         // (deferred to avoid blocking startup with ~5800 XNB file reads)
         var items = WorldConfiguration.ItemProperties.Where(i => i.Id > 0).ToList();
         _textureDictionary.LoadingState.AddToTotal(items.Count);
-        ErrorLogging.Log($"Starting deferred item preview generation: {items.Count} items");
+        ErrorLogging.LogDebug($"Starting deferred item preview generation: {items.Count} items");
         const int ItemBatchSize = 100;
 
         for (int i = 0; i < items.Count && !cancellationToken.IsCancellationRequested; i += ItemBatchSize)
@@ -1179,7 +1179,7 @@ public partial class WorldRenderXna : UserControl
             ItemPreviewCache.MarkPopulated();
         });
 
-        ErrorLogging.Log("Deferred item preview generation complete");
+        ErrorLogging.LogDebug("Deferred item preview generation complete");
         _texturesFullyLoaded = true;
     }
 
@@ -2227,7 +2227,7 @@ public partial class WorldRenderXna : UserControl
             catch (Exception ex)
             {
                 ErrorLogging.LogException(ex);
-                ErrorLogging.Log(e.GraphicsDevice.GraphicsDeviceStatus.ToString());
+                ErrorLogging.LogWarn(e.GraphicsDevice.GraphicsDeviceStatus.ToString());
             }
 
         }
@@ -2306,7 +2306,7 @@ public partial class WorldRenderXna : UserControl
                 PopulateUnderworldPreviews(bgConfig.UnderworldBackgrounds);
             }
 
-            ErrorLogging.Log($"GenerateStylePreviews complete: {_wvm.TreeStylePreviews.Count} tree styles, {_wvm.ForestBgPreviews.Count} forest BG");
+            ErrorLogging.LogDebug($"GenerateStylePreviews complete: {_wvm.TreeStylePreviews.Count} tree styles, {_wvm.ForestBgPreviews.Count} forest BG");
         }
         catch (Exception ex)
         {
