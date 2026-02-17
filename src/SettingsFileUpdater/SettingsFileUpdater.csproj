@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="10.0.2" />
+    <PackageReference Include="System.Text.Json" Version="10.0.3" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.4.1" />
   </ItemGroup>
 
