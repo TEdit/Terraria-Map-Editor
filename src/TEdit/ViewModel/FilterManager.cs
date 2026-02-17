@@ -21,6 +21,9 @@ namespace TEdit.ViewModel
         public enum FilterMode { Hide, Darken }
         public enum BackgroundMode { Normal, Transparent, Custom }
 
+        /// <summary>Monotonically increasing counter. Bumped on every filter mutation so the renderer knows when to rebuild the overlay.</summary>
+        public static int Revision { get; private set; }
+
         // When these sets are empty, it means "no filter" -> show every tile/wall/liquid
         private static readonly HashSet<int> _selectedTileIDs = [];
         private static readonly HashSet<int> _selectedWallIDs = [];
@@ -36,13 +39,31 @@ namespace TEdit.ViewModel
         public static IReadOnlyCollection<int> SelectedWallIDs => _selectedWallIDs;
         public static IReadOnlyCollection<int> SelectedSpriteIDs => _selectedSpriteIDs;
 
-        public static FilterMode CurrentFilterMode { get; set; }         = FilterMode.Darken;
+        private static FilterMode _currentFilterMode = FilterMode.Darken;
+        public static FilterMode CurrentFilterMode
+        {
+            get => _currentFilterMode;
+            set { if (_currentFilterMode != value) { _currentFilterMode = value; Revision++; } }
+        }
+
         public static Color FilterModeCustomColor { get; set; }          = Color.Transparent;
-        public static BackgroundMode CurrentBackgroundMode { get; set; } = BackgroundMode.Normal;
+
+        private static BackgroundMode _currentBackgroundMode = BackgroundMode.Normal;
+        public static BackgroundMode CurrentBackgroundMode
+        {
+            get => _currentBackgroundMode;
+            set { if (_currentBackgroundMode != value) { _currentBackgroundMode = value; Revision++; } }
+        }
+
         public static Color BackgroundModeCustomColor { get; set; }      = Color.Lime;
 
+        private static float _darkenAmount = 0.6f;
         /// <summary>Darken overlay opacity (0.0 = invisible, 1.0 = fully black). Default 0.6.</summary>
-        public static float DarkenAmount { get; set; } = 0.6f;
+        public static float DarkenAmount
+        {
+            get => _darkenAmount;
+            set { if (_darkenAmount != value) { _darkenAmount = value; Revision++; } }
+        }
 
         public static bool FilterClipboard { get; set; } = false;
 
@@ -112,6 +133,8 @@ namespace TEdit.ViewModel
 
             // Reset the clipboard settings.
             FilterClipboard = false;
+
+            Revision++;
         }
 
         #region Tile Filter Methods
@@ -124,19 +147,19 @@ namespace TEdit.ViewModel
         {
             if (tileId >= -1 && _selectedTileIDs.Add(tileId))
             {
-                // no direct UI work here—UI binds to SelectedTileNames
+                Revision++;
             }
         }
 
         /// <summary>
         /// Remove a tile ID from the filter (i.e. stop showing this ID).
         /// </summary>
-        public static void RemoveTileFilter(int tileId) => _selectedTileIDs.Remove(tileId);
+        public static void RemoveTileFilter(int tileId) { if (_selectedTileIDs.Remove(tileId)) Revision++; }
 
         /// <summary>
         /// Clear all tile filters (i.e. show every tile).
         /// </summary>
-        public static void ClearTileFilters() => _selectedTileIDs.Clear();
+        public static void ClearTileFilters() { _selectedTileIDs.Clear(); Revision++; }
 
         #endregion
 
@@ -149,19 +172,19 @@ namespace TEdit.ViewModel
         {
             if (wallId >= 0 && _selectedWallIDs.Add(wallId))
             {
-                // no direct UI work here—UI binds to SelectedWallNames
+                Revision++;
             }
         }
 
         /// <summary>
         /// Remove a wall ID from the filter.
         /// </summary>
-        public static void RemoveWallFilter(int wallId) => _selectedWallIDs.Remove(wallId);
+        public static void RemoveWallFilter(int wallId) { if (_selectedWallIDs.Remove(wallId)) Revision++; }
 
         /// <summary>
         /// Clear all wall filters.
         /// </summary>
-        public static void ClearWallFilters() => _selectedWallIDs.Clear();
+        public static void ClearWallFilters() { _selectedWallIDs.Clear(); Revision++; }
 
         #endregion
 
@@ -173,18 +196,18 @@ namespace TEdit.ViewModel
         /// </summary>
         public static void AddLiquidFilter(LiquidType liq)
         {
-            if (_selectedLiquids.Add(liq)) { }
+            if (_selectedLiquids.Add(liq)) { Revision++; }
         }
 
         /// <summary>
         /// Remove a liquid ID from the filter.
         /// </summary>
-        public static void RemoveLiquidFilter(LiquidType liq) => _selectedLiquids.Remove(liq);
+        public static void RemoveLiquidFilter(LiquidType liq) { if (_selectedLiquids.Remove(liq)) Revision++; }
 
         /// <summary>
         /// Clear all liquid filters.
         /// </summary>
-        public static void ClearLiquidFilters() => _selectedLiquids.Clear();
+        public static void ClearLiquidFilters() { _selectedLiquids.Clear(); Revision++; }
 
         #endregion
 
@@ -199,12 +222,13 @@ namespace TEdit.ViewModel
             Green = 1 << 2,  // 4.
             Yellow = 1 << 3, // 8.
         }
-        public static void AddWireFilter(WireType wire) { _selectedWires.Add(wire); }
-        public static void RemoveWireFilter(WireType wire) { _selectedWires.Remove(wire); }
+        public static void AddWireFilter(WireType wire) { if (_selectedWires.Add(wire)) Revision++; }
+        public static void RemoveWireFilter(WireType wire) { if (_selectedWires.Remove(wire)) Revision++; }
         public static void ClearWireFilters()
         {
             _selectedWires.Clear();
             SelectedWireNames.Clear();
+            Revision++;
         }
 
         #endregion
@@ -218,19 +242,19 @@ namespace TEdit.ViewModel
         {
             if (spriteId >= -1 && _selectedSpriteIDs.Add(spriteId))
             {
-                // no direct UI work here—UI binds to SelectedSpriteNames
+                Revision++;
             }
         }
 
         /// <summary>
         /// Remove a sprite ID from the filter (i.e. stop showing this ID).
         /// </summary>
-        public static void RemoveSpriteFilter(int spriteId) => _selectedSpriteIDs.Remove(spriteId);
+        public static void RemoveSpriteFilter(int spriteId) { if (_selectedSpriteIDs.Remove(spriteId)) Revision++; }
 
         /// <summary>
         /// Clear all sprite filters (i.e. show every sprite).
         /// </summary>
-        public static void ClearSpriteFilters() => _selectedSpriteIDs.Clear();
+        public static void ClearSpriteFilters() { _selectedSpriteIDs.Clear(); Revision++; }
 
         #endregion
     }

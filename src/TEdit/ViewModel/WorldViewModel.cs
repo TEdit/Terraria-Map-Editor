@@ -68,6 +68,8 @@ public partial class WorldViewModel : ReactiveObject
     private WriteableBitmap _minimapImage;
     private string _morphBiomeTarget;
     private PixelMapManager _pixelMap;
+    private PixelMapManager _filterOverlayMap;
+    public BuffTileCache BuffTileCache { get; } = new BuffTileCache();
     private ProgressChangedEventArgs _progress;
     private Chest _selectedChest;
     private Item _selectedChestItem;
@@ -1258,6 +1260,12 @@ public partial class WorldViewModel : ReactiveObject
     {
         get { return _pixelMap; }
         set { this.RaiseAndSetIfChanged(ref _pixelMap, value); }
+    }
+
+    public PixelMapManager FilterOverlayMap
+    {
+        get { return _filterOverlayMap; }
+        set { this.RaiseAndSetIfChanged(ref _filterOverlayMap, value); }
     }
 
     public bool ShowRedWires

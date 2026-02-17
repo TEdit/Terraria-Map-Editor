@@ -87,8 +87,9 @@ public partial class WorldRenderXna : UserControl
     private Dictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();
     private Texture2D _selectionTexture;
     private RenderTarget2D _buffRadiiTarget;
-    private RenderTarget2D _filterOverlayTarget;
+    private Texture2D[] _filterOverlayTileMap;
     private Texture2D _filterDarkenTexture;
+    private int _lastFilterRevision = -1;
     private static readonly BlendState MaxBlend = new BlendState
     {
         ColorBlendFunction = BlendFunction.Max,
@@ -617,8 +618,6 @@ public partial class WorldRenderXna : UserControl
             -tileX + (float)((mouseX) / _zoom) - 0.5f,
             -tileY + (float)((mouseY) / _zoom) - 0.5f);
         ClampScroll();
-        ScrollBarH.Value = -_scrollPosition.X;
-        ScrollBarV.Value = -_scrollPosition.Y;
     }
 
     public void CenterOnTile(int x, int y)
@@ -627,8 +626,6 @@ public partial class WorldRenderXna : UserControl
             -x + (float)(xnaViewport.ActualWidth / _zoom / 2),
             -y + (float)(xnaViewport.ActualHeight / _zoom / 2));
         ClampScroll();
-        ScrollBarH.Value = -_scrollPosition.X;
-        ScrollBarV.Value = -_scrollPosition.Y;
     }
 
     #region Load Content
@@ -2386,18 +2383,19 @@ public partial class WorldRenderXna : UserControl
             ScrollBarV.Value = -_scrollPosition.Y;
             return;
         }
-        int xNormalRange = -_wvm.CurrentWorld.TilesWide + (int)(xnaViewport.ActualWidth / _zoom);
-        int yNormalRange = -_wvm.CurrentWorld.TilesHigh + (int)(xnaViewport.ActualHeight / _zoom);
 
-        if (_wvm.CurrentWorld.TilesWide > (int)(xnaViewport.ActualWidth / _zoom))
-            _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, xNormalRange, 0);
-        else
-            _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, (_wvm.CurrentWorld.TilesWide / 2 - (int)(xnaViewport.ActualWidth / _zoom) / 2), 0);
+        float viewW = (float)(xnaViewport.ActualWidth / _zoom);
+        float viewH = (float)(xnaViewport.ActualHeight / _zoom);
 
-        if (_wvm.CurrentWorld.TilesHigh > (int)(xnaViewport.ActualHeight / _zoom))
-            _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, yNormalRange, 0);
-        else
-            _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, (_wvm.CurrentWorld.TilesHigh / 2 - (int)(xnaViewport.ActualHeight / _zoom) / 2), 0);
+        // Allow overscroll up to the point where the world is still partially visible.
+        // At least 1 tile of the world must remain within the viewport on each edge.
+        float xMin = -_wvm.CurrentWorld.TilesWide + 1;
+        float xMax = viewW - 1;
+        float yMin = -_wvm.CurrentWorld.TilesHigh + 1;
+        float yMax = viewH - 1;
+
+        _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, xMin, xMax);
+        _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, yMin, yMax);
 
         ScrollBarH.Value = -_scrollPosition.X;
         ScrollBarV.Value = -_scrollPosition.Y;
@@ -2421,11 +2419,17 @@ public partial class WorldRenderXna : UserControl
         // NOTE: Texture queue processing is now handled by DispatcherTimer (StartPreviewProcessing)
         // to avoid blocking render frames. The timer runs on UI thread with Background priority.
 
-        // Clear all filters only when the world changes.
+        // Clear all filters and center on spawn when the world changes.
         if (_wvm.CurrentWorld != _lastRenderedWorld)
         {
             FilterManager.ClearAll();
             _surfaceBiomeCache.Clear();
+
+            if (_wvm.CurrentWorld != null)
+            {
+                CenterOnTile(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY);
+            }
+
             _lastRenderedWorld = _wvm.CurrentWorld;
         }
 
@@ -2458,37 +2462,22 @@ public partial class WorldRenderXna : UserControl
             _spriteBatch.End();
 
             gd.SetRenderTarget(previousTarget);
+
+            // Re-clear the backbuffer — switching render targets discards its contents
+            gd.Clear(_backgroundColor);
         }
 
-        // Filter overlay pass 1: build a darken mask for non-selected tiles.
-        // Must happen before main rendering (same reason as buff radii — switching
-        // render targets discards the backbuffer).
+        // Check if filter overlay needs full rebuild
         bool filterDarkenActive = FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken;
-        if (filterDarkenActive)
+        int currentFilterRevision = FilterManager.Revision;
+        if (currentFilterRevision != _lastFilterRevision)
         {
-            var gd = e.GraphicsDevice;
-            var vp = gd.Viewport;
-
-            if (_filterOverlayTarget == null || _filterOverlayTarget.Width != vp.Width || _filterOverlayTarget.Height != vp.Height)
-            {
-                _filterOverlayTarget?.Dispose();
-                _filterOverlayTarget = new RenderTarget2D(gd, vp.Width, vp.Height, false,
-                    SurfaceFormat.Color, DepthFormat.None);
-            }
-
-            var previousTargets = gd.GetRenderTargets();
-            var previousTarget = previousTargets.Length > 0 ? previousTargets[0].RenderTarget as RenderTarget2D : null;
-
-            gd.SetRenderTarget(_filterOverlayTarget);
-            gd.Clear(Color.Transparent);
-            _spriteBatch.Begin(SpriteSortMode.Deferred, MaxBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            DrawFilterOverlay();
-            _spriteBatch.End();
-
-            gd.SetRenderTarget(previousTarget);
+            _lastFilterRevision = currentFilterRevision;
+            _wvm.RebuildFilterOverlay();
         }
 
         GenPixelTiles(e);
+        GenFilterOverlayTiles(e);
 
         // Start SpriteBatch
         _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
@@ -2574,13 +2563,11 @@ public partial class WorldRenderXna : UserControl
             _spriteBatch.End();
         }
 
-        // Filter overlay pass 2: composite the darken mask onto the world
-        if (filterDarkenActive && _filterOverlayTarget != null)
+        // Filter overlay: darken non-selected tiles (after all world rendering, before UI overlays)
+        if (filterDarkenActive)
         {
-            var vp = e.GraphicsDevice.Viewport;
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            _spriteBatch.Draw(_filterOverlayTarget, new Rectangle(0, 0, vp.Width, vp.Height), null,
-                Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            DrawFilterOverlayTiles();
             _spriteBatch.End();
         }
 
@@ -5426,20 +5413,18 @@ public partial class WorldRenderXna : UserControl
             return new Rectangle();
 
         var r = new Rectangle(
-            (int)Math.Max(0, Math.Floor(-_scrollPosition.X)),
-            (int)Math.Max(0, Math.Floor(-_scrollPosition.Y)),
+            (int)Math.Floor(-_scrollPosition.X),
+            (int)Math.Floor(-_scrollPosition.Y),
             (int)Math.Ceiling(xnaViewport.ActualWidth / _zoom),
             (int)Math.Ceiling(xnaViewport.ActualHeight / _zoom));
 
+        // Clamp to world bounds — negative offsets and overflow are trimmed
+        if (r.X < 0) { r.Width += r.X; r.X = 0; }
+        if (r.Y < 0) { r.Height += r.Y; r.Y = 0; }
         if (r.Right > _wvm.CurrentWorld.TilesWide)
-        {
             r.Width = r.Width - (r.Right - _wvm.CurrentWorld.TilesWide);
-        }
-
         if (r.Bottom > _wvm.CurrentWorld.TilesHigh)
-        {
             r.Height = r.Height - (r.Bottom - _wvm.CurrentWorld.TilesHigh);
-        }
 
         return r;
     }
@@ -5553,53 +5538,95 @@ public partial class WorldRenderXna : UserControl
     }
 
     /// <summary>
-    /// Draws a semi-transparent dark pixel at every visible tile position that is NOT
-    /// allowed by the current filter. The result is rendered into _filterOverlayTarget
-    /// and composited onto the world after all normal rendering.
+    /// Uploads dirty filter overlay chunks to GPU textures, mirroring GenPixelTiles.
+    /// Skips AllClear/AllDarkened chunks (no texture needed for those).
     /// </summary>
-    private void DrawFilterOverlay()
+    private void GenFilterOverlayTiles(GraphicsDeviceEventArgs e)
     {
-        if (_wvm.CurrentWorld == null) return;
+        if (_wvm?.FilterOverlayMap == null || _wvm.PixelMap == null) return;
+        var overlay = _wvm.FilterOverlayMap;
 
-        Rectangle visibleBounds = GetViewingArea();
-        var world = _wvm.CurrentWorld;
-        int tileWidth = world.TilesWide;
-        int tileHeight = world.TilesHigh;
-        int tileSizePx = Math.Max(1, (int)_zoom);
-        byte alpha = (byte)(FilterManager.DarkenAmount * 255f);
-        var darkenColor = new Color(alpha, alpha, alpha, alpha);
-
-        for (int y = visibleBounds.Top; y < visibleBounds.Bottom; y++)
+        if (_filterOverlayTileMap == null || _filterOverlayTileMap.Length != overlay.ColorBuffers.Length)
         {
-            for (int x = visibleBounds.Left; x < visibleBounds.Right; x++)
+            _filterOverlayTileMap = new Texture2D[overlay.ColorBuffers.Length];
+        }
+
+        for (int i = 0; i < _filterOverlayTileMap.Length; i++)
+        {
+            if (!Check2DFrustrum(i))
+                continue;
+
+            // Skip texture upload for uniform chunks — they use optimized drawing
+            if (overlay.ChunkStates != null &&
+                (overlay.ChunkStates[i] == ChunkStatus.AllClear || overlay.ChunkStates[i] == ChunkStatus.AllDarkened))
+                continue;
+
+            bool init = _filterOverlayTileMap[i] == null;
+            if (init || _filterOverlayTileMap[i].Width != overlay.TileWidth || _filterOverlayTileMap[i].Height != overlay.TileHeight)
+                _filterOverlayTileMap[i] = new Texture2D(e.GraphicsDevice, overlay.TileWidth, overlay.TileHeight);
+
+            if (overlay.BufferUpdated[i] || init)
             {
-                if (x < 0 || y < 0 || x >= tileWidth || y >= tileHeight) continue;
+                _filterOverlayTileMap[i].SetData(overlay.ColorBuffers[i]);
+                overlay.BufferUpdated[i] = false;
+            }
+        }
+    }
 
-                var tile = world.Tiles[x, y];
+    /// <summary>
+    /// Draws the filter overlay using tiled textures, with per-chunk optimization:
+    /// AllClear = skip, AllDarkened = stretched 1x1, Mixed = full texture.
+    /// </summary>
+    private void DrawFilterOverlayTiles()
+    {
+        if (_wvm?.FilterOverlayMap == null || _wvm.PixelMap == null) return;
+        var overlay = _wvm.FilterOverlayMap;
 
-                // Only darken a cell if it has visible content but NONE of it
-                // is allowed by the filter. If any element is allowed, the cell
-                // stays un-darkened so the allowed content is clearly visible.
-                bool hasAllowed = false;
+        byte alpha = (byte)(FilterManager.DarkenAmount * 255f);
+        var darkenColor = new Color((int)0, (int)0, (int)0, (int)alpha);
 
-                if (tile.Wall > 0 && !FilterManager.WallIsNotAllowed(tile.Wall)) hasAllowed = true;
-                if (tile.IsActive && (!FilterManager.TileIsNotAllowed(tile.Type) || !FilterManager.SpriteIsNotAllowed(tile.Type))) hasAllowed = true;
-                if (tile.LiquidAmount > 0 && !FilterManager.LiquidIsNotAllowed(tile.LiquidType)) hasAllowed = true;
-                if (tile.HasWire)
+        for (int i = 0; i < overlay.TilesX * overlay.TilesY; i++)
+        {
+            if (!Check2DFrustrum(i))
+                continue;
+
+            var status = overlay.ChunkStates?[i] ?? ChunkStatus.Mixed;
+
+            if (status == ChunkStatus.AllClear)
+                continue;
+
+            int tileX = (i % overlay.TilesX) * overlay.TileWidth;
+            int tileY = (i / overlay.TilesX) * overlay.TileHeight;
+
+            if (status == ChunkStatus.AllDarkened)
+            {
+                // Use same float position + scale as DrawPixelTiles to avoid integer seams
+                _spriteBatch.Draw(
+                    _filterDarkenTexture,
+                    TileOrigin(tileX, tileY),
+                    null,
+                    darkenColor,
+                    0,
+                    Vector2.Zero,
+                    new Vector2(overlay.TileWidth * _zoom, overlay.TileHeight * _zoom),
+                    SpriteEffects.None,
+                    0f);
+            }
+            else
+            {
+                // Mixed: draw the full chunk texture
+                if (_filterOverlayTileMap != null && i < _filterOverlayTileMap.Length && _filterOverlayTileMap[i] != null)
                 {
-                    if (tile.WireRed && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Red)) hasAllowed = true;
-                    if (tile.WireBlue && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue)) hasAllowed = true;
-                    if (tile.WireGreen && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Green)) hasAllowed = true;
-                    if (tile.WireYellow && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow)) hasAllowed = true;
-                }
-
-                if (!hasAllowed)
-                {
-                    var dest = new Rectangle(
-                        1 + (int)((_scrollPosition.X + x) * _zoom),
-                        1 + (int)((_scrollPosition.Y + y) * _zoom),
-                        tileSizePx, tileSizePx);
-                    _spriteBatch.Draw(_filterDarkenTexture, dest, darkenColor);
+                    _spriteBatch.Draw(
+                        _filterOverlayTileMap[i],
+                        TileOrigin(tileX, tileY),
+                        null,
+                        Color.White,
+                        0,
+                        Vector2.Zero,
+                        _zoom,
+                        SpriteEffects.None,
+                        0f);
                 }
             }
         }
@@ -5613,124 +5640,70 @@ public partial class WorldRenderXna : UserControl
         if (whiteTex == null) return;
 
         Rectangle visibleBounds = GetViewingArea();
-        var world = _wvm.CurrentWorld;
 
-        // Expand search area by max half-radius so off-screen buff tiles whose zones overlap are included
-        const int expandX = 85;
-        const int expandY = 62;
-        int startX = Math.Max(0, visibleBounds.Left - expandX);
-        int startY = Math.Max(0, visibleBounds.Top - expandY);
-        int endX = Math.Min(world.TilesWide, visibleBounds.Right + expandX);
-        int endY = Math.Min(world.TilesHigh, visibleBounds.Bottom + expandY);
-
-        for (int x = startX; x < endX; x++)
+        foreach (var entry in _wvm.BuffTileCache.Entries)
         {
-            for (int y = startY; y < endY; y++)
-            {
-                var tile = world.Tiles[x, y];
-                if (!tile.IsActive) continue;
+            // AABB overlap test: does this buff zone intersect the visible area?
+            float zoneLeft = entry.CenterX - entry.HalfW;
+            float zoneTop = entry.CenterY - entry.HalfH;
+            float zoneRight = entry.CenterX + entry.HalfW;
+            float zoneBottom = entry.CenterY + entry.HalfH;
 
-                if (tile.Type >= WorldConfiguration.TileProperties.Count) continue;
-                var tileProp = WorldConfiguration.TileProperties[tile.Type];
+            if (zoneRight < visibleBounds.Left || zoneLeft > visibleBounds.Right ||
+                zoneBottom < visibleBounds.Top || zoneTop > visibleBounds.Bottom)
+                continue;
 
-                // Determine buff data: frame-level overrides tile-level
-                Vector2Short? buffRadius = null;
-                TEditColor? buffColor = null;
+            // Convert to screen coordinates
+            int screenX = (int)((_scrollPosition.X + zoneLeft) * _zoom);
+            int screenY = (int)((_scrollPosition.Y + zoneTop) * _zoom);
+            int screenW = (int)(entry.HalfW * 2 * _zoom);
+            int screenH = (int)(entry.HalfH * 2 * _zoom);
 
-                if (tileProp.Frames != null && tileProp.Frames.Count > 0)
-                {
-                    // Check if this tile position is the origin of a framed sprite
-                    var uv = new Vector2Short(tile.U, tile.V);
-                    if (tileProp.IsOrigin(uv, out var frame) && frame != null)
-                    {
-                        // Frame-level buff takes priority
-                        if (frame.BuffRadius.HasValue)
-                        {
-                            buffRadius = frame.BuffRadius;
-                            buffColor = frame.BuffColor;
-                        }
-                        else if (tileProp.BuffRadius.HasValue)
-                        {
-                            buffRadius = tileProp.BuffRadius;
-                            buffColor = tileProp.BuffColor;
-                        }
-                    }
-                }
-                else if (tileProp.BuffRadius.HasValue)
-                {
-                    // Non-framed tile with buff (shouldn't happen for current buff tiles, but handle it)
-                    buffRadius = tileProp.BuffRadius;
-                    buffColor = tileProp.BuffColor;
-                }
+            var bc = entry.Color;
+            var fillColor = new Color(bc.R, bc.G, bc.B, bc.A);
 
-                if (!buffRadius.HasValue || buffColor == null) continue;
+            // Draw filled rectangle
+            _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, screenW, screenH),
+                null, fillColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
 
-                int halfW = buffRadius.Value.X;
-                int halfH = buffRadius.Value.Y;
+            // Draw radius border with higher opacity
+            int borderAlpha = Math.Min(255, fillColor.A * 3);
+            var borderColor = new Color(fillColor.R, fillColor.G, fillColor.B, borderAlpha);
+            int borderThickness = Math.Max(1, (int)(_zoom / 4));
 
-                // Calculate the center of this sprite in tile coordinates
-                var frameSize = tileProp.GetFrameSize(tile.V);
-                float centerX = x + frameSize.X / 2f;
-                float centerY = y + frameSize.Y / 2f;
+            // Top
+            _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, screenW, borderThickness),
+                null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+            // Bottom
+            _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY + screenH - borderThickness, screenW, borderThickness),
+                null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+            // Left
+            _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, borderThickness, screenH),
+                null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+            // Right
+            _spriteBatch.Draw(whiteTex, new Rectangle(screenX + screenW - borderThickness, screenY, borderThickness, screenH),
+                null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
 
-                // Rectangle bounds in tile coordinates
-                float left = centerX - halfW;
-                float top = centerY - halfH;
-                float width = halfW * 2;
-                float height = halfH * 2;
+            // Draw emitter outline around the sprite itself (no fill)
+            int emitterX = (int)((_scrollPosition.X + entry.X) * _zoom);
+            int emitterY = (int)((_scrollPosition.Y + entry.Y) * _zoom);
+            int emitterW = (int)(entry.FrameW * _zoom);
+            int emitterH = (int)(entry.FrameH * _zoom);
+            var emitterColor = new Color(bc.R, bc.G, bc.B, (byte)Math.Min(255, bc.A * 16));
+            int emitterThickness = Math.Max(1, (int)Math.Ceiling(_zoom / 8.0));
 
-                // Convert to screen coordinates
-                int screenX = (int)((_scrollPosition.X + left) * _zoom);
-                int screenY = (int)((_scrollPosition.Y + top) * _zoom);
-                int screenW = (int)(width * _zoom);
-                int screenH = (int)(height * _zoom);
-
-                var bc = buffColor!.Value;
-                var fillColor = new Color(bc.R, bc.G, bc.B, bc.A);
-
-                // Draw filled rectangle
-                _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, screenW, screenH),
-                    null, fillColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
-
-                // Draw radius border with higher opacity
-                int borderAlpha = Math.Min(255, fillColor.A * 3);
-                var borderColor = new Color(fillColor.R, fillColor.G, fillColor.B, borderAlpha);
-                int borderThickness = Math.Max(1, (int)(_zoom / 4));
-
-                // Top
-                _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, screenW, borderThickness),
-                    null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
-                // Bottom
-                _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY + screenH - borderThickness, screenW, borderThickness),
-                    null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
-                // Left
-                _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, borderThickness, screenH),
-                    null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
-                // Right
-                _spriteBatch.Draw(whiteTex, new Rectangle(screenX + screenW - borderThickness, screenY, borderThickness, screenH),
-                    null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
-
-                // Draw emitter outline around the sprite itself (no fill)
-                int emitterX = (int)((_scrollPosition.X + x) * _zoom);
-                int emitterY = (int)((_scrollPosition.Y + y) * _zoom);
-                int emitterW = (int)(frameSize.X * _zoom);
-                int emitterH = (int)(frameSize.Y * _zoom);
-                var emitterColor = new Color(bc.R, bc.G, bc.B, (byte)Math.Min(255, bc.A * 16));
-                int emitterThickness = Math.Max(1, (int)Math.Ceiling(_zoom / 8.0));
-
-                // Top
-                _spriteBatch.Draw(whiteTex, new Rectangle(emitterX, emitterY, emitterW, emitterThickness),
-                    null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
-                // Bottom
-                _spriteBatch.Draw(whiteTex, new Rectangle(emitterX, emitterY + emitterH - emitterThickness, emitterW, emitterThickness),
-                    null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
-                // Left
-                _spriteBatch.Draw(whiteTex, new Rectangle(emitterX, emitterY, emitterThickness, emitterH),
-                    null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
-                // Right
-                _spriteBatch.Draw(whiteTex, new Rectangle(emitterX + emitterW - emitterThickness, emitterY, emitterThickness, emitterH),
-                    null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
-            }
+            // Top
+            _spriteBatch.Draw(whiteTex, new Rectangle(emitterX, emitterY, emitterW, emitterThickness),
+                null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+            // Bottom
+            _spriteBatch.Draw(whiteTex, new Rectangle(emitterX, emitterY + emitterH - emitterThickness, emitterW, emitterThickness),
+                null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+            // Left
+            _spriteBatch.Draw(whiteTex, new Rectangle(emitterX, emitterY, emitterThickness, emitterH),
+                null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+            // Right
+            _spriteBatch.Draw(whiteTex, new Rectangle(emitterX + emitterW - emitterThickness, emitterY, emitterThickness, emitterH),
+                null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
         }
     }
 
@@ -6299,6 +6272,13 @@ public partial class WorldRenderXna : UserControl
         var present = xnaViewport.GraphicsService.GraphicsDevice.PresentationParameters;
         present.BackBufferWidth = (int)xnaViewport.RenderSize.Width;
         present.BackBufferHeight = (int)xnaViewport.RenderSize.Height;
+
+        // Device.Reset() invalidates all render targets — dispose and null them
+        // so they are recreated on the next frame.
+        _buffRadiiTarget?.Dispose();
+        _buffRadiiTarget = null;
+        _filterOverlayTileMap = null;
+
         xnaViewport.GraphicsService.GraphicsDevice.Reset(present);
     }
 
@@ -6383,10 +6363,14 @@ public partial class WorldRenderXna : UserControl
         if (_wvm.CurrentWorld != null)
         {
             var r = GetViewingArea();
+            float viewW = (float)(xnaViewport.ActualWidth / _zoom);
+            float viewH = (float)(xnaViewport.ActualHeight / _zoom);
             ScrollBarH.ViewportSize = MathHelper.Clamp(r.Width, 1, float.MaxValue);
             ScrollBarV.ViewportSize = MathHelper.Clamp(r.Height, 1, float.MaxValue);
-            ScrollBarH.Maximum = _wvm.CurrentWorld.TilesWide - ScrollBarH.ViewportSize;
-            ScrollBarV.Maximum = _wvm.CurrentWorld.TilesHigh - ScrollBarV.ViewportSize;
+            ScrollBarH.Minimum = -(viewW - 1);
+            ScrollBarV.Minimum = -(viewH - 1);
+            ScrollBarH.Maximum = _wvm.CurrentWorld.TilesWide - 1;
+            ScrollBarV.Maximum = _wvm.CurrentWorld.TilesHigh - 1;
         }
     }
 
@@ -6398,10 +6382,14 @@ public partial class WorldRenderXna : UserControl
         if (_wvm.CurrentWorld != null)
         {
             var r = GetViewingArea();
+            float viewW = (float)(xnaViewport.ActualWidth / _zoom);
+            float viewH = (float)(xnaViewport.ActualHeight / _zoom);
             ScrollBarH.ViewportSize = r.Width;
             ScrollBarV.ViewportSize = r.Height;
-            ScrollBarH.Maximum = _wvm.CurrentWorld.TilesWide - ScrollBarH.ViewportSize;
-            ScrollBarV.Maximum = _wvm.CurrentWorld.TilesHigh - ScrollBarV.ViewportSize;
+            ScrollBarH.Minimum = -(viewW - 1);
+            ScrollBarV.Minimum = -(viewH - 1);
+            ScrollBarH.Maximum = _wvm.CurrentWorld.TilesWide - 1;
+            ScrollBarV.Maximum = _wvm.CurrentWorld.TilesHigh - 1;
         }
     }
 

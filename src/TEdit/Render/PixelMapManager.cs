@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 
 namespace TEdit.Render;
 
+public enum ChunkStatus : byte { Mixed, AllClear, AllDarkened }
+
 public partial class PixelMapManager : ReactiveObject
 {
     const int MaxTextureSize = 256;
@@ -26,6 +28,8 @@ public partial class PixelMapManager : ReactiveObject
 
     [Reactive]
     private bool[] _bufferUpdated;
+
+    public ChunkStatus[] ChunkStates { get; set; }
 
     public void InitializeBuffers(int worldWidth, int worldHeight)
     {
@@ -59,6 +63,7 @@ public partial class PixelMapManager : ReactiveObject
 
         ColorBuffers = new Color[tileCount][];
         BufferUpdated = new bool[tileCount];
+        ChunkStates = new ChunkStatus[tileCount];
 
         for (int x = 0; x < TilesX; x++)
         {
