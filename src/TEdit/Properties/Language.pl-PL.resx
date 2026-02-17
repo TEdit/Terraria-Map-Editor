@@ -365,6 +365,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_file_update" xml:space="preserve">
     <value>Sprawdź nowe aktualizacje</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>World Explorer...</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>Filtr</value>
   </data>
@@ -497,11 +500,17 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>Tło</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>Buff Radii</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Warstwowa Siatka</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>Płynna</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>Tło minimapy</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>Interesujące Miejsca</value>
@@ -645,6 +654,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_category_rendering" xml:space="preserve">
     <value>Renderowanie</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>Skryptowanie</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>Sprawdź aktualizacje</value>
   </data>
@@ -663,6 +675,18 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_language_desc" xml:space="preserve">
     <value>Ustaw język wyświetlania aplikacji</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>Tło minimapy</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>Pokaż kolory tła nieba/jaskini/piekła na minimapie</value>
+  </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>Próg trzymania pickera (ms)</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>Jak długo trzymać klawisz Picker, zanim stanie się on tymczasowym pickiem (100-500ms)?</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Użyj realistycznych kolorów</value>
   </data>
@@ -672,6 +696,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_save" xml:space="preserve">
     <value>Zapisz</value>
   </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>Czas na czas scenariusza (sekundy)</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>Maksymalny czas, jaki skrypt może wykonać przed anulowaniem (10-300 sekund)</value>
+  </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Ustawienia wyszukiwania...</value>
   </data>
@@ -680,6 +710,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>Widoczność siłownika przełącznika</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>Pokaż wszystkie przedmioty z stojaków na broń</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>Pokaż wszystkie przedmioty w edytorze stojaków na broń zamiast tylko przedmiotów do regałów</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>Pokaż wszystkie przewody</value>
@@ -783,6 +819,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>Minimalny poziom powiększenia, zanim tekstury kafelków staną się widoczne</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>Kanał aktualizacji</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>Wybierz, z którego kanału wydania chcesz otrzymywać aktualizacje (stabilny, beta lub alfa)</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Przezroczystość przewodu</value>
   </data>
@@ -846,6 +888,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Edytuj Zaznaczony Przedmiot</value>
   </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>Wieszak na kapelusze</value>
+  </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>Głowa</value>
   </data>
@@ -896,6 +941,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>Gwiazda</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>Pokaż wszystkie przedmioty</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>Za pomocą Narzędzia Strzałki kliknij prawym przyciskiem myszy na znak, skrzynię, manekina, stojak na broń, ramkę na przedmioty lub choinkę.</value>
@@ -1831,6 +1879,21 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>Żółty</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>Otwórz</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>Przypinka</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>Światowy Explorer</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>Odpiąć</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>

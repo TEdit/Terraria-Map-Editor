@@ -365,6 +365,9 @@
   <data name="menu_file_update" xml:space="preserve">
     <value>Проверить обновления</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>Исследователь мира...</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>Фильтр</value>
   </data>
@@ -497,11 +500,17 @@
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>Предыстория</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>Buff Radii</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Сетка</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>Жидкости</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>Фон мини-карты</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>Точки интереса</value>
@@ -645,6 +654,9 @@
   <data name="settings_category_rendering" xml:space="preserve">
     <value>Рендеринг</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>Скриптинг</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>Проверяйте обновления</value>
   </data>
@@ -663,6 +675,18 @@
   <data name="settings_language_desc" xml:space="preserve">
     <value>Задайте язык отображения приложений</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>Фон мини-карты</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>Покажите цвета фона неба/пещеры/ад на миникарте</value>
+  </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>Порог удержания Пикера (ms)</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>Сколько времени удерживать клавишу Picker, прежде чем она станет временной медиатором (100-500 мс)?</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Используйте реалистичные цвета</value>
   </data>
@@ -672,6 +696,12 @@
   <data name="settings_save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>Тайм-аут сценария (секунды)</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>Максимальное время запуска скрипта до отмены (10-300 секунд)</value>
+  </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Настройки поиска...</value>
   </data>
@@ -680,6 +710,12 @@
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>Видимость актуатора переключения</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>Показать все предметы из стойки оружия</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>Показывайте все предметы в редакторе стойки оружия, а не только предметы для стойки</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>Показать все провода</value>
@@ -783,6 +819,12 @@
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>Минимальный уровень масштабирования до того, как текстуры тайлов станут видимыми</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>Канал обновлений</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>Выберите канал релиза, с которого получать обновления (стабильный, бета или альфа)</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Прозрачность проводов</value>
   </data>
@@ -846,6 +888,9 @@
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Редактировать выбранный предмет</value>
   </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>Стойка для шляп</value>
+  </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>Голова</value>
   </data>
@@ -896,6 +941,9 @@
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>Звезда</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>Показать все товары</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>С помощью Стрелки нажмите правой кнопкой мыши на табличку, сундук, манекен, стойку для оружия, рамку или новогоднюю ёлку.</value>
@@ -1831,6 +1879,21 @@
   </data>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>Жёлтые</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>Пин</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>World Explorer</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>Раззакрепить</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>

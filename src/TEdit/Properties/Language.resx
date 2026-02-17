@@ -365,6 +365,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_file_update" xml:space="preserve">
     <value>Check for Updates Now</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>World Explorer...</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>Filter</value>
   </data>
@@ -505,6 +508,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>Liquids</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>Minimap Background</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>Points of Interest</value>
@@ -666,11 +672,26 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_language_desc" xml:space="preserve">
     <value>Set the application display language</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>Minimap Background</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>Show sky/cave/hell background colors in the minimap</value>
+  </data>
   <data name="settings_picker_hold_threshold" xml:space="preserve">
     <value>Picker Hold Threshold (ms)</value>
   </data>
   <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
     <value>How long to hold the Picker key before it becomes a temporary pick (100-500ms)</value>
+  </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>Script Timeout (seconds)</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>Maximum time a script can run before being cancelled (10-300 seconds)</value>
+  </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>Scripting</value>
   </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Use Realistic Colors</value>
@@ -1862,31 +1883,22 @@ Would you like to enable error reporting?</value>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>Yellow</value>
   </data>
-  <data name="wp_fixbackground" xml:space="preserve">
-    <value>Fix Background Gap</value>
-  </data>
-  <data name="menu_file_worlds" xml:space="preserve">
-    <value>World Explorer...</value>
-  </data>
-  <data name="world_explorer_title" xml:space="preserve">
-    <value>World Explorer</value>
-  </data>
-  <data name="world_explorer_tab_worlds" xml:space="preserve">
-    <value>Worlds</value>
-  </data>
-  <data name="world_explorer_tab_backups" xml:space="preserve">
-    <value>Backups &amp; Autosaves</value>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="world_explorer_open" xml:space="preserve">
     <value>Open</value>
   </data>
-  <data name="world_explorer_delete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
   <data name="world_explorer_pin" xml:space="preserve">
     <value>Pin</value>
   </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>World Explorer</value>
+  </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Unpin</value>
+  </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>Fix Background Gap</value>
   </data>
 </root>

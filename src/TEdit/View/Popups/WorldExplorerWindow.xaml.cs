@@ -1,9 +1,14 @@
+using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Win32;
 using TEdit.ViewModel;
 using Wpf.Ui.Controls;
+using Button = System.Windows.Controls.Button;
+using MessageBox = Wpf.Ui.Controls.MessageBox;
 
 namespace TEdit.View.Popups;
 
@@ -38,59 +43,138 @@ public partial class WorldExplorerWindow : FluentWindow
         }
     }
 
+    private void WorldList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        ClearBackupSelection();
+    }
+
     private void WorldList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
+        // Don't handle if a backup was clicked (backup handles its own double-click)
+        if (_vm.SelectedBackup != null) return;
+
         if (_vm.SelectedWorld != null && !_vm.SelectedWorld.IsMissing)
         {
             OpenAndClose(_vm.SelectedWorld.FilePath);
         }
     }
 
-    private void BackupTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+    private void ExpandToggle_Click(object sender, MouseButtonEventArgs e)
     {
-        if (e.NewValue is BackupEntryViewModel backup)
+        if (sender is FrameworkElement { DataContext: WorldEntryViewModel entry } && entry.HasBackups)
         {
-            _vm.SelectedBackup = backup;
-        }
-        else
-        {
-            _vm.SelectedBackup = null;
+            entry.IsExpanded = !entry.IsExpanded;
+            e.Handled = true;
         }
     }
 
-    private void BackupEntry_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    private void BackupEntry_PreviewMouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (e.ClickCount == 2 && _vm.SelectedBackup != null)
+        // Let button clicks pass through — don't swallow their tunneling events
+        if (e.OriginalSource is DependencyObject source && FindParent<Button>(source) != null)
+            return;
+
+        if (sender is FrameworkElement { DataContext: BackupEntryViewModel backup })
         {
-            OpenAndClose(_vm.SelectedBackup.FilePath);
+            if (e.ClickCount == 2)
+            {
+                OpenAndClose(backup.FilePath);
+            }
+            else
+            {
+                _vm.SelectedBackup = backup;
+                HighlightSelectedBackup(sender as FrameworkElement);
+            }
+            e.Handled = true;
+        }
+    }
+
+    private static T FindParent<T>(DependencyObject child) where T : DependencyObject
+    {
+        var current = child;
+        while (current != null)
+        {
+            if (current is T found) return found;
+            current = VisualTreeHelper.GetParent(current);
+        }
+        return null;
+    }
+
+    private FrameworkElement _lastHighlightedBackup;
+
+    private void HighlightSelectedBackup(FrameworkElement element)
+    {
+        // Clear previous highlight
+        if (_lastHighlightedBackup is System.Windows.Controls.Border prevBorder)
+        {
+            prevBorder.Background = System.Windows.Media.Brushes.Transparent;
+        }
+
+        // Apply new highlight
+        if (element is System.Windows.Controls.Border border)
+        {
+            border.Background = (System.Windows.Media.Brush)FindResource("ControlFillColorSecondaryBrush");
+            _lastHighlightedBackup = border;
+        }
+    }
+
+    private void ClearBackupSelection()
+    {
+        _vm.SelectedBackup = null;
+        if (_lastHighlightedBackup is System.Windows.Controls.Border prevBorder)
+        {
+            prevBorder.Background = System.Windows.Media.Brushes.Transparent;
+            _lastHighlightedBackup = null;
         }
     }
 
     private void Open_Click(object sender, RoutedEventArgs e)
     {
-        if (_vm.SelectedTabIndex == 0 && _vm.SelectedWorld != null && !_vm.SelectedWorld.IsMissing)
-        {
-            OpenAndClose(_vm.SelectedWorld.FilePath);
-        }
-        else if (_vm.SelectedTabIndex == 1 && _vm.SelectedBackup != null)
+        if (_vm.SelectedBackup != null)
         {
             OpenAndClose(_vm.SelectedBackup.FilePath);
         }
+        else if (_vm.SelectedWorld != null && !_vm.SelectedWorld.IsMissing)
+        {
+            OpenAndClose(_vm.SelectedWorld.FilePath);
+        }
     }
 
-    private void Delete_Click(object sender, RoutedEventArgs e)
+    private void PreviewWorld_Click(object sender, RoutedEventArgs e)
     {
-        if (_vm.SelectedBackup == null) return;
-
-        var result = System.Windows.MessageBox.Show(
-            $"Delete backup?\n{_vm.SelectedBackup.DisplayText}",
-            "Confirm Delete",
-            System.Windows.MessageBoxButton.YesNo,
-            System.Windows.MessageBoxImage.Warning);
-
-        if (result == System.Windows.MessageBoxResult.Yes)
+        if (sender is Button { Tag: WorldEntryViewModel entry } && !entry.IsMissing)
         {
-            _vm.DeleteBackup(_vm.SelectedBackup);
+            _ = _vm.GeneratePreviewAsync(entry.FilePath);
+        }
+    }
+
+    private void PreviewBackup_Click2(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: BackupEntryViewModel backup })
+        {
+            _ = _vm.GeneratePreviewAsync(backup.FilePath);
+        }
+    }
+
+    private async void DeleteBackup_Click2(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: BackupEntryViewModel backup })
+        {
+            var messageBox = new MessageBox
+            {
+                Title = "Confirm Delete",
+                Content = $"Delete backup?\n{backup.DisplayText}",
+                PrimaryButtonText = "Delete",
+                CloseButtonText = "Cancel",
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                Owner = this
+            };
+
+            var result = await messageBox.ShowDialogAsync();
+            if (result == Wpf.Ui.Controls.MessageBoxResult.Primary)
+            {
+                _vm.DeleteBackup(backup);
+            }
         }
     }
 
@@ -106,13 +190,42 @@ public partial class WorldExplorerWindow : FluentWindow
 
     private void TogglePin_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is System.Windows.Controls.Button { Tag: WorldEntryViewModel entry })
+        if (sender is Button { Tag: WorldEntryViewModel entry })
         {
             if (entry.IsPinned)
                 _vm.UnpinWorld(entry.FilePath);
             else
                 _vm.PinWorld(entry.FilePath);
         }
+    }
+
+    private void CreateBackup_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: WorldEntryViewModel entry })
+        {
+            _vm.CreateBackupNow(entry);
+        }
+    }
+
+    private void OpenFolder_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: WorldEntryViewModel entry } && !entry.IsMissing && File.Exists(entry.FilePath))
+        {
+            Process.Start("explorer.exe", $"/select,\"{entry.FilePath}\"");
+        }
+    }
+
+    private void OpenBackupFolder_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: BackupEntryViewModel backup } && File.Exists(backup.FilePath))
+        {
+            Process.Start("explorer.exe", $"/select,\"{backup.FilePath}\"");
+        }
+    }
+
+    private void ClosePreview_Click(object sender, RoutedEventArgs e)
+    {
+        _vm.ClearPreview();
     }
 
     private void OpenAndClose(string path)

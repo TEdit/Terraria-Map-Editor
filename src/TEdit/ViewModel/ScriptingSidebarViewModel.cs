@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Configuration;
 using TEdit.Scripting;
 using TEdit.Scripting.Api;
 using TEdit.Scripting.Engine;
@@ -79,6 +80,7 @@ public partial class ScriptingSidebarViewModel
 
         var context = new ScriptExecutionContext
         {
+            TimeoutMs = UserSettingsService.Current.ScriptTimeoutSeconds * 1000,
             CancellationToken = _cts.Token,
             OnLog = msg => _dispatcher.BeginInvoke(() => AppendLog(msg)),
             OnWarn = msg => _dispatcher.BeginInvoke(() => AppendLog($"[Warn] {msg}")),

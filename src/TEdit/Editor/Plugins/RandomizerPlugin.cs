@@ -85,7 +85,7 @@ public class RandomizerPlugin : BasePlugin
             _wvm.UndoManager.SaveUndo();
 
         _wvm.UpdateRenderRegion(randomizationArea); // Re-render map
-        _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld); // Update Minimap
+        _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld, showBackground: Configuration.UserSettingsService.Current.MinimapBackground); // Update Minimap
     }
 
     /// <summary>

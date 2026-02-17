@@ -365,6 +365,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_file_update" xml:space="preserve">
     <value>Procurar por atualizações agora</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>Explorador do Mundo...</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>Filtro</value>
   </data>
@@ -497,11 +500,17 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>Contextos</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>Raios de Buff</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Grade de layout</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>Líquidos</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>Contexto do Minimapa</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>Pontos de interesse</value>
@@ -645,6 +654,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_category_rendering" xml:space="preserve">
     <value>Renderização</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>Roteiro</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>Verifique as atualizações</value>
   </data>
@@ -663,6 +675,18 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_language_desc" xml:space="preserve">
     <value>Defina a linguagem de exibição da aplicação</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>Contexto do Minimapa</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>Mostrar cores de fundo do céu/caverna/inferno no minimapa</value>
+  </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>Limiar de Manutenção do Picker (ms)</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>Por quanto tempo segurar a tecla Picker antes que ela se torne uma escolha temporária (100-500ms)?</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Use cores realistas</value>
   </data>
@@ -672,6 +696,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_save" xml:space="preserve">
     <value>Salvar</value>
   </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>Tempo de Espera do Script (segundos)</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>Tempo máximo que um script pode rodar antes de ser cancelado (10-300 segundos)</value>
+  </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Configurações de busca...</value>
   </data>
@@ -680,6 +710,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>Visibilidade do atuador de alavanca</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>Mostrar todos os itens do suporte de armas</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>Mostrar todos os itens no editor de rack de armas em vez de apenas itens para rack</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>Mostrar Todos os Fios</value>
@@ -783,6 +819,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>Nível mínimo de zoom antes que as texturas dos tiles fiquem visíveis</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>Canal de Atualização</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>Escolha de qual canal de lançamento receber atualizações (Estável, Beta ou Alfa)</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Transparência aramada</value>
   </data>
@@ -846,6 +888,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Editar item selecionado</value>
   </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>Cabide de Chapéus</value>
+  </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>Cabeça</value>
   </data>
@@ -896,6 +941,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>Estrela</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>Mostrar Todos os Itens</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>Com a ferramenta de seta, clique em uma placa, baú, manequim, prateleira de armas, moldura do item ou árvore de natal.</value>
@@ -1831,6 +1879,21 @@ Você gostaria de ativar o relatório de erros?</value>
   </data>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>Amarelo</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>Pin</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>Explorador do Mundo</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>Desimobilizar</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corrigir lacuna de plano de fundo</value>

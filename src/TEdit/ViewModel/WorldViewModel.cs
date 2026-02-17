@@ -1374,6 +1374,20 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
+    public bool MinimapBackground
+    {
+        get { return UserSettingsService.Current.MinimapBackground; }
+        set
+        {
+            UserSettingsService.Current.MinimapBackground = value;
+            this.RaisePropertyChanged(nameof(MinimapBackground));
+            if (CurrentWorld != null)
+            {
+                MinimapImage = RenderMiniMap.Render(CurrentWorld, showBackground: value);
+            }
+        }
+    }
+
     public bool ShowLiquid
     {
         get { return _showLiquid; }
@@ -1551,7 +1565,7 @@ public partial class WorldViewModel : ReactiveObject
         if (CurrentWorld != null)
         {
             if (MinimapImage != null)
-                RenderMiniMap.UpdateMinimap(CurrentWorld, ref _minimapImage);
+                RenderMiniMap.UpdateMinimap(CurrentWorld, ref _minimapImage, UserSettingsService.Current.MinimapBackground);
         }
         UpdateTitle();
     }
@@ -1734,16 +1748,9 @@ public partial class WorldViewModel : ReactiveObject
 
     private void OpenWorld()
     {
-        var ofd = new OpenFileDialog();
-        ofd.Filter = "Terraria World File|*.wld|Terraria World Backup|*.bak|TEdit Backup File|*.TEdit";
-        ofd.DefaultExt = "Terraria World File|*.wld";
-        ofd.Title = "Load Terraria World File";
-        ofd.InitialDirectory = DependencyChecker.PathToWorlds;
-        ofd.Multiselect = false;
-        if ((bool)ofd.ShowDialog())
-        {
-            LoadWorld(ofd.FileName);
-        }
+        var explorerWindow = new WorldExplorerWindow(this);
+        explorerWindow.Owner = Application.Current.MainWindow;
+        explorerWindow.ShowDialog();
     }
 
     [ReactiveCommand]
@@ -1835,7 +1842,7 @@ public partial class WorldViewModel : ReactiveObject
                 PixelMap = t.Result; // Set the pixel map for the world
                 UpdateTitle(); // Update the window title with the current world name
                 RefreshPoints();
-                MinimapImage = RenderMiniMap.Render(CurrentWorld); // Render and set the minimap image
+                MinimapImage = RenderMiniMap.Render(CurrentWorld, showBackground: UserSettingsService.Current.MinimapBackground); // Render and set the minimap image
                 _loadTimer.Stop(); // Stop the load timer
                 OnProgressChanged(this, new ProgressChangedEventArgs(0, $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds.")); // Report completion
                 _saveTimer.Start(); // Restart the save timer
@@ -2691,7 +2698,7 @@ public partial class WorldViewModel : ReactiveObject
                     PixelMap = t.Result;
                     UpdateTitle();
                     RefreshPoints();
-                    MinimapImage = RenderMiniMap.Render(CurrentWorld);
+                    MinimapImage = RenderMiniMap.Render(CurrentWorld, showBackground: UserSettingsService.Current.MinimapBackground);
                     _loadTimer.Stop();
 
                     // Reset both autosave and user save tracking after world load

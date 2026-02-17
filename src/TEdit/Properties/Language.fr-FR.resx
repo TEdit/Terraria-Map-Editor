@@ -302,6 +302,9 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="menu_file_update" xml:space="preserve">
     <value>Vérifiez les mises à jour dès maintenant</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>Explorateur du monde...</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>Filtre</value>
   </data>
@@ -434,11 +437,17 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>Contextes</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>Rayon de buff</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Grille de disposition</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>Liquides</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>Contexte de la mini-carte</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>Lieux d’intérêt</value>
@@ -575,6 +584,9 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="settings_category_rendering" xml:space="preserve">
     <value>Rendu</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>Scripting</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>Vérifier les mises à jour</value>
   </data>
@@ -593,6 +605,18 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="settings_language_desc" xml:space="preserve">
     <value>Définir le langage d’affichage de l’application</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>Contexte de la mini-carte</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>Montrez les couleurs de fond ciel/grotte/enfer dans la mini-carte</value>
+  </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>Seuil de maintien du sélectionneur (ms)</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>Combien de temps maintenir la touche Picker avant qu’elle ne devienne un pick temporaire (100-500 ms)</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Utilisez des couleurs réalistes</value>
   </data>
@@ -602,6 +626,12 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="settings_save" xml:space="preserve">
     <value>Sauvegarder</value>
   </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>Délai d’attente du script (secondes)</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>Temps maximum qu’un script peut exécuter avant d’être annulé (10 à 300 secondes)</value>
+  </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Paramètres de recherche...</value>
   </data>
@@ -610,6 +640,12 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>Visibilité de l’actionneur à bascule</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>Afficher tous les objets du support d’armes</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>Afficher tous les objets dans l’éditeur de rack d’armes au lieu de seulement les objets à racker</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>Afficher tous les fils</value>
@@ -713,6 +749,12 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>Niveau de zoom minimum avant que les textures de tuiles ne deviennent visibles</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>Chaîne de mise à jour</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>Choisissez le canal de sortie à recevoir les mises à jour (Stable, Beta ou Alpha)</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Transparence filaire</value>
   </data>
@@ -776,6 +818,9 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Modifier l’élément sélectionné</value>
   </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>Porte-chapeaux</value>
+  </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>Tête</value>
   </data>
@@ -826,6 +871,9 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>Star</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>Afficher tous les éléments</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>Avec l’outil Flèche, faites un clic droit sur un panneau, un coffre, un mannequin, un porte-armes, un cadre d’objets ou un sapin de Noël.</value>
@@ -1761,6 +1809,21 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   </data>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>Jaune</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>Ouvre</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>Épingle</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>Explorateur du monde</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>Détacher</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corriger le fossé de fond</value>

@@ -365,6 +365,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_file_update" xml:space="preserve">
     <value>Auf Updates prüfen</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>Weltenentdecker...</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>Filter</value>
   </data>
@@ -497,11 +500,17 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>Hintergründe</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>Buff-Radien</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Gitternetzlinien</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>Flüssigkeiten</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>Minimap-Hintergrund</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>Besondere Orte</value>
@@ -645,6 +654,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_category_rendering" xml:space="preserve">
     <value>Rendering</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>Skripting</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>Nach Updates suchen</value>
   </data>
@@ -663,6 +675,18 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_language_desc" xml:space="preserve">
     <value>Stellen Sie die Anzeigesprache der Anwendung ein</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>Minimap-Hintergrund</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>Hintergrundfarben von Himmel/Höhle/Hölle in der Minimap anzeigen</value>
+  </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>Halten-Schwellenwert des Auswahlwerkzeugs (ms)</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>Wie lange die Auswahltaste gehalten werden muss, bevor sie zu einer temporären Auswahl wird (100-500 ms)</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Verwenden Sie realistische Farben</value>
   </data>
@@ -672,6 +696,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_save" xml:space="preserve">
     <value>Speichern</value>
   </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>Skriptzeitüberschreitung (Sekunden)</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>Maximale Zeit, die ein Skript laufen kann, bevor es abgebrochen wird (10-300 Sekunden)</value>
+  </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Such Einstellungen...</value>
   </data>
@@ -680,6 +710,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>Sichtbarkeit der Aktuatoren umschalten</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>Alle Gegenstände im Waffenregal anzeigen</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>Alle Gegenstände im Waffenregal-Editor anzeigen, anstatt nur die anbringbaren Gegenstände</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>Alle Drähte anzeigen</value>
@@ -783,6 +819,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>Minimale Zoomstufe, bevor Kacheltexturen sichtbar werden</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>Update-Kanal</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>Wählen Sie, von welchem Release-Kanal Sie Updates erhalten möchten (Stabil, Beta oder Alpha)</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Kabelsichtbarkeit</value>
   </data>
@@ -846,6 +888,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Ausgewählten Gegenstand bearbeiten</value>
   </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>Hutständer</value>
+  </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>Kopf</value>
   </data>
@@ -896,6 +941,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>Spitze</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>Alle Gegenstände anzeigen</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>Wähle das Pfeilwerkzeug aus und rechtsklicke auf einem Spruchschild, einer Schaufensterpuppe, einem Waffenregal, einem Item-Frame oder einem Weihnachtsbaum.</value>
@@ -1831,6 +1879,21 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>Gelb</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>Öffnen</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>Anheften</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>Weltenentdecker</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>Lösen</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>

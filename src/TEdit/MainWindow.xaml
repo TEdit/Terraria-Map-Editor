@@ -100,7 +100,6 @@
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=file.new}" />
                     <MenuItem Header="{x:Static p:Language.menu_file_open}" Icon="{StaticResource TB_OpenIcon}" Command="{Binding OpenCommand}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=file.open}" />
-                    <MenuItem Header="{x:Static p:Language.menu_file_worlds}" Click="WorldExplorerMenuItem_Click" />
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_save}" Icon="{StaticResource TB_SaveIcon}" Command="{Binding SaveCommand}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=file.save}" />
@@ -166,6 +165,7 @@
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_points}" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_buff_radii}" IsCheckable="True" IsChecked="{Binding ShowBuffRadii}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_minimap_background}" IsCheckable="True" IsChecked="{Binding MinimapBackground}" />
                     <Separator Margin="1" />
                     <MenuItem>
                         <MenuItem.Template>

@@ -107,20 +107,23 @@ public class PinIconConverter : IValueConverter
         throw new NotSupportedException();
 }
 
-/// <summary>
-/// Returns true if the bound value is an instance of a specific type.
-/// Used to scope TreeViewItem styles to specific DataContext types.
-/// </summary>
-public class IsTypeConverter : IValueConverter
+public class ExpandIconConverter : IValueConverter
 {
-    public static readonly IsTypeConverter BackupWorldGroup = new(typeof(BackupWorldGroupViewModel));
-
-    private readonly Type _targetType;
-
-    public IsTypeConverter(Type targetType) => _targetType = targetType;
+    public static readonly ExpandIconConverter Instance = new();
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-        value != null && _targetType.IsInstanceOfType(value);
+        value is true ? "\u25BC" : "\u25B6"; // ▼ vs ▶
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}
+
+public class BackupDotConverter : IValueConverter
+{
+    public static readonly BackupDotConverter Instance = new();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
+        value is true ? "\u25CB" : "\u25CF"; // ○ (autosave) vs ● (backup)
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
         throw new NotSupportedException();

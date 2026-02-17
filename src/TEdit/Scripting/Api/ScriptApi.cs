@@ -23,6 +23,8 @@ public class ScriptApi : IDisposable
     public BatchApi Batch { get; }
     public ToolsApi? Tools { get; }
     public FinderApi Finder { get; }
+    public SpriteApi Sprites { get; }
+    public DrawApi Draw { get; }
 
     public ScriptApi(WorldViewModel wvm, ScriptExecutionContext context)
     {
@@ -42,6 +44,8 @@ public class ScriptApi : IDisposable
         Batch = new BatchApi(world, wvm.Selection, undo, context);
         Tools = new ToolsApi(wvm);
         Finder = new FinderApi(context);
+        Sprites = new SpriteApi(world, undo);
+        Draw = new DrawApi(world, undo, wvm.Selection);
     }
 
     /// <summary>
@@ -63,6 +67,8 @@ public class ScriptApi : IDisposable
         Batch = new BatchApi(world, selection, undo, context);
         Tools = null;
         Finder = new FinderApi(context);
+        Sprites = new SpriteApi(world, undo);
+        Draw = new DrawApi(world, undo, selection);
     }
 
     public void BeginExecution()

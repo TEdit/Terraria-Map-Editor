@@ -365,6 +365,9 @@
   <data name="menu_file_update" xml:space="preserve">
     <value>التحقق من وجود تحديثات الآن</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>مستكشف العالم...</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>فلتر</value>
   </data>
@@ -497,11 +500,17 @@
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>الخلفيات</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>نطاقات التعزيز</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>شبكة التخطيط</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>سوائل</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>خلفية الخريطة المصغرة</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>نقاط الاهتمام</value>
@@ -645,6 +654,9 @@
   <data name="settings_category_rendering" xml:space="preserve">
     <value>الرسم</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>البرمجة</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>تحقق من التحديثات</value>
   </data>
@@ -663,6 +675,18 @@
   <data name="settings_language_desc" xml:space="preserve">
     <value>حدد لغة عرض التطبيق</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>خلفية الخريطة المصغرة</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>عرض ألوان خلفية السماء/الكهف/الجحيم في الخريطة المصغرة</value>
+  </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>عتبة ضغط المُختار (مللي ثانية)</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>مدة الضغط على زر المُختار قبل أن يصبح اختيارًا مؤقتًا (100-500 مللي ثانية)</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>استخدام ألوان واقعية</value>
   </data>
@@ -672,6 +696,12 @@
   <data name="settings_save" xml:space="preserve">
     <value>حفظ</value>
   </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>مهلة السكربت (بالثواني)</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>أقصى وقت يمكن أن يعمل فيه السكربت قبل أن يتم إلغاؤه (10-300 ثانية)</value>
+  </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>إعدادات البحث...</value>
   </data>
@@ -680,6 +710,12 @@
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>تبديل رؤية المحركات</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>عرض جميع عناصر رف الأسلحة</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>عرض جميع العناصر في محرر رف الأسلحة بدلاً من العناصر القابلة للتعليق فقط</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>عرض جميع الأسلاك</value>
@@ -783,6 +819,12 @@
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>أدنى مستوى تكبير قبل أن تصبح قوام البلاط مرئية</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>قناة التحديث</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>اختر قناة الإصدار التي ترغب في تلقي التحديثات منها (مستقرة، بيتا، أو ألفا)</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>شفافية الأسلاك</value>
   </data>
@@ -846,6 +888,9 @@
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>تحرير العنصر المحدد</value>
   </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>حامل القبعات</value>
+  </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>رأس</value>
   </data>
@@ -896,6 +941,9 @@
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>نجم</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>عرض جميع العناصر</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>مع السهم أداة انقر بزر الماوس الأيمن على علامة، الصدر، عارضة أزياء، رف سلاح، إطار البند أو شجرة عيد الميلاد.</value>
@@ -1831,6 +1879,21 @@
   </data>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>أصفر</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>مفتوح</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>تثبيت</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>مستكشف العالم</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>إلغاء التثبيت</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>

@@ -1223,6 +1223,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minimap Background.
+        /// </summary>
+        public static string menu_layers_minimap_background {
+            get {
+                return ResourceManager.GetString("menu_layers_minimap_background", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Points of Interest.
         /// </summary>
         public static string menu_layers_points {
@@ -1628,6 +1637,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scripting.
+        /// </summary>
+        public static string settings_category_scripting {
+            get {
+                return ResourceManager.GetString("settings_category_scripting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for Updates.
         /// </summary>
         public static string settings_check_updates {
@@ -1682,6 +1700,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minimap Background.
+        /// </summary>
+        public static string settings_minimap_background {
+            get {
+                return ResourceManager.GetString("settings_minimap_background", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show sky/cave/hell background colors in the minimap.
+        /// </summary>
+        public static string settings_minimap_background_desc {
+            get {
+                return ResourceManager.GetString("settings_minimap_background_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Picker Hold Threshold (ms).
         /// </summary>
         public static string settings_picker_hold_threshold {
@@ -1723,6 +1759,24 @@ namespace TEdit.Properties {
         public static string settings_save {
             get {
                 return ResourceManager.GetString("settings_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Script Timeout (seconds).
+        /// </summary>
+        public static string settings_script_timeout {
+            get {
+                return ResourceManager.GetString("settings_script_timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum time a script can run before being cancelled (10-300 seconds).
+        /// </summary>
+        public static string settings_script_timeout_desc {
+            get {
+                return ResourceManager.GetString("settings_script_timeout_desc", resourceCulture);
             }
         }
         
@@ -5262,24 +5316,6 @@ namespace TEdit.Properties {
         public static string world_explorer_pin {
             get {
                 return ResourceManager.GetString("world_explorer_pin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Backups &amp; Autosaves.
-        /// </summary>
-        public static string world_explorer_tab_backups {
-            get {
-                return ResourceManager.GetString("world_explorer_tab_backups", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Worlds.
-        /// </summary>
-        public static string world_explorer_tab_worlds {
-            get {
-                return ResourceManager.GetString("world_explorer_tab_worlds", resourceCulture);
             }
         }
         

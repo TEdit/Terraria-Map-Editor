@@ -25,9 +25,11 @@ public class UserSettings : INotifyPropertyChanged
     private UpdateChannel _updateChannel = UpdateChannel.Stable;
     private bool _showAllWeaponRackItems = false;
     private bool _showBuffRadii = false;
+    private bool _minimapBackground = false;
     private FilterManager.FilterMode _filterMode = FilterManager.FilterMode.Darken;
     private int _filterDarkenAmount = 60;
     private int _maxBackups = 10;
+    private int _scriptTimeoutSeconds = 60;
     private List<string> _pinnedWorlds = new();
     private List<string> _recentWorlds = new();
     private Dictionary<string, List<InputBinding>> _inputBindings = new();
@@ -117,6 +119,12 @@ public class UserSettings : INotifyPropertyChanged
         set => SetField(ref _showBuffRadii, value);
     }
 
+    public bool MinimapBackground
+    {
+        get => _minimapBackground;
+        set => SetField(ref _minimapBackground, value);
+    }
+
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public FilterManager.FilterMode FilterMode
     {
@@ -134,6 +142,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _maxBackups;
         set => SetField(ref _maxBackups, Math.Clamp(value, 1, 50));
+    }
+
+    public int ScriptTimeoutSeconds
+    {
+        get => _scriptTimeoutSeconds;
+        set => SetField(ref _scriptTimeoutSeconds, Math.Clamp(value, 10, 300));
     }
 
     public List<string> PinnedWorlds

@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using TEdit.Configuration;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms.VisualStyles;
@@ -353,7 +354,7 @@ public partial class WorldViewModel
 
         RefreshPoints();
 
-        MinimapImage = RenderMiniMap.Render(CurrentWorld);
+        MinimapImage = RenderMiniMap.Render(CurrentWorld, showBackground: UserSettingsService.Current.MinimapBackground);
 
         _loadTimer.Stop();
         OnProgressChanged(this, new ProgressChangedEventArgs(0,
@@ -491,15 +492,16 @@ public partial class WorldViewModel
     {
         if (CurrentWorld == null) return;
 
+        bool showBg = UserSettingsService.Current.MinimapBackground;
         if (useFilter)
         {
             UpdateRenderWorldUsingFilter();
-            MinimapImage = Render.RenderMiniMap.Render(CurrentWorld, true);
+            MinimapImage = Render.RenderMiniMap.Render(CurrentWorld, true, showBg);
         }
         else
         {
             UpdateRenderWorld();
-            MinimapImage = Render.RenderMiniMap.Render(CurrentWorld);
+            MinimapImage = Render.RenderMiniMap.Render(CurrentWorld, showBackground: showBg);
         }
     }
 

@@ -4,148 +4,327 @@
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:vm="clr-namespace:TEdit.ViewModel"
     xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:cv="clr-namespace:TEdit.Converters"
     Title="{x:Static p:Language.world_explorer_title}"
     WindowStartupLocation="CenterOwner"
     ExtendsContentIntoTitleBar="True"
     WindowBackdropType="Mica"
     Icon="/TEdit;component/Images/tedit.ico"
-    Width="850" Height="550"
+    Width="850" Height="750"
     MinWidth="600" MinHeight="350">
+
+    <ui:FluentWindow.Resources>
+        <cv:BoolToVisibilityConverter x:Key="BoolToVis" />
+    </ui:FluentWindow.Resources>
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Search + Browse Row -->
         <DockPanel Grid.Row="0" Margin="0,0,0,8">
-            <Button DockPanel.Dock="Right" Content="Browse..." Padding="8,4" Margin="8,0,0,0"
-                    Click="Browse_Click" />
-            <Grid>
-                <TextBox x:Name="SearchBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                         Padding="4" VerticalContentAlignment="Center" />
-                <TextBlock Text="Search worlds..." IsHitTestVisible="False" Foreground="Gray"
-                           VerticalAlignment="Center" Margin="6,0,0,0">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Text, ElementName=SearchBox, Converter={x:Static vm:StringNotEmptyConverter.Instance}}" Value="True">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </Grid>
+            <ui:Button DockPanel.Dock="Right" Content="Browse..." Padding="8,4" Margin="8,0,0,0"
+                       Click="Browse_Click" />
+            <ui:TextBox x:Name="SearchBox"
+                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                        PlaceholderText="Search worlds..."
+                        VerticalContentAlignment="Center" />
         </DockPanel>
 
-        <!-- Tab Control -->
-        <TabControl Grid.Row="1" SelectedIndex="{Binding SelectedTabIndex}">
-            <!-- Tab 1: Worlds -->
-            <TabItem Header="{x:Static p:Language.world_explorer_tab_worlds}">
-                <ListView ItemsSource="{Binding FilteredWorlds}"
-                          SelectedItem="{Binding SelectedWorld}"
-                          MouseDoubleClick="WorldList_MouseDoubleClick"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="" Width="30">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="{Binding IsPinned, Converter={x:Static vm:PinIconConverter.Instance}}"
-                                                Click="TogglePin_Click" Tag="{Binding}"
-                                                Background="Transparent" BorderThickness="0"
-                                                Padding="2" FontSize="14" Cursor="Hand" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="Title" Width="160">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Title}">
+        <!-- Unified World Grid -->
+        <ListView Grid.Row="1"
+                  x:Name="WorldListView"
+                  ItemsSource="{Binding FilteredWorlds}"
+                  SelectedItem="{Binding SelectedWorld}"
+                  MouseDoubleClick="WorldList_MouseDoubleClick"
+                  SelectionChanged="WorldList_SelectionChanged"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <TextBlock Text="{Binding IsExpanded, Converter={x:Static vm:ExpandIconConverter.Instance}}"
+                                               Cursor="Hand" Width="16" FontSize="10"
+                                               VerticalAlignment="Center"
+                                               MouseDown="ExpandToggle_Click">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding HasBackups}" Value="False">
+                                                        <Setter Property="Opacity" Value="0" />
+                                                        <Setter Property="IsHitTestVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <Button Click="TogglePin_Click" Tag="{Binding}"
+                                            Background="Transparent" BorderThickness="0"
+                                            Padding="2" FontSize="14" Cursor="Hand">
+                                        <TextBlock Text="{Binding IsPinned, Converter={x:Static vm:PinIconConverter.Instance}}">
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
+                                                    <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsMissing}" Value="True">
-                                                            <Setter Property="Foreground" Value="Gray" />
-                                                            <Setter Property="TextDecorations" Value="Strikethrough" />
+                                                        <DataTrigger Binding="{Binding IsPinned}" Value="True">
+                                                            <Setter Property="Foreground" Value="Gold" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
                                             </TextBlock.Style>
                                         </TextBlock>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Header="File" Width="120"
-                                            DisplayMemberBinding="{Binding FileName}" />
-                            <GridViewColumn Header="Dimensions" Width="130"
-                                            DisplayMemberBinding="{Binding DimensionText}" />
-                            <GridViewColumn Header="Version" Width="80"
-                                            DisplayMemberBinding="{Binding VersionText}" />
-                            <GridViewColumn Header="Size" Width="70"
-                                            DisplayMemberBinding="{Binding SizeText}" />
-                            <GridViewColumn Header="Modified" Width="90"
-                                            DisplayMemberBinding="{Binding LastModifiedText}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-            <!-- Tab 2: Backups & Autosaves -->
-            <TabItem Header="{x:Static p:Language.world_explorer_tab_backups}">
-                <TreeView ItemsSource="{Binding FilteredBackupGroups}"
-                          SelectedItemChanged="BackupTree_SelectedItemChanged">
-                    <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate DataType="{x:Type vm:BackupWorldGroupViewModel}"
-                                                  ItemsSource="{Binding Entries}">
-                            <TextBlock Text="{Binding HeaderText}" FontWeight="SemiBold"
-                                       Foreground="{DynamicResource TextBrush}" />
-                            <HierarchicalDataTemplate.ItemTemplate>
-                                <DataTemplate DataType="{x:Type vm:BackupEntryViewModel}">
-                                    <TextBlock Text="{Binding DisplayText}" Margin="4,2"
-                                               Foreground="{DynamicResource TextBrush}"
-                                               MouseDown="BackupEntry_MouseDoubleClick" />
-                                </DataTemplate>
-                            </HierarchicalDataTemplate.ItemTemplate>
-                        </HierarchicalDataTemplate>
-                    </TreeView.ItemTemplate>
-                    <TreeView.Resources>
-                        <Style TargetType="TreeViewItem">
-                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Converter={x:Static vm:IsTypeConverter.BackupWorldGroup}}" Value="True">
-                                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TreeView.Resources>
-                </TreeView>
-            </TabItem>
-        </TabControl>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Title" Width="180">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- Corrupt file indicator -->
+                                    <TextBlock Text="&#xE814;" FontFamily="Segoe MDL2 Assets" FontSize="12"
+                                               Foreground="#FF4444" VerticalAlignment="Center" Margin="0,0,4,0"
+                                               ToolTip="{Binding CorruptReason}"
+                                               Visibility="{Binding IsCorrupt, Converter={StaticResource BoolToVis}}" />
+                                    <!-- Backup exists indicator -->
+                                    <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="12"
+                                               Foreground="Green" VerticalAlignment="Center" Margin="0,0,4,0"
+                                               ToolTip="Backup exists"
+                                               Visibility="{Binding HasAnyBackup, Converter={StaticResource BoolToVis}}" />
+                                    <!-- No backup warning -->
+                                    <Button Padding="0" Margin="0,0,4,0"
+                                            Background="Transparent" BorderThickness="0" Cursor="Hand"
+                                            Click="CreateBackup_Click" Tag="{Binding}"
+                                            ToolTip="No backup — click to create .bak and TEdit backup">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding HasAnyBackup}" Value="False" />
+                                                            <Condition Binding="{Binding IsMissing}" Value="False" />
+                                                            <Condition Binding="{Binding IsCorrupt}" Value="False" />
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <TextBlock Text="&#xE7BA;" FontFamily="Segoe MDL2 Assets" FontSize="12" Foreground="#FF8800" />
+                                    </Button>
+                                    <TextBlock Text="{Binding Title}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsMissing}" Value="True">
+                                                        <Setter Property="Foreground" Value="Gray" />
+                                                        <Setter Property="TextDecorations" Value="Strikethrough" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsCorrupt}" Value="True">
+                                                        <Setter Property="Foreground" Value="#FF4444" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="File" Width="120"
+                                    DisplayMemberBinding="{Binding FileName}" />
+                    <GridViewColumn Header="Dimensions" Width="130"
+                                    DisplayMemberBinding="{Binding DimensionText}" />
+                    <GridViewColumn Header="Version" Width="80"
+                                    DisplayMemberBinding="{Binding VersionText}" />
+                    <GridViewColumn Header="Size" Width="70"
+                                    DisplayMemberBinding="{Binding SizeText}" />
+                    <GridViewColumn Header="Modified" Width="90"
+                                    DisplayMemberBinding="{Binding LastModifiedText}" />
+                    <GridViewColumn Header="" Width="60">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Click="PreviewWorld_Click" Tag="{Binding}"
+                                            Background="Transparent" BorderThickness="0"
+                                            Padding="2" Cursor="Hand"
+                                            ToolTip="Preview world map">
+                                        <TextBlock Text="&#xE7B3;" FontFamily="Segoe MDL2 Assets" FontSize="14"
+                                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsMissing}" Value="True">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                    <Button Click="OpenFolder_Click" Tag="{Binding}"
+                                            Background="Transparent" BorderThickness="0"
+                                            Padding="2" Cursor="Hand"
+                                            ToolTip="Open in Explorer">
+                                        <TextBlock Text="&#xE838;" FontFamily="Segoe MDL2 Assets" FontSize="14"
+                                                   Foreground="Gold" />
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsMissing}" Value="True">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Foreground" Value="{DynamicResource ListViewItemForeground}" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Border.CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Padding" Value="6,0,6,0" />
+                    <Setter Property="Margin" Value="0,0,0,2" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="OverridesDefaultStyle" Value="True" />
+                    <Setter Property="MinHeight" Value="{DynamicResource GridViewItemContainerMinHeight}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border x:Name="RootBorder"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{TemplateBinding Border.CornerRadius}"
+                                        SnapsToDevicePixels="True">
+                                    <Grid>
+                                        <StackPanel>
+                                            <GridViewRowPresenter
+                                                Margin="{TemplateBinding Padding}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                            <ItemsControl ItemsSource="{Binding Backups}"
+                                                          Margin="50,0,0,4"
+                                                          Visibility="{Binding IsExpanded, Converter={StaticResource BoolToVis}}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Margin="0,1" Padding="4,2" Cursor="Hand"
+                                                                Background="Transparent" CornerRadius="3"
+                                                                PreviewMouseLeftButtonDown="BackupEntry_PreviewMouseDown">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding IsAutosave, Converter={x:Static vm:BackupDotConverter.Instance}}"
+                                                                           FontSize="10" VerticalAlignment="Center" Margin="0,0,4,0"
+                                                                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                                                                <TextBlock Text="{Binding DisplayText}"
+                                                                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                                                                <Button Padding="2,0" Margin="4,0,0,0"
+                                                                        Background="Transparent" BorderThickness="0" Cursor="Hand"
+                                                                        Click="PreviewBackup_Click2" Tag="{Binding}"
+                                                                        ToolTip="Preview backup">
+                                                                    <TextBlock Text="&#xE7B3;" FontFamily="Segoe MDL2 Assets" FontSize="11"
+                                                                               Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                                                                </Button>
+                                                                <Button Padding="2,0" Margin="4,0,0,0"
+                                                                        Background="Transparent" BorderThickness="0" Cursor="Hand"
+                                                                        Click="OpenBackupFolder_Click" Tag="{Binding}"
+                                                                        ToolTip="Open in Explorer">
+                                                                    <TextBlock Text="&#xE838;" FontFamily="Segoe MDL2 Assets" FontSize="11"
+                                                                               Foreground="Gold" />
+                                                                </Button>
+                                                                <Button Padding="2,0" Margin="4,0,0,0"
+                                                                        Background="Transparent" BorderThickness="0" Cursor="Hand"
+                                                                        Click="DeleteBackup_Click2" Tag="{Binding}"
+                                                                        ToolTip="Delete backup">
+                                                                    <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="11"
+                                                                               Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                                                                </Button>
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                        <Rectangle x:Name="ActiveRectangle"
+                                                   Width="3" Height="16"
+                                                   HorizontalAlignment="Left"
+                                                   VerticalAlignment="Center"
+                                                   Fill="{DynamicResource ListViewItemPillFillBrush}"
+                                                   RadiusX="2" RadiusY="2"
+                                                   Visibility="Collapsed" />
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="RootBorder" Property="Background"
+                                                Value="{DynamicResource ListViewItemBackgroundPointerOver}" />
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="RootBorder" Property="Background"
+                                                Value="{DynamicResource ListViewItemBackgroundPointerOver}" />
+                                        <Setter TargetName="ActiveRectangle" Property="Visibility" Value="Visible" />
+                                    </Trigger>
+                                    <MultiTrigger>
+                                        <MultiTrigger.Conditions>
+                                            <Condition Property="IsSelected" Value="True" />
+                                            <Condition Property="IsMouseOver" Value="True" />
+                                        </MultiTrigger.Conditions>
+                                        <Setter TargetName="RootBorder" Property="Background"
+                                                Value="{DynamicResource ListViewItemBackgroundSelectedPointerOver}" />
+                                    </MultiTrigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter TargetName="RootBorder" Property="Opacity"
+                                                Value="{DynamicResource ListViewItemDisabledThemeOpacity}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
         <!-- Button Bar -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
-            <Button Content="{x:Static p:Language.world_explorer_open}" Width="80" Padding="4"
-                    Margin="0,0,8,0" Click="Open_Click" />
-            <Button Content="{x:Static p:Language.world_explorer_delete}" Width="80" Padding="4"
-                    Margin="0,0,8,0" Click="Delete_Click">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding SelectedTabIndex}" Value="1">
-                                <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-            <Button Content="Refresh" Width="80" Padding="4" Margin="0,0,8,0" Click="Refresh_Click" />
-            <Button Content="Close" Width="80" Padding="4" Click="Close_Click" />
+            <ui:Button Content="{x:Static p:Language.world_explorer_open}" Width="80" Padding="4"
+                       Margin="0,0,8,0" Click="Open_Click" />
+            <ui:Button Content="Refresh" Width="80" Padding="4" Margin="0,0,8,0" Click="Refresh_Click" />
+            <ui:Button Content="Close" Width="80" Padding="4" Click="Close_Click" />
         </StackPanel>
+
+        <!-- Preview Panel -->
+        <Border Grid.Row="3" Margin="0,8,0,0" Padding="8"
+                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4"
+                Background="{DynamicResource ControlFillColorDefaultBrush}"
+                Visibility="{Binding ShowPreviewPanel, Converter={StaticResource BoolToVis}}">
+            <StackPanel>
+                <DockPanel Margin="0,0,0,4">
+                    <Button DockPanel.Dock="Right" Content="&#x2715;" Click="ClosePreview_Click"
+                            Background="Transparent" BorderThickness="0" Padding="4,0" FontSize="12" Cursor="Hand" />
+                    <TextBlock Text="{Binding PreviewTitle, StringFormat='Preview: {0}'}"
+                               FontWeight="SemiBold" VerticalAlignment="Center" />
+                </DockPanel>
+                <TextBlock Text="Loading preview..." Visibility="{Binding IsPreviewLoading, Converter={StaticResource BoolToVis}}"
+                           FontStyle="Italic" Foreground="Gray" HorizontalAlignment="Center" Margin="0,4" />
+                <Image Source="{Binding PreviewImage}" Stretch="Uniform"
+                       Width="600" Height="200"
+                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                       Visibility="{Binding HasPreview, Converter={StaticResource BoolToVis}}" />
+            </StackPanel>
+        </Border>
     </Grid>
 </ui:FluentWindow>

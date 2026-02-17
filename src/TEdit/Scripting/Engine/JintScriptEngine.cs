@@ -44,6 +44,8 @@ public class JintScriptEngine : IScriptEngine
             engine.SetValue("batch", api.Batch);
             engine.SetValue("tools", api.Tools);
             engine.SetValue("finder", api.Finder);
+            engine.SetValue("sprites", api.Sprites);
+            engine.SetValue("draw", api.Draw);
 
             // print() convenience
             engine.SetValue("print", new Action<object>(msg =>

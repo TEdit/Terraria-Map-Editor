@@ -1,0 +1,454 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TEdit.Common.Geometry;
+using TEdit.Editor;
+using TEdit.Editor.Undo;
+using TEdit.Geometry;
+using TEdit.Terraria;
+using GeomFill = TEdit.Geometry.Fill;
+
+namespace TEdit.Scripting.Api;
+
+public class DrawApi
+{
+    private readonly World _world;
+    private readonly IUndoManager _undo;
+    private readonly ISelection _selection;
+    private readonly WorldEditor _editor;
+
+    public DrawApi(World world, IUndoManager undo, ISelection selection)
+    {
+        _world = world;
+        _undo = undo;
+        _selection = selection;
+
+        var picker = new TilePicker();
+        _editor = new WorldEditor(picker, world, selection, undo, notifyTileChanged: null);
+    }
+
+    // ── Picker Configuration ─────────────────────────────────────────
+
+    public void SetTile(int tileType)
+    {
+        _editor.TilePicker.Tile = tileType;
+        _editor.TilePicker.TileStyleActive = true;
+        _editor.TilePicker.PaintMode = PaintMode.TileAndWall;
+    }
+
+    public void SetWall(int wallType)
+    {
+        _editor.TilePicker.Wall = wallType;
+        _editor.TilePicker.WallStyleActive = true;
+        _editor.TilePicker.PaintMode = PaintMode.TileAndWall;
+    }
+
+    public void SetErase(bool erase)
+    {
+        _editor.TilePicker.IsEraser = erase;
+    }
+
+    public void SetPaintMode(string mode)
+    {
+        _editor.TilePicker.PaintMode = mode?.ToLowerInvariant() switch
+        {
+            "tile" or "tileandwall" => PaintMode.TileAndWall,
+            "wire" => PaintMode.Wire,
+            "liquid" => PaintMode.Liquid,
+            _ => PaintMode.TileAndWall
+        };
+    }
+
+    public void SetTileColor(int color)
+    {
+        _editor.TilePicker.TileColor = color;
+        _editor.TilePicker.TilePaintActive = color != 0;
+    }
+
+    public void SetWallColor(int color)
+    {
+        _editor.TilePicker.WallColor = color;
+        _editor.TilePicker.WallPaintActive = color != 0;
+    }
+
+    public void SetBrickStyle(string style)
+    {
+        _editor.TilePicker.BrickStyle = ParseBrickStyle(style);
+        _editor.TilePicker.BrickStyleActive = true;
+        _editor.TilePicker.ExtrasActive = true;
+    }
+
+    public void SetActuator(bool enabled, bool inactive = false)
+    {
+        _editor.TilePicker.Actuator = enabled;
+        _editor.TilePicker.ActuatorInActive = inactive;
+        _editor.TilePicker.ExtrasActive = true;
+    }
+
+    public void SetTileCoating(bool echo = false, bool illuminant = false)
+    {
+        _editor.TilePicker.TileCoatingEcho = echo;
+        _editor.TilePicker.TileCoatingIlluminant = illuminant;
+        _editor.TilePicker.EnableTileCoating = true;
+    }
+
+    public void SetWallCoating(bool echo = false, bool illuminant = false)
+    {
+        _editor.TilePicker.WallCoatingEcho = echo;
+        _editor.TilePicker.WallCoatingIlluminant = illuminant;
+        _editor.TilePicker.EnableWallCoating = true;
+    }
+
+    public void SetLiquid(string type, string amount = "full")
+    {
+        _editor.TilePicker.PaintMode = PaintMode.Liquid;
+        _editor.TilePicker.LiquidType = type?.ToLowerInvariant() switch
+        {
+            "water" => LiquidType.Water,
+            "lava" => LiquidType.Lava,
+            "honey" => LiquidType.Honey,
+            "shimmer" => LiquidType.Shimmer,
+            "none" => LiquidType.None,
+            _ => LiquidType.Water
+        };
+        _editor.TilePicker.LiquidAmountMode = amount?.ToLowerInvariant() switch
+        {
+            "full" or "100" => LiquidAmountMode.OneHundredPercent,
+            "half" or "50" => LiquidAmountMode.FiftyPercent,
+            "quarter" or "25" => LiquidAmountMode.TwentyPercent,
+            _ => LiquidAmountMode.OneHundredPercent
+        };
+    }
+
+    public void SetWire(bool red = false, bool blue = false, bool green = false, bool yellow = false)
+    {
+        _editor.TilePicker.PaintMode = PaintMode.Wire;
+        _editor.TilePicker.RedWireActive = red;
+        _editor.TilePicker.BlueWireActive = blue;
+        _editor.TilePicker.GreenWireActive = green;
+        _editor.TilePicker.YellowWireActive = yellow;
+    }
+
+    public void SetTileMask(string mode, int tileType = -1)
+    {
+        _editor.TilePicker.TileMaskMode = ParseMaskMode(mode);
+        _editor.TilePicker.TileMask = tileType;
+    }
+
+    public void SetWallMask(string mode, int wallType = 0)
+    {
+        _editor.TilePicker.WallMaskMode = ParseMaskMode(mode);
+        _editor.TilePicker.WallMask = wallType;
+    }
+
+    public void SetBrush(int width, int height, string shape = "square")
+    {
+        _editor.Brush.Width = width;
+        _editor.Brush.Height = height;
+        _editor.Brush.Shape = shape?.ToLowerInvariant() switch
+        {
+            "round" => BrushShape.Round,
+            "right" => BrushShape.Right,
+            "left" => BrushShape.Left,
+            _ => BrushShape.Square
+        };
+    }
+
+    public void SetBrushOutline(int outline, bool enabled)
+    {
+        _editor.Brush.Outline = outline;
+        _editor.Brush.IsOutline = enabled;
+    }
+
+    public void Reset()
+    {
+        _editor.TilePicker.PaintMode = PaintMode.TileAndWall;
+        _editor.TilePicker.TileStyleActive = false;
+        _editor.TilePicker.WallStyleActive = false;
+        _editor.TilePicker.BrickStyleActive = false;
+        _editor.TilePicker.ExtrasActive = false;
+        _editor.TilePicker.TilePaintActive = false;
+        _editor.TilePicker.WallPaintActive = false;
+        _editor.TilePicker.EnableTileCoating = false;
+        _editor.TilePicker.EnableWallCoating = false;
+        _editor.TilePicker.IsEraser = false;
+        _editor.TilePicker.RedWireActive = false;
+        _editor.TilePicker.BlueWireActive = false;
+        _editor.TilePicker.GreenWireActive = false;
+        _editor.TilePicker.YellowWireActive = false;
+        _editor.TilePicker.TileMaskMode = MaskMode.Off;
+        _editor.TilePicker.WallMaskMode = MaskMode.Off;
+        _editor.Brush = new BrushSettings();
+    }
+
+    // ── Drawing Operations ───────────────────────────────────────────
+
+    /// <summary>
+    /// Draw a 1px line from (x1,y1) to (x2,y2) using the current tile picker settings.
+    /// </summary>
+    public void Pencil(int x1, int y1, int x2, int y2)
+    {
+        ResetCheckTiles();
+        var points = Shape.DrawLineTool(
+            new Vector2Int32(x1, y1),
+            new Vector2Int32(x2, y2)).ToList();
+        _editor.FillSolid(points);
+    }
+
+    /// <summary>
+    /// Draw a brush-width line from (x1,y1) to (x2,y2).
+    /// </summary>
+    public void Brush(int x1, int y1, int x2, int y2)
+    {
+        ResetCheckTiles();
+        _editor.DrawLine(
+            new Vector2Int32(x1, y1),
+            new Vector2Int32(x2, y2));
+    }
+
+    /// <summary>
+    /// Flood fill from (x, y) using the current tile picker settings.
+    /// Scanline flood fill algorithm matching FillTool behavior.
+    /// </summary>
+    public void Fill(int x, int y)
+    {
+        if (!_world.ValidTileLocation(x, y)) return;
+
+        int bitmapWidth = _world.TilesWide;
+        int bitmapHeight = _world.TilesHigh;
+
+        var checkTiles = new bool[bitmapWidth * bitmapHeight];
+        var ranges = new FloodFillRangeQueue();
+        var originTile = (Tile)_world.Tiles[x, y].Clone();
+
+        // Seed the fill
+        LinearFloodFill(ref x, ref y, ref originTile, checkTiles, ranges, bitmapWidth, bitmapHeight);
+
+        while (ranges.Count > 0)
+        {
+            var range = ranges.Dequeue();
+            int upY = range.Y - 1;
+            int downY = range.Y + 1;
+
+            for (int i = range.StartX; i <= range.EndX; i++)
+            {
+                // Fill upward
+                if (upY >= 0)
+                {
+                    int upIdx = i + upY * bitmapWidth;
+                    if (!checkTiles[upIdx] &&
+                        CheckTileMatch(ref originTile, ref _world.Tiles[i, upY]) &&
+                        _selection.IsValid(i, upY))
+                    {
+                        int xi = i;
+                        LinearFloodFill(ref xi, ref upY, ref originTile, checkTiles, ranges, bitmapWidth, bitmapHeight);
+                    }
+                }
+
+                // Fill downward
+                if (downY < bitmapHeight)
+                {
+                    int downIdx = i + downY * bitmapWidth;
+                    if (!checkTiles[downIdx] &&
+                        CheckTileMatch(ref originTile, ref _world.Tiles[i, downY]) &&
+                        _selection.IsValid(i, downY))
+                    {
+                        int xi = i;
+                        LinearFloodFill(ref xi, ref downY, ref originTile, checkTiles, ranges, bitmapWidth, bitmapHeight);
+                    }
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Auto-slope tiles along a brush-width line from (x1,y1) to (x2,y2).
+    /// </summary>
+    public void Hammer(int x1, int y1, int x2, int y2)
+    {
+        ResetCheckTiles();
+        var line = Shape.DrawLineTool(
+            new Vector2Int32(x1, y1),
+            new Vector2Int32(x2, y2)).ToList();
+
+        var brush = _editor.Brush;
+        foreach (var point in line)
+        {
+            // Generate brush area at each point
+            IList<Vector2Int32> area;
+            if (brush.Shape == BrushShape.Round)
+                area = GeomFill.FillEllipseCentered(point, new Vector2Int32(brush.Width / 2, brush.Height / 2)).ToList();
+            else
+                area = GeomFill.FillRectangleCentered(point, new Vector2Int32(brush.Width, brush.Height)).ToList();
+
+            foreach (var pixel in area)
+            {
+                if (!_world.ValidTileLocation(pixel)) continue;
+
+                int index = pixel.X + pixel.Y * _world.TilesWide;
+                if (!_editor._checkTiles[index])
+                {
+                    _editor._checkTiles[index] = true;
+
+                    if (_selection.IsValid(pixel))
+                    {
+                        var style = GetAutoSlopeStyle(pixel);
+                        if (style != null)
+                        {
+                            _undo.SaveTile(_world, pixel);
+                            _world.Tiles[pixel.X, pixel.Y].BrickStyle = style.Value;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ── Private Helpers ──────────────────────────────────────────────
+
+    private void ResetCheckTiles()
+    {
+        _editor._checkTiles = new bool[_world.TilesWide * _world.TilesHigh];
+    }
+
+    private BrickStyle? GetAutoSlopeStyle(Vector2Int32 v)
+    {
+        var t = _world.Tiles[v.X, v.Y];
+        var tp = WorldConfiguration.GetTileProperties(t.Type);
+        if (!t.IsActive || t.LiquidType != LiquidType.None || tp.IsFramed) return null;
+
+        bool up = _world.SlopeCheck(v, new Vector2Int32(v.X, v.Y - 1));
+        bool down = _world.SlopeCheck(v, new Vector2Int32(v.X, v.Y + 1));
+        bool upLeft = _world.SlopeCheck(v, new Vector2Int32(v.X - 1, v.Y - 1));
+        bool left = _world.SlopeCheck(v, new Vector2Int32(v.X - 1, v.Y));
+        bool upRight = _world.SlopeCheck(v, new Vector2Int32(v.X + 1, v.Y - 1));
+        bool right = _world.SlopeCheck(v, new Vector2Int32(v.X + 1, v.Y));
+        bool downLeft = _world.SlopeCheck(v, new Vector2Int32(v.X - 1, v.Y + 1));
+        bool downRight = _world.SlopeCheck(v, new Vector2Int32(v.X + 1, v.Y + 1));
+
+        var mask = new BitsByte(up, upRight, right, downRight, down, downLeft, left, upLeft);
+        var maskValue = mask.Value;
+
+        if (maskValue == byte.MinValue || maskValue == byte.MaxValue) return null;
+        if (!up && !down) return null;
+
+        if (!up && left && !right && (downRight || !upRight)) return BrickStyle.SlopeTopRight;
+        if (!up && right && !left && (downLeft || !upLeft)) return BrickStyle.SlopeTopLeft;
+        if (!down && left && !right && (!downRight || upRight)) return BrickStyle.SlopeBottomRight;
+        if (!down && right && !left && (!downLeft || upLeft)) return BrickStyle.SlopeBottomLeft;
+
+        return null;
+    }
+
+    private bool CheckTileMatch(ref Tile originTile, ref Tile nextTile)
+    {
+        switch (_editor.TilePicker.PaintMode)
+        {
+            case PaintMode.TileAndWall:
+                if (_editor.TilePicker.TileStyleActive && (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive))
+                    return false;
+                if (_editor.TilePicker.WallStyleActive && (originTile.Wall != nextTile.Wall ||
+                    (originTile.IsActive && (originTile.Type != nextTile.Type || !nextTile.IsActive)) ||
+                    (originTile.Type != nextTile.Type && nextTile.IsActive &&
+                     (nextTile.StopsWallsFloodFill() || !WorldConfiguration.GetTileProperties(nextTile.Type).IsFramed))))
+                    return false;
+                if (_editor.TilePicker.BrickStyleActive && (originTile.BrickStyle != nextTile.BrickStyle))
+                    return false;
+                if (_editor.TilePicker.TilePaintActive && (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive))
+                    return false;
+                if (_editor.TilePicker.WallPaintActive && (originTile.Wall != nextTile.Wall ||
+                    (originTile.IsActive && (originTile.Type != nextTile.Type || !nextTile.IsActive)) ||
+                    (originTile.Type != nextTile.Type && nextTile.IsActive &&
+                     (nextTile.StopsWallsFloodFill() || !WorldConfiguration.GetTileProperties(nextTile.Type).IsFramed))))
+                    return false;
+                if (_editor.TilePicker.ExtrasActive && (originTile.Actuator != nextTile.Actuator || originTile.InActive != nextTile.InActive || originTile.IsActive != nextTile.IsActive))
+                    return false;
+                break;
+            case PaintMode.Wire:
+                if (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive)
+                    return false;
+                break;
+            case PaintMode.Liquid:
+                if ((originTile.LiquidAmount > 0 != nextTile.LiquidAmount > 0) ||
+                    originTile.LiquidType != nextTile.LiquidType ||
+                    (originTile.IsActive && WorldConfiguration.TileProperties[originTile.Type].IsSolid) ||
+                    (nextTile.IsActive && WorldConfiguration.TileProperties[nextTile.Type].IsSolid))
+                    return false;
+                break;
+        }
+        return true;
+    }
+
+    private void LinearFloodFill(ref int x, ref int y, ref Tile originTile,
+        bool[] checkTiles, FloodFillRangeQueue ranges, int bitmapWidth, int bitmapHeight)
+    {
+        // Walk left
+        int lFillLoc = x;
+        int tileIndex = bitmapWidth * y + x;
+        while (true)
+        {
+            if (!checkTiles[tileIndex])
+            {
+                _undo.SaveTile(_world, lFillLoc, y);
+                _editor.SetPixel(lFillLoc, y);
+                checkTiles[tileIndex] = true;
+            }
+            lFillLoc--;
+            tileIndex--;
+            if (lFillLoc <= 0 || checkTiles[tileIndex] ||
+                !CheckTileMatch(ref originTile, ref _world.Tiles[lFillLoc, y]) ||
+                !_selection.IsValid(lFillLoc, y))
+                break;
+        }
+        lFillLoc++;
+
+        // Walk right
+        int rFillLoc = x;
+        tileIndex = bitmapWidth * y + x;
+        while (true)
+        {
+            if (!checkTiles[tileIndex])
+            {
+                _undo.SaveTile(_world, rFillLoc, y);
+                _editor.SetPixel(rFillLoc, y);
+                checkTiles[tileIndex] = true;
+            }
+            rFillLoc++;
+            tileIndex++;
+            if (rFillLoc >= bitmapWidth || checkTiles[tileIndex] ||
+                !CheckTileMatch(ref originTile, ref _world.Tiles[rFillLoc, y]) ||
+                !_selection.IsValid(rFillLoc, y))
+                break;
+        }
+        rFillLoc--;
+
+        var r = new FloodFillRange(lFillLoc, rFillLoc, y);
+        ranges.Enqueue(ref r);
+    }
+
+    private static BrickStyle ParseBrickStyle(string style)
+    {
+        return style?.ToLowerInvariant() switch
+        {
+            "full" => BrickStyle.Full,
+            "halfbrick" or "half" => BrickStyle.HalfBrick,
+            "slopetopright" or "topright" => BrickStyle.SlopeTopRight,
+            "slopetopleft" or "topleft" => BrickStyle.SlopeTopLeft,
+            "slopebottomright" or "bottomright" => BrickStyle.SlopeBottomRight,
+            "slopebottomleft" or "bottomleft" => BrickStyle.SlopeBottomLeft,
+            _ => BrickStyle.Full
+        };
+    }
+
+    private static MaskMode ParseMaskMode(string mode)
+    {
+        return mode?.ToLowerInvariant() switch
+        {
+            "off" => MaskMode.Off,
+            "match" => MaskMode.Match,
+            "empty" => MaskMode.Empty,
+            "notmatching" => MaskMode.NotMatching,
+            _ => MaskMode.Off
+        };
+    }
+}

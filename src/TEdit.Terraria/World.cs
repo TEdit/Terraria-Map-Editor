@@ -371,6 +371,7 @@ public partial class World
                 if (!fi.Exists) return null;
 
                 var w = new World();
+                int[] sectionPointers = null;
 
                 using var fs = File.OpenRead(filename);
                 Stream stream = fs;
@@ -392,8 +393,8 @@ public partial class World
                 {
                     // Reset stream and load section header
                     b.BaseStream.Position = 0;
-                    if (!LoadSectionHeader(b, out _, out var sectionPointers, w))
-                        return null;
+                    if (!LoadSectionHeader(b, out _, out sectionPointers, w))
+                        return MakeCorruptHeader(filename, fi, "Invalid section header");
 
                     // Load header flags (title, dimensions, etc.)
                     LoadHeaderFlags(b, w, sectionPointers[0]);
@@ -406,6 +407,43 @@ public partial class World
                         var pos = b.BaseStream.Position;
                         w.Title = b.ReadString();
                         b.BaseStream.Position = pos;
+                    }
+                }
+
+                // Check for zero dimensions
+                if (w.TilesWide <= 0 || w.TilesHigh <= 0)
+                {
+                    return MakeCorruptHeader(filename, fi, "Invalid dimensions (0x0)",
+                        w.Title, w.Version, w.IsTModLoader);
+                }
+
+                // Quick footer validation: seek to footer position and validate
+                string footerError = null;
+                if (sectionPointers != null && w.Version > 87)
+                {
+                    try
+                    {
+                        // The last section pointer is the footer position
+                        int footerPos = sectionPointers[^1];
+                        if (footerPos > 0 && footerPos < b.BaseStream.Length)
+                        {
+                            b.BaseStream.Position = footerPos;
+
+                            if (!b.ReadBoolean())
+                                footerError = "Invalid footer flag";
+                            else if (b.ReadString() != w.Title)
+                                footerError = "Footer title mismatch";
+                            else if (b.ReadInt32() != w.WorldId)
+                                footerError = "Footer world ID mismatch";
+                        }
+                        else
+                        {
+                            footerError = "Footer position out of range";
+                        }
+                    }
+                    catch
+                    {
+                        footerError = "Footer unreadable";
                     }
                 }
 
@@ -422,13 +460,78 @@ public partial class World
                     IsCrimson: w.IsCrimson,
                     GameMode: w.GameMode,
                     IsHardMode: w.HardMode,
-                    Seed: w.Seed ?? "");
+                    Seed: w.Seed ?? "",
+                    IsCorrupt: footerError != null,
+                    CorruptReason: footerError);
             }
-            catch
+            catch (Exception ex)
             {
-                return null;
+                return MakeCorruptHeader(filename, new FileInfo(filename), SanitizeMessage(ex));
             }
         }
+    }
+
+    private static WorldHeaderInfo MakeCorruptHeader(string filename, FileInfo fi, string reason,
+        string title = null, uint version = 0, bool isTModLoader = false)
+    {
+        return new WorldHeaderInfo(
+            Title: title ?? Path.GetFileNameWithoutExtension(filename),
+            Version: version,
+            TilesWide: 0,
+            TilesHigh: 0,
+            LastSave: fi.Exists ? fi.LastWriteTimeUtc : DateTime.MinValue,
+            FileSizeBytes: fi.Exists ? fi.Length : 0,
+            FilePath: filename,
+            IsTModLoader: isTModLoader,
+            IsFavorite: false,
+            IsCrimson: false,
+            GameMode: 0,
+            IsHardMode: false,
+            Seed: "",
+            IsCorrupt: true,
+            CorruptReason: reason);
+    }
+
+    /// <summary>
+    /// Extracts a clean, displayable error message from an exception.
+    /// Exception messages from binary parsing can contain garbled non-printable characters.
+    /// </summary>
+    private static string SanitizeMessage(Exception ex)
+    {
+        string typeName = ex.GetType().Name;
+
+        // Use the exception type as a readable prefix
+        string prefix = typeName switch
+        {
+            nameof(TEditFileFormatException) => "Invalid format",
+            "EndOfStreamException" => "Unexpected end of file",
+            "IOException" => "File read error",
+            "OutOfMemoryException" => "File too large or corrupt",
+            _ => "Read error"
+        };
+
+        // Only include the message if it contains printable characters
+        string msg = ex.Message;
+        if (string.IsNullOrEmpty(msg))
+            return prefix;
+
+        // Strip non-printable characters
+        var clean = new System.Text.StringBuilder(msg.Length);
+        foreach (char c in msg)
+        {
+            if (c >= ' ' && c < 127)
+                clean.Append(c);
+        }
+
+        string cleaned = clean.ToString().Trim();
+        if (cleaned.Length == 0 || cleaned.Length < msg.Length / 2)
+            return prefix; // message was mostly garbled
+
+        // Truncate long messages
+        if (cleaned.Length > 120)
+            cleaned = cleaned[..120] + "...";
+
+        return $"{prefix}: {cleaned}";
     }
 
     public static Task<(World World, Exception Error)> LoadWorldAsync(string filename, bool headersOnly = false, IProgress<ProgressChangedEventArgs>? progress = null)

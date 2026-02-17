@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
+using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.Utility;
 
@@ -21,14 +26,22 @@ public partial class WorldExplorerViewModel
     public WorldExplorerViewModel(WorldViewModel worldViewModel)
     {
         _worldViewModel = worldViewModel;
+
+        this.WhenAnyValue(x => x.SearchText)
+            .Subscribe(_ => this.RaisePropertyChanged(nameof(FilteredWorlds)));
+        this.WhenAnyValue(x => x.PreviewImage)
+            .Subscribe(_ =>
+            {
+                this.RaisePropertyChanged(nameof(HasPreview));
+                this.RaisePropertyChanged(nameof(ShowPreviewPanel));
+            });
+        this.WhenAnyValue(x => x.IsPreviewLoading)
+            .Subscribe(_ => this.RaisePropertyChanged(nameof(ShowPreviewPanel)));
+
         _ = RefreshAsync();
     }
 
     public ObservableCollection<WorldEntryViewModel> Worlds { get; } = [];
-    public ObservableCollection<BackupWorldGroupViewModel> BackupGroups { get; } = [];
-
-    [Reactive]
-    private int _selectedTabIndex;
 
     [Reactive]
     private string _searchText = "";
@@ -41,6 +54,21 @@ public partial class WorldExplorerViewModel
 
     [Reactive]
     private bool _isLoading;
+
+    [Reactive]
+    private ImageSource _previewImage;
+
+    [Reactive]
+    private bool _isPreviewLoading;
+
+    [Reactive]
+    private string _previewTitle;
+
+    public bool HasPreview => PreviewImage != null;
+
+    public bool ShowPreviewPanel => HasPreview || IsPreviewLoading;
+
+    public static string PreviewCachePath => Path.Combine(WorldViewModel.TempPath, "previews");
 
     public IEnumerable<WorldEntryViewModel> FilteredWorlds
     {
@@ -57,20 +85,6 @@ public partial class WorldExplorerViewModel
         }
     }
 
-    public IEnumerable<BackupWorldGroupViewModel> FilteredBackupGroups
-    {
-        get
-        {
-            var groups = BackupGroups.AsEnumerable();
-            if (!string.IsNullOrWhiteSpace(SearchText))
-            {
-                groups = groups.Where(g =>
-                    g.WorldName.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
-            }
-            return groups;
-        }
-    }
-
     public async Task RefreshAsync()
     {
         IsLoading = true;
@@ -82,11 +96,11 @@ public partial class WorldExplorerViewModel
             var recentWorlds = UserSettingsService.Current.RecentWorlds ?? [];
 
             var worldEntries = new List<WorldEntryViewModel>();
-            var backupGroups = new Dictionary<string, BackupWorldGroupViewModel>(StringComparer.OrdinalIgnoreCase);
+            var backupEntries = new List<(string WorldName, BackupEntryViewModel Entry)>();
 
-            // Load worlds from Terraria worlds folder
             await Task.Run(() =>
             {
+                // Load worlds from Terraria worlds folder
                 string worldsPath = DependencyChecker.PathToWorlds;
                 if (!string.IsNullOrEmpty(worldsPath) && Directory.Exists(worldsPath))
                 {
@@ -138,12 +152,7 @@ public partial class WorldExplorerViewModel
                         string timestamp = nameWithoutExt.Substring(timestampDot + 1);
                         if (timestamp.Length != 14 || !timestamp.All(char.IsDigit)) continue;
 
-                        if (!backupGroups.TryGetValue(worldName, out var group))
-                        {
-                            group = new BackupWorldGroupViewModel(worldName);
-                            backupGroups[worldName] = group;
-                        }
-                        group.Entries.Add(new BackupEntryViewModel(file));
+                        backupEntries.Add((worldName, new BackupEntryViewModel(file)));
                     }
                 }
 
@@ -153,27 +162,74 @@ public partial class WorldExplorerViewModel
                 {
                     foreach (var file in Directory.GetFiles(autoSavePath, "*.autosave"))
                     {
-                        string name = Path.GetFileNameWithoutExtension(file); // removes .autosave
-                        if (!backupGroups.TryGetValue(name, out var group))
-                        {
-                            group = new BackupWorldGroupViewModel(name);
-                            backupGroups[name] = group;
-                        }
-                        group.Entries.Add(new BackupEntryViewModel(file));
+                        string worldName = Path.GetFileNameWithoutExtension(file); // removes .autosave
+                        backupEntries.Add((worldName, new BackupEntryViewModel(file)));
                     }
                 }
             });
 
+            // Match backups to worlds by title or filename stem (case-insensitive)
+            // Backup filenames use underscores where world titles use spaces,
+            // e.g. backup "Brewery_of_Tungsten2" should match world title "Brewery of Tungsten2"
+            var worldsByKey = new Dictionary<string, WorldEntryViewModel>(StringComparer.OrdinalIgnoreCase);
+            foreach (var w in worldEntries)
+            {
+                // Index by title
+                worldsByKey.TryAdd(w.Title, w);
+                // Also index by filename stem (e.g. "Brewery_of_Tungsten2")
+                if (!string.IsNullOrEmpty(w.FileName))
+                {
+                    var stem = Path.GetFileNameWithoutExtension(w.FileName);
+                    worldsByKey.TryAdd(stem, w);
+                }
+                // Also index by title with spaces replaced by underscores and vice versa
+                worldsByKey.TryAdd(w.Title.Replace(' ', '_'), w);
+                worldsByKey.TryAdd(w.Title.Replace('_', ' '), w);
+            }
+
+            var orphanBackups = new Dictionary<string, List<BackupEntryViewModel>>(StringComparer.OrdinalIgnoreCase);
+            foreach (var (worldName, entry) in backupEntries)
+            {
+                // Try exact match, then underscore↔space normalization
+                if (worldsByKey.TryGetValue(worldName, out var world)
+                    || worldsByKey.TryGetValue(worldName.Replace('_', ' '), out world)
+                    || worldsByKey.TryGetValue(worldName.Replace(' ', '_'), out world))
+                {
+                    world.Backups.Add(entry);
+                }
+                else
+                {
+                    if (!orphanBackups.TryGetValue(worldName, out var list))
+                    {
+                        list = [];
+                        orphanBackups[worldName] = list;
+                    }
+                    list.Add(entry);
+                }
+            }
+
+            // Create placeholder entries for orphan backups
+            foreach (var (worldName, entries) in orphanBackups)
+            {
+                var placeholder = new WorldEntryViewModel(worldName, isMissing: true);
+                foreach (var entry in entries)
+                    placeholder.Backups.Add(entry);
+                worldEntries.Add(placeholder);
+            }
+
+            // Sort backup entries within each world (newest first)
+            foreach (var world in worldEntries)
+            {
+                if (world.Backups.Count > 1)
+                {
+                    var sorted = world.Backups.OrderByDescending(e => e.Timestamp).ToList();
+                    world.Backups.Clear();
+                    foreach (var entry in sorted) world.Backups.Add(entry);
+                }
+            }
+
             // Sort worlds
             worldEntries.Sort();
-
-            // Sort backup entries within groups (newest first)
-            foreach (var group in backupGroups.Values)
-            {
-                var sorted = group.Entries.OrderByDescending(e => e.Timestamp).ToList();
-                group.Entries.Clear();
-                foreach (var entry in sorted) group.Entries.Add(entry);
-            }
 
             // Update UI collections on UI thread
             Application.Current.Dispatcher.Invoke(() =>
@@ -181,12 +237,7 @@ public partial class WorldExplorerViewModel
                 Worlds.Clear();
                 foreach (var w in worldEntries) Worlds.Add(w);
 
-                BackupGroups.Clear();
-                foreach (var g in backupGroups.Values.OrderBy(g => g.WorldName))
-                    BackupGroups.Add(g);
-
                 this.RaisePropertyChanged(nameof(FilteredWorlds));
-                this.RaisePropertyChanged(nameof(FilteredBackupGroups));
             });
         }
         finally
@@ -240,21 +291,124 @@ public partial class WorldExplorerViewModel
         {
             File.Delete(backup.FilePath);
 
-            // Remove from group
-            foreach (var group in BackupGroups)
+            // Remove from the world's backup list
+            foreach (var world in Worlds)
             {
-                if (group.Entries.Remove(backup))
-                {
-                    if (group.Entries.Count == 0)
-                        BackupGroups.Remove(group);
+                if (world.Backups.Remove(backup))
                     break;
-                }
             }
+
+            SelectedBackup = null;
         }
         catch (Exception ex)
         {
             ErrorLogging.LogException(ex);
         }
+    }
+
+    public void CreateBackupNow(WorldEntryViewModel world)
+    {
+        if (world == null || world.IsMissing || string.IsNullOrEmpty(world.FilePath) || !File.Exists(world.FilePath))
+            return;
+
+        try
+        {
+            // Create Terraria .bak if it doesn't exist
+            string bakPath = world.FilePath + ".bak";
+            if (!File.Exists(bakPath))
+            {
+                File.Copy(world.FilePath, bakPath, false);
+            }
+
+            // Create TEdit timestamped backup
+            string worldBaseName = Path.GetFileNameWithoutExtension(world.FilePath);
+            string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmss");
+            string backupDest = Path.Combine(WorldViewModel.BackupPath, $"{worldBaseName}.{timestamp}.wld");
+
+            if (!Directory.Exists(WorldViewModel.BackupPath))
+                Directory.CreateDirectory(WorldViewModel.BackupPath);
+
+            if (!File.Exists(backupDest))
+            {
+                File.Copy(world.FilePath, backupDest, false);
+                world.Backups.Insert(0, new BackupEntryViewModel(backupDest));
+            }
+
+            world.RefreshBackupState();
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+    }
+
+    public async Task GeneratePreviewAsync(string filePath)
+    {
+        if (string.IsNullOrEmpty(filePath) || !File.Exists(filePath))
+            return;
+
+        IsPreviewLoading = true;
+        PreviewTitle = Path.GetFileName(filePath);
+
+        try
+        {
+            // Compute cache path
+            var hash = SHA256.HashData(Encoding.UTF8.GetBytes(filePath));
+            var hashStr = Convert.ToHexString(hash);
+            var cachePath = Path.Combine(PreviewCachePath, $"{hashStr}.png");
+
+            // Check cache
+            if (File.Exists(cachePath))
+            {
+                var cached = new BitmapImage();
+                cached.BeginInit();
+                cached.CacheOption = BitmapCacheOption.OnLoad;
+                cached.UriSource = new Uri(cachePath);
+                cached.EndInit();
+                cached.Freeze();
+                PreviewImage = cached;
+                return;
+            }
+
+            // Load world on background thread
+            var (world, error) = await Task.Run(() => World.LoadWorld(filePath));
+
+            if (error != null || world == null)
+            {
+                PreviewTitle = $"Error loading: {Path.GetFileName(filePath)}";
+                return;
+            }
+
+            // Render and save on UI thread (WriteableBitmap requires it)
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                var bmp = RenderMiniMap.Render(world, showBackground: true, targetWidth: 600, targetHeight: 200);
+                bmp.SavePng(cachePath);
+
+                var result = new BitmapImage();
+                result.BeginInit();
+                result.CacheOption = BitmapCacheOption.OnLoad;
+                result.UriSource = new Uri(cachePath);
+                result.EndInit();
+                result.Freeze();
+                PreviewImage = result;
+            });
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+            PreviewTitle = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            IsPreviewLoading = false;
+        }
+    }
+
+    public void ClearPreview()
+    {
+        PreviewImage = null;
+        PreviewTitle = null;
     }
 
     private void AddRecentWorld(string path)

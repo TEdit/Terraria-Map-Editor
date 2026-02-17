@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using TEdit.Common;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 
@@ -11,12 +12,12 @@ public class RenderMiniMap
 {
     public static int Resolution { get; set; } = 20;
 
-    public static WriteableBitmap Render(World w, bool useFilter = false)
+    public static WriteableBitmap Render(World w, bool useFilter = false, bool showBackground = false,
+        int targetWidth = 300, int targetHeight = 100)
     {
-        // scale the minimap appropriatly
-        // UI is 300x100 px
-        var maxX = (int)Math.Ceiling(w.TilesWide / 300.0);
-        var maxY = (int)Math.Ceiling(w.TilesHigh / 100.0);
+        // scale the minimap to fit within the target dimensions
+        var maxX = (int)Math.Ceiling(w.TilesWide / (double)targetWidth);
+        var maxY = (int)Math.Ceiling(w.TilesHigh / (double)targetHeight);
 
         Resolution = Math.Max(maxX, maxY);
 
@@ -26,13 +27,38 @@ public class RenderMiniMap
         if (useFilter)
             UpdateMinimapUsingFilter(w, ref bmp);
         else
-            UpdateMinimap(w, ref bmp);
+            UpdateMinimap(w, ref bmp, showBackground);
 
         return bmp;
     }
 
+    /// <summary>
+    /// Returns the background color for a given world Y coordinate based on depth zone.
+    /// </summary>
+    private static Microsoft.Xna.Framework.Color GetBackgroundColor(World w, int worldY)
+    {
+        var globalColors = WorldConfiguration.GlobalColors;
+
+        string key;
+        if (worldY < 80)
+            key = "Space";
+        else if (worldY > w.TilesHigh - 192)
+            key = "Hell";
+        else if (worldY > w.RockLevel)
+            key = "Rock";
+        else if (worldY > w.GroundLevel)
+            key = "Earth";
+        else
+            key = "Sky";
+
+        if (globalColors.TryGetValue(key, out var zoneColor))
+            return new Microsoft.Xna.Framework.Color(zoneColor.R, zoneColor.G, zoneColor.B, zoneColor.A);
+
+        return new Microsoft.Xna.Framework.Color(128, 128, 128, 255);
+    }
+
     // Normal function.
-    public static void UpdateMinimap(World w, ref WriteableBitmap bmp)
+    public static void UpdateMinimap(World w, ref WriteableBitmap bmp, bool showBackground = false)
     {
         bmp.Lock();
         unsafe
@@ -48,7 +74,19 @@ public class RenderMiniMap
                 int worldX = x * Resolution;
                 int worldY = y * Resolution;
 
-                pixels[i] = XnaColorToWindowsInt(PixelMap.GetTileColor(w.Tiles[worldX, worldY], Microsoft.Xna.Framework.Color.Transparent));
+                var bgColor = showBackground
+                    ? GetBackgroundColor(w, worldY)
+                    : Microsoft.Xna.Framework.Color.Transparent;
+
+                var tileColor = PixelMap.GetTileColor(w.Tiles[worldX, worldY], bgColor);
+
+                if (showBackground && tileColor.A < 255)
+                {
+                    // Alpha-blend tile color onto the zone background
+                    tileColor = bgColor.AlphaBlend(tileColor);
+                }
+
+                pixels[i] = XnaColorToWindowsInt(tileColor);
             }
         }
         bmp.AddDirtyRect(new Int32Rect(0, 0, bmp.PixelWidth, bmp.PixelHeight));

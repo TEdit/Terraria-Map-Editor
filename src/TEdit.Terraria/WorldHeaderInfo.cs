@@ -18,7 +18,9 @@ public record WorldHeaderInfo(
     bool IsCrimson,
     int GameMode,
     bool IsHardMode,
-    string Seed)
+    string Seed,
+    bool IsCorrupt = false,
+    string CorruptReason = null)
 {
     /// <summary>
     /// Returns a human-readable size category based on dimensions.

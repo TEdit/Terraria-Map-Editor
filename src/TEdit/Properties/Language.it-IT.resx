@@ -302,6 +302,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="menu_file_update" xml:space="preserve">
     <value>Controlla ora gli aggiornamenti</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>Esploratore del Mondo...</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>Filtro</value>
   </data>
@@ -434,11 +437,17 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>Contesti</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>Raggi di buff</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Griglia di layout</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>Liquidi</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>Background della minimappa</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>Punti di interesse</value>
@@ -575,6 +584,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="settings_category_rendering" xml:space="preserve">
     <value>Rendering</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>Scrittura</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>Controlla per aggiornamenti</value>
   </data>
@@ -593,6 +605,18 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="settings_language_desc" xml:space="preserve">
     <value>Imposta il linguaggio di visualizzazione dell'applicazione</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>Background della minimappa</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>Mostra i colori di sfondo cielo/caverna/inferno nella minimappa</value>
+  </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>Soglia di mantenimento del picker (ms)</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>Quanto tempo tenere premuto il tasto Picker prima che diventi un plettro temporaneo (100-500ms)</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Usa colori realistici</value>
   </data>
@@ -602,6 +626,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="settings_save" xml:space="preserve">
     <value>Salva</value>
   </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>Timeout dello script (secondi)</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>Tempo massimo che uno script può eseguire prima di essere cancellato (10-300 secondi)</value>
+  </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Impostazioni di ricerca...</value>
   </data>
@@ -610,6 +640,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>Visibilità degli attuatori a toggle</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>Mostra tutti gli oggetti del portaarmi</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>Mostra tutti gli oggetti nell'editor del rack armi invece che solo negli oggetti rackable</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>Mostra tutti i fili</value>
@@ -713,6 +749,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>Livello minimo di zoom prima che le texture delle tile diventino visibili</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>Canale di aggiornamento</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>Scegli da quale canale di rilascio ricevere aggiornamenti (Stabile, Beta o Alpha)</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Trasparenza del filo</value>
   </data>
@@ -776,6 +818,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>Modifica Elemento selezionato</value>
   </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>Portacappelli</value>
+  </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>Testa</value>
   </data>
@@ -826,6 +871,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>Star</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>Mostra tutti gli elementi</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>Con lo strumento freccia, clicca con il tasto destro su un cartello, un baule, un manichino, un portaarmi, una cornice per oggetti o un albero di Natale.</value>
@@ -1761,6 +1809,21 @@ Vuoi abilitare la segnalazione degli errori?</value>
   </data>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>Giallo</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>Spilla</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>Esploratore del Mondo</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>Sblocca</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Correggere il gap di background</value>

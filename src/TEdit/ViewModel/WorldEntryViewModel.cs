@@ -1,5 +1,8 @@
 using System;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Terraria;
@@ -8,7 +11,7 @@ using TEdit.Utility;
 namespace TEdit.ViewModel;
 
 /// <summary>
-/// Represents a single world file entry in the World Explorer (Tab 1).
+/// Represents a single world file entry in the World Explorer grid.
 /// </summary>
 [IReactiveObject]
 public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
@@ -33,13 +36,17 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
         EvilBiome = header.EvilBiome;
         GameModeText = header.GameModeText;
         TerrariaVersionText = header.TerrariaVersionText;
+        IsCorrupt = header.IsCorrupt;
+        CorruptReason = header.CorruptReason;
         IsPinned = isPinned;
         IsRecent = isRecent;
         IsMissing = false;
+        Backups.CollectionChanged += OnBackupsChanged;
     }
 
     /// <summary>
-    /// Creates a missing/placeholder entry for a recent world that no longer exists on disk.
+    /// Creates a missing/placeholder entry for a world that no longer exists on disk
+    /// (recent world or orphan backups).
     /// </summary>
     public WorldEntryViewModel(string filePath)
     {
@@ -48,6 +55,19 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
         FileName = Path.GetFileName(filePath);
         IsMissing = true;
         IsRecent = true;
+        Backups.CollectionChanged += OnBackupsChanged;
+    }
+
+    /// <summary>
+    /// Creates a placeholder entry for orphan backups (world file missing, not a recent world).
+    /// </summary>
+    public WorldEntryViewModel(string worldName, bool isMissing)
+    {
+        Title = worldName;
+        FilePath = "";
+        FileName = "";
+        IsMissing = isMissing;
+        Backups.CollectionChanged += OnBackupsChanged;
     }
 
     public string Title { get; }
@@ -70,9 +90,55 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
     public string TerrariaVersionText { get; }
     public bool IsRecent { get; }
     public bool IsMissing { get; }
+    public bool IsCorrupt { get; }
+    public string CorruptReason { get; }
 
     [Reactive]
     private bool _isPinned;
+
+    [Reactive]
+    private bool _isExpanded;
+
+    public ObservableCollection<BackupEntryViewModel> Backups { get; } = [];
+
+    public bool HasBackups => Backups.Count > 0;
+
+    public string BackupSummary
+    {
+        get
+        {
+            int backups = Backups.Count(e => !e.IsAutosave);
+            int autosaves = Backups.Count(e => e.IsAutosave);
+            var parts = new System.Collections.Generic.List<string>();
+            if (backups > 0) parts.Add($"{backups} backup{(backups != 1 ? "s" : "")}");
+            if (autosaves > 0) parts.Add($"{autosaves} autosave{(autosaves != 1 ? "s" : "")}");
+            return string.Join(", ", parts);
+        }
+    }
+
+    private void OnBackupsChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        this.RaisePropertyChanged(nameof(HasBackups));
+        this.RaisePropertyChanged(nameof(BackupSummary));
+        this.RaisePropertyChanged(nameof(HasAnyBackup));
+        this.RaisePropertyChanged(nameof(HasBakFile));
+    }
+
+    /// <summary>
+    /// Whether the standard Terraria .bak file exists for this world (e.g. WorldName.wld.bak).
+    /// </summary>
+    public bool HasBakFile => !IsMissing && !string.IsNullOrEmpty(FilePath) && File.Exists(FilePath + ".bak");
+
+    /// <summary>
+    /// True if at least the Terraria .bak or a TEdit backup exists.
+    /// </summary>
+    public bool HasAnyBackup => HasBakFile || HasBackups;
+
+    public void RefreshBackupState()
+    {
+        this.RaisePropertyChanged(nameof(HasBakFile));
+        this.RaisePropertyChanged(nameof(HasAnyBackup));
+    }
 
     public string DimensionText => IsMissing ? "" : $"{TilesWide}x{TilesHigh} - {SizeCategory}";
     public string VersionText => IsMissing ? "" : TerrariaVersionText ?? $"v{Version}";

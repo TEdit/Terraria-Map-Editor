@@ -759,7 +759,6 @@ public class WorldEditor : IDisposable
             int index = pixel.X + pixel.Y * _world.TilesWide;
             if (!_checkTiles[index])
             {
-                _checkTiles[index] = true;
                 if (_selection.IsValid(pixel))
                 {
                     _undo.SaveTile(_world, pixel);
@@ -767,6 +766,7 @@ public class WorldEditor : IDisposable
 
                     _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
                 }
+                _checkTiles[index] = true;
             }
         }
     }

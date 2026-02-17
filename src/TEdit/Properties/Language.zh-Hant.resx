@@ -302,6 +302,9 @@
   <data name="menu_file_update" xml:space="preserve">
     <value>立即查看最新消息</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>世界探險家......</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>濾波器</value>
   </data>
@@ -434,11 +437,17 @@
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>背景</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>Buff 半徑</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>佈局格</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>液體</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>小地圖背景</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>景點</value>
@@ -575,6 +584,9 @@
   <data name="settings_category_rendering" xml:space="preserve">
     <value>渲染</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>腳本編寫</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>請持續關注最新消息</value>
   </data>
@@ -593,6 +605,18 @@
   <data name="settings_language_desc" xml:space="preserve">
     <value>設定應用程式顯示語言</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>小地圖背景</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>在小地圖中顯示天空/洞穴/地獄背景顏色</value>
+  </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>Picker 保持閾值（MS）</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>要按多久 Picker 鍵才會變成臨時 picker（100-500ms）</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>使用寫實色彩</value>
   </data>
@@ -602,6 +626,12 @@
   <data name="settings_save" xml:space="preserve">
     <value>存檔</value>
   </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>腳本超時（秒數）</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>腳本可執行的最長時間（10-300秒）</value>
+  </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>搜尋設定......</value>
   </data>
@@ -610,6 +640,12 @@
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>切換執行器可見性</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>顯示所有武器架物品</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>在武器架編輯器中顯示所有物品，而非僅顯示可架物品</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>顯示所有電線</value>
@@ -713,6 +749,12 @@
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>在磚塊貼圖變得可見前，最小縮放等級</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>更新頻道</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>選擇從哪個發佈頻道接收更新（穩定版、Beta 版或 Alpha版）</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>線材透明</value>
   </data>
@@ -776,6 +818,9 @@
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>編輯 精選項目</value>
   </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>帽架</value>
+  </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>首領</value>
   </data>
@@ -826,6 +871,9 @@
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>明星</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>顯示所有項目</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>用箭頭工具右鍵點擊標牌、寶箱、人體模型、武器架、物品框架或聖誕樹。</value>
@@ -1761,6 +1809,21 @@
   </data>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>黃色</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>開場</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>釘住</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>世界探險家</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>解開</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修正背景空隙</value>

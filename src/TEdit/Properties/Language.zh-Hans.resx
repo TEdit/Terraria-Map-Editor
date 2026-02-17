@@ -365,6 +365,9 @@
   <data name="menu_file_update" xml:space="preserve">
     <value>检查更新</value>
   </data>
+  <data name="menu_file_worlds" xml:space="preserve">
+    <value>世界探险者......</value>
+  </data>
   <data name="menu_filter" xml:space="preserve">
     <value>筛选</value>
   </data>
@@ -497,11 +500,17 @@
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>背景</value>
   </data>
+  <data name="menu_layers_buff_radii" xml:space="preserve">
+    <value>Buff Radii</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>布局网格</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>液体</value>
+  </data>
+  <data name="menu_layers_minimap_background" xml:space="preserve">
+    <value>小地图背景</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
     <value>地点</value>
@@ -645,6 +654,9 @@
   <data name="settings_category_rendering" xml:space="preserve">
     <value>渲染</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>脚本</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>请查看最新消息</value>
   </data>
@@ -663,6 +675,18 @@
   <data name="settings_language_desc" xml:space="preserve">
     <value>设置应用显示语言</value>
   </data>
+  <data name="settings_minimap_background" xml:space="preserve">
+    <value>小地图背景</value>
+  </data>
+  <data name="settings_minimap_background_desc" xml:space="preserve">
+    <value>在小地图中显示天空/洞穴/地狱背景颜色</value>
+  </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>拣货保持阈值（MS）</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>按住拣选键多久才会变成临时拣选（100-500ms）</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>使用实际颜色</value>
   </data>
@@ -672,6 +696,12 @@
   <data name="settings_save" xml:space="preserve">
     <value>保存</value>
   </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>脚本超时（秒）</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>脚本最长运行时间（10-300秒）</value>
+  </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>搜索设置...</value>
   </data>
@@ -680,6 +710,12 @@
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>切换执行器可见性</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>显示所有武器架物品</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>在武器架编辑器中显示所有物品，而不仅仅是可架物品</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>显示所有线路</value>
@@ -783,6 +819,12 @@
   <data name="settings_texture_zoom_desc" xml:space="preserve">
     <value>在瓦片纹理变得可见之前的最小缩放级别</value>
   </data>
+  <data name="settings_update_channel" xml:space="preserve">
+    <value>更新频道</value>
+  </data>
+  <data name="settings_update_channel_desc" xml:space="preserve">
+    <value>选择从哪个发布渠道接收更新（稳定版、测试版或阿尔法版）</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>电线透明度</value>
   </data>
@@ -846,6 +888,9 @@
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
     <value>编辑选择物品</value>
   </data>
+  <data name="specialtile_label_hatrack" xml:space="preserve">
+    <value>帽子架</value>
+  </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>头</value>
   </data>
@@ -896,6 +941,9 @@
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>星星</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>显示所有项目</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>使用“箭头工具”右键单击标牌，箱子，人体模型，武器架，物品框架或圣诞树。</value>
@@ -1831,6 +1879,21 @@
   </data>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>黄线</value>
+  </data>
+  <data name="world_explorer_delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="world_explorer_open" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="world_explorer_pin" xml:space="preserve">
+    <value>别针</value>
+  </data>
+  <data name="world_explorer_title" xml:space="preserve">
+    <value>世界探险者</value>
+  </data>
+  <data name="world_explorer_unpin" xml:space="preserve">
+    <value>解封</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>

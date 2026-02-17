@@ -100,7 +100,7 @@ public sealed class BlockShufflePlugin : BasePlugin //Originally: HackedPlugin, 
         if (settingsView.EnableUndo)
             _wvm.UndoManager.SaveUndo();
         _wvm.UpdateRenderRegion(selectionArea); // Re-render map
-        _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld); // Update Minimap
+        _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld, showBackground: Configuration.UserSettingsService.Current.MinimapBackground); // Update Minimap
     }
 
     private static bool EmptyCheck(Tile pTile, bool pConsiderWallEmpty, bool pConsiderLiquidEmpty)

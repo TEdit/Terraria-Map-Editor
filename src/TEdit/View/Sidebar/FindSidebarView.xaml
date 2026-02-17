@@ -119,7 +119,7 @@
         <!-- Main content: Tab control with pickers -->
         <TabControl SelectedIndex="{Binding SelectedTabIndex}"
                     Margin="0">
-            <TabItem Header="Items">
+            <TabItem Header="Items in Chests">
                 <controls:TileWallPickerControl DataContext="{Binding ItemPicker}" />
             </TabItem>
             <TabItem Header="Tiles">

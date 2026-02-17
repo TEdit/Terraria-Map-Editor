@@ -295,6 +295,9 @@ public partial class SettingsViewModel
         AddLayerCheckBox(Language.settings_show_points, Language.settings_show_points_desc, layers,
             () => wvm.ShowPoints, v => wvm.ShowPoints = v);
 
+        AddLayerCheckBox(Language.settings_minimap_background, Language.settings_minimap_background_desc, layers,
+            () => wvm.MinimapBackground, v => wvm.MinimapBackground = v);
+
         // ── Filter & Search ──
         var filterCategory = "Filter & Search";
         var settings = UserSettingsService.Current;
@@ -321,6 +324,20 @@ public partial class SettingsViewModel
             SliderStep = 10,
             Getter = () => (double)settings.FilterDarkenAmount,
             Setter = v => settings.FilterDarkenAmount = (int)(double)v
+        });
+
+        // ── Scripting ──
+        AllSettings.Add(new SettingItem
+        {
+            Name = Language.settings_script_timeout,
+            Description = Language.settings_script_timeout_desc,
+            Category = Language.settings_category_scripting,
+            EditorType = SettingEditorType.Slider,
+            SliderMin = 10,
+            SliderMax = 300,
+            SliderStep = 10,
+            Getter = () => (double)settings.ScriptTimeoutSeconds,
+            Setter = v => settings.ScriptTimeoutSeconds = (int)(double)v
         });
 
         // ── Privacy ──
