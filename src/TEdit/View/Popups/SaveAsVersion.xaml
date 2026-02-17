@@ -1,17 +1,45 @@
-<Window x:Class="TEdit.UI.Xaml.SaveAsVersionGUI"
+<ui:FluentWindow x:Class="TEdit.UI.Xaml.SaveAsVersionGUI"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:TEdit.UI.Xaml"
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
-        Background="{StaticResource ControlBackgroundBrush}" Foreground="{DynamicResource TextBrush}"
-        Title="Select World Version" Height="470" Width="400">
-    <Grid>
-        <ScrollViewer Grid.ColumnSpan="1">
-            <WrapPanel Name="ButtonPanel" HorizontalAlignment="Center" Margin="0,5,0,0" />
+        ExtendsContentIntoTitleBar="True"
+        Background="{DynamicResource ControlBackgroundBrush}"
+        WindowBackdropType="Mica"
+        Icon="/TEdit;component/Images/tedit.ico"
+        Title="Select World Version" Height="470" Width="520"
+        MinWidth="300" MinHeight="200">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Select a version to save as:"
+                   FontSize="14" FontWeight="SemiBold"
+                   Foreground="{DynamicResource TextBrush}"
+                   Margin="0,0,0,10" />
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding SortedVersions}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding}"
+                                Command="{Binding DataContext.SaveAsVersionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                CommandParameter="{Binding}"
+                                Width="70" Padding="4,2" Margin="5" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
     </Grid>
-</Window>
-
+</ui:FluentWindow>

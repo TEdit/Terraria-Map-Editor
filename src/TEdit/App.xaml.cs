@@ -1,6 +1,7 @@
 ﻿using Semver;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -33,13 +34,22 @@ public partial class App : Application
 {
     static App()
     {
-        DispatcherHelper.Initialize();
+        var sw = Stopwatch.StartNew();
 
+        DispatcherHelper.Initialize();
+        Trace.WriteLine($"[Startup] static App: DispatcherHelper.Initialize: {sw.ElapsedMilliseconds}ms");
+
+        sw.Restart();
         RxAppBuilder.CreateReactiveUIBuilder()
             .WithWpf()
             .BuildApp();
+        Trace.WriteLine($"[Startup] static App: ReactiveUI init: {sw.ElapsedMilliseconds}ms");
 
-        switch (UserSettingsService.Current.Language)
+        sw.Restart();
+        var settings = UserSettingsService.Current;
+        Trace.WriteLine($"[Startup] static App: UserSettingsService.Current: {sw.ElapsedMilliseconds}ms");
+
+        switch (settings.Language)
         {
             case LanguageSelection.Automatic:
                 //System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.CurrentCulture;
@@ -91,27 +101,40 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
+        var totalSw = Stopwatch.StartNew();
+        var sw = Stopwatch.StartNew();
+
         var splashScreen = new SplashScreen("Images/te5-logo.png");
         splashScreen.Show(autoClose: true, topMost: true);
+        ErrorLogging.Log($"[Startup] SplashScreen.Show: {sw.ElapsedMilliseconds}ms");
 
+        sw.Restart();
         // Initialize WPF UI theme
         ApplicationThemeManager.Apply(ApplicationTheme.Dark);
         ApplicationAccentColorManager.Apply(System.Windows.Media.Color.FromRgb(0x00, 0xA0, 0x00), ApplicationTheme.Dark);
+        ErrorLogging.Log($"[Startup] Theme init: {sw.ElapsedMilliseconds}ms");
 
+        sw.Restart();
         // Read settings immediately.
         LoadAppSettings();
+        ErrorLogging.Log($"[Startup] LoadAppSettings: {sw.ElapsedMilliseconds}ms");
 
+        sw.Restart();
         // Enable cross-thread access to Sprites2 collection (modified on graphics thread, bound to UI)
         BindingOperations.EnableCollectionSynchronization(
             WorldConfiguration.Sprites2,
             WorldConfiguration.Sprites2Lock);
+        ErrorLogging.Log($"[Startup] WorldConfiguration.Sprites2 init: {sw.ElapsedMilliseconds}ms");
 
+        sw.Restart();
         Version = SemVersion.Parse(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion, SemVersionStyles.Any);
         ErrorLogging.Initialize();
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         ErrorLogging.Log($"Starting TEdit {ErrorLogging.Version}");
         ErrorLogging.Log($"OS: {Environment.OSVersion}");
+        ErrorLogging.Log($"[Startup] ErrorLogging init: {sw.ElapsedMilliseconds}ms");
 
+        sw.Restart();
         try
         {
             ErrorLogging.Log($"OS Name: {DependencyChecker.GetOsVersion()}");
@@ -121,8 +144,9 @@ public partial class App : Application
             ErrorLogging.Log("Failed to verify OS Version. TEdit may not run properly.");
             ErrorLogging.LogException(ex);
         }
+        ErrorLogging.Log($"[Startup] GetOsVersion: {sw.ElapsedMilliseconds}ms");
 
-
+        sw.Restart();
         try
         {
             ErrorLogging.Log(DependencyChecker.GetDotNetVersion());
@@ -132,7 +156,9 @@ public partial class App : Application
             ErrorLogging.Log("Failed to verify .Net Framework Version. TEdit may not run properly.");
             ErrorLogging.LogException(ex);
         }
+        ErrorLogging.Log($"[Startup] GetDotNetVersion: {sw.ElapsedMilliseconds}ms");
 
+        sw.Restart();
         try
         {
             int directXMajorVersion = DependencyChecker.GetDirectXMajorVersion();
@@ -146,7 +172,9 @@ public partial class App : Application
             ErrorLogging.Log("Failed to verify DirectX Version. TEdit may not run properly.");
             ErrorLogging.LogException(ex);
         }
+        ErrorLogging.Log($"[Startup] GetDirectXVersion: {sw.ElapsedMilliseconds}ms");
 
+        sw.Restart();
         try
         {
             DependencyChecker.CheckPaths();
@@ -156,8 +184,9 @@ public partial class App : Application
             ErrorLogging.Log("Failed to verify Terraria Paths. TEdit may not run properly.");
             ErrorLogging.LogException(ex);
         }
+        ErrorLogging.Log($"[Startup] CheckPaths: {sw.ElapsedMilliseconds}ms");
 
-
+        sw.Restart();
         try
         {
             if (!DependencyChecker.VerifyTerraria())
@@ -175,10 +204,15 @@ public partial class App : Application
             ErrorLogging.Log("Failed to verify Terraria Paths. No texture data will be available.");
             ErrorLogging.LogException(ex);
         }
+        ErrorLogging.Log($"[Startup] VerifyTerraria: {sw.ElapsedMilliseconds}ms");
 
-
+        sw.Restart();
         FileMaintenance.CleanupOldAutosaves();
+        ErrorLogging.Log($"[Startup] CleanupOldAutosaves: {sw.ElapsedMilliseconds}ms");
+
+        sw.Restart();
         FileMaintenance.LogWorldBackupFiles();
+        ErrorLogging.Log($"[Startup] LogWorldBackupFiles: {sw.ElapsedMilliseconds}ms");
 
         if (e.Args != null && e.Args.Count() > 0)
         {
@@ -186,38 +220,21 @@ public partial class App : Application
             Properties["OpenFile"] = e.Args[0];
         }
 
-        //if (AppDomain.CurrentDomain.SetupInformation.ActivationArguments != null &&
-        //    AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData != null &&
-        //    AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData.Length > 0)
-        //{
-        //    string fname = "No filename given";
-        //    try
-        //    {
-        //        fname = AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData[0];
-
-        //        // It comes in as a URI; this helps to convert it to a path.
-        //        var uri = new Uri(fname);
-        //        fname = uri.LocalPath;
-
-        //        Properties["OpenFile"] = fname;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // For some reason, this couldn't be read as a URI.
-        //        // Do what you must...
-        //        ErrorLogging.LogException(ex);
-        //    }
-        //}
-
+        sw.Restart();
         DispatcherHelper.Initialize();
         TaskFactoryHelper.Initialize();
+        ErrorLogging.Log($"[Startup] DispatcherHelper/TaskFactory init: {sw.ElapsedMilliseconds}ms");
 
         base.OnStartup(e);
 
+        sw.Restart();
         // Create main window manually (StartupUri removed from App.xaml)
         var mainWindow = new MainWindow();
         MainWindow = mainWindow;
         mainWindow.Show();
+        ErrorLogging.Log($"[Startup] MainWindow create+show: {sw.ElapsedMilliseconds}ms");
+
+        ErrorLogging.Log($"[Startup] === Total OnStartup: {totalSw.ElapsedMilliseconds}ms ===");
 
         // Fire-and-forget background update check
         if (UserSettingsService.Current.CheckUpdates)

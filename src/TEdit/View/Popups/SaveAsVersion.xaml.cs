@@ -3,9 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using TEdit.Terraria;
-using TEdit.Terraria;
+using Wpf.Ui.Controls;
 
 namespace TEdit.UI.Xaml
 {
@@ -13,7 +12,7 @@ namespace TEdit.UI.Xaml
     /// Interaction logic for SaveAsVersionGUI.xaml
     /// </summary>
     ///
-    public partial class SaveAsVersionGUI : Window
+    public partial class SaveAsVersionGUI : FluentWindow
     {
         // Using a DependencyProperty as the backing store for WorldVersion. This enables animation, styling, binding, etc...
         public static readonly DependencyProperty WorldVersionProperty =
@@ -23,9 +22,6 @@ namespace TEdit.UI.Xaml
         {
             InitializeComponent();
             DataContext = this;
-
-            // Call the method to load and display version buttons.
-            LoadVersions();
         }
 
         public uint WorldVersion
@@ -33,6 +29,10 @@ namespace TEdit.UI.Xaml
             get { return (uint)GetValue(WorldVersionProperty); }
             set { SetValue(WorldVersionProperty, value); }
         }
+
+        public IEnumerable<string> SortedVersions =>
+            WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.Keys
+                .OrderByDescending(v => v, DottedVersionComparer.Instance);
 
         [ReactiveCommand]
         private void SaveAsVersion(string gameVersion)
@@ -52,40 +52,6 @@ namespace TEdit.UI.Xaml
             }
         }
 
-        private void LoadVersions()
-        {
-            try
-            {
-                var versions = WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.Keys
-                    .OrderByDescending(v => v, DottedVersionComparer.Instance)
-                    .ToList();
-
-                // Iterate over the SaveVersions values in reverse order.
-                foreach (var gv in versions)
-                {
-                    // Create a new Button for each version.
-                    Button button = new()
-                    {
-                        // Set the button content to the game version, removing the leading "v" character.
-                        Content = gv,
-                        Width = 50,  // Set the width.
-                        Height = 20, // Set the height.
-                        Margin = new Thickness(5), // Add margin around the button for spacing.
-                                                   // Set up the command and command parameter for each button.
-                        Command = SaveAsVersionCommand
-                    };
-                    button.CommandParameter = button.Content;
-
-                    // Add the newly created button to the WrapPanel (ButtonPanel).
-                    ButtonPanel.Children.Add(button);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle any exceptions that occur during the version loading process.
-                MessageBox.Show("An error occurred while loading versions: " + ex.Message);
-            }
-        }
     }
 
     // Compares version strings like "1.4.4.8.1" and "1.4.5.0" correctly,

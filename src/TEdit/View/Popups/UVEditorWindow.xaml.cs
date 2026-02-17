@@ -4,10 +4,11 @@ using System;
 using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.ViewModel;
+using Wpf.Ui.Controls;
 
 namespace TEdit.View.Popups
 {
-    public partial class UVEditorWindow : Window
+    public partial class UVEditorWindow : FluentWindow
     {
         private readonly List<Tuple<Tile, Vector2Int32>> UVEditorTileList;
         private readonly List<Tuple<Tile, Vector2Int32>> UVEditorTileListOriginal;

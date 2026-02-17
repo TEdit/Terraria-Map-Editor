@@ -1,10 +1,11 @@
 using System.Windows;
 using System.Windows.Input;
 using TEdit.Input;
+using Wpf.Ui.Controls;
 
 namespace TEdit.View.Popups;
 
-public partial class InputCaptureWindow : Window
+public partial class InputCaptureWindow : FluentWindow
 {
     public TEdit.Input.InputBinding? CapturedInput { get; private set; }
 
