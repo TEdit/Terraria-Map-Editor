@@ -663,6 +663,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_language_desc" xml:space="preserve">
     <value>Set the application display language</value>
   </data>
+  <data name="settings_picker_hold_threshold" xml:space="preserve">
+    <value>Picker Hold Threshold (ms)</value>
+  </data>
+  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
+    <value>How long to hold the Picker key before it becomes a temporary pick (100-500ms)</value>
+  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Use Realistic Colors</value>
   </data>
@@ -680,6 +686,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>Toggle actuator visibility</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
+    <value>Show All Weapon Rack Items</value>
+  </data>
+  <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
+    <value>Show all items in weapon rack editor instead of only rackable items</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>Show All Wires</value>
@@ -728,12 +740,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>Show news and announcements in the editor</value>
-  </data>
-  <data name="settings_picker_hold_threshold" xml:space="preserve">
-    <value>Picker Hold Threshold (ms)</value>
-  </data>
-  <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
-    <value>How long to hold the Picker key before it becomes a temporary pick (100-500ms)</value>
   </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>Show Points</value>
@@ -911,6 +917,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
     <value>Star</value>
+  </data>
+  <data name="specialtile_show_all_items" xml:space="preserve">
+    <value>Show All Items</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree.</value>

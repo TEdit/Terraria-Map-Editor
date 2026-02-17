@@ -1736,6 +1736,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show All Weapon Rack Items.
+        /// </summary>
+        public static string settings_show_all_weapon_rack_items {
+            get {
+                return ResourceManager.GetString("settings_show_all_weapon_rack_items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show all items in weapon rack editor instead of only rackable items.
+        /// </summary>
+        public static string settings_show_all_weapon_rack_items_desc {
+            get {
+                return ResourceManager.GetString("settings_show_all_weapon_rack_items_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show All Wires.
         /// </summary>
         public static string settings_show_all_wires {
@@ -2407,6 +2425,15 @@ namespace TEdit.Properties {
         public static string specialtile_label_xmas_star {
             get {
                 return ResourceManager.GetString("specialtile_label_xmas_star", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show All Items.
+        /// </summary>
+        public static string specialtile_show_all_items {
+            get {
+                return ResourceManager.GetString("specialtile_show_all_items", resourceCulture);
             }
         }
         

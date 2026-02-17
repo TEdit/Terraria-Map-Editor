@@ -21,18 +21,23 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <TextBlock Text="{x:Static p:Language.specialtile_label_weaponrack}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-            <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="({0:N}, {1:N})">
-                        <Binding Path="SelectedTileEntity.PosX" />
-                        <Binding Path="SelectedTileEntity.PosY" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-        </StackPanel>
-        <controls:ItemEditorControl Grid.Row="1"
+        <DockPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                <TextBlock Text="{x:Static p:Language.specialtile_label_weaponrack}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="({0:N}, {1:N})">
+                            <Binding Path="SelectedTileEntity.PosX" />
+                            <Binding Path="SelectedTileEntity.PosY" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+            <CheckBox x:Name="ShowAllItemsCheckBox" HorizontalAlignment="Right" VerticalAlignment="Center"
+                Content="{x:Static p:Language.specialtile_show_all_items}"
+                Checked="OnShowAllItemsChanged" Unchecked="OnShowAllItemsChanged" />
+        </DockPanel>
+        <controls:ItemEditorControl x:Name="ItemEditor" Grid.Row="1"
             ItemId="{Binding SelectedTileEntity.NetId, Mode=TwoWay}"
             Prefix="{Binding SelectedTileEntity.Prefix, Mode=TwoWay}"
             ItemsSource="{Binding Source={StaticResource RackCollection}}"

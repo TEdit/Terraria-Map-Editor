@@ -86,6 +86,12 @@ public sealed class PickerTool : BaseTool
         _wvm.TilePicker.YellowWireActive = curTile.WireYellow;
         _wvm.TilePicker.Actuator = curTile.Actuator;
         _wvm.TilePicker.ActuatorInActive = curTile.InActive;
+        _wvm.TilePicker.TileCoatingEcho = curTile.InvisibleBlock;
+        _wvm.TilePicker.TileCoatingIlluminant = curTile.FullBrightBlock;
+        _wvm.TilePicker.WallCoatingEcho = curTile.InvisibleWall;
+        _wvm.TilePicker.WallCoatingIlluminant = curTile.FullBrightWall;
+        _wvm.TilePicker.EnableTileCoating = curTile.InvisibleBlock || curTile.FullBrightBlock;
+        _wvm.TilePicker.EnableWallCoating = curTile.InvisibleWall || curTile.FullBrightWall;
 
         // Get Picker For JunctionBoxes.
         if (curTile.Type != 424)

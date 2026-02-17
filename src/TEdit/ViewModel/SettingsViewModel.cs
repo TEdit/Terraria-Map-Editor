@@ -200,6 +200,16 @@ public partial class SettingsViewModel
             Setter = v => wvm.ShowNews = (bool)v
         });
 
+        AllSettings.Add(new SettingItem
+        {
+            Name = Language.settings_show_all_weapon_rack_items,
+            Description = Language.settings_show_all_weapon_rack_items_desc,
+            Category = Language.settings_category_general,
+            EditorType = SettingEditorType.CheckBox,
+            Getter = () => UserSettingsService.Current.ShowAllWeaponRackItems,
+            Setter = v => UserSettingsService.Current.ShowAllWeaponRackItems = (bool)v
+        });
+
         // ── Rendering ──
         AllSettings.Add(new SettingItem
         {

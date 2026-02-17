@@ -23,6 +23,7 @@ public class UserSettings : INotifyPropertyChanged
     private int _pickerHoldThresholdMs = 150;
     private string _telemetryDeclinedVersion = "";
     private UpdateChannel _updateChannel = UpdateChannel.Stable;
+    private bool _showAllWeaponRackItems = false;
     private Dictionary<string, List<InputBinding>> _inputBindings = new();
 
     public string TerrariaPath
@@ -96,6 +97,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _updateChannel;
         set => SetField(ref _updateChannel, value);
+    }
+
+    public bool ShowAllWeaponRackItems
+    {
+        get => _showAllWeaponRackItems;
+        set => SetField(ref _showAllWeaponRackItems, value);
     }
 
     [JsonConverter(typeof(InputBindingsDictionaryJsonConverter))]
