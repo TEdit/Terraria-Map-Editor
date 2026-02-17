@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using System.Windows.Media.Imaging;
 
@@ -10,6 +11,12 @@ namespace TEdit.Render;
 public static class ItemPreviewCache
 {
     private static readonly ConcurrentDictionary<int, WriteableBitmap> _previews = new();
+
+    /// <summary>
+    /// Raised on the UI thread when all item previews have been generated.
+    /// Subscribers can use this to refresh bindings that depend on item previews.
+    /// </summary>
+    public static event Action Populated;
 
     public static bool IsPopulated { get; private set; }
 
@@ -27,6 +34,7 @@ public static class ItemPreviewCache
     public static void MarkPopulated()
     {
         IsPopulated = true;
+        Populated?.Invoke();
     }
 
     public static void Clear()

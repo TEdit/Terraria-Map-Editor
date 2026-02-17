@@ -682,8 +682,8 @@ public partial class WorldRenderXna : UserControl
         // Generate NPC preview bitmaps for UI
         GenerateNpcPreviews();
 
-        // Generate item preview bitmaps for UI
-        GenerateItemPreviews();
+        // Item previews are generated during deferred loading (after tiles/walls)
+        // to avoid blocking startup with ~5800 XNB file reads.
     }
 
     /// <summary>
@@ -910,6 +910,7 @@ public partial class WorldRenderXna : UserControl
         }
         bmp.AddDirtyRect(new Int32Rect(0, 0, maxSize, maxSize));
         bmp.Unlock();
+        bmp.Freeze();
         return bmp;
     }
 
@@ -1094,8 +1095,6 @@ public partial class WorldRenderXna : UserControl
             // No delay needed - UI thread timer throttles processing at its own pace
         }
 
-        _texturesFullyLoaded = true;
-
         // Cache texture wrap thresholds now that tile textures are loaded
         try
         {
@@ -1111,8 +1110,77 @@ public partial class WorldRenderXna : UserControl
         {
             _wvm.InitSpriteViews();
             GenerateStylePreviews();
-            // Note: "Textures loaded" shown when DispatcherTimer finishes processing
         });
+
+        // Generate item previews in batches on the graphics thread
+        // (deferred to avoid blocking startup with ~5800 XNB file reads)
+        var items = WorldConfiguration.ItemProperties.Where(i => i.Id > 0).ToList();
+        _textureDictionary.LoadingState.AddToTotal(items.Count);
+        ErrorLogging.Log($"Starting deferred item preview generation: {items.Count} items");
+        const int ItemBatchSize = 100;
+
+        for (int i = 0; i < items.Count && !cancellationToken.IsCancellationRequested; i += ItemBatchSize)
+        {
+            var batch = items.Skip(i).Take(ItemBatchSize).ToList();
+            var tcs = new TaskCompletionSource<bool>();
+
+            _textureDictionary.QueueTextureCreation(() =>
+            {
+                try
+                {
+                    const int PreviewSize = 24;
+                    foreach (var item in batch)
+                    {
+                        var texture = _textureDictionary.GetItem(item.Id);
+                        bool success = texture != null && texture != _textureDictionary.DefaultTexture;
+
+                        if (success)
+                        {
+                            int width = texture.Width;
+                            int height = texture.Height;
+                            if (width > 0 && height > 0)
+                            {
+                                var pixelData = new int[width * height];
+                                try { texture.GetData(pixelData); }
+                                catch
+                                {
+                                    _textureDictionary.LoadingState.MarkLoaded(TextureType.Item, item.Id, false);
+                                    continue;
+                                }
+
+                                var w = width;
+                                var h = height;
+                                var px = pixelData;
+                                var id = item.Id;
+
+                                DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                                {
+                                    var preview = CreateScaledItemPreview(px, w, h, PreviewSize);
+                                    ItemPreviewCache.SetPreview(id, preview);
+                                });
+                            }
+                        }
+
+                        _textureDictionary.LoadingState.MarkLoaded(TextureType.Item, item.Id, success);
+                    }
+                }
+                finally
+                {
+                    tcs.TrySetResult(true);
+                }
+            });
+
+            // Wait for this batch to be processed before queuing more
+            await tcs.Task;
+        }
+
+        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+        {
+            ItemPreviewCache.MarkPopulated();
+        });
+
+        ErrorLogging.Log("Deferred item preview generation complete");
+        _texturesFullyLoaded = true;
     }
 
     /// <summary>
@@ -1660,6 +1728,7 @@ public partial class WorldRenderXna : UserControl
         }
         bmp.AddDirtyRect(new Int32Rect(0, 0, width, height));
         bmp.Unlock();
+        bmp.Freeze();
         return bmp;
     }
 

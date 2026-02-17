@@ -131,6 +131,17 @@ public class TextureLoadingState
     }
 
     /// <summary>
+    /// Add additional textures to the total count (e.g. item previews discovered after initial init).
+    /// </summary>
+    public void AddToTotal(int count)
+    {
+        lock (_lock)
+        {
+            _totalTextures += count;
+        }
+    }
+
+    /// <summary>
     /// Queue a texture for loading.
     /// </summary>
     /// <param name="type">Type of texture</param>
