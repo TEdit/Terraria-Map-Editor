@@ -164,6 +164,7 @@
                     <MenuItem Header="{x:Static p:Language.menu_layers_wire_transparency}" IsCheckable="True" IsChecked="{Binding ShowWireTransparency}" />
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_points}" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_buff_radii}" IsCheckable="True" IsChecked="{Binding ShowBuffRadii}" />
                     <Separator Margin="1" />
                     <MenuItem>
                         <MenuItem.Template>

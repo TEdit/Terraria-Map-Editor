@@ -98,6 +98,7 @@ public partial class WorldViewModel : ReactiveObject
     private bool _showYellowWires = true;
     private bool _showAllWires = true;
     private bool _showWireTransparency = true;
+    private bool _showBuffRadii = false;
     private string _spriteFilter;
     private ushort _spriteTileFilter;
     private ListCollectionView _spriteSheetView;
@@ -1343,6 +1344,12 @@ public partial class WorldViewModel : ReactiveObject
     {
         get { return _showPoints; }
         set { this.RaiseAndSetIfChanged(ref _showPoints, value); }
+    }
+
+    public bool ShowBuffRadii
+    {
+        get { return _showBuffRadii; }
+        set { this.RaiseAndSetIfChanged(ref _showBuffRadii, value); }
     }
 
     public bool ShowLiquid

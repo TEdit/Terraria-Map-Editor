@@ -28,6 +28,7 @@ using System.Diagnostics;
 using System.Xml.Linq;
 using TEdit.Configuration;
 using TEdit.Render;
+using TEdit.Terraria.Render;
 using TEdit.Geometry;
 using TEdit.Common;
 using TEdit.UI;
@@ -61,6 +62,7 @@ public partial class WorldRenderXna : UserControl
     private const float LayerBlueWires = 1 - 0.09f;
     private const float LayerGreenWires = 1 - 0.10f;
     private const float LayerYellowWires = 1 - 0.11f;
+    private const float LayerBuffRadii = 1 - 0.12f;
 
     private const float LayerGrid = 1 - 0.15f;
     private const float LayerLocations = 1 - 0.20f;
@@ -84,6 +86,16 @@ public partial class WorldRenderXna : UserControl
     private Texture2D _preview;
     private Dictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();
     private Texture2D _selectionTexture;
+    private RenderTarget2D _buffRadiiTarget;
+    private static readonly BlendState MaxBlend = new BlendState
+    {
+        ColorBlendFunction = BlendFunction.Max,
+        ColorSourceBlend = Blend.One,
+        ColorDestinationBlend = Blend.One,
+        AlphaBlendFunction = BlendFunction.Max,
+        AlphaSourceBlend = Blend.One,
+        AlphaDestinationBlend = Blend.One,
+    };
     private float _zoom = 1;
     private float _minNpcScale = 0.75f;
 
@@ -2417,6 +2429,33 @@ public partial class WorldRenderXna : UserControl
         //e.GraphicsDevice.Clear(TileColor.Black);
         e.GraphicsDevice.Textures[0] = null;
 
+        // Buff radii pass 1: render to offscreen target with Max blending so overlapping
+        // zones merge instead of accumulating. Must happen before any other drawing
+        // because switching render targets discards the active target's contents.
+        if (_wvm.ShowBuffRadii)
+        {
+            var gd = e.GraphicsDevice;
+            var vp = gd.Viewport;
+
+            if (_buffRadiiTarget == null || _buffRadiiTarget.Width != vp.Width || _buffRadiiTarget.Height != vp.Height)
+            {
+                _buffRadiiTarget?.Dispose();
+                _buffRadiiTarget = new RenderTarget2D(gd, vp.Width, vp.Height, false,
+                    SurfaceFormat.Color, DepthFormat.None);
+            }
+
+            var previousTargets = gd.GetRenderTargets();
+            var previousTarget = previousTargets.Length > 0 ? previousTargets[0].RenderTarget as RenderTarget2D : null;
+
+            gd.SetRenderTarget(_buffRadiiTarget);
+            gd.Clear(Color.Transparent);
+            _spriteBatch.Begin(SpriteSortMode.Deferred, MaxBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            DrawBuffRadii();
+            _spriteBatch.End();
+
+            gd.SetRenderTarget(previousTarget);
+        }
+
         GenPixelTiles(e);
 
         // Start SpriteBatch
@@ -2491,6 +2530,16 @@ public partial class WorldRenderXna : UserControl
 
                 _spriteBatch.End();
             }
+        }
+
+        // Buff radii pass 2: composite the pre-rendered merge onto the world
+        if (_wvm.ShowBuffRadii && _buffRadiiTarget != null)
+        {
+            var vp = e.GraphicsDevice.Viewport;
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            _spriteBatch.Draw(_buffRadiiTarget, new Rectangle(0, 0, vp.Width, vp.Height), null,
+                Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            _spriteBatch.End();
         }
 
         _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
@@ -3209,14 +3258,8 @@ public partial class WorldRenderXna : UserControl
                             {
                                 if (curtile.uvWallCache == 0xFFFF)
                                 {
-                                    int sameStyle = 0x00000000;
-                                    sameStyle |= (neighborTile[e] != null && neighborTile[e].Wall > 0) ? 0x0001 : 0x0000;
-                                    sameStyle |= (neighborTile[n] != null && neighborTile[n].Wall > 0) ? 0x0010 : 0x0000;
-                                    sameStyle |= (neighborTile[w] != null && neighborTile[w].Wall > 0) ? 0x0100 : 0x0000;
-                                    sameStyle |= (neighborTile[s] != null && neighborTile[s].Wall > 0) ? 0x1000 : 0x0000;
-
-                                    Vector2Int32 uvBlend = blendRules.GetUVForMasks((uint)sameStyle, 0x00000000, 0);
-                                    curtile.uvWallCache = (ushort)((uvBlend.Y << 8) + uvBlend.X);
+                                    var uv = WallFraming.CalculateWallFrame(_wvm.CurrentWorld, x, y, curtile.Wall);
+                                    curtile.uvWallCache = (ushort)((uv.Y << 8) + uv.X);
                                 }
 
                                 var texsize = new Vector2Int32(32, 32);
@@ -5497,6 +5540,135 @@ public partial class WorldRenderXna : UserControl
         // Right edge
         _spriteBatch.Draw(whiteTex, new Rectangle(screenX + crosshairSize - outlineThickness, screenY, outlineThickness, crosshairSize),
             null, crosshairColor, 0f, default, SpriteEffects.None, LayerFindCrosshair);
+    }
+
+    private void DrawBuffRadii()
+    {
+        if (_wvm.CurrentWorld == null) return;
+
+        var whiteTex = _textureDictionary.WhitePixelTexture;
+        if (whiteTex == null) return;
+
+        Rectangle visibleBounds = GetViewingArea();
+        var world = _wvm.CurrentWorld;
+
+        // Expand search area by max half-radius so off-screen buff tiles whose zones overlap are included
+        const int expandX = 85;
+        const int expandY = 62;
+        int startX = Math.Max(0, visibleBounds.Left - expandX);
+        int startY = Math.Max(0, visibleBounds.Top - expandY);
+        int endX = Math.Min(world.TilesWide, visibleBounds.Right + expandX);
+        int endY = Math.Min(world.TilesHigh, visibleBounds.Bottom + expandY);
+
+        for (int x = startX; x < endX; x++)
+        {
+            for (int y = startY; y < endY; y++)
+            {
+                var tile = world.Tiles[x, y];
+                if (!tile.IsActive) continue;
+
+                if (tile.Type >= WorldConfiguration.TileProperties.Count) continue;
+                var tileProp = WorldConfiguration.TileProperties[tile.Type];
+
+                // Determine buff data: frame-level overrides tile-level
+                Vector2Short? buffRadius = null;
+                TEditColor? buffColor = null;
+
+                if (tileProp.Frames != null && tileProp.Frames.Count > 0)
+                {
+                    // Check if this tile position is the origin of a framed sprite
+                    var uv = new Vector2Short(tile.U, tile.V);
+                    if (tileProp.IsOrigin(uv, out var frame) && frame != null)
+                    {
+                        // Frame-level buff takes priority
+                        if (frame.BuffRadius.HasValue)
+                        {
+                            buffRadius = frame.BuffRadius;
+                            buffColor = frame.BuffColor;
+                        }
+                        else if (tileProp.BuffRadius.HasValue)
+                        {
+                            buffRadius = tileProp.BuffRadius;
+                            buffColor = tileProp.BuffColor;
+                        }
+                    }
+                }
+                else if (tileProp.BuffRadius.HasValue)
+                {
+                    // Non-framed tile with buff (shouldn't happen for current buff tiles, but handle it)
+                    buffRadius = tileProp.BuffRadius;
+                    buffColor = tileProp.BuffColor;
+                }
+
+                if (!buffRadius.HasValue || buffColor == null) continue;
+
+                int halfW = buffRadius.Value.X;
+                int halfH = buffRadius.Value.Y;
+
+                // Calculate the center of this sprite in tile coordinates
+                var frameSize = tileProp.GetFrameSize(tile.V);
+                float centerX = x + frameSize.X / 2f;
+                float centerY = y + frameSize.Y / 2f;
+
+                // Rectangle bounds in tile coordinates
+                float left = centerX - halfW;
+                float top = centerY - halfH;
+                float width = halfW * 2;
+                float height = halfH * 2;
+
+                // Convert to screen coordinates
+                int screenX = (int)((_scrollPosition.X + left) * _zoom);
+                int screenY = (int)((_scrollPosition.Y + top) * _zoom);
+                int screenW = (int)(width * _zoom);
+                int screenH = (int)(height * _zoom);
+
+                var bc = buffColor!.Value;
+                var fillColor = new Color(bc.R, bc.G, bc.B, bc.A);
+
+                // Draw filled rectangle
+                _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, screenW, screenH),
+                    null, fillColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+
+                // Draw radius border with higher opacity
+                int borderAlpha = Math.Min(255, fillColor.A * 3);
+                var borderColor = new Color(fillColor.R, fillColor.G, fillColor.B, borderAlpha);
+                int borderThickness = Math.Max(1, (int)(_zoom / 4));
+
+                // Top
+                _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, screenW, borderThickness),
+                    null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+                // Bottom
+                _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY + screenH - borderThickness, screenW, borderThickness),
+                    null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+                // Left
+                _spriteBatch.Draw(whiteTex, new Rectangle(screenX, screenY, borderThickness, screenH),
+                    null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+                // Right
+                _spriteBatch.Draw(whiteTex, new Rectangle(screenX + screenW - borderThickness, screenY, borderThickness, screenH),
+                    null, borderColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+
+                // Draw emitter outline around the sprite itself (no fill)
+                int emitterX = (int)((_scrollPosition.X + x) * _zoom);
+                int emitterY = (int)((_scrollPosition.Y + y) * _zoom);
+                int emitterW = (int)(frameSize.X * _zoom);
+                int emitterH = (int)(frameSize.Y * _zoom);
+                var emitterColor = new Color(bc.R, bc.G, bc.B, (byte)Math.Min(255, bc.A * 16));
+                int emitterThickness = Math.Max(1, (int)Math.Ceiling(_zoom / 8.0));
+
+                // Top
+                _spriteBatch.Draw(whiteTex, new Rectangle(emitterX, emitterY, emitterW, emitterThickness),
+                    null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+                // Bottom
+                _spriteBatch.Draw(whiteTex, new Rectangle(emitterX, emitterY + emitterH - emitterThickness, emitterW, emitterThickness),
+                    null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+                // Left
+                _spriteBatch.Draw(whiteTex, new Rectangle(emitterX, emitterY, emitterThickness, emitterH),
+                    null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+                // Right
+                _spriteBatch.Draw(whiteTex, new Rectangle(emitterX + emitterW - emitterThickness, emitterY, emitterThickness, emitterH),
+                    null, emitterColor, 0f, default, SpriteEffects.None, LayerBuffRadii);
+            }
+        }
     }
 
     private void DrawNpcTexture(NPC npc)

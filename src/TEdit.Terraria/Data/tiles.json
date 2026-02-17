@@ -3241,6 +3241,9 @@
   },
   {
     "id": 27,
+    "buffRadius": [85, 62],
+    "buffName": "Happy!",
+    "buffColor": "#40FF4018",
     "isFramed": true,
     "isLight": true,
     "textureGrid": [16, 16],
@@ -3865,11 +3868,25 @@
       { "name": "Diablost Lamp", "variety": "Off", "uv": [18, 180] },
       { "name": "Oil Rag Sconse", "variety": "On", "uv": [0, 216] },
       { "name": "Oil Rag Sconse", "variety": "Off", "uv": [18, 216] },
-      { "name": "Star in a Bottle", "variety": "On", "uv": [0, 252] },
+      {
+        "name": "Star in a Bottle",
+        "variety": "On",
+        "uv": [0, 252],
+        "buffRadius": [85, 62],
+        "buffName": "Star in a Bottle",
+        "buffColor": "#4040FF28"
+      },
       { "name": "Star in a Bottle", "variety": "Off", "uv": [18, 252] },
       { "name": "Hanging Jack \u0027O Lantern", "variety": "On", "uv": [0, 288] },
       { "name": "Hanging Jack \u0027O Lantern", "variety": "Off", "uv": [18, 288] },
-      { "name": "Heart Lantern", "variety": "On", "uv": [0, 324] },
+      {
+        "name": "Heart Lantern",
+        "variety": "On",
+        "uv": [0, 324],
+        "buffRadius": [85, 62],
+        "buffName": "Heart Lamp",
+        "buffColor": "#FF400028"
+      },
       { "name": "Heart Lantern", "variety": "Off", "uv": [18, 324] },
       { "name": "Cactus Lantern", "variety": "On", "uv": [0, 360] },
       { "name": "Cactus Lantern", "variety": "Off", "uv": [18, 360] },
@@ -4074,6 +4091,9 @@
   },
   {
     "id": 49,
+    "buffRadius": [85, 62],
+    "buffName": "Water Candle",
+    "buffColor": "#A040FF28",
     "isFramed": true,
     "isLight": true,
     "textureGrid": [16, 20],
@@ -8776,6 +8796,9 @@
   },
   {
     "id": 215,
+    "buffRadius": [85, 62],
+    "buffName": "Cozy Fire",
+    "buffColor": "#FF400028",
     "isFramed": true,
     "isLight": true,
     "textureGrid": [16, 16],
@@ -11269,6 +11292,9 @@
   },
   {
     "id": 372,
+    "buffRadius": [85, 62],
+    "buffName": "Peace Candle",
+    "buffColor": "#A040FF28",
     "isFramed": true,
     "isLight": true,
     "textureGrid": [16, 20],
@@ -11757,6 +11783,9 @@
   },
   {
     "id": 405,
+    "buffRadius": [85, 62],
+    "buffName": "Cozy Fire",
+    "buffColor": "#FF400028",
     "isFramed": true,
     "isSolidTop": true,
     "isLight": true,
@@ -13808,6 +13837,9 @@
   },
   {
     "id": 506,
+    "buffRadius": [85, 62],
+    "buffName": "Bast Defense",
+    "buffColor": "#FFFF0028",
     "isFramed": true,
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
@@ -15028,6 +15060,9 @@
   },
   {
     "id": 567,
+    "buffRadius": [85, 62],
+    "buffName": "Luck",
+    "buffColor": "#FFD70028",
     "isFramed": true,
     "textureGrid": [26, 18],
     "frameGap": [2, 2],
@@ -17077,6 +17112,9 @@
   },
   {
     "id": 646,
+    "buffRadius": [85, 62],
+    "buffName": "Shadow Candle",
+    "buffColor": "#A040FF28",
     "isFramed": true,
     "isLight": true,
     "textureGrid": [16, 20],

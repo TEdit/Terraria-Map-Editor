@@ -35,5 +35,7 @@ public class WallPropertyTests
         wall.Id.ShouldBe(-1);
         wall.Name.ShouldBe("UNKNOWN");
         wall.Color.ShouldBe(TEditColor.Magenta);
+        wall.LargeFrameType.ShouldBe((byte)0);
+        wall.BlendType.ShouldBe(-1);
     }
 }

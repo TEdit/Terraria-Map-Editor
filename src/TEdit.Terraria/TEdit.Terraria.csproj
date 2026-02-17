@@ -7,6 +7,10 @@
 
 
   <ItemGroup>
+    <InternalsVisibleTo Include="TEdit.Terraria.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bodong.PropertyModels" Version="11.3.11.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="ReactiveUI" Version="22.3.1" />

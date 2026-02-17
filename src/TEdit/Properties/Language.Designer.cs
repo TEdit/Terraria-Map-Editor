@@ -1187,6 +1187,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buff Radii.
+        /// </summary>
+        public static string menu_layers_buff_radii {
+            get {
+                return ResourceManager.GetString("menu_layers_buff_radii", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Layout Grid.
         /// </summary>
         public static string menu_layers_grid {

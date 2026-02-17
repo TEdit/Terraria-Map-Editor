@@ -113,6 +113,22 @@ public class TileProperty : ITile
     /// </summary>
     public List<BiomeVariant>? BiomeVariants { get; set; }
 
+    /// <summary>
+    /// Half-width and half-height (in tiles) of the buff detection zone centered on this tile.
+    /// Null if the tile does not grant a passive buff.
+    /// </summary>
+    public Vector2Short? BuffRadius { get; set; }
+
+    /// <summary>
+    /// Display name of the buff granted by this tile (e.g., "Cozy Fire", "Heart Lamp").
+    /// </summary>
+    public string? BuffName { get; set; }
+
+    /// <summary>
+    /// RGBA overlay color used to render the buff radius visualisation.
+    /// </summary>
+    public TEditColor? BuffColor { get; set; }
+
     public bool Merges(int other)
     {
         if (other == this.Id) return true;
