@@ -9,8 +9,8 @@
     ExtendsContentIntoTitleBar="True"
     WindowBackdropType="Mica"
     Icon="/TEdit;component/Images/tedit.ico"
-    Width="750" Height="550"
-    MinWidth="500" MinHeight="350">
+    Width="850" Height="550"
+    MinWidth="600" MinHeight="350">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -62,7 +62,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Title" Width="180">
+                            <GridViewColumn Header="Title" Width="160">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Title}">
@@ -80,9 +80,11 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
+                            <GridViewColumn Header="File" Width="120"
+                                            DisplayMemberBinding="{Binding FileName}" />
                             <GridViewColumn Header="Dimensions" Width="130"
                                             DisplayMemberBinding="{Binding DimensionText}" />
-                            <GridViewColumn Header="Version" Width="60"
+                            <GridViewColumn Header="Version" Width="80"
                                             DisplayMemberBinding="{Binding VersionText}" />
                             <GridViewColumn Header="Size" Width="70"
                                             DisplayMemberBinding="{Binding SizeText}" />
@@ -100,10 +102,12 @@
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate DataType="{x:Type vm:BackupWorldGroupViewModel}"
                                                   ItemsSource="{Binding Entries}">
-                            <TextBlock Text="{Binding HeaderText}" FontWeight="SemiBold" />
+                            <TextBlock Text="{Binding HeaderText}" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TextBrush}" />
                             <HierarchicalDataTemplate.ItemTemplate>
                                 <DataTemplate DataType="{x:Type vm:BackupEntryViewModel}">
                                     <TextBlock Text="{Binding DisplayText}" Margin="4,2"
+                                               Foreground="{DynamicResource TextBrush}"
                                                MouseDown="BackupEntry_MouseDoubleClick" />
                                 </DataTemplate>
                             </HierarchicalDataTemplate.ItemTemplate>
@@ -112,6 +116,7 @@
                     <TreeView.ItemContainerStyle>
                         <Style TargetType="TreeViewItem">
                             <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
                         </Style>
                     </TreeView.ItemContainerStyle>
                 </TreeView>

@@ -28,7 +28,7 @@ public record WorldHeaderInfo(
         (4200, 1200) => "Small",
         (6400, 1800) => "Medium",
         (8400, 2400) => "Large",
-        _ => $"{TilesWide}x{TilesHigh}"
+        _ => "Custom"
     };
 
     /// <summary>
@@ -47,4 +47,23 @@ public record WorldHeaderInfo(
         3 => "Journey",
         _ => $"Mode {GameMode}"
     };
+
+    /// <summary>
+    /// Returns the Terraria game version string (e.g., "1.4.4.5") for this world's save version,
+    /// or a fallback like "v318" if not found.
+    /// </summary>
+    public string TerrariaVersionText
+    {
+        get
+        {
+            var saveCfg = WorldConfiguration.SaveConfiguration;
+            if (saveCfg != null)
+            {
+                var gameVersion = saveCfg.GetGameVersionForSaveVersion(Version);
+                if (gameVersion != null)
+                    return gameVersion;
+            }
+            return $"v{Version}";
+        }
+    }
 }

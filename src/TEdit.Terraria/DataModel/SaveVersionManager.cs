@@ -16,6 +16,7 @@ public class SaveVersionManager
     [JsonIgnore] private Dictionary<string, SaveVersionData>? _byGameVersion;
     [JsonIgnore] private Dictionary<int, SaveVersionData>? _latestBySaveVersion;
     [JsonIgnore] private Dictionary<int, List<SaveVersionData>>? _allBySaveVersion;
+    [JsonIgnore] private Dictionary<uint, string>? _saveVersionToGameVersion;
 
     public int GetMaxVersion()
     {
@@ -99,6 +100,20 @@ public class SaveVersionManager
         return data.GetFrames();
     }
 
+    /// <summary>
+    /// Returns the highest game version string that maps to the given save version number.
+    /// Returns null if no mapping exists.
+    /// </summary>
+    public string? GetGameVersionForSaveVersion(uint saveVersion)
+    {
+        EnsureIndexes();
+
+        if (_saveVersionToGameVersion!.TryGetValue(saveVersion, out var gv))
+            return gv;
+
+        return null;
+    }
+
     public static SaveVersionManager Load(Stream stream)
     {
         var mgr = JsonSerializer.Deserialize<SaveVersionManager>(stream, TEditJsonSerializer.DefaultOptions)
@@ -131,6 +146,17 @@ public class SaveVersionManager
             .GroupBy(d => d.SaveVersion)
             .ToDictionary(g => g.Key, g => g.ToList());
 
+        // Build reverse lookup: save version → highest game version string
+        _saveVersionToGameVersion = new Dictionary<uint, string>();
+        foreach (var group in GameVersionToSaveVersion.GroupBy(kv => kv.Value))
+        {
+            // Pick the highest game version for each save version
+            var best = group
+                .OrderBy(kv => ParseGameVersion(kv.Key))
+                .Last();
+            _saveVersionToGameVersion[group.Key] = best.Key;
+        }
+
         _latestBySaveVersion = [];
 
         foreach (var kv in _allBySaveVersion)
@@ -151,7 +177,7 @@ public class SaveVersionManager
 
     private void EnsureIndexes()
     {
-        if (_latestBySaveVersion == null || _byGameVersion == null || _allBySaveVersion == null)
+        if (_latestBySaveVersion == null || _byGameVersion == null || _allBySaveVersion == null || _saveVersionToGameVersion == null)
             BuildIndexes();
     }
 

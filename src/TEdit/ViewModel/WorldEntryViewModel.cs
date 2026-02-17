@@ -28,9 +28,11 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
         GameMode = header.GameMode;
         IsHardMode = header.IsHardMode;
         Seed = header.Seed;
+        FileName = Path.GetFileName(header.FilePath);
         SizeCategory = header.SizeCategory;
         EvilBiome = header.EvilBiome;
         GameModeText = header.GameModeText;
+        TerrariaVersionText = header.TerrariaVersionText;
         IsPinned = isPinned;
         IsRecent = isRecent;
         IsMissing = false;
@@ -43,6 +45,7 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
     {
         Title = Path.GetFileNameWithoutExtension(filePath);
         FilePath = filePath;
+        FileName = Path.GetFileName(filePath);
         IsMissing = true;
         IsRecent = true;
     }
@@ -60,9 +63,11 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
     public int GameMode { get; }
     public bool IsHardMode { get; }
     public string Seed { get; }
+    public string FileName { get; }
     public string SizeCategory { get; }
     public string EvilBiome { get; }
     public string GameModeText { get; }
+    public string TerrariaVersionText { get; }
     public bool IsRecent { get; }
     public bool IsMissing { get; }
 
@@ -70,7 +75,7 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
     private bool _isPinned;
 
     public string DimensionText => IsMissing ? "" : $"{TilesWide}x{TilesHigh} - {SizeCategory}";
-    public string VersionText => IsMissing ? "" : $"v{Version}";
+    public string VersionText => IsMissing ? "" : TerrariaVersionText ?? $"v{Version}";
     public string SizeText => IsMissing ? "" : FileMaintenance.FormatFileSize(FileSizeBytes);
 
     public string LastModifiedText
