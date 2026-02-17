@@ -113,12 +113,16 @@
                             </HierarchicalDataTemplate.ItemTemplate>
                         </HierarchicalDataTemplate>
                     </TreeView.ItemTemplate>
-                    <TreeView.ItemContainerStyle>
+                    <TreeView.Resources>
                         <Style TargetType="TreeViewItem">
-                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
                             <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Converter={x:Static vm:IsTypeConverter.BackupWorldGroup}}" Value="True">
+                                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
-                    </TreeView.ItemContainerStyle>
+                    </TreeView.Resources>
                 </TreeView>
             </TabItem>
         </TabControl>
