@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using Microsoft.Xna.Framework;
@@ -44,6 +45,9 @@ public partial class FilterSidebarViewModel
     private double _darkenAmount = 60;
 
     [Reactive]
+    private bool _isFilterEnabled;
+
+    [Reactive]
     private int _selectedTabIndex;
 
     public FilterSidebarViewModel(WorldViewModel worldViewModel)
@@ -59,6 +63,17 @@ public partial class FilterSidebarViewModel
 
         // Load current filter state
         LoadFilterState();
+
+        // React to IsFilterEnabled toggle
+        this.WhenAnyValue(x => x.IsFilterEnabled)
+            .Skip(1) // skip initial value
+            .Subscribe(enabled => OnFilterEnabledChanged(enabled));
+    }
+
+    private void OnFilterEnabledChanged(bool enabled)
+    {
+        FilterManager.IsEnabled = enabled;
+        _wvm.RefreshAllRenderings(useFilter: enabled);
     }
 
     private void LoadFilterState()
@@ -70,6 +85,7 @@ public partial class FilterSidebarViewModel
         BackgroundMode = FilterManager.CurrentBackgroundMode;
         FilterClipboardEnabled = FilterManager.FilterClipboard;
         DarkenAmount = settings.FilterDarkenAmount;
+        IsFilterEnabled = FilterManager.IsEnabled;
 
         var bgColor = FilterManager.BackgroundModeCustomColor;
         CustomBackgroundColor = System.Windows.Media.Color.FromArgb(bgColor.A, bgColor.R, bgColor.G, bgColor.B);
@@ -147,6 +163,10 @@ public partial class FilterSidebarViewModel
         FilterManager.FilterClipboard = FilterClipboardEnabled;
         FilterManager.DarkenAmount = (float)(DarkenAmount / 100.0);
 
+        // Enable filtering
+        FilterManager.IsEnabled = true;
+        IsFilterEnabled = true;
+
         // Persist filter mode and darken amount to user settings
         var settings = UserSettingsService.Current;
         settings.FilterMode = FilterMode;
@@ -157,25 +177,13 @@ public partial class FilterSidebarViewModel
     }
 
     [ReactiveCommand]
-    private void Disable()
+    private void ClearSelections()
     {
-        // Clear all selections
         foreach (var item in TilePicker.AllItems) item.IsChecked = false;
         foreach (var item in WallPicker.AllItems) item.IsChecked = false;
         foreach (var item in LiquidPicker.AllItems) item.IsChecked = false;
         foreach (var item in WirePicker.AllItems) item.IsChecked = false;
         SpritePicker.ClearSelectionCommand.Execute(System.Reactive.Unit.Default).Subscribe();
-
-        // Clear filter manager
-        FilterManager.ClearAll();
-
-        // Reset modes
-        FilterMode = FilterManager.FilterMode.Hide;
-        BackgroundMode = FilterManager.BackgroundMode.Normal;
-        FilterClipboardEnabled = false;
-
-        // Refresh all renderings without filter (default rendering)
-        _wvm.RefreshAllRenderings(useFilter: false);
     }
 
     [ReactiveCommand]

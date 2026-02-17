@@ -107,8 +107,12 @@
 
             <!-- Action buttons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <ui:Button Content="Disable"
-                           Command="{Binding DisableCommand}"
+                <ToggleButton Content="Enabled"
+                              IsChecked="{Binding IsFilterEnabled}"
+                              Margin="0,0,8,0"
+                              Padding="12,6" />
+                <ui:Button Content="Clear"
+                           Command="{Binding ClearSelectionsCommand}"
                            Margin="0,0,8,0"
                            Padding="12,6" />
                 <ui:Button Content="Apply"

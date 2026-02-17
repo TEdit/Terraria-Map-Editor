@@ -67,10 +67,20 @@ namespace TEdit.ViewModel
 
         public static bool FilterClipboard { get; set; } = false;
 
+        private static bool _isEnabled;
         /// <summary>
-        /// Returns true if any tile‐filter is active.
+        /// Master on/off toggle. When false, filters are preserved but not applied.
         /// </summary>
-        public static bool AnyFilterActive => SelectedTileNames.Count > 0 || SelectedWallNames.Count > 0 || SelectedLiquidNames.Count > 0 || SelectedWireNames.Count > 0 || SelectedSpriteNames.Count > 0;
+        public static bool IsEnabled
+        {
+            get => _isEnabled;
+            set { if (_isEnabled != value) { _isEnabled = value; Revision++; } }
+        }
+
+        /// <summary>
+        /// Returns true if filtering is enabled and any tile‐filter is active.
+        /// </summary>
+        public static bool AnyFilterActive => IsEnabled && (SelectedTileNames.Count > 0 || SelectedWallNames.Count > 0 || SelectedLiquidNames.Count > 0 || SelectedWireNames.Count > 0 || SelectedSpriteNames.Count > 0);
 
         /// <summary>
         /// Returns true if tile‐filter is active and the tileId is not in the set.
@@ -103,10 +113,12 @@ namespace TEdit.ViewModel
         public static bool SpriteIsNotAllowed(int spriteId) => (_selectedSpriteIDs.Count > 0 || AnyFilterActive) && !_selectedSpriteIDs.Contains(spriteId);
 
         /// <summary>
-        /// Clears everything – both tile, wall, liquid, and wire filters – and resets the modes to hide & normal.
+        /// Clears all filter selections and disables filtering. Mode preferences are preserved.
         /// </summary>
         public static void ClearAll()
         {
+            IsEnabled = false;
+
             // Clear all filters.
             _selectedTileIDs.Clear();
             _selectedWallIDs.Clear();
@@ -126,10 +138,6 @@ namespace TEdit.ViewModel
             FilterManager.ClearLiquidFilters();
             FilterManager.ClearWireFilters();
             FilterManager.ClearSpriteFilters();
-
-            // Reset the filter modes.
-            CurrentFilterMode = FilterManager.FilterMode.Hide;
-            CurrentBackgroundMode = FilterManager.BackgroundMode.Normal;
 
             // Reset the clipboard settings.
             FilterClipboard = false;
