@@ -25,16 +25,4 @@ public class ToolsApi
 
     public int GetTilePickerTile() => _wvm.TilePicker.Tile;
     public int GetTilePickerWall() => _wvm.TilePicker.Wall;
-
-    public void SetTilePickerTile(int tileType)
-    {
-        _wvm.TilePicker.Tile = tileType;
-        _wvm.TilePicker.TileStyleActive = true;
-    }
-
-    public void SetTilePickerWall(int wallType)
-    {
-        _wvm.TilePicker.Wall = wallType;
-        _wvm.TilePicker.WallStyleActive = true;
-    }
 }

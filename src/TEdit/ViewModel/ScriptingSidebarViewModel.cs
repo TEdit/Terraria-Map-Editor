@@ -125,12 +125,16 @@ public partial class ScriptingSidebarViewModel
         {
             result = new ScriptResult(false, "Script was cancelled", 0);
         }
+        finally
+        {
+            // EndExecution must run on UI thread (updates WriteableBitmap).
+            // Always finalize undo so partial changes from failed/cancelled scripts
+            // get a proper undo checkpoint (SaveUndo skips if buffer is empty).
+            if (scriptApi != null)
+                scriptApi.EndExecution();
 
-        // EndExecution must run on UI thread (updates WriteableBitmap)
-        if (result.Success && scriptApi != null)
-            scriptApi.EndExecution();
-
-        scriptApi?.Dispose();
+            scriptApi?.Dispose();
+        }
 
         if (result.Success)
             AppendLog($"[Done] Completed in {result.ElapsedMs}ms");
