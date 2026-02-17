@@ -27,17 +27,17 @@
 
             <!-- Filter Mode -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                <TextBlock Text="Filter Mode:"
+                <TextBlock Text="{x:Static p:Language.menu_filter_filtermode}"
                            VerticalAlignment="Center"
                            Margin="0,0,10,0"
                            Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
-                <RadioButton Content="Hide"
+                <RadioButton Content="{x:Static p:Language.menu_filter_hide}"
                              GroupName="FilterMode"
                              VerticalAlignment="Center"
                              Margin="0,0,15,0"
                              IsChecked="{Binding FilterMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Hide}" />
                 <RadioButton x:Name="DarkenRadio"
-                             Content="Darken"
+                             Content="{x:Static p:Language.menu_filter_darken}"
                              GroupName="FilterMode"
                              VerticalAlignment="Center"
                              IsChecked="{Binding FilterMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Darken}" />
@@ -46,7 +46,7 @@
             <!-- Darken Amount slider (visible when Darken mode selected) -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,8"
                         Visibility="{Binding IsChecked, ElementName=DarkenRadio, Converter={StaticResource BoolToVisibilityConverter}}">
-                <TextBlock Text="Darken:"
+                <TextBlock Text="{x:Static p:Language.menu_filter_darken_label}"
                            VerticalAlignment="Center"
                            Margin="0,0,10,0"
                            Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
@@ -62,22 +62,22 @@
 
             <!-- Background Mode -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                <TextBlock Text="Background:"
+                <TextBlock Text="{x:Static p:Language.menu_filter_backgroundmode}"
                            VerticalAlignment="Center"
                            Margin="0,0,10,0"
                            Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
-                <RadioButton Content="Normal"
+                <RadioButton Content="{x:Static p:Language.menu_filter_normal}"
                              GroupName="BackgroundMode"
                              VerticalAlignment="Center"
                              Margin="0,0,10,0"
                              IsChecked="{Binding BackgroundMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Normal}" />
-                <RadioButton Content="Transparent"
+                <RadioButton Content="{x:Static p:Language.menu_filter_transparent}"
                              GroupName="BackgroundMode"
                              VerticalAlignment="Center"
                              Margin="0,0,10,0"
                              IsChecked="{Binding BackgroundMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Transparent}" />
                 <RadioButton x:Name="CustomRadio"
-                             Content="Custom"
+                             Content="{x:Static p:Language.menu_filter_custom}"
                              GroupName="BackgroundMode"
                              VerticalAlignment="Center"
                              Margin="0,0,5,0"
@@ -86,7 +86,7 @@
                            Padding="8,4"
                            IsEnabled="{Binding IsChecked, ElementName=CustomRadio}"
                            Command="{Binding PickCustomColorCommand}"
-                           ToolTip="Pick custom background color" />
+                           ToolTip="{x:Static p:Language.menu_filter_custom_tooltip}" />
                 <Border Width="20" Height="20"
                         Margin="5,0,0,0"
                         BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
@@ -101,21 +101,21 @@
             </StackPanel>
 
             <!-- Filter Clipboard checkbox -->
-            <CheckBox Content="Filter Clipboard"
+            <CheckBox Content="{x:Static p:Language.menu_filter_filterclipboard}"
                       IsChecked="{Binding FilterClipboardEnabled}"
                       Margin="0,0,0,10" />
 
             <!-- Action buttons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <ToggleButton Content="Enabled"
+                <ToggleButton Content="{x:Static p:Language.common_enabled}"
                               IsChecked="{Binding IsFilterEnabled}"
                               Margin="0,0,8,0"
                               Padding="12,6" />
-                <ui:Button Content="Clear"
+                <ui:Button Content="{x:Static p:Language.common_clear}"
                            Command="{Binding ClearSelectionsCommand}"
                            Margin="0,0,8,0"
                            Padding="12,6" />
-                <ui:Button Content="Apply"
+                <ui:Button Content="{x:Static p:Language.menu_filter_apply}"
                            Appearance="Primary"
                            Command="{Binding ApplyCommand}"
                            Padding="12,6" />
@@ -125,19 +125,19 @@
         <!-- Main content: Tab control with pickers -->
         <TabControl SelectedIndex="{Binding SelectedTabIndex}"
                     Margin="0">
-            <TabItem Header="Tiles">
+            <TabItem Header="{x:Static p:Language.menu_filter_header_tiles}">
                 <controls:TileWallPickerControl DataContext="{Binding TilePicker}" />
             </TabItem>
-            <TabItem Header="Walls">
+            <TabItem Header="{x:Static p:Language.menu_filter_header_walls}">
                 <controls:TileWallPickerControl DataContext="{Binding WallPicker}" />
             </TabItem>
-            <TabItem Header="Liquids">
+            <TabItem Header="{x:Static p:Language.menu_filter_header_liquids}">
                 <controls:TileWallPickerControl DataContext="{Binding LiquidPicker}" />
             </TabItem>
-            <TabItem Header="Wires">
+            <TabItem Header="{x:Static p:Language.menu_filter_header_wires}">
                 <controls:TileWallPickerControl DataContext="{Binding WirePicker}" />
             </TabItem>
-            <TabItem Header="Sprites">
+            <TabItem Header="{x:Static p:Language.menu_filter_header_sprites}">
                 <controls:SpriteTreePickerControl DataContext="{Binding SpritePicker}" />
             </TabItem>
         </TabControl>

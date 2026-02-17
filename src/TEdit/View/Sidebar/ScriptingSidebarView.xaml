@@ -32,7 +32,7 @@
 
         <!-- Title -->
         <TextBlock Grid.Row="0"
-                   Text="Scripting"
+                   Text="{x:Static p:Language.scripting_title}"
                    Style="{DynamicResource SidebarPanelTitle}"/>
 
         <!-- Script file selector -->
@@ -52,22 +52,22 @@
                       DisplayMemberPath="Name"/>
 
             <ui:Button Grid.Column="1"
-                       Content="New"
+                       Content="{x:Static p:Language.scripting_new}"
                        Command="{Binding NewScriptCommand}"
                        Padding="8,4"
                        Margin="4,0,0,0"
-                       ToolTip="New script"/>
+                       ToolTip="{x:Static p:Language.scripting_new_tooltip}"/>
             <ui:Button Grid.Column="2"
-                       Content="Save"
+                       Content="{x:Static p:Language.common_save}"
                        Command="{Binding SaveScriptCommand}"
                        Padding="8,4"
                        Margin="4,0,0,0"
-                       ToolTip="Save script"/>
+                       ToolTip="{x:Static p:Language.scripting_save_tooltip}"/>
             <ui:Button Grid.Column="3"
                        Command="{Binding OpenScriptsFolderCommand}"
                        Padding="8,4"
                        Margin="4,0,0,0"
-                       ToolTip="Open scripts folder">
+                       ToolTip="{x:Static p:Language.scripting_folder_tooltip}">
                 <ui:SymbolIcon Symbol="FolderOpen20" FontSize="16"/>
             </ui:Button>
         </Grid>
@@ -82,7 +82,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
-                       Text="Engine:"
+                       Text="{x:Static p:Language.scripting_engine_label}"
                        VerticalAlignment="Center"
                        Margin="0,0,8,0"
                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
@@ -90,16 +90,16 @@
                       ItemsSource="{Binding EngineNames}"
                       SelectedIndex="{Binding SelectedEngineIndex}"/>
             <ui:Button Grid.Column="2"
-                       Content="API"
+                       Content="{x:Static p:Language.scripting_api}"
                        Command="{Binding ToggleApiReferenceCommand}"
                        Padding="8,4"
                        Margin="4,0,0,0"
-                       ToolTip="Toggle API reference panel"/>
+                       ToolTip="{x:Static p:Language.scripting_api_tooltip}"/>
             <ui:Button Grid.Column="3"
                        Command="{Binding GenerateDocsCommand}"
                        Padding="8,4"
                        Margin="4,0,0,0"
-                       ToolTip="Generate API_REFERENCE.md">
+                       ToolTip="{x:Static p:Language.scripting_api_generate_tooltip}">
                 <ui:SymbolIcon Symbol="Document20" FontSize="16"/>
             </ui:Button>
         </Grid>
@@ -182,7 +182,7 @@
             </Grid.ColumnDefinitions>
 
             <ui:Button Grid.Column="0"
-                       Content="Run Script"
+                       Content="{x:Static p:Language.scripting_run}"
                        Icon="{ui:SymbolIcon Play20}"
                        Command="{Binding RunScriptCommand}"
                        HorizontalAlignment="Stretch"
@@ -191,7 +191,7 @@
                        Appearance="Primary"/>
 
             <ui:Button Grid.Column="1"
-                       Content="Stop"
+                       Content="{x:Static p:Language.scripting_stop}"
                        Icon="{ui:SymbolIcon Stop20}"
                        Command="{Binding StopScriptCommand}"
                        IsEnabled="{Binding IsRunning}"
@@ -215,7 +215,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0"
-                       Text="Output"
+                       Text="{x:Static p:Language.scripting_output}"
                        Margin="0,0,0,4"
                        FontWeight="SemiBold"
                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>

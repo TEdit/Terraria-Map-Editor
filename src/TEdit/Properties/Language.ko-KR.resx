@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
@@ -145,6 +145,39 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>맥스</value>
   </data>
+  <data name="common_cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="common_clear" xml:space="preserve">
+    <value>비켜</value>
+  </data>
+  <data name="common_close" xml:space="preserve">
+    <value>닫습니다</value>
+  </data>
+  <data name="common_enabled" xml:space="preserve">
+    <value>활성화됨</value>
+  </data>
+  <data name="common_generate" xml:space="preserve">
+    <value>생성</value>
+  </data>
+  <data name="common_ok" xml:space="preserve">
+    <value>알겠어</value>
+  </data>
+  <data name="common_refresh" xml:space="preserve">
+    <value>새로고침</value>
+  </data>
+  <data name="common_remove" xml:space="preserve">
+    <value>제거</value>
+  </data>
+  <data name="common_reset" xml:space="preserve">
+    <value>리셋</value>
+  </data>
+  <data name="common_save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="common_search" xml:space="preserve">
+    <value>검색</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>디렉토리에는 테라리아 콘텐츠가 포함되어 있지 않은 것으로 보입니다.
 새 폴더를 선택하려면 재시도 버튼을 누르거나, 테라리아 경로로 {0} 사용하려면 취소하세요.</value>
@@ -185,6 +218,39 @@
   <data name="editor_utilities_label" xml:space="preserve">
     <value>유틸리티</value>
   </data>
+  <data name="expand_description" xml:space="preserve">
+    <value>세상은 이 새로운 차원들을 중심으로 이루어질 것입니다.</value>
+  </data>
+  <data name="expand_new_height" xml:space="preserve">
+    <value>뉴 하이트</value>
+  </data>
+  <data name="expand_new_width" xml:space="preserve">
+    <value>뉴 와이즈</value>
+  </data>
+  <data name="expand_title" xml:space="preserve">
+    <value>세계 확장</value>
+  </data>
+  <data name="find_auto_zoom" xml:space="preserve">
+    <value>자동 줌</value>
+  </data>
+  <data name="find_auto_zoom_tooltip" xml:space="preserve">
+    <value>결과 탐색 시 확대 (꺼짐 = 팬 전용)</value>
+  </data>
+  <data name="find_calculate_distance" xml:space="preserve">
+    <value>거리 계산하기</value>
+  </data>
+  <data name="find_next" xml:space="preserve">
+    <value>다음</value>
+  </data>
+  <data name="find_prev" xml:space="preserve">
+    <value>이전</value>
+  </data>
+  <data name="find_search_world" xml:space="preserve">
+    <value>서치 월드</value>
+  </data>
+  <data name="find_tab_chests" xml:space="preserve">
+    <value>상자 안의 아이템</value>
+  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>TEdit을 즐기시나요? 우리를 응원해 주세요!</value>
   </data>
@@ -217,6 +283,15 @@
   </data>
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>접속 박스:</value>
+  </data>
+  <data name="keybind_capture_instruction" xml:space="preserve">
+    <value>키, 마우스 버튼, 스크롤 휠을 누르세요...</value>
+  </data>
+  <data name="keybind_capture_modifiers" xml:space="preserve">
+    <value>(선택적으로 Ctrl, Shift, 또는 Alt 수정 기능이 있음)</value>
+  </data>
+  <data name="keybind_capture_title" xml:space="preserve">
+    <value>키를 누르거나 마우스 버튼을 클릭하세요</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>여보</value>
@@ -319,6 +394,15 @@
   </data>
   <data name="menu_filter_custom" xml:space="preserve">
     <value>관습</value>
+  </data>
+  <data name="menu_filter_custom_tooltip" xml:space="preserve">
+    <value>커스텀 배경색 선택</value>
+  </data>
+  <data name="menu_filter_darken" xml:space="preserve">
+    <value>다크엔</value>
+  </data>
+  <data name="menu_filter_darken_label" xml:space="preserve">
+    <value>다큰:</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>비활성화</value>
@@ -455,6 +539,9 @@
   <data name="menu_layers_textures" xml:space="preserve">
     <value>텍스처</value>
   </data>
+  <data name="menu_layers_textures_visible" xml:space="preserve">
+    <value>텍스처 보이는 것</value>
+  </data>
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>타일</value>
   </data>
@@ -548,6 +635,102 @@
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>정화</value>
   </data>
+  <data name="newworld_add_ash" xml:space="preserve">
+    <value>재 추가하세요</value>
+  </data>
+  <data name="newworld_add_grass" xml:space="preserve">
+    <value>잔디 추가하기</value>
+  </data>
+  <data name="newworld_add_lava" xml:space="preserve">
+    <value>용암 추가해</value>
+  </data>
+  <data name="newworld_add_walls" xml:space="preserve">
+    <value>벽 추가하기</value>
+  </data>
+  <data name="newworld_cavern" xml:space="preserve">
+    <value>동굴 레벨</value>
+  </data>
+  <data name="newworld_caves" xml:space="preserve">
+    <value>동굴</value>
+  </data>
+  <data name="newworld_cave_density" xml:space="preserve">
+    <value>동굴 밀도 확률</value>
+  </data>
+  <data name="newworld_cave_multiplier" xml:space="preserve">
+    <value>동굴 배수</value>
+  </data>
+  <data name="newworld_cave_noise" xml:space="preserve">
+    <value>동굴 소음</value>
+  </data>
+  <data name="newworld_cave_preset" xml:space="preserve">
+    <value>동굴 프리셋</value>
+  </data>
+  <data name="newworld_create" xml:space="preserve">
+    <value>세계 창조</value>
+  </data>
+  <data name="newworld_floor_noise" xml:space="preserve">
+    <value>바닥 소음</value>
+  </data>
+  <data name="newworld_generate_caves" xml:space="preserve">
+    <value>동굴 생성 (느림)</value>
+  </data>
+  <data name="newworld_generate_ores" xml:space="preserve">
+    <value>광석 생성</value>
+  </data>
+  <data name="newworld_generate_underworld" xml:space="preserve">
+    <value>언더월드 생성</value>
+  </data>
+  <data name="newworld_generation" xml:space="preserve">
+    <value>월드 제너레이션</value>
+  </data>
+  <data name="newworld_heading" xml:space="preserve">
+    <value>새로운 세계 창조</value>
+  </data>
+  <data name="newworld_height" xml:space="preserve">
+    <value>높이</value>
+  </data>
+  <data name="newworld_hills" xml:space="preserve">
+    <value>언덕</value>
+  </data>
+  <data name="newworld_hill_size" xml:space="preserve">
+    <value>언덕 지형 크기</value>
+  </data>
+  <data name="newworld_include_surface" xml:space="preserve">
+    <value>표면 포함</value>
+  </data>
+  <data name="newworld_lava_noise" xml:space="preserve">
+    <value>용암 소음</value>
+  </data>
+  <data name="newworld_name" xml:space="preserve">
+    <value>월드 네임</value>
+  </data>
+  <data name="newworld_ores" xml:space="preserve">
+    <value>광석</value>
+  </data>
+  <data name="newworld_ore_gen_plugin" xml:space="preserve">
+    <value>(광석 생성 플러그인 실행)</value>
+  </data>
+  <data name="newworld_properties" xml:space="preserve">
+    <value>월드 재산</value>
+  </data>
+  <data name="newworld_roof_noise" xml:space="preserve">
+    <value>지붕 소음</value>
+  </data>
+  <data name="newworld_seed" xml:space="preserve">
+    <value>월드 아이드 (시드)</value>
+  </data>
+  <data name="newworld_surface" xml:space="preserve">
+    <value>표면 수준</value>
+  </data>
+  <data name="newworld_title" xml:space="preserve">
+    <value>신세계</value>
+  </data>
+  <data name="newworld_underworld" xml:space="preserve">
+    <value>지하세계</value>
+  </data>
+  <data name="newworld_width" xml:space="preserve">
+    <value>폭</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>액체</value>
   </data>
@@ -559,6 +742,54 @@
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>와이어</value>
+  </data>
+  <data name="picker_check_all_tooltip" xml:space="preserve">
+    <value>보이는 모든 항목 확인</value>
+  </data>
+  <data name="picker_uncheck_all_tooltip" xml:space="preserve">
+    <value>보이는 모든 항목 체크 해제</value>
+  </data>
+  <data name="saveas_instruction" xml:space="preserve">
+    <value>저장할 버전을 선택하세요:</value>
+  </data>
+  <data name="saveas_title" xml:space="preserve">
+    <value>셀렉트 월드 버전</value>
+  </data>
+  <data name="scripting_api" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="scripting_api_generate_tooltip" xml:space="preserve">
+    <value>생성 APIREFERENCE.md</value>
+  </data>
+  <data name="scripting_api_tooltip" xml:space="preserve">
+    <value>토글 API 참조 패널</value>
+  </data>
+  <data name="scripting_engine_label" xml:space="preserve">
+    <value>엔진:</value>
+  </data>
+  <data name="scripting_folder_tooltip" xml:space="preserve">
+    <value>스크립트 폴더 열기</value>
+  </data>
+  <data name="scripting_new" xml:space="preserve">
+    <value>신규</value>
+  </data>
+  <data name="scripting_new_tooltip" xml:space="preserve">
+    <value>새 대본</value>
+  </data>
+  <data name="scripting_output" xml:space="preserve">
+    <value>출력</value>
+  </data>
+  <data name="scripting_run" xml:space="preserve">
+    <value>런 스크립트</value>
+  </data>
+  <data name="scripting_save_tooltip" xml:space="preserve">
+    <value>저장 스크립트</value>
+  </data>
+  <data name="scripting_stop" xml:space="preserve">
+    <value>멈춰</value>
+  </data>
+  <data name="scripting_title" xml:space="preserve">
+    <value>스크립팅</value>
   </data>
   <data name="settings_autosave" xml:space="preserve">
     <value>자동 저장 활성화</value>
@@ -598,6 +829,15 @@
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>익명 오류 보고서를 보내 안정성 향상에 도움을 주세요</value>
+  </data>
+  <data name="settings_keybind_add_tooltip" xml:space="preserve">
+    <value>새로운 키 입력 추가</value>
+  </data>
+  <data name="settings_keybind_remove_tooltip" xml:space="preserve">
+    <value>이 구속을 풀어라</value>
+  </data>
+  <data name="settings_keybind_reset_tooltip" xml:space="preserve">
+    <value>기본 할당으로 초기화하기</value>
   </data>
   <data name="settings_language" xml:space="preserve">
     <value>언어</value>
@@ -764,8 +1004,17 @@
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>깃발</value>
   </data>
+  <data name="sidebar_filter_tooltip" xml:space="preserve">
+    <value>필터</value>
+  </data>
   <data name="sidebar_find_title" xml:space="preserve">
     <value>찾아서 교체하기</value>
+  </data>
+  <data name="sidebar_find_tooltip" xml:space="preserve">
+    <value>찾기</value>
+  </data>
+  <data name="sidebar_scripting_tooltip" xml:space="preserve">
+    <value>스크립팅</value>
   </data>
   <data name="sidebar_tileentity_title" xml:space="preserve">
     <value>타일 엔티티</value>
@@ -1099,8 +1348,26 @@
   <data name="tool_fill_title" xml:space="preserve">
     <value>채우기</value>
   </data>
+  <data name="tool_morph_base_tiles" xml:space="preserve">
+    <value>베이스 타일</value>
+  </data>
+  <data name="tool_morph_decorations" xml:space="preserve">
+    <value>훈장</value>
+  </data>
+  <data name="tool_morph_evil" xml:space="preserve">
+    <value>악</value>
+  </data>
   <data name="tool_morph_label" xml:space="preserve">
     <value>생물군계로의 변신</value>
+  </data>
+  <data name="tool_morph_moss" xml:space="preserve">
+    <value>이끼</value>
+  </data>
+  <data name="tool_morph_moss_type" xml:space="preserve">
+    <value>이끼 유형</value>
+  </data>
+  <data name="tool_morph_options" xml:space="preserve">
+    <value>옵션</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
     <value>생물군계 변형</value>
@@ -1126,6 +1393,9 @@
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>에코</value>
   </data>
+  <data name="tool_paint_eraser_tooltip" xml:space="preserve">
+    <value>지우개</value>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>부가 영상</value>
   </data>
@@ -1144,6 +1414,9 @@
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
     <value>오른쪽을 향한 교차로 분기함(junction box)을 추가하세요.</value>
   </data>
+  <data name="tool_paint_liquid_header" xml:space="preserve">
+    <value>액체</value>
+  </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>가면</value>
   </data>
@@ -1153,6 +1426,9 @@
   <data name="tool_paint_mode" xml:space="preserve">
     <value>페인트 모드</value>
   </data>
+  <data name="tool_paint_paint_header" xml:space="preserve">
+    <value>페인트</value>
+  </data>
   <data name="tool_paint_tile_title" xml:space="preserve">
     <value>타일</value>
   </data>
@@ -1161,6 +1437,9 @@
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
     <value>해머를 사용해 선로 끝, 교차로, 부스터 방향을 수정하세요.</value>
+  </data>
+  <data name="tool_paint_track_header" xml:space="preserve">
+    <value>광차 트랙</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>기존 트랙에 압력판을 추가하고, 지우개와 함께 판만 제거하세요.</value>
@@ -1174,8 +1453,14 @@
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>그린</value>
   </data>
+  <data name="tool_paint_wire_header" xml:space="preserve">
+    <value>와이어</value>
+  </data>
   <data name="tool_paint_wire_red" xml:space="preserve">
     <value>빨간색</value>
+  </data>
+  <data name="tool_paint_wire_replace_header" xml:space="preserve">
+    <value>전선 교체</value>
   </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>노란색</value>
@@ -1810,14 +2095,59 @@
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>노란색</value>
   </data>
+  <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
+    <value>백업이 존재합니다</value>
+  </data>
+  <data name="world_explorer_col_dimensions" xml:space="preserve">
+    <value>치수</value>
+  </data>
+  <data name="world_explorer_col_file" xml:space="preserve">
+    <value>파일</value>
+  </data>
+  <data name="world_explorer_col_modified" xml:space="preserve">
+    <value>수정</value>
+  </data>
+  <data name="world_explorer_col_size" xml:space="preserve">
+    <value>크기</value>
+  </data>
+  <data name="world_explorer_col_title" xml:space="preserve">
+    <value>제목</value>
+  </data>
+  <data name="world_explorer_col_version" xml:space="preserve">
+    <value>버전</value>
+  </data>
   <data name="world_explorer_delete" xml:space="preserve">
     <value>삭제</value>
+  </data>
+  <data name="world_explorer_delete_backup_tooltip" xml:space="preserve">
+    <value>백업 삭제</value>
+  </data>
+  <data name="world_explorer_loading_preview" xml:space="preserve">
+    <value>로딩 미리보기...</value>
+  </data>
+  <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
+    <value>백업 없음 — .bak 만들고 TEdit 백업을 하려면 클릭하세요</value>
   </data>
   <data name="world_explorer_open" xml:space="preserve">
     <value>오픈</value>
   </data>
+  <data name="world_explorer_open_explorer_tooltip" xml:space="preserve">
+    <value>익스플로러에서 열기</value>
+  </data>
   <data name="world_explorer_pin" xml:space="preserve">
     <value>핀</value>
+  </data>
+  <data name="world_explorer_preview_backup_tooltip" xml:space="preserve">
+    <value>미리보기 백업</value>
+  </data>
+  <data name="world_explorer_preview_format" xml:space="preserve">
+    <value>미리보기: {0}</value>
+  </data>
+  <data name="world_explorer_preview_tooltip" xml:space="preserve">
+    <value>미리보기 세계 지도</value>
+  </data>
+  <data name="world_explorer_search_placeholder" xml:space="preserve">
+    <value>세계를 탐색하라...</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>월드 익스플로러</value>

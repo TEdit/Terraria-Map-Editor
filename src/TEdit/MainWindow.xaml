@@ -171,7 +171,7 @@
                         <MenuItem.Template>
                             <ControlTemplate TargetType="{x:Type MenuItem}">
                                 <DockPanel Margin="22 1 1 1">
-                                    <Label Content="Textures Visible " DockPanel.Dock="Left" />
+                                    <Label Content="{x:Static p:Language.menu_layers_textures_visible}" DockPanel.Dock="Left" />
                                     <Slider Value="{Binding TextureVisibilityZoomLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="3" Maximum="10" SmallChange="1" Width="80" />
                                     <Label Content="{Binding TextureVisibilityZoomLevel, Mode=OneWay}" Width="24" Margin="5 0 2 0" DockPanel.Dock="Right" />
                                 </DockPanel>
@@ -431,15 +431,15 @@
                             <TabItem.Header><ui:SymbolIcon Symbol="Sparkle20" Filled="True" FontSize="24"/></TabItem.Header>
                             <View:CreativePowers />
                         </TabItem>
-                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="Filter">
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.sidebar_filter_tooltip}">
                             <TabItem.Header><ui:SymbolIcon Symbol="Filter20" Filled="True" FontSize="24"/></TabItem.Header>
                             <Sidebar:FilterSidebarView />
                         </TabItem>
-                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="Find">
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.sidebar_find_tooltip}">
                             <TabItem.Header><ui:SymbolIcon Symbol="Search20" Filled="True" FontSize="24"/></TabItem.Header>
                             <Sidebar:FindSidebarView />
                         </TabItem>
-                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="Scripting">
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.sidebar_scripting_tooltip}">
                             <TabItem.Header><ui:SymbolIcon Symbol="Code20" Filled="True" FontSize="24"/></TabItem.Header>
                             <Sidebar:ScriptingSidebarView />
                         </TabItem>

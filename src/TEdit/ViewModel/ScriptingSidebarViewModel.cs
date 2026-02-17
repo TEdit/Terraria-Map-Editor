@@ -125,6 +125,10 @@ public partial class ScriptingSidebarViewModel
         {
             result = new ScriptResult(false, "Script was cancelled", 0);
         }
+        catch (Exception ex)
+        {
+            result = new ScriptResult(false, ex.Message, 0);
+        }
         finally
         {
             // EndExecution must run on UI thread (updates WriteableBitmap).

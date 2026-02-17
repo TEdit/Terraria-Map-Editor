@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
@@ -145,6 +145,39 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>マックス</value>
   </data>
+  <data name="common_cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="common_clear" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="common_close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="common_enabled" xml:space="preserve">
+    <value>有効化</value>
+  </data>
+  <data name="common_generate" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="common_ok" xml:space="preserve">
+    <value>わかった</value>
+  </data>
+  <data name="common_refresh" xml:space="preserve">
+    <value>リフレッシュ</value>
+  </data>
+  <data name="common_remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="common_reset" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="common_save" xml:space="preserve">
+    <value>セーブ</value>
+  </data>
+  <data name="common_search" xml:space="preserve">
+    <value>検索</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>ディレクトリにはテラリアのコンテンツは含まれていないようです。
 新しいフォルダを選ぶには再試行ボタンを押すか、テラリアパスとして{0}を使うにはキャンセルしてください。</value>
@@ -185,6 +218,39 @@
   <data name="editor_utilities_label" xml:space="preserve">
     <value>ユーティリティ</value>
   </data>
+  <data name="expand_description" xml:space="preserve">
+    <value>世界はこれらの新しい次元を中心に据えられるでしょう。</value>
+  </data>
+  <data name="expand_new_height" xml:space="preserve">
+    <value>ニュー・ハイト</value>
+  </data>
+  <data name="expand_new_width" xml:space="preserve">
+    <value>ニュー・ワイド</value>
+  </data>
+  <data name="expand_title" xml:space="preserve">
+    <value>ワールドを拡大</value>
+  </data>
+  <data name="find_auto_zoom" xml:space="preserve">
+    <value>オートズーム</value>
+  </data>
+  <data name="find_auto_zoom_tooltip" xml:space="preserve">
+    <value>結果をナビゲートする際のズームイン(オフ=パンのみ)</value>
+  </data>
+  <data name="find_calculate_distance" xml:space="preserve">
+    <value>距離を計算する</value>
+  </data>
+  <data name="find_next" xml:space="preserve">
+    <value>次</value>
+  </data>
+  <data name="find_prev" xml:space="preserve">
+    <value>前回</value>
+  </data>
+  <data name="find_search_world" xml:space="preserve">
+    <value>サーチ・ワールド</value>
+  </data>
+  <data name="find_tab_chests" xml:space="preserve">
+    <value>チェストの中のアイテム</value>
+  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>TEditを楽しんでますか?応援してください!</value>
   </data>
@@ -217,6 +283,15 @@
   </data>
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>ジャンクションボックス:</value>
+  </data>
+  <data name="keybind_capture_instruction" xml:space="preserve">
+    <value>キーやマウスボタン、スクロールホイールを押せば...</value>
+  </data>
+  <data name="keybind_capture_modifiers" xml:space="preserve">
+    <value>(オプションでCtrl、Shift、またはAlt修飾子を使えます)</value>
+  </data>
+  <data name="keybind_capture_title" xml:space="preserve">
+    <value>キーを押すかマウスボタンをクリックする</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>ハニー</value>
@@ -319,6 +394,15 @@
   </data>
   <data name="menu_filter_custom" xml:space="preserve">
     <value>習慣</value>
+  </data>
+  <data name="menu_filter_custom_tooltip" xml:space="preserve">
+    <value>カスタム背景色を選ぶ</value>
+  </data>
+  <data name="menu_filter_darken" xml:space="preserve">
+    <value>ダークン</value>
+  </data>
+  <data name="menu_filter_darken_label" xml:space="preserve">
+    <value>ダークン:</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>無効化</value>
@@ -455,6 +539,9 @@
   <data name="menu_layers_textures" xml:space="preserve">
     <value>テクスチャ</value>
   </data>
+  <data name="menu_layers_textures_visible" xml:space="preserve">
+    <value>テクスチャが見える</value>
+  </data>
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>タイル</value>
   </data>
@@ -548,6 +635,102 @@
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>浄化</value>
   </data>
+  <data name="newworld_add_ash" xml:space="preserve">
+    <value>アッシュを加える</value>
+  </data>
+  <data name="newworld_add_grass" xml:space="preserve">
+    <value>芝生を追加</value>
+  </data>
+  <data name="newworld_add_lava" xml:space="preserve">
+    <value>溶岩を加える</value>
+  </data>
+  <data name="newworld_add_walls" xml:space="preserve">
+    <value>壁の追加</value>
+  </data>
+  <data name="newworld_cavern" xml:space="preserve">
+    <value>洞窟レベル</value>
+  </data>
+  <data name="newworld_caves" xml:space="preserve">
+    <value>洞窟</value>
+  </data>
+  <data name="newworld_cave_density" xml:space="preserve">
+    <value>洞窟密度確率</value>
+  </data>
+  <data name="newworld_cave_multiplier" xml:space="preserve">
+    <value>洞窟マルチプライヤー</value>
+  </data>
+  <data name="newworld_cave_noise" xml:space="preserve">
+    <value>ケイブ・ノイズ</value>
+  </data>
+  <data name="newworld_cave_preset" xml:space="preserve">
+    <value>ケイブプリセット</value>
+  </data>
+  <data name="newworld_create" xml:space="preserve">
+    <value>クリエイト・ワールド</value>
+  </data>
+  <data name="newworld_floor_noise" xml:space="preserve">
+    <value>床騒音</value>
+  </data>
+  <data name="newworld_generate_caves" xml:space="preserve">
+    <value>洞窟生成(遅い)</value>
+  </data>
+  <data name="newworld_generate_ores" xml:space="preserve">
+    <value>鉱石生成</value>
+  </data>
+  <data name="newworld_generate_underworld" xml:space="preserve">
+    <value>生成アンダーワールド</value>
+  </data>
+  <data name="newworld_generation" xml:space="preserve">
+    <value>ワールド・ジェネレーション</value>
+  </data>
+  <data name="newworld_heading" xml:space="preserve">
+    <value>新しい世界を創造する</value>
+  </data>
+  <data name="newworld_height" xml:space="preserve">
+    <value>高さ</value>
+  </data>
+  <data name="newworld_hills" xml:space="preserve">
+    <value>丘陵</value>
+  </data>
+  <data name="newworld_hill_size" xml:space="preserve">
+    <value>丘陵地形の大きさ</value>
+  </data>
+  <data name="newworld_include_surface" xml:space="preserve">
+    <value>Surface を含める</value>
+  </data>
+  <data name="newworld_lava_noise" xml:space="preserve">
+    <value>ラヴァノイズ</value>
+  </data>
+  <data name="newworld_name" xml:space="preserve">
+    <value>ワールド・ネーム</value>
+  </data>
+  <data name="newworld_ores" xml:space="preserve">
+    <value>鉱石</value>
+  </data>
+  <data name="newworld_ore_gen_plugin" xml:space="preserve">
+    <value>(鉱石発電機プラグインを起動)</value>
+  </data>
+  <data name="newworld_properties" xml:space="preserve">
+    <value>世界の性質</value>
+  </data>
+  <data name="newworld_roof_noise" xml:space="preserve">
+    <value>屋根の騒音</value>
+  </data>
+  <data name="newworld_seed" xml:space="preserve">
+    <value>ワールド・アイド(シード)</value>
+  </data>
+  <data name="newworld_surface" xml:space="preserve">
+    <value>表面レベル</value>
+  </data>
+  <data name="newworld_title" xml:space="preserve">
+    <value>新世界</value>
+  </data>
+  <data name="newworld_underworld" xml:space="preserve">
+    <value>アンダーワールド</value>
+  </data>
+  <data name="newworld_width" xml:space="preserve">
+    <value>幅</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液体</value>
   </data>
@@ -559,6 +742,54 @@
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>ワイヤー</value>
+  </data>
+  <data name="picker_check_all_tooltip" xml:space="preserve">
+    <value>見えるすべての項目を確認してください</value>
+  </data>
+  <data name="picker_uncheck_all_tooltip" xml:space="preserve">
+    <value>見えるすべての項目のチェックを外します</value>
+  </data>
+  <data name="saveas_instruction" xml:space="preserve">
+    <value>保存するバージョンを選択してください:</value>
+  </data>
+  <data name="saveas_title" xml:space="preserve">
+    <value>セレクト・ワールド・バージョン</value>
+  </data>
+  <data name="scripting_api" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="scripting_api_generate_tooltip" xml:space="preserve">
+    <value>APIREFERENCE.md を生成する</value>
+  </data>
+  <data name="scripting_api_tooltip" xml:space="preserve">
+    <value>Toggle API参照パネル</value>
+  </data>
+  <data name="scripting_engine_label" xml:space="preserve">
+    <value>エンジン:</value>
+  </data>
+  <data name="scripting_folder_tooltip" xml:space="preserve">
+    <value>スクリプトフォルダを開く</value>
+  </data>
+  <data name="scripting_new" xml:space="preserve">
+    <value>新作</value>
+  </data>
+  <data name="scripting_new_tooltip" xml:space="preserve">
+    <value>新しい脚本</value>
+  </data>
+  <data name="scripting_output" xml:space="preserve">
+    <value>出力</value>
+  </data>
+  <data name="scripting_run" xml:space="preserve">
+    <value>ランスクリプト</value>
+  </data>
+  <data name="scripting_save_tooltip" xml:space="preserve">
+    <value>セーブスクリプト</value>
+  </data>
+  <data name="scripting_stop" xml:space="preserve">
+    <value>やめて</value>
+  </data>
+  <data name="scripting_title" xml:space="preserve">
+    <value>スクリプト</value>
   </data>
   <data name="settings_autosave" xml:space="preserve">
     <value>オートセーブを有効にする</value>
@@ -598,6 +829,15 @@
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>安定性向上のために匿名のエラー報告を送信しましょう</value>
+  </data>
+  <data name="settings_keybind_add_tooltip" xml:space="preserve">
+    <value>新しいキーバインディングを追加してください</value>
+  </data>
+  <data name="settings_keybind_remove_tooltip" xml:space="preserve">
+    <value>この拘束を外せ</value>
+  </data>
+  <data name="settings_keybind_reset_tooltip" xml:space="preserve">
+    <value>デフォルトのバインディングにリセットしてください</value>
   </data>
   <data name="settings_language" xml:space="preserve">
     <value>言語</value>
@@ -764,8 +1004,17 @@
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>バナー</value>
   </data>
+  <data name="sidebar_filter_tooltip" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
   <data name="sidebar_find_title" xml:space="preserve">
     <value>検索・置き換え</value>
+  </data>
+  <data name="sidebar_find_tooltip" xml:space="preserve">
+    <value>見つけてください</value>
+  </data>
+  <data name="sidebar_scripting_tooltip" xml:space="preserve">
+    <value>スクリプト</value>
   </data>
   <data name="sidebar_tileentity_title" xml:space="preserve">
     <value>タイルエンティティ</value>
@@ -1099,8 +1348,26 @@
   <data name="tool_fill_title" xml:space="preserve">
     <value>埋め立て</value>
   </data>
+  <data name="tool_morph_base_tiles" xml:space="preserve">
+    <value>ベースタイル</value>
+  </data>
+  <data name="tool_morph_decorations" xml:space="preserve">
+    <value>勲章</value>
+  </data>
+  <data name="tool_morph_evil" xml:space="preserve">
+    <value>悪</value>
+  </data>
   <data name="tool_morph_label" xml:space="preserve">
     <value>バイオームへの変形</value>
+  </data>
+  <data name="tool_morph_moss" xml:space="preserve">
+    <value>苔</value>
+  </data>
+  <data name="tool_morph_moss_type" xml:space="preserve">
+    <value>苔類タイプ</value>
+  </data>
+  <data name="tool_morph_options" xml:space="preserve">
+    <value>オプション</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
     <value>バイオーム・モーフ</value>
@@ -1126,6 +1393,9 @@
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>エコー</value>
   </data>
+  <data name="tool_paint_eraser_tooltip" xml:space="preserve">
+    <value>イレーサー</value>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>特典</value>
   </data>
@@ -1144,6 +1414,9 @@
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
     <value>右向きの交差点接続ボックスを追加してください。</value>
   </data>
+  <data name="tool_paint_liquid_header" xml:space="preserve">
+    <value>液体</value>
+  </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>マスク</value>
   </data>
@@ -1153,6 +1426,9 @@
   <data name="tool_paint_mode" xml:space="preserve">
     <value>ペイントモード</value>
   </data>
+  <data name="tool_paint_paint_header" xml:space="preserve">
+    <value>塗料</value>
+  </data>
   <data name="tool_paint_tile_title" xml:space="preserve">
     <value>タイル</value>
   </data>
@@ -1161,6 +1437,9 @@
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
     <value>Hammerを使って線路の端、交差点、ブースターの方向を修正できます。</value>
+  </data>
+  <data name="tool_paint_track_header" xml:space="preserve">
+    <value>マインカート・トラック</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>既存の線路に圧力板を追加し、イレーサーでプレートだけを取り外してください。</value>
@@ -1174,8 +1453,14 @@
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>緑</value>
   </data>
+  <data name="tool_paint_wire_header" xml:space="preserve">
+    <value>ワイヤー</value>
+  </data>
   <data name="tool_paint_wire_red" xml:space="preserve">
     <value>赤</value>
+  </data>
+  <data name="tool_paint_wire_replace_header" xml:space="preserve">
+    <value>配線交換</value>
   </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>黄色</value>
@@ -1810,14 +2095,59 @@
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>黄色</value>
   </data>
+  <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
+    <value>バックアップは存在します</value>
+  </data>
+  <data name="world_explorer_col_dimensions" xml:space="preserve">
+    <value>寸法</value>
+  </data>
+  <data name="world_explorer_col_file" xml:space="preserve">
+    <value>ファイル</value>
+  </data>
+  <data name="world_explorer_col_modified" xml:space="preserve">
+    <value>修正型</value>
+  </data>
+  <data name="world_explorer_col_size" xml:space="preserve">
+    <value>サイズ</value>
+  </data>
+  <data name="world_explorer_col_title" xml:space="preserve">
+    <value>タイトル</value>
+  </data>
+  <data name="world_explorer_col_version" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
   <data name="world_explorer_delete" xml:space="preserve">
     <value>削除</value>
+  </data>
+  <data name="world_explorer_delete_backup_tooltip" xml:space="preserve">
+    <value>バックアップを削除</value>
+  </data>
+  <data name="world_explorer_loading_preview" xml:space="preserve">
+    <value>読み込みプレビュー...</value>
+  </data>
+  <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
+    <value>バックアップなし — .bak作成およびTEditバックアップをクリックしてください</value>
   </data>
   <data name="world_explorer_open" xml:space="preserve">
     <value>開けて</value>
   </data>
+  <data name="world_explorer_open_explorer_tooltip" xml:space="preserve">
+    <value>エクスプローラーで開く</value>
+  </data>
   <data name="world_explorer_pin" xml:space="preserve">
     <value>ピン</value>
+  </data>
+  <data name="world_explorer_preview_backup_tooltip" xml:space="preserve">
+    <value>プレビューバックアップ</value>
+  </data>
+  <data name="world_explorer_preview_format" xml:space="preserve">
+    <value>プレビュー:{0}</value>
+  </data>
+  <data name="world_explorer_preview_tooltip" xml:space="preserve">
+    <value>プレビューワールドマップ</value>
+  </data>
+  <data name="world_explorer_search_placeholder" xml:space="preserve">
+    <value>サーチワールド...</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>ワールド・エクスプローラー</value>

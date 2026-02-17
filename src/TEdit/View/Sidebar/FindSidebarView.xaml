@@ -33,7 +33,7 @@
                 </Grid.ColumnDefinitions>
 
                 <ui:Button Grid.Column="0"
-                           Content="Prev"
+                           Content="{x:Static p:Language.find_prev}"
                            Icon="{ui:SymbolIcon ChevronLeft20}"
                            Command="{Binding NavigatePreviousCommand}"
                            Padding="8,4" />
@@ -45,7 +45,7 @@
                            Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
 
                 <ui:Button Grid.Column="2"
-                           Content="Next"
+                           Content="{x:Static p:Language.find_next}"
                            Icon="{ui:SymbolIcon ChevronRight20}"
                            Command="{Binding NavigateNextCommand}"
                            Padding="8,4" />
@@ -84,12 +84,12 @@
 
             <!-- Options -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                <CheckBox Content="Calculate Distance"
+                <CheckBox Content="{x:Static p:Language.find_calculate_distance}"
                           IsChecked="{Binding CalculateDistance}"
                           Margin="0,0,15,0" />
-                <CheckBox Content="Auto Zoom"
+                <CheckBox Content="{x:Static p:Language.find_auto_zoom}"
                           IsChecked="{Binding AutoZoomOnNavigate}"
-                          ToolTip="Zoom in when navigating to results (off = pan only)" />
+                          ToolTip="{x:Static p:Language.find_auto_zoom_tooltip}" />
             </StackPanel>
 
             <!-- Action buttons -->
@@ -100,7 +100,7 @@
                 </Grid.ColumnDefinitions>
 
                 <ui:Button Grid.Column="0"
-                           Content="Search World"
+                           Content="{x:Static p:Language.find_search_world}"
                            Appearance="Primary"
                            Icon="{ui:SymbolIcon Search20}"
                            Command="{Binding ExecuteSearchCommand}"
@@ -109,7 +109,7 @@
                            Margin="0,0,8,0" />
 
                 <ui:Button Grid.Column="1"
-                           Content="Clear"
+                           Content="{x:Static p:Language.common_clear}"
                            Icon="{ui:SymbolIcon Dismiss20}"
                            Command="{Binding ClearAllSelectionsCommand}"
                            Padding="12,8" />
@@ -119,16 +119,16 @@
         <!-- Main content: Tab control with pickers -->
         <TabControl SelectedIndex="{Binding SelectedTabIndex}"
                     Margin="0">
-            <TabItem Header="Items in Chests">
+            <TabItem Header="{x:Static p:Language.find_tab_chests}">
                 <controls:TileWallPickerControl DataContext="{Binding ItemPicker}" />
             </TabItem>
-            <TabItem Header="Tiles">
+            <TabItem Header="{x:Static p:Language.menu_filter_header_tiles}">
                 <controls:TileWallPickerControl DataContext="{Binding TilePicker}" />
             </TabItem>
-            <TabItem Header="Walls">
+            <TabItem Header="{x:Static p:Language.menu_filter_header_walls}">
                 <controls:TileWallPickerControl DataContext="{Binding WallPicker}" />
             </TabItem>
-            <TabItem Header="Sprites">
+            <TabItem Header="{x:Static p:Language.menu_filter_header_sprites}">
                 <controls:SpriteTreePickerControl DataContext="{Binding SpritePicker}" />
             </TabItem>
         </TabControl>

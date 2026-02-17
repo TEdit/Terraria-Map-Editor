@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:TEdit.UI.Xaml"
+        xmlns:p="clr-namespace:TEdit.Properties"
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         ExtendsContentIntoTitleBar="True"
         Background="{DynamicResource ControlBackgroundBrush}"
         WindowBackdropType="Mica"
         Icon="/TEdit;component/Images/tedit.ico"
-        Title="Select World Version" Height="470" Width="520"
+        Title="{x:Static p:Language.saveas_title}" Height="470" Width="520"
         MinWidth="300" MinHeight="200">
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -19,7 +20,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Select a version to save as:"
+        <TextBlock Grid.Row="0" Text="{x:Static p:Language.saveas_instruction}"
                    FontSize="14" FontWeight="SemiBold"
                    Foreground="{DynamicResource TextBrush}"
                    Margin="0,0,0,10" />

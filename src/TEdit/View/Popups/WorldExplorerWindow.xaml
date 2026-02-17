@@ -31,7 +31,7 @@
                        Click="Browse_Click" />
             <ui:TextBox x:Name="SearchBox"
                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                        PlaceholderText="Search worlds..."
+                        PlaceholderText="{x:Static p:Language.world_explorer_search_placeholder}"
                         VerticalContentAlignment="Center" />
         </DockPanel>
 
@@ -84,7 +84,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Title" Width="180">
+                    <GridViewColumn Header="{x:Static p:Language.world_explorer_col_title}" Width="180">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -96,13 +96,13 @@
                                     <!-- Backup exists indicator -->
                                     <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="12"
                                                Foreground="Green" VerticalAlignment="Center" Margin="0,0,4,0"
-                                               ToolTip="Backup exists"
+                                               ToolTip="{x:Static p:Language.world_explorer_backup_exists_tooltip}"
                                                Visibility="{Binding HasAnyBackup, Converter={StaticResource BoolToVis}}" />
                                     <!-- No backup warning -->
                                     <Button Padding="0" Margin="0,0,4,0"
                                             Background="Transparent" BorderThickness="0" Cursor="Hand"
                                             Click="CreateBackup_Click" Tag="{Binding}"
-                                            ToolTip="No backup — click to create .bak and TEdit backup">
+                                            ToolTip="{x:Static p:Language.world_explorer_no_backup_tooltip}">
                                         <Button.Style>
                                             <Style TargetType="Button">
                                                 <Setter Property="Visibility" Value="Collapsed" />
@@ -139,15 +139,15 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="File" Width="120"
+                    <GridViewColumn Header="{x:Static p:Language.world_explorer_col_file}" Width="120"
                                     DisplayMemberBinding="{Binding FileName}" />
-                    <GridViewColumn Header="Dimensions" Width="130"
+                    <GridViewColumn Header="{x:Static p:Language.world_explorer_col_dimensions}" Width="130"
                                     DisplayMemberBinding="{Binding DimensionText}" />
-                    <GridViewColumn Header="Version" Width="80"
+                    <GridViewColumn Header="{x:Static p:Language.world_explorer_col_version}" Width="80"
                                     DisplayMemberBinding="{Binding VersionText}" />
-                    <GridViewColumn Header="Size" Width="70"
+                    <GridViewColumn Header="{x:Static p:Language.world_explorer_col_size}" Width="70"
                                     DisplayMemberBinding="{Binding SizeText}" />
-                    <GridViewColumn Header="Modified" Width="90"
+                    <GridViewColumn Header="{x:Static p:Language.world_explorer_col_modified}" Width="90"
                                     DisplayMemberBinding="{Binding LastModifiedText}" />
                     <GridViewColumn Header="" Width="60">
                         <GridViewColumn.CellTemplate>
@@ -156,7 +156,7 @@
                                     <Button Click="PreviewWorld_Click" Tag="{Binding}"
                                             Background="Transparent" BorderThickness="0"
                                             Padding="2" Cursor="Hand"
-                                            ToolTip="Preview world map">
+                                            ToolTip="{x:Static p:Language.world_explorer_preview_tooltip}">
                                         <TextBlock Text="&#xE7B3;" FontFamily="Segoe MDL2 Assets" FontSize="14"
                                                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
                                         <Button.Style>
@@ -172,7 +172,7 @@
                                     <Button Click="OpenFolder_Click" Tag="{Binding}"
                                             Background="Transparent" BorderThickness="0"
                                             Padding="2" Cursor="Hand"
-                                            ToolTip="Open in Explorer">
+                                            ToolTip="{x:Static p:Language.world_explorer_open_explorer_tooltip}">
                                         <TextBlock Text="&#xE838;" FontFamily="Segoe MDL2 Assets" FontSize="14"
                                                    Foreground="Gold" />
                                         <Button.Style>
@@ -235,21 +235,21 @@
                                                                 <Button Padding="2,0" Margin="4,0,0,0"
                                                                         Background="Transparent" BorderThickness="0" Cursor="Hand"
                                                                         Click="PreviewBackup_Click2" Tag="{Binding}"
-                                                                        ToolTip="Preview backup">
+                                                                        ToolTip="{x:Static p:Language.world_explorer_preview_backup_tooltip}">
                                                                     <TextBlock Text="&#xE7B3;" FontFamily="Segoe MDL2 Assets" FontSize="11"
                                                                                Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
                                                                 </Button>
                                                                 <Button Padding="2,0" Margin="4,0,0,0"
                                                                         Background="Transparent" BorderThickness="0" Cursor="Hand"
                                                                         Click="OpenBackupFolder_Click" Tag="{Binding}"
-                                                                        ToolTip="Open in Explorer">
+                                                                        ToolTip="{x:Static p:Language.world_explorer_open_explorer_tooltip}">
                                                                     <TextBlock Text="&#xE838;" FontFamily="Segoe MDL2 Assets" FontSize="11"
                                                                                Foreground="Gold" />
                                                                 </Button>
                                                                 <Button Padding="2,0" Margin="4,0,0,0"
                                                                         Background="Transparent" BorderThickness="0" Cursor="Hand"
                                                                         Click="DeleteBackup_Click2" Tag="{Binding}"
-                                                                        ToolTip="Delete backup">
+                                                                        ToolTip="{x:Static p:Language.world_explorer_delete_backup_tooltip}">
                                                                     <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="11"
                                                                                Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
                                                                 </Button>
@@ -302,8 +302,8 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
             <ui:Button Content="{x:Static p:Language.world_explorer_open}" Width="80" Padding="4"
                        Margin="0,0,8,0" Click="Open_Click" />
-            <ui:Button Content="Refresh" Width="80" Padding="4" Margin="0,0,8,0" Click="Refresh_Click" />
-            <ui:Button Content="Close" Width="80" Padding="4" Click="Close_Click" />
+            <ui:Button Content="{x:Static p:Language.common_refresh}" Width="80" Padding="4" Margin="0,0,8,0" Click="Refresh_Click" />
+            <ui:Button Content="{x:Static p:Language.common_close}" Width="80" Padding="4" Click="Close_Click" />
         </StackPanel>
 
         <!-- Preview Panel -->
@@ -318,7 +318,7 @@
                     <TextBlock Text="{Binding PreviewTitle, StringFormat='Preview: {0}'}"
                                FontWeight="SemiBold" VerticalAlignment="Center" />
                 </DockPanel>
-                <TextBlock Text="Loading preview..." Visibility="{Binding IsPreviewLoading, Converter={StaticResource BoolToVis}}"
+                <TextBlock Text="{x:Static p:Language.world_explorer_loading_preview}" Visibility="{Binding IsPreviewLoading, Converter={StaticResource BoolToVis}}"
                            FontStyle="Italic" Foreground="Gray" HorizontalAlignment="Center" Margin="0,4" />
                 <Image Source="{Binding PreviewImage}" Stretch="Uniform"
                        Width="600" Height="200"

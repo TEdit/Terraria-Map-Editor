@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
@@ -145,6 +145,39 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>
+  <data name="common_cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="common_clear" xml:space="preserve">
+    <value>Clair</value>
+  </data>
+  <data name="common_close" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="common_enabled" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="common_generate" xml:space="preserve">
+    <value>Générer</value>
+  </data>
+  <data name="common_ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="common_refresh" xml:space="preserve">
+    <value>Rafraîchissement</value>
+  </data>
+  <data name="common_remove" xml:space="preserve">
+    <value>Retirer</value>
+  </data>
+  <data name="common_reset" xml:space="preserve">
+    <value>Réinitialisation</value>
+  </data>
+  <data name="common_save" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="common_search" xml:space="preserve">
+    <value>Recherche</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>L’annuaire ne semble pas contenir le contenu de Terraria.
 Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0} comme chemin Terraria.</value>
@@ -185,6 +218,39 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="editor_utilities_label" xml:space="preserve">
     <value>Services publics</value>
   </data>
+  <data name="expand_description" xml:space="preserve">
+    <value>Le monde sera centré autour de ces nouvelles dimensions.</value>
+  </data>
+  <data name="expand_new_height" xml:space="preserve">
+    <value>Nouvelle hauteur</value>
+  </data>
+  <data name="expand_new_width" xml:space="preserve">
+    <value>Nouvelle largeur</value>
+  </data>
+  <data name="expand_title" xml:space="preserve">
+    <value>Étendre le monde</value>
+  </data>
+  <data name="find_auto_zoom" xml:space="preserve">
+    <value>Zoom automatique</value>
+  </data>
+  <data name="find_auto_zoom_tooltip" xml:space="preserve">
+    <value>Zoomez lors de la navigation vers les résultats (désactivé = panoramique uniquement)</value>
+  </data>
+  <data name="find_calculate_distance" xml:space="preserve">
+    <value>Calculer la distance</value>
+  </data>
+  <data name="find_next" xml:space="preserve">
+    <value>Suivant</value>
+  </data>
+  <data name="find_prev" xml:space="preserve">
+    <value>Précédent</value>
+  </data>
+  <data name="find_search_world" xml:space="preserve">
+    <value>Recherche Monde</value>
+  </data>
+  <data name="find_tab_chests" xml:space="preserve">
+    <value>Objets dans les coffres</value>
+  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>Tu aimes TEdit ? Soutenez-nous !</value>
   </data>
@@ -217,6 +283,15 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>Boîte de jonction :</value>
+  </data>
+  <data name="keybind_capture_instruction" xml:space="preserve">
+    <value>Appuyez sur une touche, un bouton de souris ou une molette de défilement...</value>
+  </data>
+  <data name="keybind_capture_modifiers" xml:space="preserve">
+    <value>(avec des modificateurs optionnels Ctrl, Shift ou Alt)</value>
+  </data>
+  <data name="keybind_capture_title" xml:space="preserve">
+    <value>Appuyez sur une touche ou cliquez sur un bouton de souris</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>Chéri</value>
@@ -319,6 +394,15 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="menu_filter_custom" xml:space="preserve">
     <value>Coutumes</value>
+  </data>
+  <data name="menu_filter_custom_tooltip" xml:space="preserve">
+    <value>Choisissez une couleur d’arrière-plan personnalisée</value>
+  </data>
+  <data name="menu_filter_darken" xml:space="preserve">
+    <value>Assombrir</value>
+  </data>
+  <data name="menu_filter_darken_label" xml:space="preserve">
+    <value>Assombrir :</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>Désactiver</value>
@@ -455,6 +539,9 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="menu_layers_textures" xml:space="preserve">
     <value>Textures</value>
   </data>
+  <data name="menu_layers_textures_visible" xml:space="preserve">
+    <value>Textures visibles</value>
+  </data>
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>Tuiles</value>
   </data>
@@ -548,6 +635,102 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>Purifier</value>
   </data>
+  <data name="newworld_add_ash" xml:space="preserve">
+    <value>Ajouter de la cendre</value>
+  </data>
+  <data name="newworld_add_grass" xml:space="preserve">
+    <value>Ajouter de l’herbe</value>
+  </data>
+  <data name="newworld_add_lava" xml:space="preserve">
+    <value>Ajouter de la lave</value>
+  </data>
+  <data name="newworld_add_walls" xml:space="preserve">
+    <value>Ajouter des murs</value>
+  </data>
+  <data name="newworld_cavern" xml:space="preserve">
+    <value>Niveau de la Caverne</value>
+  </data>
+  <data name="newworld_caves" xml:space="preserve">
+    <value>Grottes</value>
+  </data>
+  <data name="newworld_cave_density" xml:space="preserve">
+    <value>Probabilité de densité de grotte</value>
+  </data>
+  <data name="newworld_cave_multiplier" xml:space="preserve">
+    <value>Multiplicateur de grotte</value>
+  </data>
+  <data name="newworld_cave_noise" xml:space="preserve">
+    <value>Bruit de grotte</value>
+  </data>
+  <data name="newworld_cave_preset" xml:space="preserve">
+    <value>Préréglage de la grotte</value>
+  </data>
+  <data name="newworld_create" xml:space="preserve">
+    <value>Créer un monde</value>
+  </data>
+  <data name="newworld_floor_noise" xml:space="preserve">
+    <value>Bruit de sol</value>
+  </data>
+  <data name="newworld_generate_caves" xml:space="preserve">
+    <value>Générer des grottes (lent)</value>
+  </data>
+  <data name="newworld_generate_ores" xml:space="preserve">
+    <value>Générer des minerais</value>
+  </data>
+  <data name="newworld_generate_underworld" xml:space="preserve">
+    <value>Générer Underworld</value>
+  </data>
+  <data name="newworld_generation" xml:space="preserve">
+    <value>Génération mondiale</value>
+  </data>
+  <data name="newworld_heading" xml:space="preserve">
+    <value>Créer un Nouveau Monde</value>
+  </data>
+  <data name="newworld_height" xml:space="preserve">
+    <value>Hauteur</value>
+  </data>
+  <data name="newworld_hills" xml:space="preserve">
+    <value>Collines</value>
+  </data>
+  <data name="newworld_hill_size" xml:space="preserve">
+    <value>Taille du terrain de la colline</value>
+  </data>
+  <data name="newworld_include_surface" xml:space="preserve">
+    <value>Inclure la surface</value>
+  </data>
+  <data name="newworld_lava_noise" xml:space="preserve">
+    <value>Bruit de lave</value>
+  </data>
+  <data name="newworld_name" xml:space="preserve">
+    <value>Nom du monde</value>
+  </data>
+  <data name="newworld_ores" xml:space="preserve">
+    <value>Minerais</value>
+  </data>
+  <data name="newworld_ore_gen_plugin" xml:space="preserve">
+    <value>(Lance le plugin de génération de minerai)</value>
+  </data>
+  <data name="newworld_properties" xml:space="preserve">
+    <value>Propriétés du monde</value>
+  </data>
+  <data name="newworld_roof_noise" xml:space="preserve">
+    <value>Bruit de toiture</value>
+  </data>
+  <data name="newworld_seed" xml:space="preserve">
+    <value>Identification du monde (Seed)</value>
+  </data>
+  <data name="newworld_surface" xml:space="preserve">
+    <value>Niveau de surface</value>
+  </data>
+  <data name="newworld_title" xml:space="preserve">
+    <value>Nouveau Monde</value>
+  </data>
+  <data name="newworld_underworld" xml:space="preserve">
+    <value>Monde souterrain</value>
+  </data>
+  <data name="newworld_width" xml:space="preserve">
+    <value>Largeur</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Liquide</value>
   </data>
@@ -559,6 +742,54 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Fil</value>
+  </data>
+  <data name="picker_check_all_tooltip" xml:space="preserve">
+    <value>Vérifiez tous les objets visibles</value>
+  </data>
+  <data name="picker_uncheck_all_tooltip" xml:space="preserve">
+    <value>Décochez tous les éléments visibles</value>
+  </data>
+  <data name="saveas_instruction" xml:space="preserve">
+    <value>Sélectionnez une version à enregistrer sous le nom de :</value>
+  </data>
+  <data name="saveas_title" xml:space="preserve">
+    <value>Version du Monde Sélectionné</value>
+  </data>
+  <data name="scripting_api" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="scripting_api_generate_tooltip" xml:space="preserve">
+    <value>Générez APIREFERENCE.md</value>
+  </data>
+  <data name="scripting_api_tooltip" xml:space="preserve">
+    <value>Basculer le panneau de référence API</value>
+  </data>
+  <data name="scripting_engine_label" xml:space="preserve">
+    <value>Moteur :</value>
+  </data>
+  <data name="scripting_folder_tooltip" xml:space="preserve">
+    <value>Ouvrir le dossier scripts</value>
+  </data>
+  <data name="scripting_new" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
+  <data name="scripting_new_tooltip" xml:space="preserve">
+    <value>Nouveau scénario</value>
+  </data>
+  <data name="scripting_output" xml:space="preserve">
+    <value>Production</value>
+  </data>
+  <data name="scripting_run" xml:space="preserve">
+    <value>Script d’exécution</value>
+  </data>
+  <data name="scripting_save_tooltip" xml:space="preserve">
+    <value>Sauvegarder le script</value>
+  </data>
+  <data name="scripting_stop" xml:space="preserve">
+    <value>Arrête</value>
+  </data>
+  <data name="scripting_title" xml:space="preserve">
+    <value>Scripting</value>
   </data>
   <data name="settings_autosave" xml:space="preserve">
     <value>Activer l’autosauvegarde</value>
@@ -598,6 +829,15 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>Envoyez des rapports d’erreurs anonymes pour améliorer la stabilité</value>
+  </data>
+  <data name="settings_keybind_add_tooltip" xml:space="preserve">
+    <value>Ajouter une nouvelle raccourci clavier</value>
+  </data>
+  <data name="settings_keybind_remove_tooltip" xml:space="preserve">
+    <value>Retirez ce lien</value>
+  </data>
+  <data name="settings_keybind_reset_tooltip" xml:space="preserve">
+    <value>Réinitialisation des liaisons par défaut</value>
   </data>
   <data name="settings_language" xml:space="preserve">
     <value>Langue</value>
@@ -764,8 +1004,17 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>Bannières</value>
   </data>
+  <data name="sidebar_filter_tooltip" xml:space="preserve">
+    <value>Filtre</value>
+  </data>
   <data name="sidebar_find_title" xml:space="preserve">
     <value>Trouver et remplacer</value>
+  </data>
+  <data name="sidebar_find_tooltip" xml:space="preserve">
+    <value>Trouver</value>
+  </data>
+  <data name="sidebar_scripting_tooltip" xml:space="preserve">
+    <value>Scripting</value>
   </data>
   <data name="sidebar_tileentity_title" xml:space="preserve">
     <value>Entité de tuiles</value>
@@ -1099,8 +1348,26 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Remplissage</value>
   </data>
+  <data name="tool_morph_base_tiles" xml:space="preserve">
+    <value>Tuiles de base</value>
+  </data>
+  <data name="tool_morph_decorations" xml:space="preserve">
+    <value>Décorations</value>
+  </data>
+  <data name="tool_morph_evil" xml:space="preserve">
+    <value>Mauvais</value>
+  </data>
   <data name="tool_morph_label" xml:space="preserve">
     <value>Transformation en biome</value>
+  </data>
+  <data name="tool_morph_moss" xml:space="preserve">
+    <value>Moss</value>
+  </data>
+  <data name="tool_morph_moss_type" xml:space="preserve">
+    <value>Type mousse</value>
+  </data>
+  <data name="tool_morph_options" xml:space="preserve">
+    <value>Options</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
     <value>Biome Morph</value>
@@ -1126,6 +1393,9 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>Echo</value>
   </data>
+  <data name="tool_paint_eraser_tooltip" xml:space="preserve">
+    <value>Eraser</value>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>Bonus</value>
   </data>
@@ -1144,6 +1414,9 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
     <value>Ajoutez une boîte de jonction orientée à droite.</value>
   </data>
+  <data name="tool_paint_liquid_header" xml:space="preserve">
+    <value>Liquide</value>
+  </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>Masque</value>
   </data>
@@ -1153,6 +1426,9 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="tool_paint_mode" xml:space="preserve">
     <value>Mode peinture</value>
   </data>
+  <data name="tool_paint_paint_header" xml:space="preserve">
+    <value>Peinture</value>
+  </data>
   <data name="tool_paint_tile_title" xml:space="preserve">
     <value>Carreaux</value>
   </data>
@@ -1161,6 +1437,9 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
     <value>Utilisez Hammer pour modifier les extrémités de voies, les intersections et la direction du booster.</value>
+  </data>
+  <data name="tool_paint_track_header" xml:space="preserve">
+    <value>Piste de wagonnets de mine</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Ajoutez une plaque de pression sur une piste existante, utilisez avec la gomme pour retirer uniquement la plaque.</value>
@@ -1174,8 +1453,14 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>Vert</value>
   </data>
+  <data name="tool_paint_wire_header" xml:space="preserve">
+    <value>Fil</value>
+  </data>
   <data name="tool_paint_wire_red" xml:space="preserve">
     <value>Rouge</value>
+  </data>
+  <data name="tool_paint_wire_replace_header" xml:space="preserve">
+    <value>Remplacement de fil</value>
   </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>Jaune</value>
@@ -1810,14 +2095,59 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>Jaune</value>
   </data>
+  <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
+    <value>Une sauvegarde existe</value>
+  </data>
+  <data name="world_explorer_col_dimensions" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="world_explorer_col_file" xml:space="preserve">
+    <value>Fichier</value>
+  </data>
+  <data name="world_explorer_col_modified" xml:space="preserve">
+    <value>Modifié</value>
+  </data>
+  <data name="world_explorer_col_size" xml:space="preserve">
+    <value>Taille</value>
+  </data>
+  <data name="world_explorer_col_title" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="world_explorer_col_version" xml:space="preserve">
+    <value>Version</value>
+  </data>
   <data name="world_explorer_delete" xml:space="preserve">
     <value>Supprimer</value>
+  </data>
+  <data name="world_explorer_delete_backup_tooltip" xml:space="preserve">
+    <value>Supprimer la sauvegarde</value>
+  </data>
+  <data name="world_explorer_loading_preview" xml:space="preserve">
+    <value>Prévisualisation de chargement...</value>
+  </data>
+  <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
+    <value>Pas de sauvegarde — cliquez pour créer .bak et une sauvegarde TEdit</value>
   </data>
   <data name="world_explorer_open" xml:space="preserve">
     <value>Ouvre</value>
   </data>
+  <data name="world_explorer_open_explorer_tooltip" xml:space="preserve">
+    <value>Ouvrir dans Explorer</value>
+  </data>
   <data name="world_explorer_pin" xml:space="preserve">
     <value>Épingle</value>
+  </data>
+  <data name="world_explorer_preview_backup_tooltip" xml:space="preserve">
+    <value>Sauvegarde d’aperçu</value>
+  </data>
+  <data name="world_explorer_preview_format" xml:space="preserve">
+    <value>Aperçu : {0}</value>
+  </data>
+  <data name="world_explorer_preview_tooltip" xml:space="preserve">
+    <value>Aperçu de la carte du monde</value>
+  </data>
+  <data name="world_explorer_search_placeholder" xml:space="preserve">
+    <value>Cherche des mondes...</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>Explorateur du monde</value>

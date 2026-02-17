@@ -127,7 +127,7 @@
   <Grid>
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical" >
-                <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2 0" BorderThickness="2" HorizontalAlignment="Left">
+                <ToggleButton ToolTip="{x:Static p:Language.tool_paint_eraser_tooltip}" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2 0" BorderThickness="2" HorizontalAlignment="Left">
                     <Image Source="../../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" />
                 </ToggleButton>
                 <TextBlock Text="{x:Static p:Language.tool_paint_mode}" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -195,7 +195,7 @@
                       TextSearch.TextPath="Name" />
                 </tedit:AutoGrid>
             </GroupBox>
-      <GroupBox Header="Liquid" Style="{StaticResource LiquidVisibleStyle}">
+      <GroupBox Header="{x:Static p:Language.tool_paint_liquid_header}" Style="{StaticResource LiquidVisibleStyle}">
                 <StackPanel VerticalAlignment="Top">
                     <ComboBox ItemsSource="{StaticResource LiquidType}" 
                           SelectedValue="{Binding TilePicker.LiquidType}" 
@@ -224,7 +224,7 @@
                     <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="{x:Static p:Language.tool_paint_inactive}" VerticalAlignment="Center"/>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Paint" Style="{StaticResource PaintVisibleStyle}">
+            <GroupBox Header="{x:Static p:Language.tool_paint_paint_header}" Style="{StaticResource PaintVisibleStyle}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
             <CheckBox IsChecked="{Binding TilePicker.TilePaintActive}" Content="{x:Static p:Language.tool_paint_tile_title}" Width="60" VerticalAlignment="Center" />
@@ -260,7 +260,7 @@
                     <CheckBox IsChecked="{Binding TilePicker.UsePaintMasks}" Content="{x:Static p:Language.tool_paint_mask}" HorizontalAlignment="Left" />
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Wire" Style="{StaticResource WireStyle}">
+            <GroupBox Header="{x:Static p:Language.tool_paint_wire_header}" Style="{StaticResource WireStyle}">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
                         <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="{x:Static p:Language.tool_paint_wire_red}" VerticalAlignment="Center" />
@@ -277,7 +277,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Wire Replacement" Style="{StaticResource WireStyle}">
+            <GroupBox Header="{x:Static p:Language.tool_paint_wire_replace_header}" Style="{StaticResource WireStyle}">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
             <CheckBox IsChecked="{Binding TilePicker.WireReplaceRed}" Content="{x:Static p:Language.tool_paint_wire_red}" Width="60" VerticalAlignment="Center" />
@@ -313,7 +313,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Minecart Track" Style="{StaticResource TrackStyle}">
+            <GroupBox Header="{x:Static p:Language.tool_paint_track_header}" Style="{StaticResource TrackStyle}">
                 <StackPanel Orientation="Vertical" >
                     <ComboBox ItemsSource="{StaticResource TrackModeEnum}" 
                           SelectedValue="{Binding TilePicker.TrackMode}" 

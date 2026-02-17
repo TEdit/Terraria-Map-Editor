@@ -208,6 +208,39 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>ماكس</value>
   </data>
+  <data name="common_cancel" xml:space="preserve">
+    <value>إلغاء الأمر</value>
+  </data>
+  <data name="common_clear" xml:space="preserve">
+    <value>واضح</value>
+  </data>
+  <data name="common_close" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="common_enabled" xml:space="preserve">
+    <value>مفعل</value>
+  </data>
+  <data name="common_generate" xml:space="preserve">
+    <value>إنشاء</value>
+  </data>
+  <data name="common_ok" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+  <data name="common_refresh" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+  <data name="common_remove" xml:space="preserve">
+    <value>إزالة</value>
+  </data>
+  <data name="common_reset" xml:space="preserve">
+    <value>إعادة التعيين</value>
+  </data>
+  <data name="common_save" xml:space="preserve">
+    <value>أنقذ</value>
+  </data>
+  <data name="common_search" xml:space="preserve">
+    <value>بحث</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>لا يبدو أن الدليل يحتوي على محتوى Terraria.
 اضغط على إعادة المحاولة لاختيار مجلد جديد أو إلغاء لاستخدام {0} كمسار terraria الخاص بك.</value>
@@ -248,6 +281,39 @@
   <data name="editor_utilities_label" xml:space="preserve">
     <value>المرافق</value>
   </data>
+  <data name="expand_description" xml:space="preserve">
+    <value>سيكون العالم مركزًا حول هذه الأبعاد الجديدة.</value>
+  </data>
+  <data name="expand_new_height" xml:space="preserve">
+    <value>ارتفاع جديد</value>
+  </data>
+  <data name="expand_new_width" xml:space="preserve">
+    <value>عرض جديد</value>
+  </data>
+  <data name="expand_title" xml:space="preserve">
+    <value>توسيع العالم</value>
+  </data>
+  <data name="find_auto_zoom" xml:space="preserve">
+    <value>تكبير تلقائي</value>
+  </data>
+  <data name="find_auto_zoom_tooltip" xml:space="preserve">
+    <value>قم بالتكبير عند التنقل إلى النتائج (إيقاف = تحريك فقط)</value>
+  </data>
+  <data name="find_calculate_distance" xml:space="preserve">
+    <value>احسب المسافة</value>
+  </data>
+  <data name="find_next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="find_prev" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+  <data name="find_search_world" xml:space="preserve">
+    <value>ابحث عن العالم</value>
+  </data>
+  <data name="find_tab_chests" xml:space="preserve">
+    <value>العناصر في الصناديق</value>
+  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>هل تستمتع ب تيديت؟ دعم لنا!</value>
   </data>
@@ -280,6 +346,15 @@
   </data>
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>مربع تقاطع:</value>
+  </data>
+  <data name="keybind_capture_instruction" xml:space="preserve">
+    <value>اضغط على زر أو زر الفأرة أو عجلة التمرير...</value>
+  </data>
+  <data name="keybind_capture_modifiers" xml:space="preserve">
+    <value>(مع تعديلات اختيارية مثل Ctrl أو Shift أو Alt)</value>
+  </data>
+  <data name="keybind_capture_title" xml:space="preserve">
+    <value>اضغط على زر زر أو انقر على زر الفأرة</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>عسل</value>
@@ -382,6 +457,15 @@
   </data>
   <data name="menu_filter_custom" xml:space="preserve">
     <value>مخصص</value>
+  </data>
+  <data name="menu_filter_custom_tooltip" xml:space="preserve">
+    <value>اختر لون خلفية مخصص</value>
+  </data>
+  <data name="menu_filter_darken" xml:space="preserve">
+    <value>ظلام</value>
+  </data>
+  <data name="menu_filter_darken_label" xml:space="preserve">
+    <value>داكن:</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>إبطال</value>
@@ -518,6 +602,9 @@
   <data name="menu_layers_textures" xml:space="preserve">
     <value>القوام</value>
   </data>
+  <data name="menu_layers_textures_visible" xml:space="preserve">
+    <value>الخامات المرئية</value>
+  </data>
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>البلاط</value>
   </data>
@@ -618,6 +705,102 @@
     <value>خلص</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="newworld_add_ash" xml:space="preserve">
+    <value>أضف الرماد</value>
+  </data>
+  <data name="newworld_add_grass" xml:space="preserve">
+    <value>أضف العشب</value>
+  </data>
+  <data name="newworld_add_lava" xml:space="preserve">
+    <value>أضف الحمم</value>
+  </data>
+  <data name="newworld_add_walls" xml:space="preserve">
+    <value>إضافة الجدران</value>
+  </data>
+  <data name="newworld_cavern" xml:space="preserve">
+    <value>مستوى الكهف</value>
+  </data>
+  <data name="newworld_caves" xml:space="preserve">
+    <value>الكهوف</value>
+  </data>
+  <data name="newworld_cave_density" xml:space="preserve">
+    <value>احتمال كثافة الكهوف</value>
+  </data>
+  <data name="newworld_cave_multiplier" xml:space="preserve">
+    <value>مضاعف الكهف</value>
+  </data>
+  <data name="newworld_cave_noise" xml:space="preserve">
+    <value>ضجيج الكهف</value>
+  </data>
+  <data name="newworld_cave_preset" xml:space="preserve">
+    <value>إعداد الكهف</value>
+  </data>
+  <data name="newworld_create" xml:space="preserve">
+    <value>اصنع العالم</value>
+  </data>
+  <data name="newworld_floor_noise" xml:space="preserve">
+    <value>ضوضاء الأرضية</value>
+  </data>
+  <data name="newworld_generate_caves" xml:space="preserve">
+    <value>توليد الكهوف (ببطء)</value>
+  </data>
+  <data name="newworld_generate_ores" xml:space="preserve">
+    <value>خام مولد</value>
+  </data>
+  <data name="newworld_generate_underworld" xml:space="preserve">
+    <value>توليد العالم السفلي</value>
+  </data>
+  <data name="newworld_generation" xml:space="preserve">
+    <value>جيل العالم</value>
+  </data>
+  <data name="newworld_heading" xml:space="preserve">
+    <value>خلق عالم جديد</value>
+  </data>
+  <data name="newworld_height" xml:space="preserve">
+    <value>ارتفاع</value>
+  </data>
+  <data name="newworld_hills" xml:space="preserve">
+    <value>التلال</value>
+  </data>
+  <data name="newworld_hill_size" xml:space="preserve">
+    <value>حجم تضاريس التلال</value>
+  </data>
+  <data name="newworld_include_surface" xml:space="preserve">
+    <value>تضمين السطح</value>
+  </data>
+  <data name="newworld_lava_noise" xml:space="preserve">
+    <value>ضوضاء الحمم البركانية</value>
+  </data>
+  <data name="newworld_name" xml:space="preserve">
+    <value>اسم العالم</value>
+  </data>
+  <data name="newworld_ores" xml:space="preserve">
+    <value>الخامات</value>
+  </data>
+  <data name="newworld_ore_gen_plugin" xml:space="preserve">
+    <value>(يطلق إضافة توليد الخام)</value>
+  </data>
+  <data name="newworld_properties" xml:space="preserve">
+    <value>عقارات العالم</value>
+  </data>
+  <data name="newworld_roof_noise" xml:space="preserve">
+    <value>ضوضاء السقف</value>
+  </data>
+  <data name="newworld_seed" xml:space="preserve">
+    <value>هوية العالم (البذرة)</value>
+  </data>
+  <data name="newworld_surface" xml:space="preserve">
+    <value>مستوى السطح</value>
+  </data>
+  <data name="newworld_title" xml:space="preserve">
+    <value>العالم الجديد</value>
+  </data>
+  <data name="newworld_underworld" xml:space="preserve">
+    <value>العالم السفلي</value>
+  </data>
+  <data name="newworld_width" xml:space="preserve">
+    <value>عرض</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>سائل</value>
   </data>
@@ -629,6 +812,54 @@
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>سلك</value>
+  </data>
+  <data name="picker_check_all_tooltip" xml:space="preserve">
+    <value>تحقق من جميع العناصر الظاهرة</value>
+  </data>
+  <data name="picker_uncheck_all_tooltip" xml:space="preserve">
+    <value>إلغاء تحديد جميع العناصر الظاهرة</value>
+  </data>
+  <data name="saveas_instruction" xml:space="preserve">
+    <value>اختر نسخة للحفظ بالتالي:</value>
+  </data>
+  <data name="saveas_title" xml:space="preserve">
+    <value>نسخة مختارة من العالم</value>
+  </data>
+  <data name="scripting_api" xml:space="preserve">
+    <value>واجهة برمجة التطبيقات</value>
+  </data>
+  <data name="scripting_api_generate_tooltip" xml:space="preserve">
+    <value>توليد APIREFERENCE.md</value>
+  </data>
+  <data name="scripting_api_tooltip" xml:space="preserve">
+    <value>تبديل لوحة مرجعية API</value>
+  </data>
+  <data name="scripting_engine_label" xml:space="preserve">
+    <value>المحرك:</value>
+  </data>
+  <data name="scripting_folder_tooltip" xml:space="preserve">
+    <value>مجلد Open Scripts</value>
+  </data>
+  <data name="scripting_new" xml:space="preserve">
+    <value>الجديد</value>
+  </data>
+  <data name="scripting_new_tooltip" xml:space="preserve">
+    <value>النص الجديد</value>
+  </data>
+  <data name="scripting_output" xml:space="preserve">
+    <value>الإنتاج</value>
+  </data>
+  <data name="scripting_run" xml:space="preserve">
+    <value>تشغيل السكريبت</value>
+  </data>
+  <data name="scripting_save_tooltip" xml:space="preserve">
+    <value>حفظ السكريبت</value>
+  </data>
+  <data name="scripting_stop" xml:space="preserve">
+    <value>توقف</value>
+  </data>
+  <data name="scripting_title" xml:space="preserve">
+    <value>البرمجة</value>
   </data>
   <data name="settings_autosave" xml:space="preserve">
     <value>تمكين الحفظ التلقائي</value>
@@ -668,6 +899,15 @@
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>إرسال تقارير الأخطاء بشكل مجهول للمساعدة في تحسين الاستقرار</value>
+  </data>
+  <data name="settings_keybind_add_tooltip" xml:space="preserve">
+    <value>إضافة ترابط مفاتيح جديد</value>
+  </data>
+  <data name="settings_keybind_remove_tooltip" xml:space="preserve">
+    <value>أزل هذا الربط</value>
+  </data>
+  <data name="settings_keybind_reset_tooltip" xml:space="preserve">
+    <value>إعادة ضبط الروابط إلى الإعدادات الافتراضية</value>
   </data>
   <data name="settings_language" xml:space="preserve">
     <value>اللغة</value>
@@ -834,8 +1074,17 @@
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>الرايات</value>
   </data>
+  <data name="sidebar_filter_tooltip" xml:space="preserve">
+    <value>راووق</value>
+  </data>
   <data name="sidebar_find_title" xml:space="preserve">
     <value>بحث واستبدال</value>
+  </data>
+  <data name="sidebar_find_tooltip" xml:space="preserve">
+    <value>ابحث عن</value>
+  </data>
+  <data name="sidebar_scripting_tooltip" xml:space="preserve">
+    <value>البرمجة</value>
   </data>
   <data name="sidebar_tileentity_title" xml:space="preserve">
     <value>كيان البلاط</value>
@@ -1169,8 +1418,26 @@
   <data name="tool_fill_title" xml:space="preserve">
     <value>ملء</value>
   </data>
+  <data name="tool_morph_base_tiles" xml:space="preserve">
+    <value>بلاط القاعدة</value>
+  </data>
+  <data name="tool_morph_decorations" xml:space="preserve">
+    <value>الأوسمة</value>
+  </data>
+  <data name="tool_morph_evil" xml:space="preserve">
+    <value>الشر</value>
+  </data>
   <data name="tool_morph_label" xml:space="preserve">
     <value>التحول إلى بيوم</value>
+  </data>
+  <data name="tool_morph_moss" xml:space="preserve">
+    <value>موس</value>
+  </data>
+  <data name="tool_morph_moss_type" xml:space="preserve">
+    <value>نوع الطحلب</value>
+  </data>
+  <data name="tool_morph_options" xml:space="preserve">
+    <value>الخيارات</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
     <value>بيومي مورف</value>
@@ -1196,6 +1463,9 @@
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>دوي</value>
   </data>
+  <data name="tool_paint_eraser_tooltip" xml:space="preserve">
+    <value>الممحاة</value>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>اضافات</value>
   </data>
@@ -1214,6 +1484,9 @@
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
     <value>أضف مربع تقاطع المواجهة اليمنى.</value>
   </data>
+  <data name="tool_paint_liquid_header" xml:space="preserve">
+    <value>سائل</value>
+  </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>قناع</value>
   </data>
@@ -1223,6 +1496,9 @@
   <data name="tool_paint_mode" xml:space="preserve">
     <value>وضع الطلاء</value>
   </data>
+  <data name="tool_paint_paint_header" xml:space="preserve">
+    <value>لون</value>
+  </data>
   <data name="tool_paint_tile_title" xml:space="preserve">
     <value>بلاط</value>
   </data>
@@ -1231,6 +1507,9 @@
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
     <value>استخدام المطرقة لتعديل المسار ينتهي، والتقاطعات واتجاه التعزيز.</value>
+  </data>
+  <data name="tool_paint_track_header" xml:space="preserve">
+    <value>مسار عربة المناجم</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>أضف لوحة الضغط إلى المسار الموجود، استخدم مع Eraser لإزالة اللوحة فقط.</value>
@@ -1244,8 +1523,14 @@
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>أخضر</value>
   </data>
+  <data name="tool_paint_wire_header" xml:space="preserve">
+    <value>سلك</value>
+  </data>
   <data name="tool_paint_wire_red" xml:space="preserve">
     <value>أحمر</value>
+  </data>
+  <data name="tool_paint_wire_replace_header" xml:space="preserve">
+    <value>استبدال الأسلاك</value>
   </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>أصفر</value>
@@ -1880,14 +2165,59 @@
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>أصفر</value>
   </data>
+  <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
+    <value>هناك نسخة احتياطية موجودة</value>
+  </data>
+  <data name="world_explorer_col_dimensions" xml:space="preserve">
+    <value>الأبعاد</value>
+  </data>
+  <data name="world_explorer_col_file" xml:space="preserve">
+    <value>ملف</value>
+  </data>
+  <data name="world_explorer_col_modified" xml:space="preserve">
+    <value>معدل</value>
+  </data>
+  <data name="world_explorer_col_size" xml:space="preserve">
+    <value>الحجم</value>
+  </data>
+  <data name="world_explorer_col_title" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="world_explorer_col_version" xml:space="preserve">
+    <value>النسخة</value>
+  </data>
   <data name="world_explorer_delete" xml:space="preserve">
     <value>حذف</value>
+  </data>
+  <data name="world_explorer_delete_backup_tooltip" xml:space="preserve">
+    <value>حذف النسخ الاحتياطي</value>
+  </data>
+  <data name="world_explorer_loading_preview" xml:space="preserve">
+    <value>جاري التحميل...</value>
+  </data>
+  <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
+    <value>لا يوجد نسخة احتياطية — انقر لإنشاء .bak ونسخة احتياطية من TEdit</value>
   </data>
   <data name="world_explorer_open" xml:space="preserve">
     <value>مفتوح</value>
   </data>
+  <data name="world_explorer_open_explorer_tooltip" xml:space="preserve">
+    <value>افتح في مستكشف</value>
+  </data>
   <data name="world_explorer_pin" xml:space="preserve">
     <value>تثبيت</value>
+  </data>
+  <data name="world_explorer_preview_backup_tooltip" xml:space="preserve">
+    <value>النسخ الاحتياطي للمعاينة</value>
+  </data>
+  <data name="world_explorer_preview_format" xml:space="preserve">
+    <value>معاينة: {0}</value>
+  </data>
+  <data name="world_explorer_preview_tooltip" xml:space="preserve">
+    <value>خريطة العالم المعاينة</value>
+  </data>
+  <data name="world_explorer_search_placeholder" xml:space="preserve">
+    <value>العوالم البحثية...</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>مستكشف العالم</value>

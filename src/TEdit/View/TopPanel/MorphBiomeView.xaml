@@ -21,7 +21,7 @@
             <ComboBox Width="200"
                   ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.Biomes}, Mode=OneTime}" 
                   SelectedValue="{Binding MorphToolOptions.TargetBiome}" />
-            <TextBlock Text="Moss Type" Margin="2" />
+            <TextBlock Text="{x:Static p:Language.tool_morph_moss_type}" Margin="2" />
             <ComboBox Width="200"
                   ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.MossTypes}, Mode=OneTime}" 
                       SelectedValuePath="Value" 
@@ -29,11 +29,11 @@
                   SelectedValue="{Binding MorphToolOptions.MossType}" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="2">
-            <TextBlock Text="Options" />
-            <CheckBox Content="Base Tiles" IsChecked="{Binding MorphToolOptions.EnableBaseTiles}"/>
-            <CheckBox Content="Moss" IsChecked="{Binding MorphToolOptions.EnableMoss}"/>
-            <CheckBox Content="Evil" IsChecked="{Binding MorphToolOptions.EnableEvilTiles}"/>
-            <CheckBox Content="Decorations" IsChecked="{Binding MorphToolOptions.EnableSprites}"/>
+            <TextBlock Text="{x:Static p:Language.tool_morph_options}" />
+            <CheckBox Content="{x:Static p:Language.tool_morph_base_tiles}" IsChecked="{Binding MorphToolOptions.EnableBaseTiles}"/>
+            <CheckBox Content="{x:Static p:Language.tool_morph_moss}" IsChecked="{Binding MorphToolOptions.EnableMoss}"/>
+            <CheckBox Content="{x:Static p:Language.tool_morph_evil}" IsChecked="{Binding MorphToolOptions.EnableEvilTiles}"/>
+            <CheckBox Content="{x:Static p:Language.tool_morph_decorations}" IsChecked="{Binding MorphToolOptions.EnableSprites}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

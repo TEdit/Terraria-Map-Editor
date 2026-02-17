@@ -4,7 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
-        Title="Expand World"
+        xmlns:p="clr-namespace:TEdit.Properties"
+        Title="{x:Static p:Language.expand_title}"
         WindowStartupLocation="CenterOwner"
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
@@ -20,7 +21,7 @@
   <StackPanel Orientation="Vertical">
 
     <!-- Info Header -->
-    <TextBlock Text="The world will be centered around these new dimensions." />
+    <TextBlock Text="{x:Static p:Language.expand_description}" />
     <Separator Grid.ColumnSpan="2" />
     
     <tedit:AutoGrid x:Name="WorldProperties" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
@@ -30,7 +31,7 @@
       </tedit:AutoGrid.ColumnDefinitions>
       
       <!-- World Properties -->
-      <TextBlock Text="New Width" HorizontalAlignment="Right" />
+      <TextBlock Text="{x:Static p:Language.expand_new_width}" HorizontalAlignment="Right" />
       <DockPanel>
         <TextBlock Width="50" DockPanel.Dock="Right" Text="{Binding Value, ElementName=WidthSlider, StringFormat={}{0:0}}" />
         <Slider x:Name="WidthSlider"
@@ -40,7 +41,7 @@
                 SmallChange="50" LargeChange="500" Interval="50"
                 IsSnapToTickEnabled="True" TickFrequency="50" />
       </DockPanel>
-      <TextBlock Text="New Height" HorizontalAlignment="Right" />
+      <TextBlock Text="{x:Static p:Language.expand_new_height}" HorizontalAlignment="Right" />
       <DockPanel>
         <TextBlock Width="50" DockPanel.Dock="Right" Text="{Binding Value, ElementName=HeightSlider, StringFormat={}{0:0}}" />
         <Slider x:Name="HeightSlider"
@@ -55,8 +56,8 @@
     <!-- Bottom Buttons -->
     <Separator Grid.ColumnSpan="2" />
     <UniformGrid Columns="2" Margin="1">
-      <Button Content="Cancel" Click="CancelClick" Padding="4" Margin="2"/>
-      <Button Content="OK"     Click="OkClick"     Padding="4" Margin="2"/>
+      <Button Content="{x:Static p:Language.common_cancel}" Click="CancelClick" Padding="4" Margin="2"/>
+      <Button Content="{x:Static p:Language.common_ok}"     Click="OkClick"     Padding="4" Margin="2"/>
     </UniformGrid>
   </StackPanel>
 </ui:FluentWindow>

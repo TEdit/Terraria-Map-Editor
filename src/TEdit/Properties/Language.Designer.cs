@@ -322,6 +322,105 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string common_cancel {
+            get {
+                return ResourceManager.GetString("common_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string common_clear {
+            get {
+                return ResourceManager.GetString("common_clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string common_close {
+            get {
+                return ResourceManager.GetString("common_close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string common_enabled {
+            get {
+                return ResourceManager.GetString("common_enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        public static string common_generate {
+            get {
+                return ResourceManager.GetString("common_generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string common_ok {
+            get {
+                return ResourceManager.GetString("common_ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string common_refresh {
+            get {
+                return ResourceManager.GetString("common_refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string common_remove {
+            get {
+                return ResourceManager.GetString("common_remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string common_reset {
+            get {
+                return ResourceManager.GetString("common_reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string common_save {
+            get {
+                return ResourceManager.GetString("common_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string common_search {
+            get {
+                return ResourceManager.GetString("common_search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory does not appear to contain Terraria Content.
         ///Press retry to pick a new folder or cancel to use {0} as your terraria path..
         /// </summary>
@@ -440,6 +539,105 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The world will be centered around these new dimensions..
+        /// </summary>
+        public static string expand_description {
+            get {
+                return ResourceManager.GetString("expand_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Height.
+        /// </summary>
+        public static string expand_new_height {
+            get {
+                return ResourceManager.GetString("expand_new_height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Width.
+        /// </summary>
+        public static string expand_new_width {
+            get {
+                return ResourceManager.GetString("expand_new_width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand World.
+        /// </summary>
+        public static string expand_title {
+            get {
+                return ResourceManager.GetString("expand_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Zoom.
+        /// </summary>
+        public static string find_auto_zoom {
+            get {
+                return ResourceManager.GetString("find_auto_zoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom in when navigating to results (off = pan only).
+        /// </summary>
+        public static string find_auto_zoom_tooltip {
+            get {
+                return ResourceManager.GetString("find_auto_zoom_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculate Distance.
+        /// </summary>
+        public static string find_calculate_distance {
+            get {
+                return ResourceManager.GetString("find_calculate_distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string find_next {
+            get {
+                return ResourceManager.GetString("find_next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prev.
+        /// </summary>
+        public static string find_prev {
+            get {
+                return ResourceManager.GetString("find_prev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search World.
+        /// </summary>
+        public static string find_search_world {
+            get {
+                return ResourceManager.GetString("find_search_world", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items in Chests.
+        /// </summary>
+        public static string find_tab_chests {
+            get {
+                return ResourceManager.GetString("find_tab_chests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enjoy TEdit? Support Us!.
         /// </summary>
         public static string global_enjoytedit {
@@ -535,6 +733,33 @@ namespace TEdit.Properties {
         public static string JunctionBoxMode_Right {
             get {
                 return ResourceManager.GetString("JunctionBoxMode_Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press a key, mouse button, or scroll wheel....
+        /// </summary>
+        public static string keybind_capture_instruction {
+            get {
+                return ResourceManager.GetString("keybind_capture_instruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (with optional Ctrl, Shift, or Alt modifiers).
+        /// </summary>
+        public static string keybind_capture_modifiers {
+            get {
+                return ResourceManager.GetString("keybind_capture_modifiers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press a key or click a mouse button.
+        /// </summary>
+        public static string keybind_capture_title {
+            get {
+                return ResourceManager.GetString("keybind_capture_title", resourceCulture);
             }
         }
         
@@ -841,6 +1066,33 @@ namespace TEdit.Properties {
         public static string menu_filter_custom {
             get {
                 return ResourceManager.GetString("menu_filter_custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick custom background color.
+        /// </summary>
+        public static string menu_filter_custom_tooltip {
+            get {
+                return ResourceManager.GetString("menu_filter_custom_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Darken.
+        /// </summary>
+        public static string menu_filter_darken {
+            get {
+                return ResourceManager.GetString("menu_filter_darken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Darken:.
+        /// </summary>
+        public static string menu_filter_darken_label {
+            get {
+                return ResourceManager.GetString("menu_filter_darken_label", resourceCulture);
             }
         }
         
@@ -1250,6 +1502,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Textures Visible.
+        /// </summary>
+        public static string menu_layers_textures_visible {
+            get {
+                return ResourceManager.GetString("menu_layers_textures_visible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tiles.
         /// </summary>
         public static string menu_layers_tiles {
@@ -1529,6 +1790,294 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Ash.
+        /// </summary>
+        public static string newworld_add_ash {
+            get {
+                return ResourceManager.GetString("newworld_add_ash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Grass.
+        /// </summary>
+        public static string newworld_add_grass {
+            get {
+                return ResourceManager.GetString("newworld_add_grass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Lava.
+        /// </summary>
+        public static string newworld_add_lava {
+            get {
+                return ResourceManager.GetString("newworld_add_lava", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Walls.
+        /// </summary>
+        public static string newworld_add_walls {
+            get {
+                return ResourceManager.GetString("newworld_add_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cave Density Chance.
+        /// </summary>
+        public static string newworld_cave_density {
+            get {
+                return ResourceManager.GetString("newworld_cave_density", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cave Multiplier.
+        /// </summary>
+        public static string newworld_cave_multiplier {
+            get {
+                return ResourceManager.GetString("newworld_cave_multiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cave Noise.
+        /// </summary>
+        public static string newworld_cave_noise {
+            get {
+                return ResourceManager.GetString("newworld_cave_noise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cave Preset.
+        /// </summary>
+        public static string newworld_cave_preset {
+            get {
+                return ResourceManager.GetString("newworld_cave_preset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cavern Level.
+        /// </summary>
+        public static string newworld_cavern {
+            get {
+                return ResourceManager.GetString("newworld_cavern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caves.
+        /// </summary>
+        public static string newworld_caves {
+            get {
+                return ResourceManager.GetString("newworld_caves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create World.
+        /// </summary>
+        public static string newworld_create {
+            get {
+                return ResourceManager.GetString("newworld_create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor Noise.
+        /// </summary>
+        public static string newworld_floor_noise {
+            get {
+                return ResourceManager.GetString("newworld_floor_noise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Caves (slow).
+        /// </summary>
+        public static string newworld_generate_caves {
+            get {
+                return ResourceManager.GetString("newworld_generate_caves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Ores.
+        /// </summary>
+        public static string newworld_generate_ores {
+            get {
+                return ResourceManager.GetString("newworld_generate_ores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Underworld.
+        /// </summary>
+        public static string newworld_generate_underworld {
+            get {
+                return ResourceManager.GetString("newworld_generate_underworld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Generation.
+        /// </summary>
+        public static string newworld_generation {
+            get {
+                return ResourceManager.GetString("newworld_generation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create New World.
+        /// </summary>
+        public static string newworld_heading {
+            get {
+                return ResourceManager.GetString("newworld_heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        public static string newworld_height {
+            get {
+                return ResourceManager.GetString("newworld_height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hill Terrain Size.
+        /// </summary>
+        public static string newworld_hill_size {
+            get {
+                return ResourceManager.GetString("newworld_hill_size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hills.
+        /// </summary>
+        public static string newworld_hills {
+            get {
+                return ResourceManager.GetString("newworld_hills", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include Surface.
+        /// </summary>
+        public static string newworld_include_surface {
+            get {
+                return ResourceManager.GetString("newworld_include_surface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lava Noise.
+        /// </summary>
+        public static string newworld_lava_noise {
+            get {
+                return ResourceManager.GetString("newworld_lava_noise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Name.
+        /// </summary>
+        public static string newworld_name {
+            get {
+                return ResourceManager.GetString("newworld_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Launches ore-gen plugin).
+        /// </summary>
+        public static string newworld_ore_gen_plugin {
+            get {
+                return ResourceManager.GetString("newworld_ore_gen_plugin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ores.
+        /// </summary>
+        public static string newworld_ores {
+            get {
+                return ResourceManager.GetString("newworld_ores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Properties.
+        /// </summary>
+        public static string newworld_properties {
+            get {
+                return ResourceManager.GetString("newworld_properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roof Noise.
+        /// </summary>
+        public static string newworld_roof_noise {
+            get {
+                return ResourceManager.GetString("newworld_roof_noise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Id (Seed).
+        /// </summary>
+        public static string newworld_seed {
+            get {
+                return ResourceManager.GetString("newworld_seed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surface Level.
+        /// </summary>
+        public static string newworld_surface {
+            get {
+                return ResourceManager.GetString("newworld_surface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New World.
+        /// </summary>
+        public static string newworld_title {
+            get {
+                return ResourceManager.GetString("newworld_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underworld.
+        /// </summary>
+        public static string newworld_underworld {
+            get {
+                return ResourceManager.GetString("newworld_underworld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        public static string newworld_width {
+            get {
+                return ResourceManager.GetString("newworld_width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Liquid.
         /// </summary>
         public static string PaintMode_Liquid {
@@ -1561,6 +2110,150 @@ namespace TEdit.Properties {
         public static string PaintMode_Wire {
             get {
                 return ResourceManager.GetString("PaintMode_Wire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check all visible items.
+        /// </summary>
+        public static string picker_check_all_tooltip {
+            get {
+                return ResourceManager.GetString("picker_check_all_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncheck all visible items.
+        /// </summary>
+        public static string picker_uncheck_all_tooltip {
+            get {
+                return ResourceManager.GetString("picker_uncheck_all_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a version to save as:.
+        /// </summary>
+        public static string saveas_instruction {
+            get {
+                return ResourceManager.GetString("saveas_instruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select World Version.
+        /// </summary>
+        public static string saveas_title {
+            get {
+                return ResourceManager.GetString("saveas_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to API.
+        /// </summary>
+        public static string scripting_api {
+            get {
+                return ResourceManager.GetString("scripting_api", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate API_REFERENCE.md.
+        /// </summary>
+        public static string scripting_api_generate_tooltip {
+            get {
+                return ResourceManager.GetString("scripting_api_generate_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle API reference panel.
+        /// </summary>
+        public static string scripting_api_tooltip {
+            get {
+                return ResourceManager.GetString("scripting_api_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine:.
+        /// </summary>
+        public static string scripting_engine_label {
+            get {
+                return ResourceManager.GetString("scripting_engine_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open scripts folder.
+        /// </summary>
+        public static string scripting_folder_tooltip {
+            get {
+                return ResourceManager.GetString("scripting_folder_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string scripting_new {
+            get {
+                return ResourceManager.GetString("scripting_new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New script.
+        /// </summary>
+        public static string scripting_new_tooltip {
+            get {
+                return ResourceManager.GetString("scripting_new_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string scripting_output {
+            get {
+                return ResourceManager.GetString("scripting_output", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run Script.
+        /// </summary>
+        public static string scripting_run {
+            get {
+                return ResourceManager.GetString("scripting_run", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save script.
+        /// </summary>
+        public static string scripting_save_tooltip {
+            get {
+                return ResourceManager.GetString("scripting_save_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop.
+        /// </summary>
+        public static string scripting_stop {
+            get {
+                return ResourceManager.GetString("scripting_stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scripting.
+        /// </summary>
+        public static string scripting_title {
+            get {
+                return ResourceManager.GetString("scripting_title", resourceCulture);
             }
         }
         
@@ -1678,6 +2371,33 @@ namespace TEdit.Properties {
         public static string settings_error_reporting_desc {
             get {
                 return ResourceManager.GetString("settings_error_reporting_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a new keybinding.
+        /// </summary>
+        public static string settings_keybind_add_tooltip {
+            get {
+                return ResourceManager.GetString("settings_keybind_add_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove this binding.
+        /// </summary>
+        public static string settings_keybind_remove_tooltip {
+            get {
+                return ResourceManager.GetString("settings_keybind_remove_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset to default bindings.
+        /// </summary>
+        public static string settings_keybind_reset_tooltip {
+            get {
+                return ResourceManager.GetString("settings_keybind_reset_tooltip", resourceCulture);
             }
         }
         
@@ -2177,11 +2897,38 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string sidebar_filter_tooltip {
+            get {
+                return ResourceManager.GetString("sidebar_filter_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Find &amp; Replace.
         /// </summary>
         public static string sidebar_find_title {
             get {
                 return ResourceManager.GetString("sidebar_find_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find.
+        /// </summary>
+        public static string sidebar_find_tooltip {
+            get {
+                return ResourceManager.GetString("sidebar_find_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scripting.
+        /// </summary>
+        public static string sidebar_scripting_tooltip {
+            get {
+                return ResourceManager.GetString("sidebar_scripting_tooltip", resourceCulture);
             }
         }
         
@@ -3160,11 +3907,65 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base Tiles.
+        /// </summary>
+        public static string tool_morph_base_tiles {
+            get {
+                return ResourceManager.GetString("tool_morph_base_tiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decorations.
+        /// </summary>
+        public static string tool_morph_decorations {
+            get {
+                return ResourceManager.GetString("tool_morph_decorations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evil.
+        /// </summary>
+        public static string tool_morph_evil {
+            get {
+                return ResourceManager.GetString("tool_morph_evil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Morph to Biome.
         /// </summary>
         public static string tool_morph_label {
             get {
                 return ResourceManager.GetString("tool_morph_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moss.
+        /// </summary>
+        public static string tool_morph_moss {
+            get {
+                return ResourceManager.GetString("tool_morph_moss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moss Type.
+        /// </summary>
+        public static string tool_morph_moss_type {
+            get {
+                return ResourceManager.GetString("tool_morph_moss_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string tool_morph_options {
+            get {
+                return ResourceManager.GetString("tool_morph_options", resourceCulture);
             }
         }
         
@@ -3241,6 +4042,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Eraser.
+        /// </summary>
+        public static string tool_paint_eraser_tooltip {
+            get {
+                return ResourceManager.GetString("tool_paint_eraser_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extras.
         /// </summary>
         public static string tool_paint_extras {
@@ -3295,6 +4105,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Liquid.
+        /// </summary>
+        public static string tool_paint_liquid_header {
+            get {
+                return ResourceManager.GetString("tool_paint_liquid_header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mask.
         /// </summary>
         public static string tool_paint_mask {
@@ -3322,6 +4141,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paint.
+        /// </summary>
+        public static string tool_paint_paint_header {
+            get {
+                return ResourceManager.GetString("tool_paint_paint_header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tile.
         /// </summary>
         public static string tool_paint_tile_title {
@@ -3345,6 +4173,15 @@ namespace TEdit.Properties {
         public static string tool_paint_track_hammer_tooltip {
             get {
                 return ResourceManager.GetString("tool_paint_track_hammer_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minecart Track.
+        /// </summary>
+        public static string tool_paint_track_header {
+            get {
+                return ResourceManager.GetString("tool_paint_track_header", resourceCulture);
             }
         }
         
@@ -3385,11 +4222,29 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wire.
+        /// </summary>
+        public static string tool_paint_wire_header {
+            get {
+                return ResourceManager.GetString("tool_paint_wire_header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Red.
         /// </summary>
         public static string tool_paint_wire_red {
             get {
                 return ResourceManager.GetString("tool_paint_wire_red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire Replacement.
+        /// </summary>
+        public static string tool_paint_wire_replace_header {
+            get {
+                return ResourceManager.GetString("tool_paint_wire_replace_header", resourceCulture);
             }
         }
         
@@ -5293,11 +6148,101 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup exists.
+        /// </summary>
+        public static string world_explorer_backup_exists_tooltip {
+            get {
+                return ResourceManager.GetString("world_explorer_backup_exists_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dimensions.
+        /// </summary>
+        public static string world_explorer_col_dimensions {
+            get {
+                return ResourceManager.GetString("world_explorer_col_dimensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string world_explorer_col_file {
+            get {
+                return ResourceManager.GetString("world_explorer_col_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified.
+        /// </summary>
+        public static string world_explorer_col_modified {
+            get {
+                return ResourceManager.GetString("world_explorer_col_modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string world_explorer_col_size {
+            get {
+                return ResourceManager.GetString("world_explorer_col_size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string world_explorer_col_title {
+            get {
+                return ResourceManager.GetString("world_explorer_col_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string world_explorer_col_version {
+            get {
+                return ResourceManager.GetString("world_explorer_col_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string world_explorer_delete {
             get {
                 return ResourceManager.GetString("world_explorer_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete backup.
+        /// </summary>
+        public static string world_explorer_delete_backup_tooltip {
+            get {
+                return ResourceManager.GetString("world_explorer_delete_backup_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading preview....
+        /// </summary>
+        public static string world_explorer_loading_preview {
+            get {
+                return ResourceManager.GetString("world_explorer_loading_preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No backup — click to create .bak and TEdit backup.
+        /// </summary>
+        public static string world_explorer_no_backup_tooltip {
+            get {
+                return ResourceManager.GetString("world_explorer_no_backup_tooltip", resourceCulture);
             }
         }
         
@@ -5311,11 +6256,56 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open in Explorer.
+        /// </summary>
+        public static string world_explorer_open_explorer_tooltip {
+            get {
+                return ResourceManager.GetString("world_explorer_open_explorer_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pin.
         /// </summary>
         public static string world_explorer_pin {
             get {
                 return ResourceManager.GetString("world_explorer_pin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview backup.
+        /// </summary>
+        public static string world_explorer_preview_backup_tooltip {
+            get {
+                return ResourceManager.GetString("world_explorer_preview_backup_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview: {0}.
+        /// </summary>
+        public static string world_explorer_preview_format {
+            get {
+                return ResourceManager.GetString("world_explorer_preview_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview world map.
+        /// </summary>
+        public static string world_explorer_preview_tooltip {
+            get {
+                return ResourceManager.GetString("world_explorer_preview_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search worlds....
+        /// </summary>
+        public static string world_explorer_search_placeholder {
+            get {
+                return ResourceManager.GetString("world_explorer_search_placeholder", resourceCulture);
             }
         }
         

@@ -208,6 +208,39 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>
+  <data name="common_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="common_clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="common_close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="common_enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="common_generate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="common_ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="common_refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="common_remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="common_reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="common_save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="common_search" xml:space="preserve">
+    <value>Search</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>Directory does not appear to contain Terraria Content.
 Press retry to pick a new folder or cancel to use {0} as your terraria path.</value>
@@ -248,6 +281,39 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="editor_utilities_label" xml:space="preserve">
     <value>Utilities</value>
   </data>
+  <data name="expand_description" xml:space="preserve">
+    <value>The world will be centered around these new dimensions.</value>
+  </data>
+  <data name="expand_new_height" xml:space="preserve">
+    <value>New Height</value>
+  </data>
+  <data name="expand_new_width" xml:space="preserve">
+    <value>New Width</value>
+  </data>
+  <data name="expand_title" xml:space="preserve">
+    <value>Expand World</value>
+  </data>
+  <data name="find_auto_zoom" xml:space="preserve">
+    <value>Auto Zoom</value>
+  </data>
+  <data name="find_auto_zoom_tooltip" xml:space="preserve">
+    <value>Zoom in when navigating to results (off = pan only)</value>
+  </data>
+  <data name="find_calculate_distance" xml:space="preserve">
+    <value>Calculate Distance</value>
+  </data>
+  <data name="find_next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="find_prev" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="find_search_world" xml:space="preserve">
+    <value>Search World</value>
+  </data>
+  <data name="find_tab_chests" xml:space="preserve">
+    <value>Items in Chests</value>
+  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>Enjoy TEdit? Support Us!</value>
   </data>
@@ -280,6 +346,15 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>Junction Box:</value>
+  </data>
+  <data name="keybind_capture_instruction" xml:space="preserve">
+    <value>Press a key, mouse button, or scroll wheel...</value>
+  </data>
+  <data name="keybind_capture_modifiers" xml:space="preserve">
+    <value>(with optional Ctrl, Shift, or Alt modifiers)</value>
+  </data>
+  <data name="keybind_capture_title" xml:space="preserve">
+    <value>Press a key or click a mouse button</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>Honey</value>
@@ -382,6 +457,15 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_filter_custom" xml:space="preserve">
     <value>Custom</value>
+  </data>
+  <data name="menu_filter_custom_tooltip" xml:space="preserve">
+    <value>Pick custom background color</value>
+  </data>
+  <data name="menu_filter_darken" xml:space="preserve">
+    <value>Darken</value>
+  </data>
+  <data name="menu_filter_darken_label" xml:space="preserve">
+    <value>Darken:</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>Disable</value>
@@ -518,6 +602,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_layers_textures" xml:space="preserve">
     <value>Textures</value>
   </data>
+  <data name="menu_layers_textures_visible" xml:space="preserve">
+    <value>Textures Visible</value>
+  </data>
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>Tiles</value>
   </data>
@@ -618,6 +705,102 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Purify</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="newworld_add_ash" xml:space="preserve">
+    <value>Add Ash</value>
+  </data>
+  <data name="newworld_add_grass" xml:space="preserve">
+    <value>Add Grass</value>
+  </data>
+  <data name="newworld_add_lava" xml:space="preserve">
+    <value>Add Lava</value>
+  </data>
+  <data name="newworld_add_walls" xml:space="preserve">
+    <value>Add Walls</value>
+  </data>
+  <data name="newworld_cavern" xml:space="preserve">
+    <value>Cavern Level</value>
+  </data>
+  <data name="newworld_caves" xml:space="preserve">
+    <value>Caves</value>
+  </data>
+  <data name="newworld_cave_density" xml:space="preserve">
+    <value>Cave Density Chance</value>
+  </data>
+  <data name="newworld_cave_multiplier" xml:space="preserve">
+    <value>Cave Multiplier</value>
+  </data>
+  <data name="newworld_cave_noise" xml:space="preserve">
+    <value>Cave Noise</value>
+  </data>
+  <data name="newworld_cave_preset" xml:space="preserve">
+    <value>Cave Preset</value>
+  </data>
+  <data name="newworld_create" xml:space="preserve">
+    <value>Create World</value>
+  </data>
+  <data name="newworld_floor_noise" xml:space="preserve">
+    <value>Floor Noise</value>
+  </data>
+  <data name="newworld_generate_caves" xml:space="preserve">
+    <value>Generate Caves (slow)</value>
+  </data>
+  <data name="newworld_generate_ores" xml:space="preserve">
+    <value>Generate Ores</value>
+  </data>
+  <data name="newworld_generate_underworld" xml:space="preserve">
+    <value>Generate Underworld</value>
+  </data>
+  <data name="newworld_generation" xml:space="preserve">
+    <value>World Generation</value>
+  </data>
+  <data name="newworld_heading" xml:space="preserve">
+    <value>Create New World</value>
+  </data>
+  <data name="newworld_height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="newworld_hills" xml:space="preserve">
+    <value>Hills</value>
+  </data>
+  <data name="newworld_hill_size" xml:space="preserve">
+    <value>Hill Terrain Size</value>
+  </data>
+  <data name="newworld_include_surface" xml:space="preserve">
+    <value>Include Surface</value>
+  </data>
+  <data name="newworld_lava_noise" xml:space="preserve">
+    <value>Lava Noise</value>
+  </data>
+  <data name="newworld_name" xml:space="preserve">
+    <value>World Name</value>
+  </data>
+  <data name="newworld_ores" xml:space="preserve">
+    <value>Ores</value>
+  </data>
+  <data name="newworld_ore_gen_plugin" xml:space="preserve">
+    <value>(Launches ore-gen plugin)</value>
+  </data>
+  <data name="newworld_properties" xml:space="preserve">
+    <value>World Properties</value>
+  </data>
+  <data name="newworld_roof_noise" xml:space="preserve">
+    <value>Roof Noise</value>
+  </data>
+  <data name="newworld_seed" xml:space="preserve">
+    <value>World Id (Seed)</value>
+  </data>
+  <data name="newworld_surface" xml:space="preserve">
+    <value>Surface Level</value>
+  </data>
+  <data name="newworld_title" xml:space="preserve">
+    <value>New World</value>
+  </data>
+  <data name="newworld_underworld" xml:space="preserve">
+    <value>Underworld</value>
+  </data>
+  <data name="newworld_width" xml:space="preserve">
+    <value>Width</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Liquid</value>
   </data>
@@ -629,6 +812,54 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Wire</value>
+  </data>
+  <data name="picker_check_all_tooltip" xml:space="preserve">
+    <value>Check all visible items</value>
+  </data>
+  <data name="picker_uncheck_all_tooltip" xml:space="preserve">
+    <value>Uncheck all visible items</value>
+  </data>
+  <data name="saveas_instruction" xml:space="preserve">
+    <value>Select a version to save as:</value>
+  </data>
+  <data name="saveas_title" xml:space="preserve">
+    <value>Select World Version</value>
+  </data>
+  <data name="scripting_api" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="scripting_api_generate_tooltip" xml:space="preserve">
+    <value>Generate API_REFERENCE.md</value>
+  </data>
+  <data name="scripting_api_tooltip" xml:space="preserve">
+    <value>Toggle API reference panel</value>
+  </data>
+  <data name="scripting_engine_label" xml:space="preserve">
+    <value>Engine:</value>
+  </data>
+  <data name="scripting_folder_tooltip" xml:space="preserve">
+    <value>Open scripts folder</value>
+  </data>
+  <data name="scripting_new" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="scripting_new_tooltip" xml:space="preserve">
+    <value>New script</value>
+  </data>
+  <data name="scripting_output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="scripting_run" xml:space="preserve">
+    <value>Run Script</value>
+  </data>
+  <data name="scripting_save_tooltip" xml:space="preserve">
+    <value>Save script</value>
+  </data>
+  <data name="scripting_stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="scripting_title" xml:space="preserve">
+    <value>Scripting</value>
   </data>
   <data name="settings_autosave" xml:space="preserve">
     <value>Enable Autosave</value>
@@ -654,6 +885,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_category_rendering" xml:space="preserve">
     <value>Rendering</value>
   </data>
+  <data name="settings_category_scripting" xml:space="preserve">
+    <value>Scripting</value>
+  </data>
   <data name="settings_check_updates" xml:space="preserve">
     <value>Check for Updates</value>
   </data>
@@ -665,6 +899,15 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>Send anonymous error reports to help improve stability</value>
+  </data>
+  <data name="settings_keybind_add_tooltip" xml:space="preserve">
+    <value>Add a new keybinding</value>
+  </data>
+  <data name="settings_keybind_remove_tooltip" xml:space="preserve">
+    <value>Remove this binding</value>
+  </data>
+  <data name="settings_keybind_reset_tooltip" xml:space="preserve">
+    <value>Reset to default bindings</value>
   </data>
   <data name="settings_language" xml:space="preserve">
     <value>Language</value>
@@ -684,15 +927,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
     <value>How long to hold the Picker key before it becomes a temporary pick (100-500ms)</value>
   </data>
-  <data name="settings_script_timeout" xml:space="preserve">
-    <value>Script Timeout (seconds)</value>
-  </data>
-  <data name="settings_script_timeout_desc" xml:space="preserve">
-    <value>Maximum time a script can run before being cancelled (10-300 seconds)</value>
-  </data>
-  <data name="settings_category_scripting" xml:space="preserve">
-    <value>Scripting</value>
-  </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Use Realistic Colors</value>
   </data>
@@ -701,6 +935,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="settings_script_timeout" xml:space="preserve">
+    <value>Script Timeout (seconds)</value>
+  </data>
+  <data name="settings_script_timeout_desc" xml:space="preserve">
+    <value>Maximum time a script can run before being cancelled (10-300 seconds)</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>Search settings...</value>
@@ -834,8 +1074,17 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>Banners</value>
   </data>
+  <data name="sidebar_filter_tooltip" xml:space="preserve">
+    <value>Filter</value>
+  </data>
   <data name="sidebar_find_title" xml:space="preserve">
     <value>Find &amp; Replace</value>
+  </data>
+  <data name="sidebar_find_tooltip" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="sidebar_scripting_tooltip" xml:space="preserve">
+    <value>Scripting</value>
   </data>
   <data name="sidebar_tileentity_title" xml:space="preserve">
     <value>Tile Entity</value>
@@ -1169,8 +1418,26 @@ Would you like to enable error reporting?</value>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Fill</value>
   </data>
+  <data name="tool_morph_base_tiles" xml:space="preserve">
+    <value>Base Tiles</value>
+  </data>
+  <data name="tool_morph_decorations" xml:space="preserve">
+    <value>Decorations</value>
+  </data>
+  <data name="tool_morph_evil" xml:space="preserve">
+    <value>Evil</value>
+  </data>
   <data name="tool_morph_label" xml:space="preserve">
     <value>Morph to Biome</value>
+  </data>
+  <data name="tool_morph_moss" xml:space="preserve">
+    <value>Moss</value>
+  </data>
+  <data name="tool_morph_moss_type" xml:space="preserve">
+    <value>Moss Type</value>
+  </data>
+  <data name="tool_morph_options" xml:space="preserve">
+    <value>Options</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
     <value>Biome Morph</value>
@@ -1198,6 +1465,9 @@ Would you like to enable error reporting?</value>
     <value>Echo</value>
     <comment>Echo</comment>
   </data>
+  <data name="tool_paint_eraser_tooltip" xml:space="preserve">
+    <value>Eraser</value>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>Extras</value>
   </data>
@@ -1217,6 +1487,9 @@ Would you like to enable error reporting?</value>
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
     <value>Add right facing intersection junction box.</value>
   </data>
+  <data name="tool_paint_liquid_header" xml:space="preserve">
+    <value>Liquid</value>
+  </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>Mask</value>
   </data>
@@ -1226,6 +1499,9 @@ Would you like to enable error reporting?</value>
   <data name="tool_paint_mode" xml:space="preserve">
     <value>Paint Mode</value>
   </data>
+  <data name="tool_paint_paint_header" xml:space="preserve">
+    <value>Paint</value>
+  </data>
   <data name="tool_paint_tile_title" xml:space="preserve">
     <value>Tile</value>
   </data>
@@ -1234,6 +1510,9 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
     <value>Use Hammer to modify track ends, intersections and booster direction.</value>
+  </data>
+  <data name="tool_paint_track_header" xml:space="preserve">
+    <value>Minecart Track</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Add Pressure Plate to existing track, use with Eraser to remove plate only.</value>
@@ -1247,8 +1526,14 @@ Would you like to enable error reporting?</value>
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>Green</value>
   </data>
+  <data name="tool_paint_wire_header" xml:space="preserve">
+    <value>Wire</value>
+  </data>
   <data name="tool_paint_wire_red" xml:space="preserve">
     <value>Red</value>
+  </data>
+  <data name="tool_paint_wire_replace_header" xml:space="preserve">
+    <value>Wire Replacement</value>
   </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>Yellow</value>
@@ -1883,14 +2168,59 @@ Would you like to enable error reporting?</value>
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>Yellow</value>
   </data>
+  <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
+    <value>Backup exists</value>
+  </data>
+  <data name="world_explorer_col_dimensions" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="world_explorer_col_file" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="world_explorer_col_modified" xml:space="preserve">
+    <value>Modified</value>
+  </data>
+  <data name="world_explorer_col_size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="world_explorer_col_title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="world_explorer_col_version" xml:space="preserve">
+    <value>Version</value>
+  </data>
   <data name="world_explorer_delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="world_explorer_delete_backup_tooltip" xml:space="preserve">
+    <value>Delete backup</value>
+  </data>
+  <data name="world_explorer_loading_preview" xml:space="preserve">
+    <value>Loading preview...</value>
+  </data>
+  <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
+    <value>No backup — click to create .bak and TEdit backup</value>
   </data>
   <data name="world_explorer_open" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="world_explorer_open_explorer_tooltip" xml:space="preserve">
+    <value>Open in Explorer</value>
+  </data>
   <data name="world_explorer_pin" xml:space="preserve">
     <value>Pin</value>
+  </data>
+  <data name="world_explorer_preview_backup_tooltip" xml:space="preserve">
+    <value>Preview backup</value>
+  </data>
+  <data name="world_explorer_preview_format" xml:space="preserve">
+    <value>Preview: {0}</value>
+  </data>
+  <data name="world_explorer_preview_tooltip" xml:space="preserve">
+    <value>Preview world map</value>
+  </data>
+  <data name="world_explorer_search_placeholder" xml:space="preserve">
+    <value>Search worlds...</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>World Explorer</value>

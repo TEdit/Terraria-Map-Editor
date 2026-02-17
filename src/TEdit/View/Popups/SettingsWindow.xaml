@@ -107,7 +107,7 @@
                                             Click="RemoveKeybinding_Click"
                                             Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                             CommandParameter="{Binding}"
-                                            ToolTip="Remove this binding" />
+                                            ToolTip="{x:Static p:Language.settings_keybind_remove_tooltip}" />
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -118,10 +118,10 @@
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                     <Button Content="+" Width="24" Height="22" Padding="0" FontWeight="Bold"
                             Click="AddKeybinding_Click" Tag="{Binding}"
-                            ToolTip="Add a new keybinding" />
+                            ToolTip="{x:Static p:Language.settings_keybind_add_tooltip}" />
                     <Button Content="Reset" Height="22" Padding="6,0" Margin="4,0,0,0" FontSize="10"
                             Click="ResetKeybinding_Click" Tag="{Binding}"
-                            ToolTip="Reset to default bindings" />
+                            ToolTip="{x:Static p:Language.settings_keybind_reset_tooltip}" />
                 </StackPanel>
             </Grid>
         </DataTemplate>

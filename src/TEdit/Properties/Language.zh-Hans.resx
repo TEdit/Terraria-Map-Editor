@@ -208,6 +208,39 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>最大</value>
   </data>
+  <data name="common_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="common_clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="common_close" xml:space="preserve">
+    <value>结束</value>
+  </data>
+  <data name="common_enabled" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="common_generate" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="common_ok" xml:space="preserve">
+    <value>好的</value>
+  </data>
+  <data name="common_refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="common_remove" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="common_reset" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="common_save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="common_search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>当前路径未找到Terraria内容.
 点击‘retry’选择一个新的文件夹或用‘{0}’作为Terraria的路径.</value>
@@ -248,6 +281,39 @@
   <data name="editor_utilities_label" xml:space="preserve">
     <value>实用工具</value>
   </data>
+  <data name="expand_description" xml:space="preserve">
+    <value>世界将围绕这些新维度展开。</value>
+  </data>
+  <data name="expand_new_height" xml:space="preserve">
+    <value>新高地</value>
+  </data>
+  <data name="expand_new_width" xml:space="preserve">
+    <value>新宽</value>
+  </data>
+  <data name="expand_title" xml:space="preserve">
+    <value>拓展世界</value>
+  </data>
+  <data name="find_auto_zoom" xml:space="preserve">
+    <value>自动变焦</value>
+  </data>
+  <data name="find_auto_zoom_tooltip" xml:space="preserve">
+    <value>导航结果时放大（关闭=仅平移）</value>
+  </data>
+  <data name="find_calculate_distance" xml:space="preserve">
+    <value>计算距离</value>
+  </data>
+  <data name="find_next" xml:space="preserve">
+    <value>下一个</value>
+  </data>
+  <data name="find_prev" xml:space="preserve">
+    <value>前期</value>
+  </data>
+  <data name="find_search_world" xml:space="preserve">
+    <value>搜寻世界</value>
+  </data>
+  <data name="find_tab_chests" xml:space="preserve">
+    <value>箱子里的物品</value>
+  </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>喜欢TEdit?支持我们!</value>
   </data>
@@ -280,6 +346,15 @@
   </data>
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>接线盒：</value>
+  </data>
+  <data name="keybind_capture_instruction" xml:space="preserve">
+    <value>按键、鼠标或滚轮......</value>
+  </data>
+  <data name="keybind_capture_modifiers" xml:space="preserve">
+    <value>（可选的 Ctrl、Shift 或 Alt 修饰键）</value>
+  </data>
+  <data name="keybind_capture_title" xml:space="preserve">
+    <value>按下按键或点击鼠标</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>蜂蜜</value>
@@ -382,6 +457,15 @@
   </data>
   <data name="menu_filter_custom" xml:space="preserve">
     <value>自定义</value>
+  </data>
+  <data name="menu_filter_custom_tooltip" xml:space="preserve">
+    <value>选择自定义背景色</value>
+  </data>
+  <data name="menu_filter_darken" xml:space="preserve">
+    <value>黑暗</value>
+  </data>
+  <data name="menu_filter_darken_label" xml:space="preserve">
+    <value>变暗：</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>禁用</value>
@@ -518,6 +602,9 @@
   <data name="menu_layers_textures" xml:space="preserve">
     <value>纹理贴图</value>
   </data>
+  <data name="menu_layers_textures_visible" xml:space="preserve">
+    <value>可见的纹理</value>
+  </data>
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>物块</value>
   </data>
@@ -618,6 +705,102 @@
     <value>净化</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="newworld_add_ash" xml:space="preserve">
+    <value>加入灰烬</value>
+  </data>
+  <data name="newworld_add_grass" xml:space="preserve">
+    <value>添加草</value>
+  </data>
+  <data name="newworld_add_lava" xml:space="preserve">
+    <value>加入熔岩</value>
+  </data>
+  <data name="newworld_add_walls" xml:space="preserve">
+    <value>添加墙壁</value>
+  </data>
+  <data name="newworld_cavern" xml:space="preserve">
+    <value>洞穴深度</value>
+  </data>
+  <data name="newworld_caves" xml:space="preserve">
+    <value>洞穴</value>
+  </data>
+  <data name="newworld_cave_density" xml:space="preserve">
+    <value>洞穴密度概率</value>
+  </data>
+  <data name="newworld_cave_multiplier" xml:space="preserve">
+    <value>洞穴倍增器</value>
+  </data>
+  <data name="newworld_cave_noise" xml:space="preserve">
+    <value>洞穴噪音</value>
+  </data>
+  <data name="newworld_cave_preset" xml:space="preserve">
+    <value>洞穴预设</value>
+  </data>
+  <data name="newworld_create" xml:space="preserve">
+    <value>创造世界</value>
+  </data>
+  <data name="newworld_floor_noise" xml:space="preserve">
+    <value>地板噪声</value>
+  </data>
+  <data name="newworld_generate_caves" xml:space="preserve">
+    <value>生成洞穴（慢速）</value>
+  </data>
+  <data name="newworld_generate_ores" xml:space="preserve">
+    <value>生成矿石</value>
+  </data>
+  <data name="newworld_generate_underworld" xml:space="preserve">
+    <value>生成地下世界</value>
+  </data>
+  <data name="newworld_generation" xml:space="preserve">
+    <value>世界生成</value>
+  </data>
+  <data name="newworld_heading" xml:space="preserve">
+    <value>创造新世界</value>
+  </data>
+  <data name="newworld_height" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="newworld_hills" xml:space="preserve">
+    <value>山丘</value>
+  </data>
+  <data name="newworld_hill_size" xml:space="preserve">
+    <value>山地地形尺寸</value>
+  </data>
+  <data name="newworld_include_surface" xml:space="preserve">
+    <value>包含表面</value>
+  </data>
+  <data name="newworld_lava_noise" xml:space="preserve">
+    <value>熔岩噪音</value>
+  </data>
+  <data name="newworld_name" xml:space="preserve">
+    <value>世界名称</value>
+  </data>
+  <data name="newworld_ores" xml:space="preserve">
+    <value>矿石</value>
+  </data>
+  <data name="newworld_ore_gen_plugin" xml:space="preserve">
+    <value>（启动矿泉生成插件）</value>
+  </data>
+  <data name="newworld_properties" xml:space="preserve">
+    <value>世界属性</value>
+  </data>
+  <data name="newworld_roof_noise" xml:space="preserve">
+    <value>屋顶噪音</value>
+  </data>
+  <data name="newworld_seed" xml:space="preserve">
+    <value>世界身份（种子）</value>
+  </data>
+  <data name="newworld_surface" xml:space="preserve">
+    <value>表层深度</value>
+  </data>
+  <data name="newworld_title" xml:space="preserve">
+    <value>新大陆</value>
+  </data>
+  <data name="newworld_underworld" xml:space="preserve">
+    <value>黑帮</value>
+  </data>
+  <data name="newworld_width" xml:space="preserve">
+    <value>宽度</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液体</value>
   </data>
@@ -629,6 +812,54 @@
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>电线</value>
+  </data>
+  <data name="picker_check_all_tooltip" xml:space="preserve">
+    <value>检查所有可见的物品</value>
+  </data>
+  <data name="picker_uncheck_all_tooltip" xml:space="preserve">
+    <value>取消勾选所有可见物品</value>
+  </data>
+  <data name="saveas_instruction" xml:space="preserve">
+    <value>选择一个版本以保存为：</value>
+  </data>
+  <data name="saveas_title" xml:space="preserve">
+    <value>精选世界版本</value>
+  </data>
+  <data name="scripting_api" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="scripting_api_generate_tooltip" xml:space="preserve">
+    <value>生成 APIREFERENCE.md</value>
+  </data>
+  <data name="scripting_api_tooltip" xml:space="preserve">
+    <value>切换API参考面板</value>
+  </data>
+  <data name="scripting_engine_label" xml:space="preserve">
+    <value>发动机：</value>
+  </data>
+  <data name="scripting_folder_tooltip" xml:space="preserve">
+    <value>打开脚本文件夹</value>
+  </data>
+  <data name="scripting_new" xml:space="preserve">
+    <value>新建</value>
+  </data>
+  <data name="scripting_new_tooltip" xml:space="preserve">
+    <value>新剧本</value>
+  </data>
+  <data name="scripting_output" xml:space="preserve">
+    <value>输出</value>
+  </data>
+  <data name="scripting_run" xml:space="preserve">
+    <value>运行脚本</value>
+  </data>
+  <data name="scripting_save_tooltip" xml:space="preserve">
+    <value>保存脚本</value>
+  </data>
+  <data name="scripting_stop" xml:space="preserve">
+    <value>停下</value>
+  </data>
+  <data name="scripting_title" xml:space="preserve">
+    <value>脚本</value>
   </data>
   <data name="settings_autosave" xml:space="preserve">
     <value>启用自动保存</value>
@@ -668,6 +899,15 @@
   </data>
   <data name="settings_error_reporting_desc" xml:space="preserve">
     <value>发送匿名错误报告以帮助提升稳定性</value>
+  </data>
+  <data name="settings_keybind_add_tooltip" xml:space="preserve">
+    <value>添加新的按键绑定</value>
+  </data>
+  <data name="settings_keybind_remove_tooltip" xml:space="preserve">
+    <value>把这个绑带拆掉</value>
+  </data>
+  <data name="settings_keybind_reset_tooltip" xml:space="preserve">
+    <value>重置为默认绑定</value>
   </data>
   <data name="settings_language" xml:space="preserve">
     <value>语言</value>
@@ -834,8 +1074,17 @@
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>旗帜</value>
   </data>
+  <data name="sidebar_filter_tooltip" xml:space="preserve">
+    <value>筛选</value>
+  </data>
   <data name="sidebar_find_title" xml:space="preserve">
     <value>查找与替换</value>
+  </data>
+  <data name="sidebar_find_tooltip" xml:space="preserve">
+    <value>查找</value>
+  </data>
+  <data name="sidebar_scripting_tooltip" xml:space="preserve">
+    <value>脚本</value>
   </data>
   <data name="sidebar_tileentity_title" xml:space="preserve">
     <value>瓷砖实体</value>
@@ -1169,8 +1418,26 @@
   <data name="tool_fill_title" xml:space="preserve">
     <value>填充</value>
   </data>
+  <data name="tool_morph_base_tiles" xml:space="preserve">
+    <value>基础瓦片</value>
+  </data>
+  <data name="tool_morph_decorations" xml:space="preserve">
+    <value>荣誉</value>
+  </data>
+  <data name="tool_morph_evil" xml:space="preserve">
+    <value>邪恶</value>
+  </data>
   <data name="tool_morph_label" xml:space="preserve">
     <value>改变生物群落</value>
+  </data>
+  <data name="tool_morph_moss" xml:space="preserve">
+    <value>苔藓</value>
+  </data>
+  <data name="tool_morph_moss_type" xml:space="preserve">
+    <value>苔藓类型</value>
+  </data>
+  <data name="tool_morph_options" xml:space="preserve">
+    <value>选项</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
     <value>生物群落形态</value>
@@ -1196,6 +1463,9 @@
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>回声</value>
   </data>
+  <data name="tool_paint_eraser_tooltip" xml:space="preserve">
+    <value>橡皮擦</value>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>附加功能</value>
   </data>
@@ -1214,6 +1484,9 @@
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
     <value>添加朝右的交叉路口接线盒。</value>
   </data>
+  <data name="tool_paint_liquid_header" xml:space="preserve">
+    <value>液体</value>
+  </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>覆盖</value>
   </data>
@@ -1223,6 +1496,9 @@
   <data name="tool_paint_mode" xml:space="preserve">
     <value>绘画模式</value>
   </data>
+  <data name="tool_paint_paint_header" xml:space="preserve">
+    <value>油漆</value>
+  </data>
   <data name="tool_paint_tile_title" xml:space="preserve">
     <value>物块</value>
   </data>
@@ -1231,6 +1507,9 @@
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
     <value>使用锤子工具改变轨道末端样式，交叉点样式和加速轨道的加速方向。</value>
+  </data>
+  <data name="tool_paint_track_header" xml:space="preserve">
+    <value>矿车轨道</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>将普通轨道变为压力板轨道，使用擦除模式将压力板轨道变为普通轨道。</value>
@@ -1244,8 +1523,14 @@
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>绿线</value>
   </data>
+  <data name="tool_paint_wire_header" xml:space="preserve">
+    <value>电线</value>
+  </data>
   <data name="tool_paint_wire_red" xml:space="preserve">
     <value>红线</value>
+  </data>
+  <data name="tool_paint_wire_replace_header" xml:space="preserve">
+    <value>线材更换</value>
   </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>黄线</value>
@@ -1880,14 +2165,59 @@
   <data name="WireReplaceMode_Yellow" xml:space="preserve">
     <value>黄线</value>
   </data>
+  <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
+    <value>有备份存在</value>
+  </data>
+  <data name="world_explorer_col_dimensions" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="world_explorer_col_file" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="world_explorer_col_modified" xml:space="preserve">
+    <value>改装版</value>
+  </data>
+  <data name="world_explorer_col_size" xml:space="preserve">
+    <value>规模</value>
+  </data>
+  <data name="world_explorer_col_title" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="world_explorer_col_version" xml:space="preserve">
+    <value>版本</value>
+  </data>
   <data name="world_explorer_delete" xml:space="preserve">
     <value>删除</value>
+  </data>
+  <data name="world_explorer_delete_backup_tooltip" xml:space="preserve">
+    <value>删除备份</value>
+  </data>
+  <data name="world_explorer_loading_preview" xml:space="preserve">
+    <value>加载预览......</value>
+  </data>
+  <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
+    <value>无备份——点击创建.bak和TEdit备份</value>
   </data>
   <data name="world_explorer_open" xml:space="preserve">
     <value>打开</value>
   </data>
+  <data name="world_explorer_open_explorer_tooltip" xml:space="preserve">
+    <value>在Explorer中打开</value>
+  </data>
   <data name="world_explorer_pin" xml:space="preserve">
     <value>别针</value>
+  </data>
+  <data name="world_explorer_preview_backup_tooltip" xml:space="preserve">
+    <value>预览备份</value>
+  </data>
+  <data name="world_explorer_preview_format" xml:space="preserve">
+    <value>预告：{0}</value>
+  </data>
+  <data name="world_explorer_preview_tooltip" xml:space="preserve">
+    <value>预览世界地图</value>
+  </data>
+  <data name="world_explorer_search_placeholder" xml:space="preserve">
+    <value>搜索世界......</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>世界探险者</value>
