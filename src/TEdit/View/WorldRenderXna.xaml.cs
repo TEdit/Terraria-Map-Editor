@@ -80,13 +80,15 @@ public partial class WorldRenderXna : UserControl
     private Vector2 _dpiScale;
     private Vector2 _scrollPosition = new Vector2(0, 0);
     private SimpleProvider _serviceProvider;
-    private FilteredSpriteBatch _spriteBatch;
+    private SpriteBatch _spriteBatch;
     private Textures _textureDictionary;
     private Texture2D[] _tileMap;
     private Texture2D _preview;
     private Dictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();
     private Texture2D _selectionTexture;
     private RenderTarget2D _buffRadiiTarget;
+    private RenderTarget2D _filterOverlayTarget;
+    private Texture2D _filterDarkenTexture;
     private static readonly BlendState MaxBlend = new BlendState
     {
         ColorBlendFunction = BlendFunction.Max,
@@ -598,7 +600,11 @@ public partial class WorldRenderXna : UserControl
     {
         // Load services, textures and initialize spritebatch
         _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
-        _spriteBatch = new FilteredSpriteBatch(new SpriteBatch(e.GraphicsDevice));
+        _spriteBatch = new SpriteBatch(e.GraphicsDevice);
+
+        // 1x1 opaque black pixel for filter darken overlay (alpha controlled at draw time)
+        _filterDarkenTexture = new Texture2D(e.GraphicsDevice, 1, 1);
+        _filterDarkenTexture.SetData(new[] { Color.Black });
         _textureDictionary = new Textures(_serviceProvider, e.GraphicsDevice);
 
         System.Windows.Media.Matrix m = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformToDevice;
@@ -2415,12 +2421,10 @@ public partial class WorldRenderXna : UserControl
         // NOTE: Texture queue processing is now handled by DispatcherTimer (StartPreviewProcessing)
         // to avoid blocking render frames. The timer runs on UI thread with Background priority.
 
-        // Clear all filters and the grayscale cache only when the world changes.
-        // Hack: Using .CurrentWorld will always clear cache on world load.
+        // Clear all filters only when the world changes.
         if (_wvm.CurrentWorld != _lastRenderedWorld)
         {
             FilterManager.ClearAll();
-            GrayscaleManager.GrayscaleCache.Clear();
             _surfaceBiomeCache.Clear();
             _lastRenderedWorld = _wvm.CurrentWorld;
         }
@@ -2451,6 +2455,34 @@ public partial class WorldRenderXna : UserControl
             gd.Clear(Color.Transparent);
             _spriteBatch.Begin(SpriteSortMode.Deferred, MaxBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
             DrawBuffRadii();
+            _spriteBatch.End();
+
+            gd.SetRenderTarget(previousTarget);
+        }
+
+        // Filter overlay pass 1: build a darken mask for non-selected tiles.
+        // Must happen before main rendering (same reason as buff radii — switching
+        // render targets discards the backbuffer).
+        bool filterDarkenActive = FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken;
+        if (filterDarkenActive)
+        {
+            var gd = e.GraphicsDevice;
+            var vp = gd.Viewport;
+
+            if (_filterOverlayTarget == null || _filterOverlayTarget.Width != vp.Width || _filterOverlayTarget.Height != vp.Height)
+            {
+                _filterOverlayTarget?.Dispose();
+                _filterOverlayTarget = new RenderTarget2D(gd, vp.Width, vp.Height, false,
+                    SurfaceFormat.Color, DepthFormat.None);
+            }
+
+            var previousTargets = gd.GetRenderTargets();
+            var previousTarget = previousTargets.Length > 0 ? previousTargets[0].RenderTarget as RenderTarget2D : null;
+
+            gd.SetRenderTarget(_filterOverlayTarget);
+            gd.Clear(Color.Transparent);
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            DrawFilterOverlay();
             _spriteBatch.End();
 
             gd.SetRenderTarget(previousTarget);
@@ -2538,6 +2570,16 @@ public partial class WorldRenderXna : UserControl
             var vp = e.GraphicsDevice.Viewport;
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
             _spriteBatch.Draw(_buffRadiiTarget, new Rectangle(0, 0, vp.Width, vp.Height), null,
+                Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
+            _spriteBatch.End();
+        }
+
+        // Filter overlay pass 2: composite the darken mask onto the world
+        if (filterDarkenActive && _filterOverlayTarget != null)
+        {
+            var vp = e.GraphicsDevice.Viewport;
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            _spriteBatch.Draw(_filterOverlayTarget, new Rectangle(0, 0, vp.Width, vp.Height), null,
                 Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f);
             _spriteBatch.End();
         }
@@ -3185,16 +3227,10 @@ public partial class WorldRenderXna : UserControl
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if ((curtile.WallColor == 30) != drawInverted) continue;
 
-                    // Filter check: hide or grayscale walls not allowed by the filter
-                    if (anyFilter)
+                    // Filter check: hide walls not allowed by the filter
+                    if (anyFilter && FilterManager.WallIsNotAllowed(curtile.Wall))
                     {
-                        _spriteBatch.ForceGrayscale = false;
-                        if (FilterManager.WallIsNotAllowed(curtile.Wall))
-                        {
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)
-                                _spriteBatch.ForceGrayscale = true;
-                        }
+                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
                     }
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
@@ -3271,7 +3307,6 @@ public partial class WorldRenderXna : UserControl
                             }
                         }
                     }
-                    if (anyFilter) _spriteBatch.ForceGrayscale = false;
                 }
                 catch (Exception)
                 {
@@ -3313,16 +3348,10 @@ public partial class WorldRenderXna : UserControl
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
                     var tileprop = WorldConfiguration.GetTileProperties(curtile.Type);
 
-                    // Filter check: hide or grayscale tiles/sprites not allowed by the filter
-                    if (anyFilter)
+                    // Filter check: hide tiles/sprites not allowed by the filter
+                    if (anyFilter && FilterManager.TileIsNotAllowed(curtile.Type) && FilterManager.SpriteIsNotAllowed(curtile.Type))
                     {
-                        _spriteBatch.ForceGrayscale = false;
-                        if (FilterManager.TileIsNotAllowed(curtile.Type) && FilterManager.SpriteIsNotAllowed(curtile.Type))
-                        {
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)
-                                _spriteBatch.ForceGrayscale = true;
-                        }
+                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
                     }
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
@@ -4943,7 +4972,6 @@ public partial class WorldRenderXna : UserControl
                             }
                         }
                     }
-                    if (anyFilter) _spriteBatch.ForceGrayscale = false;
                 }
                 catch (Exception)
                 {
@@ -4979,31 +5007,14 @@ public partial class WorldRenderXna : UserControl
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
 
-                    // Per-wire filter checks
+                    // Per-wire filter checks (Hide mode only — Darken handled by overlay)
                     bool allowRed = true, allowBlue = true, allowGreen = true, allowYellow = true;
-                    bool forceRedGray = false, forceBlueGray = false, forceGreenGray = false, forceYellowGray = false;
-                    if (anyFilter)
+                    if (anyFilter && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)
                     {
-                        if (curtile.WireRed && FilterManager.WireIsNotAllowed(FilterManager.WireType.Red))
-                        {
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowRed = false;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceRedGray = true;
-                        }
-                        if (curtile.WireBlue && FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue))
-                        {
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowBlue = false;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceBlueGray = true;
-                        }
-                        if (curtile.WireGreen && FilterManager.WireIsNotAllowed(FilterManager.WireType.Green))
-                        {
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowGreen = false;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGreenGray = true;
-                        }
-                        if (curtile.WireYellow && FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow))
-                        {
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) allowYellow = false;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceYellowGray = true;
-                        }
+                        if (curtile.WireRed && FilterManager.WireIsNotAllowed(FilterManager.WireType.Red)) allowRed = false;
+                        if (curtile.WireBlue && FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue)) allowBlue = false;
+                        if (curtile.WireGreen && FilterManager.WireIsNotAllowed(FilterManager.WireType.Green)) allowGreen = false;
+                        if (curtile.WireYellow && FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow)) allowYellow = false;
                     }
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
@@ -5028,7 +5039,6 @@ public partial class WorldRenderXna : UserControl
                                 voffset = 72;
                             if (curtile.WireRed && _wvm.ShowRedWires && allowRed)
                             {
-                                if (anyFilter) _spriteBatch.ForceGrayscale = forceRedGray;
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
@@ -5046,7 +5056,6 @@ public partial class WorldRenderXna : UserControl
                             }
                             if (curtile.WireBlue && _wvm.ShowBlueWires && allowBlue)
                             {
-                                if (anyFilter) _spriteBatch.ForceGrayscale = forceBlueGray;
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
@@ -5063,7 +5072,6 @@ public partial class WorldRenderXna : UserControl
                             }
                             if (curtile.WireGreen && _wvm.ShowGreenWires && allowGreen)
                             {
-                                if (anyFilter) _spriteBatch.ForceGrayscale = forceGreenGray;
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
@@ -5080,7 +5088,6 @@ public partial class WorldRenderXna : UserControl
                             }
                             if (curtile.WireYellow && _wvm.ShowYellowWires && allowYellow)
                             {
-                                if (anyFilter) _spriteBatch.ForceGrayscale = forceYellowGray;
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
@@ -5095,8 +5102,7 @@ public partial class WorldRenderXna : UserControl
                                 var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue || curtile.WireGreen) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires)) ? Translucent : Color.White;
                                 _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerYellowWires);
                             }
-                            if (anyFilter) _spriteBatch.ForceGrayscale = false;
-                        }
+                                }
                     }
                 }
                 catch (Exception)
@@ -5130,16 +5136,10 @@ public partial class WorldRenderXna : UserControl
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
 
-                    // Filter check: hide or grayscale liquids not allowed by the filter
-                    if (anyFilter)
+                    // Filter check: hide liquids not allowed by the filter
+                    if (anyFilter && FilterManager.LiquidIsNotAllowed(curtile.LiquidType))
                     {
-                        _spriteBatch.ForceGrayscale = false;
-                        if (FilterManager.LiquidIsNotAllowed(curtile.LiquidType))
-                        {
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
-                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)
-                                _spriteBatch.ForceGrayscale = true;
-                        }
+                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
                     }
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
@@ -5232,7 +5232,6 @@ public partial class WorldRenderXna : UserControl
                             }
                         }
                     }
-                    if (anyFilter) _spriteBatch.ForceGrayscale = false;
                 }
                 catch (Exception)
                 {
@@ -5540,6 +5539,72 @@ public partial class WorldRenderXna : UserControl
         // Right edge
         _spriteBatch.Draw(whiteTex, new Rectangle(screenX + crosshairSize - outlineThickness, screenY, outlineThickness, crosshairSize),
             null, crosshairColor, 0f, default, SpriteEffects.None, LayerFindCrosshair);
+    }
+
+    /// <summary>
+    /// Draws a semi-transparent dark pixel at every visible tile position that is NOT
+    /// allowed by the current filter. The result is rendered into _filterOverlayTarget
+    /// and composited onto the world after all normal rendering.
+    /// </summary>
+    private void DrawFilterOverlay()
+    {
+        if (_wvm.CurrentWorld == null) return;
+
+        Rectangle visibleBounds = GetViewingArea();
+        var world = _wvm.CurrentWorld;
+        int tileWidth = world.TilesWide;
+        int tileHeight = world.TilesHigh;
+        int tileSizePx = Math.Max(1, (int)_zoom);
+        byte alpha = (byte)(FilterManager.DarkenAmount * 255f);
+        var darkenColor = new Color(alpha, alpha, alpha, alpha);
+
+        for (int y = visibleBounds.Top; y < visibleBounds.Bottom; y++)
+        {
+            for (int x = visibleBounds.Left; x < visibleBounds.Right; x++)
+            {
+                if (x < 0 || y < 0 || x >= tileWidth || y >= tileHeight) continue;
+
+                var tile = world.Tiles[x, y];
+
+                // Only darken a cell if it has visible content but NONE of it
+                // is allowed by the filter. If any element is allowed, the cell
+                // stays un-darkened so the allowed content is clearly visible.
+                bool hasContent = false;
+                bool hasAllowed = false;
+
+                if (tile.Wall > 0)
+                {
+                    hasContent = true;
+                    if (!FilterManager.WallIsNotAllowed(tile.Wall)) hasAllowed = true;
+                }
+                if (tile.IsActive)
+                {
+                    hasContent = true;
+                    if (!FilterManager.TileIsNotAllowed(tile.Type) || !FilterManager.SpriteIsNotAllowed(tile.Type)) hasAllowed = true;
+                }
+                if (tile.LiquidAmount > 0)
+                {
+                    hasContent = true;
+                    if (!FilterManager.LiquidIsNotAllowed(tile.LiquidType)) hasAllowed = true;
+                }
+                if (tile.HasWire)
+                {
+                    if (tile.WireRed) { hasContent = true; if (!FilterManager.WireIsNotAllowed(FilterManager.WireType.Red)) hasAllowed = true; }
+                    if (tile.WireBlue) { hasContent = true; if (!FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue)) hasAllowed = true; }
+                    if (tile.WireGreen) { hasContent = true; if (!FilterManager.WireIsNotAllowed(FilterManager.WireType.Green)) hasAllowed = true; }
+                    if (tile.WireYellow) { hasContent = true; if (!FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow)) hasAllowed = true; }
+                }
+
+                if (hasContent && !hasAllowed)
+                {
+                    var dest = new Rectangle(
+                        1 + (int)((_scrollPosition.X + x) * _zoom),
+                        1 + (int)((_scrollPosition.Y + y) * _zoom),
+                        tileSizePx, tileSizePx);
+                    _spriteBatch.Draw(_filterDarkenTexture, dest, darkenColor);
+                }
+            }
+        }
     }
 
     private void DrawBuffRadii()

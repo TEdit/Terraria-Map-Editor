@@ -36,10 +36,28 @@
                              VerticalAlignment="Center"
                              Margin="0,0,15,0"
                              IsChecked="{Binding FilterMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Hide}" />
-                <RadioButton Content="Grayscale"
+                <RadioButton x:Name="DarkenRadio"
+                             Content="Darken"
                              GroupName="FilterMode"
                              VerticalAlignment="Center"
-                             IsChecked="{Binding FilterMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Grayscale}" />
+                             IsChecked="{Binding FilterMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Darken}" />
+            </StackPanel>
+
+            <!-- Darken Amount slider (visible when Darken mode selected) -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,8"
+                        Visibility="{Binding IsChecked, ElementName=DarkenRadio, Converter={StaticResource BoolToVisibilityConverter}}">
+                <TextBlock Text="Darken:"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <Slider Value="{Binding DarkenAmount}"
+                        Minimum="0" Maximum="100"
+                        SmallChange="10"
+                        LargeChange="20"
+                        TickFrequency="10"
+                        IsSnapToTickEnabled="True"
+                        Width="150"
+                        VerticalAlignment="Center" />
             </StackPanel>
 
             <!-- Background Mode -->

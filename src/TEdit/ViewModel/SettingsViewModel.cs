@@ -295,6 +295,34 @@ public partial class SettingsViewModel
         AddLayerCheckBox(Language.settings_show_points, Language.settings_show_points_desc, layers,
             () => wvm.ShowPoints, v => wvm.ShowPoints = v);
 
+        // ── Filter & Search ──
+        var filterCategory = "Filter & Search";
+        var settings = UserSettingsService.Current;
+
+        AllSettings.Add(new SettingItem
+        {
+            Name = "Filter Mode",
+            Description = "Default filter mode when applying tile/wall/liquid/wire filters",
+            Category = filterCategory,
+            EditorType = SettingEditorType.ComboBox,
+            Getter = () => settings.FilterMode,
+            Setter = v => settings.FilterMode = (FilterManager.FilterMode)v,
+            ComboBoxItems = Enum.GetValues<FilterManager.FilterMode>()
+        });
+
+        AllSettings.Add(new SettingItem
+        {
+            Name = "Darken Amount",
+            Description = "Opacity of the darken overlay for non-selected tiles (0–100%)",
+            Category = filterCategory,
+            EditorType = SettingEditorType.Slider,
+            SliderMin = 0,
+            SliderMax = 100,
+            SliderStep = 10,
+            Getter = () => (double)settings.FilterDarkenAmount,
+            Setter = v => settings.FilterDarkenAmount = (int)(double)v
+        });
+
         // ── Privacy ──
         AllSettings.Add(new SettingItem
         {

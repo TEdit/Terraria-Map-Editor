@@ -437,27 +437,27 @@ public partial class WorldViewModel
                             bool showGreenWire  = _showGreenWires;
                             bool showYellowWire = _showYellowWires;
 
-                            bool wallGrayscale       = false;
-                            bool tileGrayscale       = false;
-                            bool liquidGrayscale     = false;
-                            bool redWireGrayscale    = false;
-                            bool blueWireGrayscale   = false;
-                            bool greenWireGrayscale  = false;
-                            bool yellowWireGrayscale = false;
+                            bool wallDarken       = false;
+                            bool tileDarken       = false;
+                            bool liquidDarken     = false;
+                            bool redWireDarken    = false;
+                            bool blueWireDarken   = false;
+                            bool greenWireDarken  = false;
+                            bool yellowWireDarken = false;
 
                             // Test the the filter for walls, tiles, liquids, wires, and sprites. 
                             if (FilterManager.WallIsNotAllowed(CurrentWorld.Tiles[x, y].Wall))                                                      // Check if this wall is not in the list.
                                 if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)               showWalls = false;              // Hide walls not in list.
-                                else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)     wallGrayscale = true;           // Grayscale walls not in list.
+                                else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken)     wallDarken = true;           // Darken walls not in list.
 
                             if (FilterManager.TileIsNotAllowed(CurrentWorld.Tiles[x, y].Type)                                                       // Since sprites are under the tile denomination, we combine them.
                                 && FilterManager.SpriteIsNotAllowed(CurrentWorld.Tiles[x, y].Type))                                                 // Check if this block / sprite is not in the list.
                                 if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)               showTiles = false;              // Hide blocks not in list.
-                                else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)     tileGrayscale = true;           // Grayscale blocks not in list.
+                                else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken)     tileDarken = true;           // Darken blocks not in list.
 
                             if (FilterManager.LiquidIsNotAllowed(CurrentWorld.Tiles[x, y].LiquidType))                                              // Check if this liquid is not in the list.
                                 if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)               showLiquids = false;            // Hide liquids not in list.
-                                else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)     liquidGrayscale = true;         // Grayscale liquids not in list.
+                                else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken)     liquidDarken = true;         // Darken liquids not in list.
 
                             // Use the HasWire bool to save on processing speed.
                             if (CurrentWorld.Tiles[x, y].HasWire)
@@ -465,22 +465,22 @@ public partial class WorldViewModel
                                 if (CurrentWorld.Tiles[x, y].WireRed)                                                                               // Check if this tile contains a red wire.
                                     if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Red))                                                 // Check if this wire is not in the list.
                                         if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           showRedWire = false;        // Hide wires not in list.
-                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) redWireGrayscale = true;    // Grayscale wires not in list.
+                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken) redWireDarken = true;    // Darken wires not in list.
 
                                 if (CurrentWorld.Tiles[x, y].WireBlue)                                                                              // Check if this tile contains a red wire.
                                     if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue))                                                // Check if this wire is not in the list.
                                         if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           showBlueWire = false;       // Hide wires not in list.
-                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) blueWireGrayscale = true;   // Grayscale wires not in list.
+                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken) blueWireDarken = true;   // Darken wires not in list.
 
                                 if (CurrentWorld.Tiles[x, y].WireGreen)                                                                             // Check if this tile contains a red wire.
                                     if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Green))                                               // Check if this wire is not in the list.
                                         if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           showGreenWire = false;      // Hide wires not in list.
-                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) greenWireGrayscale = true;  // Grayscale wires not in list.
+                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken) greenWireDarken = true;  // Darken wires not in list.
 
                                 if (CurrentWorld.Tiles[x, y].WireYellow)                                                                            // Check if this tile contains a red wire.
                                     if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow))                                              // Check if this wire is not in the list.
                                         if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           showYellowWire = false;     // Hide wires not in list.
-                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) yellowWireGrayscale = true; // Grayscale wires not in list.
+                                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken) yellowWireDarken = true; // Darken wires not in list.
                             }
 
                             // Test the the filter for custom background (solid color) mode.
@@ -491,8 +491,8 @@ public partial class WorldViewModel
 
                             // Define the color based on the filter results.
                             Color color = Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, showWalls, showTiles, showLiquids, showRedWire, showBlueWire, showGreenWire, showYellowWire,
-                                    wallGrayscale: wallGrayscale, tileGrayscale: tileGrayscale, liquidGrayscale: liquidGrayscale,
-                                    redWireGrayscale: redWireGrayscale, blueWireGrayscale: blueWireGrayscale, greenWireGrayscale: greenWireGrayscale, yellowWireGrayscale: yellowWireGrayscale);
+                                    wallDarken: wallDarken, tileDarken: tileDarken, liquidDarken: liquidDarken,
+                                    redWireDarken: redWireDarken, blueWireDarken: blueWireDarken, greenWireDarken: greenWireDarken, yellowWireDarken: yellowWireDarken);
 
                             // Set the pixel data.
                             PixelMap.SetPixelColor(x, y, color);

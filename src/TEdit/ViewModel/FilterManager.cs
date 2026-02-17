@@ -12,13 +12,13 @@ namespace TEdit.ViewModel
 {
     /// <summary>
     /// Provides static logic for managing all filter settings in TEdit's advanced filter popup,
-    /// including filtered tiles, walls, liquids, and wires. 
-    /// Maintains filter selection sets, filter modes (Hide, Grayscale), and background display modes.
+    /// including filtered tiles, walls, liquids, and wires.
+    /// Maintains filter selection sets, filter modes (Hide, Darken), and background display modes.
     /// Used for both UI data binding and core filtering logic throughout TEdit.
     /// </summary>
     public static class FilterManager
     {
-        public enum FilterMode { Hide, Grayscale }
+        public enum FilterMode { Hide, Darken }
         public enum BackgroundMode { Normal, Transparent, Custom }
 
         // When these sets are empty, it means "no filter" -> show every tile/wall/liquid
@@ -36,10 +36,13 @@ namespace TEdit.ViewModel
         public static IReadOnlyCollection<int> SelectedWallIDs => _selectedWallIDs;
         public static IReadOnlyCollection<int> SelectedSpriteIDs => _selectedSpriteIDs;
 
-        public static FilterMode CurrentFilterMode { get; set; }         = FilterMode.Hide;
+        public static FilterMode CurrentFilterMode { get; set; }         = FilterMode.Darken;
         public static Color FilterModeCustomColor { get; set; }          = Color.Transparent;
         public static BackgroundMode CurrentBackgroundMode { get; set; } = BackgroundMode.Normal;
         public static Color BackgroundModeCustomColor { get; set; }      = Color.Lime;
+
+        /// <summary>Darken overlay opacity (0.0 = invisible, 1.0 = fully black). Default 0.6.</summary>
+        public static float DarkenAmount { get; set; } = 0.6f;
 
         public static bool FilterClipboard { get; set; } = false;
 

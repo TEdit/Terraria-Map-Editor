@@ -5,6 +5,7 @@ using System.Windows.Media;
 using Microsoft.Xna.Framework;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Configuration;
 using TEdit.ViewModel.Shared;
 using Wpf.Ui.Controls;
 
@@ -40,6 +41,9 @@ public partial class FilterSidebarViewModel
     private bool _filterClipboardEnabled;
 
     [Reactive]
+    private double _darkenAmount = 60;
+
+    [Reactive]
     private int _selectedTabIndex;
 
     public FilterSidebarViewModel(WorldViewModel worldViewModel)
@@ -59,9 +63,13 @@ public partial class FilterSidebarViewModel
 
     private void LoadFilterState()
     {
-        FilterMode = FilterManager.CurrentFilterMode;
+        var settings = UserSettingsService.Current;
+        FilterMode = settings.FilterMode;
+        FilterManager.CurrentFilterMode = settings.FilterMode;
+        FilterManager.DarkenAmount = settings.FilterDarkenAmount / 100f;
         BackgroundMode = FilterManager.CurrentBackgroundMode;
         FilterClipboardEnabled = FilterManager.FilterClipboard;
+        DarkenAmount = settings.FilterDarkenAmount;
 
         var bgColor = FilterManager.BackgroundModeCustomColor;
         CustomBackgroundColor = System.Windows.Media.Color.FromArgb(bgColor.A, bgColor.R, bgColor.G, bgColor.B);
@@ -90,7 +98,6 @@ public partial class FilterSidebarViewModel
     private void Apply()
     {
         // Clear existing filters
-        GrayscaleManager.GrayscaleCache.Clear();
         FilterManager.ClearAll();
 
         // Apply tile filters
@@ -138,6 +145,12 @@ public partial class FilterSidebarViewModel
             CustomBackgroundColor.B,
             CustomBackgroundColor.A);
         FilterManager.FilterClipboard = FilterClipboardEnabled;
+        FilterManager.DarkenAmount = (float)(DarkenAmount / 100.0);
+
+        // Persist filter mode and darken amount to user settings
+        var settings = UserSettingsService.Current;
+        settings.FilterMode = FilterMode;
+        settings.FilterDarkenAmount = (int)DarkenAmount;
 
         // Refresh all renderings (pixel map and minimap)
         _wvm.RefreshAllRenderings(useFilter: true);
@@ -154,7 +167,6 @@ public partial class FilterSidebarViewModel
         SpritePicker.ClearSelectionCommand.Execute(System.Reactive.Unit.Default).Subscribe();
 
         // Clear filter manager
-        GrayscaleManager.GrayscaleCache.Clear();
         FilterManager.ClearAll();
 
         // Reset modes

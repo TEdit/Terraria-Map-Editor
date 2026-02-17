@@ -25,6 +25,8 @@ public class UserSettings : INotifyPropertyChanged
     private UpdateChannel _updateChannel = UpdateChannel.Stable;
     private bool _showAllWeaponRackItems = false;
     private bool _showBuffRadii = false;
+    private FilterManager.FilterMode _filterMode = FilterManager.FilterMode.Darken;
+    private int _filterDarkenAmount = 60;
     private Dictionary<string, List<InputBinding>> _inputBindings = new();
 
     public string TerrariaPath
@@ -110,6 +112,19 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _showBuffRadii;
         set => SetField(ref _showBuffRadii, value);
+    }
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public FilterManager.FilterMode FilterMode
+    {
+        get => _filterMode;
+        set => SetField(ref _filterMode, value);
+    }
+
+    public int FilterDarkenAmount
+    {
+        get => _filterDarkenAmount;
+        set => SetField(ref _filterDarkenAmount, Math.Clamp(value, 0, 100));
     }
 
     [JsonConverter(typeof(InputBindingsDictionaryJsonConverter))]
