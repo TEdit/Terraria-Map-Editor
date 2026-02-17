@@ -1,0 +1,92 @@
+<UserControl x:Class="TEdit.View.Sidebar.PlayerEditor.PlayerEquipmentView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
+    mc:Ignorable="d" d:DesignWidth="320">
+    <StackPanel>
+        <!-- Loadout selector -->
+        <StackPanel Orientation="Horizontal" Margin="0,4,0,4">
+            <TextBlock Text="{x:Static p:Language.player_editor_loadout}" Foreground="{DynamicResource TextBrush}"
+                       FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,8,0"/>
+            <ComboBox Width="80" Height="26" SelectedIndex="{Binding SelectedLoadoutIndex}">
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="2"/>
+                <ComboBoxItem Content="3"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Armor slots -->
+        <TextBlock Text="Armor" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,2,0,2"/>
+        <ItemsControl ItemsSource="{Binding ActiveArmor}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:ItemEditorControl
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+                        ItemsSourceType="ItemPropertyList"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
+                        ShowStackSize="False" ShowActionButtons="False"
+                        Margin="0,1"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Dye slots -->
+        <TextBlock Text="Dyes" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,6,0,2"/>
+        <ItemsControl ItemsSource="{Binding ActiveDye}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:ItemEditorControl
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                        ItemsSourceType="DictionaryKvp"
+                        DisplayMode="ImageOnly"
+                        ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False"
+                        Margin="0,1"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Misc Equipment -->
+        <TextBlock Text="Misc Equipment" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,6,0,2"/>
+        <ItemsControl ItemsSource="{Binding Player.MiscEquips}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:ItemEditorControl
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+                        ItemsSourceType="ItemPropertyList"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
+                        ShowStackSize="False" ShowActionButtons="False"
+                        Margin="0,1"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Misc Dyes -->
+        <TextBlock Text="Misc Dyes" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,6,0,2"/>
+        <ItemsControl ItemsSource="{Binding Player.MiscDyes}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:ItemEditorControl
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                        ItemsSourceType="DictionaryKvp"
+                        DisplayMode="ImageOnly"
+                        ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False"
+                        Margin="0,1"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

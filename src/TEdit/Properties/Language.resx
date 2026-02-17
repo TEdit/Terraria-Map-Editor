@@ -864,6 +864,63 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Uncheck all visible items</value>
   </data>
+  <data name="player_editor_banks" xml:space="preserve">
+    <value>Banks</value>
+  </data>
+  <data name="player_editor_buffs" xml:space="preserve">
+    <value>Buffs</value>
+  </data>
+  <data name="player_editor_difficulty" xml:space="preserve">
+    <value>Difficulty</value>
+  </data>
+  <data name="player_editor_equipment" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="player_editor_eye_color" xml:space="preserve">
+    <value>Eye Color</value>
+  </data>
+  <data name="player_editor_hair" xml:space="preserve">
+    <value>Hair</value>
+  </data>
+  <data name="player_editor_inventory" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="player_editor_journey" xml:space="preserve">
+    <value>Journey</value>
+  </data>
+  <data name="player_editor_loadout" xml:space="preserve">
+    <value>Loadout</value>
+  </data>
+  <data name="player_editor_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="player_editor_pants_color" xml:space="preserve">
+    <value>Pants Color</value>
+  </data>
+  <data name="player_editor_save" xml:space="preserve">
+    <value>Save Player</value>
+  </data>
+  <data name="player_editor_save_as" xml:space="preserve">
+    <value>Save Player As...</value>
+  </data>
+  <data name="player_editor_shirt_color" xml:space="preserve">
+    <value>Shirt Color</value>
+  </data>
+  <data name="player_editor_shoe_color" xml:space="preserve">
+    <value>Shoe Color</value>
+  </data>
+  <data name="player_editor_skin" xml:space="preserve">
+    <value>Skin</value>
+  </data>
+  <data name="player_editor_stats" xml:space="preserve">
+    <value>Stats</value>
+  </data>
+  <data name="player_editor_tooltip" xml:space="preserve">
+    <value>Player Editor</value>
+  </data>
+  <data name="player_editor_undershirt_color" xml:space="preserve">
+    <value>Undershirt Color</value>
+  </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Select a version to save as:</value>
   </data>

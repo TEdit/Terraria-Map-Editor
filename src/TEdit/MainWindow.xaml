@@ -443,6 +443,14 @@
                             <TabItem.Header><ui:SymbolIcon Symbol="Code20" Filled="True" FontSize="24"/></TabItem.Header>
                             <Sidebar:ScriptingSidebarView />
                         </TabItem>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.player_editor_tooltip}">
+                            <TabItem.Header>
+                                <Path Data="{StaticResource PlayerIconGeometry}"
+                                      Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TabItem}}"
+                                      Width="24" Height="24" Stretch="Uniform"/>
+                            </TabItem.Header>
+                            <Sidebar:PlayerEditorView />
+                        </TabItem>
                 </TabControl>
             </Grid>
         </DockPanel>

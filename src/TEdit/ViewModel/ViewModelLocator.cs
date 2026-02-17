@@ -32,6 +32,16 @@ public static class ViewModelLocator
     private static FilterSidebarViewModel? _filterSidebarViewModel;
     private static FindSidebarViewModel? _findSidebarViewModel;
     private static ScriptingSidebarViewModel? _scriptingSidebarViewModel;
+    private static PlayerEditorViewModel? _playerEditorViewModel;
+
+    public static PlayerEditorViewModel PlayerEditorViewModel
+    {
+        get
+        {
+            _playerEditorViewModel ??= new PlayerEditorViewModel();
+            return _playerEditorViewModel;
+        }
+    }
 
     public static FilterSidebarViewModel GetFilterSidebarViewModel()
     {

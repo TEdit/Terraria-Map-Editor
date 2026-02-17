@@ -794,6 +794,63 @@
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>보이는 모든 항목 체크 해제</value>
   </data>
+  <data name="player_editor_banks" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_buffs" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_difficulty" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_equipment" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_eye_color" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_hair" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_inventory" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_journey" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_loadout" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_pants_color" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_save" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_save_as" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_shirt_color" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_shoe_color" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_skin" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_stats" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="player_editor_undershirt_color" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>저장할 버전을 선택하세요:</value>
   </data>

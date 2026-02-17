@@ -2267,6 +2267,249 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Appearance Colors.
+        /// </summary>
+        public static string player_editor_appearance_colors {
+            get {
+                return ResourceManager.GetString("player_editor_appearance_colors", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Piggy Bank.
+        /// </summary>
+        public static string player_editor_bank_piggy {
+            get {
+                return ResourceManager.GetString("player_editor_bank_piggy", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Safe.
+        /// </summary>
+        public static string player_editor_bank_safe {
+            get {
+                return ResourceManager.GetString("player_editor_bank_safe", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Defenders Forge.
+        /// </summary>
+        public static string player_editor_bank_defender {
+            get {
+                return ResourceManager.GetString("player_editor_bank_defender", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Void Vault.
+        /// </summary>
+        public static string player_editor_bank_void {
+            get {
+                return ResourceManager.GetString("player_editor_bank_void", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Banks.
+        /// </summary>
+        public static string player_editor_banks {
+            get {
+                return ResourceManager.GetString("player_editor_banks", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Buffs.
+        /// </summary>
+        public static string player_editor_buffs {
+            get {
+                return ResourceManager.GetString("player_editor_buffs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty.
+        /// </summary>
+        public static string player_editor_difficulty {
+            get {
+                return ResourceManager.GetString("player_editor_difficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Equipment.
+        /// </summary>
+        public static string player_editor_equipment {
+            get {
+                return ResourceManager.GetString("player_editor_equipment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eye Color.
+        /// </summary>
+        public static string player_editor_eye_color {
+            get {
+                return ResourceManager.GetString("player_editor_eye_color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hair.
+        /// </summary>
+        public static string player_editor_hair {
+            get {
+                return ResourceManager.GetString("player_editor_hair", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Hair Color.
+        /// </summary>
+        public static string player_editor_hair_color {
+            get {
+                return ResourceManager.GetString("player_editor_hair_color", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Inventory.
+        /// </summary>
+        public static string player_editor_inventory {
+            get {
+                return ResourceManager.GetString("player_editor_inventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Journey.
+        /// </summary>
+        public static string player_editor_journey {
+            get {
+                return ResourceManager.GetString("player_editor_journey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Player.
+        /// </summary>
+        public static string player_editor_load {
+            get {
+                return ResourceManager.GetString("player_editor_load", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loadout.
+        /// </summary>
+        public static string player_editor_loadout {
+            get {
+                return ResourceManager.GetString("player_editor_loadout", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string player_editor_name {
+            get {
+                return ResourceManager.GetString("player_editor_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pants Color.
+        /// </summary>
+        public static string player_editor_pants_color {
+            get {
+                return ResourceManager.GetString("player_editor_pants_color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Player.
+        /// </summary>
+        public static string player_editor_save {
+            get {
+                return ResourceManager.GetString("player_editor_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Player As....
+        /// </summary>
+        public static string player_editor_save_as {
+            get {
+                return ResourceManager.GetString("player_editor_save_as", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shirt Color.
+        /// </summary>
+        public static string player_editor_shirt_color {
+            get {
+                return ResourceManager.GetString("player_editor_shirt_color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shoe Color.
+        /// </summary>
+        public static string player_editor_shoe_color {
+            get {
+                return ResourceManager.GetString("player_editor_shoe_color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skin.
+        /// </summary>
+        public static string player_editor_skin {
+            get {
+                return ResourceManager.GetString("player_editor_skin", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Skin Color.
+        /// </summary>
+        public static string player_editor_skin_color {
+            get {
+                return ResourceManager.GetString("player_editor_skin_color", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Stats.
+        /// </summary>
+        public static string player_editor_stats {
+            get {
+                return ResourceManager.GetString("player_editor_stats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Player Editor.
+        /// </summary>
+        public static string player_editor_tooltip {
+            get {
+                return ResourceManager.GetString("player_editor_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undershirt Color.
+        /// </summary>
+        public static string player_editor_undershirt_color {
+            get {
+                return ResourceManager.GetString("player_editor_undershirt_color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a version to save as:.
         /// </summary>
         public static string saveas_instruction {

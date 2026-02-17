@@ -1,0 +1,96 @@
+<UserControl x:Class="TEdit.View.Sidebar.Controls.HslColorPickerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Hue slider -->
+        <Grid Grid.Row="0" Margin="0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="14"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="H" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" FontSize="10"/>
+            <Slider Grid.Column="1" Minimum="0" Maximum="360" Value="{Binding Hue}"
+                    SmallChange="1" LargeChange="15" IsSnapToTickEnabled="False">
+                <Slider.Background>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Rectangle Width="256" Height="12" RadiusX="3" RadiusY="3"
+                                       Fill="{Binding HueTrackBrush}"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Slider.Background>
+            </Slider>
+        </Grid>
+
+        <!-- Saturation slider -->
+        <Grid Grid.Row="1" Margin="0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="14"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="S" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" FontSize="10"/>
+            <Slider Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding Saturation}"
+                    SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="False">
+                <Slider.Background>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Rectangle Width="256" Height="12" RadiusX="3" RadiusY="3"
+                                       Fill="{Binding SaturationTrackBrush}"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Slider.Background>
+            </Slider>
+        </Grid>
+
+        <!-- Lightness slider -->
+        <Grid Grid.Row="2" Margin="0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="14"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="L" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" FontSize="10"/>
+            <Slider Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding Lightness}"
+                    SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="False">
+                <Slider.Background>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Rectangle Width="256" Height="12" RadiusX="3" RadiusY="3"
+                                       Fill="{Binding LightnessTrackBrush}"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Slider.Background>
+            </Slider>
+        </Grid>
+
+        <!-- Preview + controls -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,2,0,0">
+            <Border Width="24" Height="24" CornerRadius="3"
+                    Background="{Binding PreviewBrush}"
+                    BorderBrush="{DynamicResource ControlElevationBorderBrush}" BorderThickness="1"/>
+            <TextBlock Text="#" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="4,0,0,0"/>
+            <TextBox Width="60" Height="22" MaxLength="6" FontSize="11" VerticalAlignment="Center"
+                     Text="{Binding HexText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,2,0"
+                     CharacterCasing="Upper"/>
+            <Button Style="{StaticResource CompactIconButton}" ToolTip="Copy" Command="{Binding CopyHexCommand}" Margin="1,0">
+                <ui:SymbolIcon Symbol="Copy20" FontSize="12"/>
+            </Button>
+            <Button Style="{StaticResource CompactIconButton}" ToolTip="Paste" Command="{Binding PasteHexCommand}" Margin="1,0">
+                <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="12"/>
+            </Button>
+            <Button Style="{StaticResource CompactIconButton}" ToolTip="Random" Command="{Binding RandomColorCommand}" Margin="1,0">
+                <ui:SymbolIcon Symbol="ArrowShuffle20" FontSize="12"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,132 @@
+<UserControl x:Class="TEdit.View.Sidebar.PlayerEditor.PlayerStatsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:p="clr-namespace:TEdit.Properties"
+    mc:Ignorable="d" d:DesignWidth="320">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="2">
+            <!-- Health -->
+            <TextBlock Text="Health" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,0,0,2"/>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="HP:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <ui:NumberBox Grid.Column="1" Value="{Binding Player.StatLife}" Minimum="1" Maximum="999"
+                              SpinButtonPlacementMode="Compact" Height="28"/>
+                <TextBlock Grid.Column="2" Text="Max:" Foreground="{DynamicResource TextBrush}"
+                           VerticalAlignment="Center" Margin="8,0,4,0"/>
+                <ui:NumberBox Grid.Column="3" Value="{Binding Player.StatLifeMax}" Minimum="1" Maximum="999"
+                              SpinButtonPlacementMode="Compact" Height="28"/>
+            </Grid>
+
+            <!-- Mana -->
+            <TextBlock Text="Mana" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,0,0,2"/>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="MP:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <ui:NumberBox Grid.Column="1" Value="{Binding Player.StatMana}" Minimum="0" Maximum="999"
+                              SpinButtonPlacementMode="Compact" Height="28"/>
+                <TextBlock Grid.Column="2" Text="Max:" Foreground="{DynamicResource TextBrush}"
+                           VerticalAlignment="Center" Margin="8,0,4,0"/>
+                <ui:NumberBox Grid.Column="3" Value="{Binding Player.StatManaMax}" Minimum="0" Maximum="999"
+                              SpinButtonPlacementMode="Compact" Height="28"/>
+            </Grid>
+
+            <!-- Team -->
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Team:" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"
+                           VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <ComboBox Grid.Column="1" Height="26" SelectedIndex="{Binding Player.Team}">
+                    <ComboBoxItem Content="None"/>
+                    <ComboBoxItem Content="Red"/>
+                    <ComboBoxItem Content="Green"/>
+                    <ComboBoxItem Content="Blue"/>
+                    <ComboBoxItem Content="Yellow"/>
+                    <ComboBoxItem Content="Pink"/>
+                </ComboBox>
+            </Grid>
+
+            <!-- Flags -->
+            <TextBlock Text="Flags" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,4,0,2"/>
+            <WrapPanel>
+                <CheckBox Content="Extra Accessory" IsChecked="{Binding Player.ExtraAccessory}" Margin="0,2,8,2"/>
+                <CheckBox Content="Biome Torches Unlocked" IsChecked="{Binding Player.UnlockedBiomeTorches}" Margin="0,2,8,2"/>
+                <CheckBox Content="Using Biome Torches" IsChecked="{Binding Player.UsingBiomeTorches}" Margin="0,2,8,2"/>
+                <CheckBox Content="Ate Artisan Bread" IsChecked="{Binding Player.AteArtisanBread}" Margin="0,2,8,2"/>
+                <CheckBox Content="Used Aegis Crystal" IsChecked="{Binding Player.UsedAegisCrystal}" Margin="0,2,8,2"/>
+                <CheckBox Content="Used Aegis Fruit" IsChecked="{Binding Player.UsedAegisFruit}" Margin="0,2,8,2"/>
+                <CheckBox Content="Used Arcane Crystal" IsChecked="{Binding Player.UsedArcaneCrystal}" Margin="0,2,8,2"/>
+                <CheckBox Content="Used Galaxy Pearl" IsChecked="{Binding Player.UsedGalaxyPearl}" Margin="0,2,8,2"/>
+                <CheckBox Content="Used Gummy Worm" IsChecked="{Binding Player.UsedGummyWorm}" Margin="0,2,8,2"/>
+                <CheckBox Content="Used Ambrosia" IsChecked="{Binding Player.UsedAmbrosia}" Margin="0,2,8,2"/>
+                <CheckBox Content="Super Cart Unlocked" IsChecked="{Binding Player.UnlockedSuperCart}" Margin="0,2,8,2"/>
+                <CheckBox Content="Super Cart Enabled" IsChecked="{Binding Player.EnabledSuperCart}" Margin="0,2,8,2"/>
+            </WrapPanel>
+
+            <!-- Numeric stats -->
+            <TextBlock Text="Statistics" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,4,0,2"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Tax Money:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <ui:NumberBox Grid.Column="1" Value="{Binding Player.TaxMoney}" Minimum="0"
+                              SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
+                <TextBlock Grid.Row="1" Text="Deaths (PvE):" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <ui:NumberBox Grid.Row="1" Grid.Column="1" Value="{Binding Player.NumberOfDeathsPVE}" Minimum="0"
+                              SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
+                <TextBlock Grid.Row="2" Text="Deaths (PvP):" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <ui:NumberBox Grid.Row="2" Grid.Column="1" Value="{Binding Player.NumberOfDeathsPVP}" Minimum="0"
+                              SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
+                <TextBlock Grid.Row="3" Text="Angler Quests:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <ui:NumberBox Grid.Row="3" Grid.Column="1" Value="{Binding Player.AnglerQuestsFinished}" Minimum="0"
+                              SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
+                <TextBlock Grid.Row="4" Text="Golfer Score:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <ui:NumberBox Grid.Row="4" Grid.Column="1" Value="{Binding Player.GolferScoreAccumulated}" Minimum="0"
+                              SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
+            </Grid>
+
+            <!-- Spawn Points -->
+            <TextBlock Text="Spawn Points" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,4,0,2"/>
+            <ItemsControl ItemsSource="{Binding Player.SpawnPoints}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" FontSize="11" Margin="2,1">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0}: ({1}, {2})">
+                                    <Binding Path="WorldName"/>
+                                    <Binding Path="X"/>
+                                    <Binding Path="Y"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
