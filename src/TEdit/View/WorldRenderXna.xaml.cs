@@ -2481,7 +2481,7 @@ public partial class WorldRenderXna : UserControl
 
             gd.SetRenderTarget(_filterOverlayTarget);
             gd.Clear(Color.Transparent);
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            _spriteBatch.Begin(SpriteSortMode.Deferred, MaxBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
             DrawFilterOverlay();
             _spriteBatch.End();
 
@@ -5569,33 +5569,20 @@ public partial class WorldRenderXna : UserControl
                 // Only darken a cell if it has visible content but NONE of it
                 // is allowed by the filter. If any element is allowed, the cell
                 // stays un-darkened so the allowed content is clearly visible.
-                bool hasContent = false;
                 bool hasAllowed = false;
 
-                if (tile.Wall > 0)
-                {
-                    hasContent = true;
-                    if (!FilterManager.WallIsNotAllowed(tile.Wall)) hasAllowed = true;
-                }
-                if (tile.IsActive)
-                {
-                    hasContent = true;
-                    if (!FilterManager.TileIsNotAllowed(tile.Type) || !FilterManager.SpriteIsNotAllowed(tile.Type)) hasAllowed = true;
-                }
-                if (tile.LiquidAmount > 0)
-                {
-                    hasContent = true;
-                    if (!FilterManager.LiquidIsNotAllowed(tile.LiquidType)) hasAllowed = true;
-                }
+                if (tile.Wall > 0 && !FilterManager.WallIsNotAllowed(tile.Wall)) hasAllowed = true;
+                if (tile.IsActive && (!FilterManager.TileIsNotAllowed(tile.Type) || !FilterManager.SpriteIsNotAllowed(tile.Type))) hasAllowed = true;
+                if (tile.LiquidAmount > 0 && !FilterManager.LiquidIsNotAllowed(tile.LiquidType)) hasAllowed = true;
                 if (tile.HasWire)
                 {
-                    if (tile.WireRed) { hasContent = true; if (!FilterManager.WireIsNotAllowed(FilterManager.WireType.Red)) hasAllowed = true; }
-                    if (tile.WireBlue) { hasContent = true; if (!FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue)) hasAllowed = true; }
-                    if (tile.WireGreen) { hasContent = true; if (!FilterManager.WireIsNotAllowed(FilterManager.WireType.Green)) hasAllowed = true; }
-                    if (tile.WireYellow) { hasContent = true; if (!FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow)) hasAllowed = true; }
+                    if (tile.WireRed && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Red)) hasAllowed = true;
+                    if (tile.WireBlue && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue)) hasAllowed = true;
+                    if (tile.WireGreen && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Green)) hasAllowed = true;
+                    if (tile.WireYellow && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow)) hasAllowed = true;
                 }
 
-                if (hasContent && !hasAllowed)
+                if (!hasAllowed)
                 {
                     var dest = new Rectangle(
                         1 + (int)((_scrollPosition.X + x) * _zoom),
