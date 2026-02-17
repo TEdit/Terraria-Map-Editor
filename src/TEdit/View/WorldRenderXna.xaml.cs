@@ -4466,7 +4466,7 @@ public partial class WorldRenderXna : UserControl
                                                 uv.X = 4;
                                                 break;
                                         }
-                                        uv.Y = blendRules.randomVariation.Next(3);
+                                        uv.Y = ((x * 7) + (y * 11)) % 3;
                                         curtile.uvTileCache = (ushort)((uv.Y << 8) + uv.X);
                                     }
 
@@ -4735,6 +4735,15 @@ public partial class WorldRenderXna : UserControl
                                 {
                                     if (curtile.uvTileCache == 0xFFFF || curtile.hasLazyChecked == false)
                                     {
+                                        if (TileFraming.IsGemSpark(curtile.Type))
+                                        {
+                                            var uv = TileFraming.CalculateSelfFrame8Way(_wvm.CurrentWorld, x, y);
+                                            curtile.uvTileCache = (ushort)((uv.Y << 8) + uv.X);
+                                            curtile.hasLazyChecked = true;
+                                        }
+                                        else
+                                        {
+                                        // TODO: Replace BlendRules path with full TileFrameCosmetic port for pixel-perfect accuracy
                                         int sameStyle = 0x00000000;
                                         int mergeMask = 0x00000000;
                                         int strictness = 0;
@@ -4810,9 +4819,11 @@ public partial class WorldRenderXna : UserControl
                                             strictness = 2;
                                         }
 
-                                        Vector2Int32 uvBlend = blendRules.GetUVForMasks((uint)sameStyle, (uint)mergeMask, strictness);
+                                        int variant = TileFraming.DetermineFrameNumber(curtile.Type, x, y);
+                                        Vector2Int32 uvBlend = blendRules.GetUVForMasks((uint)sameStyle, (uint)mergeMask, strictness, variant);
                                         curtile.uvTileCache = (ushort)((uvBlend.Y << 8) + uvBlend.X);
                                         curtile.lazyMergeId = blendRules.lazyMergeValidation[uvBlend.Y, uvBlend.X];
+                                        } // end else (non-gemspark BlendRules path)
                                     }
 
                                     var texsize = new Vector2Int32(tileprop.TextureGrid.X, tileprop.TextureGrid.Y);

@@ -106,6 +106,7 @@ public class TileProperty : ITile
     public int? MergeWith { get; set; }
     public string? FrameNameSuffix { get; set; }
     public TextureWrap? TextureWrap { get; set; }
+    public byte LargeFrameType { get; set; } = 0;
 
     /// <summary>
     /// Biome variants for tiles that automatically adapt based on biome (e.g., palm trees).

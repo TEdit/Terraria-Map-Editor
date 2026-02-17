@@ -9906,6 +9906,7 @@
   },
   {
     "id": 273,
+    "largeFrameType": 1,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -9917,6 +9918,7 @@
   },
   {
     "id": 274,
+    "largeFrameType": 1,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -10060,6 +10062,7 @@
   },
   {
     "id": 284,
+    "largeFrameType": 1,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -10658,6 +10661,7 @@
   },
   {
     "id": 325,
+    "largeFrameType": 1,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -11094,6 +11098,7 @@
   },
   {
     "id": 357,
+    "largeFrameType": 1,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -11842,6 +11847,7 @@
   },
   {
     "id": 409,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -16632,6 +16638,7 @@
   },
   {
     "id": 618,
+    "largeFrameType": 1,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -17778,6 +17785,7 @@
   },
   {
     "id": 669,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -17789,6 +17797,7 @@
   },
   {
     "id": 670,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -17800,6 +17809,7 @@
   },
   {
     "id": 671,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -17811,6 +17821,7 @@
   },
   {
     "id": 672,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -17822,6 +17833,7 @@
   },
   {
     "id": 673,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -17833,6 +17845,7 @@
   },
   {
     "id": 674,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -17844,6 +17857,7 @@
   },
   {
     "id": 675,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -17855,6 +17869,7 @@
   },
   {
     "id": 676,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -18820,6 +18835,7 @@
   },
   {
     "id": 735,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -18831,6 +18847,7 @@
   },
   {
     "id": 736,
+    "largeFrameType": 1,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -18842,6 +18859,7 @@
   },
   {
     "id": 737,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -18887,6 +18905,7 @@
   },
   {
     "id": 741,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -18898,6 +18917,7 @@
   },
   {
     "id": 742,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -18909,6 +18929,7 @@
   },
   {
     "id": 743,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -18931,6 +18952,7 @@
   },
   {
     "id": 745,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -18942,6 +18964,7 @@
   },
   {
     "id": 746,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
@@ -18975,6 +18998,7 @@
   },
   {
     "id": 749,
+    "largeFrameType": 2,
     "isSolid": true,
     "canBlend": true,
     "textureGrid": [16, 16],
