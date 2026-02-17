@@ -94,5 +94,5 @@ $platforms | ForEach-Object {
 
     # 4. Pack with Velopack
     Write-Host "Packing with Velopack (channel: $Channel)..."
-    vpk pack -u TEdit -v $fullVersion -p ".\$velopackPublishPath\$_" --channel $Channel -o ".\$ReleasePath"
+    vpk pack -u TEdit -v $fullVersion -p ".\$velopackPublishPath\$_" --channel $Channel --icon ".\src\TEdit\Images\tedit.ico" -o ".\$ReleasePath"
 }
