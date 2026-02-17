@@ -24,8 +24,8 @@ public partial class Sponsor : UserControl
         await WorldViewModel.LaunchUrlAsync("https://github.com/TEdit/Terraria-Map-Editor");
     }
 
-    private async void TwitterButtonClick(object sender, RoutedEventArgs e)
+    private async void DiscordButtonClick(object sender, RoutedEventArgs e)
     {
-        await WorldViewModel.LaunchUrlAsync("https://twitter.com/binaryconstruct");
+        await WorldViewModel.LaunchUrlAsync("https://discord.gg/xHcHd7mfpn");
     }
 }

@@ -1,0 +1,54 @@
+<ui:FluentWindow x:Class="TEdit.View.Popups.AboutWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:v="clr-namespace:TEdit.View"
+    Title="{x:Static p:Language.about_title}"
+    WindowStartupLocation="CenterOwner"
+    ExtendsContentIntoTitleBar="True"
+    WindowBackdropType="Mica"
+    Icon="/TEdit;component/Images/tedit.ico"
+    Width="580" Height="420"
+    MinWidth="480" MinHeight="350"
+    ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Title="{x:Static p:Language.about_title}" Grid.Row="0"
+                     Padding="0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False" />
+
+        <Grid Grid.Row="1" Margin="16,0,16,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Left: Logo + Sponsor Links -->
+            <StackPanel Grid.Column="0" VerticalAlignment="Top" Margin="0,0,12,0">
+            <Image Source="/TEdit;component/Images/te5-logo.png"
+                   Width="100" Height="100"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Margin="0,0,0,12" />
+
+            <v:Sponsor />
+        </StackPanel>
+
+        <!-- Right: Scrollable Info Text -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <TextBlock x:Name="InfoText"
+                       FontFamily="Segoe UI"
+                       FontSize="12"
+                       TextWrapping="Wrap"
+                       LineHeight="20" />
+        </ScrollViewer>
+        </Grid>
+    </Grid>
+</ui:FluentWindow>

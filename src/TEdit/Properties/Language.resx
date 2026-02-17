@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
     Microsoft ResX Schema
@@ -117,6 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about_compatible_version" xml:space="preserve">
+    <value>Compatible World Version</value>
+  </data>
+  <data name="about_content_path" xml:space="preserve">
+    <value>Content Path</value>
+  </data>
+  <data name="about_data_stats" xml:space="preserve">
+    <value>Data Statistics</value>
+  </data>
+  <data name="about_github" xml:space="preserve">
+    <value>GitHub Releases</value>
+  </data>
+  <data name="about_items_loaded" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="about_links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="about_patreon" xml:space="preserve">
+    <value>Support on Patreon</value>
+  </data>
+  <data name="about_terraria_not_found" xml:space="preserve">
+    <value>Not Found</value>
+  </data>
+  <data name="about_terraria_version" xml:space="preserve">
+    <value>Terraria Version</value>
+  </data>
+  <data name="about_textures_available" xml:space="preserve">
+    <value>Textures Available</value>
+  </data>
+  <data name="about_tiles_loaded" xml:space="preserve">
+    <value>Tiles</value>
+  </data>
+  <data name="about_title" xml:space="preserve">
+    <value>About TEdit</value>
+  </data>
+  <data name="about_version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="about_walls_loaded" xml:space="preserve">
+    <value>Walls</value>
+  </data>
+  <data name="about_wiki" xml:space="preserve">
+    <value>Wiki</value>
+  </data>
   <data name="banner_category" xml:space="preserve">
     <value>Category:</value>
   </data>

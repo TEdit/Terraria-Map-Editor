@@ -61,6 +61,141 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compatible World Version.
+        /// </summary>
+        public static string about_compatible_version {
+            get {
+                return ResourceManager.GetString("about_compatible_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content Path.
+        /// </summary>
+        public static string about_content_path {
+            get {
+                return ResourceManager.GetString("about_content_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Statistics.
+        /// </summary>
+        public static string about_data_stats {
+            get {
+                return ResourceManager.GetString("about_data_stats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GitHub Releases.
+        /// </summary>
+        public static string about_github {
+            get {
+                return ResourceManager.GetString("about_github", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items.
+        /// </summary>
+        public static string about_items_loaded {
+            get {
+                return ResourceManager.GetString("about_items_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links.
+        /// </summary>
+        public static string about_links {
+            get {
+                return ResourceManager.GetString("about_links", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support on Patreon.
+        /// </summary>
+        public static string about_patreon {
+            get {
+                return ResourceManager.GetString("about_patreon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Found.
+        /// </summary>
+        public static string about_terraria_not_found {
+            get {
+                return ResourceManager.GetString("about_terraria_not_found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terraria Version.
+        /// </summary>
+        public static string about_terraria_version {
+            get {
+                return ResourceManager.GetString("about_terraria_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textures Available.
+        /// </summary>
+        public static string about_textures_available {
+            get {
+                return ResourceManager.GetString("about_textures_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tiles.
+        /// </summary>
+        public static string about_tiles_loaded {
+            get {
+                return ResourceManager.GetString("about_tiles_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About TEdit.
+        /// </summary>
+        public static string about_title {
+            get {
+                return ResourceManager.GetString("about_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string about_version {
+            get {
+                return ResourceManager.GetString("about_version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Walls.
+        /// </summary>
+        public static string about_walls_loaded {
+            get {
+                return ResourceManager.GetString("about_walls_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiki.
+        /// </summary>
+        public static string about_wiki {
+            get {
+                return ResourceManager.GetString("about_wiki", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category:.
         /// </summary>
         public static string banner_category {

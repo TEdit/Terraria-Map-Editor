@@ -58,6 +58,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about_compatible_version" xml:space="preserve">
+    <value>호환 월드 버전</value>
+  </data>
+  <data name="about_content_path" xml:space="preserve">
+    <value>콘텐츠 경로</value>
+  </data>
+  <data name="about_data_stats" xml:space="preserve">
+    <value>데이터 통계</value>
+  </data>
+  <data name="about_github" xml:space="preserve">
+    <value>GitHub 릴리스</value>
+  </data>
+  <data name="about_items_loaded" xml:space="preserve">
+    <value>항목</value>
+  </data>
+  <data name="about_links" xml:space="preserve">
+    <value>링크</value>
+  </data>
+  <data name="about_patreon" xml:space="preserve">
+    <value>Patreon 지원</value>
+  </data>
+  <data name="about_terraria_not_found" xml:space="preserve">
+    <value>찾지 못했습니다</value>
+  </data>
+  <data name="about_terraria_version" xml:space="preserve">
+    <value>테라리아 버전</value>
+  </data>
+  <data name="about_textures_available" xml:space="preserve">
+    <value>이용 가능한 텍스처</value>
+  </data>
+  <data name="about_tiles_loaded" xml:space="preserve">
+    <value>타일</value>
+  </data>
+  <data name="about_title" xml:space="preserve">
+    <value>TEdit 소개</value>
+  </data>
+  <data name="about_version" xml:space="preserve">
+    <value>버전</value>
+  </data>
+  <data name="about_walls_loaded" xml:space="preserve">
+    <value>성벽</value>
+  </data>
+  <data name="about_wiki" xml:space="preserve">
+    <value>위키</value>
+  </data>
   <data name="banner_category" xml:space="preserve">
     <value>카테고리:</value>
   </data>

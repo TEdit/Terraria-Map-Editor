@@ -630,6 +630,13 @@ public partial class MainWindow : FluentWindow
         settingsWindow.ShowDialog();
     }
 
+    private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        var aboutWindow = new AboutWindow();
+        aboutWindow.Owner = this;
+        aboutWindow.ShowDialog();
+    }
+
     private void ShowWorldExplorer()
     {
         var explorerWindow = new WorldExplorerWindow(_vm);

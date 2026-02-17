@@ -1608,7 +1608,7 @@ public partial class WorldViewModel : ReactiveObject
     {
         string fileName = Path.GetFileName(_currentFile);
         string dirtyIndicator = HasUnsavedUserChanges ? "*" : "";
-        WindowTitle = $"TEdit v{App.Version} {fileName}{dirtyIndicator}";
+        WindowTitle = $"TEdit v{App.Version.WithoutMetadata()} {fileName}{dirtyIndicator}";
     }
 
 
@@ -2595,7 +2595,7 @@ public partial class WorldViewModel : ReactiveObject
                 string msg =
                     "There was an error reading the world file.\r\n" +
                     "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                    $"TEdit v{TEdit.App.Version}\r\n" +
+                    $"TEdit v{TEdit.App.Version.WithoutMetadata()}\r\n" +
                     $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
                     $"Current World: {validation.Version}\r\n\r\n" +
                     $"The error is :\r\n{validation.Message}";
@@ -2672,7 +2672,7 @@ public partial class WorldViewModel : ReactiveObject
                 string msg =
                     "There was an error reading the world file.\r\n" +
                     "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                    $"TEdit v{TEdit.App.Version}\r\n" +
+                    $"TEdit v{TEdit.App.Version.WithoutMetadata()}\r\n" +
                     $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
                     $"Current World: {validation.Version}\r\n\r\n" +
                     "Do you wish to force it to load anyway?\r\n\r\n" +

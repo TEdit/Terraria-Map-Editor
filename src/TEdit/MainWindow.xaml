@@ -189,7 +189,7 @@
                     <MenuItem Header="{x:Static p:Language.menu_help_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
                     <MenuItem Header="{x:Static p:Language.menu_help_log}" Command="{Binding ViewLogCommand}" Icon="{StaticResource TB_LogIcon}"/>
                     <Separator Margin="1"/>
-                    <MenuItem Header="{x:Static p:Language.menu_help_about}" />
+                    <MenuItem Header="{x:Static p:Language.menu_help_about}" Click="AboutMenuItem_Click" />
                 </MenuItem>
             </Menu>
             <StatusBar DockPanel.Dock="Bottom"  Background="{x:Null}" Padding="0" Foreground="{StaticResource TextBrush}">

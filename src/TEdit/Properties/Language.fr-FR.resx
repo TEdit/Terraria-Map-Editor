@@ -58,6 +58,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about_compatible_version" xml:space="preserve">
+    <value>Version mondiale compatible</value>
+  </data>
+  <data name="about_content_path" xml:space="preserve">
+    <value>Chemin du contenu</value>
+  </data>
+  <data name="about_data_stats" xml:space="preserve">
+    <value>Statistiques des données</value>
+  </data>
+  <data name="about_github" xml:space="preserve">
+    <value>Versions GitHub</value>
+  </data>
+  <data name="about_items_loaded" xml:space="preserve">
+    <value>Objets</value>
+  </data>
+  <data name="about_links" xml:space="preserve">
+    <value>Liens</value>
+  </data>
+  <data name="about_patreon" xml:space="preserve">
+    <value>Support sur Patreon</value>
+  </data>
+  <data name="about_terraria_not_found" xml:space="preserve">
+    <value>Non trouvé</value>
+  </data>
+  <data name="about_terraria_version" xml:space="preserve">
+    <value>Terraria Version</value>
+  </data>
+  <data name="about_textures_available" xml:space="preserve">
+    <value>Textures disponibles</value>
+  </data>
+  <data name="about_tiles_loaded" xml:space="preserve">
+    <value>Tuiles</value>
+  </data>
+  <data name="about_title" xml:space="preserve">
+    <value>À propos de TEdit</value>
+  </data>
+  <data name="about_version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="about_walls_loaded" xml:space="preserve">
+    <value>Murs</value>
+  </data>
+  <data name="about_wiki" xml:space="preserve">
+    <value>Wiki</value>
+  </data>
   <data name="banner_category" xml:space="preserve">
     <value>Catégorie :</value>
   </data>

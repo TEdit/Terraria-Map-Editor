@@ -58,6 +58,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about_compatible_version" xml:space="preserve">
+    <value>互換ワールドバージョン</value>
+  </data>
+  <data name="about_content_path" xml:space="preserve">
+    <value>コンテンツパス</value>
+  </data>
+  <data name="about_data_stats" xml:space="preserve">
+    <value>データ統計</value>
+  </data>
+  <data name="about_github" xml:space="preserve">
+    <value>GitHubリリース</value>
+  </data>
+  <data name="about_items_loaded" xml:space="preserve">
+    <value>アイテム</value>
+  </data>
+  <data name="about_links" xml:space="preserve">
+    <value>リンク</value>
+  </data>
+  <data name="about_patreon" xml:space="preserve">
+    <value>Patreonでのサポート</value>
+  </data>
+  <data name="about_terraria_not_found" xml:space="preserve">
+    <value>見つかりませんでした</value>
+  </data>
+  <data name="about_terraria_version" xml:space="preserve">
+    <value>テラリア版</value>
+  </data>
+  <data name="about_textures_available" xml:space="preserve">
+    <value>利用可能なテクスチャ</value>
+  </data>
+  <data name="about_tiles_loaded" xml:space="preserve">
+    <value>タイル</value>
+  </data>
+  <data name="about_title" xml:space="preserve">
+    <value>TEditについて</value>
+  </data>
+  <data name="about_version" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="about_walls_loaded" xml:space="preserve">
+    <value>壁</value>
+  </data>
+  <data name="about_wiki" xml:space="preserve">
+    <value>ウィキ</value>
+  </data>
   <data name="banner_category" xml:space="preserve">
     <value>カテゴリ:</value>
   </data>
