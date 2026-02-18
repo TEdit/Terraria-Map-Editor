@@ -432,25 +432,38 @@ public partial class MainWindow : FluentWindow
             case "selection.move.down":
             case "selection.move.left":
             case "selection.move.right":
+            case "selection.move.up.fast":
+            case "selection.move.down.fast":
+            case "selection.move.left.fast":
+            case "selection.move.right.fast":
             case "selection.resize.up":
             case "selection.resize.down":
             case "selection.resize.left":
             case "selection.resize.right":
+            case "selection.resize.up.fast":
+            case "selection.resize.down.fast":
+            case "selection.resize.left.fast":
+            case "selection.resize.right.fast":
                 if (_vm.ActiveTool?.Name == "Selection" && _vm.Selection.IsActive && _vm.CurrentWorld != null)
                 {
                     var area = _vm.Selection.SelectionArea;
-                    if (actionId.StartsWith("selection.move."))
+                    bool fast = actionId.EndsWith(".fast");
+                    int step = fast ? 5 : 1;
+                    // Strip ".fast" suffix for direction parsing
+                    string baseAction = fast ? actionId[..^5] : actionId;
+
+                    if (baseAction.StartsWith("selection.move."))
                     {
-                        int dx = actionId == "selection.move.left" ? -1 : actionId == "selection.move.right" ? 1 : 0;
-                        int dy = actionId == "selection.move.up" ? -1 : actionId == "selection.move.down" ? 1 : 0;
+                        int dx = baseAction == "selection.move.left" ? -step : baseAction == "selection.move.right" ? step : 0;
+                        int dy = baseAction == "selection.move.up" ? -step : baseAction == "selection.move.down" ? step : 0;
                         area.Offset(dx, dy);
                         area.X = Math.Max(0, Math.Min(area.X, _vm.CurrentWorld.TilesWide - area.Width));
                         area.Y = Math.Max(0, Math.Min(area.Y, _vm.CurrentWorld.TilesHigh - area.Height));
                     }
                     else
                     {
-                        int dw = actionId == "selection.resize.right" ? 1 : actionId == "selection.resize.left" ? -1 : 0;
-                        int dh = actionId == "selection.resize.down" ? 1 : actionId == "selection.resize.up" ? -1 : 0;
+                        int dw = baseAction == "selection.resize.right" ? step : baseAction == "selection.resize.left" ? -step : 0;
+                        int dh = baseAction == "selection.resize.down" ? step : baseAction == "selection.resize.up" ? -step : 0;
                         area.Width = Math.Max(1, Math.Min(area.Width + dw, _vm.CurrentWorld.TilesWide - area.X));
                         area.Height = Math.Max(1, Math.Min(area.Height + dh, _vm.CurrentWorld.TilesHigh - area.Y));
                     }

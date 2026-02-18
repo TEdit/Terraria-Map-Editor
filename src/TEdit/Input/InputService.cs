@@ -181,14 +181,14 @@ public class InputService
             DefaultBindings = { InputBinding.Keyboard(Key.Delete) }
         });
 
-        // Selection movement
+        // Selection movement (1 tile)
         Register(new InputAction
         {
             Id = "selection.move.up",
             Name = "Move Selection Up",
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
-            DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Control) }
+            DefaultBindings = { InputBinding.Keyboard(Key.Up) }
         });
 
         Register(new InputAction
@@ -197,7 +197,7 @@ public class InputService
             Name = "Move Selection Down",
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
-            DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Control) }
+            DefaultBindings = { InputBinding.Keyboard(Key.Down) }
         });
 
         Register(new InputAction
@@ -206,7 +206,7 @@ public class InputService
             Name = "Move Selection Left",
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
-            DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Control) }
+            DefaultBindings = { InputBinding.Keyboard(Key.Left) }
         });
 
         Register(new InputAction
@@ -215,17 +215,54 @@ public class InputService
             Name = "Move Selection Right",
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
-            DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Control) }
+            DefaultBindings = { InputBinding.Keyboard(Key.Right) }
         });
 
-        // Selection resizing (top-left anchored)
+        // Selection fast movement (5 tiles)
+        Register(new InputAction
+        {
+            Id = "selection.move.up.fast",
+            Name = "Move Selection Up (Fast)",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.move.down.fast",
+            Name = "Move Selection Down (Fast)",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.move.left.fast",
+            Name = "Move Selection Left (Fast)",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.move.right.fast",
+            Name = "Move Selection Right (Fast)",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Shift) }
+        });
+
+        // Selection resizing (1 tile, top-left anchored)
         Register(new InputAction
         {
             Id = "selection.resize.up",
             Name = "Shrink Selection Height",
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
-            DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Control | ModifierKeys.Shift) }
+            DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Control) }
         });
 
         Register(new InputAction
@@ -234,7 +271,7 @@ public class InputService
             Name = "Grow Selection Height",
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
-            DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Control | ModifierKeys.Shift) }
+            DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Control) }
         });
 
         Register(new InputAction
@@ -243,7 +280,7 @@ public class InputService
             Name = "Shrink Selection Width",
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
-            DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Control | ModifierKeys.Shift) }
+            DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Control) }
         });
 
         Register(new InputAction
@@ -252,7 +289,65 @@ public class InputService
             Name = "Grow Selection Width",
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Control) }
+        });
+
+        // Selection fast resizing (5 tiles)
+        Register(new InputAction
+        {
+            Id = "selection.resize.up.fast",
+            Name = "Shrink Selection Height (Fast)",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.resize.down.fast",
+            Name = "Grow Selection Height (Fast)",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.resize.left.fast",
+            Name = "Shrink Selection Width (Fast)",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.resize.right.fast",
+            Name = "Grow Selection Width (Fast)",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
+        // Selection mouse corner adjustment
+        Register(new InputAction
+        {
+            Id = "selection.adjust.startpoint",
+            Name = "Move Selection Start Point",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Editor,
+            Description = "Ctrl+click/drag to move top-left corner of selection",
+            DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left, ModifierKeys.Control) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.adjust.endpoint",
+            Name = "Move Selection End Point",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Editor,
+            Description = "Shift+click/drag to move bottom-right corner of selection",
+            DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left, ModifierKeys.Shift) }
         });
 
         Register(new InputAction
