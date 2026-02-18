@@ -380,7 +380,7 @@
                 <StackPanel Orientation="Vertical">
                     <tedit:FilteredComboBox
                         ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PlatformProperties}, Mode=OneTime}"
-                        ItemTemplate="{StaticResource ColorPickerTemplate}"
+                        ItemTemplate="{StaticResource TileColorTintTemplate}"
                         SelectedValue="{Binding Path=TilePicker.PlatformStyle, Mode=TwoWay}"
                         IsSynchronizedWithCurrentItem="False"
                         IsEditable="true"

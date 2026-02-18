@@ -36,6 +36,26 @@
             <TextBlock Text="{Binding Path=Name}" Margin="1,0"  />
         </DockPanel>
     </DataTemplate>
+    <!-- Color-tinted item template for tile/platform/wall properties (FrameProperty, TileProperty, etc.) -->
+    <!-- Matches the rarity template visual style but uses tile Color instead of RarityColor -->
+    <DataTemplate x:Key="TileColorTintTemplate">
+        <Grid Margin="-2,-2,-2,-2">
+            <Grid.Background>
+                <SolidColorBrush Color="{Binding Color, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.35"/>
+            </Grid.Background>
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" Margin="4,2,2,2">
+                    <Rectangle Height="14" Width="14">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding Color, Converter={StaticResource TEditColorToMediaColorConverter}}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+                <TextBlock Text="{Binding Name}" Margin="4,2,4,2" VerticalAlignment="Center" />
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
     <DataTemplate x:Key="EnumTemplate" >
         <Grid HorizontalAlignment="Stretch">
             <TextBlock Text="{Binding Path=Text}" Margin="2,0" HorizontalAlignment="Stretch"  />

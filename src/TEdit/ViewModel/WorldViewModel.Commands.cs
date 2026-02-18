@@ -397,6 +397,19 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void ChestItemSetToMaxStack(object container) => ChestItemMaxStack(container);
 
+    [ReactiveCommand]
+    private void ClearChest()
+    {
+        if (SelectedChest == null) return;
+
+        foreach (var item in SelectedChest.Items)
+        {
+            item.NetId = 0;
+            item.StackSize = 0;
+            item.Prefix = 0;
+        }
+    }
+
     private Item _chestItemClipboard;
 
     private void CopyChestItems(object container)
