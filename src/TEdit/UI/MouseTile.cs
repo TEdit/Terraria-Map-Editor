@@ -3,7 +3,6 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Terraria;
 
 namespace TEdit.UI;
 

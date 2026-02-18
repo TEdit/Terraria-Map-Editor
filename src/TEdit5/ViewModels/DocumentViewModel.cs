@@ -1,5 +1,4 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
 using TEdit5.Controls;
 using TEdit.Editor;
 using TEdit.Editor.Undo;

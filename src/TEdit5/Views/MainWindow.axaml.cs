@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using TEdit5.ViewModels;
-using TEdit.Terraria;
 
 namespace TEdit5.Views;
 

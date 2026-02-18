@@ -41,7 +41,6 @@ public partial class Chest : ReactiveObject
     [Reactive]
     private string _name = string.Empty;
 
-    private int _chestId = -1;
 
     public ObservableCollection<Item> Items { get; } = [];
 

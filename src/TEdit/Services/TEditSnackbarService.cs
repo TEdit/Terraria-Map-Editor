@@ -1,7 +1,6 @@
 using System;
 using System.Windows;
 using System.Windows.Threading;
-using Wpf.Ui;
 using Wpf.Ui.Controls;
 
 namespace TEdit.Services;

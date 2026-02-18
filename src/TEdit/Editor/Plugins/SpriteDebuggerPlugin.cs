@@ -1,5 +1,4 @@
 ﻿using TEdit.ViewModel;
-using TEdit.Terraria.Objects;
 using TEdit.Terraria.Editor;
 using TEdit.Terraria;
 

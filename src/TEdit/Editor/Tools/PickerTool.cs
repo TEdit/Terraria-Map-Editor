@@ -1,12 +1,9 @@
 using System;
-using System.Windows.Input;
 using System.Linq;
 using System.Windows.Media.Imaging;
 using TEdit.ViewModel;
 using TEdit.Geometry;
-using System.Collections.Generic;
 using TEdit.Terraria.Objects;
-using TEdit.Terraria.Editor;
 using TEdit.Terraria;
 using TEdit.UI;
 using Wpf.Ui.Controls;

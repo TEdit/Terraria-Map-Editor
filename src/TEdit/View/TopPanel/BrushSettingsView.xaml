@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
@@ -12,89 +12,142 @@
         <enum:EnumItemList x:Key="BrushShapeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:BrushShape}" x:Shared="false" SortBy="Value" />
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
-    <Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="135" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <ToggleButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="1,2" BorderThickness="2" VerticalAlignment="Top"
-                    IsChecked="{Binding Path=Brush.IsLocked}" ToolTip="{x:Static p:Language.tool_brush_lock_ratio_tooltip}">
-                <Image Source="../../Images/Tools/constrain.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="32" Width="32" Stretch="None" />
-            </ToggleButton>
-            <ToggleButton Grid.Row="2" Grid.Column="2" BorderThickness="2" Margin="1" ToolTip="{x:Static p:Language.tool_brush_outline_tooltip}" IsChecked="{Binding Path=Brush.IsOutline, Mode=TwoWay}">
-                <Image Source="../../Images/Tools/outline.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="16" Stretch="None" />
-            </ToggleButton>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.tool_brush_width_label}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
-            <TextBox Grid.Row="0" Grid.Column="1" Width="30" HorizontalAlignment="Left" Text="{Binding Path=Brush.Width, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" />
-            <Slider Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Right"
-                    Value="{Binding Path=Brush.Width, Mode=TwoWay}" Minimum="{Binding Path=Brush.MinWidth}" Maximum="{Binding Path=Brush.MaxWidth}"
-                    LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.tool_brush_height_label}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Brush.Height, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="30" />
-            <Slider Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Right"
-              Value="{Binding Path=Brush.Height, Mode=TwoWay}" Minimum="{Binding Path=Brush.MinHeight}"  Maximum="{Binding Path=Brush.MaxHeight}"
-                    LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Language.tool_brush_outline_thickness_label}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
-            <TextBox Grid.Row="2" Grid.Column="1" Width="30" HorizontalAlignment="Left"
-               Text="{Binding Path=Brush.Outline, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" />
-            <Slider Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Right"
-              Value="{Binding Path=Brush.Outline, Mode=TwoWay}" Minimum="1"
-              Maximum="{Binding Path=Brush.MaxOutline}" LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
-            <TextBlock Text="{x:Static p:Language.tool_brush_shape_label}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="2" Grid.Row="3" Grid.Column="0" />
-            <ComboBox ItemsSource="{StaticResource BrushShapeEnum}" SelectedValue="{Binding Path=Brush.Shape}" SelectedValuePath="Value" Height="22"
-                      Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,1,0,0" />
+    <!--
+        Layout: single grid, two logical column groups separated by a vertical rule.
+        Col 0-3: Size / Shape       Col 5-8: Transform / Spray       Col 4: separator
+    -->
+    <Grid Margin="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <!-- 0: labels -->
+            <ColumnDefinition Width="28" />
+            <!-- 1: textboxes -->
+            <ColumnDefinition Width="104" />
+            <!-- 2: sliders -->
+            <ColumnDefinition Width="Auto" />
+            <!-- 3: toggle buttons -->
+            <ColumnDefinition Width="Auto" />
+            <!-- 4: separator -->
+            <ColumnDefinition Width="Auto" />
+            <!-- 5: labels -->
+            <ColumnDefinition Width="28" />
+            <!-- 6: textboxes -->
+            <ColumnDefinition Width="104" />
+            <!-- 7: sliders -->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <!-- Rotation -->
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static p:Language.tool_brush_rotation_label}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
-            <TextBox Grid.Row="4" Grid.Column="1" Width="30" HorizontalAlignment="Left"
-               Text="{Binding Path=Brush.Rotation, Mode=TwoWay, StringFormat=F0}" Margin="0,1,0,0" VerticalAlignment="Center" />
-            <Slider Grid.Row="4" Grid.Column="1" Width="100" HorizontalAlignment="Right"
-              Value="{Binding Path=Brush.Rotation, Mode=TwoWay}" Minimum="0" Maximum="360"
-              LargeChange="45" SmallChange="1" VerticalAlignment="Center" />
+        <!-- ═══ LEFT: Size / Shape ═══ -->
 
-            <!-- Flip H/V -->
-            <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Margin="0,1,0,0" VerticalAlignment="Center">
-                <ToggleButton IsChecked="{Binding Path=Brush.FlipHorizontal, Mode=TwoWay}"
-                              ToolTip="{x:Static p:Language.tool_brush_flip_h_tooltip}"
-                              Content="H" Width="24" Height="22" Margin="0,0,4,0" />
-                <ToggleButton IsChecked="{Binding Path=Brush.FlipVertical, Mode=TwoWay}"
-                              ToolTip="{x:Static p:Language.tool_brush_flip_v_tooltip}"
-                              Content="V" Width="24" Height="22" />
-            </StackPanel>
+        <!-- Row 0: Width -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.tool_brush_width_label}"
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
+        <TextBox   Grid.Row="0" Grid.Column="1" Text="{Binding Brush.Width, Mode=TwoWay}"
+                   VerticalAlignment="Center" Margin="0,1" />
+        <Slider    Grid.Row="0" Grid.Column="2" Value="{Binding Brush.Width, Mode=TwoWay}"
+                   Minimum="{Binding Brush.MinWidth}" Maximum="{Binding Brush.MaxWidth}"
+                   SmallChange="1" LargeChange="10" VerticalAlignment="Center"  />
+        <ToggleButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="0" Margin="16,0,0,0" BorderThickness="1"
+                      Width="22" Height="10" 
+                      IsChecked="{Binding Brush.IsLocked}"
+                      ToolTip="{x:Static p:Language.tool_brush_lock_ratio_tooltip}">
+            <ui:SymbolIcon Symbol="LockClosed16" FontSize="8" />
+        </ToggleButton>
 
-            <!-- Spray toggle -->
-            <ToggleButton Grid.Row="5" Grid.Column="2" BorderThickness="2" Margin="1"
-                          ToolTip="{x:Static p:Language.tool_brush_spray_tooltip}"
-                          IsChecked="{Binding Path=Brush.IsSpray, Mode=TwoWay}"
-                          Content="S" Width="24" Height="22" />
+        <!-- Row 1: Height -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.tool_brush_height_label}"
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
+        <TextBox   Grid.Row="1" Grid.Column="1" Text="{Binding Brush.Height, Mode=TwoWay}"
+                   VerticalAlignment="Center" Margin="0,1" />
+        <Slider    Grid.Row="1" Grid.Column="2" Value="{Binding Brush.Height, Mode=TwoWay}"
+                   Minimum="{Binding Brush.MinHeight}" Maximum="{Binding Brush.MaxHeight}"
+                   SmallChange="1" LargeChange="10" VerticalAlignment="Center"  />
 
-            <!-- Spray settings (visible when spray is on) -->
-            <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="2,2,2,0"
-                        Visibility="{Binding Path=Brush.IsSpray, Converter={StaticResource BoolToVis}}">
-                <TextBlock Text="{x:Static p:Language.tool_brush_spray_density_label}" VerticalAlignment="Center" Margin="0,0,4,0" />
-                <Slider Value="{Binding Path=Brush.SprayDensity, Mode=TwoWay}" Minimum="1" Maximum="100"
-                        Width="80" SmallChange="1" LargeChange="10" VerticalAlignment="Center" />
-                <TextBox Text="{Binding Path=Brush.SprayDensity, Mode=TwoWay}" Width="30" Margin="4,0,0,0" VerticalAlignment="Center" />
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="2,2,2,0"
-                        Visibility="{Binding Path=Brush.IsSpray, Converter={StaticResource BoolToVis}}">
-                <TextBlock Text="{x:Static p:Language.tool_brush_spray_speed_label}" VerticalAlignment="Center" Margin="0,0,4,0" />
-                <Slider Value="{Binding Path=Brush.SprayTickMs, Mode=TwoWay}" Minimum="50" Maximum="500"
-                        Width="80" SmallChange="10" LargeChange="50" VerticalAlignment="Center" />
-                <TextBox Text="{Binding Path=Brush.SprayTickMs, Mode=TwoWay}" Width="30" Margin="4,0,0,0" VerticalAlignment="Center" />
-            </StackPanel>
-        </Grid>
+        <!-- Row 2: Outline -->
+        <TextBox   Grid.Row="2" Grid.Column="1" Text="{Binding Brush.Outline, Mode=TwoWay}"
+                   VerticalAlignment="Center" Margin="0,1" />
+        <Slider    Grid.Row="2" Grid.Column="2" Value="{Binding Brush.Outline, Mode=TwoWay}"
+                   Minimum="1" Maximum="{Binding Brush.MaxOutline}"
+                   SmallChange="1" LargeChange="10" VerticalAlignment="Center" />
+        <ToggleButton Grid.Row="2" Grid.Column="0" Padding="1" Margin="1" BorderThickness="1"
+                      VerticalAlignment="Center" 
+                      IsChecked="{Binding Brush.IsOutline, Mode=TwoWay}"
+                      ToolTip="{x:Static p:Language.tool_brush_outline_tooltip}" >
+      <TextBlock Text="Outline" />
+    </ToggleButton>
+
+        <!-- Row 3: Shape -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static p:Language.tool_brush_shape_label}"
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
+        <ComboBox  Grid.Row="3" Grid.Column="2" 
+                   ItemsSource="{StaticResource BrushShapeEnum}" SelectedValue="{Binding Brush.Shape}"
+                   SelectedValuePath="Value" Height="22" Margin="0,1" />
+
+        <!-- ═══ SEPARATOR ═══ -->
+        <Rectangle Grid.Column="4" Grid.RowSpan="4" Width="1" Fill="{StaticResource TextBrush}"
+                   Opacity="0.3" Margin="4,0" VerticalAlignment="Stretch" />
+
+        <!-- ═══ RIGHT: Transform / Spray ═══ -->
+
+        <!-- Row 0: Rotation -->
+        <TextBlock Grid.Row="0" Grid.Column="5" Text="{x:Static p:Language.tool_brush_rotation_label}"
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
+        <TextBox   Grid.Row="0" Grid.Column="6" Text="{Binding Brush.Rotation, Mode=TwoWay, StringFormat=F0}"
+                   VerticalAlignment="Center" Margin="0,1" />
+        <Slider Grid.Column="7" Value="{Binding Brush.Rotation, Mode=TwoWay}"
+                   Minimum="0" Maximum="360" SmallChange="1" LargeChange="45"
+                   VerticalAlignment="Center"  />
+
+        <!-- Row 1: Flip + Spray toggle -->
+        <TextBlock Grid.Row="1" Grid.Column="5" Text="Flip"
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
+        <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Orientation="Horizontal"
+                    VerticalAlignment="Center" Margin="0,1">
+      <ToggleButton IsChecked="{Binding Brush.FlipHorizontal, Mode=TwoWay}"
+                          ToolTip="{x:Static p:Language.tool_brush_flip_h_tooltip}"
+                          Width="28" Height="24" Padding="0" Margin="0,0,2,0">
+        <ui:SymbolIcon Symbol="FlipHorizontal20" FontSize="20" />
+      </ToggleButton>
+      <ToggleButton IsChecked="{Binding Brush.FlipVertical, Mode=TwoWay}"
+                          ToolTip="{x:Static p:Language.tool_brush_flip_v_tooltip}"
+                           Width="28" Height="24" Padding="0" >
+        <ui:SymbolIcon Symbol="FlipVertical20" FontSize="20" />
+      </ToggleButton>
+    </StackPanel>
+        <ToggleButton Grid.Row="3" Grid.Column="1" Padding="0" Margin="1" BorderThickness="1"
+                      Width="26" Height="24" VerticalAlignment="Center"
+                      IsChecked="{Binding Brush.IsSpray, Mode=TwoWay}"
+                      ToolTip="{x:Static p:Language.tool_brush_spray_tooltip}">
+            <ui:SymbolIcon Symbol="SprayCan16" FontSize="20" />
+        </ToggleButton>
+
+        <!-- Row 2: Spray Density (conditional) -->
+        <TextBlock Grid.Row="2" Grid.Column="5" Text="{x:Static p:Language.tool_brush_spray_density_label}"
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1"
+                   Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
+        <TextBox   Grid.Row="2" Grid.Column="6" Text="{Binding Brush.SprayDensity, Mode=TwoWay}"
+                   VerticalAlignment="Center" Margin="0,1"
+                   Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
+        <Slider    Grid.Row="2" Grid.Column="7" Value="{Binding Brush.SprayDensity, Mode=TwoWay}"
+                   Minimum="1" Maximum="100" SmallChange="1" LargeChange="10"
+                   VerticalAlignment="Center" 
+                   Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
+
+        <!-- Row 3: Spray Speed (conditional) -->
+        <TextBlock Grid.Row="3" Grid.Column="5" Text="{x:Static p:Language.tool_brush_spray_speed_label}"
+                   HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1"
+                   Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
+        <TextBox   Grid.Row="3" Grid.Column="6" Text="{Binding Brush.SprayTickMs, Mode=TwoWay}"
+                   VerticalAlignment="Center" Margin="0,1"
+                   Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
+        <Slider    Grid.Row="3" Grid.Column="7" Value="{Binding Brush.SprayTickMs, Mode=TwoWay}"
+                   Minimum="10" Maximum="100" SmallChange="5" LargeChange="10"
+                   VerticalAlignment="Center" 
+                   Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
     </Grid>
 </UserControl>

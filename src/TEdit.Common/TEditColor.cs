@@ -1,9 +1,6 @@
-﻿using ColorMine.ColorSpaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
 using System.Runtime.Serialization;
-using System.Text;
 using TEdit.Geometry;
 using TEdit.Utility;
 

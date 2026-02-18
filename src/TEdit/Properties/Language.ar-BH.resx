@@ -234,6 +234,12 @@
   <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
     <value>المنحدر العلوي الأيمن</value>
   </data>
+  <data name="BrushShape_Crescent" xml:space="preserve">
+    <value>هلال</value>
+  </data>
+  <data name="BrushShape_Donut" xml:space="preserve">
+    <value>دونات</value>
+  </data>
   <data name="BrushShape_Left" xml:space="preserve">
     <value>قطري لليسار</value>
     <comment>enum:BrushShape.Left</comment>
@@ -249,6 +255,12 @@
   <data name="BrushShape_Square" xml:space="preserve">
     <value>مستطيل</value>
     <comment>enum:BrushShape.Square</comment>
+  </data>
+  <data name="BrushShape_Star" xml:space="preserve">
+    <value>نجم</value>
+  </data>
+  <data name="BrushShape_Triangle" xml:space="preserve">
+    <value>مثلث</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>ماكس</value>
@@ -401,6 +413,39 @@
   <data name="keybind_capture_title" xml:space="preserve">
     <value>اضغط على زر زر أو انقر على زر الفأرة</value>
   </data>
+  <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
+    <value>80%</value>
+  </data>
+  <data name="LiquidAmountMode_FiftyPercent" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="LiquidAmountMode_FourtyPercent" xml:space="preserve">
+    <value>40%</value>
+  </data>
+  <data name="LiquidAmountMode_NinteyPercent" xml:space="preserve">
+    <value>90%</value>
+  </data>
+  <data name="LiquidAmountMode_OneHundredPercent" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="LiquidAmountMode_SeventyPercent" xml:space="preserve">
+    <value>70%</value>
+  </data>
+  <data name="LiquidAmountMode_SixtyPercent" xml:space="preserve">
+    <value>60%</value>
+  </data>
+  <data name="LiquidAmountMode_TenPercent" xml:space="preserve">
+    <value>10%</value>
+  </data>
+  <data name="LiquidAmountMode_ThirtyPercent" xml:space="preserve">
+    <value>30%</value>
+  </data>
+  <data name="LiquidAmountMode_TwentyPercent" xml:space="preserve">
+    <value>20%</value>
+  </data>
+  <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
+    <value>0%</value>
+  </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>عسل</value>
   </data>
@@ -409,6 +454,9 @@
   </data>
   <data name="LiquidType_None" xml:space="preserve">
     <value>لا يوجد سائل</value>
+  </data>
+  <data name="LiquidType_Shimmer" xml:space="preserve">
+    <value>شيمر</value>
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
     <value>الماء</value>
@@ -848,6 +896,9 @@
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>سائل</value>
+  </data>
+  <data name="PaintMode_Sprites" xml:space="preserve">
+    <value>العفاريت</value>
   </data>
   <data name="PaintMode_TileAndWall" xml:space="preserve">
     <value>بلاط / جدار</value>
@@ -1444,6 +1495,12 @@
   <data name="tool_bestiary_title" xml:space="preserve">
     <value>بيستاري</value>
   </data>
+  <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
+    <value>قلب أفقي</value>
+  </data>
+  <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
+    <value>قلب عمودي</value>
+  </data>
   <data name="tool_brush_height_label" xml:space="preserve">
     <value>ارتفاع</value>
   </data>
@@ -1456,8 +1513,20 @@
   <data name="tool_brush_outline_tooltip" xml:space="preserve">
     <value>تبديل رسم مخطط تفصيلي (غرفة)</value>
   </data>
+  <data name="tool_brush_rotation_label" xml:space="preserve">
+    <value>دوران</value>
+  </data>
   <data name="tool_brush_shape_label" xml:space="preserve">
     <value>شكل</value>
+  </data>
+  <data name="tool_brush_spray_density_label" xml:space="preserve">
+    <value>الكثافة</value>
+  </data>
+  <data name="tool_brush_spray_speed_label" xml:space="preserve">
+    <value>السرعة</value>
+  </data>
+  <data name="tool_brush_spray_tooltip" xml:space="preserve">
+    <value>وضع الرش</value>
   </data>
   <data name="tool_brush_title" xml:space="preserve">
     <value>فرش</value>
@@ -2392,4 +2461,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
   </data>
-<data name="BrushShape_Star" xml:space="preserve"><value></value></data><data name="BrushShape_Triangle" xml:space="preserve"><value></value></data><data name="BrushShape_Crescent" xml:space="preserve"><value></value></data><data name="BrushShape_Donut" xml:space="preserve"><value></value></data><data name="tool_brush_rotation_label" xml:space="preserve"><value></value></data><data name="tool_brush_flip_h_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_flip_v_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_density_label" xml:space="preserve"><value></value></data><data name="tool_brush_spray_speed_label" xml:space="preserve"><value></value></data></root>
+<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>

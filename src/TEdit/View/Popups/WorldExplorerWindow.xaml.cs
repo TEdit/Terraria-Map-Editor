@@ -15,10 +15,12 @@ namespace TEdit.View.Popups;
 public partial class WorldExplorerWindow : FluentWindow
 {
     private readonly WorldExplorerViewModel _vm;
+    private readonly WorldViewModel _wvm;
 
     public WorldExplorerWindow(WorldViewModel wvm)
     {
         InitializeComponent();
+        _wvm = wvm;
         _vm = new WorldExplorerViewModel(wvm);
         DataContext = _vm;
     }
@@ -183,9 +185,13 @@ public partial class WorldExplorerWindow : FluentWindow
         _ = _vm.RefreshAsync();
     }
 
-    private void Close_Click(object sender, RoutedEventArgs e)
+    private void NewWorld_Click(object sender, RoutedEventArgs e)
     {
-        Close();
+        if (((ICommand)_wvm.NewWorldCommand).CanExecute(null))
+        {
+            Close();
+            ((ICommand)_wvm.NewWorldCommand).Execute(null);
+        }
     }
 
     private void TogglePin_Click(object sender, RoutedEventArgs e)

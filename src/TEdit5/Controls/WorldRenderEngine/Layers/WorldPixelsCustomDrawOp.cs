@@ -7,7 +7,6 @@ using SkiaSharp;
 using System;
 using TEdit.Common;
 using TEdit.Terraria;
-using TEdit.Terraria;
 
 namespace TEdit5.Controls.WorldRenderEngine.Layers;
 

@@ -1,7 +1,5 @@
 using TEdit.ViewModel;
 using System.Linq;
-using SharpDX.Direct2D1;
-using System.Collections.Generic;
 using TEdit.Render;
 
 namespace TEdit.Editor.Plugins;

@@ -234,6 +234,12 @@
   <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
     <value>Nachylenie Góra Prawo</value>
   </data>
+  <data name="BrushShape_Crescent" xml:space="preserve">
+    <value>Crescent</value>
+  </data>
+  <data name="BrushShape_Donut" xml:space="preserve">
+    <value>Pączek</value>
+  </data>
   <data name="BrushShape_Left" xml:space="preserve">
     <value>Przekątna w Lewo</value>
     <comment>enum:BrushShape.Left</comment>
@@ -249,6 +255,12 @@
   <data name="BrushShape_Square" xml:space="preserve">
     <value>Prostokąt</value>
     <comment>enum:BrushShape.Square</comment>
+  </data>
+  <data name="BrushShape_Star" xml:space="preserve">
+    <value>Gwiazda</value>
+  </data>
+  <data name="BrushShape_Triangle" xml:space="preserve">
+    <value>Trójkąt</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
@@ -401,6 +413,39 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="keybind_capture_title" xml:space="preserve">
     <value>Naciśnij klawisz lub kliknij myszką</value>
   </data>
+  <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
+    <value>80%</value>
+  </data>
+  <data name="LiquidAmountMode_FiftyPercent" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="LiquidAmountMode_FourtyPercent" xml:space="preserve">
+    <value>40%</value>
+  </data>
+  <data name="LiquidAmountMode_NinteyPercent" xml:space="preserve">
+    <value>90%</value>
+  </data>
+  <data name="LiquidAmountMode_OneHundredPercent" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="LiquidAmountMode_SeventyPercent" xml:space="preserve">
+    <value>70%</value>
+  </data>
+  <data name="LiquidAmountMode_SixtyPercent" xml:space="preserve">
+    <value>60%</value>
+  </data>
+  <data name="LiquidAmountMode_TenPercent" xml:space="preserve">
+    <value>10%</value>
+  </data>
+  <data name="LiquidAmountMode_ThirtyPercent" xml:space="preserve">
+    <value>30%</value>
+  </data>
+  <data name="LiquidAmountMode_TwentyPercent" xml:space="preserve">
+    <value>20%</value>
+  </data>
+  <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
+    <value>0%</value>
+  </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>Miód</value>
   </data>
@@ -409,6 +454,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="LiquidType_None" xml:space="preserve">
     <value>Nie Płynny</value>
+  </data>
+  <data name="LiquidType_Shimmer" xml:space="preserve">
+    <value>Shimmer</value>
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
     <value>Woda</value>
@@ -848,6 +896,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Płynne</value>
+  </data>
+  <data name="PaintMode_Sprites" xml:space="preserve">
+    <value>Sprite</value>
   </data>
   <data name="PaintMode_TileAndWall" xml:space="preserve">
     <value>Płytka/Ściana</value>
@@ -1444,6 +1495,12 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="tool_bestiary_title" xml:space="preserve">
     <value>Bestiariusz</value>
   </data>
+  <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
+    <value>Flip Horizontal</value>
+  </data>
+  <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
+    <value>Flip Vertical</value>
+  </data>
   <data name="tool_brush_height_label" xml:space="preserve">
     <value>Wysokość</value>
   </data>
@@ -1456,8 +1513,20 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="tool_brush_outline_tooltip" xml:space="preserve">
     <value>Przełączanie Rysowania Zarysu (pomieszczenie)</value>
   </data>
+  <data name="tool_brush_rotation_label" xml:space="preserve">
+    <value>Rotacja</value>
+  </data>
   <data name="tool_brush_shape_label" xml:space="preserve">
     <value>Kształt</value>
+  </data>
+  <data name="tool_brush_spray_density_label" xml:space="preserve">
+    <value>Gęstość</value>
+  </data>
+  <data name="tool_brush_spray_speed_label" xml:space="preserve">
+    <value>Prędkość</value>
+  </data>
+  <data name="tool_brush_spray_tooltip" xml:space="preserve">
+    <value>Tryb natrysku</value>
   </data>
   <data name="tool_brush_title" xml:space="preserve">
     <value>Pędzel</value>
@@ -2392,4 +2461,4 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
   </data>
-<data name="BrushShape_Star" xml:space="preserve"><value></value></data><data name="BrushShape_Triangle" xml:space="preserve"><value></value></data><data name="BrushShape_Crescent" xml:space="preserve"><value></value></data><data name="BrushShape_Donut" xml:space="preserve"><value></value></data><data name="tool_brush_rotation_label" xml:space="preserve"><value></value></data><data name="tool_brush_flip_h_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_flip_v_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_density_label" xml:space="preserve"><value></value></data><data name="tool_brush_spray_speed_label" xml:space="preserve"><value></value></data></root>
+<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>

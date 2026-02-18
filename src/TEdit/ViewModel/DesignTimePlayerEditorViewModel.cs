@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Media.Imaging;
-using TEdit.Common;
 using TEdit.Terraria.Player;
 
 namespace TEdit.ViewModel;

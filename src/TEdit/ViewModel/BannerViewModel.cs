@@ -4,14 +4,11 @@ using ReactiveUI.SourceGenerators;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 using TEdit.Terraria;
-using TEdit.UI.Xaml.Dialog;
 
 namespace TEdit.ViewModel;
 

@@ -2,9 +2,7 @@ using Xunit;
 using Xunit.Abstractions;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Editor.Clipboard;
 using System.IO;
-using System.Linq;
 
 namespace TEdit.Editor.Clipboard.Tests;
 

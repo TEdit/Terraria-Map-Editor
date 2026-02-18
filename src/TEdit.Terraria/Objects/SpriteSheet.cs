@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using ReactiveUI;
 using TEdit.Common;
 using TEdit.Geometry;
 

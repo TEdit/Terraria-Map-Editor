@@ -1,5 +1,3 @@
-using System;
-
 namespace TEdit.Geometry;
 
 public struct Vector4Byte

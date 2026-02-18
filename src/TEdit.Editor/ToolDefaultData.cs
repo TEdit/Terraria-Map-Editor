@@ -18,7 +18,7 @@ public partial class ToolDefaultData
     private static bool _brushFlipVertical = false;
     private static bool _brushIsSpray = false;
     private static int _brushSprayDensity = 50;
-    private static int _brushSprayTickMs = 100;
+    private static int _brushSprayTickMs = 30;
 
     private static int _paintTile = 0;
     private static int _paintTileMask = 0;

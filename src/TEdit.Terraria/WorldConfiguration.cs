@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using TEdit.Common;
 using TEdit.Terraria.DataModel;
-using TEdit.Geometry;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria;

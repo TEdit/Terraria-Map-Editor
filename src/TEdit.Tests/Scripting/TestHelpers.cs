@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using TEdit.Editor.Undo;
 using TEdit.Geometry;
 using TEdit.Terraria;

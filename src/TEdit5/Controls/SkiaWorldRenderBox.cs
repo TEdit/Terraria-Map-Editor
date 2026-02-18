@@ -6,18 +6,14 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
-using Avalonia.Skia;
 using Avalonia.Threading;
-using SkiaSharp;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using System.Threading.Channels;
 using System.Threading.Tasks;
 using TEdit5.Controls.WorldRenderEngine;
 using TEdit5.Controls.WorldRenderEngine.Layers;
@@ -25,7 +21,6 @@ using TEdit5.Editor;
 using TEdit.Editor;
 using TEdit.Geometry;
 using TEdit.Terraria;
-using static SkiaSharp.SKImageFilter;
 
 namespace TEdit5.Controls;
 

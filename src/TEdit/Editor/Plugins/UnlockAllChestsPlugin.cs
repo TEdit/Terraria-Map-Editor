@@ -1,5 +1,4 @@
 using TEdit.Terraria;
-using TEdit.Terraria;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Plugins;

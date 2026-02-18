@@ -81,6 +81,9 @@ public abstract partial class BaseTool : ReactiveObject, ITool
         protected set { _previewScale = value; }
     }
 
+    public int PreviewOffsetX { get; protected set; } = -1;
+    public int PreviewOffsetY { get; protected set; } = -1;
+
     public virtual WriteableBitmap PreviewTool()
     {
         return _preview;

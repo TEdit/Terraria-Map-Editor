@@ -1,5 +1,4 @@
 ﻿using System.Text.Json.Serialization;
-using ReactiveUI;
 using TEdit.Common;
 
 namespace TEdit.Terraria.Objects;

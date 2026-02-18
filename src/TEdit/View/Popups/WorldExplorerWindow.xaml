@@ -17,16 +17,23 @@
         <cv:BoolToVisibilityConverter x:Key="BoolToVis" />
     </ui:FluentWindow.Resources>
 
-    <Grid Margin="10">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <ui:TitleBar Title="{x:Static p:Language.world_explorer_title}" Grid.Row="0"
+                     Padding="8,0,0,0" Margin="0"
+                     FontSize="12" Height="32"
+                     ShowMinimize="False"
+                     ShowMaximize="False" />
+
         <!-- Search + Browse Row -->
-        <DockPanel Grid.Row="0" Margin="0,0,0,8">
+        <DockPanel Grid.Row="1" Margin="10,0,10,8">
             <ui:Button DockPanel.Dock="Right" Content="Browse..." Padding="8,4" Margin="8,0,0,0"
                        Click="Browse_Click" />
             <ui:TextBox x:Name="SearchBox"
@@ -36,7 +43,7 @@
         </DockPanel>
 
         <!-- Unified World Grid -->
-        <ListView Grid.Row="1"
+        <ListView Grid.Row="2" Margin="10,0,10,0"
                   x:Name="WorldListView"
                   ItemsSource="{Binding FilteredWorlds}"
                   SelectedItem="{Binding SelectedWorld}"
@@ -325,15 +332,19 @@
         </ListView>
 
         <!-- Button Bar -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
-            <ui:Button Content="{x:Static p:Language.world_explorer_open}" Width="80" Padding="4"
-                       Margin="0,0,8,0" Click="Open_Click" />
-            <ui:Button Content="{x:Static p:Language.common_refresh}" Width="80" Padding="4" Margin="0,0,8,0" Click="Refresh_Click" />
-            <ui:Button Content="{x:Static p:Language.common_close}" Width="80" Padding="4" Click="Close_Click" />
-        </StackPanel>
+        <DockPanel Grid.Row="3" Margin="10,8,10,10">
+            <ui:Button DockPanel.Dock="Left" Content="{x:Static p:Language.menu_file_new}" Width="100" Padding="4"
+                       Appearance="Success" Click="NewWorld_Click" />
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+                <ui:Button Content="{x:Static p:Language.world_explorer_open}" Width="80" Padding="4"
+                           Appearance="Primary" Margin="0,0,8,0" Click="Open_Click" />
+                <ui:Button Content="{x:Static p:Language.common_refresh}" Width="80" Padding="4"
+                           Appearance="Secondary" Click="Refresh_Click" />
+            </StackPanel>
+        </DockPanel>
 
         <!-- Preview Panel -->
-        <Border Grid.Row="3" Margin="0,8,0,0" Padding="8"
+        <Border Grid.Row="4" Margin="10,8,10,10" Padding="8"
                 BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4"
                 Background="{DynamicResource ControlFillColorDefaultBrush}"
                 Visibility="{Binding ShowPreviewPanel, Converter={StaticResource BoolToVis}}">

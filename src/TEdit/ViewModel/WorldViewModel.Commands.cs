@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using SharpDX.XAudio2;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,7 +16,6 @@ using TEdit.Framework.Events;
 using TEdit.Geometry;
 using TEdit.Helper;
 using TEdit.Configuration;
-using TEdit.Terraria;
 using TEdit.UI.Xaml.Dialog;
 
 namespace TEdit.ViewModel;

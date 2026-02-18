@@ -14,7 +14,6 @@ using System;
 using System.IO;
 using System.Reactive;
 using System.Windows;
-using ReactiveUI;
 using TEdit.ViewModel;
 using Wpf.Ui.Controls;
 using MessageBox = System.Windows.Forms.MessageBox;

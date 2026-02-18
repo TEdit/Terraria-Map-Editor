@@ -1,6 +1,4 @@
 using Shouldly;
-using TEdit.Common;
-using TEdit.Geometry;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria.Tests;

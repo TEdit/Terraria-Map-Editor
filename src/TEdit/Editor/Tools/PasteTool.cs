@@ -1,13 +1,9 @@
 using System;
-using System.Linq;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using Microsoft.Xna.Framework;
 using TEdit.ViewModel;
 using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.UI;
-using TEdit.Editor.Clipboard;
 using Wpf.Ui.Controls;
 
 namespace TEdit.Editor.Tools;

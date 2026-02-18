@@ -6,20 +6,15 @@ using System.Linq;
 using TEdit.Configuration;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms.VisualStyles;
 using TEdit.Common;
 using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Editor.Undo;
-using TEdit.Framework.Threading;
 using TEdit.Geometry;
 using TEdit.Render;
-using TEdit.Terraria;
-using TEdit.UI.Xaml.Dialog;
 using TEdit.Utility;
 using TEdit.View.Popups;
 using ReactiveUI;
-using ReactiveUI.SourceGenerators;
 
 namespace TEdit.ViewModel;
 

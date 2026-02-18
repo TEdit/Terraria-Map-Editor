@@ -1,7 +1,5 @@
-using System.Linq;
 using Shouldly;
 using TEdit.Geometry;
-using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria.Tests.DataModel;
 

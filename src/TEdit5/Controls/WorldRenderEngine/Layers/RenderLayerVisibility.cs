@@ -1,7 +1,4 @@
-﻿using ReactiveUI;
-using System;
-
-namespace TEdit5.Controls.WorldRenderEngine.Layers;
+﻿namespace TEdit5.Controls.WorldRenderEngine.Layers;
 
 
 public class RenderLayerVisibility : ReactiveObject

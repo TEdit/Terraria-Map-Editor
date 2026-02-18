@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using TEdit.Common;
 
 namespace TEdit.Terraria.DataModel;

@@ -1,7 +1,6 @@
 using System.Windows;
 using TEdit.Terraria;
 using TEdit.Render;
-using TEdit.Terraria;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Plugins

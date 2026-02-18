@@ -1,14 +1,8 @@
-using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using XNA = Microsoft.Xna.Framework;
 using TEdit.Terraria;
-using System.Collections.Generic;
-using System.Linq;
 using TEdit.Geometry;
-using TEdit.Terraria;
 using TEdit.Editor.Undo;
 using TEdit.ViewModel;
 

@@ -28,16 +28,13 @@ public partial class BrushSettings : ReactiveObject
     private bool _isLocked = true;
     [Reactive]
     private bool _isOutline = false;
-    [Reactive]
     private double _rotation = 0;
-    [Reactive]
     private bool _flipHorizontal = false;
-    [Reactive]
     private bool _flipVertical = false;
     [Reactive]
     private bool _isSpray = false;
     private int _sprayDensity = 50;
-    private int _sprayTickMs = 100;
+    private int _sprayTickMs = 30;
     private BrushShape _shape = ToolDefaultData.BrushShape;
 
     public BrushSettings()
@@ -149,6 +146,36 @@ public partial class BrushSettings : ReactiveObject
         }
     }
 
+    public double Rotation
+    {
+        get { return _rotation; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _rotation, value);
+            BrushChange();
+        }
+    }
+
+    public bool FlipHorizontal
+    {
+        get { return _flipHorizontal; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _flipHorizontal, value);
+            BrushChange();
+        }
+    }
+
+    public bool FlipVertical
+    {
+        get { return _flipVertical; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _flipVertical, value);
+            BrushChange();
+        }
+    }
+
     public int SprayDensity
     {
         get { return _sprayDensity; }
@@ -165,8 +192,8 @@ public partial class BrushSettings : ReactiveObject
         get { return _sprayTickMs; }
         set
         {
-            if (value < 50) value = 50;
-            if (value > 500) value = 500;
+            if (value < 10) value = 10;
+            if (value > 100) value = 100;
             this.RaiseAndSetIfChanged(ref _sprayTickMs, value);
         }
     }
@@ -190,13 +217,9 @@ public partial class BrushSettings : ReactiveObject
             BrushShape.Left => TEdit.Geometry.Shape.DrawLine(
                 new Vector2Int32(center.X - width / 2, center.Y - height / 2),
                 new Vector2Int32(center.X + width / 2, center.Y + height / 2)),
-            BrushShape.Star => Fill.FillStarCentered(center, Math.Min(width, height) / 2,
-                Math.Min(width, height) / 4, 5),
+            BrushShape.Star => Fill.FillStarCentered(center, Math.Min(width, height) / 2, 0, 5),
             BrushShape.Triangle => Fill.FillTriangleCentered(center, width / 2, height / 2),
-            BrushShape.Crescent => Fill.FillCrescentCentered(center,
-                Math.Min(width, height) / 2,
-                (int)(Math.Min(width, height) / 2 * 0.75),
-                Math.Min(width, height) / 4),
+            BrushShape.Crescent => FillCrescent(center, width, height),
             BrushShape.Donut => Fill.FillDonutCentered(center,
                 Math.Min(width, height) / 2,
                 Math.Max(1, Math.Min(width, height) / 4)),
@@ -207,5 +230,33 @@ public partial class BrushSettings : ReactiveObject
             points = Fill.ApplyTransform(points, center, Rotation, FlipHorizontal, FlipVertical);
 
         return points.ToList();
+    }
+
+    /// <summary>
+    /// Height = size (outer radius), Width = fullness.
+    /// width==height → default crescent, width==height/2 → thin ring, width==height*2 → full circle.
+    /// </summary>
+    private static IEnumerable<Vector2Int32> FillCrescent(Vector2Int32 center, int width, int height)
+    {
+        int outerRadius = height / 2;
+        if (outerRadius <= 0) return [center];
+
+        // ratio: 0.5 (thinnest) → 1.0 (default) → 2.0 (full circle)
+        double ratio = Math.Clamp((double)width / Math.Max(1, height), 0.5, 2.0);
+
+        // f: 1.0 (thinnest) → 0.0 (full circle). At ratio=1: f = 2/3 (default).
+        double f = (2.0 - ratio) / 1.5;
+
+        if (f < 0.001)
+        {
+            // Full circle
+            return Fill.FillEllipseCentered(center, new Vector2Int32(outerRadius, outerRadius));
+        }
+
+        // Scale so f=2/3 reproduces the original 0.75R / 0.5R values
+        int innerRadius = Math.Clamp((int)(outerRadius * f * 1.125), 1, outerRadius - 1);
+        int innerOffsetX = Math.Max(1, (int)(outerRadius * f * 0.75));
+
+        return Fill.FillCrescentCentered(center, outerRadius, innerRadius, innerOffsetX);
     }
 }

@@ -1,17 +1,9 @@
 ﻿using Avalonia;
 using Avalonia.Input;
 using Avalonia.Rendering.SceneGraph;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using TEdit5.Services;
-using TEdit5.ViewModels;
 using TEdit.Editor;
 using TEdit.Geometry;
-using static TEdit5.Controls.SkiaWorldRenderBox;
 
 namespace TEdit5.Editor;
 

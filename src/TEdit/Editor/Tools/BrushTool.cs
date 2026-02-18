@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 using TEdit.Geometry;
 using TEdit.ViewModel;
 using TEdit.Render;
@@ -27,10 +26,12 @@ public class BrushToolBase : BaseTool
     protected Vector2Int32 _leftPoint;
     protected Vector2Int32 _rightPoint;
 
-    // Spray mode
-    private DispatcherTimer _sprayTimer;
-    private Vector2Int32 _sprayCenter;
-    private Random _sprayRandom = new Random();
+    // Spray mode — time-based interpolation instead of timer
+    private readonly Stopwatch _sprayStopwatch = new Stopwatch();
+    private long _sprayLastTickMs;
+    private Vector2Int32 _sprayPrevPoint;
+    private readonly Random _sprayRandom = new Random();
+    private bool _sprayActive;
 
     public BrushToolBase(WorldViewModel worldViewModel)
         : base(worldViewModel)
@@ -80,15 +81,14 @@ public class BrushToolBase : BaseTool
         _isConstraining = actions.Contains("editor.draw.constrain");
         _isLineMode = actions.Contains("editor.draw.line");
 
-        if (IsSimpleRectShape())
-        {
-            FillRectangle(_startPoint);
-        }
-
         if (_wvm.Brush.IsSpray && _isDrawing)
         {
-            _sprayCenter = e.Location;
-            StartSprayTimer();
+            _sprayPrevPoint = e.Location;
+            _sprayStopwatch.Restart();
+            _sprayLastTickMs = 0;
+            _sprayActive = true;
+            // Spray immediately at the click point
+            SprayAtPoint(e.Location);
         }
         else
         {
@@ -103,9 +103,9 @@ public class BrushToolBase : BaseTool
         _isConstraining = actions.Contains("editor.draw.constrain");
         _isLineMode = actions.Contains("editor.draw.line");
 
-        if (_wvm.Brush.IsSpray && _sprayTimer != null && _sprayTimer.IsEnabled)
+        if (_wvm.Brush.IsSpray && _sprayActive)
         {
-            _sprayCenter = e.Location;
+            ProcessSprayMove(e.Location);
         }
         else
         {
@@ -115,10 +115,17 @@ public class BrushToolBase : BaseTool
 
     public override void MouseUp(TileMouseState e)
     {
-        StopSprayTimer();
-
-        if (!_wvm.Brush.IsSpray)
+        if (_sprayActive)
+        {
+            // Final spray along remaining movement
+            ProcessSprayMove(e.Location);
+            _sprayStopwatch.Stop();
+            _sprayActive = false;
+        }
+        else
+        {
             ProcessDraw(e.Location);
+        }
 
         var actions = GetActiveActions(e);
         _isDrawing = actions.Contains("editor.draw");
@@ -128,27 +135,34 @@ public class BrushToolBase : BaseTool
         _wvm.UndoManager.SaveUndo();
     }
 
-    private void StartSprayTimer()
+    private void ProcessSprayMove(Vector2Int32 currentPos)
     {
-        if (_sprayTimer == null)
+        long now = _sprayStopwatch.ElapsedMilliseconds;
+        long elapsed = now - _sprayLastTickMs;
+        int tickInterval = _wvm.Brush.SprayTickMs;
+
+        int tickCount = (int)(elapsed / tickInterval);
+        if (tickCount <= 0) return;
+
+        // Interpolate spray positions along the movement line
+        var line = Shape.DrawLineTool(_sprayPrevPoint, currentPos).ToList();
+        if (line.Count == 0) return;
+
+        for (int i = 0; i < tickCount; i++)
         {
-            _sprayTimer = new DispatcherTimer();
-            _sprayTimer.Tick += SprayTimer_Tick;
+            // Distribute spray ticks evenly along the line segment
+            float t = (float)(i + 1) / (tickCount + 1);
+            int lineIndex = Math.Min((int)(t * line.Count), line.Count - 1);
+            SprayAtPoint(line[lineIndex]);
         }
-        _sprayTimer.Interval = TimeSpan.FromMilliseconds(_wvm.Brush.SprayTickMs);
-        _sprayTimer.Start();
-        // Fire immediately on first tick
-        SprayTimer_Tick(null, EventArgs.Empty);
+
+        _sprayLastTickMs += (long)tickCount * tickInterval;
+        _sprayPrevPoint = currentPos;
     }
 
-    private void StopSprayTimer()
+    private void SprayAtPoint(Vector2Int32 center)
     {
-        _sprayTimer?.Stop();
-    }
-
-    private void SprayTimer_Tick(object sender, EventArgs e)
-    {
-        var points = GetShapePoints(_sprayCenter);
+        var points = GetShapePoints(center);
         if (points.Count == 0) return;
 
         // Reset check tiles each tick so spray re-paints
@@ -161,7 +175,6 @@ public class BrushToolBase : BaseTool
         int count = Math.Max(1, points.Count * _wvm.Brush.SprayDensity / 100);
         var selected = new List<Vector2Int32>(count);
 
-        // Copy to working array for shuffle
         var working = points.ToArray();
         for (int i = 0; i < count && i < working.Length; i++)
         {
@@ -176,47 +189,85 @@ public class BrushToolBase : BaseTool
     public override WriteableBitmap PreviewTool()
     {
         var brush = _wvm.Brush;
-        // For shapes with transform, use pixel-accurate preview
-        int previewW = brush.Width + 1;
-        int previewH = brush.Height + 1;
-        var bmp = new WriteableBitmap(previewW, previewH, 96, 96, PixelFormats.Bgra32, null);
-        bmp.Clear();
-
         var previewColor = Color.FromArgb(127, 0, 90, 255);
-        var center = new Vector2Int32(brush.Width / 2, brush.Height / 2);
 
-        if (brush.HasTransform ||
+        bool usePointPreview = brush.HasTransform ||
             brush.Shape == BrushShape.Star ||
             brush.Shape == BrushShape.Triangle ||
             brush.Shape == BrushShape.Crescent ||
-            brush.Shape == BrushShape.Donut)
+            brush.Shape == BrushShape.Donut;
+
+        if (usePointPreview)
         {
-            // Pixel-accurate preview using GetShapePoints
+            // Generate points at origin center, then find actual bounding box
+            var center = new Vector2Int32(brush.Width / 2, brush.Height / 2);
             var points = GetShapePoints(center);
+
+            if (points.Count == 0)
+            {
+                _preview = new WriteableBitmap(1, 1, 96, 96, PixelFormats.Bgra32, null);
+                return _preview;
+            }
+
+            // Find bounding box of transformed points
+            int minX = int.MaxValue, minY = int.MaxValue;
+            int maxX = int.MinValue, maxY = int.MinValue;
             foreach (var p in points)
             {
-                if (p.X >= 0 && p.X < previewW && p.Y >= 0 && p.Y < previewH)
-                    bmp.SetPixel(p.X, p.Y, previewColor);
+                if (p.X < minX) minX = p.X;
+                if (p.X > maxX) maxX = p.X;
+                if (p.Y < minY) minY = p.Y;
+                if (p.Y > maxY) maxY = p.Y;
             }
-        }
-        else if (IsSimpleRectShape())
-        {
-            bmp.FillRectangle(0, 0, brush.Width, brush.Height, previewColor);
-        }
-        else if (brush.Shape == BrushShape.Left)
-        {
-            bmp.DrawLine(0, 0, brush.Width, brush.Height, previewColor);
-        }
-        else if (brush.Shape == BrushShape.Right)
-        {
-            bmp.DrawLine(0, brush.Height, brush.Width, 0, previewColor);
+
+            int previewW = maxX - minX + 1;
+            int previewH = maxY - minY + 1;
+            var bmp = new WriteableBitmap(previewW, previewH, 96, 96, PixelFormats.Bgra32, null);
+            bmp.Clear();
+
+            // Track where the center falls within the bitmap
+            PreviewOffsetX = center.X - minX;
+            PreviewOffsetY = center.Y - minY;
+
+            // Offset points so min corner maps to (0,0)
+            foreach (var p in points)
+            {
+                int px = p.X - minX;
+                int py = p.Y - minY;
+                bmp.SetPixel(px, py, previewColor);
+            }
+
+            _preview = bmp;
         }
         else
         {
-            bmp.FillEllipse(0, 0, brush.Width, brush.Height, previewColor);
+            PreviewOffsetX = -1;
+            PreviewOffsetY = -1;
+            int previewW = brush.Width + 1;
+            int previewH = brush.Height + 1;
+            var bmp = new WriteableBitmap(previewW, previewH, 96, 96, PixelFormats.Bgra32, null);
+            bmp.Clear();
+
+            if (IsSimpleRectShape())
+            {
+                bmp.FillRectangle(0, 0, brush.Width, brush.Height, previewColor);
+            }
+            else if (brush.Shape == BrushShape.Left)
+            {
+                bmp.DrawLine(0, 0, brush.Width, brush.Height, previewColor);
+            }
+            else if (brush.Shape == BrushShape.Right)
+            {
+                bmp.DrawLine(0, brush.Height, brush.Width, 0, previewColor);
+            }
+            else
+            {
+                bmp.FillEllipse(0, 0, brush.Width, brush.Height, previewColor);
+            }
+
+            _preview = bmp;
         }
 
-        _preview = bmp;
         return _preview;
     }
 
@@ -265,6 +316,11 @@ public class BrushToolBase : BaseTool
         var line = Shape.DrawLineTool(_startPoint, to).ToList();
         if (IsSimpleRectShape())
         {
+            // Single point (first click or no movement) — fill at that point
+            if (line.Count == 1)
+            {
+                FillRectangle(line[0]);
+            }
             for (int i = 1; i < line.Count; i++)
             {
                 FillRectangleLine(line[i - 1], line[i]);
@@ -285,6 +341,10 @@ public class BrushToolBase : BaseTool
 
         if (IsSimpleRectShape())
         {
+            if (line.Count == 1)
+            {
+                FillRectangle(line[0]);
+            }
             for (int i = 1; i < line.Count; i++)
             {
                 FillRectangleLine(line[i - 1], line[i]);

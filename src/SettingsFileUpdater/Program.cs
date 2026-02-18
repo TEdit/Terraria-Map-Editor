@@ -1,6 +1,4 @@
-﻿using SettingsFileUpdater;
-using SettingsFileUpdater.TerrariaHost;
-using SettingsFileUpdater.TerrariaHost.DataModel;
+﻿using SettingsFileUpdater.TerrariaHost;
 using System;
 using System.Collections.Generic;
 using System.IO;

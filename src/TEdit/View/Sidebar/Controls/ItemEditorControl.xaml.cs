@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using TEdit.UI.Xaml;
 
 namespace TEdit.View.Sidebar.Controls;
 

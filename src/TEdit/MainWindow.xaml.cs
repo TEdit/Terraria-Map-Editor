@@ -12,15 +12,11 @@ using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Editor.Tools;
-using TEdit.Input;
-using TEdit.Services;
 using TEdit.ViewModel;
 using TEdit.Configuration;
-using TEdit.UI.Xaml;
 using TEdit.View.Popups;
 using System.IO;
 using System.Windows.Controls;
-using TEdit.View;
 using Wpf.Ui.Controls;
 
 namespace TEdit;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TEdit.Editor.Tools;
+﻿namespace TEdit.Editor.Tools;
 
 public interface IEditorTool
 {

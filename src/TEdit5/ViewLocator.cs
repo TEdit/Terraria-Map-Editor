@@ -2,7 +2,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using TEdit5.ViewModels;
 
 namespace TEdit5;
 

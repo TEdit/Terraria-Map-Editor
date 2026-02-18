@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using TEdit.Common;
-using TEdit.Properties;
 using TEdit.Terraria;
 
 namespace TEdit.Converters;

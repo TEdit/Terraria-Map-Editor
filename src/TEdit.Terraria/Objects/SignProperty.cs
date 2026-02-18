@@ -1,5 +1,4 @@
-﻿using ReactiveUI;
-using TEdit.Geometry;
+﻿using TEdit.Geometry;
 using TEdit.Common;
 
 namespace TEdit.Terraria.Objects;

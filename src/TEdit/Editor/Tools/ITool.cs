@@ -20,5 +20,7 @@ public interface ITool
     void MouseUp(TileMouseState e);
     void MouseWheel(TileMouseState e);
     double PreviewScale { get; }
+    int PreviewOffsetX { get; }
+    int PreviewOffsetY { get; }
     WriteableBitmap PreviewTool();
 }

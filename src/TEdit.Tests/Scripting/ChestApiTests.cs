@@ -1,4 +1,3 @@
-using System.Linq;
 using Shouldly;
 using TEdit.Scripting.Api;
 using TEdit.Terraria;

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading;
 using Shouldly;
 using TEdit.Editor;
 using TEdit.Scripting.Api;

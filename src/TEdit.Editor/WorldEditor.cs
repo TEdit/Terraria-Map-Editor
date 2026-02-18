@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using TEdit.Terraria;
 using TEdit.Editor.Undo;
 using TEdit.Geometry;
-using TEdit.Terraria;
 
 namespace TEdit.Editor;
 

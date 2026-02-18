@@ -175,6 +175,12 @@
   <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
     <value>오른쪽 위 경사면</value>
   </data>
+  <data name="BrushShape_Crescent" xml:space="preserve">
+    <value>초승달</value>
+  </data>
+  <data name="BrushShape_Donut" xml:space="preserve">
+    <value>도넛</value>
+  </data>
   <data name="BrushShape_Left" xml:space="preserve">
     <value>대각선 좌측</value>
   </data>
@@ -186,6 +192,12 @@
   </data>
   <data name="BrushShape_Square" xml:space="preserve">
     <value>직사각형</value>
+  </data>
+  <data name="BrushShape_Star" xml:space="preserve">
+    <value>스타</value>
+  </data>
+  <data name="BrushShape_Triangle" xml:space="preserve">
+    <value>삼각형</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>맥스</value>
@@ -338,6 +350,39 @@
   <data name="keybind_capture_title" xml:space="preserve">
     <value>키를 누르거나 마우스 버튼을 클릭하세요</value>
   </data>
+  <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
+    <value>80%</value>
+  </data>
+  <data name="LiquidAmountMode_FiftyPercent" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="LiquidAmountMode_FourtyPercent" xml:space="preserve">
+    <value>40%</value>
+  </data>
+  <data name="LiquidAmountMode_NinteyPercent" xml:space="preserve">
+    <value>90%</value>
+  </data>
+  <data name="LiquidAmountMode_OneHundredPercent" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="LiquidAmountMode_SeventyPercent" xml:space="preserve">
+    <value>70%</value>
+  </data>
+  <data name="LiquidAmountMode_SixtyPercent" xml:space="preserve">
+    <value>60%</value>
+  </data>
+  <data name="LiquidAmountMode_TenPercent" xml:space="preserve">
+    <value>10%</value>
+  </data>
+  <data name="LiquidAmountMode_ThirtyPercent" xml:space="preserve">
+    <value>30%</value>
+  </data>
+  <data name="LiquidAmountMode_TwentyPercent" xml:space="preserve">
+    <value>20%</value>
+  </data>
+  <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
+    <value>0%</value>
+  </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>여보</value>
   </data>
@@ -346,6 +391,9 @@
   </data>
   <data name="LiquidType_None" xml:space="preserve">
     <value>액체 없음</value>
+  </data>
+  <data name="LiquidType_Shimmer" xml:space="preserve">
+    <value>반짝임</value>
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
     <value>물</value>
@@ -778,6 +826,9 @@
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>액체</value>
+  </data>
+  <data name="PaintMode_Sprites" xml:space="preserve">
+    <value>스프라이트</value>
   </data>
   <data name="PaintMode_TileAndWall" xml:space="preserve">
     <value>타일/벽</value>
@@ -1374,6 +1425,12 @@
   <data name="tool_bestiary_title" xml:space="preserve">
     <value>베스티어리</value>
   </data>
+  <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
+    <value>플립 수평</value>
+  </data>
+  <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
+    <value>플립 버티컬</value>
+  </data>
   <data name="tool_brush_height_label" xml:space="preserve">
     <value>높이</value>
   </data>
@@ -1386,8 +1443,20 @@
   <data name="tool_brush_outline_tooltip" xml:space="preserve">
     <value>토글 드로우 아웃라인 (방)</value>
   </data>
+  <data name="tool_brush_rotation_label" xml:space="preserve">
+    <value>회전</value>
+  </data>
   <data name="tool_brush_shape_label" xml:space="preserve">
     <value>형태</value>
+  </data>
+  <data name="tool_brush_spray_density_label" xml:space="preserve">
+    <value>밀도</value>
+  </data>
+  <data name="tool_brush_spray_speed_label" xml:space="preserve">
+    <value>속도</value>
+  </data>
+  <data name="tool_brush_spray_tooltip" xml:space="preserve">
+    <value>분사 모드</value>
   </data>
   <data name="tool_brush_title" xml:space="preserve">
     <value>브러시</value>
@@ -2322,4 +2391,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>배경 갭 수정</value>
   </data>
-<data name="BrushShape_Star" xml:space="preserve"><value></value></data><data name="BrushShape_Triangle" xml:space="preserve"><value></value></data><data name="BrushShape_Crescent" xml:space="preserve"><value></value></data><data name="BrushShape_Donut" xml:space="preserve"><value></value></data><data name="tool_brush_rotation_label" xml:space="preserve"><value></value></data><data name="tool_brush_flip_h_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_flip_v_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_density_label" xml:space="preserve"><value></value></data><data name="tool_brush_spray_speed_label" xml:space="preserve"><value></value></data></root>
+<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>

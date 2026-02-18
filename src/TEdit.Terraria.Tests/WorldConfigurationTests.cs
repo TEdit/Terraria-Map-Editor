@@ -1,5 +1,3 @@
-using Xunit;
-using TEdit.Terraria;
 using System.Text.Json;
 using TEdit.Geometry;
 using TEdit.Common.Serialization;

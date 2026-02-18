@@ -1,11 +1,4 @@
-﻿using Avalonia.Controls;
-using Avalonia.Platform.Storage;
-using ReactiveUI.SourceGenerators;
-using System;
-using System.Reactive.Linq;
-using System.Threading.Tasks;
-using TEdit5.Controls.WorldRenderEngine;
-using TEdit5.Controls.WorldRenderEngine.Layers;
+﻿using TEdit5.Controls.WorldRenderEngine.Layers;
 using TEdit5.Services;
 
 namespace TEdit5.ViewModels;

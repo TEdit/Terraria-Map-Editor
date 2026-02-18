@@ -1,8 +1,4 @@
-﻿using System.Threading;
-using System.Reflection;
-using Terraria.ID;
-
-namespace SettingsFileUpdater.TerrariaHost
+﻿namespace SettingsFileUpdater.TerrariaHost
 {
     //public static class ColorExt
     //{

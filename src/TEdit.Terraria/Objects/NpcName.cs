@@ -1,6 +1,4 @@
-﻿using ReactiveUI;
-
-namespace TEdit.Terraria.Objects;
+﻿namespace TEdit.Terraria.Objects;
 
 public class NpcName : ReactiveObject
 {

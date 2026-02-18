@@ -1,5 +1,3 @@
-using TEdit.Geometry;
-
 namespace TEdit.Terraria;
 
 public partial class NPC : ReactiveObject

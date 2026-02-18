@@ -14,7 +14,6 @@ using TEdit.Common;
 using TEdit.Properties;
 using TEdit.Render;
 using TEdit.Terraria;
-using TEdit.Terraria.Objects;
 using TEdit.Terraria.Player;
 
 namespace TEdit.ViewModel;

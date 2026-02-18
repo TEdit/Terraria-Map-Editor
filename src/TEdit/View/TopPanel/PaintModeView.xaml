@@ -7,6 +7,7 @@
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"             
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d"
              d:Height="110"
              MinHeight="110"
@@ -127,11 +128,11 @@
   <Grid>
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical" >
-                <ToggleButton ToolTip="{x:Static p:Language.tool_paint_eraser_tooltip}" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2 0" BorderThickness="2" HorizontalAlignment="Left">
-                    <Image Source="../../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" />
+                <ToggleButton ToolTip="{x:Static p:Language.tool_paint_eraser_tooltip}" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="3" BorderThickness="2" HorizontalAlignment="Center" Padding="6">
+                    <ui:SymbolIcon Symbol="Eraser24" FontSize="24" />
                 </ToggleButton>
                 <TextBlock Text="{x:Static p:Language.tool_paint_mode}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
+                <ComboBox ItemsSource="{StaticResource PaintModeEnum}" Margin="2" 
                       SelectedValue="{Binding TilePicker.PaintMode}" 
                       SelectedValuePath="Value" MinWidth="100"
                       ItemTemplate="{StaticResource EnumTemplate}" />

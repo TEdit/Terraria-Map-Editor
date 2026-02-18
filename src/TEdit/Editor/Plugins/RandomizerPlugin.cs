@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using Microsoft.Xna.Framework;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Plugins;

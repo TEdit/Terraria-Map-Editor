@@ -8,9 +8,7 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Terraria;
 using TEdit.ViewModel;
-using YamlDotNet.Core;
 
 namespace TEdit.Editor.Undo;
 

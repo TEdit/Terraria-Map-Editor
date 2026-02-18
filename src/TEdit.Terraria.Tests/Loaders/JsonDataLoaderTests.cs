@@ -1,7 +1,5 @@
 using System.Text;
-using System.Text.Json;
 using Shouldly;
-using TEdit.Common.Serialization;
 using TEdit.Terraria.DataModel;
 using TEdit.Terraria.Loaders;
 using TEdit.Terraria.Objects;

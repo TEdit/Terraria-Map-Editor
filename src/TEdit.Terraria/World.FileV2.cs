@@ -1,13 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
-using System.Reflection.PortableExecutable;
 using TEdit.Common.Exceptions;
-using TEdit.Geometry;
 using TEdit.Helper;
 using TEdit.Utility;
 

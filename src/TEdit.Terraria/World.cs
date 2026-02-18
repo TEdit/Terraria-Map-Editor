@@ -17,7 +17,6 @@ public partial class World
     public static readonly string[] TeamNames = ["Red", "Green", "Blue", "Yellow", "Pink", "White"];
     public const int TeamCount = 6;
 
-    private SemaphoreSlim _fileSemaphore = new SemaphoreSlim(0, 1);
     private static readonly object _fileLock = new object();
 
     /// <summary>

@@ -412,6 +412,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crescent.
+        /// </summary>
+        public static string BrushShape_Crescent {
+            get {
+                return ResourceManager.GetString("BrushShape_Crescent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donut.
+        /// </summary>
+        public static string BrushShape_Donut {
+            get {
+                return ResourceManager.GetString("BrushShape_Donut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diagonal Left.
         /// </summary>
         public static string BrushShape_Left {
@@ -446,7 +464,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrushShape_Square", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Star.
         /// </summary>
@@ -455,7 +473,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrushShape_Star", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Triangle.
         /// </summary>
@@ -464,25 +482,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrushShape_Triangle", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Crescent.
-        /// </summary>
-        public static string BrushShape_Crescent {
-            get {
-                return ResourceManager.GetString("BrushShape_Crescent", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Donut.
-        /// </summary>
-        public static string BrushShape_Donut {
-            get {
-                return ResourceManager.GetString("BrushShape_Donut", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Max.
         /// </summary>
@@ -944,6 +944,105 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 80%.
+        /// </summary>
+        public static string LiquidAmountMode_EightyPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_EightyPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 50%.
+        /// </summary>
+        public static string LiquidAmountMode_FiftyPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_FiftyPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 40%.
+        /// </summary>
+        public static string LiquidAmountMode_FourtyPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_FourtyPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 90%.
+        /// </summary>
+        public static string LiquidAmountMode_NinteyPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_NinteyPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 100%.
+        /// </summary>
+        public static string LiquidAmountMode_OneHundredPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_OneHundredPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 70%.
+        /// </summary>
+        public static string LiquidAmountMode_SeventyPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_SeventyPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 60%.
+        /// </summary>
+        public static string LiquidAmountMode_SixtyPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_SixtyPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10%.
+        /// </summary>
+        public static string LiquidAmountMode_TenPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_TenPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30%.
+        /// </summary>
+        public static string LiquidAmountMode_ThirtyPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_ThirtyPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20%.
+        /// </summary>
+        public static string LiquidAmountMode_TwentyPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_TwentyPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0%.
+        /// </summary>
+        public static string LiquidAmountMode_ZeroPercent {
+            get {
+                return ResourceManager.GetString("LiquidAmountMode_ZeroPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Honey.
         /// </summary>
         public static string LiquidType_Honey {
@@ -967,6 +1066,15 @@ namespace TEdit.Properties {
         public static string LiquidType_None {
             get {
                 return ResourceManager.GetString("LiquidType_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shimmer.
+        /// </summary>
+        public static string LiquidType_Shimmer {
+            get {
+                return ResourceManager.GetString("LiquidType_Shimmer", resourceCulture);
             }
         }
         
@@ -2258,6 +2366,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sprites.
+        /// </summary>
+        public static string PaintMode_Sprites {
+            get {
+                return ResourceManager.GetString("PaintMode_Sprites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tile/Wall.
         /// </summary>
         public static string PaintMode_TileAndWall {
@@ -2348,15 +2465,6 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear.
-        /// </summary>
-        public static string player_editor_clear_slot {
-            get {
-                return ResourceManager.GetString("player_editor_clear_slot", resourceCulture);
-            }
-        }
-
-        /// <summary>
         ///   Looks up a localized string similar to Banks.
         /// </summary>
         public static string player_editor_banks {
@@ -2371,6 +2479,15 @@ namespace TEdit.Properties {
         public static string player_editor_buffs {
             get {
                 return ResourceManager.GetString("player_editor_buffs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Slot.
+        /// </summary>
+        public static string player_editor_clear_slot {
+            get {
+                return ResourceManager.GetString("player_editor_clear_slot", resourceCulture);
             }
         }
         
@@ -4024,6 +4141,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flip Horizontal.
+        /// </summary>
+        public static string tool_brush_flip_h_tooltip {
+            get {
+                return ResourceManager.GetString("tool_brush_flip_h_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Vertical.
+        /// </summary>
+        public static string tool_brush_flip_v_tooltip {
+            get {
+                return ResourceManager.GetString("tool_brush_flip_v_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Height.
         /// </summary>
         public static string tool_brush_height_label {
@@ -4060,11 +4195,47 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rotation.
+        /// </summary>
+        public static string tool_brush_rotation_label {
+            get {
+                return ResourceManager.GetString("tool_brush_rotation_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shape.
         /// </summary>
         public static string tool_brush_shape_label {
             get {
                 return ResourceManager.GetString("tool_brush_shape_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Density.
+        /// </summary>
+        public static string tool_brush_spray_density_label {
+            get {
+                return ResourceManager.GetString("tool_brush_spray_density_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed.
+        /// </summary>
+        public static string tool_brush_spray_speed_label {
+            get {
+                return ResourceManager.GetString("tool_brush_spray_speed_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spray Mode.
+        /// </summary>
+        public static string tool_brush_spray_tooltip {
+            get {
+                return ResourceManager.GetString("tool_brush_spray_tooltip", resourceCulture);
             }
         }
         
@@ -4085,61 +4256,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_brush_width_label", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Rotation.
-        /// </summary>
-        public static string tool_brush_rotation_label {
-            get {
-                return ResourceManager.GetString("tool_brush_rotation_label", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Flip Horizontal.
-        /// </summary>
-        public static string tool_brush_flip_h_tooltip {
-            get {
-                return ResourceManager.GetString("tool_brush_flip_h_tooltip", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Flip Vertical.
-        /// </summary>
-        public static string tool_brush_flip_v_tooltip {
-            get {
-                return ResourceManager.GetString("tool_brush_flip_v_tooltip", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Spray Mode.
-        /// </summary>
-        public static string tool_brush_spray_tooltip {
-            get {
-                return ResourceManager.GetString("tool_brush_spray_tooltip", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Density.
-        /// </summary>
-        public static string tool_brush_spray_density_label {
-            get {
-                return ResourceManager.GetString("tool_brush_spray_density_label", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Speed.
-        /// </summary>
-        public static string tool_brush_spray_speed_label {
-            get {
-                return ResourceManager.GetString("tool_brush_spray_speed_label", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Empty Clipboard.
         /// </summary>

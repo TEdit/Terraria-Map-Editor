@@ -1,7 +1,6 @@
 using System.Text.Json;
 using Shouldly;
 using TEdit.Common.Serialization;
-using TEdit.Geometry;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria.Tests.Objects;

@@ -24,17 +24,12 @@ using TEdit.Framework.Events;
 using TEdit.Framework.Threading;
 using System.Windows.Threading;
 using System.IO;
-using System.Diagnostics;
-using System.Xml.Linq;
 using TEdit.Configuration;
 using TEdit.Render;
 using TEdit.Terraria.Render;
 using TEdit.Geometry;
 using TEdit.Common;
 using TEdit.UI;
-using TEdit.View.Popups;
-using TEdit.Terraria.DataModel;
-using TEdit.Input;
 
 namespace TEdit.View;
 
@@ -6161,8 +6156,10 @@ public partial class WorldRenderXna : UserControl
         }
         else if (_wvm.ActiveTool.ToolType == ToolType.Brush)
         {
-            position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X - _wvm.Brush.OffsetX) * _zoom,
-                                   1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y - _wvm.Brush.OffsetY) * _zoom);
+            int offX = _wvm.ActiveTool.PreviewOffsetX >= 0 ? _wvm.ActiveTool.PreviewOffsetX : _wvm.Brush.OffsetX;
+            int offY = _wvm.ActiveTool.PreviewOffsetY >= 0 ? _wvm.ActiveTool.PreviewOffsetY : _wvm.Brush.OffsetY;
+            position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X - offX) * _zoom,
+                                   1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y - offY) * _zoom);
         }
         else
         {

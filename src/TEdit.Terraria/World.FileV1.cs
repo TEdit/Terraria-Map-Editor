@@ -1,14 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using TEdit.Geometry;
-using TEdit.Helper;
 using TEdit.Terraria.Objects;
 using TEdit.Utility;
-using Vector2 = TEdit.Geometry.Vector2Float;
 
 namespace TEdit.Terraria;
 

@@ -71,7 +71,7 @@ public static class ConsoleCompressor
     public static bool IsCompressed(FileStream stream)
     {
         byte[] magic = new byte[4];
-        stream.Read(magic, 0, 4);
+        stream.ReadExactly(magic, 0, 4);
         stream.Position = 0;
         return BitConverter.ToInt32(magic, 0) == 0x1AA2227E;
     }

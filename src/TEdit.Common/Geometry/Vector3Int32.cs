@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TEdit.Geometry;
+﻿namespace TEdit.Geometry;
 
 public struct Vector3Int32
 {

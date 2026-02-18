@@ -5,7 +5,6 @@ using TEdit.Editor;
 using TEdit.ViewModel;
 using TEdit.Geometry;
 using TEdit.Terraria;
-using SharpDX.Direct3D11;
 
 /* Heathtech */
 namespace TEdit.Render;

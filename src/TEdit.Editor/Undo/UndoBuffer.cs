@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Terraria;
 
 namespace TEdit.Editor.Undo;
 

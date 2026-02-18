@@ -14,7 +14,6 @@ using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
 using TEdit.Render;
 using TEdit.Terraria;
-using TEdit.Utility;
 
 namespace TEdit.ViewModel;
 

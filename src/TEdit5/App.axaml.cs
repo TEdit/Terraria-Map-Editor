@@ -3,7 +3,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using TEdit5.Controls.WorldRenderEngine;
 using TEdit5.Editor;
 using TEdit5.Services;
 using TEdit5.ViewModels;

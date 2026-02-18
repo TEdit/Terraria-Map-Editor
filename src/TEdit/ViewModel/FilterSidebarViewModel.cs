@@ -3,12 +3,10 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using Microsoft.Xna.Framework;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
 using TEdit.ViewModel.Shared;
-using Wpf.Ui.Controls;
 
 namespace TEdit.ViewModel;
 

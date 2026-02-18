@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using TEdit.Terraria;
-using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 using Wpf.Ui.Controls;
 

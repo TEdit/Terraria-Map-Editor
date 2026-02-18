@@ -1,6 +1,4 @@
 using System.Text;
-using System.Windows;
-using TEdit.Editor;
 using TEdit.Terraria;
 using Wpf.Ui.Controls;
 using Lang = TEdit.Properties.Language;

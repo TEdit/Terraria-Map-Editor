@@ -175,6 +175,12 @@
   <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
     <value>右上斜面</value>
   </data>
+  <data name="BrushShape_Crescent" xml:space="preserve">
+    <value>クレセント</value>
+  </data>
+  <data name="BrushShape_Donut" xml:space="preserve">
+    <value>ドーナツ</value>
+  </data>
   <data name="BrushShape_Left" xml:space="preserve">
     <value>斜め左翼</value>
   </data>
@@ -186,6 +192,12 @@
   </data>
   <data name="BrushShape_Square" xml:space="preserve">
     <value>長方形</value>
+  </data>
+  <data name="BrushShape_Star" xml:space="preserve">
+    <value>スター</value>
+  </data>
+  <data name="BrushShape_Triangle" xml:space="preserve">
+    <value>トライアングル</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>マックス</value>
@@ -338,6 +350,39 @@
   <data name="keybind_capture_title" xml:space="preserve">
     <value>キーを押すかマウスボタンをクリックする</value>
   </data>
+  <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
+    <value>80%</value>
+  </data>
+  <data name="LiquidAmountMode_FiftyPercent" xml:space="preserve">
+    <value>50%</value>
+  </data>
+  <data name="LiquidAmountMode_FourtyPercent" xml:space="preserve">
+    <value>40%</value>
+  </data>
+  <data name="LiquidAmountMode_NinteyPercent" xml:space="preserve">
+    <value>90%</value>
+  </data>
+  <data name="LiquidAmountMode_OneHundredPercent" xml:space="preserve">
+    <value>100%</value>
+  </data>
+  <data name="LiquidAmountMode_SeventyPercent" xml:space="preserve">
+    <value>70%</value>
+  </data>
+  <data name="LiquidAmountMode_SixtyPercent" xml:space="preserve">
+    <value>60%</value>
+  </data>
+  <data name="LiquidAmountMode_TenPercent" xml:space="preserve">
+    <value>10%</value>
+  </data>
+  <data name="LiquidAmountMode_ThirtyPercent" xml:space="preserve">
+    <value>30%</value>
+  </data>
+  <data name="LiquidAmountMode_TwentyPercent" xml:space="preserve">
+    <value>20%</value>
+  </data>
+  <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
+    <value>0%</value>
+  </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>ハニー</value>
   </data>
@@ -346,6 +391,9 @@
   </data>
   <data name="LiquidType_None" xml:space="preserve">
     <value>液体はなし</value>
+  </data>
+  <data name="LiquidType_Shimmer" xml:space="preserve">
+    <value>シマー</value>
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
     <value>水</value>
@@ -778,6 +826,9 @@
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液体</value>
+  </data>
+  <data name="PaintMode_Sprites" xml:space="preserve">
+    <value>スプライト</value>
   </data>
   <data name="PaintMode_TileAndWall" xml:space="preserve">
     <value>タイル/壁</value>
@@ -1374,6 +1425,12 @@
   <data name="tool_bestiary_title" xml:space="preserve">
     <value>動物誌</value>
   </data>
+  <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
+    <value>フリップ・ハイズナル</value>
+  </data>
+  <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
+    <value>フリップ・バーティカル</value>
+  </data>
   <data name="tool_brush_height_label" xml:space="preserve">
     <value>高さ</value>
   </data>
@@ -1386,8 +1443,20 @@
   <data name="tool_brush_outline_tooltip" xml:space="preserve">
     <value>トグルドローアウトライン(部屋)</value>
   </data>
+  <data name="tool_brush_rotation_label" xml:space="preserve">
+    <value>回転</value>
+  </data>
   <data name="tool_brush_shape_label" xml:space="preserve">
     <value>形状</value>
+  </data>
+  <data name="tool_brush_spray_density_label" xml:space="preserve">
+    <value>密度</value>
+  </data>
+  <data name="tool_brush_spray_speed_label" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="tool_brush_spray_tooltip" xml:space="preserve">
+    <value>スプレーモード</value>
   </data>
   <data name="tool_brush_title" xml:space="preserve">
     <value>ブラシ</value>
@@ -2322,4 +2391,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>バックグラウンドギャップの修正</value>
   </data>
-<data name="BrushShape_Star" xml:space="preserve"><value></value></data><data name="BrushShape_Triangle" xml:space="preserve"><value></value></data><data name="BrushShape_Crescent" xml:space="preserve"><value></value></data><data name="BrushShape_Donut" xml:space="preserve"><value></value></data><data name="tool_brush_rotation_label" xml:space="preserve"><value></value></data><data name="tool_brush_flip_h_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_flip_v_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_density_label" xml:space="preserve"><value></value></data><data name="tool_brush_spray_speed_label" xml:space="preserve"><value></value></data></root>
+<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>

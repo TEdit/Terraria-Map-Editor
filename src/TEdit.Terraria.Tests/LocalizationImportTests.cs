@@ -2,7 +2,6 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using TEdit.Terraria.DataModel;
-using Xunit;
 
 namespace TEdit.Terraria.Tests;
 

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Terraria;
 using System.Collections.Generic;
 using TEdit.Editor.Undo;
 using System;
@@ -12,7 +11,6 @@ namespace TEdit.Editor.Clipboard;
 
 public partial class ClipboardBuffer : ITileData
 {
-    private string _name;
     private Vector2Int32 _size;
 
     public ClipboardBuffer(

@@ -1,9 +1,7 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using TEdit.UI.Xaml.Dialog;
-using Wpf.Ui.Controls;
 
 namespace TEdit.Services;
 

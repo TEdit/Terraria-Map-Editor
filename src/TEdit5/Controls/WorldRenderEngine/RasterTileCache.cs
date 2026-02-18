@@ -1,8 +1,6 @@
 ﻿using SkiaSharp;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using TEdit.Common;
 
 namespace TEdit5.Controls.WorldRenderEngine;
 

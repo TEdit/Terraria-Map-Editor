@@ -1,6 +1,3 @@
-using ReactiveUI;
-using ReactiveUI.SourceGenerators;
-
 namespace TEdit.Terraria;
 
 public partial class BannerItem : ReactiveObject

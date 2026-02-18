@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TEdit.Terraria;
-using TEdit.Terraria;
 
 namespace TEdit.Editor;
 

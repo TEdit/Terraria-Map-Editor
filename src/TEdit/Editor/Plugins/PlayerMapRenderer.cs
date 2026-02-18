@@ -7,7 +7,6 @@ using Microsoft.Win32;
 
 using TEdit.Terraria;
 using TEdit.ViewModel;
-using TEdit.Terraria;
 
 using Color = Microsoft.Xna.Framework.Color;
 

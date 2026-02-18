@@ -198,11 +198,13 @@ public static class Fill
 
     public static IEnumerable<Vector2Int32> FillPolygon(IList<Vector2Int32> points)
     {
-        int pn = points.Count;
-        int pnh = points.Count >> 1;
-        int[] intersectionsX = new int[pnh];
+        if (points == null || points.Count < 3)
+            yield break;
 
-        // Find y min and max (slightly faster than scanning from 0 to height)
+        int pn = points.Count;
+        int[] intersectionsX = new int[pn]; // each edge can produce at most one intersection per scanline
+
+        // Find y min and max
         int yMin = int.MaxValue;
         int yMax = int.MinValue;
         for (int i = 0; i < pn; i++)
@@ -213,55 +215,44 @@ public static class Fill
         }
 
         // Scan line from min to max
+        // Based on http://alienryderflex.com/polygon_fill/
         for (int y = yMin; y <= yMax; y++)
         {
-            // Initial point x, y
-            float vxi = points[0].X;
-            float vyi = points[0].Y;
-
-            // Find all intersections
-            // Based on http://alienryderflex.com/polygon_fill/
             int intersectionCount = 0;
-            for (int i = 1; i < pn; i++)
-            {
-                // Next point x, y
-                float vxj = points[i].X;
-                float vyj = points[i].Y;
 
-                // Is the scanline between the two points
-                if (vyi < y && vyj >= y
-                 || vyj < y && vyi >= y)
+            // Walk all edges, including the closing edge (last → first)
+            int j = pn - 1;
+            for (int i = 0; i < pn; i++)
+            {
+                float yi = points[i].Y;
+                float yj = points[j].Y;
+
+                if ((yi < y && yj >= y) || (yj < y && yi >= y))
                 {
-                    // Compute the intersection of the scanline with the edge (line between two points)
-                    intersectionsX[intersectionCount++] = (int)(vxi + (y - vyi) / (vyj - vyi) * (vxj - vxi));
+                    float xi = points[i].X;
+                    float xj = points[j].X;
+                    intersectionsX[intersectionCount++] = (int)(xi + (y - yi) / (yj - yi) * (xj - xi));
                 }
-                vxi = vxj;
-                vyi = vyj;
+                j = i;
             }
 
-            // Sort the intersections from left to right using Insertion sort 
-            // It's faster than Array.Sort for this small data set
-            int t, j;
+            // Insertion sort
             for (int i = 1; i < intersectionCount; i++)
             {
-                t = intersectionsX[i];
-                j = i;
-                while (j > 0 && intersectionsX[j - 1] > t)
+                int t = intersectionsX[i];
+                int k = i;
+                while (k > 0 && intersectionsX[k - 1] > t)
                 {
-                    intersectionsX[j] = intersectionsX[j - 1];
-                    j = j - 1;
+                    intersectionsX[k] = intersectionsX[k - 1];
+                    k--;
                 }
-                intersectionsX[j] = t;
+                intersectionsX[k] = t;
             }
 
-            // Fill the pixels between the intersections
+            // Fill between pairs of intersections
             for (int i = 0; i < intersectionCount - 1; i += 2)
             {
-                int x0 = intersectionsX[i];
-                int x1 = intersectionsX[i + 1];
-
-                // Fill the pixels
-                for (int x = x0; x <= x1; x++)
+                for (int x = intersectionsX[i]; x <= intersectionsX[i + 1]; x++)
                 {
                     yield return new Vector2Int32(x, y);
                 }
@@ -282,7 +273,12 @@ public static class Fill
     public static IEnumerable<Vector2Int32> FillStarCentered(Vector2Int32 center, int outerRadius, int innerRadius, int numPoints = 5)
     {
         if (outerRadius <= 0 || numPoints < 3) { yield return center; yield break; }
-        if (innerRadius <= 0) innerRadius = outerRadius / 2;
+        if (innerRadius <= 0)
+        {
+            // Default to true {n/2} star polygon (pentagram for n=5)
+            // where edges pass through opposite vertices
+            innerRadius = (int)(outerRadius * Math.Cos(2 * Math.PI / numPoints) / Math.Cos(Math.PI / numPoints));
+        }
 
         var vertices = new Vector2Int32[numPoints * 2];
         double angleStep = Math.PI / numPoints;
@@ -305,9 +301,15 @@ public static class Fill
     {
         if (halfWidth <= 0 || halfHeight <= 0) { yield return center; yield break; }
 
-        var top = new Vector2Int32(center.X, center.Y - halfHeight);
-        var bottomLeft = new Vector2Int32(center.X - halfWidth, center.Y + halfHeight);
-        var bottomRight = new Vector2Int32(center.X + halfWidth, center.Y + halfHeight);
+        // Equilateral triangle: height = halfWidth * sqrt(3) for 60-degree angles
+        int eqHeight = (int)Math.Round(halfWidth * Math.Sqrt(3));
+        // Centroid is at 1/3 from base, 2/3 from apex
+        int apexY = center.Y - eqHeight * 2 / 3;
+        int baseY = center.Y + eqHeight / 3;
+
+        var top = new Vector2Int32(center.X, apexY);
+        var bottomLeft = new Vector2Int32(center.X - halfWidth, baseY);
+        var bottomRight = new Vector2Int32(center.X + halfWidth, baseY);
 
         foreach (var p in FillTriangle(top, bottomLeft, bottomRight))
             yield return p;
@@ -353,29 +355,101 @@ public static class Fill
         double angleDegrees, bool flipX, bool flipY)
     {
         bool needsRotation = Math.Abs(angleDegrees) > 0.01;
+        bool needsFlip = flipX || flipY;
+
+        // Flip-only: simple forward transform (no gaps possible)
+        if (!needsRotation)
+        {
+            foreach (var p in points)
+            {
+                int dx = p.X - center.X;
+                int dy = p.Y - center.Y;
+                if (flipX) dx = -dx;
+                if (flipY) dy = -dy;
+                yield return new Vector2Int32(center.X + dx, center.Y + dy);
+            }
+            yield break;
+        }
+
+        // Rotation: use inverse mapping to avoid gaps.
+        // Collect source points into a bitmask, find bounding box,
+        // compute output bounding box, then for each output pixel
+        // apply inverse transform and check if source pixel exists.
+        var sourceList = points as IList<Vector2Int32> ?? points.ToList();
+        if (sourceList.Count == 0) yield break;
+
+        int srcMinX = int.MaxValue, srcMinY = int.MaxValue;
+        int srcMaxX = int.MinValue, srcMaxY = int.MinValue;
+        foreach (var p in sourceList)
+        {
+            if (p.X < srcMinX) srcMinX = p.X;
+            if (p.X > srcMaxX) srcMaxX = p.X;
+            if (p.Y < srcMinY) srcMinY = p.Y;
+            if (p.Y > srcMaxY) srcMaxY = p.Y;
+        }
+
+        int srcW = srcMaxX - srcMinX + 1;
+        int srcH = srcMaxY - srcMinY + 1;
+        var srcMask = new bool[srcW * srcH];
+        foreach (var p in sourceList)
+        {
+            srcMask[(p.X - srcMinX) + (p.Y - srcMinY) * srcW] = true;
+        }
+
+        // Compute output bounding box by transforming source bbox corners
         double rad = angleDegrees * Math.PI / 180.0;
         double cos = Math.Cos(rad);
         double sin = Math.Sin(rad);
 
-        foreach (var p in points)
+        int outMinX = int.MaxValue, outMinY = int.MaxValue;
+        int outMaxX = int.MinValue, outMaxY = int.MinValue;
+        int[] cornerXs = { srcMinX, srcMaxX, srcMinX, srcMaxX };
+        int[] cornerYs = { srcMinY, srcMinY, srcMaxY, srcMaxY };
+        for (int c = 0; c < 4; c++)
         {
-            double dx = p.X - center.X;
-            double dy = p.Y - center.Y;
-
+            double dx = cornerXs[c] - center.X;
+            double dy = cornerYs[c] - center.Y;
             if (flipX) dx = -dx;
             if (flipY) dy = -dy;
+            int ox = center.X + (int)Math.Round(dx * cos - dy * sin);
+            int oy = center.Y + (int)Math.Round(dx * sin + dy * cos);
+            if (ox < outMinX) outMinX = ox;
+            if (ox > outMaxX) outMaxX = ox;
+            if (oy < outMinY) outMinY = oy;
+            if (oy > outMaxY) outMaxY = oy;
+        }
 
-            if (needsRotation)
+        // Inverse transform: reverse rotation then reverse flip
+        // Forward: flip → rotate.  Inverse: unrotate → unflip.
+        double invCos = Math.Cos(-rad);
+        double invSin = Math.Sin(-rad);
+
+        for (int oy = outMinY; oy <= outMaxY; oy++)
+        {
+            for (int ox = outMinX; ox <= outMaxX; ox++)
             {
-                double rx = dx * cos - dy * sin;
-                double ry = dx * sin + dy * cos;
-                dx = rx;
-                dy = ry;
-            }
+                double dx = ox - center.X;
+                double dy = oy - center.Y;
 
-            yield return new Vector2Int32(
-                center.X + (int)Math.Round(dx),
-                center.Y + (int)Math.Round(dy));
+                // Inverse rotation
+                double rx = dx * invCos - dy * invSin;
+                double ry = dx * invSin + dy * invCos;
+
+                // Inverse flip
+                if (flipX) rx = -rx;
+                if (flipY) ry = -ry;
+
+                int sx = center.X + (int)Math.Round(rx);
+                int sy = center.Y + (int)Math.Round(ry);
+
+                // Check if source pixel exists
+                int lx = sx - srcMinX;
+                int ly = sy - srcMinY;
+                if (lx >= 0 && lx < srcW && ly >= 0 && ly < srcH && srcMask[lx + ly * srcW])
+                {
+                    yield return new Vector2Int32(ox, oy);
+                }
+            }
         }
     }
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TEdit.Common;
 using TEdit.Geometry;
 using TEdit.Terraria;
-using TEdit.Terraria.Objects;
 
 namespace TEdit.Render;
 

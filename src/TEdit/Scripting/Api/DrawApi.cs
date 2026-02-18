@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TEdit.Common.Geometry;
@@ -6,7 +5,6 @@ using TEdit.Editor;
 using TEdit.Editor.Undo;
 using TEdit.Geometry;
 using TEdit.Terraria;
-using GeomFill = TEdit.Geometry.Fill;
 
 namespace TEdit.Scripting.Api;
 

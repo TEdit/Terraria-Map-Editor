@@ -2,7 +2,6 @@
 using System.IO;
 using TEdit.Terraria;
 using TEdit.Geometry;
-using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Editor.Clipboard;

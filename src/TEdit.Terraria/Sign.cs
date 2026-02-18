@@ -21,8 +21,6 @@ public partial class Sign : ReactiveObject
     [Reactive]
     private string _name = string.Empty;
 
-    private int _signId = -1;
-
     [Reactive]
     private string _text;
 

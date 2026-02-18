@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Xml.Linq;
 using TEdit.Geometry;
 using TEdit.Terraria.Objects;
 using TEdit.Utility;

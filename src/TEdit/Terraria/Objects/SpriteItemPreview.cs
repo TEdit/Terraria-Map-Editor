@@ -3,7 +3,6 @@ using System.Reactive.Linq;
 using System.Windows.Media.Imaging;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
-using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria.Objects;
 
