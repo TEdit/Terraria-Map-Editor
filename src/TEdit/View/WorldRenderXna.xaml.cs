@@ -69,6 +69,7 @@ public partial class WorldRenderXna : UserControl
 
     private Color _backgroundColor = Color.FromNonPremultiplied(32, 32, 32, 255);
     private readonly GameTimer _gameTimer;
+    private System.Timers.Timer _viewStateSaveTimer;
     private readonly WorldViewModel _wvm;
     private bool _isMiddleMouseDown;
     private bool _keyboardPan;
@@ -503,11 +504,20 @@ public partial class WorldRenderXna : UserControl
         _wvm.RequestPanEvent += _wvm_RequestPan;
         _wvm.RequestScrollEvent += _wvm_RequestScroll;
 
+        // Save camera position periodically (every 30 seconds)
+        _viewStateSaveTimer = new System.Timers.Timer(30000);
+        _viewStateSaveTimer.Elapsed += (s, e) => SaveViewState();
+        _viewStateSaveTimer.AutoReset = true;
+        _viewStateSaveTimer.Start();
+
         // Cancel background texture loading and preview timer when control is unloaded
         Unloaded += (s, e) =>
         {
             _textureLoadCancellation?.Cancel();
             _previewProcessingTimer?.Stop();
+            _viewStateSaveTimer?.Stop();
+            SaveViewState();
+            WorldViewStateManager.Flush();
         };
     }
 
@@ -617,6 +627,15 @@ public partial class WorldRenderXna : UserControl
             -tileX + (float)((mouseX) / _zoom) - 0.5f,
             -tileY + (float)((mouseY) / _zoom) - 0.5f);
         ClampScroll();
+    }
+
+    private void SaveViewState()
+    {
+        if (_wvm.CurrentFile != null)
+        {
+            WorldViewStateManager.SaveState(_wvm.CurrentFile, _scrollPosition.X, _scrollPosition.Y, _zoom);
+            WorldViewStateManager.Flush();
+        }
     }
 
     public void CenterOnTile(int x, int y)
@@ -2498,7 +2517,7 @@ public partial class WorldRenderXna : UserControl
         // NOTE: Texture queue processing is now handled by DispatcherTimer (StartPreviewProcessing)
         // to avoid blocking render frames. The timer runs on UI thread with Background priority.
 
-        // Clear all filters and center on spawn when the world changes.
+        // Clear all filters and restore camera when the world changes.
         if (_wvm.CurrentWorld != _lastRenderedWorld)
         {
             FilterManager.ClearAll();
@@ -2506,7 +2525,21 @@ public partial class WorldRenderXna : UserControl
 
             if (_wvm.CurrentWorld != null)
             {
-                CenterOnTile(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY);
+                // Restore saved camera position, or center on spawn for new worlds
+                var savedState = _wvm.CurrentFile != null
+                    ? WorldViewStateManager.GetState(_wvm.CurrentFile)
+                    : null;
+
+                if (savedState != null)
+                {
+                    _zoom = savedState.Zoom;
+                    _scrollPosition = new Vector2(savedState.ScrollX, savedState.ScrollY);
+                    ClampScroll();
+                }
+                else
+                {
+                    CenterOnTile(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY);
+                }
             }
 
             _lastRenderedWorld = _wvm.CurrentWorld;
