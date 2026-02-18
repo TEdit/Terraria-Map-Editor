@@ -937,7 +937,7 @@
     <value>增益</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value></value>
+    <value>清空槽</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>难度</value>
@@ -1467,6 +1467,12 @@
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEdit 错误报告</value>
+  </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>正在后台加载瓷砖和墙壁纹理。加载完成后，地图渲染性能将会提高。</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>纹理加载</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>分析</value>
@@ -2463,5 +2469,8 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>不再显示</value>
   </data>
 </root>

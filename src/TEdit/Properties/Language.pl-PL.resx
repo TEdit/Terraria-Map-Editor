@@ -937,7 +937,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Buffy</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value></value>
+    <value>Clear Slot</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Poziom Trudności</value>
@@ -1467,6 +1467,12 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>Raportowanie błędów TEdit</value>
+  </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>Tekstury płytek i ścian ładują się w tle. Wydajność renderowania mapy poprawi się po zakończeniu ładowania.</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>Ładowanie tekstur</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analiza</value>
@@ -2463,5 +2469,8 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>Nie pokazuj ponownie</value>
   </data>
 </root>

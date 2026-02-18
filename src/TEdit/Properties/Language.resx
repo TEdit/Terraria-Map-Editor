@@ -1468,6 +1468,12 @@ Would you like to enable error reporting?</value>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEdit Error Reporting</value>
   </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>Tile and wall textures are loading in the background. Map rendering performance will improve once loading is complete.</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>Textures Loading</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analyze</value>
   </data>
@@ -2467,4 +2473,4 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-</root>
+<data name="texture_loading_do_not_show" xml:space="preserve"><value>Do not show again</value></data></root>

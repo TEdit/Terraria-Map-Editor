@@ -937,7 +937,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Mejoras</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value></value>
+    <value>Ranura transparente</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Dificultad</value>
@@ -1467,6 +1467,12 @@ Qué NO se recopila:
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>Informe de errores de TEdit</value>
+  </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>Las texturas de los azulejos y las paredes se están cargando en segundo plano. El rendimiento de la representación del mapa mejorará una vez que la carga esté completa.</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>Carga de texturas</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analizar</value>
@@ -2463,5 +2469,8 @@ Qué NO se recopila:
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar fondo</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>No volver a mostrar</value>
   </data>
 </root>

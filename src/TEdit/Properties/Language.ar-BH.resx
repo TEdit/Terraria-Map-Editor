@@ -937,7 +937,7 @@
     <value>المؤثرات</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value></value>
+    <value>فتحة خالية</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>حرج</value>
@@ -1467,6 +1467,12 @@
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>تقرير أخطاء TEdit</value>
+  </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>تجري تحميل قوام البلاط والجدران في الخلفية. ستتحسن أداء رسم الخريطة بمجرد اكتمال التحميل.</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>تحميل القوام</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>حلل</value>
@@ -2463,5 +2469,8 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>لا تظهر مرة أخرى</value>
   </data>
 </root>

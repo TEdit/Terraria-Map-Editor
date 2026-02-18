@@ -4051,6 +4051,33 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do not show again.
+        /// </summary>
+        public static string texture_loading_do_not_show {
+            get {
+                return ResourceManager.GetString("texture_loading_do_not_show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile and wall textures are loading in the background. Map rendering performance will improve once loading is complete..
+        /// </summary>
+        public static string texture_loading_message {
+            get {
+                return ResourceManager.GetString("texture_loading_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textures Loading.
+        /// </summary>
+        public static string texture_loading_title {
+            get {
+                return ResourceManager.GetString("texture_loading_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analyze.
         /// </summary>
         public static string tool_analyze_analyze_button {

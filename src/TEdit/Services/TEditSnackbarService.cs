@@ -86,20 +86,32 @@ public class TEditSnackbarService
         SymbolRegular icon = SymbolRegular.Info24,
         TimeSpan? timeout = null)
     {
+        ShowContent(title, (object)message, appearance, icon, timeout);
+    }
+
+    /// <summary>
+    /// Shows a notification with custom content (e.g. a panel with a checkbox).
+    /// </summary>
+    public void ShowContent(
+        string title,
+        object content,
+        ControlAppearance appearance = ControlAppearance.Secondary,
+        SymbolRegular icon = SymbolRegular.Info24,
+        TimeSpan? timeout = null)
+    {
         if (_snackbar == null || _snackbarPresenter == null)
         {
-            // Fallback: log to debug output if snackbar not initialized
-            System.Diagnostics.Debug.WriteLine($"[Snackbar] {title}: {message}");
+            System.Diagnostics.Debug.WriteLine($"[Snackbar] {title}: {content}");
             return;
         }
 
         Dispatcher.InvokeAsync(() =>
         {
             _snackbar.SetCurrentValue(Snackbar.TitleProperty, title);
-            _snackbar.SetCurrentValue(System.Windows.Controls.ContentControl.ContentProperty, message);
+            _snackbar.SetCurrentValue(System.Windows.Controls.ContentControl.ContentProperty, content);
             _snackbar.SetCurrentValue(Snackbar.AppearanceProperty, appearance);
             _snackbar.SetCurrentValue(Snackbar.IconProperty, new SymbolIcon(icon));
-            _snackbar.SetCurrentValue(Snackbar.TimeoutProperty, (int)(timeout ?? DefaultTimeout).TotalMilliseconds);
+            _snackbar.SetCurrentValue(Snackbar.TimeoutProperty, timeout ?? DefaultTimeout);
             _snackbar.Show();
         });
     }

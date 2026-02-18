@@ -937,7 +937,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Buffs</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value></value>
+    <value>Freier Slot</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Fortschritt</value>
@@ -1467,6 +1467,12 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEdit Fehlerberichterstattung</value>
+  </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>Die Kachel- und Wandtexturen werden im Hintergrund geladen. Die Leistung der Kartenanzeige verbessert sich, sobald das Laden abgeschlossen ist.</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>Texturen-Laden</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analysieren</value>
@@ -2463,5 +2469,8 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>Nicht erneut anzeigen</value>
   </data>
 </root>

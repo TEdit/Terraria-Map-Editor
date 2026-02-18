@@ -95,6 +95,12 @@ public partial class MainWindow : FluentWindow
         // WPF airspace issues with the DirectX/XNA WorldRenderXna control
         App.SnackbarService.SetSnackbarPresenter(SnackbarPresenter);
 
+        // Show texture loading notice if user hasn't dismissed it
+        if (UserSettingsService.Current.ShowTextureLoadingNotice)
+        {
+            ShowTextureLoadingNotice();
+        }
+
         // Set up navigation delegates for Find sidebar
         _vm.ZoomFocus = ZoomFocus;
         _vm.PanTo = PanTo;
@@ -700,6 +706,32 @@ public partial class MainWindow : FluentWindow
         sidePanelColumn.MinWidth = 50;
         SidePanelSplitter.IsEnabled = false;
         _isSidePanelCollapsed = true;
+    }
+
+    private void ShowTextureLoadingNotice()
+    {
+        var panel = new System.Windows.Controls.StackPanel();
+        panel.Children.Add(new System.Windows.Controls.TextBlock
+        {
+            Text = Properties.Language.texture_loading_message,
+            TextWrapping = TextWrapping.Wrap
+        });
+
+        var checkbox = new System.Windows.Controls.CheckBox
+        {
+            Content = Properties.Language.texture_loading_do_not_show,
+            Margin = new Thickness(0, 8, 0, 0)
+        };
+        checkbox.Checked += (_, _) => UserSettingsService.Current.ShowTextureLoadingNotice = false;
+        checkbox.Unchecked += (_, _) => UserSettingsService.Current.ShowTextureLoadingNotice = true;
+        panel.Children.Add(checkbox);
+
+        App.SnackbarService.ShowContent(
+            Properties.Language.texture_loading_title,
+            panel,
+            Wpf.Ui.Controls.ControlAppearance.Success,
+            Wpf.Ui.Controls.SymbolRegular.Empty,
+            TimeSpan.FromSeconds(30));
     }
 
     private void SidePanelTabs_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

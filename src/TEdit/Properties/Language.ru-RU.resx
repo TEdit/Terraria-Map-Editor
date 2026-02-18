@@ -937,7 +937,7 @@
     <value>Баффы</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value></value>
+    <value>Свободный слот</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Сложность</value>
@@ -1467,6 +1467,12 @@
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>Отчет об ошибках TEdit</value>
+  </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>Текстуры плитки и стен загружаются в фоновом режиме. Производительность рендеринга карты улучшится после завершения загрузки.</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>Загрузка текстур</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Анализ</value>
@@ -2463,5 +2469,8 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>Больше не показывать</value>
   </data>
 </root>

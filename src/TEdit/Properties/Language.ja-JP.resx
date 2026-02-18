@@ -867,7 +867,7 @@
     <value>バフ</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value></value>
+    <value>スロットクリア</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>難易度</value>
@@ -1397,6 +1397,12 @@
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEditエラー報告</value>
+  </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>タイルと壁のテクスチャがバックグラウンドで読み込まれています。読み込みが完了すると、マップのレンダリングパフォーマンスが向上します。</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>テクスチャの読み込み</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>分析</value>
@@ -2393,5 +2399,8 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>バックグラウンドギャップの修正</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>再表示しない</value>
   </data>
 </root>

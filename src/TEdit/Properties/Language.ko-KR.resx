@@ -867,7 +867,7 @@
     <value>버프</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value></value>
+    <value>슬롯 비어</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>난이도</value>
@@ -1397,6 +1397,12 @@
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEdit 오류 보고</value>
+  </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>타일과 벽 텍스처가 배경에서 로딩되고 있습니다. 로딩이 완료되면 맵 렌더링 성능이 향상됩니다.</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>텍스처 로딩</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>분석</value>
@@ -2393,5 +2399,8 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>배경 갭 수정</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>다시 표시하지 않기</value>
   </data>
 </root>

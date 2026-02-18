@@ -937,7 +937,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Buffs</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value></value>
+    <value>Clear Slot</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Difficulty</value>
@@ -1467,6 +1467,12 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEdit Error Reporting</value>
+  </data>
+  <data name="texture_loading_message" xml:space="preserve">
+    <value>Tile and wall textures are loading in the background. Map rendering performance will improve once loading is complete.</value>
+  </data>
+  <data name="texture_loading_title" xml:space="preserve">
+    <value>Textures Loading</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analyze</value>
@@ -2463,5 +2469,8 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>Do not show again</value>
   </data>
 </root>
