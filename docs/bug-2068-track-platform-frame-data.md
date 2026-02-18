@@ -127,8 +127,8 @@ Platform framing logic at WorldGen.cs lines 67010-67071:
 3. Assign `frameX` from ~23 possible values (0, 18, 36, 54, 72, 90, ...)
 
 **Frame encoding:**
-- `frameX` = connection pattern × 18px (dynamic, recomputed by TileFrame)
-- `frameY` = style × 18px (persistent, set at placement)
+- `frameX` = connection pattern (dynamic, recomputed by TileFrame every time neighbors change)
+- `frameY` = style × 18px (persistent, set at placement, MUST be preserved)
 
 **Placement** (WorldGen.cs line 46214):
 ```csharp
@@ -139,7 +139,25 @@ case 19:
     // frameX starts at 0, computed by TileFrame()
 ```
 
+**Style recovery:** `style = frameY / 18` (e.g., style 0 = Wood at frameY=0, style 23 = Mushroom at frameY=414)
+
+**Platform frameX values** (connection topology, computed by TileFrame):
+
+| frameX | Connection Pattern |
+|--------|-------------------|
+| 0 | Both sides connected (middle segment) |
+| 18 | Left connected, right end cap |
+| 36 | Right connected, slope-right hint |
+| 54 | Right connected only (left end cap) |
+| 72 | Left connected only |
+| 90 | Isolated (no same-type neighbors) |
+| 108 | Left connected, nothing on right |
+| 126 | Neither side connected |
+| 144-468 | Various slope/stair combinations |
+
 **Key insight:** `frameX` is always recomputed from neighbors — only `frameY` (style) matters for persistence. TEdit setting U=-1, V=-1 loses the style. Setting V=0 would preserve wood platform style, but all other styles would be wrong.
+
+**Connection logic:** All types in `TileID.Sets.Platforms[]` share identical framing code. Neighbor platforms of any style are treated as "connected" for topology purposes.
 
 ### Minecart Track Framing (Minecart.cs)
 
@@ -150,12 +168,33 @@ case 19:
 **Frame ID ranges:**
 | Range | Type | Notes |
 |-------|------|-------|
-| 0-17 | Normal tracks | Various shapes/slopes |
-| 18-23 | Pressure plate variants | `_trackType[id] == 1` |
+| 0 | Isolated horizontal | No connections on either side |
+| 1 | Flat connected | Connected both sides at middle |
+| 2-3 | Half-tile ramps | Open on one side |
+| 4-9 | Slopes (gentle, steep, full) | Various ramp angles |
+| 10-13 | Partial slopes | Connected one side only |
+| 14-15 | End caps / bumpers | One-sided with middle connection |
+| 16-17 | Steep slope ends | One-sided with top connection |
+| 18-23 | Pressure plate variants | `_trackType[id] == 1`, `IsPressurePlate` checks frameX==20 or 21 |
 | 24-35 | Booster variants | `_trackType[id] == 2` |
-| 36-39 | Decoration frames | Bumpers, endcaps |
+| 36-39 | Decoration frames | LeftDownDeco, RightDownDeco, BouncyBumper, RegularBumper |
 
-**UV is indirect:** `_texturePosition[frameX]` maps frame ID to pixel coordinates in spritesheet. TEdit's `TrackUV()` should match this table.
+**Connection values per frame:**
+- `-1` = No connection (open/bumper end)
+- `0` = Connects to tile above (TopConnection)
+- `1` = Connects at same row (MiddleConnection)
+- `2` = Connects to tile below (BottomConnection)
+
+**UV is indirect:** `_texturePosition[frameX]` maps frame ID to pixel coordinates in spritesheet. TEdit's `TrackUV()` should match this table. frameX is NOT a pixel offset — it's an index into lookup arrays.
+
+**Initial placement:**
+```
+style 0: frameX = -1 (uninitialized, let FrameTrack pick)
+style 1: frameX = 20 (first pressure plate frame)
+style 2: frameX = ~24 (first left booster)
+style 3: frameX = ~28 (first right booster)
+frameY always starts at -1 (no switch alternate)
+```
 
 **Placement** (Minecart.PlaceTrack, line 1338):
 ```csharp
