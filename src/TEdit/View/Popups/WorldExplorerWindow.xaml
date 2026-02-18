@@ -45,7 +45,7 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="" Width="50">
+                    <GridViewColumn Header="" Width="75">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -64,6 +64,32 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
+                                    <Button Click="ToggleFavorite_Click" Tag="{Binding}"
+                                            Background="Transparent" BorderThickness="0"
+                                            Padding="2" FontSize="14" Cursor="Hand"
+                                            ToolTip="Toggle Favorite">
+                                        <TextBlock Text="{Binding IsFavorite, Converter={x:Static vm:FavoriteIconConverter.Instance}}">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsFavorite}" Value="True">
+                                                            <Setter Property="Foreground" Value="Red" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsMissing}" Value="True">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
                                     <Button Click="TogglePin_Click" Tag="{Binding}"
                                             Background="Transparent" BorderThickness="0"
                                             Padding="2" FontSize="14" Cursor="Hand">

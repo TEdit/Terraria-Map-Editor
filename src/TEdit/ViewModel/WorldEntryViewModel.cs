@@ -77,7 +77,8 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
     public int TilesHigh { get; }
     public DateTime LastModified { get; }
     public long FileSizeBytes { get; }
-    public bool IsFavorite { get; }
+    [Reactive]
+    private bool _isFavorite;
     public bool IsTModLoader { get; }
     public bool IsCrimson { get; }
     public int GameMode { get; }

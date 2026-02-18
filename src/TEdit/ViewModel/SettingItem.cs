@@ -107,6 +107,17 @@ public class PinIconConverter : IValueConverter
         throw new NotSupportedException();
 }
 
+public class FavoriteIconConverter : IValueConverter
+{
+    public static readonly FavoriteIconConverter Instance = new();
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
+        value is true ? "\u2764" : "\u2661"; // ❤ vs ♡
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}
+
 public class ExpandIconConverter : IValueConverter
 {
     public static readonly ExpandIconConverter Instance = new();

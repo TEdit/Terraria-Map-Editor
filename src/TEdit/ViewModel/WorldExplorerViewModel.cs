@@ -284,6 +284,23 @@ public partial class WorldExplorerViewModel
         if (entry != null) entry.IsPinned = false;
     }
 
+    public void ToggleFavorite(WorldEntryViewModel entry)
+    {
+        if (entry == null || entry.IsMissing || string.IsNullOrEmpty(entry.FilePath))
+            return;
+
+        try
+        {
+            bool newValue = !entry.IsFavorite;
+            WorldHeaderPatcher.SetFavorite(entry.FilePath, newValue);
+            entry.IsFavorite = newValue;
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+    }
+
     public void DeleteBackup(BackupEntryViewModel backup)
     {
         if (backup == null) return;

@@ -199,6 +199,14 @@ public partial class WorldExplorerWindow : FluentWindow
         }
     }
 
+    private void ToggleFavorite_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: WorldEntryViewModel entry })
+        {
+            _vm.ToggleFavorite(entry);
+        }
+    }
+
     private void CreateBackup_Click(object sender, RoutedEventArgs e)
     {
         if (sender is Button { Tag: WorldEntryViewModel entry })
