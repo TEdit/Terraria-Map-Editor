@@ -2778,10 +2778,14 @@ public partial class WorldRenderXna : UserControl
                         bool isWomannequin = frameIndex % 2 != 0;
                         SpriteEffects dollEffect = isWomannequin ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-                        // TODO: DrawDollBody disabled — equipment doesn't follow pose yet
-                        // int skinVariant = isWomannequin ? 11 : 10;
-                        // bool isFemale = isWomannequin;
-                        // DrawDollBody(x, y, skinVariant, isFemale, te.Pose, dollEffect);
+                        // Draw body skin under armor
+                        int skinVariant = isWomannequin ? 11 : 10;
+                        bool isFemale = isWomannequin;
+                        DrawDollBody(x, y, skinVariant, isFemale, te.Pose, dollEffect);
+
+                        // Get pose-adjusted frame offsets for armor textures
+                        var (bodyFrameY, legFrameY, yPixelOffset) = GetDollPoseFrames(te.Pose);
+                        float poseYOff = yPixelOffset * _zoom / 16f;
 
                         // Render head (Items[0])
                         var headItem = te.Items.Count > 0 ? te.Items[0] : null;
@@ -2794,16 +2798,19 @@ public partial class WorldRenderXna : UserControl
                                 tileTex = (Texture2D)_textureDictionary.GetArmorHead(headSlot.Value);
                                 if (tileTex != null && tileTex != _textureDictionary.DefaultTexture)
                                 {
-                                    source = new Rectangle(2, 0, 36, 36);
-                                    dest = new Rectangle(
-                                        1 + (int)((_scrollPosition.X + x) * _zoom),
-                                        1 + (int)((_scrollPosition.Y + y) * _zoom),
-                                        (int)_zoom, (int)_zoom);
-                                    dest.Width = (int)(_zoom * source.Width / 16f);
-                                    dest.Height = (int)(_zoom * source.Height / 16f);
-                                    dest.Y += (int)(((16 - source.Height - 4) / 2F) * _zoom / 16);
-                                    dest.X -= (int)(2 * _zoom / 16);
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                    source = new Rectangle(2, bodyFrameY, 36, 36);
+                                    if (source.Bottom <= tileTex.Height)
+                                    {
+                                        dest = new Rectangle(
+                                            1 + (int)((_scrollPosition.X + x) * _zoom),
+                                            1 + (int)((_scrollPosition.Y + y) * _zoom),
+                                            (int)_zoom, (int)_zoom);
+                                        dest.Width = (int)(_zoom * source.Width / 16f);
+                                        dest.Height = (int)(_zoom * source.Height / 16f);
+                                        dest.Y += (int)(((16 - source.Height - 4) / 2F) * _zoom / 16 + poseYOff);
+                                        dest.X -= (int)(2 * _zoom / 16);
+                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                    }
                                 }
                             }
                         }
@@ -2824,16 +2831,19 @@ public partial class WorldRenderXna : UserControl
                                     tileTex = (Texture2D)_textureDictionary.GetArmorBody(bodySlot.Value);
                                 if (tileTex != null && tileTex != _textureDictionary.DefaultTexture)
                                 {
-                                    source = new Rectangle(2, 0, 36, 54);
-                                    dest = new Rectangle(
-                                        1 + (int)((_scrollPosition.X + x) * _zoom),
-                                        1 + (int)((_scrollPosition.Y + y + 1) * _zoom),
-                                        (int)_zoom, (int)_zoom);
-                                    dest.Width = (int)(_zoom * source.Width / 16f);
-                                    dest.Height = (int)(_zoom * source.Height / 16f);
-                                    dest.Y += (int)(((16 - source.Height - 18) / 2F) * _zoom / 16);
-                                    dest.X -= (int)(2 * _zoom / 16);
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                    source = new Rectangle(2, bodyFrameY, 36, 54);
+                                    if (source.Bottom <= tileTex.Height)
+                                    {
+                                        dest = new Rectangle(
+                                            1 + (int)((_scrollPosition.X + x) * _zoom),
+                                            1 + (int)((_scrollPosition.Y + y + 1) * _zoom),
+                                            (int)_zoom, (int)_zoom);
+                                        dest.Width = (int)(_zoom * source.Width / 16f);
+                                        dest.Height = (int)(_zoom * source.Height / 16f);
+                                        dest.Y += (int)(((16 - source.Height - 18) / 2F) * _zoom / 16 + poseYOff);
+                                        dest.X -= (int)(2 * _zoom / 16);
+                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                    }
                                 }
                             }
                         }
@@ -2849,16 +2859,19 @@ public partial class WorldRenderXna : UserControl
                                 tileTex = (Texture2D)_textureDictionary.GetArmorLegs(legsSlot.Value);
                                 if (tileTex != null && tileTex != _textureDictionary.DefaultTexture)
                                 {
-                                    source = new Rectangle(2, 42, 36, 12);
-                                    dest = new Rectangle(
-                                        1 + (int)((_scrollPosition.X + x) * _zoom),
-                                        1 + (int)((_scrollPosition.Y + y + 2) * _zoom),
-                                        (int)_zoom, (int)_zoom);
-                                    dest.Width = (int)(_zoom * source.Width / 16f);
-                                    dest.Height = (int)(_zoom * source.Height / 16f);
-                                    dest.Y -= (int)(2 * _zoom / 16);
-                                    dest.X -= (int)(2 * _zoom / 16);
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                    source = new Rectangle(2, legFrameY + 42, 36, 12);
+                                    if (source.Bottom <= tileTex.Height)
+                                    {
+                                        dest = new Rectangle(
+                                            1 + (int)((_scrollPosition.X + x) * _zoom),
+                                            1 + (int)((_scrollPosition.Y + y + 2) * _zoom),
+                                            (int)_zoom, (int)_zoom);
+                                        dest.Width = (int)(_zoom * source.Width / 16f);
+                                        dest.Height = (int)(_zoom * source.Height / 16f);
+                                        dest.Y -= (int)(2 * _zoom / 16 - poseYOff);
+                                        dest.X -= (int)(2 * _zoom / 16);
+                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                    }
                                 }
                             }
                         }

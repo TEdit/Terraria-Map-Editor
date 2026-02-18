@@ -7,18 +7,18 @@ Comparing TEdit's current implementation against [custom-rendered-tiles.md](cust
 | Section | Reference Doc | TEdit Status | Gap |
 |---------|---------------|--------------|-----|
 | 2. Basic/Blendable Tiles | Complete spec | IMPLEMENTED | None |
-| 3. Tree Rendering | Normal + Gem + Vanity + Ash | PARTIAL | Missing Gem (583-589), Vanity (596, 616), Ash (634) |
+| 3. Tree Rendering | Normal + Gem + Vanity + Ash | IMPLEMENTED | Gem (583-589), Vanity (596, 616), Ash (634) all done |
 | 4. Palm Tree Rendering | Complete spec | IMPLEMENTED | None |
-| 5. Grass & Plant Rendering | Height overrides, wind, flip | PARTIAL | Missing wind animation, verify height overrides |
-| 6. Vine Rendering | tileTop=-2, sprite flip, crawl | NOT IMPLEMENTED | Missing all special handling |
+| 5. Grass & Plant Rendering | Height overrides, wind, flip | IMPLEMENTED | Sprite flip done; wind animation N/A for map editor |
+| 6. Vine Rendering | tileTop=-2, sprite flip, crawl | IMPLEMENTED | -2px offset and flip on alternating X |
 | 7. Cactus Rendering | Biome variants | IMPLEMENTED | None |
 | 8. Platform Rendering | Edge detection | IMPLEMENTED | None |
-| 9. Torch & Flame Rendering | Particle system | PARTIAL | Missing flame particles |
+| 9. Torch & Flame Rendering | Particle system | PARTIAL | Missing flame particles (low priority for map editor) |
 | 10. Christmas Tree Rendering | Multi-layer | IMPLEMENTED | None |
 | 11. Minecart Track Rendering | Multi-component | IMPLEMENTED | None |
-| 12. Animal Cage Rendering | Animated creatures | UNKNOWN | Need to verify |
-| 13. Display Tile Rendering | Mannequin, Rack, Frame, Platter | PARTIAL | Display Doll uses wrong textures, Hat Rack empty |
-| 14. Glow Mask Tiles | 25+ tiles with glow | NOT IMPLEMENTED | No glow mask support |
+| 12. Animal Cage Rendering | Animated creatures | N/A | Static display, no animation in map editor |
+| 13. Display Tile Rendering | Mannequin, Rack, Frame, Platter | IMPLEMENTED | Body, armor, pose, hat rack, weapon rack, kite, food platter |
+| 14. Glow Mask Tiles | 25+ tiles with glow | NOT IMPLEMENTED | Needs glow texture loading + additive blend pass |
 | 15. Slope & Half-Brick | Sliced rendering | IMPLEMENTED | None |
 | 16. Special Cases | Various | PARTIAL | Some implemented |
 
@@ -153,18 +153,18 @@ TEdit has `SelectedChest` property but no visual indication when chest is select
 
 ## Implementation Priority
 
-| Priority | Feature | Complexity | Reference Section |
-|----------|---------|------------|-------------------|
-| 1 | Vine offset & flip | LOW | Section 6 |
-| 2 | Grass sprite flip | LOW | Section 5 |
-| 3 | Position offset tiles | LOW | TileDrawing.cs |
-| 4 | Chest selection highlight | LOW | N/A (editor feature) |
-| 5 | Gem Trees | MEDIUM | Section 3 |
-| 6 | Display Doll (armor textures) | MEDIUM | Section 13.1 |
-| 7 | Hat Rack | MEDIUM | Section 13.5 |
-| 8 | Vanity Trees (596, 616) | MEDIUM | Section 3 |
-| 9 | Ash Tree + glow | MEDIUM-HIGH | Section 3 + 14 |
-| 10 | Glow Mask System | HIGH | Section 14 |
+| Priority | Feature | Complexity | Status |
+|----------|---------|------------|--------|
+| 1 | Vine offset & flip | LOW | DONE |
+| 2 | Grass sprite flip | LOW | DONE |
+| 3 | Position offset tiles | LOW | DONE |
+| 4 | Chest selection highlight | LOW | DONE |
+| 5 | Gem Trees | MEDIUM | DONE |
+| 6 | Display Doll (armor + body + pose) | MEDIUM | DONE |
+| 7 | Hat Rack | MEDIUM | DONE |
+| 8 | Vanity Trees (596, 616) | MEDIUM | DONE |
+| 9 | UV cache reset for all paint modes | LOW | DONE |
+| 10 | Glow Mask System | HIGH | NOT STARTED |
 
 ---
 

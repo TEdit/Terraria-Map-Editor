@@ -306,35 +306,30 @@ class BlendRules
 
     public static void ResetUVCache(
         World world,
-        TilePicker tilePicker, 
-        int tileStartX, 
-        int tileStartY, 
-        int regionWidth, 
+        TilePicker tilePicker,
+        int tileStartX,
+        int tileStartY,
+        int regionWidth,
         int regionHeight)
     {
-        if (tilePicker.PaintMode == PaintMode.TileAndWall)
+        // Always reset UV cache when tiles are modified, regardless of paint mode.
+        // Callers like SpritePlacer, undo/redo, and plugins can modify tiles outside
+        // TileAndWall mode; skipping the reset causes stale connected texture state.
+        for (int x = -1; x < regionWidth + 1; x++)
         {
-            //Reset UV Cache for nearby tiles and walls
-            for (int x = -1; x < regionWidth + 1; x++)
+            int tilex = x + tileStartX;
+            for (int y = -1; y < regionHeight + 1; y++)
             {
-                int tilex = x + tileStartX;
-                for (int y = -1; y < regionHeight + 1; y++)
+                int tiley = y + tileStartY;
+                if (tilex < 0 || tiley < 0 || tilex >= world.TilesWide || tiley >= world.TilesHigh)
                 {
-                    int tiley = y + tileStartY;
-                    if (tilex < 0 || tiley < 0 || tilex >= world.TilesWide || tiley >= world.TilesHigh)
-                    {
-                        continue;
-                    }
-                    Tile curtile = world.Tiles[tilex, tiley];
-                    if (tilePicker.TileStyleActive)
-                    {
-                        curtile.uvTileCache = 0xFFFF;
-                        curtile.lazyMergeId = 0xFF;
-                        curtile.hasLazyChecked = false;
-                    }
-                    if (tilePicker.WallStyleActive)
-                        curtile.uvWallCache = 0xFFFF;
+                    continue;
                 }
+                Tile curtile = world.Tiles[tilex, tiley];
+                curtile.uvTileCache = 0xFFFF;
+                curtile.lazyMergeId = 0xFF;
+                curtile.hasLazyChecked = false;
+                curtile.uvWallCache = 0xFFFF;
             }
         }
     }
