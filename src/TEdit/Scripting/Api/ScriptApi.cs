@@ -25,6 +25,7 @@ public class ScriptApi : IDisposable
     public FinderApi Finder { get; }
     public SpriteApi Sprites { get; }
     public DrawApi Draw { get; }
+    public TileEntityApi TileEntities { get; }
 
     public ScriptApi(WorldViewModel wvm, ScriptExecutionContext context)
     {
@@ -36,6 +37,7 @@ public class ScriptApi : IDisposable
         Geometry = new GeometryApi(world, undo);
         Chests = new ChestApi(world);
         Signs = new SignApi(world);
+        TileEntities = new TileEntityApi(world);
         Npcs = new NpcApi(world);
         World = new WorldInfoApi(world);
         Selection = new SelectionApi(wvm.Selection);
@@ -59,6 +61,7 @@ public class ScriptApi : IDisposable
         Geometry = new GeometryApi(world, undo);
         Chests = new ChestApi(world);
         Signs = new SignApi(world);
+        TileEntities = new TileEntityApi(world);
         Npcs = new NpcApi(world);
         World = new WorldInfoApi(world);
         Selection = new SelectionApi(selection);

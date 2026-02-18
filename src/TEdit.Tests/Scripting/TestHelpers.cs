@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+using System.Linq;
 using TEdit.Editor.Undo;
 using TEdit.Geometry;
 using TEdit.Terraria;
@@ -109,6 +111,79 @@ public static class TestWorldFactory
         world.Signs.Add(new Sign(15, 40, "Hello from TEdit!"));
         world.Tiles[15, 40].IsActive = true;
         world.Tiles[15, 40].Type = 55; // Sign tile type
+
+        return world;
+    }
+
+    public static World CreateWorldWithTileEntities(int width = 100, int height = 100)
+    {
+        var world = CreateWorldWithTerrain(width, height);
+
+        // Mannequin (DisplayDoll) at (10, 50)
+        var mannequin = new TileEntity
+        {
+            Type = (byte)TileEntityType.DisplayDoll,
+            Id = 0,
+            PosX = 10,
+            PosY = 50,
+            Items = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 9).Select(_ => new TileEntityItem())),
+            Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 9).Select(_ => new TileEntityItem())),
+            Misc = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 1).Select(_ => new TileEntityItem())),
+            Pose = 0,
+        };
+        world.TileEntities.Add(mannequin);
+        world.Tiles[10, 50].IsActive = true;
+        world.Tiles[10, 50].Type = (ushort)TileType.DisplayDoll;
+
+        // WeaponRack at (20, 50)
+        var weaponRack = new TileEntity
+        {
+            Type = (byte)TileEntityType.WeaponRack,
+            Id = 1,
+            PosX = 20,
+            PosY = 50,
+        };
+        world.TileEntities.Add(weaponRack);
+        world.Tiles[20, 50].IsActive = true;
+        world.Tiles[20, 50].Type = (ushort)TileType.WeaponRack;
+
+        // HatRack at (30, 50)
+        var hatRack = new TileEntity
+        {
+            Type = (byte)TileEntityType.HatRack,
+            Id = 2,
+            PosX = 30,
+            PosY = 50,
+            Items = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 2).Select(_ => new TileEntityItem())),
+            Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 2).Select(_ => new TileEntityItem())),
+        };
+        world.TileEntities.Add(hatRack);
+        world.Tiles[30, 50].IsActive = true;
+        world.Tiles[30, 50].Type = (ushort)TileType.HatRack;
+
+        // ItemFrame at (40, 50)
+        var itemFrame = new TileEntity
+        {
+            Type = (byte)TileEntityType.ItemFrame,
+            Id = 3,
+            PosX = 40,
+            PosY = 50,
+        };
+        world.TileEntities.Add(itemFrame);
+        world.Tiles[40, 50].IsActive = true;
+        world.Tiles[40, 50].Type = (ushort)TileType.ItemFrame;
+
+        // FoodPlatter at (50, 50)
+        var foodPlatter = new TileEntity
+        {
+            Type = (byte)TileEntityType.FoodPlatter,
+            Id = 4,
+            PosX = 50,
+            PosY = 50,
+        };
+        world.TileEntities.Add(foodPlatter);
+        world.Tiles[50, 50].IsActive = true;
+        world.Tiles[50, 50].Type = (ushort)TileType.FoodPlatter;
 
         return world;
     }
