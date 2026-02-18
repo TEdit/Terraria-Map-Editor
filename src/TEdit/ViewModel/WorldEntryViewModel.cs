@@ -16,7 +16,8 @@ namespace TEdit.ViewModel;
 [IReactiveObject]
 public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
 {
-    public WorldEntryViewModel(WorldHeaderInfo header, bool isPinned = false, bool isRecent = false)
+    public WorldEntryViewModel(WorldHeaderInfo header, bool isPinned = false, bool isRecent = false,
+        bool isCloudSave = false, string cloudUserId = null)
     {
         Title = header.Title;
         FilePath = header.FilePath;
@@ -41,6 +42,8 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
         IsPinned = isPinned;
         IsRecent = isRecent;
         IsMissing = false;
+        IsCloudSave = isCloudSave;
+        CloudUserId = cloudUserId;
         Backups.CollectionChanged += OnBackupsChanged;
     }
 
@@ -93,6 +96,8 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
     public bool IsMissing { get; }
     public bool IsCorrupt { get; }
     public string CorruptReason { get; }
+    public bool IsCloudSave { get; }
+    public string CloudUserId { get; }
 
     [Reactive]
     private bool _isPinned;
@@ -140,6 +145,8 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
         this.RaisePropertyChanged(nameof(HasBakFile));
         this.RaisePropertyChanged(nameof(HasAnyBackup));
     }
+
+    public string CloudLabel => IsCloudSave ? $"☁ User {CloudUserId}" : "";
 
     public string DimensionText => IsMissing ? "" : $"{TilesWide}x{TilesHigh} - {SizeCategory}";
     public string VersionText => IsMissing ? "" : TerrariaVersionText ?? $"v{Version}";

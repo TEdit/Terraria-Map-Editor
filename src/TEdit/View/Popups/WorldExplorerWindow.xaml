@@ -138,6 +138,12 @@
                                         </Button.Style>
                                         <TextBlock Text="&#xE7BA;" FontFamily="Segoe MDL2 Assets" FontSize="12" Foreground="#FF8800" />
                                     </Button>
+                                    <!-- Cloud save indicator -->
+                                    <TextBlock Text="&#xE753;" FontFamily="Segoe MDL2 Assets" FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                               VerticalAlignment="Center" Margin="0,0,4,0"
+                                               ToolTip="{Binding CloudLabel}"
+                                               Visibility="{Binding IsCloudSave, Converter={StaticResource BoolToVis}}" />
                                     <TextBlock Text="{Binding Title}">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock">
@@ -157,8 +163,25 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="{x:Static p:Language.world_explorer_col_file}" Width="120"
-                                    DisplayMemberBinding="{Binding FileName}" />
+                    <GridViewColumn Header="{x:Static p:Language.world_explorer_col_file}" Width="140">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="{Binding FileName}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsCloudSave}" Value="True">
+                                                    <Setter Property="Text" Value="{Binding CloudLabel}" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="{x:Static p:Language.world_explorer_col_dimensions}" Width="130"
                                     DisplayMemberBinding="{Binding DimensionText}" />
                     <GridViewColumn Header="{x:Static p:Language.world_explorer_col_version}" Width="80"

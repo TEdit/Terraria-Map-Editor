@@ -78,7 +78,8 @@ public partial class WorldExplorerViewModel
             {
                 worlds = worlds.Where(w =>
                     w.Title.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-                    w.FilePath.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+                    w.FilePath.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
+                    (w.CloudLabel != null && w.CloudLabel.Contains(SearchText, StringComparison.OrdinalIgnoreCase)));
             }
             return worlds;
         }
@@ -101,6 +102,7 @@ public partial class WorldExplorerViewModel
             {
                 // Load worlds from Terraria worlds folder
                 string worldsPath = DependencyChecker.PathToWorlds;
+                var loadedPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 if (!string.IsNullOrEmpty(worldsPath) && Directory.Exists(worldsPath))
                 {
                     foreach (var file in Directory.GetFiles(worldsPath, "*.wld"))
@@ -109,12 +111,39 @@ public partial class WorldExplorerViewModel
                         if (header != null)
                         {
                             worldEntries.Add(new WorldEntryViewModel(header, pinnedWorlds.Contains(file)));
+                            loadedPaths.Add(file);
                         }
                     }
                 }
 
+                // Load Steam cloud worlds from ALL user profiles
+                try
+                {
+                    var cloudPaths = DependencyChecker.GetAllSteamCloudWorldPaths();
+                    foreach (var (userId, cloudWorldsDir) in cloudPaths)
+                    {
+                        foreach (var file in Directory.GetFiles(cloudWorldsDir, "*.wld"))
+                        {
+                            if (loadedPaths.Contains(file)) continue;
+                            var header = World.ReadWorldHeader(file);
+                            if (header != null)
+                            {
+                                worldEntries.Add(new WorldEntryViewModel(header,
+                                    pinnedWorlds.Contains(file),
+                                    isCloudSave: true,
+                                    cloudUserId: userId));
+                                loadedPaths.Add(file);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorLogging.LogException(ex);
+                }
+
                 // Load recent worlds that aren't already in the list
-                var existingPaths = new HashSet<string>(worldEntries.Select(w => w.FilePath), StringComparer.OrdinalIgnoreCase);
+                var existingPaths = loadedPaths;
                 foreach (var recentPath in recentWorlds)
                 {
                     if (existingPaths.Contains(recentPath)) continue;

@@ -222,6 +222,57 @@ public static class DependencyChecker
         return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
     }
 
+    /// <summary>
+    /// Returns the Steam installation path from the registry, or null if not found.
+    /// </summary>
+    public static string GetSteamPath()
+    {
+        using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam"))
+        {
+            if (key != null)
+            {
+                string steamPath = key.GetValue("SteamPath") as string;
+                if (!string.IsNullOrEmpty(steamPath))
+                    return steamPath.Replace("/", "\\");
+            }
+        }
+
+        // Fallback: Program Files (x86)\Steam
+        string fallback = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Steam");
+        return Directory.Exists(fallback) ? fallback : null;
+    }
+
+    /// <summary>
+    /// Enumerates all Steam user IDs that have Terraria cloud world files.
+    /// Returns (steamUserId, worldsFolderPath) pairs.
+    /// </summary>
+    public static List<(string UserId, string WorldsPath)> GetAllSteamCloudWorldPaths()
+    {
+        var results = new List<(string, string)>();
+        string steamPath = GetSteamPath();
+        if (string.IsNullOrEmpty(steamPath)) return results;
+
+        string userDataPath = Path.Combine(steamPath, "userdata");
+        if (!Directory.Exists(userDataPath)) return results;
+
+        foreach (var userDir in Directory.GetDirectories(userDataPath))
+        {
+            string userId = Path.GetFileName(userDir);
+            // Skip non-numeric folders (e.g. "anonymous")
+            if (!int.TryParse(userId, out _)) continue;
+
+            string worldsDir = Path.Combine(userDir, "105600", "remote", "worlds");
+            if (Directory.Exists(worldsDir) &&
+                Directory.GetFiles(worldsDir, "*.wld").Length > 0)
+            {
+                results.Add((userId, worldsDir));
+            }
+        }
+
+        return results;
+    }
+
     // Updated function restores user prompting.
     public static bool DirectoryHasContentFolder(string path)
         => Directory.Exists(path);
