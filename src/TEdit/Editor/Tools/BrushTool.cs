@@ -193,15 +193,9 @@ public class BrushToolBase : BaseTool
         _wvm.Brush.StampOffsets(center, _stampBuffer);
         if (_stampBuffer.Count == 0) return;
 
-        // Reset check tiles each tick so spray re-paints
-        if (_wvm.CheckTiles != null)
-        {
-            if (++_wvm.CheckTileGeneration <= 0)
-            {
-                _wvm.CheckTileGeneration = 1;
-                Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
-            }
-        }
+        // Do NOT reset CheckTiles per tick — the generation set in MouseDown
+        // persists across the entire spray stroke so already-painted tiles are
+        // skipped. This prevents duplicate undo saves and redundant SetPixel calls.
 
         // Partial Fisher-Yates: select SprayDensity% of points
         int count = Math.Max(1, _stampBuffer.Count * _wvm.Brush.SprayDensity / 100);
