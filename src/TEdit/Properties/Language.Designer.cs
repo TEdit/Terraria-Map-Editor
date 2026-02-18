@@ -446,7 +446,43 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("BrushShape_Square", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Star.
+        /// </summary>
+        public static string BrushShape_Star {
+            get {
+                return ResourceManager.GetString("BrushShape_Star", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Triangle.
+        /// </summary>
+        public static string BrushShape_Triangle {
+            get {
+                return ResourceManager.GetString("BrushShape_Triangle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Crescent.
+        /// </summary>
+        public static string BrushShape_Crescent {
+            get {
+                return ResourceManager.GetString("BrushShape_Crescent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Donut.
+        /// </summary>
+        public static string BrushShape_Donut {
+            get {
+                return ResourceManager.GetString("BrushShape_Donut", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Max.
         /// </summary>
@@ -4049,7 +4085,61 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_brush_width_label", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Rotation.
+        /// </summary>
+        public static string tool_brush_rotation_label {
+            get {
+                return ResourceManager.GetString("tool_brush_rotation_label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Horizontal.
+        /// </summary>
+        public static string tool_brush_flip_h_tooltip {
+            get {
+                return ResourceManager.GetString("tool_brush_flip_h_tooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Vertical.
+        /// </summary>
+        public static string tool_brush_flip_v_tooltip {
+            get {
+                return ResourceManager.GetString("tool_brush_flip_v_tooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Spray Mode.
+        /// </summary>
+        public static string tool_brush_spray_tooltip {
+            get {
+                return ResourceManager.GetString("tool_brush_spray_tooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Density.
+        /// </summary>
+        public static string tool_brush_spray_density_label {
+            get {
+                return ResourceManager.GetString("tool_brush_spray_density_label", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Speed.
+        /// </summary>
+        public static string tool_brush_spray_speed_label {
+            get {
+                return ResourceManager.GetString("tool_brush_spray_speed_label", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Empty Clipboard.
         /// </summary>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using TEdit.Geometry;
 using TEdit.ViewModel;
 using TEdit.Render;
@@ -26,12 +27,56 @@ public class BrushToolBase : BaseTool
     protected Vector2Int32 _leftPoint;
     protected Vector2Int32 _rightPoint;
 
+    // Spray mode
+    private DispatcherTimer _sprayTimer;
+    private Vector2Int32 _sprayCenter;
+    private Random _sprayRandom = new Random();
+
     public BrushToolBase(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintbrush.png"));
         SymbolIcon = SymbolRegular.PaintBrush24;
         ToolType = ToolType.Brush;
+    }
+
+    protected IList<Vector2Int32> GetShapePoints(Vector2Int32 center)
+    {
+        var brush = _wvm.Brush;
+        IEnumerable<Vector2Int32> points = brush.Shape switch
+        {
+            BrushShape.Square => Fill.FillRectangleCentered(center, new Vector2Int32(brush.Width, brush.Height)),
+            BrushShape.Round => Fill.FillEllipseCentered(center, new Vector2Int32(brush.Width / 2, brush.Height / 2)),
+            BrushShape.Right => Shape.DrawLine(
+                new Vector2Int32(center.X - brush.Width / 2, center.Y + brush.Height / 2),
+                new Vector2Int32(center.X + brush.Width / 2, center.Y - brush.Height / 2)),
+            BrushShape.Left => Shape.DrawLine(
+                new Vector2Int32(center.X - brush.Width / 2, center.Y - brush.Height / 2),
+                new Vector2Int32(center.X + brush.Width / 2, center.Y + brush.Height / 2)),
+            BrushShape.Star => Fill.FillStarCentered(center, Math.Min(brush.Width, brush.Height) / 2,
+                Math.Min(brush.Width, brush.Height) / 4, 5),
+            BrushShape.Triangle => Fill.FillTriangleCentered(center, brush.Width / 2, brush.Height / 2),
+            BrushShape.Crescent => Fill.FillCrescentCentered(center,
+                Math.Min(brush.Width, brush.Height) / 2,
+                (int)(Math.Min(brush.Width, brush.Height) / 2 * 0.75),
+                Math.Min(brush.Width, brush.Height) / 4),
+            BrushShape.Donut => Fill.FillDonutCentered(center,
+                Math.Min(brush.Width, brush.Height) / 2,
+                Math.Max(1, Math.Min(brush.Width, brush.Height) / 4)),
+            _ => Fill.FillRectangleCentered(center, new Vector2Int32(brush.Width, brush.Height)),
+        };
+
+        if (brush.HasTransform)
+            points = Fill.ApplyTransform(points, center, brush.Rotation, brush.FlipHorizontal, brush.FlipVertical);
+
+        return points.ToList();
+    }
+
+    private bool IsSimpleRectShape()
+    {
+        var shape = _wvm.Brush.Shape;
+        return (shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
+            && !_wvm.Brush.HasTransform;
     }
 
     public override void MouseDown(TileMouseState e)
@@ -52,12 +97,20 @@ public class BrushToolBase : BaseTool
         _isConstraining = actions.Contains("editor.draw.constrain");
         _isLineMode = actions.Contains("editor.draw.line");
 
-        if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
+        if (IsSimpleRectShape())
         {
             FillRectangle(_startPoint);
         }
 
-        ProcessDraw(e.Location);
+        if (_wvm.Brush.IsSpray && _isDrawing)
+        {
+            _sprayCenter = e.Location;
+            StartSprayTimer();
+        }
+        else
+        {
+            ProcessDraw(e.Location);
+        }
     }
 
     public override void MouseMove(TileMouseState e)
@@ -66,12 +119,24 @@ public class BrushToolBase : BaseTool
         _isDrawing = actions.Contains("editor.draw");
         _isConstraining = actions.Contains("editor.draw.constrain");
         _isLineMode = actions.Contains("editor.draw.line");
-        ProcessDraw(e.Location);
+
+        if (_wvm.Brush.IsSpray && _sprayTimer != null && _sprayTimer.IsEnabled)
+        {
+            _sprayCenter = e.Location;
+        }
+        else
+        {
+            ProcessDraw(e.Location);
+        }
     }
 
     public override void MouseUp(TileMouseState e)
     {
-        ProcessDraw(e.Location);
+        StopSprayTimer();
+
+        if (!_wvm.Brush.IsSpray)
+            ProcessDraw(e.Location);
+
         var actions = GetActiveActions(e);
         _isDrawing = actions.Contains("editor.draw");
         _isConstraining = actions.Contains("editor.draw.constrain");
@@ -80,19 +145,90 @@ public class BrushToolBase : BaseTool
         _wvm.UndoManager.SaveUndo();
     }
 
+    private void StartSprayTimer()
+    {
+        if (_sprayTimer == null)
+        {
+            _sprayTimer = new DispatcherTimer();
+            _sprayTimer.Tick += SprayTimer_Tick;
+        }
+        _sprayTimer.Interval = TimeSpan.FromMilliseconds(_wvm.Brush.SprayTickMs);
+        _sprayTimer.Start();
+        // Fire immediately on first tick
+        SprayTimer_Tick(null, EventArgs.Empty);
+    }
+
+    private void StopSprayTimer()
+    {
+        _sprayTimer?.Stop();
+    }
+
+    private void SprayTimer_Tick(object sender, EventArgs e)
+    {
+        var points = GetShapePoints(_sprayCenter);
+        if (points.Count == 0) return;
+
+        // Reset check tiles each tick so spray re-paints
+        _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
+
+        // Partial Fisher-Yates: select SprayDensity% of points
+        int count = Math.Max(1, points.Count * _wvm.Brush.SprayDensity / 100);
+        var selected = new List<Vector2Int32>(count);
+
+        // Copy to working array for shuffle
+        var working = points.ToArray();
+        for (int i = 0; i < count && i < working.Length; i++)
+        {
+            int j = _sprayRandom.Next(i, working.Length);
+            (working[i], working[j]) = (working[j], working[i]);
+            selected.Add(working[i]);
+        }
+
+        FillSolid(selected);
+    }
+
     public override WriteableBitmap PreviewTool()
     {
-        var bmp = new WriteableBitmap(_wvm.Brush.Width + 1, _wvm.Brush.Height + 1, 96, 96, PixelFormats.Bgra32, null);
-
+        var brush = _wvm.Brush;
+        // For shapes with transform, use pixel-accurate preview
+        int previewW = brush.Width + 1;
+        int previewH = brush.Height + 1;
+        var bmp = new WriteableBitmap(previewW, previewH, 96, 96, PixelFormats.Bgra32, null);
         bmp.Clear();
-        if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
-            bmp.FillRectangle(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
-        else if (_wvm.Brush.Shape == BrushShape.Left)
-            bmp.DrawLine(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
-        else if (_wvm.Brush.Shape == BrushShape.Right)
-            bmp.DrawLine(0, _wvm.Brush.Height, _wvm.Brush.Width, 0, Color.FromArgb(127, 0, 90, 255));
+
+        var previewColor = Color.FromArgb(127, 0, 90, 255);
+        var center = new Vector2Int32(brush.Width / 2, brush.Height / 2);
+
+        if (brush.HasTransform ||
+            brush.Shape == BrushShape.Star ||
+            brush.Shape == BrushShape.Triangle ||
+            brush.Shape == BrushShape.Crescent ||
+            brush.Shape == BrushShape.Donut)
+        {
+            // Pixel-accurate preview using GetShapePoints
+            var points = GetShapePoints(center);
+            foreach (var p in points)
+            {
+                if (p.X >= 0 && p.X < previewW && p.Y >= 0 && p.Y < previewH)
+                    bmp.SetPixel(p.X, p.Y, previewColor);
+            }
+        }
+        else if (IsSimpleRectShape())
+        {
+            bmp.FillRectangle(0, 0, brush.Width, brush.Height, previewColor);
+        }
+        else if (brush.Shape == BrushShape.Left)
+        {
+            bmp.DrawLine(0, 0, brush.Width, brush.Height, previewColor);
+        }
+        else if (brush.Shape == BrushShape.Right)
+        {
+            bmp.DrawLine(0, brush.Height, brush.Width, 0, previewColor);
+        }
         else
-            bmp.FillEllipse(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
+        {
+            bmp.FillEllipse(0, 0, brush.Width, brush.Height, previewColor);
+        }
 
         _preview = bmp;
         return _preview;
@@ -141,25 +277,18 @@ public class BrushToolBase : BaseTool
     protected void DrawLine(Vector2Int32 to)
     {
         var line = Shape.DrawLineTool(_startPoint, to).ToList();
-        if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
+        if (IsSimpleRectShape())
         {
             for (int i = 1; i < line.Count; i++)
             {
                 FillRectangleLine(line[i - 1], line[i]);
             }
         }
-        else if (_wvm.Brush.Shape == BrushShape.Round)
+        else
         {
             foreach (Vector2Int32 point in line)
             {
-                FillRound(point);
-            }
-        }
-        else if (_wvm.Brush.Shape == BrushShape.Right || _wvm.Brush.Shape == BrushShape.Left)
-        {
-            foreach (Vector2Int32 point in line)
-            {
-                FillSlope(point);
+                FillShape(point);
             }
         }
     }
@@ -168,26 +297,55 @@ public class BrushToolBase : BaseTool
     {
         var line = Shape.DrawLineTool(_startPoint, _endPoint).ToList();
 
-        if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
+        if (IsSimpleRectShape())
         {
             for (int i = 1; i < line.Count; i++)
             {
                 FillRectangleLine(line[i - 1], line[i]);
             }
         }
-        else if (_wvm.Brush.Shape == BrushShape.Round)
+        else
         {
             foreach (Vector2Int32 point in line)
             {
-                FillRound(point);
+                FillShape(point);
             }
         }
-        else if (_wvm.Brush.Shape == BrushShape.Right || _wvm.Brush.Shape == BrushShape.Left)
+    }
+
+    protected void FillShape(Vector2Int32 point)
+    {
+        var area = GetShapePoints(point);
+        if (_wvm.Brush.IsOutline && _wvm.Brush.Shape != BrushShape.Right && _wvm.Brush.Shape != BrushShape.Left)
         {
-            foreach (Vector2Int32 point in line)
+            // Generate a smaller interior shape for hollow mode
+            var savedWidth = _wvm.Brush.Width;
+            var savedHeight = _wvm.Brush.Height;
+
+            // Temporarily shrink brush for interior calculation
+            int interiorWidth = Math.Max(1, savedWidth - _wvm.Brush.Outline * 2);
+            int interiorHeight = Math.Max(1, savedHeight - _wvm.Brush.Outline * 2);
+
+            // Use a direct interior calculation based on shape type
+            IEnumerable<Vector2Int32> interiorPoints = _wvm.Brush.Shape switch
             {
-                FillSlope(point);
-            }
+                BrushShape.Square => Fill.FillRectangleCentered(point, new Vector2Int32(interiorWidth, interiorHeight)),
+                BrushShape.Round => Fill.FillEllipseCentered(point, new Vector2Int32(interiorWidth / 2, interiorHeight / 2)),
+                BrushShape.Star => Fill.FillStarCentered(point,
+                    Math.Min(interiorWidth, interiorHeight) / 2,
+                    Math.Min(interiorWidth, interiorHeight) / 4, 5),
+                BrushShape.Triangle => Fill.FillTriangleCentered(point, interiorWidth / 2, interiorHeight / 2),
+                _ => Fill.FillRectangleCentered(point, new Vector2Int32(interiorWidth, interiorHeight)),
+            };
+
+            if (_wvm.Brush.HasTransform)
+                interiorPoints = Fill.ApplyTransform(interiorPoints, point, _wvm.Brush.Rotation, _wvm.Brush.FlipHorizontal, _wvm.Brush.FlipVertical);
+
+            FillHollow(area, interiorPoints.ToList());
+        }
+        else
+        {
+            FillSolid(area);
         }
     }
 
@@ -208,22 +366,6 @@ public class BrushToolBase : BaseTool
                 new Vector2Int32(
                     _wvm.Brush.Width - _wvm.Brush.Outline * 2,
                     _wvm.Brush.Height - _wvm.Brush.Outline * 2)).ToList();
-            FillHollow(area, interrior);
-        }
-        else
-        {
-            FillSolid(area);
-        }
-    }
-
-    protected void FillRound(Vector2Int32 point)
-    {
-        var area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2)).ToList();
-        if (_wvm.Brush.IsOutline)
-        {
-            var interrior = Fill.FillEllipseCentered(point, new Vector2Int32(
-                _wvm.Brush.Width / 2 - _wvm.Brush.Outline * 2,
-                _wvm.Brush.Height / 2 - _wvm.Brush.Outline * 2)).ToList();
             FillHollow(area, interrior);
         }
         else
@@ -315,22 +457,6 @@ public class BrushToolBase : BaseTool
                 BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
             }
         }
-    }
-
-    private void FillSlope(Vector2Int32 point)
-    {
-        if (_wvm.Brush.Shape == BrushShape.Right)
-        {
-            _leftPoint = new Vector2Int32(point.X - _wvm.Brush.Width / 2, point.Y + _wvm.Brush.Height / 2);
-            _rightPoint = new Vector2Int32(point.X + _wvm.Brush.Width / 2, point.Y - _wvm.Brush.Height / 2);
-        }
-        else
-        {
-            _leftPoint = new Vector2Int32(point.X - _wvm.Brush.Width / 2, point.Y - _wvm.Brush.Height / 2);
-            _rightPoint = new Vector2Int32(point.X + _wvm.Brush.Width / 2, point.Y + _wvm.Brush.Height / 2);
-        }
-        var area = Shape.DrawLine(_leftPoint, _rightPoint).ToList();
-        FillSolid(area);
     }
 }
 

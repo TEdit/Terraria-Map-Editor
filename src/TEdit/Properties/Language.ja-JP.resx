@@ -2322,4 +2322,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>バックグラウンドギャップの修正</value>
   </data>
-</root>
+<data name="BrushShape_Star" xml:space="preserve"><value></value></data><data name="BrushShape_Triangle" xml:space="preserve"><value></value></data><data name="BrushShape_Crescent" xml:space="preserve"><value></value></data><data name="BrushShape_Donut" xml:space="preserve"><value></value></data><data name="tool_brush_rotation_label" xml:space="preserve"><value></value></data><data name="tool_brush_flip_h_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_flip_v_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_tooltip" xml:space="preserve"><value></value></data><data name="tool_brush_spray_density_label" xml:space="preserve"><value></value></data><data name="tool_brush_spray_speed_label" xml:space="preserve"><value></value></data></root>

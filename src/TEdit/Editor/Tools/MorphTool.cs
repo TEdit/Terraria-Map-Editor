@@ -91,13 +91,33 @@ public sealed class MorphTool : BaseTool
 
     public override WriteableBitmap PreviewTool()
     {
-        var bmp = new WriteableBitmap(_wvm.Brush.Width + 1, _wvm.Brush.Height + 1, 96, 96, PixelFormats.Bgra32, null);
-
+        var brush = _wvm.Brush;
+        int previewW = brush.Width + 1;
+        int previewH = brush.Height + 1;
+        var bmp = new WriteableBitmap(previewW, previewH, 96, 96, PixelFormats.Bgra32, null);
         bmp.Clear();
-        if (_wvm.Brush.Shape == BrushShape.Square)
-            bmp.FillRectangle(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
+
+        var previewColor = Color.FromArgb(127, 0, 90, 255);
+
+        if (brush.HasTransform ||
+            (brush.Shape != BrushShape.Square && brush.Shape != BrushShape.Round))
+        {
+            var center = new Vector2Int32(brush.Width / 2, brush.Height / 2);
+            var points = GetMorphShapePoints(center);
+            foreach (var p in points)
+            {
+                if (p.X >= 0 && p.X < previewW && p.Y >= 0 && p.Y < previewH)
+                    bmp.SetPixel(p.X, p.Y, previewColor);
+            }
+        }
+        else if (brush.Shape == BrushShape.Square)
+        {
+            bmp.FillRectangle(0, 0, brush.Width, brush.Height, previewColor);
+        }
         else
-            bmp.FillEllipse(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
+        {
+            bmp.FillEllipse(0, 0, brush.Width, brush.Height, previewColor);
+        }
 
         _preview = bmp;
         return _preview;
@@ -141,39 +161,46 @@ public sealed class MorphTool : BaseTool
         }
     }
 
+    private IList<Vector2Int32> GetMorphShapePoints(Vector2Int32 center)
+    {
+        var brush = _wvm.Brush;
+        IEnumerable<Vector2Int32> points = brush.Shape switch
+        {
+            BrushShape.Round => Fill.FillEllipseCentered(center, new Vector2Int32(brush.Width / 2, brush.Height / 2)),
+            BrushShape.Star => Fill.FillStarCentered(center, Math.Min(brush.Width, brush.Height) / 2,
+                Math.Min(brush.Width, brush.Height) / 4, 5),
+            BrushShape.Triangle => Fill.FillTriangleCentered(center, brush.Width / 2, brush.Height / 2),
+            BrushShape.Crescent => Fill.FillCrescentCentered(center,
+                Math.Min(brush.Width, brush.Height) / 2,
+                (int)(Math.Min(brush.Width, brush.Height) / 2 * 0.75),
+                Math.Min(brush.Width, brush.Height) / 4),
+            BrushShape.Donut => Fill.FillDonutCentered(center,
+                Math.Min(brush.Width, brush.Height) / 2,
+                Math.Max(1, Math.Min(brush.Width, brush.Height) / 4)),
+            _ => Fill.FillRectangleCentered(center, new Vector2Int32(brush.Width, brush.Height)),
+        };
+
+        if (brush.HasTransform)
+            points = Fill.ApplyTransform(points, center, brush.Rotation, brush.FlipHorizontal, brush.FlipVertical);
+
+        return points.ToList();
+    }
+
     private void DrawLine(Vector2Int32 to)
     {
-        IEnumerable<Vector2Int32> area;
         foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, to))
         {
-            if (_wvm.Brush.Shape == BrushShape.Round)
-            {
-                area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
-                FillSolid(area);
-            }
-            else if (_wvm.Brush.Shape == BrushShape.Square)
-            {
-                area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
-                FillSolid(area);
-            }
+            var area = GetMorphShapePoints(point);
+            FillSolid(area);
         }
     }
 
     private void DrawLineP2P(Vector2Int32 endPoint)
     {
-        IEnumerable<Vector2Int32> area;
         foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, _endPoint))
         {
-            if (_wvm.Brush.Shape == BrushShape.Round)
-            {
-                area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
-                FillSolid(area);
-            }
-            else if (_wvm.Brush.Shape == BrushShape.Square)
-            {
-                area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
-                FillSolid(area);
-            }
+            var area = GetMorphShapePoints(point);
+            FillSolid(area);
         }
     }
 

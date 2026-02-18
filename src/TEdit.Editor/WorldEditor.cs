@@ -678,31 +678,91 @@ public class WorldEditor : IDisposable
         }
     }
 
+    public IList<Vector2Int32> GetShapePoints(Vector2Int32 center)
+    {
+        IEnumerable<Vector2Int32> points = Brush.Shape switch
+        {
+            BrushShape.Square => Fill.FillRectangleCentered(center, new Vector2Int32(Brush.Width, Brush.Height)),
+            BrushShape.Round => Fill.FillEllipseCentered(center, new Vector2Int32(Brush.Width / 2, Brush.Height / 2)),
+            BrushShape.Right => Shape.DrawLine(
+                new Vector2Int32(center.X - Brush.Width / 2, center.Y + Brush.Height / 2),
+                new Vector2Int32(center.X + Brush.Width / 2, center.Y - Brush.Height / 2)),
+            BrushShape.Left => Shape.DrawLine(
+                new Vector2Int32(center.X - Brush.Width / 2, center.Y - Brush.Height / 2),
+                new Vector2Int32(center.X + Brush.Width / 2, center.Y + Brush.Height / 2)),
+            BrushShape.Star => Fill.FillStarCentered(center, Math.Min(Brush.Width, Brush.Height) / 2,
+                Math.Min(Brush.Width, Brush.Height) / 4, 5),
+            BrushShape.Triangle => Fill.FillTriangleCentered(center, Brush.Width / 2, Brush.Height / 2),
+            BrushShape.Crescent => Fill.FillCrescentCentered(center,
+                Math.Min(Brush.Width, Brush.Height) / 2,
+                (int)(Math.Min(Brush.Width, Brush.Height) / 2 * 0.75),
+                Math.Min(Brush.Width, Brush.Height) / 4),
+            BrushShape.Donut => Fill.FillDonutCentered(center,
+                Math.Min(Brush.Width, Brush.Height) / 2,
+                Math.Max(1, Math.Min(Brush.Width, Brush.Height) / 4)),
+            _ => Fill.FillRectangleCentered(center, new Vector2Int32(Brush.Width, Brush.Height)),
+        };
+
+        if (Brush.HasTransform)
+            points = Fill.ApplyTransform(points, center, Brush.Rotation, Brush.FlipHorizontal, Brush.FlipVertical);
+
+        return points.ToList();
+    }
+
+    private bool IsSimpleRectShape()
+    {
+        return (Brush.Shape == BrushShape.Square || Brush.Height <= 1 || Brush.Width <= 1)
+            && !Brush.HasTransform;
+    }
+
     public void DrawLine(
         Vector2Int32 start,
         Vector2Int32 end)
     {
         var line = Shape.DrawLineTool(start, end).ToList();
-        if (Brush.Shape == BrushShape.Square || Brush.Height <= 1 || Brush.Width <= 1)
+        if (IsSimpleRectShape())
         {
             for (int i = 1; i < line.Count; i++)
             {
                 FillRectangleLine(line[i - 1], line[i]);
             }
         }
-        else if (Brush.Shape == BrushShape.Round)
+        else
         {
             foreach (Vector2Int32 point in line)
             {
-                FillRound(point);
+                FillShape(point);
             }
         }
-        else if (Brush.Shape == BrushShape.Right || Brush.Shape == BrushShape.Left)
+    }
+
+    protected void FillShape(Vector2Int32 point)
+    {
+        var area = GetShapePoints(point);
+        if (Brush.IsOutline && Brush.Shape != BrushShape.Right && Brush.Shape != BrushShape.Left)
         {
-            foreach (Vector2Int32 point in line)
+            int interiorWidth = Math.Max(1, Brush.Width - Brush.Outline * 2);
+            int interiorHeight = Math.Max(1, Brush.Height - Brush.Outline * 2);
+
+            IEnumerable<Vector2Int32> interiorPoints = Brush.Shape switch
             {
-                FillSlope(point);
-            }
+                BrushShape.Square => Fill.FillRectangleCentered(point, new Vector2Int32(interiorWidth, interiorHeight)),
+                BrushShape.Round => Fill.FillEllipseCentered(point, new Vector2Int32(interiorWidth / 2, interiorHeight / 2)),
+                BrushShape.Star => Fill.FillStarCentered(point,
+                    Math.Min(interiorWidth, interiorHeight) / 2,
+                    Math.Min(interiorWidth, interiorHeight) / 4, 5),
+                BrushShape.Triangle => Fill.FillTriangleCentered(point, interiorWidth / 2, interiorHeight / 2),
+                _ => Fill.FillRectangleCentered(point, new Vector2Int32(interiorWidth, interiorHeight)),
+            };
+
+            if (Brush.HasTransform)
+                interiorPoints = Fill.ApplyTransform(interiorPoints, point, Brush.Rotation, Brush.FlipHorizontal, Brush.FlipVertical);
+
+            FillHollow(area, interiorPoints.ToList());
+        }
+        else
+        {
+            FillSolid(area);
         }
     }
 
@@ -726,22 +786,6 @@ public class WorldEditor : IDisposable
                 new Vector2Int32(
                     Brush.Width - Brush.Outline * 2,
                     Brush.Height - Brush.Outline * 2)).ToList();
-            FillHollow(area, interrior);
-        }
-        else
-        {
-            FillSolid(area);
-        }
-    }
-
-    protected void FillRound(Vector2Int32 point)
-    {
-        var area = Fill.FillEllipseCentered(point, new Vector2Int32(Brush.Width / 2, Brush.Height / 2)).ToList();
-        if (Brush.IsOutline)
-        {
-            var interrior = Fill.FillEllipseCentered(point, new Vector2Int32(
-                Brush.Width / 2 - Brush.Outline * 2,
-                Brush.Height / 2 - Brush.Outline * 2)).ToList();
             FillHollow(area, interrior);
         }
         else
@@ -832,25 +876,6 @@ public class WorldEditor : IDisposable
                 _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
             }
         }
-    }
-
-    private void FillSlope(Vector2Int32 point)
-    {
-        Vector2Int32 leftPoint;
-        Vector2Int32 rightPoint;
-
-        if (Brush.Shape == BrushShape.Right)
-        {
-            leftPoint = new Vector2Int32(point.X - Brush.Width / 2, point.Y + Brush.Height / 2);
-            rightPoint = new Vector2Int32(point.X + Brush.Width / 2, point.Y - Brush.Height / 2);
-        }
-        else
-        {
-            leftPoint = new Vector2Int32(point.X - Brush.Width / 2, point.Y - Brush.Height / 2);
-            rightPoint = new Vector2Int32(point.X + Brush.Width / 2, point.Y + Brush.Height / 2);
-        }
-        var area = Shape.DrawLine(leftPoint, rightPoint).ToList();
-        FillSolid(area);
     }
 
     public void Dispose()

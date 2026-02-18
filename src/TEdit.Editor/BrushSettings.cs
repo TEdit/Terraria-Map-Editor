@@ -25,6 +25,16 @@ public partial class BrushSettings : ReactiveObject
     private bool _isLocked = true;
     [Reactive]
     private bool _isOutline = false;
+    [Reactive]
+    private double _rotation = 0;
+    [Reactive]
+    private bool _flipHorizontal = false;
+    [Reactive]
+    private bool _flipVertical = false;
+    [Reactive]
+    private bool _isSpray = false;
+    private int _sprayDensity = 50;
+    private int _sprayTickMs = 100;
     private BrushShape _shape = ToolDefaultData.BrushShape;
 
     public BrushSettings()
@@ -38,6 +48,12 @@ public partial class BrushSettings : ReactiveObject
         Width = width;
         Height = height;
         Outline = outline;
+        Rotation = ToolDefaultData.BrushRotation;
+        FlipHorizontal = ToolDefaultData.BrushFlipHorizontal;
+        FlipVertical = ToolDefaultData.BrushFlipVertical;
+        IsSpray = ToolDefaultData.BrushIsSpray;
+        SprayDensity = ToolDefaultData.BrushSprayDensity;
+        SprayTickMs = ToolDefaultData.BrushSprayTickMs;
     }
 
     public event EventHandler BrushChanged;
@@ -129,4 +145,28 @@ public partial class BrushSettings : ReactiveObject
             this.RaiseAndSetIfChanged(ref _outline, value);
         }
     }
+
+    public int SprayDensity
+    {
+        get { return _sprayDensity; }
+        set
+        {
+            if (value < 1) value = 1;
+            if (value > 100) value = 100;
+            this.RaiseAndSetIfChanged(ref _sprayDensity, value);
+        }
+    }
+
+    public int SprayTickMs
+    {
+        get { return _sprayTickMs; }
+        set
+        {
+            if (value < 50) value = 50;
+            if (value > 500) value = 500;
+            this.RaiseAndSetIfChanged(ref _sprayTickMs, value);
+        }
+    }
+
+    public bool HasTransform => Math.Abs(Rotation) > 0.01 || FlipHorizontal || FlipVertical;
 }

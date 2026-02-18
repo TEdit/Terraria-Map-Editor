@@ -12,4 +12,12 @@ public enum BrushShape
     Right,
     [Description("Diagonal Left")]
     Left,
+    [Description("Star")]
+    Star,
+    [Description("Triangle")]
+    Triangle,
+    [Description("Crescent")]
+    Crescent,
+    [Description("Donut")]
+    Donut,
 }

@@ -2395,4 +2395,4 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-</root>
+<data name="BrushShape_Star" xml:space="preserve"><value>Star</value></data><data name="BrushShape_Triangle" xml:space="preserve"><value>Triangle</value></data><data name="BrushShape_Crescent" xml:space="preserve"><value>Crescent</value></data><data name="BrushShape_Donut" xml:space="preserve"><value>Donut</value></data><data name="tool_brush_rotation_label" xml:space="preserve"><value>Rotation</value></data><data name="tool_brush_flip_h_tooltip" xml:space="preserve"><value>Flip Horizontal</value></data><data name="tool_brush_flip_v_tooltip" xml:space="preserve"><value>Flip Vertical</value></data><data name="tool_brush_spray_tooltip" xml:space="preserve"><value>Spray Mode</value></data><data name="tool_brush_spray_density_label" xml:space="preserve"><value>Density</value></data><data name="tool_brush_spray_speed_label" xml:space="preserve"><value>Speed</value></data></root>

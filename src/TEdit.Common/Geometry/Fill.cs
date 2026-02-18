@@ -279,6 +279,106 @@ public static class Fill
         return FillPolygon(new[] { v1, v2, v3, v4 });
     }
 
+    public static IEnumerable<Vector2Int32> FillStarCentered(Vector2Int32 center, int outerRadius, int innerRadius, int numPoints = 5)
+    {
+        if (outerRadius <= 0 || numPoints < 3) { yield return center; yield break; }
+        if (innerRadius <= 0) innerRadius = outerRadius / 2;
+
+        var vertices = new Vector2Int32[numPoints * 2];
+        double angleStep = Math.PI / numPoints;
+        double startAngle = -Math.PI / 2; // point up
+
+        for (int i = 0; i < numPoints * 2; i++)
+        {
+            double angle = startAngle + i * angleStep;
+            int r = (i % 2 == 0) ? outerRadius : innerRadius;
+            vertices[i] = new Vector2Int32(
+                center.X + (int)Math.Round(Math.Cos(angle) * r),
+                center.Y + (int)Math.Round(Math.Sin(angle) * r));
+        }
+
+        foreach (var p in FillPolygon(vertices))
+            yield return p;
+    }
+
+    public static IEnumerable<Vector2Int32> FillTriangleCentered(Vector2Int32 center, int halfWidth, int halfHeight)
+    {
+        if (halfWidth <= 0 || halfHeight <= 0) { yield return center; yield break; }
+
+        var top = new Vector2Int32(center.X, center.Y - halfHeight);
+        var bottomLeft = new Vector2Int32(center.X - halfWidth, center.Y + halfHeight);
+        var bottomRight = new Vector2Int32(center.X + halfWidth, center.Y + halfHeight);
+
+        foreach (var p in FillTriangle(top, bottomLeft, bottomRight))
+            yield return p;
+    }
+
+    public static IEnumerable<Vector2Int32> FillCrescentCentered(Vector2Int32 center, int outerRadius, int innerRadius, int innerOffsetX)
+    {
+        if (outerRadius <= 0) { yield return center; yield break; }
+
+        var outerPoints = new HashSet<Vector2Int32>(
+            FillEllipseCentered(center, new Vector2Int32(outerRadius, outerRadius)));
+
+        var innerCenter = new Vector2Int32(center.X + innerOffsetX, center.Y);
+        var innerPoints = new HashSet<Vector2Int32>(
+            FillEllipseCentered(innerCenter, new Vector2Int32(innerRadius, innerRadius)));
+
+        foreach (var p in outerPoints)
+        {
+            if (!innerPoints.Contains(p))
+                yield return p;
+        }
+    }
+
+    public static IEnumerable<Vector2Int32> FillDonutCentered(Vector2Int32 center, int outerRadius, int innerRadius)
+    {
+        if (outerRadius <= 0) { yield return center; yield break; }
+
+        var outerPoints = new HashSet<Vector2Int32>(
+            FillEllipseCentered(center, new Vector2Int32(outerRadius, outerRadius)));
+
+        var innerPoints = new HashSet<Vector2Int32>(
+            FillEllipseCentered(center, new Vector2Int32(innerRadius, innerRadius)));
+
+        foreach (var p in outerPoints)
+        {
+            if (!innerPoints.Contains(p))
+                yield return p;
+        }
+    }
+
+    public static IEnumerable<Vector2Int32> ApplyTransform(
+        IEnumerable<Vector2Int32> points, Vector2Int32 center,
+        double angleDegrees, bool flipX, bool flipY)
+    {
+        bool needsRotation = Math.Abs(angleDegrees) > 0.01;
+        double rad = angleDegrees * Math.PI / 180.0;
+        double cos = Math.Cos(rad);
+        double sin = Math.Sin(rad);
+
+        foreach (var p in points)
+        {
+            double dx = p.X - center.X;
+            double dy = p.Y - center.Y;
+
+            if (flipX) dx = -dx;
+            if (flipY) dy = -dy;
+
+            if (needsRotation)
+            {
+                double rx = dx * cos - dy * sin;
+                double ry = dx * sin + dy * cos;
+                dx = rx;
+                dy = ry;
+            }
+
+            yield return new Vector2Int32(
+                center.X + (int)Math.Round(dx),
+                center.Y + (int)Math.Round(dy));
+        }
+    }
+
     public static IEnumerable<Vector2Int32> FillBeziers(IList<Vector2Int32> points)
     {
         var polypoints = Spline.DrawBeziers(points).ToList();

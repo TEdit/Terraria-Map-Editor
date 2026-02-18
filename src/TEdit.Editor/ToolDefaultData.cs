@@ -13,6 +13,12 @@ public partial class ToolDefaultData
     private static int _brushHeight = 20;
     private static int _brushOutline = 1;
     private static BrushShape _brushShape = BrushShape.Square;
+    private static double _brushRotation = 0;
+    private static bool _brushFlipHorizontal = false;
+    private static bool _brushFlipVertical = false;
+    private static bool _brushIsSpray = false;
+    private static int _brushSprayDensity = 50;
+    private static int _brushSprayTickMs = 100;
 
     private static int _paintTile = 0;
     private static int _paintTileMask = 0;
@@ -89,6 +95,12 @@ public partial class ToolDefaultData
             if (brush.TryGetProperty("outline", out var o)) _brushOutline = o.GetInt32();
             if (brush.TryGetProperty("shape", out var s))
                 _brushShape = (BrushShape)ToEnum(typeof(BrushShape), s.GetString() ?? "Square");
+            if (brush.TryGetProperty("rotation", out var rot)) _brushRotation = rot.GetDouble();
+            if (brush.TryGetProperty("flipHorizontal", out var fh)) _brushFlipHorizontal = fh.GetBoolean();
+            if (brush.TryGetProperty("flipVertical", out var fv)) _brushFlipVertical = fv.GetBoolean();
+            if (brush.TryGetProperty("isSpray", out var isp)) _brushIsSpray = isp.GetBoolean();
+            if (brush.TryGetProperty("sprayDensity", out var sd)) _brushSprayDensity = sd.GetInt32();
+            if (brush.TryGetProperty("sprayTickMs", out var st)) _brushSprayTickMs = st.GetInt32();
         }
 
         if (tools.TryGetProperty("tile", out var tile))
@@ -141,6 +153,36 @@ public partial class ToolDefaultData
     public static BrushShape BrushShape
     {
         get { return _brushShape; }
+    }
+
+    public static double BrushRotation
+    {
+        get { return _brushRotation; }
+    }
+
+    public static bool BrushFlipHorizontal
+    {
+        get { return _brushFlipHorizontal; }
+    }
+
+    public static bool BrushFlipVertical
+    {
+        get { return _brushFlipVertical; }
+    }
+
+    public static bool BrushIsSpray
+    {
+        get { return _brushIsSpray; }
+    }
+
+    public static int BrushSprayDensity
+    {
+        get { return _brushSprayDensity; }
+    }
+
+    public static int BrushSprayTickMs
+    {
+        get { return _brushSprayTickMs; }
     }
 
     public static int PaintTile

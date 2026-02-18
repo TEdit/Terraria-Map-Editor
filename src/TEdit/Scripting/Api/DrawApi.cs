@@ -150,8 +150,30 @@ public class DrawApi
             "round" => BrushShape.Round,
             "right" => BrushShape.Right,
             "left" => BrushShape.Left,
+            "star" => BrushShape.Star,
+            "triangle" => BrushShape.Triangle,
+            "crescent" => BrushShape.Crescent,
+            "donut" => BrushShape.Donut,
             _ => BrushShape.Square
         };
+    }
+
+    public void SetRotation(double degrees)
+    {
+        _editor.Brush.Rotation = degrees;
+    }
+
+    public void SetFlip(bool horizontal = false, bool vertical = false)
+    {
+        _editor.Brush.FlipHorizontal = horizontal;
+        _editor.Brush.FlipVertical = vertical;
+    }
+
+    public void SetSpray(bool enabled, int density = 50, int tickMs = 100)
+    {
+        _editor.Brush.IsSpray = enabled;
+        _editor.Brush.SprayDensity = density;
+        _editor.Brush.SprayTickMs = tickMs;
     }
 
     public void SetBrushOutline(int outline, bool enabled)
@@ -271,15 +293,10 @@ public class DrawApi
             new Vector2Int32(x1, y1),
             new Vector2Int32(x2, y2)).ToList();
 
-        var brush = _editor.Brush;
         foreach (var point in line)
         {
-            // Generate brush area at each point
-            IList<Vector2Int32> area;
-            if (brush.Shape == BrushShape.Round)
-                area = GeomFill.FillEllipseCentered(point, new Vector2Int32(brush.Width / 2, brush.Height / 2)).ToList();
-            else
-                area = GeomFill.FillRectangleCentered(point, new Vector2Int32(brush.Width, brush.Height)).ToList();
+            // Generate brush area at each point using unified shape dispatch
+            IList<Vector2Int32> area = _editor.GetShapePoints(point);
 
             foreach (var pixel in area)
             {
