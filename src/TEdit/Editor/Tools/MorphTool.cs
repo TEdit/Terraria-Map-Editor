@@ -58,7 +58,14 @@ public sealed class MorphTool : BaseTool
             _rockLayer = (int)_wvm.CurrentWorld.RockLevel;
             _deepRockLayer = (int)(_wvm.CurrentWorld.RockLevel + ((_wvm.CurrentWorld.TilesHigh - _wvm.CurrentWorld.RockLevel) / 2));
             _hellLayer = (int)(_wvm.CurrentWorld.TilesHigh - 200);
-            _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
+            int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
+            if (_wvm.CheckTiles == null || _wvm.CheckTiles.Length != totalTiles)
+                _wvm.CheckTiles = new int[totalTiles];
+            if (++_wvm.CheckTileGeneration <= 0)
+            {
+                _wvm.CheckTileGeneration = 1;
+                Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
+            }
         }
 
         _isDrawing = actions.Contains("editor.draw");
@@ -205,14 +212,16 @@ public sealed class MorphTool : BaseTool
 
     private void FillSolid(IEnumerable<Vector2Int32> area)
     {
+        int generation = _wvm.CheckTileGeneration;
+        int tilesWide = _wvm.CurrentWorld.TilesWide;
         foreach (Vector2Int32 pixel in area)
         {
             if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-            int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
-            if (!_wvm.CheckTiles[index])
+            int index = pixel.X + pixel.Y * tilesWide;
+            if (_wvm.CheckTiles[index] != generation)
             {
-                _wvm.CheckTiles[index] = true;
+                _wvm.CheckTiles[index] = generation;
                 if (_wvm.Selection.IsValid(pixel))
                 {
                     _wvm.UndoManager.SaveTile(pixel);

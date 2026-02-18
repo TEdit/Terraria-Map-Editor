@@ -52,7 +52,8 @@ public partial class WorldViewModel : ReactiveObject
     private readonly MorphToolOptions _MorphToolOptions = new MorphToolOptions();
     private readonly ObservableCollection<ITool> _tools = new ObservableCollection<ITool>();
     private UndoManager _undoManager;
-    public bool[] CheckTiles;
+    public int[] CheckTiles;
+    public int CheckTileGeneration = 1;
     private ITool _activeTool;
     private UpdateMode _updateMode;
     private bool _isUpdateAvailable;

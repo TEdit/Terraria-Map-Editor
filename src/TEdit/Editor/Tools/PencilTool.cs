@@ -38,7 +38,14 @@ public sealed class PencilTool : BaseTool
             _startPoint = e.Location;
             _anchorPoint = e.Location;
             _constrainDirectionLocked = false;
-            _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
+            int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
+            if (_wvm.CheckTiles == null || _wvm.CheckTiles.Length != totalTiles)
+                _wvm.CheckTiles = new int[totalTiles];
+            if (++_wvm.CheckTileGeneration <= 0)
+            {
+                _wvm.CheckTileGeneration = 1;
+                Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
+            }
         }
 
         _isDrawing = actions.Contains("editor.draw");
@@ -111,14 +118,16 @@ public sealed class PencilTool : BaseTool
 
     private void DrawLine(Vector2Int32 to)
     {
+        int generation = _wvm.CheckTileGeneration;
+        int tilesWide = _wvm.CurrentWorld.TilesWide;
         foreach (Vector2Int32 pixel in Shape.DrawLineTool(_startPoint, to))
         {
             if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-            int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
-            if (!_wvm.CheckTiles[index])
+            int index = pixel.X + pixel.Y * tilesWide;
+            if (_wvm.CheckTiles[index] != generation)
             {
-                _wvm.CheckTiles[index] = true;
+                _wvm.CheckTiles[index] = generation;
                 if (_wvm.Selection.IsValid(pixel))
                 {
                     _wvm.UndoManager.SaveTile(pixel);
@@ -133,14 +142,16 @@ public sealed class PencilTool : BaseTool
 
     private void DrawLineP2P(Vector2Int32 endPoint)
     {
+        int generation = _wvm.CheckTileGeneration;
+        int tilesWide = _wvm.CurrentWorld.TilesWide;
         foreach (Vector2Int32 pixel in Shape.DrawLineTool(_startPoint, _endPoint))
         {
             if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-            int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
-            if (!_wvm.CheckTiles[index])
+            int index = pixel.X + pixel.Y * tilesWide;
+            if (_wvm.CheckTiles[index] != generation)
             {
-                _wvm.CheckTiles[index] = true;
+                _wvm.CheckTiles[index] = generation;
                 if (_wvm.Selection.IsValid(pixel))
                 {
                     _wvm.UndoManager.SaveTile(pixel);

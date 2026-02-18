@@ -31,7 +31,8 @@ public class WorldEditor : IDisposable
     private readonly ISelection _selection;
     private readonly IUndoManager _undo;
     private readonly NotifyTileChanged? _notifyTileChanged;
-    public bool[] _checkTiles;
+    public int[] _checkTiles;
+    public int _checkTileGeneration = 1;
     public TilePicker TilePicker { get; }
 
     public WorldEditor(
@@ -45,13 +46,14 @@ public class WorldEditor : IDisposable
         _selection = selection;
         _undo = undo;
         _notifyTileChanged = notifyTileChanged;
-        _checkTiles = new bool[_world.TilesWide * _world.TilesHigh];
+        _checkTiles = new int[_world.TilesWide * _world.TilesHigh];
         TilePicker = tilePicker;
     }
 
     public async Task BeginOperationAsync()
     {
-        _checkTiles = new bool[_world.TilesWide * _world.TilesHigh];
+        _checkTiles = new int[_world.TilesWide * _world.TilesHigh];
+        if (++_checkTileGeneration <= 0) _checkTileGeneration = 1;
         //await _undo.StartUndoAsync();
     }
 
@@ -71,8 +73,8 @@ public class WorldEditor : IDisposable
         if (TilePicker == null) return;
 
         int index = GetTileIndex(x, y);
-        if (_checkTiles[index]) { return; }
-        // else { _checkTiles[index] = true; }
+        if (_checkTiles[index] == _checkTileGeneration) { return; }
+        // else { _checkTiles[index] = _checkTileGeneration; }
 
         Tile curTile = _world.Tiles[x, y];
         if (curTile == null) return;
@@ -762,7 +764,7 @@ public class WorldEditor : IDisposable
             if (!_world.ValidTileLocation(pixel)) continue;
 
             int index = pixel.X + pixel.Y * _world.TilesWide;
-            if (!_checkTiles[index])
+            if (_checkTiles[index] != _checkTileGeneration)
             {
                 if (_selection.IsValid(pixel))
                 {
@@ -771,7 +773,7 @@ public class WorldEditor : IDisposable
 
                     _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
                 }
-                _checkTiles[index] = true;
+                _checkTiles[index] = _checkTileGeneration;
             }
         }
     }
@@ -789,9 +791,9 @@ public class WorldEditor : IDisposable
 
                 int index = pixel.X + pixel.Y * _world.TilesWide;
 
-                if (!_checkTiles[index])
+                if (_checkTiles[index] != _checkTileGeneration)
                 {
-                    _checkTiles[index] = true;
+                    _checkTiles[index] = _checkTileGeneration;
                     if (_selection.IsValid(pixel))
                     {
                         _undo.SaveTile(_world, pixel);

@@ -20,6 +20,11 @@ public partial class BrushSettings : ReactiveObject
     private int _width = 20;
     private int _height = 20;
 
+    // Cached shape offsets (center-relative) — rebuilt lazily when brush settings change
+    private Vector2Int32[] _cachedOffsets = Array.Empty<Vector2Int32>();
+    private Vector2Int32[] _cachedInteriorOffsets = Array.Empty<Vector2Int32>();
+    private bool _cacheValid;
+
     [Reactive]
     private int _offsetX = 10;
     [Reactive]
@@ -64,6 +69,7 @@ public partial class BrushSettings : ReactiveObject
 
     private void BrushChange()
     {
+        _cacheValid = false;
         OnBrushChanged(this, new EventArgs());
     }
 
@@ -406,5 +412,175 @@ public partial class BrushSettings : ReactiveObject
         }
 
         return Fill.FillCrescentCentered(center, outerRadius, innerRadius, innerOffsetX);
+    }
+
+    // ── Shape cache ─────────────────────────────────────────────────
+
+    public static bool IsLineShape(BrushShape shape) =>
+        shape == BrushShape.Right || shape == BrushShape.Left || shape == BrushShape.Cross;
+
+    public static bool ShapeUsesParametricOutline(BrushShape shape) =>
+        shape == BrushShape.Square || shape == BrushShape.Round;
+
+    /// <summary>
+    /// Cached interior offsets (center-relative) for outline mode.
+    /// Rebuilt lazily by <see cref="EnsureCacheValid"/>.
+    /// </summary>
+    public Vector2Int32[] CachedInteriorOffsets
+    {
+        get
+        {
+            EnsureCacheValid();
+            return _cachedInteriorOffsets;
+        }
+    }
+
+    /// <summary>
+    /// Rebuild the cached center-relative offsets if any brush setting changed.
+    /// </summary>
+    public void EnsureCacheValid()
+    {
+        if (_cacheValid) return;
+
+        var origin = new Vector2Int32(0, 0);
+        IList<Vector2Int32> points = GetShapePoints(origin);
+
+        if (IsLineShape(Shape))
+            points = ThickenLine(points, Outline);
+
+        _cachedOffsets = points is Vector2Int32[] arr ? arr : points.ToArray();
+
+        // Compute interior offsets for outline mode
+        if (IsOutline)
+        {
+            IList<Vector2Int32> interior;
+            if (IsLineShape(Shape))
+            {
+                interior = ErodeShape(points, Outline);
+            }
+            else if (ShapeUsesParametricOutline(Shape))
+            {
+                int iw = Math.Max(1, Width - Outline * 2);
+                int ih = Math.Max(1, Height - Outline * 2);
+                interior = GetShapePoints(origin, iw, ih);
+            }
+            else
+            {
+                interior = ErodeShape(points, Outline);
+            }
+            _cachedInteriorOffsets = interior is Vector2Int32[] ia ? ia : interior.ToArray();
+        }
+        else
+        {
+            _cachedInteriorOffsets = Array.Empty<Vector2Int32>();
+        }
+
+        _cacheValid = true;
+    }
+
+    /// <summary>
+    /// Translate cached shape offsets to an absolute center and write into <paramref name="output"/>.
+    /// </summary>
+    public void StampOffsets(Vector2Int32 center, List<Vector2Int32> output)
+    {
+        EnsureCacheValid();
+        output.Clear();
+        var offsets = _cachedOffsets;
+        for (int i = 0; i < offsets.Length; i++)
+            output.Add(new Vector2Int32(center.X + offsets[i].X, center.Y + offsets[i].Y));
+    }
+
+    /// <summary>
+    /// Translate cached interior offsets to an absolute center and write into <paramref name="output"/>.
+    /// </summary>
+    public void StampInteriorOffsets(Vector2Int32 center, List<Vector2Int32> output)
+    {
+        EnsureCacheValid();
+        output.Clear();
+        var offsets = _cachedInteriorOffsets;
+        for (int i = 0; i < offsets.Length; i++)
+            output.Add(new Vector2Int32(center.X + offsets[i].X, center.Y + offsets[i].Y));
+    }
+
+    // ── Static geometry helpers (moved from BrushToolBase) ──────────
+
+    /// <summary>
+    /// Expand line points by a given thickness using a circular kernel.
+    /// </summary>
+    public static IList<Vector2Int32> ThickenLine(IList<Vector2Int32> linePoints, int thickness)
+    {
+        if (thickness <= 1) return linePoints;
+
+        int r = thickness;
+        int r2 = r * r;
+        var expanded = new HashSet<Vector2Int32>(linePoints.Count * (2 * r + 1));
+        foreach (var lp in linePoints)
+        {
+            for (int dy = -r; dy <= r; dy++)
+            {
+                for (int dx = -r; dx <= r; dx++)
+                {
+                    if (dx * dx + dy * dy <= r2)
+                        expanded.Add(new Vector2Int32(lp.X + dx, lp.Y + dy));
+                }
+            }
+        }
+        return expanded.ToList();
+    }
+
+    /// <summary>
+    /// Erode a shape by N pixels using separable 1D erosion for O(n) performance.
+    /// A point is interior if all points within Chebyshev distance N are also in the shape.
+    /// </summary>
+    public static IList<Vector2Int32> ErodeShape(IList<Vector2Int32> points, int outline)
+    {
+        if (points.Count == 0 || outline <= 0) return points;
+
+        int minX = int.MaxValue, minY = int.MaxValue;
+        int maxX = int.MinValue, maxY = int.MinValue;
+        foreach (var p in points)
+        {
+            if (p.X < minX) minX = p.X;
+            if (p.X > maxX) maxX = p.X;
+            if (p.Y < minY) minY = p.Y;
+            if (p.Y > maxY) maxY = p.Y;
+        }
+
+        int w = maxX - minX + 1;
+        int h = maxY - minY + 1;
+        if (w <= outline * 2 || h <= outline * 2) return [];
+
+        var mask = new bool[w * h];
+        foreach (var p in points)
+            mask[(p.X - minX) + (p.Y - minY) * w] = true;
+
+        // Horizontal erosion
+        var hEroded = new bool[w * h];
+        for (int y = 0; y < h; y++)
+        {
+            int rowOff = y * w;
+            int run = 0;
+            for (int x = 0; x < w; x++)
+            {
+                run = mask[rowOff + x] ? run + 1 : 0;
+                if (run >= outline * 2 + 1)
+                    hEroded[rowOff + x - outline] = true;
+            }
+        }
+
+        // Vertical erosion on hEroded result
+        var result = new List<Vector2Int32>();
+        for (int x = 0; x < w; x++)
+        {
+            int run = 0;
+            for (int y = 0; y < h; y++)
+            {
+                run = hEroded[x + y * w] ? run + 1 : 0;
+                if (run >= outline * 2 + 1)
+                    result.Add(new Vector2Int32(minX + x, minY + y - outline));
+            }
+        }
+
+        return result;
     }
 }

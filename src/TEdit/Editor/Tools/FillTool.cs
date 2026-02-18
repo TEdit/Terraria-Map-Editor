@@ -46,7 +46,8 @@ public sealed class FillTool : BaseTool
 
         int x = pt.X;
         int y = pt.Y;
-        _wvm.CheckTiles = new bool[bitmapWidth * bitmapHeight];
+        _wvm.CheckTiles = new int[bitmapWidth * bitmapHeight];
+        if (++_wvm.CheckTileGeneration <= 0) _wvm.CheckTileGeneration = 1;
 
         var originTile = (Tile)_wvm.CurrentWorld.Tiles[x, y].Clone();
         LinearFloodFill(ref x, ref y, ref originTile);
@@ -65,12 +66,12 @@ public sealed class FillTool : BaseTool
             {
                 //*Start Fill Upwards
                 //if we're not above the top of the bitmap and the pixel above this one is within the color tolerance
-                if (range.Y > 0 && (!_wvm.CheckTiles[upPxIdx]) && CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[i, upY]) && _wvm.Selection.IsValid(i, upY))
+                if (range.Y > 0 && (_wvm.CheckTiles[upPxIdx] != _wvm.CheckTileGeneration) && CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[i, upY]) && _wvm.Selection.IsValid(i, upY))
                     LinearFloodFill(ref i, ref upY, ref originTile);
 
                 //*Start Fill Downwards
                 //if we're not below the bottom of the bitmap and the pixel below this one is within the color tolerance
-                if (range.Y < (bitmapHeight - 1) && (!_wvm.CheckTiles[downPxIdx]) && CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[i, downY]) && _wvm.Selection.IsValid(i, downY))
+                if (range.Y < (bitmapHeight - 1) && (_wvm.CheckTiles[downPxIdx] != _wvm.CheckTileGeneration) && CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[i, downY]) && _wvm.Selection.IsValid(i, downY))
                     LinearFloodFill(ref i, ref downY, ref originTile);
                 downPxIdx++;
                 upPxIdx++;
@@ -121,23 +122,24 @@ public sealed class FillTool : BaseTool
     {
         int bitmapWidth = _wvm.CurrentWorld.TilesWide;
         int bitmapHeight = _wvm.CurrentWorld.TilesHigh;
+        int generation = _wvm.CheckTileGeneration;
 
         //FIND LEFT EDGE OF COLOR AREA
         int lFillLoc = x; //the location to check/fill on the left
         int tileIndex = (bitmapWidth * y) + x;
         while (true)
         {
-            if (!_wvm.CheckTiles[tileIndex])
+            if (_wvm.CheckTiles[tileIndex] != generation)
             {
                 _wvm.UndoManager.SaveTile(lFillLoc, y);
                 _wvm.SetPixel(lFillLoc, y);
                 _wvm.UpdateRenderPixel(lFillLoc, y);
-                _wvm.CheckTiles[tileIndex] = true;
+                _wvm.CheckTiles[tileIndex] = generation;
             }
 
             lFillLoc--;
             tileIndex--;
-            if (lFillLoc <= 0 || _wvm.CheckTiles[tileIndex] || !CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[lFillLoc, y]) || !_wvm.Selection.IsValid(lFillLoc, y))
+            if (lFillLoc <= 0 || _wvm.CheckTiles[tileIndex] == generation || !CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[lFillLoc, y]) || !_wvm.Selection.IsValid(lFillLoc, y))
                 break; //exit loop if we're at edge of bitmap or color area
 
         }
@@ -152,18 +154,18 @@ public sealed class FillTool : BaseTool
         tileIndex = (bitmapWidth * y) + x;
         while (true)
         {
-            if (!_wvm.CheckTiles[tileIndex])
+            if (_wvm.CheckTiles[tileIndex] != generation)
             {
                 _wvm.UndoManager.SaveTile(rFillLoc, y);
                 _wvm.SetPixel(rFillLoc, y);
                 _wvm.UpdateRenderPixel(rFillLoc, y);
-                _wvm.CheckTiles[tileIndex] = true;
+                _wvm.CheckTiles[tileIndex] = generation;
                 BlendRules.ResetUVCache(_wvm, rFillLoc, y, 1, 1);
             }
 
             rFillLoc++;
             tileIndex++;
-            if (rFillLoc >= bitmapWidth || _wvm.CheckTiles[tileIndex] || !CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[rFillLoc, y]) || !_wvm.Selection.IsValid(rFillLoc, y))
+            if (rFillLoc >= bitmapWidth || _wvm.CheckTiles[tileIndex] == generation || !CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[rFillLoc, y]) || !_wvm.Selection.IsValid(rFillLoc, y))
                 break; //exit loop if we're at edge of bitmap or color area
         }
         /* Heathtech */

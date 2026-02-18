@@ -302,9 +302,9 @@ public class DrawApi
                 if (!_world.ValidTileLocation(pixel)) continue;
 
                 int index = pixel.X + pixel.Y * _world.TilesWide;
-                if (!_editor._checkTiles[index])
+                if (_editor._checkTiles[index] != _editor._checkTileGeneration)
                 {
-                    _editor._checkTiles[index] = true;
+                    _editor._checkTiles[index] = _editor._checkTileGeneration;
 
                     if (_selection.IsValid(pixel))
                     {
@@ -324,7 +324,8 @@ public class DrawApi
 
     private void ResetCheckTiles()
     {
-        _editor._checkTiles = new bool[_world.TilesWide * _world.TilesHigh];
+        _editor._checkTiles = new int[_world.TilesWide * _world.TilesHigh];
+        if (++_editor._checkTileGeneration <= 0) _editor._checkTileGeneration = 1;
     }
 
     private BrickStyle? GetAutoSlopeStyle(Vector2Int32 v)

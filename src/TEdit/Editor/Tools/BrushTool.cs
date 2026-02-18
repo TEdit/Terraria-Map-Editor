@@ -33,12 +33,36 @@ public class BrushToolBase : BaseTool
     private readonly Random _sprayRandom = new Random();
     private bool _sprayActive;
 
+    // Pre-allocated buffers to avoid per-frame GC pressure (Phase 2)
+    private readonly List<Vector2Int32> _stampBuffer = new(160_000);
+    private readonly List<Vector2Int32> _interiorBuffer = new(160_000);
+    private readonly List<Vector2Int32> _lineBuffer = new(800);
+    private readonly HashSet<Vector2Int32> _sweepSet = new(10_000);
+
+    // Cached interior offset set for FillHollow — rebuilt on BrushChanged
+    private readonly HashSet<Vector2Int32> _interiorOffsetSet = new();
+
     public BrushToolBase(WorldViewModel worldViewModel)
         : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintbrush.png"));
         SymbolIcon = SymbolRegular.PaintBrush24;
         ToolType = ToolType.Brush;
+
+        _wvm.Brush.BrushChanged += OnBrushChanged;
+    }
+
+    private void OnBrushChanged(object sender, EventArgs e)
+    {
+        // Rebuild the interior offset set from cached offsets
+        _interiorOffsetSet.Clear();
+        _wvm.Brush.EnsureCacheValid();
+        var interiorOffsets = _wvm.Brush.CachedInteriorOffsets;
+        if (interiorOffsets != null)
+        {
+            foreach (var offset in interiorOffsets)
+                _interiorOffsetSet.Add(offset);
+        }
     }
 
     protected IList<Vector2Int32> GetShapePoints(Vector2Int32 center)
@@ -63,15 +87,17 @@ public class BrushToolBase : BaseTool
             _startPoint = e.Location;
             _anchorPoint = e.Location;
             _constrainDirectionLocked = false;
-            
+
             // Re-use or allocate check tiles
             int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
             if (_wvm.CheckTiles == null || _wvm.CheckTiles.Length != totalTiles)
             {
-                _wvm.CheckTiles = new bool[totalTiles];
+                _wvm.CheckTiles = new int[totalTiles];
             }
-            else
+            // Increment generation instead of Array.Clear
+            if (++_wvm.CheckTileGeneration <= 0)
             {
+                _wvm.CheckTileGeneration = 1;
                 Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
             }
         }
@@ -145,15 +171,17 @@ public class BrushToolBase : BaseTool
         if (tickCount <= 0) return;
 
         // Interpolate spray positions along the movement line
-        var line = Shape.DrawLineTool(_sprayPrevPoint, currentPos).ToList();
-        if (line.Count == 0) return;
+        _lineBuffer.Clear();
+        foreach (var p in Shape.DrawLineTool(_sprayPrevPoint, currentPos))
+            _lineBuffer.Add(p);
+        if (_lineBuffer.Count == 0) return;
 
         for (int i = 0; i < tickCount; i++)
         {
             // Distribute spray ticks evenly along the line segment
             float t = (float)(i + 1) / (tickCount + 1);
-            int lineIndex = Math.Min((int)(t * line.Count), line.Count - 1);
-            SprayAtPoint(line[lineIndex]);
+            int lineIndex = Math.Min((int)(t * _lineBuffer.Count), _lineBuffer.Count - 1);
+            SprayAtPoint(_lineBuffer[lineIndex]);
         }
 
         _sprayLastTickMs += (long)tickCount * tickInterval;
@@ -162,28 +190,28 @@ public class BrushToolBase : BaseTool
 
     private void SprayAtPoint(Vector2Int32 center)
     {
-        var points = GetShapePoints(center);
-        if (points.Count == 0) return;
+        _wvm.Brush.StampOffsets(center, _stampBuffer);
+        if (_stampBuffer.Count == 0) return;
 
         // Reset check tiles each tick so spray re-paints
         if (_wvm.CheckTiles != null)
         {
-            Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
+            if (++_wvm.CheckTileGeneration <= 0)
+            {
+                _wvm.CheckTileGeneration = 1;
+                Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
+            }
         }
 
         // Partial Fisher-Yates: select SprayDensity% of points
-        int count = Math.Max(1, points.Count * _wvm.Brush.SprayDensity / 100);
-        var selected = new List<Vector2Int32>(count);
-
-        var working = points.ToArray();
-        for (int i = 0; i < count && i < working.Length; i++)
+        int count = Math.Max(1, _stampBuffer.Count * _wvm.Brush.SprayDensity / 100);
+        for (int i = 0; i < count && i < _stampBuffer.Count; i++)
         {
-            int j = _sprayRandom.Next(i, working.Length);
-            (working[i], working[j]) = (working[j], working[i]);
-            selected.Add(working[i]);
+            int j = _sprayRandom.Next(i, _stampBuffer.Count);
+            (_stampBuffer[i], _stampBuffer[j]) = (_stampBuffer[j], _stampBuffer[i]);
         }
 
-        FillSolid(selected);
+        FillSolid(_stampBuffer, count);
     }
 
     public override WriteableBitmap PreviewTool()
@@ -191,7 +219,7 @@ public class BrushToolBase : BaseTool
         var brush = _wvm.Brush;
         var previewColor = Color.FromArgb(127, 0, 90, 255);
 
-        bool isLine = IsLineShape(brush.Shape);
+        bool isLine = BrushSettings.IsLineShape(brush.Shape);
         bool usePointPreview = brush.HasTransform || isLine ||
             brush.Shape == BrushShape.Star ||
             brush.Shape == BrushShape.Triangle ||
@@ -206,7 +234,7 @@ public class BrushToolBase : BaseTool
 
             // Line shapes: always apply outline as line thickness
             if (isLine)
-                points = ThickenLine(points, brush.Outline);
+                points = BrushSettings.ThickenLine(points, brush.Outline);
 
             if (points.Count == 0)
             {
@@ -318,26 +346,29 @@ public class BrushToolBase : BaseTool
 
     protected void DrawLine(Vector2Int32 to)
     {
-        var line = Shape.DrawLineTool(_startPoint, to).ToList();
+        _lineBuffer.Clear();
+        foreach (var p in Shape.DrawLineTool(_startPoint, to))
+            _lineBuffer.Add(p);
+
         if (IsSimpleRectShape())
         {
             // Single point (first click or no movement) — fill at that point
-            if (line.Count == 1)
+            if (_lineBuffer.Count == 1)
             {
-                FillRectangle(line[0]);
+                FillRectangle(_lineBuffer[0]);
             }
-            for (int i = 1; i < line.Count; i++)
+            for (int i = 1; i < _lineBuffer.Count; i++)
             {
-                FillRectangleLine(line[i - 1], line[i]);
+                FillRectangleLine(_lineBuffer[i - 1], _lineBuffer[i]);
             }
         }
-        else if (IsLineShape(_wvm.Brush.Shape) && !_wvm.Brush.IsOutline)
+        else if (BrushSettings.IsLineShape(_wvm.Brush.Shape) && !_wvm.Brush.IsOutline)
         {
             FillLineShapeSweep(_startPoint, to);
         }
         else
         {
-            foreach (Vector2Int32 point in line)
+            foreach (Vector2Int32 point in _lineBuffer)
             {
                 FillShape(point);
             }
@@ -346,26 +377,28 @@ public class BrushToolBase : BaseTool
 
     protected void DrawLineP2P(Vector2Int32 endPoint)
     {
-        var line = Shape.DrawLineTool(_startPoint, _endPoint).ToList();
+        _lineBuffer.Clear();
+        foreach (var p in Shape.DrawLineTool(_startPoint, _endPoint))
+            _lineBuffer.Add(p);
 
         if (IsSimpleRectShape())
         {
-            if (line.Count == 1)
+            if (_lineBuffer.Count == 1)
             {
-                FillRectangle(line[0]);
+                FillRectangle(_lineBuffer[0]);
             }
-            for (int i = 1; i < line.Count; i++)
+            for (int i = 1; i < _lineBuffer.Count; i++)
             {
-                FillRectangleLine(line[i - 1], line[i]);
+                FillRectangleLine(_lineBuffer[i - 1], _lineBuffer[i]);
             }
         }
-        else if (IsLineShape(_wvm.Brush.Shape) && !_wvm.Brush.IsOutline)
+        else if (BrushSettings.IsLineShape(_wvm.Brush.Shape) && !_wvm.Brush.IsOutline)
         {
             FillLineShapeSweep(_startPoint, _endPoint);
         }
         else
         {
-            foreach (Vector2Int32 point in line)
+            foreach (Vector2Int32 point in _lineBuffer)
             {
                 FillShape(point);
             }
@@ -407,7 +440,7 @@ public class BrushToolBase : BaseTool
         }
 
         // Fill a quadrilateral between the segment at "from" and "to" positions
-        var allPoints = new HashSet<Vector2Int32>();
+        _sweepSet.Clear();
         foreach (var (relStart, relEnd) in segments)
         {
             Vector2Int32[] quad =
@@ -418,146 +451,33 @@ public class BrushToolBase : BaseTool
                 new(to.X + relStart.X, to.Y + relStart.Y),
             ];
             foreach (var p in Fill.FillPolygon(quad))
-                allPoints.Add(p);
+                _sweepSet.Add(p);
         }
 
-        // Apply thickness
-        var result = ThickenLine(allPoints.ToList(), brush.Outline);
+        // Apply thickness — need a temporary list for ThickenLine input
+        _stampBuffer.Clear();
+        _stampBuffer.AddRange(_sweepSet);
+        var result = BrushSettings.ThickenLine(_stampBuffer, brush.Outline);
         FillSolid(result);
     }
 
-    private static bool IsLineShape(BrushShape shape) =>
-        shape == BrushShape.Right || shape == BrushShape.Left || shape == BrushShape.Cross;
-
-    private static bool ShapeUsesParametricOutline(BrushShape shape) =>
-        shape == BrushShape.Square || shape == BrushShape.Round;
-
+    /// <summary>
+    /// Fill the cached brush shape at <paramref name="point"/>, using cached offsets
+    /// instead of recalculating geometry from scratch.
+    /// </summary>
     protected void FillShape(Vector2Int32 point)
     {
-        var area = GetShapePoints(point);
-
-        // Line shapes: apply outline as line thickness
-        if (IsLineShape(_wvm.Brush.Shape))
-        {
-            var thickened = ThickenLine(area, _wvm.Brush.Outline);
-            if (_wvm.Brush.IsOutline)
-            {
-                var interior = ErodeShape(thickened, _wvm.Brush.Outline);
-                FillHollow(thickened, interior);
-            }
-            else
-            {
-                FillSolid(thickened);
-            }
-            return;
-        }
+        _wvm.Brush.StampOffsets(point, _stampBuffer);
 
         if (_wvm.Brush.IsOutline)
         {
-            IList<Vector2Int32> interiorPoints;
-            if (ShapeUsesParametricOutline(_wvm.Brush.Shape))
-            {
-                int interiorWidth = Math.Max(1, _wvm.Brush.Width - _wvm.Brush.Outline * 2);
-                int interiorHeight = Math.Max(1, _wvm.Brush.Height - _wvm.Brush.Outline * 2);
-                interiorPoints = _wvm.Brush.GetShapePoints(point, interiorWidth, interiorHeight);
-            }
-            else
-            {
-                interiorPoints = ErodeShape(area, _wvm.Brush.Outline);
-            }
-            FillHollow(area, interiorPoints);
+            _wvm.Brush.StampInteriorOffsets(point, _interiorBuffer);
+            FillHollowCached(_stampBuffer, point);
         }
         else
         {
-            FillSolid(area);
+            FillSolid(_stampBuffer);
         }
-    }
-
-    /// <summary>
-    /// Erode a shape by N pixels using a bitmask. A point is interior if
-    /// all points within Chebyshev distance N are also in the shape.
-    /// Uses separable 1D erosion (horizontal then vertical) for O(n) performance.
-    /// </summary>
-    private static IList<Vector2Int32> ErodeShape(IList<Vector2Int32> points, int outline)
-    {
-        if (points.Count == 0 || outline <= 0) return points;
-
-        // Find bounding box
-        int minX = int.MaxValue, minY = int.MaxValue;
-        int maxX = int.MinValue, maxY = int.MinValue;
-        foreach (var p in points)
-        {
-            if (p.X < minX) minX = p.X;
-            if (p.X > maxX) maxX = p.X;
-            if (p.Y < minY) minY = p.Y;
-            if (p.Y > maxY) maxY = p.Y;
-        }
-
-        int w = maxX - minX + 1;
-        int h = maxY - minY + 1;
-        if (w <= outline * 2 || h <= outline * 2) return [];
-
-        // Build bitmask
-        var mask = new bool[w * h];
-        foreach (var p in points)
-            mask[(p.X - minX) + (p.Y - minY) * w] = true;
-
-        // Horizontal erosion: for each row, a pixel survives if all pixels
-        // in [x-outline, x+outline] on the same row are set.
-        var hEroded = new bool[w * h];
-        for (int y = 0; y < h; y++)
-        {
-            int rowOff = y * w;
-            // Running count of consecutive set pixels ending at x
-            int run = 0;
-            for (int x = 0; x < w; x++)
-            {
-                run = mask[rowOff + x] ? run + 1 : 0;
-                // A pixel at x survives horizontal erosion if the run
-                // from (x - 2*outline) to x is at least (2*outline + 1)
-                if (run >= outline * 2 + 1)
-                    hEroded[rowOff + x - outline] = true;
-            }
-        }
-
-        // Vertical erosion on hEroded result
-        var result = new List<Vector2Int32>();
-        for (int x = 0; x < w; x++)
-        {
-            int run = 0;
-            for (int y = 0; y < h; y++)
-            {
-                run = hEroded[x + y * w] ? run + 1 : 0;
-                if (run >= outline * 2 + 1)
-                    result.Add(new Vector2Int32(minX + x, minY + y - outline));
-            }
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    /// Expand line points by a given thickness using a circular kernel.
-    /// </summary>
-    private static IList<Vector2Int32> ThickenLine(IList<Vector2Int32> linePoints, int thickness)
-    {
-        if (thickness <= 1) return linePoints;
-
-        int r = thickness;
-        int r2 = r * r;
-        var expanded = new HashSet<Vector2Int32>(linePoints.Count * (2 * r + 1));
-        foreach (var lp in linePoints)
-        {
-            for (int dy = -r; dy <= r; dy++)
-            {
-                for (int dx = -r; dx <= r; dx++)
-                {
-                    if (dx * dx + dy * dy <= r2)
-                        expanded.Add(new Vector2Int32(lp.X + dx, lp.Y + dy));
-                }
-            }
-        }
-        return expanded.ToList();
     }
 
     protected void FillRectangleLine(Vector2Int32 start, Vector2Int32 end)
@@ -585,16 +505,22 @@ public class BrushToolBase : BaseTool
         }
     }
 
-    protected virtual void FillSolid(IList<Vector2Int32> area)
+    protected virtual void FillSolid(IList<Vector2Int32> area) => FillSolid(area, area.Count);
+
+    protected virtual void FillSolid(IList<Vector2Int32> area, int count)
     {
-        foreach (Vector2Int32 pixel in area)
+        int generation = _wvm.CheckTileGeneration;
+        int tilesWide = _wvm.CurrentWorld.TilesWide;
+
+        for (int i = 0; i < count; i++)
         {
+            Vector2Int32 pixel = area[i];
             if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-            int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
-            if (!_wvm.CheckTiles[index])
+            int index = pixel.X + pixel.Y * tilesWide;
+            if (_wvm.CheckTiles[index] != generation)
             {
-                _wvm.CheckTiles[index] = true;
+                _wvm.CheckTiles[index] = generation;
                 if (_wvm.Selection.IsValid(pixel))
                 {
                     _wvm.UndoManager.SaveTile(pixel);
@@ -607,23 +533,102 @@ public class BrushToolBase : BaseTool
         }
     }
 
-    protected virtual void FillHollow(IList<Vector2Int32> area, IList<Vector2Int32> interrior)
+    /// <summary>
+    /// FillHollow using pre-built <see cref="_interiorOffsetSet"/> and center-relative lookup.
+    /// Avoids allocating a new HashSet per call.
+    /// </summary>
+    private void FillHollowCached(IList<Vector2Int32> area, Vector2Int32 center)
     {
-        var interiorSet = new HashSet<Vector2Int32>(interrior);
-        IEnumerable<Vector2Int32> border = area.Where(p => !interiorSet.Contains(p));
+        int generation = _wvm.CheckTileGeneration;
+        int tilesWide = _wvm.CurrentWorld.TilesWide;
 
         // Draw the border
         if (_wvm.TilePicker.TileStyleActive)
         {
-            foreach (Vector2Int32 pixel in border)
+            foreach (Vector2Int32 pixel in area)
             {
+                // Check if this pixel is interior using center-relative offset lookup
+                var rel = new Vector2Int32(pixel.X - center.X, pixel.Y - center.Y);
+                if (_interiorOffsetSet.Contains(rel)) continue;
+
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-                int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
-
-                if (!_wvm.CheckTiles[index])
+                int index = pixel.X + pixel.Y * tilesWide;
+                if (_wvm.CheckTiles[index] != generation)
                 {
-                    _wvm.CheckTiles[index] = true;
+                    _wvm.CheckTiles[index] = generation;
+                    if (_wvm.Selection.IsValid(pixel))
+                    {
+                        _wvm.UndoManager.SaveTile(pixel);
+                        if (_wvm.TilePicker.WallStyleActive)
+                        {
+                            _wvm.TilePicker.WallStyleActive = false;
+                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                            _wvm.TilePicker.WallStyleActive = true;
+                        }
+                        else
+                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+
+                        /* Heathtech */
+                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                    }
+                }
+            }
+        }
+
+        // Draw the wall in the interior, exclude the border so no overlaps
+        foreach (Vector2Int32 pixel in area)
+        {
+            var rel = new Vector2Int32(pixel.X - center.X, pixel.Y - center.Y);
+            if (!_interiorOffsetSet.Contains(rel)) continue;
+
+            if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+
+            if (_wvm.Selection.IsValid(pixel))
+            {
+                _wvm.UndoManager.SaveTile(pixel);
+                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall, erase: true);
+
+                if (_wvm.TilePicker.WallStyleActive)
+                {
+                    if (_wvm.TilePicker.TileStyleActive)
+                    {
+                        _wvm.TilePicker.TileStyleActive = false;
+                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                        _wvm.TilePicker.TileStyleActive = true;
+                    }
+                    else
+                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                }
+
+                /* Heathtech */
+                BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Legacy FillHollow for paths that pass explicit interior lists (e.g. FillRectangle).
+    /// </summary>
+    protected virtual void FillHollow(IList<Vector2Int32> area, IList<Vector2Int32> interrior)
+    {
+        var interiorSet = new HashSet<Vector2Int32>(interrior);
+        int generation = _wvm.CheckTileGeneration;
+        int tilesWide = _wvm.CurrentWorld.TilesWide;
+
+        // Draw the border
+        if (_wvm.TilePicker.TileStyleActive)
+        {
+            foreach (Vector2Int32 pixel in area)
+            {
+                if (interiorSet.Contains(pixel)) continue;
+                if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+
+                int index = pixel.X + pixel.Y * tilesWide;
+
+                if (_wvm.CheckTiles[index] != generation)
+                {
+                    _wvm.CheckTiles[index] = generation;
                     if (_wvm.Selection.IsValid(pixel))
                     {
                         _wvm.UndoManager.SaveTile(pixel);

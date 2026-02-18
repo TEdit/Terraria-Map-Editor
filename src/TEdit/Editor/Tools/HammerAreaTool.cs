@@ -18,16 +18,21 @@ public sealed class HammerAreaTool : BrushToolBase
         Name = "Hammer";
     }
 
-    protected override void FillSolid(IList<Vector2Int32> area)
+    protected override void FillSolid(IList<Vector2Int32> area) => FillSolid(area, area.Count);
+
+    protected override void FillSolid(IList<Vector2Int32> area, int count)
     {
-        foreach (var pixel in area)
+        int generation = _wvm.CheckTileGeneration;
+        int tilesWide = _wvm.CurrentWorld.TilesWide;
+        for (int idx = 0; idx < count; idx++)
         {
+            var pixel = area[idx];
             if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-            int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
-            if (!_wvm.CheckTiles[index])
+            int index = pixel.X + pixel.Y * tilesWide;
+            if (_wvm.CheckTiles[index] != generation)
             {
-                _wvm.CheckTiles[index] = true;
+                _wvm.CheckTiles[index] = generation;
 
                 if (_wvm.Selection.IsValid(pixel))
                 {
