@@ -562,7 +562,8 @@ public class WorldEditor : IDisposable
             {
                 curTile.Type = (ushort)tile;
                 curTile.IsActive = true;
-                if (WorldConfiguration.TileProperties[curTile.Type].IsSolid)
+                if (WorldConfiguration.TileProperties[curTile.Type].IsSolid
+                    && !WorldConfiguration.TileProperties[curTile.Type].IsFramed)
                 {
                     curTile.U = -1;
                     curTile.V = -1;

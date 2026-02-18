@@ -1,3 +1,4 @@
+using TEdit.Editor;
 using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.Terraria.Objects;
@@ -9,6 +10,10 @@ public static class SpritePlacer
 {
     public static void Place(this SpriteItem spriteSub, int destinationX, int destinationY, WorldViewModel wvm)
     {
+        // Apply actuator from TilePicker extras if active
+        bool applyActuator = wvm.TilePicker.ExtrasActive && wvm.TilePicker.Actuator;
+        bool applyInActive = wvm.TilePicker.ExtrasActive && wvm.TilePicker.ActuatorInActive;
+
         if (spriteSub.Tile == (ushort)TileType.ChristmasTree)
         {
             for (int x = 0; x < spriteSub.SizeTiles.X; x++)
@@ -26,6 +31,8 @@ public static class SpritePlacer
                     else
                         curtile.U = (short)x;
                     curtile.V = (short)y;
+                    if (applyActuator) curtile.Actuator = true;
+                    if (applyInActive) curtile.InActive = true;
 
                     wvm.UpdateRenderPixel(tilex, tiley);
                     BlendRules.ResetUVCache(wvm, tilex, tiley, spriteSub.SizeTiles.X, spriteSub.SizeTiles.Y);
@@ -48,6 +55,8 @@ public static class SpritePlacer
                     curtile.Type = spriteSub.Tile;
                     curtile.U = tiles[x, y].X;
                     curtile.V = tiles[x, y].Y;
+                    if (applyActuator) curtile.Actuator = true;
+                    if (applyInActive) curtile.InActive = true;
 
                     wvm.UpdateRenderPixel(tilex, tiley);
                     BlendRules.ResetUVCache(wvm, tilex, tiley, spriteSub.SizeTiles.X, spriteSub.SizeTiles.Y);
