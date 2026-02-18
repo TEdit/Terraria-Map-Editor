@@ -2473,4 +2473,10 @@
   <data name="texture_loading_do_not_show" xml:space="preserve">
     <value>Больше не показывать</value>
   </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Граница мира</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Накладка границы мира</value>
+  </data>
 </root>

@@ -97,6 +97,8 @@ public partial class WorldViewModel : ReactiveObject
     private bool _showGreenWires = true;
     private bool _showYellowWires = true;
     private bool _showAllWires = true;
+    private bool _showWorldBorder = false;
+    private bool _worldBorderOverlay = false;
     private bool _showWireTransparency = true;
     private string _spriteFilter;
     private ushort _spriteTileFilter;
@@ -1360,6 +1362,18 @@ public partial class WorldViewModel : ReactiveObject
     {
         get { return _showPoints; }
         set { this.RaiseAndSetIfChanged(ref _showPoints, value); }
+    }
+
+    public bool ShowWorldBorder
+    {
+        get { return _showWorldBorder; }
+        set { this.RaiseAndSetIfChanged(ref _showWorldBorder, value); }
+    }
+
+    public bool WorldBorderOverlay
+    {
+        get { return _worldBorderOverlay; }
+        set { this.RaiseAndSetIfChanged(ref _worldBorderOverlay, value); }
     }
 
     public bool ShowBuffRadii

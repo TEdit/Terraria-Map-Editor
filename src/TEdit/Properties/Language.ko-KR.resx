@@ -2403,4 +2403,10 @@
   <data name="texture_loading_do_not_show" xml:space="preserve">
     <value>다시 표시하지 않기</value>
   </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>세계 경계</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>세계 경계 오버레이</value>
+  </data>
 </root>

@@ -2473,4 +2473,10 @@ Qué NO se recopila:
   <data name="texture_loading_do_not_show" xml:space="preserve">
     <value>No volver a mostrar</value>
   </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Límite del Mundo</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Superposición del Límite del Mundo</value>
+  </data>
 </root>

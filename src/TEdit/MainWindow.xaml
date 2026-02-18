@@ -179,6 +179,9 @@
                     <MenuItem Header="{x:Static p:Language.menu_layers_buff_radii}" IsCheckable="True" IsChecked="{Binding ShowBuffRadii}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_minimap_background}" IsCheckable="True" IsChecked="{Binding MinimapBackground}" />
                     <Separator Margin="1" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_world_border}" IsCheckable="True" IsChecked="{Binding ShowWorldBorder}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_world_border_overlay}" IsCheckable="True" IsChecked="{Binding WorldBorderOverlay}" />
+                    <Separator Margin="1" />
                     <MenuItem>
                         <MenuItem.Template>
                             <ControlTemplate TargetType="{x:Type MenuItem}">

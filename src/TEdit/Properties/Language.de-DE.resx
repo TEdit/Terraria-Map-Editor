@@ -2473,4 +2473,10 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   <data name="texture_loading_do_not_show" xml:space="preserve">
     <value>Nicht erneut anzeigen</value>
   </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Weltgrenze</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Weltgrenzenüberlagerung</value>
+  </data>
 </root>

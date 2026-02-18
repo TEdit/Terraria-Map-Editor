@@ -2473,4 +2473,10 @@
   <data name="texture_loading_do_not_show" xml:space="preserve">
     <value>لا تظهر مرة أخرى</value>
   </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>حدود العالم</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>تراكب حدود العالم</value>
+  </data>
 </root>

@@ -2473,4 +2473,4 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-<data name="texture_loading_do_not_show" xml:space="preserve"><value>Do not show again</value></data></root>
+<data name="texture_loading_do_not_show" xml:space="preserve"><value>Do not show again</value></data><data name="menu_layers_world_border" xml:space="preserve"><value>World Border</value></data><data name="menu_layers_world_border_overlay" xml:space="preserve"><value>World Border Overlay</value></data></root>

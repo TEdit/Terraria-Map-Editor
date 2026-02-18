@@ -1871,6 +1871,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to World Border.
+        /// </summary>
+        public static string menu_layers_world_border {
+            get {
+                return ResourceManager.GetString("menu_layers_world_border", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Border Overlay.
+        /// </summary>
+        public static string menu_layers_world_border_overlay {
+            get {
+                return ResourceManager.GetString("menu_layers_world_border_overlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paste to all slots.
         /// </summary>
         public static string menu_pasteall {

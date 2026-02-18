@@ -2473,4 +2473,10 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="texture_loading_do_not_show" xml:space="preserve">
     <value>Não mostrar novamente</value>
   </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Limite do Mundo</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Sobreposição do Limite do Mundo</value>
+  </data>
 </root>

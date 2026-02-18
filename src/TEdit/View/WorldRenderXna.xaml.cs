@@ -61,6 +61,7 @@ public partial class WorldRenderXna : UserControl
     private const float LayerBuffRadii = 1 - 0.12f;
 
     private const float LayerGrid = 1 - 0.15f;
+    private const float LayerWorldBorder = 1 - 0.17f;
     private const float LayerLocations = 1 - 0.20f;
     private const float LayerSelection = 1 - 0.25f;
     private const float LayerTools = 1 - 0.30f;
@@ -2645,6 +2646,9 @@ public partial class WorldRenderXna : UserControl
         _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
         if (_wvm.ShowGrid)
             DrawGrid();
+
+        if (_wvm.ShowWorldBorder)
+            DrawWorldBorder();
 
         if (_wvm.ShowPoints)
             DrawPoints();
@@ -6524,6 +6528,73 @@ public partial class WorldRenderXna : UserControl
                 SpriteEffects.None,
                 LayerTools);
         }
+    }
+
+    private void DrawWorldBorder()
+    {
+        if (_wvm.CurrentWorld == null) return;
+
+        var whiteTex = _textureDictionary.WhitePixelTexture;
+        if (whiteTex == null) return;
+
+        int worldW = _wvm.CurrentWorld.TilesWide;
+        int worldH = _wvm.CurrentWorld.TilesHigh;
+
+        // Border offsets: tiles from edge that are unsafe
+        const int leftBorder = 41;
+        const int rightBorder = 42;
+        const int topBorder = 41;
+        const int bottomBorder = 42;
+
+        // Safe rectangle boundaries (in tile coords)
+        int safeLeft = leftBorder;
+        int safeRight = worldW - rightBorder;
+        int safeTop = topBorder;
+        int safeBottom = worldH - bottomBorder;
+
+        bool overlay = _wvm.WorldBorderOverlay;
+
+        // Colors
+        var lineColor = Color.FromNonPremultiplied(0xA3, 0x3D, 0x3D, 0xFF);
+        var overlayColor = Color.FromNonPremultiplied(0xA3, 0x3D, 0x3D, 0x90);
+
+        if (overlay)
+        {
+            // Draw 4 non-overlapping filled rectangles for unsafe areas
+            // Top: full width, topBorder tiles tall
+            DrawWorldRect(whiteTex, 0, 0, worldW, safeTop, overlayColor);
+            // Bottom: full width, bottomBorder tiles tall
+            DrawWorldRect(whiteTex, 0, safeBottom, worldW, worldH - safeBottom, overlayColor);
+            // Left: between top and bottom only
+            DrawWorldRect(whiteTex, 0, safeTop, safeLeft, safeBottom - safeTop, overlayColor);
+            // Right: between top and bottom only
+            DrawWorldRect(whiteTex, safeRight, safeTop, worldW - safeRight, safeBottom - safeTop, overlayColor);
+        }
+        else
+        {
+            // Line mode: draw 4 lines at safe/unsafe boundary (1px screen width)
+            int thickness = Math.Max(1, (int)Math.Ceiling(1.0 / _zoom));
+
+            // Left vertical line at x=safeLeft
+            DrawWorldRect(whiteTex, safeLeft, safeTop, thickness, safeBottom - safeTop, lineColor);
+            // Right vertical line at x=safeRight
+            DrawWorldRect(whiteTex, safeRight, safeTop, thickness, safeBottom - safeTop, lineColor);
+            // Top horizontal line at y=safeTop
+            DrawWorldRect(whiteTex, safeLeft, safeTop, safeRight - safeLeft, thickness, lineColor);
+            // Bottom horizontal line at y=safeBottom
+            DrawWorldRect(whiteTex, safeLeft, safeBottom, safeRight - safeLeft, thickness, lineColor);
+        }
+    }
+
+    private void DrawWorldRect(Texture2D tex, int tileX, int tileY, int tileW, int tileH, Color color)
+    {
+        var dest = new Rectangle(
+            (int)((_scrollPosition.X + tileX) * _zoom),
+            (int)((_scrollPosition.Y + tileY) * _zoom),
+            (int)(tileW * _zoom),
+            (int)(tileH * _zoom));
+
+        _spriteBatch.Draw(tex, dest, null, color, 0, Vector2.Zero, SpriteEffects.None, LayerWorldBorder);
     }
 
     private void DrawSelection()

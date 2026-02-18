@@ -2403,4 +2403,10 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="texture_loading_do_not_show" xml:space="preserve">
     <value>Ne pas montrer à nouveau</value>
   </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Limite du monde</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Superposition de la limite du monde</value>
+  </data>
 </root>

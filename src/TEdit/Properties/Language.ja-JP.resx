@@ -2403,4 +2403,10 @@
   <data name="texture_loading_do_not_show" xml:space="preserve">
     <value>再表示しない</value>
   </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>ワールドボーダー</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>ワールドボーダーオーバーレイ</value>
+  </data>
 </root>
