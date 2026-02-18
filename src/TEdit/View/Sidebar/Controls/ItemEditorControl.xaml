@@ -41,28 +41,28 @@
                   MaxDropDownHeight="400"
                   HorizontalAlignment="Stretch" />
         <!-- Clear item button -->
-        <Button Grid.Column="3" Style="{StaticResource CompactIconButton}" ToolTip="Clear item"
+        <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="Clear item"
                 Click="ClearItem_Click">
             <ui:SymbolIcon Symbol="Dismiss20" FontSize="14"/>
         </Button>
         <!-- Action buttons -->
-        <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+        <Button Grid.Column="3" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                 Command="{Binding CopyCommand, ElementName=Root}"
                 CommandParameter="{Binding CommandParameter, ElementName=Root}"
                 Visibility="{Binding ShowActionButtons, ElementName=Root, Converter={StaticResource BoolToVis}}">
             <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
         </Button>
-        <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+        <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
                 Command="{Binding PasteCommand, ElementName=Root}"
                 CommandParameter="{Binding PasteCommandParameter, ElementName=Root}"
                 Visibility="{Binding ShowActionButtons, ElementName=Root, Converter={StaticResource BoolToVis}}">
             <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
         </Button>
-        <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
+        <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
                 Command="{Binding MaxStackCommand, ElementName=Root}"
                 CommandParameter="{Binding MaxStackCommandParameter, ElementName=Root}"
                 Visibility="{Binding ShowActionButtons, ElementName=Root, Converter={StaticResource BoolToVis}}">
-            <ui:SymbolIcon Symbol="ArrowMaximize20" FontSize="14"/>
+            <ui:SymbolIcon Symbol="ArrowUp16" FontSize="14"/>
         </Button>
     </Grid>
 </UserControl>
