@@ -17,8 +17,13 @@ public partial class HslColorViewModel
     [Reactive] private string _label = "Color";
 
     private bool _isSyncing;
+    private double _prevHue = double.NaN;
+    private double _prevSaturation = double.NaN;
 
     public SolidColorBrush PreviewBrush { get; } = new(Colors.Black);
+    public SolidColorBrush HueThumbBrush { get; } = new(Colors.Red);
+    public SolidColorBrush SaturationThumbBrush { get; } = new(Colors.Red);
+    public SolidColorBrush LightnessThumbBrush { get; } = new(Colors.Red);
     public LinearGradientBrush HueTrackBrush { get; private set; }
     public LinearGradientBrush SaturationTrackBrush { get; private set; }
     public LinearGradientBrush LightnessTrackBrush { get; private set; }
@@ -58,7 +63,9 @@ public partial class HslColorViewModel
             Lightness = l;
             HexText = $"{color.R:X2}{color.G:X2}{color.B:X2}";
             UpdatePreview();
-            UpdateGradients();
+            UpdateHueDependentGradients();
+            UpdateLightnessGradient();
+            UpdateThumbColors();
         }
         finally
         {
@@ -72,10 +79,18 @@ public partial class HslColorViewModel
         _isSyncing = true;
         try
         {
+            bool hueChanged = _prevHue != Hue;
+            bool satChanged = _prevSaturation != Saturation;
+            _prevHue = Hue;
+            _prevSaturation = Saturation;
+
             var (r, g, b) = HslToRgb(Hue, Saturation, Lightness);
             HexText = $"{r:X2}{g:X2}{b:X2}";
             UpdatePreview();
-            UpdateGradients();
+
+            if (hueChanged) UpdateHueDependentGradients();
+            if (hueChanged || satChanged) UpdateLightnessGradient();
+            UpdateThumbColors();
         }
         finally
         {
@@ -101,7 +116,9 @@ public partial class HslColorViewModel
                 Saturation = s;
                 Lightness = l;
                 UpdatePreview();
-                UpdateGradients();
+                UpdateHueDependentGradients();
+                UpdateLightnessGradient();
+                UpdateThumbColors();
             }
             finally
             {
@@ -116,27 +133,37 @@ public partial class HslColorViewModel
         PreviewBrush.Color = Color.FromRgb((byte)r, (byte)g, (byte)b);
     }
 
-    private void UpdateGradients()
+    private void UpdateHueDependentGradients()
     {
-        // Saturation gradient: gray to fully saturated at current H/L
-        var (rLow, gLow, bLow) = HslToRgb(Hue, 0, Lightness);
-        var (rHigh, gHigh, bHigh) = HslToRgb(Hue, 1, Lightness);
+        // Saturation gradient: desaturated to fully saturated at current H (fixed L=0.5)
+        var (rLow, gLow, bLow) = HslToRgb(Hue, 0, 0.5);
+        var (rHigh, gHigh, bHigh) = HslToRgb(Hue, 1, 0.5);
         SaturationTrackBrush.GradientStops[0].Color = Color.FromRgb((byte)rLow, (byte)gLow, (byte)bLow);
         SaturationTrackBrush.GradientStops[1].Color = Color.FromRgb((byte)rHigh, (byte)gHigh, (byte)bHigh);
+    }
 
-        // Lightness gradient: black -> hue -> white
+    private void UpdateLightnessGradient()
+    {
+        // Lightness gradient: black -> current H+S at mid L -> white
         var (rMid, gMid, bMid) = HslToRgb(Hue, Saturation, 0.5);
         LightnessTrackBrush.GradientStops[0].Color = Colors.Black;
         LightnessTrackBrush.GradientStops[1].Color = Color.FromRgb((byte)rMid, (byte)gMid, (byte)bMid);
         LightnessTrackBrush.GradientStops[2].Color = Colors.White;
+    }
 
-        // Hue gradient: rainbow at current S/L
-        for (int i = 0; i < 7; i++)
-        {
-            double h = i * 60.0;
-            var (rh, gh, bh) = HslToRgb(h, Saturation, Lightness);
-            HueTrackBrush.GradientStops[i].Color = Color.FromRgb((byte)rh, (byte)gh, (byte)bh);
-        }
+    private void UpdateThumbColors()
+    {
+        // H thumb = pure hue at full S, mid L
+        var (rHue, gHue, bHue) = HslToRgb(Hue, 1, 0.5);
+        HueThumbBrush.Color = Color.FromRgb((byte)rHue, (byte)gHue, (byte)bHue);
+
+        // S thumb = hue + saturation at mid L
+        var (rSat, gSat, bSat) = HslToRgb(Hue, Saturation, 0.5);
+        SaturationThumbBrush.Color = Color.FromRgb((byte)rSat, (byte)gSat, (byte)bSat);
+
+        // L thumb = full HSL color
+        var (rFull, gFull, bFull) = HslToRgb(Hue, Saturation, Lightness);
+        LightnessThumbBrush.Color = Color.FromRgb((byte)rFull, (byte)gFull, (byte)bFull);
     }
 
     [ReactiveCommand]

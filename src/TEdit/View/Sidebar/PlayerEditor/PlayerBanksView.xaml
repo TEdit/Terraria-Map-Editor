@@ -9,24 +9,11 @@
     xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
     mc:Ignorable="d" d:DesignWidth="320">
     <UserControl.Resources>
-        <converters:ItemIdToPreviewConverter x:Key="ItemIdToPreviewConverter" />
-        <DataTemplate x:Key="FastBankItem">
-            <Grid HorizontalAlignment="Stretch">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="26" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="75" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Image Grid.Column="0"
-                       Source="{Binding NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
-                       Width="24" Height="24" Stretch="Uniform"
-                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
-                <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
-                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
-            </Grid>
-        </DataTemplate>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../SpecialTilesViews/SpecialTilesSharedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <TabControl>
@@ -42,22 +29,58 @@
                     SelectionMode="Extended"
                     ScrollViewer.CanContentScroll="True"
                     VirtualizingStackPanel.IsVirtualizing="True"
-                    HorizontalContentAlignment="Stretch"
-                    ItemTemplate="{StaticResource FastBankItem}">
+                    HorizontalContentAlignment="Stretch">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="26" />
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="22" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"
+                                       Source="{Binding NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
+                                       Width="24" Height="24" Stretch="Uniform"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
+                                <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
+                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
+                                <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+                                        Command="{Binding DataContext.CopyPlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                                    <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
+                                </Button>
+                                <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+                                        Command="{Binding DataContext.PastePlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=Bank1List}">
+                                    <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
+                                </Button>
+                                <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
+                                        Command="{Binding DataContext.PlayerItemSetToMaxStackCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=Bank1List}">
+                                    <ui:SymbolIcon Symbol="ArrowMaximize20" FontSize="14"/>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
-                <controls:ItemEditorControl Grid.Row="1"
-                    DataContext="{Binding ElementName=Bank1List, Path=SelectedItem}"
-                    ItemId="{Binding NetId, Mode=TwoWay}"
-                    StackSize="{Binding StackSize, Mode=TwoWay}"
-                    Prefix="{Binding Prefix, Mode=TwoWay}"
-                    ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
-                    ItemsSourceType="ItemPropertyList"
-                    PrefixSource="{Binding Source={StaticResource PrefixCollection}}"/>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <controls:ItemEditorControl
+                        DataContext="{Binding ElementName=Bank1List, Path=SelectedItem}"
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+                        ItemsSourceType="ItemPropertyList"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"/>
+                </StackPanel>
             </Grid>
         </TabItem>
 
@@ -73,22 +96,58 @@
                     SelectionMode="Extended"
                     ScrollViewer.CanContentScroll="True"
                     VirtualizingStackPanel.IsVirtualizing="True"
-                    HorizontalContentAlignment="Stretch"
-                    ItemTemplate="{StaticResource FastBankItem}">
+                    HorizontalContentAlignment="Stretch">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="26" />
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="22" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"
+                                       Source="{Binding NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
+                                       Width="24" Height="24" Stretch="Uniform"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
+                                <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
+                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
+                                <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+                                        Command="{Binding DataContext.CopyPlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                                    <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
+                                </Button>
+                                <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+                                        Command="{Binding DataContext.PastePlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=Bank2List}">
+                                    <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
+                                </Button>
+                                <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
+                                        Command="{Binding DataContext.PlayerItemSetToMaxStackCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=Bank2List}">
+                                    <ui:SymbolIcon Symbol="ArrowMaximize20" FontSize="14"/>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
-                <controls:ItemEditorControl Grid.Row="1"
-                    DataContext="{Binding ElementName=Bank2List, Path=SelectedItem}"
-                    ItemId="{Binding NetId, Mode=TwoWay}"
-                    StackSize="{Binding StackSize, Mode=TwoWay}"
-                    Prefix="{Binding Prefix, Mode=TwoWay}"
-                    ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
-                    ItemsSourceType="ItemPropertyList"
-                    PrefixSource="{Binding Source={StaticResource PrefixCollection}}"/>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <controls:ItemEditorControl
+                        DataContext="{Binding ElementName=Bank2List, Path=SelectedItem}"
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+                        ItemsSourceType="ItemPropertyList"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"/>
+                </StackPanel>
             </Grid>
         </TabItem>
 
@@ -104,22 +163,58 @@
                     SelectionMode="Extended"
                     ScrollViewer.CanContentScroll="True"
                     VirtualizingStackPanel.IsVirtualizing="True"
-                    HorizontalContentAlignment="Stretch"
-                    ItemTemplate="{StaticResource FastBankItem}">
+                    HorizontalContentAlignment="Stretch">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="26" />
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="22" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"
+                                       Source="{Binding NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
+                                       Width="24" Height="24" Stretch="Uniform"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
+                                <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
+                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
+                                <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+                                        Command="{Binding DataContext.CopyPlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                                    <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
+                                </Button>
+                                <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+                                        Command="{Binding DataContext.PastePlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=Bank3List}">
+                                    <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
+                                </Button>
+                                <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
+                                        Command="{Binding DataContext.PlayerItemSetToMaxStackCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=Bank3List}">
+                                    <ui:SymbolIcon Symbol="ArrowMaximize20" FontSize="14"/>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
-                <controls:ItemEditorControl Grid.Row="1"
-                    DataContext="{Binding ElementName=Bank3List, Path=SelectedItem}"
-                    ItemId="{Binding NetId, Mode=TwoWay}"
-                    StackSize="{Binding StackSize, Mode=TwoWay}"
-                    Prefix="{Binding Prefix, Mode=TwoWay}"
-                    ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
-                    ItemsSourceType="ItemPropertyList"
-                    PrefixSource="{Binding Source={StaticResource PrefixCollection}}"/>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <controls:ItemEditorControl
+                        DataContext="{Binding ElementName=Bank3List, Path=SelectedItem}"
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+                        ItemsSourceType="ItemPropertyList"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"/>
+                </StackPanel>
             </Grid>
         </TabItem>
 
@@ -135,22 +230,58 @@
                     SelectionMode="Extended"
                     ScrollViewer.CanContentScroll="True"
                     VirtualizingStackPanel.IsVirtualizing="True"
-                    HorizontalContentAlignment="Stretch"
-                    ItemTemplate="{StaticResource FastBankItem}">
+                    HorizontalContentAlignment="Stretch">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="26" />
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="22" />
+                                    <ColumnDefinition Width="22" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"
+                                       Source="{Binding NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
+                                       Width="24" Height="24" Stretch="Uniform"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                                <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
+                                <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
+                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
+                                <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+                                        Command="{Binding DataContext.CopyPlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                                    <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
+                                </Button>
+                                <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+                                        Command="{Binding DataContext.PastePlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=Bank4List}">
+                                    <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
+                                </Button>
+                                <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
+                                        Command="{Binding DataContext.PlayerItemSetToMaxStackCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=Bank4List}">
+                                    <ui:SymbolIcon Symbol="ArrowMaximize20" FontSize="14"/>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
-                <controls:ItemEditorControl Grid.Row="1"
-                    DataContext="{Binding ElementName=Bank4List, Path=SelectedItem}"
-                    ItemId="{Binding NetId, Mode=TwoWay}"
-                    StackSize="{Binding StackSize, Mode=TwoWay}"
-                    Prefix="{Binding Prefix, Mode=TwoWay}"
-                    ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
-                    ItemsSourceType="ItemPropertyList"
-                    PrefixSource="{Binding Source={StaticResource PrefixCollection}}"/>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <controls:ItemEditorControl
+                        DataContext="{Binding ElementName=Bank4List, Path=SelectedItem}"
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
+                        ItemsSourceType="ItemPropertyList"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"/>
+                </StackPanel>
             </Grid>
         </TabItem>
     </TabControl>

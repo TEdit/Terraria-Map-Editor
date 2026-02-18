@@ -161,12 +161,13 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
-            Name = Language.settings_check_updates,
-            Description = Language.settings_check_updates_desc,
+            Name = Language.settings_update_mode,
+            Description = Language.settings_update_mode_desc,
             Category = Language.settings_category_general,
-            EditorType = SettingEditorType.CheckBox,
-            Getter = () => wvm.CheckUpdates,
-            Setter = v => wvm.CheckUpdates = (bool)v
+            EditorType = SettingEditorType.ComboBox,
+            Getter = () => wvm.UpdateMode,
+            Setter = v => wvm.UpdateMode = (UpdateMode)v,
+            ComboBoxItems = Enum.GetValues<UpdateMode>()
         });
 
         AllSettings.Add(new SettingItem
@@ -208,6 +209,17 @@ public partial class SettingsViewModel
             EditorType = SettingEditorType.CheckBox,
             Getter = () => UserSettingsService.Current.ShowAllWeaponRackItems,
             Setter = v => UserSettingsService.Current.ShowAllWeaponRackItems = (bool)v
+        });
+
+        // ── Experimental Features ──
+        AllSettings.Add(new SettingItem
+        {
+            Name = Language.settings_enable_player_editor,
+            Description = Language.settings_enable_player_editor_desc,
+            Category = Language.settings_category_experimental,
+            EditorType = SettingEditorType.CheckBox,
+            Getter = () => UserSettingsService.Current.EnablePlayerEditor,
+            Setter = v => UserSettingsService.Current.EnablePlayerEditor = (bool)v
         });
 
         // ── Rendering ──

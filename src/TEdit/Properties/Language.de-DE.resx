@@ -864,62 +864,86 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Deaktivieren Sie alle sichtbaren Gegenstände</value>
   </data>
+  <data name="player_editor_appearance_colors" xml:space="preserve">
+    <value>Aussehensfarben</value>
+  </data>
   <data name="player_editor_banks" xml:space="preserve">
-    <value></value>
+    <value>Banken</value>
+  </data>
+  <data name="player_editor_bank_defender" xml:space="preserve">
+    <value>Verteidiger-Schmiede</value>
+  </data>
+  <data name="player_editor_bank_piggy" xml:space="preserve">
+    <value>Sparschwein</value>
+  </data>
+  <data name="player_editor_bank_safe" xml:space="preserve">
+    <value>Sicher</value>
+  </data>
+  <data name="player_editor_bank_void" xml:space="preserve">
+    <value>Void Vault</value>
   </data>
   <data name="player_editor_buffs" xml:space="preserve">
-    <value></value>
+    <value>Buffs</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
-    <value></value>
+    <value>Fortschritt</value>
   </data>
   <data name="player_editor_equipment" xml:space="preserve">
-    <value></value>
+    <value>Ausrüstung</value>
   </data>
   <data name="player_editor_eye_color" xml:space="preserve">
-    <value></value>
+    <value>Augenfarbe</value>
   </data>
   <data name="player_editor_hair" xml:space="preserve">
-    <value></value>
+    <value>Haare</value>
+  </data>
+  <data name="player_editor_hair_color" xml:space="preserve">
+    <value>Haarfarbe</value>
   </data>
   <data name="player_editor_inventory" xml:space="preserve">
-    <value></value>
+    <value>Inventar</value>
   </data>
   <data name="player_editor_journey" xml:space="preserve">
-    <value></value>
+    <value>Reise</value>
+  </data>
+  <data name="player_editor_load" xml:space="preserve">
+    <value>Spieler laden</value>
   </data>
   <data name="player_editor_loadout" xml:space="preserve">
-    <value></value>
+    <value>Ausrüstung</value>
   </data>
   <data name="player_editor_name" xml:space="preserve">
-    <value></value>
+    <value>Name</value>
   </data>
   <data name="player_editor_pants_color" xml:space="preserve">
-    <value></value>
+    <value>Hosenfarbe</value>
   </data>
   <data name="player_editor_save" xml:space="preserve">
-    <value></value>
+    <value>Spieler speichern</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value></value>
+    <value>Spieler speichern als...</value>
   </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
-    <value></value>
+    <value>Trikotfarbe</value>
   </data>
   <data name="player_editor_shoe_color" xml:space="preserve">
-    <value></value>
+    <value>Schuhfarbe</value>
   </data>
   <data name="player_editor_skin" xml:space="preserve">
-    <value></value>
+    <value>Haut</value>
+  </data>
+  <data name="player_editor_skin_color" xml:space="preserve">
+    <value>Hautfarbe</value>
   </data>
   <data name="player_editor_stats" xml:space="preserve">
-    <value></value>
+    <value>Statistiken</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Spieler-Editor</value>
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
-    <value></value>
+    <value>Farbe des Unterhemds</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Wählen Sie eine Version aus, die gespeichert werden als:</value>
@@ -972,6 +996,10 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+  <data name="settings_category_experimental" xml:space="preserve">
+    <value>Experimentelle Merkmale</value>
+    <comment>Settings category for experimental/preview features</comment>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Allgemein</value>
   </data>
@@ -990,11 +1018,11 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Skripting</value>
   </data>
-  <data name="settings_check_updates" xml:space="preserve">
-    <value>Nach Updates suchen</value>
+  <data name="settings_enable_player_editor" xml:space="preserve">
+    <value>Aktiviere den Spieler-Editor</value>
   </data>
-  <data name="settings_check_updates_desc" xml:space="preserve">
-    <value>Automatisch beim Start nach neuen Versionen suchen</value>
+  <data name="settings_enable_player_editor_desc" xml:space="preserve">
+    <value>Zeigen Sie den Reiter Player Editor in der Seitenleiste zum Bearbeiten von .plr-Player-Dateien an (experimentell)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Fehlermeldungen aktivieren</value>
@@ -1167,6 +1195,10 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Wählen Sie, von welchem Release-Kanal Sie Updates erhalten möchten (Stabil, Beta oder Alpha)</value>
   </data>
+  <data name="settings_update_mode_desc" xml:space="preserve">
+    <value>Kontrolliert, wie TEdit beim Start nach Updates sucht und anwendet.</value>
+    <comment>Description for the update mode setting</comment>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Kabelsichtbarkeit</value>
   </data>
@@ -1265,6 +1297,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Tellerinhalte</value>
+  </data>
+  <data name="specialtile_label_pose" xml:space="preserve">
+    <value>Pose</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>Spruchschildtext</value>
@@ -2252,6 +2287,18 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Gleis</value>
   </data>
+  <data name="update_available_notify" xml:space="preserve">
+    <value>Eine neue Version von TEdit ist verfügbar.</value>
+    <comment>Toast message for NotifyOnly mode when update is found</comment>
+  </data>
+  <data name="update_downloaded_toast" xml:space="preserve">
+    <value>Update heruntergeladen. Verwenden Sie Datei&gt; prüfen Sie, ob Updates installiert werden sollen.</value>
+    <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_up_to_date" xml:space="preserve">
+    <value>TEdit ist auf dem neuesten Stand.</value>
+    <comment>Toast message when no updates are available</comment>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>Blau</value>
   </data>
@@ -2298,7 +2345,7 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
     <value>Ladevorschau wird geladen...</value>
   </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
-    <value>Kein Backup – klicke, um .bak zu erstellen und TEdit-Backup zu erstellen.</value>
+    <value>Kein Backup – klicke, um .bak zu erstellen und TEdit-Backup zu erstellen</value>
   </data>
   <data name="world_explorer_open" xml:space="preserve">
     <value>Öffnen</value>
@@ -2329,5 +2376,20 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>Ein Update wurde heruntergeladen. Jetzt neu starten, um sich zu bewerben?</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>Update-Check fehlgeschlagen.</value>
+  </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Ich suche nach Neuigkeiten...</value>
+  </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Update-Modus</value>
   </data>
 </root>

@@ -243,38 +243,14 @@ public partial class App : Application
 
         ErrorLogging.LogDebug($"[Startup] === Total OnStartup: {totalSw.ElapsedMilliseconds}ms ===");
 
-        // Fire-and-forget background update check
-        if (UserSettingsService.Current.CheckUpdates)
+        // Fire-and-forget background update check via the ViewModel
+        if (UserSettingsService.Current.UpdateMode != UpdateMode.Disabled)
         {
-            _ = CheckForUpdatesAsync();
-        }
-    }
-
-    private static async Task CheckForUpdatesAsync()
-    {
-        try
-        {
-            var updateService = new Services.UpdateService(UserSettingsService.Current.UpdateChannel);
-            if (!updateService.IsInstalled) return;
-
-            bool downloaded = await updateService.CheckAndDownloadAsync();
-            if (downloaded)
+            var wvm = mainWindow.DataContext as WorldViewModel;
+            if (wvm != null)
             {
-                var result = await DialogService.ShowMessageAsync(
-                    "A new version of TEdit has been downloaded. Restart now to apply the update?",
-                    "Update Available",
-                    UI.Xaml.Dialog.DialogButton.YesNo,
-                    UI.Xaml.Dialog.DialogImage.Question);
-
-                if (result == UI.Xaml.Dialog.DialogResponse.Yes)
-                {
-                    updateService.ApplyAndRestart();
-                }
+                _ = wvm.StartupUpdateCheckAsync();
             }
-        }
-        catch (Exception ex)
-        {
-            ErrorLogging.LogWarn($"[Update] Background check failed: {ex.Message}");
         }
     }
 

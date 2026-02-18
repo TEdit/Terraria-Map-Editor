@@ -5,11 +5,99 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:converters="clr-namespace:TEdit.Converters"
     xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
     mc:Ignorable="d" d:DesignWidth="320">
-    <StackPanel>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../SpecialTilesViews/SpecialTilesSharedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="EquipmentSlotRow">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="26"/>
+                        <ColumnDefinition Width="26"/>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding Label}" Foreground="{DynamicResource TextBrush}"
+                               FontWeight="Bold" VerticalAlignment="Center" Margin="2" FontSize="11"/>
+                    <Image Grid.Column="1"
+                           Source="{Binding Dye.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
+                           Width="24" Height="24" Stretch="Uniform"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                           Visibility="{Binding Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}"
+                           ToolTip="{Binding Dye.Name}"/>
+                    <Image Grid.Column="2"
+                           Source="{Binding Item.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
+                           Width="24" Height="24" Stretch="Uniform"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                    <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Item.PrefixName}" Margin="2"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Foreground="White" Text="{Binding Item.Name}" Margin="2"
+                               VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                    <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+                            Command="{Binding DataContext.CopyEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                        <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
+                    </Button>
+                    <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+                            Command="{Binding DataContext.PasteEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                        <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
+                    </Button>
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="MiscSlotRow">
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="26"/>
+                        <ColumnDefinition Width="26"/>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding Label}" Foreground="{DynamicResource TextBrush}"
+                               FontWeight="Bold" VerticalAlignment="Center" Margin="2" FontSize="11"/>
+                    <Image Grid.Column="1"
+                           Source="{Binding Dye.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
+                           Width="24" Height="24" Stretch="Uniform"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                           Visibility="{Binding Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}"
+                           ToolTip="{Binding Dye.Name}"/>
+                    <Image Grid.Column="2"
+                           Source="{Binding Item.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
+                           Width="24" Height="24" Stretch="Uniform"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                    <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Item.PrefixName}" Margin="2"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Foreground="White" Text="{Binding Item.Name}" Margin="2"
+                               VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                    <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+                            Command="{Binding DataContext.CopyEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                        <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
+                    </Button>
+                    <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+                            Command="{Binding DataContext.PasteEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                        <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
+                    </Button>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>  <!-- Loadout selector -->
+            <RowDefinition Height="*"/>     <!-- Equipment + Misc lists -->
+            <RowDefinition Height="Auto"/>  <!-- Bottom editor -->
+        </Grid.RowDefinitions>
+
         <!-- Loadout selector -->
-        <StackPanel Orientation="Horizontal" Margin="0,4,0,4">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,4,0,4">
             <TextBlock Text="{x:Static p:Language.player_editor_loadout}" Foreground="{DynamicResource TextBrush}"
                        FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,8,0"/>
             <ComboBox Width="80" Height="26" SelectedIndex="{Binding SelectedLoadoutIndex}">
@@ -19,74 +107,119 @@
             </ComboBox>
         </StackPanel>
 
-        <!-- Armor slots -->
-        <TextBlock Text="Armor" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,2,0,2"/>
-        <ItemsControl ItemsSource="{Binding ActiveArmor}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <controls:ItemEditorControl
+        <!-- Scrollable Equipment + Misc lists -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Equipment slots -->
+                <TextBlock Text="Equipment" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,2,0,2"/>
+                <ListBox Name="EquipmentList" Padding="2" Foreground="White"
+                    ItemsSource="{Binding EquipmentSlots}"
+                    SelectionMode="Single"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                    HorizontalContentAlignment="Stretch"
+                    ItemTemplate="{StaticResource EquipmentSlotRow}"
+                    SelectionChanged="EquipmentList_SelectionChanged">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+
+                <!-- Misc Equipment slots -->
+                <TextBlock Text="Misc Equipment" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,6,0,2"/>
+                <ListBox Name="MiscList" Padding="2" Foreground="White"
+                    ItemsSource="{Binding MiscSlots}"
+                    SelectionMode="Single"
+                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                    HorizontalContentAlignment="Stretch"
+                    ItemTemplate="{StaticResource MiscSlotRow}"
+                    SelectionChanged="MiscList_SelectionChanged">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Single bottom editor for selected equipment slot -->
+        <StackPanel Grid.Row="2" Name="BottomEditor"
+                    Visibility="{Binding SelectedEquipmentSlot, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}">
+            <!-- Item + Dye editors side by side -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <!-- Item editor (category-specific) -->
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Edit Item" Margin="2,4,2,2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <!-- Head slots -->
+                    <controls:ItemEditorControl x:Name="EditorHead"
+                        DataContext="{Binding SelectedEquipmentSlot.Item}"
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
+                        ItemsSourceType="DictionaryKvp"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
+                        ShowStackSize="False" Visibility="Collapsed"/>
+                    <!-- Body slots -->
+                    <controls:ItemEditorControl x:Name="EditorBody"
+                        DataContext="{Binding SelectedEquipmentSlot.Item}"
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource MannBodyCollection}}"
+                        ItemsSourceType="DictionaryKvp"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
+                        ShowStackSize="False" Visibility="Collapsed"/>
+                    <!-- Legs slots -->
+                    <controls:ItemEditorControl x:Name="EditorLegs"
+                        DataContext="{Binding SelectedEquipmentSlot.Item}"
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource MannLegsCollection}}"
+                        ItemsSourceType="DictionaryKvp"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
+                        ShowStackSize="False" Visibility="Collapsed"/>
+                    <!-- Accessory slots -->
+                    <controls:ItemEditorControl x:Name="EditorAccessory"
+                        DataContext="{Binding SelectedEquipmentSlot.Item}"
+                        ItemId="{Binding NetId, Mode=TwoWay}"
+                        StackSize="{Binding StackSize, Mode=TwoWay}"
+                        Prefix="{Binding Prefix, Mode=TwoWay}"
+                        ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
+                        ItemsSourceType="DictionaryKvp"
+                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
+                        ShowStackSize="False" Visibility="Collapsed"/>
+                    <!-- Misc slots (all items) -->
+                    <controls:ItemEditorControl x:Name="EditorMisc"
+                        DataContext="{Binding SelectedEquipmentSlot.Item}"
                         ItemId="{Binding NetId, Mode=TwoWay}"
                         StackSize="{Binding StackSize, Mode=TwoWay}"
                         Prefix="{Binding Prefix, Mode=TwoWay}"
                         ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
                         ItemsSourceType="ItemPropertyList"
                         PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
-                        ShowStackSize="False" ShowActionButtons="False"
-                        Margin="0,1"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <!-- Dye slots -->
-        <TextBlock Text="Dyes" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,6,0,2"/>
-        <ItemsControl ItemsSource="{Binding ActiveDye}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
+                        ShowStackSize="False" Visibility="Collapsed"/>
+                </StackPanel>
+                <!-- Dye editor (same row, right side) -->
+                <StackPanel Grid.Column="1" MinWidth="120"
+                            Visibility="{Binding SelectedEquipmentSlot.Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}">
+                    <TextBlock Text="Dye" Margin="2,4,2,2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
                     <controls:ItemEditorControl
+                        DataContext="{Binding SelectedEquipmentSlot.Dye}"
                         ItemId="{Binding NetId, Mode=TwoWay}"
                         StackSize="{Binding StackSize, Mode=TwoWay}"
                         ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                         ItemsSourceType="DictionaryKvp"
-                        DisplayMode="ImageOnly"
-                        ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False"
-                        Margin="0,1"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <!-- Misc Equipment -->
-        <TextBlock Text="Misc Equipment" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,6,0,2"/>
-        <ItemsControl ItemsSource="{Binding Player.MiscEquips}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <controls:ItemEditorControl
-                        ItemId="{Binding NetId, Mode=TwoWay}"
-                        StackSize="{Binding StackSize, Mode=TwoWay}"
-                        Prefix="{Binding Prefix, Mode=TwoWay}"
-                        ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
-                        ItemsSourceType="ItemPropertyList"
-                        PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
-                        ShowStackSize="False" ShowActionButtons="False"
-                        Margin="0,1"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <!-- Misc Dyes -->
-        <TextBlock Text="Misc Dyes" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,6,0,2"/>
-        <ItemsControl ItemsSource="{Binding Player.MiscDyes}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <controls:ItemEditorControl
-                        ItemId="{Binding NetId, Mode=TwoWay}"
-                        StackSize="{Binding StackSize, Mode=TwoWay}"
-                        ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                        ItemsSourceType="DictionaryKvp"
-                        DisplayMode="ImageOnly"
-                        ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False"
-                        Margin="0,1"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </StackPanel>
+                        ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
 </UserControl>

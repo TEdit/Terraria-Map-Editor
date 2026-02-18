@@ -864,62 +864,86 @@
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Снимите галочку всех видимых элементов</value>
   </data>
+  <data name="player_editor_appearance_colors" xml:space="preserve">
+    <value>Цвета внешнего вида</value>
+  </data>
   <data name="player_editor_banks" xml:space="preserve">
-    <value></value>
+    <value>Банки</value>
+  </data>
+  <data name="player_editor_bank_defender" xml:space="preserve">
+    <value>Кузница защитников</value>
+  </data>
+  <data name="player_editor_bank_piggy" xml:space="preserve">
+    <value>Копилка</value>
+  </data>
+  <data name="player_editor_bank_safe" xml:space="preserve">
+    <value>Безопасно</value>
+  </data>
+  <data name="player_editor_bank_void" xml:space="preserve">
+    <value>Пустотный Хранилище</value>
   </data>
   <data name="player_editor_buffs" xml:space="preserve">
-    <value></value>
+    <value>Баффы</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
-    <value></value>
+    <value>Сложность</value>
   </data>
   <data name="player_editor_equipment" xml:space="preserve">
-    <value></value>
+    <value>Оборудование</value>
   </data>
   <data name="player_editor_eye_color" xml:space="preserve">
-    <value></value>
+    <value>Цвет глаз</value>
   </data>
   <data name="player_editor_hair" xml:space="preserve">
-    <value></value>
+    <value>Волосы</value>
+  </data>
+  <data name="player_editor_hair_color" xml:space="preserve">
+    <value>Цвет волос</value>
   </data>
   <data name="player_editor_inventory" xml:space="preserve">
-    <value></value>
+    <value>Инвентарь</value>
   </data>
   <data name="player_editor_journey" xml:space="preserve">
-    <value></value>
+    <value>Путь</value>
+  </data>
+  <data name="player_editor_load" xml:space="preserve">
+    <value>Load Player</value>
   </data>
   <data name="player_editor_loadout" xml:space="preserve">
-    <value></value>
+    <value>Снаряжение</value>
   </data>
   <data name="player_editor_name" xml:space="preserve">
-    <value></value>
+    <value>Имя</value>
   </data>
   <data name="player_editor_pants_color" xml:space="preserve">
-    <value></value>
+    <value>Цвет брюк</value>
   </data>
   <data name="player_editor_save" xml:space="preserve">
-    <value></value>
+    <value>Сохранить игрок</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value></value>
+    <value>Сохранить игрока как...</value>
   </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
-    <value></value>
+    <value>Цвет футболки</value>
   </data>
   <data name="player_editor_shoe_color" xml:space="preserve">
-    <value></value>
+    <value>Цвет обуви</value>
   </data>
   <data name="player_editor_skin" xml:space="preserve">
-    <value></value>
+    <value>Кожа</value>
+  </data>
+  <data name="player_editor_skin_color" xml:space="preserve">
+    <value>Цвет кожи</value>
   </data>
   <data name="player_editor_stats" xml:space="preserve">
-    <value></value>
+    <value>Статистика</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Редактор игроков</value>
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
-    <value></value>
+    <value>Цвет футболки</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Выберите версию для сохранения как:</value>
@@ -972,6 +996,10 @@
   <data name="settings_cancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="settings_category_experimental" xml:space="preserve">
+    <value>Экспериментальные особенности</value>
+    <comment>Settings category for experimental/preview features</comment>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Общие заведения</value>
   </data>
@@ -990,11 +1018,11 @@
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Скриптинг</value>
   </data>
-  <data name="settings_check_updates" xml:space="preserve">
-    <value>Проверяйте обновления</value>
+  <data name="settings_enable_player_editor" xml:space="preserve">
+    <value>Включить редактор игроков</value>
   </data>
-  <data name="settings_check_updates_desc" xml:space="preserve">
-    <value>Автоматически проверяйте новые версии при запуске</value>
+  <data name="settings_enable_player_editor_desc" xml:space="preserve">
+    <value>Покажите вкладку Player Editor в боковой панели для редактирования файлов .plr player (экспериментально)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Включить отчеты об ошибках</value>
@@ -1167,6 +1195,10 @@
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Выберите канал релиза, с которого получать обновления (стабильный, бета или альфа)</value>
   </data>
+  <data name="settings_update_mode_desc" xml:space="preserve">
+    <value>Контролирует то, как TEdit проверяет и применяет обновления при запуске</value>
+    <comment>Description for the update mode setting</comment>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Прозрачность проводов</value>
   </data>
@@ -1265,6 +1297,9 @@
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Содержимое тарелки</value>
+  </data>
+  <data name="specialtile_label_pose" xml:space="preserve">
+    <value>Поза</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>Текст таблички</value>
@@ -2252,6 +2287,18 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Рельсы</value>
   </data>
+  <data name="update_available_notify" xml:space="preserve">
+    <value>Доступна новая версия TEdit.</value>
+    <comment>Toast message for NotifyOnly mode when update is found</comment>
+  </data>
+  <data name="update_downloaded_toast" xml:space="preserve">
+    <value>Обновление загружено. Используйте File &gt; Check Updates для установки.</value>
+    <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_up_to_date" xml:space="preserve">
+    <value>TEdit обновлён.</value>
+    <comment>Toast message when no updates are available</comment>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>Синие</value>
   </data>
@@ -2329,5 +2376,20 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>Обновление уже скачано. Перезапустить сейчас, чтобы подать заявку?</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>Проверка обновления не прошла.</value>
+  </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Проверяю обновления...</value>
+  </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Режим обновления</value>
   </data>
 </root>

@@ -40,7 +40,7 @@ public static class WriteableBitmapEx
         var result = new Texture2D(gd, bmp.PixelWidth, bmp.PixelHeight);
         var pixelData = new int[bmp.PixelWidth * bmp.PixelHeight];
 
-        bmp.Lock();
+        if (!bmp.IsFrozen) { bmp.Lock(); }
         unsafe
         {
             var pixels = (int*)bmp.BackBuffer;
@@ -49,7 +49,7 @@ public static class WriteableBitmapEx
                 pixelData[i] = ColorToXna(pixels[i]);
             }
         }
-        bmp.Unlock();
+        if (!bmp.IsFrozen) { bmp.Unlock(); }
 
         result.SetData(pixelData);
 

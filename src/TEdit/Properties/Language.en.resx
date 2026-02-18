@@ -864,62 +864,86 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Uncheck all visible items</value>
   </data>
+  <data name="player_editor_appearance_colors" xml:space="preserve">
+    <value>Appearance Colors</value>
+  </data>
   <data name="player_editor_banks" xml:space="preserve">
-    <value></value>
+    <value>Banks</value>
+  </data>
+  <data name="player_editor_bank_defender" xml:space="preserve">
+    <value>Defender's Forge</value>
+  </data>
+  <data name="player_editor_bank_piggy" xml:space="preserve">
+    <value>Piggy Bank</value>
+  </data>
+  <data name="player_editor_bank_safe" xml:space="preserve">
+    <value>Safe</value>
+  </data>
+  <data name="player_editor_bank_void" xml:space="preserve">
+    <value>Void Vault</value>
   </data>
   <data name="player_editor_buffs" xml:space="preserve">
-    <value></value>
+    <value>Buffs</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
-    <value></value>
+    <value>Difficulty</value>
   </data>
   <data name="player_editor_equipment" xml:space="preserve">
-    <value></value>
+    <value>Equipment</value>
   </data>
   <data name="player_editor_eye_color" xml:space="preserve">
-    <value></value>
+    <value>Eye Color</value>
   </data>
   <data name="player_editor_hair" xml:space="preserve">
-    <value></value>
+    <value>Hair</value>
+  </data>
+  <data name="player_editor_hair_color" xml:space="preserve">
+    <value>Hair Color</value>
   </data>
   <data name="player_editor_inventory" xml:space="preserve">
-    <value></value>
+    <value>Inventory</value>
   </data>
   <data name="player_editor_journey" xml:space="preserve">
-    <value></value>
+    <value>Journey</value>
+  </data>
+  <data name="player_editor_load" xml:space="preserve">
+    <value>Load Player</value>
   </data>
   <data name="player_editor_loadout" xml:space="preserve">
-    <value></value>
+    <value>Loadout</value>
   </data>
   <data name="player_editor_name" xml:space="preserve">
-    <value></value>
+    <value>Name</value>
   </data>
   <data name="player_editor_pants_color" xml:space="preserve">
-    <value></value>
+    <value>Pants Color</value>
   </data>
   <data name="player_editor_save" xml:space="preserve">
-    <value></value>
+    <value>Save Player</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value></value>
+    <value>Save Player As...</value>
   </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
-    <value></value>
+    <value>Shirt Color</value>
   </data>
   <data name="player_editor_shoe_color" xml:space="preserve">
-    <value></value>
+    <value>Shoe Color</value>
   </data>
   <data name="player_editor_skin" xml:space="preserve">
-    <value></value>
+    <value>Skin</value>
+  </data>
+  <data name="player_editor_skin_color" xml:space="preserve">
+    <value>Skin Color</value>
   </data>
   <data name="player_editor_stats" xml:space="preserve">
-    <value></value>
+    <value>Stats</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Player Editor</value>
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
-    <value></value>
+    <value>Undershirt Color</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Select a version to save as:</value>
@@ -972,6 +996,10 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="settings_category_experimental" xml:space="preserve">
+    <value>Experimental Features</value>
+    <comment>Settings category for experimental/preview features</comment>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>General</value>
   </data>
@@ -990,11 +1018,11 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Scripting</value>
   </data>
-  <data name="settings_check_updates" xml:space="preserve">
-    <value>Check for Updates</value>
+  <data name="settings_enable_player_editor" xml:space="preserve">
+    <value>Enable Player Editor</value>
   </data>
-  <data name="settings_check_updates_desc" xml:space="preserve">
-    <value>Automatically check for new versions on startup</value>
+  <data name="settings_enable_player_editor_desc" xml:space="preserve">
+    <value>Show the Player Editor tab in the sidebar for editing .plr player files (experimental)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Enable Error Reporting</value>
@@ -1167,6 +1195,10 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Choose which release channel to receive updates from (Stable, Beta, or Alpha)</value>
   </data>
+  <data name="settings_update_mode_desc" xml:space="preserve">
+    <value>Controls how TEdit checks for and applies updates on startup</value>
+    <comment>Description for the update mode setting</comment>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Wire Transparency</value>
   </data>
@@ -1265,6 +1297,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Plate Contents</value>
+  </data>
+  <data name="specialtile_label_pose" xml:space="preserve">
+    <value>Pose</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>Sign Text</value>
@@ -2252,6 +2287,18 @@ Would you like to enable error reporting?</value>
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Track</value>
   </data>
+  <data name="update_available_notify" xml:space="preserve">
+    <value>A new version of TEdit is available.</value>
+    <comment>Toast message for NotifyOnly mode when update is found</comment>
+  </data>
+  <data name="update_downloaded_toast" xml:space="preserve">
+    <value>Update downloaded. Use File &gt; Check for Updates to install.</value>
+    <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_up_to_date" xml:space="preserve">
+    <value>TEdit is up to date.</value>
+    <comment>Toast message when no updates are available</comment>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>Blue</value>
   </data>
@@ -2329,5 +2376,20 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>An update has been downloaded. Restart now to apply?</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>Update check failed.</value>
+  </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Checking for updates...</value>
+  </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Update Mode</value>
   </data>
 </root>

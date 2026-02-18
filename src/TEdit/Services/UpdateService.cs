@@ -27,6 +27,34 @@ public class UpdateService
 
     public bool IsInstalled => _updateManager.IsInstalled;
 
+    public async Task<bool> CheckOnlyAsync()
+    {
+        if (!_updateManager.IsInstalled)
+        {
+            ErrorLogging.LogInfo("[Update] Not a Velopack install — skipping update check.");
+            return false;
+        }
+
+        try
+        {
+            var update = await _updateManager.CheckForUpdatesAsync();
+            if (update == null)
+            {
+                ErrorLogging.LogInfo("[Update] No updates available.");
+                return false;
+            }
+
+            ErrorLogging.LogInfo($"[Update] Update available: {update.TargetFullRelease.Version}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogWarn($"[Update] Check failed: {ex.Message}");
+            ErrorLogging.LogException(ex);
+            return false;
+        }
+    }
+
     public async Task<bool> CheckAndDownloadAsync()
     {
         if (!_updateManager.IsInstalled)

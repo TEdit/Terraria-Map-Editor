@@ -383,6 +383,7 @@ public partial class WorldExplorerViewModel
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
                 var bmp = RenderMiniMap.Render(world, showBackground: true, targetWidth: 600, targetHeight: 200);
+                Directory.CreateDirectory(PreviewCachePath);
                 bmp.SavePng(cachePath);
 
                 var result = new BitmapImage();

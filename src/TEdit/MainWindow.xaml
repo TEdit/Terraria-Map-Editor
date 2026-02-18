@@ -12,6 +12,7 @@
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:vm="clr-namespace:TEdit.ViewModel"
         xmlns:cv="clr-namespace:TEdit.Converters"
+        xmlns:config="clr-namespace:TEdit.Configuration"
         AllowDrop="True"
         Drop="WorldFileDrop"
         ExtendsContentIntoTitleBar="True"
@@ -38,6 +39,7 @@
         <ui:SymbolIcon x:Key="TB_ZoomOutIcon" x:Shared="false" Symbol="ZoomOut20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_CropIcon" x:Shared="false" Symbol="Crop20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_ExpandIcon" x:Shared="false" Symbol="ArrowExpand20" FontSize="16"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <cv:EnumToBoolConverter x:Key="boolEnumConverter" />
         <cv:KeybindingConverter x:Key="KeybindingConverter" />
         <DataTemplate x:Key="MenuItemTemplate">
@@ -95,7 +97,15 @@
         <!-- Main Content -->
         <DockPanel Grid.Row="1" LastChildFill="True">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="{x:Static p:Language.menu_file}">
+                <MenuItem>
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Static p:Language.menu_file}" />
+                            <Border Background="#E81123" CornerRadius="5" Width="10" Height="10" Margin="4,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Visibility="{Binding IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        </StackPanel>
+                    </MenuItem.Header>
                     <MenuItem Header="{x:Static p:Language.menu_file_new}" Icon="{StaticResource TB_NewIcon}" Command="{Binding NewWorldCommand}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=file.new}" />
                     <MenuItem Header="{x:Static p:Language.menu_file_open}" Icon="{StaticResource TB_OpenIcon}" Command="{Binding OpenCommand}"
@@ -127,6 +137,8 @@
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_help_settings}" Icon="{StaticResource TB_UpdateXmlIcon}" Click="SettingsMenuItem_Click"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=app.settings}" />
+                    <Separator Margin="1"/>
+                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_exit}" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>
@@ -185,8 +197,6 @@
                 <MenuItem Header="{x:Static p:Language.menu_help}">
                     <MenuItem Header="{x:Static p:Language.menu_help_wiki}" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=help.wiki}" />
-                    <Separator Margin="1" />
-                    <MenuItem Header="{x:Static p:Language.menu_help_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
                     <MenuItem Header="{x:Static p:Language.menu_help_log}" Command="{Binding ViewLogCommand}" Icon="{StaticResource TB_LogIcon}"/>
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_help_about}" Click="AboutMenuItem_Click" />
@@ -443,7 +453,8 @@
                             <TabItem.Header><ui:SymbolIcon Symbol="Code20" Filled="True" FontSize="24"/></TabItem.Header>
                             <Sidebar:ScriptingSidebarView />
                         </TabItem>
-                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.player_editor_tooltip}">
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.player_editor_tooltip}"
+                                 Visibility="{Binding EnablePlayerEditor, Source={x:Static config:UserSettingsService.Current}, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <TabItem.Header>
                                 <Path Data="{StaticResource PlayerIconGeometry}"
                                       Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TabItem}}"

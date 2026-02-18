@@ -56,6 +56,7 @@ public partial class WorldRenderXna : UserControl
     private const float LayerTileSlopeLiquid = 1 - 0.035f;
     private const float LayerTileTextures = 1 - 0.04f;
     private const float LayerTileTrack = 1 - 0.05f;
+    private const float LayerDollBody = 1 - 0.048f; // Body behind armor (higher depth = further back in BackToFront)
     private const float LayerTileActuator = 1 - 0.06f;
     private const float LayerLiquid = 1 - 0.07f;
     private const float LayerRedWires = 1 - 0.08f;
@@ -82,6 +83,7 @@ public partial class WorldRenderXna : UserControl
     private SimpleProvider _serviceProvider;
     private SpriteBatch _spriteBatch;
     private Textures _textureDictionary;
+    public Textures TextureDictionary => _textureDictionary;
     private Texture2D[] _tileMap;
     private Texture2D _preview;
     private Dictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();
@@ -607,6 +609,7 @@ public partial class WorldRenderXna : UserControl
         _filterDarkenTexture = new Texture2D(e.GraphicsDevice, 1, 1);
         _filterDarkenTexture.SetData(new[] { Color.Black });
         _textureDictionary = new Textures(_serviceProvider, e.GraphicsDevice);
+        _wvm.Textures = _textureDictionary;
 
         System.Windows.Media.Matrix m = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformToDevice;
         _dpiScale = new Vector2((float)m.M11, (float)m.M22);
@@ -1110,6 +1113,7 @@ public partial class WorldRenderXna : UserControl
         {
             _wvm.InitSpriteViews();
             GenerateStylePreviews();
+            ViewModelLocator.PlayerEditorViewModel.BakeSkinVariantPreviews();
         });
 
         // Generate item previews in batches on the graphics thread
@@ -2732,6 +2736,11 @@ public partial class WorldRenderXna : UserControl
                         bool isWomannequin = frameIndex % 2 != 0;
                         SpriteEffects dollEffect = isWomannequin ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
+                        // Draw body underneath armor
+                        int skinVariant = isWomannequin ? 11 : 10;
+                        bool isFemale = isWomannequin;
+                        DrawDollBody(x, y, skinVariant, isFemale, te.Pose, dollEffect);
+
                         // Render head (Items[0])
                         var headItem = te.Items.Count > 0 ? te.Items[0] : null;
                         if (headItem != null && headItem.Id > 0 && headItem.StackSize > 0)
@@ -3071,6 +3080,189 @@ public partial class WorldRenderXna : UserControl
             }
         }
     }
+    private const int DollFrameWidth = 40;
+    private const int DollFrameHeight = 56;
+
+    // Default Terraria player colors for display doll body tinting (from PlayerAppearance defaults)
+    private static readonly Color DollSkinColor = new Color(255, 125, 90);
+    private static readonly Color DollEyeColor = new Color(105, 90, 75);
+    private static readonly Color DollHairColor = new Color(151, 100, 69);
+    private static readonly Color DollShirtColor = new Color(175, 165, 140);
+    private static readonly Color DollUnderShirtColor = new Color(160, 180, 215);
+    private static readonly Color DollPantsColor = new Color(255, 230, 175);
+    private static readonly Color DollShoeColor = new Color(160, 105, 60);
+
+    /// <summary>
+    /// Gets the tint color for a display doll body part index.
+    /// </summary>
+    private static Color GetDollPartColor(int partIndex)
+    {
+        return partIndex switch
+        {
+            0 or 3 or 5 or 7 or 9 or 10 or 15 => DollSkinColor,  // skin parts
+            1 => Color.White,                                       // eye whites
+            2 => DollEyeColor,                                     // eye irises
+            4 or 8 => DollUnderShirtColor,                         // undershirt
+            6 or 13 or 14 => DollShirtColor,                       // shirt/sleeves/coat
+            11 => DollPantsColor,                                   // pants
+            12 => DollShoeColor,                                    // shoes
+            _ => Color.White,
+        };
+    }
+
+    /// <summary>
+    /// Gets body and leg frame Y offsets for a display doll pose.
+    /// </summary>
+    private static (int bodyFrameY, int legFrameY, int yPixelOffset) GetDollPoseFrames(byte pose)
+    {
+        return (DisplayDollPoseID)pose switch
+        {
+            DisplayDollPoseID.Standing => (0, 0, 0),
+            DisplayDollPoseID.Sitting  => (0, 0, 14),
+            DisplayDollPoseID.Jumping  => (5 * DollFrameHeight, 5 * DollFrameHeight, 0),
+            DisplayDollPoseID.Walking  => (9 * DollFrameHeight, 9 * DollFrameHeight, 0),
+            _                          => (0, 0, 0), // Use1-5 fall back to standing
+        };
+    }
+
+    /// <summary>
+    /// Draws a complete body for a display doll (mannequin/womannequin) behind armor.
+    /// </summary>
+    private void DrawDollBody(int tileX, int tileY, int skinVariant, bool isFemale, byte pose, SpriteEffects effect)
+    {
+        var (bodyFrameY, legFrameY, yPixelOffset) = GetDollPoseFrames(pose);
+        int femaleRowOffset = isFemale ? 2 : 0;
+
+        // Composite frame positions (standing pose)
+        int torsoFrameX = 0;
+        int torsoFrameY = (0 + femaleRowOffset) * DollFrameHeight;
+        int shoulderFrameX = 1 * DollFrameWidth;
+        int shoulderFrameY = (1 + femaleRowOffset) * DollFrameHeight;
+
+        int step = 0;
+
+        // Draw order follows PlayerPreviewRenderer (back to front)
+        // Back arm
+        DrawDollBodyPart(tileX, tileY, skinVariant, 7, bodyFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 8, bodyFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 13, bodyFrameY, yPixelOffset, effect, step++);
+
+        // Legs
+        DrawDollBodyPart(tileX, tileY, skinVariant, 10, legFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 12, legFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 11, legFrameY, yPixelOffset, effect, step++);
+
+        // Long coat (safe to draw unconditionally; DefaultTexture is skipped)
+        DrawDollBodyPart(tileX, tileY, skinVariant, 14, bodyFrameY, yPixelOffset, effect, step++);
+
+        // Torso skin (composite frame)
+        DrawDollBodyPart(tileX, tileY, skinVariant, 3, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
+
+        // Undershirt + Shirt (shoulder then torso, per Terraria's DrawPlayer_17_TorsoComposite)
+        DrawDollBodyPart(tileX, tileY, skinVariant, 4, shoulderFrameX, shoulderFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 6, shoulderFrameX, shoulderFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 4, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 6, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
+
+        // Hands (composite torso frame)
+        DrawDollBodyPart(tileX, tileY, skinVariant, 5, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
+
+        // Head and face
+        DrawDollBodyPart(tileX, tileY, skinVariant, 0, bodyFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 1, bodyFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 2, bodyFrameY, yPixelOffset, effect, step++);
+        DrawDollBodyPart(tileX, tileY, skinVariant, 15, bodyFrameY, yPixelOffset, effect, step++);
+
+        // Hair (style 15 = Terraria default for display dolls)
+        DrawDollHair(tileX, tileY, 15, bodyFrameY, yPixelOffset, effect, step++);
+
+        // Front arm
+        DrawDollBodyPart(tileX, tileY, skinVariant, 9, bodyFrameY, yPixelOffset, effect, step++);
+    }
+
+    /// <summary>
+    /// Draws a single body part using traditional (non-composite) frame indexing.
+    /// frameY is the Y pixel offset into the sprite sheet.
+    /// </summary>
+    private void DrawDollBodyPart(int tileX, int tileY, int skinVariant, int partIndex, int frameY, int yPixelOffset, SpriteEffects effect, int drawOrder)
+    {
+        var texture = _textureDictionary.GetPlayerBody(skinVariant, partIndex);
+        if (texture == null || texture == _textureDictionary.DefaultTexture) return;
+
+        int frameX = 0;
+        int srcW = Math.Min(texture.Width - frameX, DollFrameWidth);
+        int srcH = Math.Min(texture.Height - frameY, DollFrameHeight);
+        if (srcW <= 0 || srcH <= 0) return;
+
+        var source = new Rectangle(frameX, frameY, srcW, srcH);
+        var dest = GetDollBodyDest(tileX, tileY, srcW, srcH, yPixelOffset);
+        float depth = LayerDollBody - drawOrder * 0.00001f;
+        var tint = GetDollPartColor(partIndex);
+
+        _spriteBatch.Draw(texture, dest, source, tint, 0f, default, effect, depth);
+    }
+
+    /// <summary>
+    /// Draws a single body part using composite frame coordinates (explicit frameX + frameY).
+    /// </summary>
+    private void DrawDollBodyPart(int tileX, int tileY, int skinVariant, int partIndex, int frameX, int frameY, int yPixelOffset, SpriteEffects effect, int drawOrder)
+    {
+        var texture = _textureDictionary.GetPlayerBody(skinVariant, partIndex);
+        if (texture == null || texture == _textureDictionary.DefaultTexture) return;
+
+        int srcW = Math.Min(texture.Width - frameX, DollFrameWidth);
+        int srcH = Math.Min(texture.Height - frameY, DollFrameHeight);
+        if (srcW <= 0 || srcH <= 0) return;
+
+        var source = new Rectangle(frameX, frameY, srcW, srcH);
+        var dest = GetDollBodyDest(tileX, tileY, srcW, srcH, yPixelOffset);
+        float depth = LayerDollBody - drawOrder * 0.00001f;
+        var tint = GetDollPartColor(partIndex);
+
+        _spriteBatch.Draw(texture, dest, source, tint, 0f, default, effect, depth);
+    }
+
+    /// <summary>
+    /// Draws hair for a display doll.
+    /// </summary>
+    private void DrawDollHair(int tileX, int tileY, int hairIndex, int frameY, int yPixelOffset, SpriteEffects effect, int drawOrder)
+    {
+        var texture = _textureDictionary.GetPlayerHair(hairIndex);
+        if (texture == null || texture == _textureDictionary.DefaultTexture) return;
+
+        int srcW = Math.Min(texture.Width, DollFrameWidth);
+        int srcH = Math.Min(texture.Height - frameY, DollFrameHeight);
+        if (srcW <= 0 || srcH <= 0) return;
+
+        var source = new Rectangle(0, frameY, srcW, srcH);
+        var dest = GetDollBodyDest(tileX, tileY, srcW, srcH, yPixelOffset);
+        float depth = LayerDollBody - drawOrder * 0.00001f;
+
+        _spriteBatch.Draw(texture, dest, source, DollHairColor, 0f, default, effect, depth);
+    }
+
+    /// <summary>
+    /// Computes the destination rectangle for a doll body part, centering the 40px frame
+    /// within the 32px (2-tile) footprint.
+    /// </summary>
+    private Rectangle GetDollBodyDest(int tileX, int tileY, int srcW, int srcH, int yPixelOffset)
+    {
+        var dest = new Rectangle(
+            1 + (int)((_scrollPosition.X + tileX) * _zoom),
+            1 + (int)((_scrollPosition.Y + tileY) * _zoom),
+            (int)(_zoom * srcW / 16f),
+            (int)(_zoom * srcH / 16f));
+
+        // Center 40px body frame within 32px (2-tile) footprint: shift left 4px
+        dest.X -= (int)(4 * _zoom / 16f);
+        // Shift up for head alignment
+        dest.Y -= (int)(4 * _zoom / 16f);
+        // Apply pose Y offset (e.g. sitting)
+        dest.Y += (int)(yPixelOffset * _zoom / 16f);
+
+        return dest;
+    }
+
     private void DrawGrid()
     {
         if (!AreTexturesVisible()) return;

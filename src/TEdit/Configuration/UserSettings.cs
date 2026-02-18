@@ -13,7 +13,7 @@ public class UserSettings : INotifyPropertyChanged
 {
     private string _terrariaPath = "";
     private bool _autosave = true;
-    private bool _checkUpdates = true;
+    private UpdateMode _updateMode = UpdateMode.AutoDownload;
     private LanguageSelection _language = LanguageSelection.Automatic;
     private int _telemetry = -1;
     private float _textureVisibilityZoomLevel = 6f;
@@ -24,6 +24,7 @@ public class UserSettings : INotifyPropertyChanged
     private string _telemetryDeclinedVersion = "";
     private UpdateChannel _updateChannel = UpdateChannel.Stable;
     private bool _showAllWeaponRackItems = false;
+    private bool _enablePlayerEditor = false;
     private bool _showBuffRadii = false;
     private bool _minimapBackground = false;
     private FilterManager.FilterMode _filterMode = FilterManager.FilterMode.Darken;
@@ -46,10 +47,11 @@ public class UserSettings : INotifyPropertyChanged
         set => SetField(ref _autosave, value);
     }
 
-    public bool CheckUpdates
+    [JsonConverter(typeof(UpdateModeJsonConverter))]
+    public UpdateMode UpdateMode
     {
-        get => _checkUpdates;
-        set => SetField(ref _checkUpdates, value);
+        get => _updateMode;
+        set => SetField(ref _updateMode, value);
     }
 
     public LanguageSelection Language
@@ -111,6 +113,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _showAllWeaponRackItems;
         set => SetField(ref _showAllWeaponRackItems, value);
+    }
+
+    public bool EnablePlayerEditor
+    {
+        get => _enablePlayerEditor;
+        set => SetField(ref _enablePlayerEditor, value);
     }
 
     public bool ShowBuffRadii
@@ -204,6 +212,47 @@ public class UpdateChannelJsonConverter : JsonConverter<UpdateChannel>
     }
 
     public override void Write(Utf8JsonWriter writer, UpdateChannel value, JsonSerializerOptions options)
+    {
+        writer.WriteStringValue(value.ToString());
+    }
+}
+
+/// <summary>
+/// Handles migration from the old bool CheckUpdates (true → AutoDownload, false → Disabled)
+/// to the new UpdateMode enum. Supports string, number, and bool JSON values.
+/// </summary>
+public class UpdateModeJsonConverter : JsonConverter<UpdateMode>
+{
+    public override UpdateMode Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        switch (reader.TokenType)
+        {
+            case JsonTokenType.String:
+                var value = reader.GetString();
+                if (Enum.TryParse<UpdateMode>(value, ignoreCase: true, out var mode))
+                    return mode;
+                // Legacy: "true"/"false" as strings
+                if (bool.TryParse(value, out var boolVal))
+                    return boolVal ? UpdateMode.AutoDownload : UpdateMode.Disabled;
+                break;
+
+            case JsonTokenType.Number:
+                var intValue = reader.GetInt32();
+                if (Enum.IsDefined(typeof(UpdateMode), intValue))
+                    return (UpdateMode)intValue;
+                break;
+
+            case JsonTokenType.True:
+                return UpdateMode.AutoDownload;
+
+            case JsonTokenType.False:
+                return UpdateMode.Disabled;
+        }
+
+        return UpdateMode.AutoDownload;
+    }
+
+    public override void Write(Utf8JsonWriter writer, UpdateMode value, JsonSerializerOptions options)
     {
         writer.WriteStringValue(value.ToString());
     }

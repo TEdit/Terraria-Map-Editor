@@ -864,62 +864,86 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Desmarca todos los elementos visibles</value>
   </data>
+  <data name="player_editor_appearance_colors" xml:space="preserve">
+    <value>Colores de apariencia</value>
+  </data>
   <data name="player_editor_banks" xml:space="preserve">
-    <value></value>
+    <value>Bancos</value>
+  </data>
+  <data name="player_editor_bank_defender" xml:space="preserve">
+    <value>La Forja del Defensor</value>
+  </data>
+  <data name="player_editor_bank_piggy" xml:space="preserve">
+    <value>Zorionera</value>
+  </data>
+  <data name="player_editor_bank_safe" xml:space="preserve">
+    <value>Seguro</value>
+  </data>
+  <data name="player_editor_bank_void" xml:space="preserve">
+    <value>Bóveda Vacía</value>
   </data>
   <data name="player_editor_buffs" xml:space="preserve">
-    <value></value>
+    <value>Mejoras</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
-    <value></value>
+    <value>Dificultad</value>
   </data>
   <data name="player_editor_equipment" xml:space="preserve">
-    <value></value>
+    <value>Equipamiento</value>
   </data>
   <data name="player_editor_eye_color" xml:space="preserve">
-    <value></value>
+    <value>Color de ojos</value>
   </data>
   <data name="player_editor_hair" xml:space="preserve">
-    <value></value>
+    <value>Peluquería</value>
+  </data>
+  <data name="player_editor_hair_color" xml:space="preserve">
+    <value>Color de pelo</value>
   </data>
   <data name="player_editor_inventory" xml:space="preserve">
-    <value></value>
+    <value>Inventario</value>
   </data>
   <data name="player_editor_journey" xml:space="preserve">
-    <value></value>
+    <value>Viaje</value>
+  </data>
+  <data name="player_editor_load" xml:space="preserve">
+    <value>Cargar reproductor</value>
   </data>
   <data name="player_editor_loadout" xml:space="preserve">
-    <value></value>
+    <value>Equipamiento</value>
   </data>
   <data name="player_editor_name" xml:space="preserve">
-    <value></value>
+    <value>Nombre</value>
   </data>
   <data name="player_editor_pants_color" xml:space="preserve">
-    <value></value>
+    <value>Color de los pantalones</value>
   </data>
   <data name="player_editor_save" xml:space="preserve">
-    <value></value>
+    <value>Guardar jugador</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value></value>
+    <value>Guarda al jugador como...</value>
   </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
-    <value></value>
+    <value>Color de la camiseta</value>
   </data>
   <data name="player_editor_shoe_color" xml:space="preserve">
-    <value></value>
+    <value>Color del zapato</value>
   </data>
   <data name="player_editor_skin" xml:space="preserve">
-    <value></value>
+    <value>Piel</value>
+  </data>
+  <data name="player_editor_skin_color" xml:space="preserve">
+    <value>Color de piel</value>
   </data>
   <data name="player_editor_stats" xml:space="preserve">
-    <value></value>
+    <value>Estadísticas</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Editor de jugadores</value>
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
-    <value></value>
+    <value>Color de la camiseta interior</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Selecciona una versión para guardar como:</value>
@@ -972,6 +996,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="settings_cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="settings_category_experimental" xml:space="preserve">
+    <value>Características experimentales</value>
+    <comment>Settings category for experimental/preview features</comment>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>General</value>
   </data>
@@ -990,11 +1018,11 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Scripting</value>
   </data>
-  <data name="settings_check_updates" xml:space="preserve">
-    <value>Buscar actualizaciones</value>
+  <data name="settings_enable_player_editor" xml:space="preserve">
+    <value>Activar el editor de jugadores</value>
   </data>
-  <data name="settings_check_updates_desc" xml:space="preserve">
-    <value>Comprobar automáticamente si hay nuevas versiones al iniciar</value>
+  <data name="settings_enable_player_editor_desc" xml:space="preserve">
+    <value>Mostrar la pestaña Editor de jugadores en la barra lateral para editar archivos reproductor .plr (experimental)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Habilitar el informe de errores</value>
@@ -1167,6 +1195,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Elige de qué canal de lanzamiento deseas recibir actualizaciones (Estable, Beta o Alfa)</value>
   </data>
+  <data name="settings_update_mode_desc" xml:space="preserve">
+    <value>Controla cómo TEdit comprueba y aplica actualizaciones al arrancar</value>
+    <comment>Description for the update mode setting</comment>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Transparencia de cables</value>
   </data>
@@ -1265,6 +1297,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Contenido del plato</value>
+  </data>
+  <data name="specialtile_label_pose" xml:space="preserve">
+    <value>Pose</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>Texto de letrero</value>
@@ -2252,6 +2287,18 @@ Qué NO se recopila:
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Pista</value>
   </data>
+  <data name="update_available_notify" xml:space="preserve">
+    <value>Está disponible una nueva versión de TEdit.</value>
+    <comment>Toast message for NotifyOnly mode when update is found</comment>
+  </data>
+  <data name="update_downloaded_toast" xml:space="preserve">
+    <value>Actualización descargada. Usa el archivo &gt; comprueba las actualizaciones para instalar.</value>
+    <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_up_to_date" xml:space="preserve">
+    <value>TEdit está actualizado.</value>
+    <comment>Toast message when no updates are available</comment>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>Azul</value>
   </data>
@@ -2329,5 +2376,20 @@ Qué NO se recopila:
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar fondo</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>Se ha descargado una actualización. ¿Reiniciar ahora para solicitar?</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>La comprobación de actualización falló.</value>
+  </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Comprobando novedades...</value>
+  </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Modo de actualización</value>
   </data>
 </root>

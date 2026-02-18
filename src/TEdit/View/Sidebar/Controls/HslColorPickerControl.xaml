@@ -5,6 +5,77 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d" d:DesignWidth="300">
+    <UserControl.Resources>
+        <!-- Transparent repeat button for track click-to-seek -->
+        <Style x:Key="HslSliderButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border Background="Transparent"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Thumb that fills with the slider's Foreground color -->
+        <Style x:Key="HslColorThumbStyle" TargetType="{x:Type Thumb}">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid>
+                            <!-- Outer ring (white with shadow for contrast on any color) -->
+                            <Ellipse Width="18" Height="18" Fill="White"
+                                     StrokeThickness="0">
+                                <Ellipse.Effect>
+                                    <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.35" Color="Black"/>
+                                </Ellipse.Effect>
+                            </Ellipse>
+                            <!-- Inner fill from Foreground (inherits from Slider.Foreground) -->
+                            <Ellipse Width="12" Height="12"
+                                     Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Slider}}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Slider template derived from WPF-UI, with gradient track + colored thumb -->
+        <ControlTemplate x:Key="HslGradientSliderTemplate" TargetType="{x:Type Slider}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!-- Gradient track background -->
+                <Border x:Name="TrackBackground"
+                        Grid.Row="1"
+                        Height="8" CornerRadius="4"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="#30000000" BorderThickness="0.5"/>
+                <!-- Track for thumb positioning -->
+                <Track x:Name="PART_Track" Grid.Row="1">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="Slider.DecreaseLarge"
+                                      Style="{StaticResource HslSliderButtonStyle}"/>
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb x:Name="Thumb" Style="{StaticResource HslColorThumbStyle}"/>
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="Slider.IncreaseLarge"
+                                      Style="{StaticResource HslSliderButtonStyle}"/>
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -13,64 +84,46 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Hue slider -->
-        <Grid Grid.Row="0" Margin="0,1">
+        <!-- Hue slider: thumb = pure hue at full S, mid L -->
+        <Grid Grid.Row="0" Margin="0,2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="14"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="H" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" FontSize="10"/>
             <Slider Grid.Column="1" Minimum="0" Maximum="360" Value="{Binding Hue}"
-                    SmallChange="1" LargeChange="15" IsSnapToTickEnabled="False">
-                <Slider.Background>
-                    <VisualBrush>
-                        <VisualBrush.Visual>
-                            <Rectangle Width="256" Height="12" RadiusX="3" RadiusY="3"
-                                       Fill="{Binding HueTrackBrush}"/>
-                        </VisualBrush.Visual>
-                    </VisualBrush>
-                </Slider.Background>
-            </Slider>
+                    SmallChange="1" LargeChange="15" IsSnapToTickEnabled="False"
+                    Template="{StaticResource HslGradientSliderTemplate}"
+                    Background="{Binding HueTrackBrush}"
+                    Foreground="{Binding HueThumbBrush}" Height="20"/>
         </Grid>
 
-        <!-- Saturation slider -->
-        <Grid Grid.Row="1" Margin="0,1">
+        <!-- Saturation slider: thumb = hue + saturation -->
+        <Grid Grid.Row="1" Margin="0,2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="14"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="S" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" FontSize="10"/>
             <Slider Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding Saturation}"
-                    SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="False">
-                <Slider.Background>
-                    <VisualBrush>
-                        <VisualBrush.Visual>
-                            <Rectangle Width="256" Height="12" RadiusX="3" RadiusY="3"
-                                       Fill="{Binding SaturationTrackBrush}"/>
-                        </VisualBrush.Visual>
-                    </VisualBrush>
-                </Slider.Background>
-            </Slider>
+                    SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="False"
+                    Template="{StaticResource HslGradientSliderTemplate}"
+                    Background="{Binding SaturationTrackBrush}"
+                    Foreground="{Binding SaturationThumbBrush}" Height="20"/>
         </Grid>
 
-        <!-- Lightness slider -->
-        <Grid Grid.Row="2" Margin="0,1">
+        <!-- Lightness slider: thumb = full HSL color -->
+        <Grid Grid.Row="2" Margin="0,2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="14"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="L" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" FontSize="10"/>
             <Slider Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding Lightness}"
-                    SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="False">
-                <Slider.Background>
-                    <VisualBrush>
-                        <VisualBrush.Visual>
-                            <Rectangle Width="256" Height="12" RadiusX="3" RadiusY="3"
-                                       Fill="{Binding LightnessTrackBrush}"/>
-                        </VisualBrush.Visual>
-                    </VisualBrush>
-                </Slider.Background>
-            </Slider>
+                    SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="False"
+                    Template="{StaticResource HslGradientSliderTemplate}"
+                    Background="{Binding LightnessTrackBrush}"
+                    Foreground="{Binding LightnessThumbBrush}" Height="20"/>
         </Grid>
 
         <!-- Preview + controls -->

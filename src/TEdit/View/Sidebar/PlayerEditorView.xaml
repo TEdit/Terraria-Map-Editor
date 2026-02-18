@@ -9,158 +9,204 @@
     xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
     xmlns:pe="clr-namespace:TEdit.View.Sidebar.PlayerEditor"
     mc:Ignorable="d" d:DesignWidth="340"
-    DataContext="{Binding Source={x:Static vm:ViewModelLocator.PlayerEditorViewModel}}">
+    DataContext="{Binding Source={x:Static vm:ViewModelLocator.PlayerEditorViewModel}}"
+    d:DataContext="{d:DesignInstance vm:DesignTimePlayerEditorViewModel, IsDesignTimeCreatable=True}">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="4">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>  <!-- Title -->
+            <RowDefinition Height="Auto"/>  <!-- Load/Save Toolbar -->
+            <RowDefinition Height="Auto"/>  <!-- Status bar -->
+            <RowDefinition Height="Auto"/>  <!-- Player Info (when visible) -->
+            <RowDefinition Height="*"/>     <!-- TabControl in ScrollViewer -->
+        </Grid.RowDefinitions>
 
-            <!-- Load/Save Toolbar -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
-                <Button Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_load}"
-                        Command="{Binding LoadPlayerCommand}" Margin="0,0,2,0">
-                    <ui:SymbolIcon Symbol="FolderOpen20" FontSize="16"/>
-                </Button>
-                <Button Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_save}"
-                        Command="{Binding SavePlayerCommand}" Margin="0,0,2,0">
-                    <ui:SymbolIcon Symbol="Save20" FontSize="16"/>
-                </Button>
-                <Button Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_save_as}"
-                        Command="{Binding SavePlayerAsCommand}" Margin="0,0,4,0">
-                    <ui:SymbolIcon Symbol="SaveEdit20" FontSize="16"/>
-                </Button>
-                <TextBlock Text="{Binding PlayerFilePath}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                           FontSize="10" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="200"/>
-            </StackPanel>
+        <!-- Title -->
+        <TextBlock Grid.Row="0" Text="{x:Static p:Language.player_editor_load}"
+                   Style="{DynamicResource SidebarPanelTitle}" 
+                   Margin="8,0"/>
 
-            <!-- Status bar -->
-            <TextBlock Text="{Binding StatusText}" Foreground="{DynamicResource TextFillColorTertiaryBrush}"
-                       FontSize="10" Margin="0,0,0,4"/>
+        <!-- Load/Save Toolbar -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="4,4,4,4">
+            <Button Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_load}"
+                    Command="{Binding LoadPlayerCommand}" Margin="0,0,2,0">
+                <ui:SymbolIcon Symbol="FolderOpen20" FontSize="16"/>
+            </Button>
+            <Button Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_save}"
+                    Command="{Binding SavePlayerCommand}" Margin="0,0,2,0">
+                <ui:SymbolIcon Symbol="Save20" FontSize="16"/>
+            </Button>
+            <Button Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_save_as}"
+                    Command="{Binding SavePlayerAsCommand}" Margin="0,0,4,0">
+                <ui:SymbolIcon Symbol="SaveEdit20" FontSize="16"/>
+            </Button>
+            <TextBlock Text="{Binding PlayerFilePath}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                       FontSize="10" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="200"/>
+        </StackPanel>
 
-            <!-- Player Info (visible when loaded) -->
-            <StackPanel Visibility="{Binding Player, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}">
+        <!-- Status bar -->
+        <TextBlock Grid.Row="2" Text="{Binding StatusText}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                   FontSize="10" Margin="4,0,4,4"/>
 
-                <!-- Name + Difficulty -->
-                <Grid Margin="0,0,0,4">
+        <!-- Player Info (visible when loaded) -->
+        <Grid Grid.Row="3" Visibility="{Binding Player, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}"
+              Margin="4,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>  <!-- Preview + Controls -->
+                <RowDefinition Height="Auto"/>  <!-- Appearance Colors -->
+            </Grid.RowDefinitions>
+
+            <!-- Preview + Controls (Left/Right Layout) -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>    <!-- Preview Image -->
+                    <ColumnDefinition Width="*"/>       <!-- Controls -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Player Preview (Left) -->
+                <Border Grid.Column="0" Background="#1AFFFFFF" CornerRadius="4" Padding="4" Margin="0,0,8,0"
+                        Visibility="{Binding PlayerPreview, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}">
+                    <Image Source="{Binding PlayerPreview}" Width="120" Height="168"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform"/>
+                </Border>
+
+                <!-- Controls (Right) - Name, Difficulty, Hair, Skin -->
+                <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{x:Static p:Language.player_editor_name}" Foreground="{DynamicResource TextBrush}"
-                               FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
-                    <TextBox Grid.Column="1" Text="{Binding Player.Name}" MaxLength="20" Height="26"/>
-                    <TextBlock Grid.Column="2" Text="{x:Static p:Language.player_editor_difficulty}"
-                               Foreground="{DynamicResource TextBrush}" FontWeight="Bold"
-                               VerticalAlignment="Center" Margin="8,0,4,0"/>
-                    <ComboBox Grid.Column="3" Width="100" Height="26"
-                              SelectedIndex="{Binding Player.Difficulty}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Name -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.player_editor_name}" 
+                               Foreground="{DynamicResource TextBrush}" FontWeight="Bold" 
+                               VerticalAlignment="Center" Margin="0,0,4,4"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Player.Name}" MaxLength="20" Height="26" Margin="0,0,0,4"/>
+
+                    <!-- Difficulty -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.player_editor_difficulty}" 
+                               Foreground="{DynamicResource TextBrush}" FontWeight="Bold" 
+                               VerticalAlignment="Center" Margin="0,0,4,4"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" Height="26" SelectedIndex="{Binding Player.Difficulty}" Margin="0,0,0,4">
                         <ComboBoxItem Content="Classic"/>
                         <ComboBoxItem Content="Mediumcore"/>
                         <ComboBoxItem Content="Hardcore"/>
                         <ComboBoxItem Content="Journey"/>
                     </ComboBox>
-                </Grid>
 
-                <!-- Hair + Skin Variant -->
-                <Grid Margin="0,0,0,4">
+                    <!-- Hair -->
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Language.player_editor_hair}" 
+                               Foreground="{DynamicResource TextBrush}" FontWeight="Bold" 
+                               VerticalAlignment="Center" Margin="0,0,4,4"/>
+                    <ui:NumberBox Grid.Row="2" Grid.Column="1" Value="{Binding Player.Appearance.Hair}" Minimum="0" Maximum="227"
+                                  SpinButtonPlacementMode="Compact" Height="28" Margin="0,0,0,4"/>
+
+                    <!-- Skin Variant -->
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static p:Language.player_editor_skin}" 
+                               Foreground="{DynamicResource TextBrush}" FontWeight="Bold" 
+                               VerticalAlignment="Center" Margin="0,0,4,0"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" Height="36"
+                              ItemsSource="{Binding SkinVariantOptions}"
+                              SelectedItem="{Binding SelectedSkinVariant}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Preview}" Width="24" Height="34"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform"
+                                           Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+            </Grid>
+
+            <!-- Appearance Colors Expander (Below Preview + Controls) -->
+            <Expander Grid.Row="1" Header="{x:Static p:Language.player_editor_appearance_colors}" IsExpanded="False" Margin="0,4,0,0">
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{x:Static p:Language.player_editor_hair}" Foreground="{DynamicResource TextBrush}"
-                               FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,4,0"/>
-                    <ui:NumberBox Grid.Column="1" Value="{Binding Player.Appearance.Hair}" Minimum="0" Maximum="227"
-                                  SpinButtonPlacementMode="Compact" Height="28"/>
-                    <TextBlock Grid.Column="2" Text="{x:Static p:Language.player_editor_skin}"
-                               Foreground="{DynamicResource TextBrush}" FontWeight="Bold"
-                               VerticalAlignment="Center" Margin="8,0,4,0"/>
-                    <ui:NumberBox Grid.Column="3" Value="{Binding Player.Appearance.SkinVariant}" Minimum="0" Maximum="11"
-                                  SpinButtonPlacementMode="Compact" Height="28"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Hair Color -->
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,2">
+                        <TextBlock Text="{x:Static p:Language.player_editor_hair_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
+                        <controls:HslColorPickerControl DataContext="{Binding HairColorVm}"/>
+                    </StackPanel>
+
+                    <!-- Skin Color -->
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="4,2,0,2">
+                        <TextBlock Text="{x:Static p:Language.player_editor_skin_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
+                        <controls:HslColorPickerControl DataContext="{Binding SkinColorVm}"/>
+                    </StackPanel>
+
+                    <!-- Eye Color -->
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,2">
+                        <TextBlock Text="{x:Static p:Language.player_editor_eye_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
+                        <controls:HslColorPickerControl DataContext="{Binding EyeColorVm}"/>
+                    </StackPanel>
+
+                    <!-- Shirt Color -->
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="4,2,0,2">
+                        <TextBlock Text="{x:Static p:Language.player_editor_shirt_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
+                        <controls:HslColorPickerControl DataContext="{Binding ShirtColorVm}"/>
+                    </StackPanel>
+
+                    <!-- Undershirt Color -->
+                    <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,2">
+                        <TextBlock Text="{x:Static p:Language.player_editor_undershirt_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
+                        <controls:HslColorPickerControl DataContext="{Binding UnderShirtColorVm}"/>
+                    </StackPanel>
+
+                    <!-- Pants Color -->
+                    <StackPanel Grid.Row="2" Grid.Column="1" Margin="4,2,0,2">
+                        <TextBlock Text="{x:Static p:Language.player_editor_pants_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
+                        <controls:HslColorPickerControl DataContext="{Binding PantsColorVm}"/>
+                    </StackPanel>
+
+                    <!-- Shoe Color -->
+                    <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,2">
+                        <TextBlock Text="{x:Static p:Language.player_editor_shoe_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
+                        <controls:HslColorPickerControl DataContext="{Binding ShoeColorVm}"/>
+                    </StackPanel>
                 </Grid>
+            </Expander>
+        </Grid>
 
-                <!-- Appearance Colors Expander -->
-                <Expander Header="{x:Static p:Language.player_editor_appearance_colors}" IsExpanded="False" Margin="0,0,0,4">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <!-- Hair Color -->
-                        <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,2">
-                            <TextBlock Text="{x:Static p:Language.player_editor_hair_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
-                            <controls:HslColorPickerControl DataContext="{Binding HairColorVm}"/>
-                        </StackPanel>
-
-                        <!-- Skin Color -->
-                        <StackPanel Grid.Row="0" Grid.Column="1" Margin="4,2,0,2">
-                            <TextBlock Text="{x:Static p:Language.player_editor_skin_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
-                            <controls:HslColorPickerControl DataContext="{Binding SkinColorVm}"/>
-                        </StackPanel>
-
-                        <!-- Eye Color -->
-                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,2">
-                            <TextBlock Text="{x:Static p:Language.player_editor_eye_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
-                            <controls:HslColorPickerControl DataContext="{Binding EyeColorVm}"/>
-                        </StackPanel>
-
-                        <!-- Shirt Color -->
-                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="4,2,0,2">
-                            <TextBlock Text="{x:Static p:Language.player_editor_shirt_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
-                            <controls:HslColorPickerControl DataContext="{Binding ShirtColorVm}"/>
-                        </StackPanel>
-
-                        <!-- Undershirt Color -->
-                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,2">
-                            <TextBlock Text="{x:Static p:Language.player_editor_undershirt_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
-                            <controls:HslColorPickerControl DataContext="{Binding UnderShirtColorVm}"/>
-                        </StackPanel>
-
-                        <!-- Pants Color -->
-                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="4,2,0,2">
-                            <TextBlock Text="{x:Static p:Language.player_editor_pants_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
-                            <controls:HslColorPickerControl DataContext="{Binding PantsColorVm}"/>
-                        </StackPanel>
-
-                        <!-- Shoe Color -->
-                        <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,2">
-                            <TextBlock Text="{x:Static p:Language.player_editor_shoe_color}" Foreground="{DynamicResource TextBrush}" FontSize="11" FontWeight="SemiBold"/>
-                            <controls:HslColorPickerControl DataContext="{Binding ShoeColorVm}"/>
-                        </StackPanel>
-                    </Grid>
-                </Expander>
-
-                <!-- Sub-section tabs -->
-                <TabControl SelectedIndex="{Binding SelectedSubTabIndex}" Margin="0,2,0,0">
-                    <TabItem Header="{x:Static p:Language.player_editor_equipment}">
-                        <pe:PlayerEquipmentView/>
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.player_editor_inventory}">
-                        <pe:PlayerInventoryView/>
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.player_editor_banks}">
-                        <pe:PlayerBanksView/>
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.player_editor_buffs}">
-                        <pe:PlayerBuffsView/>
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.player_editor_stats}">
-                        <pe:PlayerStatsView/>
-                    </TabItem>
-                    <TabItem Header="{x:Static p:Language.player_editor_journey}">
-                        <pe:PlayerJourneyView/>
-                    </TabItem>
-                </TabControl>
-            </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+        <!-- TabControl fills remaining space -->
+        <TabControl Grid.Row="4" SelectedIndex="{Binding SelectedSubTabIndex}" Margin="4,2,4,4">
+            <TabItem Header="{x:Static p:Language.player_editor_equipment}">
+                <pe:PlayerEquipmentView/>
+            </TabItem>
+            <TabItem Header="{x:Static p:Language.player_editor_inventory}">
+                <pe:PlayerInventoryView/>
+            </TabItem>
+            <TabItem Header="{x:Static p:Language.player_editor_banks}">
+                <pe:PlayerBanksView/>
+            </TabItem>
+            <TabItem Header="{x:Static p:Language.player_editor_buffs}">
+                <pe:PlayerBuffsView/>
+            </TabItem>
+            <TabItem Header="{x:Static p:Language.player_editor_stats}">
+                <pe:PlayerStatsView/>
+            </TabItem>
+            <TabItem Header="{x:Static p:Language.player_editor_journey}">
+                <pe:PlayerJourneyView/>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </UserControl>

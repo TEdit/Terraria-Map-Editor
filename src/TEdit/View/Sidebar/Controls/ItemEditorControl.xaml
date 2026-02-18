@@ -32,7 +32,7 @@
                   FilterMemberPath="Value"
                   IsSynchronizedWithCurrentItem="False"
                   MaxDropDownHeight="300"
-                  SelectedValue="{Binding Prefix, ElementName=Root, Mode=TwoWay}"
+                  SelectedValue="{Binding Prefix, ElementName=Root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   Visibility="{Binding ShowPrefix, ElementName=Root, Converter={StaticResource BoolToVis}}" />
         <!-- Item ComboBox (filterable, shows images via ItemTemplate) -->
         <tedit:FilteredComboBox Grid.Column="2" x:Name="ItemCombo" Margin="1,0"

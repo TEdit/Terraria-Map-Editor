@@ -60,7 +60,8 @@ public partial class WorldViewModel : ReactiveObject
     private UndoManager _undoManager;
     public bool[] CheckTiles;
     private ITool _activeTool;
-    private bool _checkUpdates;
+    private UpdateMode _updateMode;
+    private bool _isUpdateAvailable;
     private string _currentFile;
     private bool _loadedFromBackup;
     private string _originalBackupPath;
@@ -139,6 +140,11 @@ public partial class WorldViewModel : ReactiveObject
     public Action? ExportTexturesAction { get; set; }
 
     /// <summary>
+    /// The texture dictionary from WorldRenderXna. Set after content is loaded.
+    /// </summary>
+    public Textures? Textures { get; set; }
+
+    /// <summary>
     /// Action to zoom and focus on a specific tile coordinate. Set by MainWindow to delegate to MapView.
     /// </summary>
     public Action<int, int>? ZoomFocus { get; set; }
@@ -150,25 +156,22 @@ public partial class WorldViewModel : ReactiveObject
 
     static WorldViewModel()
     {
-        if (!Directory.Exists(TempPath))
-        {
-            Directory.CreateDirectory(TempPath);
-        }
-        if (!Directory.Exists(AutoSavePath))
-        {
-            Directory.CreateDirectory(AutoSavePath);
-        }
-        if (!Directory.Exists(BackupPath))
-        {
-            Directory.CreateDirectory(BackupPath);
-        }
+        // Ensure all AppData subdirectories exist before any component tries to use them.
+        // Missing folders cause startup failures for users with a fresh install or cleared AppData.
+        Directory.CreateDirectory(TempPath);
+        Directory.CreateDirectory(AutoSavePath);
+        Directory.CreateDirectory(BackupPath);
+        Directory.CreateDirectory(Path.Combine(TempPath, "Logs"));
+        Directory.CreateDirectory(Path.Combine(TempPath, "undo"));
+        Directory.CreateDirectory(Path.Combine(TempPath, "previews"));
+        Directory.CreateDirectory(Path.Combine(TempPath, "Scripts"));
     }
 
     public WorldViewModel()
     {
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
-        CheckUpdates = UserSettingsService.Current.CheckUpdates;
+        _updateMode = UserSettingsService.Current.UpdateMode;
 
 
         IsAutoSaveEnabled = UserSettingsService.Current.Autosave;
@@ -1438,44 +1441,69 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
-    [ReactiveCommand]
-    private async Task CheckUpdatesAsync()
+    public async Task StartupUpdateCheckAsync()
     {
+        var mode = UserSettingsService.Current.UpdateMode;
+        if (mode == UpdateMode.Disabled) return;
+
         try
         {
             var updateService = new Services.UpdateService(UserSettingsService.Current.UpdateChannel);
+            if (!updateService.IsInstalled) return;
 
-            if (!updateService.IsInstalled)
+            switch (mode)
             {
-                App.SnackbarService.ShowInfo("Auto-update is not available for portable installs.", "Update");
-                return;
-            }
-
-            App.SnackbarService.ShowInfo("Checking for updates...", "Update");
-
-            bool downloaded = await updateService.CheckAndDownloadAsync();
-            if (downloaded)
-            {
-                var result = await App.DialogService.ShowMessageAsync(
-                    "A new version of TEdit has been downloaded. Restart now to apply the update?",
-                    "Update Available",
-                    UI.Xaml.Dialog.DialogButton.YesNo,
-                    UI.Xaml.Dialog.DialogImage.Question);
-
-                if (result == UI.Xaml.Dialog.DialogResponse.Yes)
+                case UpdateMode.NotifyOnly:
                 {
-                    updateService.ApplyAndRestart();
+                    bool available = await updateService.CheckOnlyAsync();
+                    if (available)
+                    {
+                        IsUpdateAvailable = true;
+                        App.SnackbarService.ShowInfo(
+                            Properties.Language.update_available_notify,
+                            Properties.Language.update_title);
+                    }
+                    break;
                 }
-            }
-            else
-            {
-                App.SnackbarService.ShowSuccess("TEdit is up to date.", "Update");
+
+                case UpdateMode.AutoDownload:
+                {
+                    bool downloaded = await updateService.CheckAndDownloadAsync();
+                    if (downloaded)
+                    {
+                        IsUpdateAvailable = true;
+                        App.SnackbarService.ShowSuccess(
+                            Properties.Language.update_downloaded_toast,
+                            Properties.Language.update_title);
+                    }
+                    break;
+                }
+
+                case UpdateMode.AutoInstall:
+                {
+                    bool downloaded = await updateService.CheckAndDownloadAsync();
+                    if (downloaded)
+                    {
+                        IsUpdateAvailable = true;
+                        var result = await App.DialogService.ShowMessageAsync(
+                            Properties.Language.update_restart_prompt,
+                            Properties.Language.update_title,
+                            UI.Xaml.Dialog.DialogButton.YesNo,
+                            UI.Xaml.Dialog.DialogImage.Question);
+
+                        if (result == UI.Xaml.Dialog.DialogResponse.Yes)
+                        {
+                            updateService.ApplyAndRestart();
+                        }
+                    }
+                    break;
+                }
             }
         }
         catch (Exception ex)
         {
+            ErrorLogging.LogWarn($"[Update] Startup check failed: {ex.Message}");
             ErrorLogging.LogException(ex);
-            App.SnackbarService.ShowWarning("Update check failed.", "Update");
         }
     }
 
@@ -1495,14 +1523,20 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
-    public bool CheckUpdates
+    public UpdateMode UpdateMode
     {
-        get { return _checkUpdates; }
+        get => _updateMode;
         set
         {
-            this.RaiseAndSetIfChanged(ref _checkUpdates, value);
-            UserSettingsService.Current.CheckUpdates = value;
+            this.RaiseAndSetIfChanged(ref _updateMode, value);
+            UserSettingsService.Current.UpdateMode = value;
         }
+    }
+
+    public bool IsUpdateAvailable
+    {
+        get => _isUpdateAvailable;
+        set => this.RaiseAndSetIfChanged(ref _isUpdateAvailable, value);
     }
 
     private UpdateChannel _updateChannel = UserSettingsService.Current.UpdateChannel;

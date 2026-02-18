@@ -864,62 +864,86 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Odznacz wszystkie widoczne elementy</value>
   </data>
+  <data name="player_editor_appearance_colors" xml:space="preserve">
+    <value>Kolory wyglądu</value>
+  </data>
   <data name="player_editor_banks" xml:space="preserve">
-    <value></value>
+    <value>Banki</value>
+  </data>
+  <data name="player_editor_bank_defender" xml:space="preserve">
+    <value>Kuźnia Obrońcy</value>
+  </data>
+  <data name="player_editor_bank_piggy" xml:space="preserve">
+    <value>Skarbonka świnka</value>
+  </data>
+  <data name="player_editor_bank_safe" xml:space="preserve">
+    <value>Safe</value>
+  </data>
+  <data name="player_editor_bank_void" xml:space="preserve">
+    <value>Skrytka Pustki</value>
   </data>
   <data name="player_editor_buffs" xml:space="preserve">
-    <value></value>
+    <value>Buffy</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
-    <value></value>
+    <value>Poziom Trudności</value>
   </data>
   <data name="player_editor_equipment" xml:space="preserve">
-    <value></value>
+    <value>Wyposażenie</value>
   </data>
   <data name="player_editor_eye_color" xml:space="preserve">
-    <value></value>
+    <value>Kolor oczu</value>
   </data>
   <data name="player_editor_hair" xml:space="preserve">
-    <value></value>
+    <value>Włosy</value>
+  </data>
+  <data name="player_editor_hair_color" xml:space="preserve">
+    <value>Kolor włosów</value>
   </data>
   <data name="player_editor_inventory" xml:space="preserve">
-    <value></value>
+    <value>Inwentarz</value>
   </data>
   <data name="player_editor_journey" xml:space="preserve">
-    <value></value>
+    <value>Podróż</value>
+  </data>
+  <data name="player_editor_load" xml:space="preserve">
+    <value>Załaduj odtwarzacz</value>
   </data>
   <data name="player_editor_loadout" xml:space="preserve">
-    <value></value>
+    <value>Wyposażenie</value>
   </data>
   <data name="player_editor_name" xml:space="preserve">
-    <value></value>
+    <value>Imie</value>
   </data>
   <data name="player_editor_pants_color" xml:space="preserve">
-    <value></value>
+    <value>Kolor spodni</value>
   </data>
   <data name="player_editor_save" xml:space="preserve">
-    <value></value>
+    <value>Ratuj gracza</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value></value>
+    <value>Ratuj gracza jako...</value>
   </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
-    <value></value>
+    <value>Kolor koszulki</value>
   </data>
   <data name="player_editor_shoe_color" xml:space="preserve">
-    <value></value>
+    <value>Kolor butów</value>
   </data>
   <data name="player_editor_skin" xml:space="preserve">
-    <value></value>
+    <value>Skóra</value>
+  </data>
+  <data name="player_editor_skin_color" xml:space="preserve">
+    <value>Kolor skóry</value>
   </data>
   <data name="player_editor_stats" xml:space="preserve">
-    <value></value>
+    <value>Statystyki</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Edytor gracza</value>
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
-    <value></value>
+    <value>Kolor podkoszulki</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Wybierz wersję do zapisu jako:</value>
@@ -972,6 +996,10 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_cancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
+  <data name="settings_category_experimental" xml:space="preserve">
+    <value>Cechy eksperymentalne</value>
+    <comment>Settings category for experimental/preview features</comment>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Ogólne</value>
   </data>
@@ -990,11 +1018,11 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Skryptowanie</value>
   </data>
-  <data name="settings_check_updates" xml:space="preserve">
-    <value>Sprawdź aktualizacje</value>
+  <data name="settings_enable_player_editor" xml:space="preserve">
+    <value>Włącz edytor odtwarzaczy</value>
   </data>
-  <data name="settings_check_updates_desc" xml:space="preserve">
-    <value>Automatycznie sprawdzaj nowe wersje przy starcie</value>
+  <data name="settings_enable_player_editor_desc" xml:space="preserve">
+    <value>Pokaż zakładkę Edytor Gracza w pasku bocznym do edycji plików odtwarzaczy .plr (eksperymentalnie)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Włącz Raportowanie Błędów</value>
@@ -1167,6 +1195,10 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Wybierz, z którego kanału wydania chcesz otrzymywać aktualizacje (stabilny, beta lub alfa)</value>
   </data>
+  <data name="settings_update_mode_desc" xml:space="preserve">
+    <value>Kontroluje, jak TEdit sprawdza i stosuje aktualizacje przy starcie</value>
+    <comment>Description for the update mode setting</comment>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Przezroczystość przewodu</value>
   </data>
@@ -1265,6 +1297,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Zawartość Napierśnika</value>
+  </data>
+  <data name="specialtile_label_pose" xml:space="preserve">
+    <value>Poza</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>Podpisz Tekst</value>
@@ -2252,6 +2287,18 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Tor</value>
   </data>
+  <data name="update_available_notify" xml:space="preserve">
+    <value>Dostępna jest nowa wersja TEdit.</value>
+    <comment>Toast message for NotifyOnly mode when update is found</comment>
+  </data>
+  <data name="update_downloaded_toast" xml:space="preserve">
+    <value>Aktualizacja pobrana. Użyj pliku &gt; Sprawdź aktualizacje do instalacji.</value>
+    <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_up_to_date" xml:space="preserve">
+    <value>TEdit jest aktualny.</value>
+    <comment>Toast message when no updates are available</comment>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>Niebieski</value>
   </data>
@@ -2329,5 +2376,20 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Zaaktualizuj</value>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>Aktualizacja została pobrana. Restartować teraz, żeby aplikować?</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>Sprawdzenie aktualizacji nie powiodło się.</value>
+  </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Sprawdzam aktualizacje...</value>
+  </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Tryb aktualizacji</value>
   </data>
 </root>

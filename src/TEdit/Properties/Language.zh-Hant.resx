@@ -423,7 +423,7 @@
     <value>立即查看最新消息</value>
   </data>
   <data name="menu_file_worlds" xml:space="preserve">
-    <value>世界探險家......</value>
+    <value>世界探險家...</value>
   </data>
   <data name="menu_filter" xml:space="preserve">
     <value>濾波器</value>
@@ -794,62 +794,86 @@
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>取消勾選所有可見項目</value>
   </data>
+  <data name="player_editor_appearance_colors" xml:space="preserve">
+    <value>外觀顏色</value>
+  </data>
   <data name="player_editor_banks" xml:space="preserve">
-    <value></value>
+    <value>銀行</value>
+  </data>
+  <data name="player_editor_bank_defender" xml:space="preserve">
+    <value>守護者熔爐</value>
+  </data>
+  <data name="player_editor_bank_piggy" xml:space="preserve">
+    <value>存錢筒</value>
+  </data>
+  <data name="player_editor_bank_safe" xml:space="preserve">
+    <value>安全</value>
+  </data>
+  <data name="player_editor_bank_void" xml:space="preserve">
+    <value>虛空寶庫</value>
   </data>
   <data name="player_editor_buffs" xml:space="preserve">
-    <value></value>
+    <value>增益</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
-    <value></value>
+    <value>難度</value>
   </data>
   <data name="player_editor_equipment" xml:space="preserve">
-    <value></value>
+    <value>設備</value>
   </data>
   <data name="player_editor_eye_color" xml:space="preserve">
-    <value></value>
+    <value>眼睛顏色</value>
   </data>
   <data name="player_editor_hair" xml:space="preserve">
-    <value></value>
+    <value>髮型</value>
+  </data>
+  <data name="player_editor_hair_color" xml:space="preserve">
+    <value>髮色</value>
   </data>
   <data name="player_editor_inventory" xml:space="preserve">
-    <value></value>
+    <value>庫存</value>
   </data>
   <data name="player_editor_journey" xml:space="preserve">
-    <value></value>
+    <value>旅程</value>
+  </data>
+  <data name="player_editor_load" xml:space="preserve">
+    <value>裝填播放器</value>
   </data>
   <data name="player_editor_loadout" xml:space="preserve">
-    <value></value>
+    <value>裝備配置</value>
   </data>
   <data name="player_editor_name" xml:space="preserve">
-    <value></value>
+    <value>名稱</value>
   </data>
   <data name="player_editor_pants_color" xml:space="preserve">
-    <value></value>
+    <value>褲子顏色</value>
   </data>
   <data name="player_editor_save" xml:space="preserve">
-    <value></value>
+    <value>儲存玩家</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value></value>
+    <value>將玩家存為......</value>
   </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
-    <value></value>
+    <value>球衣顏色</value>
   </data>
   <data name="player_editor_shoe_color" xml:space="preserve">
-    <value></value>
+    <value>鞋款顏色</value>
   </data>
   <data name="player_editor_skin" xml:space="preserve">
-    <value></value>
+    <value>皮膚</value>
+  </data>
+  <data name="player_editor_skin_color" xml:space="preserve">
+    <value>膚色</value>
   </data>
   <data name="player_editor_stats" xml:space="preserve">
-    <value></value>
+    <value>數據</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
-    <value></value>
+    <value>球員編輯器</value>
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
-    <value></value>
+    <value>內襯衫顏色</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>選擇一個版本以儲存為：</value>
@@ -902,6 +926,10 @@
   <data name="settings_cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="settings_category_experimental" xml:space="preserve">
+    <value>實驗特徵</value>
+    <comment>Settings category for experimental/preview features</comment>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>概述</value>
   </data>
@@ -920,11 +948,11 @@
   <data name="settings_category_scripting" xml:space="preserve">
     <value>腳本編寫</value>
   </data>
-  <data name="settings_check_updates" xml:space="preserve">
-    <value>請持續關注最新消息</value>
+  <data name="settings_enable_player_editor" xml:space="preserve">
+    <value>啟用播放器編輯器</value>
   </data>
-  <data name="settings_check_updates_desc" xml:space="preserve">
-    <value>啟動時自動檢查新版本</value>
+  <data name="settings_enable_player_editor_desc" xml:space="preserve">
+    <value>在側邊欄顯示 Player Editor 標籤，用於編輯 .plr 播放器檔案（實驗性）</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>啟用錯誤回報</value>
@@ -1097,6 +1125,10 @@
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>選擇從哪個發佈頻道接收更新（穩定版、Beta 版或 Alpha版）</value>
   </data>
+  <data name="settings_update_mode_desc" xml:space="preserve">
+    <value>控制 TEdit 在啟動時如何檢查並套用更新</value>
+    <comment>Description for the update mode setting</comment>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>線材透明</value>
   </data>
@@ -1195,6 +1227,9 @@
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>車牌內容物</value>
+  </data>
+  <data name="specialtile_label_pose" xml:space="preserve">
+    <value>姿勢</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>手語文字</value>
@@ -2182,6 +2217,18 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>田徑</value>
   </data>
+  <data name="update_available_notify" xml:space="preserve">
+    <value>TEdit 有新版本可用。</value>
+    <comment>Toast message for NotifyOnly mode when update is found</comment>
+  </data>
+  <data name="update_downloaded_toast" xml:space="preserve">
+    <value>更新已下載。使用 File &gt; 檢查安裝更新。</value>
+    <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_up_to_date" xml:space="preserve">
+    <value>TEdit 是最新的。</value>
+    <comment>Toast message when no updates are available</comment>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>藍色</value>
   </data>
@@ -2225,7 +2272,7 @@
     <value>刪除備份</value>
   </data>
   <data name="world_explorer_loading_preview" xml:space="preserve">
-    <value>載入預覽......</value>
+    <value>載入預覽...</value>
   </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>無備份 — 點擊建立.bak並用 TEdit 備份</value>
@@ -2249,7 +2296,7 @@
     <value>預覽世界地圖</value>
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
-    <value>搜尋世界......</value>
+    <value>搜尋世界...</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>世界探險家</value>
@@ -2259,5 +2306,20 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修正背景空隙</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>更新已下載。現在重新開始申請？</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>更新檢查失敗。</value>
+  </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>查看最新消息......</value>
+  </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>更新模式</value>
   </data>
 </root>

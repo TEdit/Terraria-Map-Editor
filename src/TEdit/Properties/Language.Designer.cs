@@ -2274,7 +2274,16 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_appearance_colors", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defender&apos;s Forge.
+        /// </summary>
+        public static string player_editor_bank_defender {
+            get {
+                return ResourceManager.GetString("player_editor_bank_defender", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Piggy Bank.
         /// </summary>
@@ -2283,7 +2292,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_bank_piggy", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Safe.
         /// </summary>
@@ -2292,16 +2301,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_bank_safe", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Defenders Forge.
-        /// </summary>
-        public static string player_editor_bank_defender {
-            get {
-                return ResourceManager.GetString("player_editor_bank_defender", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Void Vault.
         /// </summary>
@@ -2310,7 +2310,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_bank_void", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Banks.
         /// </summary>
@@ -2319,7 +2319,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_banks", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Buffs.
         /// </summary>
@@ -2364,7 +2364,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_hair", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Hair Color.
         /// </summary>
@@ -2373,7 +2373,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_hair_color", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Inventory.
         /// </summary>
@@ -2400,7 +2400,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_load", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Loadout.
         /// </summary>
@@ -2409,7 +2409,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_loadout", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
@@ -2472,7 +2472,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_skin", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Skin Color.
         /// </summary>
@@ -2481,7 +2481,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("player_editor_skin_color", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Stats.
         /// </summary>
@@ -2663,6 +2663,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Experimental Features.
+        /// </summary>
+        public static string settings_category_experimental {
+            get {
+                return ResourceManager.GetString("settings_category_experimental", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
         public static string settings_category_general {
@@ -2717,20 +2726,20 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check for Updates.
+        ///   Looks up a localized string similar to Enable Player Editor.
         /// </summary>
-        public static string settings_check_updates {
+        public static string settings_enable_player_editor {
             get {
-                return ResourceManager.GetString("settings_check_updates", resourceCulture);
+                return ResourceManager.GetString("settings_enable_player_editor", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically check for new versions on startup.
+        ///   Looks up a localized string similar to Show the Player Editor tab in the sidebar for editing .plr player files (experimental).
         /// </summary>
-        public static string settings_check_updates_desc {
+        public static string settings_enable_player_editor_desc {
             get {
-                return ResourceManager.GetString("settings_check_updates_desc", resourceCulture);
+                return ResourceManager.GetString("settings_enable_player_editor_desc", resourceCulture);
             }
         }
         
@@ -3248,6 +3257,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Mode.
+        /// </summary>
+        public static string settings_update_mode {
+            get {
+                return ResourceManager.GetString("settings_update_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controls how TEdit checks for and applies updates on startup.
+        /// </summary>
+        public static string settings_update_mode_desc {
+            get {
+                return ResourceManager.GetString("settings_update_mode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wire Transparency.
         /// </summary>
         public static string settings_wire_transparency {
@@ -3541,6 +3568,15 @@ namespace TEdit.Properties {
         public static string specialtile_label_platecontents {
             get {
                 return ResourceManager.GetString("specialtile_label_platecontents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pose.
+        /// </summary>
+        public static string specialtile_label_pose {
+            get {
+                return ResourceManager.GetString("specialtile_label_pose", resourceCulture);
             }
         }
         
@@ -6477,6 +6513,69 @@ namespace TEdit.Properties {
         public static string TrackMode_Track {
             get {
                 return ResourceManager.GetString("TrackMode_Track", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new version of TEdit is available..
+        /// </summary>
+        public static string update_available_notify {
+            get {
+                return ResourceManager.GetString("update_available_notify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update check failed..
+        /// </summary>
+        public static string update_check_failed {
+            get {
+                return ResourceManager.GetString("update_check_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking for updates....
+        /// </summary>
+        public static string update_checking {
+            get {
+                return ResourceManager.GetString("update_checking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update downloaded. Use File &gt; Check for Updates to install..
+        /// </summary>
+        public static string update_downloaded_toast {
+            get {
+                return ResourceManager.GetString("update_downloaded_toast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An update has been downloaded. Restart now to apply?.
+        /// </summary>
+        public static string update_restart_prompt {
+            get {
+                return ResourceManager.GetString("update_restart_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string update_title {
+            get {
+                return ResourceManager.GetString("update_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEdit is up to date..
+        /// </summary>
+        public static string update_up_to_date {
+            get {
+                return ResourceManager.GetString("update_up_to_date", resourceCulture);
             }
         }
         

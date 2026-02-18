@@ -6,6 +6,8 @@
     xmlns:p="clr-namespace:TEdit.Properties"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
+    xmlns:terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     d:DesignWidth="340">
     <UserControl.Resources>
@@ -13,10 +15,16 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="SpecialTilesSharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ObjectDataProvider x:Key="DisplayDollPoseValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="terraria:DisplayDollPoseID" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -189,8 +197,13 @@
             ItemsSource="{Binding Source={StaticResource MountCollection}}"
             ItemsSourceType="DictionaryKvp"
             ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False" />
+        <!-- Pose -->
+        <TextBlock Grid.Row="11" Grid.Column="0" Text="{x:Static p:Language.specialtile_label_pose}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+        <ComboBox Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" Margin="2"
+            ItemsSource="{Binding Source={StaticResource DisplayDollPoseValues}}"
+            SelectedItem="{Binding SelectedTileEntity.DisplayDollPose, Mode=TwoWay}" />
         <!-- Buttons -->
-        <UniformGrid Columns="2" Grid.Row="11" Grid.ColumnSpan="3">
+        <UniformGrid Columns="2" Grid.Row="12" Grid.ColumnSpan="3">
             <ui:Button Margin="5" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                 HorizontalAlignment="Stretch" Appearance="Danger"
                 CommandParameter="{StaticResource False}" />

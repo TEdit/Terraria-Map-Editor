@@ -263,14 +263,17 @@ public partial class WorldViewModel
                 return;
             }
 
-            App.SnackbarService.ShowInfo("Checking for updates...", "Update");
+            App.SnackbarService.ShowInfo(
+                Properties.Language.update_checking,
+                Properties.Language.update_title);
 
             bool downloaded = await updateService.CheckAndDownloadAsync();
             if (downloaded)
             {
+                IsUpdateAvailable = true;
                 var result = await App.DialogService.ShowMessageAsync(
-                    "A new version of TEdit has been downloaded. Restart now to apply the update?",
-                    "Update Available",
+                    Properties.Language.update_restart_prompt,
+                    Properties.Language.update_title,
                     UI.Xaml.Dialog.DialogButton.YesNo,
                     UI.Xaml.Dialog.DialogImage.Question);
 
@@ -281,13 +284,17 @@ public partial class WorldViewModel
             }
             else
             {
-                App.SnackbarService.ShowSuccess("TEdit is up to date.", "Update");
+                App.SnackbarService.ShowSuccess(
+                    Properties.Language.update_up_to_date,
+                    Properties.Language.update_title);
             }
         }
         catch (Exception ex)
         {
             ErrorLogging.LogException(ex);
-            App.SnackbarService.ShowWarning("Update check failed.", "Update");
+            App.SnackbarService.ShowWarning(
+                Properties.Language.update_check_failed,
+                Properties.Language.update_title);
         }
     }
 
@@ -648,6 +655,14 @@ public partial class WorldViewModel
     }
 
     #endregion
+}
+
+public enum UpdateMode
+{
+    Disabled,       // Never check for updates
+    NotifyOnly,     // Check on startup, badge + toast, no download
+    AutoDownload,   // Check, download, badge + toast, prompt restart
+    AutoInstall     // Check, download, prompt restart immediately
 }
 
 public enum UpdateChannel

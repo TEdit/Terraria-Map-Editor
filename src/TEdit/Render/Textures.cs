@@ -53,6 +53,8 @@ public class Textures
     public Dictionary<int, Texture2D> ArmorFemale { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> ArmorLegs { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Item { get; } = new Dictionary<int, Texture2D>();
+    public Dictionary<string, Texture2D> PlayerBody { get; } = new Dictionary<string, Texture2D>();
+    public Dictionary<int, Texture2D> PlayerHair { get; } = new Dictionary<int, Texture2D>();
     public Texture2D Actuator { get { return _actuator ??= (Texture2D)GetMisc("Actuator"); } }
 
     public ContentManager ContentManager { get; }
@@ -204,6 +206,57 @@ public class Textures
     public Texture GetArmorLegs(int num) => GetTextureById(ArmorLegs, num, "Images\\Armor_Legs_{0}");
 
     public Texture2D GetItem(int num) => GetTextureById(Item, num, "Images\\Item_{0}");
+
+    public Texture2D GetPlayerBody(int skinVariant, int partIndex)
+    {
+        // Try the specific variant first
+        var key = $"{skinVariant}_{partIndex}";
+        var texture = GetTextureById(PlayerBody, key, "Images\\Player_{0}");
+        if (texture != DefaultTexture) return texture;
+
+        // Fallback chain matching Terraria's PlayerDataInitializer CopyVariant logic:
+        // Variants 1,2,3,8 → fall back to variant 0 (male base)
+        // Variants 5,6,7,9 → fall back to variant 4 (female base)
+        // Variant 4 → falls back to variant 0 for head parts (0,1,2,15)
+        // Variants 10,11 (display dolls) → 10 falls back to 0, 11 falls back to 10
+        int fallback = skinVariant switch
+        {
+            1 or 2 or 3 or 8 => 0,
+            5 or 6 or 7 or 9 => 4,
+            4 => 0,
+            11 => 10,
+            10 => 0,
+            _ => -1
+        };
+
+        if (fallback >= 0)
+        {
+            var fbKey = $"{fallback}_{partIndex}";
+            texture = GetTextureById(PlayerBody, fbKey, "Images\\Player_{0}");
+            if (texture != DefaultTexture) return texture;
+
+            // Second-level fallback: variant 4 → 0, variant 10 → 0, variant 11 → 10 → 0
+            if (fallback == 4 || fallback == 10)
+            {
+                var fb2Key = $"0_{partIndex}";
+                texture = GetTextureById(PlayerBody, fb2Key, "Images\\Player_{0}");
+                if (texture != DefaultTexture) return texture;
+            }
+        }
+
+        return DefaultTexture;
+    }
+
+    public Texture2D GetPlayerHair(int hairIndex)
+    {
+        if (!PlayerHair.ContainsKey(hairIndex))
+        {
+            // Terraria hair textures are 1-indexed: Player_Hair_1.xnb = hair style 0
+            string name = $"Images\\Player_Hair_{hairIndex + 1}";
+            PlayerHair[hairIndex] = LoadTexture(name);
+        }
+        return PlayerHair[hairIndex];
+    }
 
     public Texture2D GetMoon(int num) => GetTextureById(Moon, num, "Images\\Moon_{0}");
 

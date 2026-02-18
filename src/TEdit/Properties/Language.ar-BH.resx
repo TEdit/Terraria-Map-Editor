@@ -864,62 +864,86 @@
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>إلغاء تحديد جميع العناصر الظاهرة</value>
   </data>
+  <data name="player_editor_appearance_colors" xml:space="preserve">
+    <value>ألوان المظهر</value>
+  </data>
   <data name="player_editor_banks" xml:space="preserve">
-    <value></value>
+    <value>البنوك</value>
+  </data>
+  <data name="player_editor_bank_defender" xml:space="preserve">
+    <value>حدادة المدافع</value>
+  </data>
+  <data name="player_editor_bank_piggy" xml:space="preserve">
+    <value>بنك الخنازير</value>
+  </data>
+  <data name="player_editor_bank_safe" xml:space="preserve">
+    <value>خزنة</value>
+  </data>
+  <data name="player_editor_bank_void" xml:space="preserve">
+    <value>خزنة الفراغ</value>
   </data>
   <data name="player_editor_buffs" xml:space="preserve">
-    <value></value>
+    <value>المؤثرات</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
-    <value></value>
+    <value>حرج</value>
   </data>
   <data name="player_editor_equipment" xml:space="preserve">
-    <value></value>
+    <value>المعدات</value>
   </data>
   <data name="player_editor_eye_color" xml:space="preserve">
-    <value></value>
+    <value>لون العين</value>
   </data>
   <data name="player_editor_hair" xml:space="preserve">
-    <value></value>
+    <value>شعر</value>
+  </data>
+  <data name="player_editor_hair_color" xml:space="preserve">
+    <value>لون الشعر</value>
   </data>
   <data name="player_editor_inventory" xml:space="preserve">
-    <value></value>
+    <value>المخزون</value>
   </data>
   <data name="player_editor_journey" xml:space="preserve">
-    <value></value>
+    <value>رحلة</value>
+  </data>
+  <data name="player_editor_load" xml:space="preserve">
+    <value>تحميل اللاعب</value>
   </data>
   <data name="player_editor_loadout" xml:space="preserve">
-    <value></value>
+    <value>تجهيزات</value>
   </data>
   <data name="player_editor_name" xml:space="preserve">
-    <value></value>
+    <value>اسم</value>
   </data>
   <data name="player_editor_pants_color" xml:space="preserve">
-    <value></value>
+    <value>لون السروال</value>
   </data>
   <data name="player_editor_save" xml:space="preserve">
-    <value></value>
+    <value>حفظ اللاعب</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value></value>
+    <value>احفظ اللاعب كـ...</value>
   </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
-    <value></value>
+    <value>لون القميص</value>
   </data>
   <data name="player_editor_shoe_color" xml:space="preserve">
-    <value></value>
+    <value>لون الحذاء</value>
   </data>
   <data name="player_editor_skin" xml:space="preserve">
-    <value></value>
+    <value>البشرة</value>
+  </data>
+  <data name="player_editor_skin_color" xml:space="preserve">
+    <value>لون البشرة</value>
   </data>
   <data name="player_editor_stats" xml:space="preserve">
-    <value></value>
+    <value>الإحصائيات</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
-    <value></value>
+    <value>محرر اللاعب</value>
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
-    <value></value>
+    <value>لون القميص الداخلي</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>اختر نسخة للحفظ بالتالي:</value>
@@ -972,6 +996,10 @@
   <data name="settings_cancel" xml:space="preserve">
     <value>إلغاء</value>
   </data>
+  <data name="settings_category_experimental" xml:space="preserve">
+    <value>ميزات تجريبية</value>
+    <comment>Settings category for experimental/preview features</comment>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>عام</value>
   </data>
@@ -990,11 +1018,11 @@
   <data name="settings_category_scripting" xml:space="preserve">
     <value>البرمجة</value>
   </data>
-  <data name="settings_check_updates" xml:space="preserve">
-    <value>تحقق من التحديثات</value>
+  <data name="settings_enable_player_editor" xml:space="preserve">
+    <value>تفعيل محرر اللاعب</value>
   </data>
-  <data name="settings_check_updates_desc" xml:space="preserve">
-    <value>تحقق تلقائيًا من الإصدارات الجديدة عند بدء التشغيل</value>
+  <data name="settings_enable_player_editor_desc" xml:space="preserve">
+    <value>عرض علامة محرر اللاعب في الشريط الجانبي لتحرير ملفات .plr الخاصة باللاعب (تجريبي)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>تمكين الإبلاغ عن الأخطاء</value>
@@ -1167,6 +1195,10 @@
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>اختر قناة الإصدار التي ترغب في تلقي التحديثات منها (مستقرة، بيتا، أو ألفا)</value>
   </data>
+  <data name="settings_update_mode_desc" xml:space="preserve">
+    <value>يتحكم في كيفية تحقق TEdit من التحديثات وتطبيقها عند بدء التشغيل</value>
+    <comment>Description for the update mode setting</comment>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>شفافية الأسلاك</value>
   </data>
@@ -1265,6 +1297,9 @@
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>محتويات اللوحة</value>
+  </data>
+  <data name="specialtile_label_pose" xml:space="preserve">
+    <value>الوضعية</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>توقيع نص</value>
@@ -2252,6 +2287,18 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>المسار</value>
   </data>
+  <data name="update_available_notify" xml:space="preserve">
+    <value>يتوفر إصدار جديد من TEdit.</value>
+    <comment>Toast message for NotifyOnly mode when update is found</comment>
+  </data>
+  <data name="update_downloaded_toast" xml:space="preserve">
+    <value>تم تحميل التحديث. استخدم &gt; الملف للتحقق من وجود تحديثات لتثبيتها.</value>
+    <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_up_to_date" xml:space="preserve">
+    <value>TEdit محدث.</value>
+    <comment>Toast message when no updates are available</comment>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>أزرق</value>
   </data>
@@ -2329,5 +2376,20 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>تم تحميل تحديث. هل أعيد التشغيل الآن للتقديم؟</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>فشل فحص التحديث.</value>
+  </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>أتحقق من التحديثات...</value>
+  </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>وضع التحديث</value>
   </data>
 </root>

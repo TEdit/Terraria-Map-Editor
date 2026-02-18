@@ -864,62 +864,86 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Desmarque todos os itens visíveis</value>
   </data>
+  <data name="player_editor_appearance_colors" xml:space="preserve">
+    <value>Cores de aparência</value>
+  </data>
   <data name="player_editor_banks" xml:space="preserve">
-    <value></value>
+    <value>Bancos</value>
+  </data>
+  <data name="player_editor_bank_defender" xml:space="preserve">
+    <value>Forja do Defensor</value>
+  </data>
+  <data name="player_editor_bank_piggy" xml:space="preserve">
+    <value>Coquinho</value>
+  </data>
+  <data name="player_editor_bank_safe" xml:space="preserve">
+    <value>Seguro</value>
+  </data>
+  <data name="player_editor_bank_void" xml:space="preserve">
+    <value>Cofre do Vazio</value>
   </data>
   <data name="player_editor_buffs" xml:space="preserve">
-    <value></value>
+    <value>Bônus</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
-    <value></value>
+    <value>Dificuldade</value>
   </data>
   <data name="player_editor_equipment" xml:space="preserve">
-    <value></value>
+    <value>Equipamento</value>
   </data>
   <data name="player_editor_eye_color" xml:space="preserve">
-    <value></value>
+    <value>Cor dos olhos</value>
   </data>
   <data name="player_editor_hair" xml:space="preserve">
-    <value></value>
+    <value>Cabelo</value>
+  </data>
+  <data name="player_editor_hair_color" xml:space="preserve">
+    <value>Cor do cabelo</value>
   </data>
   <data name="player_editor_inventory" xml:space="preserve">
-    <value></value>
+    <value>Inventário</value>
   </data>
   <data name="player_editor_journey" xml:space="preserve">
-    <value></value>
+    <value>Jornada</value>
+  </data>
+  <data name="player_editor_load" xml:space="preserve">
+    <value>Carregar o Jogador</value>
   </data>
   <data name="player_editor_loadout" xml:space="preserve">
-    <value></value>
+    <value>Equipamento</value>
   </data>
   <data name="player_editor_name" xml:space="preserve">
-    <value></value>
+    <value>Nome</value>
   </data>
   <data name="player_editor_pants_color" xml:space="preserve">
-    <value></value>
+    <value>Cor da Calça</value>
   </data>
   <data name="player_editor_save" xml:space="preserve">
-    <value></value>
+    <value>Salvar o Jogador</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value></value>
+    <value>Salvar o jogador como...</value>
   </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
-    <value></value>
+    <value>Cor da camisa</value>
   </data>
   <data name="player_editor_shoe_color" xml:space="preserve">
-    <value></value>
+    <value>Cor do Tênis</value>
   </data>
   <data name="player_editor_skin" xml:space="preserve">
-    <value></value>
+    <value>Pele</value>
+  </data>
+  <data name="player_editor_skin_color" xml:space="preserve">
+    <value>Cor da Pele</value>
   </data>
   <data name="player_editor_stats" xml:space="preserve">
-    <value></value>
+    <value>Estatísticas</value>
   </data>
   <data name="player_editor_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Editor de Jogadores</value>
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
-    <value></value>
+    <value>Cor da camisa interior</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Selecione uma versão para salvar como:</value>
@@ -972,6 +996,10 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="settings_category_experimental" xml:space="preserve">
+    <value>Características experimentais</value>
+    <comment>Settings category for experimental/preview features</comment>
+  </data>
   <data name="settings_category_general" xml:space="preserve">
     <value>Geral</value>
   </data>
@@ -990,11 +1018,11 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Roteiro</value>
   </data>
-  <data name="settings_check_updates" xml:space="preserve">
-    <value>Verifique as atualizações</value>
+  <data name="settings_enable_player_editor" xml:space="preserve">
+    <value>Ativar o Editor de Jogadores</value>
   </data>
-  <data name="settings_check_updates_desc" xml:space="preserve">
-    <value>Verifique automaticamente novas versões ao iniciar</value>
+  <data name="settings_enable_player_editor_desc" xml:space="preserve">
+    <value>Mostre a aba Editor de Jogadores na barra lateral para editar arquivos de player .plr (experimental)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Habilitar relatório de erros</value>
@@ -1167,6 +1195,10 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Escolha de qual canal de lançamento receber atualizações (Estável, Beta ou Alfa)</value>
   </data>
+  <data name="settings_update_mode_desc" xml:space="preserve">
+    <value>Controle como o TEdit verifica e aplica atualizações na inicialização</value>
+    <comment>Description for the update mode setting</comment>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Transparência aramada</value>
   </data>
@@ -1265,6 +1297,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Conteúdo do prato</value>
+  </data>
+  <data name="specialtile_label_pose" xml:space="preserve">
+    <value>Pose</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>Texto da placa</value>
@@ -2252,6 +2287,18 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Trilho</value>
   </data>
+  <data name="update_available_notify" xml:space="preserve">
+    <value>Uma nova versão do TEdit está disponível.</value>
+    <comment>Toast message for NotifyOnly mode when update is found</comment>
+  </data>
+  <data name="update_downloaded_toast" xml:space="preserve">
+    <value>Atualização baixada. Use o arquivo &gt; verifique atualizações para instalar.</value>
+    <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_up_to_date" xml:space="preserve">
+    <value>O TEdit está atualizado.</value>
+    <comment>Toast message when no updates are available</comment>
+  </data>
   <data name="WireReplaceMode_Blue" xml:space="preserve">
     <value>Azul</value>
   </data>
@@ -2329,5 +2376,20 @@ Você gostaria de ativar o relatório de erros?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corrigir lacuna de plano de fundo</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Atualizar</value>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>Uma atualização foi baixada. Recomeçar agora para se inscrever?</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>A verificação de atualização falhou.</value>
+  </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Verificando atualizações...</value>
+  </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Modo Atualização</value>
   </data>
 </root>
