@@ -680,33 +680,7 @@ public class WorldEditor : IDisposable
 
     public IList<Vector2Int32> GetShapePoints(Vector2Int32 center)
     {
-        IEnumerable<Vector2Int32> points = Brush.Shape switch
-        {
-            BrushShape.Square => Fill.FillRectangleCentered(center, new Vector2Int32(Brush.Width, Brush.Height)),
-            BrushShape.Round => Fill.FillEllipseCentered(center, new Vector2Int32(Brush.Width / 2, Brush.Height / 2)),
-            BrushShape.Right => Shape.DrawLine(
-                new Vector2Int32(center.X - Brush.Width / 2, center.Y + Brush.Height / 2),
-                new Vector2Int32(center.X + Brush.Width / 2, center.Y - Brush.Height / 2)),
-            BrushShape.Left => Shape.DrawLine(
-                new Vector2Int32(center.X - Brush.Width / 2, center.Y - Brush.Height / 2),
-                new Vector2Int32(center.X + Brush.Width / 2, center.Y + Brush.Height / 2)),
-            BrushShape.Star => Fill.FillStarCentered(center, Math.Min(Brush.Width, Brush.Height) / 2,
-                Math.Min(Brush.Width, Brush.Height) / 4, 5),
-            BrushShape.Triangle => Fill.FillTriangleCentered(center, Brush.Width / 2, Brush.Height / 2),
-            BrushShape.Crescent => Fill.FillCrescentCentered(center,
-                Math.Min(Brush.Width, Brush.Height) / 2,
-                (int)(Math.Min(Brush.Width, Brush.Height) / 2 * 0.75),
-                Math.Min(Brush.Width, Brush.Height) / 4),
-            BrushShape.Donut => Fill.FillDonutCentered(center,
-                Math.Min(Brush.Width, Brush.Height) / 2,
-                Math.Max(1, Math.Min(Brush.Width, Brush.Height) / 4)),
-            _ => Fill.FillRectangleCentered(center, new Vector2Int32(Brush.Width, Brush.Height)),
-        };
-
-        if (Brush.HasTransform)
-            points = Fill.ApplyTransform(points, center, Brush.Rotation, Brush.FlipHorizontal, Brush.FlipVertical);
-
-        return points.ToList();
+        return Brush.GetShapePoints(center);
     }
 
     private bool IsSimpleRectShape()
@@ -719,7 +693,7 @@ public class WorldEditor : IDisposable
         Vector2Int32 start,
         Vector2Int32 end)
     {
-        var line = Shape.DrawLineTool(start, end).ToList();
+        var line = TEdit.Geometry.Shape.DrawLineTool(start, end).ToList();
         if (IsSimpleRectShape())
         {
             for (int i = 1; i < line.Count; i++)
@@ -744,19 +718,7 @@ public class WorldEditor : IDisposable
             int interiorWidth = Math.Max(1, Brush.Width - Brush.Outline * 2);
             int interiorHeight = Math.Max(1, Brush.Height - Brush.Outline * 2);
 
-            IEnumerable<Vector2Int32> interiorPoints = Brush.Shape switch
-            {
-                BrushShape.Square => Fill.FillRectangleCentered(point, new Vector2Int32(interiorWidth, interiorHeight)),
-                BrushShape.Round => Fill.FillEllipseCentered(point, new Vector2Int32(interiorWidth / 2, interiorHeight / 2)),
-                BrushShape.Star => Fill.FillStarCentered(point,
-                    Math.Min(interiorWidth, interiorHeight) / 2,
-                    Math.Min(interiorWidth, interiorHeight) / 4, 5),
-                BrushShape.Triangle => Fill.FillTriangleCentered(point, interiorWidth / 2, interiorHeight / 2),
-                _ => Fill.FillRectangleCentered(point, new Vector2Int32(interiorWidth, interiorHeight)),
-            };
-
-            if (Brush.HasTransform)
-                interiorPoints = Fill.ApplyTransform(interiorPoints, point, Brush.Rotation, Brush.FlipHorizontal, Brush.FlipVertical);
+            var interiorPoints = Brush.GetShapePoints(point, interiorWidth, interiorHeight);
 
             FillHollow(area, interiorPoints.ToList());
         }

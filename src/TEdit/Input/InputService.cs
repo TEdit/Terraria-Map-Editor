@@ -181,6 +181,80 @@ public class InputService
             DefaultBindings = { InputBinding.Keyboard(Key.Delete) }
         });
 
+        // Selection movement
+        Register(new InputAction
+        {
+            Id = "selection.move.up",
+            Name = "Move Selection Up",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Control) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.move.down",
+            Name = "Move Selection Down",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Control) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.move.left",
+            Name = "Move Selection Left",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Control) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.move.right",
+            Name = "Move Selection Right",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Control) }
+        });
+
+        // Selection resizing (top-left anchored)
+        Register(new InputAction
+        {
+            Id = "selection.resize.up",
+            Name = "Shrink Selection Height",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.resize.down",
+            Name = "Grow Selection Height",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.resize.left",
+            Name = "Shrink Selection Width",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "selection.resize.right",
+            Name = "Grow Selection Width",
+            Category = InputCategory.Selection,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
         Register(new InputAction
         {
             Id = "edit.crop",

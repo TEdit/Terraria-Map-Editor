@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Geometry;
 
 namespace TEdit.Editor;
 
@@ -169,4 +172,40 @@ public partial class BrushSettings : ReactiveObject
     }
 
     public bool HasTransform => Math.Abs(Rotation) > 0.01 || FlipHorizontal || FlipVertical;
+
+    public IList<Vector2Int32> GetShapePoints(Vector2Int32 center)
+    {
+        return GetShapePoints(center, Width, Height);
+    }
+
+    public IList<Vector2Int32> GetShapePoints(Vector2Int32 center, int width, int height)
+    {
+        IEnumerable<Vector2Int32> points = Shape switch
+        {
+            BrushShape.Square => Fill.FillRectangleCentered(center, new Vector2Int32(width, height)),
+            BrushShape.Round => Fill.FillEllipseCentered(center, new Vector2Int32(width / 2, height / 2)),
+            BrushShape.Right => TEdit.Geometry.Shape.DrawLine(
+                new Vector2Int32(center.X - width / 2, center.Y + height / 2),
+                new Vector2Int32(center.X + width / 2, center.Y - height / 2)),
+            BrushShape.Left => TEdit.Geometry.Shape.DrawLine(
+                new Vector2Int32(center.X - width / 2, center.Y - height / 2),
+                new Vector2Int32(center.X + width / 2, center.Y + height / 2)),
+            BrushShape.Star => Fill.FillStarCentered(center, Math.Min(width, height) / 2,
+                Math.Min(width, height) / 4, 5),
+            BrushShape.Triangle => Fill.FillTriangleCentered(center, width / 2, height / 2),
+            BrushShape.Crescent => Fill.FillCrescentCentered(center,
+                Math.Min(width, height) / 2,
+                (int)(Math.Min(width, height) / 2 * 0.75),
+                Math.Min(width, height) / 4),
+            BrushShape.Donut => Fill.FillDonutCentered(center,
+                Math.Min(width, height) / 2,
+                Math.Max(1, Math.Min(width, height) / 4)),
+            _ => Fill.FillRectangleCentered(center, new Vector2Int32(width, height)),
+        };
+
+        if (HasTransform)
+            points = Fill.ApplyTransform(points, center, Rotation, FlipHorizontal, FlipVertical);
+
+        return points.ToList();
+    }
 }

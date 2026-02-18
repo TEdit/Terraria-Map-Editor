@@ -425,6 +425,38 @@ public partial class MainWindow : FluentWindow
                     ((ICommand)_vm.DeleteCommand).Execute(null);
                 return true;
 
+            // Selection movement and resizing
+            case "selection.move.up":
+            case "selection.move.down":
+            case "selection.move.left":
+            case "selection.move.right":
+            case "selection.resize.up":
+            case "selection.resize.down":
+            case "selection.resize.left":
+            case "selection.resize.right":
+                if (_vm.ActiveTool?.Name == "Selection" && _vm.Selection.IsActive && _vm.CurrentWorld != null)
+                {
+                    var area = _vm.Selection.SelectionArea;
+                    if (actionId.StartsWith("selection.move."))
+                    {
+                        int dx = actionId == "selection.move.left" ? -1 : actionId == "selection.move.right" ? 1 : 0;
+                        int dy = actionId == "selection.move.up" ? -1 : actionId == "selection.move.down" ? 1 : 0;
+                        area.Offset(dx, dy);
+                        area.X = Math.Max(0, Math.Min(area.X, _vm.CurrentWorld.TilesWide - area.Width));
+                        area.Y = Math.Max(0, Math.Min(area.Y, _vm.CurrentWorld.TilesHigh - area.Height));
+                    }
+                    else
+                    {
+                        int dw = actionId == "selection.resize.right" ? 1 : actionId == "selection.resize.left" ? -1 : 0;
+                        int dh = actionId == "selection.resize.down" ? 1 : actionId == "selection.resize.up" ? -1 : 0;
+                        area.Width = Math.Max(1, Math.Min(area.Width + dw, _vm.CurrentWorld.TilesWide - area.X));
+                        area.Height = Math.Max(1, Math.Min(area.Height + dh, _vm.CurrentWorld.TilesHigh - area.Y));
+                    }
+                    _vm.Selection.SelectionArea = area;
+                }
+                e.Handled = true;
+                return true;
+
             // Navigation
             case "nav.scroll.up":
                 scrollValue = new ScrollEventArgs(TEdit.Editor.ScrollDirection.Up, 10);

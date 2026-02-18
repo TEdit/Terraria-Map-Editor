@@ -42,41 +42,14 @@ public class BrushToolBase : BaseTool
 
     protected IList<Vector2Int32> GetShapePoints(Vector2Int32 center)
     {
-        var brush = _wvm.Brush;
-        IEnumerable<Vector2Int32> points = brush.Shape switch
-        {
-            BrushShape.Square => Fill.FillRectangleCentered(center, new Vector2Int32(brush.Width, brush.Height)),
-            BrushShape.Round => Fill.FillEllipseCentered(center, new Vector2Int32(brush.Width / 2, brush.Height / 2)),
-            BrushShape.Right => Shape.DrawLine(
-                new Vector2Int32(center.X - brush.Width / 2, center.Y + brush.Height / 2),
-                new Vector2Int32(center.X + brush.Width / 2, center.Y - brush.Height / 2)),
-            BrushShape.Left => Shape.DrawLine(
-                new Vector2Int32(center.X - brush.Width / 2, center.Y - brush.Height / 2),
-                new Vector2Int32(center.X + brush.Width / 2, center.Y + brush.Height / 2)),
-            BrushShape.Star => Fill.FillStarCentered(center, Math.Min(brush.Width, brush.Height) / 2,
-                Math.Min(brush.Width, brush.Height) / 4, 5),
-            BrushShape.Triangle => Fill.FillTriangleCentered(center, brush.Width / 2, brush.Height / 2),
-            BrushShape.Crescent => Fill.FillCrescentCentered(center,
-                Math.Min(brush.Width, brush.Height) / 2,
-                (int)(Math.Min(brush.Width, brush.Height) / 2 * 0.75),
-                Math.Min(brush.Width, brush.Height) / 4),
-            BrushShape.Donut => Fill.FillDonutCentered(center,
-                Math.Min(brush.Width, brush.Height) / 2,
-                Math.Max(1, Math.Min(brush.Width, brush.Height) / 4)),
-            _ => Fill.FillRectangleCentered(center, new Vector2Int32(brush.Width, brush.Height)),
-        };
-
-        if (brush.HasTransform)
-            points = Fill.ApplyTransform(points, center, brush.Rotation, brush.FlipHorizontal, brush.FlipVertical);
-
-        return points.ToList();
+        return _wvm.Brush.GetShapePoints(center);
     }
 
     private bool IsSimpleRectShape()
     {
-        var shape = _wvm.Brush.Shape;
-        return (shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
-            && !_wvm.Brush.HasTransform;
+        var brush = _wvm.Brush;
+        return (brush.Shape == BrushShape.Square || brush.Height <= 1 || brush.Width <= 1)
+            && !brush.HasTransform;
     }
 
     public override void MouseDown(TileMouseState e)
@@ -89,7 +62,17 @@ public class BrushToolBase : BaseTool
             _startPoint = e.Location;
             _anchorPoint = e.Location;
             _constrainDirectionLocked = false;
-            _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
+            
+            // Re-use or allocate check tiles
+            int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
+            if (_wvm.CheckTiles == null || _wvm.CheckTiles.Length != totalTiles)
+            {
+                _wvm.CheckTiles = new bool[totalTiles];
+            }
+            else
+            {
+                Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
+            }
         }
 
         // Determine drawing mode from actions
@@ -169,7 +152,10 @@ public class BrushToolBase : BaseTool
         if (points.Count == 0) return;
 
         // Reset check tiles each tick so spray re-paints
-        _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
+        if (_wvm.CheckTiles != null)
+        {
+            Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
+        }
 
         // Partial Fisher-Yates: select SprayDensity% of points
         int count = Math.Max(1, points.Count * _wvm.Brush.SprayDensity / 100);
@@ -318,30 +304,10 @@ public class BrushToolBase : BaseTool
         var area = GetShapePoints(point);
         if (_wvm.Brush.IsOutline && _wvm.Brush.Shape != BrushShape.Right && _wvm.Brush.Shape != BrushShape.Left)
         {
-            // Generate a smaller interior shape for hollow mode
-            var savedWidth = _wvm.Brush.Width;
-            var savedHeight = _wvm.Brush.Height;
-
-            // Temporarily shrink brush for interior calculation
-            int interiorWidth = Math.Max(1, savedWidth - _wvm.Brush.Outline * 2);
-            int interiorHeight = Math.Max(1, savedHeight - _wvm.Brush.Outline * 2);
-
-            // Use a direct interior calculation based on shape type
-            IEnumerable<Vector2Int32> interiorPoints = _wvm.Brush.Shape switch
-            {
-                BrushShape.Square => Fill.FillRectangleCentered(point, new Vector2Int32(interiorWidth, interiorHeight)),
-                BrushShape.Round => Fill.FillEllipseCentered(point, new Vector2Int32(interiorWidth / 2, interiorHeight / 2)),
-                BrushShape.Star => Fill.FillStarCentered(point,
-                    Math.Min(interiorWidth, interiorHeight) / 2,
-                    Math.Min(interiorWidth, interiorHeight) / 4, 5),
-                BrushShape.Triangle => Fill.FillTriangleCentered(point, interiorWidth / 2, interiorHeight / 2),
-                _ => Fill.FillRectangleCentered(point, new Vector2Int32(interiorWidth, interiorHeight)),
-            };
-
-            if (_wvm.Brush.HasTransform)
-                interiorPoints = Fill.ApplyTransform(interiorPoints, point, _wvm.Brush.Rotation, _wvm.Brush.FlipHorizontal, _wvm.Brush.FlipVertical);
-
-            FillHollow(area, interiorPoints.ToList());
+            int interiorWidth = Math.Max(1, _wvm.Brush.Width - _wvm.Brush.Outline * 2);
+            int interiorHeight = Math.Max(1, _wvm.Brush.Height - _wvm.Brush.Outline * 2);
+            var interiorPoints = _wvm.Brush.GetShapePoints(point, interiorWidth, interiorHeight);
+            FillHollow(area, interiorPoints);
         }
         else
         {
