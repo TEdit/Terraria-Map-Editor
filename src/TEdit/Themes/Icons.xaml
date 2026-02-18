@@ -12,6 +12,14 @@
         </DrawingImage.Drawing>
     </DrawingImage>
 
+    <!-- Bulldozer icon for Track Tunnel (Pictogrammers MDI bulldozer, viewBox 0 0 24 24) -->
+    <DrawingImage x:Key="BulldozerIcon">
+        <DrawingImage.Drawing>
+            <GeometryDrawing Brush="{DynamicResource TextFillColorPrimaryBrush}"
+                             Geometry="M4,4A1,1 0 0,0 3,5V10C2.54,10 2.14,10.31 2.03,10.76V13.97H2.29C2.65,13.37 3.3,13 4,13H13C13.7,13 14.35,13.37 14.71,13.97H16.03L16,11V11A1,1 0 0,0 15,10H13V8A1,1 0 0,0 12,7A1,1 0 0,0 11,8V10H9V5A1,1 0 0,0 8,4H4M5,6H7V10L7,11H5V6M17,11V19H22V18L19,17L18,11H17M4,15A2,2 0 0,0 2,17A2,2 0 0,0 4,19H13A2,2 0 0,0 15,17A2,2 0 0,0 13,15H4Z" />
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
     <!-- Chest icon geometry for Special Tiles sidebar (treasure-chest variant) -->
     <!-- Use with Path element to inherit Foreground from parent style -->
     <Geometry x:Key="ChestIconGeometry">M2 20H22V7C22 6.2 21.68 5.44 21.12 4.88C20.56 4.32 19.8 4 19 4H5C4.2 4 3.44 4.32 2.88 4.88C2.32 5.44 2 6.2 2 7V20M20 11H15V9H9V11H4V7C4 6.74 4.11 6.5 4.29 6.29C4.5 6.11 4.74 6 5 6H19C19.27 6 19.5 6.11 19.71 6.29C19.9 6.5 20 6.74 20 7V11M15 13H20V18H4V13H9L11 15H13L15 13M11 11H13V13H11V11Z</Geometry>

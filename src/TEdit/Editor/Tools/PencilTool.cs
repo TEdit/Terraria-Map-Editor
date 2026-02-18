@@ -18,6 +18,8 @@ public sealed class PencilTool : BaseTool
     private Vector2Int32 _anchorPoint;
     private Vector2Int32 _startPoint;
     private Vector2Int32 _endPoint;
+    private Vector2Int32 _lineMouseDownPos;
+    private bool _lineLastWasClick;
 
     public PencilTool(WorldViewModel worldViewModel)
         : base(worldViewModel)
@@ -35,9 +37,21 @@ public sealed class PencilTool : BaseTool
 
         if (!_isDrawing && !_isConstraining && !_isLineMode)
         {
-            _startPoint = e.Location;
             _anchorPoint = e.Location;
+            _lineMouseDownPos = e.Location;
             _constrainDirectionLocked = false;
+
+            // Continue polyline from previous endpoint if last line op was a click
+            if (_lineLastWasClick && actions.Contains("editor.draw.line"))
+            {
+                _startPoint = _endPoint;
+            }
+            else
+            {
+                _startPoint = e.Location;
+                _lineLastWasClick = false;
+            }
+
             int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
             if (_wvm.CheckTiles == null || _wvm.CheckTiles.Length != totalTiles)
                 _wvm.CheckTiles = new int[totalTiles];
@@ -67,6 +81,18 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseUp(TileMouseState e)
     {
+        // Detect click vs drag for polyline continuation
+        if (_isLineMode)
+        {
+            int dx = Math.Abs(e.Location.X - _lineMouseDownPos.X);
+            int dy = Math.Abs(e.Location.Y - _lineMouseDownPos.Y);
+            _lineLastWasClick = (dx <= 2 && dy <= 2);
+        }
+        else
+        {
+            _lineLastWasClick = false;
+        }
+
         ProcessDraw(e.Location);
 
         var actions = GetActiveActions(e);

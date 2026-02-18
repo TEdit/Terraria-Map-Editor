@@ -25,6 +25,8 @@ public class BrushToolBase : BaseTool
     protected Vector2Int32 _endPoint;
     protected Vector2Int32 _leftPoint;
     protected Vector2Int32 _rightPoint;
+    private Vector2Int32 _lineMouseDownPos;
+    private bool _lineLastWasClick;
 
     // Spray mode — time-based interpolation instead of timer
     private readonly Stopwatch _sprayStopwatch = new Stopwatch();
@@ -84,9 +86,20 @@ public class BrushToolBase : BaseTool
         // Start new stroke if not already active
         if (!_isDrawing && !_isConstraining && !_isLineMode)
         {
-            _startPoint = e.Location;
             _anchorPoint = e.Location;
+            _lineMouseDownPos = e.Location;
             _constrainDirectionLocked = false;
+
+            // Continue polyline from previous endpoint if last line op was a click
+            if (_lineLastWasClick && actions.Contains("editor.draw.line"))
+            {
+                _startPoint = _endPoint;
+            }
+            else
+            {
+                _startPoint = e.Location;
+                _lineLastWasClick = false;
+            }
 
             // Re-use or allocate check tiles
             int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
@@ -141,6 +154,18 @@ public class BrushToolBase : BaseTool
 
     public override void MouseUp(TileMouseState e)
     {
+        // Detect click vs drag for polyline continuation
+        if (_isLineMode)
+        {
+            int dx = Math.Abs(e.Location.X - _lineMouseDownPos.X);
+            int dy = Math.Abs(e.Location.Y - _lineMouseDownPos.Y);
+            _lineLastWasClick = (dx <= 2 && dy <= 2);
+        }
+        else
+        {
+            _lineLastWasClick = false;
+        }
+
         if (_sprayActive)
         {
             // Final spray along remaining movement

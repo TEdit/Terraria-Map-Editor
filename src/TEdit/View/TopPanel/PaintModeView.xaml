@@ -351,7 +351,7 @@
                                           ToolTip="{x:Static p:Language.tool_paint_track_tunnel_tooltip}"
                                           Margin="2" Padding="4" VerticalAlignment="Top">
                                 <StackPanel Orientation="Horizontal">
-                                    <ui:SymbolIcon Symbol="ArrowMinimize24" FontSize="16" />
+                                    <Image Source="{DynamicResource BulldozerIcon}" Width="16" Height="16" />
                                     <TextBlock Text="{x:Static p:Language.tool_paint_track_tunnel}" Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
                                 </StackPanel>
                             </ToggleButton>
@@ -360,7 +360,7 @@
                                           IsEnabled="{Binding TilePicker.TrackTunnelEnabled}"
                                           Margin="2" Padding="4" VerticalAlignment="Top">
                                 <StackPanel Orientation="Horizontal">
-                                    <ui:SymbolIcon Symbol="SlideTransition24" FontSize="16" />
+                                    <Image Source="{DynamicResource HammerIcon}" Width="16" Height="16" />
                                     <TextBlock Text="{x:Static p:Language.tool_paint_track_smooth}" Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
                                 </StackPanel>
                             </ToggleButton>
