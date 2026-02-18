@@ -139,7 +139,7 @@ public sealed class FillTool : BaseTool
 
             lFillLoc--;
             tileIndex--;
-            if (lFillLoc <= 0 || _wvm.CheckTiles[tileIndex] == generation || !CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[lFillLoc, y]) || !_wvm.Selection.IsValid(lFillLoc, y))
+            if (lFillLoc < 0 || _wvm.CheckTiles[tileIndex] == generation || !CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[lFillLoc, y]) || !_wvm.Selection.IsValid(lFillLoc, y))
                 break; //exit loop if we're at edge of bitmap or color area
 
         }
