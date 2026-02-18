@@ -4931,7 +4931,43 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_track_pressure_tooltip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Smooth.
+        /// </summary>
+        public static string tool_paint_track_smooth {
+            get {
+                return ResourceManager.GetString("tool_paint_track_smooth", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Auto-slope blocks at tunnel edges.
+        /// </summary>
+        public static string tool_paint_track_smooth_tooltip {
+            get {
+                return ResourceManager.GetString("tool_paint_track_smooth_tooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tunnel.
+        /// </summary>
+        public static string tool_paint_track_tunnel {
+            get {
+                return ResourceManager.GetString("tool_paint_track_tunnel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Clear tiles above track for tunnel.
+        /// </summary>
+        public static string tool_paint_track_tunnel_tooltip {
+            get {
+                return ResourceManager.GetString("tool_paint_track_tunnel_tooltip", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Wall.
         /// </summary>

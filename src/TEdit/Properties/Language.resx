@@ -915,6 +915,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Liquid</value>
   </data>
+  <data name="PaintMode_Platform" xml:space="preserve">
+    <value>Platform</value>
+  </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
     <value>Sprites</value>
   </data>
@@ -2500,4 +2503,4 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-<data name="PaintMode_Platform" xml:space="preserve"><value>Platform</value></data></root>
+</root>

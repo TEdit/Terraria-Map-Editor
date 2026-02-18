@@ -658,14 +658,27 @@ public class WorldEditor : IDisposable
             return;
         }
 
+        int stairDir = TilePicker.PlatformStairDirection;
+
         // Place platform
         curTile.Type = 19;
         curTile.IsActive = true;
         curTile.V = (short)(TilePicker.PlatformStyle * 18);
-        curTile.U = (short)(ComputePlatformFrameX(x, y) * 18);
 
-        _notifyTileChanged?.Invoke(x, y, 1, 1);
-        ReframePlatformNeighbors(x, y);
+        if (stairDir != 0)
+        {
+            // Stair placement: column 8 for right, 10 for left — no neighbor detection
+            int col = stairDir > 0 ? 8 : 10;
+            curTile.U = (short)(col * 18);
+            _notifyTileChanged?.Invoke(x, y, 1, 1);
+            // Don't reframe neighbors — stair tiles are user-controlled
+        }
+        else
+        {
+            curTile.U = (short)(ComputePlatformFrameX(x, y) * 18);
+            _notifyTileChanged?.Invoke(x, y, 1, 1);
+            ReframePlatformNeighbors(x, y);
+        }
     }
 
     private void ReframePlatformNeighbors(int x, int y)
@@ -685,6 +698,10 @@ public class WorldEditor : IDisposable
         Tile t = _world.Tiles[x, y];
         if (t == null || !t.IsActive || t.Type != 19) return;
 
+        // Don't reframe stair tiles (column >= 8) — they are user-controlled
+        int currentCol = t.U / 18;
+        if (currentCol >= 8) return;
+
         short newU = (short)(ComputePlatformFrameX(x, y) * 18);
         if (t.U != newU)
         {
@@ -700,30 +717,15 @@ public class WorldEditor : IDisposable
         return t != null && t.IsActive && t.Type == 19;
     }
 
+    /// <summary>
+    /// Computes flat platform frame column (0-7) based on horizontal neighbors.
+    /// Stair frames are assigned directly by SetPlatform when stair direction is set.
+    /// </summary>
     private int ComputePlatformFrameX(int x, int y)
     {
-        // Horizontal neighbors
         bool wPlat = IsPlatformAt(x - 1, y);
         bool ePlat = IsPlatformAt(x + 1, y);
 
-        // Diagonal neighbors for stair detection
-        bool dlPlat = IsPlatformAt(x - 1, y + 1);
-        bool drPlat = IsPlatformAt(x + 1, y + 1);
-        bool ulPlat = IsPlatformAt(x - 1, y - 1);
-        bool urPlat = IsPlatformAt(x + 1, y - 1);
-
-        // Stair going up-right: diagonal lower-left to upper-right
-        bool stairR = dlPlat || urPlat;
-        // Stair going up-left: diagonal lower-right to upper-left
-        bool stairL = drPlat || ulPlat;
-
-        if (stairR && !stairL)
-            return ComputeStairFrameR(wPlat, ePlat, dlPlat, urPlat);
-
-        if (stairL && !stairR)
-            return ComputeStairFrameL(wPlat, ePlat, drPlat, ulPlat);
-
-        // Flat platform logic
         bool wSolid = !wPlat && HasSolidBlock(x - 1, y);
         bool eSolid = !ePlat && HasSolidBlock(x + 1, y);
         int bits = 0;
@@ -734,40 +736,6 @@ public class WorldEditor : IDisposable
 
         int[] lookup = { 5, 1, 6, 1, 2, 0, 3, 0, 7, 4, 5, 4, 2, 0, 3, 0 };
         return lookup[bits];
-    }
-
-    /// <summary>
-    /// Stair frame columns for up-right diagonal (lower-left → upper-right).
-    /// </summary>
-    private static int ComputeStairFrameR(bool wPlat, bool ePlat, bool dlPlat, bool urPlat)
-    {
-        // Landing: flat platform on horizontal side transitions to/from stair
-        if (wPlat && dlPlat)  return 12; // Top Landing R: flat left, stair below-right
-        if (ePlat && urPlat)  return 17; // Bottom Landing R: stair above-right, flat right
-        if (wPlat && urPlat)  return 15; // Top Landing R Endcap: flat left, stair above
-        if (ePlat && dlPlat)  return 16; // Bottom Landing R Endcap: flat right, stair below
-
-        // Middle of stair (both diagonal neighbors, no flat neighbors)
-        if (dlPlat && urPlat) return 8;  // Riser: middle of stair
-
-        // Endpoints
-        if (dlPlat)           return 8;  // Riser: top end of stair (below-left continues)
-        return                         9;  // Stringer: bottom end of stair (above-right continues)
-    }
-
-    /// <summary>
-    /// Stair frame columns for up-left diagonal (lower-right → upper-left).
-    /// </summary>
-    private static int ComputeStairFrameL(bool wPlat, bool ePlat, bool drPlat, bool ulPlat)
-    {
-        if (ePlat && drPlat)  return 13; // Top Landing L: flat right, stair below-left
-        if (wPlat && ulPlat)  return 18; // Bottom Landing L: stair above-left, flat left
-        if (ePlat && ulPlat)  return 16; // Top Landing L Endcap
-        if (wPlat && drPlat)  return 15; // Bottom Landing L Endcap
-
-        if (drPlat && ulPlat) return 10; // Riser: middle of stair
-        if (drPlat)           return 10; // Riser: top end
-        return                         11; // Stringer: bottom end
     }
 
     private void SetPixelAutomatic(

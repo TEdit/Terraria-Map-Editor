@@ -109,6 +109,13 @@ public partial class TilePicker : ReactiveObject
     [Reactive]
     private int _platformStyle;
 
+    /// <summary>
+    /// Transient stair direction set per-stroke by tools.
+    /// 0 = flat, 1 = stair-right, -1 = stair-left.
+    /// </summary>
+    [Reactive]
+    private int _platformStairDirection;
+
     public bool WireReplaceActive => WireReplaceRed || WireReplaceBlue || WireReplaceGreen || WireReplaceYellow;
 
     private bool _isEraser;

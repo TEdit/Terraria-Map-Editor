@@ -2430,4 +2430,4 @@ Vuoi abilitare la segnalazione degli errori?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Correggere il gap di background</value>
   </data>
-</root>
+<data name="tool_paint_track_tunnel" xml:space="preserve"><value></value></data><data name="tool_paint_track_tunnel_tooltip" xml:space="preserve"><value></value></data><data name="tool_paint_track_smooth" xml:space="preserve"><value></value></data><data name="tool_paint_track_smooth_tooltip" xml:space="preserve"><value></value></data></root>

@@ -97,16 +97,33 @@ public sealed class PencilTool : BaseTool
 
             p = ConstrainHelper.Snap(tile, _anchorPoint, _constrainDirection);
 
+            // Platform stair direction from constrained diagonal
+            if (_wvm.TilePicker.PaintMode == PaintMode.Platform && _constrainDirection == 2)
+            {
+                int sx = Math.Sign(p.X - _anchorPoint.X);
+                int sy = Math.Sign(p.Y - _anchorPoint.Y);
+                // up-right → stair-right, up-left → stair-left, going down → flat
+                if (sy < 0 && sx > 0) _wvm.TilePicker.PlatformStairDirection = 1;
+                else if (sy < 0 && sx < 0) _wvm.TilePicker.PlatformStairDirection = -1;
+                else _wvm.TilePicker.PlatformStairDirection = 0;
+            }
+            else
+            {
+                _wvm.TilePicker.PlatformStairDirection = 0;
+            }
+
             DrawLine(p);
             _startPoint = p;
         }
         else if (_isLineMode)
         {
+            _wvm.TilePicker.PlatformStairDirection = 0;
             DrawLineP2P(tile);
             _endPoint = tile;
         }
         else if (_isDrawing)
         {
+            _wvm.TilePicker.PlatformStairDirection = 0;
             DrawLine(p);
             _startPoint = p;
             _endPoint = p;
@@ -117,8 +134,10 @@ public sealed class PencilTool : BaseTool
     {
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;
-        // Use thin line for Track mode to avoid 2px-thick staircases on diagonals
-        var linePoints = _wvm.TilePicker.PaintMode == PaintMode.Track
+        // Use thin line for Track (always) and Platform stair draws (diagonal constrain)
+        bool useThin = _wvm.TilePicker.PaintMode == PaintMode.Track
+            || (_wvm.TilePicker.PaintMode == PaintMode.Platform && _wvm.TilePicker.PlatformStairDirection != 0);
+        var linePoints = useThin
             ? Shape.DrawLineThin(_startPoint, to)
             : Shape.DrawLineTool(_startPoint, to);
         foreach (Vector2Int32 pixel in linePoints)
@@ -145,7 +164,9 @@ public sealed class PencilTool : BaseTool
     {
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;
-        var linePoints = _wvm.TilePicker.PaintMode == PaintMode.Track
+        bool useThin = _wvm.TilePicker.PaintMode == PaintMode.Track
+            || (_wvm.TilePicker.PaintMode == PaintMode.Platform && _wvm.TilePicker.PlatformStairDirection != 0);
+        var linePoints = useThin
             ? Shape.DrawLineThin(_startPoint, _endPoint)
             : Shape.DrawLineTool(_startPoint, _endPoint);
         foreach (Vector2Int32 pixel in linePoints)
