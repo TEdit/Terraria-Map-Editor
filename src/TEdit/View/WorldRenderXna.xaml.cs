@@ -4784,40 +4784,55 @@ public partial class WorldRenderXna : UserControl
                                     if (curtile.uvTileCache == 0xFFFF)
                                     {
                                         uv = new Vector2Int32(0, 0);
-                                        byte state = 0x00;
-                                        state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == curtile.Type) ? 0x01 : 0x00);
-                                        state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && WorldConfiguration.GetTileProperties(neighborTile[w].Type).HasSlopes && neighborTile[w].Type != curtile.Type) ? 0x02 : 0x00);
-                                        state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == curtile.Type) ? 0x04 : 0x00);
-                                        state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && WorldConfiguration.GetTileProperties(neighborTile[e].Type).HasSlopes && neighborTile[e].Type != curtile.Type) ? 0x08 : 0x00);
-                                        switch (state)
+
+                                        // Use tile's actual U value if it has valid stair framing (columns 8-26)
+                                        int tileColumn = curtile.U >= 0 ? curtile.U / 18 : -1;
+                                        if (tileColumn >= 8 && tileColumn <= 26)
                                         {
-                                            case 0x00:
-                                            case 0x0A:
-                                                uv.X = 5;
-                                                break;
-                                            case 0x01:
-                                                uv.X = 1;
-                                                break;
-                                            case 0x02:
-                                                uv.X = 6;
-                                                break;
-                                            case 0x04:
-                                                uv.X = 2;
-                                                break;
-                                            case 0x05:
-                                                uv.X = 0;
-                                                break;
-                                            case 0x06:
-                                                uv.X = 3;
-                                                break;
-                                            case 0x08:
-                                                uv.X = 7;
-                                                break;
-                                            case 0x09:
-                                                uv.X = 4;
-                                                break;
+                                            uv.X = tileColumn;
                                         }
-                                        uv.Y = ((x * 7) + (y * 11)) % 3;
+                                        else
+                                        {
+                                            // Flat platform: compute from W/E horizontal neighbors
+                                            byte state = 0x00;
+                                            state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == curtile.Type) ? 0x01 : 0x00);
+                                            state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && WorldConfiguration.GetTileProperties(neighborTile[w].Type).HasSlopes && neighborTile[w].Type != curtile.Type) ? 0x02 : 0x00);
+                                            state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == curtile.Type) ? 0x04 : 0x00);
+                                            state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && WorldConfiguration.GetTileProperties(neighborTile[e].Type).HasSlopes && neighborTile[e].Type != curtile.Type) ? 0x08 : 0x00);
+                                            switch (state)
+                                            {
+                                                case 0x00:
+                                                case 0x0A:
+                                                    uv.X = 5;
+                                                    break;
+                                                case 0x01:
+                                                    uv.X = 1;
+                                                    break;
+                                                case 0x02:
+                                                    uv.X = 6;
+                                                    break;
+                                                case 0x04:
+                                                    uv.X = 2;
+                                                    break;
+                                                case 0x05:
+                                                    uv.X = 0;
+                                                    break;
+                                                case 0x06:
+                                                    uv.X = 3;
+                                                    break;
+                                                case 0x08:
+                                                    uv.X = 7;
+                                                    break;
+                                                case 0x09:
+                                                    uv.X = 4;
+                                                    break;
+                                            }
+                                        }
+
+                                        // Row: style offset + visual variation
+                                        int style = curtile.V >= 0 ? curtile.V / 18 : 0;
+                                        int variation = ((x * 7) + (y * 11)) % 3;
+                                        uv.Y = style * 3 + variation;
                                         curtile.uvTileCache = (ushort)((uv.Y << 8) + uv.X);
                                     }
 

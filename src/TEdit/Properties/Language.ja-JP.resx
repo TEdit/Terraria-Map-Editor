@@ -617,6 +617,18 @@
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>バフ半径</value>
   </data>
+  <data name="menu_layers_color_default" xml:space="preserve">
+    <value>デフォルトカラー</value>
+  </data>
+  <data name="menu_layers_color_minimap" xml:space="preserve">
+    <value>ミニマップの色</value>
+  </data>
+  <data name="menu_layers_color_mode" xml:space="preserve">
+    <value>カラーモード</value>
+  </data>
+  <data name="menu_layers_color_realistic" xml:space="preserve">
+    <value>リアルカラーズ</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>レイアウトグリッド</value>
   </data>
@@ -661,6 +673,12 @@
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>イエローワイヤー</value>
+  </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>ワールドボーダー</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>ワールドボーダーオーバーレイ</value>
   </data>
   <data name="menu_pasteall" xml:space="preserve">
     <value>すべてのスロットに貼り付けてください</value>
@@ -826,6 +844,9 @@
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液体</value>
+  </data>
+  <data name="PaintMode_Platform" xml:space="preserve">
+    <value>プラットフォーム</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
     <value>スプライト</value>
@@ -1001,6 +1022,12 @@
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
     <value>スクリプト</value>
+  </data>
+  <data name="settings_color_mode" xml:space="preserve">
+    <value>カラーモード</value>
+  </data>
+  <data name="settings_color_mode_desc" xml:space="preserve">
+    <value>ピクセルマップのカラーパレット:デフォルト、リアル(テクスチャサンプリング)、ミニマップ(ゲーム内マップカラー)。再起動が必要です。</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>プレイヤーエディターを有効にする</value>
@@ -1397,6 +1424,9 @@
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEditエラー報告</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>再表示しない</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
     <value>タイルと壁のテクスチャがバックグラウンドで読み込まれています。読み込みが完了すると、マップのレンダリングパフォーマンスが向上します。</value>
@@ -2400,13 +2430,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>バックグラウンドギャップの修正</value>
   </data>
-  <data name="texture_loading_do_not_show" xml:space="preserve">
-    <value>再表示しない</value>
-  </data>
-  <data name="menu_layers_world_border" xml:space="preserve">
-    <value>ワールドボーダー</value>
-  </data>
-  <data name="menu_layers_world_border_overlay" xml:space="preserve">
-    <value>ワールドボーダーオーバーレイ</value>
-  </data>
-<data name="menu_layers_color_mode" xml:space="preserve"><value></value></data><data name="menu_layers_color_default" xml:space="preserve"><value></value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value></value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value></value></data><data name="settings_color_mode" xml:space="preserve"><value></value></data><data name="settings_color_mode_desc" xml:space="preserve"><value></value></data></root>
+</root>

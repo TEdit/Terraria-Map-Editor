@@ -680,6 +680,18 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>Buff Radii</value>
   </data>
+  <data name="menu_layers_color_default" xml:space="preserve">
+    <value>Default Colors</value>
+  </data>
+  <data name="menu_layers_color_minimap" xml:space="preserve">
+    <value>Minimap Colors</value>
+  </data>
+  <data name="menu_layers_color_mode" xml:space="preserve">
+    <value>Color Mode</value>
+  </data>
+  <data name="menu_layers_color_realistic" xml:space="preserve">
+    <value>Realistic Colors</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Layout Grid</value>
   </data>
@@ -724,6 +736,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Yellow Wire</value>
+  </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>World Border</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>World Border Overlay</value>
   </data>
   <data name="menu_pasteall" xml:space="preserve">
     <value>Paste to all slots</value>
@@ -1071,6 +1089,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Scripting</value>
+  </data>
+  <data name="settings_color_mode" xml:space="preserve">
+    <value>Color Mode</value>
+  </data>
+  <data name="settings_color_mode_desc" xml:space="preserve">
+    <value>Pixel map color palette: Default, Realistic (texture-sampled), or Minimap (in-game map colors). Requires restart.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Enable Player Editor</value>
@@ -1467,6 +1491,9 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEdit Error Reporting</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>Do not show again</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
     <value>Tile and wall textures are loading in the background. Map rendering performance will improve once loading is complete.</value>
@@ -2473,4 +2500,4 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-<data name="texture_loading_do_not_show" xml:space="preserve"><value>Do not show again</value></data><data name="menu_layers_world_border" xml:space="preserve"><value>World Border</value></data><data name="menu_layers_world_border_overlay" xml:space="preserve"><value>World Border Overlay</value></data><data name="menu_layers_color_mode" xml:space="preserve"><value>Color Mode</value></data><data name="menu_layers_color_default" xml:space="preserve"><value>Default Colors</value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value>Realistic Colors</value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value>Minimap Colors</value></data><data name="settings_color_mode" xml:space="preserve"><value>Color Mode</value></data><data name="settings_color_mode_desc" xml:space="preserve"><value>Pixel map color palette: Default, Realistic (texture-sampled), or Minimap (in-game map colors). Requires restart.</value></data></root>
+<data name="PaintMode_Platform" xml:space="preserve"><value>Platform</value></data></root>

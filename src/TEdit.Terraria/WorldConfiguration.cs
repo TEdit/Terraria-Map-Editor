@@ -80,6 +80,7 @@ public class WorldConfiguration
     private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
     private static readonly ObservableCollection<WallProperty> _wallPropertiesMask = new ObservableCollection<WallProperty>();
     private static readonly ObservableCollection<PaintProperty> _paintProperties = new ObservableCollection<PaintProperty>();
+    private static readonly ObservableCollection<FrameProperty> _platformProperties = new ObservableCollection<FrameProperty>();
 
     private static TerrariaDataStore _store;
 
@@ -214,6 +215,24 @@ public class WorldConfiguration
         foreach (var paint in store.Paints)
             _paintProperties.Add(paint);
 
+        // Build platform style list from tile 19 frames
+        if (_tileProperties.Count > 19 && _tileProperties[19].Frames != null)
+        {
+            var seen = new HashSet<string>();
+            foreach (var frame in _tileProperties[19].Frames)
+            {
+                if (frame.Variety == "Flat" && seen.Add(frame.Name))
+                {
+                    _platformProperties.Add(new FrameProperty
+                    {
+                        Id = frame.UV.Y / 18,
+                        Name = frame.Name,
+                        Color = frame.Color
+                    });
+                }
+            }
+        }
+
         // Add chests directly (already ChestProperty)
         foreach (var chest in store.Chests)
             _chestProperties.Add(chest);
@@ -259,6 +278,7 @@ public class WorldConfiguration
         _mountItems.Clear();
         _dyeItems.Clear();
         _rackableItems.Clear();
+        _platformProperties.Clear();
     }
 
     /// <summary>
@@ -561,6 +581,11 @@ public class WorldConfiguration
     public static ObservableCollection<PaintProperty> PaintProperties
     {
         get { return _paintProperties; }
+    }
+
+    public static ObservableCollection<FrameProperty> PlatformProperties
+    {
+        get { return _platformProperties; }
     }
 
     public static ObservableCollection<ItemProperty> ItemProperties

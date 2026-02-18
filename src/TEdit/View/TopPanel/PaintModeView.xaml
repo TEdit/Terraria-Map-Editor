@@ -110,6 +110,17 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="PlatformStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Platform">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="{x:Type TextBlock}" x:Key="TrackStyleText" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Text" Value="" />
             <Style.Triggers>
@@ -315,12 +326,67 @@
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="{x:Static p:Language.tool_paint_track_header}" Style="{StaticResource TrackStyle}">
-                <StackPanel Orientation="Vertical" >
-                    <ComboBox ItemsSource="{StaticResource TrackModeEnum}" 
-                          SelectedValue="{Binding TilePicker.TrackMode}" 
-                          SelectedValuePath="Value" Width="100"
-                          ItemTemplate="{StaticResource EnumTemplate}" />
-                    <TextBlock Style="{StaticResource TrackStyleText}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                <StackPanel Orientation="Horizontal" >
+                    <StackPanel Orientation="Vertical">
+                        <ComboBox ItemsSource="{StaticResource TrackModeEnum}"
+                              SelectedValue="{Binding TilePicker.TrackMode}"
+                              SelectedValuePath="Value" Width="100"
+                              ItemTemplate="{StaticResource EnumTemplate}" />
+                        <TextBlock Style="{StaticResource TrackStyleText}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <!-- Tunnel options: visible when TrackMode is Track -->
+                    <StackPanel Orientation="Vertical" Margin="4,0,0,0">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Track">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <StackPanel Orientation="Horizontal">
+                            <ToggleButton IsChecked="{Binding TilePicker.TrackTunnelEnabled}"
+                                          ToolTip="{x:Static p:Language.tool_paint_track_tunnel_tooltip}"
+                                          Margin="2" Padding="4" VerticalAlignment="Top">
+                                <StackPanel Orientation="Horizontal">
+                                    <ui:SymbolIcon Symbol="ArrowMinimize24" FontSize="16" />
+                                    <TextBlock Text="{x:Static p:Language.tool_paint_track_tunnel}" Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                </StackPanel>
+                            </ToggleButton>
+                            <ToggleButton IsChecked="{Binding TilePicker.TrackSmoothEnabled}"
+                                          ToolTip="{x:Static p:Language.tool_paint_track_smooth_tooltip}"
+                                          IsEnabled="{Binding TilePicker.TrackTunnelEnabled}"
+                                          Margin="2" Padding="4" VerticalAlignment="Top">
+                                <StackPanel Orientation="Horizontal">
+                                    <ui:SymbolIcon Symbol="SlideTransition24" FontSize="16" />
+                                    <TextBlock Text="{x:Static p:Language.tool_paint_track_smooth}" Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                </StackPanel>
+                            </ToggleButton>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,2,0,0"
+                                    IsEnabled="{Binding TilePicker.TrackTunnelEnabled}">
+                            <TextBlock Text="H:" Margin="2,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <Slider Minimum="1" Maximum="10" Width="60"
+                                    Value="{Binding TilePicker.TrackTunnelHeight}"
+                                    VerticalAlignment="Center" IsSnapToTickEnabled="True" TickFrequency="1" />
+                            <TextBlock Text="{Binding TilePicker.TrackTunnelHeight}" Margin="2,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{x:Static p:Language.PaintMode_Platform}" Style="{StaticResource PlatformStyle}">
+                <StackPanel Orientation="Vertical">
+                    <tedit:FilteredComboBox
+                        ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PlatformProperties}, Mode=OneTime}"
+                        ItemTemplate="{StaticResource ColorPickerTemplate}"
+                        SelectedValue="{Binding Path=TilePicker.PlatformStyle, Mode=TwoWay}"
+                        IsSynchronizedWithCurrentItem="False"
+                        IsEditable="true"
+                        SelectedValuePath="Id"
+                        IsTextSearchEnabled="False"
+                        Width="200" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>

@@ -193,6 +193,9 @@ public class WorldEditor : IDisposable
             case PaintMode.Track:
                 SetTrack(x, y, curTile, isErase, (TilePicker.TrackMode == TrackMode.Hammer), true);
                 break;
+            case PaintMode.Platform:
+                SetPlatform(x, y, curTile, isErase);
+                break;
         }
     }
 
@@ -278,12 +281,22 @@ public class WorldEditor : IDisposable
             }
             else
             {
+                int slope = DetectTrackSlope(x, y);
                 if (curTile.U == 1)
-                    curTile.U = 30;
+                {
+                    // Flat track: default right (30), flip to left (31) if slope goes up-left
+                    curTile.U = (short)(slope == -1 ? 31 : 30);
+                }
                 if (curTile.U == 8)
-                    curTile.U = 32;
+                {
+                    // Slope track variant 8: default 32, use 34 for uphill-right
+                    curTile.U = (short)(slope == 1 ? 34 : 32);
+                }
                 if (curTile.U == 9)
-                    curTile.U = 33;
+                {
+                    // Slope track variant 9: default 33, use 35 for uphill-left
+                    curTile.U = (short)(slope == -1 ? 35 : 33);
+                }
             }
         }
         else
@@ -517,6 +530,244 @@ public class WorldEditor : IDisposable
                 }
             }
         }
+
+        // Tunnel clearing and smooth slopes for Track mode placement
+        if (TilePicker.TrackMode == TrackMode.Track && !erase && !hammer && TilePicker.TrackTunnelEnabled)
+        {
+            int tunnelHeight = Math.Clamp(TilePicker.TrackTunnelHeight, 1, 10);
+            for (int ty = y - 1; ty >= y - tunnelHeight; ty--)
+            {
+                if (ty < 0 || ty >= _world.TilesHigh) continue;
+                Tile above = _world.Tiles[x, ty];
+                if (above == null) continue;
+                if (above.Type == 314) continue; // don't destroy parallel tracks
+
+                if (above.IsActive)
+                {
+                    _undo.SaveTile(_world, new Vector2Int32(x, ty));
+                    above.IsActive = false;
+                    above.Type = 0;
+                    above.U = 0;
+                    above.V = 0;
+                    above.BrickStyle = BrickStyle.Full;
+                    _notifyTileChanged?.Invoke(x, ty, 1, 1);
+                }
+            }
+
+            // Smooth slope hammering — uses 3x3 neighbor check (same as HammerAreaTool)
+            if (TilePicker.TrackSmoothEnabled)
+            {
+                // Hammer floor block at (x, y+1)
+                TryAutoHammer(x, y + 1);
+
+                // Hammer ceiling block (first solid block above the cleared zone)
+                TryAutoHammer(x, y - tunnelHeight - 1);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Detects slope direction at a track position by checking surrounding blocks.
+    /// Returns: -1 = slope up-left, +1 = slope up-right, 0 = flat/unknown
+    /// </summary>
+    private int DetectTrackSlope(int x, int y)
+    {
+        bool blockDownLeft = HasSolidBlock(x - 1, y + 1);
+        bool blockDownRight = HasSolidBlock(x + 1, y + 1);
+        bool blockBelow = HasSolidBlock(x, y + 1);
+
+        if (blockDownLeft && !blockDownRight && blockBelow)
+            return +1; // terrain rises to the right
+        if (blockDownRight && !blockDownLeft && blockBelow)
+            return -1; // terrain rises to the left
+        return 0; // flat or ambiguous
+    }
+
+    /// <summary>
+    /// Auto-hammer a tile using 3x3 neighbor check (same logic as HammerAreaTool.GetBrickStyle).
+    /// Only modifies the center tile; checks all 8 neighbors to determine slope direction.
+    /// </summary>
+    private void TryAutoHammer(int x, int y)
+    {
+        if (x < 1 || y < 1 || x >= _world.TilesWide - 1 || y >= _world.TilesHigh - 1) return;
+
+        Tile t = _world.Tiles[x, y];
+        if (t == null || !t.IsActive) return;
+
+        var tp = WorldConfiguration.GetTileProperties(t.Type);
+        if (tp.IsFramed || t.LiquidType != LiquidType.None) return;
+
+        var v = new Vector2Int32(x, y);
+        bool up = _world.SlopeCheck(v, new Vector2Int32(x, y - 1));
+        bool down = _world.SlopeCheck(v, new Vector2Int32(x, y + 1));
+        bool left = _world.SlopeCheck(v, new Vector2Int32(x - 1, y));
+        bool right = _world.SlopeCheck(v, new Vector2Int32(x + 1, y));
+        bool upLeft = _world.SlopeCheck(v, new Vector2Int32(x - 1, y - 1));
+        bool upRight = _world.SlopeCheck(v, new Vector2Int32(x + 1, y - 1));
+        bool downLeft = _world.SlopeCheck(v, new Vector2Int32(x - 1, y + 1));
+        bool downRight = _world.SlopeCheck(v, new Vector2Int32(x + 1, y + 1));
+
+        BrickStyle? style = null;
+
+        if (!up && !down) return;
+
+        if (!up && left && !right && (downRight || !upRight))
+            style = BrickStyle.SlopeTopRight;
+        else if (!up && right && !left && (downLeft || !upLeft))
+            style = BrickStyle.SlopeTopLeft;
+        else if (!down && left && !right && (!downRight || upRight))
+            style = BrickStyle.SlopeBottomRight;
+        else if (!down && right && !left && (!downLeft || upLeft))
+            style = BrickStyle.SlopeBottomLeft;
+
+        if (style != null && t.BrickStyle != style.Value)
+        {
+            _undo.SaveTile(_world, v);
+            t.BrickStyle = style.Value;
+            _notifyTileChanged?.Invoke(x, y, 1, 1);
+        }
+    }
+
+    private bool HasSolidBlock(int x, int y)
+    {
+        if (x < 0 || y < 0 || x >= _world.TilesWide || y >= _world.TilesHigh)
+            return false;
+        Tile t = _world.Tiles[x, y];
+        return t != null && t.IsActive && IsSolidNonFramed(t);
+    }
+
+    private bool IsSolidNonFramed(Tile t)
+    {
+        if (t.Type >= WorldConfiguration.TileProperties.Count) return false;
+        var prop = WorldConfiguration.TileProperties[t.Type];
+        return prop.IsSolid && !prop.IsFramed;
+    }
+
+    private void SetPlatform(int x, int y, Tile curTile, bool erase)
+    {
+        if (x <= 0 || y <= 0 || x >= _world.TilesWide - 1 || y >= _world.TilesHigh - 1)
+            return;
+
+        if (erase)
+        {
+            if (curTile.IsActive && curTile.Type == 19)
+            {
+                SetPixelAutomatic(curTile, tile: -1, u: 0, v: 0);
+                ReframePlatformNeighbors(x, y);
+            }
+            return;
+        }
+
+        // Place platform
+        curTile.Type = 19;
+        curTile.IsActive = true;
+        curTile.V = (short)(TilePicker.PlatformStyle * 18);
+        curTile.U = (short)(ComputePlatformFrameX(x, y) * 18);
+
+        _notifyTileChanged?.Invoke(x, y, 1, 1);
+        ReframePlatformNeighbors(x, y);
+    }
+
+    private void ReframePlatformNeighbors(int x, int y)
+    {
+        // Re-frame horizontal and diagonal neighbors (stair connectivity)
+        ReframePlatform(x - 1, y);
+        ReframePlatform(x + 1, y);
+        ReframePlatform(x - 1, y - 1);
+        ReframePlatform(x + 1, y - 1);
+        ReframePlatform(x - 1, y + 1);
+        ReframePlatform(x + 1, y + 1);
+    }
+
+    private void ReframePlatform(int x, int y)
+    {
+        if (x < 0 || y < 0 || x >= _world.TilesWide || y >= _world.TilesHigh) return;
+        Tile t = _world.Tiles[x, y];
+        if (t == null || !t.IsActive || t.Type != 19) return;
+
+        short newU = (short)(ComputePlatformFrameX(x, y) * 18);
+        if (t.U != newU)
+        {
+            t.U = newU;
+            _notifyTileChanged?.Invoke(x, y, 1, 1);
+        }
+    }
+
+    private bool IsPlatformAt(int x, int y)
+    {
+        if (x < 0 || y < 0 || x >= _world.TilesWide || y >= _world.TilesHigh) return false;
+        var t = _world.Tiles[x, y];
+        return t != null && t.IsActive && t.Type == 19;
+    }
+
+    private int ComputePlatformFrameX(int x, int y)
+    {
+        // Horizontal neighbors
+        bool wPlat = IsPlatformAt(x - 1, y);
+        bool ePlat = IsPlatformAt(x + 1, y);
+
+        // Diagonal neighbors for stair detection
+        bool dlPlat = IsPlatformAt(x - 1, y + 1);
+        bool drPlat = IsPlatformAt(x + 1, y + 1);
+        bool ulPlat = IsPlatformAt(x - 1, y - 1);
+        bool urPlat = IsPlatformAt(x + 1, y - 1);
+
+        // Stair going up-right: diagonal lower-left to upper-right
+        bool stairR = dlPlat || urPlat;
+        // Stair going up-left: diagonal lower-right to upper-left
+        bool stairL = drPlat || ulPlat;
+
+        if (stairR && !stairL)
+            return ComputeStairFrameR(wPlat, ePlat, dlPlat, urPlat);
+
+        if (stairL && !stairR)
+            return ComputeStairFrameL(wPlat, ePlat, drPlat, ulPlat);
+
+        // Flat platform logic
+        bool wSolid = !wPlat && HasSolidBlock(x - 1, y);
+        bool eSolid = !ePlat && HasSolidBlock(x + 1, y);
+        int bits = 0;
+        if (wPlat) bits |= 1;
+        if (wSolid) bits |= 2;
+        if (ePlat) bits |= 4;
+        if (eSolid) bits |= 8;
+
+        int[] lookup = { 5, 1, 6, 1, 2, 0, 3, 0, 7, 4, 5, 4, 2, 0, 3, 0 };
+        return lookup[bits];
+    }
+
+    /// <summary>
+    /// Stair frame columns for up-right diagonal (lower-left → upper-right).
+    /// </summary>
+    private static int ComputeStairFrameR(bool wPlat, bool ePlat, bool dlPlat, bool urPlat)
+    {
+        // Landing: flat platform on horizontal side transitions to/from stair
+        if (wPlat && dlPlat)  return 12; // Top Landing R: flat left, stair below-right
+        if (ePlat && urPlat)  return 17; // Bottom Landing R: stair above-right, flat right
+        if (wPlat && urPlat)  return 15; // Top Landing R Endcap: flat left, stair above
+        if (ePlat && dlPlat)  return 16; // Bottom Landing R Endcap: flat right, stair below
+
+        // Middle of stair (both diagonal neighbors, no flat neighbors)
+        if (dlPlat && urPlat) return 8;  // Riser: middle of stair
+
+        // Endpoints
+        if (dlPlat)           return 8;  // Riser: top end of stair (below-left continues)
+        return                         9;  // Stringer: bottom end of stair (above-right continues)
+    }
+
+    /// <summary>
+    /// Stair frame columns for up-left diagonal (lower-right → upper-left).
+    /// </summary>
+    private static int ComputeStairFrameL(bool wPlat, bool ePlat, bool drPlat, bool ulPlat)
+    {
+        if (ePlat && drPlat)  return 13; // Top Landing L: flat right, stair below-left
+        if (wPlat && ulPlat)  return 18; // Bottom Landing L: stair above-left, flat left
+        if (ePlat && ulPlat)  return 16; // Top Landing L Endcap
+        if (wPlat && drPlat)  return 15; // Bottom Landing L Endcap
+
+        if (drPlat && ulPlat) return 10; // Riser: middle of stair
+        if (drPlat)           return 10; // Riser: top end
+        return                         11; // Stringer: bottom end
     }
 
     private void SetPixelAutomatic(

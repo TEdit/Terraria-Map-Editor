@@ -680,6 +680,18 @@
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>Buff Radii</value>
   </data>
+  <data name="menu_layers_color_default" xml:space="preserve">
+    <value>默认颜色</value>
+  </data>
+  <data name="menu_layers_color_minimap" xml:space="preserve">
+    <value>小地图颜色</value>
+  </data>
+  <data name="menu_layers_color_mode" xml:space="preserve">
+    <value>彩色模式</value>
+  </data>
+  <data name="menu_layers_color_realistic" xml:space="preserve">
+    <value>写实色彩</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>布局网格</value>
   </data>
@@ -724,6 +736,12 @@
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>黄电线</value>
+  </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>世界边界</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>世界边界覆盖</value>
   </data>
   <data name="menu_pasteall" xml:space="preserve">
     <value>粘贴到所有插槽</value>
@@ -896,6 +914,9 @@
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液体</value>
+  </data>
+  <data name="PaintMode_Platform" xml:space="preserve">
+    <value>平台</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
     <value>物品</value>
@@ -1071,6 +1092,12 @@
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
     <value>脚本</value>
+  </data>
+  <data name="settings_color_mode" xml:space="preserve">
+    <value>彩色模式</value>
+  </data>
+  <data name="settings_color_mode_desc" xml:space="preserve">
+    <value>像素地图色彩调色板：默认、真实（纹理采样）或小地图（游戏内地图颜色）。需要重启。</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>启用播放器编辑器</value>
@@ -1467,6 +1494,9 @@
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEdit 错误报告</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>不再显示</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
     <value>正在后台加载瓷砖和墙壁纹理。加载完成后，地图渲染性能将会提高。</value>
@@ -2470,13 +2500,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
   </data>
-  <data name="texture_loading_do_not_show" xml:space="preserve">
-    <value>不再显示</value>
-  </data>
-  <data name="menu_layers_world_border" xml:space="preserve">
-    <value>世界边界</value>
-  </data>
-  <data name="menu_layers_world_border_overlay" xml:space="preserve">
-    <value>世界边界覆盖</value>
-  </data>
-<data name="menu_layers_color_mode" xml:space="preserve"><value></value></data><data name="menu_layers_color_default" xml:space="preserve"><value></value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value></value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value></value></data><data name="settings_color_mode" xml:space="preserve"><value></value></data><data name="settings_color_mode_desc" xml:space="preserve"><value></value></data></root>
+</root>

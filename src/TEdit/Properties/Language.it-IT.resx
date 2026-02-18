@@ -617,6 +617,18 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>Raggi di buff</value>
   </data>
+  <data name="menu_layers_color_default" xml:space="preserve">
+    <value>Colori predefiniti</value>
+  </data>
+  <data name="menu_layers_color_minimap" xml:space="preserve">
+    <value>Colori della minimappa</value>
+  </data>
+  <data name="menu_layers_color_mode" xml:space="preserve">
+    <value>Modalità colore</value>
+  </data>
+  <data name="menu_layers_color_realistic" xml:space="preserve">
+    <value>Colori realistici</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Griglia di layout</value>
   </data>
@@ -661,6 +673,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Filo Giallo</value>
+  </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Confine del Mondo</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Sovrapposizione del Confine del Mondo</value>
   </data>
   <data name="menu_pasteall" xml:space="preserve">
     <value>Incolla in tutti gli slot</value>
@@ -826,6 +844,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Liquido</value>
+  </data>
+  <data name="PaintMode_Platform" xml:space="preserve">
+    <value>Piattaforma</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
     <value>Sprite</value>
@@ -1001,6 +1022,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Scrittura</value>
+  </data>
+  <data name="settings_color_mode" xml:space="preserve">
+    <value>Modalità colore</value>
+  </data>
+  <data name="settings_color_mode_desc" xml:space="preserve">
+    <value>Palette di colori della mappa dei pixel: Predefinita, Realistica (campionata da texture) o Minimappa (colori della mappa di gioco). Richiede un riavvio.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Abilita Player Editor</value>
@@ -1397,6 +1424,9 @@ Vuoi abilitare la segnalazione degli errori?</value>
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>Segnalazione degli errori TEdit</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>Non mostrare più</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
     <value>Le texture dei blocchi e dei muri si stanno caricando in background. Le prestazioni del rendering della mappa miglioreranno una volta completato il caricamento.</value>
@@ -2400,13 +2430,4 @@ Vuoi abilitare la segnalazione degli errori?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Correggere il gap di background</value>
   </data>
-  <data name="texture_loading_do_not_show" xml:space="preserve">
-    <value>Non mostrare più</value>
-  </data>
-  <data name="menu_layers_world_border" xml:space="preserve">
-    <value>Confine del Mondo</value>
-  </data>
-  <data name="menu_layers_world_border_overlay" xml:space="preserve">
-    <value>Sovrapposizione del Confine del Mondo</value>
-  </data>
-<data name="menu_layers_color_mode" xml:space="preserve"><value></value></data><data name="menu_layers_color_default" xml:space="preserve"><value></value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value></value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value></value></data><data name="settings_color_mode" xml:space="preserve"><value></value></data><data name="settings_color_mode_desc" xml:space="preserve"><value></value></data></root>
+</root>

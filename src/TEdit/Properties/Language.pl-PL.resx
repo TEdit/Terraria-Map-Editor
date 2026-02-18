@@ -680,6 +680,18 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>Buff Radii</value>
   </data>
+  <data name="menu_layers_color_default" xml:space="preserve">
+    <value>Domyślne kolory</value>
+  </data>
+  <data name="menu_layers_color_minimap" xml:space="preserve">
+    <value>Kolory minimapy</value>
+  </data>
+  <data name="menu_layers_color_mode" xml:space="preserve">
+    <value>Tryb kolorowy</value>
+  </data>
+  <data name="menu_layers_color_realistic" xml:space="preserve">
+    <value>Realistyczne kolory</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Warstwowa Siatka</value>
   </data>
@@ -724,6 +736,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Żółte Kable</value>
+  </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Granica Świata</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Nakładka Granicy Świata</value>
   </data>
   <data name="menu_pasteall" xml:space="preserve">
     <value>Wklej do wszystkich miejsc</value>
@@ -896,6 +914,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Płynne</value>
+  </data>
+  <data name="PaintMode_Platform" xml:space="preserve">
+    <value>Platforma</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
     <value>Sprite</value>
@@ -1071,6 +1092,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Skryptowanie</value>
+  </data>
+  <data name="settings_color_mode" xml:space="preserve">
+    <value>Tryb kolorowy</value>
+  </data>
+  <data name="settings_color_mode_desc" xml:space="preserve">
+    <value>Paleta kolorów mapy pikseli: Domyślna, Realistyczna (próbkowana teksturami) lub Minimapa (kolory map w grze). Wymaga restartu.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Włącz edytor odtwarzaczy</value>
@@ -1467,6 +1494,9 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>Raportowanie błędów TEdit</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>Nie pokazuj ponownie</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
     <value>Tekstury płytek i ścian ładują się w tle. Wydajność renderowania mapy poprawi się po zakończeniu ładowania.</value>
@@ -2470,13 +2500,4 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
   </data>
-  <data name="texture_loading_do_not_show" xml:space="preserve">
-    <value>Nie pokazuj ponownie</value>
-  </data>
-  <data name="menu_layers_world_border" xml:space="preserve">
-    <value>Granica Świata</value>
-  </data>
-  <data name="menu_layers_world_border_overlay" xml:space="preserve">
-    <value>Nakładka Granicy Świata</value>
-  </data>
-<data name="menu_layers_color_mode" xml:space="preserve"><value></value></data><data name="menu_layers_color_default" xml:space="preserve"><value></value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value></value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value></value></data><data name="settings_color_mode" xml:space="preserve"><value></value></data><data name="settings_color_mode_desc" xml:space="preserve"><value></value></data></root>
+</root>

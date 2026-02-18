@@ -72,6 +72,43 @@ public class Shape
         }
     }
 
+    /// <summary>
+    /// Draws a thin 1-pixel-wide line: one point per X column (or per Y row if steep).
+    /// Unlike Bresenham which can produce 2px-tall staircases on near-diagonal lines,
+    /// this always emits exactly one point per major axis step.
+    /// Useful for track placement where slope tracks need 1 tile per X step.
+    /// </summary>
+    public static IEnumerable<Vector2Int32> DrawLineThin(Vector2Int32 begin, Vector2Int32 end)
+    {
+        int dx = end.X - begin.X;
+        int dy = end.Y - begin.Y;
+        int absDx = dx >= 0 ? dx : -dx;
+        int absDy = dy >= 0 ? dy : -dy;
+
+        if (absDx >= absDy)
+        {
+            // Shallow or horizontal: one point per X column
+            int sx = dx >= 0 ? 1 : -1;
+            for (int i = 0; i <= absDx; i++)
+            {
+                int x = begin.X + i * sx;
+                int y = absDx == 0 ? begin.Y : begin.Y + (dy * i + (absDx >> 1) * (dy >= 0 ? 1 : -1)) / absDx;
+                yield return new Vector2Int32(x, y);
+            }
+        }
+        else
+        {
+            // Steep or vertical: one point per Y row
+            int sy = dy >= 0 ? 1 : -1;
+            for (int i = 0; i <= absDy; i++)
+            {
+                int y = begin.Y + i * sy;
+                int x = begin.X + (dx * i + (absDy >> 1) * (dx >= 0 ? 1 : -1)) / absDy;
+                yield return new Vector2Int32(x, y);
+            }
+        }
+    }
+
     public static IEnumerable<Vector2Int32> DrawLine(Vector2Int32 start, Vector2Int32 end)
     {
         // Distance start and end point

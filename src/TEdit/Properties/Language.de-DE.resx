@@ -680,6 +680,18 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>Buff-Radien</value>
   </data>
+  <data name="menu_layers_color_default" xml:space="preserve">
+    <value>Standardfarben</value>
+  </data>
+  <data name="menu_layers_color_minimap" xml:space="preserve">
+    <value>Minimap-Farben</value>
+  </data>
+  <data name="menu_layers_color_mode" xml:space="preserve">
+    <value>Farbmodus</value>
+  </data>
+  <data name="menu_layers_color_realistic" xml:space="preserve">
+    <value>Realistische Farben</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Gitternetzlinien</value>
   </data>
@@ -724,6 +736,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Gelbe Kabel</value>
+  </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Weltgrenze</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Weltgrenzenüberlagerung</value>
   </data>
   <data name="menu_pasteall" xml:space="preserve">
     <value>In alle Slots einfügen</value>
@@ -896,6 +914,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Flüssigkeit</value>
+  </data>
+  <data name="PaintMode_Platform" xml:space="preserve">
+    <value>Plattform</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
     <value>Grafiken</value>
@@ -1071,6 +1092,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Skripting</value>
+  </data>
+  <data name="settings_color_mode" xml:space="preserve">
+    <value>Farbmodus</value>
+  </data>
+  <data name="settings_color_mode_desc" xml:space="preserve">
+    <value>Farbpalette der Pixelkarte: Standard, Realistisch (texturbasiert) oder Minimap (Kartenfarben im Spiel). Erfordert einen Neustart.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Aktiviere den Spieler-Editor</value>
@@ -1467,6 +1494,9 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>TEdit Fehlerberichterstattung</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>Nicht erneut anzeigen</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
     <value>Die Kachel- und Wandtexturen werden im Hintergrund geladen. Die Leistung der Kartenanzeige verbessert sich, sobald das Laden abgeschlossen ist.</value>
@@ -2470,13 +2500,4 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>
   </data>
-  <data name="texture_loading_do_not_show" xml:space="preserve">
-    <value>Nicht erneut anzeigen</value>
-  </data>
-  <data name="menu_layers_world_border" xml:space="preserve">
-    <value>Weltgrenze</value>
-  </data>
-  <data name="menu_layers_world_border_overlay" xml:space="preserve">
-    <value>Weltgrenzenüberlagerung</value>
-  </data>
-<data name="menu_layers_color_mode" xml:space="preserve"><value></value></data><data name="menu_layers_color_default" xml:space="preserve"><value></value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value></value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value></value></data><data name="settings_color_mode" xml:space="preserve"><value></value></data><data name="settings_color_mode_desc" xml:space="preserve"><value></value></data></root>
+</root>

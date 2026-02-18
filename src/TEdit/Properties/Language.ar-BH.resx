@@ -680,6 +680,18 @@
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>نطاقات التعزيز</value>
   </data>
+  <data name="menu_layers_color_default" xml:space="preserve">
+    <value>الألوان الافتراضية</value>
+  </data>
+  <data name="menu_layers_color_minimap" xml:space="preserve">
+    <value>ألوان الخريطة المصغرة</value>
+  </data>
+  <data name="menu_layers_color_mode" xml:space="preserve">
+    <value>وضع الألوان</value>
+  </data>
+  <data name="menu_layers_color_realistic" xml:space="preserve">
+    <value>الألوان الواقعية</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>شبكة التخطيط</value>
   </data>
@@ -724,6 +736,12 @@
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>سلك أصفر</value>
+  </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>حدود العالم</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>تراكب حدود العالم</value>
   </data>
   <data name="menu_pasteall" xml:space="preserve">
     <value>لصق في جميع الفتحات</value>
@@ -896,6 +914,9 @@
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>سائل</value>
+  </data>
+  <data name="PaintMode_Platform" xml:space="preserve">
+    <value>منصة</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
     <value>العفاريت</value>
@@ -1071,6 +1092,12 @@
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
     <value>البرمجة</value>
+  </data>
+  <data name="settings_color_mode" xml:space="preserve">
+    <value>وضع الألوان</value>
+  </data>
+  <data name="settings_color_mode_desc" xml:space="preserve">
+    <value>لوحة ألوان خريطة البكسل: افتراضية، واقعية (مأخوذة من عينات من النسيج)، أو Minimap (ألوان خرائط داخل اللعبة). يتطلب إعادة تشغيل.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>تفعيل محرر اللاعب</value>
@@ -1467,6 +1494,9 @@
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>تقرير أخطاء TEdit</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>لا تظهر مرة أخرى</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
     <value>تجري تحميل قوام البلاط والجدران في الخلفية. ستتحسن أداء رسم الخريطة بمجرد اكتمال التحميل.</value>
@@ -2470,13 +2500,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
   </data>
-  <data name="texture_loading_do_not_show" xml:space="preserve">
-    <value>لا تظهر مرة أخرى</value>
-  </data>
-  <data name="menu_layers_world_border" xml:space="preserve">
-    <value>حدود العالم</value>
-  </data>
-  <data name="menu_layers_world_border_overlay" xml:space="preserve">
-    <value>تراكب حدود العالم</value>
-  </data>
-<data name="menu_layers_color_mode" xml:space="preserve"><value></value></data><data name="menu_layers_color_default" xml:space="preserve"><value></value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value></value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value></value></data><data name="settings_color_mode" xml:space="preserve"><value></value></data><data name="settings_color_mode_desc" xml:space="preserve"><value></value></data></root>
+</root>

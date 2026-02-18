@@ -100,6 +100,15 @@ public partial class TilePicker : ReactiveObject
     [Reactive]
     private BrickStyle _brickStyle = BrickStyle.Full;
 
+    [Reactive]
+    private bool _trackTunnelEnabled;
+    [Reactive]
+    private int _trackTunnelHeight = 4;
+    [Reactive]
+    private bool _trackSmoothEnabled;
+    [Reactive]
+    private int _platformStyle;
+
     public bool WireReplaceActive => WireReplaceRed || WireReplaceBlue || WireReplaceGreen || WireReplaceYellow;
 
     private bool _isEraser;

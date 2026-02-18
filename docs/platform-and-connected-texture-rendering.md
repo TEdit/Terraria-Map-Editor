@@ -37,9 +37,13 @@ These fields are never saved to disk. They're recomputed on demand during render
 
 ## Platform Rendering
 
-Platforms check only West and East neighbours. No vertical connections, no BlendRules involvement.
+Platforms use two framing systems: **flat** (columns 0-7, computed from W/E neighbours) and **stair** (columns 8-26, stored in tile U value by the placement tool).
 
-### State Bit Construction
+### Flat Platform Framing (Columns 0-7)
+
+Flat platforms check only West and East neighbours. No vertical connections, no BlendRules involvement.
+
+#### State Bit Construction
 
 ```
 bit 0 (0x01): west neighbour is same tile type
@@ -50,7 +54,7 @@ bit 3 (0x08): east neighbour is different type but HasSlopes
 
 `HasSlopes` = `IsSolid || SaveSlope` on the neighbour's tile property.
 
-### State-to-Column Mapping
+#### State-to-Column Mapping
 
 | State | Column | Meaning |
 |-------|--------|---------|
@@ -64,10 +68,36 @@ bit 3 (0x08): east neighbour is different type but HasSlopes
 | 0x08 | 7 | East is slope (not same type) |
 | 0x09 | 4 | East slope + west same-type |
 
-### Row Variant
+### Stair Platform Framing (Columns 8-26)
+
+Stair frames are computed by `WorldEditor.ComputePlatformFrameX()` during placement and stored in the tile's U value. The renderer reads U directly for stair columns (U/18 >= 8).
+
+Stair detection checks all four diagonal neighbours for same-type platforms:
+- **Up-right stair**: platform at (x-1, y+1) without W flat neighbour, or platform at (x+1, y-1) without E flat neighbour
+- **Up-left stair**: platform at (x+1, y+1) without E flat neighbour, or platform at (x-1, y-1) without W flat neighbour
+
+| Column | FrameX | Name | When Used |
+|--------|--------|------|-----------|
+| 8 | 144 | Stair Up-Right Riser | Middle/top of up-right stair |
+| 9 | 162 | Stair Up-Right Stringer | Bottom of up-right stair |
+| 10 | 180 | Stair Up-Left Riser | Middle/top of up-left stair |
+| 11 | 198 | Stair Up-Left Stringer | Bottom of up-left stair |
+| 12 | 216 | Stair Top Landing R | Flat left + stair below-right |
+| 13 | 234 | Stair Top Landing L | Flat right + stair below-left |
+| 14 | 252 | Stair Top Landing L-R | Both sides flat + stair below |
+| 15 | 270 | Stair Landing R Endcap | Endcap variant |
+| 16 | 288 | Stair Landing L Endcap | Endcap variant |
+| 17 | 306 | Stair Bottom Landing R | Stair above-right + flat right |
+| 18 | 324 | Stair Bottom Landing L | Stair above-left + flat left |
+| 19-24 | 342-432 | Stair Inset variants | Inside corner connections |
+| 25-26 | 450-468 | Stair Inverted | Inverted stair variants |
+
+### Row Variant and Style
 
 ```csharp
-uv.Y = ((x * 7) + (y * 11)) % 3;   // deterministic pseudo-random: 0, 1, or 2
+int style = curtile.V >= 0 ? curtile.V / 18 : 0;   // platform material variant
+int variation = ((x * 7) + (y * 11)) % 3;            // visual variation (0-2)
+uv.Y = style * 3 + variation;                        // full row in spritesheet
 ```
 
 ### Texture Lookup
@@ -79,7 +109,7 @@ var source = new Rectangle(
     texsize.X, texsize.Y);      // 16x16 tile
 ```
 
-Platform textures have 8 columns and 3 rows per style. The style row offset comes from Terraria's `frameY / 18` which selects the material variant in the spritesheet.
+Platform textures have 27 columns and 3 rows per style. Each style occupies 3 consecutive rows in the spritesheet, selected by `frameY / 18`.
 
 ## Connected Texture Rendering (BlendRules)
 

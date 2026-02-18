@@ -18,7 +18,7 @@ public class BrushToolBase : BaseTool
     protected bool _isDrawing;
     protected bool _isConstraining;
     protected bool _isLineMode;
-    protected bool _constrainVertical;
+    protected int _constrainDirection; // 0=horizontal, 1=vertical, 2=diagonal
     protected bool _constrainDirectionLocked;
     protected Vector2Int32 _anchorPoint;
     protected Vector2Int32 _startPoint;
@@ -310,15 +310,12 @@ public class BrushToolBase : BaseTool
                 int dy = Math.Abs(tile.Y - _anchorPoint.Y);
                 if (dx > 1 || dy > 1)
                 {
-                    _constrainVertical = dx < dy;
+                    _constrainDirection = ConstrainHelper.DetectDirection(dx, dy);
                     _constrainDirectionLocked = true;
                 }
             }
 
-            if (_constrainVertical)
-                p.X = _anchorPoint.X;
-            else
-                p.Y = _anchorPoint.Y;
+            p = ConstrainHelper.Snap(tile, _anchorPoint, _constrainDirection);
 
             DrawLine(p);
             _startPoint = p;

@@ -12,6 +12,8 @@ public enum PaintMode
     Liquid,
     [Description("Track")]
     Track,
+    [Description("Platform")]
+    Platform,
     [Description("Sprites")]
     Sprites
 }

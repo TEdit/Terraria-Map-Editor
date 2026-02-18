@@ -18,7 +18,7 @@ public sealed class MorphTool : BaseTool
     private bool _isDrawing;
     private bool _isConstraining;
     private bool _isLineMode;
-    private bool _constrainVertical;
+    private int _constrainDirection; // 0=horizontal, 1=vertical, 2=diagonal
     private bool _constrainDirectionLocked;
     private Vector2Int32 _anchorPoint;
     private Vector2Int32 _startPoint;
@@ -141,15 +141,12 @@ public sealed class MorphTool : BaseTool
                 int dy = Math.Abs(tile.Y - _anchorPoint.Y);
                 if (dx > 1 || dy > 1)
                 {
-                    _constrainVertical = dx < dy;
+                    _constrainDirection = ConstrainHelper.DetectDirection(dx, dy);
                     _constrainDirectionLocked = true;
                 }
             }
 
-            if (_constrainVertical)
-                p.X = _anchorPoint.X;
-            else
-                p.Y = _anchorPoint.Y;
+            p = ConstrainHelper.Snap(tile, _anchorPoint, _constrainDirection);
 
             DrawLine(p);
             _startPoint = p;

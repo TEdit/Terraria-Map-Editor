@@ -680,6 +680,18 @@
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>Buff Radii</value>
   </data>
+  <data name="menu_layers_color_default" xml:space="preserve">
+    <value>Стандартные цвета</value>
+  </data>
+  <data name="menu_layers_color_minimap" xml:space="preserve">
+    <value>Цвета миникарты</value>
+  </data>
+  <data name="menu_layers_color_mode" xml:space="preserve">
+    <value>Цветной режим</value>
+  </data>
+  <data name="menu_layers_color_realistic" xml:space="preserve">
+    <value>Реалистичные цвета</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Сетка</value>
   </data>
@@ -724,6 +736,12 @@
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Жёлтые провода</value>
+  </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Граница мира</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Накладка границы мира</value>
   </data>
   <data name="menu_pasteall" xml:space="preserve">
     <value>Вставить во все слоты</value>
@@ -896,6 +914,9 @@
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Жидкость</value>
+  </data>
+  <data name="PaintMode_Platform" xml:space="preserve">
+    <value>Платформа</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
     <value>Спрайты</value>
@@ -1071,6 +1092,12 @@
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Скриптинг</value>
+  </data>
+  <data name="settings_color_mode" xml:space="preserve">
+    <value>Цветной режим</value>
+  </data>
+  <data name="settings_color_mode_desc" xml:space="preserve">
+    <value>Цветовая палитра пиксельной карты: По умолчанию, Реалистичная (с текстурами) или Миникарта (цвета внутриигровой карты). Требуется перезагрузка.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Включить редактор игроков</value>
@@ -1467,6 +1494,9 @@
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>Отчет об ошибках TEdit</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>Больше не показывать</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
     <value>Текстуры плитки и стен загружаются в фоновом режиме. Производительность рендеринга карты улучшится после завершения загрузки.</value>
@@ -2470,13 +2500,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>
   </data>
-  <data name="texture_loading_do_not_show" xml:space="preserve">
-    <value>Больше не показывать</value>
-  </data>
-  <data name="menu_layers_world_border" xml:space="preserve">
-    <value>Граница мира</value>
-  </data>
-  <data name="menu_layers_world_border_overlay" xml:space="preserve">
-    <value>Накладка границы мира</value>
-  </data>
-<data name="menu_layers_color_mode" xml:space="preserve"><value></value></data><data name="menu_layers_color_default" xml:space="preserve"><value></value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value></value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value></value></data><data name="settings_color_mode" xml:space="preserve"><value></value></data><data name="settings_color_mode_desc" xml:space="preserve"><value></value></data></root>
+</root>

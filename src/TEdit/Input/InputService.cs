@@ -643,10 +643,10 @@ public class InputService
         Register(new InputAction
         {
             Id = "editor.draw.constrain",
-            Name = "Draw Constrained (H/V)",
+            Name = "Draw Constrained (H/V/45°)",
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Editor,
-            Description = "Constrain drawing to horizontal or vertical lines",
+            Description = "Constrain drawing to horizontal, vertical, or 45° diagonal lines",
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left, ModifierKeys.Control) }
         });
 

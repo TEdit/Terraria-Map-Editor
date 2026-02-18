@@ -13,7 +13,7 @@ public sealed class PencilTool : BaseTool
     private bool _isDrawing;
     private bool _isConstraining;
     private bool _isLineMode;
-    private bool _constrainVertical;
+    private int _constrainDirection; // 0=horizontal, 1=vertical, 2=diagonal
     private bool _constrainDirectionLocked;
     private Vector2Int32 _anchorPoint;
     private Vector2Int32 _startPoint;
@@ -90,15 +90,12 @@ public sealed class PencilTool : BaseTool
                 int dy = Math.Abs(tile.Y - _anchorPoint.Y);
                 if (dx > 1 || dy > 1)
                 {
-                    _constrainVertical = dx < dy;
+                    _constrainDirection = ConstrainHelper.DetectDirection(dx, dy);
                     _constrainDirectionLocked = true;
                 }
             }
 
-            if (_constrainVertical)
-                p.X = _anchorPoint.X;
-            else
-                p.Y = _anchorPoint.Y;
+            p = ConstrainHelper.Snap(tile, _anchorPoint, _constrainDirection);
 
             DrawLine(p);
             _startPoint = p;
@@ -120,7 +117,11 @@ public sealed class PencilTool : BaseTool
     {
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;
-        foreach (Vector2Int32 pixel in Shape.DrawLineTool(_startPoint, to))
+        // Use thin line for Track mode to avoid 2px-thick staircases on diagonals
+        var linePoints = _wvm.TilePicker.PaintMode == PaintMode.Track
+            ? Shape.DrawLineThin(_startPoint, to)
+            : Shape.DrawLineTool(_startPoint, to);
+        foreach (Vector2Int32 pixel in linePoints)
         {
             if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
@@ -144,7 +145,10 @@ public sealed class PencilTool : BaseTool
     {
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;
-        foreach (Vector2Int32 pixel in Shape.DrawLineTool(_startPoint, _endPoint))
+        var linePoints = _wvm.TilePicker.PaintMode == PaintMode.Track
+            ? Shape.DrawLineThin(_startPoint, _endPoint)
+            : Shape.DrawLineTool(_startPoint, _endPoint);
+        foreach (Vector2Int32 pixel in linePoints)
         {
             if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 

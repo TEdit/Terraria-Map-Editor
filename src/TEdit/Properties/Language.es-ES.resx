@@ -680,6 +680,18 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>Radii de mejora</value>
   </data>
+  <data name="menu_layers_color_default" xml:space="preserve">
+    <value>Colores por defecto</value>
+  </data>
+  <data name="menu_layers_color_minimap" xml:space="preserve">
+    <value>Colores del minimapa</value>
+  </data>
+  <data name="menu_layers_color_mode" xml:space="preserve">
+    <value>Modo de color</value>
+  </data>
+  <data name="menu_layers_color_realistic" xml:space="preserve">
+    <value>Colores realistas</value>
+  </data>
   <data name="menu_layers_grid" xml:space="preserve">
     <value>Cuadrícula</value>
   </data>
@@ -724,6 +736,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Cable amarillo</value>
+  </data>
+  <data name="menu_layers_world_border" xml:space="preserve">
+    <value>Límite del Mundo</value>
+  </data>
+  <data name="menu_layers_world_border_overlay" xml:space="preserve">
+    <value>Superposición del Límite del Mundo</value>
   </data>
   <data name="menu_pasteall" xml:space="preserve">
     <value>Pegar en todas las ranuras</value>
@@ -896,6 +914,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Líquido</value>
+  </data>
+  <data name="PaintMode_Platform" xml:space="preserve">
+    <value>Plataforma</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
     <value>Sprites</value>
@@ -1071,6 +1092,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
     <value>Scripting</value>
+  </data>
+  <data name="settings_color_mode" xml:space="preserve">
+    <value>Modo de color</value>
+  </data>
+  <data name="settings_color_mode_desc" xml:space="preserve">
+    <value>Paleta de colores del mapa de píxeles: Predeterminado, Realista (muestreado por texturas) o Minimapa (colores del mapa dentro del juego). Requiere reiniciar.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Activar el editor de jugadores</value>
@@ -1467,6 +1494,9 @@ Qué NO se recopila:
   </data>
   <data name="telemetry_prompt_title" xml:space="preserve">
     <value>Informe de errores de TEdit</value>
+  </data>
+  <data name="texture_loading_do_not_show" xml:space="preserve">
+    <value>No volver a mostrar</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
     <value>Las texturas de los azulejos y las paredes se están cargando en segundo plano. El rendimiento de la representación del mapa mejorará una vez que la carga esté completa.</value>
@@ -2470,13 +2500,4 @@ Qué NO se recopila:
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar fondo</value>
   </data>
-  <data name="texture_loading_do_not_show" xml:space="preserve">
-    <value>No volver a mostrar</value>
-  </data>
-  <data name="menu_layers_world_border" xml:space="preserve">
-    <value>Límite del Mundo</value>
-  </data>
-  <data name="menu_layers_world_border_overlay" xml:space="preserve">
-    <value>Superposición del Límite del Mundo</value>
-  </data>
-<data name="menu_layers_color_mode" xml:space="preserve"><value></value></data><data name="menu_layers_color_default" xml:space="preserve"><value></value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value></value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value></value></data><data name="settings_color_mode" xml:space="preserve"><value></value></data><data name="settings_color_mode_desc" xml:space="preserve"><value></value></data></root>
+</root>
