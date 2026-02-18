@@ -26,7 +26,6 @@ public partial class BrushSettings : ReactiveObject
     private int _offsetY = 10;
     [Reactive]
     private bool _isLocked = true;
-    [Reactive]
     private bool _isOutline = false;
     private double _rotation = 0;
     private bool _flipHorizontal = false;
@@ -143,6 +142,7 @@ public partial class BrushSettings : ReactiveObject
             if (value > _maxOutline)
                 value = _maxOutline;
             this.RaiseAndSetIfChanged(ref _outline, value);
+            BrushChange();
         }
     }
 
@@ -172,6 +172,16 @@ public partial class BrushSettings : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _flipVertical, value);
+            BrushChange();
+        }
+    }
+
+    public bool IsOutline
+    {
+        get { return _isOutline; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _isOutline, value);
             BrushChange();
         }
     }
@@ -332,7 +342,7 @@ public partial class BrushSettings : ReactiveObject
         return points.ToList();
     }
 
-    private Vector2Int32 TransformPoint(Vector2Int32 point, Vector2Int32 center)
+    public Vector2Int32 TransformPoint(Vector2Int32 point, Vector2Int32 center)
     {
         double dx = point.X - center.X;
         double dy = point.Y - center.Y;

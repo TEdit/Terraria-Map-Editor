@@ -191,18 +191,22 @@ public class BrushToolBase : BaseTool
         var brush = _wvm.Brush;
         var previewColor = Color.FromArgb(127, 0, 90, 255);
 
-        bool usePointPreview = brush.HasTransform ||
+        bool isLine = IsLineShape(brush.Shape);
+        bool usePointPreview = brush.HasTransform || isLine ||
             brush.Shape == BrushShape.Star ||
             brush.Shape == BrushShape.Triangle ||
             brush.Shape == BrushShape.Crescent ||
-            brush.Shape == BrushShape.Donut ||
-            brush.Shape == BrushShape.Cross;
+            brush.Shape == BrushShape.Donut;
 
         if (usePointPreview)
         {
             // Generate points at origin center, then find actual bounding box
             var center = new Vector2Int32(brush.Width / 2, brush.Height / 2);
             var points = GetShapePoints(center);
+
+            // Line shapes: always apply outline as line thickness
+            if (isLine)
+                points = ThickenLine(points, brush.Outline);
 
             if (points.Count == 0)
             {
@@ -327,6 +331,10 @@ public class BrushToolBase : BaseTool
                 FillRectangleLine(line[i - 1], line[i]);
             }
         }
+        else if (IsLineShape(_wvm.Brush.Shape) && !_wvm.Brush.IsOutline)
+        {
+            FillLineShapeSweep(_startPoint, to);
+        }
         else
         {
             foreach (Vector2Int32 point in line)
@@ -351,6 +359,10 @@ public class BrushToolBase : BaseTool
                 FillRectangleLine(line[i - 1], line[i]);
             }
         }
+        else if (IsLineShape(_wvm.Brush.Shape) && !_wvm.Brush.IsOutline)
+        {
+            FillLineShapeSweep(_startPoint, _endPoint);
+        }
         else
         {
             foreach (Vector2Int32 point in line)
@@ -358,6 +370,60 @@ public class BrushToolBase : BaseTool
                 FillShape(point);
             }
         }
+    }
+
+    /// <summary>
+    /// For line-shaped brushes, draw continuous lines between shape endpoints
+    /// at consecutive stroke positions to avoid gaps during fast drawing.
+    /// </summary>
+    protected void FillLineShapeSweep(Vector2Int32 from, Vector2Int32 to)
+    {
+        var brush = _wvm.Brush;
+        int hw = brush.Width / 2, hh = brush.Height / 2;
+
+        // Get the line segment endpoints (relative to center) for each sub-line
+        (Vector2Int32 start, Vector2Int32 end)[] segments = brush.Shape switch
+        {
+            BrushShape.Right => [(new(-hw, hh), new(hw, -hh))],
+            BrushShape.Left => [(new(-hw, -hh), new(hw, hh))],
+            BrushShape.Cross => [
+                (new(-hw, -hh), new(hw, hh)),
+                (new(-hw, hh), new(hw, -hh))
+            ],
+            _ => []
+        };
+
+        // Apply flip/rotation to the relative endpoints
+        if (brush.HasTransform)
+        {
+            var origin = new Vector2Int32(0, 0);
+            for (int i = 0; i < segments.Length; i++)
+            {
+                segments[i] = (
+                    brush.TransformPoint(segments[i].start, origin),
+                    brush.TransformPoint(segments[i].end, origin)
+                );
+            }
+        }
+
+        // Fill a quadrilateral between the segment at "from" and "to" positions
+        var allPoints = new HashSet<Vector2Int32>();
+        foreach (var (relStart, relEnd) in segments)
+        {
+            Vector2Int32[] quad =
+            [
+                new(from.X + relStart.X, from.Y + relStart.Y),
+                new(from.X + relEnd.X, from.Y + relEnd.Y),
+                new(to.X + relEnd.X, to.Y + relEnd.Y),
+                new(to.X + relStart.X, to.Y + relStart.Y),
+            ];
+            foreach (var p in Fill.FillPolygon(quad))
+                allPoints.Add(p);
+        }
+
+        // Apply thickness
+        var result = ThickenLine(allPoints.ToList(), brush.Outline);
+        FillSolid(result);
     }
 
     private static bool IsLineShape(BrushShape shape) =>
@@ -369,28 +435,37 @@ public class BrushToolBase : BaseTool
     protected void FillShape(Vector2Int32 point)
     {
         var area = GetShapePoints(point);
-        if (_wvm.Brush.IsOutline)
+
+        // Line shapes: apply outline as line thickness
+        if (IsLineShape(_wvm.Brush.Shape))
         {
-            if (IsLineShape(_wvm.Brush.Shape))
+            var thickened = ThickenLine(area, _wvm.Brush.Outline);
+            if (_wvm.Brush.IsOutline)
             {
-                // Line shapes: outline = line thickness
-                FillSolid(ThickenLine(area, _wvm.Brush.Outline));
+                var interior = ErodeShape(thickened, _wvm.Brush.Outline);
+                FillHollow(thickened, interior);
             }
             else
             {
-                IList<Vector2Int32> interiorPoints;
-                if (ShapeUsesParametricOutline(_wvm.Brush.Shape))
-                {
-                    int interiorWidth = Math.Max(1, _wvm.Brush.Width - _wvm.Brush.Outline * 2);
-                    int interiorHeight = Math.Max(1, _wvm.Brush.Height - _wvm.Brush.Outline * 2);
-                    interiorPoints = _wvm.Brush.GetShapePoints(point, interiorWidth, interiorHeight);
-                }
-                else
-                {
-                    interiorPoints = ErodeShape(area, _wvm.Brush.Outline);
-                }
-                FillHollow(area, interiorPoints);
+                FillSolid(thickened);
             }
+            return;
+        }
+
+        if (_wvm.Brush.IsOutline)
+        {
+            IList<Vector2Int32> interiorPoints;
+            if (ShapeUsesParametricOutline(_wvm.Brush.Shape))
+            {
+                int interiorWidth = Math.Max(1, _wvm.Brush.Width - _wvm.Brush.Outline * 2);
+                int interiorHeight = Math.Max(1, _wvm.Brush.Height - _wvm.Brush.Outline * 2);
+                interiorPoints = _wvm.Brush.GetShapePoints(point, interiorWidth, interiorHeight);
+            }
+            else
+            {
+                interiorPoints = ErodeShape(area, _wvm.Brush.Outline);
+            }
+            FillHollow(area, interiorPoints);
         }
         else
         {
@@ -468,7 +543,7 @@ public class BrushToolBase : BaseTool
     {
         if (thickness <= 1) return linePoints;
 
-        int r = thickness - 1;
+        int r = thickness;
         int r2 = r * r;
         var expanded = new HashSet<Vector2Int32>(linePoints.Count * (2 * r + 1));
         foreach (var lp in linePoints)
