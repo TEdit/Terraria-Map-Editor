@@ -936,6 +936,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="player_editor_buffs" xml:space="preserve">
     <value>Buffs</value>
   </data>
+  <data name="player_editor_clear_slot" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Fortschritt</value>
   </data>
@@ -2461,4 +2464,4 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>
   </data>
-<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>
+</root>

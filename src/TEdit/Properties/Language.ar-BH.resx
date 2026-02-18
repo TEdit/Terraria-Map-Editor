@@ -936,6 +936,9 @@
   <data name="player_editor_buffs" xml:space="preserve">
     <value>المؤثرات</value>
   </data>
+  <data name="player_editor_clear_slot" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>حرج</value>
   </data>
@@ -2461,4 +2464,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
   </data>
-<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>
+</root>

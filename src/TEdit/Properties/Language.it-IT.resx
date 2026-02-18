@@ -866,6 +866,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="player_editor_buffs" xml:space="preserve">
     <value>Potenziamenti</value>
   </data>
+  <data name="player_editor_clear_slot" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Difficoltà</value>
   </data>
@@ -2391,4 +2394,4 @@ Vuoi abilitare la segnalazione degli errori?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Correggere il gap di background</value>
   </data>
-<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>
+</root>

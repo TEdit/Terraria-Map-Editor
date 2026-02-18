@@ -75,13 +75,14 @@
                                             Background="Transparent" BorderThickness="0"
                                             Padding="2" FontSize="14" Cursor="Hand"
                                             ToolTip="Toggle Favorite">
-                                        <TextBlock Text="{Binding IsFavorite, Converter={x:Static vm:FavoriteIconConverter.Instance}}">
+                                        <TextBlock Text="{Binding IsFavorite, Converter={x:Static vm:FavoriteIconConverter.Instance}}"
+                                                   FontFamily="Segoe MDL2 Assets" FontSize="14">
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
                                                     <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding IsFavorite}" Value="True">
-                                                            <Setter Property="Foreground" Value="Red" />
+                                                            <Setter Property="Foreground" Value="Gold" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -96,22 +97,6 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </Button.Style>
-                                    </Button>
-                                    <Button Click="TogglePin_Click" Tag="{Binding}"
-                                            Background="Transparent" BorderThickness="0"
-                                            Padding="2" FontSize="14" Cursor="Hand">
-                                        <TextBlock Text="{Binding IsPinned, Converter={x:Static vm:PinIconConverter.Instance}}">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsPinned}" Value="True">
-                                                            <Setter Property="Foreground" Value="Gold" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>

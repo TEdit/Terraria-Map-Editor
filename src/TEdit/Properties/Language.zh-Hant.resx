@@ -866,6 +866,9 @@
   <data name="player_editor_buffs" xml:space="preserve">
     <value>增益</value>
   </data>
+  <data name="player_editor_clear_slot" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>難度</value>
   </data>
@@ -2391,4 +2394,4 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修正背景空隙</value>
   </data>
-<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>
+</root>

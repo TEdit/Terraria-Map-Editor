@@ -936,6 +936,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="player_editor_buffs" xml:space="preserve">
     <value>Mejoras</value>
   </data>
+  <data name="player_editor_clear_slot" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Dificultad</value>
   </data>
@@ -2461,4 +2464,4 @@ Qué NO se recopila:
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar fondo</value>
   </data>
-<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>
+</root>

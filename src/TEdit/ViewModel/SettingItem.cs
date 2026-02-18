@@ -111,7 +111,7 @@ public class FavoriteIconConverter : IValueConverter
     public static readonly FavoriteIconConverter Instance = new();
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-        value is true ? "\u2764" : "\u2661"; // ❤ vs ♡
+        value is true ? "\uE735" : "\uE734"; // FavoriteStarFill vs FavoriteStar (Segoe MDL2 Assets)
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
         throw new NotSupportedException();

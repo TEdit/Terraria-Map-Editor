@@ -936,6 +936,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="player_editor_buffs" xml:space="preserve">
     <value>Buffs</value>
   </data>
+  <data name="player_editor_clear_slot" xml:space="preserve">
+    <value>Clear Slot</value>
+  </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Difficulty</value>
   </data>
@@ -2464,4 +2467,4 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-<data name="player_editor_clear_slot" xml:space="preserve"><value>Clear Slot</value></data></root>
+</root>

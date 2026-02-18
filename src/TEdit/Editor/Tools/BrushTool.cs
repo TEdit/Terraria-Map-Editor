@@ -195,7 +195,8 @@ public class BrushToolBase : BaseTool
             brush.Shape == BrushShape.Star ||
             brush.Shape == BrushShape.Triangle ||
             brush.Shape == BrushShape.Crescent ||
-            brush.Shape == BrushShape.Donut;
+            brush.Shape == BrushShape.Donut ||
+            brush.Shape == BrushShape.Cross;
 
         if (usePointPreview)
         {
@@ -359,20 +360,129 @@ public class BrushToolBase : BaseTool
         }
     }
 
+    private static bool IsLineShape(BrushShape shape) =>
+        shape == BrushShape.Right || shape == BrushShape.Left || shape == BrushShape.Cross;
+
+    private static bool ShapeUsesParametricOutline(BrushShape shape) =>
+        shape == BrushShape.Square || shape == BrushShape.Round;
+
     protected void FillShape(Vector2Int32 point)
     {
         var area = GetShapePoints(point);
-        if (_wvm.Brush.IsOutline && _wvm.Brush.Shape != BrushShape.Right && _wvm.Brush.Shape != BrushShape.Left)
+        if (_wvm.Brush.IsOutline)
         {
-            int interiorWidth = Math.Max(1, _wvm.Brush.Width - _wvm.Brush.Outline * 2);
-            int interiorHeight = Math.Max(1, _wvm.Brush.Height - _wvm.Brush.Outline * 2);
-            var interiorPoints = _wvm.Brush.GetShapePoints(point, interiorWidth, interiorHeight);
-            FillHollow(area, interiorPoints);
+            if (IsLineShape(_wvm.Brush.Shape))
+            {
+                // Line shapes: outline = line thickness
+                FillSolid(ThickenLine(area, _wvm.Brush.Outline));
+            }
+            else
+            {
+                IList<Vector2Int32> interiorPoints;
+                if (ShapeUsesParametricOutline(_wvm.Brush.Shape))
+                {
+                    int interiorWidth = Math.Max(1, _wvm.Brush.Width - _wvm.Brush.Outline * 2);
+                    int interiorHeight = Math.Max(1, _wvm.Brush.Height - _wvm.Brush.Outline * 2);
+                    interiorPoints = _wvm.Brush.GetShapePoints(point, interiorWidth, interiorHeight);
+                }
+                else
+                {
+                    interiorPoints = ErodeShape(area, _wvm.Brush.Outline);
+                }
+                FillHollow(area, interiorPoints);
+            }
         }
         else
         {
             FillSolid(area);
         }
+    }
+
+    /// <summary>
+    /// Erode a shape by N pixels using a bitmask. A point is interior if
+    /// all points within Chebyshev distance N are also in the shape.
+    /// Uses separable 1D erosion (horizontal then vertical) for O(n) performance.
+    /// </summary>
+    private static IList<Vector2Int32> ErodeShape(IList<Vector2Int32> points, int outline)
+    {
+        if (points.Count == 0 || outline <= 0) return points;
+
+        // Find bounding box
+        int minX = int.MaxValue, minY = int.MaxValue;
+        int maxX = int.MinValue, maxY = int.MinValue;
+        foreach (var p in points)
+        {
+            if (p.X < minX) minX = p.X;
+            if (p.X > maxX) maxX = p.X;
+            if (p.Y < minY) minY = p.Y;
+            if (p.Y > maxY) maxY = p.Y;
+        }
+
+        int w = maxX - minX + 1;
+        int h = maxY - minY + 1;
+        if (w <= outline * 2 || h <= outline * 2) return [];
+
+        // Build bitmask
+        var mask = new bool[w * h];
+        foreach (var p in points)
+            mask[(p.X - minX) + (p.Y - minY) * w] = true;
+
+        // Horizontal erosion: for each row, a pixel survives if all pixels
+        // in [x-outline, x+outline] on the same row are set.
+        var hEroded = new bool[w * h];
+        for (int y = 0; y < h; y++)
+        {
+            int rowOff = y * w;
+            // Running count of consecutive set pixels ending at x
+            int run = 0;
+            for (int x = 0; x < w; x++)
+            {
+                run = mask[rowOff + x] ? run + 1 : 0;
+                // A pixel at x survives horizontal erosion if the run
+                // from (x - 2*outline) to x is at least (2*outline + 1)
+                if (run >= outline * 2 + 1)
+                    hEroded[rowOff + x - outline] = true;
+            }
+        }
+
+        // Vertical erosion on hEroded result
+        var result = new List<Vector2Int32>();
+        for (int x = 0; x < w; x++)
+        {
+            int run = 0;
+            for (int y = 0; y < h; y++)
+            {
+                run = hEroded[x + y * w] ? run + 1 : 0;
+                if (run >= outline * 2 + 1)
+                    result.Add(new Vector2Int32(minX + x, minY + y - outline));
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Expand line points by a given thickness using a circular kernel.
+    /// </summary>
+    private static IList<Vector2Int32> ThickenLine(IList<Vector2Int32> linePoints, int thickness)
+    {
+        if (thickness <= 1) return linePoints;
+
+        int r = thickness - 1;
+        int r2 = r * r;
+        var expanded = new HashSet<Vector2Int32>(linePoints.Count * (2 * r + 1));
+        foreach (var lp in linePoints)
+        {
+            for (int dy = -r; dy <= r; dy++)
+            {
+                for (int dx = -r; dx <= r; dx++)
+                {
+                    if (dx * dx + dy * dy <= r2)
+                        expanded.Add(new Vector2Int32(lp.X + dx, lp.Y + dy));
+                }
+            }
+        }
+        return expanded.ToList();
     }
 
     protected void FillRectangleLine(Vector2Int32 start, Vector2Int32 end)
@@ -424,7 +534,8 @@ public class BrushToolBase : BaseTool
 
     protected virtual void FillHollow(IList<Vector2Int32> area, IList<Vector2Int32> interrior)
     {
-        IEnumerable<Vector2Int32> border = area.Except(interrior).ToList();
+        var interiorSet = new HashSet<Vector2Int32>(interrior);
+        IEnumerable<Vector2Int32> border = area.Where(p => !interiorSet.Contains(p));
 
         // Draw the border
         if (_wvm.TilePicker.TileStyleActive)

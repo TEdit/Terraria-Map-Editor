@@ -20,4 +20,6 @@ public enum BrushShape
     Crescent,
     [Description("Donut")]
     Donut,
+    [Description("X")]
+    Cross,
 }

@@ -47,7 +47,7 @@
         <!-- Row 0: Width -->
         <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.tool_brush_width_label}"
                    HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
-        <TextBox   Grid.Row="0" Grid.Column="1" Text="{Binding Brush.Width, Mode=TwoWay}"
+        <TextBox   Grid.Row="0" Grid.Column="1" Text="{Binding Brush.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}"
                    VerticalAlignment="Center" Margin="0,1" />
         <Slider    Grid.Row="0" Grid.Column="2" Value="{Binding Brush.Width, Mode=TwoWay}"
                    Minimum="{Binding Brush.MinWidth}" Maximum="{Binding Brush.MaxWidth}"
@@ -62,14 +62,14 @@
         <!-- Row 1: Height -->
         <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.tool_brush_height_label}"
                    HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
-        <TextBox   Grid.Row="1" Grid.Column="1" Text="{Binding Brush.Height, Mode=TwoWay}"
+        <TextBox   Grid.Row="1" Grid.Column="1" Text="{Binding Brush.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}"
                    VerticalAlignment="Center" Margin="0,1" />
         <Slider    Grid.Row="1" Grid.Column="2" Value="{Binding Brush.Height, Mode=TwoWay}"
                    Minimum="{Binding Brush.MinHeight}" Maximum="{Binding Brush.MaxHeight}"
                    SmallChange="1" LargeChange="10" VerticalAlignment="Center"  />
 
         <!-- Row 2: Outline -->
-        <TextBox   Grid.Row="2" Grid.Column="1" Text="{Binding Brush.Outline, Mode=TwoWay}"
+        <TextBox   Grid.Row="2" Grid.Column="1" Text="{Binding Brush.Outline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}"
                    VerticalAlignment="Center" Margin="0,1" />
         <Slider    Grid.Row="2" Grid.Column="2" Value="{Binding Brush.Outline, Mode=TwoWay}"
                    Minimum="1" Maximum="{Binding Brush.MaxOutline}"
@@ -97,7 +97,7 @@
         <!-- Row 0: Rotation -->
         <TextBlock Grid.Row="0" Grid.Column="5" Text="{x:Static p:Language.tool_brush_rotation_label}"
                    HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
-        <TextBox   Grid.Row="0" Grid.Column="6" Text="{Binding Brush.Rotation, Mode=TwoWay, StringFormat=F0}"
+        <TextBox   Grid.Row="0" Grid.Column="6" Text="{Binding Brush.Rotation, Mode=TwoWay, StringFormat=F0, UpdateSourceTrigger=PropertyChanged, Delay=300}"
                    VerticalAlignment="Center" Margin="0,1" />
         <Slider Grid.Column="7" Value="{Binding Brush.Rotation, Mode=TwoWay}"
                    Minimum="0" Maximum="360" SmallChange="1" LargeChange="45"
@@ -130,7 +130,7 @@
         <TextBlock Grid.Row="2" Grid.Column="5" Text="{x:Static p:Language.tool_brush_spray_density_label}"
                    HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1"
                    Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
-        <TextBox   Grid.Row="2" Grid.Column="6" Text="{Binding Brush.SprayDensity, Mode=TwoWay}"
+        <TextBox   Grid.Row="2" Grid.Column="6" Text="{Binding Brush.SprayDensity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}"
                    VerticalAlignment="Center" Margin="0,1"
                    Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
         <Slider    Grid.Row="2" Grid.Column="7" Value="{Binding Brush.SprayDensity, Mode=TwoWay}"
@@ -142,7 +142,7 @@
         <TextBlock Grid.Row="3" Grid.Column="5" Text="{x:Static p:Language.tool_brush_spray_speed_label}"
                    HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1"
                    Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
-        <TextBox   Grid.Row="3" Grid.Column="6" Text="{Binding Brush.SprayTickMs, Mode=TwoWay}"
+        <TextBox   Grid.Row="3" Grid.Column="6" Text="{Binding Brush.SprayTickMs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}"
                    VerticalAlignment="Center" Margin="0,1"
                    Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
         <Slider    Grid.Row="3" Grid.Column="7" Value="{Binding Brush.SprayTickMs, Mode=TwoWay}"

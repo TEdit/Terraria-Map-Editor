@@ -152,6 +152,7 @@ public class DrawApi
             "triangle" => BrushShape.Triangle,
             "crescent" => BrushShape.Crescent,
             "donut" => BrushShape.Donut,
+            "cross" or "x" => BrushShape.Cross,
             _ => BrushShape.Square
         };
     }

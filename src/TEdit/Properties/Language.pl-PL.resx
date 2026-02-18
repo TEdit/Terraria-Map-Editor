@@ -936,6 +936,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="player_editor_buffs" xml:space="preserve">
     <value>Buffy</value>
   </data>
+  <data name="player_editor_clear_slot" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Poziom Trudności</value>
   </data>
@@ -2461,4 +2464,4 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
   </data>
-<data name="player_editor_clear_slot" xml:space="preserve"><value></value></data></root>
+</root>

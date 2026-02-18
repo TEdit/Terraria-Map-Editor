@@ -207,16 +207,18 @@ public partial class BrushSettings : ReactiveObject
 
     public IList<Vector2Int32> GetShapePoints(Vector2Int32 center, int width, int height)
     {
+        // Line shapes: transform endpoints, then draw contiguous lines
+        if (Shape is BrushShape.Right or BrushShape.Left or BrushShape.Cross)
+            return GetLineShapePoints(center, width, height);
+
+        // Polygon shapes: transform vertices, then re-fill for clean edges
+        if (HasTransform && Shape is BrushShape.Square or BrushShape.Star or BrushShape.Triangle)
+            return GetTransformedPolygonPoints(center, width, height);
+
         IEnumerable<Vector2Int32> points = Shape switch
         {
             BrushShape.Square => Fill.FillRectangleCentered(center, new Vector2Int32(width, height)),
             BrushShape.Round => Fill.FillEllipseCentered(center, new Vector2Int32(width / 2, height / 2)),
-            BrushShape.Right => TEdit.Geometry.Shape.DrawLine(
-                new Vector2Int32(center.X - width / 2, center.Y + height / 2),
-                new Vector2Int32(center.X + width / 2, center.Y - height / 2)),
-            BrushShape.Left => TEdit.Geometry.Shape.DrawLine(
-                new Vector2Int32(center.X - width / 2, center.Y - height / 2),
-                new Vector2Int32(center.X + width / 2, center.Y + height / 2)),
             BrushShape.Star => Fill.FillStarCentered(center, Math.Min(width, height) / 2, 0, 5),
             BrushShape.Triangle => Fill.FillTriangleCentered(center, width / 2, height / 2),
             BrushShape.Crescent => FillCrescent(center, width, height),
@@ -226,10 +228,132 @@ public partial class BrushSettings : ReactiveObject
             _ => Fill.FillRectangleCentered(center, new Vector2Int32(width, height)),
         };
 
+        // Ellipse-based shapes (Round, Crescent, Donut) still use pixel-level inverse mapping
         if (HasTransform)
             points = Fill.ApplyTransform(points, center, Rotation, FlipHorizontal, FlipVertical);
 
         return points.ToList();
+    }
+
+    private IList<Vector2Int32> GetTransformedPolygonPoints(Vector2Int32 center, int width, int height)
+    {
+        // Get untransformed vertices for the shape
+        var vertices = GetShapeVertices(center, width, height);
+
+        // Transform each vertex
+        for (int i = 0; i < vertices.Length; i++)
+            vertices[i] = TransformPoint(vertices[i], center);
+
+        // Re-fill the polygon with transformed vertices
+        return Fill.FillPolygon(vertices).ToList();
+    }
+
+    private Vector2Int32[] GetShapeVertices(Vector2Int32 center, int width, int height)
+    {
+        int hw = width / 2, hh = height / 2;
+
+        return Shape switch
+        {
+            BrushShape.Square => [
+                new(center.X - hw, center.Y - hh),
+                new(center.X + hw, center.Y - hh),
+                new(center.X + hw, center.Y + hh),
+                new(center.X - hw, center.Y + hh),
+            ],
+            BrushShape.Star => GetStarVertices(center, Math.Min(width, height) / 2, 5),
+            BrushShape.Triangle => GetTriangleVertices(center, hw),
+            _ => [center],
+        };
+    }
+
+    private static Vector2Int32[] GetStarVertices(Vector2Int32 center, int outerRadius, int numPoints)
+    {
+        if (outerRadius <= 0 || numPoints < 3) return [center];
+        int innerRadius = (int)(outerRadius * Math.Cos(2 * Math.PI / numPoints) / Math.Cos(Math.PI / numPoints));
+        var vertices = new Vector2Int32[numPoints * 2];
+        double angleStep = Math.PI / numPoints;
+        double startAngle = -Math.PI / 2;
+        for (int i = 0; i < numPoints * 2; i++)
+        {
+            double angle = startAngle + i * angleStep;
+            int r = (i % 2 == 0) ? outerRadius : innerRadius;
+            vertices[i] = new Vector2Int32(
+                center.X + (int)Math.Round(Math.Cos(angle) * r),
+                center.Y + (int)Math.Round(Math.Sin(angle) * r));
+        }
+        return vertices;
+    }
+
+    private static Vector2Int32[] GetTriangleVertices(Vector2Int32 center, int halfWidth)
+    {
+        if (halfWidth <= 0) return [center];
+        int eqHeight = (int)Math.Round(halfWidth * Math.Sqrt(3));
+        int apexY = center.Y - eqHeight * 2 / 3;
+        int baseY = center.Y + eqHeight / 3;
+        return [
+            new(center.X, apexY),
+            new(center.X - halfWidth, baseY),
+            new(center.X + halfWidth, baseY),
+        ];
+    }
+
+    private IList<Vector2Int32> GetLineShapePoints(Vector2Int32 center, int width, int height)
+    {
+        int hw = width / 2, hh = height / 2;
+
+        // Define endpoints for each line shape
+        var endpoints = Shape switch
+        {
+            BrushShape.Right => new[]
+            {
+                (new Vector2Int32(center.X - hw, center.Y + hh), new Vector2Int32(center.X + hw, center.Y - hh))
+            },
+            BrushShape.Left => new[]
+            {
+                (new Vector2Int32(center.X - hw, center.Y - hh), new Vector2Int32(center.X + hw, center.Y + hh))
+            },
+            BrushShape.Cross => new[]
+            {
+                (new Vector2Int32(center.X - hw, center.Y - hh), new Vector2Int32(center.X + hw, center.Y + hh)),
+                (new Vector2Int32(center.X - hw, center.Y + hh), new Vector2Int32(center.X + hw, center.Y - hh))
+            },
+            _ => []
+        };
+
+        // Transform endpoints, then draw contiguous lines between them
+        IEnumerable<Vector2Int32> points = Enumerable.Empty<Vector2Int32>();
+        foreach (var (start, end) in endpoints)
+        {
+            var s = HasTransform ? TransformPoint(start, center) : start;
+            var e = HasTransform ? TransformPoint(end, center) : end;
+            points = points.Concat(TEdit.Geometry.Shape.DrawLine(s, e));
+        }
+
+        return points.ToList();
+    }
+
+    private Vector2Int32 TransformPoint(Vector2Int32 point, Vector2Int32 center)
+    {
+        double dx = point.X - center.X;
+        double dy = point.Y - center.Y;
+
+        if (FlipHorizontal) dx = -dx;
+        if (FlipVertical) dy = -dy;
+
+        if (Math.Abs(Rotation) > 0.01)
+        {
+            double rad = Rotation * Math.PI / 180.0;
+            double cos = Math.Cos(rad);
+            double sin = Math.Sin(rad);
+            double rx = dx * cos - dy * sin;
+            double ry = dx * sin + dy * cos;
+            dx = rx;
+            dy = ry;
+        }
+
+        return new Vector2Int32(
+            center.X + (int)Math.Round(dx),
+            center.Y + (int)Math.Round(dy));
     }
 
     /// <summary>
@@ -241,21 +365,35 @@ public partial class BrushSettings : ReactiveObject
         int outerRadius = height / 2;
         if (outerRadius <= 0) return [center];
 
-        // ratio: 0.5 (thinnest) → 1.0 (default) → 2.0 (full circle)
         double ratio = Math.Clamp((double)width / Math.Max(1, height), 0.5, 2.0);
 
-        // f: 1.0 (thinnest) → 0.0 (full circle). At ratio=1: f = 2/3 (default).
-        double f = (2.0 - ratio) / 1.5;
+        int innerRadius, innerOffsetX;
 
-        if (f < 0.001)
+        if (ratio >= 2.0)
         {
             // Full circle
             return Fill.FillEllipseCentered(center, new Vector2Int32(outerRadius, outerRadius));
         }
-
-        // Scale so f=2/3 reproduces the original 0.75R / 0.5R values
-        int innerRadius = Math.Clamp((int)(outerRadius * f * 1.125), 1, outerRadius - 1);
-        int innerOffsetX = Math.Max(1, (int)(outerRadius * f * 0.75));
+        else if (ratio >= 1.0)
+        {
+            // ratio 1.0→2.0: default crescent → full circle
+            // t: 0 at ratio=1, 1 at ratio=2
+            double t = ratio - 1.0;
+            // Default: innerR=0.75R, offset=0.5R → lerp to 0
+            innerRadius = Math.Max(1, (int)(outerRadius * 0.75 * (1.0 - t)));
+            innerOffsetX = Math.Max(1, (int)(outerRadius * 0.5 * (1.0 - t)));
+        }
+        else
+        {
+            // ratio 0.5→1.0: thin ring → default crescent
+            // t: 0 at ratio=1, 1 at ratio=0.5
+            double t = (1.0 - ratio) / 0.5;
+            // Default: innerR=0.75R, offset=0.5R → thin: innerR≈R-1, offset≈1
+            innerRadius = Math.Clamp(
+                (int)(outerRadius * (0.75 + t * 0.25)),
+                1, outerRadius - 1);
+            innerOffsetX = Math.Max(1, (int)(outerRadius * 0.5 * (1.0 - t)) + (t > 0.99 ? 0 : 1));
+        }
 
         return Fill.FillCrescentCentered(center, outerRadius, innerRadius, innerOffsetX);
     }

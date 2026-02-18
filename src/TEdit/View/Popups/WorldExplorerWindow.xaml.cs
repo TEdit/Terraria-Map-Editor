@@ -194,17 +194,6 @@ public partial class WorldExplorerWindow : FluentWindow
         }
     }
 
-    private void TogglePin_Click(object sender, RoutedEventArgs e)
-    {
-        if (sender is Button { Tag: WorldEntryViewModel entry })
-        {
-            if (entry.IsPinned)
-                _vm.UnpinWorld(entry.FilePath);
-            else
-                _vm.PinWorld(entry.FilePath);
-        }
-    }
-
     private void ToggleFavorite_Click(object sender, RoutedEventArgs e)
     {
         if (sender is Button { Tag: WorldEntryViewModel entry })

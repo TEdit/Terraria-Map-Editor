@@ -162,8 +162,8 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
     public int CompareTo(WorldEntryViewModel other)
     {
         if (other == null) return -1;
-        // Pinned first
-        if (IsPinned != other.IsPinned) return IsPinned ? -1 : 1;
+        // Favorites first
+        if (IsFavorite != other.IsFavorite) return IsFavorite ? -1 : 1;
         // Missing last
         if (IsMissing != other.IsMissing) return IsMissing ? 1 : -1;
         // Then by most recent
