@@ -9,6 +9,7 @@
     xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
     xmlns:pe="clr-namespace:TEdit.View.Sidebar.PlayerEditor"
     mc:Ignorable="d" d:DesignWidth="340"
+            d:DesignHeight="700"
     DataContext="{Binding Source={x:Static vm:ViewModelLocator.PlayerEditorViewModel}}"
     d:DataContext="{d:DesignInstance vm:DesignTimePlayerEditorViewModel, IsDesignTimeCreatable=True}">
 
@@ -40,7 +41,7 @@
                     Command="{Binding SavePlayerAsCommand}" Margin="0,0,4,0">
                 <ui:SymbolIcon Symbol="SaveEdit20" FontSize="16"/>
             </Button>
-            <TextBlock Text="{Binding PlayerFilePath}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            <TextBlock Text="{Binding PlayerFileDisplayName}" Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                        FontSize="10" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="200"/>
         </StackPanel>
 
@@ -66,8 +67,16 @@
                 <!-- Player Preview (Left) -->
                 <Border Grid.Column="0" Background="#1AFFFFFF" CornerRadius="4" Padding="4" Margin="0,0,8,0"
                         Visibility="{Binding PlayerPreview, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}">
-                    <Image Source="{Binding PlayerPreview}" Width="120" Height="168"
-                           RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform"/>
+                    <StackPanel>
+                        <Image Source="{Binding PlayerPreview}" Width="120" Height="168"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform"
+                               RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <ScaleTransform ScaleX="-1"/>
+                            </Image.RenderTransform>
+                        </Image>
+                        <CheckBox Content="Show Armor" IsChecked="{Binding ShowArmorPreview}" Margin="0,4,0,0"/>
+                    </StackPanel>
                 </Border>
 
                 <!-- Controls (Right) - Name, Difficulty, Hair, Skin -->
@@ -104,8 +113,21 @@
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Language.player_editor_hair}" 
                                Foreground="{DynamicResource TextBrush}" FontWeight="Bold" 
                                VerticalAlignment="Center" Margin="0,0,4,4"/>
-                    <ui:NumberBox Grid.Row="2" Grid.Column="1" Value="{Binding Player.Appearance.Hair}" Minimum="0" Maximum="227"
-                                  SpinButtonPlacementMode="Compact" Height="28" Margin="0,0,0,4"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" Height="36"
+                              ItemsSource="{Binding HairStyleOptions}"
+                              SelectedItem="{Binding SelectedHairStyle}"
+                              MaxDropDownHeight="400" Margin="0,0,0,4">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Preview}" Width="24" Height="34"
+                                           RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform"
+                                           Margin="0,0,6,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
                     <!-- Skin Variant -->
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static p:Language.player_editor_skin}" 

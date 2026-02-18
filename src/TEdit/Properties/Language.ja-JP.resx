@@ -1125,6 +1125,9 @@
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>アップデートを受け取るリリースチャネル(Stable、Beta、Alpha)を選んでください</value>
   </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>アップデートモード</value>
+  </data>
   <data name="settings_update_mode_desc" xml:space="preserve">
     <value>起動時の更新のチェックや適用方法を制御します</value>
     <comment>Description for the update mode setting</comment>
@@ -2221,9 +2224,21 @@
     <value>TEditの新しいバージョンが利用可能です。</value>
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>更新を確認している...</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>アップデートチェックに失敗しました。</value>
+  </data>
   <data name="update_downloaded_toast" xml:space="preserve">
     <value>アップデートをダウンロードしました。ファイル&gt;でアップデートを確認してインストールしてください。</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>アップデートがダウンロードされました。今すぐ再スタートして応募する?</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>アップデート</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEditは最新です。</value>
@@ -2306,20 +2321,5 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>バックグラウンドギャップの修正</value>
-  </data>
-  <data name="update_title" xml:space="preserve">
-    <value>アップデート</value>
-  </data>
-  <data name="update_restart_prompt" xml:space="preserve">
-    <value>アップデートがダウンロードされました。今すぐ再スタートして応募する?</value>
-  </data>
-  <data name="update_check_failed" xml:space="preserve">
-    <value>アップデートチェックに失敗しました。</value>
-  </data>
-  <data name="update_checking" xml:space="preserve">
-    <value>更新を確認している...</value>
-  </data>
-  <data name="settings_update_mode" xml:space="preserve">
-    <value>アップデートモード</value>
   </data>
 </root>

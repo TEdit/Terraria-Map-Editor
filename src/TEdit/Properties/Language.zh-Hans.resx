@@ -1195,6 +1195,9 @@
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>选择从哪个发布渠道接收更新（稳定版、测试版或阿尔法版）</value>
   </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>更新模式</value>
+  </data>
   <data name="settings_update_mode_desc" xml:space="preserve">
     <value>控制TEdit启动时如何检查和应用更新</value>
     <comment>Description for the update mode setting</comment>
@@ -2291,9 +2294,21 @@
     <value>TEdit 有一个新版本。</value>
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>查看最新消息......</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>更新检查失败。</value>
+  </data>
   <data name="update_downloaded_toast" xml:space="preserve">
     <value>更新已下载。使用文件&gt;检查安装时的更新。</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>更新已下载。现在重新开始申请？</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>更新</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit是最新的。</value>
@@ -2376,20 +2391,5 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
-  </data>
-  <data name="update_title" xml:space="preserve">
-    <value>更新</value>
-  </data>
-  <data name="update_restart_prompt" xml:space="preserve">
-    <value>更新已下载。现在重新开始申请？</value>
-  </data>
-  <data name="update_check_failed" xml:space="preserve">
-    <value>更新检查失败。</value>
-  </data>
-  <data name="update_checking" xml:space="preserve">
-    <value>查看最新消息......</value>
-  </data>
-  <data name="settings_update_mode" xml:space="preserve">
-    <value>更新模式</value>
   </data>
 </root>

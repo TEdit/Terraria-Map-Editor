@@ -967,6 +967,32 @@ namespace SettingsFileUpdater.TerrariaHost
 
                 banners.TryGetValue(id, out int tally);
 
+                // Head armor hair visibility flags (from Player.GetHairSettings() switch)
+                bool? drawFullHair = null;
+                bool? drawHatHair = null;
+                if (curitem.headSlot > 0)
+                {
+                    drawFullHair = GetHeadHairFlag(_fullHairHeadSlots, curitem.headSlot);
+                    drawHatHair = GetHeadHairFlag(_hatHairHeadSlots, curitem.headSlot);
+                }
+
+                // Resolve TextureCopyLoad transitively (e.g., 3705→3665→48 becomes 48)
+                int? textureId = null;
+                if (id >= 0 && id < ItemID.Sets.TextureCopyLoad.Length)
+                {
+                    int copyFrom = ItemID.Sets.TextureCopyLoad[id];
+                    if (copyFrom != -1)
+                    {
+                        // Follow the chain to the final source
+                        while (copyFrom >= 0 && copyFrom < ItemID.Sets.TextureCopyLoad.Length
+                               && ItemID.Sets.TextureCopyLoad[copyFrom] != -1)
+                        {
+                            copyFrom = ItemID.Sets.TextureCopyLoad[copyFrom];
+                        }
+                        textureId = copyFrom;
+                    }
+                }
+
                 result.Add(new ItemDataJson
                 {
                     Id = id,
@@ -981,6 +1007,20 @@ namespace SettingsFileUpdater.TerrariaHost
                     Head = curitem.headSlot > 0 ? curitem.headSlot : null,
                     Body = curitem.bodySlot > 0 ? curitem.bodySlot : null,
                     Legs = curitem.legSlot > 0 ? curitem.legSlot : null,
+                    DrawFullHair = drawFullHair,
+                    DrawHatHair = drawHatHair,
+                    WingSlot = curitem.wingSlot > 0 ? curitem.wingSlot : null,
+                    BackSlot = curitem.backSlot > 0 ? curitem.backSlot : null,
+                    BalloonSlot = curitem.balloonSlot > 0 ? curitem.balloonSlot : null,
+                    ShoeSlot = curitem.shoeSlot > 0 ? curitem.shoeSlot : null,
+                    WaistSlot = curitem.waistSlot > 0 ? curitem.waistSlot : null,
+                    NeckSlot = curitem.neckSlot > 0 ? curitem.neckSlot : null,
+                    FaceSlot = curitem.faceSlot > 0 ? curitem.faceSlot : null,
+                    ShieldSlot = curitem.shieldSlot > 0 ? curitem.shieldSlot : null,
+                    HandOnSlot = curitem.handOnSlot > 0 ? curitem.handOnSlot : null,
+                    HandOffSlot = curitem.handOffSlot > 0 ? curitem.handOffSlot : null,
+                    FrontSlot = curitem.frontSlot > 0 ? curitem.frontSlot : null,
+                    TextureId = textureId,
                     Tally = tally,
                     Rarity = GetRarityName(curitem.rare)
                 });
@@ -993,6 +1033,25 @@ namespace SettingsFileUpdater.TerrariaHost
         /// Maps a rarity number to its name for JSON output.
         /// Returns null for White (rarity 0) since that's the default.
         /// </summary>
+        // Hair visibility data from Player.GetHairSettings() switch statement.
+        // fullHair = shows all hair; hatHair = shows partial (hat) hair; neither = fully covered.
+        private static readonly HashSet<int> _fullHairHeadSlots = new()
+        {
+            10, 12, 28, 42, 62, 97, 106, 113, 116, 119, 133, 138, 139, 163, 178, 181,
+            191, 198, 217, 218, 220, 222, 224, 225, 228, 229, 230, 232, 235, 238, 242,
+            243, 244, 245, 272, 273, 274, 277, 284, 290
+        };
+        private static readonly HashSet<int> _hatHairHeadSlots = new()
+        {
+            13, 14, 15, 16, 18, 21, 24, 25, 26, 29, 40, 44, 51, 56, 59, 60, 63, 64,
+            65, 67, 68, 69, 81, 92, 94, 95, 100, 114, 121, 126, 130, 136, 140, 143,
+            145, 158, 159, 161, 182, 184, 190, 195, 215, 216, 219, 223, 226, 227, 231,
+            233, 234, 262, 263, 264, 265, 267, 275, 279, 280, 281, 286, 289, 292
+        };
+
+        private static bool? GetHeadHairFlag(HashSet<int> slotSet, int headSlot)
+            => slotSet.Contains(headSlot) ? true : null;
+
         private static string? GetRarityName(int rarity) => rarity switch
         {
             -13 => "Master",

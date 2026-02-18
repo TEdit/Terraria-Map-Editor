@@ -246,9 +246,8 @@ public partial class ItemEditorControl : UserControl
             combo.ItemContainerStyle = TryFindResource("RarityItemContainerStyle") as Style;
         }
 
-        // ImageOnly/ImageAndText: non-editable (selection box renders ItemTemplate)
-        // TextOnly: editable (text input for filtering)
-        combo.IsEditable = DisplayMode == ItemDisplayMode.TextOnly;
+        // Always editable so users can see the filter text they type
+        combo.IsEditable = true;
 
         // Bind SelectedValue to ItemId
         var binding = new Binding(nameof(ItemId))
@@ -263,5 +262,12 @@ public partial class ItemEditorControl : UserControl
     {
         base.OnApplyTemplate();
         ConfigureItemCombo();
+    }
+
+    private void ClearItem_Click(object sender, RoutedEventArgs e)
+    {
+        ItemId = 0;
+        StackSize = 0;
+        Prefix = 0;
     }
 }

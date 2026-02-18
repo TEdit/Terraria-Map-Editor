@@ -7,15 +7,20 @@
     xmlns:p="clr-namespace:TEdit.Properties"
     xmlns:converters="clr-namespace:TEdit.Converters"
     xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
-    mc:Ignorable="d" d:DesignWidth="320">
+    xmlns:vm="clr-namespace:TEdit.ViewModel"
+    d:DataContext="{d:DesignInstance vm:DesignTimePlayerEditorViewModel, IsDesignTimeCreatable=True}"
+
+  mc:Ignorable="d" d:DesignWidth="320">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../SpecialTilesViews/SpecialTilesSharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVis" />
             <DataTemplate x:Key="EquipmentSlotRow">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="22"/>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="26"/>
                         <ColumnDefinition Width="26"/>
@@ -23,36 +28,60 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="22"/>
                         <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{Binding Label}" Foreground="{DynamicResource TextBrush}"
+                    <Button Grid.Column="0" Style="{StaticResource CompactIconButton}"
+                            Command="{Binding ToggleVisibilityCommand}"
+                            Visibility="{Binding HasVisibilityToggle, Converter={StaticResource BoolToVis}}"
+                            ToolTip="Toggle Visibility">
+                        <ui:SymbolIcon FontSize="14">
+                            <ui:SymbolIcon.Style>
+                                <Style TargetType="ui:SymbolIcon">
+                                    <Setter Property="Symbol" Value="Eye20"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsHidden}" Value="True">
+                                            <Setter Property="Symbol" Value="EyeOff20"/>
+                                            <Setter Property="Opacity" Value="0.4"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ui:SymbolIcon.Style>
+                        </ui:SymbolIcon>
+                    </Button>
+                    <TextBlock Grid.Column="1" Text="{Binding Label}" Foreground="{DynamicResource TextBrush}"
                                FontWeight="Bold" VerticalAlignment="Center" Margin="2" FontSize="11"/>
-                    <Image Grid.Column="1"
+                    <Image Grid.Column="2"
                            Source="{Binding Dye.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
                            Width="24" Height="24" Stretch="Uniform"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"
                            Visibility="{Binding Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}"
                            ToolTip="{Binding Dye.Name}"/>
-                    <Image Grid.Column="2"
+                    <Image Grid.Column="3"
                            Source="{Binding Item.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
                            Width="24" Height="24" Stretch="Uniform"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                    <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Item.PrefixName}" Margin="2"
+                    <TextBlock Grid.Column="4" Foreground="White" Text="{Binding Item.PrefixName}" Margin="2"
                                VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="4" Foreground="White" Text="{Binding Item.Name}" Margin="2"
+                    <TextBlock Grid.Column="5" Foreground="White" Text="{Binding Item.Name}" Margin="2"
                                VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
-                    <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+                    <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                             Command="{Binding DataContext.CopyEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
                         <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
                     </Button>
-                    <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+                    <Button Grid.Column="7" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
                             Command="{Binding DataContext.PasteEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
                         <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
+                    </Button>
+                    <Button Grid.Column="8" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_clear_slot}"
+                            Command="{Binding DataContext.ClearEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                        <ui:SymbolIcon Symbol="Delete20" FontSize="14"/>
                     </Button>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Key="MiscSlotRow">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="22"/>
                         <ColumnDefinition Width="60"/>
                         <ColumnDefinition Width="26"/>
                         <ColumnDefinition Width="26"/>
@@ -60,30 +89,53 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="22"/>
                         <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{Binding Label}" Foreground="{DynamicResource TextBrush}"
+                    <Button Grid.Column="0" Style="{StaticResource CompactIconButton}"
+                            Command="{Binding ToggleVisibilityCommand}"
+                            Visibility="{Binding HasVisibilityToggle, Converter={StaticResource BoolToVis}}"
+                            ToolTip="Toggle Visibility">
+                        <ui:SymbolIcon FontSize="14">
+                            <ui:SymbolIcon.Style>
+                                <Style TargetType="ui:SymbolIcon">
+                                    <Setter Property="Symbol" Value="Eye20"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsHidden}" Value="True">
+                                            <Setter Property="Symbol" Value="EyeOff20"/>
+                                            <Setter Property="Opacity" Value="0.4"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ui:SymbolIcon.Style>
+                        </ui:SymbolIcon>
+                    </Button>
+                    <TextBlock Grid.Column="1" Text="{Binding Label}" Foreground="{DynamicResource TextBrush}"
                                FontWeight="Bold" VerticalAlignment="Center" Margin="2" FontSize="11"/>
-                    <Image Grid.Column="1"
+                    <Image Grid.Column="2"
                            Source="{Binding Dye.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
                            Width="24" Height="24" Stretch="Uniform"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"
                            Visibility="{Binding Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}"
                            ToolTip="{Binding Dye.Name}"/>
-                    <Image Grid.Column="2"
+                    <Image Grid.Column="3"
                            Source="{Binding Item.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
                            Width="24" Height="24" Stretch="Uniform"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
-                    <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Item.PrefixName}" Margin="2"
+                    <TextBlock Grid.Column="4" Foreground="White" Text="{Binding Item.PrefixName}" Margin="2"
                                VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="4" Foreground="White" Text="{Binding Item.Name}" Margin="2"
+                    <TextBlock Grid.Column="5" Foreground="White" Text="{Binding Item.Name}" Margin="2"
                                VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
-                    <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
+                    <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                             Command="{Binding DataContext.CopyEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
                         <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
                     </Button>
-                    <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
+                    <Button Grid.Column="7" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
                             Command="{Binding DataContext.PasteEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
                         <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
+                    </Button>
+                    <Button Grid.Column="8" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_clear_slot}"
+                            Command="{Binding DataContext.ClearEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
+                        <ui:SymbolIcon Symbol="Delete20" FontSize="14"/>
                     </Button>
                 </Grid>
             </DataTemplate>
@@ -150,11 +202,24 @@
             <!-- Item + Dye editors side by side -->
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <!-- Dye editor (same row) -->
+                <StackPanel Grid.Column="0" MinWidth="120"
+                                    Visibility="{Binding SelectedEquipmentSlot.Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}">
+                  <TextBlock Text="Dye" Margin="2,4,2,2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                  <controls:ItemEditorControl
+                                DataContext="{Binding SelectedEquipmentSlot.Dye}"
+                                ItemId="{Binding NetId, Mode=TwoWay}"
+                                StackSize="{Binding StackSize, Mode=TwoWay}"
+                                ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                                ItemsSourceType="DictionaryKvp"
+                                ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False"/>
+                </StackPanel>
                 <!-- Item editor (category-specific) -->
-                <StackPanel Grid.Column="0">
+              
+                <StackPanel Grid.Column="1">
                     <TextBlock Text="Edit Item" Margin="2,4,2,2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
                     <!-- Head slots -->
                     <controls:ItemEditorControl x:Name="EditorHead"
@@ -207,18 +272,7 @@
                         PrefixSource="{Binding Source={StaticResource PrefixCollection}}"
                         ShowStackSize="False" Visibility="Collapsed"/>
                 </StackPanel>
-                <!-- Dye editor (same row, right side) -->
-                <StackPanel Grid.Column="1" MinWidth="120"
-                            Visibility="{Binding SelectedEquipmentSlot.Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}">
-                    <TextBlock Text="Dye" Margin="2,4,2,2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
-                    <controls:ItemEditorControl
-                        DataContext="{Binding SelectedEquipmentSlot.Dye}"
-                        ItemId="{Binding NetId, Mode=TwoWay}"
-                        StackSize="{Binding StackSize, Mode=TwoWay}"
-                        ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                        ItemsSourceType="DictionaryKvp"
-                        ShowStackSize="False" ShowPrefix="False" ShowActionButtons="False"/>
-                </StackPanel>
+
             </Grid>
         </StackPanel>
     </Grid>

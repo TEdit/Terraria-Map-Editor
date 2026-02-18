@@ -1195,6 +1195,9 @@
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Выберите канал релиза, с которого получать обновления (стабильный, бета или альфа)</value>
   </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Режим обновления</value>
+  </data>
   <data name="settings_update_mode_desc" xml:space="preserve">
     <value>Контролирует то, как TEdit проверяет и применяет обновления при запуске</value>
     <comment>Description for the update mode setting</comment>
@@ -2291,9 +2294,21 @@
     <value>Доступна новая версия TEdit.</value>
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Проверяю обновления...</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>Проверка обновления не прошла.</value>
+  </data>
   <data name="update_downloaded_toast" xml:space="preserve">
     <value>Обновление загружено. Используйте File &gt; Check Updates для установки.</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>Обновление уже скачано. Перезапустить сейчас, чтобы подать заявку?</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Обновить</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit обновлён.</value>
@@ -2376,20 +2391,5 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>
-  </data>
-  <data name="update_title" xml:space="preserve">
-    <value>Обновить</value>
-  </data>
-  <data name="update_restart_prompt" xml:space="preserve">
-    <value>Обновление уже скачано. Перезапустить сейчас, чтобы подать заявку?</value>
-  </data>
-  <data name="update_check_failed" xml:space="preserve">
-    <value>Проверка обновления не прошла.</value>
-  </data>
-  <data name="update_checking" xml:space="preserve">
-    <value>Проверяю обновления...</value>
-  </data>
-  <data name="settings_update_mode" xml:space="preserve">
-    <value>Режим обновления</value>
   </data>
 </root>

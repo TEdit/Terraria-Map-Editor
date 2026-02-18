@@ -1125,6 +1125,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Scegli da quale canale di rilascio ricevere aggiornamenti (Stabile, Beta o Alpha)</value>
   </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Modalità Aggiornamento</value>
+  </data>
   <data name="settings_update_mode_desc" xml:space="preserve">
     <value>Controlla come TEdit controlla e applica gli aggiornamenti all'avvio</value>
     <comment>Description for the update mode setting</comment>
@@ -2221,9 +2224,21 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>È disponibile una nuova versione di TEdit.</value>
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Controllo aggiornamenti...</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>Controllo aggiornamento fallito.</value>
+  </data>
   <data name="update_downloaded_toast" xml:space="preserve">
     <value>Aggiornamento scaricato. Usa File &gt; Controlla se ci sono aggiornamenti per installare.</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>È stato scaricato un aggiornamento. Ricominciare ora per candidarsi?</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Aggiornamento</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit è aggiornato.</value>
@@ -2306,20 +2321,5 @@ Vuoi abilitare la segnalazione degli errori?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Correggere il gap di background</value>
-  </data>
-  <data name="update_title" xml:space="preserve">
-    <value>Aggiornamento</value>
-  </data>
-  <data name="update_restart_prompt" xml:space="preserve">
-    <value>È stato scaricato un aggiornamento. Ricominciare ora per candidarsi?</value>
-  </data>
-  <data name="update_check_failed" xml:space="preserve">
-    <value>Controllo aggiornamento fallito.</value>
-  </data>
-  <data name="update_checking" xml:space="preserve">
-    <value>Controllo aggiornamenti...</value>
-  </data>
-  <data name="settings_update_mode" xml:space="preserve">
-    <value>Modalità Aggiornamento</value>
   </data>
 </root>

@@ -1746,21 +1746,8 @@ Some tiles have UV coordinates that exceed their texture dimensions and require 
 
 ### Tile & Wall Rendering
 
-- `ref/Drawing/TileDrawing.cs` - Primary tile rendering
-- `ref/Drawing/TileDrawingBase.cs` - Base class for batch rendering
-- `ref/Drawing/WallDrawing.cs` - Wall rendering system
 - `src/TEdit/View/WorldRenderXna.xaml.cs` - TEdit implementation
 - `src/TEdit/Render/BlendRules.cs` - Neighbor blending rules
-
-### Background & Nature Rendering
-
-- `ref/Drawing/BackgroundGradientDrawer.cs` - Background gradient system
-- `ref/Drawing/NextHorizonRenderer.cs` - Horizon/sky rendering
-- `ref/Drawing/HorizonHelper.cs` - Sun/moon celestial rendering
-- `ref/Drawing/IHorizonRenderer.cs` - Horizon interface
-- `ref/Drawing/INatureRenderer.cs` - Nature rendering interface
-- `ref/Drawing/NextNatureRenderer.cs` - Modern nature renderer with shaders
-- `ref/Drawing/OriginalNatureRenderer.cs` - Legacy nature renderer
 
 ### Data Configuration
 

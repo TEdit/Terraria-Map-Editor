@@ -14,16 +14,16 @@ namespace TEdit5.Models
         /// <summary>
         /// World Name
         /// </summary>
-        [Reactive] public string Name { get; set; }
+        [Reactive] public string _name;
 
         /// <summary>
         /// FileInfo
         /// </summary>
-        [Reactive] public FileInfo FileInfo { get; set; }
+        [Reactive] public FileInfo _fileInfo;
 
         /// <summary>
         /// World Headers
         /// </summary>
-        [Reactive] public World world { get; set; }
+        [Reactive] public World _world;
     }
 }

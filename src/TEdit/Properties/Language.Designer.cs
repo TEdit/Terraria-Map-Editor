@@ -2312,6 +2312,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string player_editor_clear_slot {
+            get {
+                return ResourceManager.GetString("player_editor_clear_slot", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Banks.
         /// </summary>
         public static string player_editor_banks {

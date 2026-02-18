@@ -1195,6 +1195,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Wybierz, z którego kanału wydania chcesz otrzymywać aktualizacje (stabilny, beta lub alfa)</value>
   </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Tryb aktualizacji</value>
+  </data>
   <data name="settings_update_mode_desc" xml:space="preserve">
     <value>Kontroluje, jak TEdit sprawdza i stosuje aktualizacje przy starcie</value>
     <comment>Description for the update mode setting</comment>
@@ -2291,9 +2294,21 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Dostępna jest nowa wersja TEdit.</value>
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Sprawdzam aktualizacje...</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>Sprawdzenie aktualizacji nie powiodło się.</value>
+  </data>
   <data name="update_downloaded_toast" xml:space="preserve">
     <value>Aktualizacja pobrana. Użyj pliku &gt; Sprawdź aktualizacje do instalacji.</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>Aktualizacja została pobrana. Restartować teraz, żeby aplikować?</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Zaaktualizuj</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit jest aktualny.</value>
@@ -2376,20 +2391,5 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
-  </data>
-  <data name="update_title" xml:space="preserve">
-    <value>Zaaktualizuj</value>
-  </data>
-  <data name="update_restart_prompt" xml:space="preserve">
-    <value>Aktualizacja została pobrana. Restartować teraz, żeby aplikować?</value>
-  </data>
-  <data name="update_check_failed" xml:space="preserve">
-    <value>Sprawdzenie aktualizacji nie powiodło się.</value>
-  </data>
-  <data name="update_checking" xml:space="preserve">
-    <value>Sprawdzam aktualizacje...</value>
-  </data>
-  <data name="settings_update_mode" xml:space="preserve">
-    <value>Tryb aktualizacji</value>
   </data>
 </root>

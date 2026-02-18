@@ -823,7 +823,8 @@ public partial class WorldRenderXna : UserControl
         {
             if (item.Id <= 0) continue;
 
-            var texture = _textureDictionary.GetItem(item.Id);
+            var textureId = item.TextureId ?? item.Id;
+            var texture = _textureDictionary.GetItem(textureId);
             if (texture == null || texture == _textureDictionary.DefaultTexture)
                 continue;
 
@@ -1114,6 +1115,7 @@ public partial class WorldRenderXna : UserControl
             _wvm.InitSpriteViews();
             GenerateStylePreviews();
             ViewModelLocator.PlayerEditorViewModel.BakeSkinVariantPreviews();
+            ViewModelLocator.PlayerEditorViewModel.BakeHairStylePreviews();
         });
 
         // Generate item previews in batches on the graphics thread
@@ -1135,7 +1137,8 @@ public partial class WorldRenderXna : UserControl
                     const int PreviewSize = 24;
                     foreach (var item in batch)
                     {
-                        var texture = _textureDictionary.GetItem(item.Id);
+                        var textureId = item.TextureId ?? item.Id;
+                        var texture = _textureDictionary.GetItem(textureId);
                         bool success = texture != null && texture != _textureDictionary.DefaultTexture;
 
                         if (success)
@@ -2736,10 +2739,10 @@ public partial class WorldRenderXna : UserControl
                         bool isWomannequin = frameIndex % 2 != 0;
                         SpriteEffects dollEffect = isWomannequin ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-                        // Draw body underneath armor
-                        int skinVariant = isWomannequin ? 11 : 10;
-                        bool isFemale = isWomannequin;
-                        DrawDollBody(x, y, skinVariant, isFemale, te.Pose, dollEffect);
+                        // TODO: DrawDollBody disabled — equipment doesn't follow pose yet
+                        // int skinVariant = isWomannequin ? 11 : 10;
+                        // bool isFemale = isWomannequin;
+                        // DrawDollBody(x, y, skinVariant, isFemale, te.Pose, dollEffect);
 
                         // Render head (Items[0])
                         var headItem = te.Items.Count > 0 ? te.Items[0] : null;
@@ -2820,6 +2823,15 @@ public partial class WorldRenderXna : UserControl
                                 }
                             }
                         }
+
+                        // TODO: Accessory rendering disabled — needs frame offset work
+                        // for (int accIdx = 3; accIdx <= 7 && accIdx < te.Items.Count; accIdx++)
+                        // {
+                        //     var accItem = te.Items[accIdx];
+                        //     if (accItem == null || accItem.Id <= 0 || accItem.StackSize <= 0) continue;
+                        //     if (!WorldConfiguration.ItemLookupTable.TryGetValue(accItem.Id, out var accProps)) continue;
+                        //     DrawDollAccessory(x, y, accProps, dollEffect);
+                        // }
 
                         // Render weapon from Misc[0] if present (item icon is correct for weapons)
                         if (te.Misc != null && te.Misc.Count > 0)
@@ -3261,6 +3273,45 @@ public partial class WorldRenderXna : UserControl
         dest.Y += (int)(yPixelOffset * _zoom / 16f);
 
         return dest;
+    }
+
+    /// <summary>
+    /// Draws an accessory texture on a display doll, checking which slot type the item fills.
+    /// </summary>
+    private void DrawDollAccessory(int tileX, int tileY, ItemProperty props, SpriteEffects effect)
+    {
+        Texture2D tex = null;
+
+        // Try each slot type, render the first one found
+        if (props.WingSlot.HasValue)
+            tex = _textureDictionary.GetAccWings(props.WingSlot.Value);
+        else if (props.BackSlot.HasValue)
+            tex = _textureDictionary.GetAccBack(props.BackSlot.Value);
+        else if (props.BalloonSlot.HasValue)
+            tex = _textureDictionary.GetAccBalloon(props.BalloonSlot.Value);
+        else if (props.ShoeSlot.HasValue)
+            tex = _textureDictionary.GetAccShoes(props.ShoeSlot.Value);
+        else if (props.WaistSlot.HasValue)
+            tex = _textureDictionary.GetAccWaist(props.WaistSlot.Value);
+        else if (props.NeckSlot.HasValue)
+            tex = _textureDictionary.GetAccNeck(props.NeckSlot.Value);
+        else if (props.FaceSlot.HasValue)
+            tex = _textureDictionary.GetAccFace(props.FaceSlot.Value);
+        else if (props.ShieldSlot.HasValue)
+            tex = _textureDictionary.GetAccShield(props.ShieldSlot.Value);
+        else if (props.HandOnSlot.HasValue)
+            tex = _textureDictionary.GetAccHandsOn(props.HandOnSlot.Value);
+        else if (props.HandOffSlot.HasValue)
+            tex = _textureDictionary.GetAccHandsOff(props.HandOffSlot.Value);
+        else if (props.FrontSlot.HasValue)
+            tex = _textureDictionary.GetAccFront(props.FrontSlot.Value);
+
+        if (tex == null || tex == _textureDictionary.DefaultTexture) return;
+
+        // Draw using same source rect / positioning as armor overlays
+        var source = new Rectangle(0, 0, Math.Min(tex.Width, DollFrameWidth), Math.Min(tex.Height, DollFrameHeight));
+        var dest = GetDollBodyDest(tileX, tileY, source.Width, source.Height, 0);
+        _spriteBatch.Draw(tex, dest, source, Color.White, 0f, default, effect, LayerTileTrack);
     }
 
     private void DrawGrid()

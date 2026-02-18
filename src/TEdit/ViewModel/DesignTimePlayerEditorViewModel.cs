@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Terraria.Player;
@@ -14,6 +15,7 @@ public class DesignTimePlayerEditorViewModel
 {
     public PlayerCharacter? Player { get; }
     public string? PlayerFilePath { get; }
+    public string? PlayerFileDisplayName => Path.GetFileNameWithoutExtension(PlayerFilePath);
     public int SelectedSubTabIndex { get; }
     public string StatusText { get; }
     public WriteableBitmap? PlayerPreview { get; }

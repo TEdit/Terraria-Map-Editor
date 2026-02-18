@@ -23,6 +23,7 @@
                     <ColumnDefinition Width="22" />
                     <ColumnDefinition Width="22" />
                     <ColumnDefinition Width="22" />
+                    <ColumnDefinition Width="22" />
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0"
                        Source="{Binding NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
@@ -42,6 +43,10 @@
                 <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
                         Command="{Binding DataContext.PlayerItemSetToMaxStackCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=InventoryList}">
                     <ui:SymbolIcon Symbol="ArrowMaximize20" FontSize="14"/>
+                </Button>
+                <Button Grid.Column="7" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_clear_slot}"
+                        Command="{Binding DataContext.ClearPlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding SelectedItems, ElementName=InventoryList}">
+                    <ui:SymbolIcon Symbol="Delete20" FontSize="14"/>
                 </Button>
             </Grid>
         </DataTemplate>

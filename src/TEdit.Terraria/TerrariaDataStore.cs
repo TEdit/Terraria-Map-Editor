@@ -57,6 +57,9 @@ public class TerrariaDataStore
     public Dictionary<int, ItemProperty> RackableItems { get; } = new();
     public Dictionary<int, string> TallyNames { get; } = new();
 
+    // Dye color lookup (item ID → static tint color)
+    public Dictionary<int, DyeProperty> DyeColorById { get; } = new();
+
     // Localization
     public DataModel.LocalizationData? Localization { get; private set; }
     public string CurrentLocale { get; private set; } = "en-US";
@@ -227,6 +230,14 @@ public class TerrariaDataStore
         }
         catch (FileNotFoundException) { }
 
+        // Load dye color data
+        try
+        {
+            var dyes = JsonDataLoader.LoadListFromResource<DyeProperty>("dyes.json", dataPath);
+            PopulateDyes(dyes);
+        }
+        catch (FileNotFoundException) { }
+
         ResolveRarityColors();
         RebuildFrameImportant();
     }
@@ -312,6 +323,13 @@ public class TerrariaDataStore
             if (item.IsMount) MountItems[item.Id] = item;
             if (item.Name.Contains("Dye")) DyeItems[item.Id] = item;
         }
+    }
+
+    internal void PopulateDyes(List<DyeProperty> dyes)
+    {
+        DyeColorById.Clear();
+        foreach (var dye in dyes)
+            DyeColorById[dye.ItemId] = dye;
     }
 
     internal void PopulateNpcs(List<NpcData> npcs)

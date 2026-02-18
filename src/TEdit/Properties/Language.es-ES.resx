@@ -1195,6 +1195,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Elige de qué canal de lanzamiento deseas recibir actualizaciones (Estable, Beta o Alfa)</value>
   </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Modo de actualización</value>
+  </data>
   <data name="settings_update_mode_desc" xml:space="preserve">
     <value>Controla cómo TEdit comprueba y aplica actualizaciones al arrancar</value>
     <comment>Description for the update mode setting</comment>
@@ -2291,9 +2294,21 @@ Qué NO se recopila:
     <value>Está disponible una nueva versión de TEdit.</value>
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Comprobando novedades...</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>La comprobación de actualización falló.</value>
+  </data>
   <data name="update_downloaded_toast" xml:space="preserve">
     <value>Actualización descargada. Usa el archivo &gt; comprueba las actualizaciones para instalar.</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>Se ha descargado una actualización. ¿Reiniciar ahora para solicitar?</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Actualizar</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit está actualizado.</value>
@@ -2376,20 +2391,5 @@ Qué NO se recopila:
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar fondo</value>
-  </data>
-  <data name="update_title" xml:space="preserve">
-    <value>Actualizar</value>
-  </data>
-  <data name="update_restart_prompt" xml:space="preserve">
-    <value>Se ha descargado una actualización. ¿Reiniciar ahora para solicitar?</value>
-  </data>
-  <data name="update_check_failed" xml:space="preserve">
-    <value>La comprobación de actualización falló.</value>
-  </data>
-  <data name="update_checking" xml:space="preserve">
-    <value>Comprobando novedades...</value>
-  </data>
-  <data name="settings_update_mode" xml:space="preserve">
-    <value>Modo de actualización</value>
   </data>
 </root>

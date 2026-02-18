@@ -1195,6 +1195,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Choose which release channel to receive updates from (Stable, Beta, or Alpha)</value>
   </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Update Mode</value>
+  </data>
   <data name="settings_update_mode_desc" xml:space="preserve">
     <value>Controls how TEdit checks for and applies updates on startup</value>
     <comment>Description for the update mode setting</comment>
@@ -2294,9 +2297,21 @@ Would you like to enable error reporting?</value>
     <value>A new version of TEdit is available.</value>
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Checking for updates...</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>Update check failed.</value>
+  </data>
   <data name="update_downloaded_toast" xml:space="preserve">
     <value>Update downloaded. Use File &gt; Check for Updates to install.</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>An update has been downloaded. Restart now to apply?</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Update</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit is up to date.</value>
@@ -2380,4 +2395,4 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-<data name="update_title" xml:space="preserve"><value>Update</value></data><data name="update_restart_prompt" xml:space="preserve"><value>An update has been downloaded. Restart now to apply?</value></data><data name="update_check_failed" xml:space="preserve"><value>Update check failed.</value></data><data name="update_checking" xml:space="preserve"><value>Checking for updates...</value></data><data name="settings_update_mode" xml:space="preserve"><value>Update Mode</value></data></root>
+</root>

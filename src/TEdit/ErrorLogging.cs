@@ -1,4 +1,5 @@
 ﻿using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.Extensibility;
 using System;
 using System.Diagnostics;
@@ -156,18 +157,20 @@ public static class ErrorLogging
     {
         var config = new TelemetryConfiguration();
         config.ConnectionString = TelemetryConnectionString;
-        config.TelemetryChannel = new Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel();
+        config.TelemetryChannel = new Microsoft.ApplicationInsights.Channel.InMemoryChannel();
         config.TelemetryChannel.DeveloperMode = Debugger.IsAttached;
 #if DEBUG
         config.TelemetryChannel.DeveloperMode = true;
 #endif
+        // Disable all auto-collection modules — only send explicit TrackException calls
+        config.DisableTelemetry = false;
+
         TelemetryClient client = new TelemetryClient(config);
         client.Context.Component.Version = Assembly.GetEntryAssembly().GetName().Version.ToString();
         client.Context.Session.Id = Guid.NewGuid().ToString();
         client.Context.User.Id = "TEdit";
         client.Context.Cloud.RoleInstance = "TEdit-Wpf";
         client.Context.GlobalProperties["Version"] = App.Version.ToString();
-        // client.Context.Device.Model
         client.Context.Device.OperatingSystem = Environment.OSVersion.ToString();
         return client;
     }

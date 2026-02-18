@@ -74,113 +74,138 @@ namespace SettingsFileUpdater
             // Use TEditJsonSerializer.DefaultOptions for consistent formatting
             var jsonOptions = TEditJsonSerializer.DefaultOptions;
 
-            // Extract all data from Terraria
+            // Check for --items-only flag to only extract and merge items
+            bool itemsOnly = args.Any(a => a.Equals("--items-only", StringComparison.OrdinalIgnoreCase));
+
+            // Extract data from Terraria
             Console.WriteLine("Extracting data from Terraria...");
-            var tiles = wrapper.GetTilesJson();
-            var walls = wrapper.GetWallsJson();
             var items = wrapper.GetItemsJson();
-            var npcs = wrapper.GetNpcsJson();
-            var prefixes = wrapper.GetPrefixesJson();
-            var paints = wrapper.GetPaintsJson();
-            var globalColors = wrapper.GetGlobalColorsJson();
-            var bestiaryConfig = wrapper.GetBestiaryConfigJson();
-            var versionData = wrapper.GetVersionData();
-            Console.WriteLine("  Extraction complete.");
 
-            // Write raw extractor output to .generated/ for review
-            string generatedDir = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\SettingsFileUpdater\.generated"));
-            Directory.CreateDirectory(generatedDir);
-            Console.WriteLine($"\nWriting raw extractor output to: {generatedDir}");
-            WriteJson(Path.Combine(generatedDir, "tiles.json"), tiles, jsonOptions);
-            WriteJson(Path.Combine(generatedDir, "walls.json"), walls, jsonOptions);
-            WriteJson(Path.Combine(generatedDir, "items.json"), items, jsonOptions);
-            WriteJson(Path.Combine(generatedDir, "npcs.json"), npcs, jsonOptions);
-            WriteJson(Path.Combine(generatedDir, "prefixes.json"), prefixes, jsonOptions);
-            WriteJson(Path.Combine(generatedDir, "paints.json"), paints, jsonOptions);
-            WriteJson(Path.Combine(generatedDir, "globalColors.json"), globalColors, jsonOptions);
-            WriteJson(Path.Combine(generatedDir, "bestiaryNpcs.json"), bestiaryConfig, jsonOptions);
-            WriteJson(Path.Combine(generatedDir, "versionData.json"), versionData, jsonOptions);
-            Console.WriteLine("  Raw output written.");
-
-            // Merge into existing JSON files (append-only, preserves hand-curated data)
-            Console.WriteLine($"\nMerging into: {jsonOutputDir}");
-            var results = new Dictionary<string, MergeResult>();
-
-            Console.WriteLine("  Merging tiles.json...");
-            results["Tiles"] = JsonMerger.MergeById(
-                Path.Combine(jsonOutputDir, "tiles.json"), tiles, t => t.Id, jsonOptions);
-
-            Console.WriteLine("  Merging walls.json...");
-            results["Walls"] = JsonMerger.MergeById(
-                Path.Combine(jsonOutputDir, "walls.json"), walls, w => w.Id, jsonOptions);
-
-            Console.WriteLine("  Merging items.json (with property updates)...");
-            results["Items"] = JsonMerger.MergeByIdWithPropertyUpdate(
-                Path.Combine(jsonOutputDir, "items.json"), items, i => i.Id, jsonOptions);
-
-            Console.WriteLine("  Merging npcs.json...");
-            results["NPCs"] = JsonMerger.MergeById(
-                Path.Combine(jsonOutputDir, "npcs.json"), npcs, n => n.Id, jsonOptions);
-
-            Console.WriteLine("  Merging prefixes.json...");
-            results["Prefixes"] = JsonMerger.MergeById(
-                Path.Combine(jsonOutputDir, "prefixes.json"), prefixes, p => p.Id, jsonOptions);
-
-            Console.WriteLine("  Merging paints.json...");
-            results["Paints"] = JsonMerger.MergeById(
-                Path.Combine(jsonOutputDir, "paints.json"), paints, p => p.Id, jsonOptions);
-
-            Console.WriteLine("  Merging globalColors.json...");
-            results["GlobalColors"] = JsonMerger.MergeByName(
-                Path.Combine(jsonOutputDir, "globalColors.json"), globalColors, c => c.Name, jsonOptions);
-
-            Console.WriteLine("  Merging bestiaryNpcs.json...");
-            results["Bestiary"] = JsonMerger.MergeBestiary(
-                Path.Combine(jsonOutputDir, "bestiaryNpcs.json"),
-                bestiaryConfig,
-                bestiaryConfig.NpcData.Cast<object>().ToList(),
-                o => ((NpcData)o).Id,
-                jsonOptions);
-
-            // Auto-update version data
-            Console.WriteLine("\nChecking version data...");
-
-            string versionsJsonPath = Path.Combine(jsonOutputDir, "versions.json");
-            string docsVersionPath = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\..\..\docs\TerrariaVersionTileData.json"));
-
-            bool versionsUpdated = JsonMerger.MergeVersionData(
-                versionsJsonPath, versionData, jsonOptions);
-            Console.WriteLine(versionsUpdated
-                ? $"  Added save version {versionData.SaveVersion} ({versionData.GameVersion}) to versions.json"
-                : $"  versions.json already has save version {versionData.SaveVersion}");
-
-            if (File.Exists(docsVersionPath))
+            if (!itemsOnly)
             {
-                bool docsUpdated = JsonMerger.MergeVersionData(
-                    docsVersionPath, versionData, jsonOptions);
-                Console.WriteLine(docsUpdated
-                    ? $"  Added save version {versionData.SaveVersion} to docs/TerrariaVersionTileData.json"
-                    : $"  docs/TerrariaVersionTileData.json already has save version {versionData.SaveVersion}");
-            }
+                var tiles = wrapper.GetTilesJson();
+                var walls = wrapper.GetWallsJson();
+                var npcs = wrapper.GetNpcsJson();
+                var prefixes = wrapper.GetPrefixesJson();
+                var paints = wrapper.GetPaintsJson();
+                var globalColors = wrapper.GetGlobalColorsJson();
+                var bestiaryConfig = wrapper.GetBestiaryConfigJson();
+                var versionData = wrapper.GetVersionData();
+                Console.WriteLine("  Extraction complete.");
 
-            // Write MapColorsUpdated.xml next to the exe.
-            string outPath = Path.Combine(savePath, "MapColorsUpdated.xml");
-            string originalPath = Path.Combine(exeDir, "MapColors.xml");
-            if (!File.Exists(originalPath))
-            {
-                originalPath = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\TEdit\MapColors.xml"));
-            }
-            wrapper.WriteMapColorsXml(outPath, File.Exists(originalPath) ? originalPath : null);
-            Console.WriteLine($"Wrote: {outPath}");
+                // Write raw extractor output to .generated/ for review
+                string generatedDir = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\SettingsFileUpdater\.generated"));
+                Directory.CreateDirectory(generatedDir);
+                Console.WriteLine($"\nWriting raw extractor output to: {generatedDir}");
+                WriteJson(Path.Combine(generatedDir, "tiles.json"), tiles, jsonOptions);
+                WriteJson(Path.Combine(generatedDir, "walls.json"), walls, jsonOptions);
+                WriteJson(Path.Combine(generatedDir, "items.json"), items, jsonOptions);
+                WriteJson(Path.Combine(generatedDir, "npcs.json"), npcs, jsonOptions);
+                WriteJson(Path.Combine(generatedDir, "prefixes.json"), prefixes, jsonOptions);
+                WriteJson(Path.Combine(generatedDir, "paints.json"), paints, jsonOptions);
+                WriteJson(Path.Combine(generatedDir, "globalColors.json"), globalColors, jsonOptions);
+                WriteJson(Path.Combine(generatedDir, "bestiaryNpcs.json"), bestiaryConfig, jsonOptions);
+                WriteJson(Path.Combine(generatedDir, "versionData.json"), versionData, jsonOptions);
+                Console.WriteLine("  Raw output written.");
 
-            // Print merge summary
-            Console.WriteLine("\n=== MERGE SUMMARY ===");
-            foreach (var kvp in results)
-            {
-                var r = kvp.Value;
-                Console.WriteLine($"  {kvp.Key,-14} {r}");
+                // Merge into existing JSON files (append-only, preserves hand-curated data)
+                Console.WriteLine($"\nMerging into: {jsonOutputDir}");
+                var results = new Dictionary<string, MergeResult>();
+
+                Console.WriteLine("  Merging tiles.json...");
+                results["Tiles"] = JsonMerger.MergeById(
+                    Path.Combine(jsonOutputDir, "tiles.json"), tiles, t => t.Id, jsonOptions);
+
+                Console.WriteLine("  Merging walls.json...");
+                results["Walls"] = JsonMerger.MergeById(
+                    Path.Combine(jsonOutputDir, "walls.json"), walls, w => w.Id, jsonOptions);
+
+                Console.WriteLine("  Merging items.json (with property updates)...");
+                results["Items"] = JsonMerger.MergeByIdWithPropertyUpdate(
+                    Path.Combine(jsonOutputDir, "items.json"), items, i => i.Id, jsonOptions);
+
+                Console.WriteLine("  Merging npcs.json...");
+                results["NPCs"] = JsonMerger.MergeById(
+                    Path.Combine(jsonOutputDir, "npcs.json"), npcs, n => n.Id, jsonOptions);
+
+                Console.WriteLine("  Merging prefixes.json...");
+                results["Prefixes"] = JsonMerger.MergeById(
+                    Path.Combine(jsonOutputDir, "prefixes.json"), prefixes, p => p.Id, jsonOptions);
+
+                Console.WriteLine("  Merging paints.json...");
+                results["Paints"] = JsonMerger.MergeById(
+                    Path.Combine(jsonOutputDir, "paints.json"), paints, p => p.Id, jsonOptions);
+
+                Console.WriteLine("  Merging globalColors.json...");
+                results["GlobalColors"] = JsonMerger.MergeByName(
+                    Path.Combine(jsonOutputDir, "globalColors.json"), globalColors, c => c.Name, jsonOptions);
+
+                Console.WriteLine("  Merging bestiaryNpcs.json...");
+                results["Bestiary"] = JsonMerger.MergeBestiary(
+                    Path.Combine(jsonOutputDir, "bestiaryNpcs.json"),
+                    bestiaryConfig,
+                    bestiaryConfig.NpcData.Cast<object>().ToList(),
+                    o => ((NpcData)o).Id,
+                    jsonOptions);
+
+                // Auto-update version data
+                Console.WriteLine("\nChecking version data...");
+
+                string versionsJsonPath = Path.Combine(jsonOutputDir, "versions.json");
+                string docsVersionPath = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\..\..\docs\TerrariaVersionTileData.json"));
+
+                bool versionsUpdated = JsonMerger.MergeVersionData(
+                    versionsJsonPath, versionData, jsonOptions);
+                Console.WriteLine(versionsUpdated
+                    ? $"  Added save version {versionData.SaveVersion} ({versionData.GameVersion}) to versions.json"
+                    : $"  versions.json already has save version {versionData.SaveVersion}");
+
+                if (File.Exists(docsVersionPath))
+                {
+                    bool docsUpdated = JsonMerger.MergeVersionData(
+                        docsVersionPath, versionData, jsonOptions);
+                    Console.WriteLine(docsUpdated
+                        ? $"  Added save version {versionData.SaveVersion} to docs/TerrariaVersionTileData.json"
+                        : $"  docs/TerrariaVersionTileData.json already has save version {versionData.SaveVersion}");
+                }
+
+                // Write MapColorsUpdated.xml next to the exe.
+                string outPath = Path.Combine(savePath, "MapColorsUpdated.xml");
+                string originalPath = Path.Combine(exeDir, "MapColors.xml");
+                if (!File.Exists(originalPath))
+                {
+                    originalPath = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\TEdit\MapColors.xml"));
+                }
+                wrapper.WriteMapColorsXml(outPath, File.Exists(originalPath) ? originalPath : null);
+                Console.WriteLine($"Wrote: {outPath}");
+
+                // Print merge summary
+                Console.WriteLine("\n=== MERGE SUMMARY ===");
+                foreach (var kvp in results)
+                {
+                    var r = kvp.Value;
+                    Console.WriteLine($"  {kvp.Key,-14} {r}");
+                }
+                Console.WriteLine($"  {"Version",-14} save={versionData.SaveVersion} game={versionData.GameVersion}");
             }
-            Console.WriteLine($"  {"Version",-14} save={versionData.SaveVersion} game={versionData.GameVersion}");
+            else
+            {
+                Console.WriteLine("  Extraction complete (items only).");
+
+                // Write raw items output to .generated/ for review
+                string generatedDir = Path.GetFullPath(Path.Combine(exeDir, @"..\..\..\..\SettingsFileUpdater\.generated"));
+                Directory.CreateDirectory(generatedDir);
+                WriteJson(Path.Combine(generatedDir, "items.json"), items, jsonOptions);
+                Console.WriteLine($"  Wrote raw items to: {generatedDir}");
+
+                // Merge items only
+                Console.WriteLine($"\nMerging items.json into: {jsonOutputDir}");
+                var result = JsonMerger.MergeByIdWithPropertyUpdate(
+                    Path.Combine(jsonOutputDir, "items.json"), items, i => i.Id, jsonOptions);
+
+                Console.WriteLine($"\n=== MERGE SUMMARY ===");
+                Console.WriteLine($"  {"Items",-14} {result}");
+            }
 
             // Proper shutdown
             Console.WriteLine("\nMerge complete. Shutting down...");

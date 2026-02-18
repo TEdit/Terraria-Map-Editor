@@ -1195,6 +1195,9 @@
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>اختر قناة الإصدار التي ترغب في تلقي التحديثات منها (مستقرة، بيتا، أو ألفا)</value>
   </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>وضع التحديث</value>
+  </data>
   <data name="settings_update_mode_desc" xml:space="preserve">
     <value>يتحكم في كيفية تحقق TEdit من التحديثات وتطبيقها عند بدء التشغيل</value>
     <comment>Description for the update mode setting</comment>
@@ -2291,9 +2294,21 @@
     <value>يتوفر إصدار جديد من TEdit.</value>
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>أتحقق من التحديثات...</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>فشل فحص التحديث.</value>
+  </data>
   <data name="update_downloaded_toast" xml:space="preserve">
     <value>تم تحميل التحديث. استخدم &gt; الملف للتحقق من وجود تحديثات لتثبيتها.</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>تم تحميل تحديث. هل أعيد التشغيل الآن للتقديم؟</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>تحديث</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit محدث.</value>
@@ -2376,20 +2391,5 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
-  </data>
-  <data name="update_title" xml:space="preserve">
-    <value>تحديث</value>
-  </data>
-  <data name="update_restart_prompt" xml:space="preserve">
-    <value>تم تحميل تحديث. هل أعيد التشغيل الآن للتقديم؟</value>
-  </data>
-  <data name="update_check_failed" xml:space="preserve">
-    <value>فشل فحص التحديث.</value>
-  </data>
-  <data name="update_checking" xml:space="preserve">
-    <value>أتحقق من التحديثات...</value>
-  </data>
-  <data name="settings_update_mode" xml:space="preserve">
-    <value>وضع التحديث</value>
   </data>
 </root>

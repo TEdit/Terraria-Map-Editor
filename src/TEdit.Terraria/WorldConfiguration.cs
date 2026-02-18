@@ -584,6 +584,8 @@ public class WorldConfiguration
         get { return _itemLookup; }
     }
 
+    public static Dictionary<int, DyeProperty> DyeColorById => TerrariaDataStore.Instance.DyeColorById;
+
     public static ObservableCollection<SpriteSheet> Sprites2 { get; } = new ObservableCollection<SpriteSheet>();
 
     /// <summary>

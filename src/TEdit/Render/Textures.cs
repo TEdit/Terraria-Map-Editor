@@ -55,6 +55,19 @@ public class Textures
     public Dictionary<int, Texture2D> Item { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<string, Texture2D> PlayerBody { get; } = new Dictionary<string, Texture2D>();
     public Dictionary<int, Texture2D> PlayerHair { get; } = new Dictionary<int, Texture2D>();
+
+    // Accessory texture dictionaries
+    public Dictionary<int, Texture2D> AccWings { get; } = new();
+    public Dictionary<int, Texture2D> AccBack { get; } = new();
+    public Dictionary<int, Texture2D> AccBalloon { get; } = new();
+    public Dictionary<int, Texture2D> AccShoes { get; } = new();
+    public Dictionary<int, Texture2D> AccWaist { get; } = new();
+    public Dictionary<int, Texture2D> AccNeck { get; } = new();
+    public Dictionary<int, Texture2D> AccFace { get; } = new();
+    public Dictionary<int, Texture2D> AccShield { get; } = new();
+    public Dictionary<int, Texture2D> AccHandsOn { get; } = new();
+    public Dictionary<int, Texture2D> AccHandsOff { get; } = new();
+    public Dictionary<int, Texture2D> AccFront { get; } = new();
     public Texture2D Actuator { get { return _actuator ??= (Texture2D)GetMisc("Actuator"); } }
 
     public ContentManager ContentManager { get; }
@@ -204,6 +217,19 @@ public class Textures
     public Texture GetArmorFemale(int num) => GetTextureById(ArmorFemale, num, "Images\\Armor\\Armor_Female_{0}");
 
     public Texture GetArmorLegs(int num) => GetTextureById(ArmorLegs, num, "Images\\Armor_Legs_{0}");
+
+    // Accessory texture getters
+    public Texture2D GetAccWings(int num) => GetTextureById(AccWings, num, "Images\\Wings_{0}");
+    public Texture2D GetAccBack(int num) => GetTextureById(AccBack, num, "Images\\Acc_Back_{0}");
+    public Texture2D GetAccBalloon(int num) => GetTextureById(AccBalloon, num, "Images\\Acc_Balloon_{0}");
+    public Texture2D GetAccShoes(int num) => GetTextureById(AccShoes, num, "Images\\Acc_Shoes_{0}");
+    public Texture2D GetAccWaist(int num) => GetTextureById(AccWaist, num, "Images\\Acc_Waist_{0}");
+    public Texture2D GetAccNeck(int num) => GetTextureById(AccNeck, num, "Images\\Acc_Neck_{0}");
+    public Texture2D GetAccFace(int num) => GetTextureById(AccFace, num, "Images\\Acc_Face_{0}");
+    public Texture2D GetAccShield(int num) => GetTextureById(AccShield, num, "Images\\Acc_Shield_{0}");
+    public Texture2D GetAccHandsOn(int num) => GetTextureById(AccHandsOn, num, "Images\\Acc_HandsOn_{0}");
+    public Texture2D GetAccHandsOff(int num) => GetTextureById(AccHandsOff, num, "Images\\Acc_HandsOff_{0}");
+    public Texture2D GetAccFront(int num) => GetTextureById(AccFront, num, "Images\\Acc_Front_{0}");
 
     public Texture2D GetItem(int num) => GetTextureById(Item, num, "Images\\Item_{0}");
 

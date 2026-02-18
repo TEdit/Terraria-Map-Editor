@@ -1,6 +1,6 @@
 # Player Preview Renderer - Technical Reference
 
-This document describes how TEdit renders player character previews, based on analysis of decompiled Terraria 1.4.5.4 source code and the TEdit implementation in `src/TEdit/Render/PlayerPreviewRenderer.cs`.
+This document describes how TEdit renders player character previews, based on analysis of Terraria 1.4.5.4 and the TEdit implementation in `src/TEdit/Render/PlayerPreviewRenderer.cs`.
 
 ## Texture Assets
 
@@ -408,12 +408,3 @@ From `PlayerAppearance.cs`:
 | `src/TEdit/ViewModel/SkinVariantOption.cs` | Model for skin variant ComboBox items |
 | `src/TEdit/View/Sidebar/PlayerEditorView.xaml` | UI with preview image and skin variant selector |
 
-## Terraria Reference Source Files
-
-| File | Purpose |
-|------|---------|
-| `ref/Renderers/LegacyPlayerRenderer.cs` | Decompiled draw orchestrator |
-| `terraria-server-dasm/.../PlayerDrawLayers.cs` | 65 draw layer methods including composite variants |
-| `terraria-server-dasm/.../PlayerDrawSet.cs` | Draw data struct with `CreateCompositeData()` |
-| `terraria-server-dasm/.../PlayerDataInitializer.cs` | Texture loading with `CopyVariant`/`LoadVariant` |
-| `terraria-server-dasm/.../PlayerVariantID.cs` | Variant IDs and gender sets |

@@ -1195,6 +1195,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_update_channel_desc" xml:space="preserve">
     <value>Wählen Sie, von welchem Release-Kanal Sie Updates erhalten möchten (Stabil, Beta oder Alpha)</value>
   </data>
+  <data name="settings_update_mode" xml:space="preserve">
+    <value>Update-Modus</value>
+  </data>
   <data name="settings_update_mode_desc" xml:space="preserve">
     <value>Kontrolliert, wie TEdit beim Start nach Updates sucht und anwendet.</value>
     <comment>Description for the update mode setting</comment>
@@ -2291,9 +2294,21 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
     <value>Eine neue Version von TEdit ist verfügbar.</value>
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
+  <data name="update_checking" xml:space="preserve">
+    <value>Ich suche nach Neuigkeiten...</value>
+  </data>
+  <data name="update_check_failed" xml:space="preserve">
+    <value>Update-Check fehlgeschlagen.</value>
+  </data>
   <data name="update_downloaded_toast" xml:space="preserve">
     <value>Update heruntergeladen. Verwenden Sie Datei&gt; prüfen Sie, ob Updates installiert werden sollen.</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
+  </data>
+  <data name="update_restart_prompt" xml:space="preserve">
+    <value>Ein Update wurde heruntergeladen. Jetzt neu starten, um sich zu bewerben?</value>
+  </data>
+  <data name="update_title" xml:space="preserve">
+    <value>Aktualisieren</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit ist auf dem neuesten Stand.</value>
@@ -2376,20 +2391,5 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>
-  </data>
-  <data name="update_title" xml:space="preserve">
-    <value>Aktualisieren</value>
-  </data>
-  <data name="update_restart_prompt" xml:space="preserve">
-    <value>Ein Update wurde heruntergeladen. Jetzt neu starten, um sich zu bewerben?</value>
-  </data>
-  <data name="update_check_failed" xml:space="preserve">
-    <value>Update-Check fehlgeschlagen.</value>
-  </data>
-  <data name="update_checking" xml:space="preserve">
-    <value>Ich suche nach Neuigkeiten...</value>
-  </data>
-  <data name="settings_update_mode" xml:space="preserve">
-    <value>Update-Modus</value>
   </data>
 </root>
