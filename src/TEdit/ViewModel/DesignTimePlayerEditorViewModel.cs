@@ -36,6 +36,9 @@ public class DesignTimePlayerEditorViewModel
     public List<SkinVariantOption>? SkinVariantOptions { get; }
     public SkinVariantOption? SelectedSkinVariant { get; }
 
+    public List<HairStyleOption>? HairStyleOptions { get; }
+    public HairStyleOption? SelectedHairStyle { get; }
+
     public DesignTimePlayerEditorViewModel()
     {
         // Create sample player
@@ -91,6 +94,15 @@ public class DesignTimePlayerEditorViewModel
             new SkinVariantOption { Index = 2, Name = "Variant 2", Preview = null },
         };
         SelectedSkinVariant = SkinVariantOptions[0];
+
+        // Sample hair styles
+        HairStyleOptions = new List<HairStyleOption>
+        {
+            new HairStyleOption { Index = 0, Name = "Hair 0", Preview = null },
+            new HairStyleOption { Index = 1, Name = "Hair 1", Preview = null },
+            new HairStyleOption { Index = 2, Name = "Hair 2", Preview = null },
+        };
+        SelectedHairStyle = HairStyleOptions[0];
     }
 
     private WriteableBitmap CreatePlaceholderBitmap()

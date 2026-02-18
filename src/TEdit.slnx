@@ -13,7 +13,9 @@
   <Project Path="TEdit.Terraria.Tests/TEdit.Terraria.Tests.csproj" />
   <Project Path="TEdit.Tests/TEdit.Tests.csproj" />
   <Project Path="TEdit/TEdit.csproj" />
-  <Project Path="TEdit5/TEdit5.csproj" />
+  <Project Path="TEdit5/TEdit5.csproj">
+    <Build Project="false" />
+  </Project>
   <Properties Name="TestCaseManagementSettings" Scope="PostLoad">
     <Property Name="CategoryFile" Value="TEdit.vsmdi" />
   </Properties>
