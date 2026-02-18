@@ -1806,7 +1806,43 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_usetexturecolor", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Color Mode.
+        /// </summary>
+        public static string menu_layers_color_mode {
+            get {
+                return ResourceManager.GetString("menu_layers_color_mode", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Default Colors.
+        /// </summary>
+        public static string menu_layers_color_default {
+            get {
+                return ResourceManager.GetString("menu_layers_color_default", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Realistic Colors.
+        /// </summary>
+        public static string menu_layers_color_realistic {
+            get {
+                return ResourceManager.GetString("menu_layers_color_realistic", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Minimap Colors.
+        /// </summary>
+        public static string menu_layers_color_minimap {
+            get {
+                return ResourceManager.GetString("menu_layers_color_minimap", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Walls.
         /// </summary>
@@ -3039,7 +3075,25 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("settings_realistic_colors_desc", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Color Mode.
+        /// </summary>
+        public static string settings_color_mode {
+            get {
+                return ResourceManager.GetString("settings_color_mode", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel map color palette: Default, Realistic (texture-sampled), or Minimap (in-game map colors). Requires restart.
+        /// </summary>
+        public static string settings_color_mode_desc {
+            get {
+                return ResourceManager.GetString("settings_color_mode_desc", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>

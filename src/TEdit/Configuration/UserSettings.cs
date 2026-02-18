@@ -18,7 +18,7 @@ public class UserSettings : INotifyPropertyChanged
     private int _telemetry = -1;
     private float _textureVisibilityZoomLevel = 6f;
     private bool _showNews = true;
-    private bool _realisticColors = false;
+    private PixelMapColorMode _colorMode = PixelMapColorMode.Default;
     private int _spriteThumbnailSize = 64;
     private int _pickerHoldThresholdMs = 150;
     private string _telemetryDeclinedVersion = "";
@@ -79,10 +79,19 @@ public class UserSettings : INotifyPropertyChanged
         set => SetField(ref _showNews, value);
     }
 
+    [JsonConverter(typeof(PixelMapColorModeJsonConverter))]
+    public PixelMapColorMode ColorMode
+    {
+        get => _colorMode;
+        set => SetField(ref _colorMode, value);
+    }
+
+    /// <summary>Legacy property for backward compatibility. Maps to ColorMode.</summary>
+    [JsonIgnore]
     public bool RealisticColors
     {
-        get => _realisticColors;
-        set => SetField(ref _realisticColors, value);
+        get => _colorMode == PixelMapColorMode.Realistic;
+        set => ColorMode = value ? PixelMapColorMode.Realistic : PixelMapColorMode.Default;
     }
 
     public int SpriteThumbnailSize
@@ -260,6 +269,48 @@ public class UpdateModeJsonConverter : JsonConverter<UpdateMode>
     }
 
     public override void Write(Utf8JsonWriter writer, UpdateMode value, JsonSerializerOptions options)
+    {
+        writer.WriteStringValue(value.ToString());
+    }
+}
+
+/// <summary>
+/// Handles migration from the old bool RealisticColors to the new PixelMapColorMode enum.
+/// Supports string enum names, numbers, and bool (true → Realistic, false → Default).
+/// Also handles old "RealisticColors" key being deserialized as this property.
+/// </summary>
+public class PixelMapColorModeJsonConverter : JsonConverter<PixelMapColorMode>
+{
+    public override PixelMapColorMode Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        switch (reader.TokenType)
+        {
+            case JsonTokenType.String:
+                var value = reader.GetString();
+                if (Enum.TryParse<PixelMapColorMode>(value, ignoreCase: true, out var mode))
+                    return mode;
+                // Legacy: "true"/"false" as strings
+                if (bool.TryParse(value, out var boolVal))
+                    return boolVal ? PixelMapColorMode.Realistic : PixelMapColorMode.Default;
+                break;
+
+            case JsonTokenType.Number:
+                var intValue = reader.GetInt32();
+                if (Enum.IsDefined(typeof(PixelMapColorMode), intValue))
+                    return (PixelMapColorMode)intValue;
+                break;
+
+            case JsonTokenType.True:
+                return PixelMapColorMode.Realistic;
+
+            case JsonTokenType.False:
+                return PixelMapColorMode.Default;
+        }
+
+        return PixelMapColorMode.Default;
+    }
+
+    public override void Write(Utf8JsonWriter writer, PixelMapColorMode value, JsonSerializerOptions options)
     {
         writer.WriteStringValue(value.ToString());
     }

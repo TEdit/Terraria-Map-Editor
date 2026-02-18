@@ -225,12 +225,13 @@ public partial class SettingsViewModel
         // ── Rendering ──
         AllSettings.Add(new SettingItem
         {
-            Name = Language.settings_realistic_colors,
-            Description = Language.settings_realistic_colors_desc,
+            Name = Language.settings_color_mode,
+            Description = Language.settings_color_mode_desc,
             Category = Language.settings_category_rendering,
-            EditorType = SettingEditorType.CheckBox,
-            Getter = () => wvm.RealisticColors,
-            Setter = v => wvm.RealisticColors = (bool)v
+            EditorType = SettingEditorType.ComboBox,
+            Getter = () => wvm.ColorMode,
+            Setter = v => wvm.ColorMode = (PixelMapColorMode)v,
+            ComboBoxItems = Enum.GetValues<PixelMapColorMode>()
         });
 
         AllSettings.Add(new SettingItem

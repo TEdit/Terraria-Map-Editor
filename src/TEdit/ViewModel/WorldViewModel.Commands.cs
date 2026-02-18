@@ -670,6 +670,13 @@ public enum UpdateChannel
     Alpha
 }
 
+public enum PixelMapColorMode
+{
+    Default,
+    Realistic,
+    Minimap
+}
+
 public enum LanguageSelection
 {
     Automatic,

@@ -1519,13 +1519,13 @@ public partial class WorldViewModel : ReactiveObject
     [ReactiveCommand]
     private void ViewLog() => ErrorLogging.ViewLog();
 
-    public bool RealisticColors
+    public PixelMapColorMode ColorMode
     {
-        get { return UserSettingsService.Current.RealisticColors; }
+        get => UserSettingsService.Current.ColorMode;
         set
         {
-            this.RaisePropertyChanged(nameof(RealisticColors));
-            UserSettingsService.Current.RealisticColors = value;
+            UserSettingsService.Current.ColorMode = value;
+            this.RaisePropertyChanged(nameof(ColorMode));
             _ = App.DialogService.ShowAlertAsync(
                 Properties.Language.messagebox_restartrequired,
                 Properties.Language.messagebox_restartrequired);

@@ -2409,4 +2409,4 @@
   <data name="menu_layers_world_border_overlay" xml:space="preserve">
     <value>世界邊界覆蓋</value>
   </data>
-</root>
+<data name="menu_layers_color_mode" xml:space="preserve"><value></value></data><data name="menu_layers_color_default" xml:space="preserve"><value></value></data><data name="menu_layers_color_realistic" xml:space="preserve"><value></value></data><data name="menu_layers_color_minimap" xml:space="preserve"><value></value></data><data name="settings_color_mode" xml:space="preserve"><value></value></data><data name="settings_color_mode_desc" xml:space="preserve"><value></value></data></root>

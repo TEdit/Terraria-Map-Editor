@@ -638,6 +638,13 @@ public partial class WorldRenderXna : UserControl
         InitializeGraphicsComponents(e);
         _graphicsEventArgs = e;
 
+        // Apply minimap colors before texture loading (minimap mode overrides tile/wall colors)
+        if (UserSettingsService.Current.ColorMode == PixelMapColorMode.Minimap)
+        {
+            if (MapColorLoader.LoadMapColors())
+                MapColorLoader.ApplyMinimapColors();
+        }
+
         if (_textureDictionary.Valid)
         {
             // Load NPCs immediately (fast, needed for UI)
@@ -1034,7 +1041,7 @@ public partial class WorldRenderXna : UserControl
                                         // Handle color extraction for non-framed tiles
                                         var tile = WorldConfiguration.TileProperties.FirstOrDefault(t => t.Id == req.Id);
 
-                                        if (tile != null && !tile.IsFramed && UserSettingsService.Current.RealisticColors)
+                                        if (tile != null && !tile.IsFramed && UserSettingsService.Current.ColorMode == PixelMapColorMode.Realistic)
                                         {
                                             var tileColor = GetTextureTileColor(texture, b2);
                                             if (tileColor.A > 0)
@@ -1061,7 +1068,7 @@ public partial class WorldRenderXna : UserControl
                                         _textureDictionary.Walls[req.Id] = texture;
 
                                         // Handle color extraction
-                                        if (UserSettingsService.Current.RealisticColors)
+                                        if (UserSettingsService.Current.ColorMode == PixelMapColorMode.Realistic)
                                         {
                                             var wallColor = GetTextureTileColor(texture, b2Wall);
                                             if (wallColor.A > 0)
@@ -1430,7 +1437,7 @@ public partial class WorldRenderXna : UserControl
                 if (!hasColorData) continue;
 
                 // Update style color from texture if realistic colors enabled
-                if (UserSettingsService.Current.RealisticColors)
+                if (UserSettingsService.Current.ColorMode == PixelMapColorMode.Realistic)
                 {
                     style.StyleColor = GetTextureTileColor(previewTexture, previewTexture.Bounds);
                 }
@@ -1983,7 +1990,7 @@ public partial class WorldRenderXna : UserControl
             TextureToPng(wallTex, $"textures/Wall_{wall.Id}.png");
 
             var wallColor = GetTextureTileColor(wallTex, b2Wall);
-            if (wallColor.A > 0 && UserSettingsService.Current.RealisticColors)
+            if (wallColor.A > 0 && UserSettingsService.Current.ColorMode == PixelMapColorMode.Realistic)
             {
                 wall.Color = wallColor;
             }
@@ -2036,7 +2043,7 @@ public partial class WorldRenderXna : UserControl
             if (!tile.IsFramed)
             {
                 var tileColor = GetTextureTileColor(tileTex, b2);
-                if (tileColor.A > 0 && UserSettingsService.Current.RealisticColors)
+                if (tileColor.A > 0 && UserSettingsService.Current.ColorMode == PixelMapColorMode.Realistic)
                 {
                     tile.Color = tileColor;
                 }
@@ -2197,7 +2204,7 @@ public partial class WorldRenderXna : UserControl
                         {
                             var styleColor = tile.Color;
 
-                            if (UserSettingsService.Current.RealisticColors)
+                            if (UserSettingsService.Current.ColorMode == PixelMapColorMode.Realistic)
                             {
                                 styleColor = GetTextureTileColor(texture, texture.Bounds);
 
@@ -6588,12 +6595,18 @@ public partial class WorldRenderXna : UserControl
 
     private void DrawWorldRect(Texture2D tex, int tileX, int tileY, int tileW, int tileH, Color color)
     {
-        var dest = new Rectangle(
-            (int)((_scrollPosition.X + tileX) * _zoom),
-            (int)((_scrollPosition.Y + tileY) * _zoom),
-            (int)(tileW * _zoom),
-            (int)(tileH * _zoom));
+        // Use Floor/Ceiling to avoid sub-pixel gaps between adjacent rectangles
+        float x1 = (_scrollPosition.X + tileX) * _zoom;
+        float y1 = (_scrollPosition.Y + tileY) * _zoom;
+        float x2 = (_scrollPosition.X + tileX + tileW) * _zoom;
+        float y2 = (_scrollPosition.Y + tileY + tileH) * _zoom;
 
+        int left = (int)Math.Floor(x1);
+        int top = (int)Math.Floor(y1);
+        int right = (int)Math.Ceiling(x2);
+        int bottom = (int)Math.Ceiling(y2);
+
+        var dest = new Rectangle(left, top, right - left, bottom - top);
         _spriteBatch.Draw(tex, dest, null, color, 0, Vector2.Zero, SpriteEffects.None, LayerWorldBorder);
     }
 

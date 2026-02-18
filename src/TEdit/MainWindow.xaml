@@ -158,7 +158,14 @@
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_layers}">
                     <MenuItem Header="{x:Static p:Language.menu_layers_textures}" IsCheckable="True" IsChecked="{Binding ShowTextures}" />
-                    <MenuItem Header="{x:Static p:Language.menu_layers_usetexturecolor}" IsCheckable="True" IsChecked="{Binding RealisticColors}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_color_mode}">
+                        <MenuItem Header="{x:Static p:Language.menu_layers_color_default}" IsCheckable="True"
+                                  IsChecked="{Binding ColorMode, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:PixelMapColorMode.Default}}" />
+                        <MenuItem Header="{x:Static p:Language.menu_layers_color_realistic}" IsCheckable="True"
+                                  IsChecked="{Binding ColorMode, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:PixelMapColorMode.Realistic}}" />
+                        <MenuItem Header="{x:Static p:Language.menu_layers_color_minimap}" IsCheckable="True"
+                                  IsChecked="{Binding ColorMode, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:PixelMapColorMode.Minimap}}" />
+                    </MenuItem>
                     <MenuItem Header="{x:Static p:Language.menu_layers_grid}" IsCheckable="True" IsChecked="{Binding ShowGrid}" />
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_backgrounds}" IsCheckable="True" IsChecked="{Binding ShowBackgrounds}" />

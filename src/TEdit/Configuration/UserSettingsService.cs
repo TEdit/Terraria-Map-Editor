@@ -45,7 +45,12 @@ public static class UserSettingsService
             {
                 var json = File.ReadAllText(SettingsPath);
                 var settings = JsonSerializer.Deserialize<UserSettings>(json, JsonOptions);
-                if (settings != null) return settings;
+                if (settings != null)
+                {
+                    // Migrate legacy RealisticColors bool → ColorMode enum
+                    MigrateLegacySettings(json, settings);
+                    return settings;
+                }
             }
         }
         catch
@@ -54,6 +59,33 @@ public static class UserSettingsService
         }
 
         return new UserSettings();
+    }
+
+    /// <summary>
+    /// Migrates legacy settings keys to their new equivalents.
+    /// Currently handles: RealisticColors (bool) → ColorMode (PixelMapColorMode)
+    /// </summary>
+    private static void MigrateLegacySettings(string json, UserSettings settings)
+    {
+        try
+        {
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+
+            // If old RealisticColors exists but new ColorMode does not, migrate
+            if (root.TryGetProperty("RealisticColors", out var realisticProp) &&
+                !root.TryGetProperty("ColorMode", out _))
+            {
+                if (realisticProp.ValueKind == JsonValueKind.True)
+                    settings.ColorMode = ViewModel.PixelMapColorMode.Realistic;
+                else
+                    settings.ColorMode = ViewModel.PixelMapColorMode.Default;
+            }
+        }
+        catch
+        {
+            // Migration is best-effort
+        }
     }
 
     private static void Save()
