@@ -2503,4 +2503,4 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-</root>
+<data name="show_glow_masks" xml:space="preserve"><value>Glow Masks</value></data></root>

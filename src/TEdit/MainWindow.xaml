@@ -172,6 +172,7 @@
                     <MenuItem Header="{x:Static p:Language.menu_layers_walls}" IsCheckable="True" IsChecked="{Binding ShowWalls}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_tiles}" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
                     <MenuItem Header="{x:Static p:Language.tool_paint_coating}" IsCheckable="True" IsChecked="{Binding ShowCoatings}" />
+                    <MenuItem Header="{x:Static p:Language.show_glow_masks}" IsCheckable="True" IsChecked="{Binding ShowGlowMasks}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_liquid}" IsCheckable="True" IsChecked="{Binding ShowLiquid}" />
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_actuators}" IsCheckable="True" IsChecked="{Binding ShowActuators}" />

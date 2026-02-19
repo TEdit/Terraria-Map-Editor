@@ -2500,4 +2500,19 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corrigir lacuna de plano de fundo</value>
   </data>
-<data name="tool_paint_track_tunnel" xml:space="preserve"><value></value></data><data name="tool_paint_track_tunnel_tooltip" xml:space="preserve"><value></value></data><data name="tool_paint_track_smooth" xml:space="preserve"><value></value></data><data name="tool_paint_track_smooth_tooltip" xml:space="preserve"><value></value></data></root>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="show_glow_masks" xml:space="preserve">
+    <value>Máscaras Brilhantes</value>
+  </data>
+</root>

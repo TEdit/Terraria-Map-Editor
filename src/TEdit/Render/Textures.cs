@@ -42,6 +42,7 @@ public class Textures
     public Dictionary<int, Texture2D> Shrooms { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Npcs { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<TownNpcKey, Texture2D> TownNpcs { get; } = new();
+    public Dictionary<int, Texture2D> GlowMasks { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<int, Texture2D> Liquids { get; } = new Dictionary<int, Texture2D>();
     public Dictionary<string, Texture2D> Misc { get; } = new Dictionary<string, Texture2D>();
     public Dictionary<int, Texture2D> ArmorHead { get; } = new Dictionary<int, Texture2D>();
@@ -201,6 +202,8 @@ public class Textures
         return TownNpcs[key];
     }
 
+
+    public Texture2D GetGlowMask(int id) => GetTextureById(GlowMasks, id, "Images\\Glow_{0}");
 
     public Texture GetLiquid(int num) => GetTextureById(Liquids, num, "Images\\Liquid_{0}");
 

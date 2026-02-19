@@ -2430,4 +2430,19 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corriger le fossé de fond</value>
   </data>
-<data name="tool_paint_track_tunnel" xml:space="preserve"><value></value></data><data name="tool_paint_track_tunnel_tooltip" xml:space="preserve"><value></value></data><data name="tool_paint_track_smooth" xml:space="preserve"><value></value></data><data name="tool_paint_track_smooth_tooltip" xml:space="preserve"><value></value></data></root>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="show_glow_masks" xml:space="preserve">
+    <value>Masques lumineux</value>
+  </data>
+</root>

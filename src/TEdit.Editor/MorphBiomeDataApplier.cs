@@ -90,10 +90,78 @@ public class MorphBiomeDataApplier
         return MorphLevel.Sky;
     }
 
-    public void ApplyMorph(MorphToolOptions options, World world, Tile source, MorphLevel level, Vector2Int32 location)
+    public List<Vector2Int32> ApplyMorph(MorphToolOptions options, World world, Tile source, MorphLevel level, Vector2Int32 location)
     {
         ApplyTileMorph(options, world, source, level, location);
         ApplyWallMorph(options, world, source, level, location);
+
+        // After converting a block to moss stone, grow moss plants on exposed faces
+        // Only full blocks get moss plants — slopes and half blocks don't
+        if (options.EnableMoss &&
+            source.IsActive &&
+            source.BrickStyle == BrickStyle.Full &&
+            WorldConfiguration.MorphSettings.IsMoss(source.Type))
+        {
+            return GrowMossPlants(options, world, location);
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Place moss plant sprites (tile 184) on empty cardinal neighbors of a moss stone block.
+    /// </summary>
+    private List<Vector2Int32> GrowMossPlants(MorphToolOptions options, World world, Vector2Int32 location)
+    {
+        var morphSettings = WorldConfiguration.MorphSettings;
+        int columnIndex = morphSettings.GetMossColumnIndex(options.MossType);
+        if (columnIndex < 0) return null;
+
+        short columnU = (short)(columnIndex * MorphConfiguration.MossPlantColumnWidth);
+        int x = location.X;
+        int y = location.Y;
+        List<Vector2Int32> grownPlants = null;
+
+        // Direction table: dx, dy, V base
+        // Above (y-1): plant hangs from block → Top anchor, V base 54
+        // Below (y+1): plant grows from block → Bottom anchor, V base 0
+        // Left  (x-1): plant grows from right block → Right anchor, V base 162
+        // Right (x+1): plant grows from left block → Left anchor, V base 108
+        ReadOnlySpan<int> directions = stackalloc int[]
+        {
+            0, -1,  0,   // above: plant sits on top of block, Bottom anchor, grows UP
+            0,  1, 54,   // below: plant hangs from block, Top anchor, grows DOWN
+           -1,  0, 162,  // left
+            1,  0, 108,  // right
+        };
+
+        for (int i = 0; i < directions.Length; i += 3)
+        {
+            int nx = x + directions[i];
+            int ny = y + directions[i + 1];
+            int vBase = directions[i + 2];
+
+            if (nx < 0 || nx >= world.TilesWide || ny < 0 || ny >= world.TilesHigh)
+                continue;
+
+            var neighbor = world.Tiles[nx, ny];
+            if (neighbor.IsActive)
+                continue;
+
+            // Deterministic variety (0-2) based on position
+            int variety = ((nx * 31) + (ny * 17)) % 3;
+            if (variety < 0) variety += 3;
+
+            neighbor.IsActive = true;
+            neighbor.Type = 184;
+            neighbor.U = columnU;
+            neighbor.V = (short)(vBase + variety * 18);
+
+            grownPlants ??= new List<Vector2Int32>(4);
+            grownPlants.Add(new Vector2Int32(nx, ny));
+        }
+
+        return grownPlants;
     }
 
     private void ApplyWallMorph(MorphToolOptions options, World world, Tile source, MorphLevel level, Vector2Int32 location)

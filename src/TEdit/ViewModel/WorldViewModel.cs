@@ -1395,6 +1395,17 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
+    public bool ShowGlowMasks
+    {
+        get { return UserSettingsService.Current.ShowGlowMasks; }
+        set
+        {
+            UserSettingsService.Current.ShowGlowMasks = value;
+            this.RaisePropertyChanged(nameof(ShowGlowMasks));
+            UpdateRenderWorld();
+        }
+    }
+
     public bool MinimapBackground
     {
         get { return UserSettingsService.Current.MinimapBackground; }

@@ -3536,6 +3536,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Glow Masks.
+        /// </summary>
+        public static string show_glow_masks {
+            get {
+                return ResourceManager.GetString("show_glow_masks", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Banners.
         /// </summary>
         public static string sidebar_banner_title {

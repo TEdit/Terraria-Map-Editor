@@ -26,6 +26,7 @@ public class UserSettings : INotifyPropertyChanged
     private bool _showAllWeaponRackItems = false;
     private bool _enablePlayerEditor = false;
     private bool _showBuffRadii = false;
+    private bool _showGlowMasks = true;
     private bool _minimapBackground = false;
     private FilterManager.FilterMode _filterMode = FilterManager.FilterMode.Darken;
     private int _filterDarkenAmount = 60;
@@ -135,6 +136,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _showBuffRadii;
         set => SetField(ref _showBuffRadii, value);
+    }
+
+    public bool ShowGlowMasks
+    {
+        get => _showGlowMasks;
+        set => SetField(ref _showGlowMasks, value);
     }
 
     public bool MinimapBackground

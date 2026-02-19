@@ -213,21 +213,31 @@ public sealed class MorphTool : BaseTool
                 if (_wvm.Selection.IsValid(pixel))
                 {
                     _wvm.UndoManager.SaveTile(pixel);
-                    MorphTile(pixel);
+                    var grownPlants = MorphTile(pixel);
                     _wvm.UpdateRenderPixel(pixel);
 
                     /* Heathtech */
                     BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+
+                    if (grownPlants != null)
+                    {
+                        foreach (var pos in grownPlants)
+                        {
+                            _wvm.UndoManager.SaveTile(pos);
+                            _wvm.UpdateRenderPixel(pos);
+                            BlendRules.ResetUVCache(_wvm, pos.X, pos.Y, 1, 1);
+                        }
+                    }
                 }
             }
         }
     }
 
-    private void MorphTile(Vector2Int32 p)
+    private List<Vector2Int32> MorphTile(Vector2Int32 p)
     {
-        if (_targetBiome == null || _biomeMorpher == null) { return; }
+        if (_targetBiome == null || _biomeMorpher == null) { return null; }
         var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
         var level = MorphBiomeDataApplier.ComputeMorphLevel(_wvm.CurrentWorld, p.Y);
-        _biomeMorpher.ApplyMorph(_wvm.MorphToolOptions, _wvm.CurrentWorld, curtile, level, p);
+        return _biomeMorpher.ApplyMorph(_wvm.MorphToolOptions, _wvm.CurrentWorld, curtile, level, p);
     }
 }
