@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 using TEdit.Common;
 using TEdit.Common.IO;
 using TEdit.Terraria.Objects;
@@ -53,6 +54,9 @@ public static class TwldFile
             data.TileWallDataParsed = true;
         }
 
+        // Try to load scraped mod colors for better rendering
+        var modColors = LoadModColorsFromDefaultPaths();
+
         ushort virtualTileBase = (ushort)WorldConfiguration.TileCount;
         ushort virtualWallBase = (ushort)WorldConfiguration.WallCount;
 
@@ -64,7 +68,12 @@ public static class TwldFile
             data.VirtualTileIdToMapIndex[virtualId] = i;
             data.MapIndexToVirtualTileId[i] = virtualId;
 
-            var color = GenerateModColor(entry.FullName);
+            TEditColor color;
+            if (modColors.TryGetValue(entry.FullName, out var scraped))
+                color = scraped;
+            else
+                color = GenerateModColor(entry.FullName);
+
             RegisterModTileProperty(virtualId, entry.FullName, color, entry.FrameImportant);
         }
 
@@ -76,7 +85,12 @@ public static class TwldFile
             data.VirtualWallIdToMapIndex[virtualId] = i;
             data.MapIndexToVirtualWallId[i] = virtualId;
 
-            var color = GenerateModColor(entry.FullName);
+            TEditColor color;
+            if (modColors.TryGetValue(entry.FullName, out var scraped))
+                color = scraped;
+            else
+                color = GenerateModColor(entry.FullName);
+
             RegisterModWallProperty(virtualId, entry.FullName, color);
         }
 
@@ -566,6 +580,130 @@ public static class TwldFile
             skip -= 255;
         }
         w.Write((byte)skip);
+    }
+
+    #endregion
+
+    #region Mod Colors
+
+    private static Dictionary<string, TEditColor> _cachedModColors;
+
+    /// <summary>
+    /// Loads mod colors from default search paths (next to executable, app data).
+    /// Results are cached after first load.
+    /// </summary>
+    private static Dictionary<string, TEditColor> LoadModColorsFromDefaultPaths()
+    {
+        if (_cachedModColors != null)
+            return _cachedModColors;
+
+        // Search paths for modColors.json
+        string[] searchPaths =
+        {
+            Path.Combine(AppContext.BaseDirectory, "modColors.json"),
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TEdit", "modColors.json"),
+        };
+
+        foreach (var path in searchPaths)
+        {
+            var colors = LoadModColors(path);
+            if (colors.Count > 0)
+            {
+                _cachedModColors = colors;
+                return colors;
+            }
+        }
+
+        _cachedModColors = new Dictionary<string, TEditColor>();
+        return _cachedModColors;
+    }
+
+    /// <summary>
+    /// Loads modColors.json from a specific path and returns a flat dictionary
+    /// mapping "ModName:TileName" → TEditColor for both tiles and walls.
+    /// Returns empty dictionary if file doesn't exist or fails to parse.
+    /// </summary>
+    internal static Dictionary<string, TEditColor> LoadModColors(string path)
+    {
+        var result = new Dictionary<string, TEditColor>();
+
+        if (!File.Exists(path))
+            return result;
+
+        try
+        {
+            string json = File.ReadAllText(path);
+            using var doc = JsonDocument.Parse(json);
+
+            foreach (var modProp in doc.RootElement.EnumerateObject())
+            {
+                string modName = modProp.Name;
+
+                if (modProp.Value.TryGetProperty("tiles", out var tilesObj))
+                {
+                    foreach (var tileProp in tilesObj.EnumerateObject())
+                    {
+                        string tileName = tileProp.Name;
+                        if (tileProp.Value.TryGetProperty("color", out var colorEl))
+                        {
+                            var color = ParseHexColor(colorEl.GetString());
+                            if (color.HasValue)
+                                result[$"{modName}:{tileName}"] = color.Value;
+                        }
+                    }
+                }
+
+                if (modProp.Value.TryGetProperty("walls", out var wallsObj))
+                {
+                    foreach (var wallProp in wallsObj.EnumerateObject())
+                    {
+                        string wallName = wallProp.Name;
+                        if (wallProp.Value.TryGetProperty("color", out var colorEl))
+                        {
+                            var color = ParseHexColor(colorEl.GetString());
+                            if (color.HasValue)
+                                result[$"{modName}:{wallName}"] = color.Value;
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Failed to load modColors.json from {path}: {ex.Message}");
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Parses a hex color string in #RRGGBBAA format.
+    /// </summary>
+    private static TEditColor? ParseHexColor(string hex)
+    {
+        if (string.IsNullOrEmpty(hex) || hex.Length < 7 || hex[0] != '#')
+            return null;
+
+        try
+        {
+            byte r = Convert.ToByte(hex.Substring(1, 2), 16);
+            byte g = Convert.ToByte(hex.Substring(3, 2), 16);
+            byte b = Convert.ToByte(hex.Substring(5, 2), 16);
+            byte a = hex.Length >= 9 ? Convert.ToByte(hex.Substring(7, 2), 16) : (byte)255;
+            return new TEditColor(r, g, b, a);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Clears cached mod colors (useful when modColors.json is updated).
+    /// </summary>
+    public static void ClearModColorCache()
+    {
+        _cachedModColors = null;
     }
 
     #endregion
