@@ -28,6 +28,8 @@ public partial class WorldExplorerViewModel
 
         this.WhenAnyValue(x => x.SearchText)
             .Subscribe(_ => this.RaisePropertyChanged(nameof(FilteredWorlds)));
+        this.WhenAnyValue(x => x.ShowModLoaderWorlds)
+            .Subscribe(_ => this.RaisePropertyChanged(nameof(FilteredWorlds)));
         this.WhenAnyValue(x => x.PreviewImage)
             .Subscribe(_ =>
             {
@@ -52,6 +54,9 @@ public partial class WorldExplorerViewModel
     private BackupEntryViewModel _selectedBackup;
 
     [Reactive]
+    private bool _showModLoaderWorlds;
+
+    [Reactive]
     private bool _isLoading;
 
     [Reactive]
@@ -74,6 +79,13 @@ public partial class WorldExplorerViewModel
         get
         {
             var worlds = Worlds.AsEnumerable();
+
+            // Filter by toggle: Vanilla or tModLoader
+            if (ShowModLoaderWorlds)
+                worlds = worlds.Where(w => w.IsTModLoader);
+            else
+                worlds = worlds.Where(w => !w.IsTModLoader);
+
             if (!string.IsNullOrWhiteSpace(SearchText))
             {
                 worlds = worlds.Where(w =>
@@ -84,6 +96,12 @@ public partial class WorldExplorerViewModel
             return worlds;
         }
     }
+
+    /// <summary>
+    /// Whether the tModLoader tab has any worlds (used to show/hide the tab count badge).
+    /// </summary>
+    public int VanillaWorldCount => Worlds.Count(w => !w.IsTModLoader);
+    public int ModLoaderWorldCount => Worlds.Count(w => w.IsTModLoader);
 
     public async Task RefreshAsync()
     {
@@ -107,6 +125,24 @@ public partial class WorldExplorerViewModel
                 {
                     foreach (var file in Directory.GetFiles(worldsPath, "*.wld"))
                     {
+                        var header = World.ReadWorldHeader(file);
+                        if (header != null)
+                        {
+                            worldEntries.Add(new WorldEntryViewModel(header, pinnedWorlds.Contains(file)));
+                            loadedPaths.Add(file);
+                        }
+                    }
+                }
+
+                // Load worlds from tModLoader worlds folder
+                string tmodWorldsPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    @"My Games\Terraria\tModLoader\Worlds");
+                if (Directory.Exists(tmodWorldsPath))
+                {
+                    foreach (var file in Directory.GetFiles(tmodWorldsPath, "*.wld"))
+                    {
+                        if (loadedPaths.Contains(file)) continue;
                         var header = World.ReadWorldHeader(file);
                         if (header != null)
                         {
@@ -266,6 +302,12 @@ public partial class WorldExplorerViewModel
                 foreach (var w in worldEntries) Worlds.Add(w);
 
                 this.RaisePropertyChanged(nameof(FilteredWorlds));
+                this.RaisePropertyChanged(nameof(VanillaWorldCount));
+                this.RaisePropertyChanged(nameof(ModLoaderWorldCount));
+
+                // Auto-select tModLoader if there are modded worlds but no vanilla worlds
+                if (VanillaWorldCount == 0 && ModLoaderWorldCount > 0)
+                    ShowModLoaderWorlds = true;
             });
         }
         finally
