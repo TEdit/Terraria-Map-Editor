@@ -48,51 +48,26 @@ public static class TwldFile
         if (data == null) return;
 
         // Parse binary tile/wall data now that we have world dimensions
-        if (!data.TileWallDataParsed && data.RawTileWallData.Length > 0)
+        if (!data.TileWallDataParsed)
         {
-            ParseTileWallBinary(data.RawTileWallData, data, world.TilesWide, world.TilesHigh);
+            if (data.RawTileData.Length > 0 || data.RawWallData.Length > 0)
+            {
+                // New format: separate dense tileData/wallData streams
+                if (data.RawTileData.Length > 0)
+                    ParseTileDataDense(data.RawTileData, data, world.TilesWide, world.TilesHigh);
+                if (data.RawWallData.Length > 0)
+                    ParseWallDataDense(data.RawWallData, data, world.TilesWide, world.TilesHigh);
+            }
+            else if (data.RawTileWallData.Length > 0)
+            {
+                // Legacy format: interleaved skip+flags stream
+                ParseTileWallBinary(data.RawTileWallData, data, world.TilesWide, world.TilesHigh);
+            }
             data.TileWallDataParsed = true;
         }
 
-        // Try to load scraped mod colors for better rendering
-        var modColors = LoadModColorsFromDefaultPaths();
-
-        ushort virtualTileBase = (ushort)WorldConfiguration.TileCount;
-        ushort virtualWallBase = (ushort)WorldConfiguration.WallCount;
-
-        // Assign virtual IDs and register properties for mod tiles
-        for (int i = 0; i < data.TileMap.Count; i++)
-        {
-            var entry = data.TileMap[i];
-            ushort virtualId = (ushort)(virtualTileBase + i);
-            data.VirtualTileIdToMapIndex[virtualId] = i;
-            data.MapIndexToVirtualTileId[i] = virtualId;
-
-            TEditColor color;
-            if (modColors.TryGetValue(entry.FullName, out var scraped))
-                color = scraped;
-            else
-                color = GenerateModColor(entry.FullName);
-
-            RegisterModTileProperty(virtualId, entry.FullName, color, entry.FrameImportant);
-        }
-
-        // Assign virtual IDs and register properties for mod walls
-        for (int i = 0; i < data.WallMap.Count; i++)
-        {
-            var entry = data.WallMap[i];
-            ushort virtualId = (ushort)(virtualWallBase + i);
-            data.VirtualWallIdToMapIndex[virtualId] = i;
-            data.MapIndexToVirtualWallId[i] = virtualId;
-
-            TEditColor color;
-            if (modColors.TryGetValue(entry.FullName, out var scraped))
-                color = scraped;
-            else
-                color = GenerateModColor(entry.FullName);
-
-            RegisterModWallProperty(virtualId, entry.FullName, color);
-        }
+        // Build virtual ID mappings (thread-safe, no UI collections touched)
+        AssignVirtualIds(data);
 
         // Overlay mod tiles onto the world grid
         foreach (var (pos, modTile) in data.ModTileGrid)
@@ -126,6 +101,75 @@ public static class TwldFile
                 tile.Wall = vWallId;
                 tile.WallColor = modWall.WallColor;
             }
+        }
+    }
+
+    /// <summary>
+    /// Assigns virtual IDs for mod tiles/walls without touching any UI-bound collections.
+    /// Safe to call from any thread.
+    /// </summary>
+    private static void AssignVirtualIds(TwldData data)
+    {
+        ushort virtualTileBase = (ushort)WorldConfiguration.TileCount;
+        ushort virtualWallBase = (ushort)WorldConfiguration.WallCount;
+
+        for (int i = 0; i < data.TileMap.Count; i++)
+        {
+            ushort virtualId = (ushort)(virtualTileBase + i);
+            data.VirtualTileIdToMapIndex[virtualId] = i;
+            data.MapIndexToVirtualTileId[i] = virtualId;
+        }
+
+        for (int i = 0; i < data.WallMap.Count; i++)
+        {
+            ushort virtualId = (ushort)(virtualWallBase + i);
+            data.VirtualWallIdToMapIndex[virtualId] = i;
+            data.MapIndexToVirtualWallId[i] = virtualId;
+        }
+    }
+
+    /// <summary>
+    /// Registers mod tile/wall properties into WorldConfiguration's ObservableCollections.
+    /// Must be called on the UI (dispatcher) thread since TileProperties/WallProperties are UI-bound.
+    /// </summary>
+    public static void RegisterModProperties(TwldData data)
+    {
+        if (data == null) return;
+
+        // Ensure virtual IDs are assigned
+        if (data.VirtualTileIdToMapIndex.Count == 0 && data.TileMap.Count > 0)
+            AssignVirtualIds(data);
+
+        var modColors = LoadModColorsFromDefaultPaths();
+
+        for (int i = 0; i < data.TileMap.Count; i++)
+        {
+            var entry = data.TileMap[i];
+            if (!data.MapIndexToVirtualTileId.TryGetValue(i, out ushort virtualId))
+                continue;
+
+            TEditColor color;
+            if (modColors.TryGetValue(entry.FullName, out var scraped))
+                color = scraped;
+            else
+                color = GenerateModColor(entry.FullName);
+
+            RegisterModTileProperty(virtualId, entry.FullName, color, entry.FrameImportant);
+        }
+
+        for (int i = 0; i < data.WallMap.Count; i++)
+        {
+            var entry = data.WallMap[i];
+            if (!data.MapIndexToVirtualWallId.TryGetValue(i, out ushort virtualId))
+                continue;
+
+            TEditColor color;
+            if (modColors.TryGetValue(entry.FullName, out var scraped))
+                color = scraped;
+            else
+                color = GenerateModColor(entry.FullName);
+
+            RegisterModWallProperty(virtualId, entry.FullName, color);
         }
     }
 
@@ -182,8 +226,18 @@ public static class TwldFile
             }
         }
 
-        // Rebuild the raw binary data for saving
-        data.RawTileWallData = BuildTileWallBinary(data, world.TilesWide, world.TilesHigh);
+        // Rebuild the raw binary data for saving, preserving the original format
+        if (data.RawTileData.Length > 0 || data.RawWallData.Length > 0)
+        {
+            // New format: separate dense tileData/wallData
+            data.RawTileData = BuildTileDataDense(data, world.TilesWide, world.TilesHigh);
+            data.RawWallData = BuildWallDataDense(data, world.TilesWide, world.TilesHigh);
+        }
+        else
+        {
+            // Legacy format: interleaved binary
+            data.RawTileWallData = BuildTileWallBinary(data, world.TilesWide, world.TilesHigh);
+        }
     }
 
     /// <summary>
@@ -266,7 +320,27 @@ public static class TwldFile
         for (int i = 0; i < wallMapTags.Count; i++)
             data.WallMap.Add(ModWallEntry.FromTag(wallMapTags[i], i));
 
+        // Build SaveType → list index lookups from the "value" field
+        for (int i = 0; i < data.TileMap.Count; i++)
+            data.SaveTypeToTileMapIndex[data.TileMap[i].SaveType] = i;
+        for (int i = 0; i < data.WallMap.Count; i++)
+            data.SaveTypeToWallMapIndex[data.WallMap[i].SaveType] = i;
+
         // Store raw binary data — defer parsing until world dimensions are known
+        // Newer tModLoader versions use separate "tileData" and "wallData" keys
+        // Older versions use a single "data" key with interleaved tile/wall data
+        if (tilesTag.ContainsKey("tileData"))
+        {
+            byte[] tileData = tilesTag.GetByteArray("tileData");
+            if (tileData != null && tileData.Length > 0)
+                data.RawTileData = tileData;
+        }
+        if (tilesTag.ContainsKey("wallData"))
+        {
+            byte[] wallData = tilesTag.GetByteArray("wallData");
+            if (wallData != null && wallData.Length > 0)
+                data.RawWallData = wallData;
+        }
         if (tilesTag.ContainsKey("data"))
         {
             byte[] binaryData = tilesTag.GetByteArray("data");
@@ -281,19 +355,34 @@ public static class TwldFile
     /// </summary>
     internal static void ParseTileWallBinary(byte[] binaryData, TwldData data, int tilesWide, int tilesHigh)
     {
-        bool[] frameImportant = new bool[Math.Max(data.TileMap.Count, 1)];
-        for (int i = 0; i < data.TileMap.Count; i++)
-            frameImportant[i] = data.TileMap[i].FrameImportant;
-
         using var ms = new MemoryStream(binaryData);
         using var r = new BinaryReader(ms);
 
-        // Position tracked as linear index: pos = x * tilesHigh + y
+        // Position tracked as linear index: pos = x * tilesHigh + y (column-major)
         int linearPos = 0;
         int totalCells = tilesWide * tilesHigh;
 
+        // tModLoader format: [skip bytes] [record] [skip bytes if !nextMod] [record] ...
+        // Each record is preceded by skip bytes (unless the previous record's nextIsModTile flag was set).
+        bool expectSkip = true;
+
         while (ms.Position < ms.Length && linearPos < totalCells)
         {
+            // Read skip bytes to advance past vanilla tiles
+            if (expectSkip)
+            {
+                while (ms.Position < ms.Length)
+                {
+                    byte skipByte = r.ReadByte();
+                    linearPos += skipByte;
+                    if (skipByte < 255)
+                        break;
+                }
+
+                if (ms.Position >= ms.Length || linearPos >= totalCells)
+                    break;
+            }
+
             byte flags = r.ReadByte();
 
             bool hasTile = (flags & 0x01) != 0;
@@ -310,36 +399,51 @@ public static class TwldFile
 
             if (hasTile)
             {
-                ushort tileType = r.ReadUInt16();
+                ushort saveType = r.ReadUInt16();
                 short frameX = 0, frameY = 0;
 
-                if (tileType < frameImportant.Length && frameImportant[tileType])
+                // Look up the TileMap index from the saveType
+                if (data.SaveTypeToTileMapIndex.TryGetValue(saveType, out int mapIndex))
                 {
-                    frameX = frameXLarge ? r.ReadInt16() : (short)r.ReadByte();
-                    frameY = frameYLarge ? r.ReadInt16() : (short)r.ReadByte();
+                    if (data.TileMap[mapIndex].FrameImportant)
+                    {
+                        frameX = frameXLarge ? r.ReadInt16() : (short)r.ReadByte();
+                        frameY = frameYLarge ? r.ReadInt16() : (short)r.ReadByte();
+                    }
+
+                    byte color = hasColor ? r.ReadByte() : (byte)0;
+
+                    tileData = new ModTileData
+                    {
+                        TileMapIndex = (ushort)mapIndex,
+                        Color = color,
+                        FrameX = frameX,
+                        FrameY = frameY,
+                    };
                 }
-
-                byte color = hasColor ? r.ReadByte() : (byte)0;
-
-                tileData = new ModTileData
+                else
                 {
-                    TileMapIndex = tileType,
-                    Color = color,
-                    FrameX = frameX,
-                    FrameY = frameY,
-                };
+                    // Unknown saveType — can't determine frameImportant so we can't reliably
+                    // skip remaining bytes. Log and break to avoid stream desynchronization.
+                    System.Diagnostics.Debug.WriteLine($"TwldFile: Unknown tile saveType {saveType} at pos {linearPos}, aborting legacy parse");
+                    return;
+                }
             }
 
             if (hasWall)
             {
-                ushort wallType = r.ReadUInt16();
+                ushort saveType = r.ReadUInt16();
                 byte wallColor = hasWallColor ? r.ReadByte() : (byte)0;
 
-                wallData = new ModWallData
+                // Look up the WallMap index from the saveType
+                if (data.SaveTypeToWallMapIndex.TryGetValue(saveType, out int mapIndex))
                 {
-                    WallMapIndex = wallType,
-                    WallColor = wallColor,
-                };
+                    wallData = new ModWallData
+                    {
+                        WallMapIndex = (ushort)mapIndex,
+                        WallColor = wallColor,
+                    };
+                }
             }
 
             int sameCount = hasSameCount ? r.ReadByte() : 0;
@@ -360,17 +464,95 @@ public static class TwldFile
                 linearPos++;
             }
 
-            // If next byte is NOT a mod tile, read skip count(s)
-            if (!nextIsModTile)
+            // If next record is a mod tile, skip bytes are NOT written between them
+            expectSkip = !nextIsModTile;
+        }
+    }
+
+    /// <summary>
+    /// Parses the dense tileData stream (new tModLoader format).
+    /// Format: for each (x, y) position in column-major order, a ushort saveType.
+    /// saveType is a runtime type ID (from the "value" field in tileMap NBT entries).
+    /// 0 = vanilla/empty. If saveType > 0: read color byte; if frameImportant, read frameX (short) and frameY (short).
+    /// </summary>
+    internal static void ParseTileDataDense(byte[] tileData, TwldData data, int tilesWide, int tilesHigh)
+    {
+        using var ms = new MemoryStream(tileData);
+        using var r = new BinaryReader(ms);
+
+        for (int x = 0; x < tilesWide; x++)
+        {
+            for (int y = 0; y < tilesHigh; y++)
             {
-                // Read skip bytes (each byte up to 255; if byte == 255, read another)
-                while (ms.Position < ms.Length)
+                if (ms.Position + 1 >= ms.Length) return;
+
+                ushort saveType = r.ReadUInt16();
+                if (saveType == 0) continue;
+
+                // Look up the TileMap index from the saveType written in the binary stream
+                if (!data.SaveTypeToTileMapIndex.TryGetValue(saveType, out int mapIndex))
                 {
-                    byte skipByte = r.ReadByte();
-                    linearPos += skipByte;
-                    if (skipByte < 255)
-                        break;
+                    // Unknown saveType — skip the color byte and move on
+                    // (can't determine frameImportant without a valid entry)
+                    r.ReadByte();
+                    continue;
                 }
+
+                byte color = r.ReadByte();
+                short frameX = 0, frameY = 0;
+
+                if (data.TileMap[mapIndex].FrameImportant)
+                {
+                    frameX = r.ReadInt16();
+                    frameY = r.ReadInt16();
+                }
+
+                data.ModTileGrid[(x, y)] = new ModTileData
+                {
+                    TileMapIndex = (ushort)mapIndex,
+                    Color = color,
+                    FrameX = frameX,
+                    FrameY = frameY,
+                };
+            }
+        }
+    }
+
+    /// <summary>
+    /// Parses the dense wallData stream (new tModLoader format).
+    /// Format: for each (x, y) position in column-major order, a ushort saveType.
+    /// saveType is a runtime type ID (from the "value" field in wallMap NBT entries).
+    /// 0 = vanilla/empty. If saveType > 0: read wallColor byte.
+    /// </summary>
+    internal static void ParseWallDataDense(byte[] wallData, TwldData data, int tilesWide, int tilesHigh)
+    {
+        using var ms = new MemoryStream(wallData);
+        using var r = new BinaryReader(ms);
+
+        for (int x = 0; x < tilesWide; x++)
+        {
+            for (int y = 0; y < tilesHigh; y++)
+            {
+                if (ms.Position + 1 >= ms.Length) return;
+
+                ushort saveType = r.ReadUInt16();
+                if (saveType == 0) continue;
+
+                // Look up the WallMap index from the saveType written in the binary stream
+                if (!data.SaveTypeToWallMapIndex.TryGetValue(saveType, out int mapIndex))
+                {
+                    // Unknown saveType — skip the wallColor byte and move on
+                    r.ReadByte();
+                    continue;
+                }
+
+                byte wallColor = r.ReadByte();
+
+                data.ModWallGrid[(x, y)] = new ModWallData
+                {
+                    WallMapIndex = (ushort)mapIndex,
+                    WallColor = wallColor,
+                };
             }
         }
     }
@@ -419,14 +601,23 @@ public static class TwldFile
             wallMapTags.Add(entry.ToTag());
         tilesTag.Set("wallMap", wallMapTags);
 
-        // Use the rebuilt binary data if available, otherwise use raw
-        tilesTag.Set("data", data.RawTileWallData ?? Array.Empty<byte>());
+        // Preserve format: new format uses separate tileData/wallData, legacy uses combined "data"
+        if (data.RawTileData.Length > 0 || data.RawWallData.Length > 0)
+        {
+            tilesTag.Set("tileData", data.RawTileData);
+            tilesTag.Set("wallData", data.RawWallData);
+        }
+        else
+        {
+            tilesTag.Set("data", data.RawTileWallData ?? Array.Empty<byte>());
+        }
 
         return tilesTag;
     }
 
     /// <summary>
     /// Rebuilds the interleaved binary tile/wall data for saving.
+    /// Format: [skip bytes] [record] [skip bytes if !nextMod] [record] ...
     /// </summary>
     internal static byte[] BuildTileWallBinary(TwldData data, int tilesWide, int tilesHigh)
     {
@@ -449,6 +640,7 @@ public static class TwldFile
 
         var posArray = new List<int>(modPositions);
         int prevEndPos = 0; // position after the last written cell
+        bool writeSkip = true; // first entry always has skip bytes
 
         for (int idx = 0; idx < posArray.Count; idx++)
         {
@@ -459,61 +651,37 @@ public static class TwldFile
             bool hasTileData = data.ModTileGrid.TryGetValue((x, y), out var tileInfo);
             bool hasWallData = data.ModWallGrid.TryGetValue((x, y), out var wallInfo);
 
-            // Determine if next position is also mod (adjacent in linear order)
-            bool nextIsMod = idx + 1 < posArray.Count && posArray[idx + 1] == linearPos + 1;
-
             // Check for "same" (repeat) count — consecutive cells with identical data
             int sameCount = 0;
-            if (!nextIsMod)
+            for (int s = 1; s <= 255 && idx + s < posArray.Count; s++)
             {
-                // No same-count optimization for non-adjacent cells
-            }
-            else
-            {
-                // Count how many consecutive cells have the exact same tile+wall data
-                while (idx + 1 + sameCount < posArray.Count)
-                {
-                    int nextLinear = posArray[idx + 1 + sameCount];
-                    if (nextLinear != linearPos + 1 + sameCount)
-                        break;
+                int nextLinear = posArray[idx + s];
+                if (nextLinear != linearPos + s)
+                    break;
 
-                    int nx = nextLinear / tilesHigh;
-                    int ny = nextLinear % tilesHigh;
-                    bool nextHasTile = data.ModTileGrid.TryGetValue((nx, ny), out var nextTile);
-                    bool nextHasWall = data.ModWallGrid.TryGetValue((nx, ny), out var nextWall);
+                int nx = nextLinear / tilesHigh;
+                int ny = nextLinear % tilesHigh;
+                bool nextHasTile = data.ModTileGrid.TryGetValue((nx, ny), out var nextTile);
+                bool nextHasWall = data.ModWallGrid.TryGetValue((nx, ny), out var nextWall);
 
-                    if (nextHasTile != hasTileData || nextHasWall != hasWallData)
-                        break;
-                    if (hasTileData && !nextTile.Equals(tileInfo))
-                        break;
-                    if (hasWallData && !nextWall.Equals(wallInfo))
-                        break;
+                if (nextHasTile != hasTileData || nextHasWall != hasWallData)
+                    break;
+                if (hasTileData && !nextTile.Equals(tileInfo))
+                    break;
+                if (hasWallData && !nextWall.Equals(wallInfo))
+                    break;
 
-                    sameCount++;
-                    if (sameCount >= 255)
-                        break;
-                }
+                sameCount++;
             }
 
-            // Write skip count from previous position
-            int skip = linearPos - prevEndPos;
-            if (skip > 0 || (idx == 0 && linearPos > 0))
+            // Write skip bytes before this record (tModLoader format)
+            if (writeSkip)
             {
-                // If this is NOT the first entry, the previous entry's "nextIsMod" flag was false,
-                // so we already have a context where skip bytes are expected.
-                // For the first entry, we need special handling.
-                if (idx == 0)
-                {
-                    // Before the first mod entry, write skip bytes
-                    WriteSkipBytes(w, linearPos);
-                }
-                else
-                {
-                    WriteSkipBytes(w, skip);
-                }
+                int skip = linearPos - prevEndPos;
+                WriteSkipBytes(w, skip);
             }
 
-            // Recalculate nextIsMod accounting for sameCount
+            // Determine nextIsModTile: is the position right after this run also a mod tile?
             int endPos = linearPos + sameCount;
             bool nextAfterSameIsMod = idx + 1 + sameCount < posArray.Count &&
                                        posArray[idx + 1 + sameCount] == endPos + 1;
@@ -540,7 +708,11 @@ public static class TwldFile
 
             if (hasTileData)
             {
-                w.Write(tileInfo.TileMapIndex);
+                // Write the original SaveType (runtime type ID), not the mapIndex
+                ushort tileSaveType = tileInfo.TileMapIndex < data.TileMap.Count
+                    ? data.TileMap[tileInfo.TileMapIndex].SaveType
+                    : tileInfo.TileMapIndex;
+                w.Write(tileSaveType);
                 if (isFrameImportant)
                 {
                     if (tileInfo.FrameX >= 256) w.Write(tileInfo.FrameX);
@@ -553,7 +725,11 @@ public static class TwldFile
 
             if (hasWallData)
             {
-                w.Write(wallInfo.WallMapIndex);
+                // Write the original SaveType (runtime type ID), not the mapIndex
+                ushort wallSaveType = wallInfo.WallMapIndex < data.WallMap.Count
+                    ? data.WallMap[wallInfo.WallMapIndex].SaveType
+                    : wallInfo.WallMapIndex;
+                w.Write(wallSaveType);
                 if (wallInfo.WallColor != 0) w.Write(wallInfo.WallColor);
             }
 
@@ -561,12 +737,10 @@ public static class TwldFile
                 w.Write((byte)sameCount);
 
             prevEndPos = endPos + 1;
-
-            // Skip over the same-counted entries
             idx += sameCount;
 
-            // If next is not mod, the reader will expect skip bytes.
-            // They'll be written at the start of the next iteration.
+            // Next iteration: write skip if the next record is NOT immediately adjacent
+            writeSkip = !nextAfterSameIsMod;
         }
 
         return ms.ToArray();
@@ -580,6 +754,71 @@ public static class TwldFile
             skip -= 255;
         }
         w.Write((byte)skip);
+    }
+
+    /// <summary>
+    /// Builds the dense tileData stream (new tModLoader format).
+    /// Writes a ushort for every tile position; 0 = vanilla/empty.
+    /// </summary>
+    internal static byte[] BuildTileDataDense(TwldData data, int tilesWide, int tilesHigh)
+    {
+        using var ms = new MemoryStream();
+        using var w = new BinaryWriter(ms);
+
+        for (int x = 0; x < tilesWide; x++)
+        {
+            for (int y = 0; y < tilesHigh; y++)
+            {
+                if (data.ModTileGrid.TryGetValue((x, y), out var tile) &&
+                    tile.TileMapIndex < data.TileMap.Count)
+                {
+                    // Write the original SaveType (runtime type ID) from the entry
+                    w.Write(data.TileMap[tile.TileMapIndex].SaveType);
+                    w.Write(tile.Color);
+                    if (data.TileMap[tile.TileMapIndex].FrameImportant)
+                    {
+                        w.Write(tile.FrameX);
+                        w.Write(tile.FrameY);
+                    }
+                }
+                else
+                {
+                    w.Write((ushort)0);
+                }
+            }
+        }
+
+        return ms.ToArray();
+    }
+
+    /// <summary>
+    /// Builds the dense wallData stream (new tModLoader format).
+    /// Writes a ushort for every tile position; 0 = vanilla/empty.
+    /// </summary>
+    internal static byte[] BuildWallDataDense(TwldData data, int tilesWide, int tilesHigh)
+    {
+        using var ms = new MemoryStream();
+        using var w = new BinaryWriter(ms);
+
+        for (int x = 0; x < tilesWide; x++)
+        {
+            for (int y = 0; y < tilesHigh; y++)
+            {
+                if (data.ModWallGrid.TryGetValue((x, y), out var wall) &&
+                    wall.WallMapIndex < data.WallMap.Count)
+                {
+                    // Write the original SaveType (runtime type ID) from the entry
+                    w.Write(data.WallMap[wall.WallMapIndex].SaveType);
+                    w.Write(wall.WallColor);
+                }
+                else
+                {
+                    w.Write((ushort)0);
+                }
+            }
+        }
+
+        return ms.ToArray();
     }
 
     #endregion
@@ -721,7 +960,7 @@ public static class TwldFile
     /// Generates a stable color from a mod:name string using a hash.
     /// Different mod tiles will get visually distinct placeholder colors.
     /// </summary>
-    internal static TEditColor GenerateModColor(string fullName)
+    public static TEditColor GenerateModColor(string fullName)
     {
         // Use a simple but stable hash for color generation
         uint hash = 0;
@@ -749,7 +988,7 @@ public static class TwldFile
             });
         }
 
-        WorldConfiguration.TileProperties[virtualId] = new TileProperty
+        var prop = new TileProperty
         {
             Id = virtualId,
             Name = displayName,
@@ -757,6 +996,14 @@ public static class TwldFile
             IsFramed = isFramed,
             IsSolid = !isFramed,
         };
+        WorldConfiguration.TileProperties[virtualId] = prop;
+
+        // Non-framed mod tiles go into the paint dropdowns (TileBricks/TileBricksMask)
+        if (!isFramed)
+        {
+            WorldConfiguration.TileBricks.Add(prop);
+            WorldConfiguration.TileBricksMask.Add(prop);
+        }
     }
 
     private static void RegisterModWallProperty(ushort virtualId, string displayName, TEditColor color)
@@ -771,12 +1018,16 @@ public static class TwldFile
             });
         }
 
-        WorldConfiguration.WallProperties[virtualId] = new WallProperty
+        var prop = new WallProperty
         {
             Id = virtualId,
             Name = displayName,
             Color = color,
         };
+        WorldConfiguration.WallProperties[virtualId] = prop;
+
+        // Add to the wall mask dropdown
+        WorldConfiguration.WallPropertiesMask.Add(prop);
     }
 
     #endregion

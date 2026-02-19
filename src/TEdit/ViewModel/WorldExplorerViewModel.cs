@@ -14,6 +14,7 @@ using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
 using TEdit.Render;
 using TEdit.Terraria;
+using TEdit.Terraria.TModLoader;
 
 namespace TEdit.ViewModel;
 
@@ -466,9 +467,13 @@ public partial class WorldExplorerViewModel
                 return;
             }
 
-            // Render and save on UI thread (WriteableBitmap requires it)
+            // Register mod properties on UI thread (ObservableCollections are UI-bound)
+            // then render and save (WriteableBitmap requires UI thread too)
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
+                if (world.TwldData != null)
+                    TwldFile.RegisterModProperties(world.TwldData);
+
                 var bmp = RenderMiniMap.Render(world, showBackground: true, targetWidth: 600, targetHeight: 200);
                 Directory.CreateDirectory(PreviewCachePath);
                 bmp.SavePng(cachePath);

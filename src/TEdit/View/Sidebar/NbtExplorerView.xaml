@@ -1,0 +1,131 @@
+<UserControl x:Class="TEdit.View.Sidebar.NbtExplorerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             xmlns:cv="clr-namespace:TEdit.Converters"
+             xmlns:p="clr-namespace:TEdit.Properties"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="350"
+             d:DataContext="{d:DesignInstance Type=viewModel:NbtExplorerViewModel}">
+
+    <UserControl.Resources>
+        <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}">
+
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top"
+                   Text="{x:Static p:Language.nbt_explorer_title}"
+                   Style="{DynamicResource SidebarPanelTitle}" />
+
+        <!-- Search bar + Refresh -->
+        <Grid DockPanel.Dock="Top" Margin="8,4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ui:TextBox Grid.Column="0"
+                        PlaceholderText="Search tags..."
+                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="0,0,4,0" />
+
+            <ui:Button Grid.Column="1"
+                       ToolTip="Refresh"
+                       Command="{Binding RefreshCommand}"
+                       Padding="6,4">
+                <ui:SymbolIcon Symbol="ArrowSync20" FontSize="16" />
+            </ui:Button>
+        </Grid>
+
+        <!-- Edit panel (bottom, visible when editable node is selected) -->
+        <Border DockPanel.Dock="Bottom"
+                Margin="8,4"
+                Visibility="{Binding SelectedNode.IsEditable, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <ui:TextBox Grid.Column="0"
+                            Text="{Binding SelectedNode.EditableValue, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,0,4,0" />
+
+                <ui:Button Grid.Column="1"
+                           Content="Apply"
+                           Command="{Binding ApplyEditCommand}"
+                           Padding="8,4" />
+            </Grid>
+        </Border>
+
+        <!-- TreeView -->
+        <TreeView ItemsSource="{Binding FilteredRootNodesView}"
+                  VirtualizingPanel.IsVirtualizing="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  BorderThickness="0"
+                  Background="Transparent"
+                  SelectedItemChanged="TreeView_SelectedItemChanged">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type viewModel:NbtNodeViewModel}"
+                                          ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <!-- Type badge -->
+                        <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                                CornerRadius="3"
+                                Padding="4,1"
+                                Margin="0,0,6,0"
+                                VerticalAlignment="Center">
+                            <TextBlock Text="{Binding TypeLabel}"
+                                       FontSize="10"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                        </Border>
+
+                        <!-- Name -->
+                        <TextBlock Text="{Binding Name}"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+
+                        <!-- Value preview (leaves only) -->
+                        <TextBlock Text="{Binding ValuePreview, StringFormat=': {0}'}"
+                                   VerticalAlignment="Center"
+                                   Margin="4,0,0,0"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                   Visibility="{Binding IsLeaf, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                        <!-- Child count (containers only) -->
+                        <TextBlock Text="{Binding Children.Count, Mode=OneWay, StringFormat='({0})'}"
+                                   VerticalAlignment="Center"
+                                   Margin="4,0,0,0"
+                                   Foreground="{DynamicResource TextFillColorTertiaryBrush}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsLeaf}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                    <Setter Property="Padding" Value="2" />
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
+
+    </DockPanel>
+</UserControl>

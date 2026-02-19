@@ -816,6 +816,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Purify</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="nbt_explorer_title" xml:space="preserve">
+    <value>NBT Explorer</value>
+  </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>Add Ash</value>
   </data>

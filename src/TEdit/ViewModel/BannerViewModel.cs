@@ -174,6 +174,7 @@ public partial class BannerViewModel : ReactiveObject
         }
         catch (Exception ex)
         {
+            ErrorLogging.LogException(ex);
             // Restore backup
             for (int i = 0; i < backup.Length && i < _wvm.CurrentWorld.ClaimableBanners.Count; i++)
             {
@@ -209,6 +210,7 @@ public partial class BannerViewModel : ReactiveObject
         }
         catch (Exception ex)
         {
+            ErrorLogging.LogException(ex);
             // Restore backup
             for (int i = 0; i < backup.Length && i < _wvm.CurrentWorld.ClaimableBanners.Count; i++)
             {

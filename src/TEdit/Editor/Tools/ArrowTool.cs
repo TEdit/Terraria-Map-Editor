@@ -72,5 +72,14 @@ public sealed class ArrowTool : BaseTool
             _wvm.SelectedXmasLight = (_wvm.CurrentWorld.Tiles[XmasLocation.X, XmasLocation.Y].V >> 10) & 0xf;
             _wvm.SelectedXmas = XmasLocation;
         }
+        else
+        {
+            // Fallback: check if a chest exists at this position (e.g. modded chest tile types)
+            Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y, true);
+            if (chest != null)
+            {
+                _wvm.SelectedChest = chest.Copy();
+            }
+        }
     }
 }

@@ -469,6 +469,13 @@
                             <TabItem.Header><ui:SymbolIcon Symbol="Code20" Filled="True" FontSize="24"/></TabItem.Header>
                             <Sidebar:ScriptingSidebarView />
                         </TabItem>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.nbt_explorer_title}"
+                                 Visibility="{Binding HasTwldData, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TabItem.Header>
+                                <ui:SymbolIcon Symbol="Database20" Filled="True" FontSize="24"/>
+                            </TabItem.Header>
+                            <Sidebar:NbtExplorerView />
+                        </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.player_editor_tooltip}"
                                  Visibility="{Binding EnablePlayerEditor, Source={x:Static config:UserSettingsService.Current}, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <TabItem.Header>

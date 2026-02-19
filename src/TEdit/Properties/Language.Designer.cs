@@ -935,6 +935,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Glow Intensity.
+        /// </summary>
+        public static string light_glow_intensity {
+            get {
+                return ResourceManager.GetString("light_glow_intensity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Liquid Amount:.
         /// </summary>
         public static string liquid_amount {
@@ -2119,6 +2128,15 @@ namespace TEdit.Properties {
         public static string MorphBiome_Purify {
             get {
                 return ResourceManager.GetString("MorphBiome_Purify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NBT Explorer.
+        /// </summary>
+        public static string nbt_explorer_title {
+            get {
+                return ResourceManager.GetString("nbt_explorer_title", resourceCulture);
             }
         }
         
@@ -3543,16 +3561,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("show_glow_masks", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Light Glow Intensity.
-        /// </summary>
-        public static string light_glow_intensity {
-            get {
-                return ResourceManager.GetString("light_glow_intensity", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Banners.
         /// </summary>
@@ -4949,9 +4958,9 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_track_pressure_tooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Smooth.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string tool_paint_track_smooth {
             get {
@@ -4960,7 +4969,7 @@ namespace TEdit.Properties {
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Auto-slope blocks at tunnel edges.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string tool_paint_track_smooth_tooltip {
             get {
@@ -4969,7 +4978,7 @@ namespace TEdit.Properties {
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Tunnel.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string tool_paint_track_tunnel {
             get {
@@ -4978,7 +4987,7 @@ namespace TEdit.Properties {
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to Clear tiles above track for tunnel.
+        ///   Looks up a localized string similar to Draw track tunnel segments..
         /// </summary>
         public static string tool_paint_track_tunnel_tooltip {
             get {
@@ -7172,7 +7181,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("world_explorer_tab_tmodloader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Vanilla.
         /// </summary>
@@ -7181,7 +7190,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("world_explorer_tab_vanilla", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to World Explorer.
         /// </summary>

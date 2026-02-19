@@ -379,7 +379,7 @@ public partial class World
             }
             catch (Exception ex)
             {
-                // save error and return status
+                System.Diagnostics.Debug.WriteLine($"World validation failed: {ex.Message}");
                 status.IsValid = false;
                 status.Message = ex.Message;
             }
