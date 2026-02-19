@@ -2506,6 +2506,12 @@ Would you like to enable error reporting?</value>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
     <value>Search worlds...</value>
   </data>
+  <data name="world_explorer_tab_tmodloader" xml:space="preserve">
+    <value>tModLoader</value>
+  </data>
+  <data name="world_explorer_tab_vanilla" xml:space="preserve">
+    <value>Vanilla</value>
+  </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>World Explorer</value>
   </data>

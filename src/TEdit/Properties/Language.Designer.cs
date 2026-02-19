@@ -7165,6 +7165,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to tModLoader.
+        /// </summary>
+        public static string world_explorer_tab_tmodloader {
+            get {
+                return ResourceManager.GetString("world_explorer_tab_tmodloader", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Vanilla.
+        /// </summary>
+        public static string world_explorer_tab_vanilla {
+            get {
+                return ResourceManager.GetString("world_explorer_tab_vanilla", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to World Explorer.
         /// </summary>
         public static string world_explorer_title {

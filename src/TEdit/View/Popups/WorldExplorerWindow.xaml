@@ -32,18 +32,74 @@
                      ShowMinimize="False"
                      ShowMaximize="False" />
 
-        <!-- Search + Browse Row -->
+        <!-- Search + Toggle + Browse Row -->
         <DockPanel Grid.Row="1" Margin="10,0,10,8">
             <ui:Button DockPanel.Dock="Right" Content="Browse..." Padding="8,4" Margin="8,0,0,0"
                        Click="Browse_Click" />
+            <ToggleButton DockPanel.Dock="Right" Margin="8,0,0,0" Padding="8,4"
+                          IsChecked="{Binding ShowModLoaderWorlds}"
+                          ToolTip="Toggle between Vanilla and tModLoader worlds">
+                <StackPanel Orientation="Horizontal">
+                    <!-- Vanilla label (visible when unchecked) -->
+                    <TextBlock Text="{x:Static p:Language.world_explorer_tab_vanilla}">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowModLoaderWorlds}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Text="{Binding VanillaWorldCount, StringFormat=' ({0})'}"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowModLoaderWorlds}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <!-- tModLoader label (visible when checked) -->
+                    <TextBlock Text="{x:Static p:Language.world_explorer_tab_tmodloader}">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowModLoaderWorlds}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Text="{Binding ModLoaderWorldCount, StringFormat=' ({0})'}"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowModLoaderWorlds}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </ToggleButton>
             <ui:TextBox x:Name="SearchBox"
                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                         PlaceholderText="{x:Static p:Language.world_explorer_search_placeholder}"
                         VerticalContentAlignment="Center" />
         </DockPanel>
 
-        <!-- Unified World Grid -->
-        <ListView Grid.Row="2" Margin="10,0,10,0"
+        <!-- World Grid -->
+        <ListView Grid.Row="2"
                   x:Name="WorldListView"
                   ItemsSource="{Binding FilteredWorlds}"
                   SelectedItem="{Binding SelectedWorld}"
