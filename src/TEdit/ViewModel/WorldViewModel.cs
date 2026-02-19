@@ -944,8 +944,11 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _selectedSign, value);
-            SelectedTabIndex = 1;
-            SelectedSpecialTile = 12;
+            if (value != null)
+            {
+                SelectedTabIndex = 1;
+                SelectedSpecialTile = 12;
+            }
         }
     }
 
@@ -955,8 +958,11 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _selectedChest, value);
-            SelectedTabIndex = 1;
-            SelectedSpecialTile = 13;
+            if (value != null)
+            {
+                SelectedTabIndex = 1;
+                SelectedSpecialTile = 13;
+            }
         }
     }
 
@@ -966,8 +972,11 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _selectedTileEntity, value);
-            SelectedTabIndex = 1;
-            SelectedSpecialTile = (int)value?.EntityType;
+            if (value != null)
+            {
+                SelectedTabIndex = 1;
+                SelectedSpecialTile = (int)value.EntityType;
+            }
         }
     }
 
