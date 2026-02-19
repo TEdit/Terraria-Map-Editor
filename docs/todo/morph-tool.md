@@ -1,52 +1,36 @@
-# Morph Tool Improvements
+# Morph Tool - Remaining Work
 
-Related issues: #533 (primary), merged: #1824, #1819, #1053, #815, #913, #1312, #1325, #1498
+Related: #533
 
-## Overview
+## Recently Completed
+- Moved MorphBiomeDataApplier to TEdit.Editor (shared library, no WPF dependency)
+- Fixed EnableBaseTiles checkbox (was ignored, now guards tile type conversion)
+- Fixed CleanseWorldPlugin depth layers (all tiles were morphing at Sky level)
+- Added torch style conversion (tile 4) to all biomes
+- Added MossBrick tile conversion to all biomes
+- Added ComputeMorphLevel static helper for consistent depth calculation
 
-Overhaul the morph tool to support customizable biome conversions, masking, and comprehensive tile coverage.
+## Remaining Tasks
 
-## Implementation Approach
+### High Priority
+- [ ] Jungle biome morph (#815) - Add Jungle as a target biome in morphBiomes.json with jungle grass (60), mud walls, jungle torch (style 21, U=462), jungle vines, jungle thorn
+- [ ] Masking system integration (#1824) - Morph tool should respect the mask system to restrict which tiles/biomes are affected. Prevents mushroom→jungle when purifying
+- [ ] Cleanse World progress bar (#913) - CleanseWorldPlugin processes entire world with no progress feedback. Add progress callback
 
-The morph tool should use the **in-game Clentaminator algorithm** as the reference implementation for biome conversion logic. This ensures conversions match what players expect from Terraria's own purification/corruption mechanics. See: https://terraria.wiki.gg/wiki/Clentaminator
+### Medium Priority
+- [ ] Tree morphing - Different tree tile IDs per biome. Use root location + biome type for conversion
+- [ ] Dungeon biome conversion - Dungeon-specific walls and tiles
+- [ ] Desert morph deco bug (#1819) - Some underground desert rock decos incorrectly convert to ice/mushroom variants when morphing to corruption/crimson
+- [ ] Confirmation dialog for Cleanse World - Show affected tile count preview before processing
 
-## Requirements
+### Low Priority / Future
+- [ ] Custom from-to tile mappings - Allow users to define arbitrary tile conversion rules beyond biome presets
+- [ ] Hive biome conversion - Hive blocks and honey
+- [ ] Cave decoration handling (#1053) - Biome-specific cave decorations should morph with the biome
 
-### Customizable From-To Tiles
-- Allow users to define custom tile conversion mappings (source tile → target tile)
-- Built-in presets for standard biome morphs
-- User-editable conversion tables
-
-### Biome Morph Improvements
-- Preserve jungle tiles when purifying corrupt/crimson (don't convert jungle → forest)
-- Isolate morph to target biome only — don't convert non-corrupt biomes (#1325)
-- Ice blocks and special cave walls
-- Hardened sand conversions
-- Fix corrupted plants remaining after purify (#1498)
-- Prevent morph purify from deleting items on mannequins/item displays
-- Golf grass handling (#1312)
-
-### Desert Morph Fix (from #1819)
-When morphing underground desert to corruption/crimson, certain rock decos are turned into ice or mushroom cave decos. This doesn't occur when morphing to hallow. Unchecking base tiles, moss, evil, or decorations doesn't help.
-
-![Desert morph bug 1](https://user-images.githubusercontent.com/74626960/208173461-f88f028b-3c9c-433d-b9bd-71e969c1702d.png)
-![Desert morph bug 2](https://user-images.githubusercontent.com/74626960/208173479-b3203b90-5be2-440b-aca3-3ce9c98c8d6d.png)
-
-### Morph Masking (from #1824)
-- Morph tool must respect the decoupled mask system (see masking-system.md)
-- Example problem: purifying evil biomes also changes mushroom biomes to jungle
-- Mask allows user to restrict which tiles/biomes are affected
-
-### Additional Biome Support
-- Custom biomes: jungle, snow, hive, dungeon
-- Tree morphing: use root location + biome type to morph trees to appropriate random presets
-- More morph biome combinations (#815)
-
-### Cleanse World (#913)
-- "Cleanse World" button that applies purify morph to the entire world
-- Should respect current mask settings
-- Confirmation dialog with preview of affected tile count
-
-### Cave Decoration Handling (#1053)
-- Converting crimson/corruption/hallow back to natural form must also convert cave decorations
-- Underground biome-specific decorations should morph with the biome
+## Architecture Notes
+- Morph code is in TEdit.Editor (shared lib, net10.0)
+- Data is in TEdit.Terraria/Data/morphBiomes.json (embedded resource)
+- MorphBiomeDataApplier accepts World as parameter (decoupled from WPF)
+- Each biome has morphTiles and morphWalls arrays
+- Torch conversions use spriteOffset system (tile 4, U = style * 22)

@@ -17,17 +17,37 @@ public class MorphConfiguration
     /// </summary>
     public static HashSet<ushort> NotSolidTiles { get; } = new();
 
+    /// <summary>
+    /// Column width for moss plant sprites (tile 184). Each moss type occupies one 22px column.
+    /// </summary>
+    public const short MossPlantColumnWidth = 22;
+
     [System.Text.Json.Serialization.JsonIgnore]
     private readonly HashSet<int> _mossTypes = [];
 
+    [System.Text.Json.Serialization.JsonIgnore]
+    private readonly Dictionary<int, int> _mossColumnIndex = new();
+
     public bool IsMoss(ushort type) => _mossTypes.Contains(type);
+
+    /// <summary>
+    /// Get the sprite column index (0-based) for a moss tile type.
+    /// Returns -1 if the type is not a known moss.
+    /// </summary>
+    public int GetMossColumnIndex(int mossTileId)
+    {
+        return _mossColumnIndex.TryGetValue(mossTileId, out var index) ? index : -1;
+    }
 
     public void InitCache()
     {
         _mossTypes.Clear();
+        _mossColumnIndex.Clear();
+        int column = 0;
         foreach (var id in MossTypes.Values)
         {
             _mossTypes.Add(id);
+            _mossColumnIndex[id] = column++;
         }
     }
 

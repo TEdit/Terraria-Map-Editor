@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TEdit.Terraria;
-using TEdit.ViewModel;
 using TEdit.Geometry;
 using TEdit.Terraria.DataModel;
 
@@ -47,6 +46,7 @@ public static class BiomeMorphExtensions
         return true;
     }
 }
+
 public class MorphBiomeDataApplier
 {
     static Dictionary<MorphBiomeData, MorphBiomeDataApplier> _morpherCache = new();
@@ -73,13 +73,30 @@ public class MorphBiomeDataApplier
     public bool ContainsWall(int id) => _wallCache.ContainsKey(id);
     public bool ContainsTile(int id) => _tileCache.ContainsKey(id);
 
-    public void ApplyMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
+    /// <summary>
+    /// Compute the morph depth level for a given Y coordinate.
+    /// </summary>
+    public static MorphLevel ComputeMorphLevel(World world, int y)
     {
-        ApplyTileMorph(options, source, level, location);
-        ApplyWallMorph(options, source, level, location);
+        int dirtLayer = (int)world.GroundLevel;
+        int rockLayer = (int)world.RockLevel;
+        int deepRockLayer = (int)(rockLayer + ((world.TilesHigh - rockLayer) / 2));
+        int hellLayer = world.TilesHigh - 200;
+
+        if (y > hellLayer) return MorphLevel.Hell;
+        if (y > deepRockLayer) return MorphLevel.DeepRock;
+        if (y > rockLayer) return MorphLevel.Rock;
+        if (y > dirtLayer) return MorphLevel.Dirt;
+        return MorphLevel.Sky;
     }
 
-    private void ApplyWallMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
+    public void ApplyMorph(MorphToolOptions options, World world, Tile source, MorphLevel level, Vector2Int32 location)
+    {
+        ApplyTileMorph(options, world, source, level, location);
+        ApplyWallMorph(options, world, source, level, location);
+    }
+
+    private void ApplyWallMorph(MorphToolOptions options, World world, Tile source, MorphLevel level, Vector2Int32 location)
     {
         if (source.Wall == 0) { return; }
         bool useEvil = options.EnableEvilTiles;
@@ -96,11 +113,11 @@ public class MorphBiomeDataApplier
             }
 
             // Check if tiles need gravity checks.
-            if (morphId.Gravity != null && AirBelow(location.X, location.Y))
+            if (morphId.Gravity != null && AirBelow(world, location.X, location.Y))
             {
                 source.Wall = morphId.Gravity.GetId(level, useEvil) ?? 0;
             }
-            else if (morphId.TouchingAir != null && TouchingAir(location.X, location.Y))
+            else if (morphId.TouchingAir != null && TouchingAir(world, location.X, location.Y))
             {
                 var id = morphId.TouchingAir.GetId(level, useEvil);
                 if (id != null)
@@ -119,7 +136,7 @@ public class MorphBiomeDataApplier
         }
     }
 
-    private void ApplyTileMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
+    private void ApplyTileMorph(MorphToolOptions options, World world, Tile source, MorphLevel level, Vector2Int32 location)
     {
         if (!source.IsActive) { return; }
         ushort sourceId = source.Type;
@@ -131,43 +148,51 @@ public class MorphBiomeDataApplier
         {
             if (morphId.Delete)
             {
-                source.Type = 0;
-                source.IsActive = false;
+                if (options.EnableBaseTiles)
+                {
+                    source.Type = 0;
+                    source.IsActive = false;
+                }
                 return;
             }
 
-            // Check if tiles need gravity checks.
-            if (morphId.Gravity != null && AirBelow(location.X, location.Y))
+            // Tile type conversion (guarded by EnableBaseTiles)
+            if (options.EnableBaseTiles)
             {
-                source.Type = morphId.Gravity.GetId(level, useEvil) ?? 397;
-            }
-            else if (morphId.TouchingAir != null && TouchingAir(location.X, location.Y))
-            {
-                var id = morphId.TouchingAir.GetId(level, useEvil);
-                if (id != null)
+                // Check if tiles need gravity checks.
+                if (morphId.Gravity != null && AirBelow(world, location.X, location.Y))
                 {
-                    source.Type = id.Value;
+                    source.Type = morphId.Gravity.GetId(level, useEvil) ?? 397;
                 }
-            }
-            else
-            {
-                var id = morphId.Default.GetId(level, useEvil) ?? source.Type;
-
-                // apply moss to stone blocks
-                if (morphId.UseMoss &&
-                    options.EnableMoss &&
-                    (WorldConfiguration.MorphSettings.IsMoss(source.Type) ||
-                     TouchingAir(location.X, location.Y)))
+                else if (morphId.TouchingAir != null && TouchingAir(world, location.X, location.Y))
                 {
-                    source.Type = (ushort)options.MossType;
+                    var id = morphId.TouchingAir.GetId(level, useEvil);
+                    if (id != null)
+                    {
+                        source.Type = id.Value;
+                    }
                 }
                 else
                 {
-                    source.Type = id;
+                    var id = morphId.Default.GetId(level, useEvil) ?? source.Type;
+
+                    // apply moss to stone blocks (skip framed tiles like moss plants — UV handled below)
+                    if (morphId.UseMoss &&
+                        options.EnableMoss &&
+                        !WorldConfiguration.TileProperties[sourceId].IsFramed &&
+                        (WorldConfiguration.MorphSettings.IsMoss(source.Type) ||
+                         TouchingAir(world, location.X, location.Y)))
+                    {
+                        source.Type = (ushort)options.MossType;
+                    }
+                    else
+                    {
+                        source.Type = id;
+                    }
                 }
             }
 
-            // filter sprites
+            // Sprite UV offsets (guarded by EnableSprites, independent of EnableBaseTiles)
             if (options.EnableSprites &&
                 WorldConfiguration.TileProperties[sourceId].IsFramed &&
                 morphId.SpriteOffsets.Count > 0)
@@ -177,16 +202,30 @@ public class MorphBiomeDataApplier
                     .FirstOrDefault(uv => uv.FilterMatches(source))
                     ?.ApplyOffset(ref source);
             }
+
+            // Moss plant UV remapping: when UseMoss is set on a framed tile (e.g. tile 184),
+            // remap the U column to match the selected moss type.
+            if (morphId.UseMoss &&
+                options.EnableMoss &&
+                WorldConfiguration.TileProperties[sourceId].IsFramed)
+            {
+                var morphSettings = WorldConfiguration.MorphSettings;
+                int targetColumn = morphSettings.GetMossColumnIndex(options.MossType);
+                if (targetColumn >= 0)
+                {
+                    short columnWidth = MorphConfiguration.MossPlantColumnWidth;
+                    int currentColumn = source.U / columnWidth;
+                    if (currentColumn != targetColumn)
+                    {
+                        source.U = (short)(targetColumn * columnWidth);
+                    }
+                }
+            }
         }
     }
 
-
-
-
-
-    public static bool AirBelow(int x, int y)
+    public static bool AirBelow(World world, int x, int y)
     {
-        var world = ViewModelLocator.WorldViewModel.CurrentWorld;
         if (world == null) return false;
 
         if (y >= world.TilesHigh - 1) return false;
@@ -198,12 +237,14 @@ public class MorphBiomeDataApplier
     // copied from rendering
     const int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
     private readonly MorphBiomeData _morph;
-    static Tile[] neighborTile = new Tile[8];
+    [ThreadStatic] static Tile[] _neighborTile;
 
-    public static bool TouchingAir(int x, int y)
+    public static bool TouchingAir(World world, int x, int y)
     {
-        var world = ViewModelLocator.WorldViewModel.CurrentWorld;
         if (world == null) return false;
+
+        _neighborTile ??= new Tile[8];
+        var neighborTile = _neighborTile;
 
         // copied from render code. this should probably be made a method so it can be reused
         neighborTile[e] = x + 1 < world.TilesWide ? world.Tiles[x + 1, y] : null;

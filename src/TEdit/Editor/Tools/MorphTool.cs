@@ -27,11 +27,6 @@ public sealed class MorphTool : BaseTool
     private MorphBiomeData _targetBiome;
     private MorphBiomeDataApplier _biomeMorpher;
 
-    private int _dirtLayer;
-    private int _rockLayer;
-    private int _deepRockLayer;
-    private int _hellLayer;
-
 
     public MorphTool(WorldViewModel worldViewModel)
         : base(worldViewModel)
@@ -50,14 +45,10 @@ public sealed class MorphTool : BaseTool
         if (!_isDrawing && !_isConstraining && !_isLineMode)
         {
             WorldConfiguration.MorphSettings.Biomes.TryGetValue(_wvm.MorphToolOptions.TargetBiome, out _targetBiome);
-            _biomeMorpher = MorphBiomeDataApplier.GetMorpher(_targetBiome);
+            _biomeMorpher = _targetBiome != null ? MorphBiomeDataApplier.GetMorpher(_targetBiome) : null;
             _startPoint = e.Location;
             _anchorPoint = e.Location;
             _constrainDirectionLocked = false;
-            _dirtLayer = (int)_wvm.CurrentWorld.GroundLevel;
-            _rockLayer = (int)_wvm.CurrentWorld.RockLevel;
-            _deepRockLayer = (int)(_wvm.CurrentWorld.RockLevel + ((_wvm.CurrentWorld.TilesHigh - _wvm.CurrentWorld.RockLevel) / 2));
-            _hellLayer = (int)(_wvm.CurrentWorld.TilesHigh - 200);
             int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
             if (_wvm.CheckTiles == null || _wvm.CheckTiles.Length != totalTiles)
                 _wvm.CheckTiles = new int[totalTiles];
@@ -234,33 +225,9 @@ public sealed class MorphTool : BaseTool
 
     private void MorphTile(Vector2Int32 p)
     {
-        if (_targetBiome == null) { return; }
+        if (_targetBiome == null || _biomeMorpher == null) { return; }
         var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
-
-        MorphLevel level = MorphLevel.Sky;
-        if (p.Y > _hellLayer) { level = MorphLevel.Hell; }
-        else if (p.Y > _deepRockLayer) { level = MorphLevel.DeepRock; }
-        else if (p.Y > _rockLayer) { level = MorphLevel.Rock; }
-        else if (p.Y > _dirtLayer) { level = MorphLevel.Dirt; }
-
-        _biomeMorpher.ApplyMorph(_wvm.MorphToolOptions, curtile, level, p);
-    }
-
-    public void MorphTileExternal(Vector2Int32 p)
-    {
-        // Always use Purify.
-        WorldConfiguration.MorphSettings.Biomes.TryGetValue("Purify", out _targetBiome);
-        _biomeMorpher = MorphBiomeDataApplier.GetMorpher(_targetBiome);
-
-        var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
-
-        MorphLevel level = MorphLevel.Sky;
-        if (p.Y > _hellLayer) { level = MorphLevel.Hell; }
-        else if (p.Y > _deepRockLayer) { level = MorphLevel.DeepRock; }
-        else if (p.Y > _rockLayer) { level = MorphLevel.Rock; }
-        else if (p.Y > _dirtLayer) { level = MorphLevel.Dirt; }
-
-        _biomeMorpher.ApplyMorph(_wvm.MorphToolOptions, curtile, level, p);
-        _wvm.UpdateRenderPixel(p);
+        var level = MorphBiomeDataApplier.ComputeMorphLevel(_wvm.CurrentWorld, p.Y);
+        _biomeMorpher.ApplyMorph(_wvm.MorphToolOptions, _wvm.CurrentWorld, curtile, level, p);
     }
 }

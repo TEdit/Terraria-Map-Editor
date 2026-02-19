@@ -43,6 +43,13 @@
           "spriteOffsets": []
         },
         {
+          "name": "spriteMossPlant",
+          "useMoss": true,
+          "default": { "skyId": 184 },
+          "sourceIds": [184],
+          "spriteOffsets": []
+        },
+        {
           "name": "tileIce",
           "default": {
             "skyId": 161
@@ -169,6 +176,22 @@
           "delete": true,
           "default": {},
           "sourceIds": [518],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteTorch",
+          "default": { "skyId": 4 },
+          "sourceIds": [4],
+          "spriteOffsets": [
+            { "minU": 396, "maxU": 396, "offsetU": -396 },
+            { "minU": 418, "maxU": 418, "offsetU": -418 },
+            { "minU": 440, "maxU": 440, "offsetU": -440 }
+          ]
+        },
+        {
+          "name": "tileMossBrick",
+          "default": { "skyId": 1 },
+          "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }
       ],
@@ -553,6 +576,22 @@
           "default": {},
           "sourceIds": [615, 616],
           "spriteOffsets": []
+        },
+        {
+          "name": "spriteTorch",
+          "default": { "skyId": 4 },
+          "sourceIds": [4],
+          "spriteOffsets": [
+            { "maxU": 0, "offsetU": 396 },
+            { "minU": 418, "maxU": 418, "offsetU": -22 },
+            { "minU": 440, "maxU": 440, "offsetU": -44 }
+          ]
+        },
+        {
+          "name": "tileMossBrick",
+          "default": { "skyId": 25 },
+          "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
+          "spriteOffsets": []
         }
       ],
       "morphWalls": [
@@ -932,6 +971,22 @@
           "default": {},
           "sourceIds": [615, 616],
           "spriteOffsets": []
+        },
+        {
+          "name": "spriteTorch",
+          "default": { "skyId": 4 },
+          "sourceIds": [4],
+          "spriteOffsets": [
+            { "maxU": 0, "offsetU": 418 },
+            { "minU": 396, "maxU": 396, "offsetU": 22 },
+            { "minU": 440, "maxU": 440, "offsetU": -22 }
+          ]
+        },
+        {
+          "name": "tileMossBrick",
+          "default": { "skyId": 203 },
+          "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
+          "spriteOffsets": []
         }
       ],
       "morphWalls": [
@@ -1214,6 +1269,22 @@
           "default": {},
           "sourceIds": [518],
           "spriteOffsets": []
+        },
+        {
+          "name": "spriteTorch",
+          "default": { "skyId": 4 },
+          "sourceIds": [4],
+          "spriteOffsets": [
+            { "maxU": 0, "offsetU": 440 },
+            { "minU": 396, "maxU": 396, "offsetU": 44 },
+            { "minU": 418, "maxU": 418, "offsetU": 22 }
+          ]
+        },
+        {
+          "name": "tileMossBrick",
+          "default": { "skyId": 117 },
+          "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
+          "spriteOffsets": []
         }
       ],
       "morphWalls": [
@@ -1447,6 +1518,14 @@
           "default": {},
           "sourceIds": [571],
           "spriteOffsets": []
+        },
+        {
+          "name": "spriteTorch",
+          "default": { "skyId": 4 },
+          "sourceIds": [4],
+          "spriteOffsets": [
+            { "maxU": 0, "offsetU": 484 }
+          ]
         }
       ],
       "morphWalls": [
@@ -1567,6 +1646,13 @@
           "spriteOffsets": []
         },
         {
+          "name": "spriteMossPlant",
+          "useMoss": true,
+          "default": { "skyId": 184 },
+          "sourceIds": [184],
+          "spriteOffsets": []
+        },
+        {
           "name": "spriteCactus",
           "delete": true,
           "default": {},
@@ -1663,6 +1749,23 @@
           "delete": true,
           "default": {},
           "sourceIds": [518],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteTorch",
+          "default": { "skyId": 4 },
+          "sourceIds": [4],
+          "spriteOffsets": [
+            { "minU": 396, "maxU": 396, "offsetU": -396 },
+            { "minU": 418, "maxU": 418, "offsetU": -418 },
+            { "minU": 440, "maxU": 440, "offsetU": -440 }
+          ]
+        },
+        {
+          "name": "tileMossBrick",
+          "useMoss": true,
+          "default": { "skyId": 1 },
+          "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }
       ],
@@ -2185,6 +2288,20 @@
           "default": {},
           "sourceIds": [615, 616],
           "spriteOffsets": []
+        },
+        {
+          "name": "spriteTorch",
+          "default": { "skyId": 4 },
+          "sourceIds": [4],
+          "spriteOffsets": [
+            { "maxU": 0, "offsetU": 198 }
+          ]
+        },
+        {
+          "name": "tileMossBrick",
+          "default": { "skyId": 161 },
+          "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
+          "spriteOffsets": []
         }
       ],
       "morphWalls": [
@@ -2581,6 +2698,20 @@
           "delete": true,
           "default": {},
           "sourceIds": [615, 616],
+          "spriteOffsets": []
+        },
+        {
+          "name": "spriteTorch",
+          "default": { "skyId": 4 },
+          "sourceIds": [4],
+          "spriteOffsets": [
+            { "maxU": 0, "offsetU": 352 }
+          ]
+        },
+        {
+          "name": "tileMossBrick",
+          "default": { "skyId": 396 },
+          "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }
       ],
