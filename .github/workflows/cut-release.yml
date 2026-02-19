@@ -96,3 +96,11 @@ jobs:
 
           gh release edit ${{ github.ref_name }} --notes "$body" ${{ contains(github.ref_name, '-') && '--prerelease' || '' }}
           gh release upload ${{ github.ref_name }} release/TEdit*.zip API_REFERENCE.md --clobber
+
+      - name: Notify docs site
+        if: vars.DOCS_DISPATCH_TOKEN != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.DOCS_DISPATCH_TOKEN }}
+        run: |
+          gh api repos/TEdit/tedit-docs/dispatches -f event_type=api-reference-updated --silent
+        continue-on-error: true
