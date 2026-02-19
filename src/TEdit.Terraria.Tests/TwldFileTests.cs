@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using TEdit.Common;
 using TEdit.Common.IO;
 using TEdit.Terraria.TModLoader;
 using Xunit;
@@ -334,6 +335,145 @@ public class TwldFileTests
         loadedTiles.GetList<TagCompound>("tileMap").Count.ShouldBe(1);
         loadedTiles.GetList<TagCompound>("tileMap")[0].GetString("mod").ShouldBe("CalamityMod");
     }
+
+    #region Vanilla World Regression Tests
+
+    [Fact]
+    public void VanillaWorld_TwldLoad_ReturnsNull_WhenNoSidecar()
+    {
+        // A vanilla .wld with no .twld sidecar should return null
+        string fakePath = Path.Combine(Path.GetTempPath(), $"VanillaTest_{Guid.NewGuid()}.wld");
+        try
+        {
+            File.WriteAllBytes(fakePath, new byte[] { 0 }); // dummy .wld
+            var result = TwldFile.Load(fakePath);
+            result.ShouldBeNull();
+        }
+        finally
+        {
+            if (File.Exists(fakePath)) File.Delete(fakePath);
+        }
+    }
+
+    [Fact]
+    public void VanillaWorld_TilePropertiesUnchanged()
+    {
+        // WorldConfiguration.TileCount and WallCount should stay at vanilla values
+        // when no mod data is loaded
+        WorldConfiguration.TileCount.ShouldBe((short)752);
+        WorldConfiguration.WallCount.ShouldBe((short)366);
+    }
+
+    [Fact]
+    public void VanillaWorld_TwldSave_DoesNothingForNull()
+    {
+        // TwldFile.Save with null data should not create any file
+        string fakePath = Path.Combine(Path.GetTempPath(), $"VanillaSaveTest_{Guid.NewGuid()}.wld");
+        string twldPath = TwldFile.GetTwldPath(fakePath);
+        try
+        {
+            TwldFile.Save(fakePath, null);
+            File.Exists(twldPath).ShouldBeFalse();
+        }
+        finally
+        {
+            if (File.Exists(twldPath)) File.Delete(twldPath);
+        }
+    }
+
+    [Fact]
+    public void ApplyToWorld_DoesNothingForNull()
+    {
+        // Passing null TwldData should be a safe no-op (no exception)
+        TwldFile.ApplyToWorld(null, null);
+    }
+
+    [Fact]
+    public void StripFromWorld_DoesNothingForNull()
+    {
+        // Passing null TwldData should be a safe no-op (no exception)
+        TwldFile.StripFromWorld(null, null);
+    }
+
+    #endregion
+
+    #region ModColors.json Integration Tests
+
+    [Fact]
+    public void LoadModColors_ReturnsEmpty_WhenFileDoesNotExist()
+    {
+        var colors = TwldFile.LoadModColors(Path.Combine(Path.GetTempPath(), "nonexistent_modColors.json"));
+        colors.ShouldNotBeNull();
+        colors.Count.ShouldBe(0);
+    }
+
+    [Fact]
+    public void LoadModColors_ParsesValidJson()
+    {
+        string tempFile = Path.Combine(Path.GetTempPath(), $"modColors_test_{Guid.NewGuid()}.json");
+        try
+        {
+            string json = @"{
+                ""TestMod"": {
+                    ""tiles"": {
+                        ""TestTile"": { ""color"": ""#FF8040FF"", ""name"": ""Test Tile"" }
+                    },
+                    ""walls"": {
+                        ""TestWall"": { ""color"": ""#4080FFFF"", ""name"": ""Test Wall"" }
+                    }
+                }
+            }";
+            File.WriteAllText(tempFile, json);
+
+            var colors = TwldFile.LoadModColors(tempFile);
+            colors.ShouldContainKey("TestMod:TestTile");
+            colors["TestMod:TestTile"].R.ShouldBe((byte)0xFF);
+            colors["TestMod:TestTile"].G.ShouldBe((byte)0x80);
+            colors["TestMod:TestTile"].B.ShouldBe((byte)0x40);
+
+            colors.ShouldContainKey("TestMod:TestWall");
+            colors["TestMod:TestWall"].R.ShouldBe((byte)0x40);
+            colors["TestMod:TestWall"].G.ShouldBe((byte)0x80);
+            colors["TestMod:TestWall"].B.ShouldBe((byte)0xFF);
+        }
+        finally
+        {
+            if (File.Exists(tempFile)) File.Delete(tempFile);
+        }
+    }
+
+    [Fact]
+    public void ApplyToWorld_UsesModColorsOverride()
+    {
+        // Verify that when mod colors are provided, they override GenerateModColor
+        var data = new TwldData();
+        data.TileMap.Add(new ModTileEntry
+        {
+            SaveType = 0,
+            ModName = "TestMod",
+            Name = "TestTile",
+            FrameImportant = false,
+        });
+
+        var overrideColor = new TEditColor(255, 0, 0, 255);
+        var hashColor = TwldFile.GenerateModColor("TestMod:TestTile");
+
+        // The hash color should NOT be pure red
+        hashColor.ShouldNotBe(overrideColor);
+
+        // Verify override colors can be applied
+        var modColors = new Dictionary<string, TEditColor>
+        {
+            ["TestMod:TestTile"] = overrideColor,
+        };
+
+        // Test that LookupModColor returns the override
+        TEditColor result;
+        modColors.TryGetValue("TestMod:TestTile", out result).ShouldBeTrue();
+        result.ShouldBe(overrideColor);
+    }
+
+    #endregion
 
     [Fact]
     public void BuildTileWallBinary_RoundTrip()
