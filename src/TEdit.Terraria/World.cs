@@ -9,6 +9,7 @@ using TEdit.Common.Exceptions;
 using TEdit.Geometry;
 using TEdit.Terraria.IO;
 using TEdit.Terraria.Objects;
+using TEdit.Terraria.TModLoader;
 
 namespace TEdit.Terraria;
 
@@ -84,6 +85,14 @@ public partial class World
 
                     if (filename == null)
                         return;
+
+                    // Strip mod tile/wall data before vanilla save
+                    if (world.IsTModLoader && world.TwldData != null)
+                    {
+                        progress?.Report(new ProgressChangedEventArgs(0, "Preparing tModLoader data..."));
+                        TwldFile.StripFromWorld(world, world.TwldData);
+                    }
+
                     string temp = filename + ".tmp";
                     using (var fs = new FileStream(temp, FileMode.Create))
                     {
@@ -122,6 +131,14 @@ public partial class World
                             File.Delete(temp);
                             progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));
                         }
+                    }
+
+                    // Save .twld sidecar and re-apply mod data to in-memory world
+                    if (world.IsTModLoader && world.TwldData != null)
+                    {
+                        progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
+                        TwldFile.Save(filename, world.TwldData);
+                        TwldFile.ReapplyToWorld(world, world.TwldData);
                     }
 
                     world.LastSave = File.GetLastWriteTimeUtc(filename);
@@ -163,6 +180,13 @@ public partial class World
                 if (filename == null)
                     return;
 
+                // Strip mod tile/wall data before vanilla save (writes air in .wld)
+                if (world.IsTModLoader && world.TwldData != null)
+                {
+                    progress?.Report(new ProgressChangedEventArgs(0, "Preparing tModLoader data..."));
+                    TwldFile.StripFromWorld(world, world.TwldData);
+                }
+
                 string temp = filename + ".tmp";
                 using (var fs = new FileStream(temp, FileMode.Create))
                 {
@@ -202,6 +226,14 @@ public partial class World
                         File.Delete(temp);
                         progress?.Report(new ProgressChangedEventArgs(0, "World Save Complete."));
                     }
+                }
+
+                // Save .twld sidecar and re-apply mod data to in-memory world
+                if (world.IsTModLoader && world.TwldData != null)
+                {
+                    progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
+                    TwldFile.Save(filename, world.TwldData);
+                    TwldFile.ReapplyToWorld(world, world.TwldData);
                 }
 
                 world.LastSave = File.GetLastWriteTimeUtc(filename);
@@ -595,6 +627,18 @@ public partial class World
                     }
                 }
                 w.LastSave = File.GetLastWriteTimeUtc(filename);
+
+                // Load .twld sidecar if this is a tModLoader world
+                if (w.IsTModLoader && !headersOnly)
+                {
+                    progress?.Report(new ProgressChangedEventArgs(0, "Loading tModLoader data..."));
+                    var twldData = TwldFile.Load(filename);
+                    if (twldData != null)
+                    {
+                        w.TwldData = twldData;
+                        TwldFile.ApplyToWorld(w, twldData);
+                    }
+                }
             }
             catch (Exception ex)
             {
