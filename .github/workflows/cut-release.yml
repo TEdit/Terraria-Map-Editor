@@ -79,6 +79,9 @@ jobs:
         run: |
           vpk upload github --repoUrl https://github.com/${{ github.repository }} --publish --releaseName "TEdit ${{ github.ref_name }}" --tag ${{ github.ref_name }} --token ${{ secrets.GITHUB_TOKEN }} --channel ${{ steps.channel.outputs.name }} -o release
 
+      - name: Generate API reference
+        run: dotnet run --project tools/DocExport -- API_REFERENCE.md
+
       - name: Update release notes and attach portable zip
         shell: pwsh
         env:
@@ -92,4 +95,4 @@ jobs:
           "@
 
           gh release edit ${{ github.ref_name }} --notes "$body" ${{ contains(github.ref_name, '-') && '--prerelease' || '' }}
-          gh release upload ${{ github.ref_name }} release/TEdit*.zip --clobber
+          gh release upload ${{ github.ref_name }} release/TEdit*.zip API_REFERENCE.md --clobber
