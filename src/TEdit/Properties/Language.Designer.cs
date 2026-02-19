@@ -3545,6 +3545,15 @@ namespace TEdit.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Light Glow Intensity.
+        /// </summary>
+        public static string light_glow_intensity {
+            get {
+                return ResourceManager.GetString("light_glow_intensity", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Banners.
         /// </summary>
         public static string sidebar_banner_title {
@@ -4940,7 +4949,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_track_pressure_tooltip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Smooth.
         /// </summary>

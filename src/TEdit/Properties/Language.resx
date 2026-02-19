@@ -1289,6 +1289,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Render wires with transparency</value>
   </data>
+  <data name="show_glow_masks" xml:space="preserve">
+    <value>Glow Masks</value>
+  </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>Banners</value>
   </data>
@@ -2503,4 +2506,4 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-<data name="show_glow_masks" xml:space="preserve"><value>Glow Masks</value></data></root>
+</root>

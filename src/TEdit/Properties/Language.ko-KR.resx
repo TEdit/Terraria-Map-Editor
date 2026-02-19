@@ -1219,6 +1219,9 @@
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>투명도가 있는 와이어 렌더링</value>
   </data>
+  <data name="show_glow_masks" xml:space="preserve">
+    <value>발광 마스크</value>
+  </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>깃발</value>
   </data>
@@ -1691,6 +1694,18 @@
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>기존 트랙에 압력판을 추가하고, 지우개와 함께 판만 제거하세요.</value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value></value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>벽</value>
@@ -2429,20 +2444,5 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>배경 갭 수정</value>
-  </data>
-  <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="show_glow_masks" xml:space="preserve">
-    <value>발광 마스크</value>
   </data>
 </root>

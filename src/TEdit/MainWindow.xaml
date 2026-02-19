@@ -173,6 +173,14 @@
                     <MenuItem Header="{x:Static p:Language.menu_layers_tiles}" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
                     <MenuItem Header="{x:Static p:Language.tool_paint_coating}" IsCheckable="True" IsChecked="{Binding ShowCoatings}" />
                     <MenuItem Header="{x:Static p:Language.show_glow_masks}" IsCheckable="True" IsChecked="{Binding ShowGlowMasks}" />
+                    <MenuItem IsEnabled="{Binding ShowGlowMasks}">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Language.light_glow_intensity}" VerticalAlignment="Center" Margin="0,0,8,0" />
+                                <Slider Value="{Binding LightGlowIntensity, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.1" Width="80" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                    </MenuItem>
                     <MenuItem Header="{x:Static p:Language.menu_layers_liquid}" IsCheckable="True" IsChecked="{Binding ShowLiquid}" />
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_actuators}" IsCheckable="True" IsChecked="{Binding ShowActuators}" />

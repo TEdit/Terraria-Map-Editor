@@ -1289,6 +1289,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Renderujące przewody z przezroczystością</value>
   </data>
+  <data name="show_glow_masks" xml:space="preserve">
+    <value>Maski świecące</value>
+  </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>Sztandary</value>
   </data>
@@ -1761,6 +1764,18 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Add Pressure Plate to existing track, use with Eraser to remove plate only.</value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value></value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Ściana</value>
@@ -2499,20 +2514,5 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
-  </data>
-  <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="show_glow_masks" xml:space="preserve">
-    <value>Maski świecące</value>
   </data>
 </root>

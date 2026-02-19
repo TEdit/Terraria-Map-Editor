@@ -9,6 +9,8 @@ Related: #533
 - Added torch style conversion (tile 4) to all biomes
 - Added MossBrick tile conversion to all biomes
 - Added ComputeMorphLevel static helper for consistent depth calculation
+- Grow moss plant sprites (tile 184) on exposed faces when morphing stone to moss
+- Correct moss plant V-axis anchoring and skip slopes/half blocks
 
 ## Remaining Tasks
 

@@ -10,9 +10,6 @@
 ## Morph Tool (#533)
 - [morph-tool.md](morph-tool.md) — Customizable conversions, biome masking, desert fix, cleanse world
 
-## Rendering
-- Glow Mask System (#2170) — load Glow_*.xnb, additive blend pass
-
 ## Minor
 - Startup Tips (#2171)
 
@@ -22,6 +19,7 @@
 - #1909 — Dependency updates
 
 ## Completed (moved to [../completed/](../completed/))
+- ~~#2170 Glow Mask Rendering~~ — texture atlas, additive blend pass, user toggle
 - ~~#2166 UI Improvements~~ — sprite selection, camera memory, chest editor, paste tab
 - ~~#2165 Selection Tool~~ — hotkey rework
 - ~~#2167 Mannequin Script API~~ — TileEntity script API

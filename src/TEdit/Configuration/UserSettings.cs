@@ -27,6 +27,7 @@ public class UserSettings : INotifyPropertyChanged
     private bool _enablePlayerEditor = false;
     private bool _showBuffRadii = false;
     private bool _showGlowMasks = true;
+    private float _lightGlowIntensity = 0.5f;
     private bool _minimapBackground = false;
     private FilterManager.FilterMode _filterMode = FilterManager.FilterMode.Darken;
     private int _filterDarkenAmount = 60;
@@ -142,6 +143,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _showGlowMasks;
         set => SetField(ref _showGlowMasks, value);
+    }
+
+    public float LightGlowIntensity
+    {
+        get => _lightGlowIntensity;
+        set => SetField(ref _lightGlowIntensity, Math.Clamp(value, 0f, 1f));
     }
 
     public bool MinimapBackground

@@ -5394,9 +5394,6 @@ public partial class WorldRenderXna : UserControl
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if (!curtile.IsActive) continue;
 
-                    // Look up glow mask index for this tile type
-                    if (!GlowMaskData.TileToGlowIndex.TryGetValue(curtile.Type, out int glowIndex)) continue;
-
                     // Echo coating (invisible block) — skip unless coatings are visible
                     if (curtile.InvisibleBlock && !_wvm.ShowCoatings) continue;
 
@@ -5409,108 +5406,84 @@ public partial class WorldRenderXna : UserControl
                     // Actuated/inactive tiles — suppress glow
                     if (curtile.InActive) continue;
 
-                    var glowTex = _textureDictionary.GetGlowMask(glowIndex);
-                    if (glowTex == null || glowTex == _textureDictionary.DefaultTexture) continue;
-
-                    var glowColor = GlowMaskData.GetGlowColor(curtile.Type);
                     var tileprop = WorldConfiguration.GetTileProperties(curtile.Type);
 
-                    if (tileprop.IsFramed)
+                    // Dedicated glow mask texture takes priority
+                    if (GlowMaskData.TileToGlowIndex.TryGetValue(curtile.Type, out int glowIndex))
                     {
-                        // For framed tiles, use the tile's UV coordinates as the source rect
-                        var renderUV = TileProperty.GetRenderUV(curtile.Type, curtile.U, curtile.V);
-                        var source = new Rectangle(renderUV.X, renderUV.Y, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                        var dest = new Rectangle(
-                            1 + (int)((_scrollPosition.X + x) * _zoom),
-                            1 + (int)((_scrollPosition.Y + y) * _zoom),
-                            (int)_zoom, (int)_zoom);
+                        var glowTex = _textureDictionary.GetGlowMask(glowIndex);
+                        if (glowTex == null || glowTex == _textureDictionary.DefaultTexture) continue;
 
-                        // Adjust dest for non-16x16 frames
-                        if (source.Width > 16 || source.Height > 16)
+                        var glowColor = GlowMaskData.GetGlowColor(curtile.Type);
+
+                        if (tileprop.IsFramed)
                         {
-                            dest.Width = (int)(_zoom * source.Width / 16f);
-                            dest.Height = (int)(_zoom * source.Height / 16f);
-                            dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
-                            dest.Y += (int)((16 - source.Height) * _zoom / 16);
-                        }
+                            // For framed tiles, use the tile's UV coordinates as the source rect
+                            var renderUV = TileProperty.GetRenderUV(curtile.Type, curtile.U, curtile.V);
+                            var source = new Rectangle(renderUV.X, renderUV.Y, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                            var dest = new Rectangle(
+                                1 + (int)((_scrollPosition.X + x) * _zoom),
+                                1 + (int)((_scrollPosition.Y + y) * _zoom),
+                                (int)_zoom, (int)_zoom);
 
-                        _spriteBatch.Draw(glowTex, dest, source, glowColor, 0f, default, SpriteEffects.None, LayerTileGlowMask);
+                            // Adjust dest for non-16x16 frames
+                            if (source.Width > 16 || source.Height > 16)
+                            {
+                                dest.Width = (int)(_zoom * source.Width / 16f);
+                                dest.Height = (int)(_zoom * source.Height / 16f);
+                                dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
+                                dest.Y += (int)((16 - source.Height) * _zoom / 16);
+                            }
+
+                            _spriteBatch.Draw(glowTex, dest, source, glowColor, 0f, default, SpriteEffects.None, LayerTileGlowMask);
+                        }
+                        else
+                        {
+                            DrawSolidGlow(curtile, tileprop, glowTex, glowColor, x, y);
+                        }
                     }
-                    else
+                    else if (tileprop.IsLight)
                     {
-                        // Solid/blendable terrain — use same UV cache as base tile
-                        if (curtile.uvTileCache == 0xFFFF) continue; // not yet cached
+                        // Synthetic glow for isLight tiles without dedicated glow mask textures
+                        var tc = tileprop.Color;
+                        if (tc.R == 0 && tc.G == 0 && tc.B == 0) continue;
 
-                        var texsize = new Vector2Int32(tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                        if (texsize.X == 0 || texsize.Y == 0)
+                        float intensity = _wvm.LightGlowIntensity;
+                        if (intensity <= 0f) continue;
+
+                        if (tileprop.IsFramed)
                         {
-                            texsize = new Vector2Int32(16, 16);
+                            // Only draw halo from the anchor (origin) tile to avoid stacking
+                            if (!tileprop.IsOrigin(new Vector2Short(curtile.U, curtile.V))) continue;
+
+                            // Light halo — soft radial gradient sized by frame footprint, centered on sprite
+                            var frameSize = tileprop.GetFrameSize(curtile.V);
+                            int frameMax = Math.Max(frameSize.X, frameSize.Y);
+                            int haloRadius = Math.Min(Math.Max(frameMax, 1), 4);
+
+                            float haloMul = 0.08f * intensity;
+                            var haloColor = new Color((byte)(tc.R * haloMul), (byte)(tc.G * haloMul), (byte)(tc.B * haloMul), (byte)0);
+                            int haloDiameterPx = (int)(haloRadius * 2 * _zoom);
+
+                            // Center halo on the middle of the sprite footprint
+                            float spriteCenterX = x + frameSize.X * 0.5f;
+                            float spriteCenterY = y + frameSize.Y * 0.5f;
+                            var haloDest = new Rectangle(
+                                1 + (int)((_scrollPosition.X + spriteCenterX) * _zoom) - haloDiameterPx / 2,
+                                1 + (int)((_scrollPosition.Y + spriteCenterY) * _zoom) - haloDiameterPx / 2,
+                                haloDiameterPx, haloDiameterPx);
+
+                            _spriteBatch.Draw(_textureDictionary.GlowHaloTexture, haloDest, null, haloColor, 0f, default, SpriteEffects.None, LayerTileGlowMask);
                         }
-
-                        var source = new Rectangle(
-                            (curtile.uvTileCache & 0x00FF) * (texsize.X + 2),
-                            (curtile.uvTileCache >> 8) * (texsize.Y + 2),
-                            texsize.X, texsize.Y);
-                        var dest = new Rectangle(
-                            1 + (int)((_scrollPosition.X + x) * _zoom),
-                            1 + (int)((_scrollPosition.Y + y) * _zoom),
-                            (int)_zoom, (int)_zoom);
-
-                        switch (curtile.BrickStyle)
+                        else
                         {
-                            case BrickStyle.HalfBrick:
-                                source.Height /= 2;
-                                dest.Y += (int)(_zoom * 0.5);
-                                dest.Height = (int)(_zoom / 2.0f);
-                                _spriteBatch.Draw(glowTex, dest, source, glowColor, 0f, default, SpriteEffects.None, LayerTileGlowMask);
-                                break;
+                            // Luminous re-draw — additive redraw of tile's own texture with color tint
+                            var tileTex = _textureDictionary.GetTile(curtile.Type);
+                            if (tileTex == null || tileTex == _textureDictionary.DefaultTexture) continue;
 
-                            case BrickStyle.SlopeTopRight:
-                                for (int slice = 0; slice < 8; slice++)
-                                {
-                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
-                                    Vector2 destSlice = new Vector2(
-                                        (int)(dest.X + slice * _zoom / 8.0f),
-                                        (int)(dest.Y + slice * _zoom / 8.0f));
-                                    _spriteBatch.Draw(glowTex, destSlice, sourceSlice, glowColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileGlowMask);
-                                }
-                                break;
-
-                            case BrickStyle.SlopeTopLeft:
-                                for (int slice = 0; slice < 8; slice++)
-                                {
-                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
-                                    Vector2 destSlice = new Vector2(
-                                        (int)(dest.X + slice * _zoom / 8.0f),
-                                        (int)(dest.Y + (7 - slice) * _zoom / 8.0f));
-                                    _spriteBatch.Draw(glowTex, destSlice, sourceSlice, glowColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileGlowMask);
-                                }
-                                break;
-
-                            case BrickStyle.SlopeBottomRight:
-                                for (int slice = 0; slice < 8; slice++)
-                                {
-                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y + slice * 2, 2, 16 - slice * 2);
-                                    Vector2 destSlice = new Vector2(
-                                        (int)(dest.X + slice * _zoom / 8.0f), dest.Y);
-                                    _spriteBatch.Draw(glowTex, destSlice, sourceSlice, glowColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileGlowMask);
-                                }
-                                break;
-
-                            case BrickStyle.SlopeBottomLeft:
-                                for (int slice = 0; slice < 8; slice++)
-                                {
-                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
-                                    Vector2 destSlice = new Vector2(
-                                        (int)(dest.X + slice * _zoom / 8.0f), dest.Y);
-                                    _spriteBatch.Draw(glowTex, destSlice, sourceSlice, glowColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileGlowMask);
-                                }
-                                break;
-
-                            case BrickStyle.Full:
-                            default:
-                                _spriteBatch.Draw(glowTex, dest, source, glowColor, 0f, default, SpriteEffects.None, LayerTileGlowMask);
-                                break;
+                            float glowMul = 0.05f * intensity;
+                            var glowColor = new Color((byte)(tc.R * glowMul), (byte)(tc.G * glowMul), (byte)(tc.B * glowMul), (byte)0);
+                            DrawSolidGlow(curtile, tileprop, tileTex, glowColor, x, y);
                         }
                     }
                 }
@@ -5519,6 +5492,93 @@ public partial class WorldRenderXna : UserControl
                     // Failed to render glow mask for tile
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Draw a solid (non-framed) tile glow using the given texture and color,
+    /// respecting half-brick and slope geometry.
+    /// </summary>
+    private void DrawSolidGlow(Tile curtile, TileProperty tileprop, Texture2D glowTex, Color glowColor, int x, int y)
+    {
+        if (curtile.uvTileCache == 0xFFFF) return; // not yet cached
+
+        var texsize = new Vector2Int32(tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+        if (texsize.X == 0 || texsize.Y == 0)
+        {
+            texsize = new Vector2Int32(16, 16);
+        }
+
+        // Decode cached UV coordinates — lower byte = column, upper byte = row
+        int tileX = curtile.uvTileCache & 0x00FF;
+        int tileY = curtile.uvTileCache >> 8;
+
+        // Guard against out-of-bounds UV: verify the source rect fits in the texture
+        int srcX = tileX * (texsize.X + 2);
+        int srcY = tileY * (texsize.Y + 2);
+        if (srcX + texsize.X > glowTex.Width || srcY + texsize.Y > glowTex.Height) return;
+
+        var source = new Rectangle(srcX, srcY, texsize.X, texsize.Y);
+        var dest = new Rectangle(
+            1 + (int)((_scrollPosition.X + x) * _zoom),
+            1 + (int)((_scrollPosition.Y + y) * _zoom),
+            (int)_zoom, (int)_zoom);
+
+        switch (curtile.BrickStyle)
+        {
+            case BrickStyle.HalfBrick:
+                source.Height /= 2;
+                dest.Y += (int)(_zoom * 0.5);
+                dest.Height = (int)(_zoom / 2.0f);
+                _spriteBatch.Draw(glowTex, dest, source, glowColor, 0f, default, SpriteEffects.None, LayerTileGlowMask);
+                break;
+
+            case BrickStyle.SlopeTopRight:
+                for (int slice = 0; slice < 8; slice++)
+                {
+                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
+                    Vector2 destSlice = new Vector2(
+                        (int)(dest.X + slice * _zoom / 8.0f),
+                        (int)(dest.Y + slice * _zoom / 8.0f));
+                    _spriteBatch.Draw(glowTex, destSlice, sourceSlice, glowColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileGlowMask);
+                }
+                break;
+
+            case BrickStyle.SlopeTopLeft:
+                for (int slice = 0; slice < 8; slice++)
+                {
+                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
+                    Vector2 destSlice = new Vector2(
+                        (int)(dest.X + slice * _zoom / 8.0f),
+                        (int)(dest.Y + (7 - slice) * _zoom / 8.0f));
+                    _spriteBatch.Draw(glowTex, destSlice, sourceSlice, glowColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileGlowMask);
+                }
+                break;
+
+            case BrickStyle.SlopeBottomRight:
+                for (int slice = 0; slice < 8; slice++)
+                {
+                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y + slice * 2, 2, 16 - slice * 2);
+                    Vector2 destSlice = new Vector2(
+                        (int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+                    _spriteBatch.Draw(glowTex, destSlice, sourceSlice, glowColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileGlowMask);
+                }
+                break;
+
+            case BrickStyle.SlopeBottomLeft:
+                for (int slice = 0; slice < 8; slice++)
+                {
+                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
+                    Vector2 destSlice = new Vector2(
+                        (int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+                    _spriteBatch.Draw(glowTex, destSlice, sourceSlice, glowColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileGlowMask);
+                }
+                break;
+
+            case BrickStyle.Full:
+            default:
+                _spriteBatch.Draw(glowTex, dest, source, glowColor, 0f, default, SpriteEffects.None, LayerTileGlowMask);
+                break;
         }
     }
 

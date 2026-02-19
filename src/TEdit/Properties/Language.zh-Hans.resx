@@ -1289,6 +1289,9 @@
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>渲染带有透明度的线缆</value>
   </data>
+  <data name="show_glow_masks" xml:space="preserve">
+    <value>发光面具</value>
+  </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>旗帜</value>
   </data>
@@ -1761,6 +1764,18 @@
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>将普通轨道变为压力板轨道，使用擦除模式将压力板轨道变为普通轨道。</value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value></value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>墙</value>
@@ -2499,20 +2514,5 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
-  </data>
-  <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="show_glow_masks" xml:space="preserve">
-    <value>发光面具</value>
   </data>
 </root>

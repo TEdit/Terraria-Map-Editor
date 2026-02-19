@@ -1289,6 +1289,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Renderizar cables con transparencia</value>
   </data>
+  <data name="show_glow_masks" xml:space="preserve">
+    <value>Máscaras Brillantes</value>
+  </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>Estandartes</value>
   </data>
@@ -1761,6 +1764,18 @@ Qué NO se recopila:
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Agregar placa de presión a la pista existente, úsalo con el Borrador para quitar solo la placa.</value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value></value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Pared</value>
@@ -2499,20 +2514,5 @@ Qué NO se recopila:
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar fondo</value>
-  </data>
-  <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="show_glow_masks" xml:space="preserve">
-    <value>Máscaras Brillantes</value>
   </data>
 </root>

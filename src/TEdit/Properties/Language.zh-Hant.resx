@@ -1219,6 +1219,9 @@
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>渲染帶有透明度的線材</value>
   </data>
+  <data name="show_glow_masks" xml:space="preserve">
+    <value>發光面具</value>
+  </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>旗幟</value>
   </data>
@@ -1691,6 +1694,18 @@
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>在現有軌道上加裝壓力板，搭配橡皮擦只用來移除壓力板。</value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value></value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>牆</value>
@@ -2429,20 +2444,5 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修正背景空隙</value>
-  </data>
-  <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="show_glow_masks" xml:space="preserve">
-    <value>發光面具</value>
   </data>
 </root>

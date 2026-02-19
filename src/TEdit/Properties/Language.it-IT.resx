@@ -1219,6 +1219,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Renderizza i fili con trasparenza</value>
   </data>
+  <data name="show_glow_masks" xml:space="preserve">
+    <value>Maschere Luminescenti</value>
+  </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>Stendardi</value>
   </data>
@@ -1691,6 +1694,18 @@ Vuoi abilitare la segnalazione degli errori?</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Aggiungi la piastra di pressione al binario esistente, usa con la gomma solo per rimuovere la piastra di rimozione.</value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value></value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Muro</value>
@@ -2429,20 +2444,5 @@ Vuoi abilitare la segnalazione degli errori?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Correggere il gap di background</value>
-  </data>
-  <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="show_glow_masks" xml:space="preserve">
-    <value>Maschere Luminescenti</value>
   </data>
 </root>

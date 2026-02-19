@@ -80,6 +80,24 @@ public class Textures
         _whitePixelTexture = new Texture2D(_gdDevice, 1, 1);
         _whitePixelTexture.SetData(new Color[] { Color.White });
 
+        // Generate 64x64 radial gradient for light halo effects
+        const int haloSize = 64;
+        _glowHaloTexture = new Texture2D(_gdDevice, haloSize, haloSize);
+        var haloPixels = new Color[haloSize * haloSize];
+        float center = (haloSize - 1) / 2f;
+        for (int py = 0; py < haloSize; py++)
+        {
+            for (int px = 0; px < haloSize; px++)
+            {
+                float dx = (px - center) / center;
+                float dy = (py - center) / center;
+                float distSq = dx * dx + dy * dy;
+                float alpha = Math.Max(0f, 1f - distSq);
+                haloPixels[py * haloSize + px] = new Color(alpha, alpha, alpha, alpha);
+            }
+        }
+        _glowHaloTexture.SetData(haloPixels);
+
         if (Directory.Exists(path))
         {
             try
@@ -324,6 +342,7 @@ public class Textures
     private Texture2D _defaultTexture;
     private Texture2D _whitePixelTexture;
     private Texture2D _actuator;
+    private Texture2D _glowHaloTexture;
     private readonly Rectangle _zeroSixteenRectangle = new Rectangle(0, 0, 16, 16);
     public Rectangle ZeroSixteenRectangle { get { return _zeroSixteenRectangle; } }
 
@@ -336,6 +355,11 @@ public class Textures
     /// Get a 1x1 white pixel texture (used for solid color drawing).
     /// </summary>
     public Texture2D WhitePixelTexture => _whitePixelTexture;
+
+    /// <summary>
+    /// Get a 64x64 radial gradient texture (white center, transparent edge) for light halo effects.
+    /// </summary>
+    public Texture2D GlowHaloTexture => _glowHaloTexture;
 
     /// <summary>
     /// Queue a texture creation action to be executed on the graphics thread.

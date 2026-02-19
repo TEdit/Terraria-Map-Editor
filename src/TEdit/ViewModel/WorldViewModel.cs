@@ -1406,6 +1406,17 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
+    public float LightGlowIntensity
+    {
+        get { return UserSettingsService.Current.LightGlowIntensity; }
+        set
+        {
+            UserSettingsService.Current.LightGlowIntensity = value;
+            this.RaisePropertyChanged(nameof(LightGlowIntensity));
+            UpdateRenderWorld();
+        }
+    }
+
     public bool MinimapBackground
     {
         get { return UserSettingsService.Current.MinimapBackground; }
