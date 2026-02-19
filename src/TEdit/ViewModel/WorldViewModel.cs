@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Common;
 using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
@@ -25,6 +26,7 @@ using TEdit.Geometry;
 using TEdit.Configuration;
 using TEdit.Render;
 using TEdit.Terraria.Objects;
+using TEdit.Terraria.TModLoader;
 using TEdit.UI;
 using TEdit.UI.Xaml;
 using TEdit.Utility;
@@ -101,6 +103,8 @@ public partial class WorldViewModel : ReactiveObject
     private bool _worldBorderOverlay = false;
     private bool _showWireTransparency = true;
     private string _spriteFilter;
+    private bool _showModSprites;
+    private bool _hasTwldData;
     private ushort _spriteTileFilter;
     private ListCollectionView _spriteSheetView;
     private ListCollectionView _spriteStylesView;
@@ -262,6 +266,92 @@ public partial class WorldViewModel : ReactiveObject
         }
 
         ErrorLogging.LogDebug($"BuildSpritesFromConfig: {WorldConfiguration.Sprites2.Count} sprite sheets created from config");
+    }
+
+    /// <summary>
+    /// Registers mod framed tiles as placeholder SpriteSheet entries in Sprites2.
+    /// Must be called on the UI thread after RegisterModProperties.
+    /// </summary>
+    public void RegisterModSprites(TwldData data)
+    {
+        if (data == null) return;
+
+        int added = 0;
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            for (int i = 0; i < data.TileMap.Count; i++)
+            {
+                var entry = data.TileMap[i];
+                if (!entry.FrameImportant) continue;
+                if (!data.MapIndexToVirtualTileId.TryGetValue(i, out ushort virtualId)) continue;
+
+                // Skip if already registered
+                if (WorldConfiguration.Sprites2.Any(s => s.Tile == virtualId)) continue;
+
+                var prop = virtualId < WorldConfiguration.TileProperties.Count
+                    ? WorldConfiguration.TileProperties[virtualId]
+                    : null;
+
+                var color = prop?.Color ?? TwldFile.GenerateModColor(entry.FullName);
+
+                // Create a placeholder preview bitmap (16x16 colored square)
+                var preview = CreateColoredPreview(color);
+
+                var spriteItem = new SpriteItemPreview
+                {
+                    Tile = virtualId,
+                    Style = 0,
+                    Name = entry.FullName,
+                    UV = new Geometry.Vector2Short(0, 0),
+                    SizeTiles = new Geometry.Vector2Short(1, 1),
+                    SizeTexture = new Geometry.Vector2Short(16, 16),
+                    SizePixelsInterval = new Geometry.Vector2Short(18, 18),
+                    Preview = preview,
+                };
+
+                var sprite = new SpriteSheet
+                {
+                    Tile = virtualId,
+                    Name = entry.FullName,
+                    SizeTiles = new[] { new Geometry.Vector2Short(1, 1) },
+                    SizePixelsRender = new Geometry.Vector2Short(16, 16),
+                    SizePixelsInterval = new Geometry.Vector2Short(18, 18),
+                    SizeTexture = new Geometry.Vector2Short(16, 16),
+                };
+                sprite.Styles.Add(spriteItem);
+
+                WorldConfiguration.Sprites2.Add(sprite);
+                added++;
+            }
+        }
+
+        if (added > 0)
+        {
+            ErrorLogging.LogDebug($"RegisterModSprites: {added} mod framed tile sprites added");
+            // Reinitialize sprite views so the new entries appear
+            InitSpriteViews();
+        }
+    }
+
+    /// <summary>
+    /// Creates a 16x16 WriteableBitmap filled with the given color. Must be called on UI thread.
+    /// </summary>
+    private static System.Windows.Media.Imaging.WriteableBitmap CreateColoredPreview(TEditColor color)
+    {
+        const int size = 16;
+        var bmp = new System.Windows.Media.Imaging.WriteableBitmap(size, size, 96, 96,
+            System.Windows.Media.PixelFormats.Bgra32, null);
+        bmp.Lock();
+        unsafe
+        {
+            var pixels = (int*)bmp.BackBuffer;
+            int bgra = (color.A << 24) | (color.R << 16) | (color.G << 8) | color.B;
+            for (int i = 0; i < size * size; i++)
+                pixels[i] = bgra;
+        }
+        bmp.AddDirtyRect(new System.Windows.Int32Rect(0, 0, size, size));
+        bmp.Unlock();
+        return bmp;
     }
 
     /// <summary>
@@ -525,9 +615,13 @@ public partial class WorldViewModel : ReactiveObject
         _spriteSheetView = (ListCollectionView)CollectionViewSource.GetDefaultView(WorldConfiguration.Sprites2);
         _spriteSheetView.Filter = o =>
         {
-            if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
-
             var sprite = (SpriteSheet)o;
+
+            // Hide mod sprites unless the toggle is on
+            if (sprite.Tile >= WorldConfiguration.TileCount && !_showModSprites)
+                return false;
+
+            if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
             var filter = _spriteFilter.Trim();
 
             // Exact tile ID match (if filter is purely numeric)
@@ -645,6 +739,23 @@ public partial class WorldViewModel : ReactiveObject
             SpriteSheetView.Refresh();
             SpriteStylesView.Refresh();
         }
+    }
+
+    public bool ShowModSprites
+    {
+        get { return _showModSprites; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _showModSprites, value);
+            SpriteSheetView?.Refresh();
+            SpriteStylesView?.Refresh();
+        }
+    }
+
+    public bool HasTwldData
+    {
+        get { return _hasTwldData; }
+        set { this.RaiseAndSetIfChanged(ref _hasTwldData, value); }
     }
 
     public ushort SpriteTileFilter
@@ -1907,7 +2018,12 @@ public partial class WorldViewModel : ReactiveObject
 
                 return w; // Return the generated world
             })
-            .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler) // Set the current world after generation
+            .ContinueWith(t =>
+            {
+                CurrentWorld = t.Result;
+                HasTwldData = false;
+                ViewModelLocator.GetNbtExplorerViewModel().Clear();
+            }, TaskFactoryHelper.UiTaskScheduler) // Set the current world after generation
             .ContinueWith(t => RenderEntireWorld()) // Render the entire world after setting it
             .ContinueWith(t =>
             {
@@ -2525,6 +2641,7 @@ public partial class WorldViewModel : ReactiveObject
             }
             catch (ArgumentOutOfRangeException err)
             {
+                ErrorLogging.LogException(err);
                 string msg = "There is a problem in your world.\r\n" + $"{err.ParamName}\r\n" + $"This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
                 var saveResult = await Application.Current.Dispatcher.InvokeAsync(async () =>
                     await App.DialogService.ShowMessageAsync(msg, "World Error", DialogButton.YesNo, DialogImage.Error)).Task.Unwrap();
@@ -2533,6 +2650,7 @@ public partial class WorldViewModel : ReactiveObject
             }
             catch (Exception ex)
             {
+                ErrorLogging.LogException(ex);
                 string msg = "There is a problem in your world.\r\n" + $"{ex.Message}\r\n" + "This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
                 var saveResult = await Application.Current.Dispatcher.InvokeAsync(async () =>
                     await App.DialogService.ShowMessageAsync(msg, "World Error", DialogButton.YesNo, DialogImage.Error)).Task.Unwrap();
@@ -2743,6 +2861,8 @@ public partial class WorldViewModel : ReactiveObject
             var (world, error) = World.LoadWorld(filename);
             if (error != null)
             {
+                ErrorLogging.LogException(error);
+
                 string msg =
                     "There was an error reading the world file.\r\n" +
                     "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
@@ -2761,7 +2881,28 @@ public partial class WorldViewModel : ReactiveObject
 
             return world;
         })
-        .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
+        .ContinueWith(t =>
+        {
+            CurrentWorld = t.Result;
+            // Register mod tile/wall properties on UI thread (ObservableCollections are UI-bound)
+            if (CurrentWorld?.TwldData != null)
+            {
+                TwldFile.RegisterModProperties(CurrentWorld.TwldData);
+                RegisterModSprites(CurrentWorld.TwldData);
+                HasTwldData = true;
+                ViewModelLocator.GetNbtExplorerViewModel().LoadFromTwldData(CurrentWorld.TwldData);
+            }
+            else
+            {
+                HasTwldData = false;
+                ViewModelLocator.GetNbtExplorerViewModel().Clear();
+            }
+
+            // Log any out-of-range tile/wall/paint IDs so missing data is visible in the log
+            // (fast: only checks twld maps and unique paint IDs, not full tile scan)
+            if (CurrentWorld != null)
+                LogMissingPropertyIds(CurrentWorld);
+        }, TaskFactoryHelper.UiTaskScheduler)
         .ContinueWith(t => RenderEntireWorld())
         .ContinueWith(t =>
         {
@@ -2799,5 +2940,63 @@ public partial class WorldViewModel : ReactiveObject
             }
 
         }, TaskFactoryHelper.UiTaskScheduler);
+    }
+
+    /// <summary>
+    /// Compares twld mod data against loaded configuration and logs any IDs
+    /// that are out of range (missing tile/wall/paint properties).
+    /// </summary>
+    private static void LogMissingPropertyIds(World world)
+    {
+        var data = world.TwldData;
+        int tileCount = WorldConfiguration.TileProperties.Count;
+        int wallCount = WorldConfiguration.WallProperties.Count;
+        int paintCount = WorldConfiguration.PaintProperties.Count;
+
+        // Check mod tile entries have registered properties
+        if (data != null)
+        {
+            foreach (var entry in data.TileMap)
+            {
+                if (data.MapIndexToVirtualTileId.TryGetValue(entry.SaveType, out ushort vid))
+                {
+                    if (vid >= tileCount)
+                        ErrorLogging.LogWarn($"Missing tile property: {entry.FullName} (virtualId={vid}, max={tileCount - 1})");
+                }
+                else
+                {
+                    ErrorLogging.LogWarn($"Missing tile mapping: {entry.FullName} (saveType={entry.SaveType})");
+                }
+            }
+
+            foreach (var entry in data.WallMap)
+            {
+                if (data.MapIndexToVirtualWallId.TryGetValue(entry.SaveType, out ushort vid))
+                {
+                    if (vid >= wallCount)
+                        ErrorLogging.LogWarn($"Missing wall property: {entry.FullName} (virtualId={vid}, max={wallCount - 1})");
+                }
+                else
+                {
+                    ErrorLogging.LogWarn($"Missing wall mapping: {entry.FullName} (saveType={entry.SaveType})");
+                }
+            }
+
+            // Check paint IDs used by mod tiles/walls
+            var missingPaints = new HashSet<byte>();
+            foreach (var (_, modTile) in data.ModTileGrid)
+            {
+                if (modTile.Color > 0 && modTile.Color >= paintCount)
+                    missingPaints.Add(modTile.Color);
+            }
+            foreach (var (_, modWall) in data.ModWallGrid)
+            {
+                if (modWall.WallColor > 0 && modWall.WallColor >= paintCount)
+                    missingPaints.Add(modWall.WallColor);
+            }
+
+            foreach (var id in missingPaints)
+                ErrorLogging.LogWarn($"Missing paint property: ID={id} (max configured={paintCount - 1})");
+        }
     }
 }

@@ -413,6 +413,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="keybind_capture_title" xml:space="preserve">
     <value>Press a key or click a mouse button</value>
   </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>Glow Intensity</value>
+  </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
   </data>
@@ -815,6 +818,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>Purify</value>
     <comment>enum:MorphBiome.Purify</comment>
+  </data>
+  <data name="nbt_explorer_title" xml:space="preserve">
+    <value>NBT Explorer</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>Add Ash</value>

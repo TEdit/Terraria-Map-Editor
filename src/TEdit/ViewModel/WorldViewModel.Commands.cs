@@ -601,6 +601,7 @@ public partial class WorldViewModel
             }
             catch (Exception ex)
             {
+                ErrorLogging.LogException(ex);
                 world.Bestiary = bestiary;
                 world.KilledMobs.Clear();
                 world.KilledMobs.AddRange(killTally);
@@ -637,6 +638,7 @@ public partial class WorldViewModel
                 }
                 catch (Exception ex)
                 {
+                    ErrorLogging.LogException(ex);
                     await App.DialogService.ShowExceptionAsync(ex.Message);
                 }
             }
@@ -660,6 +662,7 @@ public partial class WorldViewModel
             }
             catch (Exception ex)
             {
+                ErrorLogging.LogException(ex);
                 await App.DialogService.ShowExceptionAsync(ex.Message);
             }
         }

@@ -410,7 +410,7 @@ public class Textures
 
             if (!File.Exists(texturePath))
             {
-                ErrorLogging.LogWarn($"Missing texture: {path}");
+                ErrorLogging.LogDebug($"Missing texture: {path}");
                 return _defaultTexture;
             }
 

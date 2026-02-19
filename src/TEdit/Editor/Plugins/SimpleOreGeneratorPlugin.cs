@@ -81,7 +81,7 @@ namespace TEdit.Editor.Plugins
                             {
                                 GenerateVein(x, y, visited, randomizationArea);
                             }
-                            catch (Exception) { continue; }
+                            catch (Exception ex) { ErrorLogging.LogDebug($"Ore vein error at [{x},{y}]: {ex.Message}"); continue; }
                         }
                     }
                 }

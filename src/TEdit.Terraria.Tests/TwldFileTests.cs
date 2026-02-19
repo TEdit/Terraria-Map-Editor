@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TEdit.Common;
 using TEdit.Common.IO;
 using TEdit.Terraria.TModLoader;
@@ -23,17 +25,14 @@ public class TwldFileTests
             FrameImportant = false,
         });
 
-        // Build binary: flags=0x01 (has tile), type=0x0000, then skip to end
+        // tModLoader format: [skip] [flags] [data] ...
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
 
-        // Entry at position 0,0: tile type 0, no frame, no color, no wall, no same, no next
+        w.Write((byte)0); // skip=0 (tile at position 0)
         byte flags = 0x01; // hasTile only
         w.Write(flags);
         w.Write((ushort)0); // tile type index into tileMap
-
-        // Skip remaining positions (write a 0-byte skip to end the sequence)
-        w.Write((byte)0);
 
         byte[] binary = ms.ToArray();
         TwldFile.ParseTileWallBinary(binary, data, 10, 10);
@@ -57,6 +56,7 @@ public class TwldFileTests
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
 
+        w.Write((byte)0); // skip=0
         // flags: hasTile(0x01) + hasColor(0x08) = 0x09
         byte flags = 0x09;
         w.Write(flags);
@@ -64,9 +64,6 @@ public class TwldFileTests
         w.Write((byte)10); // frameX (small, < 256)
         w.Write((byte)20); // frameY (small, < 256)
         w.Write((byte)5); // color
-
-        // Skip
-        w.Write((byte)0);
 
         byte[] binary = ms.ToArray();
         TwldFile.ParseTileWallBinary(binary, data, 10, 10);
@@ -93,13 +90,12 @@ public class TwldFileTests
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
 
+        w.Write((byte)0); // skip=0
         // flags: hasWall(0x10) + hasWallColor(0x20) = 0x30
         byte flags = 0x30;
         w.Write(flags);
         w.Write((ushort)0); // wall type
         w.Write((byte)3); // wall color
-
-        w.Write((byte)0); // skip
 
         byte[] binary = ms.ToArray();
         TwldFile.ParseTileWallBinary(binary, data, 10, 10);
@@ -125,13 +121,12 @@ public class TwldFileTests
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
 
+        w.Write((byte)0); // skip=0
         // flags: hasTile(0x01) + hasSameCount(0x40) = 0x41
         byte flags = 0x41;
         w.Write(flags);
         w.Write((ushort)0); // tile type
         w.Write((byte)4); // sameCount = 4 (means 5 total cells: 1 original + 4 same)
-
-        w.Write((byte)0); // skip
 
         byte[] binary = ms.ToArray();
         TwldFile.ParseTileWallBinary(binary, data, 10, 10);
@@ -160,20 +155,17 @@ public class TwldFileTests
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
 
-        // First entry at position 0
+        // First entry at position 0: skip=0, then record
+        w.Write((byte)0); // skip=0
         byte flags = 0x01; // hasTile
         w.Write(flags);
         w.Write((ushort)0);
 
-        // Skip 5 positions
+        // Skip 5 positions, then second entry at position 6 (0 + 1 + skip 5)
         w.Write((byte)5);
-
-        // Second entry at position 6 (0 + 1 + 5)
         flags = 0x01;
         w.Write(flags);
         w.Write((ushort)0);
-
-        w.Write((byte)0); // end skip
 
         byte[] binary = ms.ToArray();
         TwldFile.ParseTileWallBinary(binary, data, 10, 10);
@@ -198,17 +190,16 @@ public class TwldFileTests
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
 
-        // First entry at position 0, nextIsMod=true
+        // skip=0, first entry at position 0, nextIsMod=true
+        w.Write((byte)0); // skip
         byte flags = 0x81; // hasTile(0x01) + nextIsMod(0x80)
         w.Write(flags);
         w.Write((ushort)0);
 
-        // Second entry at position 1, no nextIsMod
+        // Second entry at position 1, no nextIsMod (no skip bytes between them)
         flags = 0x01;
         w.Write(flags);
         w.Write((ushort)0);
-
-        w.Write((byte)0); // end skip
 
         byte[] binary = ms.ToArray();
         TwldFile.ParseTileWallBinary(binary, data, 10, 10);
@@ -216,6 +207,38 @@ public class TwldFileTests
         data.ModTileGrid.ShouldContainKey((0, 0));
         data.ModTileGrid.ShouldContainKey((0, 1));
         data.ModTileGrid.Count.ShouldBe(2);
+    }
+
+    [Fact]
+    public void ParseTileWallBinary_LargeInitialSkip()
+    {
+        // Test that tiles far from position 0 are correctly placed (large initial skip)
+        var data = new TwldData();
+        data.TileMap.Add(new ModTileEntry
+        {
+            SaveType = 0,
+            ModName = "TestMod",
+            Name = "FarTile",
+            FrameImportant = false,
+        });
+
+        using var ms = new MemoryStream();
+        using var w = new BinaryWriter(ms);
+
+        // Skip 500 positions: 255 + 245
+        w.Write((byte)255);
+        w.Write((byte)245);
+        byte flags = 0x01; // hasTile
+        w.Write(flags);
+        w.Write((ushort)0);
+
+        byte[] binary = ms.ToArray();
+        // World: 100 wide x 100 high
+        TwldFile.ParseTileWallBinary(binary, data, 100, 100);
+
+        // linearPos 500 = x=5, y=0 in a 100-high world
+        data.ModTileGrid.ShouldContainKey((5, 0));
+        data.ModTileGrid.Count.ShouldBe(1);
     }
 
     [Fact]
@@ -535,4 +558,230 @@ public class TwldFileTests
         loaded.ModWallGrid.ShouldContainKey((1, 2));
         loaded.ModWallGrid[(1, 2)].WallColor.ShouldBe((byte)4);
     }
+
+    #region Calamity2 Real World Tests
+
+    private const string Calamity2WldPath = @"D:\dev\ai\tedit\tModLoaderData\Worlds\Calamity2.wld";
+    private const string Calamity2TwldPath = @"D:\dev\ai\tedit\tModLoaderData\Worlds\Calamity2.twld";
+
+    [SkippableFact]
+    public void Calamity2_ParseTileWallBinary_ProducesTilesInAllQuadrants()
+    {
+        Skip.IfNot(File.Exists(Calamity2TwldPath), "Calamity2.twld test fixture not found");
+        Skip.IfNot(File.Exists(Calamity2WldPath), "Calamity2.wld test fixture not found");
+
+        WorldConfiguration.Initialize();
+
+        // Read world dimensions from header
+        var header = World.ReadWorldHeader(Calamity2WldPath);
+        header.ShouldNotBeNull();
+        int tilesWide = header.TilesWide;
+        int tilesHigh = header.TilesHigh;
+
+        tilesWide.ShouldBeGreaterThan(0);
+        tilesHigh.ShouldBeGreaterThan(0);
+
+        // Load .twld raw tag to inspect structure
+        var rootTag = TagIO.FromFile(Calamity2TwldPath);
+        rootTag.ShouldNotBeNull();
+
+        // Diagnostic: check root keys
+        var rootKeys = string.Join(", ", rootTag.Select(kv => kv.Key));
+
+        // Check tiles section exists
+        rootTag.ContainsKey("tiles").ShouldBeTrue($"Root keys: {rootKeys}");
+        var tilesTag = rootTag.GetCompound("tiles");
+        var tilesKeys = string.Join(", ", tilesTag.Select(kv => $"{kv.Key}({kv.Value?.GetType().Name})"));
+        // New format uses "tileData" and "wallData" keys
+        bool isNewFormat = tilesTag.ContainsKey("tileData");
+        (isNewFormat || tilesTag.ContainsKey("data")).ShouldBeTrue($"Tiles keys: {tilesKeys}");
+
+        // Load .twld data
+        var twldData = TwldFile.Load(Calamity2WldPath);
+        twldData.ShouldNotBeNull();
+
+        bool hasRawData = twldData.RawTileData.Length > 0 || twldData.RawWallData.Length > 0
+                       || twldData.RawTileWallData.Length > 0;
+        hasRawData.ShouldBeTrue(
+            $"No raw data. TileMap={twldData.TileMap.Count}, WallMap={twldData.WallMap.Count}. " +
+            $"Tiles keys: {tilesKeys}. RawTileData={twldData.RawTileData.Length}, " +
+            $"RawWallData={twldData.RawWallData.Length}, RawTileWallData={twldData.RawTileWallData.Length}");
+
+        // Parse binary tile/wall data using the appropriate format
+        if (twldData.RawTileData.Length > 0)
+            TwldFile.ParseTileDataDense(twldData.RawTileData, twldData, tilesWide, tilesHigh);
+        if (twldData.RawWallData.Length > 0)
+            TwldFile.ParseWallDataDense(twldData.RawWallData, twldData, tilesWide, tilesHigh);
+        if (twldData.RawTileWallData.Length > 0)
+            TwldFile.ParseTileWallBinary(twldData.RawTileWallData, twldData, tilesWide, tilesHigh);
+
+        int totalTiles = twldData.ModTileGrid.Count;
+        int totalWalls = twldData.ModWallGrid.Count;
+
+        totalTiles.ShouldBeGreaterThan(0, "Expected mod tiles to be parsed");
+
+        // Check tiles exist in all four quadrants
+        int halfX = tilesWide / 2;
+        int halfY = tilesHigh / 2;
+
+        int topLeft = 0, topRight = 0, bottomLeft = 0, bottomRight = 0;
+        foreach (var (pos, _) in twldData.ModTileGrid)
+        {
+            if (pos.X < halfX && pos.Y < halfY) topLeft++;
+            else if (pos.X >= halfX && pos.Y < halfY) topRight++;
+            else if (pos.X < halfX && pos.Y >= halfY) bottomLeft++;
+            else bottomRight++;
+        }
+
+        // The bug: bottom-right tiles don't load
+        topLeft.ShouldBeGreaterThan(0, $"Expected tiles in top-left quadrant (total={totalTiles})");
+        bottomRight.ShouldBeGreaterThan(0,
+            $"Expected tiles in bottom-right quadrant (total={totalTiles}, " +
+            $"TL={topLeft}, TR={topRight}, BL={bottomLeft}, BR={bottomRight}, " +
+            $"world={tilesWide}x{tilesHigh})");
+
+        // Also check X range coverage
+        int maxX = 0;
+        foreach (var (pos, _) in twldData.ModTileGrid)
+            if (pos.X > maxX) maxX = pos.X;
+
+        // Mod tiles should extend into at least 80% of the world width
+        maxX.ShouldBeGreaterThan((int)(tilesWide * 0.8),
+            $"Max tile X={maxX} should reach >80% of world width ({tilesWide})");
+    }
+
+    [SkippableFact]
+    public void Calamity2_TileDataStreamSize()
+    {
+        Skip.IfNot(File.Exists(Calamity2TwldPath), "Calamity2.twld test fixture not found");
+        Skip.IfNot(File.Exists(Calamity2WldPath), "Calamity2.wld test fixture not found");
+
+        WorldConfiguration.Initialize();
+        var header = World.ReadWorldHeader(Calamity2WldPath);
+        var twldData = TwldFile.Load(Calamity2WldPath);
+
+        int tilesWide = header.TilesWide;
+        int tilesHigh = header.TilesHigh;
+        long totalCells = (long)tilesWide * tilesHigh;
+        long minStreamSize = totalCells * 2; // minimum: 2 bytes per cell (just ushort, no extras)
+
+        // Count framed tiles in the entry map
+        int framedCount = twldData.TileMap.Count(e => e.FrameImportant);
+
+        twldData.RawTileData.Length.ShouldBeGreaterThan(0);
+
+        // Stream should be at least totalCells * 2 bytes
+        twldData.RawTileData.Length.ShouldBeGreaterThanOrEqualTo((int)minStreamSize,
+            $"TileData stream too small. world={tilesWide}x{tilesHigh}, cells={totalCells}, " +
+            $"minSize={minStreamSize}, actual={twldData.RawTileData.Length}, " +
+            $"tileMapCount={twldData.TileMap.Count}, framedEntries={framedCount}");
+    }
+
+    [SkippableFact]
+    public void Calamity2_ParseTileWallBinary_NoStreamPositionErrors()
+    {
+        Skip.IfNot(File.Exists(Calamity2TwldPath), "Calamity2.twld test fixture not found");
+        Skip.IfNot(File.Exists(Calamity2WldPath), "Calamity2.wld test fixture not found");
+
+        WorldConfiguration.Initialize();
+        var header = World.ReadWorldHeader(Calamity2WldPath);
+        var twldData = TwldFile.Load(Calamity2WldPath);
+
+        // Parsing should not throw (no stream overrun, no invalid tile types)
+        Should.NotThrow(() =>
+        {
+            if (twldData.RawTileData.Length > 0)
+                TwldFile.ParseTileDataDense(twldData.RawTileData, twldData, header.TilesWide, header.TilesHigh);
+            if (twldData.RawWallData.Length > 0)
+                TwldFile.ParseWallDataDense(twldData.RawWallData, twldData, header.TilesWide, header.TilesHigh);
+            if (twldData.RawTileWallData.Length > 0)
+                TwldFile.ParseTileWallBinary(twldData.RawTileWallData, twldData, header.TilesWide, header.TilesHigh);
+        });
+
+        // Count tiles/walls with invalid map indices (stream desync artifacts)
+        int invalidTiles = 0;
+        foreach (var (pos, tile) in twldData.ModTileGrid)
+        {
+            if (tile.TileMapIndex >= twldData.TileMap.Count)
+                invalidTiles++;
+        }
+
+        int invalidWalls = 0;
+        foreach (var (pos, wall) in twldData.ModWallGrid)
+        {
+            if (wall.WallMapIndex >= twldData.WallMap.Count)
+                invalidWalls++;
+        }
+
+        // With bounds-checked parsing, no invalid entries should be stored
+        invalidTiles.ShouldBe(0,
+            $"Found {invalidTiles} tiles with invalid map indices (total={twldData.ModTileGrid.Count}, " +
+            $"tileMapCount={twldData.TileMap.Count})");
+        invalidWalls.ShouldBe(0,
+            $"Found {invalidWalls} walls with invalid map indices (total={twldData.ModWallGrid.Count}, " +
+            $"wallMapCount={twldData.WallMap.Count})");
+    }
+
+    [SkippableFact]
+    public void Calamity2_RoundTrip_PreservesAllTiles()
+    {
+        Skip.IfNot(File.Exists(Calamity2TwldPath), "Calamity2.twld test fixture not found");
+        Skip.IfNot(File.Exists(Calamity2WldPath), "Calamity2.wld test fixture not found");
+
+        WorldConfiguration.Initialize();
+        var header = World.ReadWorldHeader(Calamity2WldPath);
+        var twldData = TwldFile.Load(Calamity2WldPath);
+
+        // Parse original
+        bool isNewFormat = twldData.RawTileData.Length > 0;
+        if (isNewFormat)
+        {
+            TwldFile.ParseTileDataDense(twldData.RawTileData, twldData, header.TilesWide, header.TilesHigh);
+            TwldFile.ParseWallDataDense(twldData.RawWallData, twldData, header.TilesWide, header.TilesHigh);
+        }
+        else
+        {
+            TwldFile.ParseTileWallBinary(twldData.RawTileWallData, twldData, header.TilesWide, header.TilesHigh);
+        }
+        int originalTiles = twldData.ModTileGrid.Count;
+        int originalWalls = twldData.ModWallGrid.Count;
+
+        originalTiles.ShouldBeGreaterThan(0, "Expected parsed mod tiles");
+
+        // Rebuild binary using the same format
+        if (isNewFormat)
+        {
+            byte[] rebuiltTiles = TwldFile.BuildTileDataDense(twldData, header.TilesWide, header.TilesHigh);
+            byte[] rebuiltWalls = TwldFile.BuildWallDataDense(twldData, header.TilesWide, header.TilesHigh);
+            rebuiltTiles.Length.ShouldBeGreaterThan(0);
+
+            var reloaded = new TwldData();
+            reloaded.TileMap.AddRange(twldData.TileMap);
+            reloaded.WallMap.AddRange(twldData.WallMap);
+            TwldFile.ParseTileDataDense(rebuiltTiles, reloaded, header.TilesWide, header.TilesHigh);
+            TwldFile.ParseWallDataDense(rebuiltWalls, reloaded, header.TilesWide, header.TilesHigh);
+
+            reloaded.ModTileGrid.Count.ShouldBe(originalTiles,
+                $"Round-trip lost tiles: {originalTiles} -> {reloaded.ModTileGrid.Count}");
+            reloaded.ModWallGrid.Count.ShouldBe(originalWalls,
+                $"Round-trip lost walls: {originalWalls} -> {reloaded.ModWallGrid.Count}");
+        }
+        else
+        {
+            byte[] rebuilt = TwldFile.BuildTileWallBinary(twldData, header.TilesWide, header.TilesHigh);
+            rebuilt.Length.ShouldBeGreaterThan(0);
+
+            var reloaded = new TwldData();
+            reloaded.TileMap.AddRange(twldData.TileMap);
+            reloaded.WallMap.AddRange(twldData.WallMap);
+            TwldFile.ParseTileWallBinary(rebuilt, reloaded, header.TilesWide, header.TilesHigh);
+
+            reloaded.ModTileGrid.Count.ShouldBe(originalTiles,
+                $"Round-trip lost tiles: {originalTiles} -> {reloaded.ModTileGrid.Count}");
+            reloaded.ModWallGrid.Count.ShouldBe(originalWalls,
+                $"Round-trip lost walls: {originalWalls} -> {reloaded.ModWallGrid.Count}");
+        }
+    }
+
+    #endregion
 }

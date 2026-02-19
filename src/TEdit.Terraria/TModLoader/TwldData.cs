@@ -21,8 +21,14 @@ public class TwldData
     /// <summary>Sparse overlay of mod wall data keyed by (x, y).</summary>
     public Dictionary<(int X, int Y), ModWallData> ModWallGrid { get; set; } = new();
 
-    /// <summary>Raw binary tile/wall data from the .twld (deferred parse until world dimensions known).</summary>
+    /// <summary>Raw interleaved binary tile/wall data from older .twld format (deferred parse).</summary>
     public byte[] RawTileWallData { get; set; } = Array.Empty<byte>();
+
+    /// <summary>Raw binary tile data from newer .twld format (separate "tileData" key).</summary>
+    public byte[] RawTileData { get; set; } = Array.Empty<byte>();
+
+    /// <summary>Raw binary wall data from newer .twld format (separate "wallData" key).</summary>
+    public byte[] RawWallData { get; set; } = Array.Empty<byte>();
 
     /// <summary>Whether the raw binary data has been parsed into ModTileGrid/ModWallGrid.</summary>
     public bool TileWallDataParsed { get; set; }
@@ -47,6 +53,12 @@ public class TwldData
     /// (modData, killCounts, bestiary, anglerQuest, townManager, alteredVanillaFields, etc.).
     /// </summary>
     public TagCompound RawTag { get; set; } = new();
+
+    /// <summary>Maps binary saveType values to TileMap list indices (built from "value" NBT field).</summary>
+    public Dictionary<ushort, int> SaveTypeToTileMapIndex { get; set; } = new();
+
+    /// <summary>Maps binary saveType values to WallMap list indices (built from "value" NBT field).</summary>
+    public Dictionary<ushort, int> SaveTypeToWallMapIndex { get; set; } = new();
 
     /// <summary>Maps virtual tile IDs (beyond vanilla range) back to TileMap indices.</summary>
     public Dictionary<ushort, int> VirtualTileIdToMapIndex { get; set; } = new();

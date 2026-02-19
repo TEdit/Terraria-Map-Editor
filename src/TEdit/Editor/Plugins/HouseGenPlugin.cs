@@ -121,6 +121,7 @@ public partial class HouseGenPlugin : BasePlugin
             }
             catch (Exception ex)
             {
+                ErrorLogging.LogException(ex);
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -154,6 +155,7 @@ public partial class HouseGenPlugin : BasePlugin
                         }
                         catch (IndexOutOfRangeException e)
                         {
+                            ErrorLogging.LogDebug($"HouseGen IndexOutOfRange in {room.Name}: {e.Message}");
                             MessageBox.Show(e.Message + " Check JSON Data for " + room.Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
@@ -196,6 +198,7 @@ public partial class HouseGenPlugin : BasePlugin
                     }
                     catch (IndexOutOfRangeException e)
                     {
+                        ErrorLogging.LogDebug($"HouseGen IndexOutOfRange (Count mismatch): {e.Message}");
                         MessageBox.Show(e.Message + " Check JSON Data for value 'Count' to make sure it matches with associated schematic.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }

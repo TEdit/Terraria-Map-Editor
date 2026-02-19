@@ -24,9 +24,15 @@ public class ModTileEntry
 
     public static ModTileEntry FromTag(TagCompound tag, int index)
     {
+        // tModLoader writes the runtime type ID as "value" (ushort stored as short in NBT).
+        // If absent (old format), fall back to 1-based index convention.
+        ushort saveType = tag.ContainsKey("value")
+            ? tag.Get<ushort>("value")
+            : (ushort)(index + 1);
+
         return new ModTileEntry
         {
-            SaveType = (ushort)index,
+            SaveType = saveType,
             ModName = tag.GetString("mod"),
             Name = tag.GetString("name"),
             FrameImportant = tag.GetBool("framed"),
@@ -36,6 +42,7 @@ public class ModTileEntry
     public TagCompound ToTag()
     {
         var tag = new TagCompound();
+        tag.Set("value", (short)SaveType); // NBT stores as short; tModLoader deserializes as ushort
         tag.Set("mod", ModName);
         tag.Set("name", Name);
         tag.Set("framed", (byte)(FrameImportant ? 1 : 0));

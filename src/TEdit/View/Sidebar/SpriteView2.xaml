@@ -32,6 +32,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
                        Text="{x:Static p:Language.sprite_filter_label}"
@@ -40,9 +41,15 @@
                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
             <TextBox Grid.Column="1"
                      Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}"/>
-            <ui:Button Grid.Column="2"
+            <ToggleButton Grid.Column="2"
+                          Content="Mod"
+                          IsChecked="{Binding ShowModSprites, Mode=TwoWay}"
+                          Margin="4,0,0,0"
+                          Padding="8,4"
+                          ToolTip="Show/hide modded sprites"/>
+            <ui:Button Grid.Column="3"
                        Content="{x:Static p:Language.bestiary_clear}"
-                       Margin="8,0,0,0"
+                       Margin="4,0,0,0"
                        Padding="8,4"
                        Command="{Binding ClearSpriteSelectionCommand}"
                        ToolTip="Clear selection"/>

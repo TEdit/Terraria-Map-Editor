@@ -32,6 +32,7 @@ public static class ViewModelLocator
     private static FilterSidebarViewModel? _filterSidebarViewModel;
     private static FindSidebarViewModel? _findSidebarViewModel;
     private static ScriptingSidebarViewModel? _scriptingSidebarViewModel;
+    private static NbtExplorerViewModel? _nbtExplorerViewModel;
     private static PlayerEditorViewModel? _playerEditorViewModel;
 
     public static PlayerEditorViewModel PlayerEditorViewModel
@@ -59,6 +60,12 @@ public static class ViewModelLocator
     {
         _scriptingSidebarViewModel ??= new ScriptingSidebarViewModel(WorldViewModel);
         return _scriptingSidebarViewModel;
+    }
+
+    public static NbtExplorerViewModel GetNbtExplorerViewModel()
+    {
+        _nbtExplorerViewModel ??= new NbtExplorerViewModel(WorldViewModel);
+        return _nbtExplorerViewModel;
     }
 
     private static WorldViewModel CreateWorldViewModel()

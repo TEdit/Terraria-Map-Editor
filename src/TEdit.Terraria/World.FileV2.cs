@@ -1493,9 +1493,9 @@ public partial class World
                         rle--;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    // forcing some recovery here
+                    System.Diagnostics.Debug.WriteLine($"Tile data recovery: {ex.Message}");
 
                     for (int x2 = 0; x2 < maxX; x2++)
                     {
