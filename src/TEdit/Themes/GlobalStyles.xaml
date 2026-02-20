@@ -589,7 +589,9 @@
         <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Standard" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Template" Value="{StaticResource ListViewTemplate}" />
+        <Setter Property="Template" Value="{StaticResource GridViewTemplate}" />
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource {x:Static GridView.GridViewItemContainerStyleKey}}" />
+        <Setter Property="GridView.ColumnHeaderContainerStyle" Value="{DynamicResource DefaultGridViewColumnHeaderStyle}" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -598,6 +600,13 @@
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <!-- When no View is set (plain ListView/ListBox mode), fall back to the simple template -->
+            <Trigger Property="View" Value="{x:Null}">
+                <Setter Property="Template" Value="{StaticResource ListViewTemplate}" />
+                <Setter Property="ItemContainerStyle" Value="{x:Null}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- GridView.GridViewStyleKey: applied when View=GridView -->
