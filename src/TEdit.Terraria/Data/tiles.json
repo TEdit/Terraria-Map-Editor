@@ -8120,6 +8120,7 @@
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[1, 1], [2, 1]],
+    "textureWrap": { "axis": "U", "offsetIncrement": 18, "conditionalV": 18 },
     "frames": [
       { "name": "Small Decos", "variety": "Small Stone A", "uv": [0, 0] },
       { "name": "Small Decos", "variety": "Small Stone B", "uv": [18, 0] },
