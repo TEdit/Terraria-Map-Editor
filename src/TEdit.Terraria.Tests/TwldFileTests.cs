@@ -12,6 +12,20 @@ namespace TEdit.Terraria.Tests;
 
 public class TwldFileTests
 {
+    /// <summary>
+    /// Builds SaveTypeToTileMapIndex and SaveTypeToWallMapIndex lookups from TileMap/WallMap entries.
+    /// Mirrors what ParseRootTag does during real .twld loading.
+    /// </summary>
+    private static void BuildSaveTypeLookups(TwldData data)
+    {
+        data.SaveTypeToTileMapIndex.Clear();
+        data.SaveTypeToWallMapIndex.Clear();
+        for (int i = 0; i < data.TileMap.Count; i++)
+            data.SaveTypeToTileMapIndex[data.TileMap[i].SaveType] = i;
+        for (int i = 0; i < data.WallMap.Count; i++)
+            data.SaveTypeToWallMapIndex[data.WallMap[i].SaveType] = i;
+    }
+
     [Fact]
     public void ParseTileWallBinary_BasicTileOverlay()
     {
@@ -24,6 +38,8 @@ public class TwldFileTests
             Name = "TestTile",
             FrameImportant = false,
         });
+
+        BuildSaveTypeLookups(data);
 
         // tModLoader format: [skip] [flags] [data] ...
         using var ms = new MemoryStream();
@@ -52,6 +68,7 @@ public class TwldFileTests
             Name = "FramedTile",
             FrameImportant = true,
         });
+        BuildSaveTypeLookups(data);
 
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
@@ -86,6 +103,7 @@ public class TwldFileTests
             ModName = "TestMod",
             Name = "TestWall",
         });
+        BuildSaveTypeLookups(data);
 
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
@@ -117,6 +135,7 @@ public class TwldFileTests
             Name = "RepeatedTile",
             FrameImportant = false,
         });
+        BuildSaveTypeLookups(data);
 
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
@@ -151,6 +170,7 @@ public class TwldFileTests
             Name = "SkippedTile",
             FrameImportant = false,
         });
+        BuildSaveTypeLookups(data);
 
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
@@ -186,6 +206,7 @@ public class TwldFileTests
             Name = "Adjacent",
             FrameImportant = false,
         });
+        BuildSaveTypeLookups(data);
 
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
@@ -221,6 +242,7 @@ public class TwldFileTests
             Name = "FarTile",
             FrameImportant = false,
         });
+        BuildSaveTypeLookups(data);
 
         using var ms = new MemoryStream();
         using var w = new BinaryWriter(ms);
@@ -251,7 +273,8 @@ public class TwldFileTests
 
         var entry = ModTileEntry.FromTag(tag, 5);
 
-        entry.SaveType.ShouldBe((ushort)5);
+        // No "value" key → fallback to (index + 1) = 6
+        entry.SaveType.ShouldBe((ushort)6);
         entry.ModName.ShouldBe("CalamityMod");
         entry.Name.ShouldBe("AstralMonolith");
         entry.FrameImportant.ShouldBeTrue();
@@ -522,6 +545,7 @@ public class TwldFileTests
             ModName = "TestMod",
             Name = "TestWall",
         });
+        BuildSaveTypeLookups(data);
 
         // Add some mod tiles at various positions
         data.ModTileGrid[(0, 0)] = new ModTileData { TileMapIndex = 0, Color = 0 };
@@ -540,6 +564,7 @@ public class TwldFileTests
         var loaded = new TwldData();
         loaded.TileMap.AddRange(data.TileMap);
         loaded.WallMap.AddRange(data.WallMap);
+        BuildSaveTypeLookups(loaded);
 
         TwldFile.ParseTileWallBinary(binary, loaded, tilesWide, tilesHigh);
 
@@ -758,6 +783,7 @@ public class TwldFileTests
             var reloaded = new TwldData();
             reloaded.TileMap.AddRange(twldData.TileMap);
             reloaded.WallMap.AddRange(twldData.WallMap);
+            BuildSaveTypeLookups(reloaded);
             TwldFile.ParseTileDataDense(rebuiltTiles, reloaded, header.TilesWide, header.TilesHigh);
             TwldFile.ParseWallDataDense(rebuiltWalls, reloaded, header.TilesWide, header.TilesHigh);
 
@@ -774,6 +800,7 @@ public class TwldFileTests
             var reloaded = new TwldData();
             reloaded.TileMap.AddRange(twldData.TileMap);
             reloaded.WallMap.AddRange(twldData.WallMap);
+            BuildSaveTypeLookups(reloaded);
             TwldFile.ParseTileWallBinary(rebuilt, reloaded, header.TilesWide, header.TilesHigh);
 
             reloaded.ModTileGrid.Count.ShouldBe(originalTiles,
