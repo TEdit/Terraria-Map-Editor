@@ -17,6 +17,12 @@ Related: #1075
 - [x] Tile/wall texture extraction from .tmod archives at world-load time
 - [x] Texture2D loading from PNG/rawimg bytes into XNA texture dictionary
 - [x] Cascading .tmod file search (tModLoader Mods folder, Steam workshop)
+- [x] Chest mod item editing: UI display, copy/paste, item textures
+- [x] Chest mod items: preserve mod identity during load/save round-trip
+- [x] Tile entity mod item editing: ItemFrame, WeaponRack, FoodPlatter, DeadCellsDisplayJar
+- [x] Tile entity mod item editing: HatRack, DisplayDoll/Mannequin (multi-slot)
+- [x] Tile entity copy/paste preserves mod item identity
+- [x] Fix: sync save path missing RebuildModChestItems
 
 ## In Progress
 
@@ -29,13 +35,6 @@ Related: #1075
 
 ## Todo
 
-### Chest Editing Support
-- [ ] Preserve mod chest item data (modded items in chests) during edit/save
-- [ ] Chest editor UI: display mod item names from .twld `chests` tag
-- [ ] Mod item placement in chests (need item name-to-mod mapping)
-- [ ] Mod chest types (e.g., Calamity locked chests) - preserve chest type metadata
-- [ ] Fix: opening world in TEdit currently corrupts modded chests (#1075 comment by choskeli)
-
 ### Tile Placement
 - [ ] Paint mode: place mod tiles from the tile picker dropdown
 - [ ] Mod tile picker: show mod tiles grouped by mod in the brick selector
@@ -46,7 +45,6 @@ Related: #1075
 ### Sprite Placement / Copy-Paste
 - [ ] Copy/paste of mod tiles preserves virtual IDs correctly
 - [ ] Copy/paste across worlds with different mod lists (remap virtual IDs)
-- [ ] Mod tile entities: preserve TileEntity NBT data during copy/paste
 - [ ] Mod tile entities: preserve TileEntity NBT data during undo/redo
 - [ ] Multi-tile mod sprites: correct frame coordinate assignment on paste
 
@@ -78,14 +76,46 @@ Related: #1075
 ### Virtual ID System
 Mod tiles/walls are assigned virtual IDs starting at `WorldConfiguration.TileCount` / `WorldConfiguration.WallCount`. These IDs exist only in TEdit's runtime and are not saved to .wld files. The .twld file uses its own saveType IDs mapped via tileMap/wallMap NBT entries.
 
+### Mod Item Data Flow (Chests & Tile Entities)
+The `.twld` file stores mod item identity in two NBT sections:
+- `"chests"` — mod items in chests, keyed by chest (x, y) position
+- `"tileEntities"` — mod items in tile entities (item frames, weapon racks, mannequins, etc.)
+
+**Load path:** After vanilla `.wld` load, `ApplyModChestItems` and `ApplyModTileEntityItems` overlay mod data from NBT onto in-memory objects.
+
+**Save path:** Before `.twld` save, `RebuildModChestItems` and `RebuildModTileEntityItems` serialize in-memory mod data back to NBT tags. Orphaned entries (mod-only tile entities with no vanilla counterpart) are preserved.
+
+**Single-item entities** (ItemFrame, WeaponRack, FoodPlatter): mod fields live on `TileEntity` directly (`ModName`, `ModItemName`, etc.). Use `TileEntity.ToItem()` / `FromItem()` for copy/paste.
+
+**Multi-slot entities** (HatRack, DisplayDoll): mod fields live on individual `TileEntityItem` instances in `Items`/`Dyes` collections.
+
+### .twld `"tileEntities"` NBT Format
+Each entry: `{ "mod": string, "name": string, "X": short, "Y": short, "data"?: TagCompound }`
+
+| Entity | name | data format |
+|--------|------|-------------|
+| ItemFrame | `TEItemFrame` | `{ "item": ItemIO tag }` |
+| WeaponRack | `TEWeaponsRack` | `{ "item": ItemIO tag }` |
+| FoodPlatter | `TEFoodPlatter` | `{ "item": ItemIO tag }` |
+| HatRack | `TEHatRack` | `{ "items": List<slotted ItemIO>, "dyes": List<slotted ItemIO> }` |
+| DisplayDoll | `TEDisplayDoll` | `{ "items": List<slotted ItemIO>, "dyes": List<slotted ItemIO> }` |
+
+**ItemIO tag:** `{ "mod": string, "name"?: string, "id"?: int, "stack": int, "prefix": byte, "modPrefixMod"?: string, "modPrefixName"?: string, "data"?: TagCompound, "globalData"?: List<TagCompound> }`
+
+**Slotted variant:** adds `"slot": short` to identify collection index.
+
 ### Key Files
 | File | Purpose |
 |------|---------|
-| `TEdit.Terraria/TModLoader/TwldFile.cs` | .twld load/save, virtual ID assignment, mod property registration |
+| `TEdit.Terraria/TModLoader/TwldFile.cs` | .twld load/save, virtual ID assignment, mod property registration, chest/TE item apply/rebuild |
 | `TEdit.Terraria/TModLoader/TwldData.cs` | In-memory model for all .twld data |
 | `TEdit.Terraria/TModLoader/TmodTextureExtractor.cs` | .tmod archive reader + texture extraction |
 | `TEdit.Terraria/TModLoader/ModTileEntry.cs` | Tile map entry (mod name, tile name, saveType) |
+| `TEdit.Terraria/TileEntity.cs` | Tile entity model with mod fields for single-item entities |
+| `TEdit.Terraria/TileEntityItem.cs` | Tile entity item model with mod fields for multi-slot entities |
+| `TEdit.Terraria/Item.cs` | Item model with mod fields, ToTileEntityItem conversion |
 | `TEdit/ViewModel/WorldViewModel.cs` | Load pipeline, `LoadModTextures()`, `RegisterModSprites()` |
+| `TEdit/ViewModel/WorldViewModel.Commands.cs` | Copy/paste for chest items and tile entity items |
 | `TEdit/Render/Textures.cs` | Texture dictionary, `LoadTextureFromPngBytes()` |
 | `TEdit/View/WorldRenderXna.xaml.cs` | XNA rendering, deferred texture loading |
 
@@ -93,3 +123,4 @@ Mod tiles/walls are assigned virtual IDs starting at `WorldConfiguration.TileCou
 - `tModLoader/patches/tModLoader/Terraria/ModLoader/IO/TileIO_Basic.cs` — dense tile format
 - `tModLoader/patches/tModLoader/Terraria/ModLoader/IO/WorldIO.cs` — .twld save/load entry point
 - `tModLoader/patches/tModLoader/Terraria/ModLoader/IO/TagIO.cs` — NBT format
+- `tModLoader/patches/tModLoader/Terraria/ModLoader/IO/ItemIO.cs` — item serialization format

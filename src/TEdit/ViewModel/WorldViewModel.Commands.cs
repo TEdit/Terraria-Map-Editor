@@ -426,13 +426,13 @@ public partial class WorldViewModel
         }
         else if (container is TileEntity te)
         {
-            if (te.EntityType == TileEntityType.ItemFrame &&
-                te.StackSize > 0 &&
-                te.NetId != 0)
+            if ((te.EntityType == TileEntityType.ItemFrame ||
+                 te.EntityType == TileEntityType.WeaponRack ||
+                 te.EntityType == TileEntityType.FoodPlatter ||
+                 te.EntityType == TileEntityType.DeadCellsDisplayJar) &&
+                (te.StackSize > 0 || te.IsModItem))
             {
-                var frameItem = new Item(te.StackSize, te.NetId, te.Prefix);
-
-                CopyChestItem(frameItem);
+                CopyChestItem(te.ToItem());
             }
         }
     }
@@ -460,20 +460,12 @@ public partial class WorldViewModel
         }
         else if (parameter is TileEntity te)
         {
-            if (te.EntityType == TileEntityType.ItemFrame)
+            if (te.EntityType == TileEntityType.ItemFrame ||
+                te.EntityType == TileEntityType.WeaponRack ||
+                te.EntityType == TileEntityType.FoodPlatter ||
+                te.EntityType == TileEntityType.DeadCellsDisplayJar)
             {
-                if (_chestItemClipboard != null)
-                {
-                    te.NetId = _chestItemClipboard.NetId;
-                    te.Prefix = _chestItemClipboard.Prefix;
-                    te.StackSize = (short)_chestItemClipboard.StackSize;
-                }
-                else
-                {
-                    te.NetId = 0;
-                    te.Prefix = 0;
-                    te.StackSize = 0;
-                }
+                te.FromItem(_chestItemClipboard);
             }
         }
     }
@@ -514,9 +506,13 @@ public partial class WorldViewModel
         {
             SetItemMaxStack(item);
         }
-        else if (container is TileEntity te && te.EntityType == TileEntityType.ItemFrame)
+        else if (container is TileEntity te &&
+                 (te.EntityType == TileEntityType.ItemFrame ||
+                  te.EntityType == TileEntityType.WeaponRack ||
+                  te.EntityType == TileEntityType.FoodPlatter ||
+                  te.EntityType == TileEntityType.DeadCellsDisplayJar))
         {
-            var teItem = new Item(te.StackSize, te.NetId, te.Prefix);
+            var teItem = te.ToItem();
             SetItemMaxStack(teItem);
             te.StackSize = (short)teItem.StackSize;
         }

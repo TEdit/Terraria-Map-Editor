@@ -123,7 +123,7 @@ public partial class Item : ReactiveObject
 
     public static implicit operator Item(TileEntityItem tileEntityItem)
     {
-        return new Item(tileEntityItem.StackSize, tileEntityItem.Id, tileEntityItem.Prefix);
+        return tileEntityItem.ToItem();
     }
 
     public TileEntityItem ToTileEntityItem()
@@ -132,7 +132,13 @@ public partial class Item : ReactiveObject
         {
             Id = (short)NetId,
             Prefix = Prefix,
-            StackSize = (short)StackSize
+            StackSize = (short)StackSize,
+            ModName = ModName,
+            ModItemName = ModItemName,
+            ModPrefixMod = ModPrefixMod,
+            ModPrefixName = ModPrefixName,
+            ModItemData = ModItemData,
+            ModGlobalData = ModGlobalData,
         };
     }
 
