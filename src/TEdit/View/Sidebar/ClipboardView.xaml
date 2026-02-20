@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="clipboardItemView">
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Center" Margin="1" Foreground="{DynamicResource TextBrush}"/>
+                <TextBlock Text="{Binding Path=Buffer.Name}" HorizontalAlignment="Center" Margin="1" Foreground="{DynamicResource TextBrush}"/>
                 <Image Source="{Binding Path=Preview}" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" MaxHeight="100" />
                 <UniformGrid Columns="3">
           <Button ToolTip="{x:Static p:Language.tool_clipboard_paste}" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardSetActiveCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">

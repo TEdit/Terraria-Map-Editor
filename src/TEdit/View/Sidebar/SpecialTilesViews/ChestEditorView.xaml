@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="SpecialTilesSharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:ItemIdToPreviewConverter x:Key="ItemIdToPreviewConverter" />
+            <converters:ItemPreviewMultiConverter x:Key="ItemPreviewMultiConverter" />
             <DataTemplate x:Key="FastChestItem">
                 <Grid HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
@@ -27,9 +28,17 @@
                         <ColumnDefinition Width="22" />
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0"
-                           Source="{Binding NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
                            Width="24" Height="24" Stretch="Uniform"
-                           RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                           RenderOptions.BitmapScalingMode="NearestNeighbor">
+                        <Image.Source>
+                            <MultiBinding Converter="{StaticResource ItemPreviewMultiConverter}">
+                                <Binding Path="NetId" />
+                                <Binding Path="IsModItem" />
+                                <Binding Path="ModName" />
+                                <Binding Path="ModItemName" />
+                            </MultiBinding>
+                        </Image.Source>
+                    </Image>
                     <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
                     <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
                     <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
@@ -52,6 +61,8 @@
                     ItemId="{Binding NetId, Mode=TwoWay}"
                     StackSize="{Binding StackSize, Mode=TwoWay}"
                     Prefix="{Binding Prefix, Mode=TwoWay}"
+                    IsModItem="{Binding IsModItem, Mode=OneWay}"
+                    ModItemDisplayName="{Binding Name, Mode=OneWay}"
                     ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
                     ItemsSourceType="ItemPropertyList"
                     PrefixSource="{Binding Source={StaticResource PrefixCollection}}"

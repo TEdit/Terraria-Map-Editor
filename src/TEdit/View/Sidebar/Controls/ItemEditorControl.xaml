@@ -40,6 +40,13 @@
                   IsSynchronizedWithCurrentItem="False"
                   MaxDropDownHeight="400"
                   HorizontalAlignment="Stretch" />
+        <!-- Mod item label (shown instead of combo when IsModItem=true) -->
+        <TextBlock Grid.Column="2" x:Name="ModItemLabel"
+                   Text="{Binding ModItemDisplayName, ElementName=Root}"
+                   VerticalAlignment="Center" Margin="4,0"
+                   Foreground="{DynamicResource TextBrush}" FontStyle="Italic"
+                   TextTrimming="CharacterEllipsis"
+                   Visibility="{Binding IsModItem, ElementName=Root, Converter={StaticResource BoolToVis}}" />
         <!-- Clear item button -->
         <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="Clear item"
                 Click="ClearItem_Click">

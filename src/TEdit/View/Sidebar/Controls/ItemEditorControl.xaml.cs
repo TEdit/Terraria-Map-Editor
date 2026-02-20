@@ -182,6 +182,35 @@ public partial class ItemEditorControl : UserControl
         set => SetValue(MaxStackCommandParameterProperty, value);
     }
 
+    public static readonly DependencyProperty IsModItemProperty =
+        DependencyProperty.Register(nameof(IsModItem), typeof(bool), typeof(ItemEditorControl),
+            new PropertyMetadata(false, OnIsModItemChanged));
+
+    public bool IsModItem
+    {
+        get => (bool)GetValue(IsModItemProperty);
+        set => SetValue(IsModItemProperty, value);
+    }
+
+    public static readonly DependencyProperty ModItemDisplayNameProperty =
+        DependencyProperty.Register(nameof(ModItemDisplayName), typeof(string), typeof(ItemEditorControl),
+            new PropertyMetadata(null));
+
+    public string ModItemDisplayName
+    {
+        get => (string)GetValue(ModItemDisplayNameProperty);
+        set => SetValue(ModItemDisplayNameProperty, value);
+    }
+
+    private static void OnIsModItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is ItemEditorControl control)
+        {
+            bool isMod = (bool)e.NewValue;
+            control.ItemCombo.Visibility = isMod ? Visibility.Collapsed : Visibility.Visible;
+        }
+    }
+
     #endregion
 
     private static void OnItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
