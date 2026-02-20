@@ -437,6 +437,328 @@ public static class TwldFile
 
     #endregion
 
+    #region Mod Tile Entity Items
+
+    /// <summary>
+    /// After vanilla tile entities are loaded, overlay mod item data from .twld NBT "tileEntities" tag.
+    /// Single-item entities (TEItemFrame, TEWeaponsRack, TEFoodPlatter) have a "data.item" tag.
+    /// Multi-slot entities (TEHatRack, TEDisplayDoll) have "data.items" and "data.dyes" lists with slot indices.
+    /// </summary>
+    public static void ApplyModTileEntityItems(World world, TwldData data)
+    {
+        if (data?.ModTileEntities == null || data.ModTileEntities.Count == 0)
+            return;
+
+        // Build O(1) lookup by position
+        var entityByPos = new Dictionary<(short X, short Y), TileEntity>();
+        foreach (var te in world.TileEntities)
+            entityByPos[(te.PosX, te.PosY)] = te;
+
+        foreach (var entry in data.ModTileEntities)
+        {
+            string name = entry.GetString("name");
+            short x = entry.GetShort("X");
+            short y = entry.GetShort("Y");
+
+            if (!entityByPos.TryGetValue((x, y), out var te))
+                continue;
+
+            if (!entry.ContainsKey("data"))
+                continue;
+
+            var entryData = entry.GetCompound("data");
+
+            switch (name)
+            {
+                case "TEItemFrame":
+                case "TEWeaponsRack":
+                case "TEFoodPlatter":
+                    if (entryData.ContainsKey("item"))
+                        ApplyItemTagToEntity(te, entryData.GetCompound("item"));
+                    break;
+
+                case "TEHatRack":
+                case "TEDisplayDoll":
+                    if (entryData.ContainsKey("items"))
+                        ApplySlottedItemTags(te.Items, entryData.GetList<TagCompound>("items"));
+                    if (entryData.ContainsKey("dyes"))
+                        ApplySlottedItemTags(te.Dyes, entryData.GetList<TagCompound>("dyes"));
+                    break;
+            }
+        }
+    }
+
+    private static void ApplyItemTagToEntity(TileEntity te, TagCompound itemTag)
+    {
+        string mod = itemTag.GetString("mod");
+        int stack = itemTag.ContainsKey("stack") ? itemTag.GetInt("stack") : 1;
+
+        if (mod == "Terraria")
+        {
+            int id = itemTag.GetInt("id");
+            // Use backing field approach via FromItem to avoid clearing mod fields
+            te.FromItem(new Item(stack, id, itemTag.GetByte("prefix")));
+        }
+        else
+        {
+            // Set mod fields first, then vanilla fields via FromItem
+            var item = new Item();
+            item.ModName = mod;
+            item.ModItemName = itemTag.GetString("name");
+            item.StackSize = stack;
+            item.Prefix = itemTag.GetByte("prefix");
+
+            if (itemTag.ContainsKey("modPrefixMod"))
+                item.ModPrefixMod = itemTag.GetString("modPrefixMod");
+            if (itemTag.ContainsKey("modPrefixName"))
+                item.ModPrefixName = itemTag.GetString("modPrefixName");
+            if (itemTag.ContainsKey("data"))
+                item.ModItemData = itemTag.GetCompound("data");
+            if (itemTag.ContainsKey("globalData"))
+                item.ModGlobalData = itemTag.GetList<TagCompound>("globalData");
+
+            te.FromItem(item);
+        }
+    }
+
+    private static void ApplySlottedItemTags(System.Collections.ObjectModel.ObservableCollection<TileEntityItem> collection, List<TagCompound> itemTags)
+    {
+        if (collection == null) return;
+
+        foreach (var itemTag in itemTags)
+        {
+            int slot = itemTag.GetShort("slot");
+            if (slot < 0 || slot >= collection.Count)
+                continue;
+
+            var tei = collection[slot];
+            string mod = itemTag.GetString("mod");
+            int stack = itemTag.ContainsKey("stack") ? itemTag.GetInt("stack") : 1;
+
+            if (mod == "Terraria")
+            {
+                int id = itemTag.GetInt("id");
+                tei.Id = (short)id;
+            }
+            else
+            {
+                tei.ModName = mod;
+                tei.ModItemName = itemTag.GetString("name");
+            }
+
+            tei.StackSize = (short)stack;
+            tei.Prefix = itemTag.GetByte("prefix");
+
+            if (itemTag.ContainsKey("modPrefixMod"))
+                tei.ModPrefixMod = itemTag.GetString("modPrefixMod");
+            if (itemTag.ContainsKey("modPrefixName"))
+                tei.ModPrefixName = itemTag.GetString("modPrefixName");
+            if (itemTag.ContainsKey("data"))
+                tei.ModItemData = itemTag.GetCompound("data");
+            if (itemTag.ContainsKey("globalData"))
+                tei.ModGlobalData = itemTag.GetList<TagCompound>("globalData");
+        }
+    }
+
+    /// <summary>
+    /// Rebuild ModTileEntities from World.TileEntities by serializing entities with mod items back to NBT.
+    /// Preserves entries that had no matching vanilla TileEntity (orphaned mod-only TEs).
+    /// </summary>
+    public static void RebuildModTileEntityItems(World world, TwldData data)
+    {
+        if (data == null) return;
+
+        // Build set of positions that have vanilla tile entities
+        var vanillaPositions = new HashSet<(short X, short Y)>();
+        foreach (var te in world.TileEntities)
+            vanillaPositions.Add((te.PosX, te.PosY));
+
+        var newTags = new List<TagCompound>();
+
+        // Preserve orphaned entries (mod-only TEs with no vanilla counterpart)
+        foreach (var existingTag in data.ModTileEntities)
+        {
+            short x = existingTag.GetShort("X");
+            short y = existingTag.GetShort("Y");
+            if (!vanillaPositions.Contains((x, y)))
+                newTags.Add(existingTag);
+        }
+
+        // Build tags from vanilla tile entities that have mod item data
+        foreach (var te in world.TileEntities)
+        {
+            TagCompound tag = null;
+
+            switch ((TileEntityType)te.Type)
+            {
+                case TileEntityType.ItemFrame:
+                    tag = BuildSingleItemEntityTag(te, "TEItemFrame");
+                    break;
+                case TileEntityType.WeaponRack:
+                    tag = BuildSingleItemEntityTag(te, "TEWeaponsRack");
+                    break;
+                case TileEntityType.FoodPlatter:
+                    tag = BuildSingleItemEntityTag(te, "TEFoodPlatter");
+                    break;
+                case TileEntityType.HatRack:
+                    tag = BuildMultiSlotEntityTag(te, "TEHatRack");
+                    break;
+                case TileEntityType.DisplayDoll:
+                    tag = BuildMultiSlotEntityTag(te, "TEDisplayDoll");
+                    break;
+            }
+
+            if (tag != null)
+                newTags.Add(tag);
+        }
+
+        data.ModTileEntities = newTags;
+    }
+
+    private static TagCompound BuildSingleItemEntityTag(TileEntity te, string entityName)
+    {
+        // Only write if the entity has mod item data
+        if (!te.IsModItem && te.ModGlobalData == null)
+            return null;
+
+        var itemTag = BuildItemTag(te.NetId, te.Prefix, te.StackSize,
+            te.ModName, te.ModItemName, te.ModPrefixMod, te.ModPrefixName,
+            te.ModItemData, te.ModGlobalData, te.IsModItem);
+
+        if (itemTag == null)
+            return null;
+
+        var dataTag = new TagCompound();
+        dataTag.Set("item", itemTag);
+
+        var tag = new TagCompound();
+        tag.Set("mod", "Terraria"); // vanilla entity type
+        tag.Set("name", entityName);
+        tag.Set("X", te.PosX);
+        tag.Set("Y", te.PosY);
+        tag.Set("data", dataTag);
+        return tag;
+    }
+
+    private static TagCompound BuildMultiSlotEntityTag(TileEntity te, string entityName)
+    {
+        bool hasModItems = false;
+
+        // Check Items collection
+        if (te.Items != null)
+        {
+            foreach (var item in te.Items)
+            {
+                if (item != null && (item.IsModItem || item.ModGlobalData != null))
+                {
+                    hasModItems = true;
+                    break;
+                }
+            }
+        }
+
+        // Check Dyes collection
+        if (!hasModItems && te.Dyes != null)
+        {
+            foreach (var item in te.Dyes)
+            {
+                if (item != null && (item.IsModItem || item.ModGlobalData != null))
+                {
+                    hasModItems = true;
+                    break;
+                }
+            }
+        }
+
+        if (!hasModItems)
+            return null;
+
+        var dataTag = new TagCompound();
+
+        var itemTags = BuildSlottedItemTags(te.Items);
+        if (itemTags.Count > 0)
+            dataTag.Set("items", itemTags);
+
+        var dyeTags = BuildSlottedItemTags(te.Dyes);
+        if (dyeTags.Count > 0)
+            dataTag.Set("dyes", dyeTags);
+
+        if (dataTag.Count == 0)
+            return null;
+
+        var tag = new TagCompound();
+        tag.Set("mod", "Terraria"); // vanilla entity type
+        tag.Set("name", entityName);
+        tag.Set("X", te.PosX);
+        tag.Set("Y", te.PosY);
+        tag.Set("data", dataTag);
+        return tag;
+    }
+
+    private static List<TagCompound> BuildSlottedItemTags(System.Collections.ObjectModel.ObservableCollection<TileEntityItem> collection)
+    {
+        var tags = new List<TagCompound>();
+        if (collection == null) return tags;
+
+        for (int slot = 0; slot < collection.Count; slot++)
+        {
+            var tei = collection[slot];
+            if (tei == null) continue;
+
+            if (!tei.IsModItem && tei.ModGlobalData == null)
+                continue;
+
+            var itemTag = BuildItemTag(tei.Id, tei.Prefix, tei.StackSize,
+                tei.ModName, tei.ModItemName, tei.ModPrefixMod, tei.ModPrefixName,
+                tei.ModItemData, tei.ModGlobalData, tei.IsModItem);
+
+            if (itemTag == null) continue;
+
+            itemTag.Set("slot", (short)slot);
+            tags.Add(itemTag);
+        }
+
+        return tags;
+    }
+
+    private static TagCompound BuildItemTag(int netId, byte prefix, int stack,
+        string modName, string modItemName, string modPrefixMod, string modPrefixName,
+        TagCompound modItemData, List<TagCompound> modGlobalData, bool isModItem)
+    {
+        var tag = new TagCompound();
+
+        if (isModItem)
+        {
+            tag.Set("mod", modName);
+            tag.Set("name", modItemName);
+        }
+        else
+        {
+            // Vanilla item with globalData
+            if (modGlobalData == null) return null;
+            tag.Set("mod", "Terraria");
+            tag.Set("id", netId);
+        }
+
+        tag.Set("stack", stack);
+        tag.Set("prefix", prefix);
+
+        if (!string.IsNullOrEmpty(modPrefixMod))
+        {
+            tag.Set("modPrefixMod", modPrefixMod);
+            tag.Set("modPrefixName", modPrefixName);
+        }
+
+        if (modItemData != null)
+            tag.Set("data", modItemData);
+        if (modGlobalData != null)
+            tag.Set("globalData", modGlobalData);
+
+        return tag;
+    }
+
+    #endregion
+
     #region Tag Parsing
 
     private static TwldData ParseRootTag(TagCompound rootTag)
