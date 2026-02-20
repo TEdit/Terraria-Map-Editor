@@ -729,7 +729,7 @@ public partial class World
     public Vector2Int32 GetAnchor(int x, int y)
     {
         Tile tile = Tiles[x, y];
-        if (!TileFrameImportant[tile.Type]) { return new Vector2Int32(x, y); }
+        if (tile.Type >= TileFrameImportant.Length || !TileFrameImportant[tile.Type]) { return new Vector2Int32(x, y); }
 
         TileProperty tileprop = WorldConfiguration.TileProperties[tile.Type];
         var size = tileprop.FrameSize[0];

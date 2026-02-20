@@ -3676,11 +3676,11 @@ public partial class WorldRenderXna : UserControl
                             }
                             else if (curtile.Wall < WorldConfiguration.WallProperties.Count)
                             {
-                                // No texture loaded (mod wall) — draw a colored square
+                                // No texture loaded (mod wall) — draw a colored square at the wall layer depth
                                 var wallProp = WorldConfiguration.WallProperties[curtile.Wall];
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                 var modColor = new Color(wallProp.Color.R, wallProp.Color.G, wallProp.Color.B, wallProp.Color.A);
-                                _spriteBatch.Draw(_textureDictionary.WhitePixelTexture, dest, modColor);
+                                _spriteBatch.Draw(_textureDictionary.WhitePixelTexture, dest, null, modColor, 0f, default, SpriteEffects.None, LayerTileWallTextures);
                             }
                         }
                     }
@@ -3733,7 +3733,7 @@ public partial class WorldRenderXna : UserControl
                         {
                             var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                             var modColor = new Color(tileprop.Color.R, tileprop.Color.G, tileprop.Color.B, tileprop.Color.A);
-                            _spriteBatch.Draw(_textureDictionary.WhitePixelTexture, dest, modColor);
+                            _spriteBatch.Draw(_textureDictionary.WhitePixelTexture, dest, null, modColor, 0f, default, SpriteEffects.None, LayerTileTextures);
                             continue;
                         }
                     }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using TEdit.Common;
 
 namespace TEdit.Terraria.TModLoader;
 
@@ -162,6 +163,56 @@ public class TmodTextureExtractor
         byte[] rgba = new byte[width * height * 4];
         Buffer.BlockCopy(data, pixelDataOffset, rgba, 0, rgba.Length);
         return (width, height, rgba);
+    }
+
+    /// <summary>
+    /// Samples the average color from the first frame (top-left region) of a texture.
+    /// For rawimg format, decodes pixels directly. For PNG, falls back to null (caller should use existing color).
+    /// </summary>
+    /// <param name="data">Raw texture bytes (rawimg or PNG).</param>
+    /// <param name="isRawImg">True if data is rawimg format.</param>
+    /// <param name="frameWidth">Width of the first frame to sample (default 16).</param>
+    /// <param name="frameHeight">Height of the first frame to sample (default 16).</param>
+    /// <returns>Average color of non-transparent pixels, or null if sampling failed.</returns>
+    public static TEditColor? SampleFirstFrameColor(byte[] data, bool isRawImg, int frameWidth = 16, int frameHeight = 16)
+    {
+        if (!isRawImg)
+            return null; // PNG decoding not available in library project; caller uses existing color
+
+        var decoded = DecodeRawImg(data);
+        if (decoded == null)
+            return null;
+
+        var (width, height, rgba) = decoded.Value;
+        int sampleW = Math.Min(frameWidth, width);
+        int sampleH = Math.Min(frameHeight, height);
+
+        long totalR = 0, totalG = 0, totalB = 0;
+        int count = 0;
+
+        for (int y = 0; y < sampleH; y++)
+        {
+            for (int x = 0; x < sampleW; x++)
+            {
+                int offset = (y * width + x) * 4;
+                byte a = rgba[offset + 3];
+                if (a < 10) continue; // skip near-transparent pixels
+
+                totalR += rgba[offset];
+                totalG += rgba[offset + 1];
+                totalB += rgba[offset + 2];
+                count++;
+            }
+        }
+
+        if (count == 0)
+            return null;
+
+        return new TEditColor(
+            (byte)(totalR / count),
+            (byte)(totalG / count),
+            (byte)(totalB / count),
+            (byte)255);
     }
 
     private static bool IsOverlayTexture(string fileName)
