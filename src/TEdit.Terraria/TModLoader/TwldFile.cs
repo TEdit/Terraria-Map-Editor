@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using TEdit.Common;
 using TEdit.Common.IO;
@@ -279,6 +280,162 @@ public static class TwldFile
             }
         }
     }
+
+    #region Mod Chest Items
+
+    /// <summary>
+    /// After vanilla chests are loaded, overlay mod item data from .twld NBT.
+    /// Each entry has {x, y, items: [{slot, mod, name/id, stack, prefix, ...}]}
+    /// </summary>
+    public static void ApplyModChestItems(World world, TwldData data)
+    {
+        if (data?.ModChestItems == null || data.ModChestItems.Count == 0)
+            return;
+
+        foreach (var chestTag in data.ModChestItems)
+        {
+            int cx = chestTag.GetInt("x");
+            int cy = chestTag.GetInt("y");
+
+            var chest = world.Chests.FirstOrDefault(c => c.X == cx && c.Y == cy);
+            if (chest == null)
+            {
+                System.Diagnostics.Debug.WriteLine($"TwldFile.ApplyModChestItems: No chest at ({cx},{cy}), skipping");
+                continue;
+            }
+
+            var itemTags = chestTag.GetList<TagCompound>("items");
+            foreach (var itemTag in itemTags)
+            {
+                int slot = itemTag.GetShort("slot");
+                if (slot < 0 || slot >= chest.Items.Count)
+                    continue;
+
+                var item = chest.Items[slot];
+                string mod = itemTag.GetString("mod");
+                int stack = itemTag.ContainsKey("stack") ? itemTag.GetInt("stack") : 1;
+
+                if (mod == "Terraria")
+                {
+                    // Vanilla item override — set NetId from the "id" field
+                    int id = itemTag.GetInt("id");
+                    item.NetId = id;
+                }
+                else
+                {
+                    // Mod item — store identity
+                    item.ModName = mod;
+                    item.ModItemName = itemTag.GetString("name");
+                }
+
+                item.StackSize = stack;
+
+                // Prefix handling
+                byte prefix = itemTag.GetByte("prefix");
+                item.Prefix = prefix;
+
+                if (itemTag.ContainsKey("modPrefixMod"))
+                    item.ModPrefixMod = itemTag.GetString("modPrefixMod");
+                if (itemTag.ContainsKey("modPrefixName"))
+                    item.ModPrefixName = itemTag.GetString("modPrefixName");
+
+                // Opaque mod data for round-trip
+                if (itemTag.ContainsKey("data"))
+                    item.ModItemData = itemTag.GetCompound("data");
+                if (itemTag.ContainsKey("globalData"))
+                    item.ModGlobalData = itemTag.GetList<TagCompound>("globalData");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Rebuild ModChestItems from World.Chests by serializing items with mod fields back to NBT.
+    /// </summary>
+    public static void RebuildModChestItems(World world, TwldData data)
+    {
+        if (data == null) return;
+
+        var newChestTags = new List<TagCompound>();
+
+        foreach (var chest in world.Chests)
+        {
+            if (chest == null) continue;
+
+            // Check if any item in this chest has mod data
+            bool hasModData = false;
+            for (int i = 0; i < chest.Items.Count; i++)
+            {
+                var item = chest.Items[i];
+                if (item.IsModItem || item.ModGlobalData != null)
+                {
+                    hasModData = true;
+                    break;
+                }
+            }
+
+            if (!hasModData)
+                continue;
+
+            var chestTag = new TagCompound();
+            chestTag.Set("x", chest.X);
+            chestTag.Set("y", chest.Y);
+
+            var itemTags = new List<TagCompound>();
+            for (int slot = 0; slot < chest.Items.Count; slot++)
+            {
+                var item = chest.Items[slot];
+
+                // Skip empty items with no mod data
+                if (item.StackSize <= 0 && !item.IsModItem)
+                    continue;
+
+                // Only write entries that are mod items or vanilla items with globalData
+                if (!item.IsModItem && item.ModGlobalData == null)
+                    continue;
+
+                var itemTag = new TagCompound();
+                itemTag.Set("slot", (short)slot);
+
+                if (item.IsModItem)
+                {
+                    itemTag.Set("mod", item.ModName);
+                    itemTag.Set("name", item.ModItemName);
+                }
+                else
+                {
+                    // Vanilla item with globalData
+                    itemTag.Set("mod", "Terraria");
+                    itemTag.Set("id", item.NetId);
+                }
+
+                itemTag.Set("stack", item.StackSize);
+                itemTag.Set("prefix", item.Prefix);
+
+                if (!string.IsNullOrEmpty(item.ModPrefixMod))
+                {
+                    itemTag.Set("modPrefixMod", item.ModPrefixMod);
+                    itemTag.Set("modPrefixName", item.ModPrefixName);
+                }
+
+                if (item.ModItemData != null)
+                    itemTag.Set("data", item.ModItemData);
+                if (item.ModGlobalData != null)
+                    itemTag.Set("globalData", item.ModGlobalData);
+
+                itemTags.Add(itemTag);
+            }
+
+            if (itemTags.Count > 0)
+            {
+                chestTag.Set("items", itemTags);
+                newChestTags.Add(chestTag);
+            }
+        }
+
+        data.ModChestItems = newChestTags;
+    }
+
+    #endregion
 
     #region Tag Parsing
 
