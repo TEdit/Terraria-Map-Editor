@@ -55,6 +55,15 @@ public class TmodTextureExtractor
         return ExtractTextures("Walls");
     }
 
+    /// <summary>
+    /// Extracts all item textures from this archive.
+    /// Returns a dictionary mapping item name → raw PNG/rawimg bytes.
+    /// </summary>
+    public Dictionary<string, ExtractedTexture> ExtractItemTextures()
+    {
+        return ExtractTextures("Items");
+    }
+
     private Dictionary<string, ExtractedTexture> ExtractTextures(string category)
     {
         var results = new Dictionary<string, ExtractedTexture>(StringComparer.OrdinalIgnoreCase);

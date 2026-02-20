@@ -380,18 +380,37 @@ public partial class WorldViewModel : ReactiveObject
         var wallNameToId = TwldFile.BuildWallNameToVirtualIdMap(data);
         ErrorLogging.LogDebug($"LoadModTextures: {tileNameToId.Count} tile mappings, {wallNameToId.Count} wall mappings");
 
-        if (tileNameToId.Count == 0 && wallNameToId.Count == 0)
+        // Collect mod item names referenced in world chests for item texture loading
+        var modItemNames = new HashSet<(string ModName, string ItemName)>();
+        if (CurrentWorld?.Chests != null)
         {
-            ErrorLogging.LogDebug("LoadModTextures: No tile/wall mappings — nothing to load");
+            foreach (var chest in CurrentWorld.Chests)
+            {
+                if (chest?.Items == null) continue;
+                foreach (var item in chest.Items)
+                {
+                    if (item.IsModItem)
+                        modItemNames.Add((item.ModName, item.ModItemName));
+                }
+            }
+        }
+
+        if (tileNameToId.Count == 0 && wallNameToId.Count == 0 && modItemNames.Count == 0)
+        {
+            ErrorLogging.LogDebug("LoadModTextures: No tile/wall/item mappings — nothing to load");
             return;
         }
+
+        ErrorLogging.LogDebug($"LoadModTextures: {modItemNames.Count} unique mod items referenced in chests");
 
         // Search for .tmod files
         var searchPaths = GetTmodSearchPaths();
         ErrorLogging.LogDebug($"LoadModTextures: Search paths: {string.Join("; ", searchPaths)}");
 
-        int totalTiles = 0, totalWalls = 0;
+        int totalTiles = 0, totalWalls = 0, totalItems = 0;
         int modsFound = 0, modsNotFound = 0;
+
+        ModItemPreviewCache.Clear();
 
         foreach (var modName in usedMods)
         {
@@ -529,7 +548,40 @@ public partial class WorldViewModel : ReactiveObject
                     totalWalls++;
                 }
 
-                ErrorLogging.LogDebug($"LoadModTextures: {modName} — tiles: {modTileMatches} matched, {modTileSkipped} unmatched of {tileTextures.Count} extracted; walls: {modWallMatches} matched, {modWallSkipped} unmatched of {wallTextures.Count} extracted");
+                // Extract item textures for mod items referenced in chests
+                var modItemsForThisMod = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var (mn, itemName) in modItemNames)
+                {
+                    if (string.Equals(mn, modName, StringComparison.OrdinalIgnoreCase))
+                        modItemsForThisMod.Add(itemName);
+                }
+
+                int modItemMatches = 0;
+                if (modItemsForThisMod.Count > 0)
+                {
+                    var itemTextures = extractor.ExtractItemTextures();
+                    foreach (var itemName in modItemsForThisMod)
+                    {
+                        if (!itemTextures.TryGetValue(itemName, out var tex))
+                            continue;
+
+                        var capturedTex = tex;
+                        var capturedModName = modName;
+                        var capturedItemName = itemName;
+                        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                        {
+                            var preview = CreateModItemPreview(capturedTex);
+                            if (preview != null)
+                            {
+                                ModItemPreviewCache.SetPreview(capturedModName, capturedItemName, preview);
+                            }
+                        });
+                        modItemMatches++;
+                        totalItems++;
+                    }
+                }
+
+                ErrorLogging.LogDebug($"LoadModTextures: {modName} — tiles: {modTileMatches} matched, {modTileSkipped} unmatched of {tileTextures.Count} extracted; walls: {modWallMatches} matched, {modWallSkipped} unmatched of {wallTextures.Count} extracted; items: {modItemMatches} of {modItemsForThisMod.Count} needed");
             }
             catch (Exception ex)
             {
@@ -538,7 +590,7 @@ public partial class WorldViewModel : ReactiveObject
             }
         }
 
-        ErrorLogging.LogDebug($"LoadModTextures: Complete — {modsFound}/{usedMods.Count} mods found, {totalTiles} tile textures queued, {totalWalls} wall textures queued, {modsNotFound} mods not found on disk");
+        ErrorLogging.LogDebug($"LoadModTextures: Complete — {modsFound}/{usedMods.Count} mods found, {totalTiles} tile textures queued, {totalWalls} wall textures queued, {totalItems} item previews queued, {modsNotFound} mods not found on disk");
     }
 
     private Microsoft.Xna.Framework.Graphics.Texture2D LoadRawImgTexture(byte[] rawImgData)
@@ -552,6 +604,112 @@ public partial class WorldViewModel : ReactiveObject
 
         var (width, height, rgba) = decoded.Value;
         return Textures.LoadTextureFromRgba(width, height, rgba);
+    }
+
+    /// <summary>
+    /// Creates a 24x24 WPF WriteableBitmap preview from an extracted mod item texture.
+    /// Must be called on the UI thread.
+    /// </summary>
+    private static WriteableBitmap CreateModItemPreview(ExtractedTexture tex)
+    {
+        const int PreviewSize = 24;
+
+        try
+        {
+            if (tex.IsRawImg)
+            {
+                var decoded = TmodTextureExtractor.DecodeRawImg(tex.Data);
+                if (decoded == null) return null;
+
+                var (width, height, rgba) = decoded.Value;
+                return CreateScaledPreviewFromRgba(rgba, width, height, PreviewSize);
+            }
+            else
+            {
+                // PNG — decode via WPF BitmapImage
+                using var ms = new MemoryStream(tex.Data);
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = ms;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                bitmapImage.Freeze();
+
+                int width = bitmapImage.PixelWidth;
+                int height = bitmapImage.PixelHeight;
+                if (width <= 0 || height <= 0) return null;
+
+                // Convert to BGRA pixel array
+                var stride = width * 4;
+                var pixels = new byte[height * stride];
+                bitmapImage.CopyPixels(pixels, stride, 0);
+
+                // Convert BGRA to RGBA for our helper
+                var rgba = new byte[pixels.Length];
+                for (int i = 0; i < pixels.Length; i += 4)
+                {
+                    rgba[i] = pixels[i + 2];     // R from B
+                    rgba[i + 1] = pixels[i + 1]; // G
+                    rgba[i + 2] = pixels[i];     // B from R
+                    rgba[i + 3] = pixels[i + 3]; // A
+                }
+
+                return CreateScaledPreviewFromRgba(rgba, width, height, PreviewSize);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"CreateModItemPreview: Failed — {ex.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Creates a scaled WriteableBitmap from RGBA pixel data, fitting within maxSize x maxSize.
+    /// </summary>
+    private static WriteableBitmap CreateScaledPreviewFromRgba(byte[] rgba, int srcWidth, int srcHeight, int maxSize)
+    {
+        double scale = 1.0;
+        if (srcWidth > maxSize || srcHeight > maxSize)
+            scale = Math.Min((double)maxSize / srcWidth, (double)maxSize / srcHeight);
+
+        int dstWidth = Math.Max(1, (int)(srcWidth * scale));
+        int dstHeight = Math.Max(1, (int)(srcHeight * scale));
+        int offsetX = (maxSize - dstWidth) / 2;
+        int offsetY = (maxSize - dstHeight) / 2;
+
+        var output = new int[maxSize * maxSize];
+
+        for (int dy = 0; dy < dstHeight; dy++)
+        {
+            int srcY = Math.Min((int)(dy / scale), srcHeight - 1);
+            for (int dx = 0; dx < dstWidth; dx++)
+            {
+                int srcX = Math.Min((int)(dx / scale), srcWidth - 1);
+                int srcOff = (srcY * srcWidth + srcX) * 4;
+
+                byte r = rgba[srcOff];
+                byte g = rgba[srcOff + 1];
+                byte b = rgba[srcOff + 2];
+                byte a = rgba[srcOff + 3];
+
+                // BGRA format for WriteableBitmap
+                output[(offsetY + dy) * maxSize + (offsetX + dx)] = (a << 24) | (r << 16) | (g << 8) | b;
+            }
+        }
+
+        var bmp = new WriteableBitmap(maxSize, maxSize, 96, 96, System.Windows.Media.PixelFormats.Bgra32, null);
+        bmp.Lock();
+        unsafe
+        {
+            var pixels = (int*)bmp.BackBuffer;
+            for (int i = 0; i < output.Length; i++)
+                pixels[i] = output[i];
+        }
+        bmp.AddDirtyRect(new System.Windows.Int32Rect(0, 0, maxSize, maxSize));
+        bmp.Unlock();
+        bmp.Freeze();
+        return bmp;
     }
 
     /// <summary>

@@ -485,6 +485,12 @@ public partial class WorldViewModel
             item.NetId = _chestItemClipboard.NetId;
             item.Prefix = _chestItemClipboard.Prefix;
             item.StackSize = _chestItemClipboard.StackSize;
+            item.ModName = _chestItemClipboard.ModName;
+            item.ModItemName = _chestItemClipboard.ModItemName;
+            item.ModPrefixMod = _chestItemClipboard.ModPrefixMod;
+            item.ModPrefixName = _chestItemClipboard.ModPrefixName;
+            item.ModItemData = _chestItemClipboard.ModItemData;
+            item.ModGlobalData = _chestItemClipboard.ModGlobalData;
         }
         else
         {

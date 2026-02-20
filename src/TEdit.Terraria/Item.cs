@@ -45,6 +45,14 @@ public partial class Item : ReactiveObject
         get { return _netId; }
         set
         {
+            // Clear mod identity — user is setting a vanilla item or clearing
+            _modName = null;
+            _modItemName = null;
+            ModPrefixMod = null;
+            ModPrefixName = null;
+            ModItemData = null;
+            ModGlobalData = null;
+
             this.RaiseAndSetIfChanged(ref _netId, value);
             _currentItemProperty = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Id == _netId);
             if (_netId == 0)
@@ -55,6 +63,7 @@ public partial class Item : ReactiveObject
                     StackSize = 1;
             }
             this.RaisePropertyChanged(nameof(Name));
+            this.RaisePropertyChanged(nameof(IsModItem));
         }
     }
 
