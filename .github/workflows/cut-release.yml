@@ -68,9 +68,7 @@ jobs:
         uses: orhun/git-cliff-action@v4
         with:
           config: cliff.toml
-          args: >-
-            --verbose --latest --strip header
-            ${{ !contains(github.ref_name, '-') && '--ignore-tags "-(alpha|beta|rc)"' || '' }}
+          args: --verbose --latest --strip header
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
