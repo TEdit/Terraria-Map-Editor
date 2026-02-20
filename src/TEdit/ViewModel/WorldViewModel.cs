@@ -421,6 +421,13 @@ public partial class WorldViewModel : ReactiveObject
                         continue;
                     }
 
+                    // Sample color from first frame of texture data
+                    var sampledColor = TmodTextureExtractor.SampleFirstFrameColor(tex.Data, tex.IsRawImg);
+                    if (sampledColor.HasValue && virtualId < WorldConfiguration.TileProperties.Count)
+                    {
+                        WorldConfiguration.TileProperties[virtualId].Color = sampledColor.Value;
+                    }
+
                     // Pre-populate the dictionary with the default texture as placeholder
                     // so GetTile won't try to load a non-existent .xnb file
                     if (!Textures.Tiles.ContainsKey(virtualId))
@@ -451,14 +458,49 @@ public partial class WorldViewModel : ReactiveObject
                 }
 
                 // Extract and queue wall textures
+                // Iterate over .twld wall entries and find matching textures.
+                // tModLoader "Unsafe" walls share textures with their Safe counterparts,
+                // so try stripping "Unsafe" prefix if exact match fails.
                 var wallTextures = extractor.ExtractWallTextures();
                 int modWallMatches = 0, modWallSkipped = 0;
-                foreach (var (wallName, tex) in wallTextures)
+                var wallsQueued = new HashSet<ushort>();
+                foreach (var (key, virtualId) in wallNameToId)
                 {
-                    if (!wallNameToId.TryGetValue((modName, wallName), out ushort virtualId))
+                    if (!string.Equals(key.ModName, modName, StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    string wallName = key.WallName;
+                    if (!wallTextures.TryGetValue(wallName, out var tex))
+                    {
+                        // Try stripping "Unsafe" prefix — Unsafe walls share textures with Safe variants
+                        if (wallName.StartsWith("Unsafe", StringComparison.OrdinalIgnoreCase))
+                        {
+                            string baseName = wallName.Substring(6);
+                            wallTextures.TryGetValue(baseName, out tex);
+                        }
+                        // Try stripping "Safe" prefix — Safe walls may share textures with base name
+                        else if (wallName.StartsWith("Safe", StringComparison.OrdinalIgnoreCase))
+                        {
+                            string baseName = wallName.Substring(4);
+                            wallTextures.TryGetValue(baseName, out tex);
+                        }
+                    }
+
+                    if (tex == null)
                     {
                         modWallSkipped++;
+                        ErrorLogging.LogDebug($"LoadModTextures: Unmatched wall '{modName}:{wallName}' (virtualId={virtualId})");
                         continue;
+                    }
+
+                    if (!wallsQueued.Add(virtualId))
+                        continue; // already queued this virtual ID
+
+                    // Sample color from first frame of wall texture data
+                    var sampledColor = TmodTextureExtractor.SampleFirstFrameColor(tex.Data, tex.IsRawImg);
+                    if (sampledColor.HasValue && virtualId < WorldConfiguration.WallProperties.Count)
+                    {
+                        WorldConfiguration.WallProperties[virtualId].Color = sampledColor.Value;
                     }
 
                     if (!Textures.Walls.ContainsKey(virtualId))
@@ -3203,29 +3245,31 @@ public partial class WorldViewModel : ReactiveObject
         // Check mod tile entries have registered properties
         if (data != null)
         {
-            foreach (var entry in data.TileMap)
+            for (int i = 0; i < data.TileMap.Count; i++)
             {
-                if (data.MapIndexToVirtualTileId.TryGetValue(entry.SaveType, out ushort vid))
+                var entry = data.TileMap[i];
+                if (data.MapIndexToVirtualTileId.TryGetValue(i, out ushort vid))
                 {
                     if (vid >= tileCount)
                         ErrorLogging.LogWarn($"Missing tile property: {entry.FullName} (virtualId={vid}, max={tileCount - 1})");
                 }
                 else
                 {
-                    ErrorLogging.LogWarn($"Missing tile mapping: {entry.FullName} (saveType={entry.SaveType})");
+                    ErrorLogging.LogWarn($"Missing tile mapping: {entry.FullName} (index={i}, saveType={entry.SaveType})");
                 }
             }
 
-            foreach (var entry in data.WallMap)
+            for (int i = 0; i < data.WallMap.Count; i++)
             {
-                if (data.MapIndexToVirtualWallId.TryGetValue(entry.SaveType, out ushort vid))
+                var entry = data.WallMap[i];
+                if (data.MapIndexToVirtualWallId.TryGetValue(i, out ushort vid))
                 {
                     if (vid >= wallCount)
                         ErrorLogging.LogWarn($"Missing wall property: {entry.FullName} (virtualId={vid}, max={wallCount - 1})");
                 }
                 else
                 {
-                    ErrorLogging.LogWarn($"Missing wall mapping: {entry.FullName} (saveType={entry.SaveType})");
+                    ErrorLogging.LogWarn($"Missing wall mapping: {entry.FullName} (index={i}, saveType={entry.SaveType})");
                 }
             }
 

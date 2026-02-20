@@ -85,7 +85,7 @@ public class WorldEditor : IDisposable
         switch (curMode)
         {
             case PaintMode.Sprites:
-                if (_world.TileFrameImportant[curTile.Type])
+                if (curTile.Type < _world.TileFrameImportant.Length && _world.TileFrameImportant[curTile.Type])
                     SetTile(curTile, isErase);
                 break;
             case PaintMode.TileAndWall:
