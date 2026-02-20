@@ -37,19 +37,28 @@ public static class TextureColorExtractor
     /// </summary>
     private static TEditColor SampleRawImg(byte[] data)
     {
-        if (data.Length < 8)
+        if (data.Length < 12)
             return FallbackGray;
 
-        int width = BitConverter.ToInt32(data, 0);
-        int height = BitConverter.ToInt32(data, 4);
-        int expectedSize = 8 + width * height * 4;
+        // tModLoader rawimg format: int32 version (must be 1), int32 width, int32 height, RGBA
+        int headerOffset;
+        int firstInt = BitConverter.ToInt32(data, 0);
+        if (firstInt == 1)
+            headerOffset = 4; // Skip version field
+        else
+            headerOffset = 0; // Legacy format without version
+
+        int width = BitConverter.ToInt32(data, headerOffset);
+        int height = BitConverter.ToInt32(data, headerOffset + 4);
+        int pixelStart = headerOffset + 8;
+        int expectedSize = pixelStart + width * height * 4;
 
         if (width <= 0 || height <= 0 || width > 8192 || height > 8192 || data.Length < expectedSize)
             return FallbackGray;
 
         double totalR = 0, totalG = 0, totalB = 0;
         double totalWeight = 0;
-        int offset = 8;
+        int offset = pixelStart;
 
         for (int i = 0; i < width * height; i++)
         {

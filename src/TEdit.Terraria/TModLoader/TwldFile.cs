@@ -947,6 +947,74 @@ public static class TwldFile
 
     #endregion
 
+    #region Mod Texture Mapping
+
+    /// <summary>
+    /// Returns the list of mod internal names referenced by this world (from the "usedMods" header).
+    /// </summary>
+    public static List<string> GetUsedModNames(TwldData data)
+    {
+        if (data?.Header == null)
+        {
+            System.Diagnostics.Debug.WriteLine("TwldFile.GetUsedModNames: No header data");
+            return new List<string>();
+        }
+
+        try
+        {
+            var mods = data.Header.GetList<string>("usedMods");
+            System.Diagnostics.Debug.WriteLine($"TwldFile.GetUsedModNames: {mods.Count} mods — {string.Join(", ", mods)}");
+            return mods;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"TwldFile.GetUsedModNames: Failed to read usedMods — {ex.Message}");
+            return new List<string>();
+        }
+    }
+
+    /// <summary>
+    /// Builds a lookup from (modName, tileName) → virtual tile ID.
+    /// Call after RegisterModProperties / AssignVirtualIds.
+    /// </summary>
+    public static Dictionary<(string ModName, string TileName), ushort> BuildTileNameToVirtualIdMap(TwldData data)
+    {
+        var map = new Dictionary<(string, string), ushort>(StringTupleComparer.OrdinalIgnoreCase);
+        if (data == null) return map;
+
+        for (int i = 0; i < data.TileMap.Count; i++)
+        {
+            var entry = data.TileMap[i];
+            if (data.MapIndexToVirtualTileId.TryGetValue(i, out ushort virtualId))
+            {
+                map[(entry.ModName, entry.Name)] = virtualId;
+            }
+        }
+        return map;
+    }
+
+    /// <summary>
+    /// Builds a lookup from (modName, wallName) → virtual wall ID.
+    /// Call after RegisterModProperties / AssignVirtualIds.
+    /// </summary>
+    public static Dictionary<(string ModName, string WallName), ushort> BuildWallNameToVirtualIdMap(TwldData data)
+    {
+        var map = new Dictionary<(string, string), ushort>(StringTupleComparer.OrdinalIgnoreCase);
+        if (data == null) return map;
+
+        for (int i = 0; i < data.WallMap.Count; i++)
+        {
+            var entry = data.WallMap[i];
+            if (data.MapIndexToVirtualWallId.TryGetValue(i, out ushort virtualId))
+            {
+                map[(entry.ModName, entry.Name)] = virtualId;
+            }
+        }
+        return map;
+    }
+
+    #endregion
+
     #region Helpers
 
     internal static string GetTwldPath(string wldPath)
@@ -1031,4 +1099,25 @@ public static class TwldFile
     }
 
     #endregion
+}
+
+/// <summary>
+/// Case-insensitive equality comparer for (string, string) tuples.
+/// </summary>
+internal class StringTupleComparer : IEqualityComparer<(string, string)>
+{
+    public static readonly StringTupleComparer OrdinalIgnoreCase = new();
+
+    public bool Equals((string, string) x, (string, string) y)
+    {
+        return string.Equals(x.Item1, y.Item1, StringComparison.OrdinalIgnoreCase) &&
+               string.Equals(x.Item2, y.Item2, StringComparison.OrdinalIgnoreCase);
+    }
+
+    public int GetHashCode((string, string) obj)
+    {
+        return HashCode.Combine(
+            StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Item1 ?? ""),
+            StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Item2 ?? ""));
+    }
 }

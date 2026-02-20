@@ -2460,6 +2460,9 @@ public partial class WorldRenderXna : UserControl
         _gameTimer.Update();
 
         ScrollWorld();
+
+        // Process any pending texture creations (e.g., mod textures queued after deferred loading finished)
+        _textureDictionary?.ProcessTextureQueue(maxOperationsPerFrame: 5);
     }
 
     private void ScrollBar_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
