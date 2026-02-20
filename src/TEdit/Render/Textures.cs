@@ -442,6 +442,71 @@ public class Textures
     private Texture2D LoadTexture(string path) => LoadTextureImmediate(path);
 
     /// <summary>
+    /// Creates a Texture2D from raw PNG bytes. Applies magenta color key transparency.
+    /// Must be called on the graphics thread.
+    /// </summary>
+    public Texture2D LoadTextureFromPngBytes(byte[] pngData)
+    {
+        try
+        {
+            using var ms = new MemoryStream(pngData);
+            var texture = Texture2D.FromStream(_gdDevice, ms);
+            ApplyColorKeyTransparency(texture);
+            ErrorLogging.LogTrace($"LoadTextureFromPngBytes: Created {texture.Width}x{texture.Height} from {pngData.Length} bytes");
+            return texture;
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogWarn($"LoadTextureFromPngBytes: Failed ({pngData.Length} bytes): {ex.Message}");
+            return _defaultTexture;
+        }
+    }
+
+    /// <summary>
+    /// Creates a Texture2D from raw RGBA pixel data. Applies magenta color key transparency.
+    /// Must be called on the graphics thread.
+    /// </summary>
+    public Texture2D LoadTextureFromRgba(int width, int height, byte[] rgbaData)
+    {
+        try
+        {
+            var texture = new Texture2D(_gdDevice, width, height);
+            var pixels = new Color[width * height];
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                int offset = i * 4;
+                pixels[i] = new Color(rgbaData[offset], rgbaData[offset + 1], rgbaData[offset + 2], rgbaData[offset + 3]);
+            }
+            texture.SetData(pixels);
+            ApplyColorKeyTransparency(texture);
+            ErrorLogging.LogTrace($"LoadTextureFromRgba: Created {width}x{height} texture");
+            return texture;
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogWarn($"LoadTextureFromRgba: Failed ({width}x{height}, {rgbaData.Length} bytes): {ex.Message}");
+            return _defaultTexture;
+        }
+    }
+
+    /// <summary>
+    /// Applies Terraria's magenta color key transparency to a texture.
+    /// </summary>
+    private static void ApplyColorKeyTransparency(Texture2D texture)
+    {
+        var pixels = new Color[texture.Width * texture.Height];
+        texture.GetData(pixels);
+        for (int i = 0; i < pixels.Length; i++)
+        {
+            if (pixels[i] == Color.Magenta || pixels[i] == ColorKey)
+            {
+                pixels[i] = Color.Transparent;
+            }
+        }
+        texture.SetData(pixels);
+    }
+
+    /// <summary>
     /// Computes and caches WrapThreshold values for all tiles with TextureWrap configured.
     /// Call this after tile textures have been loaded.
     /// </summary>

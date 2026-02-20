@@ -355,6 +355,252 @@ public partial class WorldViewModel : ReactiveObject
     }
 
     /// <summary>
+    /// Finds .tmod files for mods used by the world, extracts tile/wall textures,
+    /// and queues them for loading into the texture dictionary on the graphics thread.
+    /// Call on the UI thread after RegisterModProperties + RegisterModSprites.
+    /// </summary>
+    public void LoadModTextures(TwldData data)
+    {
+        if (data == null || Textures == null)
+        {
+            ErrorLogging.LogDebug("LoadModTextures: Skipped — data or Textures is null");
+            return;
+        }
+
+        var usedMods = TwldFile.GetUsedModNames(data);
+        if (usedMods.Count == 0)
+        {
+            ErrorLogging.LogDebug("LoadModTextures: No mods referenced in .twld header");
+            return;
+        }
+
+        ErrorLogging.LogDebug($"LoadModTextures: World references {usedMods.Count} mod(s): {string.Join(", ", usedMods)}");
+
+        var tileNameToId = TwldFile.BuildTileNameToVirtualIdMap(data);
+        var wallNameToId = TwldFile.BuildWallNameToVirtualIdMap(data);
+        ErrorLogging.LogDebug($"LoadModTextures: {tileNameToId.Count} tile mappings, {wallNameToId.Count} wall mappings");
+
+        if (tileNameToId.Count == 0 && wallNameToId.Count == 0)
+        {
+            ErrorLogging.LogDebug("LoadModTextures: No tile/wall mappings — nothing to load");
+            return;
+        }
+
+        // Search for .tmod files
+        var searchPaths = GetTmodSearchPaths();
+        ErrorLogging.LogDebug($"LoadModTextures: Search paths: {string.Join("; ", searchPaths)}");
+
+        int totalTiles = 0, totalWalls = 0;
+        int modsFound = 0, modsNotFound = 0;
+
+        foreach (var modName in usedMods)
+        {
+            string tmodPath = FindTmodFile(modName, searchPaths);
+            if (tmodPath == null)
+            {
+                ErrorLogging.LogDebug($"LoadModTextures: .tmod not found for mod '{modName}'");
+                modsNotFound++;
+                continue;
+            }
+
+            ErrorLogging.LogDebug($"LoadModTextures: Found {modName} at {tmodPath}");
+            modsFound++;
+
+            try
+            {
+                var extractor = TmodTextureExtractor.Open(tmodPath);
+
+                // Extract and queue tile textures
+                var tileTextures = extractor.ExtractTileTextures();
+                int modTileMatches = 0, modTileSkipped = 0;
+                foreach (var (tileName, tex) in tileTextures)
+                {
+                    if (!tileNameToId.TryGetValue((modName, tileName), out ushort virtualId))
+                    {
+                        modTileSkipped++;
+                        continue;
+                    }
+
+                    // Pre-populate the dictionary with the default texture as placeholder
+                    // so GetTile won't try to load a non-existent .xnb file
+                    if (!Textures.Tiles.ContainsKey(virtualId))
+                        Textures.Tiles[virtualId] = Textures.DefaultTexture;
+
+                    // Queue actual texture creation for the graphics thread
+                    var capturedTex = tex;
+                    var capturedId = virtualId;
+                    var capturedName = $"{modName}:{tileName}";
+                    Textures.QueueTextureCreation(() =>
+                    {
+                        var texture2d = capturedTex.IsRawImg
+                            ? LoadRawImgTexture(capturedTex.Data)
+                            : Textures.LoadTextureFromPngBytes(capturedTex.Data);
+
+                        if (texture2d != null && texture2d != Textures.DefaultTexture)
+                        {
+                            Textures.Tiles[capturedId] = texture2d;
+                            ErrorLogging.LogTrace($"LoadModTextures: Loaded tile texture {capturedName} → virtualId={capturedId} ({texture2d.Width}x{texture2d.Height})");
+                        }
+                        else
+                        {
+                            ErrorLogging.LogDebug($"LoadModTextures: Failed to create Texture2D for tile {capturedName} (rawimg={capturedTex.IsRawImg}, bytes={capturedTex.Data.Length})");
+                        }
+                    });
+                    modTileMatches++;
+                    totalTiles++;
+                }
+
+                // Extract and queue wall textures
+                var wallTextures = extractor.ExtractWallTextures();
+                int modWallMatches = 0, modWallSkipped = 0;
+                foreach (var (wallName, tex) in wallTextures)
+                {
+                    if (!wallNameToId.TryGetValue((modName, wallName), out ushort virtualId))
+                    {
+                        modWallSkipped++;
+                        continue;
+                    }
+
+                    if (!Textures.Walls.ContainsKey(virtualId))
+                        Textures.Walls[virtualId] = Textures.DefaultTexture;
+
+                    var capturedTex = tex;
+                    var capturedId = virtualId;
+                    var capturedName = $"{modName}:{wallName}";
+                    Textures.QueueTextureCreation(() =>
+                    {
+                        var texture2d = capturedTex.IsRawImg
+                            ? LoadRawImgTexture(capturedTex.Data)
+                            : Textures.LoadTextureFromPngBytes(capturedTex.Data);
+
+                        if (texture2d != null && texture2d != Textures.DefaultTexture)
+                        {
+                            Textures.Walls[capturedId] = texture2d;
+                            ErrorLogging.LogTrace($"LoadModTextures: Loaded wall texture {capturedName} → virtualId={capturedId} ({texture2d.Width}x{texture2d.Height})");
+                        }
+                        else
+                        {
+                            ErrorLogging.LogDebug($"LoadModTextures: Failed to create Texture2D for wall {capturedName} (rawimg={capturedTex.IsRawImg}, bytes={capturedTex.Data.Length})");
+                        }
+                    });
+                    modWallMatches++;
+                    totalWalls++;
+                }
+
+                ErrorLogging.LogDebug($"LoadModTextures: {modName} — tiles: {modTileMatches} matched, {modTileSkipped} unmatched of {tileTextures.Count} extracted; walls: {modWallMatches} matched, {modWallSkipped} unmatched of {wallTextures.Count} extracted");
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogWarn($"LoadModTextures: Error processing {modName}: {ex.Message}");
+                ErrorLogging.LogException(ex);
+            }
+        }
+
+        ErrorLogging.LogDebug($"LoadModTextures: Complete — {modsFound}/{usedMods.Count} mods found, {totalTiles} tile textures queued, {totalWalls} wall textures queued, {modsNotFound} mods not found on disk");
+    }
+
+    private Microsoft.Xna.Framework.Graphics.Texture2D LoadRawImgTexture(byte[] rawImgData)
+    {
+        var decoded = TmodTextureExtractor.DecodeRawImg(rawImgData);
+        if (decoded == null)
+        {
+            ErrorLogging.LogDebug($"LoadModTextures: rawimg decode failed ({rawImgData.Length} bytes)");
+            return Textures.DefaultTexture;
+        }
+
+        var (width, height, rgba) = decoded.Value;
+        return Textures.LoadTextureFromRgba(width, height, rgba);
+    }
+
+    /// <summary>
+    /// Returns search paths for .tmod files, in priority order.
+    /// </summary>
+    private static List<string> GetTmodSearchPaths()
+    {
+        var paths = new List<string>();
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        void AddIfExists(string path)
+        {
+            if (Directory.Exists(path) && seen.Add(Path.GetFullPath(path)))
+                paths.Add(path);
+        }
+
+        // tModLoader Mods folder
+        string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        AddIfExists(Path.Combine(userProfile, "Documents", "My Games", "Terraria", "tModLoader", "Mods"));
+
+        // Steam workshop paths (common locations, deduplicated)
+        AddIfExists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+            "Steam", "steamapps", "workshop", "content", "1281930"));
+        AddIfExists(Path.Combine("C:", "Program Files (x86)", "Steam", "steamapps", "workshop", "content", "1281930"));
+        AddIfExists(Path.Combine("D:", "SteamLibrary", "steamapps", "workshop", "content", "1281930"));
+
+        return paths;
+    }
+
+    /// <summary>
+    /// Finds a .tmod file for the given mod name, searching in priority order.
+    /// </summary>
+    private static string FindTmodFile(string modName, List<string> searchPaths)
+    {
+        string tmodFileName = modName + ".tmod";
+
+        foreach (var searchPath in searchPaths)
+        {
+            // Direct match: {searchPath}/{modName}.tmod
+            string directPath = Path.Combine(searchPath, tmodFileName);
+            if (File.Exists(directPath))
+                return directPath;
+
+            if (!Directory.Exists(searchPath))
+                continue;
+
+            try
+            {
+                // Workshop-style: {searchPath}/{workshopId}/{version}/{modName}.tmod
+                // Steam workshop mods have numbered subdirectories with version subfolders
+                foreach (var workshopIdDir in Directory.EnumerateDirectories(searchPath))
+                {
+                    // Check directly in workshopId folder
+                    string workshopPath = Path.Combine(workshopIdDir, tmodFileName);
+                    if (File.Exists(workshopPath))
+                        return workshopPath;
+
+                    // Check version subdirectories (e.g., "2025.12", "2025.4")
+                    // Sort descending to prefer the latest version
+                    string bestMatch = null;
+                    string bestVersion = null;
+                    foreach (var versionDir in Directory.EnumerateDirectories(workshopIdDir))
+                    {
+                        string versionPath = Path.Combine(versionDir, tmodFileName);
+                        if (File.Exists(versionPath))
+                        {
+                            string versionName = Path.GetFileName(versionDir);
+                            if (bestMatch == null || string.Compare(versionName, bestVersion, StringComparison.OrdinalIgnoreCase) > 0)
+                            {
+                                bestMatch = versionPath;
+                                bestVersion = versionName;
+                            }
+                        }
+                    }
+                    if (bestMatch != null)
+                    {
+                        ErrorLogging.LogTrace($"FindTmodFile: {modName} found in workshop version {bestVersion}");
+                        return bestMatch;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogWarn($"LoadModTextures: Error searching path {searchPath}: {ex.Message}");
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
     /// Configure custom preview settings for special tiles that need non-standard preview rendering.
     /// </summary>
     private static void ConfigureSpecialTilePreview(SpriteItemPreview spriteItem, TileProperty tile, FrameProperty frame)
@@ -2889,6 +3135,7 @@ public partial class WorldViewModel : ReactiveObject
             {
                 TwldFile.RegisterModProperties(CurrentWorld.TwldData);
                 RegisterModSprites(CurrentWorld.TwldData);
+                LoadModTextures(CurrentWorld.TwldData);
                 HasTwldData = true;
                 ViewModelLocator.GetNbtExplorerViewModel().LoadFromTwldData(CurrentWorld.TwldData);
             }
