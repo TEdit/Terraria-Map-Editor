@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using TEdit.Common.IO;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria;
@@ -11,6 +13,31 @@ public partial class Item : ReactiveObject
     private int _stackSize;
     private byte _prefix;
     private int _netId;
+
+    // Mod item identity (null for vanilla items)
+    private string _modName;
+    public string ModName
+    {
+        get => _modName;
+        set { this.RaiseAndSetIfChanged(ref _modName, value); this.RaisePropertyChanged(nameof(Name)); this.RaisePropertyChanged(nameof(IsModItem)); }
+    }
+
+    private string _modItemName;
+    public string ModItemName
+    {
+        get => _modItemName;
+        set { this.RaiseAndSetIfChanged(ref _modItemName, value); this.RaisePropertyChanged(nameof(Name)); }
+    }
+
+    // Mod prefix identity (null if vanilla or no prefix)
+    public string ModPrefixMod { get; set; }
+    public string ModPrefixName { get; set; }
+
+    // Opaque per-item mod data and global data (preserved for round-trip)
+    public TagCompound ModItemData { get; set; }
+    public List<TagCompound> ModGlobalData { get; set; }
+
+    public bool IsModItem => !string.IsNullOrEmpty(ModName) && ModName != "Terraria";
 
 
     public int NetId
@@ -51,6 +78,9 @@ public partial class Item : ReactiveObject
 
     public string GetName()
     {
+        if (IsModItem)
+            return $"{ModName}:{ModItemName}";
+
         if (_currentItemProperty != null)
             return _currentItemProperty.Name;
 
@@ -121,7 +151,16 @@ public partial class Item : ReactiveObject
 
     public Item Copy()
     {
-        return new Item(_stackSize, _netId) { Prefix = _prefix };
+        return new Item(_stackSize, _netId)
+        {
+            Prefix = _prefix,
+            _modName = _modName,
+            _modItemName = _modItemName,
+            ModPrefixMod = ModPrefixMod,
+            ModPrefixName = ModPrefixName,
+            ModItemData = ModItemData,
+            ModGlobalData = ModGlobalData,
+        };
     }
 
     //public Visibility IsVisible

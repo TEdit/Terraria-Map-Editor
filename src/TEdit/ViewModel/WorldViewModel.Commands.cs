@@ -407,6 +407,12 @@ public partial class WorldViewModel
             item.NetId = 0;
             item.StackSize = 0;
             item.Prefix = 0;
+            item.ModName = null;
+            item.ModItemName = null;
+            item.ModItemData = null;
+            item.ModGlobalData = null;
+            item.ModPrefixMod = null;
+            item.ModPrefixName = null;
         }
     }
 

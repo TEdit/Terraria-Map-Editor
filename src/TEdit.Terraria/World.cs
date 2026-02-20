@@ -137,6 +137,7 @@ public partial class World
                     if (world.IsTModLoader && world.TwldData != null)
                     {
                         progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
+                        TwldFile.RebuildModChestItems(world, world.TwldData);
                         TwldFile.Save(filename, world.TwldData);
                         TwldFile.ReapplyToWorld(world, world.TwldData);
                     }
@@ -637,6 +638,7 @@ public partial class World
                     {
                         w.TwldData = twldData;
                         TwldFile.ApplyToWorld(w, twldData);
+                        TwldFile.ApplyModChestItems(w, twldData);
                     }
                 }
             }
