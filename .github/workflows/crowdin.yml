@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Ignore non-localization changes
+        run: git ls-files -m | grep -v 'src/TEdit/Properties/' | xargs -r git update-index --assume-unchanged
+
       - uses: crowdin/github-action@v2
         with:
           upload_sources: true
