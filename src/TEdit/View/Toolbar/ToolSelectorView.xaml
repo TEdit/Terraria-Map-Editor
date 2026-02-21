@@ -73,5 +73,10 @@
         </DataTemplate>
     </UserControl.Resources>
     <ItemsControl ItemsSource="{Binding Tools}" ItemTemplate="{StaticResource toolBarItemTemplate}" >
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Orientation="Vertical" />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
     </ItemsControl>
 </UserControl>
