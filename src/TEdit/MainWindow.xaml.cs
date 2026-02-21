@@ -444,7 +444,9 @@ public partial class MainWindow : FluentWindow
             case "selection.resize.down.fast":
             case "selection.resize.left.fast":
             case "selection.resize.right.fast":
-                if (_vm.ActiveTool?.Name == "Selection" && _vm.Selection.IsActive && _vm.CurrentWorld != null)
+                if (_vm.ActiveTool?.Name != "Selection" || !_vm.Selection.IsActive || _vm.CurrentWorld == null)
+                    return false;
+
                 {
                     var area = _vm.Selection.SelectionArea;
                     bool fast = actionId.EndsWith(".fast");
