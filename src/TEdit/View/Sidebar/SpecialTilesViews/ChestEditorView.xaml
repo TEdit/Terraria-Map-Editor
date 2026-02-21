@@ -132,7 +132,7 @@
                 HorizontalAlignment="Stretch" Appearance="Success"
                 CommandParameter="{StaticResource True}" />
     </UniformGrid>
-    <ListBox Grid.Row="5" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
+    <ListBox Grid.Row="6" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
           ItemsSource="{Binding SelectedChest.Items}"
           SelectionMode="Extended"
           ScrollViewer.CanContentScroll="True"

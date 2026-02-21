@@ -418,6 +418,51 @@ public class SpriteDataTests : IDisposable
         return json;
     }
 
+    [Theory]
+    [InlineData(93, 0, 0, "Tiki Torch: On")]           // Non-wrapped lamp, first tile
+    [InlineData(93, 0, 18, "Tiki Torch: On")]           // Non-wrapped lamp, second tile
+    [InlineData(93, 0, 36, "Tiki Torch: On")]           // Non-wrapped lamp, third tile
+    [InlineData(93, 0, 2052, "Sandstone Lamp: On")]     // Wrapped lamp (V > 1998), first tile
+    [InlineData(93, 0, 2070, "Sandstone Lamp: On")]     // Wrapped lamp, second tile
+    [InlineData(93, 0, 2088, "Sandstone Lamp: On")]     // Wrapped lamp, third tile
+    [InlineData(93, 18, 2052, "Sandstone Lamp: Off")]   // Wrapped lamp off variant, first tile
+    [InlineData(93, 18, 2070, "Sandstone Lamp: Off")]   // Wrapped lamp off variant, second tile
+    [InlineData(93, 18, 2088, "Sandstone Lamp: Off")]   // Wrapped lamp off variant, third tile
+    public void GetStyleFromUV_AllTilesInSprite_ReturnSameStyle(int tileId, short u, short v, string expectedName)
+    {
+        // Build sprite sheet from config (same as WorldViewModel.BuildSpritesFromConfig)
+        var tile = WorldConfiguration.TileProperties[tileId];
+        var sprite = new SpriteSheet
+        {
+            Tile = (ushort)tile.Id,
+            Name = tile.Name,
+            SizeTiles = tile.FrameSize,
+            SizePixelsRender = tile.TextureGrid,
+            SizePixelsInterval = tile.TextureGrid + tile.FrameGap,
+            IsAnimated = tile.IsAnimated
+        };
+
+        int styleIndex = 0;
+        foreach (var frame in tile.Frames)
+        {
+            sprite.Styles.Add(new SpriteItem
+            {
+                Tile = sprite.Tile,
+                Style = styleIndex++,
+                Name = frame.ToString(),
+                UV = frame.UV,
+                SizeTiles = frame.Size.X > 0 && frame.Size.Y > 0 ? frame.Size : tile.FrameSize[0],
+                SizePixelsInterval = sprite.SizePixelsInterval,
+                Anchor = frame.Anchor,
+            });
+        }
+
+        var result = sprite.GetStyleFromUV(new Vector2Short(u, v));
+
+        result.ShouldNotBeNull($"No style found for UV ({u}, {v})");
+        result.Name.ShouldBe(expectedName);
+    }
+
     [Fact(Skip = "Run manually to update textureWrap")]
     public void UpdateTextureWrap()
     {
