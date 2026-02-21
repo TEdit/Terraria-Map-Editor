@@ -57,6 +57,7 @@ commit_parsers = [
     # Catch-all
     { message = ".*", group = "<!-- 9 -->📦 Other Changes" },
 ]
+ignore_tags = "-(alpha|beta|rc)"
 filter_commits = false
 topo_order = false
 sort_commits = "oldest"
