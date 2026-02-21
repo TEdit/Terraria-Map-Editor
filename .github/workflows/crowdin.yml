@@ -1,0 +1,30 @@
+name: Crowdin Sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - src/TEdit/Properties/Language.resx
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  crowdin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: crowdin/github-action@v2
+        with:
+          upload_sources: true
+          upload_translations: true
+          download_translations: true
+          create_pull_request: true
+          localization_branch_name: l10n_crowdin
+          pull_request_title: 'New Crowdin translations'
+          pull_request_body: 'New translations from [Crowdin](https://crowdin.com)'
+        env:
+          GITHUB_TOKEN: ${{ secrets.CROWDIN_GH_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
