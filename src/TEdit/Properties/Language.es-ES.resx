@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -187,7 +187,7 @@
     <value>Guardar</value>
   </data>
   <data name="bestiary_chat" xml:space="preserve">
-    <value>Encontrado</value>
+    <value>Chat</value>
   </data>
   <data name="bestiary_clear" xml:space="preserve">
     <value>Reiniciar</value>
@@ -324,7 +324,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Bloques especiales</value>
   </data>
   <data name="editor_tabs_sprites" xml:space="preserve">
-    <value>Sprites</value>
+    <value>duendes</value>
   </data>
   <data name="editor_tabs_tally" xml:space="preserve">
     <value>Bestiario</value>
@@ -919,7 +919,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Plataforma</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
-    <value>Sprites</value>
+    <value>duendes</value>
   </data>
   <data name="PaintMode_TileAndWall" xml:space="preserve">
     <value>Bloque/Pared</value>
@@ -1541,7 +1541,7 @@ Qué NO se recopila:
     <value>Volteo horizontal</value>
   </data>
   <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
-    <value>Flip Vertical</value>
+    <value>Voltear verticalmente</value>
   </data>
   <data name="tool_brush_height_label" xml:space="preserve">
     <value>Altura</value>
@@ -1710,9 +1710,11 @@ Qué NO se recopila:
   </data>
   <data name="tool_paint_coating" xml:space="preserve">
     <value>Revestimiento</value>
+    <comment>Coating</comment>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>Eco</value>
+    <comment>Echo</comment>
   </data>
   <data name="tool_paint_eraser_tooltip" xml:space="preserve">
     <value>Goma de borrar</value>
@@ -1722,6 +1724,7 @@ Qué NO se recopila:
   </data>
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>Iluminador</value>
+    <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>Inactivo</value>
@@ -1764,18 +1767,6 @@ Qué NO se recopila:
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Agregar placa de presión a la pista existente, úsalo con el Borrador para quitar solo la placa.</value>
-  </data>
-  <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Pared</value>
