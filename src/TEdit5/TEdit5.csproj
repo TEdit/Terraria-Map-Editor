@@ -15,13 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.3.11" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.3.11" />
-    <PackageReference Include="ReactiveUI.Avalonia" Version="11.3.8" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.11" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.11" />
+    <PackageReference Include="Avalonia" Version="11.3.12" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.12" />
+    <PackageReference Include="ReactiveUI.Avalonia" Version="11.4.3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.12" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.12" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.11" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.12" />
     <PackageReference Include="bodong.Avalonia.PropertyGrid" Version="11.3.11.1" />
     <PackageReference Include="bodong.PropertyModels" Version="11.3.11.1" />
     <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="9.6.2" />
