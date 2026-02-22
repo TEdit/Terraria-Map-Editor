@@ -166,7 +166,7 @@ public partial class ImageToPixelartEditorViewModel
                 x => x.BuildSafe,
                 x => x.UniqueColors)
             .Throttle(TimeSpan.FromMilliseconds(200))
-            .ObserveOn(RxApp.MainThreadScheduler)
+            .ObserveOn(RxSchedulers.MainThreadScheduler)
             .Subscribe(async _ => await BuildColorFilter());
 
         // Update GridColorBrush when GridColor changes

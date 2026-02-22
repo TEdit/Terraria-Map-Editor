@@ -29,13 +29,13 @@ public partial class BannerViewModel : ReactiveObject
 
         this.WhenAnyValue(x => x.FilterText, x => x.SelectedCategory)
             .Throttle(TimeSpan.FromMilliseconds(200))
-            .ObserveOn(RxApp.MainThreadScheduler)
+            .ObserveOn(RxSchedulers.MainThreadScheduler)
             .Subscribe(_ => BannersView.Refresh());
 
         // Auto-populate banners when a world is opened
         _wvm.WhenAnyValue(x => x.CurrentWorld)
             .Where(w => w != null)
-            .ObserveOn(RxApp.MainThreadScheduler)
+            .ObserveOn(RxSchedulers.MainThreadScheduler)
             .Subscribe(_ => PopulateBanners());
     }
 
