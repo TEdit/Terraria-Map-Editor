@@ -13,7 +13,7 @@ jobs:
   crowdin:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Ignore non-localization changes
         run: git ls-files -m | grep -v 'src/TEdit/Properties/' | xargs -r git update-index --assume-unchanged
