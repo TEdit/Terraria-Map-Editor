@@ -32,7 +32,7 @@
     <PackageReference Include="Velopack" Version="0.0.1298" />
     <PackageReference Include="VirtualizingWrapPanel" Version="2.4.0-beta" />
     <PackageReference Include="Jint" Version="4.6.0" />
-    <PackageReference Include="LuaCSharp" Version="0.4.2" />
+    <PackageReference Include="LuaCSharp" Version="0.5.3" />
     <PackageReference Include="WPF-UI" Version="4.2.0" />
     <PackageReference Include="AvalonEdit" Version="6.3.1.120" />
   </ItemGroup>
