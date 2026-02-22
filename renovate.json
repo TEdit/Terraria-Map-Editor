@@ -20,6 +20,10 @@
       "groupName": "Avalonia Property Grid",
       "matchPackagePatterns": ["bodong.*"],
       "automerge": false
+    },
+    {
+      "groupName": "ReactiveUI",
+      "matchPackagePatterns": ["ReactiveUI*"]
     }
   ]
 }
