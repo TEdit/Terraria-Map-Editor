@@ -260,6 +260,16 @@ public partial class SettingsViewModel
             Setter = v => wvm.SpriteThumbnailSize = (int)(double)v
         });
 
+        AllSettings.Add(new SettingItem
+        {
+            Name = Language.settings_enable_mica,
+            Description = Language.settings_enable_mica_desc,
+            Category = Language.settings_category_rendering,
+            EditorType = SettingEditorType.CheckBox,
+            Getter = () => UserSettingsService.Current.EnableMica,
+            Setter = v => UserSettingsService.Current.EnableMica = (bool)v
+        });
+
         // ── Layers ──
         var layers = Language.settings_category_layers;
 

@@ -8,6 +8,7 @@
         WindowStartupLocation="CenterOwner"
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
+        Background="{DynamicResource ControlBackgroundBrush}"
         Icon="/TEdit;component/Images/tedit.ico"
         Width="500" Height="600"
         MinWidth="400" MinHeight="300">

@@ -18,6 +18,7 @@ using ReactiveUI.Builder;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using Wpf.Ui.Appearance;
+using Wpf.Ui.Controls;
 
 namespace TEdit;
 
@@ -228,6 +229,26 @@ public partial class App : Application
         ErrorLogging.LogDebug($"[Startup] DispatcherHelper/TaskFactory init: {sw.ElapsedMilliseconds}ms");
 
         base.OnStartup(e);
+
+        // Auto-detect: Mica requires Windows 11 22H2+ (build 22621)
+        if (Environment.OSVersion.Version.Build < 22621 && UserSettingsService.Current.EnableMica)
+        {
+            ErrorLogging.Log("Mica disabled: Windows 11 22H2 or later required.");
+            UserSettingsService.Current.EnableMica = false;
+        }
+
+        // When Mica is disabled, override backdrop on all FluentWindows at load time
+        if (!UserSettingsService.Current.EnableMica)
+        {
+            EventManager.RegisterClassHandler(
+                typeof(FluentWindow),
+                FrameworkElement.LoadedEvent,
+                new RoutedEventHandler((sender, _) =>
+                {
+                    if (sender is FluentWindow fw)
+                        fw.WindowBackdropType = WindowBackdropType.None;
+                }));
+        }
 
         sw.Restart();
         // Create main window manually (StartupUri removed from App.xaml)

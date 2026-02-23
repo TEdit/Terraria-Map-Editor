@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -413,6 +413,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="keybind_capture_title" xml:space="preserve">
     <value>Pulsa una tecla o haz clic en un botón del ratón</value>
   </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>Intensidad del resplandor de la luz</value>
+  </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
   </data>
@@ -678,7 +681,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Fondos</value>
   </data>
   <data name="menu_layers_buff_radii" xml:space="preserve">
-    <value></value>
+    <value>Radio de mejora</value>
   </data>
   <data name="menu_layers_color_default" xml:space="preserve">
     <value>Colores por defecto</value>
@@ -1098,6 +1101,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Paleta de colores del mapa de píxeles: Predeterminado, Realista (basado en texturas) o Minimapa (colores del mapa dentro del juego). Requiere reiniciar.</value>
+  </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>Activar el fondo de Mica</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>Utiliza fondos translúcidos de micas para ventanas. Desactiva si las ventanas parecen transparentes. Requiere reiniciar.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Activar el editor de jugadores</value>
@@ -1768,6 +1777,18 @@ Qué NO se recolecta:
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Agregar placa de presión a la pista existente, úsalo con el Borrador para quitar solo la placa.</value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value>Suave</value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value>Alisa el túnel hecho por la herramienta de vía.</value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value>Túnel</value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value>Cava un túnel para la vía</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Pared</value>

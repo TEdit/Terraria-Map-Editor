@@ -37,6 +37,7 @@ public class UserSettings : INotifyPropertyChanged
     private List<string> _recentWorlds = new();
     private Dictionary<string, List<InputBinding>> _inputBindings = new();
     private bool _showTextureLoadingNotice = true;
+    private bool _enableMica = true;
 
     public string TerrariaPath
     {
@@ -198,6 +199,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _showTextureLoadingNotice;
         set => SetField(ref _showTextureLoadingNotice, value);
+    }
+
+    public bool EnableMica
+    {
+        get => _enableMica;
+        set => SetField(ref _enableMica, value);
     }
 
     [JsonConverter(typeof(InputBindingsDictionaryJsonConverter))]

@@ -1099,6 +1099,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Pixel map color palette: Default, Realistic (texture-sampled), or Minimap (in-game map colors). Requires restart.</value>
   </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>Enable Mica backdrop</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart.</value>
+  </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Enable Player Editor</value>
   </data>
@@ -1291,6 +1297,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>Glow Masks</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>Light Glow Intensity</value>
   </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>Banners</value>
@@ -1766,16 +1775,16 @@ Would you like to enable error reporting?</value>
     <value>Add Pressure Plate to existing track, use with Eraser to remove plate only.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
+    <value>Smooth</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Smooth the tunnel made by the track tool.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
+    <value>Tunnel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Dig a tunnel for the track</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Wall</value>

@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -412,6 +412,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="keybind_capture_title" xml:space="preserve">
     <value>Drücken Sie eine Taste oder drücken Sie eine Maustaste</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>Lichtstrahlintensität</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -1099,6 +1102,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Farbpalette der Pixelkarte: Standard, Realistisch (texturbasiert) oder Minimap (Kartenfarben im Spiel). Erfordert einen Neustart.</value>
   </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>Mica-Hintergrund aktivieren</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>Verwenden Sie durchscheinende Glimmer-Fensterhintergründe. Deaktiviere es, wenn Fenster transparent erscheinen. Erfordert einen Neustart.</value>
+  </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Aktiviere den Spieler-Editor</value>
   </data>
@@ -1767,6 +1776,18 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Fügt dem Gleis eine Druckplatte hinzu. Mit Radierer verwenden, um nur die Druckplatte zu entfernen.</value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value>Glatt</value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value>Glätten Sie den Tunnel, den das Schienenwerkzeug geschaffen hat.</value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value>Tunnel</value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value>Grabe einen Tunnel für das Gleis</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Wand</value>

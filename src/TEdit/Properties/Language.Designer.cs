@@ -935,6 +935,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Light Glow Intensity.
+        /// </summary>
+        public static string light_glow_intensity {
+            get {
+                return ResourceManager.GetString("light_glow_intensity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Liquid Amount:.
         /// </summary>
         public static string liquid_amount {
@@ -2969,6 +2978,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Mica backdrop.
+        /// </summary>
+        public static string settings_enable_mica {
+            get {
+                return ResourceManager.GetString("settings_enable_mica", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart..
+        /// </summary>
+        public static string settings_enable_mica_desc {
+            get {
+                return ResourceManager.GetString("settings_enable_mica_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Player Editor.
         /// </summary>
         public static string settings_enable_player_editor {
@@ -3543,16 +3570,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("show_glow_masks", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Light Glow Intensity.
-        /// </summary>
-        public static string light_glow_intensity {
-            get {
-                return ResourceManager.GetString("light_glow_intensity", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Banners.
         /// </summary>
@@ -4958,16 +4976,16 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_track_smooth", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Auto-slope blocks at tunnel edges.
+        ///   Looks up a localized string similar to Smooth the tunnel made by the track tool..
         /// </summary>
         public static string tool_paint_track_smooth_tooltip {
             get {
                 return ResourceManager.GetString("tool_paint_track_smooth_tooltip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Tunnel.
         /// </summary>
@@ -4976,16 +4994,16 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_paint_track_tunnel", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Clear tiles above track for tunnel.
+        ///   Looks up a localized string similar to Dig a tunnel for the track.
         /// </summary>
         public static string tool_paint_track_tunnel_tooltip {
             get {
                 return ResourceManager.GetString("tool_paint_track_tunnel_tooltip", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Wall.
         /// </summary>

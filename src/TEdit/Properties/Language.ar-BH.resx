@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -412,6 +412,9 @@
   </data>
   <data name="keybind_capture_title" xml:space="preserve">
     <value>اضغط على زر زر أو انقر على زر الفأرة</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>شدة توهج الضوء</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -1099,6 +1102,12 @@
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>لوحة ألوان خريطة البكسل: افتراضية، واقعية (مأخوذة من عينات من النسيج)، أو Minimap (ألوان خرائط داخل اللعبة). يتطلب إعادة تشغيل.</value>
   </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>خلفية تمكين ميكا</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>استخدم خلفيات نافذة ميكا الشفافة. قم بتعطيل النوافذ إذا بدت النوافذ شفافة. يتطلب إعادة تشغيل.</value>
+  </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>تفعيل محرر اللاعب</value>
   </data>
@@ -1767,6 +1776,18 @@
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>أضف لوحة الضغط إلى المسار الموجود، استخدم مع Eraser لإزالة اللوحة فقط.</value>
+  </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value>سلس</value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value>قم بتنعيم النفق الذي صنعته أداة السكة.</value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value>النفق</value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value>احفر نفقا للسكة الحديدية</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>جدار</value>
