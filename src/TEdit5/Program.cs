@@ -26,6 +26,6 @@ class Program
                 .UsePlatformDetect()
                 .WithInterFont()
                 .LogToTrace()
-                .UseReactiveUI();
+                .UseReactiveUI(builder => { });
     }
 }

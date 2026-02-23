@@ -38,6 +38,20 @@ public class FilteredComboBox : ComboBox
         set => SetValue(FilterMemberPathProperty, value);
     }
 
+    /// <summary>
+    /// Optional secondary dot-delimited property path for filtering by ID (e.g. "Id" or "Value.Id").
+    /// When set, the filter matches if either the primary FilterMemberPath or this path matches.
+    /// </summary>
+    public static readonly DependencyProperty FilterIdMemberPathProperty =
+        DependencyProperty.Register(nameof(FilterIdMemberPath), typeof(string), typeof(FilteredComboBox),
+            new PropertyMetadata(null));
+
+    public string FilterIdMemberPath
+    {
+        get => (string)GetValue(FilterIdMemberPathProperty);
+        set => SetValue(FilterIdMemberPathProperty, value);
+    }
+
     public FilteredComboBox()
     {
         SetResourceReference(StyleProperty, typeof(ComboBox));
@@ -242,7 +256,18 @@ public class FilteredComboBox : ComboBox
         if (currentFilter.Length == 0) return true;
 
         string displayText = GetFilterText(value);
-        return displayText.Contains(currentFilter, System.StringComparison.OrdinalIgnoreCase);
+        if (displayText.Contains(currentFilter, System.StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        // Also match against the ID path if configured
+        if (!string.IsNullOrEmpty(FilterIdMemberPath))
+        {
+            string idText = GetPropertyPath(value, FilterIdMemberPath);
+            if (idText.Contains(currentFilter, System.StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
     }
 
     private string GetDisplayText(object value)
@@ -258,9 +283,14 @@ public class FilteredComboBox : ComboBox
         if (string.IsNullOrEmpty(FilterMemberPath))
             return value.ToString() ?? string.Empty;
 
+        return GetPropertyPath(value, FilterMemberPath);
+    }
+
+    private string GetPropertyPath(object value, string path)
+    {
         // Walk dot-delimited property path
         object current = value;
-        foreach (var segment in FilterMemberPath.Split('.'))
+        foreach (var segment in path.Split('.'))
         {
             if (current == null) return string.Empty;
             var prop = current.GetType().GetProperty(segment);
