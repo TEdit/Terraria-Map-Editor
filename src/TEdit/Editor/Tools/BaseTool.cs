@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
@@ -5,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Geometry;
 using TEdit.Input;
 using TEdit.UI;
 using TEdit.ViewModel;
@@ -93,6 +95,9 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     {
         get { return false; }
     }
+
+    public virtual IReadOnlyList<Vector2Int32> CadPreviewPath => Array.Empty<Vector2Int32>();
+    public virtual bool HasCadPreview => false;
 
     #endregion
 

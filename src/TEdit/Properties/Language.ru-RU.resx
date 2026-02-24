@@ -305,6 +305,12 @@
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Контент игры не найден</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Провод 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Провод 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Анализ</value>
   </data>

@@ -305,6 +305,12 @@
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>테라리아 콘텐츠 찾을 수 없습니다</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>와이어 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>와이어 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>분석</value>
   </data>

@@ -305,6 +305,12 @@
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Terraria路径错误</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>线路45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>钢丝90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>分析</value>
   </data>

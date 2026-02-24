@@ -305,6 +305,12 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Contenu Terraria non trouvé</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Fil 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Fil à 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analyse</value>
   </data>

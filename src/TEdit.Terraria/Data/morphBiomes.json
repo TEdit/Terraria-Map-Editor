@@ -45,7 +45,9 @@
         {
           "name": "spriteMossPlant",
           "useMoss": true,
-          "default": { "skyId": 184 },
+          "default": {
+            "skyId": 184
+          },
           "sourceIds": [184],
           "spriteOffsets": []
         },
@@ -180,7 +182,9 @@
         },
         {
           "name": "spriteTorch",
-          "default": { "skyId": 4 },
+          "default": {
+            "skyId": 4
+          },
           "sourceIds": [4],
           "spriteOffsets": [
             { "minU": 396, "maxU": 396, "offsetU": -396 },
@@ -190,7 +194,9 @@
         },
         {
           "name": "tileMossBrick",
-          "default": { "skyId": 1 },
+          "default": {
+            "skyId": 1
+          },
           "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }
@@ -579,7 +585,9 @@
         },
         {
           "name": "spriteTorch",
-          "default": { "skyId": 4 },
+          "default": {
+            "skyId": 4
+          },
           "sourceIds": [4],
           "spriteOffsets": [
             { "maxU": 0, "offsetU": 396 },
@@ -589,7 +597,9 @@
         },
         {
           "name": "tileMossBrick",
-          "default": { "skyId": 25 },
+          "default": {
+            "skyId": 25
+          },
           "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }
@@ -974,7 +984,9 @@
         },
         {
           "name": "spriteTorch",
-          "default": { "skyId": 4 },
+          "default": {
+            "skyId": 4
+          },
           "sourceIds": [4],
           "spriteOffsets": [
             { "maxU": 0, "offsetU": 418 },
@@ -984,7 +996,9 @@
         },
         {
           "name": "tileMossBrick",
-          "default": { "skyId": 203 },
+          "default": {
+            "skyId": 203
+          },
           "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }
@@ -1272,7 +1286,9 @@
         },
         {
           "name": "spriteTorch",
-          "default": { "skyId": 4 },
+          "default": {
+            "skyId": 4
+          },
           "sourceIds": [4],
           "spriteOffsets": [
             { "maxU": 0, "offsetU": 440 },
@@ -1282,7 +1298,9 @@
         },
         {
           "name": "tileMossBrick",
-          "default": { "skyId": 117 },
+          "default": {
+            "skyId": 117
+          },
           "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }
@@ -1521,7 +1539,9 @@
         },
         {
           "name": "spriteTorch",
-          "default": { "skyId": 4 },
+          "default": {
+            "skyId": 4
+          },
           "sourceIds": [4],
           "spriteOffsets": [
             { "maxU": 0, "offsetU": 484 }
@@ -1648,7 +1668,9 @@
         {
           "name": "spriteMossPlant",
           "useMoss": true,
-          "default": { "skyId": 184 },
+          "default": {
+            "skyId": 184
+          },
           "sourceIds": [184],
           "spriteOffsets": []
         },
@@ -1753,7 +1775,9 @@
         },
         {
           "name": "spriteTorch",
-          "default": { "skyId": 4 },
+          "default": {
+            "skyId": 4
+          },
           "sourceIds": [4],
           "spriteOffsets": [
             { "minU": 396, "maxU": 396, "offsetU": -396 },
@@ -1764,7 +1788,9 @@
         {
           "name": "tileMossBrick",
           "useMoss": true,
-          "default": { "skyId": 1 },
+          "default": {
+            "skyId": 1
+          },
           "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }
@@ -2291,7 +2317,9 @@
         },
         {
           "name": "spriteTorch",
-          "default": { "skyId": 4 },
+          "default": {
+            "skyId": 4
+          },
           "sourceIds": [4],
           "spriteOffsets": [
             { "maxU": 0, "offsetU": 198 }
@@ -2299,7 +2327,9 @@
         },
         {
           "name": "tileMossBrick",
-          "default": { "skyId": 161 },
+          "default": {
+            "skyId": 161
+          },
           "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }
@@ -2702,7 +2732,9 @@
         },
         {
           "name": "spriteTorch",
-          "default": { "skyId": 4 },
+          "default": {
+            "skyId": 4
+          },
           "sourceIds": [4],
           "spriteOffsets": [
             { "maxU": 0, "offsetU": 352 }
@@ -2710,7 +2742,9 @@
         },
         {
           "name": "tileMossBrick",
-          "default": { "skyId": 396 },
+          "default": {
+            "skyId": 396
+          },
           "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
           "spriteOffsets": []
         }

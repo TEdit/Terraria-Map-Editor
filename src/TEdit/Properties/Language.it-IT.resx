@@ -305,6 +305,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Contenuto di Terraria non trovato</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Filo 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Filo a 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analisi</value>
   </data>

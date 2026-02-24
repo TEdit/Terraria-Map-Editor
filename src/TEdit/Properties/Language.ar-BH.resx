@@ -305,6 +305,12 @@
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>محتوى Terraria لم يتم العثور عليه</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>السلك 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>السلك 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>تحليل</value>
   </data>

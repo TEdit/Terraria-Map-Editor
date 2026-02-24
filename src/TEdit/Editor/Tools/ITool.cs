@@ -1,5 +1,7 @@
-﻿using System.Windows.Media;
+﻿using System.Collections.Generic;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using TEdit.Geometry;
 using TEdit.UI;
 using Wpf.Ui.Controls;
 
@@ -23,4 +25,10 @@ public interface ITool
     int PreviewOffsetX { get; }
     int PreviewOffsetY { get; }
     WriteableBitmap PreviewTool();
+
+    /// <summary>Preview path tiles for CAD wire routing. Empty when no preview active.</summary>
+    IReadOnlyList<Vector2Int32> CadPreviewPath { get; }
+
+    /// <summary>Whether CAD wire preview is active and should be rendered.</summary>
+    bool HasCadPreview { get; }
 }

@@ -305,6 +305,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Terraria Content not Found</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analysis</value>
   </data>
@@ -412,6 +418,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="keybind_capture_title" xml:space="preserve">
     <value>Press a key or click a mouse button</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>Light Glow Intensity</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -1297,9 +1306,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>Glow Masks</value>
-  </data>
-  <data name="light_glow_intensity" xml:space="preserve">
-    <value>Light Glow Intensity</value>
   </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>Banners</value>

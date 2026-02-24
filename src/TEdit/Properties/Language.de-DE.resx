@@ -305,6 +305,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Terraria-Inhalt nicht gefunden</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Draht 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Draht 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analyse</value>
   </data>

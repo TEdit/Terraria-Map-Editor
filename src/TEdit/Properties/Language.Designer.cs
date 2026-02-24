@@ -611,6 +611,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wire 45°.
+        /// </summary>
+        public static string drawing_mode_wire45 {
+            get {
+                return ResourceManager.GetString("drawing_mode_wire45", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire 90°.
+        /// </summary>
+        public static string drawing_mode_wire90 {
+            get {
+                return ResourceManager.GetString("drawing_mode_wire90", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analysis.
         /// </summary>
         public static string editor_tabs_analysis {

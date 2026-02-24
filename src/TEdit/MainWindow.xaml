@@ -238,6 +238,7 @@
                         <TextBox Text="{Binding MouseOverTile.Paint, Mode=OneWay}" Width="180" IsReadOnly="True" />
                         <TextBlock Text="{x:Static p:Language.statusbar_selection_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding Selection.SelectionArea.Size, Mode=OneWay}" Width="180" IsReadOnly="True"  />
+                        <TextBox Text="{Binding DrawingModeText, Mode=OneWay}" Width="80" IsReadOnly="True" Margin="5,0" />
                     </StackPanel>
                 </StatusBarItem>
                 <StatusBarItem HorizontalAlignment="Right">

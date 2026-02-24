@@ -305,6 +305,12 @@
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>未找到 Terraria 內容</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>鋼絲45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>鋼絲90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>分析</value>
   </data>

@@ -55,6 +55,7 @@ public partial class WorldViewModel : ReactiveObject
     public int[] CheckTiles;
     public int CheckTileGeneration = 1;
     private ITool _activeTool;
+    [Reactive] private string _drawingModeText = "";
     private UpdateMode _updateMode;
     private bool _isUpdateAvailable;
     private string _currentFile;

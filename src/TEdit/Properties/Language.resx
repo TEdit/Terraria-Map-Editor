@@ -1816,6 +1816,12 @@ Would you like to enable error reporting?</value>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>Pencil</value>
   </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
+  </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Picker - select tile color</value>
   </data>

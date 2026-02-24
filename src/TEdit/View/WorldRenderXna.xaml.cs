@@ -6439,8 +6439,55 @@ public partial class WorldRenderXna : UserControl
             (_scrollPosition.Y + y) * _zoom - height + 4 + 16);
     }
 
+    private Color GetActiveWirePreviewColor()
+    {
+        var picker = _wvm.TilePicker;
+        if (picker.RedWireActive)
+            return new Color(255, 0, 0, 180);
+        if (picker.BlueWireActive)
+            return new Color(0, 0, 255, 180);
+        if (picker.GreenWireActive)
+            return new Color(0, 255, 0, 180);
+        if (picker.YellowWireActive)
+            return new Color(255, 255, 0, 180);
+        return new Color(255, 255, 255, 128);
+    }
+
     private void DrawToolPreview()
     {
+        // CAD wire routing preview
+        if (_wvm.ActiveTool.HasCadPreview)
+        {
+            var whiteTex = _textureDictionary.WhitePixelTexture;
+            if (whiteTex != null)
+            {
+                var previewColor = GetActiveWirePreviewColor();
+                var path = _wvm.ActiveTool.CadPreviewPath;
+                for (int i = 0; i < path.Count; i++)
+                {
+                    var tile = path[i];
+                    var pos = new Vector2(
+                        (_scrollPosition.X + tile.X) * _zoom,
+                        (_scrollPosition.Y + tile.Y) * _zoom);
+                    _spriteBatch.Draw(whiteTex, pos, null, previewColor,
+                        0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                }
+
+                // Draw anchor marker with brighter color
+                if (path.Count > 0)
+                {
+                    var anchor = path[0];
+                    var anchorPos = new Vector2(
+                        (_scrollPosition.X + anchor.X) * _zoom,
+                        (_scrollPosition.Y + anchor.Y) * _zoom);
+                    var anchorColor = new Color(255, 255, 255, 220);
+                    _spriteBatch.Draw(whiteTex, anchorPos, null, anchorColor,
+                        0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                }
+            }
+            return;
+        }
+
         if (_preview == null)
             return;
         Vector2 position;

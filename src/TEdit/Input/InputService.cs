@@ -662,6 +662,26 @@ public class InputService
 
         Register(new InputAction
         {
+            Id = "editor.wire.modecycle",
+            Name = "Cycle Wire Drawing Mode",
+            Category = InputCategory.ToolDrawing,
+            Scope = InputScope.Application,
+            Description = "Cycle wire drawing mode: Off → Wire90 → Wire45 → Off",
+            DefaultBindings = { InputBinding.Keyboard(Key.W) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "editor.wire.togglehv",
+            Name = "Toggle Wire H/V Direction",
+            Category = InputCategory.ToolDrawing,
+            Scope = InputScope.Application,
+            Description = "Toggle between horizontal-first, vertical-first, and auto-detect wire routing",
+            DefaultBindings = { InputBinding.Keyboard(Key.Q) }
+        });
+
+        Register(new InputAction
+        {
             Id = "editor.pan",
             Name = "Pan Viewport",
             Category = InputCategory.ToolDrawing,

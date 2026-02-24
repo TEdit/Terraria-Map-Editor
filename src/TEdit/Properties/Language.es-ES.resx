@@ -305,6 +305,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Archivos de Terraria no encontrados</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Cable 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Cable 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Análisis</value>
   </data>
