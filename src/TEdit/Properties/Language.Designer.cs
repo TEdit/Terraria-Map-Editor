@@ -1149,7 +1149,187 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("MaskMode_Off", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string MaskPreset_Off {
+            get {
+                return ResourceManager.GetString("MaskPreset_Off", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Match Custom.
+        /// </summary>
+        public static string MaskPreset_Custom {
+            get {
+                return ResourceManager.GetString("MaskPreset_Custom", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Match All.
+        /// </summary>
+        public static string MaskPreset_ExactMatch {
+            get {
+                return ResourceManager.GetString("MaskPreset_ExactMatch", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Masks.
+        /// </summary>
+        public static string mask_title {
+            get {
+                return ResourceManager.GetString("mask_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Preset:.
+        /// </summary>
+        public static string mask_preset {
+            get {
+                return ResourceManager.GetString("mask_preset", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Clear All.
+        /// </summary>
+        public static string mask_clear_all {
+            get {
+                return ResourceManager.GetString("mask_clear_all", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tile Type.
+        /// </summary>
+        public static string mask_section_tile {
+            get {
+                return ResourceManager.GetString("mask_section_tile", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Wall Type.
+        /// </summary>
+        public static string mask_section_wall {
+            get {
+                return ResourceManager.GetString("mask_section_wall", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Brick Style.
+        /// </summary>
+        public static string mask_section_brickstyle {
+            get {
+                return ResourceManager.GetString("mask_section_brickstyle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Actuator.
+        /// </summary>
+        public static string mask_section_actuator {
+            get {
+                return ResourceManager.GetString("mask_section_actuator", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Inactive.
+        /// </summary>
+        public static string mask_section_inactive {
+            get {
+                return ResourceManager.GetString("mask_section_inactive", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tile Paint.
+        /// </summary>
+        public static string mask_section_tile_paint {
+            get {
+                return ResourceManager.GetString("mask_section_tile_paint", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Wall Paint.
+        /// </summary>
+        public static string mask_section_wall_paint {
+            get {
+                return ResourceManager.GetString("mask_section_wall_paint", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tile Coatings.
+        /// </summary>
+        public static string mask_section_tile_coatings {
+            get {
+                return ResourceManager.GetString("mask_section_tile_coatings", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Wall Coatings.
+        /// </summary>
+        public static string mask_section_wall_coatings {
+            get {
+                return ResourceManager.GetString("mask_section_wall_coatings", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Wires.
+        /// </summary>
+        public static string mask_section_wires {
+            get {
+                return ResourceManager.GetString("mask_section_wires", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Liquid Type.
+        /// </summary>
+        public static string mask_section_liquid_type {
+            get {
+                return ResourceManager.GetString("mask_section_liquid_type", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Liquid Level.
+        /// </summary>
+        public static string mask_section_liquid_level {
+            get {
+                return ResourceManager.GetString("mask_section_liquid_level", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Echo.
+        /// </summary>
+        public static string mask_echo {
+            get {
+                return ResourceManager.GetString("mask_echo", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Illuminant.
+        /// </summary>
+        public static string mask_illuminant {
+            get {
+                return ResourceManager.GetString("mask_illuminant", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Copy first item.
         /// </summary>
@@ -3624,7 +3804,52 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("sidebar_find_tooltip", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Masks.
+        /// </summary>
+        public static string sidebar_mask_tooltip {
+            get {
+                return ResourceManager.GetString("sidebar_mask_tooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Palette.
+        /// </summary>
+        public static string sidebar_palette_tooltip {
+            get {
+                return ResourceManager.GetString("sidebar_palette_tooltip", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Palette.
+        /// </summary>
+        public static string palette_title {
+            get {
+                return ResourceManager.GetString("palette_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tile Picker.
+        /// </summary>
+        public static string palette_tile_section {
+            get {
+                return ResourceManager.GetString("palette_tile_section", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mask Options.
+        /// </summary>
+        public static string palette_mask_section {
+            get {
+                return ResourceManager.GetString("palette_mask_section", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Scripting.
         /// </summary>

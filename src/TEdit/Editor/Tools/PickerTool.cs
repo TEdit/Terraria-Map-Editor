@@ -145,7 +145,10 @@ public sealed class PickerTool : BaseTool
         }
         else
         {
-            // Custom mode: set tile and wall mask values only
+            // Off or Custom mode: set tile and wall mask values, switch to Custom
+            if (_wvm.MaskSettings.MaskPreset == MaskPreset.Off)
+                _wvm.MaskSettings.MaskPreset = MaskPreset.Custom;
+
             if (!WorldConfiguration.TileProperties[curTile.Type].IsFramed)
             {
                 _wvm.MaskSettings.TileMaskValue = curTile.IsActive ? curTile.Type : -1;

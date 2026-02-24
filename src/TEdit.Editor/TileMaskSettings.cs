@@ -6,7 +6,7 @@ namespace TEdit.Editor;
 
 public partial class TileMaskSettings : ReactiveObject
 {
-    [Reactive] private MaskPreset _maskPreset = MaskPreset.Custom;
+    [Reactive] private MaskPreset _maskPreset = MaskPreset.Off;
 
     // Tile Type
     [Reactive] private MaskMode _tileMaskMode = MaskMode.Off;
@@ -206,7 +206,7 @@ public partial class TileMaskSettings : ReactiveObject
         LiquidTypeMaskValue = LiquidType.Water;
         LiquidLevelMaskMode = LiquidLevelMaskMode.Ignore;
         LiquidLevelMaskValue = 0;
-        MaskPreset = MaskPreset.Custom;
+        MaskPreset = MaskPreset.Off;
     }
 
     // ── Private mask evaluators ──────────────────────────────────────

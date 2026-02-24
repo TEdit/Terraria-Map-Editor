@@ -1,0 +1,283 @@
+<UserControl x:Class="TEdit.View.Sidebar.Controls.MaskOptionsPanelControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
+             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
+             xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:p="clr-namespace:TEdit.Properties"
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="340"
+             d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
+
+    <StackPanel Margin="4">
+
+        <!-- Tile Type -->
+        <TextBlock Text="{x:Static p:Language.mask_section_tile}" FontWeight="SemiBold" Margin="0,4,0,4"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{StaticResource MaskModeEnum}"
+                      SelectedValue="{Binding MaskSettings.TileMaskMode}"
+                      SelectedValuePath="Value"
+                      ItemTemplate="{StaticResource EnumTemplate}"
+                      Width="120" Margin="0,0,4,0" />
+            <tedit:FilteredComboBox Grid.Column="1"
+                ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricksMask}, Mode=OneTime}"
+                ItemTemplate="{StaticResource ColorPickerTemplate}"
+                SelectedValue="{Binding MaskSettings.TileMaskValue, Mode=TwoWay}"
+                IsSynchronizedWithCurrentItem="False"
+                IsEditable="True"
+                SelectedValuePath="Id"
+                IsTextSearchEnabled="False" />
+        </Grid>
+
+        <!-- Wall Type -->
+        <TextBlock Text="{x:Static p:Language.mask_section_wall}" FontWeight="SemiBold" Margin="0,8,0,4"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{StaticResource MaskModeEnum}"
+                      SelectedValue="{Binding MaskSettings.WallMaskMode}"
+                      SelectedValuePath="Value"
+                      ItemTemplate="{StaticResource EnumTemplate}"
+                      Width="120" Margin="0,0,4,0" />
+            <tedit:FilteredComboBox Grid.Column="1"
+                ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallPropertiesMask}, Mode=OneTime}"
+                ItemTemplate="{StaticResource ColorPickerTemplate}"
+                SelectedValue="{Binding MaskSettings.WallMaskValue, Mode=TwoWay}"
+                IsSynchronizedWithCurrentItem="False"
+                IsEditable="True"
+                SelectedValuePath="Id"
+                IsTextSearchEnabled="False"
+                TextSearch.TextPath="Name" />
+        </Grid>
+
+        <!-- Brick Style -->
+        <TextBlock Text="{x:Static p:Language.mask_section_brickstyle}" FontWeight="SemiBold" Margin="0,8,0,4"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{StaticResource MaskModeEnum}"
+                      SelectedValue="{Binding MaskSettings.BrickStyleMaskMode}"
+                      SelectedValuePath="Value"
+                      ItemTemplate="{StaticResource EnumTemplate}"
+                      Width="120" Margin="0,0,4,0" />
+            <ComboBox Grid.Column="1" ItemsSource="{StaticResource BrickStyle}"
+                      SelectedValue="{Binding MaskSettings.BrickStyleMaskValue}"
+                      SelectedValuePath="Value"
+                      ItemTemplate="{StaticResource EnumTemplate}" />
+        </Grid>
+
+        <!-- Actuator / Inactive -->
+        <Grid Margin="0,8,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{x:Static p:Language.mask_section_actuator}" FontWeight="SemiBold" Margin="0,0,0,4"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.ActuatorMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="4,0,0,0">
+                <TextBlock Text="{x:Static p:Language.mask_section_inactive}" FontWeight="SemiBold" Margin="0,0,0,4"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.ActuatorInActiveMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Tile Paint / Wall Paint -->
+        <Grid Margin="0,8,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{x:Static p:Language.mask_section_tile_paint}" FontWeight="SemiBold" Margin="0,0,0,4"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.TilePaintMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}"
+                          Margin="0,0,0,4" />
+                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}"
+                          ItemTemplate="{StaticResource ColorPickerTemplate}"
+                          SelectedValue="{Binding MaskSettings.TilePaintMaskValue, Mode=TwoWay}"
+                          SelectedValuePath="Id" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="4,0,0,0">
+                <TextBlock Text="{x:Static p:Language.mask_section_wall_paint}" FontWeight="SemiBold" Margin="0,0,0,4"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.WallPaintMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}"
+                          Margin="0,0,0,4" />
+                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}"
+                          ItemTemplate="{StaticResource ColorPickerTemplate}"
+                          SelectedValue="{Binding MaskSettings.WallPaintMaskValue, Mode=TwoWay}"
+                          SelectedValuePath="Id" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Tile Coatings -->
+        <TextBlock Text="{x:Static p:Language.mask_section_tile_coatings}" FontWeight="SemiBold" Margin="0,8,0,4"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{x:Static p:Language.mask_echo}" Margin="0,0,0,2"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.TileEchoMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="4,0,0,0">
+                <TextBlock Text="{x:Static p:Language.mask_illuminant}" Margin="0,0,0,2"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.TileIlluminantMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Wall Coatings -->
+        <TextBlock Text="{x:Static p:Language.mask_section_wall_coatings}" FontWeight="SemiBold" Margin="0,8,0,4"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{x:Static p:Language.mask_echo}" Margin="0,0,0,2"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.WallEchoMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="4,0,0,0">
+                <TextBlock Text="{x:Static p:Language.mask_illuminant}" Margin="0,0,0,2"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.WallIlluminantMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Wires -->
+        <TextBlock Text="{x:Static p:Language.mask_section_wires}" FontWeight="SemiBold" Margin="0,8,0,4"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <TextBlock Text="{x:Static p:Language.tool_paint_wire_red}" Margin="0,0,0,2"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.WireRedMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="4,0,0,0">
+                <TextBlock Text="{x:Static p:Language.tool_paint_wire_blue}" Margin="0,0,0,2"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.WireBlueMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,4,0,0">
+                <TextBlock Text="{x:Static p:Language.tool_paint_wire_green}" Margin="0,0,0,2"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.WireGreenMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="4,4,0,0">
+                <TextBlock Text="{x:Static p:Language.tool_paint_wire_yellow}" Margin="0,0,0,2"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <ComboBox ItemsSource="{StaticResource MaskModeEnum}"
+                          SelectedValue="{Binding MaskSettings.WireYellowMaskMode}"
+                          SelectedValuePath="Value"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Liquid Type -->
+        <TextBlock Text="{x:Static p:Language.mask_section_liquid_type}" FontWeight="SemiBold" Margin="0,8,0,4"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{StaticResource MaskModeEnum}"
+                      SelectedValue="{Binding MaskSettings.LiquidTypeMaskMode}"
+                      SelectedValuePath="Value"
+                      ItemTemplate="{StaticResource EnumTemplate}"
+                      Width="120" Margin="0,0,4,0" />
+            <ComboBox Grid.Column="1" ItemsSource="{StaticResource LiquidType}"
+                      SelectedValue="{Binding MaskSettings.LiquidTypeMaskValue}"
+                      SelectedValuePath="Value"
+                      ItemTemplate="{StaticResource EnumTemplate}" />
+        </Grid>
+
+        <!-- Liquid Level -->
+        <TextBlock Text="{x:Static p:Language.mask_section_liquid_level}" FontWeight="SemiBold" Margin="0,8,0,4"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" ItemsSource="{StaticResource LiquidLevelMaskModeEnum}"
+                      SelectedValue="{Binding MaskSettings.LiquidLevelMaskMode}"
+                      SelectedValuePath="Value"
+                      ItemTemplate="{StaticResource EnumTemplate}"
+                      Width="120" Margin="0,0,4,0" />
+            <Slider Grid.Column="1" Minimum="0" Maximum="255"
+                    Value="{Binding MaskSettings.LiquidLevelMaskValue}"
+                    VerticalAlignment="Center"
+                    IsSnapToTickEnabled="True" TickFrequency="1" />
+            <TextBlock Grid.Column="2" Text="{Binding MaskSettings.LiquidLevelMaskValue}"
+                       VerticalAlignment="Center" Margin="4,0,0,0" MinWidth="30"
+                       Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        </Grid>
+
+    </StackPanel>
+</UserControl>

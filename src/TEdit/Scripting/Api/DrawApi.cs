@@ -217,8 +217,10 @@ public class DrawApi
     {
         _maskSettings.MaskPreset = preset?.ToLowerInvariant() switch
         {
-            "exact" or "exactmatch" => MaskPreset.ExactMatch,
-            _ => MaskPreset.Custom
+            "off" => MaskPreset.Off,
+            "exact" or "exactmatch" or "matchall" => MaskPreset.ExactMatch,
+            "custom" or "matchcustom" => MaskPreset.Custom,
+            _ => MaskPreset.Off
         };
     }
 

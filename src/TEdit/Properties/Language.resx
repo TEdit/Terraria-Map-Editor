@@ -479,6 +479,27 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Disable Mask</value>
   </data>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="MaskPreset_Custom" xml:space="preserve">
+    <value>Match Custom</value>
+  </data>
+  <data name="MaskPreset_ExactMatch" xml:space="preserve">
+    <value>Match All</value>
+  </data>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
+  </data>
   <data name="mask_clear_all" xml:space="preserve">
     <value>Clear All</value>
   </data>

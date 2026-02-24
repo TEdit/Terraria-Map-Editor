@@ -1,0 +1,76 @@
+<UserControl x:Class="TEdit.View.Sidebar.PaletteSidebarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
+             xmlns:p="clr-namespace:TEdit.Properties"
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="900" d:DesignWidth="400"
+             d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
+
+    <DockPanel Background="{DynamicResource SidebarBackgroundBrush}">
+
+        <!-- Title -->
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.palette_title}" Style="{DynamicResource SidebarPanelTitle}" />
+
+        <!-- Scrollable content -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!-- ═══ Tile Picker Section ═══ -->
+                <TextBlock Text="{x:Static p:Language.palette_tile_section}" FontWeight="SemiBold" FontSize="12"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" Margin="8,4,8,0" />
+                <controls:TilePickerPanelControl Margin="4,0" />
+
+                <!-- ═══ Mask Mode Divider ═══ -->
+                <Border Margin="4,8" Padding="6,4" CornerRadius="4"
+                        Background="{DynamicResource SubtleFillColorSecondaryBrush}"
+                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                        BorderThickness="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- 3-way mask mode toggle -->
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <RadioButton Content="Off"
+                                         GroupName="MaskPreset"
+                                         Style="{StaticResource {x:Type ToggleButton}}"
+                                         IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.Off}}"
+                                         Padding="8,3" Margin="0,0,2,0" FontSize="11" />
+                            <RadioButton Content="Match All"
+                                         GroupName="MaskPreset"
+                                         Style="{StaticResource {x:Type ToggleButton}}"
+                                         IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.ExactMatch}}"
+                                         Padding="8,3" Margin="0,0,2,0" FontSize="11" />
+                            <RadioButton Content="Match Custom"
+                                         GroupName="MaskPreset"
+                                         Style="{StaticResource {x:Type ToggleButton}}"
+                                         IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.Custom}}"
+                                         Padding="8,3" FontSize="11" />
+                        </StackPanel>
+
+                        <!-- Clear All button -->
+                        <ui:Button Grid.Column="2" Content="{x:Static p:Language.mask_clear_all}"
+                                   Padding="8,3" FontSize="11"
+                                   Click="ClearAll_Click" />
+                    </Grid>
+                </Border>
+
+                <!-- ═══ Mask Options Section ═══ -->
+                <TextBlock Text="{x:Static p:Language.palette_mask_section}" FontWeight="SemiBold" FontSize="12"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" Margin="8,0,8,0" />
+                <controls:MaskOptionsPanelControl Margin="4,0" />
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </DockPanel>
+</UserControl>
