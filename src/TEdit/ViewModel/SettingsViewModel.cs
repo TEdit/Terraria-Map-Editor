@@ -270,6 +270,16 @@ public partial class SettingsViewModel
             Setter = v => UserSettingsService.Current.EnableMica = (bool)v
         });
 
+        AllSettings.Add(new SettingItem
+        {
+            Name = "High Quality Brush Preview",
+            Description = "Show full brush shape along shift+line preview. Disable for a simpler single-pixel line preview.",
+            Category = Language.settings_category_rendering,
+            EditorType = SettingEditorType.CheckBox,
+            Getter = () => UserSettingsService.Current.HighQualityBrushPreview,
+            Setter = v => UserSettingsService.Current.HighQualityBrushPreview = (bool)v
+        });
+
         // ── Layers ──
         var layers = Language.settings_category_layers;
 

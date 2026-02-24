@@ -25,6 +25,7 @@ public class BrushToolBase : BaseTool
     protected Vector2Int32 _endPoint;
     protected Vector2Int32 _leftPoint;
     protected Vector2Int32 _rightPoint;
+    private bool _hasLastClickPosition;
     private Vector2Int32 _lineMouseDownPos;
     private bool _lineLastWasClick;
 
@@ -74,6 +75,9 @@ public class BrushToolBase : BaseTool
 
     public override IReadOnlyList<Vector2Int32> CadPreviewPath => _cadPreviewPath;
     public override bool HasCadPreview => _isCadWireMode && _isCadAnchored && _cadPreviewPath.Count > 0;
+
+    public override Vector2Int32 LinePreviewAnchor => _endPoint;
+    public override bool HasLinePreviewAnchor => _hasLastClickPosition;
 
     /// <summary>
     /// Cycle wire mode: Off → Wire90 → Wire45 → Off (normal) → Wire90...
@@ -239,6 +243,8 @@ public class BrushToolBase : BaseTool
         _isDrawing = actions.Contains("editor.draw");
         _isConstraining = actions.Contains("editor.draw.constrain");
         _isLineMode = actions.Contains("editor.draw.line");
+
+        _hasLastClickPosition = true;
 
         if (_wvm.Brush.IsSpray && _isDrawing)
         {

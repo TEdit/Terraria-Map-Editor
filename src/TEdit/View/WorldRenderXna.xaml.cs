@@ -6488,26 +6488,54 @@ public partial class WorldRenderXna : UserControl
             return;
         }
 
-        // Shift+line preview (pencil tool polyline preview)
-        if (_wvm.ActiveTool.HasLinePreview)
+        // Shift+line preview: computed at draw time from anchor + cursor
+        if (_wvm.ActiveTool.HasLinePreviewAnchor
+            && (BaseTool.GetModifiers() & System.Windows.Input.ModifierKeys.Shift) != 0)
         {
             var whiteTex = _textureDictionary.WhitePixelTexture;
             if (whiteTex != null)
             {
-                // Match the regular pencil cursor preview color (A=127, R=0, G=90, B=255)
-                var previewColor = new Color(0, 90, 255, 127);
-                var path = _wvm.ActiveTool.LinePreviewPath;
-                for (int i = 0; i < path.Count; i++)
+                var previewColor = Color.FromNonPremultiplied(0, 90, 255, 127);
+                var anchor = _wvm.ActiveTool.LinePreviewAnchor;
+                var cursor = _wvm.MouseOverTile.MouseState.Location;
+
+                bool isBrush = _wvm.ActiveTool.ToolType == ToolType.Brush;
+                bool highQuality = isBrush && Configuration.UserSettingsService.Current.HighQualityBrushPreview;
+
+                if (highQuality)
                 {
-                    var tile = path[i];
-                    var pos = new Vector2(
-                        (_scrollPosition.X + tile.X) * _zoom,
-                        (_scrollPosition.Y + tile.Y) * _zoom);
-                    _spriteBatch.Draw(whiteTex, pos, null, previewColor,
-                        0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                    // Stamp brush shape at each Bresenham point
+                    var stampBuf = new List<Vector2Int32>();
+                    var dedupe = new HashSet<Vector2Int32>();
+                    foreach (var center in Shape.DrawLineTool(anchor, cursor))
+                    {
+                        _wvm.Brush.StampOffsets(center, stampBuf);
+                        foreach (var p in stampBuf)
+                            dedupe.Add(p);
+                    }
+                    foreach (var tile in dedupe)
+                    {
+                        var pos = new Vector2(
+                            (_scrollPosition.X + tile.X) * _zoom,
+                            (_scrollPosition.Y + tile.Y) * _zoom);
+                        _spriteBatch.Draw(whiteTex, pos, null, previewColor,
+                            0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                    }
+                }
+                else
+                {
+                    // Simple Bresenham line from anchor to cursor
+                    foreach (var tile in Shape.DrawLineTool(anchor, cursor))
+                    {
+                        var pos = new Vector2(
+                            (_scrollPosition.X + tile.X) * _zoom,
+                            (_scrollPosition.Y + tile.Y) * _zoom);
+                        _spriteBatch.Draw(whiteTex, pos, null, previewColor,
+                            0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                    }
                 }
             }
-            return;
+            // Fall through to also render cursor preview at tip
         }
 
         if (_preview == null)

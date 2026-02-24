@@ -38,6 +38,7 @@ public class UserSettings : INotifyPropertyChanged
     private Dictionary<string, List<InputBinding>> _inputBindings = new();
     private bool _showTextureLoadingNotice = true;
     private bool _enableMica = true;
+    private bool _highQualityBrushPreview = true;
 
     public string TerrariaPath
     {
@@ -205,6 +206,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _enableMica;
         set => SetField(ref _enableMica, value);
+    }
+
+    public bool HighQualityBrushPreview
+    {
+        get => _highQualityBrushPreview;
+        set => SetField(ref _highQualityBrushPreview, value);
     }
 
     [JsonConverter(typeof(InputBindingsDictionaryJsonConverter))]
