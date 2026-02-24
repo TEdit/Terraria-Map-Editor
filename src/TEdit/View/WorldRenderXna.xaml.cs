@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -69,6 +70,15 @@ public partial class WorldRenderXna : UserControl
     private const float LayerFindCrosshair = 1 - 0.35f;
 
     private Color _backgroundColor = Color.FromNonPremultiplied(32, 32, 32, 255);
+
+    // Shift+line preview cache (HQ brush preview debounce)
+    private Vector2Int32 _linePreviewCacheAnchor;
+    private Vector2Int32 _linePreviewCacheCursor;
+    private int _linePreviewCacheBrushGen = -1;
+    private readonly List<Vector2Int32> _linePreviewCache = new();
+    private readonly Stopwatch _linePreviewDebounce = new();
+    private const int LinePreviewDebounceMs = 250;
+
     private readonly GameTimer _gameTimer;
     private System.Timers.Timer _viewStateSaveTimer;
     private readonly WorldViewModel _wvm;
@@ -6504,17 +6514,45 @@ public partial class WorldRenderXna : UserControl
 
                 if (highQuality)
                 {
-                    // Stamp brush shape at each Bresenham point
-                    var stampBuf = new List<Vector2Int32>();
-                    var dedupe = new HashSet<Vector2Int32>();
-                    foreach (var center in Shape.DrawLineTool(anchor, cursor))
+                    // Check if inputs changed since last computation
+                    int brushGen = _wvm.Brush.Width * 1000000 + _wvm.Brush.Height * 1000
+                        + (int)_wvm.Brush.Shape;
+                    bool inputsChanged = anchor.X != _linePreviewCacheAnchor.X
+                        || anchor.Y != _linePreviewCacheAnchor.Y
+                        || cursor.X != _linePreviewCacheCursor.X
+                        || cursor.Y != _linePreviewCacheCursor.Y
+                        || brushGen != _linePreviewCacheBrushGen;
+
+                    if (inputsChanged)
                     {
-                        _wvm.Brush.StampOffsets(center, stampBuf);
-                        foreach (var p in stampBuf)
-                            dedupe.Add(p);
+                        // Inputs changed — restart debounce timer
+                        _linePreviewCacheAnchor = anchor;
+                        _linePreviewCacheCursor = cursor;
+                        _linePreviewCacheBrushGen = brushGen;
+                        _linePreviewDebounce.Restart();
                     }
-                    foreach (var tile in dedupe)
+
+                    // Recompute when debounce expires or cache is empty
+                    if (_linePreviewDebounce.ElapsedMilliseconds >= LinePreviewDebounceMs
+                        || _linePreviewCache.Count == 0)
                     {
+                        _linePreviewCache.Clear();
+                        var stampBuf = new List<Vector2Int32>();
+                        var dedupe = new HashSet<Vector2Int32>();
+                        foreach (var center in Shape.DrawLineTool(anchor, cursor))
+                        {
+                            _wvm.Brush.StampOffsets(center, stampBuf);
+                            foreach (var p in stampBuf)
+                                dedupe.Add(p);
+                        }
+                        _linePreviewCache.AddRange(dedupe);
+                        _linePreviewDebounce.Stop();
+                    }
+
+                    // Draw cached preview
+                    for (int i = 0; i < _linePreviewCache.Count; i++)
+                    {
+                        var tile = _linePreviewCache[i];
                         var pos = new Vector2(
                             (_scrollPosition.X + tile.X) * _zoom,
                             (_scrollPosition.Y + tile.Y) * _zoom);
@@ -6524,7 +6562,7 @@ public partial class WorldRenderXna : UserControl
                 }
                 else
                 {
-                    // Simple Bresenham line from anchor to cursor
+                    // Simple Bresenham line — cheap, no debounce needed
                     foreach (var tile in Shape.DrawLineTool(anchor, cursor))
                     {
                         var pos = new Vector2(
@@ -6536,6 +6574,12 @@ public partial class WorldRenderXna : UserControl
                 }
             }
             // Fall through to also render cursor preview at tip
+        }
+        else
+        {
+            // Shift released or no anchor — clear cache
+            if (_linePreviewCache.Count > 0)
+                _linePreviewCache.Clear();
         }
 
         if (_preview == null)
