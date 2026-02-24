@@ -38,7 +38,6 @@ public class UpdateService
         var options = new UpdateOptions
         {
             ExplicitChannel = channelName,
-            AllowVersionDowngrade = true,
         };
 
         return new UpdateManager(source, options);
