@@ -19,8 +19,13 @@ public sealed class PencilTool : BaseTool
     private Vector2Int32 _anchorPoint;
     private Vector2Int32 _startPoint;
     private Vector2Int32 _endPoint;
+    private bool _hasLastClickPosition;
     private Vector2Int32 _lineMouseDownPos;
     private bool _lineLastWasClick;
+
+    // Shift+line preview state
+    private readonly List<Vector2Int32> _linePreviewPath = new();
+    private Vector2Int32 _linePreviewLastCursor;
 
     // CAD wire routing state
     private bool _isCadWireMode;
@@ -52,6 +57,9 @@ public sealed class PencilTool : BaseTool
 
     public override IReadOnlyList<Vector2Int32> CadPreviewPath => _cadPreviewPath;
     public override bool HasCadPreview => _isCadWireMode && _isCadAnchored && _cadPreviewPath.Count > 0;
+
+    public override IReadOnlyList<Vector2Int32> LinePreviewPath => _linePreviewPath;
+    public override bool HasLinePreview => _linePreviewPath.Count > 0;
 
     /// <summary>
     /// Cycle wire mode: Off → Wire90 → Wire45 → Off (normal) → Wire90...
@@ -121,6 +129,8 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
+        _linePreviewPath.Clear();
+
         // CAD wire mode intercept
         if (_isCadWireMode)
         {
@@ -189,6 +199,7 @@ public sealed class PencilTool : BaseTool
         _isConstraining = originalActions.Contains("editor.draw.constrain");
         _isLineMode = originalActions.Contains("editor.draw.line");
 
+        _hasLastClickPosition = true;
         ProcessDraw(e.Location);
     }
 
@@ -200,6 +211,20 @@ public sealed class PencilTool : BaseTool
             UpdateCadPreview(e.Location);
             return;
         }
+
+        // Shift+hover line preview (no buttons pressed)
+        if (!_isCadWireMode && _hasLastClickPosition
+            && e.LeftButton != System.Windows.Input.MouseButtonState.Pressed
+            && e.RightButton != System.Windows.Input.MouseButtonState.Pressed)
+        {
+            var modifiers = GetModifiers();
+            if ((modifiers & System.Windows.Input.ModifierKeys.Shift) != 0)
+            {
+                UpdateLinePreview(e.Location);
+                return;
+            }
+        }
+        _linePreviewPath.Clear();
 
         var actions = GetActiveActions(e);
         _isDrawing = actions.Contains("editor.draw");
@@ -236,6 +261,22 @@ public sealed class PencilTool : BaseTool
         _constrainDirectionLocked = false;
 
         _wvm.UndoManager.SaveUndo();
+    }
+
+    private void UpdateLinePreview(Vector2Int32 cursor)
+    {
+        if (_linePreviewLastCursor.X == cursor.X && _linePreviewLastCursor.Y == cursor.Y && _linePreviewPath.Count > 0)
+            return;
+
+        _linePreviewLastCursor = cursor;
+        _linePreviewPath.Clear();
+
+        bool useThin = _wvm.TilePicker.PaintMode == PaintMode.Track;
+        var linePoints = useThin
+            ? Shape.DrawLineThin(_endPoint, cursor)
+            : Shape.DrawLineTool(_endPoint, cursor);
+
+        _linePreviewPath.AddRange(linePoints);
     }
 
     private void UpdateCadPreview(Vector2Int32 cursor)

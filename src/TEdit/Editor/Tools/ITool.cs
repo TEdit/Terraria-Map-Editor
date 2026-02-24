@@ -31,4 +31,10 @@ public interface ITool
 
     /// <summary>Whether CAD wire preview is active and should be rendered.</summary>
     bool HasCadPreview { get; }
+
+    /// <summary>Preview path tiles for shift+line drawing. Empty when no preview active.</summary>
+    IReadOnlyList<Vector2Int32> LinePreviewPath { get; }
+
+    /// <summary>Whether shift+line preview is active and should be rendered.</summary>
+    bool HasLinePreview { get; }
 }

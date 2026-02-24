@@ -6488,6 +6488,28 @@ public partial class WorldRenderXna : UserControl
             return;
         }
 
+        // Shift+line preview (pencil tool polyline preview)
+        if (_wvm.ActiveTool.HasLinePreview)
+        {
+            var whiteTex = _textureDictionary.WhitePixelTexture;
+            if (whiteTex != null)
+            {
+                // Match the regular pencil cursor preview color (A=127, R=0, G=90, B=255)
+                var previewColor = new Color(0, 90, 255, 127);
+                var path = _wvm.ActiveTool.LinePreviewPath;
+                for (int i = 0; i < path.Count; i++)
+                {
+                    var tile = path[i];
+                    var pos = new Vector2(
+                        (_scrollPosition.X + tile.X) * _zoom,
+                        (_scrollPosition.Y + tile.Y) * _zoom);
+                    _spriteBatch.Draw(whiteTex, pos, null, previewColor,
+                        0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                }
+            }
+            return;
+        }
+
         if (_preview == null)
             return;
         Vector2 position;
