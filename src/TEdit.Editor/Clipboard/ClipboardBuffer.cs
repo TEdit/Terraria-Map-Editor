@@ -359,6 +359,41 @@ public partial class ClipboardBuffer : ITileData
         return clone;
     }
 
+    public ClipboardBuffer Resize(int newWidth, int newHeight)
+    {
+        if (newWidth <= 0 || newHeight <= 0) return this;
+        if (newWidth == Size.X && newHeight == Size.Y) return Clone();
+
+        var resized = new ClipboardBuffer(new Vector2Int32(newWidth, newHeight));
+        var claimed = new bool[Size.X, Size.Y];
+        for (int x = 0; x < newWidth; x++)
+        {
+            int srcX = (int)((x * (double)Size.X) / newWidth);
+            srcX = Math.Min(srcX, Size.X - 1);
+            for (int y = 0; y < newHeight; y++)
+            {
+                int srcY = (int)((y * (double)Size.Y) / newHeight);
+                srcY = Math.Min(srcY, Size.Y - 1);
+                var tile = (Tile)Tiles[srcX, srcY].Clone();
+
+                // Kill sprites (same as Rotate)
+                var tileProperties = WorldConfiguration.TileProperties[tile.Type];
+                if (tileProperties.IsFramed)
+                    tile.IsActive = false;
+
+                // First dest tile keeps the original style; duplicates become full blocks
+                if (claimed[srcX, srcY])
+                    tile.BrickStyle = BrickStyle.Full;
+                else
+                    claimed[srcX, srcY] = true;
+
+                resized.Tiles[x, y] = tile;
+            }
+        }
+        // Chests/Signs/TileEntities are position-dependent — don't copy them (same as Rotate)
+        return resized;
+    }
+
     public ClipboardBuffer FlipX() => Flip(this, true, false);
     public ClipboardBuffer FlipY() => Flip(this, false, false);
     public ClipboardBuffer Rotate() => Flip(this, false, true);

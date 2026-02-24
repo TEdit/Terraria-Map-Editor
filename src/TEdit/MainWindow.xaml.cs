@@ -650,12 +650,14 @@ public partial class MainWindow : FluentWindow
                 {
                     modeCyclePt.CycleWireMode();
                     UpdateDrawingModeText();
+                    _vm.NotifyWireModeChanged();
                     return true;
                 }
                 if (_vm.ActiveTool is BrushToolBase modeCycleBt)
                 {
                     modeCycleBt.CycleWireMode();
                     UpdateDrawingModeText();
+                    _vm.NotifyWireModeChanged();
                     return true;
                 }
                 return false;
@@ -664,12 +666,14 @@ public partial class MainWindow : FluentWindow
                 {
                     hvTogglePt.ToggleVerticalFirst();
                     UpdateDrawingModeText();
+                    _vm.NotifyWireModeChanged();
                     return true;
                 }
                 if (_vm.ActiveTool is BrushToolBase hvToggleBt && hvToggleBt.IsCadWireMode)
                 {
                     hvToggleBt.ToggleVerticalFirst();
                     UpdateDrawingModeText();
+                    _vm.NotifyWireModeChanged();
                     return true;
                 }
                 return false;

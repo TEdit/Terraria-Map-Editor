@@ -52,4 +52,17 @@ public interface ITool
 
     /// <summary>Discards the floating paste layer without modifying the world.</summary>
     void CancelPaste();
+
+    /// <summary>Returns a cursor hint for the given tile position, or null for default.</summary>
+    CursorHint GetCursorHint(Vector2Int32 tilePos);
+}
+
+public enum CursorHint
+{
+    Default,
+    Move,
+    SizeNS,
+    SizeWE,
+    SizeNWSE,
+    SizeNESW,
 }

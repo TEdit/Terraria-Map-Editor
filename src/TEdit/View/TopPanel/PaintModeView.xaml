@@ -278,6 +278,43 @@
                     <CheckBox IsChecked="{Binding TilePicker.UsePaintMasks}" Content="{x:Static p:Language.tool_paint_mask}" HorizontalAlignment="Left" />
                 </StackPanel>
             </GroupBox>
+            <GroupBox Style="{StaticResource WireStyle}" Padding="2">
+                <GroupBox.Header>
+                    <TextBlock Text="Route" Margin="0" />
+                </GroupBox.Header>
+                <UniformGrid Columns="3" ToolTip="{Binding WireModeTooltip}">
+                    <RadioButton GroupName="WireMode" IsChecked="{Binding IsWireModeOff, Mode=OneWay}"
+                                 Click="WireModeOff_Click" Style="{StaticResource {x:Type ToggleButton}}"
+                                 Padding="4,2" Margin="1" Height="32" Width="32">
+                        <ui:SymbolIcon Symbol="Dismiss20" FontSize="14" />
+                    </RadioButton>
+                    <RadioButton GroupName="WireMode" IsChecked="{Binding IsWireMode90, Mode=OneWay}"
+                                 Click="WireMode90_Click" Height="32" Width="32" Style="{StaticResource {x:Type ToggleButton}}"
+                                 Padding="0" Margin="1">
+                        <TextBlock Text="90°" />
+                    </RadioButton>
+                    <RadioButton GroupName="WireMode" IsChecked="{Binding IsWireMode45, Mode=OneWay}"
+                                 Click="WireMode45_Click" Height="32" Width="32" Style="{StaticResource {x:Type ToggleButton}}"
+                                 Padding="0" Margin="1">
+                        <TextBlock Text="45°" />
+                    </RadioButton>
+                    <RadioButton GroupName="WireDir" IsChecked="{Binding IsWireDirectionAuto, Mode=OneWay}"
+                                 Click="WireDirAuto_Click" Style="{StaticResource {x:Type ToggleButton}}"
+                                 Padding="4,2" Margin="1" Height="32" Width="32" ToolTip="{Binding WireDirectionTooltip}">
+                        <ui:SymbolIcon Symbol="ArrowShuffle20" FontSize="14" />
+                    </RadioButton>
+                    <RadioButton GroupName="WireDir" IsChecked="{Binding IsWireDirectionH, Mode=OneWay}"
+                                 Click="WireDirH_Click" Style="{StaticResource {x:Type ToggleButton}}"
+                                 Padding="4,2" Margin="1" Height="32" Width="32">
+                        <ui:SymbolIcon Symbol="FlipHorizontal20" FontSize="14" />
+                    </RadioButton>
+                    <RadioButton GroupName="WireDir" IsChecked="{Binding IsWireDirectionV, Mode=OneWay}"
+                                 Click="WireDirV_Click" Style="{StaticResource {x:Type ToggleButton}}"
+                                 Padding="4,2" Margin="1" Height="32" Width="32">
+                        <ui:SymbolIcon Symbol="FlipVertical20" FontSize="14" />
+                    </RadioButton>
+                </UniformGrid>
+            </GroupBox>
             <GroupBox Header="{x:Static p:Language.tool_paint_wire_header}" Style="{StaticResource WireStyle}">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">

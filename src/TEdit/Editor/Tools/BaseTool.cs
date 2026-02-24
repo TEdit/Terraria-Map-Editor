@@ -106,6 +106,7 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     public virtual Vector2Int32 FloatingPasteSize => default;
     public virtual void AcceptPaste() { }
     public virtual void CancelPaste() { }
+    public virtual CursorHint GetCursorHint(Vector2Int32 tilePos) => CursorHint.Default;
 
     #endregion
 

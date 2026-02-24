@@ -7249,6 +7249,7 @@ public partial class WorldRenderXna : UserControl
         _mousePosition = PointToVector2(e.Position);
         if (_wvm.CurrentWorld != null)
             _wvm.MouseMoveTile(GetTileMouseState(e));
+        UpdateCursor();
     }
 
     private void xnaViewport_HwndLButtonDown(object sender, HwndMouseEventArgs e)
@@ -7349,11 +7350,13 @@ public partial class WorldRenderXna : UserControl
     {
         _middleClickPoint = PointToVector2(e.Position);
         _isMiddleMouseDown = true;
+        UpdateCursor();
     }
 
     private void xnaViewport_HwndMButtonUp(object sender, HwndMouseEventArgs e)
     {
         _isMiddleMouseDown = false;
+        UpdateCursor();
     }
 
 
@@ -7362,11 +7365,27 @@ public partial class WorldRenderXna : UserControl
         if (_isMiddleMouseDown || _keyboardPan)
         {
             xnaViewport.SetCursor(Cursors.SizeAll);
+            return;
         }
-        else
+
+        if (_wvm?.ActiveTool != null && _wvm.CurrentWorld != null)
         {
-            xnaViewport.SetCursor(Cursors.Arrow);
+            var tilePos = _wvm.MouseOverTile.MouseState.Location;
+            var hint = _wvm.ActiveTool.GetCursorHint(tilePos);
+            var cursor = hint switch
+            {
+                TEdit.Editor.Tools.CursorHint.Move => Cursors.SizeAll,
+                TEdit.Editor.Tools.CursorHint.SizeNS => Cursors.SizeNS,
+                TEdit.Editor.Tools.CursorHint.SizeWE => Cursors.SizeWE,
+                TEdit.Editor.Tools.CursorHint.SizeNWSE => Cursors.SizeNWSE,
+                TEdit.Editor.Tools.CursorHint.SizeNESW => Cursors.SizeNESW,
+                _ => Cursors.Arrow,
+            };
+            xnaViewport.SetCursor(cursor);
+            return;
         }
+
+        xnaViewport.SetCursor(Cursors.Arrow);
     }
 
     public void SetPanMode(bool value)
