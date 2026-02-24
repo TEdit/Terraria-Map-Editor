@@ -452,4 +452,347 @@ public class WireRouterTests
     }
 
     #endregion
+
+    #region Bus Routing Tests
+
+    /// <summary>
+    /// Helper: route individual wires from a bus call so we can test each wire independently.
+    /// </summary>
+    private static List<List<Vector2Int32>> RouteIndividualWires(
+        Vector2Int32 anchor, Vector2Int32 cursor,
+        int brushWidth, int brushHeight, bool verticalFirst,
+        int spacing, bool miter)
+    {
+        int wiresFromW = Math.Max(1, (brushWidth + spacing - 1) / spacing);
+        int wiresFromH = Math.Max(1, (brushHeight + spacing - 1) / spacing);
+        int numWires = Math.Min(wiresFromW, wiresFromH);
+        int totalSpan = (numWires - 1) * spacing;
+        int firstOffset = -totalSpan / 2;
+
+        int dx = cursor.X - anchor.X;
+        int dy = cursor.Y - anchor.Y;
+        int sx = dx > 0 ? 1 : (dx < 0 ? -1 : 0);
+        int sy = dy > 0 ? 1 : (dy < 0 ? -1 : 0);
+        int edgeX = brushWidth / 2;
+        int edgeY = brushHeight / 2;
+
+        var wires = new List<List<Vector2Int32>>();
+        for (int i = 0; i < numWires; i++)
+        {
+            int offset = firstOffset + i * spacing;
+            Vector2Int32 start, end;
+
+            if (verticalFirst)
+            {
+                start = new Vector2Int32(anchor.X + offset, anchor.Y - sy * edgeY);
+                end = new Vector2Int32(cursor.X, cursor.Y - sy * sx * offset);
+            }
+            else
+            {
+                start = new Vector2Int32(anchor.X - sx * edgeX, anchor.Y + offset);
+                end = new Vector2Int32(cursor.X - sx * sy * offset, cursor.Y);
+            }
+
+            var path = miter
+                ? WireRouter.RouteMiter(start, end, verticalFirst)
+                : WireRouter.Route90(start, end, verticalFirst);
+            wires.Add(path);
+        }
+        return wires;
+    }
+
+    [Fact]
+    public void ComputeWireOffsets_Width1_SingleWire()
+    {
+        var offsets = WireRouter.ComputeWireOffsets(1, 2);
+        offsets.Length.ShouldBe(1);
+        offsets[0].ShouldBe(0);
+    }
+
+    [Fact]
+    public void ComputeWireOffsets_Width3_Spacing2_TwoWires()
+    {
+        var offsets = WireRouter.ComputeWireOffsets(3, 2);
+        offsets.Length.ShouldBe(2);
+        offsets[0].ShouldBe(-1);
+        offsets[1].ShouldBe(1);
+    }
+
+    [Fact]
+    public void ComputeWireOffsets_Width5_Spacing2_ThreeWires()
+    {
+        var offsets = WireRouter.ComputeWireOffsets(5, 2);
+        offsets.Length.ShouldBe(3);
+        offsets[0].ShouldBe(-2);
+        offsets[1].ShouldBe(0);
+        offsets[2].ShouldBe(2);
+    }
+
+    [Fact]
+    public void ComputeWireOffsets_Width5_Spacing3_TwoWires()
+    {
+        var offsets = WireRouter.ComputeWireOffsets(5, 3);
+        offsets.Length.ShouldBe(2);
+        // totalSpan = 3, firstOffset = -1
+        offsets[0].ShouldBe(-1);
+        offsets[1].ShouldBe(2);
+    }
+
+    [Fact]
+    public void ComputeWireOffsets_Width7_Spacing3_ThreeWires()
+    {
+        var offsets = WireRouter.ComputeWireOffsets(7, 3);
+        offsets.Length.ShouldBe(3);
+        offsets[0].ShouldBe(-3);
+        offsets[1].ShouldBe(0);
+        offsets[2].ShouldBe(3);
+    }
+
+    [Fact]
+    public void RouteBus90_1x1_MatchesSingleWire()
+    {
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(20, 15);
+        var bus = WireRouter.RouteBus90(anchor, cursor, 1, 1, false);
+        var single = WireRouter.Route90(anchor, cursor, false);
+        bus.Count.ShouldBe(single.Count);
+        for (int i = 0; i < bus.Count; i++)
+        {
+            bus[i].X.ShouldBe(single[i].X);
+            bus[i].Y.ShouldBe(single[i].Y);
+        }
+    }
+
+    [Fact]
+    public void RouteBusMiter_1x1_MatchesSingleWire()
+    {
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(20, 15);
+        var bus = WireRouter.RouteBusMiter(anchor, cursor, 1, 1, false);
+        var single = WireRouter.RouteMiter(anchor, cursor, false);
+        bus.Count.ShouldBe(single.Count);
+        for (int i = 0; i < bus.Count; i++)
+        {
+            bus[i].X.ShouldBe(single[i].X);
+            bus[i].Y.ShouldBe(single[i].Y);
+        }
+    }
+
+    [Theory]
+    [InlineData(3, 3, false)]
+    [InlineData(5, 5, false)]
+    [InlineData(5, 3, false)]
+    [InlineData(3, 5, false)]
+    [InlineData(3, 3, true)]
+    [InlineData(5, 5, true)]
+    public void RouteBus90_EachWireIs4Connected(int w, int h, bool verticalFirst)
+    {
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(25, 20);
+        var wires = RouteIndividualWires(anchor, cursor, w, h, verticalFirst, 2, false);
+        wires.Count.ShouldBeGreaterThan(1);
+
+        foreach (var wire in wires)
+            AssertFourConnected(wire);
+    }
+
+    [Theory]
+    [InlineData(5, 5, false)]
+    [InlineData(7, 7, false)]
+    [InlineData(7, 5, false)]
+    [InlineData(5, 7, false)]
+    [InlineData(5, 5, true)]
+    [InlineData(7, 7, true)]
+    public void RouteBusMiter_EachWireIs4Connected(int w, int h, bool verticalFirst)
+    {
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(25, 20);
+        var wires = RouteIndividualWires(anchor, cursor, w, h, verticalFirst, 3, true);
+        wires.Count.ShouldBeGreaterThan(1);
+
+        foreach (var wire in wires)
+            AssertFourConnected(wire);
+    }
+
+    [Theory]
+    [InlineData(10, 10, 20, 15)]  // right+down
+    [InlineData(20, 15, 10, 10)]  // left+up
+    [InlineData(10, 15, 20, 10)]  // right+up
+    [InlineData(20, 10, 10, 15)]  // left+down
+    public void RouteBus90_AllQuadrants(int ax, int ay, int cx, int cy)
+    {
+        var anchor = new Vector2Int32(ax, ay);
+        var cursor = new Vector2Int32(cx, cy);
+        var bus = WireRouter.RouteBus90(anchor, cursor, 5, 5, false);
+        bus.Count.ShouldBeGreaterThan(0);
+
+        var wires = RouteIndividualWires(anchor, cursor, 5, 5, false, 2, false);
+        foreach (var wire in wires)
+            AssertFourConnected(wire);
+    }
+
+    [Theory]
+    [InlineData(10, 10, 20, 15)]
+    [InlineData(20, 15, 10, 10)]
+    [InlineData(10, 15, 20, 10)]
+    [InlineData(20, 10, 10, 15)]
+    public void RouteBusMiter_AllQuadrants(int ax, int ay, int cx, int cy)
+    {
+        var anchor = new Vector2Int32(ax, ay);
+        var cursor = new Vector2Int32(cx, cy);
+        var bus = WireRouter.RouteBusMiter(anchor, cursor, 7, 7, false);
+        bus.Count.ShouldBeGreaterThan(0);
+
+        var wires = RouteIndividualWires(anchor, cursor, 7, 7, false, 3, true);
+        foreach (var wire in wires)
+            AssertFourConnected(wire);
+    }
+
+    [Fact]
+    public void RouteBus90_OppositeEdgeStart_HorizontalFirst_MovingRight()
+    {
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(20, 10); // moving right, pure horizontal
+        var wires = RouteIndividualWires(anchor, cursor, 5, 5, false, 2, false);
+
+        // Moving right → start at left edge: anchor.X - edgeX = 10 - 2 = 8
+        foreach (var wire in wires)
+            wire[0].X.ShouldBe(8);
+    }
+
+    [Fact]
+    public void RouteBus90_OppositeEdgeStart_VerticalFirst_MovingDown()
+    {
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(10, 20); // moving down, pure vertical
+        var wires = RouteIndividualWires(anchor, cursor, 5, 5, true, 2, false);
+
+        // Moving down → start at top edge: anchor.Y - edgeY = 10 - 2 = 8
+        foreach (var wire in wires)
+            wire[0].Y.ShouldBe(8);
+    }
+
+    [Fact]
+    public void RouteBus90_LimitedBySmallerDimension()
+    {
+        // Brush 5x3 with spacing=2: wiresFromW=3, wiresFromH=2, so numWires=2
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(20, 15);
+        var wires = RouteIndividualWires(anchor, cursor, 5, 3, false, 2, false);
+        wires.Count.ShouldBe(2);
+    }
+
+    [Fact]
+    public void RouteBusMiter_LimitedBySmallerDimension()
+    {
+        // Brush 7x5 with spacing=3: wiresFromW=3, wiresFromH=2, so numWires=2
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(20, 15);
+        var wires = RouteIndividualWires(anchor, cursor, 7, 5, false, 3, true);
+        wires.Count.ShouldBe(2);
+    }
+
+    [Fact]
+    public void RouteBus90_Width2_SingleWire()
+    {
+        // Brush 2x2 with spacing=2: ceil(2/2)=1 wire
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(20, 15);
+        var bus = WireRouter.RouteBus90(anchor, cursor, 2, 2, false);
+        bus.Count.ShouldBeGreaterThan(0);
+    }
+
+    [Theory]
+    [InlineData(3, 3, false)]
+    [InlineData(5, 5, false)]
+    [InlineData(5, 3, false)]
+    [InlineData(3, 5, false)]
+    [InlineData(3, 3, true)]
+    [InlineData(5, 5, true)]
+    public void RouteBus90_NoOverlapBetweenWires(int w, int h, bool verticalFirst)
+    {
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(25, 20);
+        var wires = RouteIndividualWires(anchor, cursor, w, h, verticalFirst, 2, false);
+        wires.Count.ShouldBeGreaterThan(1);
+
+        // Build tile sets per wire, verify no shared tiles
+        var allSets = wires.Select(wire => new HashSet<(int, int)>(wire.Select(p => (p.X, p.Y)))).ToList();
+        for (int i = 0; i < allSets.Count; i++)
+        {
+            for (int j = i + 1; j < allSets.Count; j++)
+            {
+                foreach (var tile in allSets[i])
+                {
+                    allSets[j].Contains(tile).ShouldBeFalse(
+                        $"Wire {i} and wire {j} share tile ({tile.Item1},{tile.Item2})");
+                }
+            }
+        }
+    }
+
+    [Theory]
+    [InlineData(10, 10, 25, 20)]  // right+down
+    [InlineData(25, 20, 10, 10)]  // left+up
+    [InlineData(10, 20, 25, 10)]  // right+up
+    [InlineData(25, 10, 10, 20)]  // left+down
+    public void RouteBus90_NoOverlapAllQuadrants(int ax, int ay, int cx, int cy)
+    {
+        var anchor = new Vector2Int32(ax, ay);
+        var cursor = new Vector2Int32(cx, cy);
+        var wires = RouteIndividualWires(anchor, cursor, 5, 5, false, 2, false);
+
+        var allSets = wires.Select(wire => new HashSet<(int, int)>(wire.Select(p => (p.X, p.Y)))).ToList();
+        for (int i = 0; i < allSets.Count; i++)
+        {
+            for (int j = i + 1; j < allSets.Count; j++)
+            {
+                foreach (var tile in allSets[i])
+                {
+                    allSets[j].Contains(tile).ShouldBeFalse(
+                        $"Wire {i} and wire {j} share tile ({tile.Item1},{tile.Item2})");
+                }
+            }
+        }
+    }
+
+    [Fact]
+    public void RouteBus90_NoGlobalDuplicates()
+    {
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(25, 20);
+        var bus = WireRouter.RouteBus90(anchor, cursor, 5, 5, false);
+        AssertNoGlobalDuplicates(bus);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void RouteBus90_EndSpreadPerpendicularToSecondLeg(bool verticalFirst)
+    {
+        var anchor = new Vector2Int32(10, 10);
+        var cursor = new Vector2Int32(25, 20);
+        var wires = RouteIndividualWires(anchor, cursor, 5, 5, verticalFirst, 2, false);
+        wires.Count.ShouldBeGreaterThan(1);
+
+        if (verticalFirst)
+        {
+            // V-first: second leg is horizontal → ends spread along Y (same X)
+            var endX = wires[0].Last().X;
+            // All wires should NOT end at same X (they end at cursor.X - edgeX which is same for all...
+            // but Y differs)
+            var endYs = wires.Select(w => w.Last().Y).ToList();
+            endYs.Distinct().Count().ShouldBe(wires.Count, "End Y positions should be unique");
+        }
+        else
+        {
+            // H-first: second leg is vertical → ends spread along X (same Y)
+            var endYs = wires.Select(w => w.Last().Y).Distinct().ToList();
+            endYs.Count.ShouldBe(1, "All wires should end at same Y");
+            var endXs = wires.Select(w => w.Last().X).ToList();
+            endXs.Distinct().Count().ShouldBe(wires.Count, "End X positions should be unique");
+        }
+    }
+
+    #endregion
 }

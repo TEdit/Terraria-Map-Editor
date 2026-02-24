@@ -194,4 +194,111 @@ public static class WireRouter
 
         return path;
     }
+
+    /// <summary>
+    /// Route a bus of parallel wires using 90° elbow routing.
+    /// Wires are spaced 2 tiles apart (1-tile gap) to prevent side contact.
+    /// Wire start positions are at the opposite edge of the brush from the movement direction.
+    /// </summary>
+    public static List<Vector2Int32> RouteBus90(
+        Vector2Int32 anchor, Vector2Int32 cursor,
+        int brushWidth, int brushHeight, bool verticalFirst)
+    {
+        return RouteBus(anchor, cursor, brushWidth, brushHeight, verticalFirst, spacing: 2, miter: false);
+    }
+
+    /// <summary>
+    /// Route a bus of parallel wires using 45° miter routing.
+    /// Wires are spaced 3 tiles apart (2-tile gap) so staircase patterns don't side-touch.
+    /// Wire start positions are at the opposite edge of the brush from the movement direction.
+    /// </summary>
+    public static List<Vector2Int32> RouteBusMiter(
+        Vector2Int32 anchor, Vector2Int32 cursor,
+        int brushWidth, int brushHeight, bool verticalFirst)
+    {
+        return RouteBus(anchor, cursor, brushWidth, brushHeight, verticalFirst, spacing: 3, miter: true);
+    }
+
+    /// <summary>
+    /// Compute centered wire offsets for a given brush dimension and spacing.
+    /// E.g. dimension=5, spacing=2 → [-2, 0, 2] (3 wires).
+    /// </summary>
+    public static int[] ComputeWireOffsets(int brushDimension, int spacing)
+    {
+        int numWires = Math.Max(1, (brushDimension + spacing - 1) / spacing);
+        var offsets = new int[numWires];
+        int totalSpan = (numWires - 1) * spacing;
+        int firstOffset = -totalSpan / 2;
+        for (int i = 0; i < numWires; i++)
+            offsets[i] = firstOffset + i * spacing;
+        return offsets;
+    }
+
+    private static List<Vector2Int32> RouteBus(
+        Vector2Int32 anchor, Vector2Int32 cursor,
+        int brushWidth, int brushHeight, bool verticalFirst,
+        int spacing, bool miter)
+    {
+        // Compute wire count limited by both brush dimensions
+        int wiresFromW = Math.Max(1, (brushWidth + spacing - 1) / spacing);
+        int wiresFromH = Math.Max(1, (brushHeight + spacing - 1) / spacing);
+        int numWires = Math.Min(wiresFromW, wiresFromH);
+
+        // Centered offsets
+        int totalSpan = (numWires - 1) * spacing;
+        int firstOffset = -totalSpan / 2;
+
+        // Movement direction
+        int dx = cursor.X - anchor.X;
+        int dy = cursor.Y - anchor.Y;
+        int sx = dx > 0 ? 1 : (dx < 0 ? -1 : 0);
+        int sy = dy > 0 ? 1 : (dy < 0 ? -1 : 0);
+
+        // Edge offset: start wires at opposite edge of brush from movement
+        int edgeX = brushWidth / 2;
+        int edgeY = brushHeight / 2;
+
+        var result = new List<Vector2Int32>();
+
+        for (int i = 0; i < numWires; i++)
+        {
+            int offset = firstOffset + i * spacing;
+            Vector2Int32 start, end;
+
+            if (verticalFirst)
+            {
+                // First leg vertical → wires spread along X at start
+                // Second leg horizontal → wires spread along Y at end
+                // Start at opposite Y edge from movement
+                // End uses -sy*sx*offset to prevent overlap at turns in all quadrants
+                start = new Vector2Int32(
+                    anchor.X + offset,
+                    anchor.Y - sy * edgeY);
+                end = new Vector2Int32(
+                    cursor.X,
+                    cursor.Y - sy * sx * offset);
+            }
+            else
+            {
+                // First leg horizontal → wires spread along Y at start
+                // Second leg vertical → wires spread along X at end
+                // Start at opposite X edge from movement
+                // End uses -sx*sy*offset to prevent overlap at turns in all quadrants
+                start = new Vector2Int32(
+                    anchor.X - sx * edgeX,
+                    anchor.Y + offset);
+                end = new Vector2Int32(
+                    cursor.X - sx * sy * offset,
+                    cursor.Y);
+            }
+
+            var wirePath = miter
+                ? RouteMiter(start, end, verticalFirst)
+                : Route90(start, end, verticalFirst);
+
+            result.AddRange(wirePath);
+        }
+
+        return result;
+    }
 }

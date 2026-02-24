@@ -81,6 +81,16 @@ public sealed class PencilTool : BaseTool
         }
     }
 
+    /// <summary>Set wire mode state directly (used for syncing between tools).</summary>
+    public void SetWireState(bool enabled, WireRoutingMode mode, bool? verticalFirst)
+    {
+        _isCadWireMode = enabled;
+        _cadRoutingMode = mode;
+        _cadVerticalFirstOverride = verticalFirst;
+        if (!enabled)
+            _cadPreviewPath.Clear();
+    }
+
     /// <summary>Exit CAD wire mode entirely. Clears anchor and preview.</summary>
     public void ExitCadWireMode()
     {

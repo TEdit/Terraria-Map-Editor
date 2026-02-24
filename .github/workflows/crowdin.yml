@@ -8,6 +8,11 @@ on:
   schedule:
     - cron: '0 6 * * *'
   workflow_dispatch:
+    inputs:
+      upload_translations:
+        description: 'Upload local translations to Crowdin'
+        type: boolean
+        default: false
 
 jobs:
   crowdin:
@@ -21,7 +26,7 @@ jobs:
       - uses: crowdin/github-action@v2
         with:
           upload_sources: true
-          upload_translations: false
+          upload_translations: ${{ github.event.inputs.upload_translations == 'true' }}
           download_translations: true
           create_pull_request: true
           localization_branch_name: l10n_crowdin

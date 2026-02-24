@@ -531,12 +531,21 @@ public partial class MainWindow : FluentWindow
                 if (_vm.ActiveTool is PencilTool cadPt && cadPt.IsCadWireMode)
                 {
                     if (cadPt.HasCadPreview)
-                    {
                         cadPt.CancelCadWire();
-                    }
                     else
                     {
                         cadPt.ExitCadWireMode();
+                        UpdateDrawingModeText();
+                    }
+                    return true;
+                }
+                if (_vm.ActiveTool is BrushToolBase cadBt && cadBt.IsCadWireMode)
+                {
+                    if (cadBt.HasCadPreview)
+                        cadBt.CancelCadWire();
+                    else
+                    {
+                        cadBt.ExitCadWireMode();
                         UpdateDrawingModeText();
                     }
                     return true;
@@ -587,7 +596,7 @@ public partial class MainWindow : FluentWindow
                 SetActiveTool("Morph");
                 return true;
 
-            // CAD wire routing (only handled when Pencil tool is active)
+            // CAD wire routing (Pencil = single wire, Brush = bus)
             case "editor.wire.modecycle":
                 if (_vm.ActiveTool is PencilTool modeCyclePt)
                 {
@@ -595,7 +604,13 @@ public partial class MainWindow : FluentWindow
                     UpdateDrawingModeText();
                     return true;
                 }
-                return false; // fall through to let toggle.wall handle it
+                if (_vm.ActiveTool is BrushToolBase modeCycleBt)
+                {
+                    modeCycleBt.CycleWireMode();
+                    UpdateDrawingModeText();
+                    return true;
+                }
+                return false;
             case "editor.wire.togglehv":
                 if (_vm.ActiveTool is PencilTool hvTogglePt && hvTogglePt.IsCadWireMode)
                 {
@@ -603,7 +618,27 @@ public partial class MainWindow : FluentWindow
                     UpdateDrawingModeText();
                     return true;
                 }
-                return false; // fall through to let toggle.tile handle it
+                if (_vm.ActiveTool is BrushToolBase hvToggleBt && hvToggleBt.IsCadWireMode)
+                {
+                    hvToggleBt.ToggleVerticalFirst();
+                    UpdateDrawingModeText();
+                    return true;
+                }
+                return false;
+
+            // Wire color toggles (always active)
+            case "editor.wire.color1":
+                _vm.TilePicker.RedWireActive = !_vm.TilePicker.RedWireActive;
+                return true;
+            case "editor.wire.color2":
+                _vm.TilePicker.BlueWireActive = !_vm.TilePicker.BlueWireActive;
+                return true;
+            case "editor.wire.color3":
+                _vm.TilePicker.GreenWireActive = !_vm.TilePicker.GreenWireActive;
+                return true;
+            case "editor.wire.color4":
+                _vm.TilePicker.YellowWireActive = !_vm.TilePicker.YellowWireActive;
+                return true;
 
             // Toggles
             case "toggle.eraser":
@@ -636,21 +671,38 @@ public partial class MainWindow : FluentWindow
 
     private void UpdateDrawingModeText()
     {
+        TEdit.Geometry.WireRoutingMode? routingMode = null;
+        bool? verticalFirstOverride = null;
+        string toolLabel = null;
+
         if (_vm.ActiveTool is PencilTool pt && pt.IsCadWireMode)
         {
-            var mode = pt.CadRoutingMode switch
+            routingMode = pt.CadRoutingMode;
+            verticalFirstOverride = pt.CadVerticalFirstOverride;
+            toolLabel = "";
+        }
+        else if (_vm.ActiveTool is BrushToolBase bt && bt.IsCadWireMode)
+        {
+            routingMode = bt.CadRoutingMode;
+            verticalFirstOverride = bt.CadVerticalFirstOverride;
+            toolLabel = "Bus ";
+        }
+
+        if (routingMode != null)
+        {
+            var mode = routingMode switch
             {
                 TEdit.Geometry.WireRoutingMode.Elbow90 => Properties.Language.drawing_mode_wire90,
                 TEdit.Geometry.WireRoutingMode.Miter45 => Properties.Language.drawing_mode_wire45,
                 _ => "Wire"
             };
-            var dir = pt.CadVerticalFirstOverride switch
+            var dir = verticalFirstOverride switch
             {
                 false => " \u2192",  // → horizontal-first
                 true => " \u2193",   // ↓ vertical-first
                 null => " \u2194"    // ↔ auto-detect
             };
-            _vm.DrawingModeText = mode + dir;
+            _vm.DrawingModeText = toolLabel + mode + dir;
         }
         else
         {
