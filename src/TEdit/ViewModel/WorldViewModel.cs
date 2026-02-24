@@ -1253,7 +1253,7 @@ public partial class WorldViewModel : ReactiveObject
                 }
                 _clipboardManager = Clipboard;
 
-                WorldEditor = new WorldEditor(TilePicker, CurrentWorld, Selection, undo, updateTiles);
+                WorldEditor = new WorldEditor(TilePicker, MaskSettings, CurrentWorld, Selection, undo, updateTiles);
 
                 // Subscribe to new world property changes
                 _currentWorld.PropertyChanged += OnWorldPropertyChanged;
@@ -1286,6 +1286,7 @@ public partial class WorldViewModel : ReactiveObject
     public MorphToolOptions MorphToolOptions => _MorphToolOptions;
 
     public TilePicker TilePicker { get; } = new TilePicker();
+    public TileMaskSettings MaskSettings { get; } = new TileMaskSettings();
 
     public ObservableCollection<ITool> Tools
     {

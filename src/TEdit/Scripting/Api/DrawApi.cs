@@ -15,6 +15,7 @@ public class DrawApi
     private readonly IUndoManager _undo;
     private readonly ISelection _selection;
     private readonly WorldEditor _editor;
+    private readonly TileMaskSettings _maskSettings;
 
     public DrawApi(World world, IUndoManager undo, ISelection selection)
     {
@@ -23,7 +24,8 @@ public class DrawApi
         _selection = selection;
 
         var picker = new TilePicker();
-        _editor = new WorldEditor(picker, world, selection, undo, notifyTileChanged: null);
+        _maskSettings = new TileMaskSettings();
+        _editor = new WorldEditor(picker, _maskSettings, world, selection, undo, notifyTileChanged: null);
     }
 
     // ── Picker Configuration ─────────────────────────────────────────
@@ -130,14 +132,105 @@ public class DrawApi
 
     public void SetTileMask(string mode, int tileType = -1)
     {
-        _editor.TilePicker.TileMaskMode = ParseMaskMode(mode);
-        _editor.TilePicker.TileMask = tileType;
+        _maskSettings.TileMaskMode = ParseMaskMode(mode);
+        _maskSettings.TileMaskValue = tileType;
     }
 
     public void SetWallMask(string mode, int wallType = 0)
     {
-        _editor.TilePicker.WallMaskMode = ParseMaskMode(mode);
-        _editor.TilePicker.WallMask = wallType;
+        _maskSettings.WallMaskMode = ParseMaskMode(mode);
+        _maskSettings.WallMaskValue = wallType;
+    }
+
+    public void SetBrickStyleMask(string mode, string style = "full")
+    {
+        _maskSettings.BrickStyleMaskMode = ParseMaskMode(mode);
+        _maskSettings.BrickStyleMaskValue = ParseBrickStyle(style);
+    }
+
+    public void SetActuatorMask(string mode)
+    {
+        _maskSettings.ActuatorMaskMode = ParseMaskMode(mode);
+    }
+
+    public void SetTilePaintMask(string mode, int color = 0)
+    {
+        _maskSettings.TilePaintMaskMode = ParseMaskMode(mode);
+        _maskSettings.TilePaintMaskValue = color;
+    }
+
+    public void SetWallPaintMask(string mode, int color = 0)
+    {
+        _maskSettings.WallPaintMaskMode = ParseMaskMode(mode);
+        _maskSettings.WallPaintMaskValue = color;
+    }
+
+    public void SetTileCoatingMask(string echoMode = "off", string illuminantMode = "off")
+    {
+        _maskSettings.TileEchoMaskMode = ParseMaskMode(echoMode);
+        _maskSettings.TileIlluminantMaskMode = ParseMaskMode(illuminantMode);
+    }
+
+    public void SetWallCoatingMask(string echoMode = "off", string illuminantMode = "off")
+    {
+        _maskSettings.WallEchoMaskMode = ParseMaskMode(echoMode);
+        _maskSettings.WallIlluminantMaskMode = ParseMaskMode(illuminantMode);
+    }
+
+    public void SetWireMask(string redMode = "off", string blueMode = "off",
+                            string greenMode = "off", string yellowMode = "off")
+    {
+        _maskSettings.WireRedMaskMode = ParseMaskMode(redMode);
+        _maskSettings.WireBlueMaskMode = ParseMaskMode(blueMode);
+        _maskSettings.WireGreenMaskMode = ParseMaskMode(greenMode);
+        _maskSettings.WireYellowMaskMode = ParseMaskMode(yellowMode);
+    }
+
+    public void SetLiquidTypeMask(string mode, string type = "water")
+    {
+        _maskSettings.LiquidTypeMaskMode = ParseMaskMode(mode);
+        _maskSettings.LiquidTypeMaskValue = type?.ToLowerInvariant() switch
+        {
+            "water" => LiquidType.Water,
+            "lava" => LiquidType.Lava,
+            "honey" => LiquidType.Honey,
+            "shimmer" => LiquidType.Shimmer,
+            "none" => LiquidType.None,
+            _ => LiquidType.Water
+        };
+    }
+
+    public void SetLiquidLevelMask(string mode, byte level = 0)
+    {
+        _maskSettings.LiquidLevelMaskMode = mode?.ToLowerInvariant() switch
+        {
+            "ignore" => LiquidLevelMaskMode.Ignore,
+            "greaterthan" or "gt" => LiquidLevelMaskMode.GreaterThan,
+            "lessthan" or "lt" => LiquidLevelMaskMode.LessThan,
+            "equal" or "eq" => LiquidLevelMaskMode.Equal,
+            _ => LiquidLevelMaskMode.Ignore
+        };
+        _maskSettings.LiquidLevelMaskValue = level;
+    }
+
+    public void SetMaskPreset(string preset)
+    {
+        _maskSettings.MaskPreset = preset?.ToLowerInvariant() switch
+        {
+            "exact" or "exactmatch" => MaskPreset.ExactMatch,
+            _ => MaskPreset.Custom
+        };
+    }
+
+    public void ClearMasks()
+    {
+        _maskSettings.ClearAll();
+    }
+
+    public void SetExactMask(int x, int y)
+    {
+        if (!_world.ValidTileLocation(x, y)) return;
+        _maskSettings.SetFromTile(_world.Tiles[x, y]);
     }
 
     public void SetBrush(int width, int height, string shape = "square")
@@ -198,8 +291,7 @@ public class DrawApi
         _editor.TilePicker.BlueWireActive = false;
         _editor.TilePicker.GreenWireActive = false;
         _editor.TilePicker.YellowWireActive = false;
-        _editor.TilePicker.TileMaskMode = MaskMode.Off;
-        _editor.TilePicker.WallMaskMode = MaskMode.Off;
+        _maskSettings.ClearAll();
         _editor.Brush = new BrushSettings();
     }
 

@@ -18,6 +18,8 @@
     <enum:EnumItemList x:Key="LiquidType" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:LiquidType}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="LiquidAmountEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:LiquidAmountMode}" SortBy="Value" />
     <enum:EnumItemList x:Key="WireReplaceModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:WireReplaceMode}" SortBy="Value"  />
+    <enum:EnumItemList x:Key="MaskPresetEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:MaskPreset}" x:Shared="false" SortBy="Value" />
+    <enum:EnumItemList x:Key="LiquidLevelMaskModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:LiquidLevelMaskMode}" x:Shared="false" SortBy="Value" />
   <cv:TEditColorToMediaColorConverter x:Key="TEditColorToMediaColorConverter" />
   <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
   <cv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />

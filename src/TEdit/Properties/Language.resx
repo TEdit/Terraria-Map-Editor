@@ -479,6 +479,69 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Disable Mask</value>
   </data>
+  <data name="mask_clear_all" xml:space="preserve">
+    <value>Clear All</value>
+  </data>
+  <data name="mask_echo" xml:space="preserve">
+    <value>Echo</value>
+  </data>
+  <data name="mask_illuminant" xml:space="preserve">
+    <value>Illuminant</value>
+  </data>
+  <data name="mask_preset" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="mask_preset_Duplicate[1]" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_exact" xml:space="preserve">
+    <value>Exact Match</value>
+  </data>
+  <data name="mask_section_actuator" xml:space="preserve">
+    <value>Actuator</value>
+  </data>
+  <data name="mask_section_brickstyle" xml:space="preserve">
+    <value>Brick Style</value>
+  </data>
+  <data name="mask_section_inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="mask_section_liquid_level" xml:space="preserve">
+    <value>Liquid Level</value>
+  </data>
+  <data name="mask_section_liquid_type" xml:space="preserve">
+    <value>Liquid Type</value>
+  </data>
+  <data name="mask_section_tile" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_coatings" xml:space="preserve">
+    <value>Tile Coatings</value>
+  </data>
+  <data name="mask_section_tile_Duplicate[1]" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_paint" xml:space="preserve">
+    <value>Tile Paint</value>
+  </data>
+  <data name="mask_section_wall" xml:space="preserve">
+    <value>Wall Type</value>
+  </data>
+  <data name="mask_section_wall_coatings" xml:space="preserve">
+    <value>Wall Coatings</value>
+  </data>
+  <data name="mask_section_wall_paint" xml:space="preserve">
+    <value>Wall Paint</value>
+  </data>
+  <data name="mask_section_wires" xml:space="preserve">
+    <value>Wires</value>
+  </data>
+  <data name="mask_title" xml:space="preserve">
+    <value>Masks</value>
+  </data>
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>Copy first item</value>
   </data>
@@ -1312,6 +1375,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="sidebar_find_tooltip" xml:space="preserve">
     <value>Find</value>
+  </data>
+  <data name="sidebar_mask_tooltip" xml:space="preserve">
+    <value>Masks</value>
   </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>Scripting</value>

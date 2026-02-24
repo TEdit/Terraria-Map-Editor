@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="TEdit.View.PaintModeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
-             xmlns:editor="clr-namespace:TEdit.Editor" 
-             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"             
+             xmlns:editor="clr-namespace:TEdit.Editor"
+             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
@@ -143,8 +143,8 @@
                     <ui:SymbolIcon Symbol="Eraser24" FontSize="24" />
                 </ToggleButton>
                 <TextBlock Text="{x:Static p:Language.tool_paint_mode}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <ComboBox ItemsSource="{StaticResource PaintModeEnum}" Margin="2" 
-                      SelectedValue="{Binding TilePicker.PaintMode}" 
+                <ComboBox ItemsSource="{StaticResource PaintModeEnum}" Margin="2"
+                      SelectedValue="{Binding TilePicker.PaintMode}"
                       SelectedValuePath="Value" MinWidth="100"
                       ItemTemplate="{StaticResource EnumTemplate}" />
             </StackPanel>
@@ -215,13 +215,13 @@
             </GroupBox>
       <GroupBox Header="{x:Static p:Language.tool_paint_liquid_header}" Style="{StaticResource LiquidVisibleStyle}">
                 <StackPanel VerticalAlignment="Top">
-                    <ComboBox ItemsSource="{StaticResource LiquidType}" 
-                          SelectedValue="{Binding TilePicker.LiquidType}" 
+                    <ComboBox ItemsSource="{StaticResource LiquidType}"
+                          SelectedValue="{Binding TilePicker.LiquidType}"
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                     <TextBlock Text="{x:Static p:Language.liquid_amount}" HorizontalAlignment="Left"/>
-                    <ComboBox ItemsSource="{StaticResource LiquidAmountEnum}" 
-                          SelectedValue="{Binding TilePicker.LiquidAmountMode}" 
+                    <ComboBox ItemsSource="{StaticResource LiquidAmountEnum}"
+                          SelectedValue="{Binding TilePicker.LiquidAmountMode}"
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                 </StackPanel>
@@ -233,8 +233,8 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                         <CheckBox IsChecked="{Binding TilePicker.BrickStyleActive}" Content="{x:Static p:Language.tool_paint_brickstyle}" Width="90" VerticalAlignment="Center" />
-                        <ComboBox ItemsSource="{StaticResource BrickStyle}" 
-                          SelectedValue="{Binding TilePicker.BrickStyle}" 
+                        <ComboBox ItemsSource="{StaticResource BrickStyle}"
+                          SelectedValue="{Binding TilePicker.BrickStyle}"
                           SelectedValuePath="Value" Width="120"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                     </StackPanel>
@@ -246,21 +246,20 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
             <CheckBox IsChecked="{Binding TilePicker.TilePaintActive}" Content="{x:Static p:Language.tool_paint_tile_title}" Width="60" VerticalAlignment="Center" />
-                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}" 
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}"
                           IsEnabled="{Binding TilePicker.TilePaintActive}"
-                          ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                          ItemTemplate="{StaticResource ColorPickerTemplate}"
                           SelectedValue="{Binding Path=TilePicker.TileColor, Mode=TwoWay}"
                           SelectedValuePath="Id" Width="140" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                         <CheckBox IsChecked="{Binding TilePicker.WallPaintActive}" Content="{x:Static p:Language.tool_paint_wall_title}" Width="60" VerticalAlignment="Center" />
-                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}" 
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}"
                           IsEnabled="{Binding TilePicker.WallPaintActive}"
-                          ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                          ItemTemplate="{StaticResource ColorPickerTemplate}"
                           SelectedValue="{Binding Path=TilePicker.WallColor, Mode=TwoWay}"
                           SelectedValuePath="Id" Width="140" />
                     </StackPanel>
-                    <CheckBox IsChecked="{Binding TilePicker.UsePaintMasks}" Content="{x:Static p:Language.tool_paint_mask}" HorizontalAlignment="Left" />
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="{x:Static p:Language.tool_paint_coating}" Style="{StaticResource PaintVisibleStyle}">
@@ -275,7 +274,6 @@
                         <CheckBox IsChecked="{Binding TilePicker.WallCoatingIlluminant}" Content="{x:Static p:Language.tool_paint_illuminantcoating}" Width="90" VerticalAlignment="Center" IsEnabled="{Binding TilePicker.EnableWallCoating}" />
                         <CheckBox IsChecked="{Binding TilePicker.WallCoatingEcho}" Content="{x:Static p:Language.tool_paint_echocoating}" Width="60" VerticalAlignment="Center" IsEnabled="{Binding TilePicker.EnableWallCoating}"/>
                     </StackPanel>
-                    <CheckBox IsChecked="{Binding TilePicker.UsePaintMasks}" Content="{x:Static p:Language.tool_paint_mask}" HorizontalAlignment="Left" />
                 </StackPanel>
             </GroupBox>
             <GroupBox Style="{StaticResource WireStyle}" Padding="2">
@@ -325,8 +323,8 @@
                     <StackPanel Orientation="Vertical">
                         <CheckBox IsChecked="{Binding TilePicker.GreenWireActive}" Content="{x:Static p:Language.tool_paint_wire_green}"  VerticalAlignment="Center" />
                         <CheckBox IsChecked="{Binding TilePicker.YellowWireActive}" Content="{x:Static p:Language.tool_paint_wire_yellow}"  VerticalAlignment="Center" />
-                        <ComboBox ItemsSource="{StaticResource JunctionBoxEnum}" 
-                          SelectedValue="{Binding TilePicker.JunctionBoxMode}" 
+                        <ComboBox ItemsSource="{StaticResource JunctionBoxEnum}"
+                          SelectedValue="{Binding TilePicker.JunctionBoxMode}"
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                     </StackPanel>
@@ -339,14 +337,14 @@
             <CheckBox IsChecked="{Binding TilePicker.WireReplaceBlue}" Content="{x:Static p:Language.tool_paint_wire_blue}"  Width="60" VerticalAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}" 
+                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}"
                           IsEnabled="{Binding TilePicker.WireReplaceRed}"
-                          SelectedValue="{Binding TilePicker.WireReplaceModeRed}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeRed}"
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
-                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}" 
+                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}"
                           IsEnabled="{Binding TilePicker.WireReplaceBlue}"
-                          SelectedValue="{Binding TilePicker.WireReplaceModeBlue}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeBlue}"
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                     </StackPanel>
@@ -355,14 +353,14 @@
             <CheckBox IsChecked="{Binding TilePicker.WireReplaceYellow}" Content="{x:Static p:Language.tool_paint_wire_yellow}" VerticalAlignment="Center"  />
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}" 
+                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}"
                           IsEnabled="{Binding TilePicker.WireReplaceGreen}"
-                          SelectedValue="{Binding TilePicker.WireReplaceModeGreen}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeGreen}"
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
-                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}" 
+                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}"
                           IsEnabled="{Binding TilePicker.WireReplaceYellow}"
-                          SelectedValue="{Binding TilePicker.WireReplaceModeYellow}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeYellow}"
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                     </StackPanel>

@@ -138,8 +138,24 @@ public sealed class PickerTool : BaseTool
     private void PickmaskTile(int x, int y)
     {
         var curTile = _wvm.CurrentWorld.Tiles[x, y];
-        if (!WorldConfiguration.TileProperties[curTile.Type].IsFramed)
-            _wvm.TilePicker.TileMask = curTile.Type;
-        _wvm.TilePicker.WallMask = curTile.Wall;
+
+        if (_wvm.MaskSettings.MaskPreset == MaskPreset.ExactMatch)
+        {
+            _wvm.MaskSettings.SetFromTile(curTile);
+        }
+        else
+        {
+            // Custom mode: set tile and wall mask values only
+            if (!WorldConfiguration.TileProperties[curTile.Type].IsFramed)
+            {
+                _wvm.MaskSettings.TileMaskValue = curTile.IsActive ? curTile.Type : -1;
+                if (_wvm.MaskSettings.TileMaskMode == MaskMode.Off)
+                    _wvm.MaskSettings.TileMaskMode = MaskMode.Match;
+            }
+
+            _wvm.MaskSettings.WallMaskValue = curTile.Wall;
+            if (_wvm.MaskSettings.WallMaskMode == MaskMode.Off)
+                _wvm.MaskSettings.WallMaskMode = MaskMode.Match;
+        }
     }
 }

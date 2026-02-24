@@ -473,6 +473,10 @@
                             <TabItem.Header><ui:SymbolIcon Symbol="Sparkle20" Filled="True" FontSize="24"/></TabItem.Header>
                             <View:CreativePowers />
                         </TabItem>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.sidebar_mask_tooltip}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="ShieldTask20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <Sidebar:MaskSidebarView />
+                        </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.sidebar_filter_tooltip}">
                             <TabItem.Header><ui:SymbolIcon Symbol="Filter20" Filled="True" FontSize="24"/></TabItem.Header>
                             <Sidebar:FilterSidebarView />

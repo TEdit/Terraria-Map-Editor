@@ -34,9 +34,11 @@ public class WorldEditor : IDisposable
     public int[] _checkTiles;
     public int _checkTileGeneration = 1;
     public TilePicker TilePicker { get; }
+    public TileMaskSettings MaskSettings { get; }
 
     public WorldEditor(
         TilePicker tilePicker,
+        TileMaskSettings maskSettings,
         World world,
         ISelection selection,
         IUndoManager undo,
@@ -48,6 +50,7 @@ public class WorldEditor : IDisposable
         _notifyTileChanged = notifyTileChanged;
         _checkTiles = new int[_world.TilesWide * _world.TilesHigh];
         TilePicker = tilePicker;
+        MaskSettings = maskSettings;
     }
 
     public async Task BeginOperationAsync()
@@ -78,6 +81,9 @@ public class WorldEditor : IDisposable
 
         Tile curTile = _world.Tiles[x, y];
         if (curTile == null) return;
+
+        // Global mask gate: if any enabled mask fails, skip this tile entirely
+        if (!MaskSettings.Passes(curTile)) return;
 
         PaintMode curMode = mode ?? TilePicker.PaintMode;
         bool isErase = erase ?? TilePicker.IsEraser;
@@ -206,33 +212,18 @@ public class WorldEditor : IDisposable
 
     private void SetWall(Tile curTile, bool erase)
     {
-        if (TilePicker.WallMaskMode == MaskMode.Off ||
-            (TilePicker.WallMaskMode == MaskMode.Match && curTile.Wall == TilePicker.WallMask) ||
-            (TilePicker.WallMaskMode == MaskMode.Empty && curTile.Wall == 0) ||
-            (TilePicker.WallMaskMode == MaskMode.NotMatching && curTile.Wall != TilePicker.WallMask))
-        {
-            if (erase)
-                SetPixelAutomatic(curTile, wall: 0);
-            else
-                SetPixelAutomatic(curTile, wall: TilePicker.Wall);
-        }
+        if (erase)
+            SetPixelAutomatic(curTile, wall: 0);
+        else
+            SetPixelAutomatic(curTile, wall: TilePicker.Wall);
     }
 
     private void SetTile(Tile curTile, bool erase)
     {
-        if (TilePicker.TileMaskMode == MaskMode.Off ||
-            (TilePicker.TileMaskMode == MaskMode.Match && TilePicker.TileMask >= 0 && curTile.Type == TilePicker.TileMask && curTile.IsActive) ||
-            (TilePicker.TileMaskMode == MaskMode.Match && TilePicker.TileMask == -1 && !curTile.IsActive) ||
-            (TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive) ||
-            (TilePicker.TileMaskMode == MaskMode.NotMatching && TilePicker.TileMask >= 0 && (curTile.Type != TilePicker.TileMask || !curTile.IsActive)) ||
-            (TilePicker.TileMaskMode == MaskMode.NotMatching && (TilePicker.TileMask == -1 && curTile.IsActive))
-            )
-        {
-            if (erase)
-                SetPixelAutomatic(curTile, tile: -1);
-            else
-                SetPixelAutomatic(curTile, tile: TilePicker.Tile);
-        }
+        if (erase)
+            SetPixelAutomatic(curTile, tile: -1);
+        else
+            SetPixelAutomatic(curTile, tile: TilePicker.Tile);
     }
 
     private void SetTrack(int x, int y, Tile curTile, bool erase, bool hammer, bool check)
