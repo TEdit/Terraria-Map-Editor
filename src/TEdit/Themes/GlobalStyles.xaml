@@ -835,7 +835,7 @@
                         <Border Grid.Column="1" Background="#FF2D2D2D"
                                 BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
                                 BorderThickness="1,0,0,0">
-                            <TabPanel x:Name="HeaderPanel"
+                            <tedit:OverflowTabPanel x:Name="HeaderPanel"
                                       IsItemsHost="True"
                                       KeyboardNavigation.TabIndex="1"/>
                         </Border>
