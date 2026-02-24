@@ -601,6 +601,67 @@ public class InputService
             DefaultBindings = { InputBinding.Keyboard(Key.X) }
         });
 
+        // CAD wire routing actions
+        Register(new InputAction
+        {
+            Id = "editor.wire.modecycle",
+            Name = "Cycle Wire Drawing Mode",
+            Category = InputCategory.ToolDrawing,
+            Scope = InputScope.Application,
+            Description = "Cycle wire drawing mode: Off → Wire90 → Wire45 → Off",
+            DefaultBindings = { InputBinding.Keyboard(Key.W, ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "editor.wire.togglehv",
+            Name = "Toggle Wire H/V Direction",
+            Category = InputCategory.ToolDrawing,
+            Scope = InputScope.Application,
+            Description = "Toggle between horizontal-first, vertical-first, and auto-detect wire routing",
+            DefaultBindings = { InputBinding.Keyboard(Key.Q, ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "editor.wire.color1",
+            Name = "Toggle Wire Red",
+            Category = InputCategory.ToolDrawing,
+            Scope = InputScope.Application,
+            Description = "Toggle red wire active",
+            DefaultBindings = { InputBinding.Keyboard(Key.D1) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "editor.wire.color2",
+            Name = "Toggle Wire Blue",
+            Category = InputCategory.ToolDrawing,
+            Scope = InputScope.Application,
+            Description = "Toggle blue wire active",
+            DefaultBindings = { InputBinding.Keyboard(Key.D2) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "editor.wire.color3",
+            Name = "Toggle Wire Green",
+            Category = InputCategory.ToolDrawing,
+            Scope = InputScope.Application,
+            Description = "Toggle green wire active",
+            DefaultBindings = { InputBinding.Keyboard(Key.D3) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "editor.wire.color4",
+            Name = "Toggle Wire Yellow",
+            Category = InputCategory.ToolDrawing,
+            Scope = InputScope.Application,
+            Description = "Toggle yellow wire active",
+            DefaultBindings = { InputBinding.Keyboard(Key.D4) }
+        });
+
         Register(new InputAction
         {
             Id = "toggle.tile",

@@ -1,0 +1,38 @@
+name: Crowdin Sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - src/TEdit/Properties/Language.resx
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      upload_translations:
+        description: 'Upload local translations to Crowdin'
+        type: boolean
+        default: false
+
+jobs:
+  crowdin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Ignore non-localization changes
+        run: git ls-files -m | grep -v 'src/TEdit/Properties/' | xargs -r git update-index --assume-unchanged
+
+      - uses: crowdin/github-action@v2
+        with:
+          upload_sources: true
+          upload_translations: ${{ github.event.inputs.upload_translations == 'true' }}
+          download_translations: true
+          create_pull_request: true
+          localization_branch_name: l10n_crowdin
+          pull_request_title: 'New Crowdin translations'
+          pull_request_body: 'New translations from [Crowdin](https://crowdin.com)'
+        env:
+          GITHUB_TOKEN: ${{ secrets.CROWDIN_GH_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

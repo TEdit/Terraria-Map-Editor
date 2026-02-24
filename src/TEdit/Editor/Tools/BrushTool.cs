@@ -35,6 +35,15 @@ public class BrushToolBase : BaseTool
     private readonly Random _sprayRandom = new Random();
     private bool _sprayActive;
 
+    // CAD wire bus routing state
+    private bool _isCadWireMode;
+    private bool _isCadAnchored;
+    private WireRoutingMode _cadRoutingMode = WireRoutingMode.Elbow90;
+    private bool? _cadVerticalFirstOverride; // null = auto-detect, true = vertical-first, false = horizontal-first
+    private Vector2Int32 _cadAnchor;
+    private readonly List<Vector2Int32> _cadPreviewPath = new();
+    private Vector2Int32 _cadLastCursor;
+
     // Pre-allocated buffers to avoid per-frame GC pressure (Phase 2)
     private readonly List<Vector2Int32> _stampBuffer = new(160_000);
     private readonly List<Vector2Int32> _interiorBuffer = new(160_000);
@@ -52,6 +61,83 @@ public class BrushToolBase : BaseTool
         ToolType = ToolType.Brush;
 
         _wvm.Brush.BrushChanged += OnBrushChanged;
+    }
+
+    /// <summary>Whether CAD wire bus routing mode is active.</summary>
+    public bool IsCadWireMode => _isCadWireMode;
+
+    /// <summary>Current CAD routing style.</summary>
+    public WireRoutingMode CadRoutingMode => _cadRoutingMode;
+
+    /// <summary>Current H/V override: null=auto, true=vertical-first, false=horizontal-first.</summary>
+    public bool? CadVerticalFirstOverride => _cadVerticalFirstOverride;
+
+    public override IReadOnlyList<Vector2Int32> CadPreviewPath => _cadPreviewPath;
+    public override bool HasCadPreview => _isCadWireMode && _isCadAnchored && _cadPreviewPath.Count > 0;
+
+    /// <summary>
+    /// Cycle wire mode: Off → Wire90 → Wire45 → Off (normal) → Wire90...
+    /// Anchor is preserved when cycling through Off/normal.
+    /// </summary>
+    public void CycleWireMode()
+    {
+        if (!_isCadWireMode)
+        {
+            _isCadWireMode = true;
+            _cadRoutingMode = WireRoutingMode.Elbow90;
+            if (_isCadAnchored)
+                ForceUpdateCadPreview();
+        }
+        else if (_cadRoutingMode == WireRoutingMode.Elbow90)
+        {
+            _cadRoutingMode = WireRoutingMode.Miter45;
+            if (_isCadAnchored)
+                ForceUpdateCadPreview();
+        }
+        else
+        {
+            // Miter45 → normal drawing (preserve anchor, just hide preview)
+            _isCadWireMode = false;
+            _cadPreviewPath.Clear();
+        }
+    }
+
+    /// <summary>Set wire mode state directly (used for syncing between tools).</summary>
+    public void SetWireState(bool enabled, WireRoutingMode mode, bool? verticalFirst)
+    {
+        _isCadWireMode = enabled;
+        _cadRoutingMode = mode;
+        _cadVerticalFirstOverride = verticalFirst;
+        if (!enabled)
+            _cadPreviewPath.Clear();
+    }
+
+    /// <summary>Exit CAD wire mode entirely. Clears anchor and preview.</summary>
+    public void ExitCadWireMode()
+    {
+        _isCadWireMode = false;
+        CancelCadWire();
+    }
+
+    /// <summary>Toggle H/V direction: auto → horizontal-first → vertical-first → auto.</summary>
+    public void ToggleVerticalFirst()
+    {
+        if (_cadVerticalFirstOverride == null)
+            _cadVerticalFirstOverride = false; // horizontal-first
+        else if (_cadVerticalFirstOverride == false)
+            _cadVerticalFirstOverride = true;  // vertical-first
+        else
+            _cadVerticalFirstOverride = null;  // auto-detect
+
+        if (_isCadAnchored)
+            ForceUpdateCadPreview();
+    }
+
+    /// <summary>Cancel the current CAD wire segment (anchor + preview). Stays in CAD mode.</summary>
+    public void CancelCadWire()
+    {
+        _isCadAnchored = false;
+        _cadPreviewPath.Clear();
     }
 
     private void OnBrushChanged(object sender, EventArgs e)
@@ -81,6 +167,40 @@ public class BrushToolBase : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
+        // CAD wire bus mode intercept
+        if (_isCadWireMode)
+        {
+            var cadActions = GetActiveActions(e);
+
+            // Right-click cancels anchor
+            if (cadActions.Contains("editor.secondary"))
+            {
+                CancelCadWire();
+                return;
+            }
+
+            if (cadActions.Contains("editor.draw") || cadActions.Contains("editor.draw.line") || cadActions.Contains("editor.draw.constrain"))
+            {
+                if (!_isCadAnchored)
+                {
+                    // First click: set anchor, no drawing
+                    _cadAnchor = e.Location;
+                    _isCadAnchored = true;
+                    _cadPreviewPath.Clear();
+                    return;
+                }
+                else
+                {
+                    // Second click: commit the preview path
+                    CommitCadPath();
+                    // Chain: new anchor = old end for polyline
+                    _cadAnchor = e.Location;
+                    _cadPreviewPath.Clear();
+                    return;
+                }
+            }
+        }
+
         var actions = GetActiveActions(e);
 
         // Start new stroke if not already active
@@ -137,6 +257,13 @@ public class BrushToolBase : BaseTool
 
     public override void MouseMove(TileMouseState e)
     {
+        // CAD wire bus mode: update preview path
+        if (_isCadWireMode && _isCadAnchored)
+        {
+            UpdateCadPreview(e.Location);
+            return;
+        }
+
         var actions = GetActiveActions(e);
         _isDrawing = actions.Contains("editor.draw");
         _isConstraining = actions.Contains("editor.draw.constrain");
@@ -154,6 +281,10 @@ public class BrushToolBase : BaseTool
 
     public override void MouseUp(TileMouseState e)
     {
+        // CAD wire bus mode: clicks are handled in MouseDown, no action on MouseUp
+        if (_isCadWireMode && _isCadAnchored)
+            return;
+
         // Detect click vs drag for polyline continuation
         if (_isLineMode)
         {
@@ -321,6 +452,75 @@ public class BrushToolBase : BaseTool
         }
 
         return _preview;
+    }
+
+    private void UpdateCadPreview(Vector2Int32 cursor)
+    {
+        // Skip recomputation if cursor tile hasn't changed
+        if (_cadLastCursor.X == cursor.X && _cadLastCursor.Y == cursor.Y && _cadPreviewPath.Count > 0)
+            return;
+
+        _cadLastCursor = cursor;
+        ComputeCadPath(cursor);
+    }
+
+    /// <summary>Force recompute even if cursor hasn't changed (used when mode/direction changes).</summary>
+    private void ForceUpdateCadPreview()
+    {
+        ComputeCadPath(_cadLastCursor);
+    }
+
+    private void ComputeCadPath(Vector2Int32 cursor)
+    {
+        _cadPreviewPath.Clear();
+
+        bool verticalFirst = _cadVerticalFirstOverride
+            ?? WireRouter.DetectVerticalFirst(_cadAnchor, cursor);
+
+        int w = _wvm.Brush.Width;
+        int h = _wvm.Brush.Height;
+
+        var points = _cadRoutingMode == WireRoutingMode.Elbow90
+            ? WireRouter.RouteBus90(_cadAnchor, cursor, w, h, verticalFirst)
+            : WireRouter.RouteBusMiter(_cadAnchor, cursor, w, h, verticalFirst);
+
+        _cadPreviewPath.AddRange(points);
+    }
+
+    private void CommitCadPath()
+    {
+        if (_cadPreviewPath.Count == 0) return;
+
+        int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
+        if (_wvm.CheckTiles == null || _wvm.CheckTiles.Length != totalTiles)
+            _wvm.CheckTiles = new int[totalTiles];
+        if (++_wvm.CheckTileGeneration <= 0)
+        {
+            _wvm.CheckTileGeneration = 1;
+            Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
+        }
+
+        int generation = _wvm.CheckTileGeneration;
+        int tilesWide = _wvm.CurrentWorld.TilesWide;
+
+        foreach (var pixel in _cadPreviewPath)
+        {
+            if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+
+            int index = pixel.X + pixel.Y * tilesWide;
+            if (_wvm.CheckTiles[index] != generation)
+            {
+                _wvm.CheckTiles[index] = generation;
+                if (_wvm.Selection.IsValid(pixel))
+                {
+                    _wvm.UndoManager.SaveTile(pixel);
+                    _wvm.SetPixel(pixel.X, pixel.Y);
+                    BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                }
+            }
+        }
+
+        _wvm.UndoManager.SaveUndo();
     }
 
     protected void ProcessDraw(Vector2Int32 tile)

@@ -1,6 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -183,15 +242,19 @@
   </data>
   <data name="BrushShape_Left" xml:space="preserve">
     <value>대각선 좌측</value>
+    <comment>enum:BrushShape.Left</comment>
   </data>
   <data name="BrushShape_Right" xml:space="preserve">
     <value>대각선 오른쪽</value>
+    <comment>enum:BrushShape.Right</comment>
   </data>
   <data name="BrushShape_Round" xml:space="preserve">
     <value>타원형</value>
+    <comment>enum:BrushShape.Round</comment>
   </data>
   <data name="BrushShape_Square" xml:space="preserve">
     <value>직사각형</value>
+    <comment>enum:BrushShape.Square</comment>
   </data>
   <data name="BrushShape_Star" xml:space="preserve">
     <value>스타</value>
@@ -241,6 +304,12 @@
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>테라리아 콘텐츠 찾을 수 없습니다</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>와이어 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>와이어 90°</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>분석</value>
@@ -349,6 +418,9 @@
   </data>
   <data name="keybind_capture_title" xml:space="preserve">
     <value>키를 누르거나 마우스 버튼을 클릭하세요</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>빛의 광도</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -727,24 +799,31 @@
   </data>
   <data name="MorphBiome_Corruption" xml:space="preserve">
     <value>부패</value>
+    <comment>enum:MorphBiome.Corruption</comment>
   </data>
   <data name="MorphBiome_Crimson" xml:space="preserve">
     <value>크림슨</value>
+    <comment>enum:MorphBiome.Crimson</comment>
   </data>
   <data name="MorphBiome_Custom" xml:space="preserve">
     <value>관습</value>
+    <comment>enum:MorphBiome.Custom</comment>
   </data>
   <data name="MorphBiome_Desert" xml:space="preserve">
     <value>사막</value>
+    <comment>enum:MorphBiome.Desert</comment>
   </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>할로우</value>
+    <comment>enum:MorphBiome.Hallow</comment>
   </data>
   <data name="MorphBiome_Jungle" xml:space="preserve">
     <value>정글</value>
+    <comment>enum:MorphBiome.Jungle</comment>
   </data>
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>정화</value>
+    <comment>enum:MorphBiome.Purify</comment>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>재 추가하세요</value>
@@ -1028,6 +1107,12 @@
   </data>
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>픽셀 맵 색상 팔레트: 기본값, 사실적(텍스처 샘플링), 또는 미니맵(게임 내 맵 색상). 재시작이 필요합니다.</value>
+  </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>운모 배경 활성화</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>반투명한 운모 창문 배경을 사용하세요. 윈도우가 투명하게 보이면 비활성화하세요. 재시작이 필요합니다.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>플레이어 에디터 활성화</value>
@@ -1640,9 +1725,11 @@
   </data>
   <data name="tool_paint_coating" xml:space="preserve">
     <value>코팅</value>
+    <comment>Coating</comment>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>에코</value>
+    <comment>Echo</comment>
   </data>
   <data name="tool_paint_eraser_tooltip" xml:space="preserve">
     <value>지우개</value>
@@ -1652,6 +1739,7 @@
   </data>
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>일루미넌트</value>
+    <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>액추에이터/타일 비활성화</value>
@@ -1696,16 +1784,16 @@
     <value>기존 트랙에 압력판을 추가하고, 지우개와 함께 판만 제거하세요.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
+    <value>매끄럽다</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
+    <value>트랙 도구가 만든 터널을 매끄럽게 다듬어.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
+    <value>터널</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
+    <value>트랙을 위한 터널을 파세요</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>벽</value>

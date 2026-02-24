@@ -59,7 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -305,6 +305,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Terraria-Inhalt nicht gefunden</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Draht 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Draht 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analyse</value>
   </data>
@@ -412,6 +418,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="keybind_capture_title" xml:space="preserve">
     <value>Drücken Sie eine Taste oder drücken Sie eine Maustaste</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>Lichtstrahlintensität</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -555,7 +564,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Wähle eine benutzerdefinierte Hintergrundfarbe</value>
   </data>
   <data name="menu_filter_darken" xml:space="preserve">
-    <value>Darken</value>
+    <value>Verdunkeln</value>
   </data>
   <data name="menu_filter_darken_label" xml:space="preserve">
     <value>Verdunkeln:</value>
@@ -576,7 +585,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Flüssigkeiten</value>
   </data>
   <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>Sprites</value>
+    <value>Grafiken</value>
   </data>
   <data name="menu_filter_header_tiles" xml:space="preserve">
     <value>Fliesen</value>
@@ -1098,6 +1107,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Farbpalette der Pixelkarte: Standard, Realistisch (texturbasiert) oder Minimap (Kartenfarben im Spiel). Erfordert einen Neustart.</value>
+  </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>Mica-Hintergrund aktivieren</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>Verwenden Sie durchscheinende Glimmer-Fensterhintergründe. Deaktiviere es, wenn Fenster transparent erscheinen. Erfordert einen Neustart.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Aktiviere den Spieler-Editor</value>
@@ -1710,9 +1725,11 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="tool_paint_coating" xml:space="preserve">
     <value>Beschichtung</value>
+    <comment>Coating</comment>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>Echo</value>
+    <comment>Echo</comment>
   </data>
   <data name="tool_paint_eraser_tooltip" xml:space="preserve">
     <value>Radiergummi</value>
@@ -1722,6 +1739,7 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>Leuchtmittel</value>
+    <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>Ist inaktiv (Aktor)</value>
@@ -1766,16 +1784,16 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
     <value>Fügt dem Gleis eine Druckplatte hinzu. Mit Radierer verwenden, um nur die Druckplatte zu entfernen.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
+    <value>Glatt</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Glätten Sie den Tunnel, den das Schienenwerkzeug geschaffen hat.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
+    <value>Tunnel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Grabe einen Tunnel für das Gleis</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Wand</value>

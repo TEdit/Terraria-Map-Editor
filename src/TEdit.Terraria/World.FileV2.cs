@@ -1748,6 +1748,12 @@ public partial class World
                 chest.MaxItems = r.ReadInt32();
             }
 
+            // ensure Items collection has enough slots for MaxItems
+            while (chest.Items.Count < chest.MaxItems)
+            {
+                chest.Items.Add(new Item());
+            }
+
             // read items in chest
             for (int slot = 0; slot < chest.MaxItems; slot++)
             {

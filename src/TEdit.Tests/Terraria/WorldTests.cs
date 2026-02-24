@@ -150,6 +150,7 @@ public class WorldTests
     [InlineData(".\\WorldFiles\\v1.4.5.5.wld")]
     [InlineData(".\\WorldFiles\\Challenge.wld")]
     [InlineData(".\\WorldFiles\\MAINWORLD.wld")]
+    [InlineData(".\\WorldFiles\\test-chest-145.wld")]
     public void LoadWorldV2_145x_Test(string fileName)
     {
         if (!IsValidWorldFile(fileName)) return;

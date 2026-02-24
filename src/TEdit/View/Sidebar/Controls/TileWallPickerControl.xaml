@@ -62,8 +62,9 @@
                  Background="Transparent">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type shared:PickerItemViewModel}">
-                    <StackPanel Orientation="Horizontal" Margin="2">
-                        <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                    <DockPanel Margin="2">
+                        <CheckBox DockPanel.Dock="Left"
+                                  IsChecked="{Binding IsChecked, Mode=TwoWay}"
                                   Visibility="{Binding DataContext.ShowCheckboxes,
                                                RelativeSource={RelativeSource AncestorType=ListBox},
                                                Converter={StaticResource BoolToVisibilityConverter}}"
@@ -71,7 +72,8 @@
                                   Margin="0,0,4,0" />
 
                         <!-- Color swatch -->
-                        <Border BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                        <Border DockPanel.Dock="Left"
+                                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
                                 BorderThickness="1"
                                 Margin="0,0,6,0"
                                 VerticalAlignment="Center">
@@ -83,11 +85,19 @@
                             </Rectangle>
                         </Border>
 
+                        <!-- Item ID -->
+                        <TextBlock DockPanel.Dock="Right"
+                                   Text="{Binding Id, StringFormat='[{0}]'}"
+                                   Margin="8,0,4,0"
+                                   Foreground="Gray"
+                                   VerticalAlignment="Center" />
+
                         <!-- Item name -->
                         <TextBlock Text="{Binding Name}"
                                    VerticalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis"
                                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
-                    </StackPanel>
+                    </DockPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             <ListBox.ItemContainerStyle>

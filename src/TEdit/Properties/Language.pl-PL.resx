@@ -59,7 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -305,6 +305,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Zawartość Terrari nie została znaleziona</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Drut 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Drut 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analiza</value>
   </data>
@@ -412,6 +418,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="keybind_capture_title" xml:space="preserve">
     <value>Naciśnij klawisz lub kliknij myszką</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>Intensywność światła</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -534,7 +543,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Sprawdź nowe aktualizacje</value>
   </data>
   <data name="menu_file_worlds" xml:space="preserve">
-    <value>World Explorer...</value>
+    <value>Światowy Explorer...</value>
   </data>
   <data name="menu_filter" xml:space="preserve">
     <value>Filtr</value>
@@ -555,7 +564,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Wybierz niestandardowy kolor tła</value>
   </data>
   <data name="menu_filter_darken" xml:space="preserve">
-    <value>Darken</value>
+    <value>Ciemniej</value>
   </data>
   <data name="menu_filter_darken_label" xml:space="preserve">
     <value>Ciemniej:</value>
@@ -1098,6 +1107,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Paleta kolorów mapy pikseli: Domyślna, Realistyczna (próbkowana teksturami) lub Minimapa (kolory map w grze). Wymaga restartu.</value>
+  </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>Włącz tło z Mica</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>Użyj przezroczystych tł okien z miki. Wyłącz, jeśli okna wydają się przezroczyste. Wymaga restartu.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Włącz edytor odtwarzaczy</value>
@@ -1710,9 +1725,11 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="tool_paint_coating" xml:space="preserve">
     <value>Powłoka</value>
+    <comment>Coating</comment>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>Echo</value>
+    <comment>Echo</comment>
   </data>
   <data name="tool_paint_eraser_tooltip" xml:space="preserve">
     <value>Gumka</value>
@@ -1722,6 +1739,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
   </data>
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>Oświetlenie</value>
+    <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>Actuator/Tile InActive</value>
@@ -1766,16 +1784,16 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Add Pressure Plate to existing track, use with Eraser to remove plate only.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
+    <value>Gładko</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Wygładź tunel wykonany przez narzędzie do gąsienic.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
+    <value>Tunel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Wykop tunel pod tor</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Ściana</value>

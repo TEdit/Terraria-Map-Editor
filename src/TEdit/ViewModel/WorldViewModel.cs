@@ -57,6 +57,7 @@ public partial class WorldViewModel : ReactiveObject
     public int[] CheckTiles;
     public int CheckTileGeneration = 1;
     private ITool _activeTool;
+    [Reactive] private string _drawingModeText = "";
     private UpdateMode _updateMode;
     private bool _isUpdateAvailable;
     private string _currentFile;
@@ -2317,6 +2318,9 @@ public partial class WorldViewModel : ReactiveObject
             if (tool.Name == "Paste" && !CanPaste())
                 return;
 
+            // Sync wire mode state between pencil and brush tools
+            SyncWireModeState(ActiveTool, tool);
+
             if (ActiveTool != null)
                 ActiveTool.IsActive = false;
 
@@ -2330,6 +2334,35 @@ public partial class WorldViewModel : ReactiveObject
 
             PreviewChange();
         }
+    }
+
+    /// <summary>Sync wire mode state when switching between pencil and brush tools.</summary>
+    private static void SyncWireModeState(ITool from, ITool to)
+    {
+        if (from == null || to == null) return;
+
+        bool srcEnabled = false;
+        WireRoutingMode srcMode = WireRoutingMode.Elbow90;
+        bool? srcVF = null;
+
+        if (from is PencilTool pt)
+        {
+            srcEnabled = pt.IsCadWireMode;
+            srcMode = pt.CadRoutingMode;
+            srcVF = pt.CadVerticalFirstOverride;
+        }
+        else if (from is BrushToolBase bt)
+        {
+            srcEnabled = bt.IsCadWireMode;
+            srcMode = bt.CadRoutingMode;
+            srcVF = bt.CadVerticalFirstOverride;
+        }
+        else return;
+
+        if (to is PencilTool ptTo)
+            ptTo.SetWireState(srcEnabled, srcMode, srcVF);
+        else if (to is BrushToolBase btTo)
+            btTo.SetWireState(srcEnabled, srcMode, srcVF);
     }
 
     private void OnProgressChanged(object sender, ProgressChangedEventArgs e)

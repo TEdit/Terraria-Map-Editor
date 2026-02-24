@@ -49,7 +49,7 @@ public class LuaScriptEngine : IScriptEngine
             RegisterApi(state, "finder", api.Finder);
 
             // print() convenience
-            state.Environment["print"] = new LuaFunction((ctx, buffer, ct) =>
+            state.Environment["print"] = new LuaFunction((ctx, ct) =>
             {
                 var msg = ctx.GetArgument<string>(0);
                 context.OnLog?.Invoke(msg ?? "nil");
@@ -72,7 +72,7 @@ public class LuaScriptEngine : IScriptEngine
                 : $"Script timed out after {context.TimeoutMs}ms";
             return new ScriptResult(false, msg, sw.ElapsedMilliseconds);
         }
-        catch (LuaException ex)
+        catch (LuaRuntimeException ex)
         {
             sw.Stop();
             return new ScriptResult(false, $"Lua error: {ex.Message}", sw.ElapsedMilliseconds);
@@ -94,7 +94,7 @@ public class LuaScriptEngine : IScriptEngine
             var methodInfo = method;
             var methodName = char.ToLower(methodInfo.Name[0]) + methodInfo.Name[1..];
 
-            table[methodName] = new LuaFunction((ctx, buffer, ct) =>
+            table[methodName] = new LuaFunction((ctx, ct) =>
             {
                 var parameters = methodInfo.GetParameters();
                 var args = new object?[parameters.Length];
@@ -122,7 +122,7 @@ public class LuaScriptEngine : IScriptEngine
                             var luaState = ctx.State;
                             args[i] = new Action<int, int>((x, y) =>
                             {
-                                luaFunc.InvokeAsync(luaState, [(LuaValue)(double)x, (LuaValue)(double)y])
+                                luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, CancellationToken.None)
                                     .AsTask().GetAwaiter().GetResult();
                             });
                         }
@@ -132,7 +132,7 @@ public class LuaScriptEngine : IScriptEngine
                             var luaState = ctx.State;
                             args[i] = new Func<int, int, bool>((x, y) =>
                             {
-                                var results = luaFunc.InvokeAsync(luaState, [(LuaValue)(double)x, (LuaValue)(double)y])
+                                var results = luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, CancellationToken.None)
                                     .AsTask().GetAwaiter().GetResult();
                                 return results.Length > 0 && results[0].TryRead<bool>(out var b) && b;
                             });
@@ -151,7 +151,7 @@ public class LuaScriptEngine : IScriptEngine
                 if (result == null || methodInfo.ReturnType == typeof(void))
                     return new ValueTask<int>(0);
 
-                buffer.Span[0] = ToLuaValue(result);
+                ctx.Return(ToLuaValue(result));
                 return new ValueTask<int>(1);
             });
         }
@@ -162,10 +162,10 @@ public class LuaScriptEngine : IScriptEngine
             var propInfo = prop;
             var propName = char.ToLower(propInfo.Name[0]) + propInfo.Name[1..];
 
-            table[propName] = new LuaFunction((ctx, buffer, ct) =>
+            table[propName] = new LuaFunction((ctx, ct) =>
             {
                 var value = propInfo.GetValue(apiObject);
-                buffer.Span[0] = ToLuaValue(value);
+                ctx.Return(ToLuaValue(value));
                 return new ValueTask<int>(1);
             });
         }

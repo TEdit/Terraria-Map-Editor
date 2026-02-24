@@ -59,7 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -305,6 +305,12 @@
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Контент игры не найден</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Провод 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Провод 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Анализ</value>
   </data>
@@ -412,6 +418,9 @@
   </data>
   <data name="keybind_capture_title" xml:space="preserve">
     <value>Нажмите клавишу или мышь</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>Интенсивность светового свечения</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -555,7 +564,7 @@
     <value>Выберите пользовательский цвет фона</value>
   </data>
   <data name="menu_filter_darken" xml:space="preserve">
-    <value>Darken</value>
+    <value>Затемнять</value>
   </data>
   <data name="menu_filter_darken_label" xml:space="preserve">
     <value>Затемнять:</value>
@@ -1098,6 +1107,12 @@
   </data>
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Цветовая палитра пиксельной карты: По умолчанию, Реалистичная (с текстурами) или Миникарта (цвета внутриигровой карты). Требуется перезагрузка.</value>
+  </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>Включить фон из слюды</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>Используйте полупрозрачные фоны окон из слюды. Отключите, если окна выглядят прозрачными. Требуется перезагрузка.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Включить редактор игроков</value>
@@ -1710,9 +1725,11 @@
   </data>
   <data name="tool_paint_coating" xml:space="preserve">
     <value>Покрытие</value>
+    <comment>Coating</comment>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>Эхо</value>
+    <comment>Echo</comment>
   </data>
   <data name="tool_paint_eraser_tooltip" xml:space="preserve">
     <value>Ластик</value>
@@ -1722,6 +1739,7 @@
   </data>
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>Источник света</value>
+    <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>Неактивный блок</value>
@@ -1766,16 +1784,16 @@
     <value>Добавляет нажимную плиту на рельсы. Нажимная плита убирается с помощью Ластика.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
+    <value>Гладко</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Выровнять тоннель, сделанный инструментом для рельсов.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
+    <value>Тоннель</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Прокопайте туннель для пути</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Стена</value>
@@ -2507,7 +2525,7 @@
     <value>Поиск миров...</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
-    <value>World Explorer</value>
+    <value>Исследователь мира</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Раззакрепить</value>

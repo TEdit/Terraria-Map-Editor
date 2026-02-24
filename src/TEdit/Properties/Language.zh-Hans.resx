@@ -59,7 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -305,6 +305,12 @@
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Terraria路径错误</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>线路45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>钢丝90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>分析</value>
   </data>
@@ -413,6 +419,9 @@
   <data name="keybind_capture_title" xml:space="preserve">
     <value>按下按键或点击鼠标</value>
   </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>光辉强度</value>
+  </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
   </data>
@@ -444,7 +453,7 @@
     <value>20%</value>
   </data>
   <data name="LiquidAmountMode_ZeroPercent" xml:space="preserve">
-    <value>0%</value>
+    <value>0 %</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>蜂蜜</value>
@@ -618,7 +627,7 @@
     <value>打开日志文件</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Settings...</value>
+    <value>设置……</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>更新</value>
@@ -1098,6 +1107,12 @@
   </data>
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>像素地图色彩调色板：默认、真实（纹理采样）或小地图（游戏内地图颜色）。需要重启。</value>
+  </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>启用云母背景</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>使用半透明的云母窗背景。如果Windows看起来是透明的，就禁用它。需要重启。</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>启用播放器编辑器</value>
@@ -1710,9 +1725,11 @@
   </data>
   <data name="tool_paint_coating" xml:space="preserve">
     <value>涂料</value>
+    <comment>Coating</comment>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>回声</value>
+    <comment>Echo</comment>
   </data>
   <data name="tool_paint_eraser_tooltip" xml:space="preserve">
     <value>橡皮擦</value>
@@ -1722,6 +1739,7 @@
   </data>
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>夜明</value>
+    <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>制动/虚化</value>
@@ -1766,16 +1784,16 @@
     <value>将普通轨道变为压力板轨道，使用擦除模式将压力板轨道变为普通轨道。</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
+    <value>顺滑</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
+    <value>把轨道工具挖出来的隧道磨平。</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
+    <value>隧道</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
+    <value>为轨道挖一条隧道</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>墙</value>

@@ -61,11 +61,13 @@ public class SpriteSheet
 
     public SpriteItem GetStyleFromUV(Vector2Short uv)
     {
-        var renderUV = TileProperty.GetRenderUV(Tile, uv.X, uv.Y);
-
+        // Compare in world UV space — SpriteItem.UV values from tiles.json
+        // are world UVs, and the incoming uv from tile data is also world UV.
+        // Converting to render UV here would break wrapped sprites where
+        // V > WrapThreshold (e.g., tile 93 lamps).
         foreach (var item in Styles)
         {
-            if (item?.ContainsUV(renderUV) == true)
+            if (item?.ContainsUV(uv) == true)
             {
                 return item;
             }

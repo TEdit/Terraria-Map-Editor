@@ -117,7 +117,8 @@ public partial class TileWallPickerViewModel
     {
         if (obj is not PickerItemViewModel item) return false;
         if (string.IsNullOrWhiteSpace(SearchText)) return true;
-        return item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase);
+        return item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase)
+            || item.Id.ToString().Contains(SearchText, StringComparison.Ordinal);
     }
 
     [ReactiveCommand]

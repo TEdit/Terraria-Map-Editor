@@ -414,7 +414,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Press a key or click a mouse button</value>
   </data>
   <data name="light_glow_intensity" xml:space="preserve">
-    <value>Glow Intensity</value>
+    <value>Light Glow Intensity</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -1105,6 +1105,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Pixel map color palette: Default, Realistic (texture-sampled), or Minimap (in-game map colors). Requires restart.</value>
   </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>Enable Mica backdrop</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart.</value>
+  </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Enable Player Editor</value>
   </data>
@@ -1774,6 +1780,18 @@ Would you like to enable error reporting?</value>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Add Pressure Plate to existing track, use with Eraser to remove plate only.</value>
   </data>
+  <data name="tool_paint_track_smooth" xml:space="preserve">
+    <value>Smooth</value>
+  </data>
+  <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
+    <value>Smooth the tunnel made by the track tool.</value>
+  </data>
+  <data name="tool_paint_track_tunnel" xml:space="preserve">
+    <value>Tunnel</value>
+  </data>
+  <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
+    <value>Dig a tunnel for the track</value>
+  </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Wall</value>
   </data>
@@ -1800,6 +1818,12 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>Pencil</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Picker - select tile color</value>

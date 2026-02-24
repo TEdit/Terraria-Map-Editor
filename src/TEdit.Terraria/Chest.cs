@@ -49,8 +49,15 @@ public partial class Chest : ReactiveObject
     {
         var chest = new Chest(_x, _y);
         chest.Name = Name;
-        //chest.Items.Clear();
-        for (int i = 0; i < LegacyMaxItems; i++)
+        chest.MaxItems = MaxItems;
+
+        // ensure target has enough slots
+        while (chest.Items.Count < MaxItems)
+        {
+            chest.Items.Add(new Item());
+        }
+
+        for (int i = 0; i < MaxItems; i++)
         {
             if (Items.Count > i)
                 chest.Items[i] = Items[i].Copy();

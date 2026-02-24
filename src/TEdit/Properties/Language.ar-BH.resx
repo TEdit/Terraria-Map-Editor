@@ -59,7 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -305,6 +305,12 @@
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>محتوى Terraria لم يتم العثور عليه</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>السلك 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>السلك 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>تحليل</value>
   </data>
@@ -412,6 +418,9 @@
   </data>
   <data name="keybind_capture_title" xml:space="preserve">
     <value>اضغط على زر زر أو انقر على زر الفأرة</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>شدة توهج الضوء</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -663,7 +672,7 @@
     <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
   </data>
   <data name="menu_language_zh_hant" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -1098,6 +1107,12 @@
   </data>
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>لوحة ألوان خريطة البكسل: افتراضية، واقعية (مأخوذة من عينات من النسيج)، أو Minimap (ألوان خرائط داخل اللعبة). يتطلب إعادة تشغيل.</value>
+  </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>خلفية تمكين ميكا</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>استخدم خلفيات نافذة ميكا الشفافة. قم بتعطيل النوافذ إذا بدت النوافذ شفافة. يتطلب إعادة تشغيل.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>تفعيل محرر اللاعب</value>
@@ -1710,9 +1725,11 @@
   </data>
   <data name="tool_paint_coating" xml:space="preserve">
     <value>طلاء</value>
+    <comment>Coating</comment>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>دوي</value>
+    <comment>Echo</comment>
   </data>
   <data name="tool_paint_eraser_tooltip" xml:space="preserve">
     <value>الممحاة</value>
@@ -1722,6 +1739,7 @@
   </data>
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>مضيئة</value>
+    <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>المحرك / البلاط معطل</value>
@@ -1766,16 +1784,16 @@
     <value>أضف لوحة الضغط إلى المسار الموجود، استخدم مع Eraser لإزالة اللوحة فقط.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
+    <value>سلس</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
+    <value>قم بتنعيم النفق الذي صنعته أداة السكة.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
+    <value>النفق</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
+    <value>احفر نفقا للسكة الحديدية</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>جدار</value>
@@ -2225,13 +2243,13 @@
     <value>جيش القديم</value>
   </data>
   <data name="tool_wp_oldonesarmy_t1" xml:space="preserve">
-    <value>المستوى الأول</value>
+    <value>مستوى 1</value>
   </data>
   <data name="tool_wp_oldonesarmy_t2" xml:space="preserve">
-    <value>المستوى الثاني</value>
+    <value>مستوى 2</value>
   </data>
   <data name="tool_wp_oldonesarmy_t3" xml:space="preserve">
-    <value>المستوى الثالث</value>
+    <value>مستوى 3</value>
   </data>
   <data name="tool_wp_orbs" xml:space="preserve">
     <value>الأجرام السماوية حطمت</value>

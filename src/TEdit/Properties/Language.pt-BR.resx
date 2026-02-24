@@ -59,7 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -305,6 +305,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Conteúdo do Terraria não encontrado</value>
   </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Fio 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Fio 90°</value>
+  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Análise</value>
   </data>
@@ -412,6 +418,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="keybind_capture_title" xml:space="preserve">
     <value>Pressione uma tecla ou clique no botão do mouse</value>
+  </data>
+  <data name="light_glow_intensity" xml:space="preserve">
+    <value>Intensidade do Brilho da Luz</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -1099,6 +1108,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Paleta de cores do mapa de pixels: Padrão, Realista (amostrado por textura) ou Minimap (cores do mapa do jogo). Exige reiniciar.</value>
   </data>
+  <data name="settings_enable_mica" xml:space="preserve">
+    <value>Ativar o fundo Mica</value>
+  </data>
+  <data name="settings_enable_mica_desc" xml:space="preserve">
+    <value>Use fundos translúcidos de janelas de mica. Desative se as janelas parecerem transparentes. Exige reiniciar.</value>
+  </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Ativar o Editor de Jogadores</value>
   </data>
@@ -1710,9 +1725,11 @@ Você gostaria de ativar o relatório de erros?</value>
   </data>
   <data name="tool_paint_coating" xml:space="preserve">
     <value>Revestimento</value>
+    <comment>Coating</comment>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>Eco</value>
+    <comment>Echo</comment>
   </data>
   <data name="tool_paint_eraser_tooltip" xml:space="preserve">
     <value>Borracha</value>
@@ -1722,6 +1739,7 @@ Você gostaria de ativar o relatório de erros?</value>
   </data>
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>Iluminante</value>
+    <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>Atuador/peça inativa</value>
@@ -1766,16 +1784,16 @@ Você gostaria de ativar o relatório de erros?</value>
     <value>Adicionar placa de pressão à um trilho já existente, use com a borracha para remover apenas placas.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value></value>
+    <value>Suave</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Suavize o túnel feito pela ferramenta de trilhos.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value></value>
+    <value>Túnel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value></value>
+    <value>Cave um túnel para a linha</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Parede</value>

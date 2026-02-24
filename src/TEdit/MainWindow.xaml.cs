@@ -198,7 +198,9 @@ public partial class MainWindow : FluentWindow
         try
         {
             // Try new InputService first
-            var actions = App.Input.HandleKeyboard(e.Key, e.KeyboardDevice.Modifiers, TEdit.Input.InputScope.Application);
+            // WPF sets e.Key = Key.System when Alt is pressed; the actual key is in e.SystemKey
+            var key = e.Key == Key.System ? e.SystemKey : e.Key;
+            var actions = App.Input.HandleKeyboard(key, e.KeyboardDevice.Modifiers, TEdit.Input.InputScope.Application);
             foreach (var actionId in actions)
             {
                 if (HandleKeyDownAction(actionId, e))
@@ -444,7 +446,9 @@ public partial class MainWindow : FluentWindow
             case "selection.resize.down.fast":
             case "selection.resize.left.fast":
             case "selection.resize.right.fast":
-                if (_vm.ActiveTool?.Name == "Selection" && _vm.Selection.IsActive && _vm.CurrentWorld != null)
+                if (_vm.ActiveTool?.Name != "Selection" || !_vm.Selection.IsActive || _vm.CurrentWorld == null)
+                    return false;
+
                 {
                     var area = _vm.Selection.SelectionArea;
                     bool fast = actionId.EndsWith(".fast");
@@ -523,6 +527,29 @@ public partial class MainWindow : FluentWindow
                 _vm.RequestZoomCommand.Execute(false).Subscribe();
                 return true;
             case "nav.reset":
+                // CAD wire mode: first Escape cancels anchor, second Escape exits mode
+                if (_vm.ActiveTool is PencilTool cadPt && cadPt.IsCadWireMode)
+                {
+                    if (cadPt.HasCadPreview)
+                        cadPt.CancelCadWire();
+                    else
+                    {
+                        cadPt.ExitCadWireMode();
+                        UpdateDrawingModeText();
+                    }
+                    return true;
+                }
+                if (_vm.ActiveTool is BrushToolBase cadBt && cadBt.IsCadWireMode)
+                {
+                    if (cadBt.HasCadPreview)
+                        cadBt.CancelCadWire();
+                    else
+                    {
+                        cadBt.ExitCadWireMode();
+                        UpdateDrawingModeText();
+                    }
+                    return true;
+                }
                 if (_vm.ActiveTool != null)
                 {
                     if (_vm.ActiveTool.Name == "Paste")
@@ -569,6 +596,50 @@ public partial class MainWindow : FluentWindow
                 SetActiveTool("Morph");
                 return true;
 
+            // CAD wire routing (Pencil = single wire, Brush = bus)
+            case "editor.wire.modecycle":
+                if (_vm.ActiveTool is PencilTool modeCyclePt)
+                {
+                    modeCyclePt.CycleWireMode();
+                    UpdateDrawingModeText();
+                    return true;
+                }
+                if (_vm.ActiveTool is BrushToolBase modeCycleBt)
+                {
+                    modeCycleBt.CycleWireMode();
+                    UpdateDrawingModeText();
+                    return true;
+                }
+                return false;
+            case "editor.wire.togglehv":
+                if (_vm.ActiveTool is PencilTool hvTogglePt && hvTogglePt.IsCadWireMode)
+                {
+                    hvTogglePt.ToggleVerticalFirst();
+                    UpdateDrawingModeText();
+                    return true;
+                }
+                if (_vm.ActiveTool is BrushToolBase hvToggleBt && hvToggleBt.IsCadWireMode)
+                {
+                    hvToggleBt.ToggleVerticalFirst();
+                    UpdateDrawingModeText();
+                    return true;
+                }
+                return false;
+
+            // Wire color toggles (always active)
+            case "editor.wire.color1":
+                _vm.TilePicker.RedWireActive = !_vm.TilePicker.RedWireActive;
+                return true;
+            case "editor.wire.color2":
+                _vm.TilePicker.BlueWireActive = !_vm.TilePicker.BlueWireActive;
+                return true;
+            case "editor.wire.color3":
+                _vm.TilePicker.GreenWireActive = !_vm.TilePicker.GreenWireActive;
+                return true;
+            case "editor.wire.color4":
+                _vm.TilePicker.YellowWireActive = !_vm.TilePicker.YellowWireActive;
+                return true;
+
             // Toggles
             case "toggle.eraser":
                 _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
@@ -594,6 +665,48 @@ public partial class MainWindow : FluentWindow
         if (tool != null)
         {
             _vm.SetActiveTool(tool);
+            UpdateDrawingModeText();
+        }
+    }
+
+    private void UpdateDrawingModeText()
+    {
+        TEdit.Geometry.WireRoutingMode? routingMode = null;
+        bool? verticalFirstOverride = null;
+        string toolLabel = null;
+
+        if (_vm.ActiveTool is PencilTool pt && pt.IsCadWireMode)
+        {
+            routingMode = pt.CadRoutingMode;
+            verticalFirstOverride = pt.CadVerticalFirstOverride;
+            toolLabel = "";
+        }
+        else if (_vm.ActiveTool is BrushToolBase bt && bt.IsCadWireMode)
+        {
+            routingMode = bt.CadRoutingMode;
+            verticalFirstOverride = bt.CadVerticalFirstOverride;
+            toolLabel = "Bus ";
+        }
+
+        if (routingMode != null)
+        {
+            var mode = routingMode switch
+            {
+                TEdit.Geometry.WireRoutingMode.Elbow90 => Properties.Language.drawing_mode_wire90,
+                TEdit.Geometry.WireRoutingMode.Miter45 => Properties.Language.drawing_mode_wire45,
+                _ => "Wire"
+            };
+            var dir = verticalFirstOverride switch
+            {
+                false => " \u2192",  // → horizontal-first
+                true => " \u2193",   // ↓ vertical-first
+                null => " \u2194"    // ↔ auto-detect
+            };
+            _vm.DrawingModeText = toolLabel + mode + dir;
+        }
+        else
+        {
+            _vm.DrawingModeText = "";
         }
     }
 

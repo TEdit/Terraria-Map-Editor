@@ -251,6 +251,7 @@ public partial class ItemEditorControl : UserControl
         {
             combo.SelectedValuePath = "Key";
             combo.FilterMemberPath = "Value.Name";
+            combo.FilterIdMemberPath = "Key";
             combo.ItemTemplate = DisplayMode switch
             {
                 ItemDisplayMode.ImageOnly => TryFindResource("RarityDictItemImageOnlyTemplate") as DataTemplate,
@@ -264,6 +265,7 @@ public partial class ItemEditorControl : UserControl
         {
             combo.SelectedValuePath = "Id";
             combo.FilterMemberPath = "Name";
+            combo.FilterIdMemberPath = "Id";
             combo.ItemTemplate = DisplayMode switch
             {
                 ItemDisplayMode.ImageOnly => TryFindResource("RarityItemImageOnlyTemplate") as DataTemplate,

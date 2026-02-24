@@ -32,8 +32,8 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Border>
-            <TextBlock Text="{Binding Path=Id}" Margin="2,0" Width="20" DockPanel.Dock="Right" />
-            <TextBlock Text="{Binding Path=Name}" Margin="1,0"  />
+            <TextBlock Text="{Binding Path=Id, StringFormat='[{0}]'}" Margin="8,0,4,0" DockPanel.Dock="Right" Foreground="Gray" />
+            <TextBlock Text="{Binding Path=Name}" Margin="1,0" TextTrimming="CharacterEllipsis" />
         </DockPanel>
     </DataTemplate>
     <!-- Color-tinted item template for tile/platform/wall properties (FrameProperty, TileProperty, etc.) -->
@@ -43,16 +43,17 @@
             <Grid.Background>
                 <SolidColorBrush Color="{Binding Color, Converter={StaticResource TEditColorToMediaColorConverter}}" Opacity="0.35"/>
             </Grid.Background>
-            <StackPanel Orientation="Horizontal">
-                <Border BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" Margin="4,2,2,2">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Right" Text="{Binding Id, StringFormat='[{0}]'}" Margin="8,2,4,2" Foreground="Gray" VerticalAlignment="Center" />
+                <Border DockPanel.Dock="Left" BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" Margin="4,2,2,2">
                     <Rectangle Height="14" Width="14">
                         <Rectangle.Fill>
                             <SolidColorBrush Color="{Binding Color, Converter={StaticResource TEditColorToMediaColorConverter}}" />
                         </Rectangle.Fill>
                     </Rectangle>
                 </Border>
-                <TextBlock Text="{Binding Name}" Margin="4,2,4,2" VerticalAlignment="Center" />
-            </StackPanel>
+                <TextBlock Text="{Binding Name}" Margin="4,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+            </DockPanel>
         </Grid>
     </DataTemplate>
 

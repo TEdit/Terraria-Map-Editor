@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TEdit.Common.Geometry;
@@ -318,6 +319,136 @@ public class DrawApi
                 }
             }
         }
+    }
+
+    // ── Wire Routing ───────────────────────────────────────────────
+
+    /// <summary>
+    /// Route a single wire path from (x1,y1) to (x2,y2).
+    /// Uses the current draw.setWire() or draw.setTile() configuration.
+    /// </summary>
+    /// <param name="x1">Start X</param>
+    /// <param name="y1">Start Y</param>
+    /// <param name="x2">End X</param>
+    /// <param name="y2">End Y</param>
+    /// <param name="mode">Routing mode: '90' or '45' (default '90')</param>
+    /// <param name="direction">Direction: 'auto', 'h', or 'v' (default 'auto')</param>
+    /// <returns>Number of tiles placed</returns>
+    public int RouteWire(int x1, int y1, int x2, int y2, string mode = "90", string direction = "auto")
+    {
+        var start = new Vector2Int32(x1, y1);
+        var end = new Vector2Int32(x2, y2);
+        bool verticalFirst = ParseDirection(direction, start, end);
+        bool miter = ParseRoutingMode(mode);
+
+        var path = miter
+            ? WireRouter.RouteMiter(start, end, verticalFirst)
+            : WireRouter.Route90(start, end, verticalFirst);
+
+        return ApplyRoutedPath(path);
+    }
+
+    /// <summary>
+    /// Route a bus of parallel wires from (x1,y1) to (x2,y2).
+    /// Uses the current draw.setWire() or draw.setTile() configuration.
+    /// </summary>
+    /// <param name="wireCount">Number of parallel wires (auto-converts to brush size based on spacing)</param>
+    /// <param name="x1">Start X</param>
+    /// <param name="y1">Start Y</param>
+    /// <param name="x2">End X</param>
+    /// <param name="y2">End Y</param>
+    /// <param name="mode">Routing mode: '90' or '45' (default '90')</param>
+    /// <param name="direction">Direction: 'auto', 'h', or 'v' (default 'auto')</param>
+    /// <returns>Number of tiles placed</returns>
+    public int RouteBus(int wireCount, int x1, int y1, int x2, int y2, string mode = "90", string direction = "auto")
+    {
+        wireCount = Math.Max(1, wireCount);
+        var anchor = new Vector2Int32(x1, y1);
+        var cursor = new Vector2Int32(x2, y2);
+        bool verticalFirst = ParseDirection(direction, anchor, cursor);
+        bool miter = ParseRoutingMode(mode);
+
+        // Convert wire count to brush size: size = (wireCount - 1) * spacing + 1
+        int spacing = miter ? 3 : 2;
+        int brushSize = (wireCount - 1) * spacing + 1;
+
+        var path = miter
+            ? WireRouter.RouteBusMiter(anchor, cursor, brushSize, brushSize, verticalFirst)
+            : WireRouter.RouteBus90(anchor, cursor, brushSize, brushSize, verticalFirst);
+
+        return ApplyRoutedPath(path);
+    }
+
+    /// <summary>
+    /// Get the routed path coordinates without applying them.
+    /// Useful for previewing or custom processing.
+    /// </summary>
+    /// <param name="x1">Start X</param>
+    /// <param name="y1">Start Y</param>
+    /// <param name="x2">End X</param>
+    /// <param name="y2">End Y</param>
+    /// <param name="mode">Routing mode: '90' or '45' (default '90')</param>
+    /// <param name="direction">Direction: 'auto', 'h', or 'v' (default 'auto')</param>
+    /// <returns>List of {x, y} coordinate dictionaries</returns>
+    public List<Dictionary<string, int>> RouteWirePath(int x1, int y1, int x2, int y2, string mode = "90", string direction = "auto")
+    {
+        var start = new Vector2Int32(x1, y1);
+        var end = new Vector2Int32(x2, y2);
+        bool verticalFirst = ParseDirection(direction, start, end);
+        bool miter = ParseRoutingMode(mode);
+
+        var path = miter
+            ? WireRouter.RouteMiter(start, end, verticalFirst)
+            : WireRouter.Route90(start, end, verticalFirst);
+
+        return path.Select(p => new Dictionary<string, int> { { "x", p.X }, { "y", p.Y } }).ToList();
+    }
+
+    /// <summary>
+    /// Get the bus routed path coordinates without applying them.
+    /// </summary>
+    public List<Dictionary<string, int>> RouteBusPath(int wireCount, int x1, int y1, int x2, int y2, string mode = "90", string direction = "auto")
+    {
+        wireCount = Math.Max(1, wireCount);
+        var anchor = new Vector2Int32(x1, y1);
+        var cursor = new Vector2Int32(x2, y2);
+        bool verticalFirst = ParseDirection(direction, anchor, cursor);
+        bool miter = ParseRoutingMode(mode);
+
+        int spacing = miter ? 3 : 2;
+        int brushSize = (wireCount - 1) * spacing + 1;
+
+        var path = miter
+            ? WireRouter.RouteBusMiter(anchor, cursor, brushSize, brushSize, verticalFirst)
+            : WireRouter.RouteBus90(anchor, cursor, brushSize, brushSize, verticalFirst);
+
+        return path.Select(p => new Dictionary<string, int> { { "x", p.X }, { "y", p.Y } }).ToList();
+    }
+
+    private int ApplyRoutedPath(List<Vector2Int32> path)
+    {
+        ResetCheckTiles();
+        _editor.FillSolid(path);
+        return path.Count(p => _world.ValidTileLocation(p) && _selection.IsValid(p));
+    }
+
+    private static bool ParseDirection(string direction, Vector2Int32 start, Vector2Int32 end)
+    {
+        return direction?.ToLowerInvariant() switch
+        {
+            "h" or "horizontal" => false,
+            "v" or "vertical" => true,
+            _ => WireRouter.DetectVerticalFirst(start, end)
+        };
+    }
+
+    private static bool ParseRoutingMode(string mode)
+    {
+        return mode?.ToLowerInvariant() switch
+        {
+            "45" or "miter" => true,
+            _ => false
+        };
     }
 
     // ── Private Helpers ──────────────────────────────────────────────

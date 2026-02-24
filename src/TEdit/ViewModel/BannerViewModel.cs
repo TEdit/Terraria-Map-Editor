@@ -29,13 +29,13 @@ public partial class BannerViewModel : ReactiveObject
 
         this.WhenAnyValue(x => x.FilterText, x => x.SelectedCategory)
             .Throttle(TimeSpan.FromMilliseconds(200))
-            .ObserveOn(RxApp.MainThreadScheduler)
+            .ObserveOn(RxSchedulers.MainThreadScheduler)
             .Subscribe(_ => BannersView.Refresh());
 
         // Auto-populate banners when a world is opened
         _wvm.WhenAnyValue(x => x.CurrentWorld)
             .Where(w => w != null)
-            .ObserveOn(RxApp.MainThreadScheduler)
+            .ObserveOn(RxSchedulers.MainThreadScheduler)
             .Subscribe(_ => PopulateBanners());
     }
 
@@ -174,7 +174,6 @@ public partial class BannerViewModel : ReactiveObject
         }
         catch (Exception ex)
         {
-            ErrorLogging.LogException(ex);
             // Restore backup
             for (int i = 0; i < backup.Length && i < _wvm.CurrentWorld.ClaimableBanners.Count; i++)
             {
@@ -210,7 +209,6 @@ public partial class BannerViewModel : ReactiveObject
         }
         catch (Exception ex)
         {
-            ErrorLogging.LogException(ex);
             // Restore backup
             for (int i = 0; i < backup.Length && i < _wvm.CurrentWorld.ClaimableBanners.Count; i++)
             {
