@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -65,10 +66,21 @@ public partial class WorldRenderXna : UserControl
     private const float LayerWorldBorder = 1 - 0.17f;
     private const float LayerLocations = 1 - 0.20f;
     private const float LayerSelection = 1 - 0.25f;
+    private const float LayerPastePreview = 1 - 0.27f;
+    private const float LayerPasteBorder = 1 - 0.28f;
     private const float LayerTools = 1 - 0.30f;
     private const float LayerFindCrosshair = 1 - 0.35f;
 
     private Color _backgroundColor = Color.FromNonPremultiplied(32, 32, 32, 255);
+
+    // Shift+line preview cache (HQ brush preview debounce)
+    private Vector2Int32 _linePreviewCacheAnchor;
+    private Vector2Int32 _linePreviewCacheCursor;
+    private int _linePreviewCacheBrushGen = -1;
+    private readonly List<Vector2Int32> _linePreviewCache = new();
+    private readonly Stopwatch _linePreviewDebounce = new();
+    private const int LinePreviewDebounceMs = 250;
+
     private readonly GameTimer _gameTimer;
     private System.Timers.Timer _viewStateSaveTimer;
     private readonly WorldViewModel _wvm;
@@ -86,6 +98,9 @@ public partial class WorldRenderXna : UserControl
     private Texture2D _preview;
     private Dictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();
     private Texture2D _selectionTexture;
+    private Texture2D _pasteBorderH;   // horizontal dashed line (Nx1)
+    private Texture2D _pasteBorderV;   // vertical dashed line   (1xN)
+    private Texture2D _pasteHandleTexture;
     private RenderTarget2D _buffRadiiTarget;
     private Texture2D[] _filterOverlayTileMap;
     private Texture2D _filterDarkenTexture;
@@ -690,6 +705,13 @@ public partial class WorldRenderXna : UserControl
         LoadResourceTextures(e);
 
         _selectionTexture.SetData(new[] { Color.FromNonPremultiplied(0, 128, 255, 128) }, 0, 1);
+
+        // Paste layer textures
+        _pasteBorderH = CreateDashedTextureH(e.GraphicsDevice, 8, Color.White, Color.Black);
+        _pasteBorderV = CreateDashedTextureV(e.GraphicsDevice, 8, Color.White, Color.Black);
+        _pasteHandleTexture = new Texture2D(e.GraphicsDevice, 1, 1);
+        _pasteHandleTexture.SetData(new[] { Color.White });
+
         // Start the Game Timer
         _gameTimer.Start();
     }
@@ -2713,6 +2735,9 @@ public partial class WorldRenderXna : UserControl
 
         if (_wvm.Selection.IsActive)
             DrawSelection();
+
+        if (_wvm.ActiveTool.IsFloatingPaste)
+            DrawPasteLayer();
 
         DrawToolPreview();
 
@@ -6512,8 +6537,97 @@ public partial class WorldRenderXna : UserControl
             return;
         }
 
+        // Shift+line preview: computed at draw time from anchor + cursor
+        if (_wvm.ActiveTool.HasLinePreviewAnchor
+            && (BaseTool.GetModifiers() & System.Windows.Input.ModifierKeys.Shift) != 0)
+        {
+            var whiteTex = _textureDictionary.WhitePixelTexture;
+            if (whiteTex != null)
+            {
+                var previewColor = Color.FromNonPremultiplied(0, 90, 255, 127);
+                var anchor = _wvm.ActiveTool.LinePreviewAnchor;
+                var cursor = _wvm.MouseOverTile.MouseState.Location;
+
+                bool isBrush = _wvm.ActiveTool.ToolType == ToolType.Brush;
+                bool highQuality = isBrush && Configuration.UserSettingsService.Current.HighQualityBrushPreview;
+
+                if (highQuality)
+                {
+                    // Check if inputs changed since last computation
+                    int brushGen = _wvm.Brush.Width * 1000000 + _wvm.Brush.Height * 1000
+                        + (int)_wvm.Brush.Shape;
+                    bool inputsChanged = anchor.X != _linePreviewCacheAnchor.X
+                        || anchor.Y != _linePreviewCacheAnchor.Y
+                        || cursor.X != _linePreviewCacheCursor.X
+                        || cursor.Y != _linePreviewCacheCursor.Y
+                        || brushGen != _linePreviewCacheBrushGen;
+
+                    if (inputsChanged)
+                    {
+                        // Inputs changed — restart debounce timer
+                        _linePreviewCacheAnchor = anchor;
+                        _linePreviewCacheCursor = cursor;
+                        _linePreviewCacheBrushGen = brushGen;
+                        _linePreviewDebounce.Restart();
+                    }
+
+                    // Recompute when debounce expires or cache is empty
+                    if (_linePreviewDebounce.ElapsedMilliseconds >= LinePreviewDebounceMs
+                        || _linePreviewCache.Count == 0)
+                    {
+                        _linePreviewCache.Clear();
+                        var stampBuf = new List<Vector2Int32>();
+                        var dedupe = new HashSet<Vector2Int32>();
+                        foreach (var center in Shape.DrawLineTool(anchor, cursor))
+                        {
+                            _wvm.Brush.StampOffsets(center, stampBuf);
+                            foreach (var p in stampBuf)
+                                dedupe.Add(p);
+                        }
+                        _linePreviewCache.AddRange(dedupe);
+                        _linePreviewDebounce.Stop();
+                    }
+
+                    // Draw cached preview
+                    for (int i = 0; i < _linePreviewCache.Count; i++)
+                    {
+                        var tile = _linePreviewCache[i];
+                        var pos = new Vector2(
+                            (_scrollPosition.X + tile.X) * _zoom,
+                            (_scrollPosition.Y + tile.Y) * _zoom);
+                        _spriteBatch.Draw(whiteTex, pos, null, previewColor,
+                            0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                    }
+                }
+                else
+                {
+                    // Simple Bresenham line — cheap, no debounce needed
+                    foreach (var tile in Shape.DrawLineTool(anchor, cursor))
+                    {
+                        var pos = new Vector2(
+                            (_scrollPosition.X + tile.X) * _zoom,
+                            (_scrollPosition.Y + tile.Y) * _zoom);
+                        _spriteBatch.Draw(whiteTex, pos, null, previewColor,
+                            0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                    }
+                }
+            }
+            // Fall through to also render cursor preview at tip
+        }
+        else
+        {
+            // Shift released or no anchor — clear cache
+            if (_linePreviewCache.Count > 0)
+                _linePreviewCache.Clear();
+        }
+
         if (_preview == null)
             return;
+
+        // Skip cursor-follow preview when paste tool is in floating state (DrawPasteLayer handles it)
+        if (_wvm.ActiveTool.IsFloatingPaste)
+            return;
+
         Vector2 position;
 
         if (_wvm.ActiveTool.Name == "Paste")
@@ -6893,6 +7007,117 @@ public partial class WorldRenderXna : UserControl
         }
     }
 
+    private static Texture2D CreateDashedTextureH(GraphicsDevice device, int dashLength, Color color1, Color color2)
+    {
+        int w = dashLength * 2;
+        var pixels = new Color[w];
+        for (int i = 0; i < w; i++)
+            pixels[i] = i < dashLength ? color1 : color2;
+        var tex = new Texture2D(device, w, 1);
+        tex.SetData(pixels);
+        return tex;
+    }
+
+    private static Texture2D CreateDashedTextureV(GraphicsDevice device, int dashLength, Color color1, Color color2)
+    {
+        int h = dashLength * 2;
+        var pixels = new Color[h];
+        for (int i = 0; i < h; i++)
+            pixels[i] = i < dashLength ? color1 : color2;
+        var tex = new Texture2D(device, 1, h);
+        tex.SetData(pixels);
+        return tex;
+    }
+
+    private void DrawPasteLayer()
+    {
+        var tool = _wvm.ActiveTool;
+        if (!tool.IsFloatingPaste) return;
+
+        var anchor = tool.FloatingPasteAnchor;
+        var size = tool.FloatingPasteSize;
+        if (size.X <= 0 || size.Y <= 0) return;
+
+        // Draw the preview image at the floating anchor position
+        if (_preview != null)
+        {
+            var pos = new Vector2(
+                (_scrollPosition.X + anchor.X) * _zoom,
+                (_scrollPosition.Y + anchor.Y) * _zoom);
+
+            _spriteBatch.Draw(
+                _preview,
+                pos,
+                null,
+                Color.White,
+                0,
+                Vector2.Zero,
+                _zoom * (float)tool.PreviewScale,
+                SpriteEffects.None,
+                LayerPastePreview);
+        }
+
+        // Border and handle geometry
+        float left = (_scrollPosition.X + anchor.X) * _zoom;
+        float top = (_scrollPosition.Y + anchor.Y) * _zoom;
+        float right = (_scrollPosition.X + anchor.X + size.X) * _zoom;
+        float bottom = (_scrollPosition.Y + anchor.Y + size.Y) * _zoom;
+        float width = right - left;
+        float height = bottom - top;
+        float midX = (left + right) * 0.5f;
+        float midY = (top + bottom) * 0.5f;
+        float borderThickness = Math.Max(1f, _zoom * 0.25f);
+
+        var borderColor = Color.White;
+
+        // Dashed border edges
+        // Horizontal: stretch _pasteBorderH (Nx1) along width, scale height by borderThickness
+        _spriteBatch.Draw(_pasteBorderH, new Vector2(left, top), null, borderColor, 0,
+            Vector2.Zero, new Vector2(width / _pasteBorderH.Width, borderThickness),
+            SpriteEffects.None, LayerPasteBorder);
+        _spriteBatch.Draw(_pasteBorderH, new Vector2(left, bottom - borderThickness), null, borderColor, 0,
+            Vector2.Zero, new Vector2(width / _pasteBorderH.Width, borderThickness),
+            SpriteEffects.None, LayerPasteBorder);
+        // Vertical: stretch _pasteBorderV (1xN) along height, scale width by borderThickness
+        _spriteBatch.Draw(_pasteBorderV, new Vector2(left, top), null, borderColor, 0,
+            Vector2.Zero, new Vector2(borderThickness, height / _pasteBorderV.Height),
+            SpriteEffects.None, LayerPasteBorder);
+        _spriteBatch.Draw(_pasteBorderV, new Vector2(right - borderThickness, top), null, borderColor, 0,
+            Vector2.Zero, new Vector2(borderThickness, height / _pasteBorderV.Height),
+            SpriteEffects.None, LayerPasteBorder);
+
+        // Handles centered on edge pixels
+        float handleSize = Math.Max(4f, _zoom * 0.5f);
+        float halfHandle = handleSize * 0.5f;
+        var handleColor = Color.FromNonPremultiplied(255, 255, 255, 200);
+        var handleOutline = Color.FromNonPremultiplied(0, 0, 0, 200);
+
+        // Edge midpoint handles
+        DrawHandle(midX - halfHandle, top - halfHandle, handleSize, handleColor, handleOutline);       // Top center
+        DrawHandle(midX - halfHandle, bottom - halfHandle, handleSize, handleColor, handleOutline);    // Bottom center
+        DrawHandle(left - halfHandle, midY - halfHandle, handleSize, handleColor, handleOutline);      // Left center
+        DrawHandle(right - halfHandle, midY - halfHandle, handleSize, handleColor, handleOutline);     // Right center
+
+        // Corner handles
+        DrawHandle(left - halfHandle, top - halfHandle, handleSize, handleColor, handleOutline);       // Top-left
+        DrawHandle(right - halfHandle, top - halfHandle, handleSize, handleColor, handleOutline);      // Top-right
+        DrawHandle(left - halfHandle, bottom - halfHandle, handleSize, handleColor, handleOutline);    // Bottom-left
+        DrawHandle(right - halfHandle, bottom - halfHandle, handleSize, handleColor, handleOutline);   // Bottom-right
+
+    }
+
+    private void DrawHandle(float x, float y, float size, Color fillColor, Color outlineColor)
+    {
+        // Outline
+        _spriteBatch.Draw(_pasteHandleTexture,
+            new Vector2(x - 1f, y - 1f), null, outlineColor, 0, Vector2.Zero,
+            new Vector2(size + 2f, size + 2f), SpriteEffects.None, LayerPasteBorder - .01f);
+        // Fill
+        _spriteBatch.Draw(_pasteHandleTexture,
+            new Vector2(x, y), null, fillColor, 0, Vector2.Zero,
+            new Vector2(size, size), SpriteEffects.None, LayerPasteBorder - .02f);
+    }
+
     private void DrawWorldBorder()
     {
         if (_wvm.CurrentWorld == null) return;
@@ -7048,6 +7273,7 @@ public partial class WorldRenderXna : UserControl
         _mousePosition = PointToVector2(e.Position);
         if (_wvm.CurrentWorld != null)
             _wvm.MouseMoveTile(GetTileMouseState(e));
+        UpdateCursor();
     }
 
     private void xnaViewport_HwndLButtonDown(object sender, HwndMouseEventArgs e)
@@ -7148,11 +7374,13 @@ public partial class WorldRenderXna : UserControl
     {
         _middleClickPoint = PointToVector2(e.Position);
         _isMiddleMouseDown = true;
+        UpdateCursor();
     }
 
     private void xnaViewport_HwndMButtonUp(object sender, HwndMouseEventArgs e)
     {
         _isMiddleMouseDown = false;
+        UpdateCursor();
     }
 
 
@@ -7161,11 +7389,27 @@ public partial class WorldRenderXna : UserControl
         if (_isMiddleMouseDown || _keyboardPan)
         {
             xnaViewport.SetCursor(Cursors.SizeAll);
+            return;
         }
-        else
+
+        if (_wvm?.ActiveTool != null && _wvm.CurrentWorld != null)
         {
-            xnaViewport.SetCursor(Cursors.Arrow);
+            var tilePos = _wvm.MouseOverTile.MouseState.Location;
+            var hint = _wvm.ActiveTool.GetCursorHint(tilePos);
+            var cursor = hint switch
+            {
+                TEdit.Editor.Tools.CursorHint.Move => Cursors.SizeAll,
+                TEdit.Editor.Tools.CursorHint.SizeNS => Cursors.SizeNS,
+                TEdit.Editor.Tools.CursorHint.SizeWE => Cursors.SizeWE,
+                TEdit.Editor.Tools.CursorHint.SizeNWSE => Cursors.SizeNWSE,
+                TEdit.Editor.Tools.CursorHint.SizeNESW => Cursors.SizeNESW,
+                _ => Cursors.Arrow,
+            };
+            xnaViewport.SetCursor(cursor);
+            return;
         }
+
+        xnaViewport.SetCursor(Cursors.Arrow);
     }
 
     public void SetPanMode(bool value)

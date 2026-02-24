@@ -153,6 +153,52 @@ public class InputService
             DefaultBindings = { InputBinding.Keyboard(Key.Y, ModifierKeys.Control) }
         });
 
+        // === Paste Layer ===
+        Register(new InputAction
+        {
+            Id = "paste.accept",
+            Name = "Accept Paste",
+            Category = InputCategory.Editing,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Enter) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "paste.rotate.cw",
+            Name = "Rotate Paste CW",
+            Category = InputCategory.Editing,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Q, ModifierKeys.Control) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "paste.rotate.ccw",
+            Name = "Rotate Paste CCW",
+            Category = InputCategory.Editing,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.Q, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "paste.flip.h",
+            Name = "Flip Paste Horizontal",
+            Category = InputCategory.Editing,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.H, ModifierKeys.Control) }
+        });
+
+        Register(new InputAction
+        {
+            Id = "paste.flip.v",
+            Name = "Flip Paste Vertical",
+            Category = InputCategory.Editing,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.H, ModifierKeys.Control | ModifierKeys.Shift) }
+        });
+
         // === Selection ===
         Register(new InputAction
         {

@@ -19,6 +19,7 @@ public sealed class PencilTool : BaseTool
     private Vector2Int32 _anchorPoint;
     private Vector2Int32 _startPoint;
     private Vector2Int32 _endPoint;
+    private bool _hasLastClickPosition;
     private Vector2Int32 _lineMouseDownPos;
     private bool _lineLastWasClick;
 
@@ -52,6 +53,9 @@ public sealed class PencilTool : BaseTool
 
     public override IReadOnlyList<Vector2Int32> CadPreviewPath => _cadPreviewPath;
     public override bool HasCadPreview => _isCadWireMode && _isCadAnchored && _cadPreviewPath.Count > 0;
+
+    public override Vector2Int32 LinePreviewAnchor => _endPoint;
+    public override bool HasLinePreviewAnchor => _hasLastClickPosition;
 
     /// <summary>
     /// Cycle wire mode: Off → Wire90 → Wire45 → Off (normal) → Wire90...
@@ -189,6 +193,7 @@ public sealed class PencilTool : BaseTool
         _isConstraining = originalActions.Contains("editor.draw.constrain");
         _isLineMode = originalActions.Contains("editor.draw.line");
 
+        _hasLastClickPosition = true;
         ProcessDraw(e.Location);
     }
 

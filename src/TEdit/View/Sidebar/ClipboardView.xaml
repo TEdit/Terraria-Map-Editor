@@ -13,22 +13,22 @@
                 <TextBlock Text="{Binding Path=Buffer.Name}" HorizontalAlignment="Center" Margin="1" Foreground="{DynamicResource TextBrush}"/>
                 <Image Source="{Binding Path=Preview}" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" MaxHeight="100" />
                 <UniformGrid Columns="3">
-          <Button ToolTip="{x:Static p:Language.tool_clipboard_paste}" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardSetActiveCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">
+          <Button ToolTip="{x:Static p:Language.tool_clipboard_paste}" HorizontalAlignment="Stretch" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardSetActiveCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">
             <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="20" />
           </Button>
-          <Button ToolTip="{x:Static p:Language.tool_clipboard_export}" Margin="1" Padding="3" Command="{Binding DataContext.ExportSchematicCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">
+          <Button ToolTip="{x:Static p:Language.tool_clipboard_export}" HorizontalAlignment="Stretch" Margin="1" Padding="3" Command="{Binding DataContext.ExportSchematicCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">
             <ui:SymbolIcon Symbol="Save20" FontSize="20" />
           </Button>
-          <Button ToolTip="{x:Static p:Language.tool_clipboard_remove}" Margin="1" Padding="3" Command="{Binding DataContext.RemoveSchematicCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">
+          <Button ToolTip="{x:Static p:Language.tool_clipboard_remove}" HorizontalAlignment="Stretch" Margin="1" Padding="3" Command="{Binding DataContext.RemoveSchematicCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">
             <ui:SymbolIcon Symbol="Delete20" FontSize="20" />
           </Button>
-          <Button ToolTip="{x:Static p:Language.tool_clipboard_rotate}" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardRotateCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" >
+          <Button ToolTip="{x:Static p:Language.tool_clipboard_rotate}" HorizontalAlignment="Stretch" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardRotateCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" >
             <ui:SymbolIcon Symbol="RotateRight20" FontSize="20" />
           </Button>
-          <Button ToolTip="{x:Static p:Language.tool_clipboard_flipx}" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardFlipXCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" >
+          <Button ToolTip="{x:Static p:Language.tool_clipboard_flipx}" HorizontalAlignment="Stretch" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardFlipXCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" >
             <ui:SymbolIcon Symbol="FlipHorizontal20" FontSize="20" />
           </Button>
-          <Button ToolTip="{x:Static p:Language.tool_clipboard_flipy}" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardFlipYCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" >
+          <Button ToolTip="{x:Static p:Language.tool_clipboard_flipy}" HorizontalAlignment="Stretch" Margin="1" Padding="3" Command="{Binding DataContext.ClipboardFlipYCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" >
             <ui:SymbolIcon Symbol="FlipVertical20" FontSize="20" />
           </Button>
                 </UniformGrid>

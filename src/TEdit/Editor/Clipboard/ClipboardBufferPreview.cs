@@ -12,6 +12,7 @@ public class ClipboardBufferPreview
     }
 
     public ClipboardBuffer Buffer { get; }
+    public string Name => Buffer?.Name;
     public WriteableBitmap Preview { get; }
     public double PreviewScale { get; }
 }

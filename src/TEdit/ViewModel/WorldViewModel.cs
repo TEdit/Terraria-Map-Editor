@@ -58,6 +58,11 @@ public partial class WorldViewModel : ReactiveObject
     public int CheckTileGeneration = 1;
     private ITool _activeTool;
     [Reactive] private string _drawingModeText = "";
+    [Reactive] private bool _isPasteFloating;
+    [Reactive] private int _pasteAnchorX;
+    [Reactive] private int _pasteAnchorY;
+    [Reactive] private int _pasteSizeW;
+    [Reactive] private int _pasteSizeH;
     private UpdateMode _updateMode;
     private bool _isUpdateAvailable;
     private string _currentFile;
@@ -181,6 +186,22 @@ public partial class WorldViewModel : ReactiveObject
         World.ProgressChanged += OnProgressChanged;
         Brush.BrushChanged += OnPreviewChanged;
         UpdateTitle();
+
+        // Push paste position edits back to PasteTool
+        this.WhenAnyValue(x => x.PasteAnchorX, x => x.PasteAnchorY)
+            .Subscribe(t =>
+            {
+                if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+                    pt.SetAnchor(t.Item1, t.Item2);
+            });
+
+        // Push paste size edits back to PasteTool
+        this.WhenAnyValue(x => x.PasteSizeW, x => x.PasteSizeH)
+            .Subscribe(t =>
+            {
+                if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+                    pt.ResizeFromUI(t.Item1, t.Item2);
+            });
 
         // Build sprites from tile config (Frames data), not from textures
         BuildSpritesFromConfig();
@@ -1833,6 +1854,184 @@ public partial class WorldViewModel : ReactiveObject
         get { return _activeTool; }
         set { this.RaiseAndSetIfChanged(ref _activeTool, value); }
     }
+
+    #region Wire Mode UI Properties
+
+    public bool IsWireModeOff
+    {
+        get
+        {
+            if (ActiveTool is PencilTool pt) return !pt.IsCadWireMode;
+            if (ActiveTool is BrushToolBase bt) return !bt.IsCadWireMode;
+            return true;
+        }
+    }
+
+    public bool IsWireMode90
+    {
+        get
+        {
+            if (ActiveTool is PencilTool pt) return pt.IsCadWireMode && pt.CadRoutingMode == WireRoutingMode.Elbow90;
+            if (ActiveTool is BrushToolBase bt) return bt.IsCadWireMode && bt.CadRoutingMode == WireRoutingMode.Elbow90;
+            return false;
+        }
+    }
+
+    public bool IsWireMode45
+    {
+        get
+        {
+            if (ActiveTool is PencilTool pt) return pt.IsCadWireMode && pt.CadRoutingMode == WireRoutingMode.Miter45;
+            if (ActiveTool is BrushToolBase bt) return bt.IsCadWireMode && bt.CadRoutingMode == WireRoutingMode.Miter45;
+            return false;
+        }
+    }
+
+    public bool IsWireDirectionAuto
+    {
+        get
+        {
+            if (ActiveTool is PencilTool pt) return pt.CadVerticalFirstOverride == null;
+            if (ActiveTool is BrushToolBase bt) return bt.CadVerticalFirstOverride == null;
+            return true;
+        }
+    }
+
+    public bool IsWireDirectionH
+    {
+        get
+        {
+            if (ActiveTool is PencilTool pt) return pt.CadVerticalFirstOverride == false;
+            if (ActiveTool is BrushToolBase bt) return bt.CadVerticalFirstOverride == false;
+            return false;
+        }
+    }
+
+    public bool IsWireDirectionV
+    {
+        get
+        {
+            if (ActiveTool is PencilTool pt) return pt.CadVerticalFirstOverride == true;
+            if (ActiveTool is BrushToolBase bt) return bt.CadVerticalFirstOverride == true;
+            return false;
+        }
+    }
+
+    public string WireModeTooltip
+    {
+        get
+        {
+            var bindings = App.Input.Registry.GetBindings("editor.wire.modecycle");
+            return bindings.Count > 0 ? $"Wire Mode ({bindings[0]})" : "Wire Mode";
+        }
+    }
+
+    public string WireDirectionTooltip
+    {
+        get
+        {
+            var bindings = App.Input.Registry.GetBindings("editor.wire.togglehv");
+            return bindings.Count > 0 ? $"Wire Direction ({bindings[0]})" : "Wire Direction";
+        }
+    }
+
+    public void SetWireModeOff()
+    {
+        if (ActiveTool is PencilTool pt) pt.ExitCadWireMode();
+        else if (ActiveTool is BrushToolBase bt) bt.ExitCadWireMode();
+        NotifyWireModeChanged();
+    }
+
+    public void SetWireMode90()
+    {
+        bool? vf = null;
+        if (ActiveTool is PencilTool pt) { vf = pt.CadVerticalFirstOverride; pt.SetWireState(true, WireRoutingMode.Elbow90, vf); }
+        else if (ActiveTool is BrushToolBase bt) { vf = bt.CadVerticalFirstOverride; bt.SetWireState(true, WireRoutingMode.Elbow90, vf); }
+        NotifyWireModeChanged();
+    }
+
+    public void SetWireMode45()
+    {
+        bool? vf = null;
+        if (ActiveTool is PencilTool pt) { vf = pt.CadVerticalFirstOverride; pt.SetWireState(true, WireRoutingMode.Miter45, vf); }
+        else if (ActiveTool is BrushToolBase bt) { vf = bt.CadVerticalFirstOverride; bt.SetWireState(true, WireRoutingMode.Miter45, vf); }
+        NotifyWireModeChanged();
+    }
+
+    public void SetWireDirectionAuto()
+    {
+        if (ActiveTool is PencilTool pt) pt.SetWireState(pt.IsCadWireMode, pt.CadRoutingMode, null);
+        else if (ActiveTool is BrushToolBase bt) bt.SetWireState(bt.IsCadWireMode, bt.CadRoutingMode, null);
+        NotifyWireModeChanged();
+    }
+
+    public void SetWireDirectionH()
+    {
+        if (ActiveTool is PencilTool pt) pt.SetWireState(pt.IsCadWireMode, pt.CadRoutingMode, false);
+        else if (ActiveTool is BrushToolBase bt) bt.SetWireState(bt.IsCadWireMode, bt.CadRoutingMode, false);
+        NotifyWireModeChanged();
+    }
+
+    public void SetWireDirectionV()
+    {
+        if (ActiveTool is PencilTool pt) pt.SetWireState(pt.IsCadWireMode, pt.CadRoutingMode, true);
+        else if (ActiveTool is BrushToolBase bt) bt.SetWireState(bt.IsCadWireMode, bt.CadRoutingMode, true);
+        NotifyWireModeChanged();
+    }
+
+    public void NotifyWireModeChanged()
+    {
+        this.RaisePropertyChanged(nameof(IsWireModeOff));
+        this.RaisePropertyChanged(nameof(IsWireMode90));
+        this.RaisePropertyChanged(nameof(IsWireMode45));
+        this.RaisePropertyChanged(nameof(IsWireDirectionAuto));
+        this.RaisePropertyChanged(nameof(IsWireDirectionH));
+        this.RaisePropertyChanged(nameof(IsWireDirectionV));
+        UpdateWireDrawingModeText();
+    }
+
+    private void UpdateWireDrawingModeText()
+    {
+        WireRoutingMode? routingMode = null;
+        bool? verticalFirstOverride = null;
+        string toolLabel = null;
+
+        if (ActiveTool is PencilTool pt && pt.IsCadWireMode)
+        {
+            routingMode = pt.CadRoutingMode;
+            verticalFirstOverride = pt.CadVerticalFirstOverride;
+            toolLabel = "";
+        }
+        else if (ActiveTool is BrushToolBase bt && bt.IsCadWireMode)
+        {
+            routingMode = bt.CadRoutingMode;
+            verticalFirstOverride = bt.CadVerticalFirstOverride;
+            toolLabel = "Bus ";
+        }
+
+        if (routingMode != null)
+        {
+            var mode = routingMode switch
+            {
+                WireRoutingMode.Elbow90 => Properties.Language.drawing_mode_wire90,
+                WireRoutingMode.Miter45 => Properties.Language.drawing_mode_wire45,
+                _ => "Wire"
+            };
+            var dir = verticalFirstOverride switch
+            {
+                false => " \u2192",  // → horizontal-first
+                true => " \u2193",   // ↓ vertical-first
+                null => " \u2194"    // ↔ auto-detect
+            };
+            DrawingModeText = toolLabel + mode + dir;
+        }
+        else
+        {
+            DrawingModeText = "";
+        }
+    }
+
+    #endregion
 
     public PixelMapManager PixelMap
     {

@@ -411,6 +411,44 @@ public partial class MainWindow : FluentWindow
                     ((ICommand)_vm.RedoCommand).Execute(null);
                 return true;
 
+            // Paste layer actions
+            case "paste.accept":
+                if (_vm.ActiveTool is PasteTool acceptPt && acceptPt.IsFloatingPaste)
+                {
+                    acceptPt.AcceptPaste();
+                    SetActiveTool("Arrow");
+                    return true;
+                }
+                return false;
+            case "paste.rotate.cw":
+                if (_vm.ActiveTool is PasteTool rotateCwPt && rotateCwPt.IsFloatingPaste)
+                {
+                    rotateCwPt.RotateCW();
+                    return true;
+                }
+                return false;
+            case "paste.rotate.ccw":
+                if (_vm.ActiveTool is PasteTool rotateCcwPt && rotateCcwPt.IsFloatingPaste)
+                {
+                    rotateCcwPt.RotateCCW();
+                    return true;
+                }
+                return false;
+            case "paste.flip.h":
+                if (_vm.ActiveTool is PasteTool flipHPt && flipHPt.IsFloatingPaste)
+                {
+                    flipHPt.FlipH();
+                    return true;
+                }
+                return false;
+            case "paste.flip.v":
+                if (_vm.ActiveTool is PasteTool flipVPt && flipVPt.IsFloatingPaste)
+                {
+                    flipVPt.FlipV();
+                    return true;
+                }
+                return false;
+
             // Selection
             case "selection.all":
                 if (_vm.CurrentWorld != null)
@@ -552,10 +590,20 @@ public partial class MainWindow : FluentWindow
                 }
                 if (_vm.ActiveTool != null)
                 {
-                    if (_vm.ActiveTool.Name == "Paste")
+                    if (_vm.ActiveTool is PasteTool escapePt && escapePt.IsFloatingPaste)
+                    {
+                        escapePt.CancelPaste();
+                        _vm.Clipboard.Buffer = null;
                         SetActiveTool("Arrow");
+                    }
+                    else if (_vm.ActiveTool.Name == "Paste")
+                    {
+                        SetActiveTool("Arrow");
+                    }
                     else
+                    {
                         _vm.Selection.IsActive = false;
+                    }
                 }
                 return true;
 
@@ -602,12 +650,14 @@ public partial class MainWindow : FluentWindow
                 {
                     modeCyclePt.CycleWireMode();
                     UpdateDrawingModeText();
+                    _vm.NotifyWireModeChanged();
                     return true;
                 }
                 if (_vm.ActiveTool is BrushToolBase modeCycleBt)
                 {
                     modeCycleBt.CycleWireMode();
                     UpdateDrawingModeText();
+                    _vm.NotifyWireModeChanged();
                     return true;
                 }
                 return false;
@@ -616,12 +666,14 @@ public partial class MainWindow : FluentWindow
                 {
                     hvTogglePt.ToggleVerticalFirst();
                     UpdateDrawingModeText();
+                    _vm.NotifyWireModeChanged();
                     return true;
                 }
                 if (_vm.ActiveTool is BrushToolBase hvToggleBt && hvToggleBt.IsCadWireMode)
                 {
                     hvToggleBt.ToggleVerticalFirst();
                     UpdateDrawingModeText();
+                    _vm.NotifyWireModeChanged();
                     return true;
                 }
                 return false;
