@@ -56,6 +56,11 @@ public partial class WorldViewModel : ReactiveObject
     public int CheckTileGeneration = 1;
     private ITool _activeTool;
     [Reactive] private string _drawingModeText = "";
+    [Reactive] private bool _isPasteFloating;
+    [Reactive] private int _pasteAnchorX;
+    [Reactive] private int _pasteAnchorY;
+    [Reactive] private int _pasteSizeW;
+    [Reactive] private int _pasteSizeH;
     private UpdateMode _updateMode;
     private bool _isUpdateAvailable;
     private string _currentFile;
@@ -177,6 +182,14 @@ public partial class WorldViewModel : ReactiveObject
         World.ProgressChanged += OnProgressChanged;
         Brush.BrushChanged += OnPreviewChanged;
         UpdateTitle();
+
+        // Push paste position edits back to PasteTool
+        this.WhenAnyValue(x => x.PasteAnchorX, x => x.PasteAnchorY)
+            .Subscribe(t =>
+            {
+                if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+                    pt.SetAnchor(t.Item1, t.Item2);
+            });
 
         // Build sprites from tile config (Frames data), not from textures
         BuildSpritesFromConfig();

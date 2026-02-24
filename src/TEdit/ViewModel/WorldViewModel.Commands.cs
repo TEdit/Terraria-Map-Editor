@@ -522,6 +522,57 @@ public partial class WorldViewModel
         }
     }
 
+    #region Paste Layer
+
+    [ReactiveCommand]
+    private void PasteAccept()
+    {
+        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+            pt.AcceptPaste();
+    }
+
+    [ReactiveCommand]
+    private void PasteCancel()
+    {
+        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+        {
+            pt.CancelPaste();
+            Clipboard.Buffer = null;
+            var arrowTool = Tools.FirstOrDefault(t => t.Name == "Arrow");
+            if (arrowTool != null) SetActiveTool(arrowTool);
+        }
+    }
+
+    [ReactiveCommand]
+    private void PasteRotateCW()
+    {
+        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+            pt.RotateCW();
+    }
+
+    [ReactiveCommand]
+    private void PasteRotateCCW()
+    {
+        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+            pt.RotateCCW();
+    }
+
+    [ReactiveCommand]
+    private void PasteFlipH()
+    {
+        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+            pt.FlipH();
+    }
+
+    [ReactiveCommand]
+    private void PasteFlipV()
+    {
+        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+            pt.FlipV();
+    }
+
+    #endregion
+
     #region Clipboard
 
     [ReactiveCommand]

@@ -101,6 +101,12 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     public virtual Vector2Int32 LinePreviewAnchor => default;
     public virtual bool HasLinePreviewAnchor => false;
 
+    public virtual bool IsFloatingPaste => false;
+    public virtual Vector2Int32 FloatingPasteAnchor => default;
+    public virtual Vector2Int32 FloatingPasteSize => default;
+    public virtual void AcceptPaste() { }
+    public virtual void CancelPaste() { }
+
     #endregion
 
     #region Input Helpers

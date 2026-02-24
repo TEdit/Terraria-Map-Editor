@@ -37,4 +37,19 @@ public interface ITool
 
     /// <summary>Whether a valid anchor exists for shift+line preview.</summary>
     bool HasLinePreviewAnchor { get; }
+
+    /// <summary>Whether a floating paste layer is active and should be rendered.</summary>
+    bool IsFloatingPaste { get; }
+
+    /// <summary>Top-left world tile coordinate of the floating paste layer.</summary>
+    Vector2Int32 FloatingPasteAnchor { get; }
+
+    /// <summary>Size of the floating paste layer in tiles.</summary>
+    Vector2Int32 FloatingPasteSize { get; }
+
+    /// <summary>Commits the floating paste layer to the world.</summary>
+    void AcceptPaste();
+
+    /// <summary>Discards the floating paste layer without modifying the world.</summary>
+    void CancelPaste();
 }

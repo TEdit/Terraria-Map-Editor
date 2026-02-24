@@ -97,11 +97,15 @@ public partial class ClipboardManager : ReactiveObject
     public void PasteBufferIntoWorld(World world, Vector2Int32 anchor)
     {
         if (Buffer == null) return;
+        PasteBufferIntoWorld(world, anchor, Buffer.Buffer);
+    }
+
+    public void PasteBufferIntoWorld(World world, Vector2Int32 anchor, ClipboardBuffer buffer)
+    {
         if (!PasteTiles && !PasteLiquids && !PasteWalls && !PasteWires && !PasteSprites) return;
 
         _selection.IsActive = false; // clear selection when pasting to prevent "unable to use pencil" issue
 
-        ClipboardBuffer buffer = Buffer.Buffer;
         var pasteOptions = new PasteOptions
         {
             PasteEmpty = PasteEmpty,

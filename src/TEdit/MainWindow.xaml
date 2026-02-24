@@ -355,6 +355,21 @@
                                 </Style>
                             </View:MorphBiomeView.Style>
                         </View:MorphBiomeView>
+
+                        <!-- Paste Layer Toolbar -->
+                        <View:PasteLayerView>
+                            <View:PasteLayerView.Style>
+                                <Style TargetType="{x:Type View:PasteLayerView}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsPasteFloating}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </View:PasteLayerView.Style>
+                        </View:PasteLayerView>
+
                     </StackPanel>
                 </ScrollViewer>
             </DockPanel>

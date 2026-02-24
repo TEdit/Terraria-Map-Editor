@@ -345,6 +345,20 @@ public partial class ClipboardBuffer : ITileData
         }
     }
 
+    public ClipboardBuffer Clone()
+    {
+        var clone = new ClipboardBuffer(Size, tileFrameImportant: TileFrameImportant);
+        clone.Name = Name;
+        clone.RenderScale = RenderScale;
+        for (int x = 0; x < Size.X; x++)
+            for (int y = 0; y < Size.Y; y++)
+                clone.Tiles[x, y] = (Tile)Tiles[x, y].Clone();
+        foreach (var c in Chests) clone.Chests.Add(c.Copy());
+        foreach (var s in Signs) clone.Signs.Add(s.Copy());
+        foreach (var te in TileEntities) clone.TileEntities.Add(te.Copy());
+        return clone;
+    }
+
     public ClipboardBuffer FlipX() => Flip(this, true, false);
     public ClipboardBuffer FlipY() => Flip(this, false, false);
     public ClipboardBuffer Rotate() => Flip(this, false, true);

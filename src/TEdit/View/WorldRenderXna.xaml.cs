@@ -66,6 +66,8 @@ public partial class WorldRenderXna : UserControl
     private const float LayerWorldBorder = 1 - 0.17f;
     private const float LayerLocations = 1 - 0.20f;
     private const float LayerSelection = 1 - 0.25f;
+    private const float LayerPastePreview = 1 - 0.27f;
+    private const float LayerPasteBorder = 1 - 0.28f;
     private const float LayerTools = 1 - 0.30f;
     private const float LayerFindCrosshair = 1 - 0.35f;
 
@@ -96,6 +98,9 @@ public partial class WorldRenderXna : UserControl
     private Texture2D _preview;
     private Dictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();
     private Texture2D _selectionTexture;
+    private Texture2D _pasteBorderH;   // horizontal dashed line (Nx1)
+    private Texture2D _pasteBorderV;   // vertical dashed line   (1xN)
+    private Texture2D _pasteHandleTexture;
     private RenderTarget2D _buffRadiiTarget;
     private Texture2D[] _filterOverlayTileMap;
     private Texture2D _filterDarkenTexture;
@@ -700,6 +705,13 @@ public partial class WorldRenderXna : UserControl
         LoadResourceTextures(e);
 
         _selectionTexture.SetData(new[] { Color.FromNonPremultiplied(0, 128, 255, 128) }, 0, 1);
+
+        // Paste layer textures
+        _pasteBorderH = CreateDashedTextureH(e.GraphicsDevice, 8, Color.White, Color.Black);
+        _pasteBorderV = CreateDashedTextureV(e.GraphicsDevice, 8, Color.White, Color.Black);
+        _pasteHandleTexture = new Texture2D(e.GraphicsDevice, 1, 1);
+        _pasteHandleTexture.SetData(new[] { Color.White });
+
         // Start the Game Timer
         _gameTimer.Start();
     }
@@ -2720,6 +2732,9 @@ public partial class WorldRenderXna : UserControl
 
         if (_wvm.Selection.IsActive)
             DrawSelection();
+
+        if (_wvm.ActiveTool.IsFloatingPaste)
+            DrawPasteLayer();
 
         DrawToolPreview();
 
@@ -6584,6 +6599,11 @@ public partial class WorldRenderXna : UserControl
 
         if (_preview == null)
             return;
+
+        // Skip cursor-follow preview when paste tool is in floating state (DrawPasteLayer handles it)
+        if (_wvm.ActiveTool.IsFloatingPaste)
+            return;
+
         Vector2 position;
 
         if (_wvm.ActiveTool.Name == "Paste")
@@ -6961,6 +6981,117 @@ public partial class WorldRenderXna : UserControl
                 SpriteEffects.None,
                 LayerTools);
         }
+    }
+
+    private static Texture2D CreateDashedTextureH(GraphicsDevice device, int dashLength, Color color1, Color color2)
+    {
+        int w = dashLength * 2;
+        var pixels = new Color[w];
+        for (int i = 0; i < w; i++)
+            pixels[i] = i < dashLength ? color1 : color2;
+        var tex = new Texture2D(device, w, 1);
+        tex.SetData(pixels);
+        return tex;
+    }
+
+    private static Texture2D CreateDashedTextureV(GraphicsDevice device, int dashLength, Color color1, Color color2)
+    {
+        int h = dashLength * 2;
+        var pixels = new Color[h];
+        for (int i = 0; i < h; i++)
+            pixels[i] = i < dashLength ? color1 : color2;
+        var tex = new Texture2D(device, 1, h);
+        tex.SetData(pixels);
+        return tex;
+    }
+
+    private void DrawPasteLayer()
+    {
+        var tool = _wvm.ActiveTool;
+        if (!tool.IsFloatingPaste) return;
+
+        var anchor = tool.FloatingPasteAnchor;
+        var size = tool.FloatingPasteSize;
+        if (size.X <= 0 || size.Y <= 0) return;
+
+        // Draw the preview image at the floating anchor position
+        if (_preview != null)
+        {
+            var pos = new Vector2(
+                (_scrollPosition.X + anchor.X) * _zoom,
+                (_scrollPosition.Y + anchor.Y) * _zoom);
+
+            _spriteBatch.Draw(
+                _preview,
+                pos,
+                null,
+                Color.White,
+                0,
+                Vector2.Zero,
+                _zoom * (float)tool.PreviewScale,
+                SpriteEffects.None,
+                LayerPastePreview);
+        }
+
+        // Border and handle geometry
+        float left = (_scrollPosition.X + anchor.X) * _zoom;
+        float top = (_scrollPosition.Y + anchor.Y) * _zoom;
+        float right = (_scrollPosition.X + anchor.X + size.X) * _zoom;
+        float bottom = (_scrollPosition.Y + anchor.Y + size.Y) * _zoom;
+        float width = right - left;
+        float height = bottom - top;
+        float midX = (left + right) * 0.5f;
+        float midY = (top + bottom) * 0.5f;
+        float borderThickness = Math.Max(1f, _zoom * 0.25f);
+
+        var borderColor = Color.White;
+
+        // Dashed border edges
+        // Horizontal: stretch _pasteBorderH (Nx1) along width, scale height by borderThickness
+        _spriteBatch.Draw(_pasteBorderH, new Vector2(left, top), null, borderColor, 0,
+            Vector2.Zero, new Vector2(width / _pasteBorderH.Width, borderThickness),
+            SpriteEffects.None, LayerPasteBorder);
+        _spriteBatch.Draw(_pasteBorderH, new Vector2(left, bottom - borderThickness), null, borderColor, 0,
+            Vector2.Zero, new Vector2(width / _pasteBorderH.Width, borderThickness),
+            SpriteEffects.None, LayerPasteBorder);
+        // Vertical: stretch _pasteBorderV (1xN) along height, scale width by borderThickness
+        _spriteBatch.Draw(_pasteBorderV, new Vector2(left, top), null, borderColor, 0,
+            Vector2.Zero, new Vector2(borderThickness, height / _pasteBorderV.Height),
+            SpriteEffects.None, LayerPasteBorder);
+        _spriteBatch.Draw(_pasteBorderV, new Vector2(right - borderThickness, top), null, borderColor, 0,
+            Vector2.Zero, new Vector2(borderThickness, height / _pasteBorderV.Height),
+            SpriteEffects.None, LayerPasteBorder);
+
+        // Handles centered on edge pixels
+        float handleSize = Math.Max(4f, _zoom * 0.5f);
+        float halfHandle = handleSize * 0.5f;
+        var handleColor = Color.FromNonPremultiplied(255, 255, 255, 200);
+        var handleOutline = Color.FromNonPremultiplied(0, 0, 0, 200);
+
+        // Edge midpoint handles
+        DrawHandle(midX - halfHandle, top - halfHandle, handleSize, handleColor, handleOutline);       // Top center
+        DrawHandle(midX - halfHandle, bottom - halfHandle, handleSize, handleColor, handleOutline);    // Bottom center
+        DrawHandle(left - halfHandle, midY - halfHandle, handleSize, handleColor, handleOutline);      // Left center
+        DrawHandle(right - halfHandle, midY - halfHandle, handleSize, handleColor, handleOutline);     // Right center
+
+        // Corner handles
+        DrawHandle(left - halfHandle, top - halfHandle, handleSize, handleColor, handleOutline);       // Top-left
+        DrawHandle(right - halfHandle, top - halfHandle, handleSize, handleColor, handleOutline);      // Top-right
+        DrawHandle(left - halfHandle, bottom - halfHandle, handleSize, handleColor, handleOutline);    // Bottom-left
+        DrawHandle(right - halfHandle, bottom - halfHandle, handleSize, handleColor, handleOutline);   // Bottom-right
+
+    }
+
+    private void DrawHandle(float x, float y, float size, Color fillColor, Color outlineColor)
+    {
+        // Outline
+        _spriteBatch.Draw(_pasteHandleTexture,
+            new Vector2(x - 1f, y - 1f), null, outlineColor, 0, Vector2.Zero,
+            new Vector2(size + 2f, size + 2f), SpriteEffects.None, LayerPasteBorder - .01f);
+        // Fill
+        _spriteBatch.Draw(_pasteHandleTexture,
+            new Vector2(x, y), null, fillColor, 0, Vector2.Zero,
+            new Vector2(size, size), SpriteEffects.None, LayerPasteBorder - .02f);
     }
 
     private void DrawWorldBorder()
