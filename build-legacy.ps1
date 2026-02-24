@@ -42,12 +42,8 @@ $platforms | ForEach-Object {
         "-o"
         ".\$velopackPublishPath\$_"
         "/p:VersionPrefix=""$VersionPrefix"""
+        "/p:VersionSuffix=""$VersionSuffix"""
     )
-
-    if (![String]::IsNullOrWhitespace($VersionSuffix)) {
-        $velopackArgs += "--version-suffix"
-        $velopackArgs += """$VersionSuffix"""
-    }
 
     $velopackArgs += ".\src\TEdit\TEdit.csproj"
 
@@ -69,12 +65,8 @@ $platforms | ForEach-Object {
         "-o"
         ".\$zipPublishPath\$_"
         "/p:VersionPrefix=""$VersionPrefix"""
+        "/p:VersionSuffix=""$VersionSuffix"""
     )
-
-    if (![String]::IsNullOrWhitespace($VersionSuffix)) {
-        $zipArgs += "--version-suffix"
-        $zipArgs += """$VersionSuffix"""
-    }
 
     $zipArgs += ".\src\TEdit\TEdit.csproj"
 

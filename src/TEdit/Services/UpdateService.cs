@@ -12,6 +12,8 @@ public class UpdateService
     private const string GithubRepo = "https://github.com/TEdit/Terraria-Map-Editor";
 
     private readonly List<UpdateManager> _managers = new();
+    private UpdateManager _lastDownloadManager;
+    private UpdateInfo _lastDownloadUpdate;
 
     /// <summary>
     /// Creates update managers for all channels the user's tier includes.
@@ -126,6 +128,11 @@ public class UpdateService
             ErrorLogging.LogInfo($"[Update] Update available: {update.TargetFullRelease.Version}");
             await mgr.DownloadUpdatesAsync(update);
             ErrorLogging.LogInfo("[Update] Update downloaded. Waiting for user to restart.");
+
+            // Cache for ApplyAndRestart so it doesn't need to re-fetch
+            _lastDownloadManager = mgr;
+            _lastDownloadUpdate = update;
+
             return true;
         }
         catch (Exception ex)
@@ -142,12 +149,14 @@ public class UpdateService
 
         try
         {
-            var result = FindBestUpdateAsync().GetAwaiter().GetResult();
-            if (result != null)
+            if (_lastDownloadManager != null && _lastDownloadUpdate != null)
             {
-                var (mgr, update) = result.Value;
-                mgr.ApplyUpdatesAndRestart(update);
+                _lastDownloadManager.ApplyUpdatesAndRestart(_lastDownloadUpdate);
+                return;
             }
+
+            // Fallback: no cached result (shouldn't happen in normal flow)
+            ErrorLogging.LogWarn("[Update] No cached download result — cannot apply update.");
         }
         catch (Exception ex)
         {
