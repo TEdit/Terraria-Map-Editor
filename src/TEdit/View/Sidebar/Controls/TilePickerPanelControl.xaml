@@ -140,68 +140,56 @@
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="4" />
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
             <!-- Tile coatings -->
-            <ui:ToggleSwitch Grid.Row="0" Grid.Column="0" IsChecked="{Binding TilePicker.EnableTileCoating}"
-                             ToolTip="{x:Static p:Language.tool_paint_tile_title}"
-                             OffContent="" OnContent="" Margin="0,0,4,0" />
-            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+            <StackPanel Grid.Column="0">
+                <ui:ToggleSwitch IsChecked="{Binding TilePicker.EnableTileCoating}"
+                                 Content="{x:Static p:Language.tool_paint_tile_title}"
+                                 OffContent="" OnContent="" />
                 <ui:ToggleSwitch IsChecked="{Binding TilePicker.TileCoatingIlluminant}"
                                  Content="{x:Static p:Language.tool_paint_illuminantcoating}"
                                  IsEnabled="{Binding TilePicker.EnableTileCoating}"
-                                 OffContent="" OnContent="" />
+                                 OffContent="" OnContent="" Margin="16,0,0,0" />
                 <ui:ToggleSwitch IsChecked="{Binding TilePicker.TileCoatingEcho}"
                                  Content="{x:Static p:Language.tool_paint_echocoating}"
                                  IsEnabled="{Binding TilePicker.EnableTileCoating}"
-                                 OffContent="" OnContent="" />
+                                 OffContent="" OnContent="" Margin="16,0,0,0" />
             </StackPanel>
             <!-- Wall coatings -->
-            <ui:ToggleSwitch Grid.Row="0" Grid.Column="3" IsChecked="{Binding TilePicker.EnableWallCoating}"
-                             ToolTip="{x:Static p:Language.tool_paint_wall_title}"
-                             OffContent="" OnContent="" Margin="0,0,4,0" />
-            <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Vertical">
+            <StackPanel Grid.Column="2">
+                <ui:ToggleSwitch IsChecked="{Binding TilePicker.EnableWallCoating}"
+                                 Content="{x:Static p:Language.tool_paint_wall_title}"
+                                 OffContent="" OnContent="" />
                 <ui:ToggleSwitch IsChecked="{Binding TilePicker.WallCoatingIlluminant}"
                                  Content="{x:Static p:Language.tool_paint_illuminantcoating}"
                                  IsEnabled="{Binding TilePicker.EnableWallCoating}"
-                                 OffContent="" OnContent="" />
+                                 OffContent="" OnContent="" Margin="16,0,0,0" />
                 <ui:ToggleSwitch IsChecked="{Binding TilePicker.WallCoatingEcho}"
                                  Content="{x:Static p:Language.tool_paint_echocoating}"
                                  IsEnabled="{Binding TilePicker.EnableWallCoating}"
-                                 OffContent="" OnContent="" />
+                                 OffContent="" OnContent="" Margin="16,0,0,0" />
             </StackPanel>
         </Grid>
 
         <!-- ── Extras ── -->
         <TextBlock Text="{x:Static p:Language.tool_paint_extras}" FontWeight="SemiBold" Margin="0,8,0,2"
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <ui:ToggleSwitch Grid.Column="0" IsChecked="{Binding TilePicker.ExtrasActive}"
-                             ToolTip="{x:Static p:Language.tool_paint_extras}"
-                             OffContent="" OnContent="" Margin="0,0,4,0" />
-            <StackPanel Grid.Column="1" Orientation="Vertical">
-                <ui:ToggleSwitch IsChecked="{Binding TilePicker.Actuator}"
-                                 Content="{x:Static p:Language.tool_paint_actuator}"
-                                 ToolTip="{x:Static p:Language.tool_paint_actuator}"
-                                 OffContent="" OnContent="" />
-                <ui:ToggleSwitch IsChecked="{Binding TilePicker.ActuatorInActive}"
-                                 Content="{x:Static p:Language.tool_paint_inactive}"
-                                 ToolTip="{x:Static p:Language.tool_paint_inactive}"
-                                 OffContent="" OnContent="" />
-            </StackPanel>
-        </Grid>
+        <StackPanel>
+            <ui:ToggleSwitch IsChecked="{Binding TilePicker.ExtrasActive}"
+                             Content="{x:Static p:Language.tool_paint_extras}"
+                             OffContent="" OnContent="" />
+            <ui:ToggleSwitch IsChecked="{Binding TilePicker.Actuator}"
+                             Content="{x:Static p:Language.tool_paint_actuator}"
+                             IsEnabled="{Binding TilePicker.ExtrasActive}"
+                             OffContent="" OnContent="" Margin="16,0,0,0" />
+            <ui:ToggleSwitch IsChecked="{Binding TilePicker.ActuatorInActive}"
+                             Content="{x:Static p:Language.tool_paint_inactive}"
+                             IsEnabled="{Binding TilePicker.ExtrasActive}"
+                             OffContent="" OnContent="" Margin="16,0,0,0" />
+        </StackPanel>
 
         <!-- ── Wires ── -->
         <TextBlock Text="{x:Static p:Language.tool_paint_wire_header}" FontWeight="SemiBold" Margin="0,8,0,2"
