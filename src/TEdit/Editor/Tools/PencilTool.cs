@@ -272,9 +272,15 @@ public sealed class PencilTool : BaseTool
 
         bool verticalFirst = _cadVerticalFirstOverride
             ?? WireRouter.DetectVerticalFirst(_cadAnchor, cursor);
+
+        // Track/Platform use thin diagonals (1 tile per step); wires use staircase (4-connected)
+        bool useThinDiag = _wvm.TilePicker.PaintMode == PaintMode.Track
+            || _wvm.TilePicker.PaintMode == PaintMode.Platform;
         var points = _cadRoutingMode == WireRoutingMode.Elbow90
             ? WireRouter.Route90(_cadAnchor, cursor, verticalFirst)
-            : WireRouter.RouteMiter(_cadAnchor, cursor, verticalFirst);
+            : useThinDiag
+                ? WireRouter.RouteMiterThin(_cadAnchor, cursor, verticalFirst)
+                : WireRouter.RouteMiter(_cadAnchor, cursor, verticalFirst);
 
         _cadPreviewPath.AddRange(points);
 
