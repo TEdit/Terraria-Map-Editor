@@ -372,9 +372,10 @@ public sealed class PencilTool : BaseTool
             ? new[] { 19, 21, 23 }   // Stair Inset Up-Right 1/2/3
             : new[] { 20, 22, 24 };  // Stair Inset Up-Left 1/2/3
         int stringerCol = isUpRight ? 9 : 11;     // Stringer (underside)
-        int topLandingCol = isUpRight ? 12 : 13;  // Stair Top Landing R/L
-        int botLandingCol = isUpRight ? 17 : 18;  // Stair Bottom Landing R/L
-        const int topLandingLRCol = 14;            // Stair Top Landing L-R (two diags meet)
+        int topLandingCol = isUpRight ? 12 : 13;        // Stair Top Landing R/L
+        int topLandingEndcapCol = isUpRight ? 15 : 16; // Stair Top Landing R/L Endcap (solid neighbor)
+        int botLandingCol = isUpRight ? 17 : 18;        // Stair Bottom Landing R/L
+        const int topLandingLRCol = 14;                  // Stair Top Landing L-R (two diags meet)
 
         short styleV = (short)(_wvm.TilePicker.PlatformStyle * 18);
 
@@ -406,11 +407,15 @@ public sealed class PencilTool : BaseTool
             if (prevHorizontal && nextVertical)
             {
                 // Transition from horizontal to vertical = top landing (entering staircase)
-                col = topLandingCol;
+                // Check outer side (direction we came from) for solid block
+                bool outerSolid = HasSolidNeighbor(cur.X - dxPrev, cur.Y);
+                col = outerSolid ? topLandingEndcapCol : topLandingCol;
             }
             else if (prevVertical && nextHorizontal)
             {
                 // Transition from vertical to horizontal = bottom landing (exiting staircase)
+                // Check outer side (direction we're going) for solid block
+                bool outerSolid = HasSolidNeighbor(cur.X + dxNext, cur.Y);
                 col = botLandingCol;
             }
             else if (prevVertical && nextVertical)
@@ -441,7 +446,10 @@ public sealed class PencilTool : BaseTool
             else if (!hasPrev && dxNext == 0 && dyNext != 0)
             {
                 // Start of path, leaving vertically — top landing
-                col = topLandingCol;
+                // Check both horizontal sides for solid blocks
+                bool solidLeft = HasSolidNeighbor(cur.X - 1, cur.Y);
+                bool solidRight = HasSolidNeighbor(cur.X + 1, cur.Y);
+                col = (solidLeft || solidRight) ? topLandingEndcapCol : topLandingCol;
             }
             else
             {
@@ -466,6 +474,14 @@ public sealed class PencilTool : BaseTool
             tile.U = (short)(col * 18);
             tile.V = styleV;
         }
+    }
+
+    /// <summary>Check if a tile location has a non-platform solid block.</summary>
+    private bool HasSolidNeighbor(int x, int y)
+    {
+        if (!_wvm.CurrentWorld.ValidTileLocation(new Vector2Int32(x, y))) return false;
+        var t = _wvm.CurrentWorld.Tiles[x, y];
+        return t != null && t.IsActive && t.Type != 19; // solid but not a platform
     }
 
     private void ProcessDraw(Vector2Int32 tile)
