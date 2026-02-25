@@ -273,9 +273,8 @@ public sealed class PencilTool : BaseTool
         bool verticalFirst = _cadVerticalFirstOverride
             ?? WireRouter.DetectVerticalFirst(_cadAnchor, cursor);
 
-        // Track/Platform use thin diagonals (1 tile per step); wires use staircase (4-connected)
-        bool useThinDiag = _wvm.TilePicker.PaintMode == PaintMode.Track
-            || _wvm.TilePicker.PaintMode == PaintMode.Platform;
+        // Track uses thin diagonals (1 tile per step); wires and platforms use staircase (4-connected)
+        bool useThinDiag = _wvm.TilePicker.PaintMode == PaintMode.Track;
         var points = _cadRoutingMode == WireRoutingMode.Elbow90
             ? WireRouter.Route90(_cadAnchor, cursor, verticalFirst)
             : useThinDiag
@@ -303,6 +302,8 @@ public sealed class PencilTool : BaseTool
         }
     }
 
+    private static readonly Random _rng = new();
+
     private void CommitCadPath()
     {
         if (_cadPreviewPath.Count == 0) return;
@@ -318,6 +319,10 @@ public sealed class PencilTool : BaseTool
 
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;
+
+        // For platform miter, classify each tile's stair role and set frames after placement
+        bool isPlatformMiter = _wvm.TilePicker.PaintMode == PaintMode.Platform
+            && _cadRoutingMode == WireRoutingMode.Miter45;
 
         foreach (var pixel in _cadPreviewPath)
         {
@@ -336,7 +341,131 @@ public sealed class PencilTool : BaseTool
             }
         }
 
+        if (isPlatformMiter)
+            ApplyPlatformStairFrames();
+
         _wvm.UndoManager.SaveUndo();
+    }
+
+    /// <summary>
+    /// After committing a platform miter path, override U frames to use proper
+    /// stair insets, stringers, landings, and endcaps based on each tile's role.
+    /// </summary>
+    private void ApplyPlatformStairFrames()
+    {
+        var path = _cadPreviewPath;
+        if (path.Count < 2) return;
+
+        // Determine stair direction from the overall path vector
+        int dx = path[path.Count - 1].X - path[0].X;
+        int dy = path[path.Count - 1].Y - path[0].Y;
+        int sx = Math.Sign(dx);
+        int sy = Math.Sign(dy);
+
+        // "Up-Right" when going right+up or left+down (sx*sy < 0)
+        // "Up-Left" when going right+down or left+up (sx*sy > 0)
+        bool isUpRight = sx * sy < 0;
+
+        // Platform stair frame columns (U / 18)
+        // Inset = top surface of stair step (3 random variants per direction)
+        int[] insetCols = isUpRight
+            ? new[] { 19, 21, 23 }   // Stair Inset Up-Right 1/2/3
+            : new[] { 20, 22, 24 };  // Stair Inset Up-Left 1/2/3
+        int stringerCol = isUpRight ? 9 : 11;     // Stringer (underside)
+        int topLandingCol = isUpRight ? 12 : 13;  // Stair Top Landing R/L
+        int botLandingCol = isUpRight ? 17 : 18;  // Stair Bottom Landing R/L
+        const int topLandingLRCol = 14;            // Stair Top Landing L-R (two diags meet)
+
+        short styleV = (short)(_wvm.TilePicker.PlatformStyle * 18);
+
+        // Classify each tile by comparing movement direction from prev→curr→next
+        for (int i = 0; i < path.Count; i++)
+        {
+            var cur = path[i];
+            if (!_wvm.CurrentWorld.ValidTileLocation(cur)) continue;
+            var tile = _wvm.CurrentWorld.Tiles[cur.X, cur.Y];
+            if (tile == null || !tile.IsActive || tile.Type != 19) continue;
+
+            bool hasPrev = i > 0;
+            bool hasNext = i < path.Count - 1;
+            var prev = hasPrev ? path[i - 1] : cur;
+            var next = hasNext ? path[i + 1] : cur;
+
+            int dxPrev = cur.X - prev.X; // movement arriving at this tile
+            int dyPrev = cur.Y - prev.Y;
+            int dxNext = next.X - cur.X; // movement leaving this tile
+            int dyNext = next.Y - cur.Y;
+
+            bool prevHorizontal = hasPrev && dyPrev == 0 && dxPrev != 0;
+            bool prevVertical = hasPrev && dxPrev == 0 && dyPrev != 0;
+            bool nextHorizontal = hasNext && dyNext == 0 && dxNext != 0;
+            bool nextVertical = hasNext && dxNext == 0 && dyNext != 0;
+
+            int col;
+
+            if (prevHorizontal && nextVertical)
+            {
+                // Transition from horizontal to vertical = top landing (entering staircase)
+                col = topLandingCol;
+            }
+            else if (prevVertical && nextHorizontal)
+            {
+                // Transition from vertical to horizontal = bottom landing (exiting staircase)
+                col = botLandingCol;
+            }
+            else if (prevVertical && nextVertical)
+            {
+                // Both sides vertical — this shouldn't happen in miter, but treat as stringer
+                col = stringerCol;
+            }
+            else if (prevHorizontal && nextHorizontal)
+            {
+                // Both sides horizontal — flat platform, leave frame as-is
+                continue;
+            }
+            else if (dxPrev != 0 && dyPrev == 0 && !hasNext)
+            {
+                // End of path, arriving horizontally — flat, leave as-is
+                continue;
+            }
+            else if (!hasPrev && dxNext != 0 && dyNext == 0)
+            {
+                // Start of path, leaving horizontally — flat, leave as-is
+                continue;
+            }
+            else if (dxPrev == 0 && dyPrev != 0 && !hasNext)
+            {
+                // End of path, arriving vertically — stringer endcap
+                col = stringerCol;
+            }
+            else if (!hasPrev && dxNext == 0 && dyNext != 0)
+            {
+                // Start of path, leaving vertically — top landing
+                col = topLandingCol;
+            }
+            else
+            {
+                // In the staircase: H-step = inset (top surface), V-step = stringer (underside)
+                if (dxPrev != 0 && dyPrev == 0)
+                {
+                    // Arrived via H-step → this is an inset tile
+                    col = insetCols[_rng.Next(insetCols.Length)];
+                }
+                else if (dxPrev == 0 && dyPrev != 0)
+                {
+                    // Arrived via V-step → this is a stringer tile
+                    col = stringerCol;
+                }
+                else
+                {
+                    // Fallback
+                    col = insetCols[0];
+                }
+            }
+
+            tile.U = (short)(col * 18);
+            tile.V = styleV;
+        }
     }
 
     private void ProcessDraw(Vector2Int32 tile)
