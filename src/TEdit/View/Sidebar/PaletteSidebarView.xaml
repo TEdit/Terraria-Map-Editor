@@ -8,69 +8,78 @@
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
+             xmlns:cv="clr-namespace:TEdit.Converters"
              mc:Ignorable="d"
              d:DesignHeight="900" d:DesignWidth="400"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
+
+    <UserControl.Resources>
+        <cv:EnumToBoolConverter x:Key="boolEnumConverter" />
+    </UserControl.Resources>
 
     <DockPanel Background="{DynamicResource SidebarBackgroundBrush}">
 
         <!-- Title -->
         <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.palette_title}" Style="{DynamicResource SidebarPanelTitle}" />
 
-        <!-- Scrollable content -->
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel>
+        <TabControl DockPanel.Dock="Top">
 
-                <!-- ═══ Tile Picker Section ═══ -->
-                <TextBlock Text="{x:Static p:Language.palette_tile_section}" FontWeight="SemiBold" FontSize="12"
-                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" Margin="8,4,8,0" />
-                <controls:TilePickerPanelControl Margin="4,0" />
+            <!-- ═══ Tiles Tab ═══ -->
+            <TabItem Header="{x:Static p:Language.palette_tile_section}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <controls:TilePickerPanelControl Margin="4,0" />
+                </ScrollViewer>
+            </TabItem>
 
-                <!-- ═══ Mask Mode Divider ═══ -->
-                <Border Margin="4,8" Padding="6,4" CornerRadius="4"
-                        Background="{DynamicResource SubtleFillColorSecondaryBrush}"
-                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
-                        BorderThickness="1">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+            <!-- ═══ Masks Tab ═══ -->
+            <TabItem Header="{x:Static p:Language.palette_mask_section}">
+                <DockPanel>
+                    <!-- Mask Mode Divider (pinned at top) -->
+                    <Border DockPanel.Dock="Top" Margin="4,4,4,4" Padding="6,4" CornerRadius="4"
+                            Background="{DynamicResource SubtleFillColorSecondaryBrush}"
+                            BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                            BorderThickness="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <!-- 3-way mask mode toggle -->
-                        <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <RadioButton Content="Off"
-                                         GroupName="MaskPreset"
-                                         Style="{StaticResource {x:Type ToggleButton}}"
-                                         IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.Off}}"
-                                         Padding="8,3" Margin="0,0,2,0" FontSize="11" />
-                            <RadioButton Content="Match All"
-                                         GroupName="MaskPreset"
-                                         Style="{StaticResource {x:Type ToggleButton}}"
-                                         IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.ExactMatch}}"
-                                         Padding="8,3" Margin="0,0,2,0" FontSize="11" />
-                            <RadioButton Content="Match Custom"
-                                         GroupName="MaskPreset"
-                                         Style="{StaticResource {x:Type ToggleButton}}"
-                                         IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.Custom}}"
-                                         Padding="8,3" FontSize="11" />
-                        </StackPanel>
+                            <!-- 3-way mask mode toggle -->
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <RadioButton Content="Off"
+                                             GroupName="MaskPreset"
+                                             Style="{StaticResource {x:Type ToggleButton}}"
+                                             IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.Off}}"
+                                             Padding="8,3" Margin="0,0,2,0" FontSize="11" />
+                                <RadioButton Content="Match All"
+                                             GroupName="MaskPreset"
+                                             Style="{StaticResource {x:Type ToggleButton}}"
+                                             IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.ExactMatch}}"
+                                             Padding="8,3" Margin="0,0,2,0" FontSize="11" />
+                                <RadioButton Content="Match Custom"
+                                             GroupName="MaskPreset"
+                                             Style="{StaticResource {x:Type ToggleButton}}"
+                                             IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.Custom}}"
+                                             Padding="8,3" FontSize="11" />
+                            </StackPanel>
 
-                        <!-- Clear All button -->
-                        <ui:Button Grid.Column="2" Content="{x:Static p:Language.mask_clear_all}"
-                                   Padding="8,3" FontSize="11"
-                                   Click="ClearAll_Click" />
-                    </Grid>
-                </Border>
+                            <!-- Clear All button -->
+                            <ui:Button Grid.Column="2" Content="{x:Static p:Language.mask_clear_all}"
+                                       Padding="8,3" FontSize="11"
+                                       Click="ClearAll_Click" />
+                        </Grid>
+                    </Border>
 
-                <!-- ═══ Mask Options Section ═══ -->
-                <TextBlock Text="{x:Static p:Language.palette_mask_section}" FontWeight="SemiBold" FontSize="12"
-                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" Margin="8,0,8,0" />
-                <controls:MaskOptionsPanelControl Margin="4,0" />
+                    <!-- Scrollable mask options -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <controls:MaskOptionsPanelControl Margin="4,0" />
+                    </ScrollViewer>
+                </DockPanel>
+            </TabItem>
 
-            </StackPanel>
-        </ScrollViewer>
+        </TabControl>
 
     </DockPanel>
 </UserControl>
