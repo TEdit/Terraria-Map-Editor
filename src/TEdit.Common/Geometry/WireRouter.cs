@@ -301,14 +301,14 @@ public static class WireRouter
 
     /// <summary>
     /// Route a bus of parallel wires using 45° miter routing.
-    /// Wires are spaced 3 tiles apart (2-tile gap) so staircase patterns don't side-touch.
-    /// Wire start positions are at the opposite edge of the brush from the movement direction.
+    /// Wires are spaced 2 tiles apart (1-tile gap), same as 90° routing.
+    /// Diagonal-touching wires don't connect, so no extra spacing is needed.
     /// </summary>
     public static List<Vector2Int32> RouteBusMiter(
         Vector2Int32 anchor, Vector2Int32 cursor,
         int brushWidth, int brushHeight, bool verticalFirst)
     {
-        return RouteBus(anchor, cursor, brushWidth, brushHeight, verticalFirst, spacing: 3, miter: true);
+        return RouteBus(anchor, cursor, brushWidth, brushHeight, verticalFirst, spacing: 2, miter: true);
     }
 
     /// <summary>
