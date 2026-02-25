@@ -10,12 +10,12 @@
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              mc:Ignorable="d"
-             d:DesignHeight="500" d:DesignWidth="340"
+             d:DesignHeight="500" d:DesignWidth="420"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
 
     <StackPanel Margin="4">
 
-        <!-- Paint Mode -->
+        <!-- Paint Mode + Eraser -->
         <Grid Margin="0,0,0,4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -35,15 +35,31 @@
             </ToggleButton>
         </Grid>
 
-        <!-- Tile Type -->
-        <TextBlock Text="{x:Static p:Language.tool_paint_tile_title}" FontWeight="SemiBold" Margin="0,4,0,4"
-                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <!-- ── Type ── -->
+        <!-- Column headers -->
+        <Grid Margin="0,4,0,2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{x:Static p:Language.tool_paint_tile_title}" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <TextBlock Grid.Column="2" Text="{x:Static p:Language.tool_paint_wall_title}" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        </Grid>
+        <!-- Tile | Wall row -->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="0" IsChecked="{Binding TilePicker.TileStyleActive}" VerticalAlignment="Center" Margin="0,0,4,0" />
+            <ui:ToggleSwitch Grid.Column="0" IsChecked="{Binding TilePicker.TileStyleActive}"
+                             ToolTip="{x:Static p:Language.tool_paint_tile_title}"
+                             OffContent="" OnContent="" Margin="0,0,4,0" />
             <tedit:FilteredComboBox Grid.Column="1"
                 ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricks}, Mode=OneTime}"
                 ItemTemplate="{StaticResource ColorPickerTemplate}"
@@ -54,18 +70,10 @@
                 FilterMemberPath="Name"
                 FilterIdMemberPath="Id"
                 IsTextSearchEnabled="False" />
-        </Grid>
-
-        <!-- Wall Type -->
-        <TextBlock Text="{x:Static p:Language.tool_paint_wall_title}" FontWeight="SemiBold" Margin="0,8,0,4"
-                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="0" IsChecked="{Binding TilePicker.WallStyleActive}" VerticalAlignment="Center" Margin="0,0,4,0" />
-            <tedit:FilteredComboBox Grid.Column="1"
+            <ui:ToggleSwitch Grid.Column="3" IsChecked="{Binding TilePicker.WallStyleActive}"
+                             ToolTip="{x:Static p:Language.tool_paint_wall_title}"
+                             OffContent="" OnContent="" Margin="0,0,4,0" />
+            <tedit:FilteredComboBox Grid.Column="4"
                 ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallProperties}, Mode=OneTime}"
                 ItemTemplate="{StaticResource ColorPickerTemplate}"
                 SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
@@ -77,79 +85,126 @@
                 IsTextSearchEnabled="False" />
         </Grid>
 
-        <!-- Brick Style -->
-        <Grid Margin="0,8,0,0">
+        <!-- ── Brick Style (tile column only) ── -->
+        <TextBlock Text="{x:Static p:Language.tool_paint_brickstyle}" FontWeight="SemiBold" Margin="0,8,0,2"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="0" IsChecked="{Binding TilePicker.BrickStyleActive}"
-                      Content="{x:Static p:Language.tool_paint_brickstyle}" VerticalAlignment="Center" Margin="0,0,4,0" />
+            <ui:ToggleSwitch Grid.Column="0" IsChecked="{Binding TilePicker.BrickStyleActive}"
+                             ToolTip="{x:Static p:Language.tool_paint_brickstyle}"
+                             OffContent="" OnContent="" Margin="0,0,4,0" />
             <ComboBox Grid.Column="1" ItemsSource="{StaticResource BrickStyle}"
                       SelectedValue="{Binding TilePicker.BrickStyle}"
                       SelectedValuePath="Value"
                       ItemTemplate="{StaticResource EnumTemplate}" />
         </Grid>
 
-        <!-- Extras: Actuator / Inactive -->
-        <StackPanel Margin="0,4,0,0">
-            <CheckBox IsChecked="{Binding TilePicker.ExtrasActive}" Content="{x:Static p:Language.tool_paint_extras}" Margin="0,0,0,2" />
-            <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="{x:Static p:Language.tool_paint_actuator}" Margin="16,0,0,0" />
-            <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="{x:Static p:Language.tool_paint_inactive}" Margin="16,0,0,0" />
-        </StackPanel>
-
-        <!-- Paint Colors -->
-        <TextBlock Text="{x:Static p:Language.tool_paint_paint_header}" FontWeight="SemiBold" Margin="0,8,0,4"
+        <!-- ── Paint ── -->
+        <TextBlock Text="{x:Static p:Language.tool_paint_paint_header}" FontWeight="SemiBold" Margin="0,8,0,2"
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <CheckBox IsChecked="{Binding TilePicker.TilePaintActive}" Content="{x:Static p:Language.tool_paint_tile_title}" Margin="0,0,0,2" />
-                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}"
-                          IsEnabled="{Binding TilePicker.TilePaintActive}"
-                          ItemTemplate="{StaticResource ColorPickerTemplate}"
-                          SelectedValue="{Binding Path=TilePicker.TileColor, Mode=TwoWay}"
-                          SelectedValuePath="Id" />
-            </StackPanel>
-            <StackPanel Grid.Column="1" Margin="4,0,0,0">
-                <CheckBox IsChecked="{Binding TilePicker.WallPaintActive}" Content="{x:Static p:Language.tool_paint_wall_title}" Margin="0,0,0,2" />
-                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}"
-                          IsEnabled="{Binding TilePicker.WallPaintActive}"
-                          ItemTemplate="{StaticResource ColorPickerTemplate}"
-                          SelectedValue="{Binding Path=TilePicker.WallColor, Mode=TwoWay}"
-                          SelectedValuePath="Id" />
-            </StackPanel>
+            <ui:ToggleSwitch Grid.Column="0" IsChecked="{Binding TilePicker.TilePaintActive}"
+                             ToolTip="{x:Static p:Language.tool_paint_tile_title}"
+                             OffContent="" OnContent="" Margin="0,0,4,0" />
+            <ComboBox Grid.Column="1"
+                      ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}"
+                      IsEnabled="{Binding TilePicker.TilePaintActive}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}"
+                      SelectedValue="{Binding Path=TilePicker.TileColor, Mode=TwoWay}"
+                      SelectedValuePath="Id" />
+            <ui:ToggleSwitch Grid.Column="3" IsChecked="{Binding TilePicker.WallPaintActive}"
+                             ToolTip="{x:Static p:Language.tool_paint_wall_title}"
+                             OffContent="" OnContent="" Margin="0,0,4,0" />
+            <ComboBox Grid.Column="4"
+                      ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PaintProperties}, Mode=OneTime}"
+                      IsEnabled="{Binding TilePicker.WallPaintActive}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}"
+                      SelectedValue="{Binding Path=TilePicker.WallColor, Mode=TwoWay}"
+                      SelectedValuePath="Id" />
         </Grid>
 
-        <!-- Coatings -->
-        <TextBlock Text="{x:Static p:Language.tool_paint_coating}" FontWeight="SemiBold" Margin="0,8,0,4"
+        <!-- ── Coating ── -->
+        <TextBlock Text="{x:Static p:Language.tool_paint_coating}" FontWeight="SemiBold" Margin="0,8,0,2"
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <CheckBox IsChecked="{Binding TilePicker.EnableTileCoating}" Content="{x:Static p:Language.tool_paint_tile_title}" Margin="0,0,0,2" />
-                <CheckBox IsChecked="{Binding TilePicker.TileCoatingIlluminant}" Content="{x:Static p:Language.tool_paint_illuminantcoating}"
-                          IsEnabled="{Binding TilePicker.EnableTileCoating}" Margin="16,0,0,0" />
-                <CheckBox IsChecked="{Binding TilePicker.TileCoatingEcho}" Content="{x:Static p:Language.tool_paint_echocoating}"
-                          IsEnabled="{Binding TilePicker.EnableTileCoating}" Margin="16,0,0,0" />
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <!-- Tile coatings -->
+            <ui:ToggleSwitch Grid.Row="0" Grid.Column="0" IsChecked="{Binding TilePicker.EnableTileCoating}"
+                             ToolTip="{x:Static p:Language.tool_paint_tile_title}"
+                             OffContent="" OnContent="" Margin="0,0,4,0" />
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                <ui:ToggleSwitch IsChecked="{Binding TilePicker.TileCoatingIlluminant}"
+                                 Content="{x:Static p:Language.tool_paint_illuminantcoating}"
+                                 IsEnabled="{Binding TilePicker.EnableTileCoating}"
+                                 OffContent="" OnContent="" />
+                <ui:ToggleSwitch IsChecked="{Binding TilePicker.TileCoatingEcho}"
+                                 Content="{x:Static p:Language.tool_paint_echocoating}"
+                                 IsEnabled="{Binding TilePicker.EnableTileCoating}"
+                                 OffContent="" OnContent="" />
             </StackPanel>
-            <StackPanel Grid.Column="1" Margin="4,0,0,0">
-                <CheckBox IsChecked="{Binding TilePicker.EnableWallCoating}" Content="{x:Static p:Language.tool_paint_wall_title}" Margin="0,0,0,2" />
-                <CheckBox IsChecked="{Binding TilePicker.WallCoatingIlluminant}" Content="{x:Static p:Language.tool_paint_illuminantcoating}"
-                          IsEnabled="{Binding TilePicker.EnableWallCoating}" Margin="16,0,0,0" />
-                <CheckBox IsChecked="{Binding TilePicker.WallCoatingEcho}" Content="{x:Static p:Language.tool_paint_echocoating}"
-                          IsEnabled="{Binding TilePicker.EnableWallCoating}" Margin="16,0,0,0" />
+            <!-- Wall coatings -->
+            <ui:ToggleSwitch Grid.Row="0" Grid.Column="3" IsChecked="{Binding TilePicker.EnableWallCoating}"
+                             ToolTip="{x:Static p:Language.tool_paint_wall_title}"
+                             OffContent="" OnContent="" Margin="0,0,4,0" />
+            <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Vertical">
+                <ui:ToggleSwitch IsChecked="{Binding TilePicker.WallCoatingIlluminant}"
+                                 Content="{x:Static p:Language.tool_paint_illuminantcoating}"
+                                 IsEnabled="{Binding TilePicker.EnableWallCoating}"
+                                 OffContent="" OnContent="" />
+                <ui:ToggleSwitch IsChecked="{Binding TilePicker.WallCoatingEcho}"
+                                 Content="{x:Static p:Language.tool_paint_echocoating}"
+                                 IsEnabled="{Binding TilePicker.EnableWallCoating}"
+                                 OffContent="" OnContent="" />
             </StackPanel>
         </Grid>
 
-        <!-- Wires -->
-        <TextBlock Text="{x:Static p:Language.tool_paint_wire_header}" FontWeight="SemiBold" Margin="0,8,0,4"
+        <!-- ── Extras ── -->
+        <TextBlock Text="{x:Static p:Language.tool_paint_extras}" FontWeight="SemiBold" Margin="0,8,0,2"
+                   Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ui:ToggleSwitch Grid.Column="0" IsChecked="{Binding TilePicker.ExtrasActive}"
+                             ToolTip="{x:Static p:Language.tool_paint_extras}"
+                             OffContent="" OnContent="" Margin="0,0,4,0" />
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <ui:ToggleSwitch IsChecked="{Binding TilePicker.Actuator}"
+                                 Content="{x:Static p:Language.tool_paint_actuator}"
+                                 ToolTip="{x:Static p:Language.tool_paint_actuator}"
+                                 OffContent="" OnContent="" />
+                <ui:ToggleSwitch IsChecked="{Binding TilePicker.ActuatorInActive}"
+                                 Content="{x:Static p:Language.tool_paint_inactive}"
+                                 ToolTip="{x:Static p:Language.tool_paint_inactive}"
+                                 OffContent="" OnContent="" />
+            </StackPanel>
+        </Grid>
+
+        <!-- ── Wires ── -->
+        <TextBlock Text="{x:Static p:Language.tool_paint_wire_header}" FontWeight="SemiBold" Margin="0,8,0,2"
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
         <Grid>
             <Grid.ColumnDefinitions>
@@ -160,25 +215,38 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding TilePicker.RedWireActive}" Content="{x:Static p:Language.tool_paint_wire_red}" />
-            <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding TilePicker.BlueWireActive}" Content="{x:Static p:Language.tool_paint_wire_blue}" Margin="4,0,0,0" />
-            <CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding TilePicker.GreenWireActive}" Content="{x:Static p:Language.tool_paint_wire_green}" />
-            <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding TilePicker.YellowWireActive}" Content="{x:Static p:Language.tool_paint_wire_yellow}" Margin="4,0,0,0" />
+            <ui:ToggleSwitch Grid.Row="0" Grid.Column="0" IsChecked="{Binding TilePicker.RedWireActive}"
+                             Content="{x:Static p:Language.tool_paint_wire_red}"
+                             ToolTip="{x:Static p:Language.tool_paint_wire_red}"
+                             OffContent="" OnContent="" />
+            <ui:ToggleSwitch Grid.Row="0" Grid.Column="1" IsChecked="{Binding TilePicker.BlueWireActive}"
+                             Content="{x:Static p:Language.tool_paint_wire_blue}"
+                             ToolTip="{x:Static p:Language.tool_paint_wire_blue}"
+                             OffContent="" OnContent="" Margin="4,0,0,0" />
+            <ui:ToggleSwitch Grid.Row="1" Grid.Column="0" IsChecked="{Binding TilePicker.GreenWireActive}"
+                             Content="{x:Static p:Language.tool_paint_wire_green}"
+                             ToolTip="{x:Static p:Language.tool_paint_wire_green}"
+                             OffContent="" OnContent="" />
+            <ui:ToggleSwitch Grid.Row="1" Grid.Column="1" IsChecked="{Binding TilePicker.YellowWireActive}"
+                             Content="{x:Static p:Language.tool_paint_wire_yellow}"
+                             ToolTip="{x:Static p:Language.tool_paint_wire_yellow}"
+                             OffContent="" OnContent="" Margin="4,0,0,0" />
         </Grid>
 
-        <!-- Liquid -->
-        <TextBlock Text="{x:Static p:Language.tool_paint_liquid_header}" FontWeight="SemiBold" Margin="0,8,0,4"
+        <!-- ── Liquid ── -->
+        <TextBlock Text="{x:Static p:Language.tool_paint_liquid_header}" FontWeight="SemiBold" Margin="0,8,0,2"
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ComboBox Grid.Column="0" ItemsSource="{StaticResource LiquidType}"
                       SelectedValue="{Binding TilePicker.LiquidType}"
                       SelectedValuePath="Value"
-                      ItemTemplate="{StaticResource EnumTemplate}" Margin="0,0,4,0" />
-            <ComboBox Grid.Column="1" ItemsSource="{StaticResource LiquidAmountEnum}"
+                      ItemTemplate="{StaticResource EnumTemplate}" />
+            <ComboBox Grid.Column="2" ItemsSource="{StaticResource LiquidAmountEnum}"
                       SelectedValue="{Binding TilePicker.LiquidAmountMode}"
                       SelectedValuePath="Value"
                       ItemTemplate="{StaticResource EnumTemplate}" />
