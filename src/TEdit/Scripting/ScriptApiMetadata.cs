@@ -406,6 +406,55 @@ public static class ScriptApiMetadata
             new("placeByName",  "placeByName(name, x, y) → bool",                         "Place first style matching name"),
         ]),
 
+        new("tileEntities", "Query and modify tile entities (mannequins, weapon racks, item frames, etc.)",
+        [
+            // Counts
+            new("count",             "count → int",              "Total number of tile entities"),
+            new("mannequinCount",    "mannequinCount → int",     "Number of mannequins/display dolls"),
+            new("weaponRackCount",   "weaponRackCount → int",    "Number of weapon racks"),
+            new("hatRackCount",      "hatRackCount → int",       "Number of hat racks"),
+            new("itemFrameCount",    "itemFrameCount → int",     "Number of item frames"),
+            new("foodPlatterCount",  "foodPlatterCount → int",   "Number of food platters"),
+            new("logicSensorCount",  "logicSensorCount → int",   "Number of logic sensors"),
+            new("trainingDummyCount","trainingDummyCount → int", "Number of training dummies"),
+            new("pylonCount",        "pylonCount → int",         "Number of teleportation pylons"),
+
+            // Query
+            new("getAll",            "getAll() → [{x, y, type, id, ...}]",        "Get all tile entities"),
+            new("getAllByType",      "getAllByType(typeName) → [{...}]",           "Get entities by type name"),
+            new("getAllMannequins",  "getAllMannequins() → [{...}]",               "Get all mannequins/display dolls"),
+            new("getAllWeaponRacks", "getAllWeaponRacks() → [{...}]",              "Get all weapon racks"),
+            new("getAllHatRacks",    "getAllHatRacks() → [{...}]",                 "Get all hat racks"),
+            new("getAllItemFrames",  "getAllItemFrames() → [{...}]",               "Get all item frames"),
+            new("getAllFoodPlatters","getAllFoodPlatters() → [{...}]",             "Get all food platters"),
+            new("getAt",            "getAt(x, y) → {x, y, type, ...}",            "Get entity at tile coordinates"),
+            new("findByItem",       "findByItem(itemId) → [{...}]",               "Find entities containing item ID"),
+
+            // Mannequin (DisplayDoll)
+            new("setEquipment",  "setEquipment(x, y, slot, itemId, prefix?)",  "Set mannequin equipment slot (prefix default 0)"),
+            new("clearEquipment","clearEquipment(x, y, slot)",                  "Clear mannequin equipment slot"),
+            new("setDye",        "setDye(x, y, slot, dyeId, prefix?)",          "Set mannequin dye slot"),
+            new("clearDye",      "clearDye(x, y, slot)",                        "Clear mannequin dye slot"),
+            new("setWeapon",     "setWeapon(x, y, itemId, prefix?)",            "Set mannequin held weapon"),
+            new("clearWeapon",   "clearWeapon(x, y)",                           "Clear mannequin weapon"),
+            new("setPose",       "setPose(x, y, poseId)",                       "Set mannequin pose (0-8)"),
+            new("getPose",       "getPose(x, y) → int",                         "Get mannequin pose"),
+
+            // Hat Rack
+            new("setHatRackItem",  "setHatRackItem(x, y, slot, itemId, prefix?)", "Set hat rack item slot"),
+            new("clearHatRackItem","clearHatRackItem(x, y, slot)",                 "Clear hat rack item slot"),
+            new("setHatRackDye",   "setHatRackDye(x, y, slot, dyeId, prefix?)",   "Set hat rack dye slot"),
+            new("clearHatRackDye", "clearHatRackDye(x, y, slot)",                  "Clear hat rack dye slot"),
+
+            // Single-Item Entities (WeaponRack, ItemFrame, FoodPlatter, DeadCellsDisplayJar)
+            new("setItem",   "setItem(x, y, itemId, prefix?, stack?)", "Set item on single-item entity (prefix default 0, stack default 1)"),
+            new("clearItem", "clearItem(x, y)",                         "Remove item from single-item entity"),
+
+            // Logic Sensor / Training Dummy
+            new("setLogicSensor",      "setLogicSensor(x, y, logicCheck, on)",  "Set logic sensor type and state"),
+            new("setTrainingDummyNpc",  "setTrainingDummyNpc(x, y, npcId)",     "Set training dummy NPC"),
+        ]),
+
         new("draw", "Drawing tools: brush, pencil, fill, hammer with configurable tile picker",
         [
             // Picker configuration
