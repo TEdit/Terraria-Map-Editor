@@ -884,7 +884,7 @@
                             <Setter Property="Foreground" Value="#FFCCCCCC"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Foreground" Value="{DynamicResource AccentFillColorDefaultBrush}"/>
                             <Setter TargetName="ActiveIndicator" Property="Visibility" Value="Visible"/>
                         </Trigger>
                     </ControlTemplate.Triggers>

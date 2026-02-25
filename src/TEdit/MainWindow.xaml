@@ -419,6 +419,10 @@
                             Background="{DynamicResource ControlBackgroundBrush}"
                             SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}"
                             PreviewMouseLeftButtonDown="SidePanelTabs_PreviewMouseLeftButtonDown">
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.sidebar_palette_tooltip}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="PaintBrush20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <Sidebar:PaletteSidebarView />
+                        </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_worldproperties}">
                             <TabItem.Header><ui:SymbolIcon Symbol="Globe20" Filled="True" FontSize="24"/></TabItem.Header>
                             <ScrollViewer VerticalScrollBarVisibility="Auto" >
@@ -472,10 +476,6 @@
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_creative}">
                             <TabItem.Header><ui:SymbolIcon Symbol="Sparkle20" Filled="True" FontSize="24"/></TabItem.Header>
                             <View:CreativePowers />
-                        </TabItem>
-                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.sidebar_palette_tooltip}">
-                            <TabItem.Header><ui:SymbolIcon Symbol="PaintBrush20" Filled="True" FontSize="24"/></TabItem.Header>
-                            <Sidebar:PaletteSidebarView />
                         </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.sidebar_filter_tooltip}">
                             <TabItem.Header><ui:SymbolIcon Symbol="Filter20" Filled="True" FontSize="24"/></TabItem.Header>
