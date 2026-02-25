@@ -48,12 +48,12 @@ public partial class HouseGenPlugin : BasePlugin
             _vm = new(_wvm.Clipboard.LoadedBuffers);
             _view.DataContext = _vm;
             _view.Show();
-            _wvm.SelectedTabIndex = 3;
+            _wvm.SelectedTabIndex = (int)SidebarTab.Clipboard;
         }
         else
         {
             _view.Show();
-            _wvm.SelectedTabIndex = 3;
+            _wvm.SelectedTabIndex = (int)SidebarTab.Clipboard;
         }
     }
 

@@ -10,7 +10,7 @@
              xmlns:controls="clr-namespace:TEdit.View.Sidebar.Controls"
              xmlns:cv="clr-namespace:TEdit.Converters"
              mc:Ignorable="d"
-             d:DesignHeight="900" d:DesignWidth="400"
+             d:DesignHeight="600" d:DesignWidth="400"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
 
     <UserControl.Resources>

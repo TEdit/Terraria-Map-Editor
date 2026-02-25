@@ -42,7 +42,7 @@ public partial class TextStatuePlugin : BasePlugin
                 view.ViewModel.LineLength,
                 view.ViewModel.Justification);
 
-            _wvm.SelectedTabIndex = 3;
+            _wvm.SelectedTabIndex = (int)SidebarTab.Clipboard;
         }
     }
 

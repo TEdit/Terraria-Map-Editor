@@ -221,14 +221,14 @@ public partial class MainWindow : FluentWindow
                     if (_vm.CurrentWorld != null && ((ICommand)_vm.CopyCommand).CanExecute(null))
                     {
                         ((ICommand)_vm.CopyCommand).Execute(null);
-                        _vm.SelectedTabIndex = 3;
+                        _vm.SelectedTabIndex = (int)SidebarTab.Clipboard;
                     }
                     break;
                 case "paste":
                     if (_vm.CurrentWorld != null && ((ICommand)_vm.PasteCommand).CanExecute(null))
                     {
                         ((ICommand)_vm.PasteCommand).Execute(null);
-                        _vm.SelectedTabIndex = 3;
+                        _vm.SelectedTabIndex = (int)SidebarTab.Clipboard;
                     }
                     break;
                 case "undo":
@@ -392,14 +392,14 @@ public partial class MainWindow : FluentWindow
                 if (_vm.CurrentWorld != null && ((ICommand)_vm.CopyCommand).CanExecute(null))
                 {
                     ((ICommand)_vm.CopyCommand).Execute(null);
-                    _vm.SelectedTabIndex = 3;
+                    _vm.SelectedTabIndex = (int)SidebarTab.Clipboard;
                 }
                 return true;
             case "edit.paste":
                 if (_vm.CurrentWorld != null && ((ICommand)_vm.PasteCommand).CanExecute(null))
                 {
                     ((ICommand)_vm.PasteCommand).Execute(null);
-                    _vm.SelectedTabIndex = 3;
+                    _vm.SelectedTabIndex = (int)SidebarTab.Clipboard;
                 }
                 return true;
             case "edit.undo":

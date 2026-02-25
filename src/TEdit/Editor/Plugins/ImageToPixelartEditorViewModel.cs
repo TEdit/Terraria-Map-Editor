@@ -351,7 +351,7 @@ public partial class ImageToPixelartEditorViewModel
             var bufferRendered = new ClipboardBufferPreview(GeneratedSchematic);
             _worldViewModel.Clipboard.LoadedBuffers.Add(bufferRendered);
             _worldViewModel.ClipboardSetActiveCommand.Execute(bufferRendered);
-            _worldViewModel.SelectedTabIndex = 3;
+            _worldViewModel.SelectedTabIndex = (int)SidebarTab.Clipboard;
 
             await ShowMessageInteraction.Handle("Schematic copied to clipboard.");
         }

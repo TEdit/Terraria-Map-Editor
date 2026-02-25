@@ -45,8 +45,12 @@
             <!-- Liquid -->
             <RowDefinition Height="Auto" />  <!-- 14: header -->
             <RowDefinition Height="Auto" />  <!-- 15: type / level mode -->
-            <RowDefinition Height="Auto" />  <!-- 16: slider -->
-        </Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <!-- 16: slider -->
+      <RowDefinition Height="Auto" />
+      <!-- 16: slider -->
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
 
         <!-- ═══ Row 0: Type headers ═══ -->
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
@@ -281,21 +285,24 @@
                   SelectedValue="{Binding MaskSettings.LiquidTypeMaskValue}"
                   SelectedValuePath="Value"
                   ItemTemplate="{StaticResource EnumTemplate}" />
-        <ComboBox Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="2"
+        <ComboBox Grid.Row="15" Grid.Column="3"
                   ItemsSource="{StaticResource LiquidLevelMaskModeEnum}"
                   SelectedValue="{Binding MaskSettings.LiquidLevelMaskMode}"
                   SelectedValuePath="Value"
                   ItemTemplate="{StaticResource EnumTemplate}" />
 
         <!-- ═══ Row 16: Liquid level slider ═══ -->
-        <Slider Grid.Row="16" Grid.Column="3" Minimum="0" Maximum="255"
-                Value="{Binding MaskSettings.LiquidLevelMaskValue}"
-                VerticalAlignment="Center" Margin="0,2,0,0"
-                IsSnapToTickEnabled="True" TickFrequency="1" />
-        <TextBlock Grid.Row="16" Grid.Column="4"
+    <DockPanel Grid.Row="15" Grid.Column="4">
+
+      <TextBlock DockPanel.Dock="Right"
                    Text="{Binding MaskSettings.LiquidLevelMaskValue}"
                    VerticalAlignment="Center" Margin="4,2,0,0" MinWidth="25"
                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+      <Slider  Minimum="0" Maximum="255"
+                Value="{Binding MaskSettings.LiquidLevelMaskValue}"
+                VerticalAlignment="Center" Margin="0,2,0,0"
+                IsSnapToTickEnabled="True" TickFrequency="1" />
+    </DockPanel>
 
-    </Grid>
+  </Grid>
 </UserControl>

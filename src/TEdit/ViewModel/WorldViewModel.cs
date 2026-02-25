@@ -931,7 +931,7 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _selectedXmas, value);
-            SelectedTabIndex = 1;
+            SelectedTabIndex = (int)SidebarTab.SpecialTiles;
             SelectedSpecialTile = 11;
         }
     }
@@ -968,7 +968,7 @@ public partial class WorldViewModel : ReactiveObject
             this.RaiseAndSetIfChanged(ref _selectedSign, value);
             if (value != null)
             {
-                SelectedTabIndex = 1;
+                SelectedTabIndex = (int)SidebarTab.SpecialTiles;
                 SelectedSpecialTile = 12;
             }
         }
@@ -982,7 +982,7 @@ public partial class WorldViewModel : ReactiveObject
             this.RaiseAndSetIfChanged(ref _selectedChest, value);
             if (value != null)
             {
-                SelectedTabIndex = 1;
+                SelectedTabIndex = (int)SidebarTab.SpecialTiles;
                 SelectedSpecialTile = 13;
             }
         }
@@ -996,7 +996,7 @@ public partial class WorldViewModel : ReactiveObject
             this.RaiseAndSetIfChanged(ref _selectedTileEntity, value);
             if (value != null)
             {
-                SelectedTabIndex = 1;
+                SelectedTabIndex = (int)SidebarTab.SpecialTiles;
                 SelectedSpecialTile = (int)value.EntityType;
             }
         }
@@ -1930,7 +1930,7 @@ public partial class WorldViewModel : ReactiveObject
     [ReactiveCommand]
     private void EditBestiary()
     {
-        SelectedTabIndex = 6; // Navigate to Bestiary tab
+        SelectedTabIndex = (int)SidebarTab.Bestiary;
     }
 
     private string _tallyCount;
@@ -1972,7 +1972,7 @@ public partial class WorldViewModel : ReactiveObject
 
             if (tool.Name.StartsWith("Sprite"))
             {
-                SelectedTabIndex = 2;
+                SelectedTabIndex = (int)SidebarTab.Sprites;
             }
 
             PreviewChange();
