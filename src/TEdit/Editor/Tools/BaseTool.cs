@@ -97,6 +97,7 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     }
 
     public virtual IReadOnlyList<Vector2Int32> CadPreviewPath => Array.Empty<Vector2Int32>();
+    public virtual IReadOnlyList<Vector2Int32> CadPreviewTunnelPath => Array.Empty<Vector2Int32>();
     public virtual bool HasCadPreview => false;
     public virtual Vector2Int32 LinePreviewAnchor => default;
     public virtual bool HasLinePreviewAnchor => false;

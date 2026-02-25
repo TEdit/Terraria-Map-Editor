@@ -30,6 +30,7 @@ public sealed class PencilTool : BaseTool
     private bool? _cadVerticalFirstOverride; // null = auto-detect, true = vertical-first, false = horizontal-first
     private Vector2Int32 _cadAnchor;
     private readonly List<Vector2Int32> _cadPreviewPath = new();
+    private readonly List<Vector2Int32> _cadPreviewTunnel = new();
     private Vector2Int32 _cadLastCursor;
 
     public PencilTool(WorldViewModel worldViewModel)
@@ -52,6 +53,7 @@ public sealed class PencilTool : BaseTool
     public bool? CadVerticalFirstOverride => _cadVerticalFirstOverride;
 
     public override IReadOnlyList<Vector2Int32> CadPreviewPath => _cadPreviewPath;
+    public override IReadOnlyList<Vector2Int32> CadPreviewTunnelPath => _cadPreviewTunnel;
     public override bool HasCadPreview => _isCadWireMode && _isCadAnchored && _cadPreviewPath.Count > 0;
 
     public override Vector2Int32 LinePreviewAnchor => _endPoint;
@@ -82,6 +84,7 @@ public sealed class PencilTool : BaseTool
             // Miter45 → normal drawing (preserve anchor, just hide preview)
             _isCadWireMode = false;
             _cadPreviewPath.Clear();
+            _cadPreviewTunnel.Clear();
         }
     }
 
@@ -93,6 +96,7 @@ public sealed class PencilTool : BaseTool
         _cadVerticalFirstOverride = verticalFirst;
         if (!enabled)
             _cadPreviewPath.Clear();
+            _cadPreviewTunnel.Clear();
     }
 
     /// <summary>Exit CAD wire mode entirely. Clears anchor and preview.</summary>
@@ -145,6 +149,7 @@ public sealed class PencilTool : BaseTool
                     _cadAnchor = e.Location;
                     _isCadAnchored = true;
                     _cadPreviewPath.Clear();
+            _cadPreviewTunnel.Clear();
                     return;
                 }
                 else
@@ -154,6 +159,7 @@ public sealed class PencilTool : BaseTool
                     // Chain: new anchor = old end for polyline
                     _cadAnchor = e.Location;
                     _cadPreviewPath.Clear();
+            _cadPreviewTunnel.Clear();
                     return;
                 }
             }
@@ -262,6 +268,7 @@ public sealed class PencilTool : BaseTool
     private void ComputeCadPath(Vector2Int32 cursor)
     {
         _cadPreviewPath.Clear();
+        _cadPreviewTunnel.Clear();
 
         bool verticalFirst = _cadVerticalFirstOverride
             ?? WireRouter.DetectVerticalFirst(_cadAnchor, cursor);
@@ -270,6 +277,24 @@ public sealed class PencilTool : BaseTool
             : WireRouter.RouteMiter(_cadAnchor, cursor, verticalFirst);
 
         _cadPreviewPath.AddRange(points);
+
+        // Compute tunnel preview for Track mode with tunnel enabled
+        if (_wvm.TilePicker.PaintMode == PaintMode.Track
+            && _wvm.TilePicker.TrackMode == TrackMode.Track
+            && _wvm.TilePicker.TrackTunnelEnabled)
+        {
+            int tunnelHeight = Math.Clamp(_wvm.TilePicker.TrackTunnelHeight, 1, 10);
+            var pathSet = new HashSet<Vector2Int32>(_cadPreviewPath);
+            foreach (var p in _cadPreviewPath)
+            {
+                for (int ty = p.Y - 1; ty >= p.Y - tunnelHeight; ty--)
+                {
+                    var above = new Vector2Int32(p.X, ty);
+                    if (!pathSet.Contains(above))
+                        _cadPreviewTunnel.Add(above);
+                }
+            }
+        }
     }
 
     private void CommitCadPath()

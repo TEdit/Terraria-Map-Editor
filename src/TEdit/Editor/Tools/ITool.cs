@@ -29,6 +29,9 @@ public interface ITool
     /// <summary>Preview path tiles for CAD wire routing. Empty when no preview active.</summary>
     IReadOnlyList<Vector2Int32> CadPreviewPath { get; }
 
+    /// <summary>Preview tiles for track tunnel clearing (above the track path).</summary>
+    IReadOnlyList<Vector2Int32> CadPreviewTunnelPath { get; }
+
     /// <summary>Whether CAD wire preview is active and should be rendered.</summary>
     bool HasCadPreview { get; }
 

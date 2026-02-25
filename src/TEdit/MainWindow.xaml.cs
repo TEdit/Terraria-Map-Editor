@@ -742,6 +742,12 @@ public partial class MainWindow : FluentWindow
 
         if (routingMode != null)
         {
+            var paintMode = _vm.TilePicker.PaintMode;
+            var modePrefix = paintMode switch
+            {
+                PaintMode.Wire => "",
+                _ => paintMode.ToString() + " "
+            };
             var mode = routingMode switch
             {
                 TEdit.Geometry.WireRoutingMode.Elbow90 => Properties.Language.drawing_mode_wire90,
@@ -754,7 +760,7 @@ public partial class MainWindow : FluentWindow
                 true => " \u2193",   // ↓ vertical-first
                 null => " \u2194"    // ↔ auto-detect
             };
-            _vm.DrawingModeText = toolLabel + mode + dir;
+            _vm.DrawingModeText = toolLabel + modePrefix + mode + dir;
         }
         else
         {

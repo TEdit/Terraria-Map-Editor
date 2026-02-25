@@ -6480,13 +6480,17 @@ public partial class WorldRenderXna : UserControl
 
     private void DrawToolPreview()
     {
-        // CAD wire routing preview
+        // CAD routing preview (wire, track, platform, etc.)
         if (_wvm.ActiveTool.HasCadPreview)
         {
             var whiteTex = _textureDictionary.WhitePixelTexture;
             if (whiteTex != null)
             {
-                var previewColor = GetActiveWirePreviewColor();
+                // Wire mode uses wire-colored preview; all other modes use standard blue
+                var previewColor = _wvm.TilePicker.PaintMode == PaintMode.Wire
+                    ? GetActiveWirePreviewColor()
+                    : Color.FromNonPremultiplied(0, 90, 255, 127);
+
                 var path = _wvm.ActiveTool.CadPreviewPath;
                 for (int i = 0; i < path.Count; i++)
                 {
@@ -6496,6 +6500,22 @@ public partial class WorldRenderXna : UserControl
                         (_scrollPosition.Y + tile.Y) * _zoom);
                     _spriteBatch.Draw(whiteTex, pos, null, previewColor,
                         0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                }
+
+                // Draw tunnel clearing preview (darker blue) for Track mode
+                var tunnelPath = _wvm.ActiveTool.CadPreviewTunnelPath;
+                if (tunnelPath.Count > 0)
+                {
+                    var tunnelColor = Color.FromNonPremultiplied(0, 50, 180, 100);
+                    for (int i = 0; i < tunnelPath.Count; i++)
+                    {
+                        var tile = tunnelPath[i];
+                        var pos = new Vector2(
+                            (_scrollPosition.X + tile.X) * _zoom,
+                            (_scrollPosition.Y + tile.Y) * _zoom);
+                        _spriteBatch.Draw(whiteTex, pos, null, tunnelColor,
+                            0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                    }
                 }
 
                 // Draw anchor marker with brighter color
