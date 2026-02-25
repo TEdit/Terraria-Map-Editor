@@ -196,6 +196,98 @@ public static class WireRouter
     }
 
     /// <summary>
+    /// Route a 45-degree miter path using thin (1-tile-per-step) diagonals.
+    /// For tracks/platforms where diagonal tiles occupy a single cell
+    /// instead of the 2-cell staircase pattern used by wires.
+    /// </summary>
+    public static List<Vector2Int32> RouteMiterThin(Vector2Int32 start, Vector2Int32 end, bool verticalFirst)
+    {
+        var path = new List<Vector2Int32>();
+
+        if (start.X == end.X && start.Y == end.Y)
+        {
+            path.Add(start);
+            return path;
+        }
+
+        int dx = end.X - start.X;
+        int dy = end.Y - start.Y;
+        int absDx = Math.Abs(dx);
+        int absDy = Math.Abs(dy);
+        int sx = dx >= 0 ? 1 : -1;
+        int sy = dy >= 0 ? 1 : -1;
+        int diag = Math.Min(absDx, absDy);
+
+        if (verticalFirst)
+        {
+            int straightV = absDy - diag;
+            int straightH = absDx - diag;
+            int cx = start.X;
+            int cy = start.Y;
+
+            for (int i = 0; i < straightV; i++)
+            {
+                path.Add(new Vector2Int32(cx, cy));
+                cy += sy;
+            }
+
+            // Thin diagonal: one tile per step, moving both axes simultaneously
+            for (int i = 0; i < diag; i++)
+            {
+                path.Add(new Vector2Int32(cx, cy));
+                cx += sx;
+                cy += sy;
+            }
+
+            for (int i = 0; i < straightH; i++)
+            {
+                path.Add(new Vector2Int32(cx, cy));
+                cx += sx;
+            }
+
+            path.Add(new Vector2Int32(cx, cy));
+        }
+        else
+        {
+            int straightH = absDx - diag;
+            int straightV = absDy - diag;
+            int cx = start.X;
+            int cy = start.Y;
+
+            for (int i = 0; i < straightH; i++)
+            {
+                path.Add(new Vector2Int32(cx, cy));
+                cx += sx;
+            }
+
+            // Thin diagonal: one tile per step, moving both axes simultaneously
+            for (int i = 0; i < diag; i++)
+            {
+                path.Add(new Vector2Int32(cx, cy));
+                cx += sx;
+                cy += sy;
+            }
+
+            for (int i = 0; i < straightV; i++)
+            {
+                path.Add(new Vector2Int32(cx, cy));
+                cy += sy;
+            }
+
+            path.Add(new Vector2Int32(cx, cy));
+        }
+
+        // Deduplicate adjacent duplicates at transitions
+        for (int i = path.Count - 1; i > 0; i--)
+        {
+            if (path[i].X == path[i - 1].X && path[i].Y == path[i - 1].Y)
+                path.RemoveAt(i);
+        }
+
+        return path;
+    }
+
+    /// <summary>
     /// Route a bus of parallel wires using 90° elbow routing.
     /// Wires are spaced 2 tiles apart (1-tile gap) to prevent side contact.
     /// Wire start positions are at the opposite edge of the brush from the movement direction.
@@ -209,14 +301,14 @@ public static class WireRouter
 
     /// <summary>
     /// Route a bus of parallel wires using 45° miter routing.
-    /// Wires are spaced 3 tiles apart (2-tile gap) so staircase patterns don't side-touch.
-    /// Wire start positions are at the opposite edge of the brush from the movement direction.
+    /// Wires are spaced 2 tiles apart (1-tile gap), same as 90° routing.
+    /// Diagonal-touching wires don't connect, so no extra spacing is needed.
     /// </summary>
     public static List<Vector2Int32> RouteBusMiter(
         Vector2Int32 anchor, Vector2Int32 cursor,
         int brushWidth, int brushHeight, bool verticalFirst)
     {
-        return RouteBus(anchor, cursor, brushWidth, brushHeight, verticalFirst, spacing: 3, miter: true);
+        return RouteBus(anchor, cursor, brushWidth, brushHeight, verticalFirst, spacing: 2, miter: true);
     }
 
     /// <summary>

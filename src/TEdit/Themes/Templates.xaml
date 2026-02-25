@@ -8,6 +8,7 @@
                     xmlns:p="clr-namespace:TEdit.Properties"
                     xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
                     xmlns:cv="clr-namespace:TEdit.Converters"
+                    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                     >
     <enum:EnumItemList x:Key="PaintModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:PaintMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="TrackModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:TrackMode}" SortBy="Value"  />
@@ -18,6 +19,8 @@
     <enum:EnumItemList x:Key="LiquidType" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:LiquidType}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="LiquidAmountEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:LiquidAmountMode}" SortBy="Value" />
     <enum:EnumItemList x:Key="WireReplaceModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:WireReplaceMode}" SortBy="Value"  />
+    <enum:EnumItemList x:Key="MaskPresetEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:MaskPreset}" x:Shared="false" SortBy="Value" />
+    <enum:EnumItemList x:Key="LiquidLevelMaskModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:LiquidLevelMaskMode}" x:Shared="false" SortBy="Value" />
   <cv:TEditColorToMediaColorConverter x:Key="TEditColorToMediaColorConverter" />
   <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
   <cv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
@@ -61,6 +64,37 @@
         <Grid HorizontalAlignment="Stretch">
             <TextBlock Text="{Binding Path=Text}" Margin="2,0" HorizontalAlignment="Stretch"  />
         </Grid>
+    </DataTemplate>
+
+    <!-- MaskMode: icon-only when collapsed, icon + text when expanded -->
+    <DataTemplate x:Key="MaskModeIconTemplate">
+        <DockPanel>
+            <ui:SymbolIcon x:Name="ModeIcon" DockPanel.Dock="Left"
+                           Symbol="Dismiss20" FontSize="16"
+                           VerticalAlignment="Center" Margin="0,0,4,0" />
+            <TextBlock x:Name="ModeText" Text="{Binding Text}"
+                       VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+        </DockPanel>
+        <DataTemplate.Triggers>
+            <!-- In collapsed selection box: no ComboBoxItem ancestor, hide text -->
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBoxItem}, FallbackValue={x:Null}}" Value="{x:Null}">
+                <Setter TargetName="ModeText" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="ModeIcon" Property="Margin" Value="0" />
+            </DataTrigger>
+            <!-- Icon per MaskMode value -->
+            <DataTrigger Binding="{Binding Value}" Value="{x:Static editor:MaskMode.Off}">
+                <Setter TargetName="ModeIcon" Property="Symbol" Value="Dismiss20" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Value}" Value="{x:Static editor:MaskMode.Empty}">
+                <Setter TargetName="ModeIcon" Property="Symbol" Value="Circle20" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Value}" Value="{x:Static editor:MaskMode.Match}">
+                <Setter TargetName="ModeIcon" Property="Symbol" Value="Checkmark20" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Value}" Value="{x:Static editor:MaskMode.NotMatching}">
+                <Setter TargetName="ModeIcon" Property="Symbol" Value="Prohibited20" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
     </DataTemplate>
 
     <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ItemPrefix}, Mode=OneTime}" x:Key="PrefixCollection" >

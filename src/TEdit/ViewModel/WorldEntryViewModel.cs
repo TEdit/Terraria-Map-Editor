@@ -44,6 +44,28 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
         IsMissing = false;
         IsCloudSave = isCloudSave;
         CloudUserId = cloudUserId;
+        IsLoaded = true;
+        Backups.CollectionChanged += OnBackupsChanged;
+    }
+
+    /// <summary>
+    /// Creates a lightweight placeholder entry from file metadata only (no binary I/O).
+    /// Header-derived properties will be populated later via <see cref="Hydrate"/>.
+    /// </summary>
+    public WorldEntryViewModel(FileInfo fi, bool isPinned = false, bool isRecent = false,
+        bool isCloudSave = false, string cloudUserId = null)
+    {
+        Title = Path.GetFileNameWithoutExtension(fi.Name);
+        FilePath = fi.FullName;
+        FileName = fi.Name;
+        FileSizeBytes = fi.Length;
+        LastModified = fi.LastWriteTimeUtc;
+        IsPinned = isPinned;
+        IsRecent = isRecent;
+        IsMissing = false;
+        IsCloudSave = isCloudSave;
+        CloudUserId = cloudUserId;
+        IsLoaded = false;
         Backups.CollectionChanged += OnBackupsChanged;
     }
 
@@ -58,6 +80,7 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
         FileName = Path.GetFileName(filePath);
         IsMissing = true;
         IsRecent = true;
+        IsLoaded = true;
         Backups.CollectionChanged += OnBackupsChanged;
     }
 
@@ -70,34 +93,88 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
         FilePath = "";
         FileName = "";
         IsMissing = isMissing;
+        IsLoaded = true;
         Backups.CollectionChanged += OnBackupsChanged;
     }
 
-    public string Title { get; }
+    /// <summary>
+    /// Updates all header-derived properties from a successfully read header.
+    /// Must be called on the UI thread.
+    /// </summary>
+    public void Hydrate(WorldHeaderInfo header)
+    {
+        Title = header.Title;
+        Version = header.Version;
+        TilesWide = header.TilesWide;
+        TilesHigh = header.TilesHigh;
+        LastModified = header.LastSave;
+        FileSizeBytes = header.FileSizeBytes;
+        IsFavorite = header.IsFavorite;
+        IsTModLoader = header.IsTModLoader;
+        IsCrimson = header.IsCrimson;
+        GameMode = header.GameMode;
+        IsHardMode = header.IsHardMode;
+        Seed = header.Seed;
+        SizeCategory = header.SizeCategory;
+        EvilBiome = header.EvilBiome;
+        GameModeText = header.GameModeText;
+        TerrariaVersionText = header.TerrariaVersionText;
+        IsCorrupt = header.IsCorrupt;
+        CorruptReason = header.CorruptReason;
+        IsLoaded = true;
+
+        // Raise change notifications for computed properties
+        this.RaisePropertyChanged(nameof(DimensionText));
+        this.RaisePropertyChanged(nameof(VersionText));
+        this.RaisePropertyChanged(nameof(SizeText));
+        this.RaisePropertyChanged(nameof(CloudLabel));
+    }
+
+    [Reactive]
+    private string _title;
     public string FilePath { get; }
-    public uint Version { get; }
-    public int TilesWide { get; }
-    public int TilesHigh { get; }
-    public DateTime LastModified { get; }
-    public long FileSizeBytes { get; }
+    [Reactive]
+    private uint _version;
+    [Reactive]
+    private int _tilesWide;
+    [Reactive]
+    private int _tilesHigh;
+    [Reactive]
+    private DateTime _lastModified;
+    [Reactive]
+    private long _fileSizeBytes;
     [Reactive]
     private bool _isFavorite;
-    public bool IsTModLoader { get; }
-    public bool IsCrimson { get; }
-    public int GameMode { get; }
-    public bool IsHardMode { get; }
-    public string Seed { get; }
+    [Reactive]
+    private bool _isTModLoader;
+    [Reactive]
+    private bool _isCrimson;
+    [Reactive]
+    private int _gameMode;
+    [Reactive]
+    private bool _isHardMode;
+    [Reactive]
+    private string _seed;
     public string FileName { get; }
-    public string SizeCategory { get; }
-    public string EvilBiome { get; }
-    public string GameModeText { get; }
-    public string TerrariaVersionText { get; }
+    [Reactive]
+    private string _sizeCategory;
+    [Reactive]
+    private string _evilBiome;
+    [Reactive]
+    private string _gameModeText;
+    [Reactive]
+    private string _terrariaVersionText;
     public bool IsRecent { get; }
     public bool IsMissing { get; }
-    public bool IsCorrupt { get; }
-    public string CorruptReason { get; }
+    [Reactive]
+    private bool _isCorrupt;
+    [Reactive]
+    private string _corruptReason;
     public bool IsCloudSave { get; }
     public string CloudUserId { get; }
+
+    [Reactive]
+    private bool _isLoaded;
 
     [Reactive]
     private bool _isPinned;
@@ -148,8 +225,8 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
 
     public string CloudLabel => IsCloudSave ? $"☁ User {CloudUserId}" : "";
 
-    public string DimensionText => IsMissing ? "" : $"{TilesWide}x{TilesHigh} - {SizeCategory}";
-    public string VersionText => IsMissing ? "" : TerrariaVersionText ?? $"v{Version}";
+    public string DimensionText => IsMissing ? "" : IsLoaded ? $"{TilesWide}x{TilesHigh} - {SizeCategory}" : "";
+    public string VersionText => IsMissing ? "" : IsLoaded ? TerrariaVersionText ?? $"v{Version}" : "";
     public string SizeText => IsMissing ? "" : FileMaintenance.FormatFileSize(FileSizeBytes);
 
     public string LastModifiedText

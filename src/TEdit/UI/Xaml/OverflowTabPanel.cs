@@ -53,19 +53,16 @@ public class OverflowTabPanel : Panel
             Style = style,
         };
 
-        var icon = new Wpf.Ui.Controls.SymbolIcon
+        // Use a plain TextBlock instead of WPF-UI SymbolIcon — SymbolIcon
+        // overrides Foreground internally and ignores bindings on init.
+        // TextBlock inherits Foreground naturally from the button template.
+        var icon = new System.Windows.Controls.TextBlock
         {
-            Symbol = Wpf.Ui.Controls.SymbolRegular.MoreVertical20,
+            Text = "\u22EE", // ⋮ vertical ellipsis
             FontSize = 24,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
         };
-        // SymbolIcon doesn't inherit Foreground through ContentPresenter,
-        // so bind it explicitly to the button's Foreground.
-        icon.SetBinding(
-            Wpf.Ui.Controls.SymbolIcon.ForegroundProperty,
-            new System.Windows.Data.Binding(nameof(Control.Foreground))
-            {
-                Source = _overflowButton,
-            });
         _overflowButton.Content = icon;
         _overflowButton.Click += OnOverflowButtonClick;
 

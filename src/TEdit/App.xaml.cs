@@ -246,7 +246,19 @@ public partial class App : Application
                 new RoutedEventHandler((sender, _) =>
                 {
                     if (sender is FluentWindow fw)
-                        fw.WindowBackdropType = WindowBackdropType.None;
+                    {
+                        try
+                        {
+                            fw.WindowBackdropType = WindowBackdropType.None;
+                        }
+                        catch (ArgumentException ex) when (ex.Message.Contains("Freezable"))
+                        {
+                            // Wpf.Ui's FluentWindow.SetWindowChrome can throw when the
+                            // WindowChrome Freezable's inheritance context is stale.
+                            // Non-critical — the window renders fine without the override.
+                            ErrorLogging.Log($"WindowBackdropType override skipped: {ex.Message}");
+                        }
+                    }
                 }));
         }
 

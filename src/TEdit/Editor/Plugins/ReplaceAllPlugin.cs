@@ -29,20 +29,18 @@ namespace TEdit.Editor.Plugins
                     replaceWalls = true;
             }
 
-            if (replaceTiles && _wvm.TilePicker.TileMaskMode == MaskMode.Off)
+            if (replaceTiles && _wvm.MaskSettings.TileMaskMode == MaskMode.Off)
             {
                 MessageBox.Show("Enable masking tiles to enable replace.");
                 return;
             }
 
-            if (replaceWalls && _wvm.TilePicker.WallMaskMode == MaskMode.Off)
+            if (replaceWalls && _wvm.MaskSettings.WallMaskMode == MaskMode.Off)
             {
                 MessageBox.Show("Enable masking walls to enable replace.");
                 return;
             }
 
-            int wallMask = _wvm.TilePicker.WallMask;
-            int tileMask = _wvm.TilePicker.TileMask;
             int tileTarget = _wvm.TilePicker.Tile;
             int wallTarget = _wvm.TilePicker.Wall;
 
@@ -50,32 +48,11 @@ namespace TEdit.Editor.Plugins
             {
                 for (int y = (_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.Y : 0; y < ((_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.Y + _wvm.Selection.SelectionArea.Height : _wvm.CurrentWorld.TilesHigh); y++)
                 {
-                    bool doReplaceTile = false;
-                    bool doReplaceWall = false;
-
                     Tile curTile = _wvm.CurrentWorld.Tiles[x, y];
-					
-					// Updated condition to handle air tiles (tileMask == -1).
-                    if (replaceTiles)
-                    {
-                        if ((_wvm.Selection.IsValid(x, y)) && ((curTile.IsActive && curTile.Type == tileMask && _wvm.TilePicker.TileMaskMode == MaskMode.Match)
-                            || (!curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Empty)
-                            || (curTile.Type != tileMask && _wvm.TilePicker.TileMaskMode == MaskMode.NotMatching)
-                            || (tileMask == -1 && !curTile.IsActive))) // Added condition to handle tileMask == -1.
-                        {
-                            doReplaceTile = true;
-                        }
-                    }
+                    bool passesMask = _wvm.MaskSettings.Passes(curTile);
 
-                    if (replaceWalls)
-                    {
-                        if ((_wvm.Selection.IsValid(x, y)) && (curTile.Wall == wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.Match)
-                            || (curTile.Wall == 0 && _wvm.TilePicker.WallMaskMode == MaskMode.Empty)
-                            || (curTile.Wall != wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.NotMatching))
-                        {
-                            doReplaceWall = true;
-                        }
-                    }
+                    bool doReplaceTile = replaceTiles && passesMask && _wvm.Selection.IsValid(x, y);
+                    bool doReplaceWall = replaceWalls && passesMask && _wvm.Selection.IsValid(x, y);
 
                     if (doReplaceTile || doReplaceWall)
                     {

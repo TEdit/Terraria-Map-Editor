@@ -23,24 +23,9 @@ public partial class TilePicker : ReactiveObject
 {
     private PaintMode _paintMode = ToolDefaultData.PaintMode;
     [Reactive]
-    private MaskMode _tileMaskMode = ToolDefaultData.PaintTileMaskMode;
-    [Reactive]
-    private MaskMode _wallMaskMode = ToolDefaultData.PaintWallMaskMode;
-    [Reactive]
     private int _wall = ToolDefaultData.PaintWall;
     [Reactive]
     private int _tile = ToolDefaultData.PaintTile;
-    [Reactive]
-    private int _wallMask = ToolDefaultData.PaintWallMask;
-    [Reactive]
-    private int _tileMask = ToolDefaultData.PaintTileMask;
-
-    [Reactive]
-    private MaskMode _wallPaintMaskMode = MaskMode.Off;
-    [Reactive]
-    private MaskMode _tilePaintMaskMode = MaskMode.Off;
-    [Reactive]
-    private MaskMode _liquidMaskMode = MaskMode.Off;
 
     [Reactive]
     private bool _blueWireActive = ToolDefaultData.BlueWire;
@@ -79,14 +64,9 @@ public partial class TilePicker : ReactiveObject
     [Reactive]
     private bool _wireReplaceYellow = false;
     [Reactive]
-    private bool _usePaintMasks = false;
-
-    [Reactive]
     private bool _enableWallCoating = false;
     [Reactive]
     private bool _enableTileCoating = false;
-    [Reactive]
-    private bool _useCoatingMasks = false;
 
     [Reactive]
     private bool _wallCoatingIlluminant = false;
@@ -101,7 +81,7 @@ public partial class TilePicker : ReactiveObject
     private BrickStyle _brickStyle = BrickStyle.Full;
 
     [Reactive]
-    private bool _trackTunnelEnabled;
+    private bool _trackTunnelEnabled = true;
     [Reactive]
     private int _trackTunnelHeight = 4;
     [Reactive]
@@ -174,36 +154,10 @@ public partial class TilePicker : ReactiveObject
     {
         switch (PaintMode)
         {
-            //                case PaintMode.Tile:
-            //                    SwapTile();
-            //                    break;
-            //                case PaintMode.Wall:
-            //                    SwapWall();
-            //                    break;
-            case PaintMode.TileAndWall:
-                if (wall)
-                    SwapWall();
-                else
-                    SwapTile();
-                break;
             case PaintMode.Liquid:
                 SwapLiquid();
                 break;
         }
-    }
-
-    public void SwapTile()
-    {
-        int currentTile = Tile;
-        Tile = TileMask;
-        TileMask = currentTile;
-    }
-
-    public void SwapWall()
-    {
-        int currentWall = Wall;
-        Wall = WallMask;
-        WallMask = currentWall;
     }
 
     public void SwapLiquid()

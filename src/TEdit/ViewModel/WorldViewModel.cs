@@ -183,6 +183,11 @@ public partial class WorldViewModel : ReactiveObject
 
         IsAutoSaveEnabled = UserSettingsService.Current.Autosave;
 
+        // Load tool option settings
+        TilePicker.TrackTunnelEnabled = UserSettingsService.Current.TrackTunnelEnabled;
+        TilePicker.WhenAnyValue(x => x.TrackTunnelEnabled)
+            .Subscribe(v => UserSettingsService.Current.TrackTunnelEnabled = v);
+
         World.ProgressChanged += OnProgressChanged;
         Brush.BrushChanged += OnPreviewChanged;
         UpdateTitle();
@@ -1488,7 +1493,7 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _selectedXmas, value);
-            SelectedTabIndex = 1;
+            SelectedTabIndex = (int)SidebarTab.SpecialTiles;
             SelectedSpecialTile = 11;
         }
     }
@@ -1525,7 +1530,7 @@ public partial class WorldViewModel : ReactiveObject
             this.RaiseAndSetIfChanged(ref _selectedSign, value);
             if (value != null)
             {
-                SelectedTabIndex = 1;
+                SelectedTabIndex = (int)SidebarTab.SpecialTiles;
                 SelectedSpecialTile = 12;
             }
         }
@@ -1539,7 +1544,7 @@ public partial class WorldViewModel : ReactiveObject
             this.RaiseAndSetIfChanged(ref _selectedChest, value);
             if (value != null)
             {
-                SelectedTabIndex = 1;
+                SelectedTabIndex = (int)SidebarTab.SpecialTiles;
                 SelectedSpecialTile = 13;
             }
         }
@@ -1553,7 +1558,7 @@ public partial class WorldViewModel : ReactiveObject
             this.RaiseAndSetIfChanged(ref _selectedTileEntity, value);
             if (value != null)
             {
-                SelectedTabIndex = 1;
+                SelectedTabIndex = (int)SidebarTab.SpecialTiles;
                 SelectedSpecialTile = (int)value.EntityType;
             }
         }
@@ -1810,7 +1815,7 @@ public partial class WorldViewModel : ReactiveObject
                 }
                 _clipboardManager = Clipboard;
 
-                WorldEditor = new WorldEditor(TilePicker, CurrentWorld, Selection, undo, updateTiles);
+                WorldEditor = new WorldEditor(TilePicker, MaskSettings, CurrentWorld, Selection, undo, updateTiles);
 
                 // Subscribe to new world property changes
                 _currentWorld.PropertyChanged += OnWorldPropertyChanged;
@@ -1843,6 +1848,7 @@ public partial class WorldViewModel : ReactiveObject
     public MorphToolOptions MorphToolOptions => _MorphToolOptions;
 
     public TilePicker TilePicker { get; } = new TilePicker();
+    public TileMaskSettings MaskSettings { get; } = new TileMaskSettings();
 
     public ObservableCollection<ITool> Tools
     {
@@ -1977,6 +1983,17 @@ public partial class WorldViewModel : ReactiveObject
         if (ActiveTool is PencilTool pt) pt.SetWireState(pt.IsCadWireMode, pt.CadRoutingMode, true);
         else if (ActiveTool is BrushToolBase bt) bt.SetWireState(bt.IsCadWireMode, bt.CadRoutingMode, true);
         NotifyWireModeChanged();
+    }
+
+    public bool WireChainMode
+    {
+        get => UserSettingsService.Current.WireChainMode;
+        set
+        {
+            if (UserSettingsService.Current.WireChainMode == value) return;
+            UserSettingsService.Current.WireChainMode = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public void NotifyWireModeChanged()
@@ -2486,7 +2503,7 @@ public partial class WorldViewModel : ReactiveObject
     [ReactiveCommand]
     private void EditBestiary()
     {
-        SelectedTabIndex = 6; // Navigate to Bestiary tab
+        SelectedTabIndex = (int)SidebarTab.Bestiary;
     }
 
     private string _tallyCount;
@@ -2528,7 +2545,7 @@ public partial class WorldViewModel : ReactiveObject
 
             if (tool.Name.StartsWith("Sprite"))
             {
-                SelectedTabIndex = 2;
+                SelectedTabIndex = (int)SidebarTab.Sprites;
             }
 
             PreviewChange();

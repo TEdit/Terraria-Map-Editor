@@ -425,6 +425,10 @@
                                 <View:WorldPropertiesView VerticalAlignment="Top"/>
                             </ScrollViewer>
                         </TabItem>
+                        <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.sidebar_palette_tooltip}">
+                            <TabItem.Header><ui:SymbolIcon Symbol="PaintBrush20" Filled="True" FontSize="24"/></TabItem.Header>
+                            <Sidebar:PaletteSidebarView />
+                        </TabItem>
                         <TabItem Style="{StaticResource ActivityBarItem}" ToolTip="{x:Static p:Language.editor_tabs_special}">
                             <TabItem.Header>
                                 <Path Data="{StaticResource ChestIconGeometry}"

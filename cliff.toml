@@ -4,7 +4,7 @@ body = """
 {% for group, commits in commits | group_by(attribute="group") %}
     ### {{ group | striptags | trim | upper_first }}
     {% for commit in commits %}
-        - {{ commit.message | upper_first }}\
+        - {{ commit.message | split(pat="\n") | first | upper_first }}\
             {% if commit.remote.pr_number %} \
                 ([#{{ commit.remote.pr_number }}](https://github.com/TEdit/Terraria-Map-Editor/pull/{{ commit.remote.pr_number }}))\
             {% endif %}\
