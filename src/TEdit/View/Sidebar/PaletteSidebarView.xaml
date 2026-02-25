@@ -25,10 +25,12 @@
         <TabControl DockPanel.Dock="Top">
 
             <!-- ═══ Tiles Tab ═══ -->
-            <TabItem Header="{x:Static p:Language.palette_tile_section}">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <controls:TilePickerPanelControl Margin="4,0" />
-                </ScrollViewer>
+      <TabItem Header="{x:Static p:Language.palette_tile_section}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" >
+          <Border CornerRadius="4" Margin="4" VerticalAlignment="Top" Background="{DynamicResource SubtleFillColorSecondaryBrush}" >
+            <controls:TilePickerPanelControl Margin="4,0" />
+          </Border>
+        </ScrollViewer>
             </TabItem>
 
             <!-- ═══ Masks Tab ═══ -->
@@ -73,9 +75,11 @@
                     </Border>
 
                     <!-- Scrollable mask options -->
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <controls:MaskOptionsPanelControl Margin="4,0" />
-                    </ScrollViewer>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Border CornerRadius="4" Margin="4" VerticalAlignment="Top" Background="{DynamicResource SubtleFillColorSecondaryBrush}" >
+              <controls:MaskOptionsPanelControl Margin="4,0" />
+                  </Border>
+                </ScrollViewer>
                 </DockPanel>
             </TabItem>
 

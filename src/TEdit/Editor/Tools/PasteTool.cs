@@ -58,12 +58,26 @@ public sealed class PasteTool : BaseTool
             case PasteState.Idle:
                 if (_wvm.Clipboard.Buffer != null)
                 {
-                    _floatingBuffer = _wvm.Clipboard.Buffer.Buffer.Clone();
-                    _floatingPreview = new ClipboardBufferPreview(_floatingBuffer);
-                    _floatingAnchor = e.Location;
-                    _state = PasteState.Floating;
-                    SyncViewModelState();
-                    _wvm.PreviewChange();
+                    if (_wvm.Clipboard.InstantPaste)
+                    {
+                        // Bypass floating/drag — paste immediately at click location
+                        var buffer = _wvm.Clipboard.Buffer.Buffer;
+                        _wvm.Clipboard.PasteBufferIntoWorld(_wvm.CurrentWorld, e.Location, buffer);
+                        _wvm.UpdateRenderRegion(new RectangleInt32(e.Location, buffer.Size));
+                        _wvm.SelectedChest = null;
+                        BlendRules.ResetUVCache(_wvm, e.Location.X, e.Location.Y,
+                            buffer.Size.X, buffer.Size.Y);
+                        _wvm.PreviewChange();
+                    }
+                    else
+                    {
+                        _floatingBuffer = _wvm.Clipboard.Buffer.Buffer.Clone();
+                        _floatingPreview = new ClipboardBufferPreview(_floatingBuffer);
+                        _floatingAnchor = e.Location;
+                        _state = PasteState.Floating;
+                        SyncViewModelState();
+                        _wvm.PreviewChange();
+                    }
                 }
                 break;
 

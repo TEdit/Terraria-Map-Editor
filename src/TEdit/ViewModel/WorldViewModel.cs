@@ -179,6 +179,11 @@ public partial class WorldViewModel : ReactiveObject
 
         IsAutoSaveEnabled = UserSettingsService.Current.Autosave;
 
+        // Load tool option settings
+        TilePicker.TrackTunnelEnabled = UserSettingsService.Current.TrackTunnelEnabled;
+        TilePicker.WhenAnyValue(x => x.TrackTunnelEnabled)
+            .Subscribe(v => UserSettingsService.Current.TrackTunnelEnabled = v);
+
         World.ProgressChanged += OnProgressChanged;
         Brush.BrushChanged += OnPreviewChanged;
         UpdateTitle();
@@ -1421,6 +1426,17 @@ public partial class WorldViewModel : ReactiveObject
         if (ActiveTool is PencilTool pt) pt.SetWireState(pt.IsCadWireMode, pt.CadRoutingMode, true);
         else if (ActiveTool is BrushToolBase bt) bt.SetWireState(bt.IsCadWireMode, bt.CadRoutingMode, true);
         NotifyWireModeChanged();
+    }
+
+    public bool WireChainMode
+    {
+        get => UserSettingsService.Current.WireChainMode;
+        set
+        {
+            if (UserSettingsService.Current.WireChainMode == value) return;
+            UserSettingsService.Current.WireChainMode = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public void NotifyWireModeChanged()

@@ -40,6 +40,11 @@ public class UserSettings : INotifyPropertyChanged
     private bool _enableMica = true;
     private bool _highQualityBrushPreview = true;
 
+    // Tool Options
+    private bool _wireChainMode = true;
+    private bool _instantPaste = false;
+    private bool _trackTunnelEnabled = true;
+
     public string TerrariaPath
     {
         get => _terrariaPath;
@@ -212,6 +217,26 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _highQualityBrushPreview;
         set => SetField(ref _highQualityBrushPreview, value);
+    }
+
+    // ── Tool Options ──
+
+    public bool WireChainMode
+    {
+        get => _wireChainMode;
+        set => SetField(ref _wireChainMode, value);
+    }
+
+    public bool InstantPaste
+    {
+        get => _instantPaste;
+        set => SetField(ref _instantPaste, value);
+    }
+
+    public bool TrackTunnelEnabled
+    {
+        get => _trackTunnelEnabled;
+        set => SetField(ref _trackTunnelEnabled, value);
     }
 
     [JsonConverter(typeof(InputBindingsDictionaryJsonConverter))]

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.ObjectModel;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Configuration;
 using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Editor.Undo;
@@ -31,6 +33,9 @@ public partial class ClipboardManager : ReactiveObject
     [Reactive]
     private bool _pasteOverTiles = true;
 
+    [Reactive]
+    private bool _instantPaste = false;
+
     private readonly ObservableCollection<ClipboardBufferPreview> _loadedBuffers = new ObservableCollection<ClipboardBufferPreview>();
 
     [Reactive]
@@ -48,6 +53,11 @@ public partial class ClipboardManager : ReactiveObject
         _selection = selection;
         _undo = undo;
         _notifyTileChanged = notifyTileChanged;
+
+        // Load instant paste setting
+        _instantPaste = UserSettingsService.Current.InstantPaste;
+        this.WhenAnyValue(x => x.InstantPaste)
+            .Subscribe(v => UserSettingsService.Current.InstantPaste = v);
     }
 
     public ObservableCollection<ClipboardBufferPreview> LoadedBuffers

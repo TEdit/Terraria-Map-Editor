@@ -81,7 +81,7 @@ public partial class TilePicker : ReactiveObject
     private BrickStyle _brickStyle = BrickStyle.Full;
 
     [Reactive]
-    private bool _trackTunnelEnabled;
+    private bool _trackTunnelEnabled = true;
     [Reactive]
     private int _trackTunnelHeight = 4;
     [Reactive]

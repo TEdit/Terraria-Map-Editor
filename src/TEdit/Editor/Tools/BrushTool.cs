@@ -197,8 +197,17 @@ public class BrushToolBase : BaseTool
                 {
                     // Second click: commit the preview path
                     CommitCadPath();
-                    // Chain: new anchor = old end for polyline
-                    _cadAnchor = e.Location;
+
+                    if (_wvm.WireChainMode)
+                    {
+                        // Chain: new anchor = old end for polyline
+                        _cadAnchor = e.Location;
+                    }
+                    else
+                    {
+                        // No chain: cancel anchor (like right-click)
+                        _isCadAnchored = false;
+                    }
                     _cadPreviewPath.Clear();
                     return;
                 }
