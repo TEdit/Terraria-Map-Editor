@@ -99,6 +99,23 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="RouteStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Wire">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Track">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Platform">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="TrackStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
@@ -276,7 +293,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Style="{StaticResource WireStyle}" Padding="2">
+            <GroupBox Style="{StaticResource RouteStyle}" Padding="2">
                 <GroupBox.Header>
                     <TextBlock Text="Route" Margin="0" />
                 </GroupBox.Header>
