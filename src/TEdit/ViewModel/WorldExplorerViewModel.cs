@@ -95,122 +95,107 @@ public partial class WorldExplorerViewModel
                 StringComparer.OrdinalIgnoreCase);
             var recentWorlds = UserSettingsService.Current.RecentWorlds ?? [];
 
+            // ── Phase 1: Fast file enumeration (no binary I/O) ──
             var worldEntries = new List<WorldEntryViewModel>();
             var backupEntries = new List<(string WorldName, BackupEntryViewModel Entry)>();
+            var loadedPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-            await Task.Run(() =>
+            // Enumerate local worlds folder
+            string worldsPath = DependencyChecker.PathToWorlds;
+            if (!string.IsNullOrEmpty(worldsPath) && Directory.Exists(worldsPath))
             {
-                // Load worlds from Terraria worlds folder
-                string worldsPath = DependencyChecker.PathToWorlds;
-                var loadedPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-                if (!string.IsNullOrEmpty(worldsPath) && Directory.Exists(worldsPath))
+                foreach (var file in Directory.GetFiles(worldsPath, "*.wld"))
                 {
-                    foreach (var file in Directory.GetFiles(worldsPath, "*.wld"))
+                    var fi = new FileInfo(file);
+                    worldEntries.Add(new WorldEntryViewModel(fi, pinnedWorlds.Contains(file)));
+                    loadedPaths.Add(file);
+                }
+            }
+
+            // Enumerate Steam cloud worlds from ALL user profiles
+            try
+            {
+                var cloudPaths = DependencyChecker.GetAllSteamCloudWorldPaths();
+                foreach (var (userId, cloudWorldsDir) in cloudPaths)
+                {
+                    foreach (var file in Directory.GetFiles(cloudWorldsDir, "*.wld"))
                     {
-                        var header = World.ReadWorldHeader(file);
-                        if (header != null)
-                        {
-                            worldEntries.Add(new WorldEntryViewModel(header, pinnedWorlds.Contains(file)));
-                            loadedPaths.Add(file);
-                        }
+                        if (loadedPaths.Contains(file)) continue;
+                        var fi = new FileInfo(file);
+                        worldEntries.Add(new WorldEntryViewModel(fi,
+                            pinnedWorlds.Contains(file),
+                            isCloudSave: true,
+                            cloudUserId: userId));
+                        loadedPaths.Add(file);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogException(ex);
+            }
 
-                // Load Steam cloud worlds from ALL user profiles
-                try
+            // Enumerate recent worlds that aren't already in the list
+            foreach (var recentPath in recentWorlds)
+            {
+                if (loadedPaths.Contains(recentPath)) continue;
+
+                if (File.Exists(recentPath))
                 {
-                    var cloudPaths = DependencyChecker.GetAllSteamCloudWorldPaths();
-                    foreach (var (userId, cloudWorldsDir) in cloudPaths)
-                    {
-                        foreach (var file in Directory.GetFiles(cloudWorldsDir, "*.wld"))
-                        {
-                            if (loadedPaths.Contains(file)) continue;
-                            var header = World.ReadWorldHeader(file);
-                            if (header != null)
-                            {
-                                worldEntries.Add(new WorldEntryViewModel(header,
-                                    pinnedWorlds.Contains(file),
-                                    isCloudSave: true,
-                                    cloudUserId: userId));
-                                loadedPaths.Add(file);
-                            }
-                        }
-                    }
+                    var fi = new FileInfo(recentPath);
+                    worldEntries.Add(new WorldEntryViewModel(fi, pinnedWorlds.Contains(recentPath), isRecent: true));
+                    loadedPaths.Add(recentPath);
                 }
-                catch (Exception ex)
+                else
                 {
-                    ErrorLogging.LogException(ex);
+                    worldEntries.Add(new WorldEntryViewModel(recentPath));
                 }
+            }
 
-                // Load recent worlds that aren't already in the list
-                var existingPaths = loadedPaths;
-                foreach (var recentPath in recentWorlds)
+            // Collect backups (filename parsing only, no binary I/O)
+            string backupPath = WorldViewModel.BackupPath;
+            if (Directory.Exists(backupPath))
+            {
+                foreach (var file in Directory.GetFiles(backupPath, "*.wld"))
                 {
-                    if (existingPaths.Contains(recentPath)) continue;
+                    string name = Path.GetFileName(file);
+                    // Parse WorldName.YYYYMMDDHHMMSS.wld
+                    int lastDot = name.LastIndexOf('.');
+                    if (lastDot < 0) continue;
+                    string nameWithoutExt = name.Substring(0, lastDot);
+                    int timestampDot = nameWithoutExt.LastIndexOf('.');
+                    if (timestampDot < 0) continue;
 
-                    if (File.Exists(recentPath))
-                    {
-                        var header = World.ReadWorldHeader(recentPath);
-                        if (header != null)
-                        {
-                            worldEntries.Add(new WorldEntryViewModel(header, pinnedWorlds.Contains(recentPath), isRecent: true));
-                        }
-                    }
-                    else
-                    {
-                        worldEntries.Add(new WorldEntryViewModel(recentPath));
-                    }
+                    string worldName = nameWithoutExt.Substring(0, timestampDot);
+                    string timestamp = nameWithoutExt.Substring(timestampDot + 1);
+                    if (timestamp.Length != 14 || !timestamp.All(char.IsDigit)) continue;
+
+                    backupEntries.Add((worldName, new BackupEntryViewModel(file)));
                 }
+            }
 
-                // Load backups
-                string backupPath = WorldViewModel.BackupPath;
-                if (Directory.Exists(backupPath))
+            // Collect autosaves
+            string autoSavePath = WorldViewModel.AutoSavePath;
+            if (Directory.Exists(autoSavePath))
+            {
+                foreach (var file in Directory.GetFiles(autoSavePath, "*.autosave"))
                 {
-                    foreach (var file in Directory.GetFiles(backupPath, "*.wld"))
-                    {
-                        string name = Path.GetFileName(file);
-                        // Parse WorldName.YYYYMMDDHHMMSS.wld
-                        int lastDot = name.LastIndexOf('.');
-                        if (lastDot < 0) continue;
-                        string nameWithoutExt = name.Substring(0, lastDot);
-                        int timestampDot = nameWithoutExt.LastIndexOf('.');
-                        if (timestampDot < 0) continue;
-
-                        string worldName = nameWithoutExt.Substring(0, timestampDot);
-                        string timestamp = nameWithoutExt.Substring(timestampDot + 1);
-                        if (timestamp.Length != 14 || !timestamp.All(char.IsDigit)) continue;
-
-                        backupEntries.Add((worldName, new BackupEntryViewModel(file)));
-                    }
+                    string worldName = Path.GetFileNameWithoutExtension(file); // removes .autosave
+                    backupEntries.Add((worldName, new BackupEntryViewModel(file)));
                 }
+            }
 
-                // Load autosaves
-                string autoSavePath = WorldViewModel.AutoSavePath;
-                if (Directory.Exists(autoSavePath))
-                {
-                    foreach (var file in Directory.GetFiles(autoSavePath, "*.autosave"))
-                    {
-                        string worldName = Path.GetFileNameWithoutExtension(file); // removes .autosave
-                        backupEntries.Add((worldName, new BackupEntryViewModel(file)));
-                    }
-                }
-            });
-
-            // Match backups to worlds by title or filename stem (case-insensitive)
-            // Backup filenames use underscores where world titles use spaces,
-            // e.g. backup "Brewery_of_Tungsten2" should match world title "Brewery of Tungsten2"
+            // Match backups to worlds by filename stem (case-insensitive)
+            // Note: before hydration, Title == filename stem, so matching works the same
             var worldsByKey = new Dictionary<string, WorldEntryViewModel>(StringComparer.OrdinalIgnoreCase);
             foreach (var w in worldEntries)
             {
-                // Index by title
                 worldsByKey.TryAdd(w.Title, w);
-                // Also index by filename stem (e.g. "Brewery_of_Tungsten2")
                 if (!string.IsNullOrEmpty(w.FileName))
                 {
                     var stem = Path.GetFileNameWithoutExtension(w.FileName);
                     worldsByKey.TryAdd(stem, w);
                 }
-                // Also index by title with spaces replaced by underscores and vice versa
                 worldsByKey.TryAdd(w.Title.Replace(' ', '_'), w);
                 worldsByKey.TryAdd(w.Title.Replace('_', ' '), w);
             }
@@ -218,7 +203,6 @@ public partial class WorldExplorerViewModel
             var orphanBackups = new Dictionary<string, List<BackupEntryViewModel>>(StringComparer.OrdinalIgnoreCase);
             foreach (var (worldName, entry) in backupEntries)
             {
-                // Try exact match, then underscore↔space normalization
                 if (worldsByKey.TryGetValue(worldName, out var world)
                     || worldsByKey.TryGetValue(worldName.Replace('_', ' '), out world)
                     || worldsByKey.TryGetValue(worldName.Replace(' ', '_'), out world))
@@ -256,15 +240,46 @@ public partial class WorldExplorerViewModel
                 }
             }
 
-            // Sort worlds
+            // Sort worlds (by lastModified from FileInfo; favorites not known yet)
             worldEntries.Sort();
 
-            // Update UI collections on UI thread
+            // Populate UI immediately with placeholder entries
             Application.Current.Dispatcher.Invoke(() =>
             {
                 Worlds.Clear();
                 foreach (var w in worldEntries) Worlds.Add(w);
+                this.RaisePropertyChanged(nameof(FilteredWorlds));
+            });
 
+            // ── Phase 2: Background header hydration ──
+            // Collect entries that need hydration (non-missing, non-loaded)
+            var toHydrate = worldEntries.Where(w => !w.IsMissing && !w.IsLoaded).ToList();
+
+            await Task.Run(() =>
+            {
+                foreach (var entry in toHydrate)
+                {
+                    try
+                    {
+                        var header = World.ReadWorldHeader(entry.FilePath);
+                        if (header != null)
+                        {
+                            Application.Current.Dispatcher.Invoke(() => entry.Hydrate(header));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLogging.LogException(ex);
+                    }
+                }
+            });
+
+            // Re-sort after hydration (favorites are now known)
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var sorted = Worlds.OrderBy(w => w).ToList();
+                Worlds.Clear();
+                foreach (var w in sorted) Worlds.Add(w);
                 this.RaisePropertyChanged(nameof(FilteredWorlds));
             });
         }

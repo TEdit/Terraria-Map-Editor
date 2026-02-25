@@ -453,15 +453,17 @@ public sealed class PencilTool : BaseTool
             {
                 // Flat horizontal — but check if this is the last flat tile before a staircase
                 // (entry landing shifted here) or first flat tile after a staircase (exit landing)
-                if (nextNextV)
+                if (nextNextV && !goingUp)
                 {
-                    // Last flat H tile before staircase → entry landing
+                    // Last flat H tile before staircase → entry landing (going down only;
+                    // going up the entry landing shifts into the staircase instead)
                     bool outerSolid = HasSolidNeighbor(cur.X - dxPrev, cur.Y);
                     col = outerSolid ? hvLandingEndcapCol : hvLandingCol;
                 }
-                else if (prevPrevV)
+                else if (prevPrevV && !goingUp)
                 {
-                    // First flat H tile after staircase → exit landing
+                    // First flat H tile after staircase → exit landing (going down only;
+                    // going up the exit landing shifts into the staircase instead)
                     bool outerSolid = HasSolidNeighbor(cur.X + dxNext, cur.Y);
                     col = outerSolid ? vhLandingEndcapCol : vhLandingCol;
                 }
@@ -506,10 +508,19 @@ public sealed class PencilTool : BaseTool
             }
             else if (!hasPrev && nextV)
             {
-                // Start of path, leaving vertically — no flat run, landing stays here
-                bool solidLeft = HasSolidNeighbor(cur.X - 1, cur.Y);
-                bool solidRight = HasSolidNeighbor(cur.X + 1, cur.Y);
-                col = (solidLeft || solidRight) ? hvLandingEndcapCol : hvLandingCol;
+                // Start of path, leaving vertically
+                if (nextNextV)
+                {
+                    // Starting a straight V run → Single frame
+                    col = 5;
+                }
+                else
+                {
+                    // Starting directly into staircase → landing
+                    bool solidLeft = HasSolidNeighbor(cur.X - 1, cur.Y);
+                    bool solidRight = HasSolidNeighbor(cur.X + 1, cur.Y);
+                    col = (solidLeft || solidRight) ? hvLandingEndcapCol : hvLandingCol;
+                }
             }
             else if (prevH && !hasNext)
             {
@@ -541,12 +552,20 @@ public sealed class PencilTool : BaseTool
             }
             else if (prevH && nextV)
             {
-                // H→V direction change — landing only if no straight H run to absorb it
+                // H→V direction change
                 if (prevPrevH)
                 {
-                    // Straight H run exists → landing shifted to prev tile
-                    // Going down: H-step = inset (tread on top), Going up: H-step = stringer (riser)
-                    col = goingUp ? stringerCol : insetCols[_rng.Next(insetCols.Length)];
+                    if (goingUp)
+                    {
+                        // Going up: entry landing shifts INTO the staircase (this tile)
+                        bool outerSolid = HasSolidNeighbor(cur.X - dxPrev, cur.Y);
+                        col = outerSolid ? hvLandingEndcapCol : hvLandingCol;
+                    }
+                    else
+                    {
+                        // Going down: landing already on prev flat tile → this is inset
+                        col = insetCols[_rng.Next(insetCols.Length)];
+                    }
                 }
                 else if (!hasPrev)
                 {
@@ -561,12 +580,20 @@ public sealed class PencilTool : BaseTool
             }
             else if (prevV && nextH)
             {
-                // V→H direction change — landing only if no straight H run to absorb it
+                // V→H direction change
                 if (nextNextH)
                 {
-                    // Straight H run exists → landing shifted to next tile
-                    // Going down: V-step = stringer (riser), Going up: V-step = inset (tread)
-                    col = goingUp ? insetCols[_rng.Next(insetCols.Length)] : stringerCol;
+                    if (goingUp)
+                    {
+                        // Going up: exit landing shifts INTO the staircase (this tile)
+                        bool outerSolid = HasSolidNeighbor(cur.X + dxNext, cur.Y);
+                        col = outerSolid ? vhLandingEndcapCol : vhLandingCol;
+                    }
+                    else
+                    {
+                        // Going down: landing already on next flat tile → this is stringer
+                        col = stringerCol;
+                    }
                 }
                 else if (!hasNext)
                 {
