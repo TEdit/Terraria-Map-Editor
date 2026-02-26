@@ -2620,4 +2620,241 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
+  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
+    <value>Clear All Items</value>
+  </data>
+  <data name="common_browse" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="npc_label_partying" xml:space="preserve">
+    <value>Partying</value>
+  </data>
+  <data name="npc_label_shimmered" xml:space="preserve">
+    <value>Shimmered</value>
+  </data>
+  <data name="npc_search_placeholder" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="paste_tooltip_accept" xml:space="preserve">
+    <value>Accept (Enter)</value>
+  </data>
+  <data name="paste_tooltip_cancel" xml:space="preserve">
+    <value>Cancel (Esc)</value>
+  </data>
+  <data name="paste_tooltip_flip_h" xml:space="preserve">
+    <value>Flip Horizontal (Ctrl+H)</value>
+  </data>
+  <data name="paste_tooltip_flip_v" xml:space="preserve">
+    <value>Flip Vertical (Ctrl+Shift+H)</value>
+  </data>
+  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
+    <value>Rotate CCW (Ctrl+Shift+Q)</value>
+  </data>
+  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
+    <value>Rotate CW (Ctrl+Q)</value>
+  </data>
+  <data name="picker_search_items_placeholder" xml:space="preserve">
+    <value>Search items...</value>
+  </data>
+  <data name="picker_search_platforms_placeholder" xml:space="preserve">
+    <value>Search platforms...</value>
+  </data>
+  <data name="picker_search_prefix_placeholder" xml:space="preserve">
+    <value>Prefix</value>
+  </data>
+  <data name="picker_search_sprites_placeholder" xml:space="preserve">
+    <value>Search sprites...</value>
+  </data>
+  <data name="picker_search_tiles_placeholder" xml:space="preserve">
+    <value>Search tiles...</value>
+  </data>
+  <data name="picker_search_walls_placeholder" xml:space="preserve">
+    <value>Search walls...</value>
+  </data>
+  <data name="player_buff_clear_tooltip" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="player_buff_edit_selected" xml:space="preserve">
+    <value>Edit Selected Buff</value>
+  </data>
+  <data name="player_buff_label_time" xml:space="preserve">
+    <value>Time:</value>
+  </data>
+  <data name="player_buff_label_type" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="player_difficulty_classic" xml:space="preserve">
+    <value>Classic</value>
+  </data>
+  <data name="player_difficulty_hardcore" xml:space="preserve">
+    <value>Hardcore</value>
+  </data>
+  <data name="player_difficulty_journey" xml:space="preserve">
+    <value>Journey</value>
+  </data>
+  <data name="player_difficulty_mediumcore" xml:space="preserve">
+    <value>Mediumcore</value>
+  </data>
+  <data name="player_equip_label_dye" xml:space="preserve">
+    <value>Dye</value>
+  </data>
+  <data name="player_equip_label_edit_item" xml:space="preserve">
+    <value>Edit Item</value>
+  </data>
+  <data name="player_equip_label_equipment" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="player_equip_label_misc" xml:space="preserve">
+    <value>Misc Equipment</value>
+  </data>
+  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
+    <value>Toggle Visibility</value>
+  </data>
+  <data name="player_journey_research_sacrifices" xml:space="preserve">
+    <value>Research Sacrifices</value>
+  </data>
+  <data name="player_journey_total_researched" xml:space="preserve">
+    <value>Total researched items: {0}</value>
+  </data>
+  <data name="player_stats_angler_quests" xml:space="preserve">
+    <value>Angler Quests:</value>
+  </data>
+  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
+    <value>Ate Artisan Bread</value>
+  </data>
+  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
+    <value>Biome Torches Unlocked</value>
+  </data>
+  <data name="player_stats_deaths_pve" xml:space="preserve">
+    <value>Deaths (PvE):</value>
+  </data>
+  <data name="player_stats_deaths_pvp" xml:space="preserve">
+    <value>Deaths (PvP):</value>
+  </data>
+  <data name="player_stats_extra_accessory" xml:space="preserve">
+    <value>Extra Accessory</value>
+  </data>
+  <data name="player_stats_flags" xml:space="preserve">
+    <value>Flags</value>
+  </data>
+  <data name="player_stats_golfer_score" xml:space="preserve">
+    <value>Golfer Score:</value>
+  </data>
+  <data name="player_stats_health" xml:space="preserve">
+    <value>Health</value>
+  </data>
+  <data name="player_stats_hp" xml:space="preserve">
+    <value>HP:</value>
+  </data>
+  <data name="player_stats_mana" xml:space="preserve">
+    <value>Mana</value>
+  </data>
+  <data name="player_stats_max" xml:space="preserve">
+    <value>Max:</value>
+  </data>
+  <data name="player_stats_mp" xml:space="preserve">
+    <value>MP:</value>
+  </data>
+  <data name="player_stats_show_armor" xml:space="preserve">
+    <value>Show Armor</value>
+  </data>
+  <data name="player_stats_spawn_points" xml:space="preserve">
+    <value>Spawn Points</value>
+  </data>
+  <data name="player_stats_statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="player_stats_super_cart_enabled" xml:space="preserve">
+    <value>Super Cart Enabled</value>
+  </data>
+  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
+    <value>Super Cart Unlocked</value>
+  </data>
+  <data name="player_stats_tax_money" xml:space="preserve">
+    <value>Tax Money:</value>
+  </data>
+  <data name="player_stats_team" xml:space="preserve">
+    <value>Team:</value>
+  </data>
+  <data name="player_stats_team_blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="player_stats_team_green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="player_stats_team_none" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="player_stats_team_pink" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="player_stats_team_red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="player_stats_team_yellow" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
+    <value>Used Aegis Crystal</value>
+  </data>
+  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
+    <value>Used Aegis Fruit</value>
+  </data>
+  <data name="player_stats_used_ambrosia" xml:space="preserve">
+    <value>Used Ambrosia</value>
+  </data>
+  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
+    <value>Used Arcane Crystal</value>
+  </data>
+  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
+    <value>Used Galaxy Pearl</value>
+  </data>
+  <data name="player_stats_used_gummy_worm" xml:space="preserve">
+    <value>Used Gummy Worm</value>
+  </data>
+  <data name="player_stats_using_biome_torches" xml:space="preserve">
+    <value>Using Biome Torches</value>
+  </data>
+  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
+    <value>Clear selection</value>
+  </data>
+  <data name="sprite_size_label" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="sprite_tile_id_format" xml:space="preserve">
+    <value>Tile ID: {0}</value>
+  </data>
+  <data name="sprite_styles_format" xml:space="preserve">
+    <value>{0} styles</value>
+  </data>
+  <data name="sprite_style_format" xml:space="preserve">
+    <value>Style: {0}</value>
+  </data>
+  <data name="tool_brush_flip_label" xml:space="preserve">
+    <value>Flip</value>
+  </data>
+  <data name="tool_brush_outline_label" xml:space="preserve">
+    <value>Outline</value>
+  </data>
+  <data name="tool_clipboard_instant_paste" xml:space="preserve">
+    <value>Instant Paste</value>
+  </data>
+  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
+    <value>Paste immediately on click without drag-to-position</value>
+  </data>
+  <data name="tool_paint_wire_chain" xml:space="preserve">
+    <value>Chain</value>
+  </data>
+  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
+    <value>Continue drawing from the end of the last segment</value>
+  </data>
+  <data name="tool_paint_wire_route" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="world_explorer_browse" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
+    <value>Toggle Favorite</value>
+  </data>
 </root>

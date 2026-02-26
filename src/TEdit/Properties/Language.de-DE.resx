@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -262,8 +262,14 @@
   <data name="BrushShape_Triangle" xml:space="preserve">
     <value>Dreieck</value>
   </data>
+  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
+    <value>Alle Gegenstände löschen</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
+  </data>
+  <data name="common_browse" xml:space="preserve">
+    <value>Schau...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>Abbrechen</value>
@@ -304,6 +310,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Terraria-Inhalt nicht gefunden</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analyse</value>
@@ -479,26 +491,14 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Ohne Maske</value>
   </data>
-  <data name="MaskPreset_Off" xml:space="preserve">
-    <value>Off</value>
-  </data>
   <data name="MaskPreset_Custom" xml:space="preserve">
     <value>Match Custom</value>
   </data>
   <data name="MaskPreset_ExactMatch" xml:space="preserve">
     <value>Match All</value>
   </data>
-  <data name="palette_title" xml:space="preserve">
-    <value>Palette</value>
-  </data>
-  <data name="palette_tile_section" xml:space="preserve">
-    <value>Tile Picker</value>
-  </data>
-  <data name="palette_mask_section" xml:space="preserve">
-    <value>Mask Options</value>
-  </data>
-  <data name="sidebar_palette_tooltip" xml:space="preserve">
-    <value>Palette</value>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>Off</value>
   </data>
   <data name="mask_clear_all" xml:space="preserve">
     <value>Clear All</value>
@@ -999,6 +999,15 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="newworld_width" xml:space="preserve">
     <value>Breite</value>
   </data>
+  <data name="npc_label_partying" xml:space="preserve">
+    <value>Feiern</value>
+  </data>
+  <data name="npc_label_shimmered" xml:space="preserve">
+    <value>Schimmerte</value>
+  </data>
+  <data name="npc_search_placeholder" xml:space="preserve">
+    <value>Suche...</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Flüssigkeit</value>
   </data>
@@ -1017,11 +1026,80 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Kabel</value>
   </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="paste_tooltip_accept" xml:space="preserve">
+    <value>Akzeptieren (Betreten)</value>
+  </data>
+  <data name="paste_tooltip_cancel" xml:space="preserve">
+    <value>Stornieren (Esc)</value>
+  </data>
+  <data name="paste_tooltip_flip_h" xml:space="preserve">
+    <value>Horizontal umdrehen (Strg+H)</value>
+  </data>
+  <data name="paste_tooltip_flip_v" xml:space="preserve">
+    <value>Vertikal umdrehen (Strg+Umschalt+H)</value>
+  </data>
+  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
+    <value>Drehen von CCW (Strg+Umschalt+Q)</value>
+  </data>
+  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
+    <value>CW drehen (Strg+Q)</value>
+  </data>
   <data name="picker_check_all_tooltip" xml:space="preserve">
     <value>Überprüfen Sie alle sichtbaren Gegenstände</value>
   </data>
+  <data name="picker_search_items_placeholder" xml:space="preserve">
+    <value>Durchsuche Gegenstände...</value>
+  </data>
+  <data name="picker_search_platforms_placeholder" xml:space="preserve">
+    <value>Suchplattformen...</value>
+  </data>
+  <data name="picker_search_prefix_placeholder" xml:space="preserve">
+    <value>Präfix</value>
+  </data>
+  <data name="picker_search_sprites_placeholder" xml:space="preserve">
+    <value>Suchsprites...</value>
+  </data>
+  <data name="picker_search_tiles_placeholder" xml:space="preserve">
+    <value>Suchkacheln...</value>
+  </data>
+  <data name="picker_search_walls_placeholder" xml:space="preserve">
+    <value>Durchsuche Wände...</value>
+  </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Deaktivieren Sie alle sichtbaren Gegenstände</value>
+  </data>
+  <data name="player_buff_clear_tooltip" xml:space="preserve">
+    <value>Leeren</value>
+  </data>
+  <data name="player_buff_edit_selected" xml:space="preserve">
+    <value>Bearbeiten: Ausgewählter Buff</value>
+  </data>
+  <data name="player_buff_label_time" xml:space="preserve">
+    <value>Zeit:</value>
+  </data>
+  <data name="player_buff_label_type" xml:space="preserve">
+    <value>Typ:</value>
+  </data>
+  <data name="player_difficulty_classic" xml:space="preserve">
+    <value>Klassisch</value>
+  </data>
+  <data name="player_difficulty_hardcore" xml:space="preserve">
+    <value>Hardcore</value>
+  </data>
+  <data name="player_difficulty_journey" xml:space="preserve">
+    <value>Reise</value>
+  </data>
+  <data name="player_difficulty_mediumcore" xml:space="preserve">
+    <value>Mediumcore</value>
   </data>
   <data name="player_editor_appearance_colors" xml:space="preserve">
     <value>Aussehensfarben</value>
@@ -1106,6 +1184,126 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
     <value>Farbe des Unterhemds</value>
+  </data>
+  <data name="player_equip_label_dye" xml:space="preserve">
+    <value>Farbstoff</value>
+  </data>
+  <data name="player_equip_label_edit_item" xml:space="preserve">
+    <value>Bearbeitungspunkt</value>
+  </data>
+  <data name="player_equip_label_equipment" xml:space="preserve">
+    <value>Ausrüstung</value>
+  </data>
+  <data name="player_equip_label_misc" xml:space="preserve">
+    <value>Sonstige Ausrüstung</value>
+  </data>
+  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
+    <value>Sichtbarkeit umschalten</value>
+  </data>
+  <data name="player_journey_research_sacrifices" xml:space="preserve">
+    <value>Forschungsopfer</value>
+  </data>
+  <data name="player_journey_total_researched" xml:space="preserve">
+    <value>Gesamtzahl der erforschten Gegenstände: {0}</value>
+  </data>
+  <data name="player_stats_angler_quests" xml:space="preserve">
+    <value>Angler-Quests:</value>
+  </data>
+  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
+    <value>Hat handwerkliches Brot gegessen</value>
+  </data>
+  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
+    <value>Biomfackeln freigeschaltet</value>
+  </data>
+  <data name="player_stats_deaths_pve" xml:space="preserve">
+    <value>Tode (PvE):</value>
+  </data>
+  <data name="player_stats_deaths_pvp" xml:space="preserve">
+    <value>Tode (PvP):</value>
+  </data>
+  <data name="player_stats_extra_accessory" xml:space="preserve">
+    <value>Zusätzliches Zubehör</value>
+  </data>
+  <data name="player_stats_flags" xml:space="preserve">
+    <value>Flaggen</value>
+  </data>
+  <data name="player_stats_golfer_score" xml:space="preserve">
+    <value>Golfer-Punktzahl:</value>
+  </data>
+  <data name="player_stats_health" xml:space="preserve">
+    <value>Gesundheit</value>
+  </data>
+  <data name="player_stats_hp" xml:space="preserve">
+    <value>HP:</value>
+  </data>
+  <data name="player_stats_mana" xml:space="preserve">
+    <value>Mana</value>
+  </data>
+  <data name="player_stats_max" xml:space="preserve">
+    <value>Max:</value>
+  </data>
+  <data name="player_stats_mp" xml:space="preserve">
+    <value>MP:</value>
+  </data>
+  <data name="player_stats_show_armor" xml:space="preserve">
+    <value>Showrüstung</value>
+  </data>
+  <data name="player_stats_spawn_points" xml:space="preserve">
+    <value>Spawnpunkte</value>
+  </data>
+  <data name="player_stats_statistics" xml:space="preserve">
+    <value>Statistiken</value>
+  </data>
+  <data name="player_stats_super_cart_enabled" xml:space="preserve">
+    <value>Supercart-aktiviert</value>
+  </data>
+  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
+    <value>Superwagen entsperrt</value>
+  </data>
+  <data name="player_stats_tax_money" xml:space="preserve">
+    <value>Steuergeld:</value>
+  </data>
+  <data name="player_stats_team" xml:space="preserve">
+    <value>Team:</value>
+  </data>
+  <data name="player_stats_team_blue" xml:space="preserve">
+    <value>Blau</value>
+  </data>
+  <data name="player_stats_team_green" xml:space="preserve">
+    <value>Grün</value>
+  </data>
+  <data name="player_stats_team_none" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="player_stats_team_pink" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="player_stats_team_red" xml:space="preserve">
+    <value>Rot</value>
+  </data>
+  <data name="player_stats_team_yellow" xml:space="preserve">
+    <value>Gelb</value>
+  </data>
+  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
+    <value>Verwendeter Aegis-Kristall</value>
+  </data>
+  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
+    <value>Verwendete Aegis-Frucht</value>
+  </data>
+  <data name="player_stats_used_ambrosia" xml:space="preserve">
+    <value>Gewandte Ambrosia</value>
+  </data>
+  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
+    <value>Verwendeter Arkaner Kristall</value>
+  </data>
+  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
+    <value>Gebrauchte Galaxy Pearl</value>
+  </data>
+  <data name="player_stats_used_gummy_worm" xml:space="preserve">
+    <value>Gebrauchter Gummiwurm</value>
+  </data>
+  <data name="player_stats_using_biome_torches" xml:space="preserve">
+    <value>Einsatz von Biomfackeln</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Wählen Sie eine Version aus, die gespeichert werden als:</value>
@@ -1400,6 +1598,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="sidebar_mask_tooltip" xml:space="preserve">
     <value>Masks</value>
   </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
+  </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>Skripting</value>
   </data>
@@ -1523,17 +1724,32 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="sprite_biome_label" xml:space="preserve">
     <value>Biom:</value>
   </data>
+  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
+    <value>Klare Auswahl</value>
+  </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Filter</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
     <value>Filter: </value>
   </data>
+  <data name="sprite_size_label" xml:space="preserve">
+    <value>Größe:</value>
+  </data>
+  <data name="sprite_styles_format" xml:space="preserve">
+    <value>{0} Stile</value>
+  </data>
   <data name="sprite_styletype" xml:space="preserve">
     <value>Stil</value>
   </data>
+  <data name="sprite_style_format" xml:space="preserve">
+    <value>Stil: {0}</value>
+  </data>
   <data name="sprite_tiletype" xml:space="preserve">
     <value>Kacheltyp-Filter</value>
+  </data>
+  <data name="sprite_tile_id_format" xml:space="preserve">
+    <value>Kachel-ID: {0}</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extras</value>
@@ -1636,6 +1852,9 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
     <value>Horizontale Umdrehung</value>
   </data>
+  <data name="tool_brush_flip_label" xml:space="preserve">
+    <value>Flip</value>
+  </data>
   <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
     <value>Flip-Vertikal</value>
   </data>
@@ -1644,6 +1863,9 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
     <value>Quadrat</value>
+  </data>
+  <data name="tool_brush_outline_label" xml:space="preserve">
+    <value>Rahmenbreite</value>
   </data>
   <data name="tool_brush_outline_thickness_label" xml:space="preserve">
     <value>Rahmenbreite</value>
@@ -1689,6 +1911,12 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="tool_clipboard_importschematic" xml:space="preserve">
     <value>Schema oder Bild importieren</value>
+  </data>
+  <data name="tool_clipboard_instant_paste" xml:space="preserve">
+    <value>Instant Paste</value>
+  </data>
+  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
+    <value>Sofort beim Klick einfügen, ohne zum Ziehen zur Position zu ziehen</value>
   </data>
   <data name="tool_clipboard_ispasteempty" xml:space="preserve">
     <value>Leere Felder einfügen</value>
@@ -1882,6 +2110,12 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   <data name="tool_paint_wire_blue" xml:space="preserve">
     <value>Blau</value>
   </data>
+  <data name="tool_paint_wire_chain" xml:space="preserve">
+    <value>Kette</value>
+  </data>
+  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
+    <value>Ziehe weiter vom Ende des letzten Abschnitts aus</value>
+  </data>
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>Grün</value>
   </data>
@@ -1894,6 +2128,9 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   <data name="tool_paint_wire_replace_header" xml:space="preserve">
     <value>Drahtwechsel</value>
   </data>
+  <data name="tool_paint_wire_route" xml:space="preserve">
+    <value>Verlauf</value>
+  </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>Gelb</value>
   </data>
@@ -1902,12 +2139,6 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>Stift – einzelnes Feld zeichnen</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Wire 90°</value>
-  </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Wire 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Pipette – Konfiguration übernehmen</value>
@@ -2560,6 +2791,9 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
     <value>Es gibt eine Sicherung</value>
   </data>
+  <data name="world_explorer_browse" xml:space="preserve">
+    <value>Schau...</value>
+  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>Abmessungen</value>
   </data>
@@ -2613,6 +2847,9 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>Weltenentdecker</value>
+  </data>
+  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
+    <value>Favorit umschalten</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Lösen</value>

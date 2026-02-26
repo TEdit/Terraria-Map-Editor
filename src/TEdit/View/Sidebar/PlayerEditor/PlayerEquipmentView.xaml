@@ -33,7 +33,7 @@
                     <Button Grid.Column="0" Style="{StaticResource CompactIconButton}"
                             Command="{Binding ToggleVisibilityCommand}"
                             Visibility="{Binding HasVisibilityToggle, Converter={StaticResource BoolToVis}}"
-                            ToolTip="Toggle Visibility">
+                            ToolTip="{x:Static p:Language.player_equip_toggle_visibility_tooltip}">
                         <ui:SymbolIcon FontSize="14">
                             <ui:SymbolIcon.Style>
                                 <Style TargetType="ui:SymbolIcon">
@@ -94,7 +94,7 @@
                     <Button Grid.Column="0" Style="{StaticResource CompactIconButton}"
                             Command="{Binding ToggleVisibilityCommand}"
                             Visibility="{Binding HasVisibilityToggle, Converter={StaticResource BoolToVis}}"
-                            ToolTip="Toggle Visibility">
+                            ToolTip="{x:Static p:Language.player_equip_toggle_visibility_tooltip}">
                         <ui:SymbolIcon FontSize="14">
                             <ui:SymbolIcon.Style>
                                 <Style TargetType="ui:SymbolIcon">
@@ -163,7 +163,7 @@
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <!-- Equipment slots -->
-                <TextBlock Text="Equipment" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,2,0,2"/>
+                <TextBlock Text="{x:Static p:Language.player_equip_label_equipment}" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,2,0,2"/>
                 <ListBox Name="EquipmentList" Padding="2" Foreground="White"
                     ItemsSource="{Binding EquipmentSlots}"
                     SelectionMode="Single"
@@ -179,7 +179,7 @@
                 </ListBox>
 
                 <!-- Misc Equipment slots -->
-                <TextBlock Text="Misc Equipment" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,6,0,2"/>
+                <TextBlock Text="{x:Static p:Language.player_equip_label_misc}" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,6,0,2"/>
                 <ListBox Name="MiscList" Padding="2" Foreground="White"
                     ItemsSource="{Binding MiscSlots}"
                     SelectionMode="Single"
@@ -208,7 +208,7 @@
                 <!-- Dye editor (same row) -->
                 <StackPanel Grid.Column="0" MinWidth="120"
                                     Visibility="{Binding SelectedEquipmentSlot.Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}">
-                  <TextBlock Text="Dye" Margin="2,4,2,2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                  <TextBlock Text="{x:Static p:Language.player_equip_label_dye}" Margin="2,4,2,2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
                   <controls:ItemEditorControl
                                 DataContext="{Binding SelectedEquipmentSlot.Dye}"
                                 ItemId="{Binding NetId, Mode=TwoWay}"
@@ -220,7 +220,7 @@
                 <!-- Item editor (category-specific) -->
               
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="Edit Item" Margin="2,4,2,2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static p:Language.player_equip_label_edit_item}" Margin="2,4,2,2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
                     <!-- Head slots -->
                     <controls:ItemEditorControl x:Name="EditorHead"
                         DataContext="{Binding SelectedEquipmentSlot.Item}"

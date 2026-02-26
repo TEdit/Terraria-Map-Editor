@@ -2,11 +2,12 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
        xmlns:controls="clr-namespace:TEdit.UI.Controls"
+       xmlns:p="clr-namespace:TEdit.Properties"
        Placement="Mouse" MouseDown="Popup_MouseDown"
        MouseLeave="Popup_MouseLeave">
     <DockPanel Background="{DynamicResource WindowBackgroundBrush}" LastChildFill="True">
-        <TextBlock Text="Chest Contents:" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top" />
-        <Button DockPanel.Dock="Bottom" Click="ClosePopup" Margin="2" Content="OK" />
+        <TextBlock Text="{x:Static p:Language.specialtile_label_chestcontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top" />
+        <Button DockPanel.Dock="Bottom" Click="ClosePopup" Margin="2" Content="{x:Static p:Language.common_ok}" />
         <ScrollViewer Height="200">
             <ItemsControl Name="ChestList" Padding="5" Foreground="White" ItemsSource="{Binding}">
                 <ItemsControl.ItemTemplate>
@@ -20,7 +21,7 @@
                                       DisplayMemberPath="Value"
                                       FilterMemberPath="Value"
                                       Width="75" Margin="1,0"
-                                      Placeholder="Prefix" />
+                                      Placeholder="{x:Static p:Language.picker_search_prefix_placeholder}" />
                             <controls:FilterablePickerControl
                                       ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.ItemProperties}, Mode=OneTime}"
                                       SelectedValue="{Binding ItemName, Mode=TwoWay}"
@@ -28,7 +29,7 @@
                                       DisplayMemberPath="Name"
                                       FilterMemberPath="Name"
                                       Width="200" Margin="1,0"
-                                      Placeholder="Search items..." />
+                                      Placeholder="{x:Static p:Language.picker_search_items_placeholder}" />
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

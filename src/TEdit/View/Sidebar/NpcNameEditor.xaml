@@ -22,7 +22,7 @@
         <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.tool_npc_hint}"
                    Margin="4" Opacity="0.7" TextWrapping="Wrap" />
         <ui:TextBox DockPanel.Dock="Top"
-                    PlaceholderText="Search..."
+                    PlaceholderText="{x:Static p:Language.npc_search_placeholder}"
                     Text="{Binding NpcSearchText, UpdateSourceTrigger=PropertyChanged}"
                     Margin="4,0,4,4" />
         <ListBox MinHeight="100" ItemsSource="{Binding AllNpcsView}"
@@ -206,13 +206,13 @@
                                     Visibility="{Binding IsOnMap, Converter={StaticResource BoolToVis}}">
 
                             <!-- Shimmer toggle -->
-                            <CheckBox Content="Shimmered"
+                            <CheckBox Content="{x:Static p:Language.npc_label_shimmered}"
                                       IsChecked="{Binding IsShimmered, Mode=TwoWay}"
                                       Visibility="{Binding CanShimmer, Converter={StaticResource BoolToVis}}"
                                       VerticalAlignment="Center" Margin="0,0,4,0" />
 
                             <!-- Party toggle -->
-                            <CheckBox Content="Partying"
+                            <CheckBox Content="{x:Static p:Language.npc_label_partying}"
                                       IsChecked="{Binding IsPartying, Mode=TwoWay}"
                                       VerticalAlignment="Center" />
                         </StackPanel>

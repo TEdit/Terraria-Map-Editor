@@ -33,14 +33,14 @@
                   MaxDropDownHeight="300"
                   SelectedValue="{Binding Prefix, ElementName=Root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   Visibility="{Binding ShowPrefix, ElementName=Root, Converter={StaticResource BoolToVis}}"
-                  Placeholder="Prefix" />
+                  Placeholder="{x:Static p:Language.picker_search_prefix_placeholder}" />
         <!-- Item picker (filterable, shows images via ItemTemplate) -->
         <controls:FilterablePickerControl Grid.Column="2" x:Name="ItemCombo" Margin="1,0"
                   MaxDropDownHeight="400"
                   HorizontalAlignment="Stretch"
-                  Placeholder="Search items..." />
+                  Placeholder="{x:Static p:Language.picker_search_items_placeholder}" />
         <!-- Clear item button -->
-        <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="Clear item"
+        <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_clear_slot}"
                 Click="ClearItem_Click">
             <ui:SymbolIcon Symbol="Dismiss20" FontSize="14"/>
         </Button>

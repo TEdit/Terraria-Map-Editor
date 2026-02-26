@@ -68,7 +68,7 @@
                 DisplayMemberPath="Name"
                 FilterMemberPath="Name"
                 FilterIdMemberPath="Id"
-                Placeholder="Search tiles..." />
+                Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
             <ui:ToggleSwitch Grid.Column="3" IsChecked="{Binding TilePicker.WallStyleActive}"
                              ToolTip="{x:Static p:Language.tool_paint_wall_title}"
                              OffContent="" OnContent="" Margin="0,0,4,0" />
@@ -80,7 +80,7 @@
                 DisplayMemberPath="Name"
                 FilterMemberPath="Name"
                 FilterIdMemberPath="Id"
-                Placeholder="Search walls..." />
+                Placeholder="{x:Static p:Language.picker_search_walls_placeholder}" />
         </Grid>
 
         <!-- ── Brick Style (tile column only) ── -->

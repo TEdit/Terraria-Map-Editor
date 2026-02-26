@@ -76,7 +76,7 @@
                   DisplayMemberPath="Name"
                   FilterMemberPath="Name"
                   FilterIdMemberPath="Id"
-                  Placeholder="Search tiles..." />
+                  Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
         <ComboBox Grid.Row="1" Grid.Column="3"
                   ItemsSource="{StaticResource MaskModeEnum}"
                   SelectedValue="{Binding MaskSettings.WallMaskMode}"
@@ -92,7 +92,7 @@
                   DisplayMemberPath="Name"
                   FilterMemberPath="Name"
                   FilterIdMemberPath="Id"
-                  Placeholder="Search walls..." />
+                  Placeholder="{x:Static p:Language.picker_search_walls_placeholder}" />
 
         <!-- ═══ Row 2: Brick Style header ═══ -->
         <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"

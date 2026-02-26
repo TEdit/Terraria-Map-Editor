@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -262,8 +262,14 @@
   <data name="BrushShape_Triangle" xml:space="preserve">
     <value>Треугольник</value>
   </data>
+  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
+    <value>Очистить все предметы</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Макс</value>
+  </data>
+  <data name="common_browse" xml:space="preserve">
+    <value>Просмотр...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>Отмена</value>
@@ -304,6 +310,12 @@
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Контент игры не найден</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Анализ</value>
@@ -479,26 +491,14 @@
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Выключить маску</value>
   </data>
-  <data name="MaskPreset_Off" xml:space="preserve">
-    <value>Выключение</value>
-  </data>
   <data name="MaskPreset_Custom" xml:space="preserve">
     <value>Match Custom</value>
   </data>
   <data name="MaskPreset_ExactMatch" xml:space="preserve">
     <value>Match All</value>
   </data>
-  <data name="palette_title" xml:space="preserve">
-    <value>Palette</value>
-  </data>
-  <data name="palette_tile_section" xml:space="preserve">
-    <value>Tile Picker</value>
-  </data>
-  <data name="palette_mask_section" xml:space="preserve">
-    <value>Mask Options</value>
-  </data>
-  <data name="sidebar_palette_tooltip" xml:space="preserve">
-    <value>Palette</value>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>Выключение</value>
   </data>
   <data name="mask_clear_all" xml:space="preserve">
     <value>Clear All</value>
@@ -999,6 +999,15 @@
   <data name="newworld_width" xml:space="preserve">
     <value>Ширина</value>
   </data>
+  <data name="npc_label_partying" xml:space="preserve">
+    <value>Вечеринки</value>
+  </data>
+  <data name="npc_label_shimmered" xml:space="preserve">
+    <value>Мерцание</value>
+  </data>
+  <data name="npc_search_placeholder" xml:space="preserve">
+    <value>Поиски...</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Жидкость</value>
   </data>
@@ -1017,11 +1026,80 @@
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Провода</value>
   </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="paste_tooltip_accept" xml:space="preserve">
+    <value>Принять (Enter)</value>
+  </data>
+  <data name="paste_tooltip_cancel" xml:space="preserve">
+    <value>Отмена (Esc)</value>
+  </data>
+  <data name="paste_tooltip_flip_h" xml:space="preserve">
+    <value>Переворот горизонтально (Ctrl+H)</value>
+  </data>
+  <data name="paste_tooltip_flip_v" xml:space="preserve">
+    <value>Перевернуть вертикально (Ctrl+Shift+H)</value>
+  </data>
+  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
+    <value>Поворот CCW (Ctrl+Shift+Q)</value>
+  </data>
+  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
+    <value>Поворот CW (Ctrl+Q)</value>
+  </data>
   <data name="picker_check_all_tooltip" xml:space="preserve">
     <value>Проверьте все видимые элементы</value>
   </data>
+  <data name="picker_search_items_placeholder" xml:space="preserve">
+    <value>Поисковые предметы...</value>
+  </data>
+  <data name="picker_search_platforms_placeholder" xml:space="preserve">
+    <value>Поисковые платформы...</value>
+  </data>
+  <data name="picker_search_prefix_placeholder" xml:space="preserve">
+    <value>Префикс</value>
+  </data>
+  <data name="picker_search_sprites_placeholder" xml:space="preserve">
+    <value>Поисковые спрайты...</value>
+  </data>
+  <data name="picker_search_tiles_placeholder" xml:space="preserve">
+    <value>Поиск тайлов...</value>
+  </data>
+  <data name="picker_search_walls_placeholder" xml:space="preserve">
+    <value>Стены для поиска...</value>
+  </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Снимите галочку всех видимых элементов</value>
+  </data>
+  <data name="player_buff_clear_tooltip" xml:space="preserve">
+    <value>Ясный</value>
+  </data>
+  <data name="player_buff_edit_selected" xml:space="preserve">
+    <value>Редактировать Избранное усиление</value>
+  </data>
+  <data name="player_buff_label_time" xml:space="preserve">
+    <value>Время:</value>
+  </data>
+  <data name="player_buff_label_type" xml:space="preserve">
+    <value>Тип:</value>
+  </data>
+  <data name="player_difficulty_classic" xml:space="preserve">
+    <value>Классика</value>
+  </data>
+  <data name="player_difficulty_hardcore" xml:space="preserve">
+    <value>Хардкор</value>
+  </data>
+  <data name="player_difficulty_journey" xml:space="preserve">
+    <value>Путь</value>
+  </data>
+  <data name="player_difficulty_mediumcore" xml:space="preserve">
+    <value>Среднеядзерный</value>
   </data>
   <data name="player_editor_appearance_colors" xml:space="preserve">
     <value>Цвета внешнего вида</value>
@@ -1106,6 +1184,126 @@
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
     <value>Цвет футболки</value>
+  </data>
+  <data name="player_equip_label_dye" xml:space="preserve">
+    <value>Краска</value>
+  </data>
+  <data name="player_equip_label_edit_item" xml:space="preserve">
+    <value>Элемент редактирования</value>
+  </data>
+  <data name="player_equip_label_equipment" xml:space="preserve">
+    <value>Оборудование</value>
+  </data>
+  <data name="player_equip_label_misc" xml:space="preserve">
+    <value>Разное оборудование</value>
+  </data>
+  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
+    <value>Переключение видимости</value>
+  </data>
+  <data name="player_journey_research_sacrifices" xml:space="preserve">
+    <value>Жертвы в исследованиях</value>
+  </data>
+  <data name="player_journey_total_researched" xml:space="preserve">
+    <value>Общее количество исследованных предметов: {0}</value>
+  </data>
+  <data name="player_stats_angler_quests" xml:space="preserve">
+    <value>Задания рыболова:</value>
+  </data>
+  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
+    <value>Ел ремесленный хлеб</value>
+  </data>
+  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
+    <value>Открыты факелы биомов</value>
+  </data>
+  <data name="player_stats_deaths_pve" xml:space="preserve">
+    <value>Смерти (PvE):</value>
+  </data>
+  <data name="player_stats_deaths_pvp" xml:space="preserve">
+    <value>Смерти (PvP):</value>
+  </data>
+  <data name="player_stats_extra_accessory" xml:space="preserve">
+    <value>Дополнительный аксессуар</value>
+  </data>
+  <data name="player_stats_flags" xml:space="preserve">
+    <value>Флаги</value>
+  </data>
+  <data name="player_stats_golfer_score" xml:space="preserve">
+    <value>Результат гольфиста:</value>
+  </data>
+  <data name="player_stats_health" xml:space="preserve">
+    <value>Здоровье</value>
+  </data>
+  <data name="player_stats_hp" xml:space="preserve">
+    <value>HP:</value>
+  </data>
+  <data name="player_stats_mana" xml:space="preserve">
+    <value>Мана</value>
+  </data>
+  <data name="player_stats_max" xml:space="preserve">
+    <value>Макс:</value>
+  </data>
+  <data name="player_stats_mp" xml:space="preserve">
+    <value>МП:</value>
+  </data>
+  <data name="player_stats_show_armor" xml:space="preserve">
+    <value>Демонстрационная броня</value>
+  </data>
+  <data name="player_stats_spawn_points" xml:space="preserve">
+    <value>Точки появления</value>
+  </data>
+  <data name="player_stats_statistics" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="player_stats_super_cart_enabled" xml:space="preserve">
+    <value>Включена суперкартридж</value>
+  </data>
+  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
+    <value>Суперкарт открыт</value>
+  </data>
+  <data name="player_stats_tax_money" xml:space="preserve">
+    <value>Налоговые деньги:</value>
+  </data>
+  <data name="player_stats_team" xml:space="preserve">
+    <value>Команда:</value>
+  </data>
+  <data name="player_stats_team_blue" xml:space="preserve">
+    <value>Синие</value>
+  </data>
+  <data name="player_stats_team_green" xml:space="preserve">
+    <value>Зелёные</value>
+  </data>
+  <data name="player_stats_team_none" xml:space="preserve">
+    <value>Никто</value>
+  </data>
+  <data name="player_stats_team_pink" xml:space="preserve">
+    <value>Розовый</value>
+  </data>
+  <data name="player_stats_team_red" xml:space="preserve">
+    <value>Красные</value>
+  </data>
+  <data name="player_stats_team_yellow" xml:space="preserve">
+    <value>Жёлтые</value>
+  </data>
+  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
+    <value>Использованный Aegis Crystal</value>
+  </data>
+  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
+    <value>Использованные фрукты Aegis</value>
+  </data>
+  <data name="player_stats_used_ambrosia" xml:space="preserve">
+    <value>Использованная амброзия</value>
+  </data>
+  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
+    <value>Использованный Арканный Кристалл</value>
+  </data>
+  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
+    <value>Использованный Galaxy Pearl</value>
+  </data>
+  <data name="player_stats_used_gummy_worm" xml:space="preserve">
+    <value>Использованный жевательные черви</value>
+  </data>
+  <data name="player_stats_using_biome_torches" xml:space="preserve">
+    <value>Использование биомных факелов</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Выберите версию для сохранения как:</value>
@@ -1400,6 +1598,9 @@
   <data name="sidebar_mask_tooltip" xml:space="preserve">
     <value>Masks</value>
   </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
+  </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>Скриптинг</value>
   </data>
@@ -1523,17 +1724,32 @@
   <data name="sprite_biome_label" xml:space="preserve">
     <value>Биом:</value>
   </data>
+  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
+    <value>Чистый выбор</value>
+  </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Фильтр</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
     <value>Фильтр: </value>
   </data>
+  <data name="sprite_size_label" xml:space="preserve">
+    <value>Размер:</value>
+  </data>
+  <data name="sprite_styles_format" xml:space="preserve">
+    <value>{0} стили</value>
+  </data>
   <data name="sprite_styletype" xml:space="preserve">
     <value>Стиль</value>
   </data>
+  <data name="sprite_style_format" xml:space="preserve">
+    <value>Стиль: {0}</value>
+  </data>
   <data name="sprite_tiletype" xml:space="preserve">
     <value>Фильтр типа плитки</value>
+  </data>
+  <data name="sprite_tile_id_format" xml:space="preserve">
+    <value>Идентификатор плитки: {0}</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Ещё</value>
@@ -1636,6 +1852,9 @@
   <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
     <value>Переворот горизонтально</value>
   </data>
+  <data name="tool_brush_flip_label" xml:space="preserve">
+    <value>Flip</value>
+  </data>
   <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
     <value>Flip Vertical</value>
   </data>
@@ -1644,6 +1863,9 @@
   </data>
   <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
     <value>Квадратная высота и ширина</value>
+  </data>
+  <data name="tool_brush_outline_label" xml:space="preserve">
+    <value>Обводка</value>
   </data>
   <data name="tool_brush_outline_thickness_label" xml:space="preserve">
     <value>Обводка</value>
@@ -1689,6 +1911,12 @@
   </data>
   <data name="tool_clipboard_importschematic" xml:space="preserve">
     <value>Импортировать схематик или картинку</value>
+  </data>
+  <data name="tool_clipboard_instant_paste" xml:space="preserve">
+    <value>Мгновенная паста</value>
+  </data>
+  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
+    <value>Вставляйте сразу при клике без перетаскивания в позицию</value>
   </data>
   <data name="tool_clipboard_ispasteempty" xml:space="preserve">
     <value>Вставить пустые тайлы</value>
@@ -1882,6 +2110,12 @@
   <data name="tool_paint_wire_blue" xml:space="preserve">
     <value>Синие</value>
   </data>
+  <data name="tool_paint_wire_chain" xml:space="preserve">
+    <value>Цепь</value>
+  </data>
+  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
+    <value>Продолжайте рисовать с конца последнего сегмента</value>
+  </data>
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>Зелёные</value>
   </data>
@@ -1894,6 +2128,9 @@
   <data name="tool_paint_wire_replace_header" xml:space="preserve">
     <value>Замена провода</value>
   </data>
+  <data name="tool_paint_wire_route" xml:space="preserve">
+    <value>Маршрут</value>
+  </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>Жёлтые</value>
   </data>
@@ -1902,12 +2139,6 @@
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>Карандаш</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Wire 90°</value>
-  </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Wire 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Пипетка - выбор цвета блока</value>
@@ -2560,6 +2791,9 @@
   <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
     <value>Существует резервная копия</value>
   </data>
+  <data name="world_explorer_browse" xml:space="preserve">
+    <value>Просмотр...</value>
+  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>Размеры</value>
   </data>
@@ -2613,6 +2847,9 @@
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>Исследователь мира</value>
+  </data>
+  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
+    <value>Переключение любимого режима</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Раззакрепить</value>

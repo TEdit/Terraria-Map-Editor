@@ -78,7 +78,7 @@
                       VerticalAlignment="Center" 
                       IsChecked="{Binding Brush.IsOutline, Mode=TwoWay}"
                       ToolTip="{x:Static p:Language.tool_brush_outline_tooltip}" >
-      <TextBlock Text="Outline" />
+      <TextBlock Text="{x:Static p:Language.tool_brush_outline_label}" />
     </ToggleButton>
 
         <!-- Row 3: Shape -->
@@ -104,7 +104,7 @@
                    VerticalAlignment="Center"  />
 
         <!-- Row 1: Flip + Spray toggle -->
-        <TextBlock Grid.Row="1" Grid.Column="5" Text="Flip"
+        <TextBlock Grid.Row="1" Grid.Column="5" Text="{x:Static p:Language.tool_brush_flip_label}"
                    HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
         <StackPanel Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2" Orientation="Horizontal"
                     VerticalAlignment="Center" Margin="0,1">

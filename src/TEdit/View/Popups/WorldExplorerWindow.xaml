@@ -35,7 +35,7 @@
 
         <!-- Search + Browse Row -->
         <DockPanel Grid.Row="1" Margin="10,0,10,8">
-            <ui:Button DockPanel.Dock="Right" Content="Browse..." Padding="8,4" Margin="8,0,0,0"
+            <ui:Button DockPanel.Dock="Right" Content="{x:Static p:Language.world_explorer_browse}" Padding="8,4" Margin="8,0,0,0"
                        Click="Browse_Click" />
             <ui:TextBox x:Name="SearchBox"
                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
@@ -75,7 +75,7 @@
                                     <Button Click="ToggleFavorite_Click" Tag="{Binding}"
                                             Background="Transparent" BorderThickness="0"
                                             Padding="2" FontSize="14" Cursor="Hand"
-                                            ToolTip="Toggle Favorite">
+                                            ToolTip="{x:Static p:Language.world_explorer_toggle_favorite_tooltip}">
                                         <TextBlock Text="{Binding IsFavorite, Converter={x:Static vm:FavoriteIconConverter.Instance}}"
                                                    FontFamily="Segoe MDL2 Assets" FontSize="14">
                                             <TextBlock.Style>

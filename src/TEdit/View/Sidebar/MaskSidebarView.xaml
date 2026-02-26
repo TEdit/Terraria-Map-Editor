@@ -57,7 +57,7 @@
                         DisplayMemberPath="Name"
                         FilterMemberPath="Name"
                         FilterIdMemberPath="Id"
-                        Placeholder="Search tiles..." />
+                        Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
                 </Grid>
 
                 <!-- Wall Type -->
@@ -81,7 +81,7 @@
                         DisplayMemberPath="Name"
                         FilterMemberPath="Name"
                         FilterIdMemberPath="Id"
-                        Placeholder="Search walls..." />
+                        Placeholder="{x:Static p:Language.picker_search_walls_placeholder}" />
                 </Grid>
 
                 <!-- Brick Style -->

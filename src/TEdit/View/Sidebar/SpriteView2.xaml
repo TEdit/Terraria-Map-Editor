@@ -45,7 +45,7 @@
                        Margin="8,0,0,0"
                        Padding="8,4"
                        Command="{Binding ClearSpriteSelectionCommand}"
-                       ToolTip="Clear selection"/>
+                       ToolTip="{x:Static p:Language.sprite_clear_selection_tooltip}"/>
         </Grid>
 
         <!-- Row 2: Tile Type Label + Size Slider -->
@@ -55,7 +55,7 @@
                        HorizontalAlignment="Left"
                        Foreground="{DynamicResource TextFillColorPrimaryBrush}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="Size:"
+                <TextBlock Text="{x:Static p:Language.sprite_size_label}"
                            VerticalAlignment="Center"
                            Margin="0,0,8,0"
                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>

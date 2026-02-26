@@ -9,7 +9,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="2">
             <!-- Health -->
-            <TextBlock Text="Health" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,0,0,2"/>
+            <TextBlock Text="{x:Static p:Language.player_stats_health}" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,0,0,2"/>
             <Grid Margin="0,0,0,4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -17,17 +17,17 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="HP:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <TextBlock Text="{x:Static p:Language.player_stats_hp}" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
                 <ui:NumberBox Grid.Column="1" Value="{Binding Player.StatLife}" Minimum="1" Maximum="999"
                               SpinButtonPlacementMode="Compact" Height="28"/>
-                <TextBlock Grid.Column="2" Text="Max:" Foreground="{DynamicResource TextBrush}"
+                <TextBlock Grid.Column="2" Text="{x:Static p:Language.player_stats_max}" Foreground="{DynamicResource TextBrush}"
                            VerticalAlignment="Center" Margin="8,0,4,0"/>
                 <ui:NumberBox Grid.Column="3" Value="{Binding Player.StatLifeMax}" Minimum="1" Maximum="999"
                               SpinButtonPlacementMode="Compact" Height="28"/>
             </Grid>
 
             <!-- Mana -->
-            <TextBlock Text="Mana" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,0,0,2"/>
+            <TextBlock Text="{x:Static p:Language.player_stats_mana}" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,0,0,2"/>
             <Grid Margin="0,0,0,4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -35,10 +35,10 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="MP:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <TextBlock Text="{x:Static p:Language.player_stats_mp}" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
                 <ui:NumberBox Grid.Column="1" Value="{Binding Player.StatMana}" Minimum="0" Maximum="999"
                               SpinButtonPlacementMode="Compact" Height="28"/>
-                <TextBlock Grid.Column="2" Text="Max:" Foreground="{DynamicResource TextBrush}"
+                <TextBlock Grid.Column="2" Text="{x:Static p:Language.player_stats_max}" Foreground="{DynamicResource TextBrush}"
                            VerticalAlignment="Center" Margin="8,0,4,0"/>
                 <ui:NumberBox Grid.Column="3" Value="{Binding Player.StatManaMax}" Minimum="0" Maximum="999"
                               SpinButtonPlacementMode="Compact" Height="28"/>
@@ -50,37 +50,37 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Team:" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"
+                <TextBlock Text="{x:Static p:Language.player_stats_team}" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"
                            VerticalAlignment="Center" Margin="0,0,4,0"/>
                 <ComboBox Grid.Column="1" Height="26" SelectedIndex="{Binding Player.Team}">
-                    <ComboBoxItem Content="None"/>
-                    <ComboBoxItem Content="Red"/>
-                    <ComboBoxItem Content="Green"/>
-                    <ComboBoxItem Content="Blue"/>
-                    <ComboBoxItem Content="Yellow"/>
-                    <ComboBoxItem Content="Pink"/>
+                    <ComboBoxItem Content="{x:Static p:Language.player_stats_team_none}"/>
+                    <ComboBoxItem Content="{x:Static p:Language.player_stats_team_red}"/>
+                    <ComboBoxItem Content="{x:Static p:Language.player_stats_team_green}"/>
+                    <ComboBoxItem Content="{x:Static p:Language.player_stats_team_blue}"/>
+                    <ComboBoxItem Content="{x:Static p:Language.player_stats_team_yellow}"/>
+                    <ComboBoxItem Content="{x:Static p:Language.player_stats_team_pink}"/>
                 </ComboBox>
             </Grid>
 
             <!-- Flags -->
-            <TextBlock Text="Flags" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,4,0,2"/>
+            <TextBlock Text="{x:Static p:Language.player_stats_flags}" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,4,0,2"/>
             <WrapPanel>
-                <CheckBox Content="Extra Accessory" IsChecked="{Binding Player.ExtraAccessory}" Margin="0,2,8,2"/>
-                <CheckBox Content="Biome Torches Unlocked" IsChecked="{Binding Player.UnlockedBiomeTorches}" Margin="0,2,8,2"/>
-                <CheckBox Content="Using Biome Torches" IsChecked="{Binding Player.UsingBiomeTorches}" Margin="0,2,8,2"/>
-                <CheckBox Content="Ate Artisan Bread" IsChecked="{Binding Player.AteArtisanBread}" Margin="0,2,8,2"/>
-                <CheckBox Content="Used Aegis Crystal" IsChecked="{Binding Player.UsedAegisCrystal}" Margin="0,2,8,2"/>
-                <CheckBox Content="Used Aegis Fruit" IsChecked="{Binding Player.UsedAegisFruit}" Margin="0,2,8,2"/>
-                <CheckBox Content="Used Arcane Crystal" IsChecked="{Binding Player.UsedArcaneCrystal}" Margin="0,2,8,2"/>
-                <CheckBox Content="Used Galaxy Pearl" IsChecked="{Binding Player.UsedGalaxyPearl}" Margin="0,2,8,2"/>
-                <CheckBox Content="Used Gummy Worm" IsChecked="{Binding Player.UsedGummyWorm}" Margin="0,2,8,2"/>
-                <CheckBox Content="Used Ambrosia" IsChecked="{Binding Player.UsedAmbrosia}" Margin="0,2,8,2"/>
-                <CheckBox Content="Super Cart Unlocked" IsChecked="{Binding Player.UnlockedSuperCart}" Margin="0,2,8,2"/>
-                <CheckBox Content="Super Cart Enabled" IsChecked="{Binding Player.EnabledSuperCart}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_extra_accessory}" IsChecked="{Binding Player.ExtraAccessory}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_biome_torches_unlocked}" IsChecked="{Binding Player.UnlockedBiomeTorches}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_using_biome_torches}" IsChecked="{Binding Player.UsingBiomeTorches}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_ate_artisan_bread}" IsChecked="{Binding Player.AteArtisanBread}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_used_aegis_crystal}" IsChecked="{Binding Player.UsedAegisCrystal}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_used_aegis_fruit}" IsChecked="{Binding Player.UsedAegisFruit}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_used_arcane_crystal}" IsChecked="{Binding Player.UsedArcaneCrystal}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_used_galaxy_pearl}" IsChecked="{Binding Player.UsedGalaxyPearl}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_used_gummy_worm}" IsChecked="{Binding Player.UsedGummyWorm}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_used_ambrosia}" IsChecked="{Binding Player.UsedAmbrosia}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_super_cart_unlocked}" IsChecked="{Binding Player.UnlockedSuperCart}" Margin="0,2,8,2"/>
+                <CheckBox Content="{x:Static p:Language.player_stats_super_cart_enabled}" IsChecked="{Binding Player.EnabledSuperCart}" Margin="0,2,8,2"/>
             </WrapPanel>
 
             <!-- Numeric stats -->
-            <TextBlock Text="Statistics" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,4,0,2"/>
+            <TextBlock Text="{x:Static p:Language.player_stats_statistics}" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,4,0,2"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -93,25 +93,25 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Tax Money:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <TextBlock Text="{x:Static p:Language.player_stats_tax_money}" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
                 <ui:NumberBox Grid.Column="1" Value="{Binding Player.TaxMoney}" Minimum="0"
                               SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
-                <TextBlock Grid.Row="1" Text="Deaths (PvE):" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <TextBlock Grid.Row="1" Text="{x:Static p:Language.player_stats_deaths_pve}" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
                 <ui:NumberBox Grid.Row="1" Grid.Column="1" Value="{Binding Player.NumberOfDeathsPVE}" Minimum="0"
                               SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
-                <TextBlock Grid.Row="2" Text="Deaths (PvP):" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <TextBlock Grid.Row="2" Text="{x:Static p:Language.player_stats_deaths_pvp}" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
                 <ui:NumberBox Grid.Row="2" Grid.Column="1" Value="{Binding Player.NumberOfDeathsPVP}" Minimum="0"
                               SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
-                <TextBlock Grid.Row="3" Text="Angler Quests:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <TextBlock Grid.Row="3" Text="{x:Static p:Language.player_stats_angler_quests}" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
                 <ui:NumberBox Grid.Row="3" Grid.Column="1" Value="{Binding Player.AnglerQuestsFinished}" Minimum="0"
                               SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
-                <TextBlock Grid.Row="4" Text="Golfer Score:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
+                <TextBlock Grid.Row="4" Text="{x:Static p:Language.player_stats_golfer_score}" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,2,4,2"/>
                 <ui:NumberBox Grid.Row="4" Grid.Column="1" Value="{Binding Player.GolferScoreAccumulated}" Minimum="0"
                               SpinButtonPlacementMode="Compact" Height="28" Margin="0,2"/>
             </Grid>
 
             <!-- Spawn Points -->
-            <TextBlock Text="Spawn Points" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,4,0,2"/>
+            <TextBlock Text="{x:Static p:Language.player_stats_spawn_points}" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,4,0,2"/>
             <ItemsControl ItemsSource="{Binding Player.SpawnPoints}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

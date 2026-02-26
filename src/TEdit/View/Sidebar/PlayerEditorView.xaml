@@ -75,7 +75,7 @@
                                 <ScaleTransform ScaleX="-1"/>
                             </Image.RenderTransform>
                         </Image>
-                        <CheckBox Content="Show Armor" IsChecked="{Binding ShowArmorPreview}" Margin="0,4,0,0"/>
+                        <CheckBox Content="{x:Static p:Language.player_stats_show_armor}" IsChecked="{Binding ShowArmorPreview}" Margin="0,4,0,0"/>
                     </StackPanel>
                 </Border>
 
@@ -103,10 +103,10 @@
                                Foreground="{DynamicResource TextBrush}" FontWeight="Bold" 
                                VerticalAlignment="Center" Margin="0,0,4,4"/>
                     <ComboBox Grid.Row="1" Grid.Column="1" Height="26" SelectedIndex="{Binding Player.Difficulty}" Margin="0,0,0,4">
-                        <ComboBoxItem Content="Classic"/>
-                        <ComboBoxItem Content="Mediumcore"/>
-                        <ComboBoxItem Content="Hardcore"/>
-                        <ComboBoxItem Content="Journey"/>
+                        <ComboBoxItem Content="{x:Static p:Language.player_difficulty_classic}"/>
+                        <ComboBoxItem Content="{x:Static p:Language.player_difficulty_mediumcore}"/>
+                        <ComboBoxItem Content="{x:Static p:Language.player_difficulty_hardcore}"/>
+                        <ComboBoxItem Content="{x:Static p:Language.player_difficulty_journey}"/>
                     </ComboBox>
 
                     <!-- Hair -->

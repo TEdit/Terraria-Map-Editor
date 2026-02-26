@@ -76,7 +76,7 @@
 
         <!-- Selected item editor -->
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+            <TextBlock Text="{x:Static p:Language.specialtile_label_editselecteditem}" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
             <controls:ItemEditorControl
                 DataContext="{Binding ElementName=InventoryList, Path=SelectedItem}"
                 ItemId="{Binding NetId, Mode=TwoWay}"

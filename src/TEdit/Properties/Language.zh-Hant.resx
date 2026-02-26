@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -262,8 +262,14 @@
   <data name="BrushShape_Triangle" xml:space="preserve">
     <value>三角</value>
   </data>
+  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
+    <value>清除所有物品</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>麥克斯</value>
+  </data>
+  <data name="common_browse" xml:space="preserve">
+    <value>瀏覽......</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>取消</value>
@@ -304,6 +310,12 @@
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>未找到 Terraria 內容</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>分析</value>
@@ -479,26 +491,14 @@
   <data name="MaskMode_Off" xml:space="preserve">
     <value>解除面具</value>
   </data>
-  <data name="MaskPreset_Off" xml:space="preserve">
-    <value>關掉</value>
-  </data>
   <data name="MaskPreset_Custom" xml:space="preserve">
     <value>Match Custom</value>
   </data>
   <data name="MaskPreset_ExactMatch" xml:space="preserve">
     <value>Match All</value>
   </data>
-  <data name="palette_title" xml:space="preserve">
-    <value>Palette</value>
-  </data>
-  <data name="palette_tile_section" xml:space="preserve">
-    <value>Tile Picker</value>
-  </data>
-  <data name="palette_mask_section" xml:space="preserve">
-    <value>Mask Options</value>
-  </data>
-  <data name="sidebar_palette_tooltip" xml:space="preserve">
-    <value>Palette</value>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>關掉</value>
   </data>
   <data name="mask_clear_all" xml:space="preserve">
     <value>Clear All</value>
@@ -999,6 +999,15 @@
   <data name="newworld_width" xml:space="preserve">
     <value>寬度</value>
   </data>
+  <data name="npc_label_partying" xml:space="preserve">
+    <value>派對</value>
+  </data>
+  <data name="npc_label_shimmered" xml:space="preserve">
+    <value>閃爍</value>
+  </data>
+  <data name="npc_search_placeholder" xml:space="preserve">
+    <value>搜尋......</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液體</value>
   </data>
@@ -1017,11 +1026,80 @@
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>鋼索</value>
   </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="paste_tooltip_accept" xml:space="preserve">
+    <value>接受（Enter）</value>
+  </data>
+  <data name="paste_tooltip_cancel" xml:space="preserve">
+    <value>取消（ESC）</value>
+  </data>
+  <data name="paste_tooltip_flip_h" xml:space="preserve">
+    <value>橫向翻轉（Ctrl+H）</value>
+  </data>
+  <data name="paste_tooltip_flip_v" xml:space="preserve">
+    <value>垂直翻轉（Ctrl+Shift+H）</value>
+  </data>
+  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
+    <value>旋轉CCW（Ctrl+Shift+Q）</value>
+  </data>
+  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
+    <value>旋轉CW（Ctrl+Q）</value>
+  </data>
   <data name="picker_check_all_tooltip" xml:space="preserve">
     <value>檢查所有可見的物品</value>
   </data>
+  <data name="picker_search_items_placeholder" xml:space="preserve">
+    <value>搜尋物品......</value>
+  </data>
+  <data name="picker_search_platforms_placeholder" xml:space="preserve">
+    <value>搜尋平台......</value>
+  </data>
+  <data name="picker_search_prefix_placeholder" xml:space="preserve">
+    <value>前綴</value>
+  </data>
+  <data name="picker_search_sprites_placeholder" xml:space="preserve">
+    <value>搜尋精靈......</value>
+  </data>
+  <data name="picker_search_tiles_placeholder" xml:space="preserve">
+    <value>搜尋格子......</value>
+  </data>
+  <data name="picker_search_walls_placeholder" xml:space="preserve">
+    <value>搜查牆壁......</value>
+  </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>取消勾選所有可見項目</value>
+  </data>
+  <data name="player_buff_clear_tooltip" xml:space="preserve">
+    <value>清場</value>
+  </data>
+  <data name="player_buff_edit_selected" xml:space="preserve">
+    <value>編輯：已選定增益</value>
+  </data>
+  <data name="player_buff_label_time" xml:space="preserve">
+    <value>時間：</value>
+  </data>
+  <data name="player_buff_label_type" xml:space="preserve">
+    <value>類型：</value>
+  </data>
+  <data name="player_difficulty_classic" xml:space="preserve">
+    <value>經典</value>
+  </data>
+  <data name="player_difficulty_hardcore" xml:space="preserve">
+    <value>硬核</value>
+  </data>
+  <data name="player_difficulty_journey" xml:space="preserve">
+    <value>旅程</value>
+  </data>
+  <data name="player_difficulty_mediumcore" xml:space="preserve">
+    <value>中核</value>
   </data>
   <data name="player_editor_appearance_colors" xml:space="preserve">
     <value>外觀顏色</value>
@@ -1106,6 +1184,126 @@
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
     <value>內襯衫顏色</value>
+  </data>
+  <data name="player_equip_label_dye" xml:space="preserve">
+    <value>染色</value>
+  </data>
+  <data name="player_equip_label_edit_item" xml:space="preserve">
+    <value>編輯項目</value>
+  </data>
+  <data name="player_equip_label_equipment" xml:space="preserve">
+    <value>設備</value>
+  </data>
+  <data name="player_equip_label_misc" xml:space="preserve">
+    <value>雜項設備</value>
+  </data>
+  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
+    <value>切換可見性</value>
+  </data>
+  <data name="player_journey_research_sacrifices" xml:space="preserve">
+    <value>研究犧牲</value>
+  </data>
+  <data name="player_journey_total_researched" xml:space="preserve">
+    <value>總研究項目：{0}</value>
+  </data>
+  <data name="player_stats_angler_quests" xml:space="preserve">
+    <value>釣魚者任務：</value>
+  </data>
+  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
+    <value>吃手工麵包</value>
+  </data>
+  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
+    <value>生態系火把解鎖</value>
+  </data>
+  <data name="player_stats_deaths_pve" xml:space="preserve">
+    <value>死亡（PvE）：</value>
+  </data>
+  <data name="player_stats_deaths_pvp" xml:space="preserve">
+    <value>死亡（PvP）：</value>
+  </data>
+  <data name="player_stats_extra_accessory" xml:space="preserve">
+    <value>額外配件</value>
+  </data>
+  <data name="player_stats_flags" xml:space="preserve">
+    <value>旗幟</value>
+  </data>
+  <data name="player_stats_golfer_score" xml:space="preserve">
+    <value>高爾夫球手評分：</value>
+  </data>
+  <data name="player_stats_health" xml:space="preserve">
+    <value>健康</value>
+  </data>
+  <data name="player_stats_hp" xml:space="preserve">
+    <value>哈利波特：</value>
+  </data>
+  <data name="player_stats_mana" xml:space="preserve">
+    <value>魔力</value>
+  </data>
+  <data name="player_stats_max" xml:space="preserve">
+    <value>Max：</value>
+  </data>
+  <data name="player_stats_mp" xml:space="preserve">
+    <value>國會議員：</value>
+  </data>
+  <data name="player_stats_show_armor" xml:space="preserve">
+    <value>展示裝甲</value>
+  </data>
+  <data name="player_stats_spawn_points" xml:space="preserve">
+    <value>出生點</value>
+  </data>
+  <data name="player_stats_statistics" xml:space="preserve">
+    <value>統計數據</value>
+  </data>
+  <data name="player_stats_super_cart_enabled" xml:space="preserve">
+    <value>啟用超級推車</value>
+  </data>
+  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
+    <value>超級卡特解鎖</value>
+  </data>
+  <data name="player_stats_tax_money" xml:space="preserve">
+    <value>稅金：</value>
+  </data>
+  <data name="player_stats_team" xml:space="preserve">
+    <value>團隊：</value>
+  </data>
+  <data name="player_stats_team_blue" xml:space="preserve">
+    <value>藍色</value>
+  </data>
+  <data name="player_stats_team_green" xml:space="preserve">
+    <value>綠色</value>
+  </data>
+  <data name="player_stats_team_none" xml:space="preserve">
+    <value>沒有</value>
+  </data>
+  <data name="player_stats_team_pink" xml:space="preserve">
+    <value>粉紅色</value>
+  </data>
+  <data name="player_stats_team_red" xml:space="preserve">
+    <value>紅色</value>
+  </data>
+  <data name="player_stats_team_yellow" xml:space="preserve">
+    <value>黃色</value>
+  </data>
+  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
+    <value>使用過的神盾水晶</value>
+  </data>
+  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
+    <value>已使用過的Aegis果實</value>
+  </data>
+  <data name="player_stats_used_ambrosia" xml:space="preserve">
+    <value>用過的仙饗</value>
+  </data>
+  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
+    <value>已使用的奧術水晶</value>
+  </data>
+  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
+    <value>二手銀河珍珠</value>
+  </data>
+  <data name="player_stats_used_gummy_worm" xml:space="preserve">
+    <value>用過的軟糖蟲</value>
+  </data>
+  <data name="player_stats_using_biome_torches" xml:space="preserve">
+    <value>使用生物群系火炬</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>選擇一個版本以儲存為：</value>
@@ -1400,6 +1598,9 @@
   <data name="sidebar_mask_tooltip" xml:space="preserve">
     <value>Masks</value>
   </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
+  </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>腳本編寫</value>
   </data>
@@ -1523,17 +1724,32 @@
   <data name="sprite_biome_label" xml:space="preserve">
     <value>生物群系：</value>
   </data>
+  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
+    <value>明確選擇</value>
+  </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>濾波器</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
     <value>篩選：</value>
   </data>
+  <data name="sprite_size_label" xml:space="preserve">
+    <value>尺寸：</value>
+  </data>
+  <data name="sprite_styles_format" xml:space="preserve">
+    <value>{0}風格</value>
+  </data>
   <data name="sprite_styletype" xml:space="preserve">
     <value>風格</value>
   </data>
+  <data name="sprite_style_format" xml:space="preserve">
+    <value>風格：{0}</value>
+  </data>
   <data name="sprite_tiletype" xml:space="preserve">
     <value>磁磚類型過濾器</value>
+  </data>
+  <data name="sprite_tile_id_format" xml:space="preserve">
+    <value>地塊識別碼：{0}</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>快報</value>
@@ -1636,6 +1852,9 @@
   <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
     <value>翻轉水平</value>
   </data>
+  <data name="tool_brush_flip_label" xml:space="preserve">
+    <value>翻轉</value>
+  </data>
   <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
     <value>翻轉垂直</value>
   </data>
@@ -1644,6 +1863,9 @@
   </data>
   <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
     <value>正方形寬度與高度</value>
+  </data>
+  <data name="tool_brush_outline_label" xml:space="preserve">
+    <value>大綱</value>
   </data>
   <data name="tool_brush_outline_thickness_label" xml:space="preserve">
     <value>大綱</value>
@@ -1689,6 +1911,12 @@
   </data>
   <data name="tool_clipboard_importschematic" xml:space="preserve">
     <value>匯入原理圖或映像</value>
+  </data>
+  <data name="tool_clipboard_instant_paste" xml:space="preserve">
+    <value>即時膠紙</value>
+  </data>
+  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
+    <value>點擊後立即貼上，無需拖曳至位置</value>
   </data>
   <data name="tool_clipboard_ispasteempty" xml:space="preserve">
     <value>貼上空白瓷磚</value>
@@ -1882,6 +2110,12 @@
   <data name="tool_paint_wire_blue" xml:space="preserve">
     <value>藍色</value>
   </data>
+  <data name="tool_paint_wire_chain" xml:space="preserve">
+    <value>鏈條</value>
+  </data>
+  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
+    <value>從最後一段結束處繼續畫</value>
+  </data>
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>綠色</value>
   </data>
@@ -1894,6 +2128,9 @@
   <data name="tool_paint_wire_replace_header" xml:space="preserve">
     <value>線材更換</value>
   </data>
+  <data name="tool_paint_wire_route" xml:space="preserve">
+    <value>路線</value>
+  </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>黃色</value>
   </data>
@@ -1902,12 +2139,6 @@
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>鉛筆</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Wire 90°</value>
-  </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Wire 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>選擇器 - 選擇圖塊顏色</value>
@@ -2560,6 +2791,9 @@
   <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
     <value>備援存在</value>
   </data>
+  <data name="world_explorer_browse" xml:space="preserve">
+    <value>瀏覽......</value>
+  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>尺寸</value>
   </data>
@@ -2613,6 +2847,9 @@
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>世界探險家</value>
+  </data>
+  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
+    <value>切換最愛</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>解開</value>
