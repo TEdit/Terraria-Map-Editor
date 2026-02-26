@@ -541,6 +541,11 @@ public partial class WorldRenderXna : UserControl
             _viewStateSaveTimer?.Stop();
             SaveViewState();
             WorldViewStateManager.Flush();
+
+            // Release all texture memory on control teardown (app closing)
+            _textureDictionary?.Dispose();
+            ItemPreviewCache.Clear();
+            NpcPreviewCache.Clear();
         };
     }
 
@@ -721,20 +726,16 @@ public partial class WorldRenderXna : UserControl
     /// </summary>
     private void LoadImmediateTextures(GraphicsDeviceEventArgs e)
     {
-        // Load all NPC textures immediately - they're needed for UI and there aren't many
-        foreach (var id in WorldConfiguration.NpcIds)
-        {
-            _textureDictionary.GetNPC(id.Value);
-        }
-
-        // Also load bestiary NPCs
+        // Only load Town NPC textures at startup — they're needed for the NPC placement UI.
+        // Regular NPC textures will lazy-load via GetNPC() when the renderer draws them.
         foreach (var npc in WorldConfiguration.BestiaryData.NpcData)
         {
             if (npc.Value.Id < 0) continue;
+            if (!npc.Value.IsTownNpc) continue;
             _textureDictionary.GetNPC(npc.Value.Id);
         }
 
-        // Generate NPC preview bitmaps for UI
+        // Generate NPC preview bitmaps for UI (town NPCs only)
         GenerateNpcPreviews();
 
         // Item previews are generated during deferred loading (after tiles/walls)
@@ -742,7 +743,8 @@ public partial class WorldRenderXna : UserControl
     }
 
     /// <summary>
-    /// Generate preview bitmaps for all NPCs in NpcById.
+    /// Generate preview bitmaps for town NPCs only.
+    /// Regular NPCs (enemies, critters) don't appear in the NPC placement picker.
     /// </summary>
     private void GenerateNpcPreviews()
     {
@@ -750,6 +752,11 @@ public partial class WorldRenderXna : UserControl
         {
             var npcData = kvp.Value;
             var npcId = npcData.Id;
+
+            // Only generate previews for town NPCs
+            if (!WorldConfiguration.BestiaryData.NpcById.TryGetValue(npcId, out var bestiaryData)
+                || !bestiaryData.IsTownNpc)
+                continue;
 
             var texture = _textureDictionary.GetNPC(npcId);
             if (texture == null || texture == _textureDictionary.DefaultTexture)
@@ -1236,6 +1243,14 @@ public partial class WorldRenderXna : UserControl
         DispatcherHelper.CheckBeginInvokeOnUI(() =>
         {
             ItemPreviewCache.MarkPopulated();
+        });
+
+        // Unload all preview-only textures (items, NPCs, armor, player, accessories).
+        // Previews are cached as WriteableBitmaps; originals no longer needed.
+        // The renderer will lazy-reload any it needs via the main ContentManager.
+        _textureDictionary.QueueTextureCreation(() =>
+        {
+            _textureDictionary.UnloadPreviewTextures();
         });
 
         ErrorLogging.LogDebug("Deferred item preview generation complete");

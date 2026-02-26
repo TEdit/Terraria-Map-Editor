@@ -1207,6 +1207,16 @@ public partial class WorldViewModel : ReactiveObject
             if (_currentWorld != null)
             {
                 _currentWorld.PropertyChanged -= OnWorldPropertyChanged;
+
+                // Clear special tile selections that reference the old world's data
+                SelectedChest = null;
+                SelectedChestItem = null;
+                SelectedSign = null;
+                SelectedTileEntity = null;
+
+                // Dispose old undo manager to release World reference and clear undo/redo buffers
+                _undoManager?.Dispose();
+                _undoManager = null;
             }
 
             this.RaiseAndSetIfChanged(ref _currentWorld, value);

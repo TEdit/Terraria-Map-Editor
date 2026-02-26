@@ -11,9 +11,11 @@ using TEdit.Terraria.Objects;
 namespace TEdit.Render;
 
 
-public class Textures
+public class Textures : IDisposable
 {
+    private bool _disposed;
     private readonly GraphicsDevice _gdDevice;
+    private readonly IServiceProvider _serviceProvider;
 
     // Deferred texture loading infrastructure
     private readonly TextureLoadingState _loadingState = new();
@@ -69,9 +71,16 @@ public class Textures
 
     public ContentManager ContentManager { get; }
 
+    // Separate ContentManager for preview-only textures (items, NPCs, armor, player, accessories).
+    // These are loaded to extract pixel data for preview bitmaps, then the entire CM is unloaded
+    // to free GPU memory. The main ContentManager is never poisoned, so the renderer can
+    // lazy-reload any texture it needs on demand.
+    private ContentManager _previewContentManager;
+
     public Textures(IServiceProvider serviceProvider, GraphicsDevice gdDevice)
     {
         _gdDevice = gdDevice;
+        _serviceProvider = serviceProvider;
         string path = DependencyChecker.PathToContent;
 
         _defaultTexture = new Texture2D(_gdDevice, 1, 1);
@@ -109,6 +118,7 @@ public class Textures
                 }
 
                 ContentManager = new ContentManager(serviceProvider, path);
+                _previewContentManager = new ContentManager(serviceProvider, path);
 
             }
             catch (Exception ex)
@@ -153,15 +163,24 @@ public class Textures
 
     public Texture GetShroomTop(int num) => GetTextureById(Shrooms, num, "Images\\Shroom_Tops");
 
-    public Texture2D GetNPC(int num) => GetTextureById(Npcs, num, "Images\\NPC_{0}");
+    public Texture2D GetNPC(int num)
+    {
+        if (!Npcs.ContainsKey(num))
+        {
+            string name = string.Format("Images\\NPC_{0}", num);
+            Npcs[num] = LoadTextureFrom(_previewContentManager ?? ContentManager, name);
+        }
+        return Npcs[num];
+    }
 
     public Texture2D GetTownNPC(string name, int npcId, int variant = 0, bool partying = false, bool shimmered = false)
     {
         var key = new TownNpcKey(name, variant, partying, shimmered);
 
-
         if (!TownNpcs.ContainsKey(key))
         {
+            var cm = _previewContentManager ?? ContentManager;
+
             string variantName = "Default";
             if (WorldConfiguration.NpcById.TryGetValue(npcId, out var npcData)
                 && npcData.Variants != null
@@ -183,8 +202,6 @@ public class Textures
                 name = name.Substring(4);
             }
 
-
-
             string basePath = $"Images\\TownNPCs\\{name}_{variantName}";
             string texturePath = basePath;
 
@@ -201,17 +218,17 @@ public class Textures
                 texturePath = $"Images\\TownNPCs\\{name}_{variantName}_Party";
             }
 
-            var tex = LoadTexture(texturePath);
+            var tex = LoadTextureFrom(cm, texturePath);
 
             // Fallback chain: party/shimmer variant → base town NPC texture → NPC_{id}
-            // Note: LoadTexture returns _defaultTexture (1x1 transparent) for missing files, never null
+            // Note: LoadTextureFrom returns _defaultTexture for missing files, never null
             if ((tex == null || tex == _defaultTexture) && texturePath != basePath)
             {
-                tex = LoadTexture(basePath);
+                tex = LoadTextureFrom(cm, basePath);
             }
             if (tex == null || tex == _defaultTexture)
             {
-                tex = LoadTexture($"Images\\NPC_{npcId}");
+                tex = LoadTextureFrom(cm, $"Images\\NPC_{npcId}");
             }
 
             TownNpcs[key] = tex;
@@ -227,34 +244,42 @@ public class Textures
 
     public Texture GetMisc(string name) => GetTextureById(Misc, name, "Images\\{0}");
 
-    public Texture GetArmorHead(int num) => GetTextureById(ArmorHead, num, "Images\\Armor_Head_{0}");
+    public Texture GetArmorHead(int num) => GetPreviewTextureById(ArmorHead, num, "Images\\Armor_Head_{0}");
 
-    public Texture GetArmorBody(int num) => GetTextureById(ArmorBody, num, "Images\\Armor\\Armor_{0}");
+    public Texture GetArmorBody(int num) => GetPreviewTextureById(ArmorBody, num, "Images\\Armor\\Armor_{0}");
 
-    public Texture GetArmorFemale(int num) => GetTextureById(ArmorFemale, num, "Images\\Armor\\Armor_Female_{0}");
+    public Texture GetArmorFemale(int num) => GetPreviewTextureById(ArmorFemale, num, "Images\\Armor\\Armor_Female_{0}");
 
-    public Texture GetArmorLegs(int num) => GetTextureById(ArmorLegs, num, "Images\\Armor_Legs_{0}");
+    public Texture GetArmorLegs(int num) => GetPreviewTextureById(ArmorLegs, num, "Images\\Armor_Legs_{0}");
 
     // Accessory texture getters
-    public Texture2D GetAccWings(int num) => GetTextureById(AccWings, num, "Images\\Wings_{0}");
-    public Texture2D GetAccBack(int num) => GetTextureById(AccBack, num, "Images\\Acc_Back_{0}");
-    public Texture2D GetAccBalloon(int num) => GetTextureById(AccBalloon, num, "Images\\Acc_Balloon_{0}");
-    public Texture2D GetAccShoes(int num) => GetTextureById(AccShoes, num, "Images\\Acc_Shoes_{0}");
-    public Texture2D GetAccWaist(int num) => GetTextureById(AccWaist, num, "Images\\Acc_Waist_{0}");
-    public Texture2D GetAccNeck(int num) => GetTextureById(AccNeck, num, "Images\\Acc_Neck_{0}");
-    public Texture2D GetAccFace(int num) => GetTextureById(AccFace, num, "Images\\Acc_Face_{0}");
-    public Texture2D GetAccShield(int num) => GetTextureById(AccShield, num, "Images\\Acc_Shield_{0}");
-    public Texture2D GetAccHandsOn(int num) => GetTextureById(AccHandsOn, num, "Images\\Acc_HandsOn_{0}");
-    public Texture2D GetAccHandsOff(int num) => GetTextureById(AccHandsOff, num, "Images\\Acc_HandsOff_{0}");
-    public Texture2D GetAccFront(int num) => GetTextureById(AccFront, num, "Images\\Acc_Front_{0}");
+    public Texture2D GetAccWings(int num) => GetPreviewTextureById(AccWings, num, "Images\\Wings_{0}");
+    public Texture2D GetAccBack(int num) => GetPreviewTextureById(AccBack, num, "Images\\Acc_Back_{0}");
+    public Texture2D GetAccBalloon(int num) => GetPreviewTextureById(AccBalloon, num, "Images\\Acc_Balloon_{0}");
+    public Texture2D GetAccShoes(int num) => GetPreviewTextureById(AccShoes, num, "Images\\Acc_Shoes_{0}");
+    public Texture2D GetAccWaist(int num) => GetPreviewTextureById(AccWaist, num, "Images\\Acc_Waist_{0}");
+    public Texture2D GetAccNeck(int num) => GetPreviewTextureById(AccNeck, num, "Images\\Acc_Neck_{0}");
+    public Texture2D GetAccFace(int num) => GetPreviewTextureById(AccFace, num, "Images\\Acc_Face_{0}");
+    public Texture2D GetAccShield(int num) => GetPreviewTextureById(AccShield, num, "Images\\Acc_Shield_{0}");
+    public Texture2D GetAccHandsOn(int num) => GetPreviewTextureById(AccHandsOn, num, "Images\\Acc_HandsOn_{0}");
+    public Texture2D GetAccHandsOff(int num) => GetPreviewTextureById(AccHandsOff, num, "Images\\Acc_HandsOff_{0}");
+    public Texture2D GetAccFront(int num) => GetPreviewTextureById(AccFront, num, "Images\\Acc_Front_{0}");
 
-    public Texture2D GetItem(int num) => GetTextureById(Item, num, "Images\\Item_{0}");
+    public Texture2D GetItem(int num)
+    {
+        if (!Item.ContainsKey(num))
+        {
+            string name = string.Format("Images\\Item_{0}", num);
+            Item[num] = LoadTextureFrom(_previewContentManager ?? ContentManager, name);
+        }
+        return Item[num];
+    }
 
     public Texture2D GetPlayerBody(int skinVariant, int partIndex)
     {
         // Try the specific variant first
         var key = $"{skinVariant}_{partIndex}";
-        var texture = GetTextureById(PlayerBody, key, "Images\\Player_{0}");
+        var texture = GetPreviewTextureById(PlayerBody, key, "Images\\Player_{0}");
         if (texture != DefaultTexture) return texture;
 
         // Fallback chain matching Terraria's PlayerDataInitializer CopyVariant logic:
@@ -275,14 +300,14 @@ public class Textures
         if (fallback >= 0)
         {
             var fbKey = $"{fallback}_{partIndex}";
-            texture = GetTextureById(PlayerBody, fbKey, "Images\\Player_{0}");
+            texture = GetPreviewTextureById(PlayerBody, fbKey, "Images\\Player_{0}");
             if (texture != DefaultTexture) return texture;
 
             // Second-level fallback: variant 4 → 0, variant 10 → 0, variant 11 → 10 → 0
             if (fallback == 4 || fallback == 10)
             {
                 var fb2Key = $"0_{partIndex}";
-                texture = GetTextureById(PlayerBody, fb2Key, "Images\\Player_{0}");
+                texture = GetPreviewTextureById(PlayerBody, fb2Key, "Images\\Player_{0}");
                 if (texture != DefaultTexture) return texture;
             }
         }
@@ -296,7 +321,7 @@ public class Textures
         {
             // Terraria hair textures are 1-indexed: Player_Hair_1.xnb = hair style 0
             string name = $"Images\\Player_Hair_{hairIndex + 1}";
-            PlayerHair[hairIndex] = LoadTexture(name);
+            PlayerHair[hairIndex] = LoadTextureFrom(_previewContentManager ?? ContentManager, name);
         }
         return PlayerHair[hairIndex];
     }
@@ -333,6 +358,17 @@ public class Textures
         {
             string name = string.Format(path, id);
             collection[id] = LoadTexture(name);
+        }
+
+        return collection[id];
+    }
+
+    private Texture2D GetPreviewTextureById<T>(Dictionary<T, Texture2D> collection, T id, string path)
+    {
+        if (!collection.ContainsKey(id))
+        {
+            string name = string.Format(path, id);
+            collection[id] = LoadTextureFrom(_previewContentManager ?? ContentManager, name);
         }
 
         return collection[id];
@@ -410,7 +446,7 @@ public class Textures
 
             if (!File.Exists(texturePath))
             {
-                ErrorLogging.LogWarn($"Missing texture: {path}");
+                ErrorLogging.LogDebug($"Missing texture: {path}");
                 return _defaultTexture;
             }
 
@@ -442,10 +478,153 @@ public class Textures
     private Texture2D LoadTexture(string path) => LoadTextureImmediate(path);
 
     /// <summary>
+    /// Load a texture using a specific ContentManager instance.
+    /// </summary>
+    private Texture2D LoadTextureFrom(ContentManager cm, string path)
+    {
+        try
+        {
+            string texturePath = Path.Join(cm.RootDirectory, path + ".xnb");
+            if (!File.Exists(texturePath))
+            {
+                ErrorLogging.LogDebug($"Missing texture: {path}");
+                return _defaultTexture;
+            }
+
+            var loadTexture = cm.Load<Texture2D>(path);
+            var pixels = new Color[loadTexture.Height * loadTexture.Width];
+            loadTexture.GetData(pixels);
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                if (pixels[i] == Color.Magenta || pixels[i] == ColorKey)
+                {
+                    pixels[i] = Color.Transparent;
+                }
+            }
+            loadTexture.SetData(pixels);
+            return loadTexture;
+        }
+        catch (Exception err)
+        {
+            ErrorLogging.LogWarn($"Failed to load texture: {path}");
+            ErrorLogging.LogWarn(err.Message);
+        }
+        return _defaultTexture;
+    }
+
+    /// <summary>
     /// Computes and caches WrapThreshold values for all tiles with TextureWrap configured.
     /// Call this after tile textures have been loaded.
     /// </summary>
     public void CacheTextureWrapThresholds()
     {
+    }
+
+    /// <summary>
+    /// Unload all preview-only textures (items, NPCs, armor, player, accessories).
+    /// Call after all previews have been generated.
+    /// Clears dictionaries and disposes the preview ContentManager to fully release GPU resources.
+    /// Future renderer access will lazy-reload via the main ContentManager.
+    /// </summary>
+    public void UnloadPreviewTextures()
+    {
+        int count = Item.Count + Npcs.Count + TownNpcs.Count
+            + ArmorHead.Count + ArmorBody.Count + ArmorFemale.Count + ArmorLegs.Count
+            + PlayerBody.Count + PlayerHair.Count
+            + AccWings.Count + AccBack.Count + AccBalloon.Count + AccShoes.Count
+            + AccWaist.Count + AccNeck.Count + AccFace.Count + AccShield.Count
+            + AccHandsOn.Count + AccHandsOff.Count + AccFront.Count;
+
+        Item.Clear();
+        Npcs.Clear();
+        TownNpcs.Clear();
+        ArmorHead.Clear();
+        ArmorBody.Clear();
+        ArmorFemale.Clear();
+        ArmorLegs.Clear();
+        PlayerBody.Clear();
+        PlayerHair.Clear();
+        AccWings.Clear();
+        AccBack.Clear();
+        AccBalloon.Clear();
+        AccShoes.Clear();
+        AccWaist.Clear();
+        AccNeck.Clear();
+        AccFace.Clear();
+        AccShield.Clear();
+        AccHandsOn.Clear();
+        AccHandsOff.Clear();
+        AccFront.Clear();
+
+        _previewContentManager?.Unload();
+        _previewContentManager?.Dispose();
+        _previewContentManager = null;
+        ErrorLogging.LogDebug($"Unloaded {count} preview textures to free memory");
+    }
+
+    /// <summary>
+    /// Dispose and clear a texture dictionary, skipping the default texture sentinel.
+    /// </summary>
+    private void DisposeAndClearDictionary<T>(Dictionary<T, Texture2D> dict)
+    {
+        foreach (var kvp in dict)
+        {
+            if (kvp.Value != null && kvp.Value != _defaultTexture && !kvp.Value.IsDisposed)
+            {
+                kvp.Value.Dispose();
+            }
+        }
+        dict.Clear();
+    }
+
+    public void Dispose()
+    {
+        if (_disposed) return;
+        _disposed = true;
+
+        DisposeAndClearDictionary(Tiles);
+        DisposeAndClearDictionary(Walls);
+        DisposeAndClearDictionary(Npcs);
+        DisposeAndClearDictionary(TownNpcs);
+        DisposeAndClearDictionary(Item);
+        DisposeAndClearDictionary(Gore);
+        DisposeAndClearDictionary(Extra);
+        DisposeAndClearDictionary(Moon);
+        DisposeAndClearDictionary(Underworld);
+        DisposeAndClearDictionary(Backgrounds);
+        DisposeAndClearDictionary(Trees);
+        DisposeAndClearDictionary(TreeTops);
+        DisposeAndClearDictionary(TreeBranches);
+        DisposeAndClearDictionary(Shrooms);
+        DisposeAndClearDictionary(GlowMasks);
+        DisposeAndClearDictionary(Liquids);
+        DisposeAndClearDictionary(Misc);
+        DisposeAndClearDictionary(ArmorHead);
+        DisposeAndClearDictionary(ArmorBody);
+        DisposeAndClearDictionary(ArmorFemale);
+        DisposeAndClearDictionary(ArmorLegs);
+        DisposeAndClearDictionary(PlayerBody);
+        DisposeAndClearDictionary(PlayerHair);
+        DisposeAndClearDictionary(AccWings);
+        DisposeAndClearDictionary(AccBack);
+        DisposeAndClearDictionary(AccBalloon);
+        DisposeAndClearDictionary(AccShoes);
+        DisposeAndClearDictionary(AccWaist);
+        DisposeAndClearDictionary(AccNeck);
+        DisposeAndClearDictionary(AccFace);
+        DisposeAndClearDictionary(AccShield);
+        DisposeAndClearDictionary(AccHandsOn);
+        DisposeAndClearDictionary(AccHandsOff);
+        DisposeAndClearDictionary(AccFront);
+
+        _defaultTexture?.Dispose();
+        _whitePixelTexture?.Dispose();
+        _glowHaloTexture?.Dispose();
+        _actuator?.Dispose();
+
+        _previewContentManager?.Unload();
+        _previewContentManager?.Dispose();
+        ContentManager?.Unload();
+        ContentManager?.Dispose();
     }
 }
