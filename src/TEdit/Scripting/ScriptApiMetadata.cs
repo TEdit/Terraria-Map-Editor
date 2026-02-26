@@ -90,6 +90,8 @@ public static class ScriptApiMetadata
             new("findByItemName","findByItemName(name) → [{...}]",      "Find chests containing item by name"),
             new("setItem",      "setItem(x, y, slot, itemId, stack, prefix)", "Set item in specific slot"),
             new("clearItem",    "clearItem(x, y, slot)",                 "Clear item from slot"),
+            new("setName",      "setName(x, y, name)",                         "Set chest name/label"),
+            new("findByName",   "findByName(name) → [{...}]",                 "Find chests by name (partial match)"),
             new("addItem",      "addItem(x, y, itemId, stack, prefix) → bool", "Add item to first empty slot"),
         ]),
 

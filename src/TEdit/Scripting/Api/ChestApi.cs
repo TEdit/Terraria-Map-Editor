@@ -67,6 +67,22 @@ public class ChestApi
         chest.Items[slot].Prefix = 0;
     }
 
+    public void SetName(int x, int y, string name)
+    {
+        var chest = _world.GetChestAtTile(x, y);
+        if (chest == null) throw new ArgumentException($"No chest at ({x}, {y})");
+        chest.Name = name ?? string.Empty;
+    }
+
+    public List<Dictionary<string, object>> FindByName(string name)
+    {
+        var lower = (name ?? "").ToLowerInvariant();
+        return _world.Chests
+            .Where(c => (c.Name?.ToLowerInvariant().Contains(lower) ?? false))
+            .Select(ChestToDict)
+            .ToList();
+    }
+
     public bool AddItem(int x, int y, int itemId, int stack, int prefix)
     {
         var chest = _world.GetChestAtTile(x, y);
