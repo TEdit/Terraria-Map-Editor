@@ -13,6 +13,9 @@
   <Project Path="TEdit.Terraria.Tests/TEdit.Terraria.Tests.csproj" />
   <Project Path="TEdit.Tests/TEdit.Tests.csproj" />
   <Project Path="TEdit/TEdit.csproj" />
+  <Project Path="TEdit.ModScraper/TEdit.ModScraper.csproj">
+    <Build Project="false" />
+  </Project>
   <Project Path="TEdit5/TEdit5.csproj">
     <Build Project="false" />
   </Project>

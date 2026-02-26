@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using TEdit.Common.IO;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria;
@@ -12,12 +14,45 @@ public partial class Item : ReactiveObject
     private byte _prefix;
     private int _netId;
 
+    // Mod item identity (null for vanilla items)
+    private string _modName;
+    public string ModName
+    {
+        get => _modName;
+        set { this.RaiseAndSetIfChanged(ref _modName, value); this.RaisePropertyChanged(nameof(Name)); this.RaisePropertyChanged(nameof(IsModItem)); }
+    }
+
+    private string _modItemName;
+    public string ModItemName
+    {
+        get => _modItemName;
+        set { this.RaiseAndSetIfChanged(ref _modItemName, value); this.RaisePropertyChanged(nameof(Name)); }
+    }
+
+    // Mod prefix identity (null if vanilla or no prefix)
+    public string ModPrefixMod { get; set; }
+    public string ModPrefixName { get; set; }
+
+    // Opaque per-item mod data and global data (preserved for round-trip)
+    public TagCompound ModItemData { get; set; }
+    public List<TagCompound> ModGlobalData { get; set; }
+
+    public bool IsModItem => !string.IsNullOrEmpty(ModName) && ModName != "Terraria";
+
 
     public int NetId
     {
         get { return _netId; }
         set
         {
+            // Clear mod identity — user is setting a vanilla item or clearing
+            _modName = null;
+            _modItemName = null;
+            ModPrefixMod = null;
+            ModPrefixName = null;
+            ModItemData = null;
+            ModGlobalData = null;
+
             this.RaiseAndSetIfChanged(ref _netId, value);
             _currentItemProperty = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Id == _netId);
             if (_netId == 0)
@@ -28,6 +63,7 @@ public partial class Item : ReactiveObject
                     StackSize = 1;
             }
             this.RaisePropertyChanged(nameof(Name));
+            this.RaisePropertyChanged(nameof(IsModItem));
         }
     }
 
@@ -51,6 +87,9 @@ public partial class Item : ReactiveObject
 
     public string GetName()
     {
+        if (IsModItem)
+            return $"{ModName}:{ModItemName}";
+
         if (_currentItemProperty != null)
             return _currentItemProperty.Name;
 
@@ -84,7 +123,7 @@ public partial class Item : ReactiveObject
 
     public static implicit operator Item(TileEntityItem tileEntityItem)
     {
-        return new Item(tileEntityItem.StackSize, tileEntityItem.Id, tileEntityItem.Prefix);
+        return tileEntityItem.ToItem();
     }
 
     public TileEntityItem ToTileEntityItem()
@@ -93,7 +132,13 @@ public partial class Item : ReactiveObject
         {
             Id = (short)NetId,
             Prefix = Prefix,
-            StackSize = (short)StackSize
+            StackSize = (short)StackSize,
+            ModName = ModName,
+            ModItemName = ModItemName,
+            ModPrefixMod = ModPrefixMod,
+            ModPrefixName = ModPrefixName,
+            ModItemData = ModItemData,
+            ModGlobalData = ModGlobalData,
         };
     }
 
@@ -121,7 +166,16 @@ public partial class Item : ReactiveObject
 
     public Item Copy()
     {
-        return new Item(_stackSize, _netId) { Prefix = _prefix };
+        return new Item(_stackSize, _netId)
+        {
+            Prefix = _prefix,
+            _modName = _modName,
+            _modItemName = _modItemName,
+            ModPrefixMod = ModPrefixMod,
+            ModPrefixName = ModPrefixName,
+            ModItemData = ModItemData,
+            ModGlobalData = ModGlobalData,
+        };
     }
 
     //public Visibility IsVisible

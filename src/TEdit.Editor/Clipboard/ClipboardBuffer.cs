@@ -548,9 +548,9 @@ public partial class ClipboardBuffer : ITileData
                             curTile.U = tiles[x, y].X;
                             curTile.V = tiles[x, y].Y;
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            System.Diagnostics.Debug.WriteLine($"Sprite flip error: {ex.Message}");
                         }
                     }
                 }
@@ -586,9 +586,9 @@ public partial class ClipboardBuffer : ITileData
                             }
                             */
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            System.Diagnostics.Debug.WriteLine($"Sprite flip error: {ex.Message}");
                         }
                     }
                 }

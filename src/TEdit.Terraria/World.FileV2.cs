@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using TEdit.Common.Exceptions;
 using TEdit.Helper;
+using TEdit.Terraria.TModLoader;
 using TEdit.Utility;
 
 namespace TEdit.Terraria;
@@ -12,6 +13,11 @@ namespace TEdit.Terraria;
 public partial class World
 {
     public bool IsTModLoader { get; set; }
+
+    /// <summary>
+    /// Mod data from the .twld sidecar file. Non-null when IsTModLoader is true.
+    /// </summary>
+    public TwldData TwldData { get; set; }
 
     public short GetSectionCount() => ((int)Version >= 220) ? (short)11 : (short)10;
 
@@ -1487,9 +1493,9 @@ public partial class World
                         rle--;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    // forcing some recovery here
+                    System.Diagnostics.Debug.WriteLine($"Tile data recovery: {ex.Message}");
 
                     for (int x2 = 0; x2 < maxX; x2++)
                     {

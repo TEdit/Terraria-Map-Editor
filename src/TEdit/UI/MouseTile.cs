@@ -39,6 +39,14 @@ public partial class MouseTile : ReactiveObject
             });
     }
 
+    private static string GetPaintName(byte colorId)
+    {
+        if (colorId == 0) return null;
+        if (colorId < WorldConfiguration.PaintProperties.Count)
+            return WorldConfiguration.PaintProperties[colorId].Name;
+        return $"Unknown ({colorId})";
+    }
+
     private void UpdateTileInfo(Tile tile)
     {
         // Tile name
@@ -84,19 +92,16 @@ public partial class MouseTile : ReactiveObject
         TileExtras = extras;
 
         // Paint
-        if (tile.TileColor > 0)
-        {
-            Paint = tile.WallColor > 0
-                ? $"Tile: {WorldConfiguration.PaintProperties[tile.TileColor].Name}, Wall: {WorldConfiguration.PaintProperties[tile.WallColor].Name}"
-                : $"Tile: {WorldConfiguration.PaintProperties[tile.TileColor].Name}";
-        }
-        else if (tile.WallColor > 0)
-        {
-            Paint = $"Wall: {WorldConfiguration.PaintProperties[tile.WallColor].Name}";
-        }
+        string tilePaint = GetPaintName(tile.TileColor);
+        string wallPaint = GetPaintName(tile.WallColor);
+
+        if (tilePaint != null && wallPaint != null)
+            Paint = $"Tile: {tilePaint}, Wall: {wallPaint}";
+        else if (tilePaint != null)
+            Paint = $"Tile: {tilePaint}";
+        else if (wallPaint != null)
+            Paint = $"Wall: {wallPaint}";
         else
-        {
             Paint = "None";
-        }
     }
 }

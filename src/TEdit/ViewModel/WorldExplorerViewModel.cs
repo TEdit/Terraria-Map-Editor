@@ -14,6 +14,7 @@ using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
 using TEdit.Render;
 using TEdit.Terraria;
+using TEdit.Terraria.TModLoader;
 
 namespace TEdit.ViewModel;
 
@@ -27,6 +28,8 @@ public partial class WorldExplorerViewModel
         _worldViewModel = worldViewModel;
 
         this.WhenAnyValue(x => x.SearchText)
+            .Subscribe(_ => this.RaisePropertyChanged(nameof(FilteredWorlds)));
+        this.WhenAnyValue(x => x.ShowModLoaderWorlds)
             .Subscribe(_ => this.RaisePropertyChanged(nameof(FilteredWorlds)));
         this.WhenAnyValue(x => x.PreviewImage)
             .Subscribe(_ =>
@@ -52,6 +55,9 @@ public partial class WorldExplorerViewModel
     private BackupEntryViewModel _selectedBackup;
 
     [Reactive]
+    private bool _showModLoaderWorlds;
+
+    [Reactive]
     private bool _isLoading;
 
     [Reactive]
@@ -74,6 +80,13 @@ public partial class WorldExplorerViewModel
         get
         {
             var worlds = Worlds.AsEnumerable();
+
+            // Filter by toggle: Vanilla or tModLoader
+            if (ShowModLoaderWorlds)
+                worlds = worlds.Where(w => w.IsTModLoader);
+            else
+                worlds = worlds.Where(w => !w.IsTModLoader);
+
             if (!string.IsNullOrWhiteSpace(SearchText))
             {
                 worlds = worlds.Where(w =>
@@ -84,6 +97,12 @@ public partial class WorldExplorerViewModel
             return worlds;
         }
     }
+
+    /// <summary>
+    /// Whether the tModLoader tab has any worlds (used to show/hide the tab count badge).
+    /// </summary>
+    public int VanillaWorldCount => Worlds.Count(w => !w.IsTModLoader);
+    public int ModLoaderWorldCount => Worlds.Count(w => w.IsTModLoader);
 
     public async Task RefreshAsync()
     {
@@ -133,6 +152,21 @@ public partial class WorldExplorerViewModel
             catch (Exception ex)
             {
                 ErrorLogging.LogException(ex);
+            }
+
+            // Load worlds from tModLoader worlds folder
+            string tmodWorldsPath = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                @"My Games\Terraria\tModLoader\Worlds");
+            if (Directory.Exists(tmodWorldsPath))
+            {
+                foreach (var file in Directory.GetFiles(tmodWorldsPath, "*.wld"))
+                {
+                    if (loadedPaths.Contains(file)) continue;
+                    var fi = new FileInfo(file);
+                    worldEntries.Add(new WorldEntryViewModel(fi, pinnedWorlds.Contains(file)));
+                    loadedPaths.Add(file);
+                }
             }
 
             // Enumerate recent worlds that aren't already in the list
@@ -281,6 +315,12 @@ public partial class WorldExplorerViewModel
                 Worlds.Clear();
                 foreach (var w in sorted) Worlds.Add(w);
                 this.RaisePropertyChanged(nameof(FilteredWorlds));
+                this.RaisePropertyChanged(nameof(VanillaWorldCount));
+                this.RaisePropertyChanged(nameof(ModLoaderWorldCount));
+
+                // Auto-select tModLoader if there are modded worlds but no vanilla worlds
+                if (VanillaWorldCount == 0 && ModLoaderWorldCount > 0)
+                    ShowModLoaderWorlds = true;
             });
         }
         finally
@@ -439,9 +479,13 @@ public partial class WorldExplorerViewModel
                 return;
             }
 
-            // Render and save on UI thread (WriteableBitmap requires it)
+            // Register mod properties on UI thread (ObservableCollections are UI-bound)
+            // then render and save (WriteableBitmap requires UI thread too)
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
+                if (world.TwldData != null)
+                    TwldFile.RegisterModProperties(world.TwldData);
+
                 var bmp = RenderMiniMap.Render(world, showBackground: true, targetWidth: 600, targetHeight: 200);
                 Directory.CreateDirectory(PreviewCachePath);
                 bmp.SavePng(cachePath);

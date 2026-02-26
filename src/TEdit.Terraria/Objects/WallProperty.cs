@@ -6,6 +6,7 @@ namespace TEdit.Terraria.Objects;
 public class WallProperty : ReactiveObject, ITile
 {
     [JsonPropertyOrder(0)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public int Id { get; set; } = -1;
 
     [JsonPropertyOrder(1)]

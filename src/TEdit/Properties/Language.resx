@@ -903,6 +903,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Purify</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="nbt_explorer_title" xml:space="preserve">
+    <value>NBT Explorer</value>
+  </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>Add Ash</value>
   </data>
@@ -2610,6 +2613,12 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
     <value>Search worlds...</value>
+  </data>
+  <data name="world_explorer_tab_tmodloader" xml:space="preserve">
+    <value>tModLoader</value>
+  </data>
+  <data name="world_explorer_tab_vanilla" xml:space="preserve">
+    <value>Vanilla</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>World Explorer</value>
