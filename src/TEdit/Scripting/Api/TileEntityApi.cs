@@ -270,7 +270,7 @@ public class TileEntityApi
                 dict["poseName"] = ((DisplayDollPoseID)e.Pose).ToString();
                 dict["equipment"] = ItemCollectionToList(e.Items);
                 dict["dyes"] = ItemCollectionToList(e.Dyes);
-                dict["weapon"] = e.Misc.Count > 0 && e.Misc[0].IsValid
+                dict["weapon"] = e.Misc.Count > 0
                     ? TileEntityItemToDict(e.Misc[0], 0)
                     : null;
                 break;
@@ -315,18 +315,22 @@ public class TileEntityApi
     {
         return items
             .Select((item, idx) => TileEntityItemToDict(item, idx))
-            .Where(d => d != null)
-            .ToList()!;
+            .ToList();
     }
 
-    private static Dictionary<string, object>? TileEntityItemToDict(TileEntityItem item, int slot)
+    private static Dictionary<string, object> TileEntityItemToDict(TileEntityItem item, int slot)
     {
-        if (!item.IsValid) return null;
+        var name = "[empty]";
+        if (item.IsValid)
+        {
+            name = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Id == item.Id)?.Name ?? "";
+        }
 
         return new Dictionary<string, object>
         {
             { "slot", slot },
             { "id", (int)item.Id },
+            { "name", name },
             { "prefix", (int)item.Prefix },
             { "stack", (int)item.StackSize }
         };

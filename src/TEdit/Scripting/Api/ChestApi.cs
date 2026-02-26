@@ -107,10 +107,10 @@ public class ChestApi
         {
             { "slot", idx },
             { "id", item.NetId },
-            { "name", item.Name ?? "" },
+            { "name", item.GetName() },
             { "stack", item.StackSize },
             { "prefix", item.Prefix }
-        }).Where(d => (int)d["stack"] > 0).ToList();
+        }).ToList();
 
         return new Dictionary<string, object>
         {
