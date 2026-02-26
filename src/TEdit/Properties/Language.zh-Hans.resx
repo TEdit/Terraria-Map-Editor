@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -169,7 +169,7 @@
     <value>伯爵</value>
   </data>
   <data name="banner_filter" xml:space="preserve">
-    <value>筛选条件:</value>
+    <value>筛选条件：</value>
   </data>
   <data name="banner_import" xml:space="preserve">
     <value>导入</value>
@@ -300,16 +300,10 @@
   </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>当前路径未找到Terraria内容.
-点击‘retry’选择一个新的文件夹或用‘{0}’作为Terraria的路径.</value>
+点击‘retry’选择一个新的文件夹或用‘{0}’作为Terraria的路径。</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Terraria路径错误</value>
-  </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>线路45°</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>钢丝90°</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>分析</value>
@@ -378,7 +372,7 @@
     <value>箱子里的物品</value>
   </data>
   <data name="global_enjoytedit" xml:space="preserve">
-    <value>喜欢TEdit?支持我们!</value>
+    <value>喜欢TEdit？支持我们！</value>
   </data>
   <data name="HalfBlockMode_HalfBLock" xml:space="preserve">
     <value>半块</value>
@@ -411,7 +405,7 @@
     <value>接线盒：</value>
   </data>
   <data name="keybind_capture_instruction" xml:space="preserve">
-    <value>按键、鼠标或滚轮......</value>
+    <value>按键、鼠标或滚轮……</value>
   </data>
   <data name="keybind_capture_modifiers" xml:space="preserve">
     <value>（可选的 Ctrl、Shift 或 Alt 修饰键）</value>
@@ -420,7 +414,7 @@
     <value>按下按键或点击鼠标</value>
   </data>
   <data name="light_glow_intensity" xml:space="preserve">
-    <value>光辉强度</value>
+    <value>Light Glow Intensity</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -485,6 +479,90 @@
   <data name="MaskMode_Off" xml:space="preserve">
     <value>禁用覆盖</value>
   </data>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>关掉</value>
+  </data>
+  <data name="MaskPreset_Custom" xml:space="preserve">
+    <value>Match Custom</value>
+  </data>
+  <data name="MaskPreset_ExactMatch" xml:space="preserve">
+    <value>Match All</value>
+  </data>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="mask_clear_all" xml:space="preserve">
+    <value>Clear All</value>
+  </data>
+  <data name="mask_echo" xml:space="preserve">
+    <value>回声</value>
+  </data>
+  <data name="mask_illuminant" xml:space="preserve">
+    <value>夜明</value>
+  </data>
+  <data name="mask_preset" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_custom" xml:space="preserve">
+    <value>自定义</value>
+  </data>
+  <data name="mask_preset_Duplicate[1]" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_exact" xml:space="preserve">
+    <value>Exact Match</value>
+  </data>
+  <data name="mask_section_actuator" xml:space="preserve">
+    <value>Actuator</value>
+  </data>
+  <data name="mask_section_brickstyle" xml:space="preserve">
+    <value>砖块类型</value>
+  </data>
+  <data name="mask_section_inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="mask_section_liquid_level" xml:space="preserve">
+    <value>Liquid Level</value>
+  </data>
+  <data name="mask_section_liquid_type" xml:space="preserve">
+    <value>Liquid Type</value>
+  </data>
+  <data name="mask_section_tile" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_coatings" xml:space="preserve">
+    <value>Tile Coatings</value>
+  </data>
+  <data name="mask_section_tile_Duplicate[1]" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_paint" xml:space="preserve">
+    <value>Tile Paint</value>
+  </data>
+  <data name="mask_section_wall" xml:space="preserve">
+    <value>Wall Type</value>
+  </data>
+  <data name="mask_section_wall_coatings" xml:space="preserve">
+    <value>Wall Coatings</value>
+  </data>
+  <data name="mask_section_wall_paint" xml:space="preserve">
+    <value>Wall Paint</value>
+  </data>
+  <data name="mask_section_wires" xml:space="preserve">
+    <value>电线</value>
+  </data>
+  <data name="mask_title" xml:space="preserve">
+    <value>Masks</value>
+  </data>
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>复制第一项</value>
   </data>
@@ -543,7 +621,7 @@
     <value>检查更新</value>
   </data>
   <data name="menu_file_worlds" xml:space="preserve">
-    <value>世界探险者...</value>
+    <value>世界探险者……</value>
   </data>
   <data name="menu_filter" xml:space="preserve">
     <value>筛选</value>
@@ -672,7 +750,7 @@
     <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>简体中文</value>
+    <value>中文（简体）</value>
   </data>
   <data name="menu_language_zh_hant" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -898,7 +976,7 @@
     <value>矿石</value>
   </data>
   <data name="newworld_ore_gen_plugin" xml:space="preserve">
-    <value>（启动矿泉生成插件）</value>
+    <value>（启动矿石生成插件）</value>
   </data>
   <data name="newworld_properties" xml:space="preserve">
     <value>世界属性</value>
@@ -1006,13 +1084,13 @@
     <value>保存玩家</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value>保存玩家为......</value>
+    <value>保存玩家为……</value>
   </data>
   <data name="player_editor_shirt_color" xml:space="preserve">
-    <value>球衣颜色</value>
+    <value>衣服颜色</value>
   </data>
   <data name="player_editor_shoe_color" xml:space="preserve">
-    <value>鞋色</value>
+    <value>鞋子颜色</value>
   </data>
   <data name="player_editor_skin" xml:space="preserve">
     <value>皮肤</value>
@@ -1109,10 +1187,10 @@
     <value>像素地图色彩调色板：默认、真实（纹理采样）或小地图（游戏内地图颜色）。需要重启。</value>
   </data>
   <data name="settings_enable_mica" xml:space="preserve">
-    <value>启用云母背景</value>
+    <value>Enable Mica backdrop</value>
   </data>
   <data name="settings_enable_mica_desc" xml:space="preserve">
-    <value>使用半透明的云母窗背景。如果Windows看起来是透明的，就禁用它。需要重启。</value>
+    <value>Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>启用播放器编辑器</value>
@@ -1148,7 +1226,7 @@
     <value>在小地图中显示天空/洞穴/地狱背景颜色</value>
   </data>
   <data name="settings_picker_hold_threshold" xml:space="preserve">
-    <value>拣货保持阈值（MS）</value>
+    <value>拣货保持阈值（ms）</value>
   </data>
   <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
     <value>按住拣选键多久才会变成临时拣选（100-500ms）</value>
@@ -1169,7 +1247,7 @@
     <value>脚本最长运行时间（10-300秒）</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
-    <value>搜索设置...</value>
+    <value>搜索设置……</value>
   </data>
   <data name="settings_show_actuators" xml:space="preserve">
     <value>表演执行器</value>
@@ -1268,10 +1346,10 @@
     <value>切换黄色线可见性</value>
   </data>
   <data name="settings_sprite_thumbnail" xml:space="preserve">
-    <value>精灵缩略图尺寸</value>
+    <value>贴图缩略图尺寸</value>
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
-    <value>精灵选择器中精灵缩略图的大小</value>
+    <value>贴图选择器中贴图缩略图的大小</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Terraria内容路径</value>
@@ -1318,6 +1396,9 @@
   </data>
   <data name="sidebar_find_tooltip" xml:space="preserve">
     <value>查找</value>
+  </data>
+  <data name="sidebar_mask_tooltip" xml:space="preserve">
+    <value>Masks</value>
   </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>脚本</value>
@@ -1784,16 +1865,16 @@
     <value>将普通轨道变为压力板轨道，使用擦除模式将压力板轨道变为普通轨道。</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value>顺滑</value>
+    <value>Smooth</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value>把轨道工具挖出来的隧道磨平。</value>
+    <value>Smooth the tunnel made by the track tool.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value>隧道</value>
+    <value>Tunnel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value>为轨道挖一条隧道</value>
+    <value>Dig a tunnel for the track</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>墙</value>
@@ -1822,6 +1903,12 @@
   <data name="tool_pencil_title" xml:space="preserve">
     <value>铅笔</value>
   </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
+  </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>吸管工具 - 选择物块颜色</value>
   </data>
@@ -1835,13 +1922,13 @@
     <value>筛选</value>
   </data>
   <data name="tool_sprite_filter_label" xml:space="preserve">
-    <value>筛选条件:</value>
+    <value>筛选条件：</value>
   </data>
   <data name="tool_sprite_style_label" xml:space="preserve">
-    <value>样式:</value>
+    <value>样式：</value>
   </data>
   <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>物块类型:</value>
+    <value>物块类型：</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>物品放置器(旧版)</value>
@@ -2436,7 +2523,7 @@
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
   <data name="update_checking" xml:space="preserve">
-    <value>查看最新消息...</value>
+    <value>查看最新消息……</value>
   </data>
   <data name="update_check_failed" xml:space="preserve">
     <value>更新检查失败。</value>
@@ -2498,7 +2585,7 @@
     <value>删除备份</value>
   </data>
   <data name="world_explorer_loading_preview" xml:space="preserve">
-    <value>加载预览...</value>
+    <value>加载预览……</value>
   </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>无备份——点击创建.bak和TEdit备份</value>
@@ -2522,7 +2609,7 @@
     <value>预览世界地图</value>
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
-    <value>搜索世界...</value>
+    <value>搜索世界……</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>世界探险者</value>

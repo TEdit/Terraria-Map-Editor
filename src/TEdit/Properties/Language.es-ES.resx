@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="about_compatible_version" xml:space="preserve">
-    <value>Versión Compatible World</value>
+    <value>Versión del mundo</value>
   </data>
   <data name="about_content_path" xml:space="preserve">
     <value>Ubicación del contenido</value>
@@ -175,13 +175,13 @@
     <value>Importar</value>
   </data>
   <data name="banner_kills" xml:space="preserve">
-    <value>Muertes</value>
+    <value>Eliminados</value>
   </data>
   <data name="banner_maxout" xml:space="preserve">
     <value>Máximo limite</value>
   </data>
   <data name="banner_reset" xml:space="preserve">
-    <value>Reinicio</value>
+    <value>Reiniciar</value>
   </data>
   <data name="banner_save" xml:space="preserve">
     <value>Guardar</value>
@@ -193,10 +193,10 @@
     <value>Reiniciar</value>
   </data>
   <data name="bestiary_complete" xml:space="preserve">
-    <value>Completar</value>
+    <value>Completado</value>
   </data>
   <data name="bestiary_defeated" xml:space="preserve">
-    <value>Derrotado</value>
+    <value>Eliminados</value>
   </data>
   <data name="bestiary_load" xml:space="preserve">
     <value>Cargar</value>
@@ -211,7 +211,7 @@
     <value>Guardar</value>
   </data>
   <data name="bestiary_talked" xml:space="preserve">
-    <value>Conversado</value>
+    <value>Descubierto</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
     <value>Actualizar</value>
@@ -220,13 +220,13 @@
     <value>Ladrillo completo</value>
   </data>
   <data name="BrickStyle_HalfBrick" xml:space="preserve">
-    <value>Medio bloque</value>
+    <value>Medio ladrillo</value>
   </data>
   <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
     <value>Pendiente inferior Izquierda</value>
   </data>
   <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
-    <value>Pendiente superior derecha</value>
+    <value>Pendiente inferior derecha</value>
   </data>
   <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
     <value>Pendiente superior izquierda</value>
@@ -305,12 +305,6 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Archivos de Terraria no encontrados</value>
   </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Cable 45°</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Cable 90°</value>
-  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Análisis</value>
   </data>
@@ -345,7 +339,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Utilidades</value>
   </data>
   <data name="expand_description" xml:space="preserve">
-    <value>El mundo se reconfigurará en torno a estas nuevas dimensiones</value>
+    <value>El mundo se reconfigurará en torno a estas nuevas dimensiones.</value>
   </data>
   <data name="expand_new_height" xml:space="preserve">
     <value>Nueva altura</value>
@@ -378,7 +372,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Objetos en cofres</value>
   </data>
   <data name="global_enjoytedit" xml:space="preserve">
-    <value>¿Te gusta? ¡Apóyanos!</value>
+    <value>¿Te gusta TEdit? ¡Apóyanos!</value>
   </data>
   <data name="HalfBlockMode_HalfBLock" xml:space="preserve">
     <value>Medio bloque</value>
@@ -420,10 +414,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Pulsa una tecla o haz clic en un botón del ratón</value>
   </data>
   <data name="light_glow_intensity" xml:space="preserve">
-    <value>Intensidad del resplandor de la luz</value>
+    <value>Light Glow Intensity</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
-    <value>80%</value>
+    <value>80 %</value>
   </data>
   <data name="LiquidAmountMode_FiftyPercent" xml:space="preserve">
     <value>50 %</value>
@@ -484,6 +478,90 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Desactivar máscara</value>
+  </data>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>Fuera</value>
+  </data>
+  <data name="MaskPreset_Custom" xml:space="preserve">
+    <value>Match Custom</value>
+  </data>
+  <data name="MaskPreset_ExactMatch" xml:space="preserve">
+    <value>Match All</value>
+  </data>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="mask_clear_all" xml:space="preserve">
+    <value>Clear All</value>
+  </data>
+  <data name="mask_echo" xml:space="preserve">
+    <value>Eco</value>
+  </data>
+  <data name="mask_illuminant" xml:space="preserve">
+    <value>Iluminador</value>
+  </data>
+  <data name="mask_preset" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_custom" xml:space="preserve">
+    <value>Personalizado</value>
+  </data>
+  <data name="mask_preset_Duplicate[1]" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_exact" xml:space="preserve">
+    <value>Exact Match</value>
+  </data>
+  <data name="mask_section_actuator" xml:space="preserve">
+    <value>Actuator</value>
+  </data>
+  <data name="mask_section_brickstyle" xml:space="preserve">
+    <value>Estilo de ladrillo</value>
+  </data>
+  <data name="mask_section_inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="mask_section_liquid_level" xml:space="preserve">
+    <value>Liquid Level</value>
+  </data>
+  <data name="mask_section_liquid_type" xml:space="preserve">
+    <value>Liquid Type</value>
+  </data>
+  <data name="mask_section_tile" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_coatings" xml:space="preserve">
+    <value>Tile Coatings</value>
+  </data>
+  <data name="mask_section_tile_Duplicate[1]" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_paint" xml:space="preserve">
+    <value>Tile Paint</value>
+  </data>
+  <data name="mask_section_wall" xml:space="preserve">
+    <value>Wall Type</value>
+  </data>
+  <data name="mask_section_wall_coatings" xml:space="preserve">
+    <value>Wall Coatings</value>
+  </data>
+  <data name="mask_section_wall_paint" xml:space="preserve">
+    <value>Wall Paint</value>
+  </data>
+  <data name="mask_section_wires" xml:space="preserve">
+    <value>Cables</value>
+  </data>
+  <data name="mask_title" xml:space="preserve">
+    <value>Masks</value>
   </data>
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>Copiar primer elemento</value>
@@ -558,7 +636,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Cancelar</value>
   </data>
   <data name="menu_filter_custom" xml:space="preserve">
-    <value>Costumbre</value>
+    <value>Personalizado</value>
   </data>
   <data name="menu_filter_custom_tooltip" xml:space="preserve">
     <value>Elige un color de fondo personalizado</value>
@@ -687,7 +765,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Fondos</value>
   </data>
   <data name="menu_layers_buff_radii" xml:space="preserve">
-    <value>Radio de mejora</value>
+    <value></value>
   </data>
   <data name="menu_layers_color_default" xml:space="preserve">
     <value>Colores por defecto</value>
@@ -1109,10 +1187,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Paleta de colores del mapa de píxeles: Predeterminado, Realista (basado en texturas) o Minimapa (colores del mapa dentro del juego). Requiere reiniciar.</value>
   </data>
   <data name="settings_enable_mica" xml:space="preserve">
-    <value>Activar el fondo de Mica</value>
+    <value>Enable Mica backdrop</value>
   </data>
   <data name="settings_enable_mica_desc" xml:space="preserve">
-    <value>Utiliza fondos translúcidos de micas para ventanas. Desactiva si las ventanas parecen transparentes. Requiere reiniciar.</value>
+    <value>Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Activar el editor de jugadores</value>
@@ -1250,10 +1328,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Activar/desactivar el renderizado de texturas de bloques</value>
   </data>
   <data name="settings_show_tiles" xml:space="preserve">
-    <value>Mostrar azulejos</value>
+    <value>Mostrar Bloques</value>
   </data>
   <data name="settings_show_tiles_desc" xml:space="preserve">
-    <value>Activar/desactivar la visibilidad de la capa de azulejos</value>
+    <value>Activar/desactivar la visibilidad de la capa de Bloques</value>
   </data>
   <data name="settings_show_walls" xml:space="preserve">
     <value>Mostrar Paredes</value>
@@ -1318,6 +1396,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="sidebar_find_tooltip" xml:space="preserve">
     <value>Encontrar</value>
+  </data>
+  <data name="sidebar_mask_tooltip" xml:space="preserve">
+    <value>Masks</value>
   </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>Scripting</value>
@@ -1518,7 +1599,7 @@ Qué NO se recolecta:
     <value>No volver a mostrar</value>
   </data>
   <data name="texture_loading_message" xml:space="preserve">
-    <value>Las texturas de los bloques y las paredes se están cargando en segundo plano. El rendimiento del mapa mejorará una vez que la carga haya terminado.</value>
+    <value>Las texturas de los bloques y paredes se están cargando en segundo plano. El rendimiento de renderizado del mapa mejorará una vez que la carga se haya completado.</value>
   </data>
   <data name="texture_loading_title" xml:space="preserve">
     <value>Carga de texturas</value>
@@ -1530,7 +1611,7 @@ Qué NO se recolecta:
     <value>Guardar análisis</value>
   </data>
   <data name="tool_analyze_save_button" xml:space="preserve">
-    <value>Salvar</value>
+    <value>Guardar</value>
   </data>
   <data name="tool_analyze_title" xml:space="preserve">
     <value>Análisis del mundo</value>
@@ -1593,7 +1674,7 @@ Qué NO se recolecta:
     <value>Ancho</value>
   </data>
   <data name="tool_clipboard_empty" xml:space="preserve">
-    <value>Portapapeles vacío</value>
+    <value>Vaciar portapapeles</value>
   </data>
   <data name="tool_clipboard_export" xml:space="preserve">
     <value>Exportar</value>
@@ -1713,7 +1794,7 @@ Qué NO se recolecta:
     <value>Añadir PNJ</value>
   </data>
   <data name="tool_npc_hint" xml:space="preserve">
-    <value>Haz clic en el NPC y establece su ubicación con el ratón</value>
+    <value>Haz clic en el PNJ y establece su ubicación con el ratón</value>
   </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>Nombre</value>
@@ -1785,16 +1866,16 @@ Qué NO se recolecta:
     <value>Agregar placa de presión a la pista existente, úsalo con el Borrador para quitar solo la placa.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value>Suave</value>
+    <value>Smooth</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value>Alisa el túnel hecho por la herramienta de vía.</value>
+    <value>Smooth the tunnel made by the track tool.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value>Túnel</value>
+    <value>Tunnel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value>Cava un túnel para la vía</value>
+    <value>Dig a tunnel for the track</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Pared</value>
@@ -1823,6 +1904,12 @@ Qué NO se recolecta:
   <data name="tool_pencil_title" xml:space="preserve">
     <value>Lápiz</value>
   </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
+  </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Selector: seleccione el color del bloque</value>
   </data>
@@ -1848,7 +1935,7 @@ Qué NO se recolecta:
     <value>Colocador de sprites (ANTIGUO)</value>
   </data>
   <data name="tool_wp_adamantite" xml:space="preserve">
-    <value>Nivel de Adamantita</value>
+    <value>Tipo de mineral (Adamantita/Titanio)</value>
   </data>
   <data name="tool_wp_altars" xml:space="preserve">
     <value>Altares destruidos</value>
@@ -1998,7 +2085,7 @@ Qué NO se recolecta:
     <value>Fondo de nubes activo</value>
   </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
-    <value>Nivel de cobalto</value>
+    <value>Tipo de mineral (Cobalto/Paladio)</value>
   </data>
   <data name="tool_wp_combatbook" xml:space="preserve">
     <value>Técnicas de combate avanzadas</value>
@@ -2010,7 +2097,7 @@ Qué NO se recolecta:
     <value>Versión para consolas</value>
   </data>
   <data name="tool_wp_copper" xml:space="preserve">
-    <value>Nivel de cobre</value>
+    <value>Tipo de mineral (Cobre/Estaño)</value>
   </data>
   <data name="tool_wp_crimson" xml:space="preserve">
     <value>Carmesí</value>
@@ -2025,7 +2112,7 @@ Qué NO se recolecta:
     <value>Modo difícil</value>
   </data>
   <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>Mundo Don't Starve</value>
+    <value>Don't Starve (The constant)</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>Mundo borracho</value>
@@ -2040,7 +2127,7 @@ Qué NO se recolecta:
     <value>Modo de juego</value>
   </data>
   <data name="tool_wp_gold" xml:space="preserve">
-    <value>Nivel de Oro</value>
+    <value>Tipo de mineral (Oro/Platino)</value>
   </data>
   <data name="tool_wp_gooworld" xml:space="preserve">
     <value>Para los dignos (FTW)</value>
@@ -2094,7 +2181,7 @@ Qué NO se recolecta:
     <value>Objetivo X de la invasión</value>
   </data>
   <data name="tool_wp_iron" xml:space="preserve">
-    <value>Nivel de hierro</value>
+    <value>Tipo de mineral (Hierro/Plomo)</value>
   </data>
   <data name="tool_wp_journeysend" xml:space="preserve">
     <value>Journey's End</value>
@@ -2136,7 +2223,7 @@ Qué NO se recolecta:
     <value>Estilo de luna</value>
   </data>
   <data name="tool_wp_mythril" xml:space="preserve">
-    <value>Nivel Mythril</value>
+    <value>Tipo de mineral (Mithril/Oricalco)</value>
   </data>
   <data name="tool_wp_name" xml:space="preserve">
     <value>Nombre del mundo</value>
@@ -2289,7 +2376,7 @@ Qué NO se recolecta:
     <value>Lluvia máxima</value>
   </data>
   <data name="tool_wp_rain_slime" xml:space="preserve">
-    <value>Está lloviendo slimes</value>
+    <value>Tiempo de lluvia de slime</value>
   </data>
   <data name="tool_wp_rain_time" xml:space="preserve">
     <value>Tiempo de lluvia</value>
@@ -2307,10 +2394,10 @@ Qué NO se recolecta:
     <value>Tormenta de arena activa</value>
   </data>
   <data name="tool_wp_sandstorm_severity" xml:space="preserve">
-    <value>Severidad</value>
+    <value>Intensidad</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>Intensidad prevista</value>
+    <value>Intensidad limite</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>Tiempo restante</value>
@@ -2322,7 +2409,7 @@ Qué NO se recolecta:
     <value>Mazmorras Duales</value>
   </data>
   <data name="tool_wp_seed_infected" xml:space="preserve">
-    <value>Infectados</value>
+    <value>Infected (noInfection)</value>
   </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>notraps (sin trampas)</value>
@@ -2334,19 +2421,19 @@ Qué NO se recolecta:
     <value>Skyblock</value>
   </data>
   <data name="tool_wp_seed_vampire" xml:space="preserve">
-    <value>Vampiro</value>
+    <value>Vampire (whatabaddaytohaveacurse)</value>
   </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
     <value>Zenit</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
-    <value>Nivel de Plata</value>
+    <value>Tipo de mineral (Plata/Tungsteno)</value>
   </data>
   <data name="tool_wp_spawn_point" xml:space="preserve">
     <value>Punto de Aparición</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
-    <value>Estilos de cueva</value>
+    <value>Estilo de cueva</value>
   </data>
   <data name="tool_wp_style_cavex0" xml:space="preserve">
     <value>Cueva X 0</value>
@@ -2358,7 +2445,7 @@ Qué NO se recolecta:
     <value>Cueva X 2</value>
   </data>
   <data name="tool_wp_style_treestyles" xml:space="preserve">
-    <value>Estilos de árboles</value>
+    <value>Estilo de árboles</value>
   </data>
   <data name="tool_wp_style_treetop_1" xml:space="preserve">
     <value>Estilo de copas de árbol 1</value>
@@ -2382,7 +2469,7 @@ Qué NO se recolecta:
     <value>Árbol X 2</value>
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
-    <value>Nivel de superficie</value>
+    <value>Nivel de la superficie</value>
   </data>
   <data name="tool_wp_teamspawns" xml:space="preserve">
     <value>Aparición de equipos</value>
@@ -2394,7 +2481,7 @@ Qué NO se recolecta:
     <value>Ubicaciones de aparición de equipos</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
-    <value>Décimo Aniversario</value>
+    <value>CelebrationMK10</value>
   </data>
   <data name="tool_wp_time_day" xml:space="preserve">
     <value>Es de día</value>

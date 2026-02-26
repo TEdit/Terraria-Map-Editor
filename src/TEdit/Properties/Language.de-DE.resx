@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -305,12 +305,6 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Terraria-Inhalt nicht gefunden</value>
   </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Draht 45°</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Draht 90°</value>
-  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analyse</value>
   </data>
@@ -420,7 +414,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Drücken Sie eine Taste oder drücken Sie eine Maustaste</value>
   </data>
   <data name="light_glow_intensity" xml:space="preserve">
-    <value>Lichtstrahlintensität</value>
+    <value>Light Glow Intensity</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -484,6 +478,90 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Ohne Maske</value>
+  </data>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="MaskPreset_Custom" xml:space="preserve">
+    <value>Match Custom</value>
+  </data>
+  <data name="MaskPreset_ExactMatch" xml:space="preserve">
+    <value>Match All</value>
+  </data>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="mask_clear_all" xml:space="preserve">
+    <value>Clear All</value>
+  </data>
+  <data name="mask_echo" xml:space="preserve">
+    <value>Echo</value>
+  </data>
+  <data name="mask_illuminant" xml:space="preserve">
+    <value>Leuchtmittel</value>
+  </data>
+  <data name="mask_preset" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_custom" xml:space="preserve">
+    <value>Brauch</value>
+  </data>
+  <data name="mask_preset_Duplicate[1]" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_exact" xml:space="preserve">
+    <value>Exact Match</value>
+  </data>
+  <data name="mask_section_actuator" xml:space="preserve">
+    <value>Actuator</value>
+  </data>
+  <data name="mask_section_brickstyle" xml:space="preserve">
+    <value>Blockform</value>
+  </data>
+  <data name="mask_section_inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="mask_section_liquid_level" xml:space="preserve">
+    <value>Liquid Level</value>
+  </data>
+  <data name="mask_section_liquid_type" xml:space="preserve">
+    <value>Liquid Type</value>
+  </data>
+  <data name="mask_section_tile" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_coatings" xml:space="preserve">
+    <value>Tile Coatings</value>
+  </data>
+  <data name="mask_section_tile_Duplicate[1]" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_paint" xml:space="preserve">
+    <value>Tile Paint</value>
+  </data>
+  <data name="mask_section_wall" xml:space="preserve">
+    <value>Wall Type</value>
+  </data>
+  <data name="mask_section_wall_coatings" xml:space="preserve">
+    <value>Wall Coatings</value>
+  </data>
+  <data name="mask_section_wall_paint" xml:space="preserve">
+    <value>Wall Paint</value>
+  </data>
+  <data name="mask_section_wires" xml:space="preserve">
+    <value>Drähte</value>
+  </data>
+  <data name="mask_title" xml:space="preserve">
+    <value>Masks</value>
   </data>
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>Erstes Element kopieren</value>
@@ -1109,10 +1187,10 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Farbpalette der Pixelkarte: Standard, Realistisch (texturbasiert) oder Minimap (Kartenfarben im Spiel). Erfordert einen Neustart.</value>
   </data>
   <data name="settings_enable_mica" xml:space="preserve">
-    <value>Mica-Hintergrund aktivieren</value>
+    <value>Enable Mica backdrop</value>
   </data>
   <data name="settings_enable_mica_desc" xml:space="preserve">
-    <value>Verwenden Sie durchscheinende Glimmer-Fensterhintergründe. Deaktiviere es, wenn Fenster transparent erscheinen. Erfordert einen Neustart.</value>
+    <value>Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Aktiviere den Spieler-Editor</value>
@@ -1318,6 +1396,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="sidebar_find_tooltip" xml:space="preserve">
     <value>Finden Sie</value>
+  </data>
+  <data name="sidebar_mask_tooltip" xml:space="preserve">
+    <value>Masks</value>
   </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>Skripting</value>
@@ -1784,16 +1865,16 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
     <value>Fügt dem Gleis eine Druckplatte hinzu. Mit Radierer verwenden, um nur die Druckplatte zu entfernen.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value>Glatt</value>
+    <value>Smooth</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value>Glätten Sie den Tunnel, den das Schienenwerkzeug geschaffen hat.</value>
+    <value>Smooth the tunnel made by the track tool.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
     <value>Tunnel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value>Grabe einen Tunnel für das Gleis</value>
+    <value>Dig a tunnel for the track</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Wand</value>
@@ -1821,6 +1902,12 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>Stift – einzelnes Feld zeichnen</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Pipette – Konfiguration übernehmen</value>
