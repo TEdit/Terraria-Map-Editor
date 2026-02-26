@@ -74,6 +74,7 @@
                 BorderThickness="1"
                 Background="{DynamicResource SidebarBackgroundBrush}">
             <vwp:GridView x:Name="SpriteSheetList"
+                    MinWidth="1"
                     ItemsSource="{Binding SpriteSheetView}"
                     SelectedItem="{Binding Mode=TwoWay, Path=SelectedSpriteSheet}"
                     ItemContainerStyle="{StaticResource SpriteItemContainerStyle}"
@@ -87,11 +88,11 @@
                               Height="{Binding DataContext.SpriteThumbnailSize, ElementName=SpriteViewRoot}"
                               ToolTipService.InitialShowDelay="100"
                               ToolTipService.ShowDuration="30000">
-                            <Image Source="{Binding Path=Default.Preview}"
-                                   Stretch="Uniform"
-                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
+                            <Viewbox Stretch="Uniform">
+                                <Image Source="{Binding Path=Default.Preview}"
+                                       Stretch="None"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                            </Viewbox>
                             <Grid.ToolTip>
                                 <StackPanel MaxWidth="200">
                                     <Image Source="{Binding Default.Preview}"

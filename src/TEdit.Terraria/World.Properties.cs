@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using TEdit.Geometry;
 using TEdit.Terraria.Objects;
@@ -227,6 +228,7 @@ public partial class World : ReactiveObject, ITileData
     [Reactive] private short _numClouds;
 
     [property: Category("Weather")]
+    [property: Range(-1.2f, 1.2f)]
     [Reactive] private float _windSpeedSet;
 
     [property: Category("Weather")]
