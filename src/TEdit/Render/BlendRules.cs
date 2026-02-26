@@ -325,7 +325,7 @@ class BlendRules
                 {
                     continue;
                 }
-                Tile curtile = world.Tiles[tilex, tiley];
+                ref Tile curtile = ref world.Tiles[tilex, tiley];
                 curtile.uvTileCache = 0xFFFF;
                 curtile.lazyMergeId = 0xFF;
                 curtile.hasLazyChecked = false;

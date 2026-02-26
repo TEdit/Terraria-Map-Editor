@@ -1483,21 +1483,13 @@ public partial class World
                             throw new TEditFileFormatException(
                                 $"Invalid Tile Data: RLE Compression outside of bounds [{x},{y}]");
                         }
-                        tiles[x, y] = (Tile)tile.Clone();
+                        tiles[x, y] = tile;
                         rle--;
                     }
                 }
                 catch (Exception)
                 {
-                    // forcing some recovery here
-
-                    for (int x2 = 0; x2 < maxX; x2++)
-                    {
-                        for (int y2 = 0; y2 < maxY; y2++)
-                        {
-                            if (tiles[x2, y2] == null) tiles[x2, y2] = new Tile();
-                        }
-                    }
+                    // forcing some recovery here — default(Tile) is valid zero state
                     return tiles;
                 }
             }
@@ -1712,6 +1704,7 @@ public partial class World
             _ => (int)r.ReadInt16()
         };
 
+        tile.ResetCache();
         return tile;
     }
 

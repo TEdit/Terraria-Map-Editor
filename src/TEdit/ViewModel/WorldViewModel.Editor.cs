@@ -247,7 +247,7 @@ public partial class WorldViewModel
                     }
                     else
                     {
-                        tiles[x, y] = (Tile)tile.Clone();
+                        tiles[x, y] = tile;
                     }
                 }
             }

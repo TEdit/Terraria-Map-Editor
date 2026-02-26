@@ -150,7 +150,7 @@ public partial class HouseGenPlugin : BasePlugin
                         try
                         {
                             bufferData.Tiles[x + room.X, y + room.Y] =
-                                (Tile)template.Schematic.Tiles[x + room.X, y + room.Y + (_generatedSchematicSize.Y * type)].Clone();
+                                template.Schematic.Tiles[x + room.X, y + room.Y + (_generatedSchematicSize.Y * type)];
                         }
                         catch (IndexOutOfRangeException e)
                         {
@@ -175,7 +175,7 @@ public partial class HouseGenPlugin : BasePlugin
                         try
                         {
                             bufferData.Tiles[x + roof.X, y + roof.Y] =
-                                (Tile)template.Schematic.Tiles[x + roof.X, y + roof.Y + (_generatedSchematicSize.Y * type)].Clone();
+                                template.Schematic.Tiles[x + roof.X, y + roof.Y + (_generatedSchematicSize.Y * type)];
                         }
                         catch (IndexOutOfRangeException e)
                         {
@@ -192,7 +192,7 @@ public partial class HouseGenPlugin : BasePlugin
                 {
                     try
                     {
-                        if (bufferData.Tiles[x2, y2] == null) { bufferData.Tiles[x2, y2] = new Tile(); }
+                        // default(Tile) is valid zero state for struct — just verify bounds
                     }
                     catch (IndexOutOfRangeException e)
                     {

@@ -77,8 +77,8 @@ public sealed class MorphTool : BrushToolBase
     private List<Vector2Int32> MorphTile(Vector2Int32 p)
     {
         if (_targetBiome == null || _biomeMorpher == null) { return null; }
-        var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
+        ref var curtile = ref _wvm.CurrentWorld.Tiles[p.X, p.Y];
         var level = MorphBiomeDataApplier.ComputeMorphLevel(_wvm.CurrentWorld, p.Y);
-        return _biomeMorpher.ApplyMorph(_wvm.MorphToolOptions, _wvm.CurrentWorld, curtile, level, p);
+        return _biomeMorpher.ApplyMorph(_wvm.MorphToolOptions, _wvm.CurrentWorld, ref curtile, level, p);
     }
 }

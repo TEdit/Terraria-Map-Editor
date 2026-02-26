@@ -1992,8 +1992,7 @@ public partial class World
                     {
                         for (int k = y + 1; k < y + rle + 1; k++)
                         {
-                            var tcopy = (Tile)tile.Clone();
-                            w.Tiles[x, k] = tcopy;
+                            w.Tiles[x, k] = tile;
                         }
                         y = y + rle;
                     }

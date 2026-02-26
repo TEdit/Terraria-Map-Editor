@@ -140,7 +140,7 @@ public static class TileFraming
             return new Vector2Int32(0, 0);
 
         Tile centerTile = world.Tiles[x, y];
-        if (centerTile == null || !centerTile.IsActive)
+        if (!centerTile.IsActive)
             return new Vector2Int32(0, 0);
 
         ushort centerType = centerTile.Type;
@@ -152,7 +152,7 @@ public static class TileFraming
         if (centerStyle.Top)
         {
             Tile neighbor = GetTileSafely(world, x, y - 1);
-            if (neighbor != null && neighbor.IsActive && WillItBlendGemspark(centerType, neighbor.Type))
+            if (neighbor.IsActive && WillItBlendGemspark(centerType, neighbor.Type))
             {
                 upStyle = GetBlockStyle(neighbor);
                 if (upStyle.Bottom)
@@ -167,7 +167,7 @@ public static class TileFraming
         if (centerStyle.Left)
         {
             Tile neighbor = GetTileSafely(world, x - 1, y);
-            if (neighbor != null && neighbor.IsActive && WillItBlendGemspark(centerType, neighbor.Type))
+            if (neighbor.IsActive && WillItBlendGemspark(centerType, neighbor.Type))
             {
                 leftStyle = GetBlockStyle(neighbor);
                 if (leftStyle.Right)
@@ -182,7 +182,7 @@ public static class TileFraming
         if (centerStyle.Right)
         {
             Tile neighbor = GetTileSafely(world, x + 1, y);
-            if (neighbor != null && neighbor.IsActive && WillItBlendGemspark(centerType, neighbor.Type))
+            if (neighbor.IsActive && WillItBlendGemspark(centerType, neighbor.Type))
             {
                 rightStyle = GetBlockStyle(neighbor);
                 if (rightStyle.Left)
@@ -197,7 +197,7 @@ public static class TileFraming
         if (centerStyle.Bottom)
         {
             Tile neighbor = GetTileSafely(world, x, y + 1);
-            if (neighbor != null && neighbor.IsActive && WillItBlendGemspark(centerType, neighbor.Type))
+            if (neighbor.IsActive && WillItBlendGemspark(centerType, neighbor.Type))
             {
                 downStyle = GetBlockStyle(neighbor);
                 if (downStyle.Top)
@@ -212,7 +212,7 @@ public static class TileFraming
         if (upStyle.Left && leftStyle.Top)
         {
             Tile corner = GetTileSafely(world, x - 1, y - 1);
-            if (corner != null && corner.IsActive && WillItBlendGemspark(centerType, corner.Type))
+            if (corner.IsActive && WillItBlendGemspark(centerType, corner.Type))
             {
                 BlockStyle cs = GetBlockStyle(corner);
                 if (cs.Right && cs.Bottom)
@@ -224,7 +224,7 @@ public static class TileFraming
         if (upStyle.Right && rightStyle.Top)
         {
             Tile corner = GetTileSafely(world, x + 1, y - 1);
-            if (corner != null && corner.IsActive && WillItBlendGemspark(centerType, corner.Type))
+            if (corner.IsActive && WillItBlendGemspark(centerType, corner.Type))
             {
                 BlockStyle cs = GetBlockStyle(corner);
                 if (cs.Left && cs.Bottom)
@@ -236,7 +236,7 @@ public static class TileFraming
         if (downStyle.Left && leftStyle.Bottom)
         {
             Tile corner = GetTileSafely(world, x - 1, y + 1);
-            if (corner != null && corner.IsActive && WillItBlendGemspark(centerType, corner.Type))
+            if (corner.IsActive && WillItBlendGemspark(centerType, corner.Type))
             {
                 BlockStyle cs = GetBlockStyle(corner);
                 if (cs.Right && cs.Top)
@@ -248,7 +248,7 @@ public static class TileFraming
         if (downStyle.Right && rightStyle.Bottom)
         {
             Tile corner = GetTileSafely(world, x + 1, y + 1);
-            if (corner != null && corner.IsActive && WillItBlendGemspark(centerType, corner.Type))
+            if (corner.IsActive && WillItBlendGemspark(centerType, corner.Type))
             {
                 BlockStyle cs = GetBlockStyle(corner);
                 if (cs.Left && cs.Top)
@@ -305,7 +305,7 @@ public static class TileFraming
     private static Tile GetTileSafely(World world, int x, int y)
     {
         if (x < 0 || y < 0 || x >= world.TilesWide || y >= world.TilesHigh)
-            return null;
+            return default;
         return world.Tiles[x, y];
     }
 

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Windows;
 using System;
 using TEdit.Terraria;
@@ -10,21 +10,25 @@ namespace TEdit.View.Popups
 {
     public partial class UVEditorWindow : FluentWindow
     {
-        private readonly List<Tuple<Tile, Vector2Int32>> UVEditorTileList;
-        private readonly List<Tuple<Tile, Vector2Int32>> UVEditorTileListOriginal;
+        private readonly List<Vector2Int32> _positions;
+        private readonly List<Tile> _originalTiles;
         private readonly WorldViewModel _wvm;
 
         // Constructor to initialize the window with given tiles and ViewModel.
-        public UVEditorWindow(List<Tuple<Tile, Vector2Int32>> tiles, WorldViewModel worldViewModel)
+        public UVEditorWindow(List<Vector2Int32> positions, WorldViewModel worldViewModel)
         {
             _wvm = worldViewModel;
             InitializeComponent();
-            UVEditorTileList = tiles;
+            _positions = positions;
 
-            // Clone initial tile list for restoration.
-            UVEditorTileListOriginal = CloneTileList(tiles);
+            // Clone initial tile values for restoration.
+            _originalTiles = new List<Tile>(positions.Count);
+            foreach (var pos in positions)
+            {
+                _originalTiles.Add(_wvm.CurrentWorld.Tiles[pos.X, pos.Y]);
+            }
 
-            // Save the orignal states.
+            // Save the original states.
             SaveFramesToUndo();
 
             // Display current UV coordinates.
@@ -41,10 +45,10 @@ namespace TEdit.View.Popups
             int vAmount = int.Parse(VTextBoxManual.Text);
 
             // Set each tile to the manual values.
-            foreach (var tileTuple in UVEditorTileList)
+            foreach (var pos in _positions)
             {
-                tileTuple.Item1.U = (short)uAmount;
-                tileTuple.Item1.V = (short)vAmount;
+                _wvm.CurrentWorld.Tiles[pos.X, pos.Y].U = (short)uAmount;
+                _wvm.CurrentWorld.Tiles[pos.X, pos.Y].V = (short)vAmount;
             }
 
             // Update display to reflect restored state.
@@ -90,10 +94,11 @@ namespace TEdit.View.Popups
         private void RestoreButton_Click(object sender, RoutedEventArgs e)
         {
             // Restore the original tile values.
-            for (int i = 0; i < UVEditorTileList.Count; i++)
+            for (int i = 0; i < _positions.Count; i++)
             {
-                UVEditorTileList[i].Item1.U = UVEditorTileListOriginal[i].Item1.U;
-                UVEditorTileList[i].Item1.V = UVEditorTileListOriginal[i].Item1.V;
+                var pos = _positions[i];
+                _wvm.CurrentWorld.Tiles[pos.X, pos.Y].U = _originalTiles[i].U;
+                _wvm.CurrentWorld.Tiles[pos.X, pos.Y].V = _originalTiles[i].V;
             }
 
             // Update display to reflect restored state.
@@ -119,12 +124,11 @@ namespace TEdit.View.Popups
             // Clear the current display.
             SelectedFramesTextBox.Clear();
 
-            // Illiterate through each tile and update the textbox.
-            foreach (var tileTuple in UVEditorTileList)
+            foreach (var pos in _positions)
             {
-                var tile = tileTuple.Item1;
+                ref var tile = ref _wvm.CurrentWorld.Tiles[pos.X, pos.Y];
 
-                // Check if tile is empty. If empty, skip its entree.
+                // Check if tile is empty. If empty, skip its entry.
                 if (tile.Type <= 0)
                     continue;
 
@@ -135,9 +139,9 @@ namespace TEdit.View.Popups
         // Moves UV coordinates in the U direction by a specified amount.
         private void MoveU(int amount)
         {
-            foreach (var tileTuple in UVEditorTileList)
+            foreach (var pos in _positions)
             {
-                tileTuple.Item1.U += (short)amount;
+                _wvm.CurrentWorld.Tiles[pos.X, pos.Y].U += (short)amount;
             }
             DisplaySelectedFrames();
         }
@@ -145,34 +149,11 @@ namespace TEdit.View.Popups
         // Moves UV coordinates in the V direction by a specified amount.
         private void MoveV(int amount)
         {
-            foreach (var tileTuple in UVEditorTileList)
+            foreach (var pos in _positions)
             {
-                tileTuple.Item1.V += (short)amount;
+                _wvm.CurrentWorld.Tiles[pos.X, pos.Y].V += (short)amount;
             }
             DisplaySelectedFrames();
-        }
-        #endregion
-
-        #region Clone Function
-
-        // Creates a deep copy of the tile list for undo functionality.
-        private List<Tuple<Tile, Vector2Int32>> CloneTileList(List<Tuple<Tile, Vector2Int32>> tiles)
-        {
-            var clonedList = new List<Tuple<Tile, Vector2Int32>>();
-            foreach (var tileTuple in tiles)
-            {
-                // Create a new Tile object with the same properties.
-                var clonedTile = new Tile
-                {
-                    U = tileTuple.Item1.U,
-                    V = tileTuple.Item1.V,
-                    IsActive = tileTuple.Item1.IsActive
-                };
-
-                // Add the cloned Tile and its corresponding Vector2Int32 to the list.
-                clonedList.Add(new Tuple<Tile, Vector2Int32>(clonedTile, tileTuple.Item2));
-            }
-            return clonedList;
         }
         #endregion
 
@@ -181,11 +162,9 @@ namespace TEdit.View.Popups
         // Saves the current state of tile UV coordinates for undo functionality.
         private void SaveFramesToUndo()
         {
-            // Illiterate through each tile and save its new location.
-            foreach (var tileTuple in UVEditorTileList)
+            foreach (var pos in _positions)
             {
-                var location = tileTuple.Item2;
-                _wvm.UndoManager.SaveTile(location.X, location.Y);
+                _wvm.UndoManager.SaveTile(pos.X, pos.Y);
             }
 
             // Save undo operation.

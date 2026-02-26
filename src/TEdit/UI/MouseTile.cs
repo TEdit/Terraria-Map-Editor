@@ -34,7 +34,6 @@ public partial class MouseTile : ReactiveObject
         this.WhenAnyValue(x => x.Tile)
             .Subscribe(tile =>
             {
-                if (tile == null) return;
                 UpdateTileInfo(tile);
             });
     }

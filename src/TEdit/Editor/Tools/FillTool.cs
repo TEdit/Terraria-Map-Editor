@@ -49,7 +49,7 @@ public sealed class FillTool : BaseTool
         _wvm.CheckTiles = new int[bitmapWidth * bitmapHeight];
         if (++_wvm.CheckTileGeneration <= 0) _wvm.CheckTileGeneration = 1;
 
-        var originTile = (Tile)_wvm.CurrentWorld.Tiles[x, y].Clone();
+        var originTile = _wvm.CurrentWorld.Tiles[x, y];
         LinearFloodFill(ref x, ref y, ref originTile);
 
         while (_ranges.Count > 0)

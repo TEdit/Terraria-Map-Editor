@@ -596,7 +596,7 @@ public class WorldTests
     public void Tile_Equals_Test()
     {
         var tile1 = new Tile { IsActive = true, Type = 1, Wall = 5 };
-        var tile2 = (Tile)tile1.Clone();
+        var tile2 = tile1;
 
         // Cloned tiles should be equal
         Assert.True(tile1.Equals(tile2));

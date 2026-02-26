@@ -29,7 +29,7 @@ public sealed class SandSettlePlugin : BasePlugin
         {
             for (int x = 0; x < _wvm.CurrentWorld.TilesWide; x++)
             {
-                var curTile = _wvm.CurrentWorld.Tiles[x, y];
+                ref var curTile = ref _wvm.CurrentWorld.Tiles[x, y];
                 if (_tileSand.Contains(curTile.Type))
                 {
                     // check if tile below current tile is empty and move sand to there if it is.
@@ -40,7 +40,7 @@ public sealed class SandSettlePlugin : BasePlugin
 
                     if (shiftAmmount > 0)
                     {
-                        var belowTile = _wvm.CurrentWorld.Tiles[x, y + shiftAmmount];
+                        ref var belowTile = ref _wvm.CurrentWorld.Tiles[x, y + shiftAmmount];
                         if (!belowTile.IsActive)
                         {
                             _wvm.UndoManager.SaveTile(x, y + shiftAmmount);

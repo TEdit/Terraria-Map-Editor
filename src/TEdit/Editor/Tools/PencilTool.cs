@@ -381,8 +381,8 @@ public sealed class PencilTool : BaseTool
             {
                 var cur = path[i];
                 if (!_wvm.CurrentWorld.ValidTileLocation(cur)) continue;
-                var tile = _wvm.CurrentWorld.Tiles[cur.X, cur.Y];
-                if (tile == null || !tile.IsActive || tile.Type != 19) continue;
+                ref var tile = ref _wvm.CurrentWorld.Tiles[cur.X, cur.Y];
+                if (!tile.IsActive || tile.Type != 19) continue;
                 tile.U = (short)(singleCol * 18);
                 tile.V = styleV;
             }
@@ -425,8 +425,8 @@ public sealed class PencilTool : BaseTool
         {
             var cur = path[i];
             if (!_wvm.CurrentWorld.ValidTileLocation(cur)) continue;
-            var tile = _wvm.CurrentWorld.Tiles[cur.X, cur.Y];
-            if (tile == null || !tile.IsActive || tile.Type != 19) continue;
+            ref var tile = ref _wvm.CurrentWorld.Tiles[cur.X, cur.Y];
+            if (!tile.IsActive || tile.Type != 19) continue;
 
             bool hasPrev = i > 0;
             bool hasNext = i < path.Count - 1;
@@ -622,7 +622,7 @@ public sealed class PencilTool : BaseTool
     {
         if (!_wvm.CurrentWorld.ValidTileLocation(new Vector2Int32(x, y))) return false;
         var t = _wvm.CurrentWorld.Tiles[x, y];
-        return t != null && t.IsActive && t.Type != 19; // solid but not a platform
+        return t.IsActive && t.Type != 19; // solid but not a platform
     }
 
     private void ProcessDraw(Vector2Int32 tile)

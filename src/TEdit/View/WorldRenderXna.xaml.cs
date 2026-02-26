@@ -3605,7 +3605,7 @@ public partial class WorldRenderXna : UserControl
         }
     }
 
-    private Tile[] neighborTile = new Tile[8];
+    private Tile?[] neighborTile = new Tile?[8];
     const int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
 
     Texture2D wallTex;
@@ -3632,7 +3632,7 @@ public partial class WorldRenderXna : UserControl
                         continue;
                     }
 
-                    var curtile = _wvm.CurrentWorld.Tiles[x, y];
+                    ref var curtile = ref _wvm.CurrentWorld.Tiles[x, y];
                     if ((curtile.WallColor == 30) != drawInverted) continue;
 
                     // Filter check: hide walls not allowed by the filter
@@ -3749,7 +3749,7 @@ public partial class WorldRenderXna : UserControl
                     }
 
 
-                    var curtile = _wvm.CurrentWorld.Tiles[x, y];
+                    ref var curtile = ref _wvm.CurrentWorld.Tiles[x, y];
 
                     if ((curtile.TileColor == 30) != drawInverted) continue;
 
@@ -3873,11 +3873,11 @@ public partial class WorldRenderXna : UserControl
                                     int treeType = -1; //Default to normal in case no grass grows beneath the tree
                                     for (int i = 0; i < 100; i++)
                                     {
-                                        Tile checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + baseX, y + i] : null;
-                                        if (checkTile != null && checkTile.IsActive)
+                                        Tile? checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + baseX, y + i] : null;
+                                        if (checkTile != null && checkTile.Value.IsActive)
                                         {
                                             bool found = true;
-                                            switch (checkTile.Type)
+                                            switch (checkTile.Value.Type)
                                             {
                                                 case 2:
                                                     treeType = -1;
@@ -4062,11 +4062,11 @@ public partial class WorldRenderXna : UserControl
                                     int treeType = 0;
                                     for (int i = 0; i < 100; i++)
                                     {
-                                        Tile checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x, y + i] : null;
-                                        if (checkTile != null && checkTile.IsActive)
+                                        Tile? checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x, y + i] : null;
+                                        if (checkTile != null && checkTile.Value.IsActive)
                                         {
                                             bool found = true;
-                                            switch (checkTile.Type)
+                                            switch (checkTile.Value.Type)
                                             {
                                                 case 53:
                                                     treeType = 0;
@@ -4786,7 +4786,8 @@ public partial class WorldRenderXna : UserControl
                                             dest.Width = (int)(texsize.X * (_zoom / 16));
                                             dest.Height = (int)(texsize.Y * (_zoom / 16));
 
-                                            var frame = (tileprop.Frames.FirstOrDefault(f => f.UV == new Vector2Short(curtile.U, curtile.V)));
+                                            var tileU = curtile.U; var tileV = curtile.V;
+                                            var frame = (tileprop.Frames.FirstOrDefault(f => f.UV == new Vector2Short(tileU, tileV)));
                                             var frameAnchor = FrameAnchor.None;
                                             if (frame != null)
                                                 frameAnchor = frame.Anchor;
@@ -4852,10 +4853,10 @@ public partial class WorldRenderXna : UserControl
                                         {
                                             // Flat platform: compute from W/E horizontal neighbors
                                             byte state = 0x00;
-                                            state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == curtile.Type) ? 0x01 : 0x00);
-                                            state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && WorldConfiguration.GetTileProperties(neighborTile[w].Type).HasSlopes && neighborTile[w].Type != curtile.Type) ? 0x02 : 0x00);
-                                            state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == curtile.Type) ? 0x04 : 0x00);
-                                            state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && WorldConfiguration.GetTileProperties(neighborTile[e].Type).HasSlopes && neighborTile[e].Type != curtile.Type) ? 0x08 : 0x00);
+                                            state |= (byte)((neighborTile[w]?.IsActive == true && neighborTile[w].Value.Type == curtile.Type) ? 0x01 : 0x00);
+                                            state |= (byte)((neighborTile[w]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[w].Value.Type).HasSlopes && neighborTile[w].Value.Type != curtile.Type) ? 0x02 : 0x00);
+                                            state |= (byte)((neighborTile[e]?.IsActive == true && neighborTile[e].Value.Type == curtile.Type) ? 0x04 : 0x00);
+                                            state |= (byte)((neighborTile[e]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[e].Value.Type).HasSlopes && neighborTile[e].Value.Type != curtile.Type) ? 0x08 : 0x00);
                                             switch (state)
                                             {
                                                 case 0x00:
@@ -4934,12 +4935,12 @@ public partial class WorldRenderXna : UserControl
                                         bool isLeft = false, isRight = false, isBase = false;
 
                                         //Has this cactus been base-evaluated yet?
-                                        int neighborX = (neighborTile[w].uvTileCache & 0x00FF) % 8; //Why % 8? If X >= 8, use hallow, If X >= 16, use corruption
+                                        int neighborX = ((neighborTile[w]?.uvTileCache ?? 0) & 0x00FF) % 8; //Why % 8? If X >= 8, use hallow, If X >= 16, use corruption
                                         if (neighborX == 0 || neighborX == 1 || neighborX == 4 || neighborX == 5)
                                         {
                                             isRight = true;
                                         }
-                                        neighborX = neighborTile[e].uvTileCache & 0x00FF;
+                                        neighborX = (neighborTile[e]?.uvTileCache ?? 0) & 0x00FF;
                                         if (neighborX == 0 || neighborX == 1 || neighborX == 4 || neighborX == 5)
                                         {
                                             isLeft = true;
@@ -4957,8 +4958,8 @@ public partial class WorldRenderXna : UserControl
                                             int length2 = 0;
                                             while (true)
                                             {
-                                                Tile checkTile = (y + length1) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x, y + length1] : null;
-                                                if (checkTile == null || checkTile.IsActive == false || checkTile.Type != curtile.Type)
+                                                Tile? checkTile = (y + length1) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x, y + length1] : null;
+                                                if (checkTile == null || checkTile.Value.IsActive == false || checkTile.Value.Type != curtile.Type)
                                                 {
                                                     break;
                                                 }
@@ -4968,8 +4969,8 @@ public partial class WorldRenderXna : UserControl
                                             {
                                                 while (true)
                                                 {
-                                                    Tile checkTile = (y + length2) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + 1, y + length2] : null;
-                                                    if (checkTile == null || checkTile.IsActive == false || checkTile.Type != curtile.Type)
+                                                    Tile? checkTile = (y + length2) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + 1, y + length2] : null;
+                                                    if (checkTile == null || checkTile.Value.IsActive == false || checkTile.Value.Type != curtile.Type)
                                                     {
                                                         break;
                                                     }
@@ -5004,14 +5005,14 @@ public partial class WorldRenderXna : UserControl
 
                                         uv = new Vector2Int32(0, 0);
                                         byte state = 0x00;
-                                        state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == curtile.Type) ? 0x01 : 0x00);
-                                        state |= (byte)((neighborTile[n] != null && neighborTile[n].IsActive && neighborTile[n].Type == curtile.Type) ? 0x02 : 0x00);
-                                        state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == curtile.Type) ? 0x04 : 0x00);
-                                        state |= (byte)((neighborTile[s] != null && neighborTile[s].IsActive && neighborTile[s].Type == curtile.Type) ? 0x08 : 0x00);
-                                        //state |= (byte)((neighborTile[ne] != null && neighborTile[ne].IsActive && neighborTile[ne].Type == curtile.Type) ? 0x10 : 0x00);
-                                        //state |= (byte)((neighborTile[nw] != null && neighborTile[nw].IsActive && neighborTile[nw].Type == curtile.Type) ? 0x20 : 0x00);
-                                        state |= (byte)((neighborTile[sw] != null && neighborTile[sw].IsActive && neighborTile[sw].Type == curtile.Type) ? 0x40 : 0x00);
-                                        state |= (byte)((neighborTile[se] != null && neighborTile[se].IsActive && neighborTile[se].Type == curtile.Type) ? 0x80 : 0x00);
+                                        state |= (byte)((neighborTile[e]?.IsActive == true && neighborTile[e].Value.Type == curtile.Type) ? 0x01 : 0x00);
+                                        state |= (byte)((neighborTile[n]?.IsActive == true && neighborTile[n].Value.Type == curtile.Type) ? 0x02 : 0x00);
+                                        state |= (byte)((neighborTile[w]?.IsActive == true && neighborTile[w].Value.Type == curtile.Type) ? 0x04 : 0x00);
+                                        state |= (byte)((neighborTile[s]?.IsActive == true && neighborTile[s].Value.Type == curtile.Type) ? 0x08 : 0x00);
+                                        //state |= (byte)((neighborTile[ne]?.IsActive == true && neighborTile[ne].Value.Type == curtile.Type) ? 0x10 : 0x00);
+                                        //state |= (byte)((neighborTile[nw]?.IsActive == true && neighborTile[nw].Value.Type == curtile.Type) ? 0x20 : 0x00);
+                                        state |= (byte)((neighborTile[sw]?.IsActive == true && neighborTile[sw].Value.Type == curtile.Type) ? 0x40 : 0x00);
+                                        state |= (byte)((neighborTile[se]?.IsActive == true && neighborTile[se].Value.Type == curtile.Type) ? 0x80 : 0x00);
 
                                         if (isLeft)
                                         {
@@ -5117,18 +5118,18 @@ public partial class WorldRenderXna : UserControl
                                         for (int i = 0; i < 100; i++)
                                         {
                                             int baseX = (isLeft) ? 1 : (isRight) ? -1 : 0;
-                                            Tile checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + baseX, y + i] : null;
-                                            if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.CrimsandBlock) //Crimson
+                                            Tile? checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + baseX, y + i] : null;
+                                            if (checkTile != null && checkTile.Value.IsActive && checkTile.Value.Type == (int)TileType.CrimsandBlock) //Crimson
                                             {
                                                 uv.X += 24;
                                                 break;
                                             }
-                                            if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.EbonsandBlock) //Corruption
+                                            if (checkTile != null && checkTile.Value.IsActive && checkTile.Value.Type == (int)TileType.EbonsandBlock) //Corruption
                                             {
                                                 uv.X += 16;
                                                 break;
                                             }
-                                            else if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.PearlsandBlock) //Hallow
+                                            else if (checkTile != null && checkTile.Value.IsActive && checkTile.Value.Type == (int)TileType.PearlsandBlock) //Hallow
                                             {
                                                 uv.X += 8;
                                                 break;
@@ -5172,69 +5173,69 @@ public partial class WorldRenderXna : UserControl
                                         int strictness = 0;
                                         if (tileprop.MergeWith.HasValue && tileprop.MergeWith.Value == -1) //Basically for cobweb
                                         {
-                                            sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive) ? 0x0001 : 0x0000;
-                                            sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive) ? 0x0010 : 0x0000;
-                                            sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive) ? 0x0100 : 0x0000;
-                                            sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive) ? 0x1000 : 0x0000;
+                                            sameStyle |= (neighborTile[e]?.IsActive == true) ? 0x0001 : 0x0000;
+                                            sameStyle |= (neighborTile[n]?.IsActive == true) ? 0x0010 : 0x0000;
+                                            sameStyle |= (neighborTile[w]?.IsActive == true) ? 0x0100 : 0x0000;
+                                            sameStyle |= (neighborTile[s]?.IsActive == true) ? 0x1000 : 0x0000;
                                         }
                                         else if (tileprop.IsStone) //Stone & Gems
                                         {
-                                            sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && WorldConfiguration.GetTileProperties(neighborTile[e].Type).IsStone) ? 0x0001 : 0x0000;
-                                            sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && WorldConfiguration.GetTileProperties(neighborTile[n].Type).IsStone) ? 0x0010 : 0x0000;
-                                            sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && WorldConfiguration.GetTileProperties(neighborTile[w].Type).IsStone) ? 0x0100 : 0x0000;
-                                            sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && WorldConfiguration.GetTileProperties(neighborTile[s].Type).IsStone) ? 0x1000 : 0x0000;
-                                            sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && WorldConfiguration.GetTileProperties(neighborTile[ne].Type).IsStone) ? 0x00010000 : 0x00000000;
-                                            sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && WorldConfiguration.GetTileProperties(neighborTile[nw].Type).IsStone) ? 0x00100000 : 0x00000000;
-                                            sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && WorldConfiguration.GetTileProperties(neighborTile[sw].Type).IsStone) ? 0x01000000 : 0x00000000;
-                                            sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && WorldConfiguration.GetTileProperties(neighborTile[se].Type).IsStone) ? 0x10000000 : 0x00000000;
+                                            sameStyle |= (neighborTile[e]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[e].Value.Type).IsStone) ? 0x0001 : 0x0000;
+                                            sameStyle |= (neighborTile[n]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[n].Value.Type).IsStone) ? 0x0010 : 0x0000;
+                                            sameStyle |= (neighborTile[w]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[w].Value.Type).IsStone) ? 0x0100 : 0x0000;
+                                            sameStyle |= (neighborTile[s]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[s].Value.Type).IsStone) ? 0x1000 : 0x0000;
+                                            sameStyle |= (neighborTile[ne]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[ne].Value.Type).IsStone) ? 0x00010000 : 0x00000000;
+                                            sameStyle |= (neighborTile[nw]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[nw].Value.Type).IsStone) ? 0x00100000 : 0x00000000;
+                                            sameStyle |= (neighborTile[sw]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[sw].Value.Type).IsStone) ? 0x01000000 : 0x00000000;
+                                            sameStyle |= (neighborTile[se]?.IsActive == true && WorldConfiguration.GetTileProperties(neighborTile[se].Value.Type).IsStone) ? 0x10000000 : 0x00000000;
                                         }
                                         else //Everything else
                                         {
                                             //Join to nearby tiles if their merge type is this tile's type
-                                            sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Type))) ? 0x0001 : 0x0000;
-                                            sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Type))) ? 0x0010 : 0x0000;
-                                            sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Type))) ? 0x0100 : 0x0000;
-                                            sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Type))) ? 0x1000 : 0x0000;
-                                            sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[ne].Type))) ? 0x00010000 : 0x00000000;
-                                            sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[nw].Type))) ? 0x00100000 : 0x00000000;
-                                            sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[sw].Type))) ? 0x01000000 : 0x00000000;
-                                            sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[se].Type))) ? 0x10000000 : 0x00000000;
+                                            sameStyle |= (neighborTile[e]?.IsActive == true && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Value.Type))) ? 0x0001 : 0x0000;
+                                            sameStyle |= (neighborTile[n]?.IsActive == true && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Value.Type))) ? 0x0010 : 0x0000;
+                                            sameStyle |= (neighborTile[w]?.IsActive == true && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Value.Type))) ? 0x0100 : 0x0000;
+                                            sameStyle |= (neighborTile[s]?.IsActive == true && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Value.Type))) ? 0x1000 : 0x0000;
+                                            sameStyle |= (neighborTile[ne]?.IsActive == true && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[ne].Value.Type))) ? 0x00010000 : 0x00000000;
+                                            sameStyle |= (neighborTile[nw]?.IsActive == true && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[nw].Value.Type))) ? 0x00100000 : 0x00000000;
+                                            sameStyle |= (neighborTile[sw]?.IsActive == true && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[sw].Value.Type))) ? 0x01000000 : 0x00000000;
+                                            sameStyle |= (neighborTile[se]?.IsActive == true && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[se].Value.Type))) ? 0x10000000 : 0x00000000;
                                             //Join if nearby tiles have the same type as this tile's type
-                                            sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && curtile.Type == neighborTile[e].Type) ? 0x0001 : 0x0000;
-                                            sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && curtile.Type == neighborTile[n].Type) ? 0x0010 : 0x0000;
-                                            sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && curtile.Type == neighborTile[w].Type) ? 0x0100 : 0x0000;
-                                            sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && curtile.Type == neighborTile[s].Type) ? 0x1000 : 0x0000;
-                                            sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && curtile.Type == neighborTile[ne].Type) ? 0x00010000 : 0x00000000;
-                                            sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && curtile.Type == neighborTile[nw].Type) ? 0x00100000 : 0x00000000;
-                                            sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && curtile.Type == neighborTile[sw].Type) ? 0x01000000 : 0x00000000;
-                                            sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && curtile.Type == neighborTile[se].Type) ? 0x10000000 : 0x00000000;
+                                            sameStyle |= (neighborTile[e]?.IsActive == true && curtile.Type == neighborTile[e].Value.Type) ? 0x0001 : 0x0000;
+                                            sameStyle |= (neighborTile[n]?.IsActive == true && curtile.Type == neighborTile[n].Value.Type) ? 0x0010 : 0x0000;
+                                            sameStyle |= (neighborTile[w]?.IsActive == true && curtile.Type == neighborTile[w].Value.Type) ? 0x0100 : 0x0000;
+                                            sameStyle |= (neighborTile[s]?.IsActive == true && curtile.Type == neighborTile[s].Value.Type) ? 0x1000 : 0x0000;
+                                            sameStyle |= (neighborTile[ne]?.IsActive == true && curtile.Type == neighborTile[ne].Value.Type) ? 0x00010000 : 0x00000000;
+                                            sameStyle |= (neighborTile[nw]?.IsActive == true && curtile.Type == neighborTile[nw].Value.Type) ? 0x00100000 : 0x00000000;
+                                            sameStyle |= (neighborTile[sw]?.IsActive == true && curtile.Type == neighborTile[sw].Value.Type) ? 0x01000000 : 0x00000000;
+                                            sameStyle |= (neighborTile[se]?.IsActive == true && curtile.Type == neighborTile[se].Value.Type) ? 0x10000000 : 0x00000000;
                                         }
                                         if (curtile.hasLazyChecked == false)
                                         {
                                             bool lazyCheckReady = true;
-                                            lazyCheckReady &= (neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Type))) ? true : (neighborTile[e].lazyMergeId != 0xFF);
-                                            lazyCheckReady &= (neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Type))) ? true : (neighborTile[n].lazyMergeId != 0xFF);
-                                            lazyCheckReady &= (neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Type))) ? true : (neighborTile[w].lazyMergeId != 0xFF);
-                                            lazyCheckReady &= (neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Type))) ? true : (neighborTile[s].lazyMergeId != 0xFF);
+                                            lazyCheckReady &= (neighborTile[e] == null || neighborTile[e].Value.IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Value.Type))) ? true : (neighborTile[e].Value.lazyMergeId != 0xFF);
+                                            lazyCheckReady &= (neighborTile[n] == null || neighborTile[n].Value.IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Value.Type))) ? true : (neighborTile[n].Value.lazyMergeId != 0xFF);
+                                            lazyCheckReady &= (neighborTile[w] == null || neighborTile[w].Value.IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Value.Type))) ? true : (neighborTile[w].Value.lazyMergeId != 0xFF);
+                                            lazyCheckReady &= (neighborTile[s] == null || neighborTile[s].Value.IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Value.Type))) ? true : (neighborTile[s].Value.lazyMergeId != 0xFF);
                                             if (lazyCheckReady)
                                             {
-                                                sameStyle &= 0x11111110 | ((neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Type))) ? 0x00000001 : ((neighborTile[e].lazyMergeId & 0x04) >> 2));
-                                                sameStyle &= 0x11111101 | ((neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Type))) ? 0x00000010 : ((neighborTile[n].lazyMergeId & 0x08) << 1));
-                                                sameStyle &= 0x11111011 | ((neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Type))) ? 0x00000100 : ((neighborTile[w].lazyMergeId & 0x01) << 8));
-                                                sameStyle &= 0x11110111 | ((neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Type))) ? 0x00001000 : ((neighborTile[s].lazyMergeId & 0x02) << 11));
+                                                sameStyle &= 0x11111110 | ((neighborTile[e] == null || neighborTile[e].Value.IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Value.Type))) ? 0x00000001 : ((neighborTile[e].Value.lazyMergeId & 0x04) >> 2));
+                                                sameStyle &= 0x11111101 | ((neighborTile[n] == null || neighborTile[n].Value.IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Value.Type))) ? 0x00000010 : ((neighborTile[n].Value.lazyMergeId & 0x08) << 1));
+                                                sameStyle &= 0x11111011 | ((neighborTile[w] == null || neighborTile[w].Value.IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Value.Type))) ? 0x00000100 : ((neighborTile[w].Value.lazyMergeId & 0x01) << 8));
+                                                sameStyle &= 0x11110111 | ((neighborTile[s] == null || neighborTile[s].Value.IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Value.Type))) ? 0x00001000 : ((neighborTile[s].Value.lazyMergeId & 0x02) << 11));
                                                 curtile.hasLazyChecked = true;
                                             }
                                         }
                                         if (tileprop.MergeWith.HasValue && tileprop.MergeWith.Value > -1) //Merges with a specific type
                                         {
-                                            mergeMask |= (neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == tileprop.MergeWith.Value) ? 0x0001 : 0x0000;
-                                            mergeMask |= (neighborTile[n] != null && neighborTile[n].IsActive && neighborTile[n].Type == tileprop.MergeWith.Value) ? 0x0010 : 0x0000;
-                                            mergeMask |= (neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == tileprop.MergeWith.Value) ? 0x0100 : 0x0000;
-                                            mergeMask |= (neighborTile[s] != null && neighborTile[s].IsActive && neighborTile[s].Type == tileprop.MergeWith.Value) ? 0x1000 : 0x0000;
-                                            mergeMask |= (neighborTile[ne] != null && neighborTile[ne].IsActive && neighborTile[ne].Type == tileprop.MergeWith.Value) ? 0x00010000 : 0x00000000;
-                                            mergeMask |= (neighborTile[nw] != null && neighborTile[nw].IsActive && neighborTile[nw].Type == tileprop.MergeWith.Value) ? 0x00100000 : 0x00000000;
-                                            mergeMask |= (neighborTile[sw] != null && neighborTile[sw].IsActive && neighborTile[sw].Type == tileprop.MergeWith.Value) ? 0x01000000 : 0x00000000;
-                                            mergeMask |= (neighborTile[se] != null && neighborTile[se].IsActive && neighborTile[se].Type == tileprop.MergeWith.Value) ? 0x10000000 : 0x00000000;
+                                            mergeMask |= (neighborTile[e]?.IsActive == true && neighborTile[e].Value.Type == tileprop.MergeWith.Value) ? 0x0001 : 0x0000;
+                                            mergeMask |= (neighborTile[n]?.IsActive == true && neighborTile[n].Value.Type == tileprop.MergeWith.Value) ? 0x0010 : 0x0000;
+                                            mergeMask |= (neighborTile[w]?.IsActive == true && neighborTile[w].Value.Type == tileprop.MergeWith.Value) ? 0x0100 : 0x0000;
+                                            mergeMask |= (neighborTile[s]?.IsActive == true && neighborTile[s].Value.Type == tileprop.MergeWith.Value) ? 0x1000 : 0x0000;
+                                            mergeMask |= (neighborTile[ne]?.IsActive == true && neighborTile[ne].Value.Type == tileprop.MergeWith.Value) ? 0x00010000 : 0x00000000;
+                                            mergeMask |= (neighborTile[nw]?.IsActive == true && neighborTile[nw].Value.Type == tileprop.MergeWith.Value) ? 0x00100000 : 0x00000000;
+                                            mergeMask |= (neighborTile[sw]?.IsActive == true && neighborTile[sw].Value.Type == tileprop.MergeWith.Value) ? 0x01000000 : 0x00000000;
+                                            mergeMask |= (neighborTile[se]?.IsActive == true && neighborTile[se].Value.Type == tileprop.MergeWith.Value) ? 0x10000000 : 0x00000000;
                                             strictness = 1;
                                         }
                                         if (tileprop.IsGrass)
@@ -5260,7 +5261,7 @@ public partial class WorldRenderXna : UserControl
                                     // Render liquid behind tiles if adjacent tile has liquid
                                     if (_wvm.ShowLiquid)
                                     {
-                                        Tile adjacentLiquidTile = null;
+                                        Tile? adjacentLiquidTile = null;
                                         int adjacentX = x, adjacentY = y;
 
                                         if (y > 0)
@@ -5299,16 +5300,16 @@ public partial class WorldRenderXna : UserControl
                                             var liquidColor = Color.White;
                                             float alpha = 0.5f;
 
-                                            if (adjacentLiquidTile.LiquidType == LiquidType.Lava)
+                                            if (adjacentLiquidTile.Value.LiquidType == LiquidType.Lava)
                                             {
                                                 liquidTex = (Texture2D)_textureDictionary.GetLiquid(1);
                                                 alpha = 0.85f;
                                             }
-                                            else if (adjacentLiquidTile.LiquidType == LiquidType.Honey)
+                                            else if (adjacentLiquidTile.Value.LiquidType == LiquidType.Honey)
                                             {
                                                 liquidTex = (Texture2D)_textureDictionary.GetLiquid(11);
                                             }
-                                            else if (adjacentLiquidTile.LiquidType == LiquidType.Shimmer)
+                                            else if (adjacentLiquidTile.Value.LiquidType == LiquidType.Shimmer)
                                             {
                                                 liquidTex = (Texture2D)_textureDictionary.GetLiquid(14);
                                                 liquidColor = new Color(WorldConfiguration.GlobalColors["Shimmer"].PackedValue);
@@ -5330,7 +5331,7 @@ public partial class WorldRenderXna : UserControl
                                                 {
                                                     // Adjacent liquid is at the top - use surface texture with variable height
                                                     liquidSource.Y = 0;
-                                                    liquidSource.Height = 4 + ((int)Math.Round(adjacentLiquidTile.LiquidAmount * 6f / 255f)) * 2;
+                                                    liquidSource.Height = 4 + ((int)Math.Round(adjacentLiquidTile.Value.LiquidAmount * 6f / 255f)) * 2;
                                                     // Also adjust destination height and position like DrawTileLiquid does
                                                     liquidDest.Height = (int)(liquidSource.Height * _zoom / 16f);
                                                     liquidDest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom + ((16 - liquidSource.Height) * _zoom / 16f));
@@ -5686,10 +5687,10 @@ public partial class WorldRenderXna : UserControl
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                 byte state = 0x00;
-                                state |= (byte)((neighborTile[n] != null && neighborTile[n].WireRed == true) ? 0x01 : 0x00);
-                                state |= (byte)((neighborTile[e] != null && neighborTile[e].WireRed == true) ? 0x02 : 0x00);
-                                state |= (byte)((neighborTile[s] != null && neighborTile[s].WireRed == true) ? 0x04 : 0x00);
-                                state |= (byte)((neighborTile[w] != null && neighborTile[w].WireRed == true) ? 0x08 : 0x00);
+                                state |= (byte)((neighborTile[n]?.WireRed == true) ? 0x01 : 0x00);
+                                state |= (byte)((neighborTile[e]?.WireRed == true) ? 0x02 : 0x00);
+                                state |= (byte)((neighborTile[s]?.WireRed == true) ? 0x04 : 0x00);
+                                state |= (byte)((neighborTile[w]?.WireRed == true) ? 0x08 : 0x00);
                                 source.X = state * 18;
                                 source.Y = voffset;
 
@@ -5703,10 +5704,10 @@ public partial class WorldRenderXna : UserControl
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                 byte state = 0x00;
-                                state |= (byte)((neighborTile[n] != null && neighborTile[n].WireBlue == true) ? 0x01 : 0x00);
-                                state |= (byte)((neighborTile[e] != null && neighborTile[e].WireBlue == true) ? 0x02 : 0x00);
-                                state |= (byte)((neighborTile[s] != null && neighborTile[s].WireBlue == true) ? 0x04 : 0x00);
-                                state |= (byte)((neighborTile[w] != null && neighborTile[w].WireBlue == true) ? 0x08 : 0x00);
+                                state |= (byte)((neighborTile[n]?.WireBlue == true) ? 0x01 : 0x00);
+                                state |= (byte)((neighborTile[e]?.WireBlue == true) ? 0x02 : 0x00);
+                                state |= (byte)((neighborTile[s]?.WireBlue == true) ? 0x04 : 0x00);
+                                state |= (byte)((neighborTile[w]?.WireBlue == true) ? 0x08 : 0x00);
                                 source.X = state * 18;
                                 source.Y = 18 + voffset;
 
@@ -5719,10 +5720,10 @@ public partial class WorldRenderXna : UserControl
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                 byte state = 0x00;
-                                state |= (byte)((neighborTile[n] != null && neighborTile[n].WireGreen == true) ? 0x01 : 0x00);
-                                state |= (byte)((neighborTile[e] != null && neighborTile[e].WireGreen == true) ? 0x02 : 0x00);
-                                state |= (byte)((neighborTile[s] != null && neighborTile[s].WireGreen == true) ? 0x04 : 0x00);
-                                state |= (byte)((neighborTile[w] != null && neighborTile[w].WireGreen == true) ? 0x08 : 0x00);
+                                state |= (byte)((neighborTile[n]?.WireGreen == true) ? 0x01 : 0x00);
+                                state |= (byte)((neighborTile[e]?.WireGreen == true) ? 0x02 : 0x00);
+                                state |= (byte)((neighborTile[s]?.WireGreen == true) ? 0x04 : 0x00);
+                                state |= (byte)((neighborTile[w]?.WireGreen == true) ? 0x08 : 0x00);
                                 source.X = state * 18;
                                 source.Y = 36 + voffset;
 
@@ -5735,10 +5736,10 @@ public partial class WorldRenderXna : UserControl
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                 byte state = 0x00;
-                                state |= (byte)((neighborTile[n] != null && neighborTile[n].WireYellow == true) ? 0x01 : 0x00);
-                                state |= (byte)((neighborTile[e] != null && neighborTile[e].WireYellow == true) ? 0x02 : 0x00);
-                                state |= (byte)((neighborTile[s] != null && neighborTile[s].WireYellow == true) ? 0x04 : 0x00);
-                                state |= (byte)((neighborTile[w] != null && neighborTile[w].WireYellow == true) ? 0x08 : 0x00);
+                                state |= (byte)((neighborTile[n]?.WireYellow == true) ? 0x01 : 0x00);
+                                state |= (byte)((neighborTile[e]?.WireYellow == true) ? 0x02 : 0x00);
+                                state |= (byte)((neighborTile[s]?.WireYellow == true) ? 0x04 : 0x00);
+                                state |= (byte)((neighborTile[w]?.WireYellow == true) ? 0x08 : 0x00);
                                 source.X = state * 18;
                                 source.Y = 54 + voffset;
 
@@ -5833,11 +5834,11 @@ public partial class WorldRenderXna : UserControl
                                 }
 
                                 // Check if there's liquid above (either actual or extended horizontal)
-                                bool hasLiquidAbove = neighborTile[n] != null && neighborTile[n].LiquidAmount > 0;
+                                bool hasLiquidAbove = neighborTile[n] != null && neighborTile[n].Value.LiquidAmount > 0;
 
                                 // Also check for extended horizontal liquid above (only if tile above is solid, not plants)
-                                if (!hasLiquidAbove && y > 0 && neighborTile[n] != null && neighborTile[n].IsActive
-                                    && WorldConfiguration.GetTileProperties(neighborTile[n].Type).IsSolid)
+                                if (!hasLiquidAbove && y > 0 && neighborTile[n]?.IsActive == true
+                                    && WorldConfiguration.GetTileProperties(neighborTile[n].Value.Type).IsSolid)
                                 {
                                     // Tile above is solid - check if it would have extended horizontal liquid
                                     if (x > 0 && x < _wvm.CurrentWorld.TilesWide - 1)

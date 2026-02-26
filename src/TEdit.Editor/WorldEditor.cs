@@ -79,8 +79,7 @@ public class WorldEditor : IDisposable
         if (_checkTiles[index] == _checkTileGeneration) { return; }
         // else { _checkTiles[index] = _checkTileGeneration; }
 
-        Tile curTile = _world.Tiles[x, y];
-        if (curTile == null) return;
+        ref Tile curTile = ref _world.Tiles[x, y];
 
         // Global mask gate: if any enabled mask fails, skip this tile entirely
         if (!MaskSettings.Passes(curTile)) return;
@@ -92,25 +91,25 @@ public class WorldEditor : IDisposable
         {
             case PaintMode.Sprites:
                 if (_world.TileFrameImportant[curTile.Type])
-                    SetTile(curTile, isErase);
+                    SetTile(ref curTile, isErase);
                 break;
             case PaintMode.TileAndWall:
                 if (TilePicker.TileStyleActive)
-                    SetTile(curTile, isErase);
+                    SetTile(ref curTile, isErase);
                 if (TilePicker.WallStyleActive)
-                    SetWall(curTile, isErase);
+                    SetWall(ref curTile, isErase);
                 if (TilePicker.BrickStyleActive && TilePicker.ExtrasActive)
-                    SetPixelAutomatic(curTile, brickStyle: TilePicker.BrickStyle);
+                    SetPixelAutomatic(ref curTile, brickStyle: TilePicker.BrickStyle);
                 if (TilePicker.TilePaintActive)
-                    SetPixelAutomatic(curTile, tileColor: isErase ? 0 : TilePicker.TileColor);
+                    SetPixelAutomatic(ref curTile, tileColor: isErase ? 0 : TilePicker.TileColor);
                 if (TilePicker.WallPaintActive)
-                    SetPixelAutomatic(curTile, wallColor: isErase ? 0 : TilePicker.WallColor);
+                    SetPixelAutomatic(ref curTile, wallColor: isErase ? 0 : TilePicker.WallColor);
                 if (TilePicker.ExtrasActive)
-                    SetPixelAutomatic(curTile, actuator: isErase ? false : TilePicker.Actuator, actuatorInActive: isErase ? false : TilePicker.ActuatorInActive);
+                    SetPixelAutomatic(ref curTile, actuator: isErase ? false : TilePicker.Actuator, actuatorInActive: isErase ? false : TilePicker.ActuatorInActive);
                 if (TilePicker.EnableTileCoating)
-                    SetPixelAutomatic(curTile, tileEchoCoating: TilePicker.TileCoatingEcho, tileIlluminantCoating: TilePicker.TileCoatingIlluminant);
+                    SetPixelAutomatic(ref curTile, tileEchoCoating: TilePicker.TileCoatingEcho, tileIlluminantCoating: TilePicker.TileCoatingIlluminant);
                 if (TilePicker.EnableWallCoating)
-                    SetPixelAutomatic(curTile, wallEchoCoating: TilePicker.WallCoatingEcho, wallIlluminantCoating: TilePicker.WallCoatingIlluminant);
+                    SetPixelAutomatic(ref curTile, wallEchoCoating: TilePicker.WallCoatingEcho, wallIlluminantCoating: TilePicker.WallCoatingIlluminant);
                 break;
             case PaintMode.Wire:
                 // Is Replace Mode Active?
@@ -119,7 +118,7 @@ public class WorldEditor : IDisposable
                 if (!WireReplaceMode)
                 {
                     // paint all wires in one call
-                    SetPixelAutomatic(curTile,
+                    SetPixelAutomatic(ref curTile,
                         wireRed: TilePicker.RedWireActive ? !isErase : null,
                         wireBlue: TilePicker.BlueWireActive ? !isErase : null,
                         wireGreen: TilePicker.GreenWireActive ? !isErase : null,
@@ -166,7 +165,7 @@ public class WorldEditor : IDisposable
                     curWireBits = curWireBits & ~turnOffWires;
                     curWireBits |= turnOnWires;
 
-                    SetPixelAutomatic(curTile,
+                    SetPixelAutomatic(ref curTile,
                         wireRed: curWireBits.HasFlag(Editor.WireReplaceMode.Red),
                         wireBlue: curWireBits.HasFlag(Editor.WireReplaceMode.Blue),
                         wireGreen: curWireBits.HasFlag(Editor.WireReplaceMode.Green),
@@ -181,26 +180,26 @@ public class WorldEditor : IDisposable
                         curTile.U == (short)TilePicker.JunctionBoxMode)
                     {
                         // erase junction box matching selection only. Set tile also checks masks
-                        SetTile(curTile, true);
+                        SetTile(ref curTile, true);
                     }
                     else if (!isErase)
                     {
-                        SetPixelAutomatic(curTile, tile: (int)TileType.JunctionBox, u: (short)TilePicker.JunctionBoxMode, v: 0);
+                        SetPixelAutomatic(ref curTile, tile: (int)TileType.JunctionBox, u: (short)TilePicker.JunctionBoxMode, v: 0);
                     }
                 }
 
                 break;
             case PaintMode.Liquid:
                 SetPixelAutomatic(
-                    curTile,
+                    ref curTile,
                     liquid: (isErase || TilePicker.LiquidType == LiquidType.None) ? (byte)0 : (byte)TilePicker.LiquidAmountMode,
                     liquidType: TilePicker.LiquidType);
                 break;
             case PaintMode.Track:
-                SetTrack(x, y, curTile, isErase, (TilePicker.TrackMode == TrackMode.Hammer), true);
+                SetTrack(x, y, ref curTile, isErase, (TilePicker.TrackMode == TrackMode.Hammer), true);
                 break;
             case PaintMode.Platform:
-                SetPlatform(x, y, curTile, isErase);
+                SetPlatform(x, y, ref curTile, isErase);
                 break;
         }
     }
@@ -210,23 +209,23 @@ public class WorldEditor : IDisposable
         return x + y * _world.TilesWide;
     }
 
-    private void SetWall(Tile curTile, bool erase)
+    private void SetWall(ref Tile curTile, bool erase)
     {
         if (erase)
-            SetPixelAutomatic(curTile, wall: 0);
+            SetPixelAutomatic(ref curTile, wall: 0);
         else
-            SetPixelAutomatic(curTile, wall: TilePicker.Wall);
+            SetPixelAutomatic(ref curTile, wall: TilePicker.Wall);
     }
 
-    private void SetTile(Tile curTile, bool erase)
+    private void SetTile(ref Tile curTile, bool erase)
     {
         if (erase)
-            SetPixelAutomatic(curTile, tile: -1);
+            SetPixelAutomatic(ref curTile, tile: -1);
         else
-            SetPixelAutomatic(curTile, tile: TilePicker.Tile);
+            SetPixelAutomatic(ref curTile, tile: TilePicker.Tile);
     }
 
-    private void SetTrack(int x, int y, Tile curTile, bool erase, bool hammer, bool check)
+    private void SetTrack(int x, int y, ref Tile curTile, bool erase, bool hammer, bool check)
     {
         if (x <= 0 || y <= 0 || x >= this._world.TilesWide - 1 || y >= this._world.TilesHigh - 1)
         {
@@ -296,52 +295,52 @@ public class WorldEditor : IDisposable
             {
                 int u = curTile.U;
                 int v = curTile.V;
-                SetPixelAutomatic(curTile, tile: -1, u: 0, v: 0);
+                SetPixelAutomatic(ref curTile, tile: -1, u: 0, v: 0);
                 if (u > 0)
                 {
                     switch (Minecart.LeftSideConnection[u])
                     {
-                        case 0: SetTrack(x - 1, y - 1, _world.Tiles[x - 1, y - 1], false, false, false); break;
-                        case 1: SetTrack(x - 1, y, _world.Tiles[x - 1, y], false, false, false); break;
-                        case 2: SetTrack(x - 1, y + 1, _world.Tiles[x - 1, y + 1], false, false, false); break;
+                        case 0: SetTrack(x - 1, y - 1, ref _world.Tiles[x - 1, y - 1], false, false, false); break;
+                        case 1: SetTrack(x - 1, y, ref _world.Tiles[x - 1, y], false, false, false); break;
+                        case 2: SetTrack(x - 1, y + 1, ref _world.Tiles[x - 1, y + 1], false, false, false); break;
                     }
                     switch (Minecart.RightSideConnection[u])
                     {
-                        case 0: SetTrack(x + 1, y - 1, _world.Tiles[x + 1, y - 1], false, false, false); break;
-                        case 1: SetTrack(x + 1, y, _world.Tiles[x + 1, y], false, false, false); break;
-                        case 2: SetTrack(x + 1, y + 1, _world.Tiles[x + 1, y + 1], false, false, false); break;
+                        case 0: SetTrack(x + 1, y - 1, ref _world.Tiles[x + 1, y - 1], false, false, false); break;
+                        case 1: SetTrack(x + 1, y, ref _world.Tiles[x + 1, y], false, false, false); break;
+                        case 2: SetTrack(x + 1, y + 1, ref _world.Tiles[x + 1, y + 1], false, false, false); break;
                     }
                 }
                 if (v > 0)
                 {
                     switch (Minecart.LeftSideConnection[v])
                     {
-                        case 0: SetTrack(x - 1, y - 1, _world.Tiles[x - 1, y - 1], false, false, false); break;
-                        case 1: SetTrack(x - 1, y, _world.Tiles[x - 1, y], false, false, false); break;
-                        case 2: SetTrack(x - 1, y + 1, _world.Tiles[x - 1, y + 1], false, false, false); break;
+                        case 0: SetTrack(x - 1, y - 1, ref _world.Tiles[x - 1, y - 1], false, false, false); break;
+                        case 1: SetTrack(x - 1, y, ref _world.Tiles[x - 1, y], false, false, false); break;
+                        case 2: SetTrack(x - 1, y + 1, ref _world.Tiles[x - 1, y + 1], false, false, false); break;
                     }
                     switch (Minecart.RightSideConnection[v])
                     {
-                        case 0: SetTrack(x + 1, y - 1, _world.Tiles[x + 1, y - 1], false, false, false); break;
-                        case 1: SetTrack(x + 1, y, _world.Tiles[x + 1, y], false, false, false); break;
-                        case 2: SetTrack(x + 1, y + 1, _world.Tiles[x + 1, y + 1], false, false, false); break;
+                        case 0: SetTrack(x + 1, y - 1, ref _world.Tiles[x + 1, y - 1], false, false, false); break;
+                        case 1: SetTrack(x + 1, y, ref _world.Tiles[x + 1, y], false, false, false); break;
+                        case 2: SetTrack(x + 1, y + 1, ref _world.Tiles[x + 1, y + 1], false, false, false); break;
                     }
                 }
             }
             else
             {
                 int num = 0;
-                if (_world.Tiles[x - 1, y - 1] != null && _world.Tiles[x - 1, y - 1].Type == 314)
+                if (_world.Tiles[x - 1, y - 1].Type == 314)
                     num++;
-                if (_world.Tiles[x - 1, y] != null && _world.Tiles[x - 1, y].Type == 314)
+                if (_world.Tiles[x - 1, y].Type == 314)
                     num += 2;
-                if (_world.Tiles[x - 1, y + 1] != null && _world.Tiles[x - 1, y + 1].Type == 314)
+                if (_world.Tiles[x - 1, y + 1].Type == 314)
                     num += 4;
-                if (_world.Tiles[x + 1, y - 1] != null && _world.Tiles[x + 1, y - 1].Type == 314)
+                if (_world.Tiles[x + 1, y - 1].Type == 314)
                     num += 8;
-                if (_world.Tiles[x + 1, y] != null && _world.Tiles[x + 1, y].Type == 314)
+                if (_world.Tiles[x + 1, y].Type == 314)
                     num += 16;
-                if (_world.Tiles[x + 1, y + 1] != null && _world.Tiles[x + 1, y + 1].Type == 314)
+                if (_world.Tiles[x + 1, y + 1].Type == 314)
                     num += 32;
                 int Front = curTile.U;
                 int Back = curTile.V;
@@ -486,15 +485,15 @@ public class WorldEditor : IDisposable
                     {
                         switch (Minecart.LeftSideConnection[curTile.U])
                         {
-                            case 0: SetTrack(x - 1, y - 1, _world.Tiles[x - 1, y - 1], false, false, false); break;
-                            case 1: SetTrack(x - 1, y, _world.Tiles[x - 1, y], false, false, false); break;
-                            case 2: SetTrack(x - 1, y + 1, _world.Tiles[x - 1, y + 1], false, false, false); break;
+                            case 0: SetTrack(x - 1, y - 1, ref _world.Tiles[x - 1, y - 1], false, false, false); break;
+                            case 1: SetTrack(x - 1, y, ref _world.Tiles[x - 1, y], false, false, false); break;
+                            case 2: SetTrack(x - 1, y + 1, ref _world.Tiles[x - 1, y + 1], false, false, false); break;
                         }
                         switch (Minecart.RightSideConnection[curTile.U])
                         {
-                            case 0: SetTrack(x + 1, y - 1, _world.Tiles[x + 1, y - 1], false, false, false); break;
-                            case 1: SetTrack(x + 1, y, _world.Tiles[x + 1, y], false, false, false); break;
-                            case 2: SetTrack(x + 1, y + 1, _world.Tiles[x + 1, y + 1], false, false, false); break;
+                            case 0: SetTrack(x + 1, y - 1, ref _world.Tiles[x + 1, y - 1], false, false, false); break;
+                            case 1: SetTrack(x + 1, y, ref _world.Tiles[x + 1, y], false, false, false); break;
+                            case 2: SetTrack(x + 1, y + 1, ref _world.Tiles[x + 1, y + 1], false, false, false); break;
                         }
                     }
                 }
@@ -507,15 +506,15 @@ public class WorldEditor : IDisposable
                     {
                         switch (Minecart.LeftSideConnection[curTile.V])
                         {
-                            case 0: SetTrack(x - 1, y - 1, _world.Tiles[x - 1, y - 1], false, false, false); break;
-                            case 1: SetTrack(x - 1, y, _world.Tiles[x - 1, y], false, false, false); break;
-                            case 2: SetTrack(x - 1, y + 1, _world.Tiles[x - 1, y + 1], false, false, false); break;
+                            case 0: SetTrack(x - 1, y - 1, ref _world.Tiles[x - 1, y - 1], false, false, false); break;
+                            case 1: SetTrack(x - 1, y, ref _world.Tiles[x - 1, y], false, false, false); break;
+                            case 2: SetTrack(x - 1, y + 1, ref _world.Tiles[x - 1, y + 1], false, false, false); break;
                         }
                         switch (Minecart.RightSideConnection[curTile.V])
                         {
-                            case 0: SetTrack(x + 1, y - 1, _world.Tiles[x + 1, y - 1], false, false, false); break;
-                            case 1: SetTrack(x + 1, y, _world.Tiles[x + 1, y], false, false, false); break;
-                            case 2: SetTrack(x + 1, y + 1, _world.Tiles[x + 1, y + 1], false, false, false); break;
+                            case 0: SetTrack(x + 1, y - 1, ref _world.Tiles[x + 1, y - 1], false, false, false); break;
+                            case 1: SetTrack(x + 1, y, ref _world.Tiles[x + 1, y], false, false, false); break;
+                            case 2: SetTrack(x + 1, y + 1, ref _world.Tiles[x + 1, y + 1], false, false, false); break;
                         }
                     }
                 }
@@ -529,8 +528,7 @@ public class WorldEditor : IDisposable
             for (int ty = y - 1; ty >= y - tunnelHeight; ty--)
             {
                 if (ty < 0 || ty >= _world.TilesHigh) continue;
-                Tile above = _world.Tiles[x, ty];
-                if (above == null) continue;
+                ref Tile above = ref _world.Tiles[x, ty];
                 if (above.Type == 314) continue; // don't destroy parallel tracks
 
                 if (above.IsActive)
@@ -582,8 +580,8 @@ public class WorldEditor : IDisposable
     {
         if (x < 1 || y < 1 || x >= _world.TilesWide - 1 || y >= _world.TilesHigh - 1) return;
 
-        Tile t = _world.Tiles[x, y];
-        if (t == null || !t.IsActive) return;
+        ref Tile t = ref _world.Tiles[x, y];
+        if (!t.IsActive) return;
 
         var tp = WorldConfiguration.GetTileProperties(t.Type);
         if (tp.IsFramed || t.LiquidType != LiquidType.None) return;
@@ -624,7 +622,7 @@ public class WorldEditor : IDisposable
         if (x < 0 || y < 0 || x >= _world.TilesWide || y >= _world.TilesHigh)
             return false;
         Tile t = _world.Tiles[x, y];
-        return t != null && t.IsActive && IsSolidNonFramed(t);
+        return t.IsActive && IsSolidNonFramed(t);
     }
 
     private bool IsSolidNonFramed(Tile t)
@@ -634,7 +632,7 @@ public class WorldEditor : IDisposable
         return prop.IsSolid && !prop.IsFramed;
     }
 
-    private void SetPlatform(int x, int y, Tile curTile, bool erase)
+    private void SetPlatform(int x, int y, ref Tile curTile, bool erase)
     {
         if (x <= 0 || y <= 0 || x >= _world.TilesWide - 1 || y >= _world.TilesHigh - 1)
             return;
@@ -643,7 +641,7 @@ public class WorldEditor : IDisposable
         {
             if (curTile.IsActive && curTile.Type == 19)
             {
-                SetPixelAutomatic(curTile, tile: -1, u: 0, v: 0);
+                SetPixelAutomatic(ref curTile, tile: -1, u: 0, v: 0);
                 ReframePlatformNeighbors(x, y);
             }
             return;
@@ -686,8 +684,8 @@ public class WorldEditor : IDisposable
     private void ReframePlatform(int x, int y)
     {
         if (x < 0 || y < 0 || x >= _world.TilesWide || y >= _world.TilesHigh) return;
-        Tile t = _world.Tiles[x, y];
-        if (t == null || !t.IsActive || t.Type != 19) return;
+        ref Tile t = ref _world.Tiles[x, y];
+        if (!t.IsActive || t.Type != 19) return;
 
         // Don't reframe stair tiles (column >= 8) — they are user-controlled
         int currentCol = t.U / 18;
@@ -705,7 +703,7 @@ public class WorldEditor : IDisposable
     {
         if (x < 0 || y < 0 || x >= _world.TilesWide || y >= _world.TilesHigh) return false;
         var t = _world.Tiles[x, y];
-        return t != null && t.IsActive && t.Type == 19;
+        return t.IsActive && t.Type == 19;
     }
 
     /// <summary>
@@ -730,7 +728,7 @@ public class WorldEditor : IDisposable
     }
 
     private void SetPixelAutomatic(
-        Tile curTile,
+        ref Tile curTile,
         int? tile = null,
         int? wall = null,
         byte? liquid = null,
@@ -1075,7 +1073,7 @@ public class WorldEditor : IDisposable
                 if (selectionOnly && !_selection.IsValid(x, y)) continue;
 
                 Tile curTile = _world.Tiles[x, y];
-                if (curTile == null || !MaskSettings.Passes(curTile)) continue;
+                if (!MaskSettings.Passes(curTile)) continue;
 
                 _undo.SaveTile(_world, x, y);
                 SetPixel(x, y);

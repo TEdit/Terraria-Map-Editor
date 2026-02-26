@@ -876,7 +876,7 @@ public partial class World
         {
             if (y + i >= TilesHigh) break;
             var tile = Tiles[x, y + i];
-            if (tile == null || !tile.IsActive) continue;
+            if (!tile.IsActive) continue;
 
             switch (tile.Type)
             {
@@ -962,7 +962,7 @@ public partial class World
         {
             if (y + i >= TilesHigh) break;
             var tile = Tiles[x, y + i];
-            if (tile == null || !tile.IsActive) continue;
+            if (!tile.IsActive) continue;
 
             switch (tile.Type)
             {

@@ -127,10 +127,7 @@ public static class WallFraming
         if (x < 0 || y < 0 || x >= world.TilesWide || y >= world.TilesHigh)
             return false;
 
-        Tile tile = world.Tiles[x, y];
-        if (tile == null)
-            return false;
-
+        ref Tile tile = ref world.Tiles[x, y];
         return tile.Wall > 0 || (tile.IsActive && TruncatesWallsTileIds.Contains(tile.Type));
     }
 
