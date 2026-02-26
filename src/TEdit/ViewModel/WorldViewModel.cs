@@ -905,7 +905,7 @@ public partial class WorldViewModel : ReactiveObject
 
     public static string TempPath
     {
-        get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TEdit"); }
+        get { return AppDataPaths.DataDir; }
     }
 
     public static string AutoSavePath

@@ -12,8 +12,7 @@ namespace TEdit.Configuration;
 public static class WorldViewStateManager
 {
     private static readonly string StatePath = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-        "TEdit", "worldViewState.json");
+        AppDataPaths.DataDir, "worldViewState.json");
 
     private static Dictionary<string, WorldViewState> _states;
     private static bool _dirty;
