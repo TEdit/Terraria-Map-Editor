@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -262,14 +262,8 @@
   <data name="BrushShape_Triangle" xml:space="preserve">
     <value>مثلث</value>
   </data>
-  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
-    <value>مسح جميع العناصر</value>
-  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>ماكس</value>
-  </data>
-  <data name="common_browse" xml:space="preserve">
-    <value>تصفح...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>إلغاء الأمر</value>
@@ -310,12 +304,6 @@
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>محتوى Terraria لم يتم العثور عليه</value>
-  </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Wire 45°</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Wire 90°</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>تحليل</value>
@@ -491,14 +479,26 @@
   <data name="MaskMode_Off" xml:space="preserve">
     <value>تعطيل القناع</value>
   </data>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>انطلق</value>
+  </data>
   <data name="MaskPreset_Custom" xml:space="preserve">
     <value>Match Custom</value>
   </data>
   <data name="MaskPreset_ExactMatch" xml:space="preserve">
     <value>Match All</value>
   </data>
-  <data name="MaskPreset_Off" xml:space="preserve">
-    <value>انطلق</value>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
   </data>
   <data name="mask_clear_all" xml:space="preserve">
     <value>Clear All</value>
@@ -999,15 +999,6 @@
   <data name="newworld_width" xml:space="preserve">
     <value>عرض</value>
   </data>
-  <data name="npc_label_partying" xml:space="preserve">
-    <value>الحفلات</value>
-  </data>
-  <data name="npc_label_shimmered" xml:space="preserve">
-    <value>تلألأ</value>
-  </data>
-  <data name="npc_search_placeholder" xml:space="preserve">
-    <value>بحث...</value>
-  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>سائل</value>
   </data>
@@ -1026,80 +1017,11 @@
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>سلك</value>
   </data>
-  <data name="palette_mask_section" xml:space="preserve">
-    <value>Mask Options</value>
-  </data>
-  <data name="palette_tile_section" xml:space="preserve">
-    <value>Tile Picker</value>
-  </data>
-  <data name="palette_title" xml:space="preserve">
-    <value>Palette</value>
-  </data>
-  <data name="paste_tooltip_accept" xml:space="preserve">
-    <value>اقبل (إدخال)</value>
-  </data>
-  <data name="paste_tooltip_cancel" xml:space="preserve">
-    <value>إلغاء (Esc)</value>
-  </data>
-  <data name="paste_tooltip_flip_h" xml:space="preserve">
-    <value>التحول الأفقي (Ctrl+H)</value>
-  </data>
-  <data name="paste_tooltip_flip_v" xml:space="preserve">
-    <value>التحول العمودي (Ctrl+Shift+H)</value>
-  </data>
-  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
-    <value>تدوير CCW (Ctrl+Shift+Q)</value>
-  </data>
-  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
-    <value>تدوير CW (Ctrl+Q)</value>
-  </data>
   <data name="picker_check_all_tooltip" xml:space="preserve">
     <value>تحقق من جميع العناصر الظاهرة</value>
   </data>
-  <data name="picker_search_items_placeholder" xml:space="preserve">
-    <value>ابحث في العناصر...</value>
-  </data>
-  <data name="picker_search_platforms_placeholder" xml:space="preserve">
-    <value>منصات البحث...</value>
-  </data>
-  <data name="picker_search_prefix_placeholder" xml:space="preserve">
-    <value>بادئة</value>
-  </data>
-  <data name="picker_search_sprites_placeholder" xml:space="preserve">
-    <value>رسومات البحث...</value>
-  </data>
-  <data name="picker_search_tiles_placeholder" xml:space="preserve">
-    <value>بلاطات البحث...</value>
-  </data>
-  <data name="picker_search_walls_placeholder" xml:space="preserve">
-    <value>جدران البحث...</value>
-  </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>إلغاء تحديد جميع العناصر الظاهرة</value>
-  </data>
-  <data name="player_buff_clear_tooltip" xml:space="preserve">
-    <value>واضح</value>
-  </data>
-  <data name="player_buff_edit_selected" xml:space="preserve">
-    <value>تعديل التعزيز المختار</value>
-  </data>
-  <data name="player_buff_label_time" xml:space="preserve">
-    <value>الوقت:</value>
-  </data>
-  <data name="player_buff_label_type" xml:space="preserve">
-    <value>النوع:</value>
-  </data>
-  <data name="player_difficulty_classic" xml:space="preserve">
-    <value>الكلاسيكي</value>
-  </data>
-  <data name="player_difficulty_hardcore" xml:space="preserve">
-    <value>هاردكور</value>
-  </data>
-  <data name="player_difficulty_journey" xml:space="preserve">
-    <value>رحلة</value>
-  </data>
-  <data name="player_difficulty_mediumcore" xml:space="preserve">
-    <value>المتوسط النواة</value>
   </data>
   <data name="player_editor_appearance_colors" xml:space="preserve">
     <value>ألوان المظهر</value>
@@ -1184,126 +1106,6 @@
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
     <value>لون القميص الداخلي</value>
-  </data>
-  <data name="player_equip_label_dye" xml:space="preserve">
-    <value>صبغة</value>
-  </data>
-  <data name="player_equip_label_edit_item" xml:space="preserve">
-    <value>تعديل البند</value>
-  </data>
-  <data name="player_equip_label_equipment" xml:space="preserve">
-    <value>المعدات</value>
-  </data>
-  <data name="player_equip_label_misc" xml:space="preserve">
-    <value>معدات متنوعة</value>
-  </data>
-  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
-    <value>رؤية تبديل التبديل</value>
-  </data>
-  <data name="player_journey_research_sacrifices" xml:space="preserve">
-    <value>تضحيات البحث</value>
-  </data>
-  <data name="player_journey_total_researched" xml:space="preserve">
-    <value>إجمالي المواد التي تم بحثها: {0}</value>
-  </data>
-  <data name="player_stats_angler_quests" xml:space="preserve">
-    <value>مهام الصياد:</value>
-  </data>
-  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
-    <value>أكل خبز الحرفيين</value>
-  </data>
-  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
-    <value>مشاعل النظام الطبيعي مفتوحة</value>
-  </data>
-  <data name="player_stats_deaths_pve" xml:space="preserve">
-    <value>الوفيات (PvE):</value>
-  </data>
-  <data name="player_stats_deaths_pvp" xml:space="preserve">
-    <value>الوفيات (PvP):</value>
-  </data>
-  <data name="player_stats_extra_accessory" xml:space="preserve">
-    <value>الإكسسوار الإضافي</value>
-  </data>
-  <data name="player_stats_flags" xml:space="preserve">
-    <value>الأعلام</value>
-  </data>
-  <data name="player_stats_golfer_score" xml:space="preserve">
-    <value>نتيجة لاعب الغولف:</value>
-  </data>
-  <data name="player_stats_health" xml:space="preserve">
-    <value>الصحة</value>
-  </data>
-  <data name="player_stats_hp" xml:space="preserve">
-    <value>HP:</value>
-  </data>
-  <data name="player_stats_mana" xml:space="preserve">
-    <value>مانا</value>
-  </data>
-  <data name="player_stats_max" xml:space="preserve">
-    <value>ماكس:</value>
-  </data>
-  <data name="player_stats_mp" xml:space="preserve">
-    <value>MP:</value>
-  </data>
-  <data name="player_stats_show_armor" xml:space="preserve">
-    <value>درع العرض</value>
-  </data>
-  <data name="player_stats_spawn_points" xml:space="preserve">
-    <value>نقاط الظهور</value>
-  </data>
-  <data name="player_stats_statistics" xml:space="preserve">
-    <value>الإحصائيات</value>
-  </data>
-  <data name="player_stats_super_cart_enabled" xml:space="preserve">
-    <value>سوبر كارت مدعوم</value>
-  </data>
-  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
-    <value>السوبر كارت مفتوح</value>
-  </data>
-  <data name="player_stats_tax_money" xml:space="preserve">
-    <value>أموال الضرائب:</value>
-  </data>
-  <data name="player_stats_team" xml:space="preserve">
-    <value>الفريق:</value>
-  </data>
-  <data name="player_stats_team_blue" xml:space="preserve">
-    <value>أزرق</value>
-  </data>
-  <data name="player_stats_team_green" xml:space="preserve">
-    <value>أخضر</value>
-  </data>
-  <data name="player_stats_team_none" xml:space="preserve">
-    <value>لا أحد</value>
-  </data>
-  <data name="player_stats_team_pink" xml:space="preserve">
-    <value>وردي</value>
-  </data>
-  <data name="player_stats_team_red" xml:space="preserve">
-    <value>أحمر</value>
-  </data>
-  <data name="player_stats_team_yellow" xml:space="preserve">
-    <value>أصفر</value>
-  </data>
-  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
-    <value>كريستال إيجيس المستخدم</value>
-  </data>
-  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
-    <value>فاكهة إيجيس المستخدمة</value>
-  </data>
-  <data name="player_stats_used_ambrosia" xml:space="preserve">
-    <value>أمبروزيا مستعملة</value>
-  </data>
-  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
-    <value>البلورة السحرية المستخدمة</value>
-  </data>
-  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
-    <value>لؤلؤة المجرة المستعملة</value>
-  </data>
-  <data name="player_stats_used_gummy_worm" xml:space="preserve">
-    <value>دودة الجيلاك المستعملة</value>
-  </data>
-  <data name="player_stats_using_biome_torches" xml:space="preserve">
-    <value>استخدام مشاعل البييوم</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>اختر نسخة للحفظ بالتالي:</value>
@@ -1598,9 +1400,6 @@
   <data name="sidebar_mask_tooltip" xml:space="preserve">
     <value>Masks</value>
   </data>
-  <data name="sidebar_palette_tooltip" xml:space="preserve">
-    <value>Palette</value>
-  </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>البرمجة</value>
   </data>
@@ -1724,32 +1523,17 @@
   <data name="sprite_biome_label" xml:space="preserve">
     <value>النظام البيئي:</value>
   </data>
-  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
-    <value>اختيار واضح</value>
-  </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>راووق</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
     <value>راووق: </value>
   </data>
-  <data name="sprite_size_label" xml:space="preserve">
-    <value>الحجم:</value>
-  </data>
-  <data name="sprite_styles_format" xml:space="preserve">
-    <value>{0} الأساليب</value>
-  </data>
   <data name="sprite_styletype" xml:space="preserve">
     <value>نمط</value>
   </data>
-  <data name="sprite_style_format" xml:space="preserve">
-    <value>الأسلوب: {0}</value>
-  </data>
   <data name="sprite_tiletype" xml:space="preserve">
     <value>مرشح نوع البلاط</value>
-  </data>
-  <data name="sprite_tile_id_format" xml:space="preserve">
-    <value>معرف البلاط: {0}</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>اضافيه</value>
@@ -1852,9 +1636,6 @@
   <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
     <value>قلب أفقي</value>
   </data>
-  <data name="tool_brush_flip_label" xml:space="preserve">
-    <value>فليب</value>
-  </data>
   <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
     <value>قلب عمودي</value>
   </data>
@@ -1863,9 +1644,6 @@
   </data>
   <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
     <value>العرض المربع والارتفاع</value>
-  </data>
-  <data name="tool_brush_outline_label" xml:space="preserve">
-    <value>خط</value>
   </data>
   <data name="tool_brush_outline_thickness_label" xml:space="preserve">
     <value>خط</value>
@@ -1911,12 +1689,6 @@
   </data>
   <data name="tool_clipboard_importschematic" xml:space="preserve">
     <value>استيراد تخطيطي أو صورة</value>
-  </data>
-  <data name="tool_clipboard_instant_paste" xml:space="preserve">
-    <value>المعجون الفوري</value>
-  </data>
-  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
-    <value>الصق القرص فورا عند النقر دون الحاجة للسحب إلى الوضع</value>
   </data>
   <data name="tool_clipboard_ispasteempty" xml:space="preserve">
     <value>لصق المربعات الفارغة</value>
@@ -2110,12 +1882,6 @@
   <data name="tool_paint_wire_blue" xml:space="preserve">
     <value>أزرق</value>
   </data>
-  <data name="tool_paint_wire_chain" xml:space="preserve">
-    <value>السلسلة</value>
-  </data>
-  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
-    <value>تابع الرسم من نهاية الجزء الأخير</value>
-  </data>
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>أخضر</value>
   </data>
@@ -2128,9 +1894,6 @@
   <data name="tool_paint_wire_replace_header" xml:space="preserve">
     <value>استبدال الأسلاك</value>
   </data>
-  <data name="tool_paint_wire_route" xml:space="preserve">
-    <value>المسار</value>
-  </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>أصفر</value>
   </data>
@@ -2139,6 +1902,12 @@
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>قلم</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>منتقي - حدد لون البلاط</value>
@@ -2791,9 +2560,6 @@
   <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
     <value>هناك نسخة احتياطية موجودة</value>
   </data>
-  <data name="world_explorer_browse" xml:space="preserve">
-    <value>تصفح...</value>
-  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>الأبعاد</value>
   </data>
@@ -2848,13 +2614,247 @@
   <data name="world_explorer_title" xml:space="preserve">
     <value>مستكشف العالم</value>
   </data>
-  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
-    <value>تبديل المفضل</value>
-  </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>إلغاء التثبيت</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
+  </data>
+  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
+    <value>مسح جميع العناصر</value>
+  </data>
+  <data name="common_browse" xml:space="preserve">
+    <value>تصفح...</value>
+  </data>
+  <data name="npc_label_partying" xml:space="preserve">
+    <value>الحفلات</value>
+  </data>
+  <data name="npc_label_shimmered" xml:space="preserve">
+    <value>تلألأ</value>
+  </data>
+  <data name="npc_search_placeholder" xml:space="preserve">
+    <value>بحث...</value>
+  </data>
+  <data name="paste_tooltip_accept" xml:space="preserve">
+    <value>اقبل (إدخال)</value>
+  </data>
+  <data name="paste_tooltip_cancel" xml:space="preserve">
+    <value>إلغاء (Esc)</value>
+  </data>
+  <data name="paste_tooltip_flip_h" xml:space="preserve">
+    <value>التحول الأفقي (Ctrl+H)</value>
+  </data>
+  <data name="paste_tooltip_flip_v" xml:space="preserve">
+    <value>التحول العمودي (Ctrl+Shift+H)</value>
+  </data>
+  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
+    <value>تدوير CCW (Ctrl+Shift+Q)</value>
+  </data>
+  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
+    <value>تدوير CW (Ctrl+Q)</value>
+  </data>
+  <data name="picker_search_items_placeholder" xml:space="preserve">
+    <value>ابحث في العناصر...</value>
+  </data>
+  <data name="picker_search_platforms_placeholder" xml:space="preserve">
+    <value>منصات البحث...</value>
+  </data>
+  <data name="picker_search_prefix_placeholder" xml:space="preserve">
+    <value>بادئة</value>
+  </data>
+  <data name="picker_search_sprites_placeholder" xml:space="preserve">
+    <value>رسومات البحث...</value>
+  </data>
+  <data name="picker_search_tiles_placeholder" xml:space="preserve">
+    <value>بلاطات البحث...</value>
+  </data>
+  <data name="picker_search_walls_placeholder" xml:space="preserve">
+    <value>جدران البحث...</value>
+  </data>
+  <data name="player_buff_clear_tooltip" xml:space="preserve">
+    <value>واضح</value>
+  </data>
+  <data name="player_buff_edit_selected" xml:space="preserve">
+    <value>تعديل التعزيز المختار</value>
+  </data>
+  <data name="player_buff_label_time" xml:space="preserve">
+    <value>الوقت:</value>
+  </data>
+  <data name="player_buff_label_type" xml:space="preserve">
+    <value>النوع:</value>
+  </data>
+  <data name="player_difficulty_classic" xml:space="preserve">
+    <value>الكلاسيكي</value>
+  </data>
+  <data name="player_difficulty_hardcore" xml:space="preserve">
+    <value>هاردكور</value>
+  </data>
+  <data name="player_difficulty_journey" xml:space="preserve">
+    <value>رحلة</value>
+  </data>
+  <data name="player_difficulty_mediumcore" xml:space="preserve">
+    <value>المتوسط النواة</value>
+  </data>
+  <data name="player_equip_label_dye" xml:space="preserve">
+    <value>صبغة</value>
+  </data>
+  <data name="player_equip_label_edit_item" xml:space="preserve">
+    <value>تعديل البند</value>
+  </data>
+  <data name="player_equip_label_equipment" xml:space="preserve">
+    <value>المعدات</value>
+  </data>
+  <data name="player_equip_label_misc" xml:space="preserve">
+    <value>معدات متنوعة</value>
+  </data>
+  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
+    <value>رؤية تبديل التبديل</value>
+  </data>
+  <data name="player_journey_research_sacrifices" xml:space="preserve">
+    <value>تضحيات البحث</value>
+  </data>
+  <data name="player_journey_total_researched" xml:space="preserve">
+    <value>إجمالي المواد التي تم بحثها: {0}</value>
+  </data>
+  <data name="player_stats_angler_quests" xml:space="preserve">
+    <value>مهام الصياد:</value>
+  </data>
+  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
+    <value>أكل خبز الحرفيين</value>
+  </data>
+  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
+    <value>مشاعل النظام الطبيعي مفتوحة</value>
+  </data>
+  <data name="player_stats_deaths_pve" xml:space="preserve">
+    <value>الوفيات (PvE):</value>
+  </data>
+  <data name="player_stats_deaths_pvp" xml:space="preserve">
+    <value>الوفيات (PvP):</value>
+  </data>
+  <data name="player_stats_extra_accessory" xml:space="preserve">
+    <value>الإكسسوار الإضافي</value>
+  </data>
+  <data name="player_stats_flags" xml:space="preserve">
+    <value>الأعلام</value>
+  </data>
+  <data name="player_stats_golfer_score" xml:space="preserve">
+    <value>نتيجة لاعب الغولف:</value>
+  </data>
+  <data name="player_stats_health" xml:space="preserve">
+    <value>الصحة</value>
+  </data>
+  <data name="player_stats_hp" xml:space="preserve">
+    <value>HP:</value>
+  </data>
+  <data name="player_stats_mana" xml:space="preserve">
+    <value>مانا</value>
+  </data>
+  <data name="player_stats_max" xml:space="preserve">
+    <value>ماكس:</value>
+  </data>
+  <data name="player_stats_mp" xml:space="preserve">
+    <value>MP:</value>
+  </data>
+  <data name="player_stats_show_armor" xml:space="preserve">
+    <value>درع العرض</value>
+  </data>
+  <data name="player_stats_spawn_points" xml:space="preserve">
+    <value>نقاط الظهور</value>
+  </data>
+  <data name="player_stats_statistics" xml:space="preserve">
+    <value>الإحصائيات</value>
+  </data>
+  <data name="player_stats_super_cart_enabled" xml:space="preserve">
+    <value>سوبر كارت مدعوم</value>
+  </data>
+  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
+    <value>السوبر كارت مفتوح</value>
+  </data>
+  <data name="player_stats_tax_money" xml:space="preserve">
+    <value>أموال الضرائب:</value>
+  </data>
+  <data name="player_stats_team" xml:space="preserve">
+    <value>الفريق:</value>
+  </data>
+  <data name="player_stats_team_blue" xml:space="preserve">
+    <value>أزرق</value>
+  </data>
+  <data name="player_stats_team_green" xml:space="preserve">
+    <value>أخضر</value>
+  </data>
+  <data name="player_stats_team_none" xml:space="preserve">
+    <value>لا أحد</value>
+  </data>
+  <data name="player_stats_team_pink" xml:space="preserve">
+    <value>وردي</value>
+  </data>
+  <data name="player_stats_team_red" xml:space="preserve">
+    <value>أحمر</value>
+  </data>
+  <data name="player_stats_team_yellow" xml:space="preserve">
+    <value>أصفر</value>
+  </data>
+  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
+    <value>كريستال إيجيس المستخدم</value>
+  </data>
+  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
+    <value>فاكهة إيجيس المستخدمة</value>
+  </data>
+  <data name="player_stats_used_ambrosia" xml:space="preserve">
+    <value>أمبروزيا مستعملة</value>
+  </data>
+  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
+    <value>البلورة السحرية المستخدمة</value>
+  </data>
+  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
+    <value>لؤلؤة المجرة المستعملة</value>
+  </data>
+  <data name="player_stats_used_gummy_worm" xml:space="preserve">
+    <value>دودة الجيلاك المستعملة</value>
+  </data>
+  <data name="player_stats_using_biome_torches" xml:space="preserve">
+    <value>استخدام مشاعل البييوم</value>
+  </data>
+  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
+    <value>اختيار واضح</value>
+  </data>
+  <data name="sprite_size_label" xml:space="preserve">
+    <value>الحجم:</value>
+  </data>
+  <data name="sprite_tile_id_format" xml:space="preserve">
+    <value>معرف البلاط: {0}</value>
+  </data>
+  <data name="sprite_styles_format" xml:space="preserve">
+    <value>{0} الأساليب</value>
+  </data>
+  <data name="sprite_style_format" xml:space="preserve">
+    <value>الأسلوب: {0}</value>
+  </data>
+  <data name="tool_brush_flip_label" xml:space="preserve">
+    <value>فليب</value>
+  </data>
+  <data name="tool_brush_outline_label" xml:space="preserve">
+    <value>خط</value>
+  </data>
+  <data name="tool_clipboard_instant_paste" xml:space="preserve">
+    <value>المعجون الفوري</value>
+  </data>
+  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
+    <value>الصق القرص فورا عند النقر دون الحاجة للسحب إلى الوضع</value>
+  </data>
+  <data name="tool_paint_wire_chain" xml:space="preserve">
+    <value>السلسلة</value>
+  </data>
+  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
+    <value>تابع الرسم من نهاية الجزء الأخير</value>
+  </data>
+  <data name="tool_paint_wire_route" xml:space="preserve">
+    <value>المسار</value>
+  </data>
+  <data name="world_explorer_browse" xml:space="preserve">
+    <value>تصفح...</value>
+  </data>
+  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
+    <value>تبديل المفضل</value>
   </data>
 </root>

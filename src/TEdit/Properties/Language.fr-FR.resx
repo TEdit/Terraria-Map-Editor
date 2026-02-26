@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -262,14 +262,8 @@
   <data name="BrushShape_Triangle" xml:space="preserve">
     <value>Triangle</value>
   </data>
-  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
-    <value>Effacer tous les éléments</value>
-  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
-  </data>
-  <data name="common_browse" xml:space="preserve">
-    <value>Parcourez...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>Annuler</value>
@@ -310,12 +304,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Contenu Terraria non trouvé</value>
-  </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Wire 45°</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Wire 90°</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analyse</value>
@@ -491,14 +479,26 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Désactiver le masque</value>
   </data>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
   <data name="MaskPreset_Custom" xml:space="preserve">
     <value>Match Custom</value>
   </data>
   <data name="MaskPreset_ExactMatch" xml:space="preserve">
     <value>Match All</value>
   </data>
-  <data name="MaskPreset_Off" xml:space="preserve">
-    <value>Off</value>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
   </data>
   <data name="mask_clear_all" xml:space="preserve">
     <value>Clear All</value>
@@ -999,15 +999,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="newworld_width" xml:space="preserve">
     <value>Largeur</value>
   </data>
-  <data name="npc_label_partying" xml:space="preserve">
-    <value>Fête</value>
-  </data>
-  <data name="npc_label_shimmered" xml:space="preserve">
-    <value>Scintillait</value>
-  </data>
-  <data name="npc_search_placeholder" xml:space="preserve">
-    <value>Chercher...</value>
-  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Liquide</value>
   </data>
@@ -1026,80 +1017,11 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Fil</value>
   </data>
-  <data name="palette_mask_section" xml:space="preserve">
-    <value>Mask Options</value>
-  </data>
-  <data name="palette_tile_section" xml:space="preserve">
-    <value>Tile Picker</value>
-  </data>
-  <data name="palette_title" xml:space="preserve">
-    <value>Palette</value>
-  </data>
-  <data name="paste_tooltip_accept" xml:space="preserve">
-    <value>Accepter (Entrer)</value>
-  </data>
-  <data name="paste_tooltip_cancel" xml:space="preserve">
-    <value>Annuler (Esc)</value>
-  </data>
-  <data name="paste_tooltip_flip_h" xml:space="preserve">
-    <value>Basculer horizontalement (Ctrl+H)</value>
-  </data>
-  <data name="paste_tooltip_flip_v" xml:space="preserve">
-    <value>Retourner vertical (Ctrl+Shift+H)</value>
-  </data>
-  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
-    <value>Faire pivoter le CCW (Ctrl+Shift+Q)</value>
-  </data>
-  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
-    <value>Faire pivoter CW (Ctrl+Q)</value>
-  </data>
   <data name="picker_check_all_tooltip" xml:space="preserve">
     <value>Vérifiez tous les objets visibles</value>
   </data>
-  <data name="picker_search_items_placeholder" xml:space="preserve">
-    <value>Fouiller les choses...</value>
-  </data>
-  <data name="picker_search_platforms_placeholder" xml:space="preserve">
-    <value>Plateformes de recherche...</value>
-  </data>
-  <data name="picker_search_prefix_placeholder" xml:space="preserve">
-    <value>Préfixe</value>
-  </data>
-  <data name="picker_search_sprites_placeholder" xml:space="preserve">
-    <value>Chercher des sprites...</value>
-  </data>
-  <data name="picker_search_tiles_placeholder" xml:space="preserve">
-    <value>Tuiles de recherche...</value>
-  </data>
-  <data name="picker_search_walls_placeholder" xml:space="preserve">
-    <value>Murs de recherche...</value>
-  </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Décochez tous les éléments visibles</value>
-  </data>
-  <data name="player_buff_clear_tooltip" xml:space="preserve">
-    <value>Clair</value>
-  </data>
-  <data name="player_buff_edit_selected" xml:space="preserve">
-    <value>Modifier Buff sélectionné</value>
-  </data>
-  <data name="player_buff_label_time" xml:space="preserve">
-    <value>Temps :</value>
-  </data>
-  <data name="player_buff_label_type" xml:space="preserve">
-    <value>Type :</value>
-  </data>
-  <data name="player_difficulty_classic" xml:space="preserve">
-    <value>Classique</value>
-  </data>
-  <data name="player_difficulty_hardcore" xml:space="preserve">
-    <value>Hardcore</value>
-  </data>
-  <data name="player_difficulty_journey" xml:space="preserve">
-    <value>Parcours</value>
-  </data>
-  <data name="player_difficulty_mediumcore" xml:space="preserve">
-    <value>Mediumcore</value>
   </data>
   <data name="player_editor_appearance_colors" xml:space="preserve">
     <value>Couleurs d’apparence</value>
@@ -1184,126 +1106,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="player_editor_undershirt_color" xml:space="preserve">
     <value>Couleur du maillot</value>
-  </data>
-  <data name="player_equip_label_dye" xml:space="preserve">
-    <value>Colorant</value>
-  </data>
-  <data name="player_equip_label_edit_item" xml:space="preserve">
-    <value>Modifier l’élément</value>
-  </data>
-  <data name="player_equip_label_equipment" xml:space="preserve">
-    <value>Équipement</value>
-  </data>
-  <data name="player_equip_label_misc" xml:space="preserve">
-    <value>Équipements divers</value>
-  </data>
-  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
-    <value>Basculer la visibilité</value>
-  </data>
-  <data name="player_journey_research_sacrifices" xml:space="preserve">
-    <value>Sacrifices de recherche</value>
-  </data>
-  <data name="player_journey_total_researched" xml:space="preserve">
-    <value>Total des éléments recherchés : {0}</value>
-  </data>
-  <data name="player_stats_angler_quests" xml:space="preserve">
-    <value>Quêtes de pêcheur :</value>
-  </data>
-  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
-    <value>A mangé du pain artisanal</value>
-  </data>
-  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
-    <value>Torches de biome débloquées</value>
-  </data>
-  <data name="player_stats_deaths_pve" xml:space="preserve">
-    <value>Décès (PvE) :</value>
-  </data>
-  <data name="player_stats_deaths_pvp" xml:space="preserve">
-    <value>Morts (PvP) :</value>
-  </data>
-  <data name="player_stats_extra_accessory" xml:space="preserve">
-    <value>Accessoire supplémentaire</value>
-  </data>
-  <data name="player_stats_flags" xml:space="preserve">
-    <value>Drapeaux</value>
-  </data>
-  <data name="player_stats_golfer_score" xml:space="preserve">
-    <value>Score du golfeur :</value>
-  </data>
-  <data name="player_stats_health" xml:space="preserve">
-    <value>Santé</value>
-  </data>
-  <data name="player_stats_hp" xml:space="preserve">
-    <value>PV :</value>
-  </data>
-  <data name="player_stats_mana" xml:space="preserve">
-    <value>Mana</value>
-  </data>
-  <data name="player_stats_max" xml:space="preserve">
-    <value>Max :</value>
-  </data>
-  <data name="player_stats_mp" xml:space="preserve">
-    <value>MP :</value>
-  </data>
-  <data name="player_stats_show_armor" xml:space="preserve">
-    <value>Armure de spectacle</value>
-  </data>
-  <data name="player_stats_spawn_points" xml:space="preserve">
-    <value>Points d’apparition</value>
-  </data>
-  <data name="player_stats_statistics" xml:space="preserve">
-    <value>Statistiques</value>
-  </data>
-  <data name="player_stats_super_cart_enabled" xml:space="preserve">
-    <value>Super Cartouche activée</value>
-  </data>
-  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
-    <value>Super Cartouche débloquée</value>
-  </data>
-  <data name="player_stats_tax_money" xml:space="preserve">
-    <value>Argent des impôts :</value>
-  </data>
-  <data name="player_stats_team" xml:space="preserve">
-    <value>Équipe :</value>
-  </data>
-  <data name="player_stats_team_blue" xml:space="preserve">
-    <value>Bleu</value>
-  </data>
-  <data name="player_stats_team_green" xml:space="preserve">
-    <value>Vert</value>
-  </data>
-  <data name="player_stats_team_none" xml:space="preserve">
-    <value>Aucun</value>
-  </data>
-  <data name="player_stats_team_pink" xml:space="preserve">
-    <value>Rose</value>
-  </data>
-  <data name="player_stats_team_red" xml:space="preserve">
-    <value>Rouge</value>
-  </data>
-  <data name="player_stats_team_yellow" xml:space="preserve">
-    <value>Jaune</value>
-  </data>
-  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
-    <value>Cristal Aegis utilisé</value>
-  </data>
-  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
-    <value>Fruit Aegis utilisé</value>
-  </data>
-  <data name="player_stats_used_ambrosia" xml:space="preserve">
-    <value>Ambroisie utilisée</value>
-  </data>
-  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
-    <value>Cristal d’arcane utilisé</value>
-  </data>
-  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
-    <value>Galaxy Pearl d’occasion</value>
-  </data>
-  <data name="player_stats_used_gummy_worm" xml:space="preserve">
-    <value>Ver gélifié utilisé</value>
-  </data>
-  <data name="player_stats_using_biome_torches" xml:space="preserve">
-    <value>Utilisation des torches de biome</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Sélectionnez une version à enregistrer sous le nom de :</value>
@@ -1598,9 +1400,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="sidebar_mask_tooltip" xml:space="preserve">
     <value>Masks</value>
   </data>
-  <data name="sidebar_palette_tooltip" xml:space="preserve">
-    <value>Palette</value>
-  </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>Scripting</value>
   </data>
@@ -1724,32 +1523,17 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="sprite_biome_label" xml:space="preserve">
     <value>Biome :</value>
   </data>
-  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
-    <value>Sélection claire</value>
-  </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Filtre</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
     <value>Filtre :</value>
   </data>
-  <data name="sprite_size_label" xml:space="preserve">
-    <value>Taille :</value>
-  </data>
-  <data name="sprite_styles_format" xml:space="preserve">
-    <value>{0} styles</value>
-  </data>
   <data name="sprite_styletype" xml:space="preserve">
     <value>Style</value>
   </data>
-  <data name="sprite_style_format" xml:space="preserve">
-    <value>Style : {0}</value>
-  </data>
   <data name="sprite_tiletype" xml:space="preserve">
     <value>Filtre de type tuile</value>
-  </data>
-  <data name="sprite_tile_id_format" xml:space="preserve">
-    <value>ID de la tuile : {0}</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
@@ -1852,9 +1636,6 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
     <value>Retournement horizontal</value>
   </data>
-  <data name="tool_brush_flip_label" xml:space="preserve">
-    <value>Flip</value>
-  </data>
   <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
     <value>Retournement vertical</value>
   </data>
@@ -1863,9 +1644,6 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   </data>
   <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
     <value>Largeur et hauteur carrées</value>
-  </data>
-  <data name="tool_brush_outline_label" xml:space="preserve">
-    <value>Résumé</value>
   </data>
   <data name="tool_brush_outline_thickness_label" xml:space="preserve">
     <value>Résumé</value>
@@ -1911,12 +1689,6 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   </data>
   <data name="tool_clipboard_importschematic" xml:space="preserve">
     <value>Importation de schéma ou d’image</value>
-  </data>
-  <data name="tool_clipboard_instant_paste" xml:space="preserve">
-    <value>Paste instantanée</value>
-  </data>
-  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
-    <value>Collez immédiatement au clic sans drag-to-position</value>
   </data>
   <data name="tool_clipboard_ispasteempty" xml:space="preserve">
     <value>Coller les tuiles vides</value>
@@ -2110,12 +1882,6 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="tool_paint_wire_blue" xml:space="preserve">
     <value>Bleu</value>
   </data>
-  <data name="tool_paint_wire_chain" xml:space="preserve">
-    <value>Chaîne</value>
-  </data>
-  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
-    <value>Continuez le dessin à partir de la fin du dernier segment</value>
-  </data>
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>Vert</value>
   </data>
@@ -2128,9 +1894,6 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="tool_paint_wire_replace_header" xml:space="preserve">
     <value>Remplacement de fil</value>
   </data>
-  <data name="tool_paint_wire_route" xml:space="preserve">
-    <value>Itinéraire</value>
-  </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>Jaune</value>
   </data>
@@ -2139,6 +1902,12 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>Crayon</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Sélectionneur - sélectionner la couleur de la tuile</value>
@@ -2791,9 +2560,6 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
     <value>Une sauvegarde existe</value>
   </data>
-  <data name="world_explorer_browse" xml:space="preserve">
-    <value>Parcourez...</value>
-  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>Dimensions</value>
   </data>
@@ -2848,13 +2614,247 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="world_explorer_title" xml:space="preserve">
     <value>Explorateur du monde</value>
   </data>
-  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
-    <value>Basculer les favoris</value>
-  </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Détacher</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corriger le fossé de fond</value>
+  </data>
+  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
+    <value>Effacer tous les éléments</value>
+  </data>
+  <data name="common_browse" xml:space="preserve">
+    <value>Parcourez...</value>
+  </data>
+  <data name="npc_label_partying" xml:space="preserve">
+    <value>Fête</value>
+  </data>
+  <data name="npc_label_shimmered" xml:space="preserve">
+    <value>Scintillait</value>
+  </data>
+  <data name="npc_search_placeholder" xml:space="preserve">
+    <value>Chercher...</value>
+  </data>
+  <data name="paste_tooltip_accept" xml:space="preserve">
+    <value>Accepter (Entrer)</value>
+  </data>
+  <data name="paste_tooltip_cancel" xml:space="preserve">
+    <value>Annuler (Esc)</value>
+  </data>
+  <data name="paste_tooltip_flip_h" xml:space="preserve">
+    <value>Basculer horizontalement (Ctrl+H)</value>
+  </data>
+  <data name="paste_tooltip_flip_v" xml:space="preserve">
+    <value>Retourner vertical (Ctrl+Shift+H)</value>
+  </data>
+  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
+    <value>Faire pivoter le CCW (Ctrl+Shift+Q)</value>
+  </data>
+  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
+    <value>Faire pivoter CW (Ctrl+Q)</value>
+  </data>
+  <data name="picker_search_items_placeholder" xml:space="preserve">
+    <value>Fouiller les choses...</value>
+  </data>
+  <data name="picker_search_platforms_placeholder" xml:space="preserve">
+    <value>Plateformes de recherche...</value>
+  </data>
+  <data name="picker_search_prefix_placeholder" xml:space="preserve">
+    <value>Préfixe</value>
+  </data>
+  <data name="picker_search_sprites_placeholder" xml:space="preserve">
+    <value>Chercher des sprites...</value>
+  </data>
+  <data name="picker_search_tiles_placeholder" xml:space="preserve">
+    <value>Tuiles de recherche...</value>
+  </data>
+  <data name="picker_search_walls_placeholder" xml:space="preserve">
+    <value>Murs de recherche...</value>
+  </data>
+  <data name="player_buff_clear_tooltip" xml:space="preserve">
+    <value>Clair</value>
+  </data>
+  <data name="player_buff_edit_selected" xml:space="preserve">
+    <value>Modifier Buff sélectionné</value>
+  </data>
+  <data name="player_buff_label_time" xml:space="preserve">
+    <value>Temps :</value>
+  </data>
+  <data name="player_buff_label_type" xml:space="preserve">
+    <value>Type :</value>
+  </data>
+  <data name="player_difficulty_classic" xml:space="preserve">
+    <value>Classique</value>
+  </data>
+  <data name="player_difficulty_hardcore" xml:space="preserve">
+    <value>Hardcore</value>
+  </data>
+  <data name="player_difficulty_journey" xml:space="preserve">
+    <value>Parcours</value>
+  </data>
+  <data name="player_difficulty_mediumcore" xml:space="preserve">
+    <value>Mediumcore</value>
+  </data>
+  <data name="player_equip_label_dye" xml:space="preserve">
+    <value>Colorant</value>
+  </data>
+  <data name="player_equip_label_edit_item" xml:space="preserve">
+    <value>Modifier l’élément</value>
+  </data>
+  <data name="player_equip_label_equipment" xml:space="preserve">
+    <value>Équipement</value>
+  </data>
+  <data name="player_equip_label_misc" xml:space="preserve">
+    <value>Équipements divers</value>
+  </data>
+  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
+    <value>Basculer la visibilité</value>
+  </data>
+  <data name="player_journey_research_sacrifices" xml:space="preserve">
+    <value>Sacrifices de recherche</value>
+  </data>
+  <data name="player_journey_total_researched" xml:space="preserve">
+    <value>Total des éléments recherchés : {0}</value>
+  </data>
+  <data name="player_stats_angler_quests" xml:space="preserve">
+    <value>Quêtes de pêcheur :</value>
+  </data>
+  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
+    <value>A mangé du pain artisanal</value>
+  </data>
+  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
+    <value>Torches de biome débloquées</value>
+  </data>
+  <data name="player_stats_deaths_pve" xml:space="preserve">
+    <value>Décès (PvE) :</value>
+  </data>
+  <data name="player_stats_deaths_pvp" xml:space="preserve">
+    <value>Morts (PvP) :</value>
+  </data>
+  <data name="player_stats_extra_accessory" xml:space="preserve">
+    <value>Accessoire supplémentaire</value>
+  </data>
+  <data name="player_stats_flags" xml:space="preserve">
+    <value>Drapeaux</value>
+  </data>
+  <data name="player_stats_golfer_score" xml:space="preserve">
+    <value>Score du golfeur :</value>
+  </data>
+  <data name="player_stats_health" xml:space="preserve">
+    <value>Santé</value>
+  </data>
+  <data name="player_stats_hp" xml:space="preserve">
+    <value>PV :</value>
+  </data>
+  <data name="player_stats_mana" xml:space="preserve">
+    <value>Mana</value>
+  </data>
+  <data name="player_stats_max" xml:space="preserve">
+    <value>Max :</value>
+  </data>
+  <data name="player_stats_mp" xml:space="preserve">
+    <value>MP :</value>
+  </data>
+  <data name="player_stats_show_armor" xml:space="preserve">
+    <value>Armure de spectacle</value>
+  </data>
+  <data name="player_stats_spawn_points" xml:space="preserve">
+    <value>Points d’apparition</value>
+  </data>
+  <data name="player_stats_statistics" xml:space="preserve">
+    <value>Statistiques</value>
+  </data>
+  <data name="player_stats_super_cart_enabled" xml:space="preserve">
+    <value>Super Cartouche activée</value>
+  </data>
+  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
+    <value>Super Cartouche débloquée</value>
+  </data>
+  <data name="player_stats_tax_money" xml:space="preserve">
+    <value>Argent des impôts :</value>
+  </data>
+  <data name="player_stats_team" xml:space="preserve">
+    <value>Équipe :</value>
+  </data>
+  <data name="player_stats_team_blue" xml:space="preserve">
+    <value>Bleu</value>
+  </data>
+  <data name="player_stats_team_green" xml:space="preserve">
+    <value>Vert</value>
+  </data>
+  <data name="player_stats_team_none" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="player_stats_team_pink" xml:space="preserve">
+    <value>Rose</value>
+  </data>
+  <data name="player_stats_team_red" xml:space="preserve">
+    <value>Rouge</value>
+  </data>
+  <data name="player_stats_team_yellow" xml:space="preserve">
+    <value>Jaune</value>
+  </data>
+  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
+    <value>Cristal Aegis utilisé</value>
+  </data>
+  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
+    <value>Fruit Aegis utilisé</value>
+  </data>
+  <data name="player_stats_used_ambrosia" xml:space="preserve">
+    <value>Ambroisie utilisée</value>
+  </data>
+  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
+    <value>Cristal d’arcane utilisé</value>
+  </data>
+  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
+    <value>Galaxy Pearl d’occasion</value>
+  </data>
+  <data name="player_stats_used_gummy_worm" xml:space="preserve">
+    <value>Ver gélifié utilisé</value>
+  </data>
+  <data name="player_stats_using_biome_torches" xml:space="preserve">
+    <value>Utilisation des torches de biome</value>
+  </data>
+  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
+    <value>Sélection claire</value>
+  </data>
+  <data name="sprite_size_label" xml:space="preserve">
+    <value>Taille :</value>
+  </data>
+  <data name="sprite_tile_id_format" xml:space="preserve">
+    <value>ID de la tuile : {0}</value>
+  </data>
+  <data name="sprite_styles_format" xml:space="preserve">
+    <value>{0} styles</value>
+  </data>
+  <data name="sprite_style_format" xml:space="preserve">
+    <value>Style : {0}</value>
+  </data>
+  <data name="tool_brush_flip_label" xml:space="preserve">
+    <value>Flip</value>
+  </data>
+  <data name="tool_brush_outline_label" xml:space="preserve">
+    <value>Résumé</value>
+  </data>
+  <data name="tool_clipboard_instant_paste" xml:space="preserve">
+    <value>Paste instantanée</value>
+  </data>
+  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
+    <value>Collez immédiatement au clic sans drag-to-position</value>
+  </data>
+  <data name="tool_paint_wire_chain" xml:space="preserve">
+    <value>Chaîne</value>
+  </data>
+  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
+    <value>Continuez le dessin à partir de la fin du dernier segment</value>
+  </data>
+  <data name="tool_paint_wire_route" xml:space="preserve">
+    <value>Itinéraire</value>
+  </data>
+  <data name="world_explorer_browse" xml:space="preserve">
+    <value>Parcourez...</value>
+  </data>
+  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
+    <value>Basculer les favoris</value>
   </data>
 </root>
