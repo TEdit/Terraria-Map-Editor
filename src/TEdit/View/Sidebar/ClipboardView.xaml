@@ -47,7 +47,7 @@
             </UniformGrid>
             <!-- Instant paste toggle -->
             <ui:ToggleSwitch Margin="4,2" IsChecked="{Binding Clipboard.InstantPaste}" HorizontalAlignment="Center"
-                             Content="Instant Paste" ToolTip="Paste immediately on click without drag-to-position" />
+                             Content="{x:Static p:Language.tool_clipboard_instant_paste}" ToolTip="{x:Static p:Language.tool_clipboard_instant_paste_tooltip}" />
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

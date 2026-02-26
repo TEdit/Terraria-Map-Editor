@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using TEdit.UI.Controls;
 
 namespace TEdit.View.Sidebar.Controls;
 
@@ -245,11 +246,12 @@ public partial class ItemEditorControl : UserControl
         combo.ItemsSource = ItemsSource;
 
         // Clear existing binding first
-        BindingOperations.ClearBinding(combo, ComboBox.SelectedValueProperty);
+        BindingOperations.ClearBinding(combo, FilterablePickerControl.SelectedValueProperty);
 
         if (ItemsSourceType == ItemsSourceType.DictionaryKvp)
         {
             combo.SelectedValuePath = "Key";
+            combo.DisplayMemberPath = "Value.Name";
             combo.FilterMemberPath = "Value.Name";
             combo.FilterIdMemberPath = "Key";
             combo.ItemTemplate = DisplayMode switch
@@ -264,6 +266,7 @@ public partial class ItemEditorControl : UserControl
         else
         {
             combo.SelectedValuePath = "Id";
+            combo.DisplayMemberPath = "Name";
             combo.FilterMemberPath = "Name";
             combo.FilterIdMemberPath = "Id";
             combo.ItemTemplate = DisplayMode switch
@@ -276,16 +279,13 @@ public partial class ItemEditorControl : UserControl
             combo.ItemContainerStyle = TryFindResource("RarityItemContainerStyle") as Style;
         }
 
-        // Always editable so users can see the filter text they type
-        combo.IsEditable = true;
-
         // Bind SelectedValue to ItemId
         var binding = new Binding(nameof(ItemId))
         {
             Source = this,
             Mode = BindingMode.TwoWay
         };
-        combo.SetBinding(ComboBox.SelectedValueProperty, binding);
+        combo.SetBinding(FilterablePickerControl.SelectedValueProperty, binding);
     }
 
     public override void OnApplyTemplate()

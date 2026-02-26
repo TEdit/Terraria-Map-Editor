@@ -124,7 +124,7 @@
                     CommandParameter="{Binding SelectedChest.Items}">
         <ui:SymbolIcon Symbol="ArrowUp16" FontSize="14"/>
             </Button>
-          <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="Clear All Items"
+          <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_clear_all_items_tooltip}"
                     Command="{Binding ClearChestCommand}">
             <ui:SymbolIcon Symbol="Dismiss20" FontSize="14"/>
           </Button>

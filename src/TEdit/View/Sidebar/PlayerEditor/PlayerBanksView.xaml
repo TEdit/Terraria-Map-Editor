@@ -76,7 +76,7 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <StackPanel Grid.Row="1">
-                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_editselecteditem}" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
                     <controls:ItemEditorControl
                         DataContext="{Binding ElementName=Bank1List, Path=SelectedItem}"
                         ItemId="{Binding NetId, Mode=TwoWay}"
@@ -148,7 +148,7 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <StackPanel Grid.Row="1">
-                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_editselecteditem}" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
                     <controls:ItemEditorControl
                         DataContext="{Binding ElementName=Bank2List, Path=SelectedItem}"
                         ItemId="{Binding NetId, Mode=TwoWay}"
@@ -220,7 +220,7 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <StackPanel Grid.Row="1">
-                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_editselecteditem}" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
                     <controls:ItemEditorControl
                         DataContext="{Binding ElementName=Bank3List, Path=SelectedItem}"
                         ItemId="{Binding NetId, Mode=TwoWay}"
@@ -292,7 +292,7 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <StackPanel Grid.Row="1">
-                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_editselecteditem}" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
                     <controls:ItemEditorControl
                         DataContext="{Binding ElementName=Bank4List, Path=SelectedItem}"
                         ItemId="{Binding NetId, Mode=TwoWay}"

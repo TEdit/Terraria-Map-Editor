@@ -28,15 +28,15 @@
 
   <DataTemplate x:Key="ColorPickerTemplate" >
         <DockPanel LastChildFill="True" MinWidth="220">
-            <Border BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" >
+            <Border BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" VerticalAlignment="Center">
                 <Rectangle Height="12" Width="12">
                     <Rectangle.Fill>
             <SolidColorBrush Color="{Binding Path=Color, Converter={StaticResource TEditColorToMediaColorConverter}}" />
                     </Rectangle.Fill>
                 </Rectangle>
             </Border>
-            <TextBlock Text="{Binding Path=Id, StringFormat='[{0}]'}" Margin="8,0,4,0" DockPanel.Dock="Right" Foreground="Gray" />
-            <TextBlock Text="{Binding Path=Name}" Margin="1,0" TextTrimming="CharacterEllipsis" />
+            <TextBlock Text="{Binding Path=Id, StringFormat='[{0}]'}" Margin="8,0,4,0" DockPanel.Dock="Right" Foreground="Gray" VerticalAlignment="Center" />
+            <TextBlock Text="{Binding Path=Name}" Margin="1,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
         </DockPanel>
     </DataTemplate>
     <!-- Color-tinted item template for tile/platform/wall properties (FrameProperty, TileProperty, etc.) -->

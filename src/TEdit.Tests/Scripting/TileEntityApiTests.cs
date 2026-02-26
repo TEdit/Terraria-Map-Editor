@@ -290,4 +290,25 @@ public class TileEntityApiTests
         var all = _api.GetAll();
         all.Count.ShouldBe(5);
     }
+
+    [Fact]
+    public void GetAt_MannequinEquipmentIncludesAllSlots()
+    {
+        var result = _api.GetAt(10, 50);
+        result.ShouldNotBeNull();
+
+        var equipment = (List<Dictionary<string, object>>)result!["equipment"];
+        equipment.Count.ShouldBe(9); // All 9 equipment slots present
+    }
+
+    [Fact]
+    public void GetAt_EmptySlotsShowEmptyName()
+    {
+        var result = _api.GetAt(10, 50);
+        var equipment = (List<Dictionary<string, object>>)result!["equipment"];
+
+        // All slots are empty initially
+        equipment[0]["name"].ShouldBe("[empty]");
+        equipment[0]["slot"].ShouldBe(0);
+    }
 }

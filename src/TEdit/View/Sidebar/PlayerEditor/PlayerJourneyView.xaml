@@ -9,7 +9,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="2">
             <!-- Creative Sacrifices -->
-            <TextBlock Text="Research Sacrifices" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,0,0,4"/>
+            <TextBlock Text="{x:Static p:Language.player_journey_research_sacrifices}" Foreground="{DynamicResource TextBrush}" FontWeight="Bold" Margin="0,0,0,4"/>
             <TextBlock Text="{Binding Player.CreativeSacrifices.Count, StringFormat='Total researched items: {0}'}"
                        Foreground="{DynamicResource TextFillColorSecondaryBrush}" FontSize="11" Margin="0,0,0,4"/>
 

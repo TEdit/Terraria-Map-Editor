@@ -482,6 +482,116 @@ public class WorldTests
         }
     }
 
+    /// <summary>
+    /// Pads ShimmeredTownNPCs to the required size, matching the behavior of
+    /// NpcListItem.IsShimmered setter which pads on demand.
+    /// </summary>
+    private static void EnsureShimmerCollectionSize(World world, int requiredSize)
+    {
+        while (world.ShimmeredTownNPCs.Count < requiredSize)
+            world.ShimmeredTownNPCs.Add(0);
+    }
+
+    /// <summary>
+    /// Verifies that NPC shimmer status survives a save/load round-trip.
+    /// Regression test for https://github.com/TEdit/Terraria-Map-Editor/issues/2199
+    /// </summary>
+    [Theory]
+    [InlineData(".\\WorldFiles\\v1.4.4.1.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.4.2.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.4.3.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.4.4.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.5.0.wld")]
+    [InlineData(".\\WorldFiles\\v1.4.5.5.wld")]
+    public void ShimmeredNPC_RoundTrip_Test(string fileName)
+    {
+        if (!IsValidWorldFile(fileName)) return;
+
+        var (world, errors) = World.LoadWorld(fileName);
+        Assert.Null(errors);
+        Assert.True(world.Version >= 268, "World version must support shimmer (>= 268)");
+
+        // NPC sprite IDs to toggle (Merchant=17, Nurse=18, Guide=22)
+        int[] testNpcIds = { 17, 18, 22 };
+        int maxId = testNpcIds.Max();
+
+        // Pad collection if needed (matches NpcListItem.IsShimmered setter behavior)
+        EnsureShimmerCollectionSize(world, maxId + 1);
+
+        // Record original shimmer state, then toggle each one
+        var originalStates = new Dictionary<int, int>();
+        foreach (var npcId in testNpcIds)
+        {
+            originalStates[npcId] = world.ShimmeredTownNPCs[npcId];
+            world.ShimmeredTownNPCs[npcId] = world.ShimmeredTownNPCs[npcId] == 0 ? 1 : 0;
+        }
+
+        // Save and reload
+        var saveTest = fileName + ".shimmer.test";
+        try
+        {
+            World.Save(world, saveTest, incrementRevision: false);
+            var (reloaded, reloadErrors) = World.LoadWorld(saveTest);
+            Assert.Null(reloadErrors);
+
+            // Verify each toggled NPC has the expected shimmer state
+            foreach (var npcId in testNpcIds)
+            {
+                Assert.True(npcId < reloaded.ShimmeredTownNPCs.Count,
+                    $"NPC ID {npcId} missing after reload (count={reloaded.ShimmeredTownNPCs.Count})");
+
+                int expected = originalStates[npcId] == 0 ? 1 : 0;
+                Assert.Equal(expected, reloaded.ShimmeredTownNPCs[npcId]);
+            }
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
+    }
+
+    /// <summary>
+    /// Verifies that shimmer state for all NPCs is preserved through save/load,
+    /// not just the ones we explicitly toggle.
+    /// </summary>
+    [Theory]
+    [InlineData(".\\WorldFiles\\v1.4.4.4.wld")]
+    public void ShimmeredNPC_AllEntries_Preserved_Test(string fileName)
+    {
+        if (!IsValidWorldFile(fileName)) return;
+
+        var (world, errors) = World.LoadWorld(fileName);
+        Assert.Null(errors);
+        Assert.True(world.Version >= 268);
+
+        // Pad to a known size and set a shimmer value
+        EnsureShimmerCollectionSize(world, 100);
+        world.ShimmeredTownNPCs[17] = 1; // Merchant shimmered
+        world.ShimmeredTownNPCs[22] = 1; // Guide shimmered
+
+        // Snapshot the entire shimmer collection
+        var snapshot = world.ShimmeredTownNPCs.ToArray();
+
+        var saveTest = fileName + ".shimmer-all.test";
+        try
+        {
+            World.Save(world, saveTest, incrementRevision: false);
+            var (reloaded, reloadErrors) = World.LoadWorld(saveTest);
+            Assert.Null(reloadErrors);
+
+            Assert.Equal(snapshot.Length, reloaded.ShimmeredTownNPCs.Count);
+
+            for (int i = 0; i < snapshot.Length; i++)
+            {
+                Assert.Equal(snapshot[i], reloaded.ShimmeredTownNPCs[i]);
+            }
+        }
+        finally
+        {
+            if (File.Exists(saveTest)) File.Delete(saveTest);
+        }
+    }
+
     [Fact]
     public void Tile_Equals_Test()
     {

@@ -179,6 +179,30 @@ public class TeamIndexToNameConverter : IValueConverter
     }
 }
 
+public class WindSpeedToMphConverter : IValueConverter
+{
+    // Terraria displays wind mph as: (int)(windSpeedCurrent * 50)
+    private const double Factor = 50.0;
+
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is float f) return $"{(int)(f * Factor)} mph";
+        if (value is double d) return $"{(int)(d * Factor)} mph";
+        return DependencyProperty.UnsetValue;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value is string s)
+        {
+            s = s.Replace("mph", "", StringComparison.OrdinalIgnoreCase).Trim();
+            if (int.TryParse(s, out int mph))
+                return (float)(mph / Factor);
+        }
+        return DependencyProperty.UnsetValue;
+    }
+}
+
 public class NullToVisibilityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

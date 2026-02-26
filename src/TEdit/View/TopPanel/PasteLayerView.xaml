@@ -4,6 +4,7 @@
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
              d:Height="120"
              
@@ -49,29 +50,29 @@
     <!-- Separator -->
 
     <!-- Transform buttons -->
-    <ui:Button Grid.Column="5" ToolTip="Flip Horizontal (Ctrl+H)" Margin="1" Padding="4,2"
+    <ui:Button Grid.Column="5" ToolTip="{x:Static p:Language.paste_tooltip_flip_h}" Margin="1" Padding="4,2"
                        HorizontalAlignment="Stretch" Command="{Binding PasteFlipHCommand}">
       <ui:SymbolIcon Symbol="FlipHorizontal20" FontSize="16" />
     </ui:Button>
-    <ui:Button Grid.Column="6" ToolTip="Flip Vertical (Ctrl+Shift+H)" Margin="1" Padding="4,2"
+    <ui:Button Grid.Column="6" ToolTip="{x:Static p:Language.paste_tooltip_flip_v}" Margin="1" Padding="4,2"
                        HorizontalAlignment="Stretch" Command="{Binding PasteFlipVCommand}">
       <ui:SymbolIcon Symbol="FlipVertical20" FontSize="16" />
     </ui:Button>
-    <ui:Button Grid.Column="7" ToolTip="Rotate CCW (Ctrl+Shift+Q)" Margin="1" Padding="4,2"
+    <ui:Button Grid.Column="7" ToolTip="{x:Static p:Language.paste_tooltip_rotate_ccw}" Margin="1" Padding="4,2"
                        HorizontalAlignment="Stretch" Command="{Binding PasteRotateCCWCommand}">
       <ui:SymbolIcon Symbol="RotateLeft20" FontSize="14" />
     </ui:Button>
-    <ui:Button Grid.Column="8" ToolTip="Rotate CW (Ctrl+Q)" Margin="1" Padding="4,2"
+    <ui:Button Grid.Column="8" ToolTip="{x:Static p:Language.paste_tooltip_rotate_cw}" Margin="1" Padding="4,2"
                        HorizontalAlignment="Stretch" Command="{Binding PasteRotateCWCommand}">
       <ui:SymbolIcon Symbol="RotateRight20" FontSize="14" />
     </ui:Button>
 
-    <ui:Button Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="1" ToolTip="Accept (Enter)" Margin="1" Padding="6,2"
+    <ui:Button Grid.Column="5" Grid.ColumnSpan="2" Grid.Row="1" ToolTip="{x:Static p:Language.paste_tooltip_accept}" Margin="1" Padding="6,2"
             Appearance="Success" HorizontalAlignment="Stretch"
             Command="{Binding PasteAcceptCommand}">
       <ui:SymbolIcon Symbol="Checkmark20" FontSize="16" />
     </ui:Button>
-    <ui:Button Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="1" ToolTip="Cancel (Esc)" Margin="1" Padding="6,2"
+    <ui:Button Grid.Column="7" Grid.ColumnSpan="2" Grid.Row="1" ToolTip="{x:Static p:Language.paste_tooltip_cancel}" Margin="1" Padding="6,2"
             Appearance="Danger" HorizontalAlignment="Stretch"
             Command="{Binding PasteCancelCommand}">
       <ui:SymbolIcon Symbol="Dismiss20" FontSize="16" />

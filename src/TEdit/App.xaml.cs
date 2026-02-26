@@ -115,6 +115,11 @@ public partial class App : Application
         LoadAppSettings();
         ErrorLogging.LogDebug($"[Startup] LoadAppSettings: {sw.ElapsedMilliseconds}ms");
 
+        if (AppDataPaths.IsPortable)
+            ErrorLogging.Log($"Portable mode active. Data directory: {AppDataPaths.DataDir}");
+        else
+            ErrorLogging.LogDebug($"Standard mode. Data directory: {AppDataPaths.DataDir}");
+
         sw.Restart();
         // Enable cross-thread access to Sprites2 collection (modified on graphics thread, bound to UI)
         BindingOperations.EnableCollectionSynchronization(

@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -305,12 +305,6 @@
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>테라리아 콘텐츠 찾을 수 없습니다</value>
   </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>와이어 45°</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>와이어 90°</value>
-  </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>분석</value>
   </data>
@@ -420,7 +414,7 @@
     <value>키를 누르거나 마우스 버튼을 클릭하세요</value>
   </data>
   <data name="light_glow_intensity" xml:space="preserve">
-    <value>빛의 광도</value>
+    <value>Light Glow Intensity</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -484,6 +478,90 @@
   </data>
   <data name="MaskMode_Off" xml:space="preserve">
     <value>마스크 비활성화</value>
+  </data>
+  <data name="MaskPreset_Off" xml:space="preserve">
+    <value>꺼</value>
+  </data>
+  <data name="MaskPreset_Custom" xml:space="preserve">
+    <value>Match Custom</value>
+  </data>
+  <data name="MaskPreset_ExactMatch" xml:space="preserve">
+    <value>Match All</value>
+  </data>
+  <data name="palette_title" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Tile Picker</value>
+  </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Mask Options</value>
+  </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Palette</value>
+  </data>
+  <data name="mask_clear_all" xml:space="preserve">
+    <value>Clear All</value>
+  </data>
+  <data name="mask_echo" xml:space="preserve">
+    <value>에코</value>
+  </data>
+  <data name="mask_illuminant" xml:space="preserve">
+    <value>일루미넌트</value>
+  </data>
+  <data name="mask_preset" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_custom" xml:space="preserve">
+    <value>관습</value>
+  </data>
+  <data name="mask_preset_Duplicate[1]" xml:space="preserve">
+    <value>Preset:</value>
+  </data>
+  <data name="mask_preset_exact" xml:space="preserve">
+    <value>Exact Match</value>
+  </data>
+  <data name="mask_section_actuator" xml:space="preserve">
+    <value>Actuator</value>
+  </data>
+  <data name="mask_section_brickstyle" xml:space="preserve">
+    <value>벽돌 양식</value>
+  </data>
+  <data name="mask_section_inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="mask_section_liquid_level" xml:space="preserve">
+    <value>Liquid Level</value>
+  </data>
+  <data name="mask_section_liquid_type" xml:space="preserve">
+    <value>Liquid Type</value>
+  </data>
+  <data name="mask_section_tile" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_coatings" xml:space="preserve">
+    <value>Tile Coatings</value>
+  </data>
+  <data name="mask_section_tile_Duplicate[1]" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
+  <data name="mask_section_tile_paint" xml:space="preserve">
+    <value>Tile Paint</value>
+  </data>
+  <data name="mask_section_wall" xml:space="preserve">
+    <value>Wall Type</value>
+  </data>
+  <data name="mask_section_wall_coatings" xml:space="preserve">
+    <value>Wall Coatings</value>
+  </data>
+  <data name="mask_section_wall_paint" xml:space="preserve">
+    <value>Wall Paint</value>
+  </data>
+  <data name="mask_section_wires" xml:space="preserve">
+    <value>전선</value>
+  </data>
+  <data name="mask_title" xml:space="preserve">
+    <value>Masks</value>
   </data>
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>첫 번째 항목 복사</value>
@@ -1109,10 +1187,10 @@
     <value>픽셀 맵 색상 팔레트: 기본값, 사실적(텍스처 샘플링), 또는 미니맵(게임 내 맵 색상). 재시작이 필요합니다.</value>
   </data>
   <data name="settings_enable_mica" xml:space="preserve">
-    <value>운모 배경 활성화</value>
+    <value>Enable Mica backdrop</value>
   </data>
   <data name="settings_enable_mica_desc" xml:space="preserve">
-    <value>반투명한 운모 창문 배경을 사용하세요. 윈도우가 투명하게 보이면 비활성화하세요. 재시작이 필요합니다.</value>
+    <value>Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>플레이어 에디터 활성화</value>
@@ -1318,6 +1396,9 @@
   </data>
   <data name="sidebar_find_tooltip" xml:space="preserve">
     <value>찾기</value>
+  </data>
+  <data name="sidebar_mask_tooltip" xml:space="preserve">
+    <value>Masks</value>
   </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>스크립팅</value>
@@ -1784,16 +1865,16 @@
     <value>기존 트랙에 압력판을 추가하고, 지우개와 함께 판만 제거하세요.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value>매끄럽다</value>
+    <value>Smooth</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value>트랙 도구가 만든 터널을 매끄럽게 다듬어.</value>
+    <value>Smooth the tunnel made by the track tool.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value>터널</value>
+    <value>Tunnel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value>트랙을 위한 터널을 파세요</value>
+    <value>Dig a tunnel for the track</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>벽</value>
@@ -1821,6 +1902,12 @@
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>연필</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Wire 90°</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Wire 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>픽커 - 타일 색상 선택</value>
@@ -2532,5 +2619,242 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>배경 갭 수정</value>
+  </data>
+  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
+    <value>모든 아이템 삭제</value>
+  </data>
+  <data name="common_browse" xml:space="preserve">
+    <value>둘러보기...</value>
+  </data>
+  <data name="npc_label_partying" xml:space="preserve">
+    <value>파티</value>
+  </data>
+  <data name="npc_label_shimmered" xml:space="preserve">
+    <value>반짝임</value>
+  </data>
+  <data name="npc_search_placeholder" xml:space="preserve">
+    <value>수색...</value>
+  </data>
+  <data name="paste_tooltip_accept" xml:space="preserve">
+    <value>수락 (Enter)</value>
+  </data>
+  <data name="paste_tooltip_cancel" xml:space="preserve">
+    <value>취소 (ESC)</value>
+  </data>
+  <data name="paste_tooltip_flip_h" xml:space="preserve">
+    <value>수평 뒤집기 (Ctrl+H)</value>
+  </data>
+  <data name="paste_tooltip_flip_v" xml:space="preserve">
+    <value>수직 전환 (Ctrl+Shift+H)</value>
+  </data>
+  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
+    <value>CCW 회전 (Ctrl+Shift+Q)</value>
+  </data>
+  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
+    <value>CW 회전 (Ctrl+Q)</value>
+  </data>
+  <data name="picker_search_items_placeholder" xml:space="preserve">
+    <value>수색 물건...</value>
+  </data>
+  <data name="picker_search_platforms_placeholder" xml:space="preserve">
+    <value>검색 플랫폼...</value>
+  </data>
+  <data name="picker_search_prefix_placeholder" xml:space="preserve">
+    <value>접두사</value>
+  </data>
+  <data name="picker_search_sprites_placeholder" xml:space="preserve">
+    <value>스프라이트를 탐색해...</value>
+  </data>
+  <data name="picker_search_tiles_placeholder" xml:space="preserve">
+    <value>타일 검색...</value>
+  </data>
+  <data name="picker_search_walls_placeholder" xml:space="preserve">
+    <value>벽을 수색해...</value>
+  </data>
+  <data name="player_buff_clear_tooltip" xml:space="preserve">
+    <value>비켜</value>
+  </data>
+  <data name="player_buff_edit_selected" xml:space="preserve">
+    <value>수정: 선택된 버프</value>
+  </data>
+  <data name="player_buff_label_time" xml:space="preserve">
+    <value>시간:</value>
+  </data>
+  <data name="player_buff_label_type" xml:space="preserve">
+    <value>유형:</value>
+  </data>
+  <data name="player_difficulty_classic" xml:space="preserve">
+    <value>클래식</value>
+  </data>
+  <data name="player_difficulty_hardcore" xml:space="preserve">
+    <value>하드코어</value>
+  </data>
+  <data name="player_difficulty_journey" xml:space="preserve">
+    <value>여정</value>
+  </data>
+  <data name="player_difficulty_mediumcore" xml:space="preserve">
+    <value>미디엄코어</value>
+  </data>
+  <data name="player_equip_label_dye" xml:space="preserve">
+    <value>염료</value>
+  </data>
+  <data name="player_equip_label_edit_item" xml:space="preserve">
+    <value>수정 항목</value>
+  </data>
+  <data name="player_equip_label_equipment" xml:space="preserve">
+    <value>장비</value>
+  </data>
+  <data name="player_equip_label_misc" xml:space="preserve">
+    <value>기타 장비</value>
+  </data>
+  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
+    <value>가시성 토글</value>
+  </data>
+  <data name="player_journey_research_sacrifices" xml:space="preserve">
+    <value>연구 희생</value>
+  </data>
+  <data name="player_journey_total_researched" xml:space="preserve">
+    <value>총 조사 항목: {0}</value>
+  </data>
+  <data name="player_stats_angler_quests" xml:space="preserve">
+    <value>낚시꾼 퀘스트:</value>
+  </data>
+  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
+    <value>장인 빵을 먹었어</value>
+  </data>
+  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
+    <value>바이옴 횃불 잠금 해제</value>
+  </data>
+  <data name="player_stats_deaths_pve" xml:space="preserve">
+    <value>사망자 (PvE):</value>
+  </data>
+  <data name="player_stats_deaths_pvp" xml:space="preserve">
+    <value>사망 (PvP):</value>
+  </data>
+  <data name="player_stats_extra_accessory" xml:space="preserve">
+    <value>추가 액세서리</value>
+  </data>
+  <data name="player_stats_flags" xml:space="preserve">
+    <value>깃발</value>
+  </data>
+  <data name="player_stats_golfer_score" xml:space="preserve">
+    <value>골퍼 점수:</value>
+  </data>
+  <data name="player_stats_health" xml:space="preserve">
+    <value>보건</value>
+  </data>
+  <data name="player_stats_hp" xml:space="preserve">
+    <value>HP:</value>
+  </data>
+  <data name="player_stats_mana" xml:space="preserve">
+    <value>마나</value>
+  </data>
+  <data name="player_stats_max" xml:space="preserve">
+    <value>맥스:</value>
+  </data>
+  <data name="player_stats_mp" xml:space="preserve">
+    <value>국회의원:</value>
+  </data>
+  <data name="player_stats_show_armor" xml:space="preserve">
+    <value>쇼 아머</value>
+  </data>
+  <data name="player_stats_spawn_points" xml:space="preserve">
+    <value>스폰 지점</value>
+  </data>
+  <data name="player_stats_statistics" xml:space="preserve">
+    <value>통계</value>
+  </data>
+  <data name="player_stats_super_cart_enabled" xml:space="preserve">
+    <value>슈퍼 카트 활성화</value>
+  </data>
+  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
+    <value>슈퍼 카트 잠금 해제</value>
+  </data>
+  <data name="player_stats_tax_money" xml:space="preserve">
+    <value>세금:</value>
+  </data>
+  <data name="player_stats_team" xml:space="preserve">
+    <value>팀:</value>
+  </data>
+  <data name="player_stats_team_blue" xml:space="preserve">
+    <value>파란색</value>
+  </data>
+  <data name="player_stats_team_green" xml:space="preserve">
+    <value>그린</value>
+  </data>
+  <data name="player_stats_team_none" xml:space="preserve">
+    <value>전혀 없습니다</value>
+  </data>
+  <data name="player_stats_team_pink" xml:space="preserve">
+    <value>핑크</value>
+  </data>
+  <data name="player_stats_team_red" xml:space="preserve">
+    <value>빨간색</value>
+  </data>
+  <data name="player_stats_team_yellow" xml:space="preserve">
+    <value>노란색</value>
+  </data>
+  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
+    <value>사용한 이지스 크리스탈</value>
+  </data>
+  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
+    <value>사용한 이지스 열매</value>
+  </data>
+  <data name="player_stats_used_ambrosia" xml:space="preserve">
+    <value>사용한 앰브로시아</value>
+  </data>
+  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
+    <value>사용된 아케인 크리스탈</value>
+  </data>
+  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
+    <value>중고 갤럭시 펄</value>
+  </data>
+  <data name="player_stats_used_gummy_worm" xml:space="preserve">
+    <value>사용한 구미 웜</value>
+  </data>
+  <data name="player_stats_using_biome_torches" xml:space="preserve">
+    <value>바이옴 횃불 사용</value>
+  </data>
+  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
+    <value>명확한 선발</value>
+  </data>
+  <data name="sprite_size_label" xml:space="preserve">
+    <value>크기:</value>
+  </data>
+  <data name="sprite_tile_id_format" xml:space="preserve">
+    <value>타일 ID: {0}</value>
+  </data>
+  <data name="sprite_styles_format" xml:space="preserve">
+    <value>{0} 스타일</value>
+  </data>
+  <data name="sprite_style_format" xml:space="preserve">
+    <value>스타일: {0}</value>
+  </data>
+  <data name="tool_brush_flip_label" xml:space="preserve">
+    <value>뒤집기</value>
+  </data>
+  <data name="tool_brush_outline_label" xml:space="preserve">
+    <value>개요</value>
+  </data>
+  <data name="tool_clipboard_instant_paste" xml:space="preserve">
+    <value>즉석 페이스트</value>
+  </data>
+  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
+    <value>드래그 없이 바로 붙여넣을 수 있습니다</value>
+  </data>
+  <data name="tool_paint_wire_chain" xml:space="preserve">
+    <value>체인</value>
+  </data>
+  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
+    <value>마지막 구간 끝부터 계속 그리세요</value>
+  </data>
+  <data name="tool_paint_wire_route" xml:space="preserve">
+    <value>노선</value>
+  </data>
+  <data name="world_explorer_browse" xml:space="preserve">
+    <value>둘러보기...</value>
+  </data>
+  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
+    <value>즐겨찾기 토글</value>
   </data>
 </root>

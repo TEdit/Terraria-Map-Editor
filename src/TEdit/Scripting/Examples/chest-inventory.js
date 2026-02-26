@@ -10,6 +10,7 @@ for (var i = 0; i < allChests.length; i++) {
     var items = chest.items;
     for (var j = 0; j < items.length; j++) {
         var item = items[j];
+        if (item.stack <= 0) continue; // skip empty slots
         var name = item.name || ("Item #" + item.id);
         if (!itemCounts[name]) {
             itemCounts[name] = 0;

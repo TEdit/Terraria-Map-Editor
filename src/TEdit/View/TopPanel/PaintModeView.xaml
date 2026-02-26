@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:controls="clr-namespace:TEdit.UI.Controls"
              xmlns:editor="clr-namespace:TEdit.Editor"
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
@@ -111,6 +112,14 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Platform">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <!-- Show for TileAndWall when CAD mode is active (90° or 45°) -->
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall" />
+                        <Condition Binding="{Binding IsWireModeOff}" Value="False" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Visibility" Value="Visible" />
+                </MultiDataTrigger>
                 <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
                     <Setter Property="Visibility" Value="Visible" />
                 </Trigger>
@@ -174,23 +183,25 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
                     </tedit:AutoGrid.ColumnDefinitions>
-                    <tedit:FilteredComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricks}, Mode=OneWay}"
-                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                    <controls:FilterablePickerControl Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricks}, Mode=OneTime}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}"
                       SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
-                      IsSynchronizedWithCurrentItem="False"
-                      IsEditable="true"
-                      SelectedValuePath="Id" 
-                      IsTextSearchEnabled="False" />
+                      SelectedValuePath="Id"
+                      DisplayMemberPath="Name"
+                      FilterMemberPath="Name"
+                      FilterIdMemberPath="Id"
+                      Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding MaskSettings.TileMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}"  />
                     <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
-                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricksMask}, Mode=OneWay}"
+                    <controls:FilterablePickerControl ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricksMask}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}"
                       SelectedValue="{Binding Path=MaskSettings.TileMaskValue, Mode=TwoWay}"
-                      IsSynchronizedWithCurrentItem="False"
-                      IsEditable="true"
                       SelectedValuePath="Id"
-                      IsTextSearchEnabled="False" />
+                      DisplayMemberPath="Name"
+                      FilterMemberPath="Name"
+                      FilterIdMemberPath="Id"
+                      Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
                 </tedit:AutoGrid>
             </GroupBox>
       <GroupBox BorderThickness="1"  Style="{StaticResource WallVisibleStyle}" Width="260">
@@ -202,26 +213,26 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
                     </tedit:AutoGrid.ColumnDefinitions>
-                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallProperties}, Mode=OneWay}"
-                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                    <controls:FilterablePickerControl ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallProperties}, Mode=OneTime}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}"
                       SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
-                      IsSynchronizedWithCurrentItem="False"
-                      IsEditable="true"
-                      SelectedValuePath="Id" 
+                      SelectedValuePath="Id"
+                      DisplayMemberPath="Name"
+                      FilterMemberPath="Name"
+                      FilterIdMemberPath="Id"
                       Grid.ColumnSpan="2"
-                      IsTextSearchEnabled="False"
-                      TextSearch.TextPath="Name" />
+                      Placeholder="{x:Static p:Language.picker_search_walls_placeholder}" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding MaskSettings.WallMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
-                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallPropertiesMask}, Mode=OneWay}"
+                    <controls:FilterablePickerControl ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallPropertiesMask}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}"
                       SelectedValue="{Binding Path=MaskSettings.WallMaskValue, Mode=TwoWay}"
-                      IsSynchronizedWithCurrentItem="False"
-                      IsEditable="true"
                       SelectedValuePath="Id"
-                      IsTextSearchEnabled="False"
-                      TextSearch.TextPath="Name" />
+                      DisplayMemberPath="Name"
+                      FilterMemberPath="Name"
+                      FilterIdMemberPath="Id"
+                      Placeholder="{x:Static p:Language.picker_search_walls_placeholder}" />
                 </tedit:AutoGrid>
             </GroupBox>
       <GroupBox Header="{x:Static p:Language.tool_paint_liquid_header}" Style="{StaticResource LiquidVisibleStyle}">
@@ -289,7 +300,7 @@
             </GroupBox>
             <GroupBox Style="{StaticResource RouteStyle}" Padding="2">
                 <GroupBox.Header>
-                    <TextBlock Text="Route" Margin="0" />
+                    <TextBlock Text="{x:Static p:Language.tool_paint_wire_route}" Margin="0" />
                 </GroupBox.Header>
                 <StackPanel Orientation="Vertical">
                 <UniformGrid Columns="3" ToolTip="{Binding WireModeTooltip}">
@@ -325,7 +336,7 @@
                     </RadioButton>
                 </UniformGrid>
                 <ui:ToggleSwitch IsChecked="{Binding WireChainMode}" Margin="2,2,2,0"
-                                 Content="Chain" ToolTip="Continue drawing from the end of the last segment" />
+                                 Content="{x:Static p:Language.tool_paint_wire_chain}" ToolTip="{x:Static p:Language.tool_paint_wire_chain_tooltip}" />
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="{x:Static p:Language.tool_paint_wire_header}" Style="{StaticResource WireStyle}">
@@ -434,14 +445,15 @@
             </GroupBox>
             <GroupBox Header="{x:Static p:Language.PaintMode_Platform}" Style="{StaticResource PlatformStyle}">
                 <StackPanel Orientation="Vertical">
-                    <tedit:FilteredComboBox
+                    <controls:FilterablePickerControl
                         ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.PlatformProperties}, Mode=OneTime}"
                         ItemTemplate="{StaticResource TileColorTintTemplate}"
                         SelectedValue="{Binding Path=TilePicker.PlatformStyle, Mode=TwoWay}"
-                        IsSynchronizedWithCurrentItem="False"
-                        IsEditable="true"
                         SelectedValuePath="Id"
-                        IsTextSearchEnabled="False"
+                        DisplayMemberPath="Name"
+                        FilterMemberPath="Name"
+                        FilterIdMemberPath="Id"
+                        Placeholder="{x:Static p:Language.picker_search_platforms_placeholder}"
                         Width="200" />
                 </StackPanel>
             </GroupBox>

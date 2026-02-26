@@ -6,6 +6,7 @@
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:cv="clr-namespace:TEdit.Converters"
              xmlns:shared="clr-namespace:TEdit.ViewModel.Shared"
+             xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
              d:DesignHeight="400" d:DesignWidth="350"
              d:DataContext="{d:DesignInstance Type=shared:SpriteTreePickerViewModel}">
@@ -29,13 +30,13 @@
             </Grid.ColumnDefinitions>
 
             <ui:TextBox Grid.Column="0"
-                        PlaceholderText="Search sprites..."
+                        PlaceholderText="{x:Static p:Language.picker_search_sprites_placeholder}"
                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                         Margin="0,0,5,0" />
 
             <ui:Button Grid.Column="1"
                        Content="All"
-                       ToolTip="Check all visible sprites"
+                       ToolTip="{x:Static p:Language.picker_check_all_tooltip}"
                        Command="{Binding CheckAllCommand}"
                        Visibility="{Binding ShowCheckboxes, Converter={StaticResource BoolToVisibilityConverter}}"
                        Margin="0,0,2,0"
@@ -43,7 +44,7 @@
 
             <ui:Button Grid.Column="2"
                        Content="None"
-                       ToolTip="Uncheck all visible sprites"
+                       ToolTip="{x:Static p:Language.picker_uncheck_all_tooltip}"
                        Command="{Binding UncheckAllCommand}"
                        Visibility="{Binding ShowCheckboxes, Converter={StaticResource BoolToVisibilityConverter}}"
                        Padding="8,4" />

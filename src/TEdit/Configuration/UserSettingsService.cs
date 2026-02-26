@@ -10,8 +10,7 @@ public static class UserSettingsService
     private static readonly object _lock = new();
     private static UserSettings _current;
 
-    private static readonly string SettingsDir =
-        Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TEdit");
+    private static readonly string SettingsDir = AppDataPaths.DataDir;
 
     private static readonly string SettingsPath =
         Path.Combine(SettingsDir, "userSettings.json");

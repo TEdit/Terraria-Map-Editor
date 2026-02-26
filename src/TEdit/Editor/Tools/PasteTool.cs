@@ -161,7 +161,6 @@ public sealed class PasteTool : BaseTool
         PasteFloatingBuffer();
         ClearFloatingState();
         SyncViewModelState();
-        _wvm.Clipboard.Buffer = null;
         _wvm.PreviewChange();
     }
 

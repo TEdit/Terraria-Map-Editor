@@ -18,6 +18,7 @@
     <converters:ByteIntConverter x:Key="ByteIntConverter" />
     <converters:IntByteConverter x:Key="IntByteConverter" />
     <converters:TeamIndexToNameConverter x:Key="TeamIndexToNameConverter" />
+    <converters:WindSpeedToMphConverter x:Key="WindSpeedToMphConverter" />
     <!-- DataTemplate for style preview comboboxes (tree styles, backgrounds, caves) -->
     <DataTemplate x:Key="StylePreviewItemTemplate">
       <StackPanel Orientation="Horizontal" Margin="2">
@@ -421,8 +422,8 @@
     </DockPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_weather_windspeed}" HorizontalAlignment="Right" />
     <DockPanel>
-      <TextBlock Text="{Binding CurrentWorld.WindSpeedSet, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.WindSpeedSet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="-16000" Maximum="16000" />
+      <TextBlock Text="{Binding CurrentWorld.WindSpeedSet, Converter={StaticResource WindSpeedToMphConverter}}" Width="55" DockPanel.Dock="Right" />
+      <Slider Value="{Binding CurrentWorld.WindSpeedSet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="-1.2" Maximum="1.2" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" />
     </DockPanel>
     <Separator Grid.ColumnSpan="2" />
     <TextBlock Text="{x:Static p:Language.tool_wp_surface_level}" HorizontalAlignment="Right" />

@@ -91,4 +91,29 @@ public class ChestApiTests
         chest!.Items[2].NetId.ShouldBe(200); // Slot 0 and 1 are taken
         chest.Items[2].StackSize.ShouldBe(10);
     }
+
+    [Fact]
+    public void GetAt_ItemsArrayIncludesAllSlots()
+    {
+        var chest = _api.GetAt(10, 40);
+        chest.ShouldNotBeNull();
+
+        var items = (List<Dictionary<string, object>>)chest!["items"];
+        items.Count.ShouldBe(40); // All 40 slots present
+    }
+
+    [Fact]
+    public void GetAt_EmptySlotsShowEmptyName()
+    {
+        var chest = _api.GetAt(10, 40);
+        var items = (List<Dictionary<string, object>>)chest!["items"];
+
+        // Slot 0 has Life Crystal
+        ((int)items[0]["stack"]).ShouldBeGreaterThan(0);
+
+        // Slot 2 is empty
+        items[2]["name"].ShouldBe("[empty]");
+        items[2]["stack"].ShouldBe(0);
+        items[2]["slot"].ShouldBe(2);
+    }
 }

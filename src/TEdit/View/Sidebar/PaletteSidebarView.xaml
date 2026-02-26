@@ -50,17 +50,17 @@
 
                             <!-- 3-way mask mode toggle -->
                             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                <RadioButton Content="Off"
+                                <RadioButton Content="{x:Static p:Language.MaskPreset_Off}"
                                              GroupName="MaskPreset"
                                              Style="{StaticResource {x:Type ToggleButton}}"
                                              IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.Off}}"
                                              Padding="8,3" Margin="0,0,2,0" FontSize="11" />
-                                <RadioButton Content="Match All"
+                                <RadioButton Content="{x:Static p:Language.MaskPreset_ExactMatch}"
                                              GroupName="MaskPreset"
                                              Style="{StaticResource {x:Type ToggleButton}}"
                                              IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.ExactMatch}}"
                                              Padding="8,3" Margin="0,0,2,0" FontSize="11" />
-                                <RadioButton Content="Match Custom"
+                                <RadioButton Content="{x:Static p:Language.MaskPreset_Custom}"
                                              GroupName="MaskPreset"
                                              Style="{StaticResource {x:Type ToggleButton}}"
                                              IsChecked="{Binding MaskSettings.MaskPreset, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static editor:MaskPreset.Custom}}"

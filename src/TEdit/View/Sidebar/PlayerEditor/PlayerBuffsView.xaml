@@ -30,7 +30,7 @@
                         <TextBlock Grid.Column="0" Text="{Binding Type}" Foreground="White" Margin="2" TextAlignment="Right"/>
                         <TextBlock Grid.Column="1" Text="{Binding Type, StringFormat='Buff #{0}'}" Foreground="White" Margin="2"/>
                         <TextBlock Grid.Column="2" Text="{Binding Time}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" Margin="2" TextAlignment="Right"/>
-                        <Button Grid.Column="3" Style="{StaticResource CompactIconButton}" ToolTip="Clear"
+                        <Button Grid.Column="3" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_buff_clear_tooltip}"
                                 Click="ClearBuff_Click" Tag="{Binding}">
                             <ui:SymbolIcon Symbol="Dismiss20" FontSize="12"/>
                         </Button>
@@ -46,7 +46,7 @@
 
         <!-- Selected buff editor -->
         <StackPanel Grid.Row="1" DataContext="{Binding ElementName=BuffList, Path=SelectedItem}">
-            <TextBlock Text="Edit Selected Buff" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
+            <TextBlock Text="{x:Static p:Language.player_buff_edit_selected}" Margin="2" Foreground="{DynamicResource TextBrush}" FontWeight="Bold"/>
             <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -54,10 +54,10 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Type:" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                <TextBlock Text="{x:Static p:Language.player_buff_label_type}" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center" Margin="0,0,4,0"/>
                 <ui:NumberBox Grid.Column="1" Value="{Binding Type}" Minimum="0" Maximum="400"
                               SpinButtonPlacementMode="Compact" Height="28"/>
-                <TextBlock Grid.Column="2" Text="Time:" Foreground="{DynamicResource TextBrush}"
+                <TextBlock Grid.Column="2" Text="{x:Static p:Language.player_buff_label_time}" Foreground="{DynamicResource TextBrush}"
                            VerticalAlignment="Center" Margin="8,0,4,0"/>
                 <ui:NumberBox Grid.Column="3" Value="{Binding Time}" Minimum="0"
                               SpinButtonPlacementMode="Compact" Height="28"/>

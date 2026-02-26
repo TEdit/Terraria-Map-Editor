@@ -248,9 +248,7 @@ public partial class ScriptingSidebarViewModel
 
     public static string GetScriptsDirectory()
     {
-        var dir = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "TEdit", "Scripts");
+        var dir = Path.Combine(AppDataPaths.DataDir, "Scripts");
         Directory.CreateDirectory(dir);
         return dir;
     }
