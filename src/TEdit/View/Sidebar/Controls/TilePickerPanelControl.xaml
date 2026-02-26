@@ -6,7 +6,7 @@
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
-             xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:controls="clr-namespace:TEdit.UI.Controls"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              mc:Ignorable="d"
@@ -60,29 +60,27 @@
             <ui:ToggleSwitch Grid.Column="0" IsChecked="{Binding TilePicker.TileStyleActive}"
                              ToolTip="{x:Static p:Language.tool_paint_tile_title}"
                              OffContent="" OnContent="" Margin="0,0,4,0" />
-            <tedit:FilteredComboBox Grid.Column="1"
+            <controls:FilterablePickerControl Grid.Column="1"
                 ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricks}, Mode=OneTime}"
                 ItemTemplate="{StaticResource ColorPickerTemplate}"
                 SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
-                IsSynchronizedWithCurrentItem="False"
-                IsEditable="True"
                 SelectedValuePath="Id"
+                DisplayMemberPath="Name"
                 FilterMemberPath="Name"
                 FilterIdMemberPath="Id"
-                IsTextSearchEnabled="False" />
+                Placeholder="Search tiles..." />
             <ui:ToggleSwitch Grid.Column="3" IsChecked="{Binding TilePicker.WallStyleActive}"
                              ToolTip="{x:Static p:Language.tool_paint_wall_title}"
                              OffContent="" OnContent="" Margin="0,0,4,0" />
-            <tedit:FilteredComboBox Grid.Column="4"
+            <controls:FilterablePickerControl Grid.Column="4"
                 ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallProperties}, Mode=OneTime}"
                 ItemTemplate="{StaticResource ColorPickerTemplate}"
                 SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
-                IsSynchronizedWithCurrentItem="False"
-                IsEditable="True"
                 SelectedValuePath="Id"
+                DisplayMemberPath="Name"
                 FilterMemberPath="Name"
                 FilterIdMemberPath="Id"
-                IsTextSearchEnabled="False" />
+                Placeholder="Search walls..." />
         </Grid>
 
         <!-- ── Brick Style (tile column only) ── -->

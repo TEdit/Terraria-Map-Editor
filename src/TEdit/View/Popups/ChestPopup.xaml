@@ -1,6 +1,7 @@
 ﻿<Popup x:Class="TEdit.View.Popups.ChestPopup" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
+       xmlns:controls="clr-namespace:TEdit.UI.Controls"
        Placement="Mouse" MouseDown="Popup_MouseDown"
        MouseLeave="Popup_MouseLeave">
     <DockPanel Background="{DynamicResource WindowBackgroundBrush}" LastChildFill="True">
@@ -12,16 +13,22 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="1">
                             <TextBox Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30" />
-                            <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.ItemPrefix}, Mode=OneTime}" 
+                            <controls:FilterablePickerControl
+                                      ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.ItemPrefix}, Mode=OneTime}"
                                       SelectedValue="{Binding Prefix, Mode=TwoWay}"
-                                      SelectedValuePath="Key" 
-                                      DisplayMemberPath="Value" 
-                                      Width="75" Margin="1,0" />
-                            <ComboBox ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.ItemProperties}, Mode=OneTime}" 
+                                      SelectedValuePath="Key"
+                                      DisplayMemberPath="Value"
+                                      FilterMemberPath="Value"
+                                      Width="75" Margin="1,0"
+                                      Placeholder="Prefix" />
+                            <controls:FilterablePickerControl
+                                      ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.ItemProperties}, Mode=OneTime}"
                                       SelectedValue="{Binding ItemName, Mode=TwoWay}"
-                                      SelectedValuePath="Name" 
+                                      SelectedValuePath="Name"
                                       DisplayMemberPath="Name"
-                                      Width="200" Margin="1,0" />
+                                      FilterMemberPath="Name"
+                                      Width="200" Margin="1,0"
+                                      Placeholder="Search items..." />
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

@@ -6,7 +6,7 @@
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
-             xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:controls="clr-namespace:TEdit.UI.Controls"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              mc:Ignorable="d"
@@ -49,14 +49,15 @@
                               SelectedValuePath="Value"
                               ItemTemplate="{StaticResource EnumTemplate}"
                               Width="120" Margin="0,0,4,0" />
-                    <tedit:FilteredComboBox Grid.Column="1"
+                    <controls:FilterablePickerControl Grid.Column="1"
                         ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.TileBricksMask}, Mode=OneTime}"
                         ItemTemplate="{StaticResource ColorPickerTemplate}"
                         SelectedValue="{Binding MaskSettings.TileMaskValue, Mode=TwoWay}"
-                        IsSynchronizedWithCurrentItem="False"
-                        IsEditable="True"
                         SelectedValuePath="Id"
-                        IsTextSearchEnabled="False" />
+                        DisplayMemberPath="Name"
+                        FilterMemberPath="Name"
+                        FilterIdMemberPath="Id"
+                        Placeholder="Search tiles..." />
                 </Grid>
 
                 <!-- Wall Type -->
@@ -72,15 +73,15 @@
                               SelectedValuePath="Value"
                               ItemTemplate="{StaticResource EnumTemplate}"
                               Width="120" Margin="0,0,4,0" />
-                    <tedit:FilteredComboBox Grid.Column="1"
+                    <controls:FilterablePickerControl Grid.Column="1"
                         ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.WallPropertiesMask}, Mode=OneTime}"
                         ItemTemplate="{StaticResource ColorPickerTemplate}"
                         SelectedValue="{Binding MaskSettings.WallMaskValue, Mode=TwoWay}"
-                        IsSynchronizedWithCurrentItem="False"
-                        IsEditable="True"
                         SelectedValuePath="Id"
-                        IsTextSearchEnabled="False"
-                        TextSearch.TextPath="Name" />
+                        DisplayMemberPath="Name"
+                        FilterMemberPath="Name"
+                        FilterIdMemberPath="Id"
+                        Placeholder="Search walls..." />
                 </Grid>
 
                 <!-- Brick Style -->

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:controls="clr-namespace:TEdit.UI.Controls"
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
              x:Name="Root"
@@ -27,19 +27,18 @@
                  Text="{Binding StackSize, ElementName=Root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Visibility="{Binding ShowStackSize, ElementName=Root, Converter={StaticResource BoolToVis}}" />
         <!-- Prefix (filterable) -->
-        <tedit:FilteredComboBox Grid.Column="1" x:Name="PrefixCombo" Width="65" Margin="1,0"
-                  IsEditable="True"
+        <controls:FilterablePickerControl Grid.Column="1" x:Name="PrefixCombo" Width="65" Margin="1,0"
                   SelectedValuePath="Key" DisplayMemberPath="Value"
                   FilterMemberPath="Value"
-                  IsSynchronizedWithCurrentItem="False"
                   MaxDropDownHeight="300"
                   SelectedValue="{Binding Prefix, ElementName=Root, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  Visibility="{Binding ShowPrefix, ElementName=Root, Converter={StaticResource BoolToVis}}" />
-        <!-- Item ComboBox (filterable, shows images via ItemTemplate) -->
-        <tedit:FilteredComboBox Grid.Column="2" x:Name="ItemCombo" Margin="1,0"
-                  IsSynchronizedWithCurrentItem="False"
+                  Visibility="{Binding ShowPrefix, ElementName=Root, Converter={StaticResource BoolToVis}}"
+                  Placeholder="Prefix" />
+        <!-- Item picker (filterable, shows images via ItemTemplate) -->
+        <controls:FilterablePickerControl Grid.Column="2" x:Name="ItemCombo" Margin="1,0"
                   MaxDropDownHeight="400"
-                  HorizontalAlignment="Stretch" />
+                  HorizontalAlignment="Stretch"
+                  Placeholder="Search items..." />
         <!-- Clear item button -->
         <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="Clear item"
                 Click="ClearItem_Click">
