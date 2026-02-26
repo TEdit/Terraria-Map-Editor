@@ -34,7 +34,7 @@
                            ToolTip="Replace all matching tiles in the world"
                            Padding="12,4" Margin="0,0,4,0" FontSize="11" />
                 <ui:Button Content="Replace Selection"
-                           Appearance="Primary"
+                           Appearance="Info"
                            Click="ReplaceSelection_Click"
                            ToolTip="Replace matching tiles within the current selection"
                            IsEnabled="{Binding Selection.IsActive}"
