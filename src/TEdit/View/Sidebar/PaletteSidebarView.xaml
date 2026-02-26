@@ -22,6 +22,26 @@
         <!-- Title -->
         <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.palette_title}" Style="{DynamicResource SidebarPanelTitle}" />
 
+        <!-- Action Buttons -->
+        <Border DockPanel.Dock="Bottom" Margin="4,0,4,4" Padding="6,4" CornerRadius="4"
+                Background="{DynamicResource SubtleFillColorSecondaryBrush}"
+                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                BorderThickness="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <ui:Button Content="Replace All"
+                           Appearance="Primary"
+                           Click="ReplaceAll_Click"
+                           ToolTip="Replace all matching tiles in the world"
+                           Padding="12,4" Margin="0,0,4,0" FontSize="11" />
+                <ui:Button Content="Replace Selection"
+                           Appearance="Primary"
+                           Click="ReplaceSelection_Click"
+                           ToolTip="Replace matching tiles within the current selection"
+                           IsEnabled="{Binding Selection.IsActive}"
+                           Padding="12,4" FontSize="11" />
+            </StackPanel>
+        </Border>
+
         <TabControl DockPanel.Dock="Top">
 
             <!-- ═══ Tiles Tab ═══ -->

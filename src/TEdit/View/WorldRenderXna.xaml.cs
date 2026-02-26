@@ -1895,7 +1895,8 @@ public partial class WorldRenderXna : UserControl
     {
         if (!_textureDictionary.Valid)
         {
-            System.Windows.MessageBox.Show("Textures not available. Please ensure Terraria content path is configured.");
+            _ = App.DialogService.ShowWarningAsync("Export Textures",
+                "Textures not available. Please ensure Terraria content path is configured.");
             return;
         }
 
@@ -1988,7 +1989,8 @@ public partial class WorldRenderXna : UserControl
         }
 
         var outputPath = Path.GetFullPath("textures");
-        System.Windows.MessageBox.Show($"Exported {exportCount} textures to:\n{outputPath}");
+        _ = App.DialogService.ShowAlertAsync("Export Textures",
+            $"Exported {exportCount} textures to:\n{outputPath}");
     }
 #endif
 

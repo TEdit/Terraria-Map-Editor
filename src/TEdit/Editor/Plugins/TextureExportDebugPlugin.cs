@@ -11,11 +11,12 @@ public sealed class TextureExportDebugPlugin : BasePlugin
         Name = "Export Textures (DEBUG)";
     }
 
-    public override void Execute()
+    public override async void Execute()
     {
         if (_wvm.ExportTexturesAction == null)
         {
-            System.Windows.MessageBox.Show("Textures not loaded yet. Please wait for texture loading to complete.");
+            await App.DialogService.ShowWarningAsync("Export Textures",
+                "Textures not loaded yet. Please wait for texture loading to complete.");
             return;
         }
 

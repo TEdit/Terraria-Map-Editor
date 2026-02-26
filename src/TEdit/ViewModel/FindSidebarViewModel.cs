@@ -136,7 +136,7 @@ public partial class FindSidebarViewModel
     {
         if (_wvm.CurrentWorld == null)
         {
-            MessageBox.Show("No world loaded.", "Find", MessageBoxButton.OK, MessageBoxImage.Warning);
+            _ = App.DialogService.ShowWarningAsync("Find", "No world loaded.");
             return;
         }
 

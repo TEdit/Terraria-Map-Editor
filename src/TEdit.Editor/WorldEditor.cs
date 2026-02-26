@@ -1052,6 +1052,40 @@ public class WorldEditor : IDisposable
         }
     }
 
+    /// <summary>
+    /// Replace all tiles matching the current mask settings with the current tile picker settings.
+    /// Returns false if all masks are off (nothing to match against).
+    /// </summary>
+    public bool ReplaceAll(bool selectionOnly = false)
+    {
+        if (_world == null) return false;
+        if (MaskSettings.AllMasksOff) return false;
+
+        int startX = selectionOnly && _selection.IsActive ? _selection.SelectionArea.X : 0;
+        int endX = selectionOnly && _selection.IsActive
+            ? _selection.SelectionArea.X + _selection.SelectionArea.Width : _world.TilesWide;
+        int startY = selectionOnly && _selection.IsActive ? _selection.SelectionArea.Y : 0;
+        int endY = selectionOnly && _selection.IsActive
+            ? _selection.SelectionArea.Y + _selection.SelectionArea.Height : _world.TilesHigh;
+
+        for (int x = startX; x < endX; x++)
+        {
+            for (int y = startY; y < endY; y++)
+            {
+                if (selectionOnly && !_selection.IsValid(x, y)) continue;
+
+                Tile curTile = _world.Tiles[x, y];
+                if (curTile == null || !MaskSettings.Passes(curTile)) continue;
+
+                _undo.SaveTile(_world, x, y);
+                SetPixel(x, y);
+                _notifyTileChanged?.Invoke(x, y, 1, 1);
+            }
+        }
+
+        return true;
+    }
+
     public void Dispose()
     {
         _undo.Dispose();

@@ -390,6 +390,28 @@ public partial class WorldViewModel
         UpdateRenderPixel(x, y);
     }
 
+    /// <summary>
+    /// Replace all tiles matching masks. Returns false if masks are all off.
+    /// </summary>
+    public bool ReplaceAll()
+    {
+        if (CurrentWorld == null) return false;
+        if (!WorldEditor.ReplaceAll(selectionOnly: false)) return false;
+        UndoManager.SaveUndo();
+        return true;
+    }
+
+    /// <summary>
+    /// Replace tiles matching masks within selection. Returns false if masks are all off.
+    /// </summary>
+    public bool ReplaceSelection()
+    {
+        if (CurrentWorld == null || !Selection.IsActive) return false;
+        if (!WorldEditor.ReplaceAll(selectionOnly: true)) return false;
+        UndoManager.SaveUndo();
+        return true;
+    }
+
     public void UpdateRenderWorld()
     {
         Task.Factory.StartNew(

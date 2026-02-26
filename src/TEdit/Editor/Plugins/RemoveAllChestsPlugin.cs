@@ -14,12 +14,12 @@ public class RemoveAllChestsPlugin : BasePlugin
         Name = "Remove All Chests";
     }
 
-    public override void Execute()
+    public override async void Execute()
     {
         if (_wvm.CurrentWorld == null) return;
 
-        if (MessageBox.Show("Are you sure you wish to delete all chests?", "Delete Chests",
-                    MessageBoxButton.OKCancel, MessageBoxImage.Question) != MessageBoxResult.OK)
+        if (!await App.DialogService.ShowConfirmationAsync("Delete Chests",
+                "Are you sure you wish to delete all chests?"))
             return;
 
         var chestLocations = _wvm.CurrentWorld.Chests.Select(chest => new Vector2Int32 { X = chest.X, Y = chest.Y }).ToList();

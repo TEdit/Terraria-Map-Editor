@@ -15,7 +15,7 @@ namespace TEdit.Editor.Plugins
             Name = "Remove Sprite, Block, or Wall";
         }
 
-        public override void Execute()
+        public override async void Execute()
         {
             if (_wvm.CurrentWorld == null) return;
 
@@ -26,12 +26,8 @@ namespace TEdit.Editor.Plugins
                 return;
             }
 
-            if (MessageBox.Show(
-            "This will completely remove any found tiles from your world. Continue?",
-            "RemoveTileWithPlugin",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question,
-            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+            if (!await App.DialogService.ShowConfirmationAsync("RemoveTileWithPlugin",
+                "This will completely remove any found tiles from your world. Continue?"))
                 return;
 
             string blockName = view.BlockToRemove.ToLower();
@@ -167,12 +163,8 @@ namespace TEdit.Editor.Plugins
             _wvm.UndoManager.SaveUndo(); // Add to the undo buffer.
 
             // Display the total tiles removed.
-            MessageBox.Show(
-            ItemsFound + " tiles have been found and removed.",
-            "RemoveTileWithPlugin",
-            MessageBoxButton.OK,
-            MessageBoxImage.Information,
-            MessageBoxResult.Yes);
+            await App.DialogService.ShowAlertAsync("RemoveTileWithPlugin",
+                ItemsFound + " tiles have been found and removed.");
         }
     }
 }
