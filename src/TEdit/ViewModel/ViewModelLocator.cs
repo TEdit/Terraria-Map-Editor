@@ -91,7 +91,7 @@ public static class ViewModelLocator
         wvm.Plugins.Add(new RemoveAllChestsPlugin(wvm));
         wvm.Plugins.Add(new RemoveAllUnlockedChestsPlugin(wvm));
         wvm.Plugins.Add(new RemoveTileWithPlugin(wvm));
-        wvm.Plugins.Add(new ReplaceAllPlugin(wvm));
+
         wvm.Plugins.Add(new SandSettlePlugin(wvm));
         wvm.Plugins.Add(new SimpleOreGeneratorPlugin(wvm));
         wvm.Plugins.Add(new SpriteDebuggerPlugin(wvm));
