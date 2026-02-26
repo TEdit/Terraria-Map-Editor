@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -72,14 +71,6 @@ public partial class WorldRenderXna : UserControl
     private const float LayerFindCrosshair = 1 - 0.35f;
 
     private Color _backgroundColor = Color.FromNonPremultiplied(32, 32, 32, 255);
-
-    // Shift+line preview cache (HQ brush preview debounce)
-    private Vector2Int32 _linePreviewCacheAnchor;
-    private Vector2Int32 _linePreviewCacheCursor;
-    private int _linePreviewCacheBrushGen = -1;
-    private readonly List<Vector2Int32> _linePreviewCache = new();
-    private readonly Stopwatch _linePreviewDebounce = new();
-    private const int LinePreviewDebounceMs = 250;
 
     private readonly GameTimer _gameTimer;
     private System.Timers.Timer _viewStateSaveTimer;
@@ -6551,71 +6542,58 @@ public partial class WorldRenderXna : UserControl
             return;
         }
 
-        // Shift+line preview: computed at draw time from anchor + cursor
+        // Shift+line preview: stamp brush preview texture along the line
         if (_wvm.ActiveTool.HasLinePreviewAnchor
             && (BaseTool.GetModifiers() & System.Windows.Input.ModifierKeys.Shift) != 0)
         {
-            var whiteTex = _textureDictionary.WhitePixelTexture;
-            if (whiteTex != null)
+            var anchor = _wvm.ActiveTool.LinePreviewAnchor;
+            var cursor = _wvm.MouseOverTile.MouseState.Location;
+
+            bool isBrush = _wvm.ActiveTool.ToolType == ToolType.Brush;
+
+            if (isBrush && _preview != null)
             {
-                var previewColor = Color.FromNonPremultiplied(0, 90, 255, 127);
-                var anchor = _wvm.ActiveTool.LinePreviewAnchor;
-                var cursor = _wvm.MouseOverTile.MouseState.Location;
+                // Stamp the brush preview texture at subsampled intervals along the line.
+                // Adjacent stamps overlap by ~50%, giving full visual coverage with minimal draw calls.
+                int brushW = _wvm.Brush.Width;
+                int brushH = _wvm.Brush.Height;
+                int step = Math.Max(1, Math.Min(brushW, brushH) / 2);
+                int offX = _wvm.Brush.OffsetX;
+                int offY = _wvm.Brush.OffsetY;
+                var tint = Color.FromNonPremultiplied(0, 90, 255, 80);
 
-                bool isBrush = _wvm.ActiveTool.ToolType == ToolType.Brush;
-                bool highQuality = isBrush && Configuration.UserSettingsService.Current.HighQualityBrushPreview;
-
-                if (highQuality)
+                int idx = 0;
+                Vector2Int32 last = anchor;
+                foreach (var center in Shape.DrawLineTool(anchor, cursor))
                 {
-                    // Check if inputs changed since last computation
-                    int brushGen = _wvm.Brush.Width * 1000000 + _wvm.Brush.Height * 1000
-                        + (int)_wvm.Brush.Shape;
-                    bool inputsChanged = anchor.X != _linePreviewCacheAnchor.X
-                        || anchor.Y != _linePreviewCacheAnchor.Y
-                        || cursor.X != _linePreviewCacheCursor.X
-                        || cursor.Y != _linePreviewCacheCursor.Y
-                        || brushGen != _linePreviewCacheBrushGen;
-
-                    if (inputsChanged)
+                    if (idx++ % step == 0)
                     {
-                        // Inputs changed — restart debounce timer
-                        _linePreviewCacheAnchor = anchor;
-                        _linePreviewCacheCursor = cursor;
-                        _linePreviewCacheBrushGen = brushGen;
-                        _linePreviewDebounce.Restart();
-                    }
-
-                    // Recompute when debounce expires or cache is empty
-                    if (_linePreviewDebounce.ElapsedMilliseconds >= LinePreviewDebounceMs
-                        || _linePreviewCache.Count == 0)
-                    {
-                        _linePreviewCache.Clear();
-                        var stampBuf = new List<Vector2Int32>();
-                        var dedupe = new HashSet<Vector2Int32>();
-                        foreach (var center in Shape.DrawLineTool(anchor, cursor))
-                        {
-                            _wvm.Brush.StampOffsets(center, stampBuf);
-                            foreach (var p in stampBuf)
-                                dedupe.Add(p);
-                        }
-                        _linePreviewCache.AddRange(dedupe);
-                        _linePreviewDebounce.Stop();
-                    }
-
-                    // Draw cached preview
-                    for (int i = 0; i < _linePreviewCache.Count; i++)
-                    {
-                        var tile = _linePreviewCache[i];
+                        last = center;
                         var pos = new Vector2(
-                            (_scrollPosition.X + tile.X) * _zoom,
-                            (_scrollPosition.Y + tile.Y) * _zoom);
-                        _spriteBatch.Draw(whiteTex, pos, null, previewColor,
+                            1 + (_scrollPosition.X + center.X - offX) * _zoom,
+                            1 + (_scrollPosition.Y + center.Y - offY) * _zoom);
+                        _spriteBatch.Draw(_preview, pos, null, tint,
                             0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
                     }
                 }
-                else
+
+                // Always stamp at the final cursor position to avoid a gap at the end
+                if (last.X != cursor.X || last.Y != cursor.Y)
                 {
-                    // Simple Bresenham line — cheap, no debounce needed
+                    var lastPos = new Vector2(
+                        1 + (_scrollPosition.X + cursor.X - offX) * _zoom,
+                        1 + (_scrollPosition.Y + cursor.Y - offY) * _zoom);
+                    _spriteBatch.Draw(_preview, lastPos, null, tint,
+                        0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
+                }
+            }
+            else
+            {
+                // Non-brush tools: simple Bresenham line
+                var whiteTex = _textureDictionary.WhitePixelTexture;
+                if (whiteTex != null)
+                {
+                    var previewColor = Color.FromNonPremultiplied(0, 90, 255, 127);
                     foreach (var tile in Shape.DrawLineTool(anchor, cursor))
                     {
                         var pos = new Vector2(
@@ -6627,12 +6605,6 @@ public partial class WorldRenderXna : UserControl
                 }
             }
             // Fall through to also render cursor preview at tip
-        }
-        else
-        {
-            // Shift released or no anchor — clear cache
-            if (_linePreviewCache.Count > 0)
-                _linePreviewCache.Clear();
         }
 
         if (_preview == null)

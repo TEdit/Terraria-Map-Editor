@@ -64,6 +64,9 @@ public class BrushToolBase : BaseTool
         _wvm.Brush.BrushChanged += OnBrushChanged;
     }
 
+    /// <summary>Whether this tool supports CAD wire routing. Override to disable.</summary>
+    public virtual bool SupportsCadRouting => true;
+
     /// <summary>Whether CAD wire bus routing mode is active.</summary>
     public bool IsCadWireMode => _isCadWireMode;
 
@@ -85,6 +88,8 @@ public class BrushToolBase : BaseTool
     /// </summary>
     public void CycleWireMode()
     {
+        if (!SupportsCadRouting) return;
+
         if (!_isCadWireMode)
         {
             _isCadWireMode = true;
@@ -109,6 +114,7 @@ public class BrushToolBase : BaseTool
     /// <summary>Set wire mode state directly (used for syncing between tools).</summary>
     public void SetWireState(bool enabled, WireRoutingMode mode, bool? verticalFirst)
     {
+        if (!SupportsCadRouting) enabled = false;
         _isCadWireMode = enabled;
         _cadRoutingMode = mode;
         _cadVerticalFirstOverride = verticalFirst;
