@@ -33,6 +33,7 @@ public static class SpritePlacer
                     curtile.V = (short)y;
                     if (applyActuator) curtile.Actuator = true;
                     if (applyInActive) curtile.InActive = true;
+                    wvm.CurrentWorld.Tiles[tilex, tiley] = curtile;
 
                     wvm.UpdateRenderPixel(tilex, tiley);
                     BlendRules.ResetUVCache(wvm, tilex, tiley, spriteSub.SizeTiles.X, spriteSub.SizeTiles.Y);
@@ -57,6 +58,7 @@ public static class SpritePlacer
                     curtile.V = tiles[x, y].Y;
                     if (applyActuator) curtile.Actuator = true;
                     if (applyInActive) curtile.InActive = true;
+                    wvm.CurrentWorld.Tiles[tilex, tiley] = curtile;
 
                     wvm.UpdateRenderPixel(tilex, tiley);
                     BlendRules.ResetUVCache(wvm, tilex, tiley, spriteSub.SizeTiles.X, spriteSub.SizeTiles.Y);
@@ -84,6 +86,7 @@ public static class SpritePlacer
                     else
                         curtile.U = (short)x;
                     curtile.V = (short)y;
+                    world.Tiles[tilex, tiley] = curtile;
 
                 }
             }
@@ -102,6 +105,7 @@ public static class SpritePlacer
                     curtile.Type = spriteSub.Tile;
                     curtile.U = tiles[x, y].X;
                     curtile.V = tiles[x, y].Y;
+                    world.Tiles[tilex, tiley] = curtile;
                 }
             }
         }
