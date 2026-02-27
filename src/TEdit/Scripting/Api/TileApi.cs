@@ -59,7 +59,7 @@ public class TileApi
     public void SetType(int x, int y, int type)
     {
         Validate(x, y); SaveUndo(x, y);
-        var t = _world.Tiles[x, y];
+        ref var t = ref _world.Tiles[x, y];
         t.Type = (ushort)type;
         t.IsActive = true;
     }
@@ -85,7 +85,7 @@ public class TileApi
     public void SetLiquid(int x, int y, int amount, int type)
     {
         Validate(x, y); SaveUndo(x, y);
-        var t = _world.Tiles[x, y];
+        ref var t = ref _world.Tiles[x, y];
         t.LiquidAmount = (byte)amount;
         t.LiquidType = (LiquidType)type;
     }
@@ -93,7 +93,7 @@ public class TileApi
     public void SetWire(int x, int y, int color, bool enabled)
     {
         Validate(x, y); SaveUndo(x, y);
-        var t = _world.Tiles[x, y];
+        ref var t = ref _world.Tiles[x, y];
         switch (color)
         {
             case 1: t.WireRed = enabled; break;
@@ -128,24 +128,6 @@ public class TileApi
         Validate(fromX, fromY);
         Validate(toX, toY);
         SaveUndo(toX, toY);
-        var source = _world.Tiles[fromX, fromY];
-        var dest = _world.Tiles[toX, toY];
-
-        dest.IsActive = source.IsActive;
-        dest.Type = source.Type;
-        dest.U = source.U;
-        dest.V = source.V;
-        dest.Wall = source.Wall;
-        dest.TileColor = source.TileColor;
-        dest.WallColor = source.WallColor;
-        dest.LiquidAmount = source.LiquidAmount;
-        dest.LiquidType = source.LiquidType;
-        dest.WireRed = source.WireRed;
-        dest.WireBlue = source.WireBlue;
-        dest.WireGreen = source.WireGreen;
-        dest.WireYellow = source.WireYellow;
-        dest.BrickStyle = source.BrickStyle;
-        dest.Actuator = source.Actuator;
-        dest.InActive = source.InActive;
+        _world.Tiles[toX, toY] = _world.Tiles[fromX, fromY];
     }
 }

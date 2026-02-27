@@ -724,7 +724,10 @@ public partial class World
                 Tile curTile = Tiles[x, y];
 
                 if (curTile.Type == (int)TileType.IceByRod)
+                {
                     curTile.IsActive = false;
+                    Tiles[x, y] = curTile;
+                }
 
                 ValSpecial(x, y);
             }

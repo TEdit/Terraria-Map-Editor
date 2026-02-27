@@ -1545,6 +1545,7 @@ public partial class World
             for (int y = 0; y < world.TilesHigh; y++)
             {
                 Tile tile = world.Tiles[x, y];
+                bool modified = false;
 
                 // Fix chandelier objects.
                 if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
@@ -1553,6 +1554,7 @@ public partial class World
                     if (tile.U > 36 || tile.V > 36) // Max type: copper ON.
                     {
                         tile.IsActive = false;
+                        modified = true;
                     }
                 }
 
@@ -1563,7 +1565,11 @@ public partial class World
                     tile.Type > saveData.MaxTileId)
                 {
                     tile.IsActive = false;
+                    modified = true;
                 }
+
+                if (modified)
+                    world.Tiles[x, y] = tile;
             }
         }
 
