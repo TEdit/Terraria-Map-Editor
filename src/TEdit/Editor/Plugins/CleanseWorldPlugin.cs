@@ -39,7 +39,7 @@ namespace TEdit.Editor.Plugins
 
                     // Apply the morphing operation to the tile at (x, y).
                     var p = new Vector2Int32(x, y);
-                    var grownPlants = morpher.ApplyMorph(_wvm.MorphToolOptions, world, world.Tiles[x, y], level, p);
+                    var grownPlants = morpher.ApplyMorph(_wvm.MorphToolOptions, world, ref world.Tiles[x, y], level, p);
                     _wvm.UpdateRenderPixel(p);
 
                     if (grownPlants != null)

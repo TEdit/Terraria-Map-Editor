@@ -52,17 +52,17 @@ namespace TEdit.Editor.Plugins
                     await MapBuilder.BuildMapAsync(_wvm.CurrentWorld, newFolderPath);
 
                     // Show the completion
-                    MessageBox.Show("Map Generated!");
+                    await App.DialogService.ShowAlertAsync("Player Map", "Map Generated!");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    await App.DialogService.ShowExceptionAsync(ex.ToString());
                 }
             }
             else
             {
                 // Handle the case where the user cancels the file selection
-                MessageBox.Show("No player file selected.");
+                await App.DialogService.ShowAlertAsync("Player Map", "No player file selected.");
             }
         }
 

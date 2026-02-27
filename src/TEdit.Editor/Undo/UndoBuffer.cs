@@ -93,11 +93,6 @@ public class UndoBuffer : IDisposable
 
     public void Add(Vector2Int32 location, Tile tile)
     {
-        if (tile == null)
-        {
-            throw new ArgumentNullException(nameof(tile));
-        }
-
         lock (UndoSaveLock)
         {
             // Find or create tile entry
@@ -221,8 +216,7 @@ public class UndoBuffer : IDisposable
                 int x = br.ReadInt32();
                 int y = br.ReadInt32();
 
-                // Clone tile for each location (important!)
-                yield return new UndoTile((Tile)tile.Clone(), new Vector2Int32(x, y));
+                yield return new UndoTile(tile, new Vector2Int32(x, y));
             }
         }
     }

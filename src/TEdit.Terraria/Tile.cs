@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
 using TEdit.Geometry;
 
 namespace TEdit.Terraria;
 
-public class Tile : IEquatable<Tile>
+public struct Tile : IEquatable<Tile>
 {
-    public static readonly Tile Empty = new Tile();
-
     public bool IsEmpty { get => !IsActive && Wall == 0 && !HasLiquid && !HasWire && !Actuator; }
     public bool HasWire { get => WireBlue || WireRed || WireGreen || WireYellow; }
     public bool HasLiquid { get => LiquidAmount > 0 && LiquidType != LiquidType.None; }
@@ -45,35 +42,51 @@ public class Tile : IEquatable<Tile>
     public bool FullBrightBlock;
     public bool FullBrightWall;
 
-    [NonSerialized] /* Heathtech */
-    public ushort uvTileCache = 0xFFFF; //Caches the UV position of a tile, since it is costly to generate each frame
-    [NonSerialized] /* Heathtech */
-    public ushort uvWallCache = 0xFFFF; //Caches the UV position of a wall tile
-    [NonSerialized] /* Heathtech */
-    public byte lazyMergeId = 0xFF; //The ID here refers to a number that helps blocks know whether they are actually merged with a nearby tile
-    [NonSerialized] /* Heathtech */
-    public bool hasLazyChecked = false; //Whether the above check has taken place
+    /* Heathtech */
+    public ushort uvTileCache; //Caches the UV position of a tile, since it is costly to generate each frame
+    /* Heathtech */
+    public ushort uvWallCache; //Caches the UV position of a wall tile
+    /* Heathtech */
+    public byte lazyMergeId; //The ID here refers to a number that helps blocks know whether they are actually merged with a nearby tile
+    /* Heathtech */
+    public bool hasLazyChecked; //Whether the above check has taken place
 
-
-    public Vector2Short GetUV() => new Vector2Short(U, V);
-
-    public object Clone()
+    /// <summary>
+    /// Initializes cache fields to sentinel values.
+    /// Note: new Tile[,] arrays use default(Tile) which skips this constructor.
+    /// </summary>
+    public Tile()
     {
-        return MemberwiseClone();
-    }
-
-    public override bool Equals(object obj)
-    {
-        return Equals(obj as Tile);
+        uvTileCache = 0xFFFF;
+        uvWallCache = 0xFFFF;
+        lazyMergeId = 0xFF;
     }
 
     /// <summary>
-    /// Compares serialized tile properties. Ignores [NonSerialized] cache fields.
+    /// Resets all cache fields to their "not computed" sentinel values.
+    /// Call after deserialization or when invalidating render caches.
+    /// </summary>
+    public void ResetCache()
+    {
+        uvTileCache = 0xFFFF;
+        uvWallCache = 0xFFFF;
+        lazyMergeId = 0xFF;
+        hasLazyChecked = false;
+    }
+
+    public Vector2Short GetUV() => new Vector2Short(U, V);
+
+    public override bool Equals(object obj)
+    {
+        return obj is Tile other && Equals(other);
+    }
+
+    /// <summary>
+    /// Compares serialized tile properties. Ignores cache fields.
     /// </summary>
     public bool Equals(Tile other)
     {
-        return other is not null &&
-               IsActive == other.IsActive &&
+        return IsActive == other.IsActive &&
                Type == other.Type &&
                U == other.U &&
                V == other.V &&
@@ -123,12 +136,12 @@ public class Tile : IEquatable<Tile>
 
     public static bool operator ==(Tile left, Tile right)
     {
-        return EqualityComparer<Tile>.Default.Equals(left, right);
+        return left.Equals(right);
     }
 
     public static bool operator !=(Tile left, Tile right)
     {
-        return !(left == right);
+        return !left.Equals(right);
     }
 
     // Added legacy enums back

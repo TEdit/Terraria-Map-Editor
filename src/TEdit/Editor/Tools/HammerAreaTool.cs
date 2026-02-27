@@ -11,6 +11,8 @@ namespace TEdit.Editor.Tools;
 
 public sealed class HammerAreaTool : BrushToolBase
 {
+    public override bool SupportsCadRouting => false;
+
     public HammerAreaTool(WorldViewModel worldViewModel) : base(worldViewModel)
     {
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/hammer.png"));

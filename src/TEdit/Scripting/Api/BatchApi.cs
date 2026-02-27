@@ -117,7 +117,7 @@ public class BatchApi
             {
                 _context.CancellationToken.ThrowIfCancellationRequested();
 
-                var tile = _world.Tiles[x, y];
+                ref var tile = ref _world.Tiles[x, y];
                 if (tile.IsActive && tile.Type == fromType)
                 {
                     _undo.SaveTile(_world, x, y);
@@ -228,7 +228,7 @@ public class BatchApi
             {
                 _context.CancellationToken.ThrowIfCancellationRequested();
 
-                var tile = _world.Tiles[x, y];
+                ref var tile = ref _world.Tiles[x, y];
                 if (tile.IsActive && tile.Type == tileType)
                 {
                     _undo.SaveTile(_world, x, y);
@@ -262,7 +262,7 @@ public class BatchApi
 
                 if (_world.ValidTileLocation(x, y))
                 {
-                    var tile = _world.Tiles[x, y];
+                    ref var tile = ref _world.Tiles[x, y];
                     if (tile.IsActive && tile.Type == fromType)
                     {
                         _undo.SaveTile(_world, x, y);
@@ -294,7 +294,7 @@ public class BatchApi
             {
                 _context.CancellationToken.ThrowIfCancellationRequested();
 
-                var tile = _world.Tiles[x, y];
+                ref var tile = ref _world.Tiles[x, y];
                 if (tile.Wall == fromType)
                 {
                     _undo.SaveTile(_world, x, y);

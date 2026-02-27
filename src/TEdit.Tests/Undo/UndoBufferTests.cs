@@ -117,7 +117,7 @@ public class UndoBufferTests : IDisposable
         {
             foreach (var loc in locations)
             {
-                buffer.Add(loc, (Tile)tile.Clone());
+                buffer.Add(loc, tile);
             }
             buffer.Close();
         }
@@ -168,7 +168,7 @@ public class UndoBufferTests : IDisposable
         {
             foreach (var (loc, tile) in testData)
             {
-                buffer.Add(loc, (Tile)tile.Clone());
+                buffer.Add(loc, tile);
             }
             buffer.Close();
         }
@@ -204,7 +204,7 @@ public class UndoBufferTests : IDisposable
         {
             for (int i = 0; i < tileCount; i++)
             {
-                buffer.Add(new Vector2Int32(i, i), (Tile)singleTile.Clone());
+                buffer.Add(new Vector2Int32(i, i), singleTile);
             }
             buffer.Close();
         }

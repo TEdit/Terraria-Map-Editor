@@ -90,10 +90,10 @@ public class MorphBiomeDataApplier
         return MorphLevel.Sky;
     }
 
-    public List<Vector2Int32> ApplyMorph(MorphToolOptions options, World world, Tile source, MorphLevel level, Vector2Int32 location)
+    public List<Vector2Int32> ApplyMorph(MorphToolOptions options, World world, ref Tile source, MorphLevel level, Vector2Int32 location)
     {
-        ApplyTileMorph(options, world, source, level, location);
-        ApplyWallMorph(options, world, source, level, location);
+        ApplyTileMorph(options, world, ref source, level, location);
+        ApplyWallMorph(options, world, ref source, level, location);
 
         // After converting a block to moss stone, grow moss plants on exposed faces
         // Only full blocks get moss plants — slopes and half blocks don't
@@ -144,7 +144,7 @@ public class MorphBiomeDataApplier
             if (nx < 0 || nx >= world.TilesWide || ny < 0 || ny >= world.TilesHigh)
                 continue;
 
-            var neighbor = world.Tiles[nx, ny];
+            ref var neighbor = ref world.Tiles[nx, ny];
             if (neighbor.IsActive)
                 continue;
 
@@ -164,7 +164,7 @@ public class MorphBiomeDataApplier
         return grownPlants;
     }
 
-    private void ApplyWallMorph(MorphToolOptions options, World world, Tile source, MorphLevel level, Vector2Int32 location)
+    private void ApplyWallMorph(MorphToolOptions options, World world, ref Tile source, MorphLevel level, Vector2Int32 location)
     {
         if (source.Wall == 0) { return; }
         bool useEvil = options.EnableEvilTiles;
@@ -204,7 +204,7 @@ public class MorphBiomeDataApplier
         }
     }
 
-    private void ApplyTileMorph(MorphToolOptions options, World world, Tile source, MorphLevel level, Vector2Int32 location)
+    private void ApplyTileMorph(MorphToolOptions options, World world, ref Tile source, MorphLevel level, Vector2Int32 location)
     {
         if (!source.IsActive) { return; }
         ushort sourceId = source.Type;
@@ -266,8 +266,10 @@ public class MorphBiomeDataApplier
                 morphId.SpriteOffsets.Count > 0)
             {
                 // filter and apply morph (offset or delete)
+                // Cannot capture ref parameter in lambda, so use a local copy for the filter
+                Tile sourceSnapshot = source;
                 morphId.SpriteOffsets
-                    .FirstOrDefault(uv => uv.FilterMatches(source))
+                    .FirstOrDefault(uv => uv.FilterMatches(sourceSnapshot))
                     ?.ApplyOffset(ref source);
             }
 
@@ -305,13 +307,13 @@ public class MorphBiomeDataApplier
     // copied from rendering
     const int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
     private readonly MorphBiomeData _morph;
-    [ThreadStatic] static Tile[] _neighborTile;
+    [ThreadStatic] static Tile?[] _neighborTile;
 
     public static bool TouchingAir(World world, int x, int y)
     {
         if (world == null) return false;
 
-        _neighborTile ??= new Tile[8];
+        _neighborTile ??= new Tile?[8];
         var neighborTile = _neighborTile;
 
         // copied from render code. this should probably be made a method so it can be reused
@@ -330,14 +332,14 @@ public class MorphBiomeDataApplier
         {
             var t = neighborTile[i];
             if (t == null) { continue; }
-            if (!t.IsActive) { return true; } // air
+            if (!t.Value.IsActive) { return true; } // air
         }
 
         for (int i = 0; i < neighborTile.Length; i++)
         {
             var t = neighborTile[i];
             if (t == null) { continue; }
-            if (MorphConfiguration.NotSolidTiles.Contains(t.Type)) { return true; } // non-solid
+            if (MorphConfiguration.NotSolidTiles.Contains(t.Value.Type)) { return true; } // non-solid
         }
 
         return false;

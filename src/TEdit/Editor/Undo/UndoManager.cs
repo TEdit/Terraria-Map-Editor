@@ -242,7 +242,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
 
     private void SaveTileToBuffer(UndoBuffer buffer, int x, int y, bool removeEntities = false)
     {
-        var curTile = (Tile)_world.Tiles[x, y].Clone();
+        var curTile = _world.Tiles[x, y];
 
         if (curTile.Type < buffer.TileImportance.Length && buffer.TileImportance[curTile.Type])
         {

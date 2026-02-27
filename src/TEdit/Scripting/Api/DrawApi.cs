@@ -335,7 +335,7 @@ public class DrawApi
 
         var checkTiles = new bool[bitmapWidth * bitmapHeight];
         var ranges = new FloodFillRangeQueue();
-        var originTile = (Tile)_world.Tiles[x, y].Clone();
+        var originTile = _world.Tiles[x, y];
 
         // Seed the fill
         LinearFloodFill(ref x, ref y, ref originTile, checkTiles, ranges, bitmapWidth, bitmapHeight);

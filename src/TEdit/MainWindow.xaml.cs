@@ -821,21 +821,21 @@ public partial class MainWindow : FluentWindow
             if (!_vm.Selection.IsActive)
                 return;
 
-            // Build the list of tiles per the selection area.
-            List<Tuple<Tile, Vector2Int32>> tileList = new();
+            // Build the list of tile positions per the selection area.
+            List<Vector2Int32> positions = new();
             for (int x = _vm.Selection.SelectionArea.Left; x < _vm.Selection.SelectionArea.Right; x++)
             {
                 for (int y = _vm.Selection.SelectionArea.Top; y < _vm.Selection.SelectionArea.Bottom; y++)
                 {
-                    tileList.Add(new Tuple<Tile, Vector2Int32>(_vm.CurrentWorld.Tiles[x, y], new Vector2Int32(x, y)));
+                    positions.Add(new Vector2Int32(x, y));
                 }
             }
 
             // Clear the selection for better viewing.
             _vm.Selection.SetRectangle(new Vector2Int32(0, 0), new Vector2Int32(0, 0));
 
-            // Pass the tile data onto the new controller.
-            UVEditorWindow uvEditorWindow = new(tileList, _vm);
+            // Pass the tile positions onto the new controller.
+            UVEditorWindow uvEditorWindow = new(positions, _vm);
             uvEditorWindow.Owner = this;
             uvEditorWindow.ShowDialog();
         }

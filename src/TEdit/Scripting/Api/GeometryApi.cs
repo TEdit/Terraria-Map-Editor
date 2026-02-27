@@ -61,7 +61,7 @@ public class GeometryApi
         {
             if (!_world.ValidTileLocation(p)) continue;
             _undo.SaveTile(_world, p);
-            var tile = _world.Tiles[p.X, p.Y];
+            ref var tile = ref _world.Tiles[p.X, p.Y];
             tile.Type = (ushort)tileType;
             tile.IsActive = true;
         }

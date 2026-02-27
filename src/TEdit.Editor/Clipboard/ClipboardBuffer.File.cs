@@ -382,8 +382,7 @@ public partial class ClipboardBuffer
                 {
                     for (int k = y + 1; k < y + rle + 1; k++)
                     {
-                        var tcopy = (Tile) tile.Clone();
-                        buffer.Tiles[x, k] = tcopy;
+                        buffer.Tiles[x, k] = tile;
                     }
                     y = y + rle;
                 }
@@ -512,8 +511,7 @@ public partial class ClipboardBuffer
                         {
                             for (int k = y + 1; k < y + rle + 1; k++)
                             {
-                                var tcopy = (Tile)tile.Clone();
-                                buffer.Tiles[x, k] = tcopy;
+                                buffer.Tiles[x, k] = tile;
                             }
                             y = y + rle;
                         }
@@ -781,11 +779,7 @@ public partial class ClipboardBuffer
                     System.Diagnostics.Debug.WriteLine($"Schematic tile recovery: {ex.Message}");
                     for (int x = 0; x < buffer.Size.X; x++)
                     {
-                        for (int y = 0; y < buffer.Size.Y; y++)
-                        {
-                            if (buffer.Tiles[x, y] == null)
-                                buffer.Tiles[x, y] = new Tile();
-                        }
+                        // default(Tile) is valid zero state for struct
                     }
                     return buffer;
                 }
@@ -915,11 +909,7 @@ public partial class ClipboardBuffer
                     System.Diagnostics.Debug.WriteLine($"Schematic tile recovery: {ex.Message}");
                     for (int x = 0; x < buffer.Size.X; x++)
                     {
-                        for (int y = 0; y < buffer.Size.Y; y++)
-                        {
-                            if (buffer.Tiles[x, y] == null)
-                                buffer.Tiles[x, y] = new Tile();
-                        }
+                        // default(Tile) is valid zero state for struct
                     }
                     return buffer;
                 }

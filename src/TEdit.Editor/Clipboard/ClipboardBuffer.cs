@@ -86,7 +86,7 @@ public partial class ClipboardBuffer : ITileData
         {
             for (int y = 0; y < area.Height; y++)
             {
-                Tile curTile = (Tile)world.Tiles[x + area.X, y + area.Y].Clone();
+                Tile curTile = world.Tiles[x + area.X, y + area.Y];
 
                 // ---- FILTERING ----
                 // If the clipboard filter is enabled, remove all non-matching filter tiles.
@@ -216,7 +216,7 @@ public partial class ClipboardBuffer : ITileData
                 if (!world.ValidTileLocation(new Vector2Int32(worldX, worldY))) { continue; }
 
                 var pasteTile = Tiles[x, y];
-                var worldTile = world.Tiles[worldX, worldY];
+                ref var worldTile = ref world.Tiles[worldX, worldY];
 
                 if (pasteTile.IsEmpty && !pasteOptions.PasteEmpty)
                 {
@@ -233,7 +233,7 @@ public partial class ClipboardBuffer : ITileData
                 // save undo, checks above passed
                 undo?.SaveTile(world, worldX, worldY);
 
-                UpdateWorldTileFromBuffer(pasteOptions, worldTile, pasteTile);
+                UpdateWorldTileFromBuffer(pasteOptions, ref worldTile, pasteTile);
 
                 //  Update chest/sign data only if we've pasted tiles
                 if (pasteOptions.PasteSprites && pasteOptions.PasteOverTiles)
@@ -300,7 +300,7 @@ public partial class ClipboardBuffer : ITileData
         }
     }
 
-    private static void UpdateWorldTileFromBuffer(PasteOptions pasteOptions, Tile worldTile, Tile pasteTile)
+    private static void UpdateWorldTileFromBuffer(PasteOptions pasteOptions, ref Tile worldTile, Tile pasteTile)
     {
         // paste regular tiles or sprites if pasteSprites active
         if ( pasteTile.Type < WorldConfiguration.SettingsTileFrameImportant.Length &&
@@ -352,7 +352,7 @@ public partial class ClipboardBuffer : ITileData
         clone.RenderScale = RenderScale;
         for (int x = 0; x < Size.X; x++)
             for (int y = 0; y < Size.Y; y++)
-                clone.Tiles[x, y] = (Tile)Tiles[x, y].Clone();
+                clone.Tiles[x, y] = Tiles[x, y];
         foreach (var c in Chests) clone.Chests.Add(c.Copy());
         foreach (var s in Signs) clone.Signs.Add(s.Copy());
         foreach (var te in TileEntities) clone.TileEntities.Add(te.Copy());
@@ -374,7 +374,7 @@ public partial class ClipboardBuffer : ITileData
             {
                 int srcY = (int)((y * (double)Size.Y) / newHeight);
                 srcY = Math.Min(srcY, Size.Y - 1);
-                var tile = (Tile)Tiles[srcX, srcY].Clone();
+                var tile = Tiles[srcX, srcY];
 
                 // Kill sprites (same as Rotate)
                 var tileProperties = WorldConfiguration.TileProperties[tile.Type];
@@ -423,7 +423,7 @@ public partial class ClipboardBuffer : ITileData
                     bufferY = maxY - y;
                 }
 
-                Tile tile = (Tile)buffer.Tiles[x, y].Clone();
+                Tile tile = buffer.Tiles[x, y];
                 var tileProperties = WorldConfiguration.TileProperties[tile.Type];
                 flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;
 
@@ -636,7 +636,7 @@ public partial class ClipboardBuffer : ITileData
                 for (int y = 0; y <= FlipmaxY; y++)
                 {
                     // Offet tiles 90
-                    Tile tile = (Tile)flippedBuffer.Tiles[x, y].Clone();
+                    Tile tile = flippedBuffer.Tiles[x, y];
                     var tileProperties = WorldConfiguration.TileProperties[tile.Type];
 
                     // kill sprites

@@ -538,8 +538,7 @@ public partial class PlayerEditorViewModel
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Failed to load player file:\n{ex.Message}", "Error",
-                MessageBoxButton.OK, MessageBoxImage.Error);
+            _ = App.DialogService.ShowExceptionAsync($"Failed to load player file:\n{ex.Message}");
         }
     }
 
@@ -556,8 +555,7 @@ public partial class PlayerEditorViewModel
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Failed to save player file:\n{ex.Message}", "Error",
-                MessageBoxButton.OK, MessageBoxImage.Error);
+            _ = App.DialogService.ShowExceptionAsync($"Failed to save player file:\n{ex.Message}");
         }
     }
 
