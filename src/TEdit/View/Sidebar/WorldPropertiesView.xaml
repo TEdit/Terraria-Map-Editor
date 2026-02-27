@@ -741,10 +741,10 @@
       <TextBlock Text="1:" VerticalAlignment="Center" Width="20"/>
     </StackPanel>
     <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding TreeStylePreviews}"
-                          SelectedValue="{Binding CurrentWorld.TreeStyle2, Mode=TwoWay}"
+                          SelectedValue="{Binding CurrentWorld.TreeStyle1, Mode=TwoWay}"
                           SelectedValuePath="Value"
                           HorizontalAlignment="Stretch"
-              
+
                           ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
       <TextBlock Text="{x:Static p:Language.tool_wp_style_treestyles}" HorizontalAlignment="Right" />

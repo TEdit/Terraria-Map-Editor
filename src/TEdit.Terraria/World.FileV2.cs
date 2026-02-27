@@ -1185,7 +1185,13 @@ public partial class World
 
         if (world.Version >= 211)
         {
-            // tree tops
+            // tree tops — sync legacy TreeStyle fields into TreeTopVariations
+            // so Terraria reads the correct values from this section
+            world.TreeTopVariations[0] = world.TreeStyle0;
+            world.TreeTopVariations[1] = world.TreeStyle1;
+            world.TreeTopVariations[2] = world.TreeStyle2;
+            world.TreeTopVariations[3] = world.TreeStyle3;
+
             bw.Write(world.TreeTopVariations.Count);
 
             for (int i = 0; i < world.TreeTopVariations.Count; i++)
