@@ -8,6 +8,6 @@ internal static class ModuleInit
     [ModuleInitializer]
     internal static void Initialize()
     {
-        RxAppBuilder.CreateReactiveUIBuilder().Build();
+        RxAppBuilder.CreateReactiveUIBuilder().BuildApp();
     }
 }

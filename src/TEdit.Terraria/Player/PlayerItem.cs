@@ -18,7 +18,13 @@ public partial class PlayerItem : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _netId, value);
-            _currentItemProperty = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Id == _netId);
+            var items = WorldConfiguration.ItemProperties;
+            ItemProperty match = null;
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Id == _netId) { match = items[i]; break; }
+            }
+            _currentItemProperty = match;
             if (_netId == 0)
                 StackSize = 0;
             else if (StackSize == 0)

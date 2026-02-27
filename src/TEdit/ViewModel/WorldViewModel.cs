@@ -106,6 +106,8 @@ public partial class WorldViewModel : ReactiveObject
     private bool _showWorldBorder = false;
     private bool _worldBorderOverlay = false;
     private bool _showWireTransparency = true;
+    private HashSet<Vector2Int32> _wireTraceHighlight;
+    private int _wireTraceColor; // 0=none, 1=red, 2=blue, 3=green, 4=yellow
     private string _spriteFilter;
     private ushort _spriteTileFilter;
     private ListCollectionView _spriteSheetView;
@@ -1311,7 +1313,7 @@ public partial class WorldViewModel : ReactiveObject
     public ITool ActiveTool
     {
         get { return _activeTool; }
-        set { this.RaiseAndSetIfChanged(ref _activeTool, value); }
+        set { this.RaiseAndSetIfChanged(ref _activeTool, value); ClearWireTrace(); }
     }
 
     #region Wire Mode UI Properties
@@ -1582,6 +1584,24 @@ public partial class WorldViewModel : ReactiveObject
             this.RaiseAndSetIfChanged(ref _showWireTransparency, value);
             UpdateRenderWorld();
         }
+    }
+
+    public HashSet<Vector2Int32> WireTraceHighlight
+    {
+        get => _wireTraceHighlight;
+        set { this.RaiseAndSetIfChanged(ref _wireTraceHighlight, value); }
+    }
+
+    public int WireTraceColor
+    {
+        get => _wireTraceColor;
+        set { this.RaiseAndSetIfChanged(ref _wireTraceColor, value); }
+    }
+
+    public void ClearWireTrace()
+    {
+        WireTraceHighlight = null;
+        WireTraceColor = 0;
     }
 
     public bool ShowActuators

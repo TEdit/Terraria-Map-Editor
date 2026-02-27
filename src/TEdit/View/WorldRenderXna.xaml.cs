@@ -60,6 +60,7 @@ public partial class WorldRenderXna : UserControl
     private const float LayerGreenWires = 1 - 0.10f;
     private const float LayerYellowWires = 1 - 0.11f;
     private const float LayerBuffRadii = 1 - 0.12f;
+    private const float LayerWireTraceHighlight = 1 - 0.13f;
 
     private const float LayerGrid = 1 - 0.15f;
     private const float LayerWorldBorder = 1 - 0.17f;
@@ -2729,6 +2730,9 @@ public partial class WorldRenderXna : UserControl
         }
 
         _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+
+        DrawWireTraceHighlight();
+
         if (_wvm.ShowGrid)
             DrawGrid();
 
@@ -5745,6 +5749,36 @@ public partial class WorldRenderXna : UserControl
                     // failed to render tile? log?
                 }
             }
+        }
+
+    }
+
+    private void DrawWireTraceHighlight()
+    {
+        var highlight = _wvm.WireTraceHighlight;
+        if (highlight == null || highlight.Count == 0) return;
+
+        var whiteTex = _textureDictionary.WhitePixelTexture;
+        if (whiteTex == null) return;
+
+        Rectangle visibleBounds = GetViewingArea();
+        var highlightColor = _wvm.WireTraceColor switch
+        {
+            1 => new Color(255, 80, 80, 100),   // Red tint
+            2 => new Color(80, 80, 255, 100),    // Blue tint
+            3 => new Color(80, 255, 80, 100),    // Green tint
+            4 => new Color(255, 255, 80, 100),   // Yellow tint
+            _ => new Color(255, 255, 255, 80)
+        };
+
+        foreach (var tile in highlight)
+        {
+            if (tile.X < visibleBounds.Left - 1 || tile.X > visibleBounds.Right + 1
+                || tile.Y < visibleBounds.Top - 1 || tile.Y > visibleBounds.Bottom + 1)
+                continue;
+
+            _spriteBatch.Draw(whiteTex, TileOrigin(tile.X, tile.Y), null, highlightColor,
+                0f, Vector2.Zero, _zoom, SpriteEffects.None, LayerWireTraceHighlight);
         }
     }
 

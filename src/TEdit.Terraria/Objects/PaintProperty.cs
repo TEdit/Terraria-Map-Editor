@@ -1,8 +1,9 @@
-﻿using TEdit.Common;
+﻿using System.Text.Json.Serialization;
+using TEdit.Common;
 
 namespace TEdit.Terraria.Objects;
 
-public class PaintProperty 
+public class PaintProperty
 {
     public PaintProperty()
     {
@@ -17,6 +18,7 @@ public class PaintProperty
     }
 
     public TEditColor Color { get; set; } = TEditColor.Magenta;
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public int Id { get; set; } = -1;
     public string Name { get; set; } = "UNKNOWN";
 }

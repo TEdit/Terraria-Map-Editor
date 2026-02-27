@@ -8267,7 +8267,8 @@
     ],
     "name": "Small Decos",
     "key": "SmallPiles",
-    "color": "#959573FF"
+    "color": "#959573FF",
+    "textureWrap": { "axis": "U", "offsetIncrement": 18, "conditionalV": 18 }
   },
   {
     "id": 186,
