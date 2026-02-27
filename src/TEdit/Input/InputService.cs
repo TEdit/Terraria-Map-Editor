@@ -710,6 +710,16 @@ public class InputService
 
         Register(new InputAction
         {
+            Id = "editor.wire.trace",
+            Name = "Wire Trace Highlight",
+            Category = InputCategory.ToolDrawing,
+            Scope = InputScope.Editor,
+            Description = "Alt+click to highlight all wires connected to the clicked tile",
+            DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left, ModifierKeys.Alt) }
+        });
+
+        Register(new InputAction
+        {
             Id = "toggle.tile",
             Name = "Toggle Tile Style",
             Category = InputCategory.Toggles,

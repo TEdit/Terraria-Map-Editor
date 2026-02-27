@@ -37,6 +37,14 @@ public sealed class ArrowTool : BaseTool
         _secondaryClick = false;
 
         Tile curTile = _wvm.CurrentWorld.Tiles[e.Location.X, e.Location.Y];
+
+        // Right-click a wire tile to trace the connected network
+        if (curTile.HasWire)
+        {
+            PerformWireTrace(e.Location);
+            return;
+        }
+
         if (curTile.IsChest())
         {
             Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y, true);

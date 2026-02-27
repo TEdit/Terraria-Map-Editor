@@ -565,6 +565,12 @@ public partial class MainWindow : FluentWindow
                 _vm.RequestZoomCommand.Execute(false).Subscribe();
                 return true;
             case "nav.reset":
+                // Clear wire trace highlight if active
+                if (_vm.WireTraceHighlight != null)
+                {
+                    _vm.ClearWireTrace();
+                    return true;
+                }
                 // CAD wire mode: first Escape cancels anchor, second Escape exits mode
                 if (_vm.ActiveTool is PencilTool cadPt && cadPt.IsCadWireMode)
                 {

@@ -8,6 +8,7 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Geometry;
 using TEdit.Input;
+using TEdit.Terraria;
 using TEdit.UI;
 using TEdit.ViewModel;
 using Wpf.Ui.Controls;
@@ -173,6 +174,57 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     protected bool IsActionActive(TileMouseState e, string actionId)
     {
         return GetActiveActions(e).Contains(actionId);
+    }
+
+    /// <summary>
+    /// Performs a BFS wire trace from the given location, highlighting the connected network.
+    /// </summary>
+    protected void PerformWireTrace(Vector2Int32 location)
+    {
+        var world = _wvm.CurrentWorld;
+        if (world == null) { _wvm.ClearWireTrace(); return; }
+
+        if (location.X < 0 || location.Y < 0 ||
+            location.X >= world.TilesWide || location.Y >= world.TilesHigh)
+        {
+            _wvm.ClearWireTrace();
+            return;
+        }
+
+        var tile = world.Tiles[location.X, location.Y];
+        if (!tile.HasWire) { _wvm.ClearWireTrace(); return; }
+
+        // Determine which wire color to trace
+        int color = 0;
+        var picker = _wvm.TilePicker;
+
+        // Prefer active TilePicker color if it exists on this tile
+        if (picker.RedWireActive && tile.WireRed) color = 1;
+        else if (picker.BlueWireActive && tile.WireBlue) color = 2;
+        else if (picker.GreenWireActive && tile.WireGreen) color = 3;
+        else if (picker.YellowWireActive && tile.WireYellow) color = 4;
+        // Fallback: first wire found on tile
+        else if (tile.WireRed) color = 1;
+        else if (tile.WireBlue) color = 2;
+        else if (tile.WireGreen) color = 3;
+        else if (tile.WireYellow) color = 4;
+
+        if (color == 0) { _wvm.ClearWireTrace(); return; }
+
+        Func<int, int, bool> hasWireAt = color switch
+        {
+            1 => (x, y) => world.Tiles[x, y].WireRed,
+            2 => (x, y) => world.Tiles[x, y].WireBlue,
+            3 => (x, y) => world.Tiles[x, y].WireGreen,
+            4 => (x, y) => world.Tiles[x, y].WireYellow,
+            _ => (_, _) => false
+        };
+
+        var network = WireTracer.Trace(hasWireAt, world.TilesWide, world.TilesHigh,
+            location.X, location.Y);
+
+        _wvm.WireTraceHighlight = network;
+        _wvm.WireTraceColor = color;
     }
 
     #endregion

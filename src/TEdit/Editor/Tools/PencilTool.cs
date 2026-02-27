@@ -129,6 +129,14 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
+        // Wire trace intercept (Alt+Click)
+        var traceActions = GetActiveActions(e);
+        if (traceActions.Contains("editor.wire.trace"))
+        {
+            PerformWireTrace(e.Location);
+            return;
+        }
+
         // CAD wire mode intercept
         if (_isCadWireMode)
         {
