@@ -528,6 +528,7 @@ public partial class WorldViewModel
     }
     public void UpdateRenderPixel(int x, int y)
     {
+        if (CurrentWorld == null) return;
         Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
         UpdateFilterOverlayPixel(x, y);
@@ -539,6 +540,7 @@ public partial class WorldViewModel
         Task.Factory.StartNew(
         (Action)(() =>
         {
+            if (CurrentWorld == null) return;
             var bounded = new RectangleInt32(Math.Max(area.Left, 0),
                                               Math.Max(area.Top, 0),
                                               Math.Min((int)area.Width, CurrentWorld.TilesWide - Math.Max(area.Left, 0)),
@@ -694,6 +696,8 @@ public partial class WorldViewModel
 
     public TEditColor GetBackgroundColor(int y)
     {
+        if (CurrentWorld == null)
+            return WorldConfiguration.GlobalColors["Sky"];
         if (y < 80)
             return WorldConfiguration.GlobalColors["Space"];
         else if (y > CurrentWorld.TilesHigh - 192)

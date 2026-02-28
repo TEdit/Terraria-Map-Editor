@@ -36,24 +36,40 @@ public static class WriteableBitmapEx
 
     public static Texture2D ToTexture2D(this WriteableBitmap bmp, GraphicsDevice gd)
     {
-        // Initialize buffers
         var result = new Texture2D(gd, bmp.PixelWidth, bmp.PixelHeight);
         var pixelData = new int[bmp.PixelWidth * bmp.PixelHeight];
 
-        if (!bmp.IsFrozen) { bmp.Lock(); }
-        unsafe
+        bool locked = false;
+        if (!bmp.IsFrozen)
         {
-            var pixels = (int*)bmp.BackBuffer;
-            for (int i = 0; i < pixelData.Length; i++)
+            try { bmp.Lock(); locked = true; }
+            catch (InvalidOperationException) { }
+        }
+
+        if (locked || !bmp.IsFrozen)
+        {
+            unsafe
             {
-                pixelData[i] = ColorToXna(pixels[i]);
+                var pixels = (int*)bmp.BackBuffer;
+                for (int i = 0; i < pixelData.Length; i++)
+                {
+                    pixelData[i] = ColorToXna(pixels[i]);
+                }
+            }
+            if (locked) { bmp.Unlock(); }
+        }
+        else
+        {
+            // Frozen bitmap — use safe copy path
+            var rawPixels = new int[pixelData.Length];
+            bmp.CopyPixels(rawPixels, bmp.PixelWidth * 4, 0);
+            for (int i = 0; i < rawPixels.Length; i++)
+            {
+                pixelData[i] = ColorToXna(rawPixels[i]);
             }
         }
-        if (!bmp.IsFrozen) { bmp.Unlock(); }
 
         result.SetData(pixelData);
-
-        // Return texture
         return result;
     }
 

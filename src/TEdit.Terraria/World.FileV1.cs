@@ -304,7 +304,7 @@ public partial class World
     {
         int chestSize = (version < 58) ? 20 : 40;
 
-        var maxItemId = WorldConfiguration.SaveConfiguration.SaveVersions[(int)version].MaxItemId;
+        var maxItemId = WorldConfiguration.SaveConfiguration.GetData((int)version).MaxItemId;
 
         for (int i = 0; i < 1000; ++i)
         {

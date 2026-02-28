@@ -165,8 +165,11 @@ public static class DependencyChecker
 
         try
         {
-            path = Path.GetFullPath(path);
-            PathToContent = path;
+            if (!string.IsNullOrWhiteSpace(path))
+            {
+                path = Path.GetFullPath(path);
+                PathToContent = path;
+            }
         }
         catch (Exception ex)
         {
@@ -196,24 +199,28 @@ public static class DependencyChecker
             {
                 if (key != null)
                 {
-                    string steamWorlds = Path.Combine(key.GetValue("SteamPath") as string, "userdata");
-
-                    //  No Steam UserID was specified; we'll guess it if there's only a single user
-                    if (steamUserId == 0)
+                    string steamPath = key.GetValue("SteamPath") as string;
+                    if (!string.IsNullOrEmpty(steamPath))
                     {
-                        string[] userDirectories = Directory.GetDirectories(steamWorlds);
+                        string steamWorlds = Path.Combine(steamPath, "userdata");
 
-                        if (userDirectories.Length == 1)
+                        //  No Steam UserID was specified; we'll guess it if there's only a single user
+                        if (steamUserId == 0)
                         {
-                            steamUserId = Convert.ToInt32(Path.GetFileName(userDirectories[0]));
+                            string[] userDirectories = Directory.GetDirectories(steamWorlds);
+
+                            if (userDirectories.Length == 1)
+                            {
+                                steamUserId = Convert.ToInt32(Path.GetFileName(userDirectories[0]));
+                            }
                         }
-                    }
 
-                    steamWorlds = Path.Combine(steamWorlds, steamUserId.ToString(), "105600", "remote", "worlds").Replace("/", "\\");
+                        steamWorlds = Path.Combine(steamWorlds, steamUserId.ToString(), "105600", "remote", "worlds").Replace("/", "\\");
 
-                    if (Directory.Exists(steamWorlds))
-                    {
-                        return Path.GetFullPath(steamWorlds);
+                        if (Directory.Exists(steamWorlds))
+                        {
+                            return Path.GetFullPath(steamWorlds);
+                        }
                     }
                 }
             }

@@ -62,3 +62,4 @@ ref/*
 /src/SettingsFileUpdater/TEdit.Terraria/Data/
 *.wld.TEdit
 *.diagsession
+/errors.csv

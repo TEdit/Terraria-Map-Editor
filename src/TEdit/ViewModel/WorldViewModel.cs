@@ -2086,11 +2086,11 @@ public partial class WorldViewModel : ReactiveObject
 
     public void MouseMoveTile(TileMouseState e)
     {
-        if (CurrentWorld == null) return;
+        if (CurrentWorld?.Tiles == null) return;
 
         if (e.Location.X >= 0 && e.Location.Y >= 0 && e.Location.X < CurrentWorld.TilesWide && e.Location.Y < CurrentWorld.TilesHigh)
         {
-            if (e.Location != MouseOverTile.MouseState.Location)
+            if (MouseOverTile.MouseState is null || e.Location != MouseOverTile.MouseState.Location)
                 MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
             MouseOverTile.MouseState = e;

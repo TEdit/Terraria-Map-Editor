@@ -1301,7 +1301,9 @@ public partial class WorldRenderXna : UserControl
                     var customRect = previewConfig.SourceRect.Value;
                     var xnaRect = new Rectangle(customRect.X, customRect.Y, customRect.Width, customRect.Height);
 
-                    // Bounds check
+                    // Bounds check (clamp to texture dimensions)
+                    if (xnaRect.X < 0) { xnaRect.Width += xnaRect.X; xnaRect.X = 0; }
+                    if (xnaRect.Y < 0) { xnaRect.Height += xnaRect.Y; xnaRect.Y = 0; }
                     if (xnaRect.Right > sourceTexture.Width)
                         xnaRect.Width = sourceTexture.Width - xnaRect.X;
                     if (xnaRect.Bottom > sourceTexture.Height)
@@ -1430,6 +1432,16 @@ public partial class WorldRenderXna : UserControl
 
                                         var tileSourceRect = new Rectangle(sourceX + tileLocalRect.X, sourceY + tileLocalRect.Y, tileLocalRect.Width, tileLocalRect.Height);
 
+                                        // Guard against rectangles outside texture bounds
+                                        if (extraSourceRect.X < 0 || extraSourceRect.Y < 0 ||
+                                            extraSourceRect.Right > extraTex.Width || extraSourceRect.Bottom > extraTex.Height ||
+                                            extraSourceRect.Width <= 0 || extraSourceRect.Height <= 0)
+                                            continue;
+                                        if (tileSourceRect.X < 0 || tileSourceRect.Y < 0 ||
+                                            tileSourceRect.Right > tileTex.Width || tileSourceRect.Bottom > tileTex.Height ||
+                                            tileSourceRect.Width <= 0 || tileSourceRect.Height <= 0)
+                                            continue;
+
                                         var extraPixels = new Color[extraIntersectRect.Width * extraIntersectRect.Height];
                                         extraTex.GetData(0, extraSourceRect, extraPixels, 0, extraPixels.Length);
 
@@ -1461,7 +1473,9 @@ public partial class WorldRenderXna : UserControl
 
                             var source = new Rectangle(sourceX, sourceY, renderX, renderY);
 
-                            // Out of bounds checks
+                            // Out of bounds checks (clamp to texture dimensions)
+                            if (source.X < 0) { source.Width += source.X; source.X = 0; }
+                            if (source.Y < 0) { source.Height += source.Y; source.Y = 0; }
                             if (source.Bottom > tileTex.Height)
                                 source.Height -= (source.Bottom - tileTex.Height);
                             if (source.Right > tileTex.Width)
@@ -1746,7 +1760,9 @@ public partial class WorldRenderXna : UserControl
 
                 var source = new Rectangle(sourceX, sourceY, renderX, renderY);
 
-                // Out of bounds checks
+                // Out of bounds checks (clamp to texture dimensions)
+                if (source.X < 0) { source.Width += source.X; source.X = 0; }
+                if (source.Y < 0) { source.Height += source.Y; source.Y = 0; }
                 if (source.Bottom > sourceTexture.Height)
                     source.Height -= (source.Bottom - sourceTexture.Height);
                 if (source.Right > sourceTexture.Width)

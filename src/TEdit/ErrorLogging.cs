@@ -13,6 +13,7 @@ namespace TEdit;
 public static class ErrorLogging
 {
     private static TelemetryClient _telemetry;
+    private static StreamWriter? _logWriter;
     private const string UserPathRegex = @"C:\\Users\\([^\\]*)\\";
     private const string TelemetryConnectionString = "InstrumentationKey=8c8ff827-554e-4838-a6b6-e3d837519e51;IngestionEndpoint=https://dc.services.visualstudio.com";
 
@@ -34,103 +35,88 @@ public static class ErrorLogging
 
     public static void Initialize()
     {
-        lock (LogFilePath)
-        {
-            string dir = Path.GetDirectoryName(LogFilePath);
-            try
-            {
-                if (!Directory.Exists(dir))
-                {
-                    Directory.CreateDirectory(dir);
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show($"Unable to create log folder. Application will exit.\r\n{dir}\r\n{ex.Message}",
-                "Unable to create undo folder.", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                App.Current.Shutdown();
-            }
-
-            // Roll the log file if it exceeds 100MB
-            RollLogIfNeeded();
-
-            // Clean up old rolled log files (keep last 5)
-            CleanupOldLogs(dir);
-        }
-
-        InitializeTelemetry();
-    }
-
-    private const long MaxLogFileSize = 100 * 1024 * 1024; // 100MB
-
-    private static void RollLogIfNeeded()
-    {
         try
         {
-            if (File.Exists(LogFilePath))
+            if (!Directory.Exists(LogDirectory))
             {
-                var fileInfo = new FileInfo(LogFilePath);
-                if (fileInfo.Length >= MaxLogFileSize)
-                {
-                    // Roll the log files (TEdit.txt -> TEdit.1.txt -> TEdit.2.txt -> etc.)
-                    string logDirectory = Path.GetDirectoryName(LogFilePath);
-                    string baseFileName = Path.GetFileNameWithoutExtension(LogFilePath); // "TEdit"
-
-                    // Delete the oldest log (TEdit.4.txt) if it exists
-                    string oldestLog = Path.Combine(logDirectory, $"{baseFileName}.4.txt");
-                    if (File.Exists(oldestLog))
-                        File.Delete(oldestLog);
-
-                    // Roll TEdit.3.txt -> TEdit.4.txt, TEdit.2.txt -> TEdit.3.txt, TEdit.1.txt -> TEdit.2.txt
-                    for (int i = 3; i >= 1; i--)
-                    {
-                        string oldFile = Path.Combine(logDirectory, $"{baseFileName}.{i}.txt");
-                        string newFile = Path.Combine(logDirectory, $"{baseFileName}.{i + 1}.txt");
-                        if (File.Exists(oldFile))
-                            File.Move(oldFile, newFile);
-                    }
-
-                    // Move current log to TEdit.1.txt
-                    string firstBackup = Path.Combine(logDirectory, $"{baseFileName}.1.txt");
-                    File.Move(LogFilePath, firstBackup);
-
-                    LogInfo($"Log file rolled. Previous log saved as {baseFileName}.1.txt");
-                }
+                Directory.CreateDirectory(LogDirectory);
             }
         }
         catch (Exception ex)
         {
-            // If rolling fails, just continue - we'll append to the large file
-            try { LogWarn($"Failed to roll log file: {ex.Message}"); } catch { }
+            System.Windows.Forms.MessageBox.Show($"Unable to create log folder. Application will exit.\r\n{LogDirectory}\r\n{ex.Message}",
+            "Unable to create log folder.", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            App.Current.Shutdown();
         }
+
+        CleanupOldLogs();
+        _logWriter = OpenLogWriter(LogFilePath);
+
+        InitializeTelemetry();
     }
 
-    private static void CleanupOldLogs(string logDirectory)
+    private static StreamWriter? OpenLogWriter(string basePath)
+    {
+        // Try the base path first, then increment suffix if locked
+        string dir = Path.GetDirectoryName(basePath)!;
+        string name = Path.GetFileNameWithoutExtension(basePath);
+        string ext = Path.GetExtension(basePath);
+
+        for (int i = 0; i < 10; i++)
+        {
+            string path = i == 0
+                ? basePath
+                : Path.Combine(dir, $"{name}.{i:D3}{ext}");
+
+            try
+            {
+                var stream = new FileStream(path, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
+                LogFilePath = path;
+                return new StreamWriter(stream) { AutoFlush = true };
+            }
+            catch (IOException) { }
+        }
+
+        return null;
+    }
+
+    private const long MaxLogFileSize = 100 * 1024 * 1024; // 100MB
+
+    private static void RollIfNeeded()
+    {
+        if (_logWriter == null) return;
+
+        try
+        {
+            if (_logWriter.BaseStream.Length >= MaxLogFileSize)
+            {
+                _logWriter.Dispose();
+                var newPath = Path.Combine(LogDirectory, $"TEdit_{DateTime.Now:yyyyMMdd_HHmmss}.txt");
+                _logWriter = OpenLogWriter(newPath);
+            }
+        }
+        catch (IOException) { }
+    }
+
+    private static void CleanupOldLogs()
     {
         try
         {
-            // Clean up old timestamped log files from previous versions
-            var oldTimestampedLogs = Directory.GetFiles(logDirectory, "TEditLog_*.txt");
-            foreach (string file in oldTimestampedLogs)
+            // Clean up log files older than 7 days (both old and new naming)
+            foreach (string pattern in new[] { "TEdit_*.txt", "TEditLog_*.txt", "TEdit.*.txt" })
             {
-                try
+                foreach (string file in Directory.GetFiles(LogDirectory, pattern))
                 {
-                    var fi = new FileInfo(file);
-                    if (fi.LastWriteTime < DateTime.Now.AddDays(-7))
+                    try
                     {
-                        fi.Delete();
+                        if (new FileInfo(file).LastWriteTime < DateTime.Now.AddDays(-7))
+                            File.Delete(file);
                     }
-                }
-                catch
-                {
-                    // Ignore errors deleting old log files
+                    catch { }
                 }
             }
         }
-        catch
-        {
-            // Ignore errors in cleanup
-        }
+        catch { }
     }
 
     public static void InitializeTelemetry()
@@ -160,15 +146,15 @@ public static class ErrorLogging
 
         TelemetryClient client = new TelemetryClient(config);
         client.Context.User.Id = "TEdit";
-        client.Context.GlobalProperties["Version"] = App.Version.ToString();
-        client.Context.GlobalProperties["AppVersion"] = Assembly.GetEntryAssembly().GetName().Version.ToString();
+        client.Context.GlobalProperties["AppVersion"] = App.Version.ToString();
         client.Context.GlobalProperties["SessionId"] = Guid.NewGuid().ToString();
         client.Context.GlobalProperties["RoleInstance"] = "TEdit-Wpf";
         client.Context.GlobalProperties["OperatingSystem"] = Environment.OSVersion.ToString();
         return client;
     }
 
-    public static string LogFilePath = Path.Combine(WorldViewModel.TempPath, "Logs", "TEdit.txt");
+    public static readonly string LogDirectory = Path.Combine(WorldViewModel.TempPath, "Logs");
+    public static string LogFilePath = Path.Combine(LogDirectory, $"TEdit_{DateTime.Now:yyyyMMdd_HHmmss}.txt");
 
     #region ErrorLevel enum
 
@@ -195,14 +181,20 @@ public static class ErrorLogging
         _                => "[INF]"
     };
 
+    private static readonly object _logLock = new();
+
     public static void Log(ErrorLevel level, string message)
     {
         message = Regex.Replace(message, UserPathRegex, "C:\\Users\\[user]\\");
 
-        lock (LogFilePath)
+        lock (_logLock)
         {
-            File.AppendAllText(LogFilePath,
-                $"{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")} {LevelTag(level)} {message} {Environment.NewLine}");
+            try
+            {
+                RollIfNeeded();
+                _logWriter?.WriteLine($"{DateTime.Now:MM-dd-yyyy HH:mm:ss} {LevelTag(level)} {message}");
+            }
+            catch (IOException) { }
         }
     }
 

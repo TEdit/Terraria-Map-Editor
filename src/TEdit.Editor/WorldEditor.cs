@@ -296,7 +296,7 @@ public class WorldEditor : IDisposable
                 int u = curTile.U;
                 int v = curTile.V;
                 SetPixelAutomatic(ref curTile, tile: -1, u: 0, v: 0);
-                if (u > 0)
+                if (u > 0 && u < Minecart.LeftSideConnection.Length)
                 {
                     switch (Minecart.LeftSideConnection[u])
                     {
@@ -311,7 +311,7 @@ public class WorldEditor : IDisposable
                         case 2: SetTrack(x + 1, y + 1, ref _world.Tiles[x + 1, y + 1], false, false, false); break;
                     }
                 }
-                if (v > 0)
+                if (v > 0 && v < Minecart.LeftSideConnection.Length)
                 {
                     switch (Minecart.LeftSideConnection[v])
                     {

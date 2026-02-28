@@ -35,6 +35,15 @@ public class SaveVersionManager
         if (_latestBySaveVersion!.TryGetValue(useVersion, out var data))
             return data;
 
+        // Fall back to the nearest lower version
+        var nearest = _latestBySaveVersion.Keys
+            .Where(k => k <= useVersion)
+            .OrderByDescending(k => k)
+            .FirstOrDefault(-1);
+
+        if (nearest >= 0 && _latestBySaveVersion.TryGetValue(nearest, out data))
+            return data;
+
         throw new ArgumentOutOfRangeException(nameof(version), $"Missing settings for world file version: {version}");
     }
 
@@ -86,12 +95,8 @@ public class SaveVersionManager
 
     public bool[] GetTileFramesForVersion(int version)
     {
-        EnsureIndexes();
-
-        if (_latestBySaveVersion!.TryGetValue(version, out var data))
-            return data.GetFrames();
-
-        throw new ArgumentOutOfRangeException(nameof(version), version, $"Error saving world version {version}: save configuration not found.");
+        var data = GetData(version);
+        return data.GetFrames();
     }
 
     public bool[] GetTileFramesForGameVersion(string gameVersion)
