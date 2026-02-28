@@ -85,7 +85,7 @@ public partial class TilePicker : ReactiveObject
     [Reactive]
     private int _trackTunnelHeight = 4;
     [Reactive]
-    private bool _trackSmoothEnabled;
+    private bool _trackSmoothEnabled = true;
     [Reactive]
     private int _platformStyle;
 
