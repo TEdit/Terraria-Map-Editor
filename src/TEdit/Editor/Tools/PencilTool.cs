@@ -137,8 +137,8 @@ public sealed class PencilTool : BaseTool
             return;
         }
 
-        // CAD wire mode intercept
-        if (_isCadWireMode)
+        // CAD wire mode intercept (liquid uses freehand drawing, not routed paths)
+        if (_isCadWireMode && _wvm.TilePicker.PaintMode != PaintMode.Liquid)
         {
             var actions = GetActiveActions(e);
 
@@ -222,8 +222,8 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseMove(TileMouseState e)
     {
-        // CAD wire mode: update preview path
-        if (_isCadWireMode && _isCadAnchored)
+        // CAD wire mode: update preview path (liquid bypasses CAD)
+        if (_isCadWireMode && _isCadAnchored && _wvm.TilePicker.PaintMode != PaintMode.Liquid)
         {
             UpdateCadPreview(e.Location);
             return;
@@ -239,8 +239,8 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseUp(TileMouseState e)
     {
-        // CAD wire mode: clicks are handled in MouseDown, no action on MouseUp
-        if (_isCadWireMode && _isCadAnchored)
+        // CAD wire mode: clicks are handled in MouseDown, no action on MouseUp (liquid bypasses CAD)
+        if (_isCadWireMode && _isCadAnchored && _wvm.TilePicker.PaintMode != PaintMode.Liquid)
             return;
 
         // Detect click vs drag for polyline continuation

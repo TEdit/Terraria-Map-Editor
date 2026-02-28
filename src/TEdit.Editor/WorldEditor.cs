@@ -775,6 +775,7 @@ public class WorldEditor : IDisposable
                 {
                     curTile.U = -1;
                     curTile.V = -1;
+                    curTile.LiquidAmount = 0;
                 }
             }
         }
