@@ -31,7 +31,7 @@
     <PackageReference Include="Semver" Version="3.0.0" />
     <PackageReference Include="Velopack" Version="0.0.1298" />
     <PackageReference Include="VirtualizingWrapPanel" Version="2.5.0" />
-    <PackageReference Include="Jint" Version="4.6.0" />
+    <PackageReference Include="Jint" Version="4.6.1" />
     <PackageReference Include="LuaCSharp" Version="0.5.3" />
     <PackageReference Include="WPF-UI" Version="4.2.0" />
     <PackageReference Include="AvalonEdit" Version="6.3.1.120" />
