@@ -3768,6 +3768,75 @@ public partial class WorldRenderXna : UserControl
         DrawBackgroundLayer(style.Textures, 2, 0.49f, clipBottom, screenW, bgScale);
     }
 
+    // Underworld texture indices that are 2x2 sprite sheets (stable since 1.3)
+    private static readonly HashSet<int> _underworldSpriteSheets = new() { 1, 6, 7, 8, 13 };
+
+    private void DrawUnderworldBackground()
+    {
+        if (FilterManager.CurrentBackgroundMode != FilterManager.BackgroundMode.Normal) return;
+
+        Rectangle visibleBounds = GetViewingArea();
+        var world = _wvm.CurrentWorld;
+
+        // Only draw if viewing underworld area
+        int underworldTop = world.TilesHigh - 200;
+        if (visibleBounds.Bottom <= underworldTop) return;
+
+        // Look up underworld style
+        var bgStyles = WorldConfiguration.BackgroundStyles;
+        if (bgStyles == null) return;
+        if (!bgStyles.UnderworldBackgroundById.TryGetValue(world.UnderworldBg, out var style)) return;
+        if (style.Textures == null || style.Textures.Length < 5) return;
+
+        int screenW = (int)xnaViewport.ActualWidth;
+        int screenH = (int)xnaViewport.ActualHeight;
+        if (screenW <= 0 || screenH <= 0) return;
+
+        // Underworld top edge in screen coordinates
+        float underworldScreenY = (_scrollPosition.Y + underworldTop) * _zoom;
+
+        // Draw 5 layers back-to-front (index 4 → 0) matching Terraria's draw order
+        for (int layerIndex = 4; layerIndex >= 0; layerIndex--)
+        {
+            int texIndex = style.Textures[layerIndex];
+            var tex = _textureDictionary.GetUnderworld(texIndex);
+            if (tex == null || tex == _textureDictionary.DefaultTexture) continue;
+
+            // Get source rect — first frame only for sprite sheets
+            Rectangle srcRect;
+            if (_underworldSpriteSheets.Contains(texIndex))
+            {
+                srcRect = new Rectangle(0, 0, tex.Width / 2, tex.Height / 2);
+            }
+            else
+            {
+                srcRect = new Rectangle(0, 0, tex.Width, tex.Height);
+            }
+
+            float scale = (texIndex == 4) ? 0.5f : 1.3f;
+            float parallax = 1f / (layerIndex * 2 + 3);
+
+            int bgWidthScaled = (int)(srcRect.Width * scale);
+            if (bgWidthScaled <= 0) bgWidthScaled = 1;
+
+            // Horizontal tiling with parallax offset
+            float offsetX = _scrollPosition.X * _zoom * parallax;
+            int bgStartX = (int)(-Math.IEEERemainder(offsetX, bgWidthScaled) - (bgWidthScaled / 2));
+            int bgLoops = screenW / bgWidthScaled + 2;
+
+            // Vertical position anchored at underworld top
+            float bgTopY = underworldScreenY;
+
+            for (int i = 0; i < bgLoops; i++)
+            {
+                _spriteBatch.Draw(tex,
+                    new Vector2(bgStartX + bgWidthScaled * i, bgTopY),
+                    srcRect, Color.White, 0f, default,
+                    scale, SpriteEffects.None, LayerTileBackgroundTextures);
+            }
+        }
+    }
+
     /// <summary>
     /// Computes the maximum source texture height across all background layers,
     /// then returns a uniform scale so the tallest texture fills clipBottom.
@@ -3868,6 +3937,9 @@ public partial class WorldRenderXna : UserControl
         // Surface background (screen-space parallax layers)
         DrawSurfaceBackground();
 
+        // Underworld background (screen-space parallax layers)
+        DrawUnderworldBackground();
+
         // Check if the background mode is normal. If not, return.
         if (FilterManager.CurrentBackgroundMode != FilterManager.BackgroundMode.Normal) return;
 
@@ -3946,8 +4018,7 @@ public partial class WorldRenderXna : UserControl
                     }
                     else
                     {
-                        backTex = _textureDictionary.GetUnderworld(4);
-                        source.Y += (y - (int)_wvm.CurrentWorld.TilesHigh + 200) * 16;
+                        continue; // Underworld drawn by DrawUnderworldBackground()
                     }
 
                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
