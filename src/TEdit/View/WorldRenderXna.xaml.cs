@@ -496,6 +496,9 @@ public partial class WorldRenderXna : UserControl
                 else if (frameY == 18)
                     dest.X -= (int)(2 * scale);
                 break;
+            case 733: // Radio Thing - tileTop = 2
+                dest.Y -= (int)(2 * scale);
+                break;
             // Note: Tiles 751 (Sleeping Digtoise) and 752 (Chillet Egg) are handled
             // by custom rendering code in DrawTileTextures and PreviewConfig
         }
@@ -537,6 +540,9 @@ public partial class WorldRenderXna : UserControl
                     position.X += 2 * scale;
                 else if (frameY == 18)
                     position.X -= 2 * scale;
+                break;
+            case 733: // Radio Thing - tileTop = 2
+                position.Y -= 2 * scale;
                 break;
             // Note: Tiles 751 (Sleeping Digtoise) and 752 (Chillet Egg) are handled
             // by custom rendering code in DrawTileTextures and PreviewConfig
@@ -5106,6 +5112,17 @@ public partial class WorldRenderXna : UserControl
                                                 source.X = renderUV.X % 54 / 18 * 16;
                                                 source.Y = renderUV.Y % 72 / 18 * 16 + renderUV.X / 54 * 50;
                                             }
+                                        }
+                                        // Handle Radio Thing (tile 733) special case
+                                        // On state: UV Y < 54, texture shifts X by 54
+                                        // Off state: UV Y >= 54, no X shift; both axes wrap by 54
+                                        else if (type == 733)
+                                        {
+                                            if (renderUV.Y < 54)
+                                                source.X = renderUV.X % 54 + 54;
+                                            else
+                                                source.X = renderUV.X % 54;
+                                            source.Y = renderUV.Y % 54;
                                         }
                                         // Handle Magic Droppers (tiles 373, 374, 375, 461, 709) special case
                                         else if (type == 373 || type == 374 || type == 375 || type == 461 || type == 709)
