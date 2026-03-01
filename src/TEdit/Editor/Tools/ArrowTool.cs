@@ -38,13 +38,8 @@ public sealed class ArrowTool : BaseTool
 
         Tile curTile = _wvm.CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
-        // Right-click a wire tile to trace the connected network
-        if (curTile.HasWire)
-        {
-            PerformWireTrace(e.Location);
-            return;
-        }
-
+        // Check interactive tile objects first (chests, signs, tile entities, xmas trees)
+        // so they take priority over wire trace highlighting
         if (curTile.IsChest())
         {
             Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y, true);
@@ -69,8 +64,9 @@ public sealed class ArrowTool : BaseTool
             if (te != null)
             {
                 _wvm.SelectedTileEntity = te.Copy();
+                return;
             }
-        }           
+        }
         else if (curTile.Type == (int)TileType.ChristmasTree)
         {
             Vector2Int32 XmasLocation = _wvm.CurrentWorld.GetXmas(e.Location.X, e.Location.Y);
@@ -79,6 +75,13 @@ public sealed class ArrowTool : BaseTool
             _wvm.SelectedXmasBulb = (_wvm.CurrentWorld.Tiles[XmasLocation.X, XmasLocation.Y].V >> 6) & 0xf;
             _wvm.SelectedXmasLight = (_wvm.CurrentWorld.Tiles[XmasLocation.X, XmasLocation.Y].V >> 10) & 0xf;
             _wvm.SelectedXmas = XmasLocation;
+            return;
+        }
+
+        // Wire trace is lowest priority — only if no interactive object was found
+        if (curTile.HasWire)
+        {
+            PerformWireTrace(e.Location);
         }
     }
 }

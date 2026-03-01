@@ -201,10 +201,11 @@ public class BrushToolBase : BaseTool
             {
                 if (!_isCadAnchored)
                 {
-                    // First click: set anchor, no drawing
+                    // First click: set anchor and draw 1 tile
                     _cadAnchor = e.Location;
                     _isCadAnchored = true;
                     _cadPreviewPath.Clear();
+                    DrawSingleTile(e.Location);
                     return;
                 }
                 else
@@ -549,6 +550,26 @@ public class BrushToolBase : BaseTool
             }
         }
 
+        _wvm.UndoManager.SaveUndo();
+    }
+
+    private void DrawSingleTile(Vector2Int32 pixel)
+    {
+        if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) return;
+        if (!_wvm.Selection.IsValid(pixel)) return;
+
+        int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
+        if (_wvm.CheckTiles == null || _wvm.CheckTiles.Length != totalTiles)
+            _wvm.CheckTiles = new int[totalTiles];
+        if (++_wvm.CheckTileGeneration <= 0)
+        {
+            _wvm.CheckTileGeneration = 1;
+            Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
+        }
+
+        _wvm.UndoManager.SaveTile(pixel);
+        _wvm.SetPixel(pixel.X, pixel.Y);
+        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
         _wvm.UndoManager.SaveUndo();
     }
 

@@ -111,7 +111,7 @@
                   ItemsSource="{StaticResource BrickStyle}"
                   SelectedValue="{Binding MaskSettings.BrickStyleMaskValue}"
                   SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource EnumTemplate}" />
+                  ItemTemplate="{StaticResource BrickStyleIconTemplate}" />
 
         <!-- ═══ Row 4: Paint header ═══ -->
         <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5"

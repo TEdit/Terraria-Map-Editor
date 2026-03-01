@@ -6876,18 +6876,32 @@ public partial class WorldRenderXna : UserControl
             (_scrollPosition.Y + y) * _zoom - height + 4 + 16);
     }
 
+    private Color GetActiveWireAnchorColor()
+    {
+        var picker = _wvm.TilePicker;
+        if (picker.RedWireActive)
+            return new Color(255, 128, 128, 160);
+        if (picker.BlueWireActive)
+            return new Color(128, 128, 255, 160);
+        if (picker.GreenWireActive)
+            return new Color(128, 255, 128, 160);
+        if (picker.YellowWireActive)
+            return new Color(255, 255, 128, 160);
+        return new Color(255, 255, 255, 128);
+    }
+
     private Color GetActiveWirePreviewColor()
     {
         var picker = _wvm.TilePicker;
         if (picker.RedWireActive)
-            return new Color(255, 0, 0, 180);
+            return new Color(255, 0, 0, 96);
         if (picker.BlueWireActive)
-            return new Color(0, 0, 255, 180);
+            return new Color(0, 0, 255, 96);
         if (picker.GreenWireActive)
-            return new Color(0, 255, 0, 180);
+            return new Color(0, 255, 0, 96);
         if (picker.YellowWireActive)
-            return new Color(255, 255, 0, 180);
-        return new Color(255, 255, 255, 128);
+            return new Color(255, 255, 0, 96);
+        return new Color(255, 255, 255, 64);
     }
 
     private void DrawToolPreview()
@@ -6930,14 +6944,16 @@ public partial class WorldRenderXna : UserControl
                     }
                 }
 
-                // Draw anchor marker with brighter color
+                // Draw anchor marker: lightened wire color with transparency
                 if (path.Count > 0)
                 {
                     var anchor = path[0];
                     var anchorPos = new Vector2(
                         (_scrollPosition.X + anchor.X) * _zoom,
                         (_scrollPosition.Y + anchor.Y) * _zoom);
-                    var anchorColor = new Color(255, 255, 255, 220);
+                    var anchorColor = _wvm.TilePicker.PaintMode == PaintMode.Wire
+                        ? GetActiveWireAnchorColor()
+                        : Color.FromNonPremultiplied(128, 170, 255, 160);
                     _spriteBatch.Draw(whiteTex, anchorPos, null, anchorColor,
                         0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
                 }

@@ -425,7 +425,6 @@ public partial class ClipboardBuffer : ITileData
 
                 Tile tile = buffer.Tiles[x, y];
                 var tileProperties = WorldConfiguration.TileProperties[tile.Type];
-                flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;
 
                 // locate all the sprites and make a list
                 if (tileProperties.IsFramed)
@@ -433,9 +432,6 @@ public partial class ClipboardBuffer : ITileData
                     var loc = new Vector2Int32(x, y);
                     if (tileProperties.IsOrigin(tile.GetUV(), out var frameProp))
                     {
-                        // Vector2Short tileSize = tileProperties.GetFrameSize(tile.V);
-                        // spriteSizes[loc] = tileSize;
-
                         tileFrameProps[loc] = (tileProperties, frameProp);
                     }
                 }
@@ -482,6 +478,9 @@ public partial class ClipboardBuffer : ITileData
                             break;
                     }
                 }
+
+                // Store tile AFTER BrickStyle modification (Tile is a struct/value type)
+                flippedBuffer.Tiles[bufferX, bufferY] = tile;
             }
         }
 

@@ -30,7 +30,7 @@ public partial class ToolDefaultData
     private static bool _paintWallActive = true;
     private static MaskMode _paintWallMaskMode = MaskMode.Off;
 
-    private static bool _redWire = false;
+    private static bool _redWire = true;
     private static bool _greenWire = false;
     private static bool _blueWire = false;
     private static bool _yellowWire = false;

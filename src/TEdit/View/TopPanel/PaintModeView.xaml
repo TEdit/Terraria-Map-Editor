@@ -258,7 +258,7 @@
                         <ComboBox ItemsSource="{StaticResource BrickStyle}"
                           SelectedValue="{Binding TilePicker.BrickStyle}"
                           SelectedValuePath="Value" Width="120"
-                          ItemTemplate="{StaticResource EnumTemplate}" />
+                          ItemTemplate="{StaticResource BrickStyleIconTemplate}" />
                     </StackPanel>
                     <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="{x:Static p:Language.tool_paint_actuator}" VerticalAlignment="Center"/>
                     <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="{x:Static p:Language.tool_paint_inactive}" VerticalAlignment="Center"/>

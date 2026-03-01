@@ -220,8 +220,17 @@ public abstract partial class BaseTool : ReactiveObject, ITool
             _ => (_, _) => false
         };
 
+        // Junction box detector: returns junction type (0=Normal, 1=Left, 2=Right)
+        // or -1 if the tile is not a junction box.
+        WireTracer.JunctionDetector getJunction = (x, y) =>
+        {
+            var t = world.Tiles[x, y];
+            if (t.Type != (int)TileType.JunctionBox) return -1;
+            return t.U / 18; // frameX 0→Normal(0), 18→Left(1), 36→Right(2)
+        };
+
         var network = WireTracer.Trace(hasWireAt, world.TilesWide, world.TilesHigh,
-            location.X, location.Y);
+            location.X, location.Y, getJunction);
 
         _wvm.WireTraceHighlight = network;
         _wvm.WireTraceColor = color;
