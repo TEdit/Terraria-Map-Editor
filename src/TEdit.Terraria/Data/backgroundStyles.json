@@ -145,10 +145,10 @@
     { "id": 7, "name": "Purple", "textures": [121, 122, 123, 124], "undergroundIndex": 10 }
   ],
   "iceBackgrounds": [
-    { "id": 0, "name": "Default", "textures": [33, 34] },
-    { "id": 1, "name": "Variant 1", "textures": [160, 161] },
-    { "id": 2, "name": "Variant 2", "textures": [162, 163] },
-    { "id": 3, "name": "Variant 3", "textures": [162, 163] }
+    { "id": 0, "name": "Default", "textures": [40, 33, 34, 32] },
+    { "id": 1, "name": "Variant 1", "textures": [160, 118, 161, 117] },
+    { "id": 2, "name": "Variant 2", "textures": [164, 165, 166, 167] },
+    { "id": 3, "name": "Variant 3", "textures": [162, 120, 163, 119] }
   ],
   "jungleUndergroundBackgrounds": [
     { "id": 0, "name": "Default", "textures": [153, 147, 148, 149] },

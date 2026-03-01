@@ -3707,17 +3707,18 @@ public partial class WorldRenderXna : UserControl
         }
     }
 
-    static int[,] backstyle = new int[9, 7]
+    static int[,] backstyle = new int[10, 7]
     {
-        {66, 67, 68, 69, 128, 125, 185},
-        {70, 71, 68, 72, 128, 125, 185},
-        {73, 74, 75, 76, 134, 125, 185},
-        {77, 78, 79, 82, 134, 125, 185},
-        {83, 84, 85, 86, 137, 125, 185},
-        {83, 87, 88, 89, 137, 125, 185},
-        {121, 122, 123, 124, 140, 125, 185},
-        {153, 147, 148, 149, 150, 125, 185},
-        {146, 154, 155, 156, 157, 125, 185}
+        {66, 67, 68, 69, 128, 125, 185},       // 0: Stone
+        {70, 71, 68, 72, 128, 125, 185},       // 1: Gray
+        {73, 74, 75, 76, 131, 125, 185},       // 2: Brown (hell transition: 131)
+        {77, 78, 79, 80, 134, 125, 185},       // 3: Blue
+        {77, 81, 79, 82, 134, 125, 185},       // 4: Blue Alt
+        {83, 84, 85, 86, 137, 125, 185},       // 5: Green
+        {83, 87, 88, 89, 137, 125, 185},       // 6: Green Alt
+        {121, 122, 123, 124, 140, 125, 185},   // 7: Purple
+        {153, 147, 148, 149, 150, 125, 185},   // 8: Jungle 0
+        {146, 154, 155, 156, 157, 125, 185}    // 9: Jungle 1
     };
 
     /// <summary>
@@ -3747,29 +3748,62 @@ public partial class WorldRenderXna : UserControl
 
         // Ground level in screen coordinates — used to clip backgrounds, not position them
         int groundScreenY = (int)((_scrollPosition.Y + world.GroundLevel) * _zoom);
+        int clipBottom = Math.Min(groundScreenY, screenH);
+        if (clipBottom <= 0) return;
 
-        // Draw layers back-to-front (painter's algorithm)
-        // Background fills screen height but is clipped at ground level
-        // Far layer (sky backdrop)
-        DrawBackgroundLayer(style.Textures, 0, 0.1f, groundScreenY, screenW, screenH);
-        // Secondary far mountain
-        DrawBackgroundLayer(style.SecondaryTextures, 0, 0.2f, groundScreenY, screenW, screenH);
-        // Secondary near mountain
-        DrawBackgroundLayer(style.SecondaryTextures, 1, 0.3f, groundScreenY, screenW, screenH);
-        // Mid layer
-        DrawBackgroundLayer(style.Textures, 1, 0.4f, groundScreenY, screenW, screenH);
-        // Near layer
-        DrawBackgroundLayer(style.Textures, 2, 0.6f, groundScreenY, screenW, screenH);
+        // Compute a single uniform scale for all layers based on the tallest texture.
+        // This ensures all layers share the same scale, preserving consistent proportions.
+        float bgScale = ComputeBackgroundScale(style, clipBottom);
+
+        // Draw layers back-to-front matching Terraria's draw order and parallax values:
+        // BackMountainsStep1: treeMntBGSet[0] — parallax 0.15, scale 1.0
+        // BackMountainsStep2: treeMntBGSet[1] — parallax 0.2, scale 1.15
+        // DrawSurfaceBG_*:    treeBGSet[0]    — parallax 0.4, scale 1.25
+        // DrawSurfaceBG_*:    treeBGSet[1]    — parallax 0.43, scale 1.31
+        // DrawSurfaceBG_*:    treeBGSet[2]    — parallax 0.49, scale 1.34
+        DrawBackgroundLayer(style.SecondaryTextures, 0, 0.15f, clipBottom, screenW, bgScale);
+        DrawBackgroundLayer(style.SecondaryTextures, 1, 0.2f, clipBottom, screenW, bgScale);
+        DrawBackgroundLayer(style.Textures, 0, 0.4f, clipBottom, screenW, bgScale);
+        DrawBackgroundLayer(style.Textures, 1, 0.43f, clipBottom, screenW, bgScale);
+        DrawBackgroundLayer(style.Textures, 2, 0.49f, clipBottom, screenW, bgScale);
     }
 
     /// <summary>
-    /// Draws a single background layer with horizontal and vertical parallax scrolling.
-    /// Maintains native aspect ratio, fills screen dimensions, clips at ground level.
-    /// Near layers move faster (higher parallax), far layers move slower.
-    /// Never tiles vertically — clamps vertical position instead.
+    /// Computes the maximum source texture height across all background layers,
+    /// then returns a uniform scale so the tallest texture fills clipBottom.
+    /// Never shrinks below 1.0 (native resolution).
+    /// </summary>
+    private float ComputeBackgroundScale(BackgroundStyle style, int clipBottom)
+    {
+        int maxSrcH = 0;
+
+        void CheckTexture(int[] textures, int index)
+        {
+            if (textures == null || index >= textures.Length || textures[index] < 0) return;
+            int texIndex = textures[index];
+            var tex = _textureDictionary.GetBackground(texIndex);
+            if (tex == null || tex == _textureDictionary.DefaultTexture) return;
+            var srcRect = GetBackgroundSourceRect(texIndex, tex);
+            if (srcRect.Height > maxSrcH) maxSrcH = srcRect.Height;
+        }
+
+        CheckTexture(style.Textures, 0);
+        CheckTexture(style.Textures, 1);
+        CheckTexture(style.Textures, 2);
+        CheckTexture(style.SecondaryTextures, 0);
+        CheckTexture(style.SecondaryTextures, 1);
+
+        if (maxSrcH <= 0) return 1f;
+        return Math.Max(1f, (float)clipBottom / maxSrcH);
+    }
+
+    /// <summary>
+    /// Draws a single background layer following Terraria's draw pattern:
+    /// uniform scale (aspect ratio preserved), horizontal tiling with parallax,
+    /// positioned from bottom of clipBottom upward.
     /// </summary>
     private void DrawBackgroundLayer(int[] textures, int index, float parallax,
-                                     int groundScreenY, int screenW, int screenH)
+                                     int clipBottom, int screenW, float bgScale)
     {
         if (textures == null || index >= textures.Length || textures[index] < 0) return;
 
@@ -3780,60 +3814,31 @@ public partial class WorldRenderXna : UserControl
         var srcRect = GetBackgroundSourceRect(texIndex, tex);
         int srcW = srcRect.Width;
         int srcH = srcRect.Height;
-        float aspect = (float)srcW / srcH;
 
-        // Draw at native texture resolution (1 texel = 1 screen pixel).
-        // Scale up only if the texture is too small to fill the screen.
-        int drawW = srcW;
-        int drawH = srcH;
+        // Uniform scale for both dimensions — matches Terraria's SpriteBatch.Draw(scale) pattern
+        int bgWidthScaled = (int)(srcW * bgScale);
+        if (bgWidthScaled <= 0) bgWidthScaled = 1;
 
-        if (drawH < screenH)
-        {
-            drawH = screenH;
-            drawW = (int)(screenH * aspect);
-        }
-        if (drawW < screenW)
-        {
-            drawW = screenW;
-            drawH = (int)(screenW / aspect);
-        }
-
-        // Position the background so it fills from the top of the visible area
-        // down to ground level (or screen bottom, whichever is less).
-        // At high zoom, ground level may be off-screen below — fill the whole screen.
-        // At low zoom, ground level is on-screen — fill from top down to ground.
-        int clipBottom = Math.Min(groundScreenY, screenH);
-        if (clipBottom <= 0) return;
-
-        // drawY: top of the background rectangle.
-        // If the texture is taller than clipBottom, anchor bottom to clipBottom and crop top.
-        // If shorter, stretch to fill from y=0 to clipBottom (handled by min-fill above).
-        int drawY = clipBottom - drawH;
-
-        // Compute visible region on screen
-        int drawTop = Math.Max(drawY, 0);
-        int visibleDrawH = clipBottom - drawTop;
-        if (visibleDrawH <= 0) return;
-
-        // Map the visible screen region back to source texture coordinates
-        float srcScale = (float)srcH / drawH;
-        int srcStartY = srcRect.Y + (int)((drawTop - drawY) * srcScale);
-        int srcClipH = (int)(visibleDrawH * srcScale);
-        srcClipH = Math.Min(srcClipH, srcH - (srcStartY - srcRect.Y));
-        if (srcClipH <= 0) return;
-
-        var source = new Rectangle(srcRect.X, srcStartY, srcW, srcClipH);
-
-        // Horizontal parallax with wrap for seamless tiling
+        // Horizontal tiling with parallax offset — matches Terraria's IEEERemainder pattern
         float offsetX = _scrollPosition.X * _zoom * parallax;
-        int drawX = -(int)(offsetX % drawW);
-        if (drawX > 0) drawX -= drawW;
+        int bgStartX = (int)(-Math.IEEERemainder(offsetX, bgWidthScaled) - (bgWidthScaled / 2));
 
-        // Draw copies for seamless horizontal tiling (only the clipped height)
-        for (int x = drawX; x < screenW; x += drawW)
+        // Number of horizontal tiles needed to cover the screen
+        int bgLoops = screenW / bgWidthScaled + 2;
+
+        // Position: anchor bottom edge at clipBottom (ground level), draw upward
+        float bgTopY = clipBottom - (srcH * bgScale);
+
+        // Source is the full frame (first frame for sprite sheets)
+        var source = new Rectangle(srcRect.X, srcRect.Y, srcW, srcH);
+
+        // Draw tiled copies — Terraria uses Vector2 position + scalar scale
+        for (int i = 0; i < bgLoops; i++)
         {
-            _spriteBatch.Draw(tex, new Rectangle(x, drawTop, drawW, visibleDrawH),
-                              source, Color.White, 0f, default, SpriteEffects.None, LayerTileBackgroundTextures);
+            _spriteBatch.Draw(tex,
+                new Vector2(bgStartX + bgWidthScaled * i, bgTopY),
+                source, Color.White, 0f, default,
+                bgScale, SpriteEffects.None, LayerTileBackgroundTextures);
         }
     }
 
@@ -3897,6 +3902,7 @@ public partial class WorldRenderXna : UserControl
                         backX = _wvm.CurrentWorld.CaveBackStyle2;
                     else if (x > _wvm.CurrentWorld.CaveBackX2)
                         backX = _wvm.CurrentWorld.CaveBackStyle3;
+                    backX = Math.Clamp(backX, 0, 7);
                     var source = new Rectangle(0, 0, 16, 16);
                     var backTex = _textureDictionary.GetBackground(0);
 
