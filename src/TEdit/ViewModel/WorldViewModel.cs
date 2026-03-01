@@ -1850,6 +1850,20 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
+    public float _backgroundScaleZoom = UserSettingsService.Current.BackgroundScaleZoom;
+    public float BackgroundScaleZoom
+    {
+        get => _backgroundScaleZoom;
+        set
+        {
+            value = (float)Math.Floor(MathHelper.Clamp(value, 7, 12));
+            if (this.RaiseAndSetIfChanged(ref _backgroundScaleZoom, value) != value)
+            {
+                UserSettingsService.Current.BackgroundScaleZoom = value;
+            }
+        }
+    }
+
     private bool _showNews = UserSettingsService.Current.ShowNews;
 
     public bool ShowNews

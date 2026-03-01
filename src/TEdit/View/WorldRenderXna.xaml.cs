@@ -3095,11 +3095,10 @@ public partial class WorldRenderXna : UserControl
                         if (te.Items == null || te.Items.Count == 0) break;
 
                         Rectangle dest;
-                        // Origin tile U determines frame variant
-                        // Frames: 0=MannA, 36=WomannA, 72=MannB, 108=WomannB, 144=MannC, 180=WomannC, 216=MannD, 252=WomannD
-                        int frameIndex = curtile.U / 36;
-                        bool isWomannequin = frameIndex % 2 != 0;
-                        SpriteEffects dollEffect = isWomannequin ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+                        // Origin tile U: 0=male-left, 36=male-right, 72=female-left, 108=female-right
+                        bool isWomannequin = curtile.U / 72 == 1;
+                        bool facingRight = curtile.U % 72 == 36;
+                        SpriteEffects dollEffect = facingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
                         // Draw body skin under armor
                         int skinVariant = isWomannequin ? 11 : 10;
@@ -3171,29 +3170,33 @@ public partial class WorldRenderXna : UserControl
                             }
                         }
 
-                        // Render legs (Items[2])
-                        var legsItem = te.Items.Count > 2 ? te.Items[2] : null;
-                        if (legsItem != null && legsItem.Id > 0 && legsItem.StackSize > 0)
+                        // Render legs (Items[2]) — skip when sitting (legs hidden behind seat)
+                        bool isSittingPose = (DisplayDollPoseID)te.Pose == DisplayDollPoseID.Sitting;
+                        if (!isSittingPose)
                         {
-                            WorldConfiguration.ItemLookupTable.TryGetValue(legsItem.Id, out var legsProps);
-                            int? legsSlot = legsProps?.Legs;
-                            if (legsSlot != null)
+                            var legsItem = te.Items.Count > 2 ? te.Items[2] : null;
+                            if (legsItem != null && legsItem.Id > 0 && legsItem.StackSize > 0)
                             {
-                                tileTex = (Texture2D)_textureDictionary.GetArmorLegs(legsSlot.Value);
-                                if (tileTex != null && tileTex != _textureDictionary.DefaultTexture)
+                                WorldConfiguration.ItemLookupTable.TryGetValue(legsItem.Id, out var legsProps);
+                                int? legsSlot = legsProps?.Legs;
+                                if (legsSlot != null)
                                 {
-                                    source = new Rectangle(2, legFrameY + 42, 36, 12);
-                                    if (source.Bottom <= tileTex.Height)
+                                    tileTex = (Texture2D)_textureDictionary.GetArmorLegs(legsSlot.Value);
+                                    if (tileTex != null && tileTex != _textureDictionary.DefaultTexture)
                                     {
-                                        dest = new Rectangle(
-                                            1 + (int)((_scrollPosition.X + x) * _zoom),
-                                            1 + (int)((_scrollPosition.Y + y + 2) * _zoom),
-                                            (int)_zoom, (int)_zoom);
-                                        dest.Width = (int)(_zoom * source.Width / 16f);
-                                        dest.Height = (int)(_zoom * source.Height / 16f);
-                                        dest.Y -= (int)(2 * _zoom / 16 - poseYOff);
-                                        dest.X -= (int)(2 * _zoom / 16);
-                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                        source = new Rectangle(2, legFrameY + 42, 36, 12);
+                                        if (source.Bottom <= tileTex.Height)
+                                        {
+                                            dest = new Rectangle(
+                                                1 + (int)((_scrollPosition.X + x) * _zoom),
+                                                1 + (int)((_scrollPosition.Y + y + 2) * _zoom),
+                                                (int)_zoom, (int)_zoom);
+                                            dest.Width = (int)(_zoom * source.Width / 16f);
+                                            dest.Height = (int)(_zoom * source.Height / 16f);
+                                            dest.Y -= (int)(2 * _zoom / 16 - poseYOff);
+                                            dest.X -= (int)(2 * _zoom / 16);
+                                            _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                        }
                                     }
                                 }
                             }
@@ -3208,7 +3211,7 @@ public partial class WorldRenderXna : UserControl
                         //     DrawDollAccessory(x, y, accProps, dollEffect);
                         // }
 
-                        // Render weapon from Misc[0] if present (item icon is correct for weapons)
+                        // Render weapon from Misc[0] if present
                         if (te.Misc != null && te.Misc.Count > 0)
                         {
                             var weapon = te.Misc[0];
@@ -3224,14 +3227,26 @@ public partial class WorldRenderXna : UserControl
                                     if (maxDim > 32)
                                         weaponScale *= 32f / maxDim;
 
+                                    // Position weapon on the front-hand side of the doll
+                                    // Doll center is at x+1 (2-tile wide entity)
+                                    float weaponX = facingRight ? (x + 1.5f) : (x + 0.5f);
+                                    float weaponY = y + 1.5f;
+
+                                    // Adjust Y for pose: sitting shifts down, Use poses shift up
+                                    var poseId = (DisplayDollPoseID)te.Pose;
+                                    if (poseId == DisplayDollPoseID.Sitting)
+                                        weaponY += 14f / 16f;
+                                    else if (poseId >= DisplayDollPoseID.Use1 && poseId <= DisplayDollPoseID.Use5)
+                                        weaponY -= 0.25f; // weapon raised slightly during use animations
+
                                     Vector2 weaponPos = new Vector2(
-                                        1 + (int)((_scrollPosition.X + x + 2f) * _zoom),
-                                        1 + (int)((_scrollPosition.Y + y + 1.5f) * _zoom));
+                                        1 + (int)((_scrollPosition.X + weaponX) * _zoom),
+                                        1 + (int)((_scrollPosition.Y + weaponY) * _zoom));
 
                                     source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
                                     _spriteBatch.Draw(tileTex, weaponPos, source, Color.White, 0f,
                                         new Vector2(tileTex.Width / 2f, tileTex.Height / 2f),
-                                        weaponScale * _zoom / 16f, SpriteEffects.None, LayerTileTrack);
+                                        weaponScale * _zoom / 16f, dollEffect, LayerTileTrack);
                                 }
                             }
                         }
@@ -3470,33 +3485,6 @@ public partial class WorldRenderXna : UserControl
     private const int DollFrameWidth = 40;
     private const int DollFrameHeight = 56;
 
-    // Default Terraria player colors for display doll body tinting (from PlayerAppearance defaults)
-    private static readonly Color DollSkinColor = new Color(255, 125, 90);
-    private static readonly Color DollEyeColor = new Color(105, 90, 75);
-    private static readonly Color DollHairColor = new Color(151, 100, 69);
-    private static readonly Color DollShirtColor = new Color(175, 165, 140);
-    private static readonly Color DollUnderShirtColor = new Color(160, 180, 215);
-    private static readonly Color DollPantsColor = new Color(255, 230, 175);
-    private static readonly Color DollShoeColor = new Color(160, 105, 60);
-
-    /// <summary>
-    /// Gets the tint color for a display doll body part index.
-    /// </summary>
-    private static Color GetDollPartColor(int partIndex)
-    {
-        return partIndex switch
-        {
-            0 or 3 or 5 or 7 or 9 or 10 or 15 => DollSkinColor,  // skin parts
-            1 => Color.White,                                       // eye whites
-            2 => DollEyeColor,                                     // eye irises
-            4 or 8 => DollUnderShirtColor,                         // undershirt
-            6 or 13 or 14 => DollShirtColor,                       // shirt/sleeves/coat
-            11 => DollPantsColor,                                   // pants
-            12 => DollShoeColor,                                    // shoes
-            _ => Color.White,
-        };
-    }
-
     /// <summary>
     /// Gets body and leg frame Y offsets for a display doll pose.
     /// </summary>
@@ -3505,7 +3493,7 @@ public partial class WorldRenderXna : UserControl
         return (DisplayDollPoseID)pose switch
         {
             DisplayDollPoseID.Standing => (0, 0, 0),
-            DisplayDollPoseID.Sitting  => (0, 0, 14),
+            DisplayDollPoseID.Sitting  => (0, 0, 10),
             DisplayDollPoseID.Jumping  => (5 * DollFrameHeight, 5 * DollFrameHeight, 0),
             DisplayDollPoseID.Walking  => (9 * DollFrameHeight, 9 * DollFrameHeight, 0),
             _                          => (0, 0, 0), // Use1-5 fall back to standing
@@ -3513,57 +3501,44 @@ public partial class WorldRenderXna : UserControl
     }
 
     /// <summary>
-    /// Draws a complete body for a display doll (mannequin/womannequin) behind armor.
+    /// Draws the wooden body for a display doll (mannequin/womannequin) behind armor.
+    /// Only draws the 6 parts that have mannequin-specific textures (Player_10/11_*).
+    /// Parts 1,2,4,6,8,11,12,13,14,15 are aliased to the eyes texture in-game and
+    /// would fall back to Player_0_* (human skin) in TEdit, so they are skipped.
     /// </summary>
     private void DrawDollBody(int tileX, int tileY, int skinVariant, bool isFemale, byte pose, SpriteEffects effect)
     {
         var (bodyFrameY, legFrameY, yPixelOffset) = GetDollPoseFrames(pose);
+        bool isSitting = (DisplayDollPoseID)pose == DisplayDollPoseID.Sitting;
         int femaleRowOffset = isFemale ? 2 : 0;
 
-        // Composite frame positions (standing pose)
+        // Composite frame positions for torso/hands
         int torsoFrameX = 0;
         int torsoFrameY = (0 + femaleRowOffset) * DollFrameHeight;
-        int shoulderFrameX = 1 * DollFrameWidth;
-        int shoulderFrameY = (1 + femaleRowOffset) * DollFrameHeight;
 
         int step = 0;
 
-        // Draw order follows PlayerPreviewRenderer (back to front)
-        // Back arm
+        // Draw order: back to front. Only mannequin-unique parts (0,3,5,7,9,10).
+        // Back arm skin (part 7)
         DrawDollBodyPart(tileX, tileY, skinVariant, 7, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 8, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 13, bodyFrameY, yPixelOffset, effect, step++);
 
-        // Legs
-        DrawDollBodyPart(tileX, tileY, skinVariant, 10, legFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 12, legFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 11, legFrameY, yPixelOffset, effect, step++);
+        // Leg skin (part 10) — skip when sitting (legs hidden behind seat in-game)
+        if (!isSitting)
+            DrawDollBodyPart(tileX, tileY, skinVariant, 10, legFrameY, yPixelOffset, effect, step++);
 
-        // Long coat (safe to draw unconditionally; DefaultTexture is skipped)
-        DrawDollBodyPart(tileX, tileY, skinVariant, 14, bodyFrameY, yPixelOffset, effect, step++);
-
-        // Torso skin (composite frame)
+        // Torso skin (part 3, composite frame)
         DrawDollBodyPart(tileX, tileY, skinVariant, 3, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
 
-        // Undershirt + Shirt (shoulder then torso, per Terraria's DrawPlayer_17_TorsoComposite)
-        DrawDollBodyPart(tileX, tileY, skinVariant, 4, shoulderFrameX, shoulderFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 6, shoulderFrameX, shoulderFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 4, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 6, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
-
-        // Hands (composite torso frame)
+        // Hands (part 5, composite frame)
         DrawDollBodyPart(tileX, tileY, skinVariant, 5, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
 
-        // Head and face
+        // Head (part 0 — includes carved eye/face details)
         DrawDollBodyPart(tileX, tileY, skinVariant, 0, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 1, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 2, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 15, bodyFrameY, yPixelOffset, effect, step++);
 
         // Hair (style 15 = Terraria default for display dolls)
         DrawDollHair(tileX, tileY, 15, bodyFrameY, yPixelOffset, effect, step++);
 
-        // Front arm
+        // Front arm skin (part 9)
         DrawDollBodyPart(tileX, tileY, skinVariant, 9, bodyFrameY, yPixelOffset, effect, step++);
     }
 
@@ -3584,9 +3559,8 @@ public partial class WorldRenderXna : UserControl
         var source = new Rectangle(frameX, frameY, srcW, srcH);
         var dest = GetDollBodyDest(tileX, tileY, srcW, srcH, yPixelOffset);
         float depth = LayerDollBody - drawOrder * 0.00001f;
-        var tint = GetDollPartColor(partIndex);
 
-        _spriteBatch.Draw(texture, dest, source, tint, 0f, default, effect, depth);
+        _spriteBatch.Draw(texture, dest, source, Color.White, 0f, default, effect, depth);
     }
 
     /// <summary>
@@ -3604,9 +3578,8 @@ public partial class WorldRenderXna : UserControl
         var source = new Rectangle(frameX, frameY, srcW, srcH);
         var dest = GetDollBodyDest(tileX, tileY, srcW, srcH, yPixelOffset);
         float depth = LayerDollBody - drawOrder * 0.00001f;
-        var tint = GetDollPartColor(partIndex);
 
-        _spriteBatch.Draw(texture, dest, source, tint, 0f, default, effect, depth);
+        _spriteBatch.Draw(texture, dest, source, Color.White, 0f, default, effect, depth);
     }
 
     /// <summary>
@@ -3625,7 +3598,7 @@ public partial class WorldRenderXna : UserControl
         var dest = GetDollBodyDest(tileX, tileY, srcW, srcH, yPixelOffset);
         float depth = LayerDollBody - drawOrder * 0.00001f;
 
-        _spriteBatch.Draw(texture, dest, source, DollHairColor, 0f, default, effect, depth);
+        _spriteBatch.Draw(texture, dest, source, Color.White, 0f, default, effect, depth);
     }
 
     /// <summary>
@@ -3642,8 +3615,8 @@ public partial class WorldRenderXna : UserControl
 
         // Center 40px body frame within 32px (2-tile) footprint: shift left 4px
         dest.X -= (int)(4 * _zoom / 16f);
-        // Shift up for head alignment
-        dest.Y -= (int)(4 * _zoom / 16f);
+        // Align body with armor pieces (which use -12 game-px offset from tile origin)
+        dest.Y -= (int)(12 * _zoom / 16f);
         // Apply pose Y offset (e.g. sitting)
         dest.Y += (int)(yPixelOffset * _zoom / 16f);
 
@@ -3752,14 +3725,18 @@ public partial class WorldRenderXna : UserControl
         int screenH = (int)xnaViewport.ActualHeight;
         if (screenW <= 0 || screenH <= 0) return;
 
-        // Ground level in screen coordinates — used to clip backgrounds, not position them
-        int groundScreenY = (int)((_scrollPosition.Y + world.GroundLevel) * _zoom);
-        int clipBottom = Math.Min(groundScreenY, screenH);
-        if (clipBottom <= 0) return;
+        // Background bottom anchor: above ground level to avoid being hidden by tiles.
+        // In Terraria, surface backgrounds sit well above the actual ground tile line.
+        // Offset by ~40 tiles (roughly matching Terraria's ~600px/16 offset).
+        int bgAnchorY = (int)((_scrollPosition.Y + world.GroundLevel - 40) * _zoom);
+        if (bgAnchorY <= 0) return;
 
-        // Compute a single uniform scale for all layers based on the tallest texture.
-        // This ensures all layers share the same scale, preserving consistent proportions.
-        float bgScale = ComputeBackgroundScale(style, clipBottom);
+        // Compute base scale without zoom (use ground level in tiles as reference height)
+        // This gives a stable base that doesn't shift with zoom
+        int refHeight = (int)(world.GroundLevel);
+        float bgScale = ComputeBackgroundScale(style, refHeight);
+        // Zoom-relative factor: at BackgroundScaleZoom the texture is at base scale
+        float zoomFactor = _zoom / _wvm.BackgroundScaleZoom;
 
         // Draw layers back-to-front matching Terraria's draw order and parallax values:
         // BackMountainsStep1: treeMntBGSet[0] — parallax 0.15, scale 1.0
@@ -3767,11 +3744,11 @@ public partial class WorldRenderXna : UserControl
         // DrawSurfaceBG_*:    treeBGSet[0]    — parallax 0.4, scale 1.25
         // DrawSurfaceBG_*:    treeBGSet[1]    — parallax 0.43, scale 1.31
         // DrawSurfaceBG_*:    treeBGSet[2]    — parallax 0.49, scale 1.34
-        DrawBackgroundLayer(style.SecondaryTextures, 0, 0.15f, clipBottom, screenW, bgScale);
-        DrawBackgroundLayer(style.SecondaryTextures, 1, 0.2f, clipBottom, screenW, bgScale);
-        DrawBackgroundLayer(style.Textures, 0, 0.4f, clipBottom, screenW, bgScale);
-        DrawBackgroundLayer(style.Textures, 1, 0.43f, clipBottom, screenW, bgScale);
-        DrawBackgroundLayer(style.Textures, 2, 0.49f, clipBottom, screenW, bgScale);
+        DrawBackgroundLayer(style.SecondaryTextures, 0, 0.15f, bgAnchorY, screenW, bgScale, zoomFactor);
+        DrawBackgroundLayer(style.SecondaryTextures, 1, 0.2f, bgAnchorY, screenW, bgScale, zoomFactor);
+        DrawBackgroundLayer(style.Textures, 0, 0.4f, bgAnchorY, screenW, bgScale, zoomFactor);
+        DrawBackgroundLayer(style.Textures, 1, 0.43f, bgAnchorY, screenW, bgScale, zoomFactor);
+        DrawBackgroundLayer(style.Textures, 2, 0.49f, bgAnchorY, screenW, bgScale, zoomFactor);
     }
 
     // Underworld texture indices that are 2x2 sprite sheets (stable since 1.3)
@@ -3798,8 +3775,8 @@ public partial class WorldRenderXna : UserControl
         int screenH = (int)xnaViewport.ActualHeight;
         if (screenW <= 0 || screenH <= 0) return;
 
-        // Underworld top edge in screen coordinates
-        float underworldScreenY = (_scrollPosition.Y + underworldTop) * _zoom;
+        // Underworld anchor in screen coordinates (UnderworldLayer = TilesHigh - 200)
+        float underworldAnchorY = (_scrollPosition.Y + underworldTop) * _zoom;
 
         // Draw 5 layers back-to-front (index 4 → 0) matching Terraria's draw order
         for (int layerIndex = 4; layerIndex >= 0; layerIndex--)
@@ -3819,10 +3796,34 @@ public partial class WorldRenderXna : UserControl
                 srcRect = new Rectangle(0, 0, tex.Width, tex.Height);
             }
 
-            float scale = (texIndex == 4) ? 0.5f : 1.3f;
+            // Per-texture Y offset and scale from Terraria source (DrawUnderworldBackgroudLayer)
+            float scale = 1.3f;
+            float offsetY = 0f;
+            switch (texIndex)
+            {
+                case 1: offsetY = 175f; break;
+                case 2: offsetY = 100f; break;
+                case 3: offsetY = 75f; break;
+                case 4: scale = 0.5f; break;
+                case 6: offsetY = -60f; break;
+                case 7: offsetY = 90f; break;
+                case 8: offsetY = 90f; break;
+                case 9: offsetY = -30f; break;
+                case 10: offsetY = 250f * (layerIndex * 2 + 3); break;
+                case 11: offsetY = 100f * (layerIndex * 2 + 3); break;
+                case 12: offsetY = 20f * (layerIndex * 2 + 3); break;
+                case 13: offsetY = 20f * (layerIndex * 2 + 3); break;
+            }
+
+            // Convert pixel offset to tile offset, then to screen coords
+            float bgTopY = underworldAnchorY + (offsetY / 16f) * _zoom;
             float parallax = 1f / (layerIndex * 2 + 3);
 
-            int bgWidthScaled = (int)(srcRect.Width * scale);
+            // Scale texture with zoom relative to the background scale setting —
+            // at that zoom level the texture is drawn at its base scale,
+            // zooming in further scales proportionally from there.
+            float drawScale = scale * (_zoom / _wvm.BackgroundScaleZoom);
+            int bgWidthScaled = (int)(srcRect.Width * drawScale);
             if (bgWidthScaled <= 0) bgWidthScaled = 1;
 
             // Horizontal tiling with parallax offset
@@ -3830,15 +3831,12 @@ public partial class WorldRenderXna : UserControl
             int bgStartX = (int)(-Math.IEEERemainder(offsetX, bgWidthScaled) - (bgWidthScaled / 2));
             int bgLoops = screenW / bgWidthScaled + 2;
 
-            // Vertical position anchored at underworld top
-            float bgTopY = underworldScreenY;
-
             for (int i = 0; i < bgLoops; i++)
             {
                 _spriteBatch.Draw(tex,
                     new Vector2(bgStartX + bgWidthScaled * i, bgTopY),
                     srcRect, Color.White, 0f, default,
-                    scale, SpriteEffects.None, LayerTileBackgroundTextures);
+                    drawScale, SpriteEffects.None, LayerTileBackgroundTextures);
             }
         }
     }
@@ -3878,7 +3876,7 @@ public partial class WorldRenderXna : UserControl
     /// positioned from bottom of clipBottom upward.
     /// </summary>
     private void DrawBackgroundLayer(int[] textures, int index, float parallax,
-                                     int clipBottom, int screenW, float bgScale)
+                                     int clipBottom, int screenW, float bgScale, float zoomFactor)
     {
         if (textures == null || index >= textures.Length || textures[index] < 0) return;
 
@@ -3890,8 +3888,9 @@ public partial class WorldRenderXna : UserControl
         int srcW = srcRect.Width;
         int srcH = srcRect.Height;
 
-        // Uniform scale for both dimensions — matches Terraria's SpriteBatch.Draw(scale) pattern
-        int bgWidthScaled = (int)(srcW * bgScale);
+        // Draw scale includes zoom factor; position scale uses base bgScale to keep anchor stable
+        float drawScale = bgScale * zoomFactor;
+        int bgWidthScaled = (int)(srcW * drawScale);
         if (bgWidthScaled <= 0) bgWidthScaled = 1;
 
         // Horizontal tiling with parallax offset — matches Terraria's IEEERemainder pattern
@@ -3901,8 +3900,8 @@ public partial class WorldRenderXna : UserControl
         // Number of horizontal tiles needed to cover the screen
         int bgLoops = screenW / bgWidthScaled + 2;
 
-        // Position: anchor bottom edge at clipBottom (ground level), draw upward
-        float bgTopY = clipBottom - (srcH * bgScale);
+        // Position: anchor bottom edge at clipBottom (ground level), draw upward using base scale
+        float bgTopY = clipBottom - (srcH * drawScale);
 
         // Source is the full frame (first frame for sprite sheets)
         var source = new Rectangle(srcRect.X, srcRect.Y, srcW, srcH);
@@ -3913,7 +3912,7 @@ public partial class WorldRenderXna : UserControl
             _spriteBatch.Draw(tex,
                 new Vector2(bgStartX + bgWidthScaled * i, bgTopY),
                 source, Color.White, 0f, default,
-                bgScale, SpriteEffects.None, LayerTileBackgroundTextures);
+                drawScale, SpriteEffects.None, LayerTileBackgroundTextures);
         }
     }
 
