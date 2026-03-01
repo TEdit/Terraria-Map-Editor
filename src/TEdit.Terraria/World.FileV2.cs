@@ -1185,12 +1185,21 @@ public partial class World
 
         if (world.Version >= 211)
         {
-            // tree tops — sync legacy TreeStyle fields into TreeTopVariations
+            // tree tops — sync legacy fields into TreeTopVariations
             // so Terraria reads the correct values from this section
             world.TreeTopVariations[0] = world.TreeStyle0;
             world.TreeTopVariations[1] = world.TreeStyle1;
             world.TreeTopVariations[2] = world.TreeStyle2;
             world.TreeTopVariations[3] = world.TreeStyle3;
+            world.TreeTopVariations[4] = world.BgCorruption;
+            world.TreeTopVariations[5] = world.JungleBackStyle;
+            world.TreeTopVariations[6] = world.BgSnow;
+            world.TreeTopVariations[7] = world.BgHallow;
+            world.TreeTopVariations[8] = world.BgCrimson;
+            world.TreeTopVariations[9] = world.BgDesert;
+            world.TreeTopVariations[10] = world.BgOcean;
+            world.TreeTopVariations[11] = world.MushroomBg;
+            world.TreeTopVariations[12] = world.UnderworldBg;
 
             bw.Write(world.TreeTopVariations.Count);
 
@@ -2240,6 +2249,21 @@ public partial class World
             {
                 w.TreeTopVariations[i] = r.ReadInt32();
             }
+
+            // reverse-sync TreeTopVariations back to legacy properties
+            w.TreeStyle0 = w.TreeTopVariations[0];
+            w.TreeStyle1 = w.TreeTopVariations[1];
+            w.TreeStyle2 = w.TreeTopVariations[2];
+            w.TreeStyle3 = w.TreeTopVariations[3];
+            w.BgCorruption = (byte)w.TreeTopVariations[4];
+            w.JungleBackStyle = (byte)w.TreeTopVariations[5];
+            w.BgSnow = (byte)w.TreeTopVariations[6];
+            w.BgHallow = (byte)w.TreeTopVariations[7];
+            w.BgCrimson = (byte)w.TreeTopVariations[8];
+            w.BgDesert = (byte)w.TreeTopVariations[9];
+            w.BgOcean = (byte)w.TreeTopVariations[10];
+            w.MushroomBg = (byte)w.TreeTopVariations[11];
+            w.UnderworldBg = (byte)w.TreeTopVariations[12];
         }
         else
         {

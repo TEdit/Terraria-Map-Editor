@@ -63,3 +63,5 @@ ref/*
 *.wld.TEdit
 *.diagsession
 /errors.csv
+mcp.json
+copilot-instructions.md

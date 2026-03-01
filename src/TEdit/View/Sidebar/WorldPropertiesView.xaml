@@ -31,6 +31,32 @@
                            Foreground="{DynamicResource TextBrush}"/>
       </StackPanel>
     </DataTemplate>
+    <!-- DataTemplate for biome background comboboxes showing background + tree top preview -->
+    <DataTemplate x:Key="BiomeStylePreviewItemTemplate">
+      <StackPanel Orientation="Horizontal" Margin="2">
+        <Image Source="{Binding Preview}"
+                       MaxWidth="128" MaxHeight="64"
+                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                       VerticalAlignment="Center" Margin="0,0,4,0"/>
+        <Image Source="{Binding TreeTopPreview}"
+                       MaxWidth="64" MaxHeight="64"
+                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                       VerticalAlignment="Center" Margin="0,0,4,0">
+          <Image.Style>
+            <Style TargetType="Image">
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding TreeTopPreview}" Value="{x:Null}">
+                  <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </Image.Style>
+        </Image>
+        <TextBlock Text="{Binding DisplayName}"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource TextBrush}"/>
+      </StackPanel>
+    </DataTemplate>
     <enum:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
       <enum:EnumItem Value="0">None</enum:EnumItem>
       <enum:EnumItem Value="1">Goblin Invasion</enum:EnumItem>
@@ -283,6 +309,7 @@
     <Style x:Key="StylePreviewComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
       <Setter Property="MinWidth" Value="200"/>
       <Setter Property="HorizontalAlignment" Value="Stretch"/>
+      <Setter Property="MaxDropDownHeight" Value="400"/>
     </Style>
   </UserControl.Resources>
   <DockPanel Background="{DynamicResource SidebarBackgroundBrush}">
@@ -858,31 +885,31 @@
                   SelectedValue="{Binding CurrentWorld.BgCorruption, Mode=TwoWay, Converter={StaticResource IntByteConverter}}"
                   HorizontalAlignment="Stretch"
                   SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+                  ItemTemplate="{StaticResource BiomeStylePreviewItemTemplate}"/>
     <TextBlock Text="{x:Static p:Language.tool_wp_bg_jungle}" HorizontalAlignment="Right" />
     <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding JungleBgPreviews}"
                   SelectedValue="{Binding CurrentWorld.BgJungle, Mode=TwoWay, Converter={StaticResource IntByteConverter}}"
                   HorizontalAlignment="Stretch"
                   SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+                  ItemTemplate="{StaticResource BiomeStylePreviewItemTemplate}"/>
     <TextBlock Text="{x:Static p:Language.tool_wp_bg_snow}" HorizontalAlignment="Right" />
     <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding SnowBgPreviews}"
                   SelectedValue="{Binding CurrentWorld.BgSnow, Mode=TwoWay, Converter={StaticResource IntByteConverter}}"
                   HorizontalAlignment="Stretch"
                   SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+                  ItemTemplate="{StaticResource BiomeStylePreviewItemTemplate}"/>
     <TextBlock Text="{x:Static p:Language.tool_wp_bg_hallow}" HorizontalAlignment="Right" />
     <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding HallowBgPreviews}"
                   SelectedValue="{Binding CurrentWorld.BgHallow, Mode=TwoWay, Converter={StaticResource IntByteConverter}}"
                   HorizontalAlignment="Stretch"
                   SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+                  ItemTemplate="{StaticResource BiomeStylePreviewItemTemplate}"/>
     <TextBlock Text="{x:Static p:Language.tool_wp_bg_crimson}" HorizontalAlignment="Right" />
     <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding CrimsonBgPreviews}"
                   SelectedValue="{Binding CurrentWorld.BgCrimson, Mode=TwoWay, Converter={StaticResource IntByteConverter}}"
                   HorizontalAlignment="Stretch"
                   SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+                  ItemTemplate="{StaticResource BiomeStylePreviewItemTemplate}"/>
     <TextBlock Text="{x:Static p:Language.tool_wp_bg_desert}" HorizontalAlignment="Right" />
     <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding DesertBgPreviews}"
                   SelectedValue="{Binding CurrentWorld.BgDesert, Mode=TwoWay, Converter={StaticResource IntByteConverter}}"
@@ -901,7 +928,7 @@
                   SelectedValue="{Binding CurrentWorld.MushroomBg, Mode=TwoWay, Converter={StaticResource IntByteConverter}}"
                   HorizontalAlignment="Stretch"
                   SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
+                  ItemTemplate="{StaticResource BiomeStylePreviewItemTemplate}"/>
     <TextBlock Text="{x:Static p:Language.tool_wp_bg_underworld}" HorizontalAlignment="Right" />
     <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding UnderworldBgPreviews}"
                   SelectedValue="{Binding CurrentWorld.UnderworldBg, Mode=TwoWay, Converter={StaticResource IntByteConverter}}"
@@ -923,31 +950,6 @@
     <TextBlock Text="{x:Static p:Language.tool_wp_bg_tree4}" HorizontalAlignment="Right" />
     <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding ForestBgPreviews}"
                   SelectedValue="{Binding CurrentWorld.BgTree4, Mode=TwoWay, Converter={StaticResource IntByteConverter}}"
-                  HorizontalAlignment="Stretch"
-                  SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
-    <Separator Grid.ColumnSpan="2" />
-    <TextBlock Text="{x:Static p:Language.tool_wp_style_treetop_1}" HorizontalAlignment="Right" />
-    <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding TreeTopPreviews}"
-                  SelectedValue="{Binding CurrentWorld.TreeTop1, Mode=TwoWay}"
-                  HorizontalAlignment="Stretch"
-                  SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
-    <TextBlock Text="{x:Static p:Language.tool_wp_style_treetop_2}" HorizontalAlignment="Right" />
-    <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding TreeTopPreviews}"
-                  SelectedValue="{Binding CurrentWorld.TreeTop2, Mode=TwoWay}"
-                  HorizontalAlignment="Stretch"
-                  SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
-    <TextBlock Text="{x:Static p:Language.tool_wp_style_treetop_3}" HorizontalAlignment="Right" />
-    <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding TreeTopPreviews}"
-                  SelectedValue="{Binding CurrentWorld.TreeTop3, Mode=TwoWay}"
-                  HorizontalAlignment="Stretch"
-                  SelectedValuePath="Value"
-                  ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>
-    <TextBlock Text="{x:Static p:Language.tool_wp_style_treetop_4}" HorizontalAlignment="Right" />
-    <ComboBox Style="{StaticResource StylePreviewComboBox}" ItemsSource="{Binding TreeTopPreviews}"
-                  SelectedValue="{Binding CurrentWorld.TreeTop4, Mode=TwoWay}"
                   HorizontalAlignment="Stretch"
                   SelectedValuePath="Value"
                   ItemTemplate="{StaticResource StylePreviewItemTemplate}"/>

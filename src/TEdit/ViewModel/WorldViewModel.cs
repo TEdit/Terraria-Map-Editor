@@ -122,7 +122,6 @@ public partial class WorldViewModel : ReactiveObject
 
     // Style preview collections for world properties comboboxes
     public ObservableCollection<StylePreviewItem> TreeStylePreviews { get; } = new();
-    public ObservableCollection<StylePreviewItem> TreeTopPreviews { get; } = new();
     public ObservableCollection<StylePreviewItem> ForestBgPreviews { get; } = new();
     public ObservableCollection<StylePreviewItem> SnowBgPreviews { get; } = new();
     public ObservableCollection<StylePreviewItem> JungleBgPreviews { get; } = new();
