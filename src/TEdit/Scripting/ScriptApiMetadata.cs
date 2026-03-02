@@ -363,9 +363,9 @@ public static class ScriptApiMetadata
 
         new("metadata", "Lookup Terraria game data (tile/wall/item names and IDs)",
         [
-            new("tileId",    "tileId(name) → int",        "Get tile ID by name (-1 if not found)"),
-            new("wallId",    "wallId(name) → int",        "Get wall ID by name (-1 if not found)"),
-            new("itemId",    "itemId(name) → int",        "Get item ID by name (-1 if not found)"),
+            new("tileId",    "tileId(name) → int",        "Get tile ID by name (0 if not found)"),
+            new("wallId",    "wallId(name) → int",        "Get wall ID by name (0 if not found)"),
+            new("itemId",    "itemId(name) → int",        "Get item ID by name (0 if not found)"),
             new("tileName",  "tileName(id) → string",     "Get tile name by ID"),
             new("wallName",  "wallName(id) → string",     "Get wall name by ID"),
             new("itemName",  "itemName(id) → string",     "Get item name by ID"),
@@ -483,6 +483,20 @@ public static class ScriptApiMetadata
             new("brush",   "brush(x1, y1, x2, y2)",    "Draw brush-width line between two points"),
             new("fill",    "fill(x, y)",                "Flood fill from point"),
             new("hammer",  "hammer(x1, y1, x2, y2)",   "Auto-slope tiles along brush-width line"),
+        ]),
+
+        new("generate", "Procedural generation: trees, forests, ore veins, caves, lakes",
+        [
+            new("listTreeTypes",     "listTreeTypes() → [{name, tileId}]",                   "List all supported tree type names and tile IDs"),
+            new("tree",              "tree(type, x, y) → bool",                               "Place a single tree at (x, y) ground level; type is a name string"),
+            new("forest",            "forest(types[], x, y, w, h, density?) → int",           "Place random trees in rectangle; density 0.0-1.0 (default 0.15)"),
+            new("forestInSelection", "forestInSelection(types[], density?) → int",             "Place random trees in current selection"),
+            new("findSurface",       "findSurface(x, yStart, yEnd) → int",                   "Scan downward for first solid tile; returns y or -1"),
+            new("tileRunner",        "tileRunner(x, y, strength, steps, tileType, speedX?, speedY?)", "Wandering painter: fills diamond-shaped blobs with tileType (port of WorldGen.TileRunner)"),
+            new("tunnel",            "tunnel(x, y, strength, steps, speedX?, speedY?)",       "Carve natural cave tunnels (clears tiles along a wandering path)"),
+            new("lake",              "lake(x, y, liquidType?, strength?)",                     "Create irregular liquid pool (water/lava/honey/shimmer)"),
+            new("oreVein",           "oreVein(oreName, x, y, size?)",                          "Place named ore vein with preset parameters; size: small/medium/large"),
+            new("listOreTypes",      "listOreTypes() → [{name, tileId}]",                     "List available ore names and tile IDs"),
         ]),
     ];
 }

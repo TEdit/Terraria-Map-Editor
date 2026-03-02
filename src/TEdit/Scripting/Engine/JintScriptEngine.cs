@@ -47,6 +47,7 @@ public class JintScriptEngine : IScriptEngine
             engine.SetValue("sprites", api.Sprites);
             engine.SetValue("draw", api.Draw);
             engine.SetValue("tileEntities", api.TileEntities);
+            engine.SetValue("generate", api.Generate);
 
             // print() convenience
             engine.SetValue("print", new Action<object>(msg =>

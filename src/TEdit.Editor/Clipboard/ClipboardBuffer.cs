@@ -95,9 +95,7 @@ public partial class ClipboardBuffer : ITileData
                     // Tiles.
                     if (tileFilter != null && tileFilter(curTile.Type))
                     {
-                        curTile.IsActive = false;
-                        curTile.Type = 0;
-                        curTile.TileColor = 0;
+                        curTile.ClearTile();
                     }
 
                     // Walls.
@@ -379,7 +377,7 @@ public partial class ClipboardBuffer : ITileData
                 // Kill sprites (same as Rotate)
                 var tileProperties = WorldConfiguration.TileProperties[tile.Type];
                 if (tileProperties.IsFramed)
-                    tile.IsActive = false;
+                    tile.ClearTile();
 
                 // First dest tile keeps the original style; duplicates become full blocks
                 if (claimed[srcX, srcY])
@@ -641,7 +639,7 @@ public partial class ClipboardBuffer : ITileData
                     // kill sprites
                     if (tileProperties.IsFramed)
                     {
-                        tile.IsActive = false;
+                        tile.ClearTile();
                     }
                     rotatedBuffer.Tiles[y, x] = (Tile)tile; // Flipping x & y causes a rotation of 90 to the right
                 }

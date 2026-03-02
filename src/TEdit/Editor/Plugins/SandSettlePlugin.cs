@@ -47,7 +47,7 @@ public sealed class SandSettlePlugin : BasePlugin
                             _wvm.UndoManager.SaveTile(x, y);
                             belowTile.IsActive = true;
                             belowTile.Type = curTile.Type;
-                            curTile.IsActive = false;
+                            curTile.ClearTile();
                             BlendRules.ResetUVCache(_wvm, x, y, 1, 1 + shiftAmmount);
                             _wvm.UpdateRenderPixel(x, y);
                             _wvm.UpdateRenderPixel(x, y + shiftAmmount);

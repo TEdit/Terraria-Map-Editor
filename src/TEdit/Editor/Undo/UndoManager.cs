@@ -251,7 +251,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
     {
         var curTile = _world.Tiles[x, y];
 
-        if (buffer.TileImportance[curTile.Type])
+        if (curTile.IsActive && buffer.TileImportance[curTile.Type])
         {
             if (_world.IsAnchor(x, y))
             {

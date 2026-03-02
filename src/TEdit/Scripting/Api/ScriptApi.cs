@@ -26,6 +26,7 @@ public class ScriptApi : IDisposable
     public SpriteApi Sprites { get; }
     public DrawApi Draw { get; }
     public TileEntityApi TileEntities { get; }
+    public GenerateApi Generate { get; }
 
     public ScriptApi(WorldViewModel wvm, ScriptExecutionContext context)
     {
@@ -48,6 +49,7 @@ public class ScriptApi : IDisposable
         Finder = new FinderApi(context);
         Sprites = new SpriteApi(world, undo);
         Draw = new DrawApi(world, undo, wvm.Selection);
+        Generate = new GenerateApi(world, undo, wvm.Selection);
     }
 
     /// <summary>
@@ -72,6 +74,7 @@ public class ScriptApi : IDisposable
         Finder = new FinderApi(context);
         Sprites = new SpriteApi(world, undo);
         Draw = new DrawApi(world, undo, selection);
+        Generate = new GenerateApi(world, undo, selection);
     }
 
     public void BeginExecution()

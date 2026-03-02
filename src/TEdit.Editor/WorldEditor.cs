@@ -534,11 +534,7 @@ public class WorldEditor : IDisposable
                 if (above.IsActive)
                 {
                     _undo.SaveTile(_world, new Vector2Int32(x, ty));
-                    above.IsActive = false;
-                    above.Type = 0;
-                    above.U = 0;
-                    above.V = 0;
-                    above.BrickStyle = BrickStyle.Full;
+                    above.ClearTile();
                     _notifyTileChanged?.Invoke(x, ty, 1, 1);
                 }
             }
@@ -758,13 +754,7 @@ public class WorldEditor : IDisposable
         {
             if (tile == -1)
             {
-                curTile.Type = 0;
-                curTile.IsActive = false;
-                curTile.InActive = false;
-                curTile.Actuator = false;
-                curTile.BrickStyle = BrickStyle.Full;
-                curTile.U = 0;
-                curTile.V = 0;
+                curTile.ClearTile();
             }
             else
             {

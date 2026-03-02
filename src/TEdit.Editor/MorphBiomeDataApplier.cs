@@ -16,8 +16,7 @@ public static class BiomeMorphExtensions
     {
         if (offset.Delete)
         {
-            tile.Type = 0;
-            tile.IsActive = false;
+            tile.ClearTile();
             return;
         }
 
@@ -218,8 +217,7 @@ public class MorphBiomeDataApplier
             {
                 if (options.EnableBaseTiles)
                 {
-                    source.Type = 0;
-                    source.IsActive = false;
+                    source.ClearTile();
                 }
                 return;
             }

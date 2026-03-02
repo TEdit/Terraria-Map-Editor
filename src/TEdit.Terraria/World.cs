@@ -730,7 +730,7 @@ public partial class World
 
                 if (curTile.Type == (int)TileType.IceByRod)
                 {
-                    curTile.IsActive = false;
+                    curTile.ClearTile();
                     Tiles[x, y] = curTile;
                 }
 

@@ -444,7 +444,7 @@ public partial class ClipboardBuffer
                             tileProperty = WorldConfiguration.TileProperties[tile.Type];
 
                             if (tile.Type == (int)TileType.IceByRod)
-                                tile.IsActive = false;
+                                tile.ClearTile();
 
                             if (tileProperty.IsFramed)
                             {
