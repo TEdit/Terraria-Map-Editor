@@ -28,7 +28,6 @@ function rand(min, max) { return min + Math.floor(Math.random() * (max - min)); 
 var DIRT = metadata.tileId("Dirt Block");
 var STONE = metadata.tileId("Stone Block");
 var GRASS = metadata.tileId("Grass Block");
-var ASH = metadata.tileId("Ash Block");
 var CLAY = metadata.tileId("Clay Block");
 var SILT = metadata.tileId("Silt Block");
 var MUD = metadata.tileId("Mud Block");
@@ -147,19 +146,15 @@ for (var x = 0; x < w; x++) {
     for (var y = sy; y < ry; y++) {
         tile.setType(x, y, DIRT);
     }
-    // Stone layer
+    // Stone layer (down to lava line only — underworld handles below)
     for (var y = ry; y < lavaLine; y++) {
         tile.setType(x, y, STONE);
-    }
-    // Ash/underworld layer
-    for (var y = lavaLine; y < h - 6; y++) {
-        tile.setType(x, y, ASH);
     }
 
     if (x % 500 === 0) log.progress(0.02 + (x / w) * 0.06);
 }
 log.progress(0.08);
-log.print("  Terrain filled.");
+log.print("  Terrain filled (dirt + stone layers).");
 
 // ═══════════════════════════════════════════════════════════════════════
 // Step 3: Rocks-in-dirt and dirt-in-rocks scatter (breaks up pure layers)
@@ -324,9 +319,9 @@ for (var z = 0; z < oreZones.length; z++) {
         generate.tileRunner(ox, oy, rand(oz.sMin, oz.sMax), rand(oz.stMin, oz.stMax), oz.tile);
         totalOres++;
     }
-    log.progress(0.49 + (z / oreZones.length) * 0.30);
+    log.progress(0.49 + (z / oreZones.length) * 0.25);
 }
-log.progress(0.79);
+log.progress(0.74);
 log.print("  Placed " + totalOres + " ore veins.");
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -346,7 +341,7 @@ for (var i = 0; i < siltCount; i++) {
     var py = rand(baseRock, h - 40);
     generate.tileRunner(px, py, rand(3, 10), rand(5, 30), SILT);
 }
-log.progress(0.84);
+log.progress(0.78);
 log.print("  Placed " + clayCount + " clay + " + siltCount + " silt patches.");
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -359,7 +354,7 @@ for (var i = 0; i < lakeCount; i++) {
     var ly = rand(baseRock, lavaLine);
     generate.lake(lx, ly, "water", 0.8 + Math.random() * 0.8);
 }
-log.progress(0.88);
+log.progress(0.81);
 log.print("  Created " + lakeCount + " water lakes.");
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -372,7 +367,7 @@ for (var i = 0; i < lavaCount; i++) {
     var ly = rand(lavaLine, h - 30);
     generate.lake(lx, ly, "lava", 0.6 + Math.random() * 0.6);
 }
-log.progress(0.91);
+log.progress(0.83);
 log.print("  Created " + lavaCount + " lava pools.");
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -385,21 +380,194 @@ for (var i = 0; i < honeyCount; i++) {
     var ly = rand(baseRock, lavaLine);
     generate.lake(lx, ly, "honey", 0.4 + Math.random() * 0.4);
 }
-log.progress(0.93);
+log.progress(0.85);
 log.print("  Created " + honeyCount + " honey pockets.");
 
 // ═══════════════════════════════════════════════════════════════════════
-// Step 14: Plant surface forest
+// Step 14: Underworld (hell layer with natural ceiling/lava floor)
 // ═══════════════════════════════════════════════════════════════════════
-log.print("Step 14: Growing surface forest...");
+log.print("Step 14: Generating underworld...");
+var underworldTiles = generate.underworld();
+log.print("  Underworld: " + underworldTiles + " ash tiles + hellstone + lava");
+log.progress(0.87);
+
+// ═══════════════════════════════════════════════════════════════════════
+// Step 15: Oceans at world edges
+// ═══════════════════════════════════════════════════════════════════════
+log.print("Step 15: Generating oceans...");
+var oceanDepth = Math.floor(h * 0.07);  // ~7% of world height
+var oceanWidth = Math.floor(w * 0.12);  // ~12% of world width each side
+
+var leftOceanTiles = generate.ocean(-1, oceanWidth, oceanDepth);
+log.print("  Left ocean: " + leftOceanTiles + " tiles");
+
+var rightOceanTiles = generate.ocean(1, oceanWidth, oceanDepth);
+log.print("  Right ocean: " + rightOceanTiles + " tiles");
+log.progress(0.89);
+
+// ═══════════════════════════════════════════════════════════════════════
+// Step 16: Biome generation
+// ═══════════════════════════════════════════════════════════════════════
+log.print("Step 16: Generating biomes...");
+
+// Ice biome — right third of the world, surface to rock layer (trapezoid: wider underground)
+var iceX = Math.floor(w * 0.65);
+var iceW = Math.floor(w * 0.25);
+var iceTiles = generate.iceBiome(iceX, baseSurface - 10, iceW, baseRock - baseSurface + 30, "trapezoid");
+log.print("  Ice biome: " + iceTiles + " tiles converted");
+
+// Jungle — left quarter of the world, fills entire vertical (surface to near lavaLine)
+var jungleX = Math.floor(w * 0.12);  // after ocean
+var jungleW = Math.floor(w * 0.20);
+var jungleH = lavaLine - baseSurface + 5;  // full vertical extent like Terraria
+var jungleTiles = generate.jungle(jungleX, baseSurface - 5, jungleW, jungleH, "rectangle");
+log.print("  Jungle: " + jungleTiles + " tiles converted");
+
+// Desert — center-right area, tall ellipse spanning surface to lavaLine
+var desertX = Math.floor(w * 0.42);
+var desertW = Math.floor(w * 0.10);
+var desertH = lavaLine - baseSurface + 5;  // full vertical extent like Terraria
+var desertTiles = generate.desert(desertX, baseSurface - 5, desertW, desertH, "ellipse");
+log.print("  Desert: " + desertTiles + " tiles converted");
+
+// Corruption strip — diagonal V strip
+var corruptX = Math.floor(w * 0.30);
+var corruptDepth = baseRock - baseSurface + 40;
+var corruptTiles = generate.corruption(corruptX, baseSurface - 3, 60, corruptDepth, "diagonalLeft");
+log.print("  Corruption: " + corruptTiles + " tiles + chasms");
+
+// Crimson strip — opposite diagonal
+var crimsonX = Math.floor(w * 0.37);
+var crimsonTiles = generate.crimson(crimsonX, baseSurface - 3, 60, corruptDepth, "diagonalRight");
+log.print("  Crimson: " + crimsonTiles + " tiles + chasms");
+
+// Hallow strip — diagonal like hardmode V
+var hallowX = Math.floor(w * 0.53);
+var hallowH = baseRock - baseSurface + 30;
+var hallowTiles = generate.hallow(hallowX, baseSurface - 3, 50, hallowH, "diagonalLeft");
+log.print("  Hallow: " + hallowTiles + " tiles converted");
+
+// Mushroom biome — small patch in deep cavern (ellipse: oblate)
+var mushroomX = Math.floor(w * 0.55);
+var mushroomTiles = generate.mushroomBiome(mushroomX, baseRock + 10, 60, 40, "ellipse");
+log.print("  Mushroom biome: " + mushroomTiles + " tiles converted");
+
+// Marble and granite caves — scattered in rock layer
+var marbleCount = Math.max(2, Math.floor(w * 0.001));
+for (var i = 0; i < marbleCount; i++) {
+    generate.marbleCave(rand(50, w - 50), rand(baseRock, lavaLine));
+}
+var graniteCount = Math.max(2, Math.floor(w * 0.001));
+for (var i = 0; i < graniteCount; i++) {
+    generate.graniteCave(rand(50, w - 50), rand(baseRock, lavaLine));
+}
+log.print("  Marble caves: " + marbleCount + ", Granite caves: " + graniteCount);
+
+// Spider caves — scattered in cavern
+var spiderCount = Math.max(2, Math.floor(w * 0.001));
+for (var i = 0; i < spiderCount; i++) {
+    generate.spiderCave(rand(50, w - 50), rand(baseRock, lavaLine));
+}
+log.print("  Spider caves: " + spiderCount);
+
+log.progress(0.91);
+
+// ═══════════════════════════════════════════════════════════════════════
+// Step 17: Structures
+// ═══════════════════════════════════════════════════════════════════════
+log.print("Step 17: Placing structures...");
+
+// Beehives in jungle underground
+var hiveCount = Math.max(1, Math.floor(jungleW * 0.02));
+for (var i = 0; i < hiveCount; i++) {
+    generate.beehive(
+        rand(jungleX + 10, jungleX + jungleW - 10),
+        rand(baseRock + 10, lavaLine - 30)
+    );
+}
+log.print("  Beehives: " + hiveCount);
+
+// Underground houses — scattered in dirt/rock
+var houseCount = Math.max(5, Math.floor(w * 0.005));
+for (var i = 0; i < houseCount; i++) {
+    generate.undergroundHouse(rand(50, w - 50), rand(baseSurface + 20, lavaLine - 20));
+}
+log.print("  Underground houses: " + houseCount);
+
+log.progress(0.93);
+
+// ═══════════════════════════════════════════════════════════════════════
+// Step 18: Plant surface forest
+// ═══════════════════════════════════════════════════════════════════════
+log.print("Step 18: Growing forests...");
 var treesPlaced = generate.forest(
     ["oak", "oak", "oak", "sakura", "willow"],
     beachLeft, Math.min.apply(null, surfaceY) - 30,
     beachRight - beachLeft, Math.max.apply(null, surfaceY) - Math.min.apply(null, surfaceY) + 60,
     0.15
 );
+log.print("  Surface trees: " + treesPlaced);
+
+// Jungle trees (living mahogany)
+var jungleTrees = generate.forest(["jungle"], jungleX, baseSurface - 10, jungleW, 30, 0.12);
+log.print("  Jungle trees: " + jungleTrees);
+
+// Mushroom trees in mushroom biome
+var mushroomTrees = generate.forest(["mushroom"], mushroomX, baseRock + 10, 60, 40, 0.08);
+log.print("  Mushroom trees: " + mushroomTrees);
+
+// ═══════════════════════════════════════════════════════════════════════
+// Step 19: Decoration pass
+// ═══════════════════════════════════════════════════════════════════════
+log.print("Step 19: Decorating world...");
+
+// Vines in forest
+var forestVines = generate.placeVines(beachLeft, baseSurface - 10, beachRight - beachLeft, baseRock - baseSurface + 30, "forest");
+log.print("  Forest vines: " + forestVines);
+
+// Vines in jungle
+var jungleVines = generate.placeVines(jungleX, baseSurface - 5, jungleW, baseRock - baseSurface + 60, "jungle");
+log.print("  Jungle vines: " + jungleVines);
+
+// Plants
+var forestPlants = generate.placePlants(beachLeft, baseSurface - 10, beachRight - beachLeft, 30, "forest");
+var junglePlants = generate.placePlants(jungleX, baseSurface - 5, jungleW, 30, "jungle");
+log.print("  Plants: " + forestPlants + " forest, " + junglePlants + " jungle");
+
+// Pots underground
+var pots = generate.placePots(0, baseSurface + 20, w, lavaLine - baseSurface - 20);
+log.print("  Pots: " + pots);
+
+// Stalactites in caves
+var stalactites = generate.placeStalactites(0, baseRock, w, lavaLine - baseRock);
+log.print("  Stalactites: " + stalactites);
+
+// Life crystals underground
+var crystals = generate.placeLifeCrystals(0, baseRock, w, lavaLine - baseRock);
+log.print("  Life crystals: " + crystals);
+
+// Sunflowers on grass
+var sunflowers = generate.placeSunflowers(beachLeft, baseSurface - 10, beachRight - beachLeft, 30);
+log.print("  Sunflowers: " + sunflowers);
+
+// Thorns in corruption/crimson
+var corruptThorns = generate.placeThorns(corruptX, baseSurface - 3, 60, corruptDepth, "corruption");
+var crimsonThorns = generate.placeThorns(crimsonX, baseSurface - 3, 60, corruptDepth, "crimson");
+log.print("  Thorns: " + corruptThorns + " corruption, " + crimsonThorns + " crimson");
+
+// Traps underground
+var traps = generate.placeTraps(0, baseRock, w, lavaLine - baseRock);
+log.print("  Traps: " + traps);
+
+// Crimson vines
+var crimsonVines = generate.placeVines(crimsonX, baseSurface - 3, 60, 30, "crimson");
+log.print("  Crimson vines: " + crimsonVines);
+
+// Smooth world edges
+var smoothed = generate.smoothWorld(0, baseSurface - 20, w, 40);
+log.print("  Smoothed edges: " + smoothed);
+
 log.progress(1.0);
-log.print("  Grew " + treesPlaced + " trees.");
 
 // ═══════════════════════════════════════════════════════════════════════
 // Summary
@@ -417,4 +585,9 @@ log.print("  Scatter blobs: " + rocksInDirt + " stone-in-dirt, " +
 log.print("  Cave calls: " + totalCaves);
 log.print("  Ore veins: " + totalOres);
 log.print("  Lakes: " + lakeCount + " water, " + lavaCount + " lava, " + honeyCount + " honey");
-log.print("  Trees: " + treesPlaced);
+log.print("  Underworld: " + underworldTiles + " ash tiles");
+log.print("  Oceans: left " + leftOceanTiles + ", right " + rightOceanTiles + " tiles");
+log.print("  Biomes: ice, jungle, desert, corruption, crimson, hallow, mushroom");
+log.print("  Structures: " + hiveCount + " hives, " + houseCount + " houses");
+log.print("  Decoration: " + forestVines + " vines, " + forestPlants + " plants, " + pots + " pots, " + traps + " traps");
+log.print("  Trees: " + treesPlaced + " surface, " + jungleTrees + " jungle, " + mushroomTrees + " mushroom");

@@ -485,18 +485,54 @@ public static class ScriptApiMetadata
             new("hammer",  "hammer(x1, y1, x2, y2)",   "Auto-slope tiles along brush-width line"),
         ]),
 
-        new("generate", "Procedural generation: trees, forests, ore veins, caves, lakes",
+        new("generate", "Procedural generation: biomes, structures, terrain, trees, ores, caves, lakes, decoration",
         [
+            // Trees & Forests
             new("listTreeTypes",     "listTreeTypes() → [{name, tileId}]",                   "List all supported tree type names and tile IDs"),
             new("tree",              "tree(type, x, y) → bool",                               "Place a single tree at (x, y) ground level; type is a name string"),
             new("forest",            "forest(types[], x, y, w, h, density?) → int",           "Place random trees in rectangle; density 0.0-1.0 (default 0.15)"),
             new("forestInSelection", "forestInSelection(types[], density?) → int",             "Place random trees in current selection"),
             new("findSurface",       "findSurface(x, yStart, yEnd) → int",                   "Scan downward for first solid tile; returns y or -1"),
+
+            // Terrain Primitives
             new("tileRunner",        "tileRunner(x, y, strength, steps, tileType, speedX?, speedY?)", "Wandering painter: fills diamond-shaped blobs with tileType (port of WorldGen.TileRunner)"),
             new("tunnel",            "tunnel(x, y, strength, steps, speedX?, speedY?)",       "Carve natural cave tunnels (clears tiles along a wandering path)"),
             new("lake",              "lake(x, y, liquidType?, strength?)",                     "Create irregular liquid pool (water/lava/honey/shimmer)"),
             new("oreVein",           "oreVein(oreName, x, y, size?)",                          "Place named ore vein with preset parameters; size: small/medium/large"),
             new("listOreTypes",      "listOreTypes() → [{name, tileId}]",                     "List available ore names and tile IDs"),
+
+            // Biome Regions (Phase 2A)
+            new("iceBiome",          "iceBiome(x, y, w, h, shape?) → int",                     "Convert region to ice/snow biome (stone→ice, dirt→snow). shape: rectangle/ellipse/trapezoid (default trapezoid)"),
+            new("mushroomBiome",     "mushroomBiome(x, y, w, h, shape?) → int",               "Convert region to glowing mushroom biome (mud + mushroom grass). shape default ellipse"),
+            new("marbleCave",        "marbleCave(x, y, strength?) → void",                    "Create marble cave with marble blocks and walls (default strength 40)"),
+            new("graniteCave",       "graniteCave(x, y, strength?) → void",                   "Create granite cave with granite blocks and walls (default strength 40)"),
+            new("corruption",        "corruption(x, y, w, depth, shape?) → int",               "Apply Corruption biome with chasms. shape: rectangle/diagonalLeft/diagonalRight (default diagonalLeft)"),
+            new("crimson",           "crimson(x, y, w, depth, shape?) → int",                 "Apply Crimson biome with chasms. shape: rectangle/diagonalRight/diagonalLeft (default diagonalRight)"),
+            new("hallow",            "hallow(x, y, w, h, shape?) → int",                      "Apply Hallow biome. shape: rectangle/diagonalLeft/ellipse (default diagonalLeft)"),
+            new("spiderCave",        "spiderCave(x, y, strength?) → void",                    "Create spider cave filled with cobwebs and spider walls (default strength 10)"),
+
+            // Structures (Phase 2B)
+            new("ocean",             "ocean(direction?, oceanWidth?, maxDepth?) → int",         "Generate ocean at world edge (direction: -1=left, 1=right) with exponential depth slope"),
+            new("desert",            "desert(x, y, w, h, shape?) → int",                       "Generate desert: sand surface + sandstone underground + caves. shape default ellipse"),
+            new("jungle",            "jungle(x, y, w, h, shape?, ditherWidth?) → int",        "Generate jungle: mud/jungle grass + dithered edges + caves. shape default rectangle, ditherWidth default 15"),
+            new("underworld",        "underworld(yStart?) → int",                              "Generate underworld: random walk ceiling/lava floor, hellstone, caves, chimneys"),
+            new("beehive",           "beehive(x, y, size?) → void",                           "Create beehive: hive block shell filled with honey"),
+            new("pyramid",           "pyramid(x, y, height?) → void",                         "Create sandstone pyramid with internal rooms"),
+            new("livingTree",        "livingTree(x, y, height?) → void",                      "Create hollow living tree with roots and leaf canopy"),
+            new("dungeon",           "dungeon(x, y, direction?, style?) → void",               "Generate dungeon rooms/corridors (style: 0=blue, 1=green, 2=pink)"),
+            new("jungleTemple",      "jungleTemple(x, y, w?, h?) → void",                     "Create lihzahrd brick temple with grid rooms"),
+            new("undergroundHouse",  "undergroundHouse(x, y, style?) → void",                  "Place underground house (style: 0=wood, 1=stone, 2=dungeon)"),
+
+            // Decoration (Phase 2D)
+            new("placeVines",        "placeVines(x, y, w, h, biome?) → int",                  "Hang vines from grass (biome: forest/jungle/hallow/crimson)"),
+            new("placePlants",       "placePlants(x, y, w, h, biome?) → int",                 "Place random plants on grass (biome: forest/jungle/hallow/corruption/crimson/mushroom)"),
+            new("placePots",         "placePots(x, y, w, h, count?) → int",                   "Place clay pots on solid surfaces"),
+            new("placeStalactites",  "placeStalactites(x, y, w, h, count?) → int",            "Place stalactites/stalagmites in caves"),
+            new("placeTraps",        "placeTraps(x, y, w, h, count?) → int",                  "Place dart traps on walls facing open space"),
+            new("placeLifeCrystals", "placeLifeCrystals(x, y, w, h, count?) → int",           "Place life crystals (2x2) on solid surfaces"),
+            new("smoothWorld",       "smoothWorld(x, y, w, h) → int",                         "Auto-slope exposed tile edges for natural terrain"),
+            new("placeSunflowers",   "placeSunflowers(x, y, w, h, count?) → int",             "Place sunflowers on grass surfaces"),
+            new("placeThorns",       "placeThorns(x, y, w, h, biome?) → int",                 "Place thorns on corruption/crimson grass"),
         ]),
     ];
 }
