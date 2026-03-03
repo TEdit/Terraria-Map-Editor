@@ -2815,13 +2815,6 @@ public partial class WorldRenderXna : UserControl
 
     #region Render
 
-    BlendState _negativePaint = new BlendState
-    {
-        ColorSourceBlend = Blend.Zero,
-        //AlphaSourceBlend = Blend.Zero,
-        ColorDestinationBlend = Blend.InverseSourceColor,
-        //AlphaDestinationBlend = Blend.One
-    };
 
     private World? _lastRenderedWorld = null;
     private void Render(GraphicsDeviceEventArgs e)
@@ -2932,7 +2925,7 @@ public partial class WorldRenderXna : UserControl
                 DrawTileWalls();
                 _spriteBatch.End();
 
-                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, _textureDictionary?.InvertEffect);
                 DrawTileWalls(true);
                 _spriteBatch.End();
             }
@@ -2943,7 +2936,7 @@ public partial class WorldRenderXna : UserControl
                 DrawTileTextures();
                 _spriteBatch.End();
 
-                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, _textureDictionary?.InvertEffect);
                 DrawTileTextures(true);
                 _spriteBatch.End();
 
