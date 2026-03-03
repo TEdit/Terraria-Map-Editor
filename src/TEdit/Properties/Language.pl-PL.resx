@@ -172,7 +172,7 @@
     <value>Filtruj:</value>
   </data>
   <data name="banner_import" xml:space="preserve">
-    <value>Import</value>
+    <value>Importuj</value>
   </data>
   <data name="banner_kills" xml:space="preserve">
     <value>Zabójstwa</value>
@@ -220,25 +220,25 @@
     <value>Pełny Blok</value>
   </data>
   <data name="BrickStyle_HalfBrick" xml:space="preserve">
-    <value>Pół Bloku</value>
+    <value>Półblok</value>
   </data>
   <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
-    <value>Nachylenie Dół Lewo</value>
+    <value>Skos Dół Lewo</value>
   </data>
   <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
-    <value>Nachylenie Dół Prawo</value>
+    <value>Skos Dół Prawo</value>
   </data>
   <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
-    <value>Nachylenie Góra Lewo</value>
+    <value>Skos Góra Lewo</value>
   </data>
   <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
-    <value>Nachylenie Góra Prawo</value>
+    <value>Skos Góra Prawo</value>
   </data>
   <data name="BrushShape_Crescent" xml:space="preserve">
     <value>Crescent</value>
   </data>
   <data name="BrushShape_Donut" xml:space="preserve">
-    <value>Pączek</value>
+    <value>Okrąg</value>
   </data>
   <data name="BrushShape_Left" xml:space="preserve">
     <value>Przekątna w Lewo</value>
@@ -263,13 +263,13 @@
     <value>Trójkąt</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
-    <value>Max</value>
+    <value>Maksimum</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
   <data name="common_clear" xml:space="preserve">
-    <value>Jasny</value>
+    <value>Wyczyść</value>
   </data>
   <data name="common_close" xml:space="preserve">
     <value>Zamknij</value>
@@ -339,19 +339,19 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Narzędzia</value>
   </data>
   <data name="expand_description" xml:space="preserve">
-    <value>Świat będzie skupiony wokół tych nowych wymiarów.</value>
+    <value>Świat będzie wycentrowany wobec tych wymiarów.</value>
   </data>
   <data name="expand_new_height" xml:space="preserve">
-    <value>Nowy Szczyt</value>
+    <value>Nowa wysokość</value>
   </data>
   <data name="expand_new_width" xml:space="preserve">
     <value>Nowa szerokość</value>
   </data>
   <data name="expand_title" xml:space="preserve">
-    <value>Rozwiń świat</value>
+    <value>Rozszerz świat</value>
   </data>
   <data name="find_auto_zoom" xml:space="preserve">
-    <value>Auto Zoom</value>
+    <value>Automatyczne przybliżenie</value>
   </data>
   <data name="find_auto_zoom_tooltip" xml:space="preserve">
     <value>Przybliżaj podczas nawigacji do wyników (wyłącz = tylko przesuwanie)</value>
@@ -366,7 +366,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Poprzedni</value>
   </data>
   <data name="find_search_world" xml:space="preserve">
-    <value>Świat wyszukiwania</value>
+    <value>Przeszukaj świat</value>
   </data>
   <data name="find_tab_chests" xml:space="preserve">
     <value>Przedmioty w skrzyniach</value>
@@ -399,10 +399,10 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Normalna</value>
   </data>
   <data name="JunctionBoxMode_Right" xml:space="preserve">
-    <value>Prawo skierowane</value>
+    <value>Skierowane w prawo</value>
   </data>
   <data name="JunctionBox_Use" xml:space="preserve">
-    <value>Skrzynka przyłączeniowa:</value>
+    <value>Puszka połączeniowa:</value>
   </data>
   <data name="keybind_capture_instruction" xml:space="preserve">
     <value>Naciśnij klawisz, przycisk myszy lub kółko przewijania...</value>
@@ -414,7 +414,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Naciśnij klawisz lub kliknij myszką</value>
   </data>
   <data name="light_glow_intensity" xml:space="preserve">
-    <value>Light Glow Intensity</value>
+    <value>Intensywność światła</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80%</value>
@@ -456,7 +456,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Lawa</value>
   </data>
   <data name="LiquidType_None" xml:space="preserve">
-    <value>Nie Płynny</value>
+    <value>Nie ciecz</value>
   </data>
   <data name="LiquidType_Shimmer" xml:space="preserve">
     <value>Shimmer</value>
@@ -465,13 +465,13 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Woda</value>
   </data>
   <data name="liquid_amount" xml:space="preserve">
-    <value>Płynna ilość:</value>
+    <value>Ilość cieczy:</value>
   </data>
   <data name="MaskMode_Empty" xml:space="preserve">
-    <value>Edytuj Pusty</value>
+    <value>Edytuj puste</value>
   </data>
   <data name="MaskMode_Match" xml:space="preserve">
-    <value>Edytuj Dopasowanie</value>
+    <value>Edytuj dopasowane</value>
   </data>
   <data name="MaskMode_NotMatching" xml:space="preserve">
     <value>Edytuj Niedopasowane</value>
@@ -483,25 +483,25 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Wyłącz</value>
   </data>
   <data name="MaskPreset_Custom" xml:space="preserve">
-    <value>Match Custom</value>
+    <value>Dopasuj niestandardowe</value>
   </data>
   <data name="MaskPreset_ExactMatch" xml:space="preserve">
-    <value>Match All</value>
+    <value>Dopasuj wszystko</value>
   </data>
   <data name="palette_title" xml:space="preserve">
-    <value>Palette</value>
+    <value>Paleta kolorów</value>
   </data>
   <data name="palette_tile_section" xml:space="preserve">
-    <value>Tile Picker</value>
+    <value>Wybór płytek</value>
   </data>
   <data name="palette_mask_section" xml:space="preserve">
-    <value>Mask Options</value>
+    <value>Opcje maski</value>
   </data>
   <data name="sidebar_palette_tooltip" xml:space="preserve">
-    <value>Palette</value>
+    <value>Paleta kolorów</value>
   </data>
   <data name="mask_clear_all" xml:space="preserve">
-    <value>Clear All</value>
+    <value>Wyczyść wszystko</value>
   </data>
   <data name="mask_echo" xml:space="preserve">
     <value>Echo</value>
@@ -513,13 +513,13 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Preset:</value>
   </data>
   <data name="mask_preset_custom" xml:space="preserve">
-    <value>Zwyczaj</value>
+    <value>Niestandardowy</value>
   </data>
   <data name="mask_preset_Duplicate[1]" xml:space="preserve">
     <value>Preset:</value>
   </data>
   <data name="mask_preset_exact" xml:space="preserve">
-    <value>Exact Match</value>
+    <value>Dokładne dopasowanie</value>
   </data>
   <data name="mask_section_actuator" xml:space="preserve">
     <value>Actuator</value>
@@ -531,37 +531,37 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Nieaktywne</value>
   </data>
   <data name="mask_section_liquid_level" xml:space="preserve">
-    <value>Liquid Level</value>
+    <value>Poziom cieczy</value>
   </data>
   <data name="mask_section_liquid_type" xml:space="preserve">
-    <value>Liquid Type</value>
+    <value>Typ cieczy</value>
   </data>
   <data name="mask_section_tile" xml:space="preserve">
-    <value>Tile Type</value>
+    <value>Typ płytki</value>
   </data>
   <data name="mask_section_tile_coatings" xml:space="preserve">
     <value>Tile Coatings</value>
   </data>
   <data name="mask_section_tile_Duplicate[1]" xml:space="preserve">
-    <value>Tile Type</value>
+    <value>Typ płytki</value>
   </data>
   <data name="mask_section_tile_paint" xml:space="preserve">
-    <value>Tile Paint</value>
+    <value>Farba na bloku</value>
   </data>
   <data name="mask_section_wall" xml:space="preserve">
-    <value>Wall Type</value>
+    <value>Typ ściany</value>
   </data>
   <data name="mask_section_wall_coatings" xml:space="preserve">
     <value>Wall Coatings</value>
   </data>
   <data name="mask_section_wall_paint" xml:space="preserve">
-    <value>Wall Paint</value>
+    <value>Farba na ścianie</value>
   </data>
   <data name="mask_section_wires" xml:space="preserve">
-    <value>Przewody</value>
+    <value>Kable</value>
   </data>
   <data name="mask_title" xml:space="preserve">
-    <value>Masks</value>
+    <value>Maski</value>
   </data>
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>Kopiuj pierwszy element</value>
@@ -621,7 +621,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Sprawdź nowe aktualizacje</value>
   </data>
   <data name="menu_file_worlds" xml:space="preserve">
-    <value>Światowy Explorer...</value>
+    <value>Eksplorator światów...</value>
   </data>
   <data name="menu_filter" xml:space="preserve">
     <value>Filtr</value>
@@ -636,19 +636,19 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Anulować</value>
   </data>
   <data name="menu_filter_custom" xml:space="preserve">
-    <value>Zwyczaj</value>
+    <value>Niestandardowy</value>
   </data>
   <data name="menu_filter_custom_tooltip" xml:space="preserve">
     <value>Wybierz niestandardowy kolor tła</value>
   </data>
   <data name="menu_filter_darken" xml:space="preserve">
-    <value>Ciemniej</value>
+    <value>Ciemniejszy</value>
   </data>
   <data name="menu_filter_darken_label" xml:space="preserve">
-    <value>Ciemniej:</value>
+    <value>Ciemniejszy:</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
-    <value>Wyłączyć</value>
+    <value>Wyłącz</value>
   </data>
   <data name="menu_filter_filterclipboard" xml:space="preserve">
     <value>Filtruj schowek</value>
@@ -660,10 +660,10 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Skala szarości</value>
   </data>
   <data name="menu_filter_header_liquids" xml:space="preserve">
-    <value>Płyny</value>
+    <value>Ciecze</value>
   </data>
   <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>Duszki</value>
+    <value>Sprites</value>
   </data>
   <data name="menu_filter_header_tiles" xml:space="preserve">
     <value>Płytki</value>
@@ -690,7 +690,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Odznacz wszystko</value>
   </data>
   <data name="menu_filter_title" xml:space="preserve">
-    <value>Zaawansowany filtr</value>
+    <value>Filtr zaawansowany </value>
   </data>
   <data name="menu_filter_transparent" xml:space="preserve">
     <value>Przezroczysty</value>
@@ -702,10 +702,10 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>O Programie</value>
   </data>
   <data name="menu_help_log" xml:space="preserve">
-    <value>Otwórz Logi</value>
+    <value>Otwórz plik z logami</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Settings...</value>
+    <value>Ustawienia...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>Zaaktualizuj</value>
@@ -720,19 +720,19 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>العربية</value>
   </data>
   <data name="menu_language_de" xml:space="preserve">
-    <value>Deutsch</value>
+    <value>Niemiecki</value>
   </data>
   <data name="menu_language_en" xml:space="preserve">
-    <value>English</value>
+    <value>Angielski</value>
   </data>
   <data name="menu_language_es" xml:space="preserve">
-    <value>Español</value>
+    <value>Hiszpański</value>
   </data>
   <data name="menu_language_fr" xml:space="preserve">
-    <value>Français</value>
+    <value>Francuski</value>
   </data>
   <data name="menu_language_it" xml:space="preserve">
-    <value>Italiano</value>
+    <value>Włoski</value>
   </data>
   <data name="menu_language_ja" xml:space="preserve">
     <value>日本語</value>
@@ -744,10 +744,10 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Polski</value>
   </data>
   <data name="menu_language_pt" xml:space="preserve">
-    <value>Português</value>
+    <value>Portugalski</value>
   </data>
   <data name="menu_language_ru" xml:space="preserve">
-    <value>Русский</value>
+    <value>Rosyjski</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
     <value>中文</value>
@@ -810,19 +810,19 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Wszystkie przewody</value>
   </data>
   <data name="menu_layers_wire_blue" xml:space="preserve">
-    <value>Niebieskie Kable</value>
+    <value>Niebieski kabel</value>
   </data>
   <data name="menu_layers_wire_green" xml:space="preserve">
-    <value>Zielone Kable</value>
+    <value>Zielony kabel</value>
   </data>
   <data name="menu_layers_wire_red" xml:space="preserve">
-    <value>Czerwone Kable</value>
+    <value>Czerwony kabel</value>
   </data>
   <data name="menu_layers_wire_transparency" xml:space="preserve">
-    <value>Przezroczystość przewodu</value>
+    <value>Przezroczystość kabla</value>
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
-    <value>Żółte Kable</value>
+    <value>Żółty kabel</value>
   </data>
   <data name="menu_layers_world_border" xml:space="preserve">
     <value>Granica Świata</value>
@@ -934,7 +934,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Preset jaskiń</value>
   </data>
   <data name="newworld_create" xml:space="preserve">
-    <value>Stwórz świat</value>
+    <value>Utwórz świat</value>
   </data>
   <data name="newworld_floor_noise" xml:space="preserve">
     <value>Hałas podłogi</value>
@@ -949,7 +949,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Generuj Podziemie</value>
   </data>
   <data name="newworld_generation" xml:space="preserve">
-    <value>Pokolenie świata</value>
+    <value>Generowanie Świata</value>
   </data>
   <data name="newworld_heading" xml:space="preserve">
     <value>Stwórz Nowy Świat</value>
@@ -967,7 +967,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Uwzględnij powierzchnię</value>
   </data>
   <data name="newworld_lava_noise" xml:space="preserve">
-    <value>Hałas lawy</value>
+    <value>Szum lawy</value>
   </data>
   <data name="newworld_name" xml:space="preserve">
     <value>Nazwa Świata</value>
@@ -1036,7 +1036,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Skarbonka świnka</value>
   </data>
   <data name="player_editor_bank_safe" xml:space="preserve">
-    <value>Safe</value>
+    <value>Sejf</value>
   </data>
   <data name="player_editor_bank_void" xml:space="preserve">
     <value>Skrytka Pustki</value>
@@ -1045,7 +1045,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Buffy</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value>Clear Slot</value>
+    <value>Wyczyść slot</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Poziom Trudności</value>
@@ -1120,7 +1120,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Generuj APIREFERENCE.md</value>
   </data>
   <data name="scripting_api_tooltip" xml:space="preserve">
-    <value>Toggle API reference panel</value>
+    <value>Przełącz panel referencyjny API</value>
   </data>
   <data name="scripting_engine_label" xml:space="preserve">
     <value>Silnik:</value>
@@ -1138,13 +1138,13 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Produkcja</value>
   </data>
   <data name="scripting_run" xml:space="preserve">
-    <value>Run Script</value>
+    <value>Uruchom skrypt</value>
   </data>
   <data name="scripting_save_tooltip" xml:space="preserve">
     <value>Skrypt zapisu</value>
   </data>
   <data name="scripting_stop" xml:space="preserve">
-    <value>Stop</value>
+    <value>Zatrzymaj</value>
   </data>
   <data name="scripting_title" xml:space="preserve">
     <value>Skryptowanie</value>
@@ -1181,7 +1181,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Skryptowanie</value>
   </data>
   <data name="settings_color_mode" xml:space="preserve">
-    <value>Tryb kolorowy</value>
+    <value>Tryb kolorów</value>
   </data>
   <data name="settings_color_mode_desc" xml:space="preserve">
     <value>Paleta kolorów mapy pikseli: Domyślna, Realistyczna (próbkowana teksturami) lub Minimapa (kolory map w grze). Wymaga restartu.</value>
@@ -1298,7 +1298,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Nakładka siatki przełączającej</value>
   </data>
   <data name="settings_show_liquid" xml:space="preserve">
-    <value>Show Liquid</value>
+    <value>Pokaż ciecze</value>
   </data>
   <data name="settings_show_liquid_desc" xml:space="preserve">
     <value>Widoczność warstw cieczy w trybie przełączania</value>
@@ -1398,7 +1398,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Znajdź</value>
   </data>
   <data name="sidebar_mask_tooltip" xml:space="preserve">
-    <value>Masks</value>
+    <value>Maski</value>
   </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>Skryptowanie</value>
@@ -1476,7 +1476,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Ubranie Manekina</value>
   </data>
   <data name="specialtile_label_mount" xml:space="preserve">
-    <value>Mount</value>
+    <value>Wierzchowiec</value>
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Zawartość Napierśnika</value>
@@ -1622,7 +1622,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Edytuj</value>
   </data>
   <data name="tool_bestiary_import" xml:space="preserve">
-    <value>Import</value>
+    <value>Importuj</value>
   </data>
   <data name="tool_bestiary_save" xml:space="preserve">
     <value>Zapisz Bestiariusz</value>
@@ -1634,10 +1634,10 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Bestiariusz</value>
   </data>
   <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
-    <value>Flip Horizontal</value>
+    <value>Obróć w poziomie</value>
   </data>
   <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
-    <value>Flip Vertical</value>
+    <value>Obróć w pionie</value>
   </data>
   <data name="tool_brush_height_label" xml:space="preserve">
     <value>Wysokość</value>
@@ -1679,10 +1679,10 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Eksport</value>
   </data>
   <data name="tool_clipboard_flipx" xml:space="preserve">
-    <value>Flip X</value>
+    <value>Odwróć oś X</value>
   </data>
   <data name="tool_clipboard_flipy" xml:space="preserve">
-    <value>Flip Y</value>
+    <value>Odwróć oś Y</value>
   </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>Importuj Fałszywy Kolor Obrazu</value>
@@ -1775,7 +1775,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Zło</value>
   </data>
   <data name="tool_morph_label" xml:space="preserve">
-    <value>Morph to Biome</value>
+    <value>Przemień w biom</value>
   </data>
   <data name="tool_morph_moss" xml:space="preserve">
     <value>Mech</value>
@@ -1787,7 +1787,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Opcje</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
-    <value>Biome Morph</value>
+    <value>Zmiana biomów</value>
   </data>
   <data name="tool_npc_add" xml:space="preserve">
     <value>Dodaj NPC</value>
@@ -1799,7 +1799,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Imie</value>
   </data>
   <data name="tool_paint_actuator" xml:space="preserve">
-    <value>Is Actuator</value>
+    <value>Jest siłownikiem</value>
   </data>
   <data name="tool_paint_brickstyle" xml:space="preserve">
     <value>Styl Bloków</value>
@@ -1823,7 +1823,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
-    <value>Actuator/Tile InActive</value>
+    <value>Siłownik/Blok nieaktywny</value>
   </data>
   <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
     <value>Dodaj lewą skrzynkę połączeniową skrzyżowania.</value>
@@ -1865,7 +1865,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Add Pressure Plate to existing track, use with Eraser to remove plate only.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value>Smooth</value>
+    <value>Gładki</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
     <value>Smooth the tunnel made by the track tool.</value>
@@ -1904,10 +1904,10 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Ołówek</value>
   </data>
   <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Wire 90°</value>
+    <value>Kabel 90°</value>
   </data>
   <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Wire 45°</value>
+    <value>Kabel 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Próbnik - select tile color zaznacz admi</value>
@@ -1973,7 +1973,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Grzyby BG</value>
   </data>
   <data name="tool_wp_bg_ocean" xml:space="preserve">
-    <value>Ocean BG</value>
+    <value>Tło oceanu</value>
   </data>
   <data name="tool_wp_bg_snow" xml:space="preserve">
     <value>Śnieg BG</value>
@@ -2024,7 +2024,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Królowa Lodu</value>
   </data>
   <data name="tool_wp_boss_kingslime" xml:space="preserve">
-    <value>Król Żelu</value>
+    <value>Król Szlam</value>
   </data>
   <data name="tool_wp_boss_lunaticcultist" xml:space="preserve">
     <value>Obłąkany Kultysta</value>
@@ -2081,7 +2081,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Chińska wersja światowa</value>
   </data>
   <data name="tool_wp_cloud_bg_active" xml:space="preserve">
-    <value>Cloud BG Active</value>
+    <value>Tło chmur aktywne</value>
   </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Wariant Kobaltu</value>
@@ -2114,7 +2114,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Nie głoduj świata</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
-    <value>Drunk World</value>
+    <value>Pijany Świat</value>
   </data>
   <data name="tool_wp_dungeon_point" xml:space="preserve">
     <value>Punkt Lochu</value>
@@ -2126,7 +2126,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Tryb Gry</value>
   </data>
   <data name="tool_wp_gold" xml:space="preserve">
-    <value>Poziom Złota</value>
+    <value>Złoty poziom</value>
   </data>
   <data name="tool_wp_gooworld" xml:space="preserve">
     <value>Dla godnych (FTW)</value>
@@ -2642,19 +2642,19 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Anuluj (Esc)</value>
   </data>
   <data name="paste_tooltip_flip_h" xml:space="preserve">
-    <value>Flip poziomy (Ctrl+H)</value>
+    <value>Odwróć poziomo (Ctrl+H)</value>
   </data>
   <data name="paste_tooltip_flip_v" xml:space="preserve">
-    <value>Flip Vertical (Ctrl+Shift+H)</value>
+    <value>Odwróć pionowo (Ctrl+Shift+H)</value>
   </data>
   <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
-    <value>Obróć kursowanie w kierunku CCW (Ctrl+Shift+Q)</value>
+    <value>Obróć przeciwnie do ruchu wskazówek zegara (Ctrl+Shift+Q)</value>
   </data>
   <data name="paste_tooltip_rotate_cw" xml:space="preserve">
-    <value>Obróć CW (Ctrl+Q)</value>
+    <value>Obróć według ruchu wskazówek zegara (Ctrl+Q)</value>
   </data>
   <data name="picker_search_items_placeholder" xml:space="preserve">
-    <value>Przeszukaj przedmioty...</value>
+    <value>Szukaj przedmiotów...</value>
   </data>
   <data name="picker_search_platforms_placeholder" xml:space="preserve">
     <value>Platformy wyszukiwania...</value>
