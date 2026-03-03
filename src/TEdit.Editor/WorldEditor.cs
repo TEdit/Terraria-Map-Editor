@@ -91,7 +91,32 @@ public class WorldEditor : IDisposable
         {
             case PaintMode.Sprites:
                 if (_world.TileFrameImportant[curTile.Type])
-                    SetTile(ref curTile, isErase);
+                {
+                    if (isErase)
+                    {
+                        SetTile(ref curTile, true);
+                    }
+                    else
+                    {
+                        // Paint-only: apply paint/coating/actuator/inactive to existing sprites
+                        if (TilePicker.TilePaintActive)
+                            SetPixelAutomatic(ref curTile, tileColor: TilePicker.TileColor);
+                        if (TilePicker.WallPaintActive)
+                            SetPixelAutomatic(ref curTile, wallColor: TilePicker.WallColor);
+                        if (TilePicker.Actuator)
+                            SetPixelAutomatic(ref curTile, actuator: true);
+                        if (TilePicker.ActuatorInActive)
+                            SetPixelAutomatic(ref curTile, actuatorInActive: true);
+                        if (TilePicker.EnableTileCoating)
+                            SetPixelAutomatic(ref curTile,
+                                tileEchoCoating: TilePicker.TileCoatingEcho,
+                                tileIlluminantCoating: TilePicker.TileCoatingIlluminant);
+                        if (TilePicker.EnableWallCoating)
+                            SetPixelAutomatic(ref curTile,
+                                wallEchoCoating: TilePicker.WallCoatingEcho,
+                                wallIlluminantCoating: TilePicker.WallCoatingIlluminant);
+                    }
+                }
                 break;
             case PaintMode.TileAndWall:
                 if (TilePicker.TileStyleActive)

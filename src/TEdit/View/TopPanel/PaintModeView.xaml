@@ -84,9 +84,20 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Sprites">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
                 <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
                     <Setter Property="Visibility" Value="Visible" />
                 </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="SpriteExtrasStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Sprites">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="WireStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -296,6 +307,12 @@
                         <CheckBox IsChecked="{Binding TilePicker.WallCoatingIlluminant}" Content="{x:Static p:Language.tool_paint_illuminantcoating}" Width="90" VerticalAlignment="Center" IsEnabled="{Binding TilePicker.EnableWallCoating}" />
                         <CheckBox IsChecked="{Binding TilePicker.WallCoatingEcho}" Content="{x:Static p:Language.tool_paint_echocoating}" Width="60" VerticalAlignment="Center" IsEnabled="{Binding TilePicker.EnableWallCoating}"/>
                     </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{x:Static p:Language.tool_paint_extras}" Style="{StaticResource SpriteExtrasStyle}">
+                <StackPanel Orientation="Vertical">
+                    <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="{x:Static p:Language.tool_paint_actuator}" VerticalAlignment="Center"/>
+                    <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="{x:Static p:Language.tool_paint_inactive}" VerticalAlignment="Center"/>
                 </StackPanel>
             </GroupBox>
             <GroupBox Style="{StaticResource RouteStyle}" Padding="2">

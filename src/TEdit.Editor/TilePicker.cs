@@ -105,7 +105,6 @@ public partial class TilePicker : ReactiveObject
         get { return _isEraser; }
         set
         {
-            if (!value && PaintMode == PaintMode.Sprites) { return; } // the only allowed mode for sprite painting is erase
             this.RaiseAndSetIfChanged(ref _isEraser, value);
         }
     }
