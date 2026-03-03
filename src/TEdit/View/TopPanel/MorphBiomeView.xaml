@@ -23,7 +23,7 @@
                   SelectedValue="{Binding MorphToolOptions.TargetBiome}" />
             <TextBlock Text="{x:Static p:Language.tool_morph_moss_type}" Margin="2" />
             <ComboBox Width="200"
-                  ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.MossTypes}, Mode=OneTime}" 
+                  ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.MossTypesWithNone}, Mode=OneTime}" 
                       SelectedValuePath="Value" 
                       DisplayMemberPath="Key"
                   SelectedValue="{Binding MorphToolOptions.MossType}" />

@@ -249,7 +249,15 @@ public class MorphBiomeDataApplier
                         (WorldConfiguration.MorphSettings.IsMoss(source.Type) ||
                          TouchingAir(world, location.X, location.Y)))
                     {
-                        source.Type = (ushort)options.MossType;
+                        if (options.MossType >= 0)
+                        {
+                            source.Type = (ushort)options.MossType;
+                        }
+                        else
+                        {
+                            // MossType < 0 means "None (Remove)": convert moss back to stone
+                            source.Type = 1;
+                        }
                     }
                     else
                     {
@@ -273,19 +281,27 @@ public class MorphBiomeDataApplier
 
             // Moss plant UV remapping: when UseMoss is set on a framed tile (e.g. tile 184),
             // remap the U column to match the selected moss type.
+            // MossType < 0 means "None (Remove)": delete moss plants instead of remapping.
             if (morphId.UseMoss &&
                 options.EnableMoss &&
                 WorldConfiguration.TileProperties[sourceId].IsFramed)
             {
-                var morphSettings = WorldConfiguration.MorphSettings;
-                int targetColumn = morphSettings.GetMossColumnIndex(options.MossType);
-                if (targetColumn >= 0)
+                if (options.MossType < 0)
                 {
-                    short columnWidth = MorphConfiguration.MossPlantColumnWidth;
-                    int currentColumn = source.U / columnWidth;
-                    if (currentColumn != targetColumn)
+                    source.ClearTile();
+                }
+                else
+                {
+                    var morphSettings = WorldConfiguration.MorphSettings;
+                    int targetColumn = morphSettings.GetMossColumnIndex(options.MossType);
+                    if (targetColumn >= 0)
                     {
-                        source.U = (short)(targetColumn * columnWidth);
+                        short columnWidth = MorphConfiguration.MossPlantColumnWidth;
+                        int currentColumn = source.U / columnWidth;
+                        if (currentColumn != targetColumn)
+                        {
+                            source.U = (short)(targetColumn * columnWidth);
+                        }
                     }
                 }
             }
