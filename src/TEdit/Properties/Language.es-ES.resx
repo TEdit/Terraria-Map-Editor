@@ -272,7 +272,7 @@
     <value>Limpiar</value>
   </data>
   <data name="common_close" xml:space="preserve">
-    <value>Cierre</value>
+    <value>Cerrar</value>
   </data>
   <data name="common_enabled" xml:space="preserve">
     <value>Habilitado</value>
@@ -414,7 +414,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Pulsa una tecla o haz clic en un botón del ratón</value>
   </data>
   <data name="light_glow_intensity" xml:space="preserve">
-    <value>Light Glow Intensity</value>
+    <value>Intensidad de brillo</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80 %</value>
@@ -483,25 +483,25 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Fuera</value>
   </data>
   <data name="MaskPreset_Custom" xml:space="preserve">
-    <value>Match Custom</value>
+    <value>Usar personalizado</value>
   </data>
   <data name="MaskPreset_ExactMatch" xml:space="preserve">
-    <value>Match All</value>
+    <value>Coincidencia exacta</value>
   </data>
   <data name="palette_title" xml:space="preserve">
-    <value>Palette</value>
+    <value>Paleta</value>
   </data>
   <data name="palette_tile_section" xml:space="preserve">
-    <value>Tile Picker</value>
+    <value>Selector de bloques</value>
   </data>
   <data name="palette_mask_section" xml:space="preserve">
-    <value>Mask Options</value>
+    <value>Opciones de máscara</value>
   </data>
   <data name="sidebar_palette_tooltip" xml:space="preserve">
-    <value>Palette</value>
+    <value>Paleta</value>
   </data>
   <data name="mask_clear_all" xml:space="preserve">
-    <value>Clear All</value>
+    <value>Limpiar todo</value>
   </data>
   <data name="mask_echo" xml:space="preserve">
     <value>Eco</value>
@@ -510,58 +510,58 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Iluminador</value>
   </data>
   <data name="mask_preset" xml:space="preserve">
-    <value>Preset:</value>
+    <value>Ajuste preestablecido:</value>
   </data>
   <data name="mask_preset_custom" xml:space="preserve">
     <value>Personalizado</value>
   </data>
   <data name="mask_preset_Duplicate[1]" xml:space="preserve">
-    <value>Preset:</value>
+    <value>Ajuste preestablecido:</value>
   </data>
   <data name="mask_preset_exact" xml:space="preserve">
-    <value>Exact Match</value>
+    <value>Coincidencia exacta</value>
   </data>
   <data name="mask_section_actuator" xml:space="preserve">
-    <value>Actuator</value>
+    <value>Actuador</value>
   </data>
   <data name="mask_section_brickstyle" xml:space="preserve">
     <value>Estilo de ladrillo</value>
   </data>
   <data name="mask_section_inactive" xml:space="preserve">
-    <value>Inactive</value>
+    <value>Inactivo</value>
   </data>
   <data name="mask_section_liquid_level" xml:space="preserve">
-    <value>Liquid Level</value>
+    <value>Nivel de liquido</value>
   </data>
   <data name="mask_section_liquid_type" xml:space="preserve">
-    <value>Liquid Type</value>
+    <value>Tipo de líquido</value>
   </data>
   <data name="mask_section_tile" xml:space="preserve">
-    <value>Tile Type</value>
+    <value>Tipo de bloque</value>
   </data>
   <data name="mask_section_tile_coatings" xml:space="preserve">
-    <value>Tile Coatings</value>
+    <value>Recubrimiento de bloque</value>
   </data>
   <data name="mask_section_tile_Duplicate[1]" xml:space="preserve">
-    <value>Tile Type</value>
+    <value>Tipo de bloque</value>
   </data>
   <data name="mask_section_tile_paint" xml:space="preserve">
-    <value>Tile Paint</value>
+    <value>Pintura de bloque</value>
   </data>
   <data name="mask_section_wall" xml:space="preserve">
-    <value>Wall Type</value>
+    <value>Tipo de pared</value>
   </data>
   <data name="mask_section_wall_coatings" xml:space="preserve">
-    <value>Wall Coatings</value>
+    <value>Recubrimiento de pared</value>
   </data>
   <data name="mask_section_wall_paint" xml:space="preserve">
-    <value>Wall Paint</value>
+    <value>Pintura de pared</value>
   </data>
   <data name="mask_section_wires" xml:space="preserve">
     <value>Cables</value>
   </data>
   <data name="mask_title" xml:space="preserve">
-    <value>Masks</value>
+    <value>Mascarás</value>
   </data>
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>Copiar primer elemento</value>
@@ -1187,10 +1187,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Paleta de colores del mapa de píxeles: Predeterminado, Realista (basado en texturas) o Minimapa (colores del mapa dentro del juego). Requiere reiniciar.</value>
   </data>
   <data name="settings_enable_mica" xml:space="preserve">
-    <value>Enable Mica backdrop</value>
+    <value>Activar fondo Mica</value>
   </data>
   <data name="settings_enable_mica_desc" xml:space="preserve">
-    <value>Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart.</value>
+    <value>Usar fondos de ventana Mica translúcidos. Desactívalo si las ventanas se ven transparentes. Requiere reiniciar.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Activar el editor de jugadores</value>
@@ -1398,7 +1398,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Encontrar</value>
   </data>
   <data name="sidebar_mask_tooltip" xml:space="preserve">
-    <value>Masks</value>
+    <value>Mascarás</value>
   </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>Scripting</value>
@@ -1866,16 +1866,16 @@ Qué NO se recolecta:
     <value>Agregar placa de presión a la pista existente, úsalo con el Borrador para quitar solo la placa.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value>Smooth</value>
+    <value>Suavizar</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value>Smooth the tunnel made by the track tool.</value>
+    <value>Suaviza el túnel creado por la herramienta de vías.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value>Tunnel</value>
+    <value>Túnel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value>Dig a tunnel for the track</value>
+    <value>Excavar un túnel para la vía</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Pared</value>
@@ -1905,10 +1905,10 @@ Qué NO se recolecta:
     <value>Lápiz</value>
   </data>
   <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Wire 90°</value>
+    <value>Modo de cableado (90°)</value>
   </data>
   <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Wire 45°</value>
+    <value>Modo de cableado (45°)</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Selector: seleccione el color del bloque</value>
@@ -2745,16 +2745,16 @@ Qué NO se recolecta:
     <value>Salud</value>
   </data>
   <data name="player_stats_hp" xml:space="preserve">
-    <value>HP:</value>
+    <value>Salud:</value>
   </data>
   <data name="player_stats_mana" xml:space="preserve">
-    <value>Mana</value>
+    <value>Mana:</value>
   </data>
   <data name="player_stats_max" xml:space="preserve">
     <value>Max:</value>
   </data>
   <data name="player_stats_mp" xml:space="preserve">
-    <value>MP:</value>
+    <value>Multijugador:</value>
   </data>
   <data name="player_stats_show_armor" xml:space="preserve">
     <value>Exhibición de armaduras</value>
@@ -2832,7 +2832,7 @@ Qué NO se recolecta:
     <value>Estilo: {0}</value>
   </data>
   <data name="tool_brush_flip_label" xml:space="preserve">
-    <value>Flip</value>
+    <value>Girar</value>
   </data>
   <data name="tool_brush_outline_label" xml:space="preserve">
     <value>Contorno</value>
