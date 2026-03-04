@@ -1077,14 +1077,14 @@ public partial class WorldRenderXna : UserControl
                 if (totalTextures > 0 && loadedCount < totalTextures)
                 {
                     _wvm.Progress = new ProgressChangedEventArgs(progress,
-                        $"Loading textures: {loadedCount}/{totalTextures}");
+                        string.Format(Properties.Language.status_loading_textures, loadedCount, totalTextures));
                 }
 
                 if (processed == 0 && _texturesFullyLoaded)
                 {
                     _previewProcessingTimer.Stop();
                     ErrorLogging.LogDebug("Preview processing complete - timer stopped");
-                    _wvm.Progress = new ProgressChangedEventArgs(100, "Textures loaded");
+                    _wvm.Progress = new ProgressChangedEventArgs(100, Properties.Language.status_textures_loaded);
                 }
             }
         };

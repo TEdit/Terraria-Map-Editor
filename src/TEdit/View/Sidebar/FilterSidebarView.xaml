@@ -53,7 +53,7 @@
 
             <!-- Desaturate slider -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                <TextBlock Text="Desaturate"
+                <TextBlock Text="{x:Static p:Language.menu_filter_desaturate_label}"
                            VerticalAlignment="Center"
                            Margin="0,0,10,0"
                            Width="72"

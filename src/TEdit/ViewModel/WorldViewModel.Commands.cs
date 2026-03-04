@@ -740,7 +740,7 @@ public partial class WorldViewModel
         if (megapixels > 400)
         {
             MessageBox.Show(
-                $"Export would be {outputW}×{outputH} pixels ({megapixels} MP) which exceeds the 400 MP limit.",
+                string.Format(Properties.Language.export_size_limit_exceeded, outputW, outputH, megapixels, 400),
                 Properties.Language.export_size_warning_title,
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;

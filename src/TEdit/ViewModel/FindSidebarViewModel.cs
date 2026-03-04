@@ -77,17 +77,17 @@ public partial class FindSidebarViewModel
         get
         {
             var parts = new List<string>();
-            if (ItemPicker.SelectedCount > 0) parts.Add($"{ItemPicker.SelectedCount} items");
-            if (TilePicker.SelectedCount > 0) parts.Add($"{TilePicker.SelectedCount} tiles");
-            if (WallPicker.SelectedCount > 0) parts.Add($"{WallPicker.SelectedCount} walls");
-            if (SpritePicker.SelectedCount > 0) parts.Add($"{SpritePicker.SelectedCount} sprites");
-            return parts.Count > 0 ? $"Selected: {string.Join(", ", parts)}" : "No selection";
+            if (ItemPicker.SelectedCount > 0) parts.Add(string.Format(Properties.Language.find_selected_items, ItemPicker.SelectedCount));
+            if (TilePicker.SelectedCount > 0) parts.Add(string.Format(Properties.Language.find_selected_tiles, TilePicker.SelectedCount));
+            if (WallPicker.SelectedCount > 0) parts.Add(string.Format(Properties.Language.find_selected_walls, WallPicker.SelectedCount));
+            if (SpritePicker.SelectedCount > 0) parts.Add(string.Format(Properties.Language.find_selected_sprites, SpritePicker.SelectedCount));
+            return parts.Count > 0 ? string.Format(Properties.Language.find_selection_summary, string.Join(", ", parts)) : Properties.Language.find_no_selection;
         }
     }
 
     public string ResultSummary => Results.Count > 0
-        ? $"{CurrentResultIndex + 1} of {Results.Count}"
-        : "No results";
+        ? string.Format(Properties.Language.find_result_summary, CurrentResultIndex + 1, Results.Count)
+        : Properties.Language.find_no_results;
 
     public FindSidebarViewModel(WorldViewModel worldViewModel)
     {
@@ -139,7 +139,7 @@ public partial class FindSidebarViewModel
     {
         if (_wvm.CurrentWorld == null)
         {
-            _ = App.DialogService.ShowWarningAsync("Find", "No world loaded.");
+            _ = App.DialogService.ShowWarningAsync(Properties.Language.find_dialog_title, Properties.Language.find_no_world_loaded);
             return;
         }
 
@@ -235,7 +235,7 @@ public partial class FindSidebarViewModel
                 if (item.NetId > 0 && itemIdSet.Contains(item.NetId))
                 {
                     var extraInfo = CalculateDistance
-                        ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(chest.X, chest.Y)))}"
+                        ? string.Format(Properties.Language.find_distance_label, Math.Round(Vector2.Distance(spawn, new Vector2(chest.X, chest.Y))))
                         : null;
 
                     AddSpriteToOverlay(world, chest.X, chest.Y);
@@ -243,7 +243,7 @@ public partial class FindSidebarViewModel
                         item.GetName(),
                         chest.X,
                         chest.Y,
-                        "Chest",
+                        Properties.Language.find_result_type_chest,
                         extraInfo));
 
                     if (Results.Count >= MaxResults) return;
@@ -264,7 +264,7 @@ public partial class FindSidebarViewModel
                     if (item.Id > 0 && itemIdSet.Contains(item.Id))
                     {
                         var extraInfo = CalculateDistance
-                            ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(entity.PosX, entity.PosY)))}"
+                            ? string.Format(Properties.Language.find_distance_label, Math.Round(Vector2.Distance(spawn, new Vector2(entity.PosX, entity.PosY))))
                             : null;
 
                         // Get item name from WorldConfiguration
@@ -276,7 +276,7 @@ public partial class FindSidebarViewModel
                             itemName,
                             entity.PosX,
                             entity.PosY,
-                            "TileEntity",
+                            Properties.Language.find_result_type_tile_entity,
                             extraInfo));
 
                         if (Results.Count >= MaxResults) return;
@@ -312,10 +312,10 @@ public partial class FindSidebarViewModel
 
                     var tileName = GetTileName(tile.Type);
                     var extraInfo = CalculateDistance
-                        ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(x, y)))}"
+                        ? string.Format(Properties.Language.find_distance_label, Math.Round(Vector2.Distance(spawn, new Vector2(x, y))))
                         : null;
 
-                    Results.Add(new FindResultItem(tileName, x, y, "Tile", extraInfo));
+                    Results.Add(new FindResultItem(tileName, x, y, Properties.Language.find_result_type_tile, extraInfo));
                     if (Results.Count >= MaxResults) return;
                 }
 
@@ -326,10 +326,10 @@ public partial class FindSidebarViewModel
 
                     var wallName = GetWallName(tile.Wall);
                     var extraInfo = CalculateDistance
-                        ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(x, y)))}"
+                        ? string.Format(Properties.Language.find_distance_label, Math.Round(Vector2.Distance(spawn, new Vector2(x, y))))
                         : null;
 
-                    Results.Add(new FindResultItem(wallName, x, y, "Wall", extraInfo));
+                    Results.Add(new FindResultItem(wallName, x, y, Properties.Language.find_result_type_wall, extraInfo));
                     if (Results.Count >= MaxResults) return;
                 }
 
@@ -358,10 +358,10 @@ public partial class FindSidebarViewModel
 
                         var spriteName = GetSpriteName(spriteId, uv);
                         var extraInfo = CalculateDistance
-                            ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(anchor.X, anchor.Y)))}"
+                            ? string.Format(Properties.Language.find_distance_label, Math.Round(Vector2.Distance(spawn, new Vector2(anchor.X, anchor.Y))))
                             : null;
 
-                        Results.Add(new FindResultItem(spriteName, anchor.X, anchor.Y, "Sprite", extraInfo));
+                        Results.Add(new FindResultItem(spriteName, anchor.X, anchor.Y, Properties.Language.find_result_type_sprite, extraInfo));
                         if (Results.Count >= MaxResults) return;
                     }
                 }

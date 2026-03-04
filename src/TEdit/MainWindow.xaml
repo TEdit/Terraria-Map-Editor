@@ -230,7 +230,7 @@
                         <MenuItem.Template>
                             <ControlTemplate TargetType="{x:Type MenuItem}">
                                 <DockPanel Margin="22 1 1 1">
-                                    <Label Content="BG Scale" DockPanel.Dock="Left" />
+                                    <Label Content="{x:Static p:Language.menu_layers_bg_scale}" DockPanel.Dock="Left" />
                                     <Slider Value="{Binding BackgroundScaleZoom, Mode=TwoWay}" VerticalAlignment="Center" Minimum="7" Maximum="12" SmallChange="1" Width="80" />
                                     <Label Content="{Binding BackgroundScaleZoom, Mode=OneWay}" Width="24" Margin="5 0 2 0" DockPanel.Dock="Right" />
                                 </DockPanel>
