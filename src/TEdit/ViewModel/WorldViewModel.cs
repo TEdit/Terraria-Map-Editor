@@ -158,6 +158,12 @@ public partial class WorldViewModel : ReactiveObject
     /// </summary>
     public Action<int, int>? PanTo { get; set; }
 
+    /// <summary>
+    /// Action to export the current selection to a PNG file. Set by MainWindow to delegate to MapView.
+    /// Parameters: filename, scale (1=pixel map, 4/8/16=textured), progress reporter.
+    /// </summary>
+    public Action<string, int, IProgress<ProgressChangedEventArgs>>? ExportSelection { get; set; }
+
     static WorldViewModel()
     {
         // Ensure all AppData subdirectories exist before any component tries to use them.

@@ -13,6 +13,7 @@
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:vm="clr-namespace:TEdit.ViewModel"
         xmlns:cv="clr-namespace:TEdit.Converters"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:config="clr-namespace:TEdit.Configuration"
         AllowDrop="True"
         Drop="WorldFileDrop"
@@ -156,6 +157,21 @@
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_edit_delete}" Command="{Binding DeleteCommand}" Icon="{StaticResource TB_DeleteIcon}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=selection.delete}" />
+                    <Separator Margin="1" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_export_selection}" IsEnabled="{Binding Selection.IsActive}">
+                        <MenuItem Header="{x:Static p:Language.menu_edit_export_pixel_map}" Command="{Binding ExportSelectionAsPngCommand}">
+                            <MenuItem.CommandParameter><sys:Int32>1</sys:Int32></MenuItem.CommandParameter>
+                        </MenuItem>
+                        <MenuItem Header="{x:Static p:Language.menu_edit_export_quarter_texture}" Command="{Binding ExportSelectionAsPngCommand}">
+                            <MenuItem.CommandParameter><sys:Int32>4</sys:Int32></MenuItem.CommandParameter>
+                        </MenuItem>
+                        <MenuItem Header="{x:Static p:Language.menu_edit_export_half_texture}" Command="{Binding ExportSelectionAsPngCommand}">
+                            <MenuItem.CommandParameter><sys:Int32>8</sys:Int32></MenuItem.CommandParameter>
+                        </MenuItem>
+                        <MenuItem Header="{x:Static p:Language.menu_edit_export_full_texture}" Command="{Binding ExportSelectionAsPngCommand}">
+                            <MenuItem.CommandParameter><sys:Int32>16</sys:Int32></MenuItem.CommandParameter>
+                        </MenuItem>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_layers}">
                     <MenuItem Header="{x:Static p:Language.menu_layers_textures}" IsCheckable="True" IsChecked="{Binding ShowTextures}" />
@@ -381,6 +397,20 @@
                                 </Style>
                             </View:PasteLayerView.Style>
                         </View:PasteLayerView>
+
+                        <!-- Selection Toolbar -->
+                        <View:SelectionToolbarView>
+                            <View:SelectionToolbarView.Style>
+                                <Style TargetType="{x:Type View:SelectionToolbarView}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Selection.IsActive}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </View:SelectionToolbarView.Style>
+                        </View:SelectionToolbarView>
 
                     </StackPanel>
                 </ScrollViewer>

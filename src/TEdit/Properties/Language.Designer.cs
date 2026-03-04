@@ -1428,7 +1428,97 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_edit_delete", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Export Selection.
+        /// </summary>
+        public static string menu_edit_export_selection {
+            get {
+                return ResourceManager.GetString("menu_edit_export_selection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel Map (1px/tile).
+        /// </summary>
+        public static string menu_edit_export_pixel_map {
+            get {
+                return ResourceManager.GetString("menu_edit_export_pixel_map", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Quarter Texture (4px/tile).
+        /// </summary>
+        public static string menu_edit_export_quarter_texture {
+            get {
+                return ResourceManager.GetString("menu_edit_export_quarter_texture", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Half Texture (8px/tile).
+        /// </summary>
+        public static string menu_edit_export_half_texture {
+            get {
+                return ResourceManager.GetString("menu_edit_export_half_texture", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Full Texture (16px/tile).
+        /// </summary>
+        public static string menu_edit_export_full_texture {
+            get {
+                return ResourceManager.GetString("menu_edit_export_full_texture", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Deselect.
+        /// </summary>
+        public static string toolbar_deselect {
+            get {
+                return ResourceManager.GetString("toolbar_deselect", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string toolbar_export {
+            get {
+                return ResourceManager.GetString("toolbar_export", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?.
+        /// </summary>
+        public static string export_size_warning {
+            get {
+                return ResourceManager.GetString("export_size_warning", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Large Export Warning.
+        /// </summary>
+        public static string export_size_warning_title {
+            get {
+                return ResourceManager.GetString("export_size_warning_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Selection exported to {0}.
+        /// </summary>
+        public static string export_complete {
+            get {
+                return ResourceManager.GetString("export_complete", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Expand World.
         /// </summary>

@@ -109,6 +109,7 @@ public partial class MainWindow : FluentWindow
         // Set up navigation delegates for Find sidebar
         _vm.ZoomFocus = ZoomFocus;
         _vm.PanTo = PanTo;
+        _vm.ExportSelection = (f, s, p) => MapView?.ExportSelectionToFile(f, s, p);
 
         bool shouldAsk = false;
         string currentVersion = App.Version.ToString();

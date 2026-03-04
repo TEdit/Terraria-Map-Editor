@@ -578,6 +578,36 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Delete Selection</value>
   </data>
+  <data name="menu_edit_export_selection" xml:space="preserve">
+    <value>Export Selection</value>
+  </data>
+  <data name="menu_edit_export_pixel_map" xml:space="preserve">
+    <value>Pixel Map (1px/tile)</value>
+  </data>
+  <data name="menu_edit_export_quarter_texture" xml:space="preserve">
+    <value>Quarter Texture (4px/tile)</value>
+  </data>
+  <data name="menu_edit_export_half_texture" xml:space="preserve">
+    <value>Half Texture (8px/tile)</value>
+  </data>
+  <data name="menu_edit_export_full_texture" xml:space="preserve">
+    <value>Full Texture (16px/tile)</value>
+  </data>
+  <data name="toolbar_deselect" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
+  <data name="toolbar_export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="export_size_warning" xml:space="preserve">
+    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+  </data>
+  <data name="export_size_warning_title" xml:space="preserve">
+    <value>Large Export Warning</value>
+  </data>
+  <data name="export_complete" xml:space="preserve">
+    <value>Selection exported to {0}</value>
+  </data>
   <data name="menu_edit_expand" xml:space="preserve">
     <value>Expand World</value>
   </data>

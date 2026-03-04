@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -714,6 +715,65 @@ public partial class WorldViewModel
                 await App.DialogService.ShowExceptionAsync(ex.Message);
             }
         }
+    }
+
+    #endregion
+
+    #region Selection
+
+    [ReactiveCommand]
+    private void Deselect()
+    {
+        Selection.IsActive = false;
+    }
+
+    [ReactiveCommand]
+    private void ExportSelectionAsPng(int scale)
+    {
+        if (!Selection.IsActive) return;
+
+        var area = Selection.SelectionArea;
+        long outputW = (long)area.Width * scale;
+        long outputH = (long)area.Height * scale;
+        long megapixels = outputW * outputH / 1_000_000;
+
+        if (megapixels > 400)
+        {
+            MessageBox.Show(
+                $"Export would be {outputW}×{outputH} pixels ({megapixels} MP) which exceeds the 400 MP limit.",
+                Properties.Language.export_size_warning_title,
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
+
+        if (megapixels > 100)
+        {
+            var result = MessageBox.Show(
+                string.Format(Properties.Language.export_size_warning, outputW, outputH, megapixels),
+                Properties.Language.export_size_warning_title,
+                MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result != MessageBoxResult.Yes) return;
+        }
+
+        var worldName = string.Join("-", (CurrentWorld?.Title ?? "export").Split(Path.GetInvalidFileNameChars()));
+        var dlg = new SaveFileDialog
+        {
+            Filter = "PNG Image|*.png",
+            DefaultExt = ".png",
+            FileName = $"{worldName}_{area.Width}x{area.Height}_{scale}x"
+        };
+
+        if (dlg.ShowDialog() != true) return;
+
+        var progress = new Progress<ProgressChangedEventArgs>(e => OnProgressChanged(this, e));
+        ExportSelection?.Invoke(dlg.FileName, scale, progress);
+
+        OnProgressChanged(this, new ProgressChangedEventArgs(0,
+            string.Format(Properties.Language.export_complete, Path.GetFileName(dlg.FileName))));
+
+        App.SnackbarService.Show(
+            Properties.Language.export_size_warning_title,
+            string.Format(Properties.Language.export_complete, Path.GetFileName(dlg.FileName)));
     }
 
     #endregion

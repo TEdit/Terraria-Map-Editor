@@ -114,6 +114,7 @@ public partial class WorldRenderXna : UserControl
         AlphaDestinationBlend = Blend.One,
     };
     private float _zoom = 1;
+    private Size? _exportViewSize;
     private float _minNpcScale = 0.75f;
 
     private Dictionary<int, WriteableBitmap> _spritePreviews = new Dictionary<int, WriteableBitmap>();
@@ -6510,11 +6511,14 @@ public partial class WorldRenderXna : UserControl
         if (_wvm.CurrentWorld == null)
             return new Rectangle();
 
+        double viewW = _exportViewSize?.Width ?? xnaViewport.ActualWidth;
+        double viewH = _exportViewSize?.Height ?? xnaViewport.ActualHeight;
+
         var r = new Rectangle(
             (int)Math.Floor(-_scrollPosition.X),
             (int)Math.Floor(-_scrollPosition.Y),
-            (int)Math.Ceiling(xnaViewport.ActualWidth / _zoom),
-            (int)Math.Ceiling(xnaViewport.ActualHeight / _zoom));
+            (int)Math.Ceiling(viewW / _zoom),
+            (int)Math.Ceiling(viewH / _zoom));
 
         // Clamp to world bounds — negative offsets and overflow are trimmed
         if (r.X < 0) { r.Width += r.X; r.X = 0; }
@@ -7893,6 +7897,347 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_HwndMouseLeave(object sender, HwndMouseEventArgs e)
     {
 
+    }
+
+    #endregion
+
+    #region Export Selection
+
+    /// <summary>
+    /// Exports the current selection to a PNG file.
+    /// Scale 1 = pixel map (1px/tile, CPU-only).
+    /// Scale 4/8/16 = textured render (using XNA draw methods in strips).
+    /// </summary>
+    public void ExportSelectionToFile(string filename, int scale, IProgress<ProgressChangedEventArgs>? progress = null)
+    {
+        if (_wvm.CurrentWorld == null) return;
+
+        var area = _wvm.Selection.SelectionArea;
+        if (area.Width <= 0 || area.Height <= 0) return;
+
+        if (scale == 1)
+            ExportPixelMap(filename, area, progress);
+        else
+            ExportTextured(filename, area, scale, progress);
+    }
+
+    private void ExportPixelMap(string filename, RectangleInt32 area, IProgress<ProgressChangedEventArgs>? progress)
+    {
+        var world = _wvm.CurrentWorld;
+        var bmp = new WriteableBitmap(area.Width, area.Height, 96, 96, WpfPixelFormats.Bgra32, null);
+
+        bmp.Lock();
+        unsafe
+        {
+            var pixels = (int*)bmp.BackBuffer;
+
+            for (int y = area.Top; y < area.Bottom; y++)
+            {
+                for (int x = area.Left; x < area.Right; x++)
+                {
+                    var tileColor = PixelMap.GetTileColor(
+                        world.Tiles[x, y], _backgroundColor,
+                        showWall: _wvm.ShowWalls,
+                        showTile: _wvm.ShowTiles,
+                        showLiquid: _wvm.ShowLiquid,
+                        showRedWire: _wvm.ShowRedWires,
+                        showBlueWire: _wvm.ShowBlueWires,
+                        showGreenWire: _wvm.ShowGreenWires,
+                        showYellowWire: _wvm.ShowYellowWires);
+
+                    if (tileColor.A < 255)
+                        tileColor = _backgroundColor.AlphaBlend(tileColor);
+
+                    int idx = (y - area.Top) * area.Width + (x - area.Left);
+                    pixels[idx] = ExportXnaColorToInt(tileColor);
+                }
+
+                if (y % 100 == 0)
+                    progress?.Report(new ProgressChangedEventArgs(
+                        (y - area.Top) * 100 / area.Height, "Exporting pixel map..."));
+            }
+        }
+        bmp.AddDirtyRect(new Int32Rect(0, 0, bmp.PixelWidth, bmp.PixelHeight));
+        bmp.Unlock();
+
+        progress?.Report(new ProgressChangedEventArgs(95, "Saving PNG..."));
+        bmp.SavePng(filename);
+    }
+
+    private void ExportTextured(string filename, RectangleInt32 area, int scale, IProgress<ProgressChangedEventArgs>? progress)
+    {
+        var gd = xnaViewport.GraphicsService.GraphicsDevice;
+        int outputW = area.Width * scale;
+        int outputH = area.Height * scale;
+
+        var bmp = new WriteableBitmap(outputW, outputH, 96, 96, WpfPixelFormats.Bgra32, null);
+
+        const int maxChunkPx = 4096;
+        int chunkTilesW = Math.Max(1, maxChunkPx / scale);
+        int chunkTilesH = Math.Max(1, maxChunkPx / scale);
+
+        int totalChunksY = (area.Height + chunkTilesH - 1) / chunkTilesH;
+        int chunkIndex = 0;
+        int totalChunksX = (area.Width + chunkTilesW - 1) / chunkTilesW;
+        int totalChunks = totalChunksX * totalChunksY;
+
+        var savedScroll = _scrollPosition;
+        var savedZoom = _zoom;
+
+        try
+        {
+            for (int cy = 0; cy < area.Height; cy += chunkTilesH)
+            {
+                int thisTilesH = Math.Min(chunkTilesH, area.Height - cy);
+                int thisPxH = thisTilesH * scale;
+
+                for (int cx = 0; cx < area.Width; cx += chunkTilesW)
+                {
+                    progress?.Report(new ProgressChangedEventArgs(
+                        chunkIndex * 95 / totalChunks, $"Rendering chunk {chunkIndex + 1}/{totalChunks}..."));
+                    chunkIndex++;
+                    int thisTilesW = Math.Min(chunkTilesW, area.Width - cx);
+                    int thisPxW = thisTilesW * scale;
+
+                    _scrollPosition = new Vector2(-(area.Left + cx), -(area.Top + cy));
+                    _zoom = scale;
+                    _exportViewSize = new Size(thisPxW, thisPxH);
+
+                    using var rt = new RenderTarget2D(gd, thisPxW, thisPxH, false, SurfaceFormat.Color, DepthFormat.None);
+                    gd.SetRenderTarget(rt);
+                    gd.Clear(_backgroundColor);
+
+                    RenderExportLayers();
+
+                    gd.SetRenderTarget(null);
+
+                    // Copy RT pixels to output bitmap
+                    var data = new Color[thisPxW * thisPxH];
+                    rt.GetData(data);
+
+                    int destX = cx * scale;
+                    int destY = cy * scale;
+
+                    bmp.Lock();
+                    unsafe
+                    {
+                        var pixels = (int*)bmp.BackBuffer;
+                        for (int row = 0; row < thisPxH; row++)
+                        {
+                            int srcOffset = row * thisPxW;
+                            int dstOffset = (destY + row) * outputW + destX;
+                            for (int col = 0; col < thisPxW; col++)
+                            {
+                                var c = data[srcOffset + col];
+                                pixels[dstOffset + col] = (c.A << 24) | (c.R << 16) | (c.G << 8) | c.B;
+                            }
+                        }
+                    }
+                    bmp.AddDirtyRect(new Int32Rect(destX, destY, thisPxW, thisPxH));
+                    bmp.Unlock();
+                }
+            }
+        }
+        finally
+        {
+            _scrollPosition = savedScroll;
+            _zoom = savedZoom;
+            _exportViewSize = null;
+        }
+
+        progress?.Report(new ProgressChangedEventArgs(95, "Saving PNG..."));
+        bmp.SavePng(filename);
+    }
+
+    /// <summary>
+    /// Renders world layers for export — same draw order as Render() but without
+    /// filter overlays, selection rectangles, or other UI elements.
+    /// Always uses texture mode when textures are loaded (regardless of zoom threshold).
+    /// Parallax backgrounds (surface/underworld) are skipped because they are screen-space
+    /// effects that can't tile correctly across chunked world-space rendering.
+    /// </summary>
+    private void RenderExportLayers()
+    {
+        bool texturesAvailable = _textureDictionary != null && _textureDictionary.Valid;
+
+        // Background and base tiles
+        _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+            DepthStencilState.Default, RasterizerState.CullNone);
+
+        if (texturesAvailable)
+        {
+            // Draw gradient zones (world-space, tiles correctly across chunks)
+            DrawBackgroundGradient();
+
+            // Draw underground tile backgrounds (world-space tiling, works correctly)
+            // Note: DrawTileBackgrounds() also calls DrawSurfaceBackground() and
+            // DrawUnderworldBackground() which use screen-space parallax. Skip those
+            // during export by drawing only the tile-level backgrounds directly.
+            DrawExportTileBackgrounds();
+        }
+        else
+        {
+            DrawPixelTiles();
+        }
+        _spriteBatch.End();
+
+        if (!texturesAvailable) return;
+
+        // Walls
+        if (_wvm.ShowWalls)
+        {
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone);
+            DrawTileWalls();
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone, _textureDictionary?.InvertEffect);
+            DrawTileWalls(true);
+            _spriteBatch.End();
+        }
+
+        // Tiles
+        if (_wvm.ShowTiles)
+        {
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone);
+            DrawTileTextures();
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone, _textureDictionary?.InvertEffect);
+            DrawTileTextures(true);
+            _spriteBatch.End();
+
+            if (_wvm.ShowGlowMasks)
+            {
+                _spriteBatch.Begin(SpriteSortMode.Deferred, AdditiveGlowBlend, SamplerState.PointClamp,
+                    DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileGlowMasks();
+                _spriteBatch.End();
+            }
+        }
+
+        // Wires, liquids, entities
+        if (_wvm.ShowTiles || _wvm.ShowBlueWires || _wvm.ShowRedWires ||
+            _wvm.ShowGreenWires || _wvm.ShowYellowWires || _wvm.ShowLiquid)
+        {
+            _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone);
+
+            if (_wvm.ShowBlueWires || _wvm.ShowRedWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)
+                DrawTileWires();
+
+            if (_wvm.ShowLiquid)
+                DrawTileLiquid();
+
+            if (_wvm.ShowTiles)
+                DrawTileEntities();
+
+            _spriteBatch.End();
+        }
+    }
+
+    /// <summary>
+    /// Draws underground tile backgrounds for export — same as DrawTileBackgrounds() but
+    /// without the parallax surface/underworld layers that don't tile across chunks.
+    /// </summary>
+    private void DrawExportTileBackgrounds()
+    {
+        if (!_wvm.ShowBackgrounds) return;
+
+        Rectangle visibleBounds = GetViewingArea();
+
+        for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
+        {
+            for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
+            {
+                if (x < 0 || y < 0 ||
+                    x >= _wvm.CurrentWorld.TilesWide ||
+                    y >= _wvm.CurrentWorld.TilesHigh)
+                    continue;
+
+                if (y < _wvm.CurrentWorld.GroundLevel) continue;
+
+                if (y >= 80)
+                {
+                    int hellback = _wvm.CurrentWorld.HellBackStyle;
+                    int backX = 0;
+                    if (x <= _wvm.CurrentWorld.CaveBackX0)
+                        backX = _wvm.CurrentWorld.CaveBackStyle0;
+                    else if (x > _wvm.CurrentWorld.CaveBackX0 && x <= _wvm.CurrentWorld.CaveBackX1)
+                        backX = _wvm.CurrentWorld.CaveBackStyle1;
+                    else if (x > _wvm.CurrentWorld.CaveBackX1 && x <= _wvm.CurrentWorld.CaveBackX2)
+                        backX = _wvm.CurrentWorld.CaveBackStyle2;
+                    else if (x > _wvm.CurrentWorld.CaveBackX2)
+                        backX = _wvm.CurrentWorld.CaveBackStyle3;
+                    backX = Math.Clamp(backX, 0, 7);
+                    var source = new Rectangle(0, 0, 16, 16);
+                    var backTex = _textureDictionary.GetBackground(0);
+
+                    if (y == _wvm.CurrentWorld.GroundLevel)
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 0]);
+                        source.X += (x % 8) * 16;
+                    }
+                    else if (y > _wvm.CurrentWorld.GroundLevel && y < _wvm.CurrentWorld.RockLevel)
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 1]);
+                        source.X += (x % 8) * 16;
+                        source.Y += ((y - 1 - (int)_wvm.CurrentWorld.GroundLevel) % 6) * 16;
+                    }
+                    else if (y == _wvm.CurrentWorld.RockLevel)
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 2]);
+                        source.X += (x % 8) * 16;
+                    }
+                    else if (y > _wvm.CurrentWorld.RockLevel && y < (_wvm.CurrentWorld.TilesHigh - 327))
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 3]);
+                        source.X += (x % 8) * 16;
+                        source.Y += ((y - 1 - (int)_wvm.CurrentWorld.RockLevel) % 6) * 16;
+                    }
+                    else if (y == (_wvm.CurrentWorld.TilesHigh - 327))
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 4] + hellback);
+                        source.X += (x % 8) * 16;
+                    }
+                    else if (y > (_wvm.CurrentWorld.TilesHigh - 327) && y < (_wvm.CurrentWorld.TilesHigh - 200))
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 5] + hellback);
+                        source.X += (x % 8) * 16;
+                        source.Y += ((y - 1 - (int)_wvm.CurrentWorld.TilesHigh + 327) % 18) * 16;
+                    }
+                    else if (y == (_wvm.CurrentWorld.TilesHigh - 200))
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 6] + hellback);
+                        source.X += (x % 8) * 16;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                    var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                    _spriteBatch.Draw(backTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerTileBackgroundTextures);
+                }
+            }
+        }
+    }
+
+    private static int ExportXnaColorToInt(Color color)
+    {
+        byte a = color.A;
+        byte r = color.R;
+        byte g = color.G;
+        byte b = color.B;
+
+        // Premultiplied BGRA for WPF WriteableBitmap (Bgra32 pixel format)
+        return (a << 24)
+            | ((byte)((r * a) >> 8) << 16)
+            | ((byte)((g * a) >> 8) << 8)
+            | ((byte)((b * a) >> 8));
     }
 
     #endregion

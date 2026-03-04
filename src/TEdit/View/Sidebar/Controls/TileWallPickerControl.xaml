@@ -13,6 +13,8 @@
     <UserControl.Resources>
         <cv:TEditColorToMediaColorConverter x:Key="TEditColorToMediaColorConverter" />
         <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <cv:ItemIdToPreviewConverter x:Key="ItemIdToPreviewConverter" />
+        <cv:IsNotNullConverter x:Key="IsNotNullConverter" />
     </UserControl.Resources>
 
     <Grid>
@@ -51,7 +53,8 @@
         </Grid>
 
         <!-- Virtualized ListBox with color swatches (no external ScrollViewer - ListBox handles its own) -->
-        <ListBox Grid.Row="1"
+        <ListBox x:Name="ItemsListBox"
+                 Grid.Row="1"
                  ItemsSource="{Binding FilteredItemsView}"
                  VirtualizingPanel.IsVirtualizing="True"
                  VirtualizingPanel.VirtualizationMode="Recycling"
@@ -71,8 +74,19 @@
                                   VerticalAlignment="Center"
                                   Margin="0,0,4,0" />
 
-                        <!-- Color swatch -->
-                        <Border DockPanel.Dock="Left"
+                        <!-- Item preview image (shown when ItemPreviewCache has a texture) -->
+                        <Image x:Name="ItemPreview"
+                               DockPanel.Dock="Left"
+                               Source="{Binding Id, Converter={StaticResource ItemIdToPreviewConverter}}"
+                               Width="20" Height="20" Stretch="Uniform"
+                               Margin="0,0,6,0"
+                               VerticalAlignment="Center"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               Visibility="Collapsed" />
+
+                        <!-- Color swatch (fallback when no preview image) -->
+                        <Border x:Name="ColorSwatch"
+                                DockPanel.Dock="Left"
                                 BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
                                 BorderThickness="1"
                                 Margin="0,0,6,0"
@@ -98,6 +112,12 @@
                                    TextTrimming="CharacterEllipsis"
                                    Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
                     </DockPanel>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Source, ElementName=ItemPreview, Converter={StaticResource IsNotNullConverter}}" Value="True">
+                            <Setter TargetName="ItemPreview" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="ColorSwatch" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             <ListBox.ItemContainerStyle>
