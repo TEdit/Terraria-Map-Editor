@@ -90,6 +90,11 @@ public partial class MainWindow : FluentWindow
 
     async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
+        // Bring window to front after splash screen closes, then release topmost
+        Topmost = true;
+        Activate();
+        Topmost = false;
+
         // Initialize snackbar service with UI element
         // Note: DialogService uses WPF-UI MessageBox (separate window) to avoid
         // WPF airspace issues with the DirectX/XNA WorldRenderXna control
