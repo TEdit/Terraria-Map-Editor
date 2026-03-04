@@ -77,6 +77,12 @@ public class Textures : IDisposable
     /// </summary>
     public Effect InvertEffect { get; private set; }
 
+    /// <summary>
+    /// Custom shader for darkening + desaturating filtered regions.
+    /// Used by the filter overlay in Darken mode with a world render target.
+    /// </summary>
+    public Effect DarkenEffect { get; private set; }
+
     // Separate ContentManager for preview-only textures (items, NPCs, armor, player, accessories).
     // These are loaded to extract pixel data for preview bitmaps, then the entire CM is unloaded
     // to free GPU memory. The main ContentManager is never poisoned, so the renderer can
@@ -141,6 +147,7 @@ public class Textures : IDisposable
         {
             _localContentManager = new ContentManager(serviceProvider, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content"));
             InvertEffect = _localContentManager.Load<Effect>("InvertEffect");
+            DarkenEffect = _localContentManager.Load<Effect>("DarkenEffect");
         }
         catch (Exception ex)
         {
@@ -648,5 +655,6 @@ public class Textures : IDisposable
         _localContentManager?.Unload();
         _localContentManager?.Dispose();
         InvertEffect?.Dispose();
+        DarkenEffect?.Dispose();
     }
 }

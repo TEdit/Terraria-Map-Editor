@@ -17,3 +17,9 @@
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:InvertEffect.fx
+
+#begin DarkenEffect.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:DarkenEffect.fx

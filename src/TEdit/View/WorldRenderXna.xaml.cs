@@ -94,8 +94,8 @@ public partial class WorldRenderXna : UserControl
     private Texture2D _pasteBorderV;   // vertical dashed line   (1xN)
     private Texture2D _pasteHandleTexture;
     private RenderTarget2D _buffRadiiTarget;
-    private Texture2D[] _filterOverlayTileMap;
-    private Texture2D _filterDarkenTexture;
+    private RenderTarget2D _worldRT;
+    private Texture2D[] _filterMaskTileMap;
     private int _lastFilterRevision = -1;
     private static readonly BlendState MaxBlend = new BlendState
     {
@@ -680,9 +680,6 @@ public partial class WorldRenderXna : UserControl
         _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
         _spriteBatch = new SpriteBatch(e.GraphicsDevice);
 
-        // 1x1 opaque black pixel for filter darken overlay (alpha controlled at draw time)
-        _filterDarkenTexture = new Texture2D(e.GraphicsDevice, 1, 1);
-        _filterDarkenTexture.SetData(new[] { Color.Black });
         _textureDictionary = new Textures(_serviceProvider, e.GraphicsDevice);
         _wvm.Textures = _textureDictionary;
 
@@ -2854,6 +2851,22 @@ public partial class WorldRenderXna : UserControl
         //e.GraphicsDevice.Clear(TileColor.Black);
         e.GraphicsDevice.Textures[0] = null;
 
+        // Compute clear color based on filter background mode
+        bool anyFilterActive = FilterManager.AnyFilterActive || FilterManager.FindOverlayActive;
+        Color clearColor = _backgroundColor;
+        if (anyFilterActive)
+        {
+            switch (FilterManager.CurrentBackgroundMode)
+            {
+                case FilterManager.BackgroundMode.Transparent:
+                    clearColor = Color.Transparent;
+                    break;
+                case FilterManager.BackgroundMode.Custom:
+                    clearColor = FilterManager.BackgroundModeCustomColor;
+                    break;
+            }
+        }
+
         // Buff radii pass 1: render to offscreen target with Max blending so overlapping
         // zones merge instead of accumulating. Must happen before any other drawing
         // because switching render targets discards the active target's contents.
@@ -2881,11 +2894,11 @@ public partial class WorldRenderXna : UserControl
             gd.SetRenderTarget(previousTarget);
 
             // Re-clear the backbuffer — switching render targets discards its contents
-            gd.Clear(_backgroundColor);
+            gd.Clear(clearColor);
         }
 
         // Check if filter overlay needs full rebuild
-        bool filterDarkenActive = FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken;
+        bool filterDarkenActive = (FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken) || FilterManager.FindOverlayActive;
         int currentFilterRevision = FilterManager.Revision;
         if (currentFilterRevision != _lastFilterRevision)
         {
@@ -2895,6 +2908,21 @@ public partial class WorldRenderXna : UserControl
 
         GenPixelTiles(e);
         GenFilterOverlayTiles(e);
+
+        // When darken filter is active, render world to an offscreen target
+        // so the DarkenEffect shader can read world pixels for desaturation
+        if (filterDarkenActive)
+        {
+            var gd = e.GraphicsDevice;
+            var vp = gd.Viewport;
+            if (_worldRT == null || _worldRT.Width != vp.Width || _worldRT.Height != vp.Height)
+            {
+                _worldRT?.Dispose();
+                _worldRT = new RenderTarget2D(gd, vp.Width, vp.Height, false, SurfaceFormat.Color, DepthFormat.None);
+            }
+            gd.SetRenderTarget(_worldRT);
+            gd.Clear(clearColor);
+        }
 
         // Start SpriteBatch (Immediate mode — draw order is final order)
         _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
@@ -2985,12 +3013,46 @@ public partial class WorldRenderXna : UserControl
             _spriteBatch.End();
         }
 
-        // Filter overlay: darken non-selected tiles (after all world rendering, before UI overlays)
-        if (filterDarkenActive)
+        // Filter overlay: darken + desaturate non-selected tiles via shader
+        if (filterDarkenActive && _worldRT != null)
         {
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            DrawFilterOverlayTiles();
+            var gd = e.GraphicsDevice;
+            var vp = gd.Viewport;
+
+            // Switch back to backbuffer (RT switch discards backbuffer contents)
+            gd.SetRenderTarget(null);
+            gd.Clear(clearColor);
+
+            // Blit world RT to backbuffer (covers AllClear regions that need no darkening)
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            _spriteBatch.Draw(_worldRT, Vector2.Zero, Color.White);
             _spriteBatch.End();
+
+            // Draw overlay mask chunks with DarkenEffect (overwrites darkened regions)
+            var darkenEffect = _textureDictionary?.DarkenEffect;
+            if (darkenEffect != null)
+            {
+                // SpriteBatch doesn't auto-set MatrixTransform on custom effects — compute the
+                // same orthographic projection it uses internally for pixel-to-clip-space mapping
+                Matrix projection;
+                Matrix.CreateOrthographicOffCenter(0, vp.Width, vp.Height, 0, 0, -1, out projection);
+                darkenEffect.Parameters["MatrixTransform"].SetValue(projection);
+
+                darkenEffect.Parameters["WorldTexture"].SetValue(_worldRT);
+                darkenEffect.Parameters["ViewportSize"].SetValue(new Vector2(vp.Width, vp.Height));
+                darkenEffect.Parameters["DarkenAmount"].SetValue(FilterManager.DarkenAmount);
+                darkenEffect.Parameters["DesaturateAmount"].SetValue(FilterManager.DesaturateAmount);
+
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, darkenEffect);
+                DrawFilterOverlayTiles();
+                _spriteBatch.End();
+            }
+        }
+        else if (_worldRT != null)
+        {
+            // Filter deactivated — free the render target
+            _worldRT.Dispose();
+            _worldRT = null;
         }
 
         _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
@@ -3005,6 +3067,9 @@ public partial class WorldRenderXna : UserControl
 
         if (_wvm.ShowPoints)
             DrawPoints();
+
+        // Find crosshair always draws when active (independent of ShowPoints)
+        DrawFindCrosshair();
 
         if (_wvm.Selection.IsActive)
             DrawSelection();
@@ -6523,8 +6588,6 @@ public partial class WorldRenderXna : UserControl
             SpriteEffects.None,
             LayerLocations);
 
-        // Draw Find result crosshair
-        DrawFindCrosshair();
     }
 
     private void DrawFindCrosshair()
@@ -6571,7 +6634,7 @@ public partial class WorldRenderXna : UserControl
     }
 
     /// <summary>
-    /// Uploads dirty filter overlay chunks to GPU textures, mirroring GenPixelTiles.
+    /// Uploads dirty filter mask chunks to GPU as Alpha8 textures (1 byte/pixel).
     /// Skips AllClear/AllDarkened chunks (no texture needed for those).
     /// </summary>
     private void GenFilterOverlayTiles(GraphicsDeviceEventArgs e)
@@ -6579,12 +6642,12 @@ public partial class WorldRenderXna : UserControl
         if (_wvm?.FilterOverlayMap == null || _wvm.PixelMap == null) return;
         var overlay = _wvm.FilterOverlayMap;
 
-        if (_filterOverlayTileMap == null || _filterOverlayTileMap.Length != overlay.ColorBuffers.Length)
+        if (_filterMaskTileMap == null || _filterMaskTileMap.Length != overlay.MaskBuffers.Length)
         {
-            _filterOverlayTileMap = new Texture2D[overlay.ColorBuffers.Length];
+            _filterMaskTileMap = new Texture2D[overlay.MaskBuffers.Length];
         }
 
-        for (int i = 0; i < _filterOverlayTileMap.Length; i++)
+        for (int i = 0; i < _filterMaskTileMap.Length; i++)
         {
             if (!Check2DFrustrum(i))
                 continue;
@@ -6594,29 +6657,29 @@ public partial class WorldRenderXna : UserControl
                 (overlay.ChunkStates[i] == ChunkStatus.AllClear || overlay.ChunkStates[i] == ChunkStatus.AllDarkened))
                 continue;
 
-            bool init = _filterOverlayTileMap[i] == null;
-            if (init || _filterOverlayTileMap[i].Width != overlay.TileWidth || _filterOverlayTileMap[i].Height != overlay.TileHeight)
-                _filterOverlayTileMap[i] = new Texture2D(e.GraphicsDevice, overlay.TileWidth, overlay.TileHeight);
+            bool init = _filterMaskTileMap[i] == null;
+            if (init || _filterMaskTileMap[i].Width != overlay.TileWidth || _filterMaskTileMap[i].Height != overlay.TileHeight)
+                _filterMaskTileMap[i] = new Texture2D(e.GraphicsDevice, overlay.TileWidth, overlay.TileHeight, false, SurfaceFormat.Alpha8);
 
             if (overlay.BufferUpdated[i] || init)
             {
-                _filterOverlayTileMap[i].SetData(overlay.ColorBuffers[i]);
+                _filterMaskTileMap[i].SetData(overlay.MaskBuffers[i]);
                 overlay.BufferUpdated[i] = false;
             }
         }
     }
 
     /// <summary>
-    /// Draws the filter overlay using tiled textures, with per-chunk optimization:
-    /// AllClear = skip, AllDarkened = stretched 1x1, Mixed = full texture.
+    /// Draws the filter overlay mask chunks for the DarkenEffect shader.
+    /// AllClear = skip, AllDarkened = WhitePixelTexture stretched (mask=1.0), Mixed = Alpha8 chunk texture.
+    /// The shader reads world pixels from the world RT and applies darken+desaturation.
     /// </summary>
     private void DrawFilterOverlayTiles()
     {
         if (_wvm?.FilterOverlayMap == null || _wvm.PixelMap == null) return;
         var overlay = _wvm.FilterOverlayMap;
 
-        byte alpha = (byte)(FilterManager.DarkenAmount * 255f);
-        var darkenColor = new Color((int)0, (int)0, (int)0, (int)alpha);
+        var whiteTex = _textureDictionary?.WhitePixelTexture;
 
         for (int i = 0; i < overlay.TilesX * overlay.TilesY; i++)
         {
@@ -6633,25 +6696,28 @@ public partial class WorldRenderXna : UserControl
 
             if (status == ChunkStatus.AllDarkened)
             {
-                // Use same float position + scale as DrawPixelTiles to avoid integer seams
-                _spriteBatch.Draw(
-                    _filterDarkenTexture,
-                    TileOrigin(tileX, tileY),
-                    null,
-                    darkenColor,
-                    0,
-                    Vector2.Zero,
-                    new Vector2(overlay.TileWidth * _zoom, overlay.TileHeight * _zoom),
-                    SpriteEffects.None,
-                    0f);
+                // White pixel texture with alpha=1.0 → shader applies full darken+desat
+                if (whiteTex != null)
+                {
+                    _spriteBatch.Draw(
+                        whiteTex,
+                        TileOrigin(tileX, tileY),
+                        null,
+                        Color.White,
+                        0,
+                        Vector2.Zero,
+                        new Vector2(overlay.TileWidth * _zoom, overlay.TileHeight * _zoom),
+                        SpriteEffects.None,
+                        0f);
+                }
             }
             else
             {
-                // Mixed: draw the full chunk texture
-                if (_filterOverlayTileMap != null && i < _filterOverlayTileMap.Length && _filterOverlayTileMap[i] != null)
+                // Mixed: draw Alpha8 mask texture — shader reads per-pixel alpha
+                if (_filterMaskTileMap != null && i < _filterMaskTileMap.Length && _filterMaskTileMap[i] != null)
                 {
                     _spriteBatch.Draw(
-                        _filterOverlayTileMap[i],
+                        _filterMaskTileMap[i],
                         TileOrigin(tileX, tileY),
                         null,
                         Color.White,
@@ -7649,7 +7715,9 @@ public partial class WorldRenderXna : UserControl
         // so they are recreated on the next frame.
         _buffRadiiTarget?.Dispose();
         _buffRadiiTarget = null;
-        _filterOverlayTileMap = null;
+        _worldRT?.Dispose();
+        _worldRT = null;
+        _filterMaskTileMap = null;
 
         xnaViewport.GraphicsService.GraphicsDevice.Reset(present);
     }

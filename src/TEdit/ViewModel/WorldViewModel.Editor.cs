@@ -571,8 +571,8 @@ public partial class WorldViewModel
         {
             pixels.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
 
-            // Initialize FilterOverlayMap with the same dimensions
-            var overlay = new PixelMapManager();
+            // Initialize FilterOverlayMap with the same dimensions (single-channel byte mask)
+            var overlay = new FilterOverlayBuffer();
             overlay.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
             FilterOverlayMap = overlay;
 
@@ -596,18 +596,32 @@ public partial class WorldViewModel
     }
 
     /// <summary>
-    /// Computes the filter overlay color for a single tile and updates the FilterOverlayMap.
+    /// Computes the filter mask for a single tile and updates the FilterOverlayMap.
     /// </summary>
     public void UpdateFilterOverlayPixel(int x, int y)
     {
         if (FilterOverlayMap == null || CurrentWorld == null) return;
-        FilterOverlayMap.SetPixelColor(x, y, ComputeFilterOverlayColor(CurrentWorld.Tiles[x, y]));
+        FilterOverlayMap.SetMask(x, y, ComputeFilterMask(x, y, CurrentWorld.Tiles[x, y]));
     }
 
-    private static Color ComputeFilterOverlayColor(Tile tile)
+    /// <summary>
+    /// Returns binary mask: 0 = tile passes filter/find (no darkening), 255 = tile is darkened.
+    /// Handles both filter mode (by tile type) and find mode (by position).
+    /// DarkenAmount/DesaturateAmount are applied at draw time via shader uniforms.
+    /// </summary>
+    private static byte ComputeFilterMask(int x, int y, Tile tile)
     {
+        // Find overlay: found positions are clear, everything else darkened
+        if (FilterManager.FindOverlayActive)
+        {
+            return FilterManager.FindResultPositions.Contains(FilterManager.PackPosition(x, y))
+                ? (byte)0
+                : byte.MaxValue;
+        }
+
+        // Filter overlay: selected types are clear, everything else darkened
         if (!FilterManager.AnyFilterActive || FilterManager.CurrentFilterMode != FilterManager.FilterMode.Darken)
-            return Color.Transparent;
+            return 0;
 
         bool hasAllowed = false;
         if (tile.Wall > 0 && !FilterManager.WallIsNotAllowed(tile.Wall)) hasAllowed = true;
@@ -621,16 +635,12 @@ public partial class WorldViewModel
             if (tile.WireYellow && !FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow)) hasAllowed = true;
         }
 
-        if (hasAllowed)
-            return Color.Transparent;
-
-        byte alpha = (byte)(FilterManager.DarkenAmount * 255f);
-        return new Color((int)0, (int)0, (int)0, (int)alpha);
+        return hasAllowed ? (byte)0 : byte.MaxValue;
     }
 
     /// <summary>
     /// Rebuilds the entire filter overlay map. Runs on a background thread.
-    /// Also computes per-chunk ChunkStatus for rendering optimization.
+    /// Uses binary byte mask (0 or 255) with per-chunk ChunkStatus classification.
     /// </summary>
     public void RebuildFilterOverlay()
     {
@@ -639,16 +649,14 @@ public partial class WorldViewModel
         var overlay = FilterOverlayMap;
         if (overlay == null)
         {
-            overlay = new PixelMapManager();
+            overlay = new FilterOverlayBuffer();
             overlay.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
             FilterOverlayMap = overlay;
         }
 
         Task.Factory.StartNew(() =>
         {
-            bool filterActive = FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken;
-            byte darkenAlpha = (byte)(FilterManager.DarkenAmount * 255f);
-            var darkenColor = new Color((int)0, (int)0, (int)0, (int)darkenAlpha);
+            bool filterActive = (FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken) || FilterManager.FindOverlayActive;
 
             for (int chunkIdx = 0; chunkIdx < overlay.TilesX * overlay.TilesY; chunkIdx++)
             {
@@ -667,20 +675,11 @@ public partial class WorldViewModel
                 {
                     for (int x = startX; x < endX; x++)
                     {
-                        Color c;
-                        if (!filterActive)
-                        {
-                            c = Color.Transparent;
-                        }
-                        else
-                        {
-                            c = ComputeFilterOverlayColor(CurrentWorld.Tiles[x, y]);
-                        }
+                        byte mask = filterActive ? ComputeFilterMask(x, y, CurrentWorld.Tiles[x, y]) : (byte)0;
+                        overlay.SetMask(x, y, mask);
 
-                        overlay.SetPixelColor(x, y, c);
-
-                        if (c == Color.Transparent) clearCount++;
-                        else if (c == darkenColor) darkenCount++;
+                        if (mask == 0) clearCount++;
+                        else darkenCount++;
                     }
                 }
 

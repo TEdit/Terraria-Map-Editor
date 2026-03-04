@@ -25,36 +25,44 @@
         <!-- Bottom panel: Mode settings and buttons -->
         <StackPanel DockPanel.Dock="Bottom" Margin="8">
 
-            <!-- Filter Mode -->
+            <!-- Hide toggle -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                <TextBlock Text="{x:Static p:Language.menu_filter_filtermode}"
+                <TextBlock Text="{x:Static p:Language.menu_filter_hide}"
                            VerticalAlignment="Center"
                            Margin="0,0,10,0"
                            Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
-                <RadioButton Content="{x:Static p:Language.menu_filter_hide}"
-                             GroupName="FilterMode"
-                             VerticalAlignment="Center"
-                             Margin="0,0,15,0"
-                             IsChecked="{Binding FilterMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Hide}" />
-                <RadioButton x:Name="DarkenRadio"
-                             Content="{x:Static p:Language.menu_filter_darken}"
-                             GroupName="FilterMode"
-                             VerticalAlignment="Center"
-                             IsChecked="{Binding FilterMode, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Darken}" />
+                <ui:ToggleSwitch IsChecked="{Binding HideFilteredTiles}" />
             </StackPanel>
 
-            <!-- Darken Amount slider (visible when Darken mode selected) -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,8"
-                        Visibility="{Binding IsChecked, ElementName=DarkenRadio, Converter={StaticResource BoolToVisibilityConverter}}">
+            <!-- Darken slider -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                 <TextBlock Text="{x:Static p:Language.menu_filter_darken_label}"
                            VerticalAlignment="Center"
                            Margin="0,0,10,0"
+                           Width="72"
                            Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
                 <Slider Value="{Binding DarkenAmount}"
                         Minimum="0" Maximum="100"
-                        SmallChange="10"
+                        SmallChange="5"
                         LargeChange="20"
-                        TickFrequency="10"
+                        TickFrequency="5"
+                        IsSnapToTickEnabled="True"
+                        Width="150"
+                        VerticalAlignment="Center" />
+            </StackPanel>
+
+            <!-- Desaturate slider -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                <TextBlock Text="Desaturate"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"
+                           Width="72"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                <Slider Value="{Binding DesaturateAmount}"
+                        Minimum="0" Maximum="100"
+                        SmallChange="5"
+                        LargeChange="20"
+                        TickFrequency="5"
                         IsSnapToTickEnabled="True"
                         Width="150"
                         VerticalAlignment="Center" />

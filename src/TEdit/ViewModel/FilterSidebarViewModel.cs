@@ -28,7 +28,7 @@ public partial class FilterSidebarViewModel
 
     // Filter mode settings
     [Reactive]
-    private FilterManager.FilterMode _filterMode = FilterManager.FilterMode.Hide;
+    private bool _hideFilteredTiles;
 
     [Reactive]
     private FilterManager.BackgroundMode _backgroundMode = FilterManager.BackgroundMode.Normal;
@@ -40,7 +40,10 @@ public partial class FilterSidebarViewModel
     private bool _filterClipboardEnabled;
 
     [Reactive]
-    private double _darkenAmount = 60;
+    private double _darkenAmount = 75;
+
+    [Reactive]
+    private double _desaturateAmount = 75;
 
     [Reactive]
     private bool _isFilterEnabled;
@@ -77,12 +80,13 @@ public partial class FilterSidebarViewModel
     private void LoadFilterState()
     {
         var settings = UserSettingsService.Current;
-        FilterMode = settings.FilterMode;
+        HideFilteredTiles = settings.FilterMode == FilterManager.FilterMode.Hide;
         FilterManager.CurrentFilterMode = settings.FilterMode;
         FilterManager.DarkenAmount = settings.FilterDarkenAmount / 100f;
         BackgroundMode = FilterManager.CurrentBackgroundMode;
         FilterClipboardEnabled = FilterManager.FilterClipboard;
         DarkenAmount = settings.FilterDarkenAmount;
+        DesaturateAmount = FilterManager.DesaturateAmount * 100;
         IsFilterEnabled = FilterManager.IsEnabled;
 
         var bgColor = FilterManager.BackgroundModeCustomColor;
@@ -151,7 +155,8 @@ public partial class FilterSidebarViewModel
         }
 
         // Set filter modes
-        FilterManager.CurrentFilterMode = FilterMode;
+        var filterMode = HideFilteredTiles ? FilterManager.FilterMode.Hide : FilterManager.FilterMode.Darken;
+        FilterManager.CurrentFilterMode = filterMode;
         FilterManager.CurrentBackgroundMode = BackgroundMode;
         FilterManager.BackgroundModeCustomColor = new Microsoft.Xna.Framework.Color(
             CustomBackgroundColor.R,
@@ -160,6 +165,7 @@ public partial class FilterSidebarViewModel
             CustomBackgroundColor.A);
         FilterManager.FilterClipboard = FilterClipboardEnabled;
         FilterManager.DarkenAmount = (float)(DarkenAmount / 100.0);
+        FilterManager.DesaturateAmount = (float)(DesaturateAmount / 100.0);
 
         // Enable filtering
         FilterManager.IsEnabled = true;
@@ -167,7 +173,7 @@ public partial class FilterSidebarViewModel
 
         // Persist filter mode and darken amount to user settings
         var settings = UserSettingsService.Current;
-        settings.FilterMode = FilterMode;
+        settings.FilterMode = filterMode;
         settings.FilterDarkenAmount = (int)DarkenAmount;
 
         // Refresh all renderings (pixel map and minimap)

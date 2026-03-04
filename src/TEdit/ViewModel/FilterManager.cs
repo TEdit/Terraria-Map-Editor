@@ -57,15 +57,64 @@ namespace TEdit.ViewModel
 
         public static Color BackgroundModeCustomColor { get; set; }      = Color.Lime;
 
-        private static float _darkenAmount = 0.6f;
-        /// <summary>Darken overlay opacity (0.0 = invisible, 1.0 = fully black). Default 0.6.</summary>
+        private static float _darkenAmount = 0.75f;
+        /// <summary>Darken overlay brightness reduction (0.0 = none, 1.0 = fully dark). Shader-only uniform — no rebuild needed.</summary>
         public static float DarkenAmount
         {
             get => _darkenAmount;
-            set { if (_darkenAmount != value) { _darkenAmount = value; Revision++; } }
+            set { _darkenAmount = value; }
+        }
+
+        private static float _desaturateAmount = 0.75f;
+        /// <summary>Darken overlay desaturation (0.0 = full color, 1.0 = fully grayscale). Shader-only uniform — no rebuild needed.</summary>
+        public static float DesaturateAmount
+        {
+            get => _desaturateAmount;
+            set { _desaturateAmount = value; }
         }
 
         public static bool FilterClipboard { get; set; } = false;
+
+        // --- Find overlay ---
+        private static bool _findOverlayActive;
+        /// <summary>
+        /// When true, the darken overlay uses find result positions instead of filter criteria.
+        /// Found tiles render normally, everything else is darkened/desaturated.
+        /// </summary>
+        public static bool FindOverlayActive
+        {
+            get => _findOverlayActive;
+            set { if (_findOverlayActive != value) { _findOverlayActive = value; Revision++; } }
+        }
+
+        /// <summary>
+        /// Set of world positions (packed as y * 65536 + x) where find results exist.
+        /// Tiles at these positions are "clear" (mask=0), everything else is darkened.
+        /// </summary>
+        public static HashSet<long> FindResultPositions { get; } = [];
+
+        /// <summary>Pack (x, y) into a single long for HashSet storage.</summary>
+        public static long PackPosition(int x, int y) => (long)y * 65536L + x;
+
+        /// <summary>
+        /// Populate find overlay from search results and activate the overlay.
+        /// </summary>
+        public static void SetFindResults(IEnumerable<(int X, int Y)> positions)
+        {
+            FindResultPositions.Clear();
+            foreach (var (x, y) in positions)
+                FindResultPositions.Add(PackPosition(x, y));
+            FindOverlayActive = FindResultPositions.Count > 0;
+        }
+
+        /// <summary>
+        /// Clear find overlay and deactivate it.
+        /// </summary>
+        public static void ClearFindResults()
+        {
+            FindResultPositions.Clear();
+            FindOverlayActive = false;
+        }
 
         private static bool _isEnabled;
         /// <summary>

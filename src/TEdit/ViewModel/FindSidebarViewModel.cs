@@ -131,6 +131,9 @@ public partial class FindSidebarViewModel
             });
     }
 
+    // All matching tile positions for the find overlay (includes every tile of multi-tile sprites)
+    private readonly List<(int X, int Y)> _overlayPositions = [];
+
     [ReactiveCommand]
     private void ExecuteSearch()
     {
@@ -141,6 +144,7 @@ public partial class FindSidebarViewModel
         }
 
         Results.Clear();
+        _overlayPositions.Clear();
         CurrentResultIndex = -1;
         ShowCrosshair = false;
 
@@ -175,6 +179,11 @@ public partial class FindSidebarViewModel
             foreach (var item in sorted) Results.Add(item);
         }
 
+        // Activate find overlay — use ALL matched positions (entire sprites highlighted),
+        // even though Results list is deduped to anchors only
+        FilterManager.SetFindResults(_overlayPositions);
+        _wvm.RebuildFilterOverlay();
+
         // Navigate to first result if found
         if (Results.Count > 0)
         {
@@ -183,6 +192,32 @@ public partial class FindSidebarViewModel
         }
 
         this.RaisePropertyChanged(nameof(ResultSummary));
+    }
+
+    /// <summary>
+    /// Adds all tile positions occupied by the sprite at anchor (ax, ay) to the overlay.
+    /// </summary>
+    private void AddSpriteToOverlay(World world, int ax, int ay)
+    {
+        var tile = world.Tiles[ax, ay];
+        if (!tile.IsActive || tile.Type >= WorldConfiguration.TileProperties.Count)
+        {
+            _overlayPositions.Add((ax, ay));
+            return;
+        }
+
+        var prop = WorldConfiguration.TileProperties[tile.Type];
+        var size = prop.GetFrameSize(tile.V);
+
+        for (int dx = 0; dx < size.X; dx++)
+        {
+            for (int dy = 0; dy < size.Y; dy++)
+            {
+                int px = ax + dx, py = ay + dy;
+                if (px < world.TilesWide && py < world.TilesHigh)
+                    _overlayPositions.Add((px, py));
+            }
+        }
     }
 
     private void SearchContainers(IReadOnlyList<int> selectedItemIds, Vector2 spawn)
@@ -203,6 +238,7 @@ public partial class FindSidebarViewModel
                         ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(chest.X, chest.Y)))}"
                         : null;
 
+                    AddSpriteToOverlay(world, chest.X, chest.Y);
                     Results.Add(new FindResultItem(
                         item.GetName(),
                         chest.X,
@@ -235,6 +271,7 @@ public partial class FindSidebarViewModel
                         var itemProp = WorldConfiguration.ItemProperties.FirstOrDefault(p => p.Id == item.Id);
                         var itemName = itemProp?.Name ?? $"Item {item.Id}";
 
+                        AddSpriteToOverlay(world, entity.PosX, entity.PosY);
                         Results.Add(new FindResultItem(
                             itemName,
                             entity.PosX,
@@ -259,6 +296,9 @@ public partial class FindSidebarViewModel
         var tileIdSet = selectedTileIds.ToHashSet();
         var wallIdSet = selectedWallIds.ToHashSet();
 
+        // Track which sprite anchors we've already added to Results (dedup)
+        var seenSpriteAnchors = new HashSet<long>();
+
         for (int x = 0; x < world.TilesWide && Results.Count < MaxResults; x++)
         {
             for (int y = 0; y < world.TilesHigh && Results.Count < MaxResults; y++)
@@ -268,6 +308,8 @@ public partial class FindSidebarViewModel
                 // Check tiles (non-framed blocks)
                 if (tile.IsActive && tileIdSet.Contains(tile.Type))
                 {
+                    _overlayPositions.Add((x, y));
+
                     var tileName = GetTileName(tile.Type);
                     var extraInfo = CalculateDistance
                         ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(x, y)))}"
@@ -280,6 +322,8 @@ public partial class FindSidebarViewModel
                 // Check walls
                 if (tile.Wall > 0 && wallIdSet.Contains(tile.Wall))
                 {
+                    _overlayPositions.Add((x, y));
+
                     var wallName = GetWallName(tile.Wall);
                     var extraInfo = CalculateDistance
                         ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(x, y)))}"
@@ -289,29 +333,36 @@ public partial class FindSidebarViewModel
                     if (Results.Count >= MaxResults) return;
                 }
 
-                // Check sprites (framed tiles with optional UV match)
-                if (tile.IsActive)
+                // Check sprites — highlight ALL matching tiles, but dedupe Results to anchors
+                if (tile.IsActive && selectedSprites.Count > 0)
                 {
                     foreach (var (spriteId, uv) in selectedSprites)
                     {
-                        if (tile.Type == spriteId)
+                        if (tile.Type != spriteId) continue;
+
+                        // If UV is specified, must match
+                        if (uv.HasValue)
                         {
-                            // If UV is specified, must match
-                            if (uv.HasValue)
-                            {
-                                var tileUV = tile.GetUV();
-                                if (tileUV.X != uv.Value.X || tileUV.Y != uv.Value.Y)
-                                    continue;
-                            }
-
-                            var spriteName = GetSpriteName(spriteId, uv);
-                            var extraInfo = CalculateDistance
-                                ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(x, y)))}"
-                                : null;
-
-                            Results.Add(new FindResultItem(spriteName, x, y, "Sprite", extraInfo));
-                            if (Results.Count >= MaxResults) return;
+                            var tileUV = tile.GetUV();
+                            if (tileUV.X != uv.Value.X || tileUV.Y != uv.Value.Y)
+                                continue;
                         }
+
+                        // Add every matching tile to overlay (entire sprite highlights)
+                        _overlayPositions.Add((x, y));
+
+                        // Only add one Result entry per sprite instance (anchor)
+                        var anchor = world.GetAnchor(x, y);
+                        long anchorKey = (long)anchor.Y * 65536L + anchor.X;
+                        if (!seenSpriteAnchors.Add(anchorKey)) continue;
+
+                        var spriteName = GetSpriteName(spriteId, uv);
+                        var extraInfo = CalculateDistance
+                            ? $"Distance: {Math.Round(Vector2.Distance(spawn, new Vector2(anchor.X, anchor.Y)))}"
+                            : null;
+
+                        Results.Add(new FindResultItem(spriteName, anchor.X, anchor.Y, "Sprite", extraInfo));
+                        if (Results.Count >= MaxResults) return;
                     }
                 }
             }
@@ -409,6 +460,10 @@ public partial class FindSidebarViewModel
         Results.Clear();
         CurrentResultIndex = -1;
         ShowCrosshair = false;
+
+        // Deactivate find overlay
+        FilterManager.ClearFindResults();
+        _wvm.RebuildFilterOverlay();
 
         this.RaisePropertyChanged(nameof(TotalSelectedCount));
         this.RaisePropertyChanged(nameof(SelectionSummary));

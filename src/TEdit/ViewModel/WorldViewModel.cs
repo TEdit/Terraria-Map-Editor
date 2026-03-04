@@ -72,7 +72,7 @@ public partial class WorldViewModel : ReactiveObject
     private WriteableBitmap _minimapImage;
     private string _morphBiomeTarget;
     private PixelMapManager _pixelMap;
-    private PixelMapManager _filterOverlayMap;
+    private FilterOverlayBuffer _filterOverlayMap;
     public BuffTileCache BuffTileCache { get; } = new BuffTileCache();
     private ProgressChangedEventArgs _progress;
     private Chest _selectedChest;
@@ -1510,7 +1510,7 @@ public partial class WorldViewModel : ReactiveObject
         set { this.RaiseAndSetIfChanged(ref _pixelMap, value); }
     }
 
-    public PixelMapManager FilterOverlayMap
+    public FilterOverlayBuffer FilterOverlayMap
     {
         get { return _filterOverlayMap; }
         set { this.RaiseAndSetIfChanged(ref _filterOverlayMap, value); }
