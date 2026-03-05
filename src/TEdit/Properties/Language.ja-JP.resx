@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -363,16 +363,16 @@
     <value>ワールドを拡大</value>
   </data>
   <data name="export_complete" xml:space="preserve">
-    <value>選択が{0}にエクスポートされました</value>
+    <value>Selection exported to {0}</value>
   </data>
   <data name="export_size_limit_exceeded" xml:space="preserve">
-    <value>エクスポートは{0}×{1}ピクセル({2} MP)になり、MPの制限を超えて{3}MPを上回ります。</value>
+    <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>エクスポートは{0}×{1}ピクセル({2}メガピクセル)になります。これには時間がかかるかもしれません。続けますか?</value>
+    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
-    <value>大規模輸出警告</value>
+    <value>Large Export Warning</value>
   </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>オートズーム</value>
@@ -387,37 +387,37 @@
     <value>見つけてください</value>
   </data>
   <data name="find_distance_label" xml:space="preserve">
-    <value>距離:{0}</value>
+    <value>Distance: {0}</value>
   </data>
   <data name="find_next" xml:space="preserve">
     <value>次</value>
   </data>
   <data name="find_no_results" xml:space="preserve">
-    <value>結果なし</value>
+    <value>No results</value>
   </data>
   <data name="find_no_selection" xml:space="preserve">
-    <value>選択なし</value>
+    <value>No selection</value>
   </data>
   <data name="find_no_world_loaded" xml:space="preserve">
-    <value>世界は積み重ねられていません。</value>
+    <value>No world loaded.</value>
   </data>
   <data name="find_prev" xml:space="preserve">
     <value>前回</value>
   </data>
   <data name="find_result_summary" xml:space="preserve">
-    <value>{0} {1}</value>
+    <value>{0} of {1}</value>
   </data>
   <data name="find_result_type_chest" xml:space="preserve">
-    <value>胸</value>
+    <value>Chest</value>
   </data>
   <data name="find_result_type_sprite" xml:space="preserve">
-    <value>スプライト</value>
+    <value>Sprite</value>
   </data>
   <data name="find_result_type_tile" xml:space="preserve">
     <value>タイル</value>
   </data>
   <data name="find_result_type_tile_entity" xml:space="preserve">
-    <value>タイルエンティティ</value>
+    <value>TileEntity</value>
   </data>
   <data name="find_result_type_wall" xml:space="preserve">
     <value>壁</value>
@@ -426,19 +426,19 @@
     <value>サーチ・ワールド</value>
   </data>
   <data name="find_selected_items" xml:space="preserve">
-    <value>{0}品</value>
+    <value>{0} items</value>
   </data>
   <data name="find_selected_sprites" xml:space="preserve">
-    <value>{0}スプライト</value>
+    <value>{0} sprites</value>
   </data>
   <data name="find_selected_tiles" xml:space="preserve">
-    <value>{0}タイル</value>
+    <value>{0} tiles</value>
   </data>
   <data name="find_selected_walls" xml:space="preserve">
-    <value>{0}壁</value>
+    <value>{0} walls</value>
   </data>
   <data name="find_selection_summary" xml:space="preserve">
-    <value>選出:{0}</value>
+    <value>Selected: {0}</value>
   </data>
   <data name="find_tab_chests" xml:space="preserve">
     <value>チェストの中のアイテム</value>
@@ -642,19 +642,19 @@
     <value>ワールドを拡大</value>
   </data>
   <data name="menu_edit_export_full_texture" xml:space="preserve">
-    <value>フルテクスチャ(16px/タイル)</value>
+    <value>Full Texture (16px/tile)</value>
   </data>
   <data name="menu_edit_export_half_texture" xml:space="preserve">
-    <value>ハーフテクスチャ(8px/タイル)</value>
+    <value>Half Texture (8px/tile)</value>
   </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
-    <value>ピクセルマップ(1px/タイル)</value>
+    <value>Pixel Map (1px/tile)</value>
   </data>
   <data name="menu_edit_export_quarter_texture" xml:space="preserve">
-    <value>四分の一テクスチャ(4px/タイル)</value>
+    <value>Quarter Texture (4px/tile)</value>
   </data>
   <data name="menu_edit_export_selection" xml:space="preserve">
-    <value>輸出選択</value>
+    <value>Export Selection</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>ペースト</value>
@@ -720,7 +720,7 @@
     <value>ダークン</value>
   </data>
   <data name="menu_filter_desaturate_label" xml:space="preserve">
-    <value>脱飽和</value>
+    <value>Desaturate</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>無効化</value>
@@ -840,7 +840,7 @@
     <value>背景</value>
   </data>
   <data name="menu_layers_bg_scale" xml:space="preserve">
-    <value>BGスケール</value>
+    <value>BG Scale</value>
   </data>
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>バフ半径</value>
@@ -1851,10 +1851,10 @@
     <value>壁</value>
   </data>
   <data name="status_loading_textures" xml:space="preserve">
-    <value>テクスチャの読み込み:{0}/{1}</value>
+    <value>Loading textures: {0}/{1}</value>
   </data>
   <data name="status_textures_loaded" xml:space="preserve">
-    <value>テクスチャが読み込まれています</value>
+    <value>Textures loaded</value>
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>動物誌</value>
@@ -1904,7 +1904,7 @@
     <value>テクスチャの読み込み</value>
   </data>
   <data name="toolbar_deselect" xml:space="preserve">
-    <value>選択解除</value>
+    <value>Deselect</value>
   </data>
   <data name="toolbar_export" xml:space="preserve">
     <value>輸出</value>

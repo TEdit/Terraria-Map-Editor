@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -363,16 +363,16 @@
     <value>세계 확장</value>
   </data>
   <data name="export_complete" xml:space="preserve">
-    <value>선택이 {0}로 내보내짐</value>
+    <value>Selection exported to {0}</value>
   </data>
   <data name="export_size_limit_exceeded" xml:space="preserve">
-    <value>내보내기는 {0}×{1} 픽셀({2} MP)이 되어 {3} MP를 초과합니다.</value>
+    <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>내보내기량은 {0}×{1}픽셀({2} 메가픽셀)입니다. 시간이 좀 걸릴 수도 있어요. 계속할까요?</value>
+    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
-    <value>대규모 수출 경고</value>
+    <value>Large Export Warning</value>
   </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>자동 줌</value>
@@ -387,37 +387,37 @@
     <value>찾기</value>
   </data>
   <data name="find_distance_label" xml:space="preserve">
-    <value>거리: {0}</value>
+    <value>Distance: {0}</value>
   </data>
   <data name="find_next" xml:space="preserve">
     <value>다음</value>
   </data>
   <data name="find_no_results" xml:space="preserve">
-    <value>결과 없음</value>
+    <value>No results</value>
   </data>
   <data name="find_no_selection" xml:space="preserve">
-    <value>선택이 없다</value>
+    <value>No selection</value>
   </data>
   <data name="find_no_world_loaded" xml:space="preserve">
-    <value>월드가 로드된 것도 아니야.</value>
+    <value>No world loaded.</value>
   </data>
   <data name="find_prev" xml:space="preserve">
     <value>이전</value>
   </data>
   <data name="find_result_summary" xml:space="preserve">
-    <value>{0} {1}</value>
+    <value>{0} of {1}</value>
   </data>
   <data name="find_result_type_chest" xml:space="preserve">
-    <value>가슴</value>
+    <value>Chest</value>
   </data>
   <data name="find_result_type_sprite" xml:space="preserve">
-    <value>스프라이트</value>
+    <value>Sprite</value>
   </data>
   <data name="find_result_type_tile" xml:space="preserve">
     <value>타일</value>
   </data>
   <data name="find_result_type_tile_entity" xml:space="preserve">
-    <value>타일 엔티티</value>
+    <value>TileEntity</value>
   </data>
   <data name="find_result_type_wall" xml:space="preserve">
     <value>벽</value>
@@ -426,19 +426,19 @@
     <value>서치 월드</value>
   </data>
   <data name="find_selected_items" xml:space="preserve">
-    <value>{0} 항목</value>
+    <value>{0} items</value>
   </data>
   <data name="find_selected_sprites" xml:space="preserve">
-    <value>{0} 스프라이트</value>
+    <value>{0} sprites</value>
   </data>
   <data name="find_selected_tiles" xml:space="preserve">
-    <value>{0} 타일</value>
+    <value>{0} tiles</value>
   </data>
   <data name="find_selected_walls" xml:space="preserve">
-    <value>{0} 벽</value>
+    <value>{0} walls</value>
   </data>
   <data name="find_selection_summary" xml:space="preserve">
-    <value>선택: {0}</value>
+    <value>Selected: {0}</value>
   </data>
   <data name="find_tab_chests" xml:space="preserve">
     <value>상자 안의 아이템</value>
@@ -642,19 +642,19 @@
     <value>세계 확장</value>
   </data>
   <data name="menu_edit_export_full_texture" xml:space="preserve">
-    <value>풀 텍스처 (16px/타일)</value>
+    <value>Full Texture (16px/tile)</value>
   </data>
   <data name="menu_edit_export_half_texture" xml:space="preserve">
-    <value>하프 텍스처 (8px/타일)</value>
+    <value>Half Texture (8px/tile)</value>
   </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
-    <value>픽셀 맵 (1px/타일)</value>
+    <value>Pixel Map (1px/tile)</value>
   </data>
   <data name="menu_edit_export_quarter_texture" xml:space="preserve">
-    <value>쿼터 텍스처 (4px/타일)</value>
+    <value>Quarter Texture (4px/tile)</value>
   </data>
   <data name="menu_edit_export_selection" xml:space="preserve">
-    <value>수출 선택</value>
+    <value>Export Selection</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>페이스트</value>
@@ -720,7 +720,7 @@
     <value>다크엔</value>
   </data>
   <data name="menu_filter_desaturate_label" xml:space="preserve">
-    <value>탈포화</value>
+    <value>Desaturate</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>비활성화</value>
@@ -840,7 +840,7 @@
     <value>배경</value>
   </data>
   <data name="menu_layers_bg_scale" xml:space="preserve">
-    <value>BG 척도</value>
+    <value>BG Scale</value>
   </data>
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>버프 반경</value>
@@ -1851,10 +1851,10 @@
     <value>벽</value>
   </data>
   <data name="status_loading_textures" xml:space="preserve">
-    <value>텍스처 로딩: {0}/{1}</value>
+    <value>Loading textures: {0}/{1}</value>
   </data>
   <data name="status_textures_loaded" xml:space="preserve">
-    <value>텍스처 로드</value>
+    <value>Textures loaded</value>
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>베스티어리</value>
@@ -1904,7 +1904,7 @@
     <value>텍스처 로딩</value>
   </data>
   <data name="toolbar_deselect" xml:space="preserve">
-    <value>선택 해제</value>
+    <value>Deselect</value>
   </data>
   <data name="toolbar_export" xml:space="preserve">
     <value>수출</value>
