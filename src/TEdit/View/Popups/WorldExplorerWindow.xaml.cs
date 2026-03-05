@@ -29,8 +29,13 @@ public partial class WorldExplorerWindow : FluentWindow
             if (Owner != null)
             {
                 MaxHeight = Owner.ActualHeight;
-                if (Height > MaxHeight)
+                if (ActualHeight > MaxHeight)
+                {
                     Height = MaxHeight;
+                }
+                // Recenter on owner after clamping
+                Top = Owner.Top + (Owner.ActualHeight - ActualHeight) / 2;
+                Left = Owner.Left + (Owner.ActualWidth - ActualWidth) / 2;
             }
         };
     }

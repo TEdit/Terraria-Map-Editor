@@ -28,6 +28,7 @@
     <SolidColorBrush x:Key="DisabledBorderBrush" Color="#FF444444" />
     <SolidColorBrush x:Key="ActivityBarIconBrush" Color="#FF858585" />
     <system:Double x:Key="ActivityBarItemSize">48</system:Double>
+    <system:Double x:Key="ActivityBarIconSize">24</system:Double>
     <Thickness x:Key="ActivityBarItemPadding">12</Thickness>
     <SolidColorBrush x:Key="ButtonNormalBackground" Color="#FF333333" />
     <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF555555" />
@@ -875,10 +876,14 @@
                         <Border x:Name="IconBorder"
                                 Background="{TemplateBinding Background}"
                                 Padding="{DynamicResource ActivityBarItemPadding}">
-                            <ContentPresenter x:Name="ContentSite"
-                                              ContentSource="Header"
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
+                            <Viewbox Width="{DynamicResource ActivityBarIconSize}"
+                                     Height="{DynamicResource ActivityBarIconSize}"
+                                     Stretch="Uniform">
+                                <ContentPresenter x:Name="ContentSite"
+                                                  ContentSource="Header"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Viewbox>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>

@@ -93,11 +93,13 @@ public partial class MainWindow : FluentWindow
         if (shouldBeCompact)
         {
             Resources["ActivityBarItemSize"] = 36.0;
+            Resources["ActivityBarIconSize"] = 18.0;
             Resources["ActivityBarItemPadding"] = new Thickness(8);
         }
         else
         {
             Resources["ActivityBarItemSize"] = 48.0;
+            Resources["ActivityBarIconSize"] = 24.0;
             Resources["ActivityBarItemPadding"] = new Thickness(12);
         }
     }
