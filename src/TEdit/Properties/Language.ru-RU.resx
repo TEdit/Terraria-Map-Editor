@@ -719,8 +719,8 @@
   <data name="menu_filter_darken" xml:space="preserve">
     <value>Затемнять</value>
   </data>
-  <data name="menu_filter_darken_label" xml:space="preserve">
-    <value>Затемнять:</value>
+  <data name="menu_filter_desaturate_label" xml:space="preserve">
+    <value>Десатурация</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>Запрещать</value>

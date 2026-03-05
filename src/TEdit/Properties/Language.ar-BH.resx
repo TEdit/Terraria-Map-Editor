@@ -719,8 +719,8 @@
   <data name="menu_filter_darken" xml:space="preserve">
     <value>ظلام</value>
   </data>
-  <data name="menu_filter_darken_label" xml:space="preserve">
-    <value>داكن:</value>
+  <data name="menu_filter_desaturate_label" xml:space="preserve">
+    <value>إزالة التشبع</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>إبطال</value>

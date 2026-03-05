@@ -719,8 +719,8 @@
   <data name="menu_filter_darken" xml:space="preserve">
     <value>다크엔</value>
   </data>
-  <data name="menu_filter_darken_label" xml:space="preserve">
-    <value>다큰:</value>
+  <data name="menu_filter_desaturate_label" xml:space="preserve">
+    <value>탈포화</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>비활성화</value>

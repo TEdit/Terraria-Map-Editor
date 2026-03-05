@@ -719,8 +719,8 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_filter_darken" xml:space="preserve">
     <value>Oscurecer</value>
   </data>
-  <data name="menu_filter_darken_label" xml:space="preserve">
-    <value>Oscurecer:</value>
+  <data name="menu_filter_desaturate_label" xml:space="preserve">
+    <value>Desaturar</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>Desactivar</value>

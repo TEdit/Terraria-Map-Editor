@@ -719,8 +719,8 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_filter_darken" xml:space="preserve">
     <value>Ciemniejszy</value>
   </data>
-  <data name="menu_filter_darken_label" xml:space="preserve">
-    <value>Ciemniejszy:</value>
+  <data name="menu_filter_desaturate_label" xml:space="preserve">
+    <value>Nasycony</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>Wyłącz</value>

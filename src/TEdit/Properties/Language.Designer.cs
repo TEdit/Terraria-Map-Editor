@@ -1853,11 +1853,11 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Darken:.
+        ///   Looks up a localized string similar to Desaturate.
         /// </summary>
-        public static string menu_filter_darken_label {
+        public static string menu_filter_desaturate_label {
             get {
-                return ResourceManager.GetString("menu_filter_darken_label", resourceCulture);
+                return ResourceManager.GetString("menu_filter_desaturate_label", resourceCulture);
             }
         }
         

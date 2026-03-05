@@ -5248,7 +5248,14 @@ public partial class WorldRenderXna : UserControl
                                     // Apply tile render offsets (vines, position offset tiles)
                                     ApplyTileRenderOffset(ref dest, curtile.Type, curtile.U, curtile.V, _zoom);
 
-                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
+                                    if (tileprop.HasSlopes && curtile.BrickStyle != BrickStyle.Full)
+                                    {
+                                        DrawSlopedTile(_spriteBatch, tileTex, source, dest, curtile, tilePaintColor, LayerTileTextures);
+                                    }
+                                    else
+                                    {
+                                        _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
+                                    }
                                     // Actuator Overlay
                                     if (curtile.Actuator && _wvm.ShowActuators)
                                         _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
@@ -5779,7 +5786,7 @@ public partial class WorldRenderXna : UserControl
                                             for (int slice = 0; slice < 8; slice++)
                                             {
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + slice * _zoom / 8.0f));
+                                                Vector2 destSlice = new Vector2(dest.X + slice * _zoom / 8.0f, dest.Y + slice * _zoom / 8.0f);
 
                                                 _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
@@ -5789,7 +5796,7 @@ public partial class WorldRenderXna : UserControl
                                             for (int slice = 0; slice < 8; slice++)
                                             {
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + (7 - slice) * _zoom / 8.0f));
+                                                Vector2 destSlice = new Vector2(dest.X + slice * _zoom / 8.0f, dest.Y + (7 - slice) * _zoom / 8.0f);
 
                                                 _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
@@ -5799,7 +5806,7 @@ public partial class WorldRenderXna : UserControl
                                             for (int slice = 0; slice < 8; slice++)
                                             {
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y + slice * 2, 2, 16 - slice * 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+                                                Vector2 destSlice = new Vector2(dest.X + slice * _zoom / 8.0f, dest.Y);
 
                                                 _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
@@ -5809,7 +5816,7 @@ public partial class WorldRenderXna : UserControl
                                             for (int slice = 0; slice < 8; slice++)
                                             {
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+                                                Vector2 destSlice = new Vector2(dest.X + slice * _zoom / 8.0f, dest.Y);
 
                                                 _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
@@ -5958,6 +5965,94 @@ public partial class WorldRenderXna : UserControl
                     // Failed to render glow mask for tile
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Draw a framed tile with slope/half-brick geometry, matching Terraria's
+    /// TileDrawing slope algorithm (8 slices of 2px over 16px + 2px strip).
+    /// For tiles larger than 16px (e.g. cannonball 20x20), the slope is centered
+    /// within the source texture.
+    /// </summary>
+    private void DrawSlopedTile(SpriteBatch sb, Texture2D tex, Rectangle source, Rectangle dest, Tile tile, Color color, float layer)
+    {
+        var tileColor = tile.InActive ? Color.Gray : color;
+        float scale = _zoom / 16f;
+
+        // Center the 16x16 slope region within the source texture
+        int padX = (source.Width - 16) / 2;
+        int padY = (source.Height - 16) / 2;
+        int srcBaseX = source.X + padX;
+        int srcBaseY = source.Y + padY;
+        // Shift destination to match the centering offset
+        float dstOffX = dest.X + padX * scale;
+        float dstOffY = dest.Y + padY * scale;
+
+        switch (tile.BrickStyle)
+        {
+            case BrickStyle.HalfBrick:
+                source.Height /= 2;
+                dest.Y += (int)(_zoom * 0.5);
+                dest.Height = (int)(_zoom / 2.0f);
+                sb.Draw(tex, dest, source, tileColor, 0f, default, SpriteEffects.None, layer);
+                break;
+
+            case BrickStyle.SlopeTopRight:
+            case BrickStyle.SlopeTopLeft:
+            case BrickStyle.SlopeBottomRight:
+            case BrickStyle.SlopeBottomLeft:
+            {
+                // Matches TileDrawing.cs lines 1175-1207
+                int slopeType = tile.BrickStyle switch
+                {
+                    BrickStyle.SlopeTopRight => 1,
+                    BrickStyle.SlopeTopLeft => 2,
+                    BrickStyle.SlopeBottomRight => 3,
+                    _ => 4 // SlopeBottomLeft
+                };
+
+                for (int s = 0; s < 8; s++)
+                {
+                    int num8 = s * -2;
+                    int height = 16 - s * 2;
+                    int num9 = 16 - height; // = s * 2
+                    int x;
+
+                    switch (slopeType)
+                    {
+                        case 1: // SlopeTopRight
+                            num8 = 0; x = s * 2; height = 14 - s * 2; num9 = 0;
+                            break;
+                        case 2: // SlopeTopLeft
+                            num8 = 0; x = 16 - s * 2 - 2; height = 14 - s * 2; num9 = 0;
+                            break;
+                        case 3: // SlopeBottomRight
+                            x = s * 2;
+                            break;
+                        default: // SlopeBottomLeft
+                            x = 16 - s * 2 - 2;
+                            break;
+                    }
+
+                    if (height > 0)
+                    {
+                        var srcSlice = new Rectangle(srcBaseX + x, srcBaseY + num9, 2, height);
+                        var dstSlice = new Vector2(dstOffX + x * scale, dstOffY + (s * 2 + num8) * scale);
+                        sb.Draw(tex, dstSlice, srcSlice, tileColor, 0f, default, scale, SpriteEffects.None, layer);
+                    }
+                }
+
+                // Bottom or top strip (2px tall, full width)
+                int stripY = slopeType > 2 ? 0 : 14;
+                var srcStrip = new Rectangle(srcBaseX, srcBaseY + stripY, 16, 2);
+                var dstStrip = new Vector2(dstOffX, dstOffY + stripY * scale);
+                sb.Draw(tex, dstStrip, srcStrip, tileColor, 0f, default, scale, SpriteEffects.None, layer);
+                break;
+            }
+
+            default:
+                sb.Draw(tex, dest, source, tileColor, 0f, default, SpriteEffects.None, layer);
+                break;
         }
     }
 

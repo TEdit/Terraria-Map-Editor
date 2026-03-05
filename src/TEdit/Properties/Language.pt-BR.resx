@@ -719,8 +719,8 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_filter_darken" xml:space="preserve">
     <value>Escurecer</value>
   </data>
-  <data name="menu_filter_darken_label" xml:space="preserve">
-    <value>Escurecer:</value>
+  <data name="menu_filter_desaturate_label" xml:space="preserve">
+    <value>Desaturar</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>Desativar</value>

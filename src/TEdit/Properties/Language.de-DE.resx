@@ -719,8 +719,8 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_filter_darken" xml:space="preserve">
     <value>Verdunkeln</value>
   </data>
-  <data name="menu_filter_darken_label" xml:space="preserve">
-    <value>Verdunkeln:</value>
+  <data name="menu_filter_desaturate_label" xml:space="preserve">
+    <value>Desaturieren</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>Deaktivieren</value>

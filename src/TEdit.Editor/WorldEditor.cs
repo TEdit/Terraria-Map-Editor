@@ -115,6 +115,9 @@ public class WorldEditor : IDisposable
                             SetPixelAutomatic(ref curTile,
                                 wallEchoCoating: TilePicker.WallCoatingEcho,
                                 wallIlluminantCoating: TilePicker.WallCoatingIlluminant);
+                        if (TilePicker.BrickStyleActive && TilePicker.ExtrasActive &&
+                            WorldConfiguration.TileProperties[curTile.Type].HasSlopes)
+                            SetPixelAutomatic(ref curTile, brickStyle: TilePicker.BrickStyle);
                     }
                 }
                 break;
@@ -605,7 +608,7 @@ public class WorldEditor : IDisposable
         if (!t.IsActive) return;
 
         var tp = WorldConfiguration.GetTileProperties(t.Type);
-        if (tp.IsFramed || t.LiquidType != LiquidType.None) return;
+        if ((tp.IsFramed && !tp.HasSlopes) || t.LiquidType != LiquidType.None) return;
 
         var v = new Vector2Int32(x, y);
         bool up = _world.SlopeCheck(v, new Vector2Int32(x, y - 1));
