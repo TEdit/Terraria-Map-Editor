@@ -768,12 +768,15 @@ public partial class WorldViewModel
         var progress = new Progress<ProgressChangedEventArgs>(e => OnProgressChanged(this, e));
         ExportSelection?.Invoke(dlg.FileName, scale, progress);
 
-        OnProgressChanged(this, new ProgressChangedEventArgs(0,
-            string.Format(Properties.Language.export_complete, Path.GetFileName(dlg.FileName))));
+        var exportMessage = string.Format(
+            Properties.Language.export_complete ?? "Selection exported to {0}",
+            Path.GetFileName(dlg.FileName));
+
+        OnProgressChanged(this, new ProgressChangedEventArgs(0, exportMessage));
 
         App.SnackbarService.Show(
-            Properties.Language.export_size_warning_title,
-            string.Format(Properties.Language.export_complete, Path.GetFileName(dlg.FileName)));
+            Properties.Language.export_size_warning_title ?? "Export",
+            exportMessage);
     }
 
     #endregion

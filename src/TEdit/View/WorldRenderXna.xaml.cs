@@ -3056,7 +3056,7 @@ public partial class WorldRenderXna : UserControl
             _worldRT = null;
         }
 
-        _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+        _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone);
 
         DrawWireTraceHighlight();
 
