@@ -1,3 +1,4 @@
+/// <reference path="tedit-api.d.ts" />
 // Tile Framing Test Grid
 // Generates labeled blocks of tile types to visually verify framing fixes:
 // - Phase 1: SelfFrame8Way gemspark blocks

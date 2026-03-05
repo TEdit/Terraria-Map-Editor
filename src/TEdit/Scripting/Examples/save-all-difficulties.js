@@ -1,3 +1,4 @@
+/// <reference path="tedit-api.d.ts" />
 // Save All Difficulties - Save the current world as all 4 difficulties
 // Parses the world title and file name to swap the difficulty word.
 //

@@ -1,3 +1,4 @@
+/// <reference path="tedit-api.d.ts" />
 // Clear Corruption - Replace corruption tiles and walls with their pure equivalents
 // Ebonstone (25) -> Stone (1), Corrupt Grass (23) -> Grass (2)
 // Corrupt Thorns (32) -> removed, Purple Ice (163) -> Ice (161)

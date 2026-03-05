@@ -1,3 +1,4 @@
+/// <reference path="tedit-api.d.ts" />
 // WorldGen Showcase - Generates natural terrain at actual Terraria worldgen density
 // Use on a new world created via File > New World (any size).
 // Uses world.surfaceLevel and world.rockLevel set by the New World dialog.

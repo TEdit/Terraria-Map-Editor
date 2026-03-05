@@ -1,3 +1,4 @@
+/// <reference path="tedit-api.d.ts" />
 // Geometric Mandala - Creates a symmetric geometric pattern using stone blocks
 // Place your selection where you want the pattern centered, or it uses world spawn
 // The pattern has 8-fold symmetry with concentric rings, rays, and diamond accents

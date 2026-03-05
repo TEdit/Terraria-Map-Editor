@@ -1,3 +1,4 @@
+/// <reference path="tedit-api.d.ts" />
 // Chest Inventory - Reports all items across all chests with counts
 
 var allChests = chests.getAll();

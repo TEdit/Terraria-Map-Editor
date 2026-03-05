@@ -1,3 +1,4 @@
+/// <reference path="tedit-api.d.ts" />
 // Replace Block - Replace one tile type with another in the current selection
 // Edit the fromType and toType values below to customize
 
