@@ -390,7 +390,7 @@ public static class ScriptApiMetadata
             new("navigateFirst", "navigateFirst()",                             "Navigate to first result"),
         ]),
 
-        new("tools", "Interact with TEdit's UI tools and clipboard",
+        new("tools", "Interact with TEdit's UI tools, clipboard, and file operations",
         [
             new("listTools",         "listTools() → [string]",     "Get names of all available tools"),
             new("copySelection",     "copySelection()",            "Copy current selection to clipboard"),
@@ -398,6 +398,13 @@ public static class ScriptApiMetadata
             new("getTilePickerWall", "getTilePickerWall() → int",  "Get currently selected wall in picker"),
             new("setTilePickerTile", "setTilePickerTile(tileType)","Set tile picker selection"),
             new("setTilePickerWall", "setTilePickerWall(wallType)","Set wall picker selection"),
+            new("getFilePath",       "getFilePath() → string",    "Get the current world file path"),
+            new("setFilePath",       "setFilePath(path)",          "Set the current world file path (does not save)"),
+            new("getWorldsFolder",   "getWorldsFolder() → string","Get the default Terraria worlds folder path"),
+            new("getCloudWorldsFolders", "getCloudWorldsFolders() → [{userId, path}]", "Get all Steam Cloud world folder paths"),
+            new("save",              "save() → bool",              "Save world to current file path (no UI dialog)"),
+            new("saveAs",            "saveAs(filename, version?) → bool", "Save world to file (just a name = default worlds folder, no UI dialog)"),
+            new("load",              "load(filename) → bool",     "Load world file (just a name = default worlds folder, blocks until complete)"),
         ]),
 
         new("sprites", "Place multi-tile sprites (furniture, torches, etc.)",

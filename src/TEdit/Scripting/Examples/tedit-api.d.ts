@@ -556,7 +556,12 @@ declare const log: {
 
 // ─── tools ───────────────────────────────────────────────────────────────────
 
-/** Interact with TEdit's UI tools and clipboard. */
+interface CloudWorldsFolder {
+    userId: string;
+    path: string;
+}
+
+/** Interact with TEdit's UI tools, clipboard, and file operations. */
 declare const tools: {
     /** Get names of all available tools. */
     listTools(): string[];
@@ -570,6 +575,30 @@ declare const tools: {
     setTilePickerTile(tileType: number): void;
     /** Set wall picker selection. */
     setTilePickerWall(wallType: number): void;
+
+    /** Get the current world file path. */
+    getFilePath(): string;
+    /** Set the current world file path (does not save). */
+    setFilePath(path: string): void;
+    /** Get the default Terraria worlds folder path. */
+    getWorldsFolder(): string;
+    /** Get all Steam Cloud world folder paths. */
+    getCloudWorldsFolders(): CloudWorldsFolder[];
+
+    /** Save world to current file path (no UI dialog). */
+    save(): boolean;
+    /**
+     * Save world to file (no UI dialog).
+     * If filename has no path separators (e.g. "MyWorld" or "MyWorld.wld"),
+     * saves to the default Terraria worlds folder. .wld extension added automatically.
+     */
+    saveAs(filename: string, version?: number): boolean;
+    /**
+     * Load a world file, replacing the current world. Blocks until complete.
+     * If filename has no path separators, loads from the default Terraria worlds folder.
+     * .wld extension added automatically.
+     */
+    load(filename: string): boolean;
 };
 
 // ─── finder ──────────────────────────────────────────────────────────────────

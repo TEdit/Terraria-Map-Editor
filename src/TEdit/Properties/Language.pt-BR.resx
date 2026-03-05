@@ -362,6 +362,18 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="expand_title" xml:space="preserve">
     <value>Expandir o mundo</value>
   </data>
+  <data name="export_complete" xml:space="preserve">
+    <value>Selection exported to {0}</value>
+  </data>
+  <data name="export_size_limit_exceeded" xml:space="preserve">
+    <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
+  </data>
+  <data name="export_size_warning" xml:space="preserve">
+    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+  </data>
+  <data name="export_size_warning_title" xml:space="preserve">
+    <value>Large Export Warning</value>
+  </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>Auto Zoom</value>
   </data>
@@ -371,14 +383,62 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="find_calculate_distance" xml:space="preserve">
     <value>Calcular a distância</value>
   </data>
+  <data name="find_dialog_title" xml:space="preserve">
+    <value>Encontrar</value>
+  </data>
+  <data name="find_distance_label" xml:space="preserve">
+    <value>Distance: {0}</value>
+  </data>
   <data name="find_next" xml:space="preserve">
     <value>Próximo</value>
+  </data>
+  <data name="find_no_results" xml:space="preserve">
+    <value>No results</value>
+  </data>
+  <data name="find_no_selection" xml:space="preserve">
+    <value>No selection</value>
+  </data>
+  <data name="find_no_world_loaded" xml:space="preserve">
+    <value>No world loaded.</value>
   </data>
   <data name="find_prev" xml:space="preserve">
     <value>Anterior</value>
   </data>
+  <data name="find_result_summary" xml:space="preserve">
+    <value>{0} of {1}</value>
+  </data>
+  <data name="find_result_type_chest" xml:space="preserve">
+    <value>Chest</value>
+  </data>
+  <data name="find_result_type_sprite" xml:space="preserve">
+    <value>Sprite</value>
+  </data>
+  <data name="find_result_type_tile" xml:space="preserve">
+    <value>Peça</value>
+  </data>
+  <data name="find_result_type_tile_entity" xml:space="preserve">
+    <value>TileEntity</value>
+  </data>
+  <data name="find_result_type_wall" xml:space="preserve">
+    <value>Parede</value>
+  </data>
   <data name="find_search_world" xml:space="preserve">
     <value>Mundo da Busca</value>
+  </data>
+  <data name="find_selected_items" xml:space="preserve">
+    <value>{0} items</value>
+  </data>
+  <data name="find_selected_sprites" xml:space="preserve">
+    <value>{0} sprites</value>
+  </data>
+  <data name="find_selected_tiles" xml:space="preserve">
+    <value>{0} tiles</value>
+  </data>
+  <data name="find_selected_walls" xml:space="preserve">
+    <value>{0} walls</value>
+  </data>
+  <data name="find_selection_summary" xml:space="preserve">
+    <value>Selected: {0}</value>
   </data>
   <data name="find_tab_chests" xml:space="preserve">
     <value>Itens em Baús</value>
@@ -778,6 +838,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="menu_layers_backgrounds" xml:space="preserve">
     <value>Contextos</value>
+  </data>
+  <data name="menu_layers_bg_scale" xml:space="preserve">
+    <value>BG Scale</value>
   </data>
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>Raios de Buff</value>
@@ -1787,6 +1850,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>Parede</value>
   </data>
+  <data name="status_loading_textures" xml:space="preserve">
+    <value>Loading textures: {0}/{1}</value>
+  </data>
+  <data name="status_textures_loaded" xml:space="preserve">
+    <value>Textures loaded</value>
+  </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>Bestiário</value>
   </data>
@@ -1833,6 +1902,12 @@ Você gostaria de ativar o relatório de erros?</value>
   </data>
   <data name="texture_loading_title" xml:space="preserve">
     <value>Carregamento de texturas</value>
+  </data>
+  <data name="toolbar_deselect" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
+  <data name="toolbar_export" xml:space="preserve">
+    <value>Exportação</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analisar</value>
@@ -2871,80 +2946,5 @@ Você gostaria de ativar o relatório de erros?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corrigir lacuna de plano de fundo</value>
-  </data>
-  <data name="toolbar_deselect" xml:space="preserve">
-    <value>Deselect</value>
-  </data>
-  <data name="toolbar_export" xml:space="preserve">
-    <value>Exportação</value>
-  </data>
-  <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
-  </data>
-  <data name="export_size_warning_title" xml:space="preserve">
-    <value>Large Export Warning</value>
-  </data>
-  <data name="export_complete" xml:space="preserve">
-    <value>Selection exported to {0}</value>
-  </data>
-  <data name="export_size_limit_exceeded" xml:space="preserve">
-    <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
-  </data>
-  <data name="menu_layers_bg_scale" xml:space="preserve">
-    <value>BG Scale</value>
-  </data>
-  <data name="find_selected_items" xml:space="preserve">
-    <value>{0} items</value>
-  </data>
-  <data name="find_selected_tiles" xml:space="preserve">
-    <value>{0} tiles</value>
-  </data>
-  <data name="find_selected_walls" xml:space="preserve">
-    <value>{0} walls</value>
-  </data>
-  <data name="find_selected_sprites" xml:space="preserve">
-    <value>{0} sprites</value>
-  </data>
-  <data name="find_selection_summary" xml:space="preserve">
-    <value>Selected: {0}</value>
-  </data>
-  <data name="find_no_selection" xml:space="preserve">
-    <value>No selection</value>
-  </data>
-  <data name="find_result_summary" xml:space="preserve">
-    <value>{0} of {1}</value>
-  </data>
-  <data name="find_no_results" xml:space="preserve">
-    <value>No results</value>
-  </data>
-  <data name="find_no_world_loaded" xml:space="preserve">
-    <value>No world loaded.</value>
-  </data>
-  <data name="find_dialog_title" xml:space="preserve">
-    <value>Encontrar</value>
-  </data>
-  <data name="find_result_type_chest" xml:space="preserve">
-    <value>Chest</value>
-  </data>
-  <data name="find_result_type_tile_entity" xml:space="preserve">
-    <value>TileEntity</value>
-  </data>
-  <data name="find_result_type_tile" xml:space="preserve">
-    <value>Peça</value>
-  </data>
-  <data name="find_result_type_wall" xml:space="preserve">
-    <value>Parede</value>
-  </data>
-  <data name="find_result_type_sprite" xml:space="preserve">
-    <value>Sprite</value>
-  </data>
-  <data name="find_distance_label" xml:space="preserve">
-    <value>Distance: {0}</value>
-  </data>
-  <data name="status_loading_textures" xml:space="preserve">
-    <value>Loading textures: {0}/{1}</value>
-  </data>
-  <data name="status_textures_loaded" xml:space="preserve">
-    <value>Textures loaded</value>
   </data>
 </root>

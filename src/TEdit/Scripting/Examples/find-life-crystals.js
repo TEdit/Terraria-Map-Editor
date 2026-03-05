@@ -1,3 +1,4 @@
+/// <reference path="tedit-api.d.ts" />
 // Find Life Crystals - Locates all Life Crystal sprites and shows them in the Find sidebar
 // Life Crystal tile type is 12 (2x2 sprite), anchorOnly=true returns one result per crystal
 
