@@ -66,6 +66,49 @@
         </Grid>
     </DataTemplate>
 
+    <!-- BrickStyle: icon + text -->
+    <DataTemplate x:Key="BrickStyleIconTemplate">
+        <DockPanel>
+            <Grid x:Name="IconGrid" DockPanel.Dock="Left" Width="16" Height="16" Margin="0,0,4,0" VerticalAlignment="Center">
+                <!-- Full block (default, visible initially) -->
+                <Rectangle x:Name="FullIcon" Fill="{DynamicResource TextFillColorPrimaryBrush}" Width="14" Height="14" Visibility="Visible" />
+                <!-- HalfBrick -->
+                <Rectangle x:Name="HalfIcon" Fill="{DynamicResource TextFillColorPrimaryBrush}" Width="14" Height="7" VerticalAlignment="Bottom" Visibility="Collapsed" />
+                <!-- SlopeTopRight: slope descends from top-left to bottom-right -->
+                <Path x:Name="SlopeTopRightIcon" Fill="{DynamicResource TextFillColorPrimaryBrush}" Data="M 0,0 L 14,14 L 0,14 Z" Visibility="Collapsed" />
+                <!-- SlopeTopLeft: slope descends from top-right to bottom-left -->
+                <Path x:Name="SlopeTopLeftIcon" Fill="{DynamicResource TextFillColorPrimaryBrush}" Data="M 14,0 L 14,14 L 0,14 Z" Visibility="Collapsed" />
+                <!-- SlopeBottomRight: slope ascends from bottom-left to top-right -->
+                <Path x:Name="SlopeBottomRightIcon" Fill="{DynamicResource TextFillColorPrimaryBrush}" Data="M 0,0 L 14,0 L 0,14 Z" Visibility="Collapsed" />
+                <!-- SlopeBottomLeft: slope ascends from bottom-right to top-left -->
+                <Path x:Name="SlopeBottomLeftIcon" Fill="{DynamicResource TextFillColorPrimaryBrush}" Data="M 0,0 L 14,0 L 14,14 Z" Visibility="Collapsed" />
+            </Grid>
+            <TextBlock Text="{Binding Text}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+        </DockPanel>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Value}" Value="{x:Static Terraria:BrickStyle.HalfBrick}">
+                <Setter TargetName="FullIcon" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="HalfIcon" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Value}" Value="{x:Static Terraria:BrickStyle.SlopeTopRight}">
+                <Setter TargetName="FullIcon" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="SlopeTopRightIcon" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Value}" Value="{x:Static Terraria:BrickStyle.SlopeTopLeft}">
+                <Setter TargetName="FullIcon" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="SlopeTopLeftIcon" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Value}" Value="{x:Static Terraria:BrickStyle.SlopeBottomRight}">
+                <Setter TargetName="FullIcon" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="SlopeBottomRightIcon" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Value}" Value="{x:Static Terraria:BrickStyle.SlopeBottomLeft}">
+                <Setter TargetName="FullIcon" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="SlopeBottomLeftIcon" Property="Visibility" Value="Visible" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
     <!-- MaskMode: icon-only when collapsed, icon + text when expanded -->
     <DataTemplate x:Key="MaskModeIconTemplate">
         <DockPanel>

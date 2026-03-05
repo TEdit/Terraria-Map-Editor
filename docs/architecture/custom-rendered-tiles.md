@@ -242,15 +242,18 @@ This offsets into different tree texture variants based on biome.
 
 #### Biome Variants
 
-| Biome | Style Index | Grass Type Below |
-|-------|-------------|------------------|
-| Forest | 0-6 (world settings) | Normal Grass (2) |
-| Corruption | Varies | Corrupt Grass (23) |
-| Crimson | Varies | Crimson Grass (203) |
-| Hallow | Varies | Hallowed Grass (109) |
-| Jungle | Varies | Jungle Grass (60) |
-| Snow | Varies | Snow Block (161) |
-| Mushroom | Varies | Mushroom Grass (70) |
+> **See [tree-style-mapping.md](tree-style-mapping.md)** for the complete reference on which `Tree_Tops_X` texture is used per biome, world properties, and position.
+
+| Biome | Tree_Tops Index | Grass Type Below | Depends On |
+|-------|----------------|------------------|------------|
+| Forest | 0/6/7/8/9/10 | Normal Grass (2) | `TreeStyle0-3` (zone-based via `TreeX0-2`) |
+| Corruption | 1 | Corrupt Grass (23) | Fixed |
+| Jungle | 2 or 11 | Jungle Grass (60) | `BgJungle` (0→2, 1→11) |
+| Hallow | 3 | Hallowed Grass (109) | Fixed |
+| Snow | 4/12/16/17/18 | Snow Block (147) | `BgSnow` (complex logic) |
+| Crimson | 5 | Crimson Grass (199) | Fixed |
+| Underground Jungle | 13 | Jungle Grass (60, underground) | Fixed |
+| Mushroom | 14 | Mushroom Grass (70) | Fixed |
 
 #### Wind Sway Effect
 

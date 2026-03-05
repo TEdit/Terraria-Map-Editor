@@ -128,8 +128,7 @@ namespace TEdit.Editor.Plugins
                     if (tileIds.TryGetValue(curTile.Type, out var foundTileName))
                     {
                         _wvm.UndoManager.SaveTile(x, y);                // Add tile to the undo buffer.
-                        _wvm.CurrentWorld.Tiles[x, y].IsActive = false; // Remove tile.
-                        _wvm.CurrentWorld.Tiles[x, y].TileColor = 0;    // Remove paint.
+                        _wvm.CurrentWorld.Tiles[x, y].ClearTile();      // Remove tile.
                         _wvm.UpdateRenderPixel(new Vector2Int32(x, y)); // Update pixel.
                         ItemsFound++;
                     }
@@ -138,8 +137,7 @@ namespace TEdit.Editor.Plugins
                     if (spriteIds.TryGetValue(curTile.Type, out var frameList))
                     {
                         _wvm.UndoManager.SaveTile(x, y);                // Add tile to the undo buffer.
-                        _wvm.CurrentWorld.Tiles[x, y].IsActive = false; // Remove tile.
-                        _wvm.CurrentWorld.Tiles[x, y].TileColor = 0;    // Remove paint.
+                        _wvm.CurrentWorld.Tiles[x, y].ClearTile();      // Remove tile.
                         _wvm.UpdateRenderPixel(new Vector2Int32(x, y)); // Update pixel.
 
                         // followed by search frames.

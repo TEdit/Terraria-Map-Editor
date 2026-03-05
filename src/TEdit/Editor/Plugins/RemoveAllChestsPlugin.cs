@@ -34,8 +34,7 @@ public class RemoveAllChestsPlugin : BasePlugin
                     if (_wvm.CurrentWorld.ValidTileLocation(x, y) && _wvm.CurrentWorld.Tiles[x, y].Type == (int)TileType.Chest)
                     {
                         _wvm.UndoManager.SaveTile(x, y);
-                        _wvm.CurrentWorld.Tiles[x, y].Type = 0;
-                        _wvm.CurrentWorld.Tiles[x, y].IsActive = false;
+                        _wvm.CurrentWorld.Tiles[x, y].ClearTile();
                         _wvm.UpdateRenderPixel(x, y);
                     }
                 }

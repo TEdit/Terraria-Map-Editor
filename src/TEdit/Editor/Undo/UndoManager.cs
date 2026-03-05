@@ -141,7 +141,14 @@ public partial class UndoManager : ReactiveObject, IDisposable
             foreach (var file in Directory.GetFiles(undoPath).ToList())
             {
                 ErrorLogging.LogDebug($"Removing old undo file: {file}");
-                File.Delete(file);
+                try
+                {
+                    File.Delete(file);
+                }
+                catch (IOException)
+                {
+                    // Undo temp files may be locked by concurrent operations, swallow the exception
+                }
             }
 
             foreach (var dir in Directory.GetDirectories(undoPath).ToList())
@@ -244,7 +251,7 @@ public partial class UndoManager : ReactiveObject, IDisposable
     {
         var curTile = _world.Tiles[x, y];
 
-        if (curTile.Type < buffer.TileImportance.Length && buffer.TileImportance[curTile.Type])
+        if (curTile.IsActive && curTile.Type < buffer.TileImportance.Length && buffer.TileImportance[curTile.Type])
         {
             if (_world.IsAnchor(x, y))
             {

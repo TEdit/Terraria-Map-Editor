@@ -70,6 +70,8 @@ public class RandomizerPlugin : BasePlugin
 
                 if (view.EnableWallRandomize && wallMapping.ContainsKey(t.Wall))
                     t.Wall = (ushort)wallMapping[t.Wall];
+
+                _wvm.CurrentWorld.Tiles[x, y] = t;
             }
         }
 
@@ -129,6 +131,7 @@ public class RandomizerPlugin : BasePlugin
                         }
 
                         t.Type = (ushort)VineHangTile[t.Type];
+                        _wvm.CurrentWorld.Tiles[x, y] = t;
                         break;
                     }
                 }
@@ -152,6 +155,7 @@ public class RandomizerPlugin : BasePlugin
                         }
 
                         t.Type = 53;
+                        _wvm.CurrentWorld.Tiles[x, y] = t;
                         break;
                     }
                 }
@@ -210,6 +214,7 @@ public class RandomizerPlugin : BasePlugin
                 }
 
                 t.Type = (ushort)GravitySupportTile[t.Type];
+                _wvm.CurrentWorld.Tiles[x, y] = t;
             }
         }
     }

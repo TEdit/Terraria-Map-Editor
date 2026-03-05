@@ -28,4 +28,10 @@ public partial class StylePreviewItem : ReactiveObject
     /// </summary>
     [Reactive]
     private WriteableBitmap _preview;
+
+    /// <summary>
+    /// Optional tree top preview shown beside background previews for biome comboboxes.
+    /// </summary>
+    [Reactive]
+    private WriteableBitmap _treeTopPreview;
 }

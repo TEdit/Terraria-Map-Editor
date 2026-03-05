@@ -735,7 +735,12 @@ public partial class World
     public Vector2Int32 GetAnchor(int x, int y)
     {
         Tile tile = Tiles[x, y];
-        if (tile.Type >= TileFrameImportant.Length || !TileFrameImportant[tile.Type]) { return new Vector2Int32(x, y); }
+
+        if (tile.Type >= TileFrameImportant.Length ||
+            tile.Type >= WorldConfiguration.TileProperties.Count)
+            return new Vector2Int32(x, y);
+
+        if (!TileFrameImportant[tile.Type]) { return new Vector2Int32(x, y); }
 
         TileProperty tileprop = WorldConfiguration.TileProperties[tile.Type];
         var size = tileprop.FrameSize[0];
@@ -743,7 +748,7 @@ public partial class World
         {
             if (tile.U == 0 && tile.V == 0)
             {
-                new Vector2Int32(x, y);
+                return new Vector2Int32(x, y);
             }
 
             var sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == tile.Type);
@@ -774,7 +779,10 @@ public partial class World
                 Tile curTile = Tiles[x, y];
 
                 if (curTile.Type == (int)TileType.IceByRod)
-                    curTile.IsActive = false;
+                {
+                    curTile.ClearTile();
+                    Tiles[x, y] = curTile;
+                }
 
                 ValSpecial(x, y);
             }

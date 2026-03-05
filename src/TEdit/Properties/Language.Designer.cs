@@ -782,6 +782,42 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selection exported to {0}.
+        /// </summary>
+        public static string export_complete {
+            get {
+                return ResourceManager.GetString("export_complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit..
+        /// </summary>
+        public static string export_size_limit_exceeded {
+            get {
+                return ResourceManager.GetString("export_size_limit_exceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?.
+        /// </summary>
+        public static string export_size_warning {
+            get {
+                return ResourceManager.GetString("export_size_warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Large Export Warning.
+        /// </summary>
+        public static string export_size_warning_title {
+            get {
+                return ResourceManager.GetString("export_size_warning_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Zoom.
         /// </summary>
         public static string find_auto_zoom {
@@ -809,11 +845,56 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find.
+        /// </summary>
+        public static string find_dialog_title {
+            get {
+                return ResourceManager.GetString("find_dialog_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance: {0}.
+        /// </summary>
+        public static string find_distance_label {
+            get {
+                return ResourceManager.GetString("find_distance_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string find_next {
             get {
                 return ResourceManager.GetString("find_next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No results.
+        /// </summary>
+        public static string find_no_results {
+            get {
+                return ResourceManager.GetString("find_no_results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No selection.
+        /// </summary>
+        public static string find_no_selection {
+            get {
+                return ResourceManager.GetString("find_no_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No world loaded..
+        /// </summary>
+        public static string find_no_world_loaded {
+            get {
+                return ResourceManager.GetString("find_no_world_loaded", resourceCulture);
             }
         }
         
@@ -827,11 +908,110 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} of {1}.
+        /// </summary>
+        public static string find_result_summary {
+            get {
+                return ResourceManager.GetString("find_result_summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chest.
+        /// </summary>
+        public static string find_result_type_chest {
+            get {
+                return ResourceManager.GetString("find_result_type_chest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sprite.
+        /// </summary>
+        public static string find_result_type_sprite {
+            get {
+                return ResourceManager.GetString("find_result_type_sprite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile.
+        /// </summary>
+        public static string find_result_type_tile {
+            get {
+                return ResourceManager.GetString("find_result_type_tile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TileEntity.
+        /// </summary>
+        public static string find_result_type_tile_entity {
+            get {
+                return ResourceManager.GetString("find_result_type_tile_entity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wall.
+        /// </summary>
+        public static string find_result_type_wall {
+            get {
+                return ResourceManager.GetString("find_result_type_wall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search World.
         /// </summary>
         public static string find_search_world {
             get {
                 return ResourceManager.GetString("find_search_world", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} items.
+        /// </summary>
+        public static string find_selected_items {
+            get {
+                return ResourceManager.GetString("find_selected_items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} sprites.
+        /// </summary>
+        public static string find_selected_sprites {
+            get {
+                return ResourceManager.GetString("find_selected_sprites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} tiles.
+        /// </summary>
+        public static string find_selected_tiles {
+            get {
+                return ResourceManager.GetString("find_selected_tiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} walls.
+        /// </summary>
+        public static string find_selected_walls {
+            get {
+                return ResourceManager.GetString("find_selected_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected: {0}.
+        /// </summary>
+        public static string find_selection_summary {
+            get {
+                return ResourceManager.GetString("find_selection_summary", resourceCulture);
             }
         }
         
@@ -1439,6 +1619,51 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full Texture (16px/tile).
+        /// </summary>
+        public static string menu_edit_export_full_texture {
+            get {
+                return ResourceManager.GetString("menu_edit_export_full_texture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Half Texture (8px/tile).
+        /// </summary>
+        public static string menu_edit_export_half_texture {
+            get {
+                return ResourceManager.GetString("menu_edit_export_half_texture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel Map (1px/tile).
+        /// </summary>
+        public static string menu_edit_export_pixel_map {
+            get {
+                return ResourceManager.GetString("menu_edit_export_pixel_map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quarter Texture (4px/tile).
+        /// </summary>
+        public static string menu_edit_export_quarter_texture {
+            get {
+                return ResourceManager.GetString("menu_edit_export_quarter_texture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Selection.
+        /// </summary>
+        public static string menu_edit_export_selection {
+            get {
+                return ResourceManager.GetString("menu_edit_export_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paste.
         /// </summary>
         public static string menu_edit_paste {
@@ -1628,11 +1853,11 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Darken:.
+        ///   Looks up a localized string similar to Desaturate.
         /// </summary>
-        public static string menu_filter_darken_label {
+        public static string menu_filter_desaturate_label {
             get {
-                return ResourceManager.GetString("menu_filter_darken_label", resourceCulture);
+                return ResourceManager.GetString("menu_filter_desaturate_label", resourceCulture);
             }
         }
         
@@ -1984,6 +2209,15 @@ namespace TEdit.Properties {
         public static string menu_layers_backgrounds {
             get {
                 return ResourceManager.GetString("menu_layers_backgrounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BG Scale.
+        /// </summary>
+        public static string menu_layers_bg_scale {
+            get {
+                return ResourceManager.GetString("menu_layers_bg_scale", resourceCulture);
             }
         }
         
@@ -4931,6 +5165,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading textures: {0}/{1}.
+        /// </summary>
+        public static string status_loading_textures {
+            get {
+                return ResourceManager.GetString("status_loading_textures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textures loaded.
+        /// </summary>
+        public static string status_textures_loaded {
+            get {
+                return ResourceManager.GetString("status_textures_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extra.
         /// </summary>
         public static string statusbar_extra_label {
@@ -7854,6 +8106,24 @@ namespace TEdit.Properties {
         public static string tool_wp_weather_windspeed {
             get {
                 return ResourceManager.GetString("tool_wp_weather_windspeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deselect.
+        /// </summary>
+        public static string toolbar_deselect {
+            get {
+                return ResourceManager.GetString("toolbar_deselect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string toolbar_export {
+            get {
+                return ResourceManager.GetString("toolbar_export", resourceCulture);
             }
         }
         

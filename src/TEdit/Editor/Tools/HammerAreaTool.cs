@@ -55,7 +55,7 @@ public sealed class HammerAreaTool : BrushToolBase
     {
         var t = _wvm.CurrentWorld.Tiles[v.X, v.Y];
         var tp = WorldConfiguration.GetTileProperties(t.Type);
-        if (!t.IsActive || t.LiquidType != LiquidType.None || tp.IsFramed) return null;
+        if (!t.IsActive || t.LiquidType != LiquidType.None || (tp.IsFramed && !tp.HasSlopes)) return null;
 
         bool up = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X, v.Y - 1));
         bool down = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X, v.Y + 1));

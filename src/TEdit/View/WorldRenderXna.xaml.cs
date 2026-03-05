@@ -94,8 +94,8 @@ public partial class WorldRenderXna : UserControl
     private Texture2D _pasteBorderV;   // vertical dashed line   (1xN)
     private Texture2D _pasteHandleTexture;
     private RenderTarget2D _buffRadiiTarget;
-    private Texture2D[] _filterOverlayTileMap;
-    private Texture2D _filterDarkenTexture;
+    private RenderTarget2D _worldRT;
+    private Texture2D[] _filterMaskTileMap;
     private int _lastFilterRevision = -1;
     private static readonly BlendState MaxBlend = new BlendState
     {
@@ -114,6 +114,7 @@ public partial class WorldRenderXna : UserControl
         AlphaDestinationBlend = Blend.One,
     };
     private float _zoom = 1;
+    private Size? _exportViewSize;
     private float _minNpcScale = 0.75f;
 
     private Dictionary<int, WriteableBitmap> _spritePreviews = new Dictionary<int, WriteableBitmap>();
@@ -218,7 +219,9 @@ public partial class WorldRenderXna : UserControl
 
         if (!_surfaceBiomeCache.TryGetValue(x, out var biome))
         {
-            biome = DetectSurfaceBiome(x, y);
+            // Use a single-column bounds centered on x, scanning from y to ground level
+            var bounds = new Rectangle(x, y, 1, Math.Max(1, (int)_wvm.CurrentWorld.GroundLevel - y + 10));
+            biome = DetectSurfaceBiomeAtColumn(x, bounds);
             _surfaceBiomeCache[x] = biome;
         }
 
@@ -226,9 +229,51 @@ public partial class WorldRenderXna : UserControl
     }
 
     /// <summary>
-    /// Detects the surface biome at a given position by checking nearby tiles.
+    /// Detects the surface biome across the visible area by sampling multiple columns
+    /// and picking the majority biome. Avoids flickering when a single column lands
+    /// on an atypical tile.
     /// </summary>
-    private SurfaceBiome DetectSurfaceBiome(int x, int y)
+    private SurfaceBiome DetectSurfaceBiome(Rectangle visibleBounds)
+    {
+        var world = _wvm.CurrentWorld;
+
+        int left = Math.Clamp(visibleBounds.Left, 0, world.TilesWide - 1);
+        int right = Math.Clamp(visibleBounds.Right, 0, world.TilesWide - 1);
+        int width = right - left;
+
+        // Sample up to 7 columns spread across the visible area
+        int sampleCount = Math.Min(7, Math.Max(1, width));
+        int step = Math.Max(1, width / sampleCount);
+
+        // Tally votes per biome
+        var votes = new Dictionary<SurfaceBiome, int>();
+
+        for (int i = 0; i < sampleCount; i++)
+        {
+            int sampleX = left + i * step;
+            var biome = DetectSurfaceBiomeAtColumn(sampleX, visibleBounds);
+            votes.TryGetValue(biome, out int count);
+            votes[biome] = count + 1;
+        }
+
+        // Return biome with the most votes
+        SurfaceBiome best = SurfaceBiome.Forest;
+        int bestCount = 0;
+        foreach (var kv in votes)
+        {
+            if (kv.Value > bestCount)
+            {
+                bestCount = kv.Value;
+                best = kv.Key;
+            }
+        }
+        return best;
+    }
+
+    /// <summary>
+    /// Detects the surface biome at a single column by checking tile types below the surface.
+    /// </summary>
+    private SurfaceBiome DetectSurfaceBiomeAtColumn(int x, Rectangle visibleBounds)
     {
         var world = _wvm.CurrentWorld;
 
@@ -239,10 +284,9 @@ public partial class WorldRenderXna : UserControl
             return SurfaceBiome.Ocean;
         }
 
-        // Sample tiles vertically to detect biome
-        int checkDepth = Math.Min(50, (int)world.GroundLevel - y + 10);
-        int startY = Math.Max(0, y);
-        int endY = Math.Min(world.TilesHigh - 1, y + checkDepth);
+        // Sample tiles vertically from visible top down to ground level
+        int startY = Math.Max(0, visibleBounds.Top);
+        int endY = Math.Min(world.TilesHigh - 1, (int)world.GroundLevel + 10);
 
         for (int checkY = startY; checkY <= endY; checkY++)
         {
@@ -300,13 +344,13 @@ public partial class WorldRenderXna : UserControl
     }
 
     /// <summary>
-    /// Gets the background texture index for a detected biome and X position.
+    /// Gets the full background style for a detected biome and X position.
     /// </summary>
-    private int GetBiomeBackgroundTextureIndex(SurfaceBiome biome, int x)
+    private BackgroundStyle GetBiomeBackgroundStyle(SurfaceBiome biome, int x)
     {
         var world = _wvm.CurrentWorld;
         var bgConfig = WorldConfiguration.BackgroundStyles;
-        if (bgConfig == null) return 0;
+        if (bgConfig == null) return null;
 
         BackgroundStyle style = null;
 
@@ -347,7 +391,7 @@ public partial class WorldRenderXna : UserControl
                 break;
         }
 
-        return style?.GetPreviewTextureIndex() ?? 0;
+        return style;
     }
 
     /// <summary>
@@ -453,6 +497,9 @@ public partial class WorldRenderXna : UserControl
                 else if (frameY == 18)
                     dest.X -= (int)(2 * scale);
                 break;
+            case 733: // Radio Thing - tileTop = 2
+                dest.Y -= (int)(2 * scale);
+                break;
             // Note: Tiles 751 (Sleeping Digtoise) and 752 (Chillet Egg) are handled
             // by custom rendering code in DrawTileTextures and PreviewConfig
         }
@@ -494,6 +541,9 @@ public partial class WorldRenderXna : UserControl
                     position.X += 2 * scale;
                 else if (frameY == 18)
                     position.X -= 2 * scale;
+                break;
+            case 733: // Radio Thing - tileTop = 2
+                position.Y -= 2 * scale;
                 break;
             // Note: Tiles 751 (Sleeping Digtoise) and 752 (Chillet Egg) are handled
             // by custom rendering code in DrawTileTextures and PreviewConfig
@@ -631,9 +681,6 @@ public partial class WorldRenderXna : UserControl
         _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
         _spriteBatch = new SpriteBatch(e.GraphicsDevice);
 
-        // 1x1 opaque black pixel for filter darken overlay (alpha controlled at draw time)
-        _filterDarkenTexture = new Texture2D(e.GraphicsDevice, 1, 1);
-        _filterDarkenTexture.SetData(new[] { Color.Black });
         _textureDictionary = new Textures(_serviceProvider, e.GraphicsDevice);
         _wvm.Textures = _textureDictionary;
 
@@ -1030,14 +1077,14 @@ public partial class WorldRenderXna : UserControl
                 if (totalTextures > 0 && loadedCount < totalTextures)
                 {
                     _wvm.Progress = new ProgressChangedEventArgs(progress,
-                        $"Loading textures: {loadedCount}/{totalTextures}");
+                        string.Format(Properties.Language.status_loading_textures, loadedCount, totalTextures));
                 }
 
                 if (processed == 0 && _texturesFullyLoaded)
                 {
                     _previewProcessingTimer.Stop();
                     ErrorLogging.LogDebug("Preview processing complete - timer stopped");
-                    _wvm.Progress = new ProgressChangedEventArgs(100, "Textures loaded");
+                    _wvm.Progress = new ProgressChangedEventArgs(100, Properties.Language.status_textures_loaded);
                 }
             }
         };
@@ -1301,7 +1348,9 @@ public partial class WorldRenderXna : UserControl
                     var customRect = previewConfig.SourceRect.Value;
                     var xnaRect = new Rectangle(customRect.X, customRect.Y, customRect.Width, customRect.Height);
 
-                    // Bounds check
+                    // Bounds check (clamp to texture dimensions)
+                    if (xnaRect.X < 0) { xnaRect.Width += xnaRect.X; xnaRect.X = 0; }
+                    if (xnaRect.Y < 0) { xnaRect.Height += xnaRect.Y; xnaRect.Y = 0; }
                     if (xnaRect.Right > sourceTexture.Width)
                         xnaRect.Width = sourceTexture.Width - xnaRect.X;
                     if (xnaRect.Bottom > sourceTexture.Height)
@@ -1430,6 +1479,16 @@ public partial class WorldRenderXna : UserControl
 
                                         var tileSourceRect = new Rectangle(sourceX + tileLocalRect.X, sourceY + tileLocalRect.Y, tileLocalRect.Width, tileLocalRect.Height);
 
+                                        // Guard against rectangles outside texture bounds
+                                        if (extraSourceRect.X < 0 || extraSourceRect.Y < 0 ||
+                                            extraSourceRect.Right > extraTex.Width || extraSourceRect.Bottom > extraTex.Height ||
+                                            extraSourceRect.Width <= 0 || extraSourceRect.Height <= 0)
+                                            continue;
+                                        if (tileSourceRect.X < 0 || tileSourceRect.Y < 0 ||
+                                            tileSourceRect.Right > tileTex.Width || tileSourceRect.Bottom > tileTex.Height ||
+                                            tileSourceRect.Width <= 0 || tileSourceRect.Height <= 0)
+                                            continue;
+
                                         var extraPixels = new Color[extraIntersectRect.Width * extraIntersectRect.Height];
                                         extraTex.GetData(0, extraSourceRect, extraPixels, 0, extraPixels.Length);
 
@@ -1461,7 +1520,9 @@ public partial class WorldRenderXna : UserControl
 
                             var source = new Rectangle(sourceX, sourceY, renderX, renderY);
 
-                            // Out of bounds checks
+                            // Out of bounds checks (clamp to texture dimensions)
+                            if (source.X < 0) { source.Width += source.X; source.X = 0; }
+                            if (source.Y < 0) { source.Height += source.Y; source.Y = 0; }
                             if (source.Bottom > tileTex.Height)
                                 source.Height -= (source.Bottom - tileTex.Height);
                             if (source.Right > tileTex.Width)
@@ -1692,24 +1753,51 @@ public partial class WorldRenderXna : UserControl
 
     /// <summary>
     /// Maps biome variant index to tree style for Tree_Tops/Tree_Branches textures.
+    /// Uses world properties (TreeStyle0-3, BgJungle, BgSnow) when available.
     /// </summary>
-    private static int GetTreeStyleForBiomeVariant(int biomeVariantIndex)
+    private int GetTreeStyleForBiomeVariant(int biomeVariantIndex)
     {
-        // Biome variant indices map to tree styles:
-        // 0=Forest(0), 1=Corrupt(1), 2=Jungle(2), 3=Hallow(3), 4=Boreal(4), 5=Crimson(5), 6=UgJungle(13), 7=Mushroom(14)
+        var world = _wvm?.CurrentWorld;
         return biomeVariantIndex switch
         {
-            0 => 0,   // Forest
-            1 => 1,   // Corrupt
-            2 => 2,   // Jungle
-            3 => 3,   // Hallow
-            4 => 4,   // Boreal
-            5 => 5,   // Crimson
-            6 => 13,  // Underground Jungle
-            7 => 14,  // Mushroom
+            0 => world != null ? GetForestTreeStyle(world, 0) : 0,   // Forest
+            1 => 1,                                                    // Corruption (fixed)
+            2 => world?.BgJungle == 1 ? 11 : 2,                       // Jungle (BgJungle-dependent)
+            3 => 3,                                                    // Hallow (fixed)
+            4 => world != null ? GetSnowTreeTopIndex(world.BgSnow) : 4, // Snow (BgSnow-dependent)
+            5 => 5,                                                    // Crimson (fixed)
+            6 => 13,                                                   // Underground Jungle (fixed)
+            7 => 14,                                                   // Mushroom (fixed)
             _ => 0
         };
     }
+
+    /// <summary>
+    /// Map forest TreeStyle value (0-5) to Tree_Tops texture index.
+    /// </summary>
+    private static int GetForestTreeStyle(World world, int zone)
+    {
+        int style = zone switch
+        {
+            0 => world.TreeStyle0,
+            1 => world.TreeStyle1,
+            2 => world.TreeStyle2,
+            _ => world.TreeStyle3
+        };
+        if (style == 0) return 0;
+        return style == 5 ? 10 : 5 + style;
+    }
+
+    /// <summary>
+    /// Map BgSnow value to the primary snow tree top index for previews.
+    /// </summary>
+    private static int GetSnowTreeTopIndex(int bgSnow) => bgSnow switch
+    {
+        0 => 12,
+        2 or 3 or 4 => 16,
+        32 or 42 => 16,
+        _ => 4
+    };
 
     /// <summary>
     /// Gets standard source rectangle for multi-tile sprites with UV offset.
@@ -1746,7 +1834,9 @@ public partial class WorldRenderXna : UserControl
 
                 var source = new Rectangle(sourceX, sourceY, renderX, renderY);
 
-                // Out of bounds checks
+                // Out of bounds checks (clamp to texture dimensions)
+                if (source.X < 0) { source.Width += source.X; source.X = 0; }
+                if (source.Y < 0) { source.Height += source.Y; source.Y = 0; }
                 if (source.Bottom > sourceTexture.Height)
                     source.Height -= (source.Bottom - sourceTexture.Height);
                 if (source.Right > sourceTexture.Width)
@@ -1962,8 +2052,8 @@ public partial class WorldRenderXna : UserControl
             }
         }
 
-        // Backgrounds (0-200)
-        for (int i = 0; i <= 200; i++)
+        // Backgrounds (0-350, Terraria 1.4.5.x uses up to ~343)
+        for (int i = 0; i <= 350; i++)
         {
             var bgTex = _textureDictionary.GetBackground(i);
             if (bgTex != null && bgTex != _textureDictionary.DefaultTexture)
@@ -2315,7 +2405,7 @@ public partial class WorldRenderXna : UserControl
         {
             var bgConfig = WorldConfiguration.BackgroundStyles;
 
-            // Tree Style previews - uses GetTreeTops with first texture from array
+            // Tree Style previews - crop frame 0 from Tree_Tops sprite sheets
             _wvm.TreeStylePreviews.Clear();
             if (bgConfig?.TreeStyles != null)
             {
@@ -2324,32 +2414,16 @@ public partial class WorldRenderXna : UserControl
                     int texIndex = bg.GetPreviewTextureIndex();
                     if (texIndex < 0) continue;
 
-                    var tex = (Texture2D)_textureDictionary.GetTreeTops(texIndex);
-                    if (tex != null && tex != _textureDictionary.DefaultTexture)
+                    var preview = CreateTreeTopFramePreview(texIndex, 128);
+                    if (preview != null)
                     {
                         _wvm.TreeStylePreviews.Add(new StylePreviewItem
                         {
                             Value = bg.Id,
                             DisplayName = bg.Name,
-                            Preview = CreateScaledPreview(tex, 128)
+                            Preview = preview
                         });
                     }
-                }
-            }
-
-            // Tree Top previews (direct texture index 0-21, not in JSON)
-            _wvm.TreeTopPreviews.Clear();
-            for (int i = 0; i <= 21; i++)
-            {
-                var tex = (Texture2D)_textureDictionary.GetTreeTops(i);
-                if (tex != null && tex != _textureDictionary.DefaultTexture)
-                {
-                    _wvm.TreeTopPreviews.Add(new StylePreviewItem
-                    {
-                        Value = i,
-                        DisplayName = $"{i}",
-                        Preview = CreateScaledPreview(tex, 128)
-                    });
                 }
             }
 
@@ -2357,14 +2431,14 @@ public partial class WorldRenderXna : UserControl
             if (bgConfig != null)
             {
                 PopulateBackgroundPreviews(_wvm.ForestBgPreviews, bgConfig.ForestBackgrounds);
-                PopulateBackgroundPreviews(_wvm.SnowBgPreviews, bgConfig.SnowBackgrounds);
-                PopulateBackgroundPreviews(_wvm.JungleBgPreviews, bgConfig.JungleBackgrounds);
-                PopulateBackgroundPreviews(_wvm.CorruptionBgPreviews, bgConfig.CorruptionBackgrounds);
-                PopulateBackgroundPreviews(_wvm.CrimsonBgPreviews, bgConfig.CrimsonBackgrounds);
-                PopulateBackgroundPreviews(_wvm.HallowBgPreviews, bgConfig.HallowBackgrounds);
+                PopulateBiomeBackgroundPreviews(_wvm.SnowBgPreviews, bgConfig.SnowBackgrounds, id => GetSnowTreeTopIndex(id));
+                PopulateBiomeBackgroundPreviews(_wvm.JungleBgPreviews, bgConfig.JungleBackgrounds, id => id == 1 ? 11 : 2);
+                PopulateBiomeBackgroundPreviews(_wvm.CorruptionBgPreviews, bgConfig.CorruptionBackgrounds, _ => 1);
+                PopulateBiomeBackgroundPreviews(_wvm.CrimsonBgPreviews, bgConfig.CrimsonBackgrounds, _ => 5);
+                PopulateBiomeBackgroundPreviews(_wvm.HallowBgPreviews, bgConfig.HallowBackgrounds, _ => 3);
                 PopulateBackgroundPreviews(_wvm.DesertBgPreviews, bgConfig.DesertBackgrounds);
                 PopulateBackgroundPreviews(_wvm.OceanBgPreviews, bgConfig.OceanBackgrounds);
-                PopulateBackgroundPreviews(_wvm.MushroomBgPreviews, bgConfig.MushroomBackgrounds);
+                PopulateBiomeBackgroundPreviews(_wvm.MushroomBgPreviews, bgConfig.MushroomBackgrounds, _ => 14);
                 PopulateBackgroundPreviews(_wvm.CaveStylePreviews, bgConfig.CaveBackgrounds);
                 PopulateBackgroundPreviews(_wvm.IceBackStylePreviews, bgConfig.IceBackgrounds);
                 PopulateBackgroundPreviews(_wvm.JungleBackStylePreviews, bgConfig.JungleUndergroundBackgrounds);
@@ -2384,6 +2458,7 @@ public partial class WorldRenderXna : UserControl
 
     /// <summary>
     /// Populate a preview collection from BackgroundStyle data using GetBackground textures.
+    /// Composites all layers (Textures + SecondaryTextures) into a single preview.
     /// </summary>
     private void PopulateBackgroundPreviews(
         System.Collections.ObjectModel.ObservableCollection<StylePreviewItem> collection,
@@ -2394,17 +2469,14 @@ public partial class WorldRenderXna : UserControl
 
         foreach (var bg in backgrounds)
         {
-            int texIndex = bg.GetPreviewTextureIndex();
-            if (texIndex < 0) continue;
-
-            var tex = _textureDictionary.GetBackground(texIndex);
-            if (tex != null && tex != _textureDictionary.DefaultTexture)
+            var preview = CreateCompositeBackgroundPreview(bg, 128);
+            if (preview != null)
             {
                 collection.Add(new StylePreviewItem
                 {
                     Value = bg.Id,
                     DisplayName = bg.Name,
-                    Preview = CreateScaledPreview(tex, 128)
+                    Preview = preview
                 });
             }
         }
@@ -2431,32 +2503,231 @@ public partial class WorldRenderXna : UserControl
                 {
                     Value = bg.Id,
                     DisplayName = bg.Name,
-                    Preview = CreateScaledPreview(tex, 128)
+                    Preview = CreateScaledPreview(texIndex, tex, 128)
                 });
             }
         }
     }
 
     /// <summary>
-    /// Create a scaled preview bitmap from an XNA texture.
+    /// Populate biome background previews with tree top previews alongside the background.
+    /// </summary>
+    private void PopulateBiomeBackgroundPreviews(
+        System.Collections.ObjectModel.ObservableCollection<StylePreviewItem> collection,
+        IEnumerable<BackgroundStyle> backgrounds,
+        Func<int, int> bgIdToTreeTopIndex)
+    {
+        collection.Clear();
+        if (backgrounds == null) return;
+
+        foreach (var bg in backgrounds)
+        {
+            var preview = CreateCompositeBackgroundPreview(bg, 128);
+            if (preview != null)
+            {
+                int treeTopIdx = bgIdToTreeTopIndex(bg.Id);
+                collection.Add(new StylePreviewItem
+                {
+                    Value = bg.Id,
+                    DisplayName = bg.Name,
+                    Preview = preview,
+                    TreeTopPreview = treeTopIdx >= 0 ? CreateTreeTopFramePreview(treeTopIdx) : null
+                });
+            }
+        }
+    }
+
+    /// <summary>
+    /// Crop frame 0 from a Tree_Tops sprite sheet and scale to preview size.
+    /// Tree_Tops textures are sprite sheets with 3 frame variants side-by-side.
+    /// </summary>
+    private WriteableBitmap CreateTreeTopFramePreview(int treeTopIndex, int maxDim = 64)
+    {
+        var tex = (Texture2D)_textureDictionary.GetTreeTops(treeTopIndex);
+        if (tex == null || tex == _textureDictionary.DefaultTexture) return null;
+
+        // Frame 0 dimensions depend on tree style
+        int fw = 80, fh = 80;
+        switch (treeTopIndex)
+        {
+            case 2: case 11: case 13: fw = 114; fh = 96; break;
+            case 3: fh = 140; break;
+            case 22: case 23: case 24: case 25: case 26: case 27: case 28:
+            case 31: fw = 116; fh = 96; break;
+            case 29: case 30: fw = 118; fh = 96; break;
+        }
+
+        var bitmap = tex.Texture2DToWriteableBitmap();
+        int cropW = Math.Min(fw, bitmap.PixelWidth);
+        int cropH = Math.Min(fh, bitmap.PixelHeight);
+
+        // Crop frame 0 using CroppedBitmap, then copy into a new WriteableBitmap
+        var cropped = new CroppedBitmap(bitmap, new Int32Rect(0, 0, cropW, cropH));
+        var croppedWb = new WriteableBitmap(cropped);
+
+        double scale = Math.Min((double)maxDim / cropW, (double)maxDim / cropH);
+        if (scale >= 1.0) return croppedWb;
+
+        int newWidth = Math.Max(1, (int)(cropW * scale));
+        int newHeight = Math.Max(1, (int)(cropH * scale));
+        return croppedWb.Resize(newWidth, newHeight, WriteableBitmapExtensions.Interpolation.NearestNeighbor);
+    }
+
+    /// <summary>
+    /// Creates a composite preview by layering all background textures (far → near)
+    /// with alpha blending, matching the parallax render order.
+    /// </summary>
+    private WriteableBitmap CreateCompositeBackgroundPreview(BackgroundStyle style, int maxDimension)
+    {
+        // Collect layers in draw order (back to front), same as DrawSurfaceBackground
+        var layerIndices = new List<int>();
+        if (style.Textures is { Length: > 0 } && style.Textures[0] >= 0)
+            layerIndices.Add(style.Textures[0]);
+        if (style.SecondaryTextures is { Length: > 0 } && style.SecondaryTextures[0] >= 0)
+            layerIndices.Add(style.SecondaryTextures[0]);
+        if (style.SecondaryTextures is { Length: > 1 } && style.SecondaryTextures[1] >= 0)
+            layerIndices.Add(style.SecondaryTextures[1]);
+        if (style.Textures is { Length: > 1 } && style.Textures[1] >= 0)
+            layerIndices.Add(style.Textures[1]);
+        if (style.Textures is { Length: > 2 } && style.Textures[2] >= 0)
+            layerIndices.Add(style.Textures[2]);
+
+        if (layerIndices.Count == 0) return null;
+
+        // Single layer: fast path
+        if (layerIndices.Count == 1)
+        {
+            var tex = _textureDictionary.GetBackground(layerIndices[0]);
+            if (tex == null || tex == _textureDictionary.DefaultTexture) return null;
+            return CreateScaledPreview(layerIndices[0], tex, maxDimension);
+        }
+
+        // Use first layer to determine composite dimensions
+        var baseTex = _textureDictionary.GetBackground(layerIndices[0]);
+        if (baseTex == null || baseTex == _textureDictionary.DefaultTexture) return null;
+
+        var baseRect = GetBackgroundSourceRect(layerIndices[0], baseTex);
+        int compW = baseRect.Width;
+        int compH = baseRect.Height;
+        if (compW <= 0 || compH <= 0) return null;
+
+        // Create BGRA32 composite buffer
+        var composite = new byte[compW * compH * 4];
+
+        foreach (int texIdx in layerIndices)
+        {
+            var tex = _textureDictionary.GetBackground(texIdx);
+            if (tex == null || tex == _textureDictionary.DefaultTexture) continue;
+
+            var srcRect = GetBackgroundSourceRect(texIdx, tex);
+            var bitmap = tex.Texture2DToWriteableBitmap();
+
+            // Scale layer to composite width, preserve aspect ratio, bottom-anchor
+            int layerDrawH = (int)((float)srcRect.Height / srcRect.Width * compW);
+            int yOffset = compH - layerDrawH; // bottom-anchored
+
+            // Read source pixels (only the first frame region)
+            int srcPixelW = Math.Min(srcRect.Width, bitmap.PixelWidth - srcRect.X);
+            int srcPixelH = Math.Min(srcRect.Height, bitmap.PixelHeight - srcRect.Y);
+            if (srcPixelW <= 0 || srcPixelH <= 0) continue;
+            var srcPixels = new byte[srcPixelW * srcPixelH * 4];
+            bitmap.CopyPixels(new Int32Rect(srcRect.X, srcRect.Y, srcPixelW, srcPixelH), srcPixels, srcPixelW * 4, 0);
+
+            // Blit with alpha compositing (source over destination)
+            for (int dy = Math.Max(0, yOffset); dy < compH; dy++)
+            {
+                // Map destination Y to source Y
+                float srcYf = (float)(dy - yOffset) / layerDrawH * srcPixelH;
+                int srcY = Math.Min((int)srcYf, srcPixelH - 1);
+
+                for (int dx = 0; dx < compW; dx++)
+                {
+                    float srcXf = (float)dx / compW * srcPixelW;
+                    int srcX = Math.Min((int)srcXf, srcPixelW - 1);
+
+                    int si = (srcY * srcPixelW + srcX) * 4;
+                    int di = (dy * compW + dx) * 4;
+
+                    byte sB = srcPixels[si];
+                    byte sG = srcPixels[si + 1];
+                    byte sR = srcPixels[si + 2];
+                    byte sA = srcPixels[si + 3];
+
+                    if (sA == 0) continue;
+                    if (sA == 255)
+                    {
+                        composite[di] = sB;
+                        composite[di + 1] = sG;
+                        composite[di + 2] = sR;
+                        composite[di + 3] = 255;
+                        continue;
+                    }
+
+                    // Standard alpha compositing: src over dst
+                    byte dB = composite[di];
+                    byte dG = composite[di + 1];
+                    byte dR = composite[di + 2];
+                    byte dA = composite[di + 3];
+
+                    int outA = sA + dA * (255 - sA) / 255;
+                    if (outA > 0)
+                    {
+                        composite[di] = (byte)((sB * sA + dB * dA * (255 - sA) / 255) / outA);
+                        composite[di + 1] = (byte)((sG * sA + dG * dA * (255 - sA) / 255) / outA);
+                        composite[di + 2] = (byte)((sR * sA + dR * dA * (255 - sA) / 255) / outA);
+                        composite[di + 3] = (byte)outA;
+                    }
+                }
+            }
+        }
+
+        // Create WriteableBitmap from composite
+        var result = new WriteableBitmap(compW, compH, 96, 96, WpfPixelFormats.Bgra32, null);
+        result.WritePixels(new Int32Rect(0, 0, compW, compH), composite, compW * 4, 0);
+
+        // Scale to preview size
+        double scale = Math.Min((double)maxDimension / compW, (double)maxDimension / compH);
+        if (scale >= 1.0) return result;
+
+        int newW = Math.Max(1, (int)(compW * scale));
+        int newH = Math.Max(1, (int)(compH * scale));
+        return result.Resize(newW, newH, WriteableBitmapExtensions.Interpolation.NearestNeighbor);
+    }
+
+    /// <summary>
+    /// Create a scaled preview bitmap from an XNA background texture.
+    /// Uses sprite sheet metadata to crop to the first frame if applicable.
     /// Preserves aspect ratio, scaling to fit within maxDimension.
     /// </summary>
-    private WriteableBitmap CreateScaledPreview(Texture2D texture, int maxDimension)
+    private WriteableBitmap CreateScaledPreview(int texIndex, Texture2D texture, int maxDimension)
     {
         if (texture == null || texture == _textureDictionary.DefaultTexture)
             return null;
 
+        var srcRect = GetBackgroundSourceRect(texIndex, texture);
         var bitmap = texture.Texture2DToWriteableBitmap();
+
+        // Crop to first frame if texture is a sprite sheet or if srcRect is smaller
+        if (srcRect.Width < bitmap.PixelWidth || srcRect.Height < bitmap.PixelHeight)
+        {
+            int cropW = Math.Min(srcRect.Width, bitmap.PixelWidth - srcRect.X);
+            int cropH = Math.Min(srcRect.Height, bitmap.PixelHeight - srcRect.Y);
+            if (cropW <= 0 || cropH <= 0) return null;
+            bitmap = new WriteableBitmap(new CroppedBitmap(bitmap, new Int32Rect(srcRect.X, srcRect.Y, cropW, cropH)));
+        }
+
+        int previewW = bitmap.PixelWidth;
+        int previewH = bitmap.PixelHeight;
 
         // Calculate scale to fit within maxDimension while preserving aspect ratio
         double scale = Math.Min(
-            (double)maxDimension / bitmap.PixelWidth,
-            (double)maxDimension / bitmap.PixelHeight);
+            (double)maxDimension / previewW,
+            (double)maxDimension / previewH);
 
         if (scale >= 1.0) return bitmap; // No scaling needed if already smaller
 
-        int newWidth = Math.Max(1, (int)(bitmap.PixelWidth * scale));
-        int newHeight = Math.Max(1, (int)(bitmap.PixelHeight * scale));
+        int newWidth = Math.Max(1, (int)(previewW * scale));
+        int newHeight = Math.Max(1, (int)(previewH * scale));
 
         return bitmap.Resize(newWidth, newHeight, WriteableBitmapExtensions.Interpolation.NearestNeighbor);
     }
@@ -2545,13 +2816,6 @@ public partial class WorldRenderXna : UserControl
 
     #region Render
 
-    BlendState _negativePaint = new BlendState
-    {
-        ColorSourceBlend = Blend.Zero,
-        //AlphaSourceBlend = Blend.Zero,
-        ColorDestinationBlend = Blend.InverseSourceColor,
-        //AlphaDestinationBlend = Blend.One
-    };
 
     private World? _lastRenderedWorld = null;
     private void Render(GraphicsDeviceEventArgs e)
@@ -2591,6 +2855,22 @@ public partial class WorldRenderXna : UserControl
         //e.GraphicsDevice.Clear(TileColor.Black);
         e.GraphicsDevice.Textures[0] = null;
 
+        // Compute clear color based on filter background mode
+        bool anyFilterActive = FilterManager.AnyFilterActive || FilterManager.FindOverlayActive;
+        Color clearColor = _backgroundColor;
+        if (anyFilterActive)
+        {
+            switch (FilterManager.CurrentBackgroundMode)
+            {
+                case FilterManager.BackgroundMode.Transparent:
+                    clearColor = Color.Transparent;
+                    break;
+                case FilterManager.BackgroundMode.Custom:
+                    clearColor = FilterManager.BackgroundModeCustomColor;
+                    break;
+            }
+        }
+
         // Buff radii pass 1: render to offscreen target with Max blending so overlapping
         // zones merge instead of accumulating. Must happen before any other drawing
         // because switching render targets discards the active target's contents.
@@ -2618,11 +2898,11 @@ public partial class WorldRenderXna : UserControl
             gd.SetRenderTarget(previousTarget);
 
             // Re-clear the backbuffer — switching render targets discards its contents
-            gd.Clear(_backgroundColor);
+            gd.Clear(clearColor);
         }
 
         // Check if filter overlay needs full rebuild
-        bool filterDarkenActive = FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken;
+        bool filterDarkenActive = (FilterManager.AnyFilterActive && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Darken) || FilterManager.FindOverlayActive;
         int currentFilterRevision = FilterManager.Revision;
         if (currentFilterRevision != _lastFilterRevision)
         {
@@ -2633,7 +2913,22 @@ public partial class WorldRenderXna : UserControl
         GenPixelTiles(e);
         GenFilterOverlayTiles(e);
 
-        // Start SpriteBatch
+        // When darken filter is active, render world to an offscreen target
+        // so the DarkenEffect shader can read world pixels for desaturation
+        if (filterDarkenActive)
+        {
+            var gd = e.GraphicsDevice;
+            var vp = gd.Viewport;
+            if (_worldRT == null || _worldRT.Width != vp.Width || _worldRT.Height != vp.Height)
+            {
+                _worldRT?.Dispose();
+                _worldRT = new RenderTarget2D(gd, vp.Width, vp.Height, false, SurfaceFormat.Color, DepthFormat.None);
+            }
+            gd.SetRenderTarget(_worldRT);
+            gd.Clear(clearColor);
+        }
+
+        // Start SpriteBatch (Immediate mode — draw order is final order)
         _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
         // Draw layers based on whether textures are visible
@@ -2641,16 +2936,14 @@ public partial class WorldRenderXna : UserControl
         {
             // Gradient background always shows when textures are visible (panning depth zones)
             DrawBackgroundGradient();
+
+            // Tile-level backgrounds (includes surface background)
+            DrawTileBackgrounds();
         }
         else
         {
-            // When textures not visible: draw pixel tiles (includes gradient colors)
+            // When textures not visible: draw pixel tiles only (no background)
             DrawPixelTiles();
-        }
-
-        if (_wvm.ShowTextures && _textureDictionary.Valid)
-        {
-            DrawTileBackgrounds();
         }
 
         _spriteBatch.End();
@@ -2664,7 +2957,7 @@ public partial class WorldRenderXna : UserControl
                 DrawTileWalls();
                 _spriteBatch.End();
 
-                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, _textureDictionary?.InvertEffect);
                 DrawTileWalls(true);
                 _spriteBatch.End();
             }
@@ -2675,7 +2968,7 @@ public partial class WorldRenderXna : UserControl
                 DrawTileTextures();
                 _spriteBatch.End();
 
-                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, _textureDictionary?.InvertEffect);
                 DrawTileTextures(true);
                 _spriteBatch.End();
 
@@ -2724,12 +3017,46 @@ public partial class WorldRenderXna : UserControl
             _spriteBatch.End();
         }
 
-        // Filter overlay: darken non-selected tiles (after all world rendering, before UI overlays)
-        if (filterDarkenActive)
+        // Filter overlay: darken + desaturate non-selected tiles via shader
+        if (filterDarkenActive && _worldRT != null)
         {
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            DrawFilterOverlayTiles();
+            var gd = e.GraphicsDevice;
+            var vp = gd.Viewport;
+
+            // Switch back to backbuffer (RT switch discards backbuffer contents)
+            gd.SetRenderTarget(null);
+            gd.Clear(clearColor);
+
+            // Blit world RT to backbuffer (covers AllClear regions that need no darkening)
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            _spriteBatch.Draw(_worldRT, Vector2.Zero, Color.White);
             _spriteBatch.End();
+
+            // Draw overlay mask chunks with DarkenEffect (overwrites darkened regions)
+            var darkenEffect = _textureDictionary?.DarkenEffect;
+            if (darkenEffect != null)
+            {
+                // SpriteBatch doesn't auto-set MatrixTransform on custom effects — compute the
+                // same orthographic projection it uses internally for pixel-to-clip-space mapping
+                Matrix projection;
+                Matrix.CreateOrthographicOffCenter(0, vp.Width, vp.Height, 0, 0, -1, out projection);
+                darkenEffect.Parameters["MatrixTransform"].SetValue(projection);
+
+                darkenEffect.Parameters["WorldTexture"].SetValue(_worldRT);
+                darkenEffect.Parameters["ViewportSize"].SetValue(new Vector2(vp.Width, vp.Height));
+                darkenEffect.Parameters["DarkenAmount"].SetValue(FilterManager.DarkenAmount);
+                darkenEffect.Parameters["DesaturateAmount"].SetValue(FilterManager.DesaturateAmount);
+
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone, darkenEffect);
+                DrawFilterOverlayTiles();
+                _spriteBatch.End();
+            }
+        }
+        else if (_worldRT != null)
+        {
+            // Filter deactivated — free the render target
+            _worldRT.Dispose();
+            _worldRT = null;
         }
 
         _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
@@ -2744,6 +3071,9 @@ public partial class WorldRenderXna : UserControl
 
         if (_wvm.ShowPoints)
             DrawPoints();
+
+        // Find crosshair always draws when active (independent of ShowPoints)
+        DrawFindCrosshair();
 
         if (_wvm.Selection.IsActive)
             DrawSelection();
@@ -2827,11 +3157,10 @@ public partial class WorldRenderXna : UserControl
                         if (te.Items == null || te.Items.Count == 0) break;
 
                         Rectangle dest;
-                        // Origin tile U determines frame variant
-                        // Frames: 0=MannA, 36=WomannA, 72=MannB, 108=WomannB, 144=MannC, 180=WomannC, 216=MannD, 252=WomannD
-                        int frameIndex = curtile.U / 36;
-                        bool isWomannequin = frameIndex % 2 != 0;
-                        SpriteEffects dollEffect = isWomannequin ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+                        // Origin tile U: 0=male-left, 36=male-right, 72=female-left, 108=female-right
+                        bool isWomannequin = curtile.U / 72 == 1;
+                        bool facingRight = curtile.U % 72 == 36;
+                        SpriteEffects dollEffect = facingRight ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
                         // Draw body skin under armor
                         int skinVariant = isWomannequin ? 11 : 10;
@@ -2903,29 +3232,33 @@ public partial class WorldRenderXna : UserControl
                             }
                         }
 
-                        // Render legs (Items[2])
-                        var legsItem = te.Items.Count > 2 ? te.Items[2] : null;
-                        if (legsItem != null && legsItem.Id > 0 && legsItem.StackSize > 0)
+                        // Render legs (Items[2]) — skip when sitting (legs hidden behind seat)
+                        bool isSittingPose = (DisplayDollPoseID)te.Pose == DisplayDollPoseID.Sitting;
+                        if (!isSittingPose)
                         {
-                            WorldConfiguration.ItemLookupTable.TryGetValue(legsItem.Id, out var legsProps);
-                            int? legsSlot = legsProps?.Legs;
-                            if (legsSlot != null)
+                            var legsItem = te.Items.Count > 2 ? te.Items[2] : null;
+                            if (legsItem != null && legsItem.Id > 0 && legsItem.StackSize > 0)
                             {
-                                tileTex = (Texture2D)_textureDictionary.GetArmorLegs(legsSlot.Value);
-                                if (tileTex != null && tileTex != _textureDictionary.DefaultTexture)
+                                WorldConfiguration.ItemLookupTable.TryGetValue(legsItem.Id, out var legsProps);
+                                int? legsSlot = legsProps?.Legs;
+                                if (legsSlot != null)
                                 {
-                                    source = new Rectangle(2, legFrameY + 42, 36, 12);
-                                    if (source.Bottom <= tileTex.Height)
+                                    tileTex = (Texture2D)_textureDictionary.GetArmorLegs(legsSlot.Value);
+                                    if (tileTex != null && tileTex != _textureDictionary.DefaultTexture)
                                     {
-                                        dest = new Rectangle(
-                                            1 + (int)((_scrollPosition.X + x) * _zoom),
-                                            1 + (int)((_scrollPosition.Y + y + 2) * _zoom),
-                                            (int)_zoom, (int)_zoom);
-                                        dest.Width = (int)(_zoom * source.Width / 16f);
-                                        dest.Height = (int)(_zoom * source.Height / 16f);
-                                        dest.Y -= (int)(2 * _zoom / 16 - poseYOff);
-                                        dest.X -= (int)(2 * _zoom / 16);
-                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                        source = new Rectangle(2, legFrameY + 42, 36, 12);
+                                        if (source.Bottom <= tileTex.Height)
+                                        {
+                                            dest = new Rectangle(
+                                                1 + (int)((_scrollPosition.X + x) * _zoom),
+                                                1 + (int)((_scrollPosition.Y + y + 2) * _zoom),
+                                                (int)_zoom, (int)_zoom);
+                                            dest.Width = (int)(_zoom * source.Width / 16f);
+                                            dest.Height = (int)(_zoom * source.Height / 16f);
+                                            dest.Y -= (int)(2 * _zoom / 16 - poseYOff);
+                                            dest.X -= (int)(2 * _zoom / 16);
+                                            _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, dollEffect, LayerTileTrack);
+                                        }
                                     }
                                 }
                             }
@@ -2940,7 +3273,7 @@ public partial class WorldRenderXna : UserControl
                         //     DrawDollAccessory(x, y, accProps, dollEffect);
                         // }
 
-                        // Render weapon from Misc[0] if present (item icon is correct for weapons)
+                        // Render weapon from Misc[0] if present
                         if (te.Misc != null && te.Misc.Count > 0)
                         {
                             var weapon = te.Misc[0];
@@ -2956,14 +3289,26 @@ public partial class WorldRenderXna : UserControl
                                     if (maxDim > 32)
                                         weaponScale *= 32f / maxDim;
 
+                                    // Position weapon on the front-hand side of the doll
+                                    // Doll center is at x+1 (2-tile wide entity)
+                                    float weaponX = facingRight ? (x + 1.5f) : (x + 0.5f);
+                                    float weaponY = y + 1.5f;
+
+                                    // Adjust Y for pose: sitting shifts down, Use poses shift up
+                                    var poseId = (DisplayDollPoseID)te.Pose;
+                                    if (poseId == DisplayDollPoseID.Sitting)
+                                        weaponY += 14f / 16f;
+                                    else if (poseId >= DisplayDollPoseID.Use1 && poseId <= DisplayDollPoseID.Use5)
+                                        weaponY -= 0.25f; // weapon raised slightly during use animations
+
                                     Vector2 weaponPos = new Vector2(
-                                        1 + (int)((_scrollPosition.X + x + 2f) * _zoom),
-                                        1 + (int)((_scrollPosition.Y + y + 1.5f) * _zoom));
+                                        1 + (int)((_scrollPosition.X + weaponX) * _zoom),
+                                        1 + (int)((_scrollPosition.Y + weaponY) * _zoom));
 
                                     source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
                                     _spriteBatch.Draw(tileTex, weaponPos, source, Color.White, 0f,
                                         new Vector2(tileTex.Width / 2f, tileTex.Height / 2f),
-                                        weaponScale * _zoom / 16f, SpriteEffects.None, LayerTileTrack);
+                                        weaponScale * _zoom / 16f, dollEffect, LayerTileTrack);
                                 }
                             }
                         }
@@ -3202,33 +3547,6 @@ public partial class WorldRenderXna : UserControl
     private const int DollFrameWidth = 40;
     private const int DollFrameHeight = 56;
 
-    // Default Terraria player colors for display doll body tinting (from PlayerAppearance defaults)
-    private static readonly Color DollSkinColor = new Color(255, 125, 90);
-    private static readonly Color DollEyeColor = new Color(105, 90, 75);
-    private static readonly Color DollHairColor = new Color(151, 100, 69);
-    private static readonly Color DollShirtColor = new Color(175, 165, 140);
-    private static readonly Color DollUnderShirtColor = new Color(160, 180, 215);
-    private static readonly Color DollPantsColor = new Color(255, 230, 175);
-    private static readonly Color DollShoeColor = new Color(160, 105, 60);
-
-    /// <summary>
-    /// Gets the tint color for a display doll body part index.
-    /// </summary>
-    private static Color GetDollPartColor(int partIndex)
-    {
-        return partIndex switch
-        {
-            0 or 3 or 5 or 7 or 9 or 10 or 15 => DollSkinColor,  // skin parts
-            1 => Color.White,                                       // eye whites
-            2 => DollEyeColor,                                     // eye irises
-            4 or 8 => DollUnderShirtColor,                         // undershirt
-            6 or 13 or 14 => DollShirtColor,                       // shirt/sleeves/coat
-            11 => DollPantsColor,                                   // pants
-            12 => DollShoeColor,                                    // shoes
-            _ => Color.White,
-        };
-    }
-
     /// <summary>
     /// Gets body and leg frame Y offsets for a display doll pose.
     /// </summary>
@@ -3237,7 +3555,7 @@ public partial class WorldRenderXna : UserControl
         return (DisplayDollPoseID)pose switch
         {
             DisplayDollPoseID.Standing => (0, 0, 0),
-            DisplayDollPoseID.Sitting  => (0, 0, 14),
+            DisplayDollPoseID.Sitting  => (0, 0, 10),
             DisplayDollPoseID.Jumping  => (5 * DollFrameHeight, 5 * DollFrameHeight, 0),
             DisplayDollPoseID.Walking  => (9 * DollFrameHeight, 9 * DollFrameHeight, 0),
             _                          => (0, 0, 0), // Use1-5 fall back to standing
@@ -3245,57 +3563,44 @@ public partial class WorldRenderXna : UserControl
     }
 
     /// <summary>
-    /// Draws a complete body for a display doll (mannequin/womannequin) behind armor.
+    /// Draws the wooden body for a display doll (mannequin/womannequin) behind armor.
+    /// Only draws the 6 parts that have mannequin-specific textures (Player_10/11_*).
+    /// Parts 1,2,4,6,8,11,12,13,14,15 are aliased to the eyes texture in-game and
+    /// would fall back to Player_0_* (human skin) in TEdit, so they are skipped.
     /// </summary>
     private void DrawDollBody(int tileX, int tileY, int skinVariant, bool isFemale, byte pose, SpriteEffects effect)
     {
         var (bodyFrameY, legFrameY, yPixelOffset) = GetDollPoseFrames(pose);
+        bool isSitting = (DisplayDollPoseID)pose == DisplayDollPoseID.Sitting;
         int femaleRowOffset = isFemale ? 2 : 0;
 
-        // Composite frame positions (standing pose)
+        // Composite frame positions for torso/hands
         int torsoFrameX = 0;
         int torsoFrameY = (0 + femaleRowOffset) * DollFrameHeight;
-        int shoulderFrameX = 1 * DollFrameWidth;
-        int shoulderFrameY = (1 + femaleRowOffset) * DollFrameHeight;
 
         int step = 0;
 
-        // Draw order follows PlayerPreviewRenderer (back to front)
-        // Back arm
+        // Draw order: back to front. Only mannequin-unique parts (0,3,5,7,9,10).
+        // Back arm skin (part 7)
         DrawDollBodyPart(tileX, tileY, skinVariant, 7, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 8, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 13, bodyFrameY, yPixelOffset, effect, step++);
 
-        // Legs
-        DrawDollBodyPart(tileX, tileY, skinVariant, 10, legFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 12, legFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 11, legFrameY, yPixelOffset, effect, step++);
+        // Leg skin (part 10) — skip when sitting (legs hidden behind seat in-game)
+        if (!isSitting)
+            DrawDollBodyPart(tileX, tileY, skinVariant, 10, legFrameY, yPixelOffset, effect, step++);
 
-        // Long coat (safe to draw unconditionally; DefaultTexture is skipped)
-        DrawDollBodyPart(tileX, tileY, skinVariant, 14, bodyFrameY, yPixelOffset, effect, step++);
-
-        // Torso skin (composite frame)
+        // Torso skin (part 3, composite frame)
         DrawDollBodyPart(tileX, tileY, skinVariant, 3, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
 
-        // Undershirt + Shirt (shoulder then torso, per Terraria's DrawPlayer_17_TorsoComposite)
-        DrawDollBodyPart(tileX, tileY, skinVariant, 4, shoulderFrameX, shoulderFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 6, shoulderFrameX, shoulderFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 4, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 6, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
-
-        // Hands (composite torso frame)
+        // Hands (part 5, composite frame)
         DrawDollBodyPart(tileX, tileY, skinVariant, 5, torsoFrameX, torsoFrameY, yPixelOffset, effect, step++);
 
-        // Head and face
+        // Head (part 0 — includes carved eye/face details)
         DrawDollBodyPart(tileX, tileY, skinVariant, 0, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 1, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 2, bodyFrameY, yPixelOffset, effect, step++);
-        DrawDollBodyPart(tileX, tileY, skinVariant, 15, bodyFrameY, yPixelOffset, effect, step++);
 
         // Hair (style 15 = Terraria default for display dolls)
         DrawDollHair(tileX, tileY, 15, bodyFrameY, yPixelOffset, effect, step++);
 
-        // Front arm
+        // Front arm skin (part 9)
         DrawDollBodyPart(tileX, tileY, skinVariant, 9, bodyFrameY, yPixelOffset, effect, step++);
     }
 
@@ -3316,9 +3621,8 @@ public partial class WorldRenderXna : UserControl
         var source = new Rectangle(frameX, frameY, srcW, srcH);
         var dest = GetDollBodyDest(tileX, tileY, srcW, srcH, yPixelOffset);
         float depth = LayerDollBody - drawOrder * 0.00001f;
-        var tint = GetDollPartColor(partIndex);
 
-        _spriteBatch.Draw(texture, dest, source, tint, 0f, default, effect, depth);
+        _spriteBatch.Draw(texture, dest, source, Color.White, 0f, default, effect, depth);
     }
 
     /// <summary>
@@ -3336,9 +3640,8 @@ public partial class WorldRenderXna : UserControl
         var source = new Rectangle(frameX, frameY, srcW, srcH);
         var dest = GetDollBodyDest(tileX, tileY, srcW, srcH, yPixelOffset);
         float depth = LayerDollBody - drawOrder * 0.00001f;
-        var tint = GetDollPartColor(partIndex);
 
-        _spriteBatch.Draw(texture, dest, source, tint, 0f, default, effect, depth);
+        _spriteBatch.Draw(texture, dest, source, Color.White, 0f, default, effect, depth);
     }
 
     /// <summary>
@@ -3357,7 +3660,7 @@ public partial class WorldRenderXna : UserControl
         var dest = GetDollBodyDest(tileX, tileY, srcW, srcH, yPixelOffset);
         float depth = LayerDollBody - drawOrder * 0.00001f;
 
-        _spriteBatch.Draw(texture, dest, source, DollHairColor, 0f, default, effect, depth);
+        _spriteBatch.Draw(texture, dest, source, Color.White, 0f, default, effect, depth);
     }
 
     /// <summary>
@@ -3374,8 +3677,8 @@ public partial class WorldRenderXna : UserControl
 
         // Center 40px body frame within 32px (2-tile) footprint: shift left 4px
         dest.X -= (int)(4 * _zoom / 16f);
-        // Shift up for head alignment
-        dest.Y -= (int)(4 * _zoom / 16f);
+        // Align body with armor pieces (which use -12 game-px offset from tile origin)
+        dest.Y -= (int)(12 * _zoom / 16f);
         // Apply pose Y offset (e.g. sitting)
         dest.Y += (int)(yPixelOffset * _zoom / 16f);
 
@@ -3445,26 +3748,27 @@ public partial class WorldRenderXna : UserControl
         }
     }
 
-    static int[,] backstyle = new int[9, 7]
+    static int[,] backstyle = new int[10, 7]
     {
-        {66, 67, 68, 69, 128, 125, 185},
-        {70, 71, 68, 72, 128, 125, 185},
-        {73, 74, 75, 76, 134, 125, 185},
-        {77, 78, 79, 82, 134, 125, 185},
-        {83, 84, 85, 86, 137, 125, 185},
-        {83, 87, 88, 89, 137, 125, 185},
-        {121, 122, 123, 124, 140, 125, 185},
-        {153, 147, 148, 149, 150, 125, 185},
-        {146, 154, 155, 156, 157, 125, 185}
+        {66, 67, 68, 69, 128, 125, 185},       // 0: Stone
+        {70, 71, 68, 72, 128, 125, 185},       // 1: Gray
+        {73, 74, 75, 76, 131, 125, 185},       // 2: Brown (hell transition: 131)
+        {77, 78, 79, 80, 134, 125, 185},       // 3: Blue
+        {77, 81, 79, 82, 134, 125, 185},       // 4: Blue Alt
+        {83, 84, 85, 86, 137, 125, 185},       // 5: Green
+        {83, 87, 88, 89, 137, 125, 185},       // 6: Green Alt
+        {121, 122, 123, 124, 140, 125, 185},   // 7: Purple
+        {153, 147, 148, 149, 150, 125, 185},   // 8: Jungle 0
+        {146, 154, 155, 156, 157, 125, 185}    // 9: Jungle 1
     };
 
     /// <summary>
-    /// Draws the surface biome background as a fixed texture filling the render window.
-    /// Uses center of visible area for biome detection.
+    /// Draws the surface biome background with multi-layer parallax.
+    /// Layers are drawn back-to-front (painter's algorithm) with increasing parallax.
+    /// Visible at all zoom levels (backgrounds are screen-space, not world-space).
     /// </summary>
     private void DrawSurfaceBackground()
     {
-        if (!AreTexturesVisible()) return;
         if (FilterManager.CurrentBackgroundMode != FilterManager.BackgroundMode.Normal) return;
 
         Rectangle visibleBounds = GetViewingArea();
@@ -3473,38 +3777,223 @@ public partial class WorldRenderXna : UserControl
         // Only draw if we're viewing surface area (y < GroundLevel)
         if (visibleBounds.Top >= world.GroundLevel) return;
 
-        // Find center of visible area for biome detection
-        int centerX = (visibleBounds.Left + visibleBounds.Right) / 2;
-        int surfaceTop = Math.Max(visibleBounds.Top, 0);
-        int surfaceBottom = Math.Min(visibleBounds.Bottom, (int)world.GroundLevel);
-        int centerY = (surfaceTop + surfaceBottom) / 2;
+        // Detect biome by majority vote across visible columns
+        var biome = DetectSurfaceBiome(visibleBounds);
+        int centerX = Math.Clamp((visibleBounds.Left + visibleBounds.Right) / 2, 0, world.TilesWide - 1);
+        var style = GetBiomeBackgroundStyle(biome, centerX);
+        if (style == null) return;
 
-        // Clamp to world bounds
-        centerX = Math.Clamp(centerX, 0, world.TilesWide - 1);
-        centerY = Math.Clamp(centerY, 0, (int)world.GroundLevel - 1);
+        int screenW = (int)xnaViewport.ActualWidth;
+        int screenH = (int)xnaViewport.ActualHeight;
+        if (screenW <= 0 || screenH <= 0) return;
 
-        // Detect biome at center
-        var biome = DetectSurfaceBiome(centerX, centerY);
-        int texIndex = GetBiomeBackgroundTextureIndex(biome, centerX);
+        // Background bottom anchor: above ground level to avoid being hidden by tiles.
+        // In Terraria, surface backgrounds sit well above the actual ground tile line.
+        // Offset by ~40 tiles (roughly matching Terraria's ~600px/16 offset).
+        int bgAnchorY = (int)((_scrollPosition.Y + world.GroundLevel - 40) * _zoom);
+        if (bgAnchorY <= 0) return;
 
-        if (texIndex <= 0) return;
+        // Compute base scale without zoom (use ground level in tiles as reference height)
+        // This gives a stable base that doesn't shift with zoom
+        int refHeight = (int)(world.GroundLevel);
+        float bgScale = ComputeBackgroundScale(style, refHeight);
+        // Zoom-relative factor: at BackgroundScaleZoom the texture is at base scale
+        float zoomFactor = _zoom / _wvm.BackgroundScaleZoom;
 
-        var backTex = _textureDictionary.GetBackground(texIndex);
-        if (backTex == null || backTex == _textureDictionary.DefaultTexture) return;
+        // Draw layers back-to-front matching Terraria's draw order and parallax values:
+        // BackMountainsStep1: treeMntBGSet[0] — parallax 0.15, scale 1.0
+        // BackMountainsStep2: treeMntBGSet[1] — parallax 0.2, scale 1.15
+        // DrawSurfaceBG_*:    treeBGSet[0]    — parallax 0.4, scale 1.25
+        // DrawSurfaceBG_*:    treeBGSet[1]    — parallax 0.43, scale 1.31
+        // DrawSurfaceBG_*:    treeBGSet[2]    — parallax 0.49, scale 1.34
+        DrawBackgroundLayer(style.SecondaryTextures, 0, 0.15f, bgAnchorY, screenW, bgScale, zoomFactor);
+        DrawBackgroundLayer(style.SecondaryTextures, 1, 0.2f, bgAnchorY, screenW, bgScale, zoomFactor);
+        DrawBackgroundLayer(style.Textures, 0, 0.4f, bgAnchorY, screenW, bgScale, zoomFactor);
+        DrawBackgroundLayer(style.Textures, 1, 0.43f, bgAnchorY, screenW, bgScale, zoomFactor);
+        DrawBackgroundLayer(style.Textures, 2, 0.49f, bgAnchorY, screenW, bgScale, zoomFactor);
+    }
 
-        // Use fixed screen coordinates - fill the entire render window
-        int screenWidth = (int)xnaViewport.ActualWidth;
-        int screenHeight = (int)xnaViewport.ActualHeight;
+    // Underworld texture indices that are 2x2 sprite sheets (stable since 1.3)
+    private static readonly HashSet<int> _underworldSpriteSheets = new() { 1, 6, 7, 8, 13 };
 
-        if (screenWidth <= 0 || screenHeight <= 0) return;
+    private void DrawUnderworldBackground()
+    {
+        if (FilterManager.CurrentBackgroundMode != FilterManager.BackgroundMode.Normal) return;
 
-        // Draw background scaled to fill the render window (no panning)
-        var dest = new Rectangle(0, 0, screenWidth, screenHeight);
+        Rectangle visibleBounds = GetViewingArea();
+        var world = _wvm.CurrentWorld;
 
-        // Use full texture as source
-        var source = new Rectangle(0, 0, backTex.Width, backTex.Height);
+        // Only draw if viewing underworld area
+        int underworldTop = world.TilesHigh - 200;
+        if (visibleBounds.Bottom <= underworldTop) return;
 
-        _spriteBatch.Draw(backTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerTileBackgroundTextures);
+        // Look up underworld style
+        var bgStyles = WorldConfiguration.BackgroundStyles;
+        if (bgStyles == null) return;
+        if (!bgStyles.UnderworldBackgroundById.TryGetValue(world.UnderworldBg, out var style)) return;
+        if (style.Textures == null || style.Textures.Length < 5) return;
+
+        int screenW = (int)xnaViewport.ActualWidth;
+        int screenH = (int)xnaViewport.ActualHeight;
+        if (screenW <= 0 || screenH <= 0) return;
+
+        // Underworld anchor in screen coordinates (UnderworldLayer = TilesHigh - 200)
+        float underworldAnchorY = (_scrollPosition.Y + underworldTop) * _zoom;
+
+        // Draw 5 layers back-to-front (index 4 → 0) matching Terraria's draw order
+        for (int layerIndex = 4; layerIndex >= 0; layerIndex--)
+        {
+            int texIndex = style.Textures[layerIndex];
+            var tex = _textureDictionary.GetUnderworld(texIndex);
+            if (tex == null || tex == _textureDictionary.DefaultTexture) continue;
+
+            // Get source rect — first frame only for sprite sheets
+            Rectangle srcRect;
+            if (_underworldSpriteSheets.Contains(texIndex))
+            {
+                srcRect = new Rectangle(0, 0, tex.Width / 2, tex.Height / 2);
+            }
+            else
+            {
+                srcRect = new Rectangle(0, 0, tex.Width, tex.Height);
+            }
+
+            // Per-texture Y offset and scale from Terraria source (DrawUnderworldBackgroudLayer)
+            float scale = 1.3f;
+            float offsetY = 0f;
+            switch (texIndex)
+            {
+                case 1: offsetY = 175f; break;
+                case 2: offsetY = 100f; break;
+                case 3: offsetY = 75f; break;
+                case 4: scale = 0.5f; break;
+                case 6: offsetY = -60f; break;
+                case 7: offsetY = 90f; break;
+                case 8: offsetY = 90f; break;
+                case 9: offsetY = -30f; break;
+                case 10: offsetY = 250f * (layerIndex * 2 + 3); break;
+                case 11: offsetY = 100f * (layerIndex * 2 + 3); break;
+                case 12: offsetY = 20f * (layerIndex * 2 + 3); break;
+                case 13: offsetY = 20f * (layerIndex * 2 + 3); break;
+            }
+
+            // Convert pixel offset to tile offset, then to screen coords
+            float bgTopY = underworldAnchorY + (offsetY / 16f) * _zoom;
+            float parallax = 1f / (layerIndex * 2 + 3);
+
+            // Scale texture with zoom relative to the background scale setting —
+            // at that zoom level the texture is drawn at its base scale,
+            // zooming in further scales proportionally from there.
+            float drawScale = scale * (_zoom / _wvm.BackgroundScaleZoom);
+            int bgWidthScaled = (int)(srcRect.Width * drawScale);
+            if (bgWidthScaled <= 0) bgWidthScaled = 1;
+
+            // Horizontal tiling with parallax offset
+            float offsetX = _scrollPosition.X * _zoom * parallax;
+            int bgStartX = (int)(-Math.IEEERemainder(offsetX, bgWidthScaled) - (bgWidthScaled / 2));
+            int bgLoops = screenW / bgWidthScaled + 2;
+
+            for (int i = 0; i < bgLoops; i++)
+            {
+                _spriteBatch.Draw(tex,
+                    new Vector2(bgStartX + bgWidthScaled * i, bgTopY),
+                    srcRect, Color.White, 0f, default,
+                    drawScale, SpriteEffects.None, LayerTileBackgroundTextures);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Computes the maximum source texture height across all background layers,
+    /// then returns a uniform scale so the tallest texture fills clipBottom.
+    /// Never shrinks below 1.0 (native resolution).
+    /// </summary>
+    private float ComputeBackgroundScale(BackgroundStyle style, int clipBottom)
+    {
+        int maxSrcH = 0;
+
+        void CheckTexture(int[] textures, int index)
+        {
+            if (textures == null || index >= textures.Length || textures[index] < 0) return;
+            int texIndex = textures[index];
+            var tex = _textureDictionary.GetBackground(texIndex);
+            if (tex == null || tex == _textureDictionary.DefaultTexture) return;
+            var srcRect = GetBackgroundSourceRect(texIndex, tex);
+            if (srcRect.Height > maxSrcH) maxSrcH = srcRect.Height;
+        }
+
+        CheckTexture(style.Textures, 0);
+        CheckTexture(style.Textures, 1);
+        CheckTexture(style.Textures, 2);
+        CheckTexture(style.SecondaryTextures, 0);
+        CheckTexture(style.SecondaryTextures, 1);
+
+        if (maxSrcH <= 0) return 1f;
+        return Math.Max(1f, (float)clipBottom / maxSrcH);
+    }
+
+    /// <summary>
+    /// Draws a single background layer following Terraria's draw pattern:
+    /// uniform scale (aspect ratio preserved), horizontal tiling with parallax,
+    /// positioned from bottom of clipBottom upward.
+    /// </summary>
+    private void DrawBackgroundLayer(int[] textures, int index, float parallax,
+                                     int clipBottom, int screenW, float bgScale, float zoomFactor)
+    {
+        if (textures == null || index >= textures.Length || textures[index] < 0) return;
+
+        int texIndex = textures[index];
+        var tex = _textureDictionary.GetBackground(texIndex);
+        if (tex == null || tex == _textureDictionary.DefaultTexture) return;
+
+        var srcRect = GetBackgroundSourceRect(texIndex, tex);
+        int srcW = srcRect.Width;
+        int srcH = srcRect.Height;
+
+        // Draw scale includes zoom factor; position scale uses base bgScale to keep anchor stable
+        float drawScale = bgScale * zoomFactor;
+        int bgWidthScaled = (int)(srcW * drawScale);
+        if (bgWidthScaled <= 0) bgWidthScaled = 1;
+
+        // Horizontal tiling with parallax offset — matches Terraria's IEEERemainder pattern
+        float offsetX = _scrollPosition.X * _zoom * parallax;
+        int bgStartX = (int)(-Math.IEEERemainder(offsetX, bgWidthScaled) - (bgWidthScaled / 2));
+
+        // Number of horizontal tiles needed to cover the screen
+        int bgLoops = screenW / bgWidthScaled + 2;
+
+        // Position: anchor bottom edge at clipBottom (ground level), draw upward using base scale
+        float bgTopY = clipBottom - (srcH * drawScale);
+
+        // Source is the full frame (first frame for sprite sheets)
+        var source = new Rectangle(srcRect.X, srcRect.Y, srcW, srcH);
+
+        // Draw tiled copies — Terraria uses Vector2 position + scalar scale
+        for (int i = 0; i < bgLoops; i++)
+        {
+            _spriteBatch.Draw(tex,
+                new Vector2(bgStartX + bgWidthScaled * i, bgTopY),
+                source, Color.White, 0f, default,
+                drawScale, SpriteEffects.None, LayerTileBackgroundTextures);
+        }
+    }
+
+    /// <summary>
+    /// Gets the source rectangle for the first frame of a background texture.
+    /// Sprite sheet textures (2x2 grids, 1x3 strips) return only the top-left frame.
+    /// Non-sprite-sheet textures return the full texture dimensions.
+    /// </summary>
+    private static Rectangle GetBackgroundSourceRect(int texIndex, Texture2D tex)
+    {
+        var spriteSheets = WorldConfiguration.BackgroundStyles?.SpriteSheetById;
+        if (spriteSheets != null && spriteSheets.TryGetValue(texIndex, out var sheet))
+        {
+            int frameW = tex.Width / sheet.Columns;
+            int frameH = tex.Height / sheet.Rows;
+            return new Rectangle(0, 0, frameW, frameH);
+        }
+
+        return new Rectangle(0, 0, tex.Width, tex.Height);
     }
 
     private void DrawTileBackgrounds()
@@ -3512,11 +4001,14 @@ public partial class WorldRenderXna : UserControl
         if (!AreTexturesVisible()) return;
         if (!_wvm.ShowBackgrounds) return;
 
+        // Surface background (screen-space parallax layers)
+        DrawSurfaceBackground();
+
+        // Underworld background (screen-space parallax layers)
+        DrawUnderworldBackground();
+
         // Check if the background mode is normal. If not, return.
         if (FilterManager.CurrentBackgroundMode != FilterManager.BackgroundMode.Normal) return;
-
-        // Draw scaled surface background first
-        DrawSurfaceBackground();
 
         Rectangle visibleBounds = GetViewingArea();
 
@@ -3549,6 +4041,7 @@ public partial class WorldRenderXna : UserControl
                         backX = _wvm.CurrentWorld.CaveBackStyle2;
                     else if (x > _wvm.CurrentWorld.CaveBackX2)
                         backX = _wvm.CurrentWorld.CaveBackStyle3;
+                    backX = Math.Clamp(backX, 0, 7);
                     var source = new Rectangle(0, 0, 16, 16);
                     var backTex = _textureDictionary.GetBackground(0);
 
@@ -3592,8 +4085,7 @@ public partial class WorldRenderXna : UserControl
                     }
                     else
                     {
-                        backTex = _textureDictionary.GetUnderworld(4);
-                        source.Y += (y - (int)_wvm.CurrentWorld.TilesHigh + 200) * 16;
+                        continue; // Underworld drawn by DrawUnderworldBackground()
                     }
 
                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
@@ -3934,82 +4426,7 @@ public partial class WorldRenderXna : UserControl
                                     }
                                     if (isTreeSpecial)
                                     {
-                                        int treeStyle = 0; // default branches and tops
-                                        switch (treeType)
-                                        {
-                                            case -1:
-                                                if (x <= _wvm.CurrentWorld.TreeX0)
-                                                    treeStyle = _wvm.CurrentWorld.TreeStyle0;
-                                                else if (x <= _wvm.CurrentWorld.TreeX1)
-                                                    treeStyle = _wvm.CurrentWorld.TreeStyle1;
-                                                else if (x <= _wvm.CurrentWorld.TreeX2)
-                                                    treeStyle = _wvm.CurrentWorld.TreeStyle2;
-                                                else
-                                                    treeStyle = _wvm.CurrentWorld.TreeStyle3;
-                                                if (treeStyle == 0)
-                                                {
-                                                    break;
-                                                }
-                                                if (treeStyle == 5)
-                                                {
-                                                    treeStyle = 10;
-                                                    break;
-                                                }
-                                                treeStyle = 5 + treeStyle;
-                                                break;
-                                            case 0:
-                                                treeStyle = 1;
-                                                break;
-                                            case 1:
-                                                treeStyle = 2;
-                                                if (_wvm.CurrentWorld.BgJungle == 1)
-                                                    treeStyle = 11;
-                                                break;
-                                            case 2:
-                                                treeStyle = 3;
-                                                break;
-                                            case 3:
-                                                treeStyle = 4;
-                                                if (_wvm.CurrentWorld.BgSnow == 0)
-                                                {
-                                                    treeStyle = 12;
-                                                    if (x % 10 == 0)
-                                                        treeStyle = 18;
-                                                }
-                                                if (_wvm.CurrentWorld.BgSnow != 2 && _wvm.CurrentWorld.BgSnow != 3 && _wvm.CurrentWorld.BgSnow != 32 && _wvm.CurrentWorld.BgSnow != 4 && _wvm.CurrentWorld.BgSnow != 42)
-                                                {
-                                                    break;
-                                                }
-                                                if (_wvm.CurrentWorld.BgSnow % 2 == 0)
-                                                {
-                                                    if (x < _wvm.CurrentWorld.TilesWide / 2)
-                                                    {
-                                                        treeStyle = 16;
-                                                        break;
-                                                    }
-                                                    treeStyle = 17;
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    if (x > _wvm.CurrentWorld.TilesWide / 2)
-                                                    {
-                                                        treeStyle = 16;
-                                                        break;
-                                                    }
-                                                    treeStyle = 17;
-                                                    break;
-                                                }
-                                            case 4:
-                                                treeStyle = 5;
-                                                break;
-                                            case 5:
-                                                treeStyle = 13;
-                                                break;
-                                            case 6:
-                                                treeStyle = 14;
-                                                break;
-                                        }
+                                        int treeStyle = _wvm.CurrentWorld.GetTreeStyleAtPosition(x + baseX, y);
                                         //Abuse uvTileCache to remember what type of tree it is, since potentially scanning a hundred of blocks PER tree tile sounds slow
                                         curtile.uvTileCache = (ushort)((0x00 << 8) + 0x01 * treeStyle);
                                         if (isBase)
@@ -4778,6 +5195,17 @@ public partial class WorldRenderXna : UserControl
                                                 source.Y = renderUV.Y % 72 / 18 * 16 + renderUV.X / 54 * 50;
                                             }
                                         }
+                                        // Handle Radio Thing (tile 733) special case
+                                        // On state: UV Y < 54, texture shifts X by 54
+                                        // Off state: UV Y >= 54, no X shift; both axes wrap by 54
+                                        else if (type == 733)
+                                        {
+                                            if (renderUV.Y < 54)
+                                                source.X = renderUV.X % 54 + 54;
+                                            else
+                                                source.X = renderUV.X % 54;
+                                            source.Y = renderUV.Y % 54;
+                                        }
                                         // Handle Magic Droppers (tiles 373, 374, 375, 461, 709) special case
                                         else if (type == 373 || type == 374 || type == 375 || type == 461 || type == 709)
                                         {
@@ -4844,7 +5272,14 @@ public partial class WorldRenderXna : UserControl
                                     // Apply tile render offsets (vines, position offset tiles)
                                     ApplyTileRenderOffset(ref dest, curtile.Type, curtile.U, curtile.V, _zoom);
 
-                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
+                                    if (tileprop.HasSlopes && curtile.BrickStyle != BrickStyle.Full)
+                                    {
+                                        DrawSlopedTile(_spriteBatch, tileTex, source, dest, curtile, tilePaintColor, LayerTileTextures);
+                                    }
+                                    else
+                                    {
+                                        _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
+                                    }
                                     // Actuator Overlay
                                     if (curtile.Actuator && _wvm.ShowActuators)
                                         _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
@@ -5375,7 +5810,7 @@ public partial class WorldRenderXna : UserControl
                                             for (int slice = 0; slice < 8; slice++)
                                             {
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + slice * _zoom / 8.0f));
+                                                Vector2 destSlice = new Vector2(dest.X + slice * _zoom / 8.0f, dest.Y + slice * _zoom / 8.0f);
 
                                                 _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
@@ -5385,7 +5820,7 @@ public partial class WorldRenderXna : UserControl
                                             for (int slice = 0; slice < 8; slice++)
                                             {
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + (7 - slice) * _zoom / 8.0f));
+                                                Vector2 destSlice = new Vector2(dest.X + slice * _zoom / 8.0f, dest.Y + (7 - slice) * _zoom / 8.0f);
 
                                                 _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
@@ -5395,7 +5830,7 @@ public partial class WorldRenderXna : UserControl
                                             for (int slice = 0; slice < 8; slice++)
                                             {
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y + slice * 2, 2, 16 - slice * 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+                                                Vector2 destSlice = new Vector2(dest.X + slice * _zoom / 8.0f, dest.Y);
 
                                                 _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
@@ -5405,7 +5840,7 @@ public partial class WorldRenderXna : UserControl
                                             for (int slice = 0; slice < 8; slice++)
                                             {
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
-                                                Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+                                                Vector2 destSlice = new Vector2(dest.X + slice * _zoom / 8.0f, dest.Y);
 
                                                 _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
@@ -5554,6 +5989,94 @@ public partial class WorldRenderXna : UserControl
                     // Failed to render glow mask for tile
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Draw a framed tile with slope/half-brick geometry, matching Terraria's
+    /// TileDrawing slope algorithm (8 slices of 2px over 16px + 2px strip).
+    /// For tiles larger than 16px (e.g. cannonball 20x20), the slope is centered
+    /// within the source texture.
+    /// </summary>
+    private void DrawSlopedTile(SpriteBatch sb, Texture2D tex, Rectangle source, Rectangle dest, Tile tile, Color color, float layer)
+    {
+        var tileColor = tile.InActive ? Color.Gray : color;
+        float scale = _zoom / 16f;
+
+        // Center the 16x16 slope region within the source texture
+        int padX = (source.Width - 16) / 2;
+        int padY = (source.Height - 16) / 2;
+        int srcBaseX = source.X + padX;
+        int srcBaseY = source.Y + padY;
+        // Shift destination to match the centering offset
+        float dstOffX = dest.X + padX * scale;
+        float dstOffY = dest.Y + padY * scale;
+
+        switch (tile.BrickStyle)
+        {
+            case BrickStyle.HalfBrick:
+                source.Height /= 2;
+                dest.Y += (int)(_zoom * 0.5);
+                dest.Height = (int)(_zoom / 2.0f);
+                sb.Draw(tex, dest, source, tileColor, 0f, default, SpriteEffects.None, layer);
+                break;
+
+            case BrickStyle.SlopeTopRight:
+            case BrickStyle.SlopeTopLeft:
+            case BrickStyle.SlopeBottomRight:
+            case BrickStyle.SlopeBottomLeft:
+            {
+                // Matches TileDrawing.cs lines 1175-1207
+                int slopeType = tile.BrickStyle switch
+                {
+                    BrickStyle.SlopeTopRight => 1,
+                    BrickStyle.SlopeTopLeft => 2,
+                    BrickStyle.SlopeBottomRight => 3,
+                    _ => 4 // SlopeBottomLeft
+                };
+
+                for (int s = 0; s < 8; s++)
+                {
+                    int num8 = s * -2;
+                    int height = 16 - s * 2;
+                    int num9 = 16 - height; // = s * 2
+                    int x;
+
+                    switch (slopeType)
+                    {
+                        case 1: // SlopeTopRight
+                            num8 = 0; x = s * 2; height = 14 - s * 2; num9 = 0;
+                            break;
+                        case 2: // SlopeTopLeft
+                            num8 = 0; x = 16 - s * 2 - 2; height = 14 - s * 2; num9 = 0;
+                            break;
+                        case 3: // SlopeBottomRight
+                            x = s * 2;
+                            break;
+                        default: // SlopeBottomLeft
+                            x = 16 - s * 2 - 2;
+                            break;
+                    }
+
+                    if (height > 0)
+                    {
+                        var srcSlice = new Rectangle(srcBaseX + x, srcBaseY + num9, 2, height);
+                        var dstSlice = new Vector2(dstOffX + x * scale, dstOffY + (s * 2 + num8) * scale);
+                        sb.Draw(tex, dstSlice, srcSlice, tileColor, 0f, default, scale, SpriteEffects.None, layer);
+                    }
+                }
+
+                // Bottom or top strip (2px tall, full width)
+                int stripY = slopeType > 2 ? 0 : 14;
+                var srcStrip = new Rectangle(srcBaseX, srcBaseY + stripY, 16, 2);
+                var dstStrip = new Vector2(dstOffX, dstOffY + stripY * scale);
+                sb.Draw(tex, dstStrip, srcStrip, tileColor, 0f, default, scale, SpriteEffects.None, layer);
+                break;
+            }
+
+            default:
+                sb.Draw(tex, dest, source, tileColor, 0f, default, SpriteEffects.None, layer);
+                break;
         }
     }
 
@@ -6107,11 +6630,14 @@ public partial class WorldRenderXna : UserControl
         if (_wvm.CurrentWorld == null)
             return new Rectangle();
 
+        double viewW = _exportViewSize?.Width ?? xnaViewport.ActualWidth;
+        double viewH = _exportViewSize?.Height ?? xnaViewport.ActualHeight;
+
         var r = new Rectangle(
             (int)Math.Floor(-_scrollPosition.X),
             (int)Math.Floor(-_scrollPosition.Y),
-            (int)Math.Ceiling(xnaViewport.ActualWidth / _zoom),
-            (int)Math.Ceiling(xnaViewport.ActualHeight / _zoom));
+            (int)Math.Ceiling(viewW / _zoom),
+            (int)Math.Ceiling(viewH / _zoom));
 
         // Clamp to world bounds — negative offsets and overflow are trimmed
         if (r.X < 0) { r.Width += r.X; r.X = 0; }
@@ -6185,8 +6711,6 @@ public partial class WorldRenderXna : UserControl
             SpriteEffects.None,
             LayerLocations);
 
-        // Draw Find result crosshair
-        DrawFindCrosshair();
     }
 
     private void DrawFindCrosshair()
@@ -6233,7 +6757,7 @@ public partial class WorldRenderXna : UserControl
     }
 
     /// <summary>
-    /// Uploads dirty filter overlay chunks to GPU textures, mirroring GenPixelTiles.
+    /// Uploads dirty filter mask chunks to GPU as Alpha8 textures (1 byte/pixel).
     /// Skips AllClear/AllDarkened chunks (no texture needed for those).
     /// </summary>
     private void GenFilterOverlayTiles(GraphicsDeviceEventArgs e)
@@ -6241,12 +6765,12 @@ public partial class WorldRenderXna : UserControl
         if (_wvm?.FilterOverlayMap == null || _wvm.PixelMap == null) return;
         var overlay = _wvm.FilterOverlayMap;
 
-        if (_filterOverlayTileMap == null || _filterOverlayTileMap.Length != overlay.ColorBuffers.Length)
+        if (_filterMaskTileMap == null || _filterMaskTileMap.Length != overlay.MaskBuffers.Length)
         {
-            _filterOverlayTileMap = new Texture2D[overlay.ColorBuffers.Length];
+            _filterMaskTileMap = new Texture2D[overlay.MaskBuffers.Length];
         }
 
-        for (int i = 0; i < _filterOverlayTileMap.Length; i++)
+        for (int i = 0; i < _filterMaskTileMap.Length; i++)
         {
             if (!Check2DFrustrum(i))
                 continue;
@@ -6256,29 +6780,29 @@ public partial class WorldRenderXna : UserControl
                 (overlay.ChunkStates[i] == ChunkStatus.AllClear || overlay.ChunkStates[i] == ChunkStatus.AllDarkened))
                 continue;
 
-            bool init = _filterOverlayTileMap[i] == null;
-            if (init || _filterOverlayTileMap[i].Width != overlay.TileWidth || _filterOverlayTileMap[i].Height != overlay.TileHeight)
-                _filterOverlayTileMap[i] = new Texture2D(e.GraphicsDevice, overlay.TileWidth, overlay.TileHeight);
+            bool init = _filterMaskTileMap[i] == null;
+            if (init || _filterMaskTileMap[i].Width != overlay.TileWidth || _filterMaskTileMap[i].Height != overlay.TileHeight)
+                _filterMaskTileMap[i] = new Texture2D(e.GraphicsDevice, overlay.TileWidth, overlay.TileHeight, false, SurfaceFormat.Alpha8);
 
             if (overlay.BufferUpdated[i] || init)
             {
-                _filterOverlayTileMap[i].SetData(overlay.ColorBuffers[i]);
+                _filterMaskTileMap[i].SetData(overlay.MaskBuffers[i]);
                 overlay.BufferUpdated[i] = false;
             }
         }
     }
 
     /// <summary>
-    /// Draws the filter overlay using tiled textures, with per-chunk optimization:
-    /// AllClear = skip, AllDarkened = stretched 1x1, Mixed = full texture.
+    /// Draws the filter overlay mask chunks for the DarkenEffect shader.
+    /// AllClear = skip, AllDarkened = WhitePixelTexture stretched (mask=1.0), Mixed = Alpha8 chunk texture.
+    /// The shader reads world pixels from the world RT and applies darken+desaturation.
     /// </summary>
     private void DrawFilterOverlayTiles()
     {
         if (_wvm?.FilterOverlayMap == null || _wvm.PixelMap == null) return;
         var overlay = _wvm.FilterOverlayMap;
 
-        byte alpha = (byte)(FilterManager.DarkenAmount * 255f);
-        var darkenColor = new Color((int)0, (int)0, (int)0, (int)alpha);
+        var whiteTex = _textureDictionary?.WhitePixelTexture;
 
         for (int i = 0; i < overlay.TilesX * overlay.TilesY; i++)
         {
@@ -6295,25 +6819,28 @@ public partial class WorldRenderXna : UserControl
 
             if (status == ChunkStatus.AllDarkened)
             {
-                // Use same float position + scale as DrawPixelTiles to avoid integer seams
-                _spriteBatch.Draw(
-                    _filterDarkenTexture,
-                    TileOrigin(tileX, tileY),
-                    null,
-                    darkenColor,
-                    0,
-                    Vector2.Zero,
-                    new Vector2(overlay.TileWidth * _zoom, overlay.TileHeight * _zoom),
-                    SpriteEffects.None,
-                    0f);
+                // White pixel texture with alpha=1.0 → shader applies full darken+desat
+                if (whiteTex != null)
+                {
+                    _spriteBatch.Draw(
+                        whiteTex,
+                        TileOrigin(tileX, tileY),
+                        null,
+                        Color.White,
+                        0,
+                        Vector2.Zero,
+                        new Vector2(overlay.TileWidth * _zoom, overlay.TileHeight * _zoom),
+                        SpriteEffects.None,
+                        0f);
+                }
             }
             else
             {
-                // Mixed: draw the full chunk texture
-                if (_filterOverlayTileMap != null && i < _filterOverlayTileMap.Length && _filterOverlayTileMap[i] != null)
+                // Mixed: draw Alpha8 mask texture — shader reads per-pixel alpha
+                if (_filterMaskTileMap != null && i < _filterMaskTileMap.Length && _filterMaskTileMap[i] != null)
                 {
                     _spriteBatch.Draw(
-                        _filterOverlayTileMap[i],
+                        _filterMaskTileMap[i],
                         TileOrigin(tileX, tileY),
                         null,
                         Color.White,
@@ -6531,18 +7058,32 @@ public partial class WorldRenderXna : UserControl
             (_scrollPosition.Y + y) * _zoom - height + 4 + 16);
     }
 
+    private Color GetActiveWireAnchorColor()
+    {
+        var picker = _wvm.TilePicker;
+        if (picker.RedWireActive)
+            return new Color(255, 128, 128, 160);
+        if (picker.BlueWireActive)
+            return new Color(128, 128, 255, 160);
+        if (picker.GreenWireActive)
+            return new Color(128, 255, 128, 160);
+        if (picker.YellowWireActive)
+            return new Color(255, 255, 128, 160);
+        return new Color(255, 255, 255, 128);
+    }
+
     private Color GetActiveWirePreviewColor()
     {
         var picker = _wvm.TilePicker;
         if (picker.RedWireActive)
-            return new Color(255, 0, 0, 180);
+            return new Color(255, 0, 0, 96);
         if (picker.BlueWireActive)
-            return new Color(0, 0, 255, 180);
+            return new Color(0, 0, 255, 96);
         if (picker.GreenWireActive)
-            return new Color(0, 255, 0, 180);
+            return new Color(0, 255, 0, 96);
         if (picker.YellowWireActive)
-            return new Color(255, 255, 0, 180);
-        return new Color(255, 255, 255, 128);
+            return new Color(255, 255, 0, 96);
+        return new Color(255, 255, 255, 64);
     }
 
     private void DrawToolPreview()
@@ -6585,14 +7126,16 @@ public partial class WorldRenderXna : UserControl
                     }
                 }
 
-                // Draw anchor marker with brighter color
+                // Draw anchor marker: lightened wire color with transparency
                 if (path.Count > 0)
                 {
                     var anchor = path[0];
                     var anchorPos = new Vector2(
                         (_scrollPosition.X + anchor.X) * _zoom,
                         (_scrollPosition.Y + anchor.Y) * _zoom);
-                    var anchorColor = new Color(255, 255, 255, 220);
+                    var anchorColor = _wvm.TilePicker.PaintMode == PaintMode.Wire
+                        ? GetActiveWireAnchorColor()
+                        : Color.FromNonPremultiplied(128, 170, 255, 160);
                     _spriteBatch.Draw(whiteTex, anchorPos, null, anchorColor,
                         0, Vector2.Zero, _zoom, SpriteEffects.None, LayerTools);
                 }
@@ -7295,7 +7838,9 @@ public partial class WorldRenderXna : UserControl
         // so they are recreated on the next frame.
         _buffRadiiTarget?.Dispose();
         _buffRadiiTarget = null;
-        _filterOverlayTileMap = null;
+        _worldRT?.Dispose();
+        _worldRT = null;
+        _filterMaskTileMap = null;
 
         xnaViewport.GraphicsService.GraphicsDevice.Reset(present);
     }
@@ -7471,6 +8016,347 @@ public partial class WorldRenderXna : UserControl
     private void xnaViewport_HwndMouseLeave(object sender, HwndMouseEventArgs e)
     {
 
+    }
+
+    #endregion
+
+    #region Export Selection
+
+    /// <summary>
+    /// Exports the current selection to a PNG file.
+    /// Scale 1 = pixel map (1px/tile, CPU-only).
+    /// Scale 4/8/16 = textured render (using XNA draw methods in strips).
+    /// </summary>
+    public void ExportSelectionToFile(string filename, int scale, IProgress<ProgressChangedEventArgs>? progress = null)
+    {
+        if (_wvm.CurrentWorld == null) return;
+
+        var area = _wvm.Selection.SelectionArea;
+        if (area.Width <= 0 || area.Height <= 0) return;
+
+        if (scale == 1)
+            ExportPixelMap(filename, area, progress);
+        else
+            ExportTextured(filename, area, scale, progress);
+    }
+
+    private void ExportPixelMap(string filename, RectangleInt32 area, IProgress<ProgressChangedEventArgs>? progress)
+    {
+        var world = _wvm.CurrentWorld;
+        var bmp = new WriteableBitmap(area.Width, area.Height, 96, 96, WpfPixelFormats.Bgra32, null);
+
+        bmp.Lock();
+        unsafe
+        {
+            var pixels = (int*)bmp.BackBuffer;
+
+            for (int y = area.Top; y < area.Bottom; y++)
+            {
+                for (int x = area.Left; x < area.Right; x++)
+                {
+                    var tileColor = PixelMap.GetTileColor(
+                        world.Tiles[x, y], _backgroundColor,
+                        showWall: _wvm.ShowWalls,
+                        showTile: _wvm.ShowTiles,
+                        showLiquid: _wvm.ShowLiquid,
+                        showRedWire: _wvm.ShowRedWires,
+                        showBlueWire: _wvm.ShowBlueWires,
+                        showGreenWire: _wvm.ShowGreenWires,
+                        showYellowWire: _wvm.ShowYellowWires);
+
+                    if (tileColor.A < 255)
+                        tileColor = _backgroundColor.AlphaBlend(tileColor);
+
+                    int idx = (y - area.Top) * area.Width + (x - area.Left);
+                    pixels[idx] = ExportXnaColorToInt(tileColor);
+                }
+
+                if (y % 100 == 0)
+                    progress?.Report(new ProgressChangedEventArgs(
+                        (y - area.Top) * 100 / area.Height, "Exporting pixel map..."));
+            }
+        }
+        bmp.AddDirtyRect(new Int32Rect(0, 0, bmp.PixelWidth, bmp.PixelHeight));
+        bmp.Unlock();
+
+        progress?.Report(new ProgressChangedEventArgs(95, "Saving PNG..."));
+        bmp.SavePng(filename);
+    }
+
+    private void ExportTextured(string filename, RectangleInt32 area, int scale, IProgress<ProgressChangedEventArgs>? progress)
+    {
+        var gd = xnaViewport.GraphicsService.GraphicsDevice;
+        int outputW = area.Width * scale;
+        int outputH = area.Height * scale;
+
+        var bmp = new WriteableBitmap(outputW, outputH, 96, 96, WpfPixelFormats.Bgra32, null);
+
+        const int maxChunkPx = 4096;
+        int chunkTilesW = Math.Max(1, maxChunkPx / scale);
+        int chunkTilesH = Math.Max(1, maxChunkPx / scale);
+
+        int totalChunksY = (area.Height + chunkTilesH - 1) / chunkTilesH;
+        int chunkIndex = 0;
+        int totalChunksX = (area.Width + chunkTilesW - 1) / chunkTilesW;
+        int totalChunks = totalChunksX * totalChunksY;
+
+        var savedScroll = _scrollPosition;
+        var savedZoom = _zoom;
+
+        try
+        {
+            for (int cy = 0; cy < area.Height; cy += chunkTilesH)
+            {
+                int thisTilesH = Math.Min(chunkTilesH, area.Height - cy);
+                int thisPxH = thisTilesH * scale;
+
+                for (int cx = 0; cx < area.Width; cx += chunkTilesW)
+                {
+                    progress?.Report(new ProgressChangedEventArgs(
+                        chunkIndex * 95 / totalChunks, $"Rendering chunk {chunkIndex + 1}/{totalChunks}..."));
+                    chunkIndex++;
+                    int thisTilesW = Math.Min(chunkTilesW, area.Width - cx);
+                    int thisPxW = thisTilesW * scale;
+
+                    _scrollPosition = new Vector2(-(area.Left + cx), -(area.Top + cy));
+                    _zoom = scale;
+                    _exportViewSize = new Size(thisPxW, thisPxH);
+
+                    using var rt = new RenderTarget2D(gd, thisPxW, thisPxH, false, SurfaceFormat.Color, DepthFormat.None);
+                    gd.SetRenderTarget(rt);
+                    gd.Clear(_backgroundColor);
+
+                    RenderExportLayers();
+
+                    gd.SetRenderTarget(null);
+
+                    // Copy RT pixels to output bitmap
+                    var data = new Color[thisPxW * thisPxH];
+                    rt.GetData(data);
+
+                    int destX = cx * scale;
+                    int destY = cy * scale;
+
+                    bmp.Lock();
+                    unsafe
+                    {
+                        var pixels = (int*)bmp.BackBuffer;
+                        for (int row = 0; row < thisPxH; row++)
+                        {
+                            int srcOffset = row * thisPxW;
+                            int dstOffset = (destY + row) * outputW + destX;
+                            for (int col = 0; col < thisPxW; col++)
+                            {
+                                var c = data[srcOffset + col];
+                                pixels[dstOffset + col] = (c.A << 24) | (c.R << 16) | (c.G << 8) | c.B;
+                            }
+                        }
+                    }
+                    bmp.AddDirtyRect(new Int32Rect(destX, destY, thisPxW, thisPxH));
+                    bmp.Unlock();
+                }
+            }
+        }
+        finally
+        {
+            _scrollPosition = savedScroll;
+            _zoom = savedZoom;
+            _exportViewSize = null;
+        }
+
+        progress?.Report(new ProgressChangedEventArgs(95, "Saving PNG..."));
+        bmp.SavePng(filename);
+    }
+
+    /// <summary>
+    /// Renders world layers for export — same draw order as Render() but without
+    /// filter overlays, selection rectangles, or other UI elements.
+    /// Always uses texture mode when textures are loaded (regardless of zoom threshold).
+    /// Parallax backgrounds (surface/underworld) are skipped because they are screen-space
+    /// effects that can't tile correctly across chunked world-space rendering.
+    /// </summary>
+    private void RenderExportLayers()
+    {
+        bool texturesAvailable = _textureDictionary != null && _textureDictionary.Valid;
+
+        // Background and base tiles
+        _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+            DepthStencilState.Default, RasterizerState.CullNone);
+
+        if (texturesAvailable)
+        {
+            // Draw gradient zones (world-space, tiles correctly across chunks)
+            DrawBackgroundGradient();
+
+            // Draw underground tile backgrounds (world-space tiling, works correctly)
+            // Note: DrawTileBackgrounds() also calls DrawSurfaceBackground() and
+            // DrawUnderworldBackground() which use screen-space parallax. Skip those
+            // during export by drawing only the tile-level backgrounds directly.
+            DrawExportTileBackgrounds();
+        }
+        else
+        {
+            DrawPixelTiles();
+        }
+        _spriteBatch.End();
+
+        if (!texturesAvailable) return;
+
+        // Walls
+        if (_wvm.ShowWalls)
+        {
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone);
+            DrawTileWalls();
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone, _textureDictionary?.InvertEffect);
+            DrawTileWalls(true);
+            _spriteBatch.End();
+        }
+
+        // Tiles
+        if (_wvm.ShowTiles)
+        {
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone);
+            DrawTileTextures();
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone, _textureDictionary?.InvertEffect);
+            DrawTileTextures(true);
+            _spriteBatch.End();
+
+            if (_wvm.ShowGlowMasks)
+            {
+                _spriteBatch.Begin(SpriteSortMode.Deferred, AdditiveGlowBlend, SamplerState.PointClamp,
+                    DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileGlowMasks();
+                _spriteBatch.End();
+            }
+        }
+
+        // Wires, liquids, entities
+        if (_wvm.ShowTiles || _wvm.ShowBlueWires || _wvm.ShowRedWires ||
+            _wvm.ShowGreenWires || _wvm.ShowYellowWires || _wvm.ShowLiquid)
+        {
+            _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp,
+                DepthStencilState.Default, RasterizerState.CullNone);
+
+            if (_wvm.ShowBlueWires || _wvm.ShowRedWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)
+                DrawTileWires();
+
+            if (_wvm.ShowLiquid)
+                DrawTileLiquid();
+
+            if (_wvm.ShowTiles)
+                DrawTileEntities();
+
+            _spriteBatch.End();
+        }
+    }
+
+    /// <summary>
+    /// Draws underground tile backgrounds for export — same as DrawTileBackgrounds() but
+    /// without the parallax surface/underworld layers that don't tile across chunks.
+    /// </summary>
+    private void DrawExportTileBackgrounds()
+    {
+        if (!_wvm.ShowBackgrounds) return;
+
+        Rectangle visibleBounds = GetViewingArea();
+
+        for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
+        {
+            for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
+            {
+                if (x < 0 || y < 0 ||
+                    x >= _wvm.CurrentWorld.TilesWide ||
+                    y >= _wvm.CurrentWorld.TilesHigh)
+                    continue;
+
+                if (y < _wvm.CurrentWorld.GroundLevel) continue;
+
+                if (y >= 80)
+                {
+                    int hellback = _wvm.CurrentWorld.HellBackStyle;
+                    int backX = 0;
+                    if (x <= _wvm.CurrentWorld.CaveBackX0)
+                        backX = _wvm.CurrentWorld.CaveBackStyle0;
+                    else if (x > _wvm.CurrentWorld.CaveBackX0 && x <= _wvm.CurrentWorld.CaveBackX1)
+                        backX = _wvm.CurrentWorld.CaveBackStyle1;
+                    else if (x > _wvm.CurrentWorld.CaveBackX1 && x <= _wvm.CurrentWorld.CaveBackX2)
+                        backX = _wvm.CurrentWorld.CaveBackStyle2;
+                    else if (x > _wvm.CurrentWorld.CaveBackX2)
+                        backX = _wvm.CurrentWorld.CaveBackStyle3;
+                    backX = Math.Clamp(backX, 0, 7);
+                    var source = new Rectangle(0, 0, 16, 16);
+                    var backTex = _textureDictionary.GetBackground(0);
+
+                    if (y == _wvm.CurrentWorld.GroundLevel)
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 0]);
+                        source.X += (x % 8) * 16;
+                    }
+                    else if (y > _wvm.CurrentWorld.GroundLevel && y < _wvm.CurrentWorld.RockLevel)
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 1]);
+                        source.X += (x % 8) * 16;
+                        source.Y += ((y - 1 - (int)_wvm.CurrentWorld.GroundLevel) % 6) * 16;
+                    }
+                    else if (y == _wvm.CurrentWorld.RockLevel)
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 2]);
+                        source.X += (x % 8) * 16;
+                    }
+                    else if (y > _wvm.CurrentWorld.RockLevel && y < (_wvm.CurrentWorld.TilesHigh - 327))
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 3]);
+                        source.X += (x % 8) * 16;
+                        source.Y += ((y - 1 - (int)_wvm.CurrentWorld.RockLevel) % 6) * 16;
+                    }
+                    else if (y == (_wvm.CurrentWorld.TilesHigh - 327))
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 4] + hellback);
+                        source.X += (x % 8) * 16;
+                    }
+                    else if (y > (_wvm.CurrentWorld.TilesHigh - 327) && y < (_wvm.CurrentWorld.TilesHigh - 200))
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 5] + hellback);
+                        source.X += (x % 8) * 16;
+                        source.Y += ((y - 1 - (int)_wvm.CurrentWorld.TilesHigh + 327) % 18) * 16;
+                    }
+                    else if (y == (_wvm.CurrentWorld.TilesHigh - 200))
+                    {
+                        backTex = _textureDictionary.GetBackground(backstyle[backX, 6] + hellback);
+                        source.X += (x % 8) * 16;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                    var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                    _spriteBatch.Draw(backTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerTileBackgroundTextures);
+                }
+            }
+        }
+    }
+
+    private static int ExportXnaColorToInt(Color color)
+    {
+        byte a = color.A;
+        byte r = color.R;
+        byte g = color.G;
+        byte b = color.B;
+
+        // Premultiplied BGRA for WPF WriteableBitmap (Bgra32 pixel format)
+        return (a << 24)
+            | ((byte)((r * a) >> 8) << 16)
+            | ((byte)((g * a) >> 8) << 8)
+            | ((byte)((b * a) >> 8));
     }
 
     #endregion

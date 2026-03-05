@@ -62,3 +62,10 @@ ref/*
 /src/SettingsFileUpdater/TEdit.Terraria/Data/
 *.wld.TEdit
 *.diagsession
+/errors.csv
+mcp.json
+copilot-instructions.md
+/.vexp/
+CLAUDE.md
+/.serena/project.yml
+/.serena/

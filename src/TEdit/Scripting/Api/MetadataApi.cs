@@ -31,7 +31,7 @@ public class MetadataApi
         var lower = name.ToLowerInvariant();
         var prop = WorldConfiguration.TileProperties
             .FirstOrDefault(p => p.Name?.ToLowerInvariant() == lower);
-        return prop != null ? prop.Id : -1;
+        return prop != null ? prop.Id : 0;
     }
 
     public int WallId(string name)
@@ -39,7 +39,7 @@ public class MetadataApi
         var lower = name.ToLowerInvariant();
         var prop = WorldConfiguration.WallProperties
             .FirstOrDefault(p => p.Name?.ToLowerInvariant() == lower);
-        return prop != null ? prop.Id : -1;
+        return prop != null ? prop.Id : 0;
     }
 
     public int ItemId(string name)
@@ -47,7 +47,7 @@ public class MetadataApi
         var lower = name.ToLowerInvariant();
         var prop = WorldConfiguration.ItemProperties
             .FirstOrDefault(p => p.Name?.ToLowerInvariant() == lower);
-        return prop?.Id ?? -1;
+        return prop?.Id ?? 0;
     }
 
     public List<Dictionary<string, object>> AllTiles()

@@ -71,11 +71,24 @@ public class Textures : IDisposable
 
     public ContentManager ContentManager { get; }
 
+    /// <summary>
+    /// Custom shader for perfectly inverting sprite colors while preserving alpha.
+    /// Used by the TEdit renderer for the "drawInverted" / Echo Coating layers.
+    /// </summary>
+    public Effect InvertEffect { get; private set; }
+
+    /// <summary>
+    /// Custom shader for darkening + desaturating filtered regions.
+    /// Used by the filter overlay in Darken mode with a world render target.
+    /// </summary>
+    public Effect DarkenEffect { get; private set; }
+
     // Separate ContentManager for preview-only textures (items, NPCs, armor, player, accessories).
     // These are loaded to extract pixel data for preview bitmaps, then the entire CM is unloaded
     // to free GPU memory. The main ContentManager is never poisoned, so the renderer can
     // lazy-reload any texture it needs on demand.
     private ContentManager _previewContentManager;
+    private ContentManager _localContentManager;
 
     public Textures(IServiceProvider serviceProvider, GraphicsDevice gdDevice)
     {
@@ -127,6 +140,19 @@ public class Textures : IDisposable
                 System.Windows.Forms.MessageBox.Show($"Error loading textures from {path}.\r\nPlease check that this folder exists and TEdit has read access.\r\n\r\n{ex.Message}", "Error Loading Textures", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
 
+        }
+        
+        // Load custom application shaders from local Content directory
+        try
+        {
+            _localContentManager = new ContentManager(serviceProvider, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content"));
+            InvertEffect = _localContentManager.Load<Effect>("InvertEffect");
+            DarkenEffect = _localContentManager.Load<Effect>("DarkenEffect");
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+            ErrorLogging.LogWarn("Failed to load custom InvertEffect shader from local Content directory.");
         }
     }
 
@@ -691,5 +717,9 @@ public class Textures : IDisposable
         _previewContentManager?.Dispose();
         ContentManager?.Unload();
         ContentManager?.Dispose();
+        _localContentManager?.Unload();
+        _localContentManager?.Dispose();
+        InvertEffect?.Dispose();
+        DarkenEffect?.Dispose();
     }
 }

@@ -1,0 +1,47 @@
+<UserControl x:Class="TEdit.View.SelectionToolbarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:p="clr-namespace:TEdit.Properties"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             d:Height="40"
+             Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
+    <StackPanel Orientation="Horizontal" Margin="2">
+        <!-- Deselect -->
+        <ui:Button ToolTip="{x:Static p:Language.toolbar_deselect}" Margin="1" Padding="6,2"
+                   Command="{Binding DeselectCommand}">
+            <StackPanel Orientation="Horizontal">
+                <ui:SymbolIcon Symbol="DismissSquare20" FontSize="16" Margin="0,0,4,0" />
+                <TextBlock Text="{x:Static p:Language.toolbar_deselect}" VerticalAlignment="Center" />
+            </StackPanel>
+        </ui:Button>
+
+        <!-- Export button with context menu -->
+        <ui:Button x:Name="ExportButton" Margin="1" Padding="6,2" Click="ExportButton_Click">
+            <StackPanel Orientation="Horizontal">
+                <ui:SymbolIcon Symbol="ArrowExportLtr20" FontSize="16" Margin="0,0,4,0" />
+                <TextBlock Text="{x:Static p:Language.toolbar_export}" VerticalAlignment="Center" />
+                <ui:SymbolIcon Symbol="ChevronDown20" FontSize="10" Margin="4,0,0,0" />
+            </StackPanel>
+            <ui:Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="{x:Static p:Language.menu_edit_export_pixel_map}" Command="{Binding ExportSelectionAsPngCommand}">
+                        <MenuItem.CommandParameter><sys:Int32>1</sys:Int32></MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="{x:Static p:Language.menu_edit_export_quarter_texture}" Command="{Binding ExportSelectionAsPngCommand}">
+                        <MenuItem.CommandParameter><sys:Int32>4</sys:Int32></MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="{x:Static p:Language.menu_edit_export_half_texture}" Command="{Binding ExportSelectionAsPngCommand}">
+                        <MenuItem.CommandParameter><sys:Int32>8</sys:Int32></MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="{x:Static p:Language.menu_edit_export_full_texture}" Command="{Binding ExportSelectionAsPngCommand}">
+                        <MenuItem.CommandParameter><sys:Int32>16</sys:Int32></MenuItem.CommandParameter>
+                    </MenuItem>
+                </ContextMenu>
+            </ui:Button.ContextMenu>
+        </ui:Button>
+    </StackPanel>
+</UserControl>

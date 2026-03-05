@@ -20,7 +20,7 @@
             <RowDefinition Height="Auto"/>    <!-- Row 4: GridSplitter -->
             <RowDefinition Height="Auto"/>    <!-- Row 5: Style label -->
             <RowDefinition Height="Auto"/>    <!-- Row 6: Biome + Auto checkbox -->
-            <RowDefinition Height="*"/>       <!-- Row 7: Style listbox (grows with window) -->
+            <RowDefinition Height="*" MinHeight="64"/>  <!-- Row 7: Style listbox (grows with window) -->
         </Grid.RowDefinitions>
 
         <!-- Row 0: Title -->

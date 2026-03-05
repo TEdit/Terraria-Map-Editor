@@ -100,7 +100,7 @@
                     <ComboBox Grid.Column="1" ItemsSource="{StaticResource BrickStyle}"
                               SelectedValue="{Binding MaskSettings.BrickStyleMaskValue}"
                               SelectedValuePath="Value"
-                              ItemTemplate="{StaticResource EnumTemplate}" />
+                              ItemTemplate="{StaticResource BrickStyleIconTemplate}" />
                 </Grid>
 
                 <!-- Actuator / Inactive -->

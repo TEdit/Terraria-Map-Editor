@@ -85,7 +85,7 @@ public partial class TilePicker : ReactiveObject
     [Reactive]
     private int _trackTunnelHeight = 4;
     [Reactive]
-    private bool _trackSmoothEnabled;
+    private bool _trackSmoothEnabled = true;
     [Reactive]
     private int _platformStyle;
 
@@ -105,7 +105,6 @@ public partial class TilePicker : ReactiveObject
         get { return _isEraser; }
         set
         {
-            if (!value && PaintMode == PaintMode.Sprites) { return; } // the only allowed mode for sprite painting is erase
             this.RaiseAndSetIfChanged(ref _isEraser, value);
         }
     }

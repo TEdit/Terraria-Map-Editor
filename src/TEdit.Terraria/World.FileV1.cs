@@ -304,7 +304,7 @@ public partial class World
     {
         int chestSize = (version < 58) ? 20 : 40;
 
-        var maxItemId = WorldConfiguration.SaveConfiguration.SaveVersions[(int)version].MaxItemId;
+        var maxItemId = WorldConfiguration.SaveConfiguration.GetData((int)version).MaxItemId;
 
         for (int i = 0; i < 1000; ++i)
         {
@@ -1188,15 +1188,15 @@ public partial class World
             // The wiki seems to be wrong on early variants.
             if (version < 36 && (tile.U > 36 || tile.V > 36)) // Max type: copper ON.
             {
-                tile.IsActive = false;
+                tile.ClearTile();
             }
             else if (version < 72 && (tile.U > 90 || tile.V > 36)) // Max type: copper OFF.
             {
-                tile.IsActive = false;
+                tile.ClearTile();
             }
             else if (version < 93 && (tile.U > 90 || tile.V > 360)) // Max type: jackelier OFF.
             {
-                tile.IsActive = false;
+                tile.ClearTile();
             }
         }
 
@@ -1206,7 +1206,7 @@ public partial class World
             tile.Type > byte.MaxValue ||
             tile.Type > maxTileId)
         {
-            tile.IsActive = false;
+            tile.ClearTile();
         }
 
         bw.Write(tile.IsActive);
@@ -1545,6 +1545,7 @@ public partial class World
             for (int y = 0; y < world.TilesHigh; y++)
             {
                 Tile tile = world.Tiles[x, y];
+                bool modified = false;
 
                 // Fix chandelier objects.
                 if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
@@ -1552,7 +1553,8 @@ public partial class World
                     // The wiki seems to be wrong on early variants.
                     if (tile.U > 36 || tile.V > 36) // Max type: copper ON.
                     {
-                        tile.IsActive = false;
+                        tile.ClearTile();
+                        modified = true;
                     }
                 }
 
@@ -1562,8 +1564,12 @@ public partial class World
                     tile.Type > byte.MaxValue ||
                     tile.Type > saveData.MaxTileId)
                 {
-                    tile.IsActive = false;
+                    tile.ClearTile();
+                    modified = true;
                 }
+
+                if (modified)
+                    world.Tiles[x, y] = tile;
             }
         }
 
@@ -1597,7 +1603,7 @@ public partial class World
                         {
                             belowTile.IsActive = true;
                             belowTile.Type = curTile.Type;
-                            curTile.IsActive = false;
+                            curTile.ClearTile();
                         }
                     }
                 }
@@ -1619,7 +1625,7 @@ public partial class World
                     // The wiki seems to be wrong on early variants.
                     if (tile.U > 36 || tile.V > 36) // Max type: copper ON.
                     {
-                        tile.IsActive = false;
+                        tile.ClearTile();
                     }
                 }
 
@@ -1629,7 +1635,7 @@ public partial class World
                     tile.Type > byte.MaxValue ||
                     tile.Type > saveData.MaxTileId)
                 {
-                    tile.IsActive = false;
+                    tile.ClearTile();
                 }
 
                 //if (bw.BaseStream.Position >= 0x11037) Debugger.Break();
@@ -2207,7 +2213,7 @@ public partial class World
             tile.Type = b.ReadByte();
 
             if (tile.Type == (int)TileType.IceByRod || tile.Type == (int)TileType.MysticSnakeRope)
-                tile.IsActive = false;
+                tile.ClearTile();
 
             if (version < 72 &&
                 (tile.Type == 35 || tile.Type == 36 || tile.Type == 170 || tile.Type == 171 || tile.Type == 172))

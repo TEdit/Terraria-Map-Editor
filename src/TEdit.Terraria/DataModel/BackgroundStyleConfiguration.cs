@@ -9,6 +9,22 @@ using TEdit.Common.Serialization;
 namespace TEdit.Terraria.DataModel;
 
 /// <summary>
+/// Describes a background texture that is a sprite sheet (multiple frames in one image).
+/// Terraria stores some backgrounds as 2x2 grids or 1x3 vertical strips.
+/// </summary>
+public class SpriteSheetTexture
+{
+    /// <summary>Background texture index.</summary>
+    public int Id { get; set; }
+
+    /// <summary>Number of columns in the sprite sheet.</summary>
+    public int Columns { get; set; } = 1;
+
+    /// <summary>Number of rows in the sprite sheet.</summary>
+    public int Rows { get; set; } = 1;
+}
+
+/// <summary>
 /// A single background style entry. All biome types use the same class
 /// with optional properties for biome-specific data.
 /// </summary>
@@ -80,6 +96,15 @@ public class BackgroundStyleConfiguration
     public List<BackgroundStyle> JungleUndergroundBackgrounds { get; set; } = [];
     public List<BackgroundStyle> HellBackgrounds { get; set; } = [];
 
+    /// <summary>
+    /// Background textures that are sprite sheets (multiple frames in one image).
+    /// Used to determine the correct source rectangle for rendering and previews.
+    /// </summary>
+    public List<SpriteSheetTexture> SpriteSheetTextures { get; set; } = [];
+
+    /// <summary>Lookup: texture index → sprite sheet info. Null if not a sprite sheet.</summary>
+    [JsonIgnore] public Dictionary<int, SpriteSheetTexture> SpriteSheetById { get; private set; } = new();
+
     // Lookup dictionaries (built post-load)
     [JsonIgnore] public Dictionary<int, BackgroundStyle> TreeStyleById { get; private set; } = new();
     [JsonIgnore] public Dictionary<int, BackgroundStyle> ForestBackgroundById { get; private set; } = new();
@@ -122,5 +147,6 @@ public class BackgroundStyleConfiguration
         IceBackgroundById = IceBackgrounds.ToDictionary(x => x.Id);
         JungleUndergroundBackgroundById = JungleUndergroundBackgrounds.ToDictionary(x => x.Id);
         HellBackgroundById = HellBackgrounds.ToDictionary(x => x.Id);
+        SpriteSheetById = SpriteSheetTextures.ToDictionary(x => x.Id);
     }
 }

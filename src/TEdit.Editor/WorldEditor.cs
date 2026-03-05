@@ -91,7 +91,35 @@ public class WorldEditor : IDisposable
         {
             case PaintMode.Sprites:
                 if (curTile.Type < _world.TileFrameImportant.Length && _world.TileFrameImportant[curTile.Type])
-                    SetTile(ref curTile, isErase);
+                {
+                    if (isErase)
+                    {
+                        SetTile(ref curTile, true);
+                    }
+                    else
+                    {
+                        // Paint-only: apply paint/coating/actuator/inactive to existing sprites
+                        if (TilePicker.TilePaintActive)
+                            SetPixelAutomatic(ref curTile, tileColor: TilePicker.TileColor);
+                        if (TilePicker.WallPaintActive)
+                            SetPixelAutomatic(ref curTile, wallColor: TilePicker.WallColor);
+                        if (TilePicker.Actuator)
+                            SetPixelAutomatic(ref curTile, actuator: true);
+                        if (TilePicker.ActuatorInActive)
+                            SetPixelAutomatic(ref curTile, actuatorInActive: true);
+                        if (TilePicker.EnableTileCoating)
+                            SetPixelAutomatic(ref curTile,
+                                tileEchoCoating: TilePicker.TileCoatingEcho,
+                                tileIlluminantCoating: TilePicker.TileCoatingIlluminant);
+                        if (TilePicker.EnableWallCoating)
+                            SetPixelAutomatic(ref curTile,
+                                wallEchoCoating: TilePicker.WallCoatingEcho,
+                                wallIlluminantCoating: TilePicker.WallCoatingIlluminant);
+                        if (TilePicker.BrickStyleActive && TilePicker.ExtrasActive &&
+                            WorldConfiguration.TileProperties[curTile.Type].HasSlopes)
+                            SetPixelAutomatic(ref curTile, brickStyle: TilePicker.BrickStyle);
+                    }
+                }
                 break;
             case PaintMode.TileAndWall:
                 if (TilePicker.TileStyleActive)
@@ -296,7 +324,7 @@ public class WorldEditor : IDisposable
                 int u = curTile.U;
                 int v = curTile.V;
                 SetPixelAutomatic(ref curTile, tile: -1, u: 0, v: 0);
-                if (u > 0)
+                if (u > 0 && u < Minecart.LeftSideConnection.Length)
                 {
                     switch (Minecart.LeftSideConnection[u])
                     {
@@ -311,7 +339,7 @@ public class WorldEditor : IDisposable
                         case 2: SetTrack(x + 1, y + 1, ref _world.Tiles[x + 1, y + 1], false, false, false); break;
                     }
                 }
-                if (v > 0)
+                if (v > 0 && v < Minecart.LeftSideConnection.Length)
                 {
                     switch (Minecart.LeftSideConnection[v])
                     {
@@ -534,11 +562,7 @@ public class WorldEditor : IDisposable
                 if (above.IsActive)
                 {
                     _undo.SaveTile(_world, new Vector2Int32(x, ty));
-                    above.IsActive = false;
-                    above.Type = 0;
-                    above.U = 0;
-                    above.V = 0;
-                    above.BrickStyle = BrickStyle.Full;
+                    above.ClearTile();
                     _notifyTileChanged?.Invoke(x, ty, 1, 1);
                 }
             }
@@ -584,7 +608,7 @@ public class WorldEditor : IDisposable
         if (!t.IsActive) return;
 
         var tp = WorldConfiguration.GetTileProperties(t.Type);
-        if (tp.IsFramed || t.LiquidType != LiquidType.None) return;
+        if ((tp.IsFramed && !tp.HasSlopes) || t.LiquidType != LiquidType.None) return;
 
         var v = new Vector2Int32(x, y);
         bool up = _world.SlopeCheck(v, new Vector2Int32(x, y - 1));
@@ -758,13 +782,7 @@ public class WorldEditor : IDisposable
         {
             if (tile == -1)
             {
-                curTile.Type = 0;
-                curTile.IsActive = false;
-                curTile.InActive = false;
-                curTile.Actuator = false;
-                curTile.BrickStyle = BrickStyle.Full;
-                curTile.U = 0;
-                curTile.V = 0;
+                curTile.ClearTile();
             }
             else
             {
@@ -775,6 +793,7 @@ public class WorldEditor : IDisposable
                 {
                     curTile.U = -1;
                     curTile.V = -1;
+                    curTile.LiquidAmount = 0;
                 }
             }
         }

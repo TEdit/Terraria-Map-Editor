@@ -99,7 +99,7 @@
             <ComboBox Grid.Column="1" ItemsSource="{StaticResource BrickStyle}"
                       SelectedValue="{Binding TilePicker.BrickStyle}"
                       SelectedValuePath="Value"
-                      ItemTemplate="{StaticResource EnumTemplate}" />
+                      ItemTemplate="{StaticResource BrickStyleIconTemplate}" />
         </Grid>
 
         <!-- ── Paint ── -->

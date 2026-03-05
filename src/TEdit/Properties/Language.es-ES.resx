@@ -262,8 +262,14 @@
   <data name="BrushShape_Triangle" xml:space="preserve">
     <value>Triángulo</value>
   </data>
+  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
+    <value>Borrar todos los elementos</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Máximo</value>
+  </data>
+  <data name="common_browse" xml:space="preserve">
+    <value>Explora...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>Cancelar</value>
@@ -272,7 +278,7 @@
     <value>Limpiar</value>
   </data>
   <data name="common_close" xml:space="preserve">
-    <value>Cierre</value>
+    <value>Cerrar</value>
   </data>
   <data name="common_enabled" xml:space="preserve">
     <value>Habilitado</value>
@@ -304,6 +310,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Archivos de Terraria no encontrados</value>
+  </data>
+  <data name="drawing_mode_wire45" xml:space="preserve">
+    <value>Modo de cableado (45°)</value>
+  </data>
+  <data name="drawing_mode_wire90" xml:space="preserve">
+    <value>Modo de cableado (90°)</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Análisis</value>
@@ -414,7 +426,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Pulsa una tecla o haz clic en un botón del ratón</value>
   </data>
   <data name="light_glow_intensity" xml:space="preserve">
-    <value>Light Glow Intensity</value>
+    <value>Intensidad de brillo</value>
   </data>
   <data name="LiquidAmountMode_EightyPercent" xml:space="preserve">
     <value>80 %</value>
@@ -479,29 +491,17 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="MaskMode_Off" xml:space="preserve">
     <value>Desactivar máscara</value>
   </data>
+  <data name="MaskPreset_Custom" xml:space="preserve">
+    <value>Usar personalizado</value>
+  </data>
+  <data name="MaskPreset_ExactMatch" xml:space="preserve">
+    <value>Coincidencia exacta</value>
+  </data>
   <data name="MaskPreset_Off" xml:space="preserve">
     <value>Fuera</value>
   </data>
-  <data name="MaskPreset_Custom" xml:space="preserve">
-    <value>Match Custom</value>
-  </data>
-  <data name="MaskPreset_ExactMatch" xml:space="preserve">
-    <value>Match All</value>
-  </data>
-  <data name="palette_title" xml:space="preserve">
-    <value>Palette</value>
-  </data>
-  <data name="palette_tile_section" xml:space="preserve">
-    <value>Tile Picker</value>
-  </data>
-  <data name="palette_mask_section" xml:space="preserve">
-    <value>Mask Options</value>
-  </data>
-  <data name="sidebar_palette_tooltip" xml:space="preserve">
-    <value>Palette</value>
-  </data>
   <data name="mask_clear_all" xml:space="preserve">
-    <value>Clear All</value>
+    <value>Limpiar todo</value>
   </data>
   <data name="mask_echo" xml:space="preserve">
     <value>Eco</value>
@@ -510,58 +510,58 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Iluminador</value>
   </data>
   <data name="mask_preset" xml:space="preserve">
-    <value>Preset:</value>
+    <value>Ajuste preestablecido:</value>
   </data>
   <data name="mask_preset_custom" xml:space="preserve">
     <value>Personalizado</value>
   </data>
   <data name="mask_preset_Duplicate[1]" xml:space="preserve">
-    <value>Preset:</value>
+    <value>Ajuste preestablecido:</value>
   </data>
   <data name="mask_preset_exact" xml:space="preserve">
-    <value>Exact Match</value>
+    <value>Coincidencia exacta</value>
   </data>
   <data name="mask_section_actuator" xml:space="preserve">
-    <value>Actuator</value>
+    <value>Actuador</value>
   </data>
   <data name="mask_section_brickstyle" xml:space="preserve">
     <value>Estilo de ladrillo</value>
   </data>
   <data name="mask_section_inactive" xml:space="preserve">
-    <value>Inactive</value>
+    <value>Inactivo</value>
   </data>
   <data name="mask_section_liquid_level" xml:space="preserve">
-    <value>Liquid Level</value>
+    <value>Nivel de liquido</value>
   </data>
   <data name="mask_section_liquid_type" xml:space="preserve">
-    <value>Liquid Type</value>
+    <value>Tipo de líquido</value>
   </data>
   <data name="mask_section_tile" xml:space="preserve">
-    <value>Tile Type</value>
+    <value>Tipo de bloque</value>
   </data>
   <data name="mask_section_tile_coatings" xml:space="preserve">
-    <value>Tile Coatings</value>
+    <value>Recubrimiento de bloque</value>
   </data>
   <data name="mask_section_tile_Duplicate[1]" xml:space="preserve">
-    <value>Tile Type</value>
+    <value>Tipo de bloque</value>
   </data>
   <data name="mask_section_tile_paint" xml:space="preserve">
-    <value>Tile Paint</value>
+    <value>Pintura de bloque</value>
   </data>
   <data name="mask_section_wall" xml:space="preserve">
-    <value>Wall Type</value>
+    <value>Tipo de pared</value>
   </data>
   <data name="mask_section_wall_coatings" xml:space="preserve">
-    <value>Wall Coatings</value>
+    <value>Recubrimiento de pared</value>
   </data>
   <data name="mask_section_wall_paint" xml:space="preserve">
-    <value>Wall Paint</value>
+    <value>Pintura de pared</value>
   </data>
   <data name="mask_section_wires" xml:space="preserve">
     <value>Cables</value>
   </data>
   <data name="mask_title" xml:space="preserve">
-    <value>Masks</value>
+    <value>Mascarás</value>
   </data>
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>Copiar primer elemento</value>
@@ -580,6 +580,21 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="menu_edit_expand" xml:space="preserve">
     <value>Expandir mundo</value>
+  </data>
+  <data name="menu_edit_export_full_texture" xml:space="preserve">
+    <value>Full Texture (16px/tile)</value>
+  </data>
+  <data name="menu_edit_export_half_texture" xml:space="preserve">
+    <value>Half Texture (8px/tile)</value>
+  </data>
+  <data name="menu_edit_export_pixel_map" xml:space="preserve">
+    <value>Pixel Map (1px/tile)</value>
+  </data>
+  <data name="menu_edit_export_quarter_texture" xml:space="preserve">
+    <value>Quarter Texture (4px/tile)</value>
+  </data>
+  <data name="menu_edit_export_selection" xml:space="preserve">
+    <value>Export Selection</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>Pegar</value>
@@ -644,8 +659,8 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_filter_darken" xml:space="preserve">
     <value>Oscurecer</value>
   </data>
-  <data name="menu_filter_darken_label" xml:space="preserve">
-    <value>Oscurecer:</value>
+  <data name="menu_filter_desaturate_label" xml:space="preserve">
+    <value>Desaturar</value>
   </data>
   <data name="menu_filter_disable" xml:space="preserve">
     <value>Desactivar</value>
@@ -999,6 +1014,15 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="newworld_width" xml:space="preserve">
     <value>Ancho</value>
   </data>
+  <data name="npc_label_partying" xml:space="preserve">
+    <value>Fiestas</value>
+  </data>
+  <data name="npc_label_shimmered" xml:space="preserve">
+    <value>Brillaba</value>
+  </data>
+  <data name="npc_search_placeholder" xml:space="preserve">
+    <value>Buscar...</value>
+  </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>Líquido</value>
   </data>
@@ -1017,11 +1041,80 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Cable</value>
   </data>
+  <data name="palette_mask_section" xml:space="preserve">
+    <value>Opciones de máscara</value>
+  </data>
+  <data name="palette_tile_section" xml:space="preserve">
+    <value>Selector de bloques</value>
+  </data>
+  <data name="palette_title" xml:space="preserve">
+    <value>Paleta</value>
+  </data>
+  <data name="paste_tooltip_accept" xml:space="preserve">
+    <value>Aceptar (Enter)</value>
+  </data>
+  <data name="paste_tooltip_cancel" xml:space="preserve">
+    <value>Cancelar (Esc)</value>
+  </data>
+  <data name="paste_tooltip_flip_h" xml:space="preserve">
+    <value>Voltear horizontal (Ctrl+H)</value>
+  </data>
+  <data name="paste_tooltip_flip_v" xml:space="preserve">
+    <value>Voltear vertical (Ctrl+Shift+H)</value>
+  </data>
+  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
+    <value>Rotar CCW (Ctrl+Shift+Q)</value>
+  </data>
+  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
+    <value>Rotar CW (Ctrl+Q)</value>
+  </data>
   <data name="picker_check_all_tooltip" xml:space="preserve">
     <value>Revisa todos los objetos visibles</value>
   </data>
+  <data name="picker_search_items_placeholder" xml:space="preserve">
+    <value>Registrar objetos...</value>
+  </data>
+  <data name="picker_search_platforms_placeholder" xml:space="preserve">
+    <value>Plataformas de búsqueda...</value>
+  </data>
+  <data name="picker_search_prefix_placeholder" xml:space="preserve">
+    <value>Prefijo</value>
+  </data>
+  <data name="picker_search_sprites_placeholder" xml:space="preserve">
+    <value>Buscar sprites...</value>
+  </data>
+  <data name="picker_search_tiles_placeholder" xml:space="preserve">
+    <value>Fichas de búsqueda...</value>
+  </data>
+  <data name="picker_search_walls_placeholder" xml:space="preserve">
+    <value>Paredes de registro...</value>
+  </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Desmarca todos los elementos visibles</value>
+  </data>
+  <data name="player_buff_clear_tooltip" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="player_buff_edit_selected" xml:space="preserve">
+    <value>Editar Buff seleccionado</value>
+  </data>
+  <data name="player_buff_label_time" xml:space="preserve">
+    <value>Tiempo:</value>
+  </data>
+  <data name="player_buff_label_type" xml:space="preserve">
+    <value>Tipo:</value>
+  </data>
+  <data name="player_difficulty_classic" xml:space="preserve">
+    <value>Clásico</value>
+  </data>
+  <data name="player_difficulty_hardcore" xml:space="preserve">
+    <value>Hardcore</value>
+  </data>
+  <data name="player_difficulty_journey" xml:space="preserve">
+    <value>Viaje</value>
+  </data>
+  <data name="player_difficulty_mediumcore" xml:space="preserve">
+    <value>Núcleo medio</value>
   </data>
   <data name="player_editor_appearance_colors" xml:space="preserve">
     <value>Colores de apariencia</value>
@@ -1107,6 +1200,126 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="player_editor_undershirt_color" xml:space="preserve">
     <value>Color de la camiseta</value>
   </data>
+  <data name="player_equip_label_dye" xml:space="preserve">
+    <value>Tinte</value>
+  </data>
+  <data name="player_equip_label_edit_item" xml:space="preserve">
+    <value>Editar elemento</value>
+  </data>
+  <data name="player_equip_label_equipment" xml:space="preserve">
+    <value>Equipamiento</value>
+  </data>
+  <data name="player_equip_label_misc" xml:space="preserve">
+    <value>Equipamiento Diverso</value>
+  </data>
+  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
+    <value>Alternar visibilidad</value>
+  </data>
+  <data name="player_journey_research_sacrifices" xml:space="preserve">
+    <value>Sacrificios de investigación</value>
+  </data>
+  <data name="player_journey_total_researched" xml:space="preserve">
+    <value>Total de ítems investigados: {0}</value>
+  </data>
+  <data name="player_stats_angler_quests" xml:space="preserve">
+    <value>Misiones de pescadores:</value>
+  </data>
+  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
+    <value>Comía pan artesanal</value>
+  </data>
+  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
+    <value>Antorchas de bioma desbloqueadas</value>
+  </data>
+  <data name="player_stats_deaths_pve" xml:space="preserve">
+    <value>Muertes (PvE):</value>
+  </data>
+  <data name="player_stats_deaths_pvp" xml:space="preserve">
+    <value>Muertes (PvP):</value>
+  </data>
+  <data name="player_stats_extra_accessory" xml:space="preserve">
+    <value>Accesorio extra</value>
+  </data>
+  <data name="player_stats_flags" xml:space="preserve">
+    <value>Banderas</value>
+  </data>
+  <data name="player_stats_golfer_score" xml:space="preserve">
+    <value>Puntuación del golfista:</value>
+  </data>
+  <data name="player_stats_health" xml:space="preserve">
+    <value>Salud</value>
+  </data>
+  <data name="player_stats_hp" xml:space="preserve">
+    <value>Salud:</value>
+  </data>
+  <data name="player_stats_mana" xml:space="preserve">
+    <value>Mana:</value>
+  </data>
+  <data name="player_stats_max" xml:space="preserve">
+    <value>Max:</value>
+  </data>
+  <data name="player_stats_mp" xml:space="preserve">
+    <value>Multijugador:</value>
+  </data>
+  <data name="player_stats_show_armor" xml:space="preserve">
+    <value>Exhibición de armaduras</value>
+  </data>
+  <data name="player_stats_spawn_points" xml:space="preserve">
+    <value>Puntos de aparición</value>
+  </data>
+  <data name="player_stats_statistics" xml:space="preserve">
+    <value>Estadísticas</value>
+  </data>
+  <data name="player_stats_super_cart_enabled" xml:space="preserve">
+    <value>Super Cart habilitado</value>
+  </data>
+  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
+    <value>Super Cart desbloqueado</value>
+  </data>
+  <data name="player_stats_tax_money" xml:space="preserve">
+    <value>Dinero de los impuestos:</value>
+  </data>
+  <data name="player_stats_team" xml:space="preserve">
+    <value>Equipo:</value>
+  </data>
+  <data name="player_stats_team_blue" xml:space="preserve">
+    <value>Azul</value>
+  </data>
+  <data name="player_stats_team_green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="player_stats_team_none" xml:space="preserve">
+    <value>Ninguno</value>
+  </data>
+  <data name="player_stats_team_pink" xml:space="preserve">
+    <value>Rosa</value>
+  </data>
+  <data name="player_stats_team_red" xml:space="preserve">
+    <value>Rojo</value>
+  </data>
+  <data name="player_stats_team_yellow" xml:space="preserve">
+    <value>Amarillo</value>
+  </data>
+  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
+    <value>Cristal Aegis usado</value>
+  </data>
+  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
+    <value>Fruta Aegis usada</value>
+  </data>
+  <data name="player_stats_used_ambrosia" xml:space="preserve">
+    <value>Ambrosía usada</value>
+  </data>
+  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
+    <value>Cristal Arcano usado</value>
+  </data>
+  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
+    <value>Galaxy Pearl usada</value>
+  </data>
+  <data name="player_stats_used_gummy_worm" xml:space="preserve">
+    <value>Gusano de goma usado</value>
+  </data>
+  <data name="player_stats_using_biome_torches" xml:space="preserve">
+    <value>Uso de antorchas de bioma</value>
+  </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Selecciona una versión para guardar como:</value>
   </data>
@@ -1187,10 +1400,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Paleta de colores del mapa de píxeles: Predeterminado, Realista (basado en texturas) o Minimapa (colores del mapa dentro del juego). Requiere reiniciar.</value>
   </data>
   <data name="settings_enable_mica" xml:space="preserve">
-    <value>Enable Mica backdrop</value>
+    <value>Activar fondo Mica</value>
   </data>
   <data name="settings_enable_mica_desc" xml:space="preserve">
-    <value>Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart.</value>
+    <value>Usar fondos de ventana Mica translúcidos. Desactívalo si las ventanas se ven transparentes. Requiere reiniciar.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>Activar el editor de jugadores</value>
@@ -1398,7 +1611,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Encontrar</value>
   </data>
   <data name="sidebar_mask_tooltip" xml:space="preserve">
-    <value>Masks</value>
+    <value>Mascarás</value>
+  </data>
+  <data name="sidebar_palette_tooltip" xml:space="preserve">
+    <value>Paleta</value>
   </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
     <value>Scripting</value>
@@ -1523,17 +1739,32 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="sprite_biome_label" xml:space="preserve">
     <value>Bioma:</value>
   </data>
+  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
+    <value>Selección clara</value>
+  </data>
   <data name="sprite_filter_button" xml:space="preserve">
     <value>Filtrar</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
     <value>Filtro: </value>
   </data>
+  <data name="sprite_size_label" xml:space="preserve">
+    <value>Tamaño:</value>
+  </data>
+  <data name="sprite_styles_format" xml:space="preserve">
+    <value>{0} estilos</value>
+  </data>
   <data name="sprite_styletype" xml:space="preserve">
     <value>Estilo</value>
   </data>
+  <data name="sprite_style_format" xml:space="preserve">
+    <value>Estilo: {0}</value>
+  </data>
   <data name="sprite_tiletype" xml:space="preserve">
     <value>Filtro de tipos de sprites</value>
+  </data>
+  <data name="sprite_tile_id_format" xml:space="preserve">
+    <value>ID de la ficha: {0}</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
@@ -1637,6 +1868,9 @@ Qué NO se recolecta:
   <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
     <value>Volteo horizontal</value>
   </data>
+  <data name="tool_brush_flip_label" xml:space="preserve">
+    <value>Girar</value>
+  </data>
   <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
     <value>Voltear verticalmente</value>
   </data>
@@ -1645,6 +1879,9 @@ Qué NO se recolecta:
   </data>
   <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
     <value>Ancho y alto del pincel</value>
+  </data>
+  <data name="tool_brush_outline_label" xml:space="preserve">
+    <value>Contorno</value>
   </data>
   <data name="tool_brush_outline_thickness_label" xml:space="preserve">
     <value>Contorno</value>
@@ -1690,6 +1927,12 @@ Qué NO se recolecta:
   </data>
   <data name="tool_clipboard_importschematic" xml:space="preserve">
     <value>Importar esquema o imagen</value>
+  </data>
+  <data name="tool_clipboard_instant_paste" xml:space="preserve">
+    <value>Pasta instantánea</value>
+  </data>
+  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
+    <value>Pegar inmediatamente al hacer clic sin arrastrar a posición</value>
   </data>
   <data name="tool_clipboard_ispasteempty" xml:space="preserve">
     <value>Pegar bloques vacíos</value>
@@ -1866,22 +2109,28 @@ Qué NO se recolecta:
     <value>Agregar placa de presión a la pista existente, úsalo con el Borrador para quitar solo la placa.</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
-    <value>Smooth</value>
+    <value>Suavizar</value>
   </data>
   <data name="tool_paint_track_smooth_tooltip" xml:space="preserve">
-    <value>Smooth the tunnel made by the track tool.</value>
+    <value>Suaviza el túnel creado por la herramienta de vías.</value>
   </data>
   <data name="tool_paint_track_tunnel" xml:space="preserve">
-    <value>Tunnel</value>
+    <value>Túnel</value>
   </data>
   <data name="tool_paint_track_tunnel_tooltip" xml:space="preserve">
-    <value>Dig a tunnel for the track</value>
+    <value>Excavar un túnel para la vía</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Pared</value>
   </data>
   <data name="tool_paint_wire_blue" xml:space="preserve">
     <value>Azul</value>
+  </data>
+  <data name="tool_paint_wire_chain" xml:space="preserve">
+    <value>Cadena</value>
+  </data>
+  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
+    <value>Continúa dibujando desde el final del último segmento</value>
   </data>
   <data name="tool_paint_wire_green" xml:space="preserve">
     <value>Verde</value>
@@ -1895,6 +2144,9 @@ Qué NO se recolecta:
   <data name="tool_paint_wire_replace_header" xml:space="preserve">
     <value>Reemplazo de cables</value>
   </data>
+  <data name="tool_paint_wire_route" xml:space="preserve">
+    <value>Recorrido</value>
+  </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
     <value>Amarillo</value>
   </data>
@@ -1903,12 +2155,6 @@ Qué NO se recolecta:
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
     <value>Lápiz</value>
-  </data>
-  <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Wire 90°</value>
-  </data>
-  <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Wire 45°</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
     <value>Selector: seleccione el color del bloque</value>
@@ -2561,6 +2807,9 @@ Qué NO se recolecta:
   <data name="world_explorer_backup_exists_tooltip" xml:space="preserve">
     <value>Existe copia de seguridad</value>
   </data>
+  <data name="world_explorer_browse" xml:space="preserve">
+    <value>Explora...</value>
+  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>Dimensiones</value>
   </data>
@@ -2615,247 +2864,88 @@ Qué NO se recolecta:
   <data name="world_explorer_title" xml:space="preserve">
     <value>Explorador del mundo</value>
   </data>
+  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
+    <value>Alternar favorito</value>
+  </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Desfijar</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar huecos en el fondo</value>
   </data>
-  <data name="chest_clear_all_items_tooltip" xml:space="preserve">
-    <value>Borrar todos los elementos</value>
+  <data name="toolbar_deselect" xml:space="preserve">
+    <value>Deselect</value>
   </data>
-  <data name="common_browse" xml:space="preserve">
-    <value>Explora...</value>
+  <data name="toolbar_export" xml:space="preserve">
+    <value>Exportar</value>
   </data>
-  <data name="npc_label_partying" xml:space="preserve">
-    <value>Fiestas</value>
+  <data name="export_size_warning" xml:space="preserve">
+    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
   </data>
-  <data name="npc_label_shimmered" xml:space="preserve">
-    <value>Brillaba</value>
+  <data name="export_size_warning_title" xml:space="preserve">
+    <value>Large Export Warning</value>
   </data>
-  <data name="npc_search_placeholder" xml:space="preserve">
-    <value>Buscar...</value>
+  <data name="export_complete" xml:space="preserve">
+    <value>Selection exported to {0}</value>
   </data>
-  <data name="paste_tooltip_accept" xml:space="preserve">
-    <value>Aceptar (Enter)</value>
+  <data name="export_size_limit_exceeded" xml:space="preserve">
+    <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
-  <data name="paste_tooltip_cancel" xml:space="preserve">
-    <value>Cancelar (Esc)</value>
+  <data name="menu_layers_bg_scale" xml:space="preserve">
+    <value>BG Scale</value>
   </data>
-  <data name="paste_tooltip_flip_h" xml:space="preserve">
-    <value>Voltear horizontal (Ctrl+H)</value>
+  <data name="find_selected_items" xml:space="preserve">
+    <value>{0} items</value>
   </data>
-  <data name="paste_tooltip_flip_v" xml:space="preserve">
-    <value>Voltear vertical (Ctrl+Shift+H)</value>
+  <data name="find_selected_tiles" xml:space="preserve">
+    <value>{0} tiles</value>
   </data>
-  <data name="paste_tooltip_rotate_ccw" xml:space="preserve">
-    <value>Rotar CCW (Ctrl+Shift+Q)</value>
+  <data name="find_selected_walls" xml:space="preserve">
+    <value>{0} walls</value>
   </data>
-  <data name="paste_tooltip_rotate_cw" xml:space="preserve">
-    <value>Rotar CW (Ctrl+Q)</value>
+  <data name="find_selected_sprites" xml:space="preserve">
+    <value>{0} sprites</value>
   </data>
-  <data name="picker_search_items_placeholder" xml:space="preserve">
-    <value>Registrar objetos...</value>
+  <data name="find_selection_summary" xml:space="preserve">
+    <value>Selected: {0}</value>
   </data>
-  <data name="picker_search_platforms_placeholder" xml:space="preserve">
-    <value>Plataformas de búsqueda...</value>
+  <data name="find_no_selection" xml:space="preserve">
+    <value>No selection</value>
   </data>
-  <data name="picker_search_prefix_placeholder" xml:space="preserve">
-    <value>Prefijo</value>
+  <data name="find_result_summary" xml:space="preserve">
+    <value>{0} of {1}</value>
   </data>
-  <data name="picker_search_sprites_placeholder" xml:space="preserve">
-    <value>Buscar sprites...</value>
+  <data name="find_no_results" xml:space="preserve">
+    <value>No results</value>
   </data>
-  <data name="picker_search_tiles_placeholder" xml:space="preserve">
-    <value>Fichas de búsqueda...</value>
+  <data name="find_no_world_loaded" xml:space="preserve">
+    <value>No world loaded.</value>
   </data>
-  <data name="picker_search_walls_placeholder" xml:space="preserve">
-    <value>Paredes de registro...</value>
+  <data name="find_dialog_title" xml:space="preserve">
+    <value>Encontrar</value>
   </data>
-  <data name="player_buff_clear_tooltip" xml:space="preserve">
-    <value>Reiniciar</value>
+  <data name="find_result_type_chest" xml:space="preserve">
+    <value>Chest</value>
   </data>
-  <data name="player_buff_edit_selected" xml:space="preserve">
-    <value>Editar Buff seleccionado</value>
+  <data name="find_result_type_tile_entity" xml:space="preserve">
+    <value>TileEntity</value>
   </data>
-  <data name="player_buff_label_time" xml:space="preserve">
-    <value>Tiempo:</value>
+  <data name="find_result_type_tile" xml:space="preserve">
+    <value>Bloque</value>
   </data>
-  <data name="player_buff_label_type" xml:space="preserve">
-    <value>Tipo:</value>
+  <data name="find_result_type_wall" xml:space="preserve">
+    <value>Pared</value>
   </data>
-  <data name="player_difficulty_classic" xml:space="preserve">
-    <value>Clásico</value>
+  <data name="find_result_type_sprite" xml:space="preserve">
+    <value>Sprite</value>
   </data>
-  <data name="player_difficulty_hardcore" xml:space="preserve">
-    <value>Hardcore</value>
+  <data name="find_distance_label" xml:space="preserve">
+    <value>Distance: {0}</value>
   </data>
-  <data name="player_difficulty_journey" xml:space="preserve">
-    <value>Viaje</value>
+  <data name="status_loading_textures" xml:space="preserve">
+    <value>Loading textures: {0}/{1}</value>
   </data>
-  <data name="player_difficulty_mediumcore" xml:space="preserve">
-    <value>Núcleo medio</value>
-  </data>
-  <data name="player_equip_label_dye" xml:space="preserve">
-    <value>Tinte</value>
-  </data>
-  <data name="player_equip_label_edit_item" xml:space="preserve">
-    <value>Editar elemento</value>
-  </data>
-  <data name="player_equip_label_equipment" xml:space="preserve">
-    <value>Equipamiento</value>
-  </data>
-  <data name="player_equip_label_misc" xml:space="preserve">
-    <value>Equipamiento Diverso</value>
-  </data>
-  <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
-    <value>Alternar visibilidad</value>
-  </data>
-  <data name="player_journey_research_sacrifices" xml:space="preserve">
-    <value>Sacrificios de investigación</value>
-  </data>
-  <data name="player_journey_total_researched" xml:space="preserve">
-    <value>Total de ítems investigados: {0}</value>
-  </data>
-  <data name="player_stats_angler_quests" xml:space="preserve">
-    <value>Misiones de pescadores:</value>
-  </data>
-  <data name="player_stats_ate_artisan_bread" xml:space="preserve">
-    <value>Comía pan artesanal</value>
-  </data>
-  <data name="player_stats_biome_torches_unlocked" xml:space="preserve">
-    <value>Antorchas de bioma desbloqueadas</value>
-  </data>
-  <data name="player_stats_deaths_pve" xml:space="preserve">
-    <value>Muertes (PvE):</value>
-  </data>
-  <data name="player_stats_deaths_pvp" xml:space="preserve">
-    <value>Muertes (PvP):</value>
-  </data>
-  <data name="player_stats_extra_accessory" xml:space="preserve">
-    <value>Accesorio extra</value>
-  </data>
-  <data name="player_stats_flags" xml:space="preserve">
-    <value>Banderas</value>
-  </data>
-  <data name="player_stats_golfer_score" xml:space="preserve">
-    <value>Puntuación del golfista:</value>
-  </data>
-  <data name="player_stats_health" xml:space="preserve">
-    <value>Salud</value>
-  </data>
-  <data name="player_stats_hp" xml:space="preserve">
-    <value>HP:</value>
-  </data>
-  <data name="player_stats_mana" xml:space="preserve">
-    <value>Mana</value>
-  </data>
-  <data name="player_stats_max" xml:space="preserve">
-    <value>Max:</value>
-  </data>
-  <data name="player_stats_mp" xml:space="preserve">
-    <value>MP:</value>
-  </data>
-  <data name="player_stats_show_armor" xml:space="preserve">
-    <value>Exhibición de armaduras</value>
-  </data>
-  <data name="player_stats_spawn_points" xml:space="preserve">
-    <value>Puntos de aparición</value>
-  </data>
-  <data name="player_stats_statistics" xml:space="preserve">
-    <value>Estadísticas</value>
-  </data>
-  <data name="player_stats_super_cart_enabled" xml:space="preserve">
-    <value>Super Cart habilitado</value>
-  </data>
-  <data name="player_stats_super_cart_unlocked" xml:space="preserve">
-    <value>Super Cart desbloqueado</value>
-  </data>
-  <data name="player_stats_tax_money" xml:space="preserve">
-    <value>Dinero de los impuestos:</value>
-  </data>
-  <data name="player_stats_team" xml:space="preserve">
-    <value>Equipo:</value>
-  </data>
-  <data name="player_stats_team_blue" xml:space="preserve">
-    <value>Azul</value>
-  </data>
-  <data name="player_stats_team_green" xml:space="preserve">
-    <value>Verde</value>
-  </data>
-  <data name="player_stats_team_none" xml:space="preserve">
-    <value>Ninguno</value>
-  </data>
-  <data name="player_stats_team_pink" xml:space="preserve">
-    <value>Rosa</value>
-  </data>
-  <data name="player_stats_team_red" xml:space="preserve">
-    <value>Rojo</value>
-  </data>
-  <data name="player_stats_team_yellow" xml:space="preserve">
-    <value>Amarillo</value>
-  </data>
-  <data name="player_stats_used_aegis_crystal" xml:space="preserve">
-    <value>Cristal Aegis usado</value>
-  </data>
-  <data name="player_stats_used_aegis_fruit" xml:space="preserve">
-    <value>Fruta Aegis usada</value>
-  </data>
-  <data name="player_stats_used_ambrosia" xml:space="preserve">
-    <value>Ambrosía usada</value>
-  </data>
-  <data name="player_stats_used_arcane_crystal" xml:space="preserve">
-    <value>Cristal Arcano usado</value>
-  </data>
-  <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
-    <value>Galaxy Pearl usada</value>
-  </data>
-  <data name="player_stats_used_gummy_worm" xml:space="preserve">
-    <value>Gusano de goma usado</value>
-  </data>
-  <data name="player_stats_using_biome_torches" xml:space="preserve">
-    <value>Uso de antorchas de bioma</value>
-  </data>
-  <data name="sprite_clear_selection_tooltip" xml:space="preserve">
-    <value>Selección clara</value>
-  </data>
-  <data name="sprite_size_label" xml:space="preserve">
-    <value>Tamaño:</value>
-  </data>
-  <data name="sprite_tile_id_format" xml:space="preserve">
-    <value>ID de la ficha: {0}</value>
-  </data>
-  <data name="sprite_styles_format" xml:space="preserve">
-    <value>{0} estilos</value>
-  </data>
-  <data name="sprite_style_format" xml:space="preserve">
-    <value>Estilo: {0}</value>
-  </data>
-  <data name="tool_brush_flip_label" xml:space="preserve">
-    <value>Flip</value>
-  </data>
-  <data name="tool_brush_outline_label" xml:space="preserve">
-    <value>Contorno</value>
-  </data>
-  <data name="tool_clipboard_instant_paste" xml:space="preserve">
-    <value>Pasta instantánea</value>
-  </data>
-  <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
-    <value>Pegar inmediatamente al hacer clic sin arrastrar a posición</value>
-  </data>
-  <data name="tool_paint_wire_chain" xml:space="preserve">
-    <value>Cadena</value>
-  </data>
-  <data name="tool_paint_wire_chain_tooltip" xml:space="preserve">
-    <value>Continúa dibujando desde el final del último segmento</value>
-  </data>
-  <data name="tool_paint_wire_route" xml:space="preserve">
-    <value>Recorrido</value>
-  </data>
-  <data name="world_explorer_browse" xml:space="preserve">
-    <value>Explora...</value>
-  </data>
-  <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
-    <value>Alternar favorito</value>
+  <data name="status_textures_loaded" xml:space="preserve">
+    <value>Textures loaded</value>
   </data>
 </root>

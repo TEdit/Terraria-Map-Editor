@@ -128,7 +128,6 @@ public class TileApi
         Validate(fromX, fromY);
         Validate(toX, toY);
         SaveUndo(toX, toY);
-        // struct assignment is a full value copy
         _world.Tiles[toX, toY] = _world.Tiles[fromX, fromY];
     }
 }

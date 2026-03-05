@@ -160,6 +160,21 @@ public struct Tile : IEquatable<Tile>
         AshBlock = 57
     }
 
+    /// <summary>Clears tile-only fields (Type, U, V, color, style, coatings). Preserves wall, liquid, and wire state.</summary>
+    public void ClearTile()
+    {
+        IsActive = false;
+        InActive = false;
+        Actuator = false;
+        Type = 0;
+        U = 0;
+        V = 0;
+        TileColor = 0;
+        BrickStyle = 0;
+        InvisibleBlock = false;
+        FullBrightBlock = false;
+    }
+
     public void Reset()
     {
         Actuator = false;

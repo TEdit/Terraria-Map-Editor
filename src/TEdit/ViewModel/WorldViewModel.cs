@@ -74,7 +74,7 @@ public partial class WorldViewModel : ReactiveObject
     private WriteableBitmap _minimapImage;
     private string _morphBiomeTarget;
     private PixelMapManager _pixelMap;
-    private PixelMapManager _filterOverlayMap;
+    private FilterOverlayBuffer _filterOverlayMap;
     public BuffTileCache BuffTileCache { get; } = new BuffTileCache();
     private ProgressChangedEventArgs _progress;
     private Chest _selectedChest;
@@ -126,7 +126,6 @@ public partial class WorldViewModel : ReactiveObject
 
     // Style preview collections for world properties comboboxes
     public ObservableCollection<StylePreviewItem> TreeStylePreviews { get; } = new();
-    public ObservableCollection<StylePreviewItem> TreeTopPreviews { get; } = new();
     public ObservableCollection<StylePreviewItem> ForestBgPreviews { get; } = new();
     public ObservableCollection<StylePreviewItem> SnowBgPreviews { get; } = new();
     public ObservableCollection<StylePreviewItem> JungleBgPreviews { get; } = new();
@@ -162,6 +161,12 @@ public partial class WorldViewModel : ReactiveObject
     /// Action to pan (center) on a specific tile coordinate without changing zoom. Set by MainWindow to delegate to MapView.
     /// </summary>
     public Action<int, int>? PanTo { get; set; }
+
+    /// <summary>
+    /// Action to export the current selection to a PNG file. Set by MainWindow to delegate to MapView.
+    /// Parameters: filename, scale (1=pixel map, 4/8/16=textured), progress reporter.
+    /// </summary>
+    public Action<string, int, IProgress<ProgressChangedEventArgs>>? ExportSelection { get; set; }
 
     static WorldViewModel()
     {
@@ -2068,7 +2073,7 @@ public partial class WorldViewModel : ReactiveObject
         set { this.RaiseAndSetIfChanged(ref _pixelMap, value); }
     }
 
-    public PixelMapManager FilterOverlayMap
+    public FilterOverlayBuffer FilterOverlayMap
     {
         get { return _filterOverlayMap; }
         set { this.RaiseAndSetIfChanged(ref _filterOverlayMap, value); }
@@ -2408,6 +2413,20 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
+    public float _backgroundScaleZoom = UserSettingsService.Current.BackgroundScaleZoom;
+    public float BackgroundScaleZoom
+    {
+        get => _backgroundScaleZoom;
+        set
+        {
+            value = (float)Math.Floor(MathHelper.Clamp(value, 7, 12));
+            if (this.RaiseAndSetIfChanged(ref _backgroundScaleZoom, value) != value)
+            {
+                UserSettingsService.Current.BackgroundScaleZoom = value;
+            }
+        }
+    }
+
     private bool _showNews = UserSettingsService.Current.ShowNews;
 
     public bool ShowNews
@@ -2643,11 +2662,11 @@ public partial class WorldViewModel : ReactiveObject
 
     public void MouseMoveTile(TileMouseState e)
     {
-        if (CurrentWorld == null) return;
+        if (CurrentWorld?.Tiles == null) return;
 
         if (e.Location.X >= 0 && e.Location.Y >= 0 && e.Location.X < CurrentWorld.TilesWide && e.Location.Y < CurrentWorld.TilesHigh)
         {
-            if (e.Location != MouseOverTile.MouseState.Location)
+            if (MouseOverTile.MouseState is null || e.Location != MouseOverTile.MouseState.Location)
                 MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
             MouseOverTile.MouseState = e;

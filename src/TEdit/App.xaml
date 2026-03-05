@@ -120,11 +120,193 @@
         <Setter Property="Padding" Value="2,1,2,1" />
       </Style>
 
-      <!-- ComboBox: enable scrollbar in dropdown (WPF-UI defaults to Hidden) -->
+      <!-- ComboBox: always-visible scrollbar in dropdown (WPF-UI defaults to Hidden + opacity-faded) -->
       <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource DefaultComboBoxStyle}">
         <Setter Property="MaxDropDownHeight" Value="300" />
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+      </Style>
+
+      <!-- Override WPF-UI DynamicScrollBar: thumb always visible (no opacity fade) -->
+      <Style TargetType="{x:Type ui:DynamicScrollBar}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Width" Value="14" />
+        <Setter Property="MinWidth" Value="14" />
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type ui:DynamicScrollBar}">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition MaxHeight="14" />
+                  <RowDefinition Height="0.00001*" />
+                  <RowDefinition MaxHeight="14" />
+                </Grid.RowDefinitions>
+                <Border x:Name="PART_Border" Grid.RowSpan="3" Width="12" HorizontalAlignment="Center"
+                        Background="{DynamicResource ScrollBarTrackFillPointerOver}" CornerRadius="6" Opacity="0" />
+                <RepeatButton x:Name="PART_ButtonScrollUp" Grid.Row="0" Command="ScrollBar.LineUpCommand"
+                              Content="{x:Static ui:SymbolRegular.CaretUp24}" Opacity="0"
+                              Style="{StaticResource DynamicScrollBarLineButton}" />
+                <!-- Track has NO Opacity="0" — always visible -->
+                <Track x:Name="PART_Track" Grid.Row="1" Width="6" IsDirectionReversed="True">
+                  <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageUpCommand" Style="{StaticResource DynamicScrollBarPageButton}" />
+                  </Track.DecreaseRepeatButton>
+                  <Track.Thumb>
+                    <Thumb Margin="0" Padding="0" Style="{StaticResource DynamicScrollBarThumb}" />
+                  </Track.Thumb>
+                  <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageDownCommand" Style="{StaticResource DynamicScrollBarPageButton}" />
+                  </Track.IncreaseRepeatButton>
+                </Track>
+                <RepeatButton x:Name="PART_ButtonScrollDown" Grid.Row="2" Command="ScrollBar.LineDownCommand"
+                              Content="{x:Static ui:SymbolRegular.CaretDown24}" Opacity="0"
+                              Style="{StaticResource DynamicScrollBarLineButton}" />
+              </Grid>
+              <!-- Only animate decorative elements on hover; Track opacity stays at 1.0 always -->
+              <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                  <Trigger.EnterActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="Width"
+                                         From="6" To="8" Duration="0:0:0.16" />
+                        <DoubleAnimation Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="Opacity"
+                                         From="0.0" To="1.0" Duration="0:0:0.16" />
+                        <DoubleAnimation Storyboard.TargetName="PART_ButtonScrollUp" Storyboard.TargetProperty="Opacity"
+                                         From="0.0" To="1.0" Duration="0:0:0.16" />
+                        <DoubleAnimation Storyboard.TargetName="PART_ButtonScrollDown" Storyboard.TargetProperty="Opacity"
+                                         From="0.0" To="1.0" Duration="0:0:0.16" />
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.EnterActions>
+                  <Trigger.ExitActions>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="Width"
+                                         From="8" To="6" Duration="0:0:0.16" />
+                        <DoubleAnimation Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="Opacity"
+                                         From="1.0" To="0.0" Duration="0:0:0.16" />
+                        <DoubleAnimation Storyboard.TargetName="PART_ButtonScrollUp" Storyboard.TargetProperty="Opacity"
+                                         From="1.0" To="0.0" Duration="0:0:0.16" />
+                        <DoubleAnimation Storyboard.TargetName="PART_ButtonScrollDown" Storyboard.TargetProperty="Opacity"
+                                         From="1.0" To="0.0" Duration="0:0:0.16" />
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </Trigger.ExitActions>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+          <!-- Horizontal orientation override -->
+          <Trigger Property="Orientation" Value="Horizontal">
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Height" Value="14" />
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="MinHeight" Value="14" />
+            <Setter Property="Template">
+              <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ui:DynamicScrollBar}">
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition MaxWidth="14" />
+                      <ColumnDefinition Width="0.00001*" />
+                      <ColumnDefinition MaxWidth="14" />
+                    </Grid.ColumnDefinitions>
+                    <Border x:Name="PART_Border" Grid.ColumnSpan="3" Height="12" VerticalAlignment="Center"
+                            Background="{DynamicResource ScrollBarTrackFillPointerOver}" CornerRadius="6" Opacity="0" />
+                    <RepeatButton x:Name="PART_ButtonScrollLeft" Grid.Column="0" Command="ScrollBar.LineLeftCommand"
+                                  Content="{x:Static ui:SymbolRegular.CaretLeft24}" Opacity="0"
+                                  Style="{StaticResource DynamicScrollBarLineButton}" />
+                    <Track x:Name="PART_Track" Grid.Column="1" Height="6" IsDirectionReversed="False" Orientation="Horizontal">
+                      <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.PageLeftCommand" Style="{StaticResource DynamicScrollBarPageButton}" />
+                      </Track.DecreaseRepeatButton>
+                      <Track.Thumb>
+                        <Thumb Margin="0" Padding="0" Style="{StaticResource DynamicScrollBarThumb}" />
+                      </Track.Thumb>
+                      <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.PageRightCommand" Style="{StaticResource DynamicScrollBarPageButton}" />
+                      </Track.IncreaseRepeatButton>
+                    </Track>
+                    <RepeatButton x:Name="PART_ButtonScrollRight" Grid.Column="2" Command="ScrollBar.LineRightCommand"
+                                  Content="{x:Static ui:SymbolRegular.CaretRight24}" Opacity="0"
+                                  Style="{StaticResource DynamicScrollBarLineButton}" />
+                  </Grid>
+                  <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                      <Trigger.EnterActions>
+                        <BeginStoryboard>
+                          <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="Height"
+                                             From="6" To="8" Duration="0:0:0.16" />
+                            <DoubleAnimation Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="Opacity"
+                                             From="0.0" To="1.0" Duration="0:0:0.16" />
+                          </Storyboard>
+                        </BeginStoryboard>
+                      </Trigger.EnterActions>
+                      <Trigger.ExitActions>
+                        <BeginStoryboard>
+                          <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="PART_Track" Storyboard.TargetProperty="Height"
+                                             From="8" To="6" Duration="0:0:0.16" />
+                            <DoubleAnimation Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="Opacity"
+                                             From="1.0" To="0.0" Duration="0:0:0.16" />
+                          </Storyboard>
+                        </BeginStoryboard>
+                      </Trigger.ExitActions>
+                    </Trigger>
+                  </ControlTemplate.Triggers>
+                </ControlTemplate>
+              </Setter.Value>
+            </Setter>
+          </Trigger>
+        </Style.Triggers>
+      </Style>
+
+      <!-- Override WPF-UI DynamicScrollViewer: scrollbar beside content, not overlaid on top -->
+      <Style TargetType="{x:Type ui:DynamicScrollViewer}">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="PanningMode" Value="Both" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type ui:DynamicScrollViewer}">
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="*" />
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Grid.Column="0" Padding="{TemplateBinding Padding}">
+                  <ScrollContentPresenter CanContentScroll="{TemplateBinding CanContentScroll}" />
+                </Border>
+                <ui:DynamicScrollBar x:Name="PART_VerticalScrollBar" Grid.Row="0" Grid.Column="1"
+                    IsScrolling="{TemplateBinding IsScrollingVertically}"
+                    Maximum="{TemplateBinding ScrollableHeight}"
+                    ViewportSize="{TemplateBinding ViewportHeight}"
+                    Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                    Value="{TemplateBinding VerticalOffset}" />
+                <ui:DynamicScrollBar x:Name="PART_HorizontalScrollBar" Grid.Row="1" Grid.Column="0"
+                    IsScrolling="{TemplateBinding IsScrollingHorizontally}"
+                    Maximum="{TemplateBinding ScrollableWidth}"
+                    Orientation="Horizontal"
+                    ViewportSize="{TemplateBinding ViewportWidth}"
+                    Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                    Value="{TemplateBinding HorizontalOffset}" />
+              </Grid>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
       </Style>
 
       <!-- Compact icon-only button: minimal padding for tight layouts (e.g. chest editor) -->

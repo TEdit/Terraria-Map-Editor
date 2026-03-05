@@ -95,9 +95,7 @@ public partial class ClipboardBuffer : ITileData
                     // Tiles.
                     if (tileFilter != null && tileFilter(curTile.Type))
                     {
-                        curTile.IsActive = false;
-                        curTile.Type = 0;
-                        curTile.TileColor = 0;
+                        curTile.ClearTile();
                     }
 
                     // Walls.
@@ -379,7 +377,7 @@ public partial class ClipboardBuffer : ITileData
                 // Kill sprites (same as Rotate)
                 var tileProperties = WorldConfiguration.TileProperties[tile.Type];
                 if (tileProperties.IsFramed)
-                    tile.IsActive = false;
+                    tile.ClearTile();
 
                 // First dest tile keeps the original style; duplicates become full blocks
                 if (claimed[srcX, srcY])
@@ -425,7 +423,6 @@ public partial class ClipboardBuffer : ITileData
 
                 Tile tile = buffer.Tiles[x, y];
                 var tileProperties = WorldConfiguration.TileProperties[tile.Type];
-                flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;
 
                 // locate all the sprites and make a list
                 if (tileProperties.IsFramed)
@@ -433,9 +430,6 @@ public partial class ClipboardBuffer : ITileData
                     var loc = new Vector2Int32(x, y);
                     if (tileProperties.IsOrigin(tile.GetUV(), out var frameProp))
                     {
-                        // Vector2Short tileSize = tileProperties.GetFrameSize(tile.V);
-                        // spriteSizes[loc] = tileSize;
-
                         tileFrameProps[loc] = (tileProperties, frameProp);
                     }
                 }
@@ -482,6 +476,9 @@ public partial class ClipboardBuffer : ITileData
                             break;
                     }
                 }
+
+                // Store tile AFTER BrickStyle modification (Tile is a struct/value type)
+                flippedBuffer.Tiles[bufferX, bufferY] = tile;
             }
         }
 
@@ -642,7 +639,7 @@ public partial class ClipboardBuffer : ITileData
                     // kill sprites
                     if (tileProperties.IsFramed)
                     {
-                        tile.IsActive = false;
+                        tile.ClearTile();
                     }
                     rotatedBuffer.Tiles[y, x] = (Tile)tile; // Flipping x & y causes a rotation of 90 to the right
                 }

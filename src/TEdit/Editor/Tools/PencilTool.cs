@@ -137,8 +137,8 @@ public sealed class PencilTool : BaseTool
             return;
         }
 
-        // CAD wire mode intercept
-        if (_isCadWireMode)
+        // CAD wire mode intercept (liquid uses freehand drawing, not routed paths)
+        if (_isCadWireMode && _wvm.TilePicker.PaintMode != PaintMode.Liquid)
         {
             var actions = GetActiveActions(e);
 
@@ -153,11 +153,12 @@ public sealed class PencilTool : BaseTool
             {
                 if (!_isCadAnchored)
                 {
-                    // First click: set anchor, no drawing
+                    // First click: set anchor and draw 1 tile
                     _cadAnchor = e.Location;
                     _isCadAnchored = true;
                     _cadPreviewPath.Clear();
-            _cadPreviewTunnel.Clear();
+                    _cadPreviewTunnel.Clear();
+                    DrawSingleTile(e.Location);
                     return;
                 }
                 else
@@ -222,8 +223,8 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseMove(TileMouseState e)
     {
-        // CAD wire mode: update preview path
-        if (_isCadWireMode && _isCadAnchored)
+        // CAD wire mode: update preview path (liquid bypasses CAD)
+        if (_isCadWireMode && _isCadAnchored && _wvm.TilePicker.PaintMode != PaintMode.Liquid)
         {
             UpdateCadPreview(e.Location);
             return;
@@ -239,8 +240,8 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseUp(TileMouseState e)
     {
-        // CAD wire mode: clicks are handled in MouseDown, no action on MouseUp
-        if (_isCadWireMode && _isCadAnchored)
+        // CAD wire mode: clicks are handled in MouseDown, no action on MouseUp (liquid bypasses CAD)
+        if (_isCadWireMode && _isCadAnchored && _wvm.TilePicker.PaintMode != PaintMode.Liquid)
             return;
 
         // Detect click vs drag for polyline continuation
@@ -631,6 +632,26 @@ public sealed class PencilTool : BaseTool
         if (!_wvm.CurrentWorld.ValidTileLocation(new Vector2Int32(x, y))) return false;
         var t = _wvm.CurrentWorld.Tiles[x, y];
         return t.IsActive && t.Type != 19; // solid but not a platform
+    }
+
+    private void DrawSingleTile(Vector2Int32 pixel)
+    {
+        if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) return;
+        if (!_wvm.Selection.IsValid(pixel)) return;
+
+        int totalTiles = _wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh;
+        if (_wvm.CheckTiles == null || _wvm.CheckTiles.Length != totalTiles)
+            _wvm.CheckTiles = new int[totalTiles];
+        if (++_wvm.CheckTileGeneration <= 0)
+        {
+            _wvm.CheckTileGeneration = 1;
+            Array.Clear(_wvm.CheckTiles, 0, _wvm.CheckTiles.Length);
+        }
+
+        _wvm.UndoManager.SaveTile(pixel);
+        _wvm.SetPixel(pixel.X, pixel.Y);
+        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+        _wvm.UndoManager.SaveUndo();
     }
 
     private void ProcessDraw(Vector2Int32 tile)

@@ -51,6 +51,16 @@ public class WorldConfiguration
 
     public static List<string>            Biomes    => MorphSettings.Biomes.Keys.ToList();
     public static Dictionary<string, int> MossTypes => MorphSettings.MossTypes;
+    public static Dictionary<string, int> MossTypesWithNone
+    {
+        get
+        {
+            var dict = new Dictionary<string, int> { ["None (Remove)"] = -1 };
+            foreach (var kvp in MorphSettings.MossTypes)
+                dict[kvp.Key] = kvp.Value;
+            return dict;
+        }
+    }
 
     private static readonly Dictionary<string, TEditColor> _globalColors = new Dictionary<string, TEditColor>();
     private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();

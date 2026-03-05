@@ -90,6 +90,11 @@ public partial class MainWindow : FluentWindow
 
     async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
+        // Bring window to front after splash screen closes, then release topmost
+        Topmost = true;
+        Activate();
+        Topmost = false;
+
         // Initialize snackbar service with UI element
         // Note: DialogService uses WPF-UI MessageBox (separate window) to avoid
         // WPF airspace issues with the DirectX/XNA WorldRenderXna control
@@ -104,6 +109,7 @@ public partial class MainWindow : FluentWindow
         // Set up navigation delegates for Find sidebar
         _vm.ZoomFocus = ZoomFocus;
         _vm.PanTo = PanTo;
+        _vm.ExportSelection = (f, s, p) => MapView?.ExportSelectionToFile(f, s, p);
 
         bool shouldAsk = false;
         string currentVersion = App.Version.ToString();

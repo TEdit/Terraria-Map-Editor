@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          lfs: false
 
       - name: Ignore non-localization changes
         run: git ls-files -m | grep -v 'src/TEdit/Properties/' | xargs -r git update-index --assume-unchanged
