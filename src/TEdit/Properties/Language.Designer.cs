@@ -4625,6 +4625,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Window Launch Mode.
+        /// </summary>
+        public static string settings_window_launch_mode {
+            get {
+                return ResourceManager.GetString("settings_window_launch_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How the main window is positioned on startup (Default = OS placement, CenterScreen = centered, Maximized = full screen).
+        /// </summary>
+        public static string settings_window_launch_mode_desc {
+            get {
+                return ResourceManager.GetString("settings_window_launch_mode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wire Transparency.
         /// </summary>
         public static string settings_wire_transparency {

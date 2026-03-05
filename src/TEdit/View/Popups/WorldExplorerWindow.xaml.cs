@@ -23,6 +23,16 @@ public partial class WorldExplorerWindow : FluentWindow
         _wvm = wvm;
         _vm = new WorldExplorerViewModel(wvm);
         DataContext = _vm;
+
+        Loaded += (_, _) =>
+        {
+            if (Owner != null)
+            {
+                MaxHeight = Owner.ActualHeight;
+                if (Height > MaxHeight)
+                    Height = MaxHeight;
+            }
+        };
     }
 
     /// <summary>

@@ -62,6 +62,7 @@ public partial class WorldViewModel : ReactiveObject
     [Reactive] private int _pasteSizeW;
     [Reactive] private int _pasteSizeH;
     private UpdateMode _updateMode;
+    private WindowLaunchMode _windowLaunchMode;
     private bool _isUpdateAvailable;
     private string _currentFile;
     private bool _loadedFromBackup;
@@ -182,6 +183,7 @@ public partial class WorldViewModel : ReactiveObject
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
         _updateMode = UserSettingsService.Current.UpdateMode;
+        _windowLaunchMode = UserSettingsService.Current.WindowLaunchMode;
 
 
         IsAutoSaveEnabled = UserSettingsService.Current.Autosave;
@@ -1839,6 +1841,16 @@ public partial class WorldViewModel : ReactiveObject
         {
             this.RaiseAndSetIfChanged(ref _updateChannel, value);
             UserSettingsService.Current.UpdateChannel = value;
+        }
+    }
+
+    public WindowLaunchMode WindowLaunchMode
+    {
+        get => _windowLaunchMode;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _windowLaunchMode, value);
+            UserSettingsService.Current.WindowLaunchMode = value;
         }
     }
 

@@ -40,6 +40,7 @@ public class UserSettings : INotifyPropertyChanged
     private bool _showTextureLoadingNotice = true;
     private bool _enableMica = true;
     private bool _highQualityBrushPreview = true;
+    private WindowLaunchMode _windowLaunchMode = WindowLaunchMode.CenterScreen;
 
     // Tool Options
     private bool _wireChainMode = true;
@@ -226,6 +227,13 @@ public class UserSettings : INotifyPropertyChanged
         set => SetField(ref _highQualityBrushPreview, value);
     }
 
+    [JsonConverter(typeof(WindowLaunchModeJsonConverter))]
+    public WindowLaunchMode WindowLaunchMode
+    {
+        get => _windowLaunchMode;
+        set => SetField(ref _windowLaunchMode, value);
+    }
+
     // ── Tool Options ──
 
     public bool WireChainMode
@@ -371,6 +379,32 @@ public class PixelMapColorModeJsonConverter : JsonConverter<PixelMapColorMode>
     }
 
     public override void Write(Utf8JsonWriter writer, PixelMapColorMode value, JsonSerializerOptions options)
+    {
+        writer.WriteStringValue(value.ToString());
+    }
+}
+
+public class WindowLaunchModeJsonConverter : JsonConverter<WindowLaunchMode>
+{
+    public override WindowLaunchMode Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType == JsonTokenType.String)
+        {
+            var value = reader.GetString();
+            if (Enum.TryParse<WindowLaunchMode>(value, ignoreCase: true, out var mode))
+                return mode;
+        }
+        else if (reader.TokenType == JsonTokenType.Number)
+        {
+            var intValue = reader.GetInt32();
+            if (Enum.IsDefined(typeof(WindowLaunchMode), intValue))
+                return (WindowLaunchMode)intValue;
+        }
+
+        return WindowLaunchMode.CenterScreen;
+    }
+
+    public override void Write(Utf8JsonWriter writer, WindowLaunchMode value, JsonSerializerOptions options)
     {
         writer.WriteStringValue(value.ToString());
     }

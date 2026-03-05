@@ -52,6 +52,9 @@ public partial class MainWindow : FluentWindow
         AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);
         AddHandler(Keyboard.KeyUpEvent, (KeyEventHandler)HandleKeyUpEvent);
 
+        ApplyWindowLaunchMode(UserSettingsService.Current.WindowLaunchMode);
+        SizeChanged += MainWindow_SizeChanged;
+
         // Auto-expand side panel when tab is activated programmatically
         _vm.WhenAnyValue(vm => vm.SelectedTabIndex)
             .Skip(1)  // Skip initial value
@@ -59,6 +62,44 @@ public partial class MainWindow : FluentWindow
 
         SourceInitialized += MainWindow_SourceInitialized;
         Loaded += MainWindow_IconFixLoaded;
+    }
+
+    private void ApplyWindowLaunchMode(WindowLaunchMode mode)
+    {
+        switch (mode)
+        {
+            case WindowLaunchMode.CenterScreen:
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                break;
+            case WindowLaunchMode.Maximized:
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                WindowState = WindowState.Maximized;
+                break;
+            case WindowLaunchMode.Default:
+            default:
+                // Manual placement — let OS decide
+                break;
+        }
+    }
+
+    private bool _isCompactActivityBar;
+
+    private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        bool shouldBeCompact = ActualHeight <= 1080;
+        if (shouldBeCompact == _isCompactActivityBar) return;
+        _isCompactActivityBar = shouldBeCompact;
+
+        if (shouldBeCompact)
+        {
+            Resources["ActivityBarItemSize"] = 36.0;
+            Resources["ActivityBarItemPadding"] = new Thickness(8);
+        }
+        else
+        {
+            Resources["ActivityBarItemSize"] = 48.0;
+            Resources["ActivityBarItemPadding"] = new Thickness(12);
+        }
     }
 
     private void MainWindow_SourceInitialized(object? sender, EventArgs e)

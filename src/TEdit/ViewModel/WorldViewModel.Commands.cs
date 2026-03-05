@@ -782,6 +782,13 @@ public partial class WorldViewModel
     #endregion
 }
 
+public enum WindowLaunchMode
+{
+    Default,        // OS-determined placement
+    CenterScreen,   // Center on primary monitor
+    Maximized       // Start maximized
+}
+
 public enum UpdateMode
 {
     Disabled,       // Never check for updates

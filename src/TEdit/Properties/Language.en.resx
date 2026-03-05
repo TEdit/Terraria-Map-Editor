@@ -1652,6 +1652,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Controls how TEdit checks for and applies updates on startup</value>
     <comment>Description for the update mode setting</comment>
   </data>
+  <data name="settings_window_launch_mode" xml:space="preserve">
+    <value>Window Launch Mode</value>
+  </data>
+  <data name="settings_window_launch_mode_desc" xml:space="preserve">
+    <value>How the main window is positioned on startup (Default = OS placement, CenterScreen = centered, Maximized = full screen)</value>
+  </data>
   <data name="settings_wire_transparency" xml:space="preserve">
     <value>Wire Transparency</value>
   </data>
