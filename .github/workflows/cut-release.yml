@@ -69,9 +69,9 @@ jobs:
         uses: orhun/git-cliff-action@v4
         with:
           config: cliff.toml
-          args: --verbose --latest --strip header
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          args: --latest --strip header
+          version: v2.12.0
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Velopack to GitHub Releases
         shell: pwsh
@@ -85,15 +85,17 @@ jobs:
         shell: pwsh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_NOTES: ${{ steps.git-cliff.outputs.content }}
         run: |
           $body = @"
           > [!IMPORTANT]
           > Supports Terraria **${{ steps.terraria.outputs.gameVersion }}** (world file version ${{ steps.terraria.outputs.saveVersion }})
 
-          ${{ steps.git-cliff.outputs.content }}
+          $env:RELEASE_NOTES
           "@
 
-          gh release edit ${{ github.ref_name }} --notes "$body" ${{ contains(github.ref_name, '-') && '--prerelease' || '' }}
+          $body | Out-File -FilePath release-notes.md -Encoding utf8
+          gh release edit ${{ github.ref_name }} --notes-file release-notes.md ${{ contains(github.ref_name, '-') && '--prerelease' || '' }}
           gh release upload ${{ github.ref_name }} release/TEdit*.zip API_REFERENCE.md --clobber
 
       - name: Notify docs site
