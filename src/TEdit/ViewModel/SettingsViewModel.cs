@@ -407,6 +407,22 @@ public partial class SettingsViewModel
             Setter = v => UserSettingsService.Current.TerrariaPath = (string)v
         });
 
+        AllSettings.Add(new SettingItem
+        {
+            Name = Language.settings_steam_user_id,
+            Description = Language.settings_steam_user_id_desc,
+            Category = Language.settings_category_paths,
+            EditorType = SettingEditorType.TextBox,
+            Placeholder = Language.settings_steam_user_id_placeholder,
+            Getter = () => UserSettingsService.Current.SteamUserId?.ToString() ?? "",
+            Setter = v =>
+            {
+                var str = v as string;
+                UserSettingsService.Current.SteamUserId =
+                    !string.IsNullOrWhiteSpace(str) && int.TryParse(str, out var id) ? id : null;
+            }
+        });
+
         // ── Keybindings ──
         PopulateKeybindings();
 

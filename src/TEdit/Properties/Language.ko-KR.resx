@@ -374,6 +374,9 @@
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>수출 취소.</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>지도 타일이 {0}으로 내보내졌습니다.</value>
   </data>
@@ -1644,6 +1647,15 @@
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>스프라이트 선택기에서 스프라이트 썸네일 크기</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>스팀 사용자 ID</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>Steam 사용자 ID를 기본 Worlds 폴더로 Steam Cloud 저장 파일을 사용하도록 설정하세요. 자동 탐지용으로 비워 두세요. 재시작이 필요합니다.</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>자동 탐지</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>테라리아 콘텐츠 경로</value>

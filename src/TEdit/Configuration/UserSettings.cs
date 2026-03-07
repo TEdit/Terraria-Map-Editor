@@ -42,6 +42,8 @@ public class UserSettings : INotifyPropertyChanged
     private bool _highQualityBrushPreview = true;
     private WindowLaunchMode _windowLaunchMode = WindowLaunchMode.CenterScreen;
 
+    private int? _steamUserId;
+
     // Tool Options
     private bool _wireChainMode = true;
     private bool _instantPaste = false;
@@ -51,6 +53,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _terrariaPath;
         set => SetField(ref _terrariaPath, value ?? "");
+    }
+
+    public int? SteamUserId
+    {
+        get => _steamUserId;
+        set => SetField(ref _steamUserId, value);
     }
 
     public bool Autosave

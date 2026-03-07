@@ -374,6 +374,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>Eksport anulowany.</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>Błotka mapy wyeksportowane do {0}</value>
   </data>
@@ -1644,6 +1647,15 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>Rozmiar miniatur sprite'ów w pickerze sprite'ów</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>Identyfikator użytkownika Steam</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>Ustaw swój identyfikator użytkownika Steam, aby używał zapisów Steam Cloud jako domyślnego folderu światów. Zostaw pusty do automatycznego wykrycia. Wymaga restartu.</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>Automatyczne wykrywanie</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Ścieżka zawartości Terrarii</value>

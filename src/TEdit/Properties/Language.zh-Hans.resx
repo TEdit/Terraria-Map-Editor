@@ -374,6 +374,9 @@
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>导出已取消。</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>地图瓷砖已导出到 {0}</value>
   </data>
@@ -1644,6 +1647,15 @@
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>物品选择器中物品缩略图的尺寸</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>Steam 用户 ID</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>将您的Steam用户ID设置为使用Steam云存档作为默认世界文件夹。留空以自动检测。需要重启。</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>自动检测</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>泰拉瑞亚Content文件夹路径</value>
