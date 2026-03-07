@@ -91,24 +91,26 @@ public partial class NbtExplorerViewModel
     }
 
     [ReactiveCommand]
-    private void ZoomToTile()
+    private void ZoomToTile(NbtNodeViewModel? node)
     {
-        if (SelectedNode is not { HasCoordinates: true }) return;
-        RequestZoomToTile?.Invoke(SelectedNode.CoordX, SelectedNode.CoordY);
+        node ??= SelectedNode;
+        if (node is not { HasCoordinates: true }) return;
+        RequestZoomToTile?.Invoke(node.CoordX, node.CoordY);
     }
 
     [ReactiveCommand]
-    private void EditEntity()
+    private void EditEntity(NbtNodeViewModel? node)
     {
-        if (SelectedNode == null || SelectedNode.EntityKind == NbtEntityKind.None) return;
+        node ??= SelectedNode;
+        if (node == null || node.EntityKind == NbtEntityKind.None) return;
 
         var world = _worldViewModel.CurrentWorld;
         if (world == null) return;
 
-        int x = SelectedNode.CoordX;
-        int y = SelectedNode.CoordY;
+        int x = node.CoordX;
+        int y = node.CoordY;
 
-        switch (SelectedNode.EntityKind)
+        switch (node.EntityKind)
         {
             case NbtEntityKind.Chest:
                 var chest = world.Chests.FirstOrDefault(c => c.X == x && c.Y == y);

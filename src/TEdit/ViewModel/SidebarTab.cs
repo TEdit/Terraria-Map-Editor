@@ -20,5 +20,6 @@ public enum SidebarTab
     Filter = 11,
     Find = 12,
     Scripting = 13,
-    PlayerEditor = 14,
+    NbtExplorer = 14,
+    PlayerEditor = 15,
 }
