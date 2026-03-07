@@ -2906,19 +2906,9 @@ public partial class WorldViewModel : ReactiveObject
 
     private uint GetSaveVersion_MaxConfig(uint requested = 0)
     {
-        // Make sure config is loaded (safe even if already initialized).
-        WorldConfiguration.Initialize();
-
-        uint max = WorldConfiguration.CompatibleVersion;
-        if (max == 0) return requested; // ultra-defensive
-
-        // If caller didn't request a version, default to MAX config version.
-        uint v = (requested == 0) ? max : requested;
-
-        // Never allow saving above config max.
-        if (v > max) v = max;
-
-        return v;
+        // Return the requested version, or preserve the world's current version.
+        // Version numbers are never clamped — config lookup finds the best match.
+        return requested > 0 ? requested : CurrentWorld?.Version ?? 0;
     }
 
     public async Task ReloadWorldAsync()
