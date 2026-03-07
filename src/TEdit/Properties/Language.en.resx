@@ -369,10 +369,25 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>The export will be {0}×{1} pixels ({2} megapixels, estimated {3}). This may take a while. Continue?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
+  </data>
+  <data name="export_tiles_complete" xml:space="preserve">
+    <value>Map tiles exported to {0}</value>
+  </data>
+  <data name="export_tiles_progress" xml:space="preserve">
+    <value>Exporting tiles: zoom {0}, tile {1}/{2}...</value>
+  </data>
+  <data name="export_tiles_warning" xml:space="preserve">
+    <value>This will export {0} tiles across {1} zoom levels. Continue?</value>
+  </data>
+  <data name="export_tiles_warning_title" xml:space="preserve">
+    <value>Map Tile Export</value>
+  </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>Export cancelled.</value>
   </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>Auto Zoom</value>
@@ -647,6 +662,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_edit_export_half_texture" xml:space="preserve">
     <value>Half Texture (8px/tile)</value>
   </data>
+  <data name="menu_edit_export_map_tiles" xml:space="preserve">
+    <value>Map Tiles...</value>
+  </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
   </data>
@@ -676,6 +694,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_file_exit" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="menu_file_export_map_tiles" xml:space="preserve">
+    <value>Export Map Tiles...</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>New</value>

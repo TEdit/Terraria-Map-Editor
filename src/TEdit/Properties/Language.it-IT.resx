@@ -374,6 +374,18 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_complete" xml:space="preserve">
+    <value>Piastrelle della mappa esportate in {0}</value>
+  </data>
+  <data name="export_tiles_progress" xml:space="preserve">
+    <value>Esportazione delle piastrelle: zoom {0}, piastrella {1}/{2}...</value>
+  </data>
+  <data name="export_tiles_warning" xml:space="preserve">
+    <value>Questo exporterà {0} piastrelle su {1} livelli di zoom. Continuare?</value>
+  </data>
+  <data name="export_tiles_warning_title" xml:space="preserve">
+    <value>Esportazione piastrelle mappa</value>
+  </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>Auto Zoom</value>
   </data>
@@ -647,6 +659,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="menu_edit_export_half_texture" xml:space="preserve">
     <value>Half Texture (8px/tile)</value>
   </data>
+  <data name="menu_edit_export_map_tiles" xml:space="preserve">
+    <value>Tessere della mappa...</value>
+  </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
   </data>
@@ -676,6 +691,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="menu_file_exit" xml:space="preserve">
     <value>Uscita</value>
+  </data>
+  <data name="menu_file_export_map_tiles" xml:space="preserve">
+    <value>Esporta tessere mappa...</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>Nuovo</value>

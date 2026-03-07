@@ -16,6 +16,7 @@ using TEdit.ViewModel;
 using TEdit.Configuration;
 using TEdit.View.Popups;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using Wpf.Ui.Controls;
 
@@ -152,7 +153,8 @@ public partial class MainWindow : FluentWindow
         // Set up navigation delegates for Find sidebar
         _vm.ZoomFocus = ZoomFocus;
         _vm.PanTo = PanTo;
-        _vm.ExportSelection = (f, s, p) => MapView?.ExportSelectionToFile(f, s, p);
+        _vm.ExportSelection = (f, s, p) => MapView?.ExportSelectionToFileAsync(f, s, p) ?? Task.CompletedTask;
+        _vm.ExportMapTilesAction = (dir, area, p) => MapView?.ExportTilesToFolderAsync(dir, area, p) ?? Task.CompletedTask;
 
         bool shouldAsk = false;
         string currentVersion = App.Version.ToString();

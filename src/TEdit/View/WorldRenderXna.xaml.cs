@@ -115,6 +115,14 @@ public partial class WorldRenderXna : UserControl
     };
     private float _zoom = 1;
     private Size? _exportViewSize;
+    private bool _isExporting;
+    private float _exportOverallPercent;
+    private float _exportLayerPercent;
+    private string _exportOverallText = "";
+    private string _exportLayerText = "";
+    private Texture2D? _exportWhitePixel;
+    private CancellationTokenSource? _exportCts;
+    private Rectangle _exportCancelButtonRect;
     private float _minNpcScale = 0.75f;
 
     private Dictionary<int, WriteableBitmap> _spritePreviews = new Dictionary<int, WriteableBitmap>();
@@ -432,12 +440,16 @@ public partial class WorldRenderXna : UserControl
             if (top >= bottom) return;
 
             // Convert to screen coordinates (panning with world)
-            int screenLeft = 1 + (int)((_scrollPosition.X + visibleBounds.Left) * _zoom);
-            int screenRight = 1 + (int)((_scrollPosition.X + visibleBounds.Right) * _zoom);
-            int screenTop = 1 + (int)((_scrollPosition.Y + top) * _zoom);
-            int screenBottom = 1 + (int)((_scrollPosition.Y + bottom) * _zoom);
+            float fLeft = (_scrollPosition.X + visibleBounds.Left) * _zoom;
+            float fRight = (_scrollPosition.X + visibleBounds.Right) * _zoom;
+            float fTop = (_scrollPosition.Y + top) * _zoom;
+            float fBottom = (_scrollPosition.Y + bottom) * _zoom;
 
-            var dest = new Rectangle(screenLeft, screenTop, screenRight - screenLeft, screenBottom - screenTop);
+            var dest = new Rectangle(
+                (int)Math.Round(fLeft),
+                (int)Math.Round(fTop),
+                (int)Math.Round(fRight - fLeft),
+                (int)Math.Round(fBottom - fTop));
             _spriteBatch.Draw(whiteTex, dest, null, color, 0f, default, SpriteEffects.None, LayerBackgroundGradient);
         }
 
@@ -2741,16 +2753,19 @@ public partial class WorldRenderXna : UserControl
     {
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
-        
-
         // Clear the graphics device and texture buffer
         e.GraphicsDevice.Clear(_backgroundColor);
-
 
         // Abort rendering if in design mode or if gameTimer is not running
         if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null)
             return;
 
+        // Draw export progress overlay instead of normal rendering while exporting
+        if (_isExporting)
+        {
+            DrawExportProgressOverlay(e.GraphicsDevice);
+            return;
+        }
 
         Update(e);
         Render(e);
@@ -7843,6 +7858,18 @@ public partial class WorldRenderXna : UserControl
 
     private void xnaViewport_HwndLButtonDown(object sender, HwndMouseEventArgs e)
     {
+        if (_isExporting)
+        {
+            // Check if cancel button was clicked
+            int mx = (int)e.Position.X;
+            int my = (int)e.Position.Y;
+            if (_exportCancelButtonRect.Contains(mx, my))
+            {
+                _exportCts?.Cancel();
+            }
+            return;
+        }
+
         if (_wvm.CurrentWorld != null)
             _wvm.MouseDownTile(GetTileMouseState(e));
     }
@@ -7996,14 +8023,104 @@ public partial class WorldRenderXna : UserControl
 
     #endregion
 
-    #region Export Selection
+    #region Export
+
+    private void DrawExportProgressOverlay(GraphicsDevice gd)
+    {
+        if (_exportWhitePixel == null || _exportWhitePixel.IsDisposed)
+        {
+            _exportWhitePixel = new Texture2D(gd, 1, 1);
+            _exportWhitePixel.SetData(new[] { Color.White });
+        }
+
+        int viewW = (int)xnaViewport.ActualWidth;
+        int viewH = (int)xnaViewport.ActualHeight;
+        if (viewW <= 0 || viewH <= 0) return;
+
+        const int barHeight = 24;
+        const int barGap = 16;
+        const int buttonSize = 40;
+        const int buttonGap = 20;
+
+        // Total height: 2 bars + gap + button gap + button
+        int totalHeight = barHeight + barGap + barHeight + buttonGap + buttonSize;
+        int startY = (viewH - totalHeight) / 2;
+
+        int barWidth = Math.Max(200, Math.Min(400, viewW - 80));
+        int barX = (viewW - barWidth) / 2;
+
+        _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+
+        // Overall export progress
+        int topY = startY;
+        DrawProgressBar(barX, topY, barWidth, barHeight,
+            _exportOverallPercent, new Color(60, 140, 220), new Color(30, 30, 30, 200));
+
+        // Current layer progress
+        int bottomY = topY + barHeight + barGap;
+        DrawProgressBar(barX, bottomY, barWidth, barHeight,
+            _exportLayerPercent, new Color(80, 180, 100), new Color(30, 30, 30, 200));
+
+        // Cancel button: red square with X
+        int btnX = (viewW - buttonSize) / 2;
+        int btnY = bottomY + barHeight + buttonGap;
+        _exportCancelButtonRect = new Rectangle(btnX, btnY, buttonSize, buttonSize);
+
+        // Button background
+        _spriteBatch.Draw(_exportWhitePixel!, _exportCancelButtonRect, new Color(180, 40, 40));
+        // Button border
+        _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(btnX, btnY, buttonSize, 1), new Color(220, 60, 60));
+        _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(btnX, btnY + buttonSize - 1, buttonSize, 1), new Color(120, 20, 20));
+        _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(btnX, btnY, 1, buttonSize), new Color(220, 60, 60));
+        _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(btnX + buttonSize - 1, btnY, 1, buttonSize), new Color(120, 20, 20));
+
+        // Draw X using two diagonal lines (thick, 3px)
+        DrawXMark(btnX + 10, btnY + 10, buttonSize - 20, Color.White);
+
+        _spriteBatch.End();
+    }
+
+    private void DrawXMark(int x, int y, int size, Color color)
+    {
+        // Draw two diagonal lines for an X shape using small rectangles
+        for (int i = 0; i < size; i++)
+        {
+            float t = (float)i / (size - 1);
+            int px1 = x + (int)(t * (size - 1));
+            int py1 = y + (int)(t * (size - 1));
+            int px2 = x + size - 1 - (int)(t * (size - 1));
+            int py2 = y + (int)(t * (size - 1));
+
+            // 3px thick strokes
+            _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(px1, py1, 3, 3), color);
+            _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(px2, py2, 3, 3), color);
+        }
+    }
+
+    private void DrawProgressBar(int x, int y, int width, int height,
+        float percent, Color fillColor, Color bgColor)
+    {
+        // Background
+        _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(x, y, width, height), bgColor);
+
+        // Border
+        _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(x, y, width, 1), new Color(80, 80, 80));
+        _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(x, y + height - 1, width, 1), new Color(80, 80, 80));
+        _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(x, y, 1, height), new Color(80, 80, 80));
+        _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(x + width - 1, y, 1, height), new Color(80, 80, 80));
+
+        // Fill
+        int fillWidth = (int)((width - 4) * Math.Clamp(percent, 0f, 1f));
+        if (fillWidth > 0)
+            _spriteBatch.Draw(_exportWhitePixel!, new Rectangle(x + 2, y + 2, fillWidth, height - 4), fillColor);
+    }
 
     /// <summary>
     /// Exports the current selection to a PNG file.
     /// Scale 1 = pixel map (1px/tile, CPU-only).
     /// Scale 4/8/16 = textured render (using XNA draw methods in strips).
     /// </summary>
-    public void ExportSelectionToFile(string filename, int scale, IProgress<ProgressChangedEventArgs>? progress = null)
+    public async Task ExportSelectionToFileAsync(string filename, int scale, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         if (_wvm.CurrentWorld == null) return;
 
@@ -8011,137 +8128,53 @@ public partial class WorldRenderXna : UserControl
         if (area.Width <= 0 || area.Height <= 0) return;
 
         if (scale == 1)
-            ExportPixelMap(filename, area, progress);
-        else
-            ExportTextured(filename, area, scale, progress);
-    }
-
-    private void ExportPixelMap(string filename, RectangleInt32 area, IProgress<ProgressChangedEventArgs>? progress)
-    {
-        var world = _wvm.CurrentWorld;
-        var bmp = new WriteableBitmap(area.Width, area.Height, 96, 96, WpfPixelFormats.Bgra32, null);
-
-        bmp.Lock();
-        unsafe
         {
-            var pixels = (int*)bmp.BackBuffer;
-
-            for (int y = area.Top; y < area.Bottom; y++)
+            await Export.PngExporter.ExportPixelMapAsync(filename, area,
+                _wvm.CurrentWorld, _backgroundColor,
+                _wvm.ShowWalls, _wvm.ShowTiles, _wvm.ShowLiquid,
+                _wvm.ShowRedWires, _wvm.ShowBlueWires, _wvm.ShowGreenWires, _wvm.ShowYellowWires,
+                progress);
+        }
+        else
+        {
+            var savedScroll = _scrollPosition;
+            var savedZoom = _zoom;
+            _isExporting = true;
+            try
             {
-                for (int x = area.Left; x < area.Right; x++)
-                {
-                    var tileColor = PixelMap.GetTileColor(
-                        world.Tiles[x, y], _backgroundColor,
-                        showWall: _wvm.ShowWalls,
-                        showTile: _wvm.ShowTiles,
-                        showLiquid: _wvm.ShowLiquid,
-                        showRedWire: _wvm.ShowRedWires,
-                        showBlueWire: _wvm.ShowBlueWires,
-                        showGreenWire: _wvm.ShowGreenWires,
-                        showYellowWire: _wvm.ShowYellowWires);
-
-                    if (tileColor.A < 255)
-                        tileColor = _backgroundColor.AlphaBlend(tileColor);
-
-                    int idx = (y - area.Top) * area.Width + (x - area.Left);
-                    pixels[idx] = ExportXnaColorToInt(tileColor);
-                }
-
-                if (y % 100 == 0)
-                    progress?.Report(new ProgressChangedEventArgs(
-                        (y - area.Top) * 100 / area.Height, "Exporting pixel map..."));
+                await Export.PngExporter.ExportTexturedAsync(filename, area, scale, _backgroundColor,
+                    RenderExportChunk, progress);
+            }
+            finally
+            {
+                _scrollPosition = savedScroll;
+                _zoom = savedZoom;
+                _exportViewSize = null;
+                _isExporting = false;
             }
         }
-        bmp.AddDirtyRect(new Int32Rect(0, 0, bmp.PixelWidth, bmp.PixelHeight));
-        bmp.Unlock();
-
-        progress?.Report(new ProgressChangedEventArgs(95, "Saving PNG..."));
-        bmp.SavePng(filename);
     }
 
-    private void ExportTextured(string filename, RectangleInt32 area, int scale, IProgress<ProgressChangedEventArgs>? progress)
+    /// <summary>
+    /// Renders a world-space chunk to RGBA pixels for export.
+    /// Used as a callback by PngExporter and LeafletTileExporter.
+    /// </summary>
+    private Color[] RenderExportChunk(int worldX, int worldY, int pixelW, int pixelH, int scale)
     {
         var gd = xnaViewport.GraphicsService.GraphicsDevice;
-        int outputW = area.Width * scale;
-        int outputH = area.Height * scale;
+        _scrollPosition = new Vector2(-worldX, -worldY);
+        _zoom = scale;
+        _exportViewSize = new Size(pixelW, pixelH);
 
-        var bmp = new WriteableBitmap(outputW, outputH, 96, 96, WpfPixelFormats.Bgra32, null);
+        using var rt = new RenderTarget2D(gd, pixelW, pixelH, false, SurfaceFormat.Color, DepthFormat.None);
+        gd.SetRenderTarget(rt);
+        gd.Clear(_backgroundColor);
+        RenderExportLayers();
+        gd.SetRenderTarget(null);
 
-        const int maxChunkPx = 4096;
-        int chunkTilesW = Math.Max(1, maxChunkPx / scale);
-        int chunkTilesH = Math.Max(1, maxChunkPx / scale);
-
-        int totalChunksY = (area.Height + chunkTilesH - 1) / chunkTilesH;
-        int chunkIndex = 0;
-        int totalChunksX = (area.Width + chunkTilesW - 1) / chunkTilesW;
-        int totalChunks = totalChunksX * totalChunksY;
-
-        var savedScroll = _scrollPosition;
-        var savedZoom = _zoom;
-
-        try
-        {
-            for (int cy = 0; cy < area.Height; cy += chunkTilesH)
-            {
-                int thisTilesH = Math.Min(chunkTilesH, area.Height - cy);
-                int thisPxH = thisTilesH * scale;
-
-                for (int cx = 0; cx < area.Width; cx += chunkTilesW)
-                {
-                    progress?.Report(new ProgressChangedEventArgs(
-                        chunkIndex * 95 / totalChunks, $"Rendering chunk {chunkIndex + 1}/{totalChunks}..."));
-                    chunkIndex++;
-                    int thisTilesW = Math.Min(chunkTilesW, area.Width - cx);
-                    int thisPxW = thisTilesW * scale;
-
-                    _scrollPosition = new Vector2(-(area.Left + cx), -(area.Top + cy));
-                    _zoom = scale;
-                    _exportViewSize = new Size(thisPxW, thisPxH);
-
-                    using var rt = new RenderTarget2D(gd, thisPxW, thisPxH, false, SurfaceFormat.Color, DepthFormat.None);
-                    gd.SetRenderTarget(rt);
-                    gd.Clear(_backgroundColor);
-
-                    RenderExportLayers();
-
-                    gd.SetRenderTarget(null);
-
-                    // Copy RT pixels to output bitmap
-                    var data = new Color[thisPxW * thisPxH];
-                    rt.GetData(data);
-
-                    int destX = cx * scale;
-                    int destY = cy * scale;
-
-                    bmp.Lock();
-                    unsafe
-                    {
-                        var pixels = (int*)bmp.BackBuffer;
-                        for (int row = 0; row < thisPxH; row++)
-                        {
-                            int srcOffset = row * thisPxW;
-                            int dstOffset = (destY + row) * outputW + destX;
-                            for (int col = 0; col < thisPxW; col++)
-                            {
-                                var c = data[srcOffset + col];
-                                pixels[dstOffset + col] = (c.A << 24) | (c.R << 16) | (c.G << 8) | c.B;
-                            }
-                        }
-                    }
-                    bmp.AddDirtyRect(new Int32Rect(destX, destY, thisPxW, thisPxH));
-                    bmp.Unlock();
-                }
-            }
-        }
-        finally
-        {
-            _scrollPosition = savedScroll;
-            _zoom = savedZoom;
-            _exportViewSize = null;
-        }
-
-        progress?.Report(new ProgressChangedEventArgs(95, "Saving PNG..."));
-        bmp.SavePng(filename);
+        var data = new Color[pixelW * pixelH];
+        rt.GetData(data);
+        return data;
     }
 
     /// <summary>
@@ -8321,18 +8354,167 @@ public partial class WorldRenderXna : UserControl
         }
     }
 
-    private static int ExportXnaColorToInt(Color color)
+    /// <summary>
+    /// Exports map tiles to a folder for Leaflet viewing.
+    /// Delegates to <see cref="Export.LeafletTileExporter"/>.
+    /// </summary>
+    public async Task ExportTilesToFolderAsync(string outputDir, RectangleInt32 area, IProgress<ProgressChangedEventArgs>? progress = null)
     {
-        byte a = color.A;
-        byte r = color.R;
-        byte g = color.G;
-        byte b = color.B;
+        if (_wvm.CurrentWorld == null) return;
+        if (area.Width <= 0 || area.Height <= 0) return;
 
-        // Premultiplied BGRA for WPF WriteableBitmap (Bgra32 pixel format)
-        return (a << 24)
-            | ((byte)((r * a) >> 8) << 16)
-            | ((byte)((g * a) >> 8) << 8)
-            | ((byte)((b * a) >> 8));
+        var worldName = _wvm.CurrentWorld?.Title ?? "Terraria World";
+        var pixelMap = new Export.LeafletTileExporter.PixelMapState(
+            _wvm.CurrentWorld!, _backgroundColor,
+            _wvm.ShowWalls, _wvm.ShowTiles, _wvm.ShowLiquid,
+            _wvm.ShowRedWires, _wvm.ShowBlueWires, _wvm.ShowGreenWires, _wvm.ShowYellowWires);
+
+        _isExporting = true;
+        _exportOverallPercent = 0;
+        _exportLayerPercent = 0;
+        _exportCts = new CancellationTokenSource();
+
+        // Wrap progress to update on-map overlay
+        var overlayProgress = new Progress<ProgressChangedEventArgs>(e =>
+        {
+            _exportOverallPercent = e.ProgressPercentage / 100f;
+            _exportOverallText = e.UserState as string ?? "";
+            progress?.Report(e);
+        });
+
+        try
+        {
+            await Export.LeafletTileExporter.ExportAsync(
+                outputDir, area, worldName,
+                pixelMap, ExportTexturedTilesToFolder, overlayProgress,
+                layerProgress: p => _exportLayerPercent = p,
+                cancellationToken: _exportCts.Token);
+        }
+        catch (OperationCanceledException)
+        {
+            progress?.Report(new ProgressChangedEventArgs(0,
+                Properties.Language.export_tiles_cancelled ?? "Export cancelled."));
+        }
+        finally
+        {
+            _isExporting = false;
+            _exportCts.Dispose();
+            _exportCts = null;
+        }
+    }
+
+    /// <summary>
+    /// Renders textured tiles for a single zoom level. Called by LeafletTileExporter
+    /// on the UI thread (requires XNA graphics device access).
+    /// </summary>
+    private async Task<int> ExportTexturedTilesToFolder(
+        string outputDir, RectangleInt32 area, int tileSize,
+        int leafletZoom, int scale,
+        IProgress<ProgressChangedEventArgs>? progress,
+        int tilesCompleted, int totalTiles)
+    {
+        var gd = xnaViewport.GraphicsService.GraphicsDevice;
+
+        int outW = area.Width * scale;
+        int outH = area.Height * scale;
+        int tilesX = (outW + tileSize - 1) / tileSize;
+        int tilesY = (outH + tileSize - 1) / tileSize;
+        int layerTotalTiles = tilesX * tilesY;
+        int layerTilesCompleted = 0;
+
+        string zoomDir = Path.Combine(outputDir, "tiles", leafletZoom.ToString());
+        Directory.CreateDirectory(zoomDir);
+
+        var savedScroll = _scrollPosition;
+        var savedZoom = _zoom;
+
+        var pixelData = new Color[tileSize * tileSize];
+        int rowStride = 1 + tileSize * 4;
+        var rawImageData = new byte[tileSize * rowStride];
+
+        // Reuse a single RenderTarget2D across all tiles to avoid GPU resource exhaustion
+        var rt = new RenderTarget2D(gd, tileSize, tileSize, false, SurfaceFormat.Color, DepthFormat.None);
+
+        try
+        {
+            for (int ty = 0; ty < tilesY; ty++)
+            {
+                for (int tx = 0; tx < tilesX; tx++)
+                {
+                    _exportCts?.Token.ThrowIfCancellationRequested();
+
+                    int pixelX0 = tx * tileSize;
+                    int pixelY0 = ty * tileSize;
+
+                    float worldTileX = (float)pixelX0 / scale;
+                    float worldTileY = (float)pixelY0 / scale;
+
+                    _scrollPosition = new Vector2(-(area.Left + worldTileX), -(area.Top + worldTileY));
+                    _zoom = scale;
+                    _exportViewSize = new Size(tileSize, tileSize);
+
+                    gd.SetRenderTarget(rt);
+                    gd.Clear(Color.Transparent);
+
+                    RenderExportLayers();
+
+                    gd.SetRenderTarget(null);
+                    rt.GetData(pixelData);
+
+                    int tilePxW = Math.Min(tileSize, outW - pixelX0);
+                    int tilePxH = Math.Min(tileSize, outH - pixelY0);
+
+                    // Build raw PNG image data (filter byte + RGBA per row)
+                    Array.Clear(rawImageData, 0, rawImageData.Length);
+                    for (int row = 0; row < tileSize; row++)
+                    {
+                        if (row < tilePxH)
+                        {
+                            int rawOffset = row * rowStride + 1; // skip filter byte
+                            int srcOffset = row * tileSize;
+                            int limit = Math.Min(tilePxW, tileSize);
+                            for (int col = 0; col < limit; col++)
+                            {
+                                var c = pixelData[srcOffset + col];
+                                int d = rawOffset + col * 4;
+                                rawImageData[d] = c.R;
+                                rawImageData[d + 1] = c.G;
+                                rawImageData[d + 2] = c.B;
+                                rawImageData[d + 3] = c.A;
+                            }
+                        }
+                    }
+
+                    Export.TilePngWriter.Write(Path.Combine(zoomDir, $"{tx}_{ty}.png"), tileSize, tileSize, rawImageData);
+
+                    tilesCompleted++;
+                    layerTilesCompleted++;
+                    _exportLayerPercent = layerTotalTiles > 0 ? (float)layerTilesCompleted / layerTotalTiles : 0;
+
+                    if (tilesCompleted % 5 == 0)
+                    {
+                        progress?.Report(new ProgressChangedEventArgs(
+                            tilesCompleted * 99 / totalTiles,
+                            string.Format(
+                                Properties.Language.export_tiles_progress ?? "Exporting tiles: zoom {0}, tile {1}/{2}...",
+                                leafletZoom, tilesCompleted, totalTiles)));
+
+                        // Yield to the UI thread so progress updates can render
+                        await Task.Delay(1);
+                    }
+                }
+            }
+        }
+        finally
+        {
+            gd.SetRenderTarget(null);
+            rt.Dispose();
+            _scrollPosition = savedScroll;
+            _zoom = savedZoom;
+            _exportViewSize = null;
+        }
+
+        return tilesCompleted;
     }
 
     #endregion

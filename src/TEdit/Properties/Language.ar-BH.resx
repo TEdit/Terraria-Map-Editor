@@ -374,6 +374,18 @@
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_complete" xml:space="preserve">
+    <value>تم تصدير بلاطات الخريطة إلى {0}</value>
+  </data>
+  <data name="export_tiles_progress" xml:space="preserve">
+    <value>جارٍ تصدير البلاطات: تكبير {0}، بلاطة {1}/{2}...</value>
+  </data>
+  <data name="export_tiles_warning" xml:space="preserve">
+    <value>سيتم تصدير {0} بلاطة عبر {1} مستوى تكبير. هل تريد المتابعة؟</value>
+  </data>
+  <data name="export_tiles_warning_title" xml:space="preserve">
+    <value>تصدير بلاط الخريطة</value>
+  </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>تكبير تلقائي</value>
   </data>
@@ -647,6 +659,9 @@
   <data name="menu_edit_export_half_texture" xml:space="preserve">
     <value>Half Texture (8px/tile)</value>
   </data>
+  <data name="menu_edit_export_map_tiles" xml:space="preserve">
+    <value>بلاطات الخريطة...</value>
+  </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
   </data>
@@ -676,6 +691,9 @@
   </data>
   <data name="menu_file_exit" xml:space="preserve">
     <value>مخرج</value>
+  </data>
+  <data name="menu_file_export_map_tiles" xml:space="preserve">
+    <value>تصدير خريطة بلاط الخريطة...</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>الجديد</value>

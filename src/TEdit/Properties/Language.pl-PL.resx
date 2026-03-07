@@ -374,6 +374,18 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_complete" xml:space="preserve">
+    <value>Błotka mapy wyeksportowane do {0}</value>
+  </data>
+  <data name="export_tiles_progress" xml:space="preserve">
+    <value>Eksportowanie płytek: powiększenie {0}, płytka {1}/{2}...</value>
+  </data>
+  <data name="export_tiles_warning" xml:space="preserve">
+    <value>To eksportuje {0} kafli na {1} poziomach powiększenia. Kontynuować?</value>
+  </data>
+  <data name="export_tiles_warning_title" xml:space="preserve">
+    <value>Eksport kafli mapy</value>
+  </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>Automatyczne przybliżenie</value>
   </data>
@@ -647,6 +659,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_edit_export_half_texture" xml:space="preserve">
     <value>Half Texture (8px/tile)</value>
   </data>
+  <data name="menu_edit_export_map_tiles" xml:space="preserve">
+    <value>Kafelki mapy...</value>
+  </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
   </data>
@@ -676,6 +691,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="menu_file_exit" xml:space="preserve">
     <value>Wyjście</value>
+  </data>
+  <data name="menu_file_export_map_tiles" xml:space="preserve">
+    <value>Eksportuj kafelki mapy...</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>Nowy</value>

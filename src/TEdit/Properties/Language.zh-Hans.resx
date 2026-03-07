@@ -374,6 +374,18 @@
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_complete" xml:space="preserve">
+    <value>地图瓷砖已导出到 {0}</value>
+  </data>
+  <data name="export_tiles_progress" xml:space="preserve">
+    <value>正在导出瓷砖：缩放 {0}，瓷砖 {1}/{2}...</value>
+  </data>
+  <data name="export_tiles_warning" xml:space="preserve">
+    <value>这将导出 {0} 块，跨越 {1} 个缩放级别。继续吗？</value>
+  </data>
+  <data name="export_tiles_warning_title" xml:space="preserve">
+    <value>地图块导出</value>
+  </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>自动缩放</value>
   </data>
@@ -647,6 +659,9 @@
   <data name="menu_edit_export_half_texture" xml:space="preserve">
     <value>Half Texture (8px/tile)</value>
   </data>
+  <data name="menu_edit_export_map_tiles" xml:space="preserve">
+    <value>地图地砖......</value>
+  </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
   </data>
@@ -676,6 +691,9 @@
   </data>
   <data name="menu_file_exit" xml:space="preserve">
     <value>退出</value>
+  </data>
+  <data name="menu_file_export_map_tiles" xml:space="preserve">
+    <value>导出地图磁砖......</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>新建</value>

@@ -374,6 +374,18 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_complete" xml:space="preserve">
+    <value>Baldosas del mapa exportadas a {0}</value>
+  </data>
+  <data name="export_tiles_progress" xml:space="preserve">
+    <value>Exportando baldosas: zoom {0}, baldosa {1}/{2}...</value>
+  </data>
+  <data name="export_tiles_warning" xml:space="preserve">
+    <value>Esto exportará {0} azulejos a través de {1} niveles de zoom. ¿Continuar?</value>
+  </data>
+  <data name="export_tiles_warning_title" xml:space="preserve">
+    <value>Exportación de Azulejos del Mapa</value>
+  </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>Zoom Automático</value>
   </data>
@@ -647,6 +659,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_edit_export_half_texture" xml:space="preserve">
     <value>Half Texture (8px/tile)</value>
   </data>
+  <data name="menu_edit_export_map_tiles" xml:space="preserve">
+    <value>Fichas de mapa...</value>
+  </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
   </data>
@@ -676,6 +691,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="menu_file_exit" xml:space="preserve">
     <value>Salir</value>
+  </data>
+  <data name="menu_file_export_map_tiles" xml:space="preserve">
+    <value>Exportar fichas de mapa...</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>Nuevo</value>

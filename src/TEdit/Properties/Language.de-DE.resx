@@ -374,6 +374,18 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_complete" xml:space="preserve">
+    <value>Kartenfliesen exportiert nach {0}</value>
+  </data>
+  <data name="export_tiles_progress" xml:space="preserve">
+    <value>Fliesen werden exportiert: Zoom {0}, Fliese {1}/{2}...</value>
+  </data>
+  <data name="export_tiles_warning" xml:space="preserve">
+    <value>Dies wird {0} Fliesen über {1} Zoomstufen exportieren. Fortfahren?</value>
+  </data>
+  <data name="export_tiles_warning_title" xml:space="preserve">
+    <value>Kartenfliesenexport</value>
+  </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>Auto-Zoom</value>
   </data>
@@ -647,6 +659,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_edit_export_half_texture" xml:space="preserve">
     <value>Half Texture (8px/tile)</value>
   </data>
+  <data name="menu_edit_export_map_tiles" xml:space="preserve">
+    <value>Kartenkacheln...</value>
+  </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
   </data>
@@ -676,6 +691,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="menu_file_exit" xml:space="preserve">
     <value>Beenden</value>
+  </data>
+  <data name="menu_file_export_map_tiles" xml:space="preserve">
+    <value>Kartenkacheln exportieren...</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>Neu</value>

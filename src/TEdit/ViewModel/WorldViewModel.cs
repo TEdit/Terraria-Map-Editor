@@ -76,6 +76,8 @@ public partial class WorldViewModel : ReactiveObject
     private FilterOverlayBuffer _filterOverlayMap;
     public BuffTileCache BuffTileCache { get; } = new BuffTileCache();
     private ProgressChangedEventArgs _progress;
+    private ProgressChangedEventArgs _taskProgress;
+    private bool _isTaskRunning;
     private Chest _selectedChest;
     private Item _selectedChestItem;
     private string _selectedPoint;
@@ -163,7 +165,13 @@ public partial class WorldViewModel : ReactiveObject
     /// Action to export the current selection to a PNG file. Set by MainWindow to delegate to MapView.
     /// Parameters: filename, scale (1=pixel map, 4/8/16=textured), progress reporter.
     /// </summary>
-    public Action<string, int, IProgress<ProgressChangedEventArgs>>? ExportSelection { get; set; }
+    public Func<string, int, IProgress<ProgressChangedEventArgs>, Task>? ExportSelection { get; set; }
+
+    /// <summary>
+    /// Action to export map tiles to a folder. Set by MainWindow to delegate to MapView.
+    /// Parameters: outputDir, area, progress reporter.
+    /// </summary>
+    public Func<string, RectangleInt32, IProgress<ProgressChangedEventArgs>, Task>? ExportMapTilesAction { get; set; }
 
     static WorldViewModel()
     {
@@ -1294,6 +1302,18 @@ public partial class WorldViewModel : ReactiveObject
     {
         get { return _progress; }
         set { this.RaiseAndSetIfChanged(ref _progress, value); }
+    }
+
+    public ProgressChangedEventArgs TaskProgress
+    {
+        get { return _taskProgress; }
+        set { this.RaiseAndSetIfChanged(ref _taskProgress, value); }
+    }
+
+    public bool IsTaskRunning
+    {
+        get { return _isTaskRunning; }
+        set { this.RaiseAndSetIfChanged(ref _isTaskRunning, value); }
     }
 
     public string WindowTitle

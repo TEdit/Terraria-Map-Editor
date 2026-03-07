@@ -728,7 +728,7 @@ public partial class WorldViewModel
     }
 
     [ReactiveCommand]
-    private void ExportSelectionAsPng(int scale)
+    private async Task ExportSelectionAsPng(int scale)
     {
         if (!Selection.IsActive) return;
 
@@ -737,20 +737,17 @@ public partial class WorldViewModel
         long outputH = (long)area.Height * scale;
         long megapixels = outputW * outputH / 1_000_000;
 
-        if (megapixels > 400)
-        {
-            MessageBox.Show(
-                string.Format(Properties.Language.export_size_limit_exceeded, outputW, outputH, megapixels, 400),
-                Properties.Language.export_size_warning_title,
-                MessageBoxButton.OK, MessageBoxImage.Warning);
-            return;
-        }
-
         if (megapixels > 100)
         {
+            // Estimate PNG file size: raw is 4 bytes/pixel, PNG compresses game tiles to ~25-50% of raw
+            long rawBytes = outputW * outputH * 4;
+            string estimatedSize = $"{TEdit.Common.FilePathUtility.FormatFileSize(rawBytes / 4)}–{TEdit.Common.FilePathUtility.FormatFileSize(rawBytes / 2)}";
+
             var result = MessageBox.Show(
-                string.Format(Properties.Language.export_size_warning, outputW, outputH, megapixels),
-                Properties.Language.export_size_warning_title,
+                string.Format(
+                    Properties.Language.export_size_warning ?? "The export will be {0}×{1} pixels ({2} megapixels, estimated {3}). This may take a while. Continue?",
+                    outputW, outputH, megapixels, estimatedSize),
+                Properties.Language.export_size_warning_title ?? "Large Export Warning",
                 MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result != MessageBoxResult.Yes) return;
         }
@@ -765,8 +762,17 @@ public partial class WorldViewModel
 
         if (dlg.ShowDialog() != true) return;
 
-        var progress = new Progress<ProgressChangedEventArgs>(e => OnProgressChanged(this, e));
-        ExportSelection?.Invoke(dlg.FileName, scale, progress);
+        var progress = new Progress<ProgressChangedEventArgs>(e => TaskProgress = e);
+        IsTaskRunning = true;
+        try
+        {
+            if (ExportSelection != null)
+                await ExportSelection(dlg.FileName, scale, progress);
+        }
+        finally
+        {
+            IsTaskRunning = false;
+        }
 
         var exportMessage = string.Format(
             Properties.Language.export_complete ?? "Selection exported to {0}",
@@ -776,6 +782,68 @@ public partial class WorldViewModel
 
         App.SnackbarService.Show(
             Properties.Language.export_size_warning_title ?? "Export",
+            exportMessage);
+    }
+
+    [ReactiveCommand]
+    private async Task ExportMapTiles()
+    {
+        if (CurrentWorld == null) return;
+
+        // Determine area: selection if active, otherwise full world
+        RectangleInt32 area;
+        if (Selection.IsActive)
+        {
+            area = Selection.SelectionArea;
+        }
+        else
+        {
+            area = new RectangleInt32(0, 0, CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
+        }
+
+        if (area.Width <= 0 || area.Height <= 0) return;
+
+        // Count total tiles for warning
+        int totalTiles = Export.LeafletTileExporter.CountTotalTiles(area);
+        int zoomLevels = Export.LeafletTileExporter.PixelMapZoomLevels.Length
+                       + Export.LeafletTileExporter.TexturedZoomLevels.Length;
+
+        var result = MessageBox.Show(
+            string.Format(
+                Properties.Language.export_tiles_warning ?? "This will export {0} tiles across {1} zoom levels. Continue?",
+                totalTiles, zoomLevels),
+            Properties.Language.export_tiles_warning_title ?? "Map Tile Export",
+            MessageBoxButton.YesNo, MessageBoxImage.Question);
+        if (result != MessageBoxResult.Yes) return;
+
+        // Folder browser dialog
+        var dlg = new System.Windows.Forms.FolderBrowserDialog
+        {
+            Description = "Select output folder for map tiles",
+            UseDescriptionForTitle = true,
+        };
+
+        if (dlg.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+        var progress = new Progress<ProgressChangedEventArgs>(e => TaskProgress = e);
+        IsTaskRunning = true;
+        try
+        {
+            if (ExportMapTilesAction != null)
+                await ExportMapTilesAction(dlg.SelectedPath, area, progress);
+        }
+        finally
+        {
+            IsTaskRunning = false;
+        }
+
+        var exportMessage = string.Format(
+            Properties.Language.export_tiles_complete ?? "Map tiles exported to {0}",
+            dlg.SelectedPath);
+
+        OnProgressChanged(this, new ProgressChangedEventArgs(0, exportMessage));
+        App.SnackbarService.Show(
+            Properties.Language.export_tiles_warning_title ?? "Map Tile Export",
             exportMessage);
     }
 

@@ -374,6 +374,18 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_complete" xml:space="preserve">
+    <value>Blocos do mapa exportados para {0}</value>
+  </data>
+  <data name="export_tiles_progress" xml:space="preserve">
+    <value>Exportando blocos: zoom {0}, bloco {1}/{2}...</value>
+  </data>
+  <data name="export_tiles_warning" xml:space="preserve">
+    <value>Isso exportará {0} blocos em {1} níveis de zoom. Continuar?</value>
+  </data>
+  <data name="export_tiles_warning_title" xml:space="preserve">
+    <value>Exportação de Blocos do Mapa</value>
+  </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>Auto Zoom</value>
   </data>
@@ -647,6 +659,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_edit_export_half_texture" xml:space="preserve">
     <value>Half Texture (8px/tile)</value>
   </data>
+  <data name="menu_edit_export_map_tiles" xml:space="preserve">
+    <value>Blocos de Mapa...</value>
+  </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
   </data>
@@ -676,6 +691,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="menu_file_exit" xml:space="preserve">
     <value>Sair</value>
+  </data>
+  <data name="menu_file_export_map_tiles" xml:space="preserve">
+    <value>Exportar Blocos do Mapa...</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>Novo</value>

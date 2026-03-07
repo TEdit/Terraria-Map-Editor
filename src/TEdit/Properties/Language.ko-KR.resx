@@ -374,6 +374,18 @@
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_complete" xml:space="preserve">
+    <value>지도 타일이 {0}으로 내보내졌습니다.</value>
+  </data>
+  <data name="export_tiles_progress" xml:space="preserve">
+    <value>타일 내보내는 중: 확대 {0}, 타일 {1}/{2}...</value>
+  </data>
+  <data name="export_tiles_warning" xml:space="preserve">
+    <value>이 작업은 {0} 타일을 {1} 줌 레벨로 내보냅니다. 계속하시겠습니까?</value>
+  </data>
+  <data name="export_tiles_warning_title" xml:space="preserve">
+    <value>지도 타일 내보내기</value>
+  </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>자동 줌</value>
   </data>
@@ -647,6 +659,9 @@
   <data name="menu_edit_export_half_texture" xml:space="preserve">
     <value>Half Texture (8px/tile)</value>
   </data>
+  <data name="menu_edit_export_map_tiles" xml:space="preserve">
+    <value>맵 타일...</value>
+  </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
   </data>
@@ -676,6 +691,9 @@
   </data>
   <data name="menu_file_exit" xml:space="preserve">
     <value>출구</value>
+  </data>
+  <data name="menu_file_export_map_tiles" xml:space="preserve">
+    <value>지도 타일 내보내기...</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>신규</value>
