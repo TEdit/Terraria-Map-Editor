@@ -76,7 +76,7 @@ public static class TwldFile
             if (pos.X < 0 || pos.X >= world.TilesWide || pos.Y < 0 || pos.Y >= world.TilesHigh)
                 continue;
 
-            var tile = world.Tiles[pos.X, pos.Y];
+            ref var tile = ref world.Tiles[pos.X, pos.Y];
             if (data.MapIndexToVirtualTileId.TryGetValue(modTile.TileMapIndex, out ushort vTileId))
             {
                 tile.IsActive = true;
@@ -96,7 +96,7 @@ public static class TwldFile
             if (pos.X < 0 || pos.X >= world.TilesWide || pos.Y < 0 || pos.Y >= world.TilesHigh)
                 continue;
 
-            var tile = world.Tiles[pos.X, pos.Y];
+            ref var tile = ref world.Tiles[pos.X, pos.Y];
             if (data.MapIndexToVirtualWallId.TryGetValue(modWall.WallMapIndex, out ushort vWallId))
             {
                 tile.Wall = vWallId;
@@ -192,7 +192,7 @@ public static class TwldFile
         {
             for (int y = 0; y < world.TilesHigh; y++)
             {
-                var tile = world.Tiles[x, y];
+                ref var tile = ref world.Tiles[x, y];
 
                 if (tile.IsActive && tile.Type >= virtualTileBase &&
                     data.VirtualTileIdToMapIndex.TryGetValue(tile.Type, out int tileMapIdx))
@@ -253,7 +253,7 @@ public static class TwldFile
             if (pos.X < 0 || pos.X >= world.TilesWide || pos.Y < 0 || pos.Y >= world.TilesHigh)
                 continue;
 
-            var tile = world.Tiles[pos.X, pos.Y];
+            ref var tile = ref world.Tiles[pos.X, pos.Y];
             if (data.MapIndexToVirtualTileId.TryGetValue(modTile.TileMapIndex, out ushort vTileId))
             {
                 tile.IsActive = true;
@@ -272,7 +272,7 @@ public static class TwldFile
             if (pos.X < 0 || pos.X >= world.TilesWide || pos.Y < 0 || pos.Y >= world.TilesHigh)
                 continue;
 
-            var tile = world.Tiles[pos.X, pos.Y];
+            ref var tile = ref world.Tiles[pos.X, pos.Y];
             if (data.MapIndexToVirtualWallId.TryGetValue(modWall.WallMapIndex, out ushort vWallId))
             {
                 tile.Wall = vWallId;

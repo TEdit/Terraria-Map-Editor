@@ -443,6 +443,127 @@ public class TwldFileTests
 
     #endregion
 
+    #region ApplyToWorld / StripFromWorld / ReapplyToWorld
+
+    private static World CreateTestWorld(int width, int height)
+    {
+        WorldConfiguration.Initialize();
+        var world = new World(width, height, "Test", 1);
+        world.Tiles = new Tile[width, height];
+        return world;
+    }
+
+    [Fact]
+    public void ApplyToWorld_SetsTileType_ViaRef()
+    {
+        var world = CreateTestWorld(10, 10);
+        var data = new TwldData();
+        data.TileMap.Add(new ModTileEntry
+        {
+            SaveType = 0,
+            ModName = "TestMod",
+            Name = "TestTile",
+            FrameImportant = false,
+        });
+        BuildSaveTypeLookups(data);
+        data.ModTileGrid[(3, 5)] = new ModTileData { TileMapIndex = 0, Color = 2 };
+        data.TileWallDataParsed = true;
+
+        TwldFile.ApplyToWorld(world, data);
+
+        // The actual tile in the world array must be modified (not a copy)
+        ref var tile = ref world.Tiles[3, 5];
+        tile.IsActive.ShouldBeTrue("Tile should be active after ApplyToWorld");
+        tile.Type.ShouldBeGreaterThanOrEqualTo((ushort)WorldConfiguration.TileCount,
+            "Tile type should be a virtual mod ID");
+        tile.TileColor.ShouldBe((byte)2);
+    }
+
+    [Fact]
+    public void ApplyToWorld_SetsWallType_ViaRef()
+    {
+        var world = CreateTestWorld(10, 10);
+        var data = new TwldData();
+        data.WallMap.Add(new ModWallEntry
+        {
+            SaveType = 0,
+            ModName = "TestMod",
+            Name = "TestWall",
+        });
+        BuildSaveTypeLookups(data);
+        data.ModWallGrid[(4, 6)] = new ModWallData { WallMapIndex = 0, WallColor = 3 };
+        data.TileWallDataParsed = true;
+
+        TwldFile.ApplyToWorld(world, data);
+
+        ref var tile = ref world.Tiles[4, 6];
+        tile.Wall.ShouldBeGreaterThanOrEqualTo((ushort)WorldConfiguration.WallCount,
+            "Wall type should be a virtual mod ID");
+        tile.WallColor.ShouldBe((byte)3);
+    }
+
+    [Fact]
+    public void StripFromWorld_ClearsTileFromGrid()
+    {
+        var world = CreateTestWorld(10, 10);
+        var data = new TwldData();
+        data.TileMap.Add(new ModTileEntry
+        {
+            SaveType = 0,
+            ModName = "TestMod",
+            Name = "TestTile",
+            FrameImportant = false,
+        });
+        BuildSaveTypeLookups(data);
+        data.ModTileGrid[(2, 3)] = new ModTileData { TileMapIndex = 0, Color = 0 };
+        data.TileWallDataParsed = true;
+
+        // Apply first so the world has virtual tile IDs
+        TwldFile.ApplyToWorld(world, data);
+        world.Tiles[2, 3].IsActive.ShouldBeTrue();
+
+        // Strip should remove virtual tiles from the world grid
+        data.ModTileGrid.Clear();
+        TwldFile.StripFromWorld(world, data);
+
+        ref var tile = ref world.Tiles[2, 3];
+        tile.IsActive.ShouldBeFalse("Tile should be inactive after StripFromWorld");
+        tile.Type.ShouldBe((ushort)0);
+        data.ModTileGrid.ShouldContainKey((2, 3));
+    }
+
+    [Fact]
+    public void ReapplyToWorld_RestoresTileAfterStrip()
+    {
+        var world = CreateTestWorld(10, 10);
+        var data = new TwldData();
+        data.TileMap.Add(new ModTileEntry
+        {
+            SaveType = 0,
+            ModName = "TestMod",
+            Name = "TestTile",
+            FrameImportant = false,
+        });
+        BuildSaveTypeLookups(data);
+        data.ModTileGrid[(1, 1)] = new ModTileData { TileMapIndex = 0, Color = 0 };
+        data.TileWallDataParsed = true;
+
+        TwldFile.ApplyToWorld(world, data);
+        ushort expectedType = world.Tiles[1, 1].Type;
+
+        // Strip removes mod tiles
+        TwldFile.StripFromWorld(world, data);
+        world.Tiles[1, 1].IsActive.ShouldBeFalse();
+
+        // Reapply restores them
+        TwldFile.ReapplyToWorld(world, data);
+        ref var tile = ref world.Tiles[1, 1];
+        tile.IsActive.ShouldBeTrue("Tile should be active after ReapplyToWorld");
+        tile.Type.ShouldBe(expectedType);
+    }
+
+    #endregion
+
     #region ModColors.json Integration Tests
 
     [Fact]
