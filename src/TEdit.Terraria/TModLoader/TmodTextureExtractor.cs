@@ -262,6 +262,8 @@ public class TmodTextureExtractor
         return data;
     }
 
+    public IEnumerable<string> ListAllFiles() => _files.Keys;
+
     private IEnumerable<string> ListFiles(string prefix)
     {
         foreach (var path in _files.Keys)

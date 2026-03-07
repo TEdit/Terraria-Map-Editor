@@ -8,6 +8,14 @@ using TEdit.Common.IO;
 
 namespace TEdit.ViewModel;
 
+public enum NbtEntityKind
+{
+    None,
+    Chest,
+    Sign,
+    TileEntity,
+}
+
 /// <summary>
 /// Represents a node in the NBT Explorer TreeView.
 /// Supports TagCompound, List, byte[], int[], and primitive types.
@@ -21,6 +29,18 @@ public partial class NbtNodeViewModel
     public object? RawValue { get; set; }
     public bool IsLeaf { get; init; }
     public bool IsEditable { get; init; }
+
+    /// <summary>Whether this compound node has x/y coordinate keys.</summary>
+    public bool HasCoordinates { get; init; }
+
+    /// <summary>X coordinate if HasCoordinates is true.</summary>
+    public int CoordX { get; init; }
+
+    /// <summary>Y coordinate if HasCoordinates is true.</summary>
+    public int CoordY { get; init; }
+
+    /// <summary>The NBT entity type for nodes that can be opened in an editor.</summary>
+    public NbtEntityKind EntityKind { get; init; } = NbtEntityKind.None;
 
     [Reactive]
     private bool _isExpanded;
@@ -52,16 +72,34 @@ public partial class NbtNodeViewModel
         };
     }
 
+    private static (bool has, int x, int y) ExtractCoordinates(TagCompound compound)
+    {
+        // lowercase x/y (chests, signs)
+        if (compound.ContainsKey("x") && compound.ContainsKey("y"))
+            return (true, compound.GetInt("x"), compound.GetInt("y"));
+        // uppercase X/Y (tile entities)
+        if (compound.ContainsKey("X") && compound.ContainsKey("Y"))
+            return (true, compound.GetShort("X"), compound.GetShort("Y"));
+        return (false, 0, 0);
+    }
+
     private static NbtNodeViewModel FromCompound(string key, TagCompound compound)
     {
+        var (hasCoords, cx, cy) = ExtractCoordinates(compound);
+        var entityKind = DetectEntityKind(key, compound);
+
         var node = new NbtNodeViewModel
         {
             Name = key,
             TypeLabel = "Compound",
-            ValuePreview = string.Empty,
+            ValuePreview = hasCoords ? $"({cx}, {cy})" : string.Empty,
             RawValue = compound,
             IsLeaf = false,
             IsEditable = false,
+            HasCoordinates = hasCoords,
+            CoordX = cx,
+            CoordY = cy,
+            EntityKind = entityKind,
         };
 
         foreach (var kvp in compound)
@@ -70,6 +108,26 @@ public partial class NbtNodeViewModel
         }
 
         return node;
+    }
+
+    private static NbtEntityKind DetectEntityKind(string key, TagCompound compound)
+    {
+        bool hasLower = compound.ContainsKey("x") && compound.ContainsKey("y");
+        bool hasUpper = compound.ContainsKey("X") && compound.ContainsKey("Y");
+
+        // Chest entries have "items" list and lowercase x/y
+        if (hasLower && compound.ContainsKey("items"))
+            return NbtEntityKind.Chest;
+
+        // Tile entity entries have "mod"+"name" and uppercase X/Y
+        if (hasUpper && compound.ContainsKey("mod") && compound.ContainsKey("name"))
+            return NbtEntityKind.TileEntity;
+
+        // Sign-like entries have "text" and x/y
+        if (hasLower && compound.ContainsKey("text"))
+            return NbtEntityKind.Sign;
+
+        return NbtEntityKind.None;
     }
 
     private static NbtNodeViewModel FromList(string key, IList list)

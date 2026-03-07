@@ -268,16 +268,30 @@ public class TmodTextureExtractorTests
         if (!Directory.Exists(CalamityTmodPath))
             return null;
 
+        // Collect all CalamityMod.tmod paths, then pick the latest version directory
+        var candidates = new List<string>();
         foreach (var workshopDir in Directory.EnumerateDirectories(CalamityTmodPath))
         {
             foreach (var versionDir in Directory.EnumerateDirectories(workshopDir))
             {
                 string tmodPath = Path.Combine(versionDir, "CalamityMod.tmod");
                 if (File.Exists(tmodPath))
-                    return tmodPath;
+                    candidates.Add(tmodPath);
             }
         }
-        return null;
+
+        if (candidates.Count == 0)
+            return null;
+
+        // Sort descending by version directory name to get latest
+        candidates.Sort((a, b) =>
+        {
+            string dirA = Path.GetFileName(Path.GetDirectoryName(a));
+            string dirB = Path.GetFileName(Path.GetDirectoryName(b));
+            return string.Compare(dirB, dirA, StringComparison.OrdinalIgnoreCase);
+        });
+
+        return candidates[0];
     }
 
     [SkippableFact]
@@ -402,6 +416,76 @@ public class TmodTextureExtractorTests
         matched.ShouldBeGreaterThan(0, "No tile textures matched twld entries");
         double matchRate = (double)matched / (matched + unmatched);
         matchRate.ShouldBeGreaterThan(0.5, $"Only {matched}/{matched + unmatched} ({matchRate:P0}) tiles matched textures");
+    }
+
+    // Diagnostic test — uncomment for investigating unmatched tiles
+    // [SkippableFact]
+    internal void CalamityTmod_DiagnoseUnmatchedTiles()
+    {
+        string tmodPath = FindCalamityTmod();
+        Skip.If(tmodPath == null, "CalamityMod.tmod not found in Steam workshop");
+
+        string wldPath = @"D:\dev\ai\tedit\tModLoaderData\Worlds\Calamity2.wld";
+        Skip.IfNot(File.Exists(TwldFile.GetTwldPath(wldPath)), "Calamity2.twld test fixture not found");
+
+        WorldConfiguration.Initialize();
+        var twldData = TwldFile.Load(wldPath);
+        twldData.ShouldNotBeNull();
+
+        ushort virtualTileBase = (ushort)WorldConfiguration.TileCount;
+        for (int i = 0; i < twldData.TileMap.Count; i++)
+            twldData.MapIndexToVirtualTileId[i] = (ushort)(virtualTileBase + i);
+
+        ushort virtualWallBase = (ushort)WorldConfiguration.WallCount;
+        for (int i = 0; i < twldData.WallMap.Count; i++)
+            twldData.MapIndexToVirtualWallId[i] = (ushort)(virtualWallBase + i);
+
+        var tileNameToId = TwldFile.BuildTileNameToVirtualIdMap(twldData);
+        var wallNameToId = TwldFile.BuildWallNameToVirtualIdMap(twldData);
+        var extractor = TmodTextureExtractor.Open(tmodPath);
+        var tileTextures = extractor.ExtractTileTextures();
+        var wallTextures = extractor.ExtractWallTextures();
+        var allFiles = extractor.ListAllFiles().ToList();
+
+        // Check specific missing tiles in the archive
+        var checkNames = new[] { "AbyssCoral", "AgedBiolight", "CagedBiolight", "HostilePlagueTurret", "SunkenStalagmites" };
+        var checkWalls = new[] { "EutrophicGlassWall", "GiantHiveWall" };
+
+        var lines = new List<string>();
+
+        // Check what Abyss/Coral files ARE in the archive
+        var abyssFiles = allFiles.Where(f => f.Contains("Abyss", StringComparison.OrdinalIgnoreCase) && f.Contains("Tile", StringComparison.OrdinalIgnoreCase)).Take(20).ToList();
+        lines.Add($"Abyss+Tile archive files: [{string.Join(", ", abyssFiles)}]");
+        var coralFiles = allFiles.Where(f => f.Contains("Coral", StringComparison.OrdinalIgnoreCase)).Take(20).ToList();
+        lines.Add($"Coral archive files: [{string.Join(", ", coralFiles)}]");
+
+        foreach (var name in checkNames)
+        {
+            bool inTwld = twldData.TileMap.Any(e => e.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            bool inTextures = tileTextures.ContainsKey(name);
+            var archiveMatches = allFiles.Where(f => f.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            lines.Add($"TILE {name}: twld={inTwld}, extracted={inTextures}, archive=[{string.Join(", ", archiveMatches)}]");
+        }
+        foreach (var name in checkWalls)
+        {
+            bool inTwld = twldData.WallMap.Any(e => e.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            bool inTextures = wallTextures.ContainsKey(name);
+            var archiveMatches = allFiles.Where(f => f.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            lines.Add($"WALL {name}: twld={inTwld}, extracted={inTextures}, archive=[{string.Join(", ", archiveMatches)}]");
+        }
+
+        // Count total unmatched
+        var unmatchedTiles = twldData.TileMap.Where(e => e.ModName == "CalamityMod" && !tileTextures.ContainsKey(e.Name)).Select(e => e.Name).ToList();
+        var unmatchedWalls = twldData.WallMap.Where(e => e.ModName == "CalamityMod" && !wallTextures.ContainsKey(e.Name)).Select(e => e.Name).ToList();
+
+        lines.Add($"\nTotal unmatched tiles: {unmatchedTiles.Count}/{twldData.TileMap.Count(e => e.ModName == "CalamityMod")}");
+        lines.Add($"Total unmatched walls: {unmatchedWalls.Count}/{twldData.WallMap.Count(e => e.ModName == "CalamityMod")}");
+        lines.Add($"Total tile textures extracted: {tileTextures.Count}");
+        lines.Add($"Total wall textures extracted: {wallTextures.Count}");
+        lines.Add($"Total archive files: {allFiles.Count}");
+
+        string report = string.Join("\n", lines);
+        unmatchedTiles.Count.ShouldBe(0, report);
     }
 
     #endregion

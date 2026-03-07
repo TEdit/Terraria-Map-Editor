@@ -1,9 +1,11 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Data;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Terraria;
 using TEdit.Terraria.TModLoader;
 
 namespace TEdit.ViewModel;
@@ -25,6 +27,9 @@ public partial class NbtExplorerViewModel
 
     [Reactive]
     private NbtNodeViewModel? _selectedNode;
+
+    /// <summary>Raised when the view should pan to a tile coordinate.</summary>
+    public event Action<int, int>? RequestZoomToTile;
 
     public NbtExplorerViewModel(WorldViewModel worldViewModel)
     {
@@ -75,14 +80,9 @@ public partial class NbtExplorerViewModel
     {
         if (SelectedNode is not { IsEditable: true }) return;
 
-        // Walk up to find the parent TagCompound — for top-level nodes, it's the RawTag
         var twldData = _worldViewModel.CurrentWorld?.TwldData;
         if (twldData?.RawTag == null) return;
 
-        // For simplicity, apply directly to RawTag if the node's Name exists as a top-level key.
-        // For nested edits, we stored the RawValue reference which points into the live TagCompound.
-        // The ApplyEdit method needs the immediate parent TagCompound.
-        // Since the tree mirrors the live TagCompound structure, we find the parent by searching.
         var parent = FindParentCompound(twldData.RawTag, SelectedNode);
         if (parent != null)
         {
@@ -90,12 +90,54 @@ public partial class NbtExplorerViewModel
         }
     }
 
+    [ReactiveCommand]
+    private void ZoomToTile()
+    {
+        if (SelectedNode is not { HasCoordinates: true }) return;
+        RequestZoomToTile?.Invoke(SelectedNode.CoordX, SelectedNode.CoordY);
+    }
+
+    [ReactiveCommand]
+    private void EditEntity()
+    {
+        if (SelectedNode == null || SelectedNode.EntityKind == NbtEntityKind.None) return;
+
+        var world = _worldViewModel.CurrentWorld;
+        if (world == null) return;
+
+        int x = SelectedNode.CoordX;
+        int y = SelectedNode.CoordY;
+
+        switch (SelectedNode.EntityKind)
+        {
+            case NbtEntityKind.Chest:
+                var chest = world.Chests.FirstOrDefault(c => c.X == x && c.Y == y);
+                if (chest != null)
+                    _worldViewModel.SelectedChest = chest.Copy();
+                break;
+
+            case NbtEntityKind.Sign:
+                var sign = world.Signs.FirstOrDefault(s => s.X == x && s.Y == y);
+                if (sign != null)
+                    _worldViewModel.SelectedSign = sign.Copy();
+                break;
+
+            case NbtEntityKind.TileEntity:
+                var te = world.TileEntities.FirstOrDefault(e => e.PosX == x && e.PosY == y);
+                if (te != null)
+                    _worldViewModel.SelectedTileEntity = te.Copy();
+                break;
+        }
+
+        // Also zoom to the entity
+        RequestZoomToTile?.Invoke(x, y);
+    }
+
     /// <summary>
     /// Finds the TagCompound that directly contains the given node's key.
     /// </summary>
     private static Common.IO.TagCompound? FindParentCompound(Common.IO.TagCompound root, NbtNodeViewModel target)
     {
-        // Check if this compound directly contains the target key with matching value
         if (root.ContainsKey(target.Name))
         {
             var val = root[target.Name];
@@ -103,7 +145,6 @@ public partial class NbtExplorerViewModel
                 return root;
         }
 
-        // Recurse into child compounds and lists
         foreach (var kvp in root)
         {
             if (kvp.Value is Common.IO.TagCompound childCompound)

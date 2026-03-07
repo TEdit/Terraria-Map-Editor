@@ -275,10 +275,7 @@ public partial class World
 
                     using (var b = new BinaryReader(stream))
                     {
-                        string twldPath = Path.Combine(
-                            Path.GetDirectoryName(filename),
-                            Path.GetFileNameWithoutExtension(filename) +
-                            ".twld");
+                        string twldPath = TwldFile.GetTwldPath(filename);
 
                         if (File.Exists(twldPath))
                         {
@@ -417,9 +414,7 @@ public partial class World
 
                 using var b = new BinaryReader(stream);
 
-                string twldPath = Path.Combine(
-                    Path.GetDirectoryName(filename),
-                    Path.GetFileNameWithoutExtension(filename) + ".twld");
+                string twldPath = TwldFile.GetTwldPath(filename);
                 w.IsTModLoader = File.Exists(twldPath);
 
                 w.Version = b.ReadUInt32();
@@ -591,10 +586,7 @@ public partial class World
 
                     using (var b = new BinaryReader(stream))
                     {
-                        string twldPath = Path.Combine(
-                            Path.GetDirectoryName(filename),
-                            Path.GetFileNameWithoutExtension(filename) +
-                            ".twld");
+                        string twldPath = TwldFile.GetTwldPath(filename);
 
                         w.IsTModLoader = File.Exists(twldPath);
 
@@ -675,20 +667,107 @@ public partial class World
 
     public Chest GetChestAtTile(int x, int y, bool findOrigin = false)
     {
-        Vector2Int32 anchor = findOrigin ? GetAnchor(x, y) : new Vector2Int32(x, y);
-        return Chests.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
+        if (findOrigin && !IsTModLoader)
+        {
+            // Vanilla world: use sprite anchor to find the top-left origin
+            var anchor = GetAnchor(x, y);
+            var chest = Chests.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
+            if (chest != null)
+                return chest;
+        }
+
+        // Direct lookup at clicked position
+        var directChest = Chests.FirstOrDefault(c => (c.X == x) && (c.Y == y));
+        if (directChest != null)
+            return directChest;
+
+        if (!findOrigin)
+            return null;
+
+        // Mod world proximity scan: the found entity position IS the anchor
+        int tileType = Tiles[x, y].Type;
+        return ScanForNearbyEntity(x, y, tileType,
+            (cx, cy) => Chests.FirstOrDefault(c => c.X == cx && c.Y == cy));
     }
 
     public Sign GetSignAtTile(int x, int y, bool findOrigin = false)
     {
-        Vector2Int32 anchor = findOrigin ? GetAnchor(x, y) : new Vector2Int32(x, y);
-        return Signs.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
+        if (findOrigin && !IsTModLoader)
+        {
+            var anchor = GetAnchor(x, y);
+            var sign = Signs.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
+            if (sign != null)
+                return sign;
+        }
+
+        var directSign = Signs.FirstOrDefault(c => (c.X == x) && (c.Y == y));
+        if (directSign != null)
+            return directSign;
+
+        if (!findOrigin)
+            return null;
+
+        int tileType = Tiles[x, y].Type;
+        return ScanForNearbyEntity(x, y, tileType,
+            (cx, cy) => Signs.FirstOrDefault(c => c.X == cx && c.Y == cy));
     }
 
     public TileEntity GetTileEntityAtTile(int x, int y, bool findOrigin = false)
     {
-        Vector2Int32 anchor = findOrigin ? GetAnchor(x, y) : new Vector2Int32(x, y);
-        return TileEntities.FirstOrDefault(c => (c.PosX == anchor.X) && (c.PosY == anchor.Y));
+        if (findOrigin && !IsTModLoader)
+        {
+            var anchor = GetAnchor(x, y);
+            var entity = TileEntities.FirstOrDefault(c => (c.PosX == anchor.X) && (c.PosY == anchor.Y));
+            if (entity != null)
+                return entity;
+        }
+
+        var directEntity = TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
+        if (directEntity != null)
+            return directEntity;
+
+        if (!findOrigin)
+            return null;
+
+        int tileType = Tiles[x, y].Type;
+        return ScanForNearbyEntity(x, y, tileType,
+            (cx, cy) => TileEntities.FirstOrDefault(c => c.PosX == cx && c.PosY == cy));
+    }
+
+    /// <summary>
+    /// Scans a 3x3 region (current tile, then left/up) for an NBT entity at a position
+    /// with matching tile type. Scans horizontal-first per row, bottom row first (current y),
+    /// then moves up one row at a time. Only runs the scan if any entities exist in the region.
+    /// </summary>
+    private T ScanForNearbyEntity<T>(int x, int y, int tileType, Func<int, int, T> findAt) where T : class
+    {
+        int minX = Math.Max(0, x - 2);
+        int minY = Math.Max(0, y - 2);
+
+        // Pre-check: only scan if at least one entity exists in the region
+        bool hasCandidate = false;
+        for (int cy = y; cy >= minY && !hasCandidate; cy--)
+            for (int cx = x; cx >= minX && !hasCandidate; cx--)
+                if (findAt(cx, cy) != null)
+                    hasCandidate = true;
+
+        if (!hasCandidate)
+            return null;
+
+        // Scan: current tile first, then left on same row, then up one row (left to right)
+        for (int cy = y; cy >= minY; cy--)
+        {
+            for (int cx = x; cx >= minX; cx--)
+            {
+                if (Tiles[cx, cy].Type != tileType) continue;
+
+                var entity = findAt(cx, cy);
+                if (entity != null)
+                    return entity;
+            }
+        }
+
+        return null;
     }
 
     public Vector2Int32 GetMannequin(int x, int y)
@@ -788,57 +867,63 @@ public partial class World
             }
         }
 
-        foreach (Chest chest in Chests.ToArray())
+        // For tModLoader worlds, skip chest/sign/entity tile-type validation.
+        // Mod tiles may not be recognized by IsChest()/IsSign()/IsTileEntity(),
+        // and StripFromWorld may have already set mod tiles inactive.
+        // The NBT data is authoritative for mod entities.
+        if (!IsTModLoader)
         {
-            bool removed = false;
-            for (int x = chest.X; x < chest.X + 1; x++)
+            foreach (Chest chest in Chests.ToArray())
             {
-                for (int y = chest.Y; y < chest.Y + 1; y++)
+                bool removed = false;
+                for (int x = chest.X; x < chest.X + 1; x++)
                 {
-                    if (!Tiles[x, y].IsActive || !Tiles[x, y].IsChest())
+                    for (int y = chest.Y; y < chest.Y + 1; y++)
                     {
-                        Chests.Remove(chest);
-                        removed = true;
-                        break;
+                        if (!Tiles[x, y].IsActive || !Tiles[x, y].IsChest())
+                        {
+                            Chests.Remove(chest);
+                            removed = true;
+                            break;
+                        }
                     }
+                    if (removed) break;
                 }
-                if (removed) break;
-            }
-        }
-
-        foreach (Sign sign in Signs.ToArray())
-        {
-            if (sign.Text == null)
-            {
-                Signs.Remove(sign);
-                continue;
             }
 
-            bool removed = false;
-            for (int x = sign.X; x < sign.X + 1; x++)
+            foreach (Sign sign in Signs.ToArray())
             {
-                for (int y = sign.Y; y < sign.Y + 1; y++)
+                if (sign.Text == null)
                 {
-                    if (!Tiles[x, y].IsActive || !Tiles[x, y].IsSign())
-                    {
-                        Signs.Remove(sign);
-                        removed = true;
-                        break;
-                    }
+                    Signs.Remove(sign);
+                    continue;
                 }
-                if (removed) break;
+
+                bool removed = false;
+                for (int x = sign.X; x < sign.X + 1; x++)
+                {
+                    for (int y = sign.Y; y < sign.Y + 1; y++)
+                    {
+                        if (!Tiles[x, y].IsActive || !Tiles[x, y].IsSign())
+                        {
+                            Signs.Remove(sign);
+                            removed = true;
+                            break;
+                        }
+                    }
+                    if (removed) break;
+                }
             }
-        }
 
-
-        foreach (TileEntity tileEntity in TileEntities.ToArray())
-        {
-            int x = tileEntity.PosX;
-            int y = tileEntity.PosY;
-            var anchor = GetAnchor(x, y);
-            if (!Tiles[anchor.X, anchor.Y].IsActive || !Tiles[x, y].IsTileEntity())
+            foreach (TileEntity tileEntity in TileEntities.ToArray())
             {
-                TileEntities.Remove(tileEntity);
+                int x = tileEntity.PosX;
+                int y = tileEntity.PosY;
+                var anchor = GetAnchor(x, y);
+                if (!Tiles[anchor.X, anchor.Y].IsActive || !Tiles[x, y].IsTileEntity())
+                {
+                    TileEntities.Remove(tileEntity);
+                }
             }
         }
 

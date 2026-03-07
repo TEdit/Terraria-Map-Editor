@@ -42,26 +42,70 @@
             </ui:Button>
         </Grid>
 
-        <!-- Edit panel (bottom, visible when editable node is selected) -->
-        <Border DockPanel.Dock="Bottom"
-                Margin="8,4"
-                Visibility="{Binding SelectedNode.IsEditable, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+        <!-- Action panel (bottom) -->
+        <StackPanel DockPanel.Dock="Bottom" Margin="8,4" Orientation="Vertical">
 
-                <ui:TextBox Grid.Column="0"
-                            Text="{Binding SelectedNode.EditableValue, UpdateSourceTrigger=PropertyChanged}"
-                            Margin="0,0,4,0" />
+            <!-- Edit value panel (visible when editable primitive is selected) -->
+            <Border Visibility="{Binding SelectedNode.IsEditable, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <ui:Button Grid.Column="1"
-                           Content="Apply"
-                           Command="{Binding ApplyEditCommand}"
-                           Padding="8,4" />
-            </Grid>
-        </Border>
+                    <ui:TextBox Grid.Column="0"
+                                Text="{Binding SelectedNode.EditableValue, UpdateSourceTrigger=PropertyChanged}"
+                                Margin="0,0,4,0" />
+
+                    <ui:Button Grid.Column="1"
+                               Content="Apply"
+                               Command="{Binding ApplyEditCommand}"
+                               Padding="8,4" />
+                </Grid>
+            </Border>
+
+            <!-- Zoom + Edit buttons (visible when node has coordinates) -->
+            <StackPanel Orientation="Horizontal" Margin="0,4,0,0"
+                        Visibility="{Binding SelectedNode.HasCoordinates, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
+                <ui:Button ToolTip="Zoom to this tile on the map"
+                           Command="{Binding ZoomToTileCommand}"
+                           Padding="6,4"
+                           Margin="0,0,4,0">
+                    <StackPanel Orientation="Horizontal">
+                        <ui:SymbolIcon Symbol="Location20" FontSize="14" Margin="0,0,4,0" />
+                        <TextBlock Text="Zoom To" VerticalAlignment="Center" />
+                    </StackPanel>
+                </ui:Button>
+
+                <ui:Button ToolTip="Open this entity in the appropriate editor"
+                           Command="{Binding EditEntityCommand}"
+                           Padding="6,4">
+                    <ui:Button.Style>
+                        <Style TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedNode.EntityKind}"
+                                             Value="{x:Static viewModel:NbtEntityKind.Chest}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding SelectedNode.EntityKind}"
+                                             Value="{x:Static viewModel:NbtEntityKind.Sign}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding SelectedNode.EntityKind}"
+                                             Value="{x:Static viewModel:NbtEntityKind.TileEntity}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ui:Button.Style>
+                    <StackPanel Orientation="Horizontal">
+                        <ui:SymbolIcon Symbol="Edit20" FontSize="14" Margin="0,0,4,0" />
+                        <TextBlock Text="Edit" VerticalAlignment="Center" />
+                    </StackPanel>
+                </ui:Button>
+            </StackPanel>
+        </StackPanel>
 
         <!-- TreeView -->
         <TreeView ItemsSource="{Binding FilteredRootNodesView}"
@@ -99,6 +143,24 @@
                                    Margin="4,0,0,0"
                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
                                    Visibility="{Binding IsLeaf, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                        <!-- Coordinate preview (compounds with coords) -->
+                        <TextBlock Text="{Binding ValuePreview}"
+                                   VerticalAlignment="Center"
+                                   Margin="4,0,0,0"
+                                   FontWeight="Normal"
+                                   Foreground="{DynamicResource SystemFillColorCautionBrush}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasCoordinates}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
 
                         <!-- Child count (containers only) -->
                         <TextBlock Text="{Binding Children.Count, Mode=OneWay, StringFormat='({0})'}"

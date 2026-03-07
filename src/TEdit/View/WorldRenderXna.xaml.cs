@@ -64,6 +64,7 @@ public partial class WorldRenderXna : UserControl
 
     private const float LayerGrid = 1 - 0.15f;
     private const float LayerWorldBorder = 1 - 0.17f;
+    private const float LayerNbtOverlay = 1 - 0.19f;
     private const float LayerLocations = 1 - 0.20f;
     private const float LayerSelection = 1 - 0.25f;
     private const float LayerPastePreview = 1 - 0.27f;
@@ -3085,7 +3086,10 @@ public partial class WorldRenderXna : UserControl
             DrawWorldBorder();
 
         if (_wvm.ShowPoints)
+        {
             DrawPoints();
+            DrawNbtOverlay();
+        }
 
         // Find crosshair always draws when active (independent of ShowPoints)
         DrawFindCrosshair();
@@ -6726,6 +6730,55 @@ public partial class WorldRenderXna : UserControl
             SpriteEffects.None,
             LayerLocations);
 
+    }
+
+    private void DrawNbtOverlay()
+    {
+        var world = _wvm.CurrentWorld;
+        if (world == null) return;
+
+        var whiteTex = _textureDictionary.WhitePixelTexture;
+        if (whiteTex == null) return;
+
+        var chestColor = Color.FromNonPremultiplied(255, 200, 0, 200);   // gold
+        var signColor = Color.FromNonPremultiplied(0, 220, 255, 200);    // cyan
+        var entityColor = Color.FromNonPremultiplied(220, 0, 255, 200);  // magenta
+
+        // Draw chests
+        foreach (var chest in world.Chests)
+        {
+            if (chest == null) continue;
+            var dest = new Rectangle(
+                (int)((_scrollPosition.X + chest.X) * _zoom),
+                (int)((_scrollPosition.Y + chest.Y) * _zoom),
+                Math.Max(1, (int)_zoom),
+                Math.Max(1, (int)_zoom));
+            _spriteBatch.Draw(whiteTex, dest, null, chestColor, 0f, default, SpriteEffects.None, LayerNbtOverlay);
+        }
+
+        // Draw signs
+        foreach (var sign in world.Signs)
+        {
+            if (sign == null) continue;
+            var dest = new Rectangle(
+                (int)((_scrollPosition.X + sign.X) * _zoom),
+                (int)((_scrollPosition.Y + sign.Y) * _zoom),
+                Math.Max(1, (int)_zoom),
+                Math.Max(1, (int)_zoom));
+            _spriteBatch.Draw(whiteTex, dest, null, signColor, 0f, default, SpriteEffects.None, LayerNbtOverlay);
+        }
+
+        // Draw tile entities
+        foreach (var te in world.TileEntities)
+        {
+            if (te == null) continue;
+            var dest = new Rectangle(
+                (int)((_scrollPosition.X + te.PosX) * _zoom),
+                (int)((_scrollPosition.Y + te.PosY) * _zoom),
+                Math.Max(1, (int)_zoom),
+                Math.Max(1, (int)_zoom));
+            _spriteBatch.Draw(whiteTex, dest, null, entityColor, 0f, default, SpriteEffects.None, LayerNbtOverlay);
+        }
     }
 
     private void DrawFindCrosshair()

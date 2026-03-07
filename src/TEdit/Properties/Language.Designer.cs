@@ -2688,7 +2688,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("nbt_explorer_title", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Add Ash.
         /// </summary>
@@ -8558,7 +8558,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("world_explorer_tab_tmodloader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Vanilla.
         /// </summary>
@@ -8567,7 +8567,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("world_explorer_tab_vanilla", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to World Explorer.
         /// </summary>

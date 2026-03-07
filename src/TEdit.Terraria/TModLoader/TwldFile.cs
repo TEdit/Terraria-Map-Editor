@@ -1498,9 +1498,20 @@ public static class TwldFile
 
     internal static string GetTwldPath(string wldPath)
     {
-        return Path.Combine(
-            Path.GetDirectoryName(wldPath),
-            Path.GetFileNameWithoutExtension(wldPath) + ".twld");
+        // Strip backup suffixes (.bak, .bak2, etc.) to find the base .wld name
+        string dir = Path.GetDirectoryName(wldPath);
+        string name = Path.GetFileName(wldPath);
+
+        // Remove trailing .bak/.bak2/etc. to get the base filename
+        while (name.EndsWith(".bak", System.StringComparison.OrdinalIgnoreCase) ||
+               System.Text.RegularExpressions.Regex.IsMatch(name, @"\.bak\d+$", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+        {
+            name = Path.GetFileNameWithoutExtension(name);
+        }
+
+        // Now name should be e.g. "world.wld" — swap .wld for .twld
+        string baseName = Path.GetFileNameWithoutExtension(name);
+        return Path.Combine(dir, baseName + ".twld");
     }
 
     /// <summary>
