@@ -3088,7 +3088,9 @@ public partial class WorldRenderXna : UserControl
         if (_wvm.ShowPoints)
         {
             DrawPoints();
+#if DEBUG
             DrawNbtOverlay();
+#endif
         }
 
         // Find crosshair always draws when active (independent of ShowPoints)
@@ -6732,6 +6734,7 @@ public partial class WorldRenderXna : UserControl
 
     }
 
+#if DEBUG
     private void DrawNbtOverlay()
     {
         var world = _wvm.CurrentWorld;
@@ -6780,6 +6783,7 @@ public partial class WorldRenderXna : UserControl
             _spriteBatch.Draw(whiteTex, dest, null, entityColor, 0f, default, SpriteEffects.None, LayerNbtOverlay);
         }
     }
+#endif
 
     private void DrawFindCrosshair()
     {
