@@ -2,8 +2,11 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using TEdit.Helper;
 using TEdit.Terraria;
 
@@ -93,13 +96,39 @@ public partial class BestiaryViewModel : ReactiveObject
     [Reactive]
     private string _name;
 
+    [Reactive]
+    private string _filterText = "";
+
     public BestiaryViewModel()
     {
         _wvm = ViewModelLocator.WorldViewModel;
+
+        BestiaryView = CollectionViewSource.GetDefaultView(BestiaryData);
+        BestiaryView.Filter = FilterBestiary;
+
+        this.WhenAnyValue(x => x.FilterText)
+            .Throttle(TimeSpan.FromMilliseconds(200))
+            .ObserveOn(RxSchedulers.MainThreadScheduler)
+            .Subscribe(_ => BestiaryView.Refresh());
     }
 
     [Reactive]
     private ObservableCollection<BestiaryItem> _bestiaryData = new ObservableCollection<BestiaryItem>();
+
+    public ICollectionView BestiaryView { get; }
+
+    private bool FilterBestiary(object obj)
+    {
+        if (obj is not BestiaryItem item) return false;
+
+        if (!string.IsNullOrEmpty(FilterText) &&
+            !item.Name.Contains(FilterText, StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        return true;
+    }
 
     [ReactiveCommand]
     private void UpdateKillTally()

@@ -31,7 +31,7 @@
     <PackageReference Include="Semver" Version="3.0.0" />
     <PackageReference Include="Velopack" Version="0.0.1298" />
     <PackageReference Include="VirtualizingWrapPanel" Version="2.5.1" />
-    <PackageReference Include="Jint" Version="4.6.1" />
+    <PackageReference Include="Jint" Version="4.6.2" />
     <PackageReference Include="LuaCSharp" Version="0.5.3" />
     <PackageReference Include="WPF-UI" Version="4.2.0" />
     <PackageReference Include="AvalonEdit" Version="6.3.1.120" />
@@ -58,6 +58,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images/favicon-96x96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images/Overlays/*.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -77,6 +80,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
     <ProjectReference Include="..\TEdit.Editor\TEdit.Editor.csproj" />
+    <ProjectReference Include="..\TEdit.Png\TEdit.Png.csproj" />
     <ProjectReference Include="..\TEdit.Terraria\TEdit.Terraria.csproj" />
   </ItemGroup>
   <ItemGroup>

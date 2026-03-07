@@ -8,6 +8,7 @@
     <Build Solution="Release|*" Project="false" />
   </Project>
   <Project Path="TEdit.Common/TEdit.Common.csproj" />
+  <Project Path="TEdit.Png/TEdit.Png.csproj" />
   <Project Path="TEdit.Editor/TEdit.Editor.csproj" />
   <Project Path="TEdit.Terraria/TEdit.Terraria.csproj" />
   <Project Path="TEdit.Terraria.Tests/TEdit.Terraria.Tests.csproj" />

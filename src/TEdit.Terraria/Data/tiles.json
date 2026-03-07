@@ -16043,7 +16043,7 @@
       {
         "name": "Mini Volcano",
         "variety": "On",
-        "uv": [0, 18],
+        "uv": [18, 0],
         "size": [1, 1],
         "anchor": "Bottom"
       }
@@ -16065,7 +16065,7 @@
       {
         "name": "Large Volcano",
         "variety": "On",
-        "uv": [0, 36],
+        "uv": [36, 0],
         "size": [2, 2],
         "anchor": "Bottom"
       }

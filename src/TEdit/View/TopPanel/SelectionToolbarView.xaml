@@ -40,6 +40,8 @@
                     <MenuItem Header="{x:Static p:Language.menu_edit_export_full_texture}" Command="{Binding ExportSelectionAsPngCommand}">
                         <MenuItem.CommandParameter><sys:Int32>16</sys:Int32></MenuItem.CommandParameter>
                     </MenuItem>
+                    <Separator Margin="1" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_export_map_tiles}" Command="{Binding ExportMapTilesCommand}" />
                 </ContextMenu>
             </ui:Button.ContextMenu>
         </ui:Button>

@@ -23,6 +23,21 @@ public partial class WorldExplorerWindow : FluentWindow
         _wvm = wvm;
         _vm = new WorldExplorerViewModel(wvm);
         DataContext = _vm;
+
+        Loaded += (_, _) =>
+        {
+            if (Owner != null)
+            {
+                MaxHeight = Owner.ActualHeight;
+                if (ActualHeight > MaxHeight)
+                {
+                    Height = MaxHeight;
+                }
+                // Recenter on owner after clamping
+                Top = Owner.Top + (Owner.ActualHeight - ActualHeight) / 2;
+                Left = Owner.Left + (Owner.ActualWidth - ActualWidth) / 2;
+            }
+        };
     }
 
     /// <summary>

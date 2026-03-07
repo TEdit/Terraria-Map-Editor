@@ -800,7 +800,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?.
+        ///   Looks up a localized string similar to The export will be {0}×{1} pixels ({2} megapixels, estimated {3}). This may take a while. Continue?.
         /// </summary>
         public static string export_size_warning {
             get {
@@ -814,6 +814,51 @@ namespace TEdit.Properties {
         public static string export_size_warning_title {
             get {
                 return ResourceManager.GetString("export_size_warning_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export cancelled..
+        /// </summary>
+        public static string export_tiles_cancelled {
+            get {
+                return ResourceManager.GetString("export_tiles_cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map tiles exported to {0}.
+        /// </summary>
+        public static string export_tiles_complete {
+            get {
+                return ResourceManager.GetString("export_tiles_complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporting tiles: zoom {0}, tile {1}/{2}....
+        /// </summary>
+        public static string export_tiles_progress {
+            get {
+                return ResourceManager.GetString("export_tiles_progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will export {0} tiles across {1} zoom levels. Continue?.
+        /// </summary>
+        public static string export_tiles_warning {
+            get {
+                return ResourceManager.GetString("export_tiles_warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map Tile Export.
+        /// </summary>
+        public static string export_tiles_warning_title {
+            get {
+                return ResourceManager.GetString("export_tiles_warning_title", resourceCulture);
             }
         }
         
@@ -1637,6 +1682,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Map Tiles....
+        /// </summary>
+        public static string menu_edit_export_map_tiles {
+            get {
+                return ResourceManager.GetString("menu_edit_export_map_tiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pixel Map (1px/tile).
         /// </summary>
         public static string menu_edit_export_pixel_map {
@@ -1723,6 +1777,15 @@ namespace TEdit.Properties {
         public static string menu_file_exit {
             get {
                 return ResourceManager.GetString("menu_file_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Map Tiles....
+        /// </summary>
+        public static string menu_file_export_map_tiles {
+            get {
+                return ResourceManager.GetString("menu_file_export_map_tiles", resourceCulture);
             }
         }
         
@@ -4630,6 +4693,24 @@ namespace TEdit.Properties {
         public static string settings_update_mode_desc {
             get {
                 return ResourceManager.GetString("settings_update_mode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Window Launch Mode.
+        /// </summary>
+        public static string settings_window_launch_mode {
+            get {
+                return ResourceManager.GetString("settings_window_launch_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How the main window is positioned on startup (Default = OS placement, CenterScreen = centered, Maximized = full screen).
+        /// </summary>
+        public static string settings_window_launch_mode_desc {
+            get {
+                return ResourceManager.GetString("settings_window_launch_mode_desc", resourceCulture);
             }
         }
         

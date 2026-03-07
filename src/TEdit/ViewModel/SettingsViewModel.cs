@@ -183,6 +183,17 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
+            Name = Language.settings_window_launch_mode,
+            Description = Language.settings_window_launch_mode_desc,
+            Category = Language.settings_category_general,
+            EditorType = SettingEditorType.ComboBox,
+            Getter = () => wvm.WindowLaunchMode,
+            Setter = v => wvm.WindowLaunchMode = (WindowLaunchMode)v,
+            ComboBoxItems = Enum.GetValues<WindowLaunchMode>()
+        });
+
+        AllSettings.Add(new SettingItem
+        {
             Name = Language.settings_autosave,
             Description = Language.settings_autosave_desc,
             Category = Language.settings_category_general,

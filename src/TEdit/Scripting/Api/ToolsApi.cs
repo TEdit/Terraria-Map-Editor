@@ -151,10 +151,10 @@ public class ToolsApi
     {
         try
         {
-            WorldConfiguration.Initialize();
-            uint max = WorldConfiguration.CompatibleVersion;
-            uint v = version > 0 ? (uint)version : max;
-            if (v > max) v = max;
+            // Preserve the world's version unless an explicit override is given.
+            // Version numbers are never clamped — config lookup finds the best match.
+            uint worldVer = _wvm.CurrentWorld?.Version ?? 0;
+            uint v = version > 0 ? (uint)version : worldVer;
 
             World.SaveAsync(
                 _wvm.CurrentWorld,

@@ -29,11 +29,21 @@
             <ui:Button Content="{x:Static p:Language.bestiary_tally}" Appearance="Danger" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding UpdateKillTallyCommand}" />
         </UniformGrid>
 
-        <ListView 
+        <!-- Filter bar -->
+        <Grid DockPanel.Dock="Top" Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{x:Static p:Language.banner_filter}" VerticalAlignment="Center" Margin="4,0" />
+            <TextBox Grid.Column="1" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Margin="2" />
+        </Grid>
+
+        <ListView
             HorizontalAlignment="Stretch" 
             VerticalAlignment="Stretch" 
             Name="BestiaryReadout" 
-            ItemsSource="{Binding BestiaryData}">
+            ItemsSource="{Binding BestiaryView}">
             <ListView.View>
                 <GridView>
 

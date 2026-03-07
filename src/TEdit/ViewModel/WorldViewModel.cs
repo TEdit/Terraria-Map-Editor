@@ -64,6 +64,7 @@ public partial class WorldViewModel : ReactiveObject
     [Reactive] private int _pasteSizeW;
     [Reactive] private int _pasteSizeH;
     private UpdateMode _updateMode;
+    private WindowLaunchMode _windowLaunchMode;
     private bool _isUpdateAvailable;
     private string _currentFile;
     private bool _loadedFromBackup;
@@ -77,6 +78,8 @@ public partial class WorldViewModel : ReactiveObject
     private FilterOverlayBuffer _filterOverlayMap;
     public BuffTileCache BuffTileCache { get; } = new BuffTileCache();
     private ProgressChangedEventArgs _progress;
+    private ProgressChangedEventArgs _taskProgress;
+    private bool _isTaskRunning;
     private Chest _selectedChest;
     private Item _selectedChestItem;
     private string _selectedPoint;
@@ -166,7 +169,13 @@ public partial class WorldViewModel : ReactiveObject
     /// Action to export the current selection to a PNG file. Set by MainWindow to delegate to MapView.
     /// Parameters: filename, scale (1=pixel map, 4/8/16=textured), progress reporter.
     /// </summary>
-    public Action<string, int, IProgress<ProgressChangedEventArgs>>? ExportSelection { get; set; }
+    public Func<string, int, IProgress<ProgressChangedEventArgs>, Task>? ExportSelection { get; set; }
+
+    /// <summary>
+    /// Action to export map tiles to a folder. Set by MainWindow to delegate to MapView.
+    /// Parameters: outputDir, area, progress reporter.
+    /// </summary>
+    public Func<string, RectangleInt32, IProgress<ProgressChangedEventArgs>, Task>? ExportMapTilesAction { get; set; }
 
     static WorldViewModel()
     {
@@ -186,6 +195,7 @@ public partial class WorldViewModel : ReactiveObject
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
         _updateMode = UserSettingsService.Current.UpdateMode;
+        _windowLaunchMode = UserSettingsService.Current.WindowLaunchMode;
 
 
         IsAutoSaveEnabled = UserSettingsService.Current.Autosave;
@@ -1851,6 +1861,18 @@ public partial class WorldViewModel : ReactiveObject
         set { this.RaiseAndSetIfChanged(ref _progress, value); }
     }
 
+    public ProgressChangedEventArgs TaskProgress
+    {
+        get { return _taskProgress; }
+        set { this.RaiseAndSetIfChanged(ref _taskProgress, value); }
+    }
+
+    public bool IsTaskRunning
+    {
+        get { return _isTaskRunning; }
+        set { this.RaiseAndSetIfChanged(ref _isTaskRunning, value); }
+    }
+
     public string WindowTitle
     {
         get { return _windowTitle; }
@@ -2396,6 +2418,16 @@ public partial class WorldViewModel : ReactiveObject
         {
             this.RaiseAndSetIfChanged(ref _updateChannel, value);
             UserSettingsService.Current.UpdateChannel = value;
+        }
+    }
+
+    public WindowLaunchMode WindowLaunchMode
+    {
+        get => _windowLaunchMode;
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _windowLaunchMode, value);
+            UserSettingsService.Current.WindowLaunchMode = value;
         }
     }
 
@@ -3438,19 +3470,9 @@ public partial class WorldViewModel : ReactiveObject
 
     private uint GetSaveVersion_MaxConfig(uint requested = 0)
     {
-        // Make sure config is loaded (safe even if already initialized).
-        WorldConfiguration.Initialize();
-
-        uint max = WorldConfiguration.CompatibleVersion;
-        if (max == 0) return requested; // ultra-defensive
-
-        // If caller didn't request a version, default to MAX config version.
-        uint v = (requested == 0) ? max : requested;
-
-        // Never allow saving above config max.
-        if (v > max) v = max;
-
-        return v;
+        // Return the requested version, or preserve the world's current version.
+        // Version numbers are never clamped — config lookup finds the best match.
+        return requested > 0 ? requested : CurrentWorld?.Version ?? 0;
     }
 
     public async Task ReloadWorldAsync()
