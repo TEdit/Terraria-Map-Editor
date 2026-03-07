@@ -374,6 +374,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>Export cancelled.</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>Map tiles exported to {0}</value>
   </data>
@@ -385,9 +388,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="export_tiles_warning_title" xml:space="preserve">
     <value>Map Tile Export</value>
-  </data>
-  <data name="export_tiles_cancelled" xml:space="preserve">
-    <value>Export cancelled.</value>
   </data>
   <data name="find_auto_zoom" xml:space="preserve">
     <value>Auto Zoom</value>

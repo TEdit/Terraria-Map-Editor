@@ -861,7 +861,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("export_tiles_warning_title", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Auto Zoom.
         /// </summary>
