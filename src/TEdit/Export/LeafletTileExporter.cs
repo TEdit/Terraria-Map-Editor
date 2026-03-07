@@ -231,7 +231,7 @@ internal static class LeafletTileExporter
                         }
                     }
 
-                    TilePngWriter.Write(Path.Combine(zoomDir, $"{tx}_{ty}.png"), TileSize, TileSize, rawImageData);
+                    Png.PngWriter.WriteFilteredRgba(Path.Combine(zoomDir, $"{tx}_{ty}.png"), TileSize, TileSize, rawImageData);
 
                     completedCapture++;
                     int layerDone = completedCapture - (tilesCompleted); // relative to layer start

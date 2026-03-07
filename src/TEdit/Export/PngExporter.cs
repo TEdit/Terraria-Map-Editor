@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using TEdit.Common.Utility;
+using TEdit.Png;
 using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.Terraria;

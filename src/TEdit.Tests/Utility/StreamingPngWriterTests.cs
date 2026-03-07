@@ -1,7 +1,7 @@
 using System.IO;
 using System.Windows.Media.Imaging;
 using Shouldly;
-using TEdit.Common.Utility;
+using TEdit.Png;
 using Xunit;
 
 namespace TEdit.Tests.Utility;

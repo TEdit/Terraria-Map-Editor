@@ -8485,7 +8485,7 @@ public partial class WorldRenderXna : UserControl
                         }
                     }
 
-                    Export.TilePngWriter.Write(Path.Combine(zoomDir, $"{tx}_{ty}.png"), tileSize, tileSize, rawImageData);
+                    Png.PngWriter.WriteFilteredRgba(Path.Combine(zoomDir, $"{tx}_{ty}.png"), tileSize, tileSize, rawImageData);
 
                     tilesCompleted++;
                     layerTilesCompleted++;
