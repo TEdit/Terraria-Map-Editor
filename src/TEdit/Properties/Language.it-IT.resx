@@ -374,6 +374,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>Esportazione annullata.</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>Piastrelle della mappa esportate in {0}</value>
   </data>
@@ -1644,6 +1647,15 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>Dimensione delle miniature degli sprite nel sprite picker</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>ID utente Steam</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>Imposta il tuo ID utente Steam per usare i salvataggi di Steam Cloud come cartella predefinita dei mondi. Lascia vuoto per il rilevamento automatico. Richiede un riavvio.</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>Auto-rilevamento</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Percorso di contenuto di Terraria</value>

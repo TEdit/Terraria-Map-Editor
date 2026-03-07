@@ -374,6 +374,9 @@
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>Экспорт отменен.</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>Плитки карты экспортированы в {0}</value>
   </data>
@@ -1644,6 +1647,15 @@
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>Размер миниатюр спрайтов в спрайт-пикере</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>ID пользователя Steam</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>Установите свой идентификатор пользователя Steam для использования облачных сохранений Steam в качестве папки миров по умолчанию. Оставьте пустым для автоматического определения. Требуется перезагрузка.</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>Автоопределение</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Путь содержания Terraria</value>

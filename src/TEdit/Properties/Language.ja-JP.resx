@@ -374,6 +374,9 @@
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>輸出はキャンセルされました。</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>マップタイルが{0}にエクスポートされました</value>
   </data>
@@ -1644,6 +1647,15 @@
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>スプライトピッカーにおけるスプライトサムネイルのサイズ</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>SteamユーザーID</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>SteamユーザーIDをデフォルトのWorldsフォルダとしてSteamクラウドセーブに設定してください。自動検知用に空のままにしてください。再起動が必要です。</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>自動検知</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>テラリアのコンテンツパス</value>

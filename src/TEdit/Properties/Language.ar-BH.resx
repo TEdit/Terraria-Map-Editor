@@ -374,6 +374,9 @@
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>تم إلغاء التصدير.</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>تم تصدير بلاطات الخريطة إلى {0}</value>
   </data>
@@ -1644,6 +1647,15 @@
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>حجم صور مصغرة للسبرايت في مختار السبرايت</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>معرف مستخدم ستيم</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>قم بتعيين معرف مستخدم ستيم الخاص بك لاستخدام حفظات ستيم السحابية كمجلد العوالم الافتراضي. اتركه فارغًا للاكتشاف التلقائي. يتطلب إعادة التشغيل.</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>اكتشاف تلقائي</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>مسار محتوى Terraria</value>

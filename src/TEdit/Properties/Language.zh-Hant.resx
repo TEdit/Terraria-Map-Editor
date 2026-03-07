@@ -374,6 +374,9 @@
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>導出已取消。</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>地圖磚已導出至 {0}</value>
   </data>
@@ -1644,6 +1647,15 @@
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>精靈選擇器中精靈縮圖的大小</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>Steam 用戶 ID</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>將您的 Steam 用戶 ID 設置為使用 Steam 雲存檔作為默認世界文件夾。留空以自動檢測。需要重啟。</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>自動偵測</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Terraria 內容路徑</value>

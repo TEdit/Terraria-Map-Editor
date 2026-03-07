@@ -16,7 +16,8 @@ public enum SettingEditorType
     Slider,
     ComboBox,
     Path,
-    Keybinding
+    Keybinding,
+    TextBox
 }
 
 public class SettingItem : INotifyPropertyChanged
@@ -67,6 +68,7 @@ public class SettingEditorTemplateSelector : DataTemplateSelector
     public DataTemplate SettingComboBoxTemplate { get; set; }
     public DataTemplate SettingPathTemplate { get; set; }
     public DataTemplate SettingKeybindingTemplate { get; set; }
+    public DataTemplate SettingTextBoxTemplate { get; set; }
 
     public override DataTemplate SelectTemplate(object item, DependencyObject container)
     {
@@ -79,6 +81,7 @@ public class SettingEditorTemplateSelector : DataTemplateSelector
             SettingEditorType.ComboBox => SettingComboBoxTemplate,
             SettingEditorType.Path => SettingPathTemplate,
             SettingEditorType.Keybinding => SettingKeybindingTemplate,
+            SettingEditorType.TextBox => SettingTextBoxTemplate,
             _ => base.SelectTemplate(item, container)
         };
     }

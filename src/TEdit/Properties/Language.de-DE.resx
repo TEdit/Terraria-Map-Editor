@@ -374,6 +374,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>Export abgebrochen.</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>Kartenfliesen exportiert nach {0}</value>
   </data>
@@ -1644,6 +1647,15 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>Größe der Sprite-Vorschaubilder im Sprite-Auswahlwerkzeug</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>Steam-Benutzer-ID</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>Setze deine Steam-Benutzer-ID, um Steam-Cloud-Speicher als Standardordner für Welten zu verwenden. Leer lassen für automatische Erkennung. Ein Neustart ist erforderlich.</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>Automatische Erkennung</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Terraria-Inhaltsverzeichnis</value>

@@ -78,6 +78,32 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate x:Key="SettingTextBoxTemplate" DataType="{x:Type vm:SettingItem}">
+            <StackPanel Margin="4,3">
+                <TextBlock Text="{Binding Name}" Foreground="Snow" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="11" TextWrapping="Wrap" />
+                <Grid Margin="0,4,0,0">
+                    <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding Placeholder}" IsHitTestVisible="False" Foreground="Gray"
+                               VerticalAlignment="Center" Margin="6,0,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Value}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Value}" Value="">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+
         <DataTemplate x:Key="SettingKeybindingTemplate" DataType="{x:Type vm:SettingItem}">
             <Grid Margin="4,2">
                 <Grid.ColumnDefinitions>
@@ -199,7 +225,8 @@
                         SettingSliderTemplate="{StaticResource SettingSliderTemplate}"
                         SettingComboBoxTemplate="{StaticResource SettingComboBoxTemplate}"
                         SettingPathTemplate="{StaticResource SettingPathTemplate}"
-                        SettingKeybindingTemplate="{StaticResource SettingKeybindingTemplate}" />
+                        SettingKeybindingTemplate="{StaticResource SettingKeybindingTemplate}"
+                        SettingTextBoxTemplate="{StaticResource SettingTextBoxTemplate}" />
                 </ItemsControl.ItemTemplateSelector>
             </ItemsControl>
         </ScrollViewer>

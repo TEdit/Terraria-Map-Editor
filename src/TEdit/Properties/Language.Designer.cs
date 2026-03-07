@@ -4625,6 +4625,33 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Steam User ID.
+        /// </summary>
+        public static string settings_steam_user_id {
+            get {
+                return ResourceManager.GetString("settings_steam_user_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set your Steam user ID to use Steam Cloud saves as the default worlds folder. Leave empty for auto-detect. Requires restart..
+        /// </summary>
+        public static string settings_steam_user_id_desc {
+            get {
+                return ResourceManager.GetString("settings_steam_user_id_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto-detect.
+        /// </summary>
+        public static string settings_steam_user_id_placeholder {
+            get {
+                return ResourceManager.GetString("settings_steam_user_id_placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terraria Content Path.
         /// </summary>
         public static string settings_terraria_path {

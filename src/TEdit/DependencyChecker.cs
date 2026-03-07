@@ -18,7 +18,7 @@ public static class DependencyChecker
     public static void CheckPaths()
     {
         string path = UserSettingsService.Current.TerrariaPath;
-        int? steamUserId = App.AppConfig?.SteamUserId;
+        int? steamUserId = UserSettingsService.Current.SteamUserId ?? App.AppConfig?.SteamUserId;
 
         // if hard coded in appSettings.yaml try that location first
         if (!string.IsNullOrWhiteSpace(App.AppConfig?.TerrariaContentPath))

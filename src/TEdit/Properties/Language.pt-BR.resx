@@ -374,6 +374,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>Exportação cancelada.</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>Blocos do mapa exportados para {0}</value>
   </data>
@@ -1644,6 +1647,15 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>Tamanho das miniaturas de sprites no sprite picker</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>ID de usuário Steam</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>Defina seu ID de usuário Steam para usar os saves na nuvem do Steam como a pasta de mundos padrão. Deixe vazio para detecção automática. Requer reinício.</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>Detecção automática</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Caminho de Conteúdo do Terraria</value>

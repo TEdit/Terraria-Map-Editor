@@ -374,6 +374,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
   </data>
+  <data name="export_tiles_cancelled" xml:space="preserve">
+    <value>Exportación cancelada.</value>
+  </data>
   <data name="export_tiles_complete" xml:space="preserve">
     <value>Baldosas del mapa exportadas a {0}</value>
   </data>
@@ -1644,6 +1647,15 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>Tamaño de las miniaturas de sprites en el selector de sprites</value>
+  </data>
+  <data name="settings_steam_user_id" xml:space="preserve">
+    <value>ID de usuario de Steam</value>
+  </data>
+  <data name="settings_steam_user_id_desc" xml:space="preserve">
+    <value>Establece tu ID de usuario de Steam para usar las copias de seguridad en la nube de Steam como la carpeta de mundos predeterminada. Deja vacío para detección automática. Requiere reinicio.</value>
+  </data>
+  <data name="settings_steam_user_id_placeholder" xml:space="preserve">
+    <value>Detección automática</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Ruta de los archivos de Terraria</value>
