@@ -1516,6 +1516,12 @@
   <data name="settings_language_desc" xml:space="preserve">
     <value>Задайте язык отображения приложений</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>Максимальное количество резервных копий</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>Количество файлов резервных копий TEdit (.TEdit), которые нужно сохранить для каждого мира при сохранении</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>Фон мини-карты</value>
   </data>

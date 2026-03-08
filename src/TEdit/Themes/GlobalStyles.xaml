@@ -919,6 +919,27 @@
         <GradientStop Color="#FF0A0818" Offset="0.5"/>
     </LinearGradientBrush>
 
+    <!-- Full 24-hour cycle gradient: 4:30 AM → 7:30 PM (day, 62.5%) → 4:30 AM (night, 37.5%) -->
+    <LinearGradientBrush x:Key="FullDayCycleGradient" EndPoint="1,0.5" StartPoint="0,0.5">
+        <!-- Dawn (4:30 AM) -->
+        <GradientStop Color="#FF110A49" Offset="0" />
+        <GradientStop Color="#FFD0260F" Offset="0.042" />
+        <GradientStop Color="#FFFA8813" Offset="0.094" />
+        <!-- Day -->
+        <GradientStop Color="#FF88C0C8" Offset="0.22" />
+        <GradientStop Color="#FF6BCFF7" Offset="0.3125" />
+        <GradientStop Color="#FF88C0C8" Offset="0.41" />
+        <!-- Dusk (7:30 PM) -->
+        <GradientStop Color="#FFFA8813" Offset="0.53" />
+        <GradientStop Color="#FFD0260F" Offset="0.578" />
+        <!-- Night -->
+        <GradientStop Color="#FF110A49" Offset="0.72" />
+        <GradientStop Color="#FF0A0818" Offset="0.81" />
+        <GradientStop Color="#FF110A49" Offset="0.92" />
+        <!-- Dawn return (4:30 AM) -->
+        <GradientStop Color="#FFD0260F" Offset="1" />
+    </LinearGradientBrush>
+
     <BorderGapMaskConverter x:Key="GroupBoxBorderGapMaskConverter"/>
     <Style x:Key="{x:Type GroupBox}" TargetType="{x:Type GroupBox}">
         <Setter Property="Control.BorderBrush" Value="{StaticResource NormalBorderBrush}" />

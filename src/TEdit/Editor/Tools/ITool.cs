@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using TEdit.Editor.Clipboard;
 using TEdit.Geometry;
 using TEdit.UI;
 using Wpf.Ui.Controls;
@@ -49,6 +50,12 @@ public interface ITool
 
     /// <summary>Size of the floating paste layer in tiles.</summary>
     Vector2Int32 FloatingPasteSize { get; }
+
+    /// <summary>The floating paste buffer data, or null if not floating.</summary>
+    ClipboardBuffer FloatingPasteBuffer { get; }
+
+    /// <summary>Whether the paste is actively being dragged or resized (vs settled).</summary>
+    bool IsPasteInteracting { get; }
 
     /// <summary>Commits the floating paste layer to the world.</summary>
     void AcceptPaste();

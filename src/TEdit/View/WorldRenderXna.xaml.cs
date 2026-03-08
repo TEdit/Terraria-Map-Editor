@@ -14,6 +14,7 @@ using TEdit.Terraria;
 using TEdit.Terraria.DataModel;
 using TEdit.Terraria.Objects;
 using TEdit.Editor;
+using TEdit.Editor.Clipboard;
 using TEdit.Editor.Tools;
 using TEdit.ViewModel;
 using System.Windows.Media.Imaging;
@@ -94,6 +95,8 @@ public partial class WorldRenderXna : UserControl
     private Texture2D _pasteBorderH;   // horizontal dashed line (Nx1)
     private Texture2D _pasteBorderV;   // vertical dashed line   (1xN)
     private Texture2D _pasteHandleTexture;
+    private ClipboardTiledPreview _pasteTiledPreview;
+    private ClipboardBuffer _pasteTiledBuffer; // tracks which buffer the tiles were generated from
     private RenderTarget2D _buffRadiiTarget;
     private RenderTarget2D _worldRT;
     private Texture2D[] _filterMaskTileMap;
@@ -7691,15 +7694,46 @@ public partial class WorldRenderXna : UserControl
     private void DrawPasteLayer()
     {
         var tool = _wvm.ActiveTool;
-        if (!tool.IsFloatingPaste) return;
+        if (!tool.IsFloatingPaste)
+        {
+            DisposePasteTiles();
+            return;
+        }
 
         var anchor = tool.FloatingPasteAnchor;
         var size = tool.FloatingPasteSize;
         if (size.X <= 0 || size.Y <= 0) return;
 
-        // Draw the preview image at the floating anchor position
-        if (_preview != null)
+        // Use tiled textures when paste is settled (not actively dragging/resizing)
+        var buffer = tool.FloatingPasteBuffer;
+        if (!tool.IsPasteInteracting && buffer != null)
         {
+            // Generate tiled textures if needed (new buffer or first time)
+            if (_pasteTiledPreview == null || _pasteTiledBuffer != buffer)
+            {
+                DisposePasteTiles();
+                _pasteTiledPreview = ClipboardTiledPreview.Create(buffer, xnaViewport.GraphicsService.GraphicsDevice);
+                _pasteTiledBuffer = buffer;
+            }
+
+            // Draw all tiles
+            for (int tx = 0; tx < _pasteTiledPreview.TilesX; tx++)
+            {
+                for (int ty = 0; ty < _pasteTiledPreview.TilesY; ty++)
+                {
+                    var tile = _pasteTiledPreview.GetTile(tx, ty);
+                    var tilePos = new Vector2(
+                        (_scrollPosition.X + anchor.X + tx * ClipboardTiledPreview.MaxTileSize) * _zoom,
+                        (_scrollPosition.Y + anchor.Y + ty * ClipboardTiledPreview.MaxTileSize) * _zoom);
+
+                    _spriteBatch.Draw(tile, tilePos, null, Color.White, 0,
+                        Vector2.Zero, _zoom, SpriteEffects.None, LayerPastePreview);
+                }
+            }
+        }
+        else if (_preview != null)
+        {
+            // Fallback to scaled single-texture preview during drag/resize
             var pos = new Vector2(
                 (_scrollPosition.X + anchor.X) * _zoom,
                 (_scrollPosition.Y + anchor.Y) * _zoom);
@@ -7763,6 +7797,13 @@ public partial class WorldRenderXna : UserControl
         DrawHandle(left - halfHandle, bottom - halfHandle, handleSize, handleColor, handleOutline);    // Bottom-left
         DrawHandle(right - halfHandle, bottom - halfHandle, handleSize, handleColor, handleOutline);   // Bottom-right
 
+    }
+
+    private void DisposePasteTiles()
+    {
+        _pasteTiledPreview?.Dispose();
+        _pasteTiledPreview = null;
+        _pasteTiledBuffer = null;
     }
 
     private void DrawHandle(float x, float y, float size, Color fillColor, Color outlineColor)

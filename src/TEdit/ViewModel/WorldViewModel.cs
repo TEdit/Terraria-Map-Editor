@@ -3408,6 +3408,39 @@ public partial class WorldViewModel : ReactiveObject
                 return;
         }
 
+        // Create a TEdit backup of the current file before overwriting
+        try
+        {
+            if (File.Exists(CurrentFile))
+            {
+                int maxBackups = UserSettingsService.Current.MaxBackups;
+
+                // Rotate existing .TEdit backups (N → N+1, then delete oldest beyond max)
+                for (int i = maxBackups; i >= 1; i--)
+                {
+                    string src = i == 1
+                        ? CurrentFile + ".TEdit"
+                        : CurrentFile + $".TEdit.{i}";
+                    string dst = CurrentFile + $".TEdit.{i + 1}";
+
+                    if (File.Exists(src))
+                    {
+                        if (i >= maxBackups)
+                            File.Delete(src);
+                        else
+                            File.Move(src, dst, true);
+                    }
+                }
+
+                // Copy current world to .TEdit (newest backup)
+                File.Copy(CurrentFile, CurrentFile + ".TEdit", true);
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+
         _loadedFromBackup = false;
         _originalBackupPath = null;
         await SaveWorldThreadedAsync(CurrentFile, GetSaveVersion_MaxConfig(version));

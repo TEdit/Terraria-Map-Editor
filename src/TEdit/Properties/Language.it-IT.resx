@@ -1516,6 +1516,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="settings_language_desc" xml:space="preserve">
     <value>Imposta il linguaggio di visualizzazione dell'applicazione</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>Backup massimi</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>Numero di file di backup TEdit (.TEdit) da mantenere per ogni mondo durante il salvataggio</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>Background della minimappa</value>
   </data>

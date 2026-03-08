@@ -489,7 +489,14 @@ public partial class ClipboardBuffer : ITileData
                     }
                 }
 
-                // Store tile AFTER BrickStyle modification (Tile is a struct/value type)
+                // Swap conveyor belt direction on mirror (not rotation)
+                if (!rotate)
+                {
+                    if (tile.Type == 421) tile.Type = 422;
+                    else if (tile.Type == 422) tile.Type = 421;
+                }
+
+                // Store tile AFTER modifications (Tile is a struct/value type)
                 flippedBuffer.Tiles[bufferX, bufferY] = tile;
             }
         }

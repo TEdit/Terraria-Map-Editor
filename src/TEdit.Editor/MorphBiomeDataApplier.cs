@@ -262,7 +262,16 @@ public class MorphBiomeDataApplier
                     {
                         if (options.MossType >= 0)
                         {
-                            source.Type = (ushort)options.MossType;
+                            // Real moss types grow on any surface; non-moss (e.g. grass)
+                            // only replaces dirt-target blocks, not stone
+                            if (WorldConfiguration.MorphSettings.IsMoss((ushort)options.MossType) || id == 0)
+                            {
+                                source.Type = (ushort)options.MossType;
+                            }
+                            else
+                            {
+                                source.Type = id;
+                            }
                         }
                         else
                         {
@@ -444,14 +453,7 @@ public class MorphBiomeDataApplier
         {
             foreach (var id in item.SourceIds)
             {
-                try
-                {
-                    _tileCache.Add(id, item);
-                }
-                catch (Exception ex)
-                {
-                    throw new IndexOutOfRangeException($"morphSetting tile entry is invalid or duplicate: {item.Name} [{id}]", ex);
-                }
+                _tileCache.TryAdd(id, item);
             }
         }
 
@@ -460,14 +462,7 @@ public class MorphBiomeDataApplier
         {
             foreach (var id in item.SourceIds)
             {
-                try
-                {
-                    _wallCache.Add(id, item);
-                }
-                catch (Exception ex)
-                {
-                    throw new IndexOutOfRangeException($"morphSetting wall entry is invalid or duplicate: {item.Name} [{id}]", ex);
-                }
+                _wallCache.TryAdd(id, item);
             }
         }
     }

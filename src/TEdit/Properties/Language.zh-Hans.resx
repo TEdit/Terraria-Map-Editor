@@ -1516,6 +1516,12 @@
   <data name="settings_language_desc" xml:space="preserve">
     <value>设置应用显示语言</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>最大备份</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>保存时每个世界要保留的 TEdit 备份文件 (.TEdit) 的数量</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>小地图背景</value>
   </data>

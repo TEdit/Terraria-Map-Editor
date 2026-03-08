@@ -1516,6 +1516,12 @@
   <data name="settings_language_desc" xml:space="preserve">
     <value>애플리케이션 표시 언어 설정</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>최대 백업</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>저장할 때 각 세계당 유지할 TEdit 백업 파일 수 (.TEdit)</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>미니맵 배경</value>
   </data>

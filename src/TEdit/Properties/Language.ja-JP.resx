@@ -1516,6 +1516,12 @@
   <data name="settings_language_desc" xml:space="preserve">
     <value>アプリケーションの表示言語を設定する</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>最大バックアップ</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>保存時に各ワールドごとに保持するTEditバックアップファイル（.TEdit）の数</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>ミニマップの背景</value>
   </data>

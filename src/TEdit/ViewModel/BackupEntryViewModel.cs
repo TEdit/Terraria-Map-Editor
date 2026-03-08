@@ -16,14 +16,24 @@ public class BackupEntryViewModel
         FileSizeBytes = fi.Exists ? fi.Length : 0;
         Timestamp = fi.Exists ? fi.LastWriteTimeUtc : DateTime.MinValue;
         IsAutosave = filePath.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase);
+        IsTerrariaBackup = filePath.EndsWith(".bak", StringComparison.OrdinalIgnoreCase);
+        IsTEditBackup = filePath.Contains(".TEdit", StringComparison.OrdinalIgnoreCase)
+            && !IsAutosave && !IsTerrariaBackup;
     }
 
     public string FilePath { get; }
     public DateTime Timestamp { get; }
     public long FileSizeBytes { get; }
     public bool IsAutosave { get; }
+    public bool IsTerrariaBackup { get; }
+    public bool IsTEditBackup { get; }
 
-    public string TypeLabel => IsAutosave ? "Autosave" : "Backup";
+    public string TypeLabel =>
+        IsAutosave ? "Autosave" :
+        IsTerrariaBackup ? "Terraria Backup" :
+        IsTEditBackup ? "TEdit Backup" :
+        "Backup";
+
     public string TimestampText => Timestamp.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
     public string SizeText => FileMaintenance.FormatFileSize(FileSizeBytes);
     public string DisplayText => $"{TimestampText} [{TypeLabel}] {SizeText}";

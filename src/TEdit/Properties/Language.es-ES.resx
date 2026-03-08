@@ -1516,6 +1516,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="settings_language_desc" xml:space="preserve">
     <value>Establecer el idioma de la aplicación</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>Copias de seguridad máximas</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>Número de archivos de copia de seguridad de TEdit (.TEdit) a mantener por mundo al guardar</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>Fondo del minimapa</value>
   </data>

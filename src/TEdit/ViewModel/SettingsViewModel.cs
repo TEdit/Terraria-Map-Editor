@@ -204,6 +204,19 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
+            Name = Language.settings_max_backups,
+            Description = Language.settings_max_backups_desc,
+            Category = Language.settings_category_general,
+            EditorType = SettingEditorType.Slider,
+            SliderMin = 1,
+            SliderMax = 50,
+            SliderStep = 1,
+            Getter = () => (double)UserSettingsService.Current.MaxBackups,
+            Setter = v => UserSettingsService.Current.MaxBackups = (int)(double)v
+        });
+
+        AllSettings.Add(new SettingItem
+        {
             Name = Language.settings_show_news,
             Description = Language.settings_show_news_desc,
             Category = Language.settings_category_general,
