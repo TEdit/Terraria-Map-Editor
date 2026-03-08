@@ -40,6 +40,8 @@
         <controls:ItemEditorControl x:Name="ItemEditor" Grid.Row="1"
             ItemId="{Binding SelectedTileEntity.NetId, Mode=TwoWay}"
             Prefix="{Binding SelectedTileEntity.Prefix, Mode=TwoWay}"
+            IsModItem="{Binding SelectedTileEntity.IsModItem, Mode=OneWay}"
+            ModItemDisplayName="{Binding SelectedTileEntity.ItemDisplayName, Mode=OneWay}"
             ItemsSource="{Binding Source={StaticResource RackCollection}}"
             ItemsSourceType="DictionaryKvp"
             PrefixSource="{Binding Source={StaticResource PrefixCollection}}"

@@ -43,9 +43,9 @@ public class BackgroundGridCustomDrawOp : ICustomDrawOperation
             _rowPaint?.Dispose();
             _altPaint?.Dispose();
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            // Debug.WriteLine(ex);
+            // Dispose may fail on already-disposed Skia paints; safe to ignore.
         }
     }
 

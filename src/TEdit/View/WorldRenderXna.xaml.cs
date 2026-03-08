@@ -65,6 +65,7 @@ public partial class WorldRenderXna : UserControl
 
     private const float LayerGrid = 1 - 0.15f;
     private const float LayerWorldBorder = 1 - 0.17f;
+    private const float LayerNbtOverlay = 1 - 0.19f;
     private const float LayerLocations = 1 - 0.20f;
     private const float LayerSelection = 1 - 0.25f;
     private const float LayerPastePreview = 1 - 0.27f;
@@ -2780,6 +2781,9 @@ public partial class WorldRenderXna : UserControl
         _gameTimer.Update();
 
         ScrollWorld();
+
+        // Process any pending texture creations (e.g., mod textures queued after deferred loading finished)
+        _textureDictionary?.ProcessTextureQueue(maxOperationsPerFrame: 5);
     }
 
     private void ScrollBar_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
@@ -3085,7 +3089,14 @@ public partial class WorldRenderXna : UserControl
             DrawWorldBorder();
 
         if (_wvm.ShowPoints)
+        {
             DrawPoints();
+        }
+
+        if (_wvm.ShowNbtOverlay)
+        {
+            DrawNbtOverlay();
+        }
 
         // Find crosshair always draws when active (independent of ShowPoints)
         DrawFindCrosshair();
@@ -4176,7 +4187,7 @@ public partial class WorldRenderXna : UserControl
                             }
                         }
 
-                        if (curtile.WallColor > 0 && curtile.WallColor != 30)
+                        if (curtile.WallColor > 0 && curtile.WallColor != 30 && curtile.WallColor < WorldConfiguration.PaintProperties.Count)
                         {
                             var paint = WorldConfiguration.PaintProperties[curtile.WallColor].Color;
                             switch (curtile.WallColor)
@@ -4203,7 +4214,7 @@ public partial class WorldRenderXna : UserControl
                         {
                             wallTex = _textureDictionary.GetWall(curtile.Wall);
 
-                            if (wallTex != null)
+                            if (wallTex != null && wallTex != _textureDictionary.DefaultTexture)
                             {
                                 if (curtile.uvWallCache == 0xFFFF)
                                 {
@@ -4218,12 +4229,20 @@ public partial class WorldRenderXna : UserControl
                                 _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default, SpriteEffects.None, LayerTileWallTextures);
 
                             }
+                            else if (curtile.Wall < WorldConfiguration.WallProperties.Count)
+                            {
+                                // No texture loaded (mod wall) — draw a colored square at the wall layer depth
+                                var wallProp = WorldConfiguration.WallProperties[curtile.Wall];
+                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                var modColor = new Color(wallProp.Color.R, wallProp.Color.G, wallProp.Color.B, wallProp.Color.A);
+                                _spriteBatch.Draw(_textureDictionary.WhitePixelTexture, dest, null, modColor, 0f, default, SpriteEffects.None, LayerTileWallTextures);
+                            }
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    // failed to render tile? log?
+                    ErrorLogging.LogDebug($"Render tile error: {ex.Message}");
                 }
             }
         }
@@ -4260,6 +4279,19 @@ public partial class WorldRenderXna : UserControl
 
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
                     var tileprop = WorldConfiguration.GetTileProperties(curtile.Type);
+
+                    // If no texture exists for this tile type (e.g. mod tiles), draw a colored square fallback
+                    if (curtile.IsActive)
+                    {
+                        var tileTex = _textureDictionary.GetTile(curtile.Type);
+                        if (tileTex == null || tileTex == _textureDictionary.DefaultTexture)
+                        {
+                            var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                            var modColor = new Color(tileprop.Color.R, tileprop.Color.G, tileprop.Color.B, tileprop.Color.A);
+                            _spriteBatch.Draw(_textureDictionary.WhitePixelTexture, dest, null, modColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                            continue;
+                        }
+                    }
 
                     // Filter check: hide tiles/sprites not allowed by the filter
                     if (anyFilter && FilterManager.TileIsNotAllowed(curtile.Type) && FilterManager.SpriteIsNotAllowed(curtile.Type))
@@ -4314,7 +4346,7 @@ public partial class WorldRenderXna : UserControl
                                 }
                             }
 
-                            if (curtile.TileColor > 0 && curtile.TileColor != 30)
+                            if (curtile.TileColor > 0 && curtile.TileColor != 30 && curtile.TileColor < WorldConfiguration.PaintProperties.Count)
                             {
                                 var paint = WorldConfiguration.PaintProperties[curtile.TileColor].Color;
                                 switch (curtile.TileColor)
@@ -6705,6 +6737,55 @@ public partial class WorldRenderXna : UserControl
             SpriteEffects.None,
             LayerLocations);
 
+    }
+
+    private void DrawNbtOverlay()
+    {
+        var world = _wvm.CurrentWorld;
+        if (world == null) return;
+
+        var whiteTex = _textureDictionary.WhitePixelTexture;
+        if (whiteTex == null) return;
+
+        var chestColor = Color.FromNonPremultiplied(255, 200, 0, 200);   // gold
+        var signColor = Color.FromNonPremultiplied(0, 220, 255, 200);    // cyan
+        var entityColor = Color.FromNonPremultiplied(220, 0, 255, 200);  // magenta
+
+        // Draw chests
+        foreach (var chest in world.Chests)
+        {
+            if (chest == null) continue;
+            var dest = new Rectangle(
+                (int)((_scrollPosition.X + chest.X) * _zoom),
+                (int)((_scrollPosition.Y + chest.Y) * _zoom),
+                Math.Max(1, (int)_zoom),
+                Math.Max(1, (int)_zoom));
+            _spriteBatch.Draw(whiteTex, dest, null, chestColor, 0f, default, SpriteEffects.None, LayerNbtOverlay);
+        }
+
+        // Draw signs
+        foreach (var sign in world.Signs)
+        {
+            if (sign == null) continue;
+            var dest = new Rectangle(
+                (int)((_scrollPosition.X + sign.X) * _zoom),
+                (int)((_scrollPosition.Y + sign.Y) * _zoom),
+                Math.Max(1, (int)_zoom),
+                Math.Max(1, (int)_zoom));
+            _spriteBatch.Draw(whiteTex, dest, null, signColor, 0f, default, SpriteEffects.None, LayerNbtOverlay);
+        }
+
+        // Draw tile entities
+        foreach (var te in world.TileEntities)
+        {
+            if (te == null) continue;
+            var dest = new Rectangle(
+                (int)((_scrollPosition.X + te.PosX) * _zoom),
+                (int)((_scrollPosition.Y + te.PosY) * _zoom),
+                Math.Max(1, (int)_zoom),
+                Math.Max(1, (int)_zoom));
+            _spriteBatch.Draw(whiteTex, dest, null, entityColor, 0f, default, SpriteEffects.None, LayerNbtOverlay);
+        }
     }
 
     private void DrawFindCrosshair()

@@ -36,6 +36,8 @@
             ItemId="{Binding SelectedTileEntity.NetId, Mode=TwoWay}"
             StackSize="{Binding SelectedTileEntity.StackSize, Mode=TwoWay}"
             Prefix="{Binding SelectedTileEntity.Prefix, Mode=TwoWay}"
+            IsModItem="{Binding SelectedTileEntity.IsModItem, Mode=OneWay}"
+            ModItemDisplayName="{Binding SelectedTileEntity.ItemDisplayName, Mode=OneWay}"
             ItemsSource="{Binding Source={StaticResource ItemsCollection}}"
             ItemsSourceType="ItemPropertyList"
             PrefixSource="{Binding Source={StaticResource PrefixCollection}}"

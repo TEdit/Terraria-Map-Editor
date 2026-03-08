@@ -87,7 +87,6 @@ public static class TestWorldFactory
 
         // Add a chest at (10, 40) with some items
         var chest1 = new Chest(10, 40, "Gold Chest");
-        for (int i = 0; i < 40; i++) chest1.Items.Add(new Item());
         chest1.Items[0].NetId = 29; // Life Crystal
         chest1.Items[0].StackSize = 1;
         chest1.Items[1].NetId = 73; // Gold Coin
@@ -96,7 +95,6 @@ public static class TestWorldFactory
 
         // Add a second chest at (20, 40)
         var chest2 = new Chest(20, 40, "Wooden Chest");
-        for (int i = 0; i < 40; i++) chest2.Items.Add(new Item());
         chest2.Items[0].NetId = 73; // Gold Coin
         chest2.Items[0].StackSize = 10;
         world.Chests.Add(chest2);

@@ -39,6 +39,13 @@
                   MaxDropDownHeight="400"
                   HorizontalAlignment="Stretch"
                   Placeholder="{x:Static p:Language.picker_search_items_placeholder}" />
+        <!-- Mod item label (shown instead of combo when IsModItem=true) -->
+        <TextBlock Grid.Column="2" x:Name="ModItemLabel"
+                   Text="{Binding ModItemDisplayName, ElementName=Root}"
+                   VerticalAlignment="Center" Margin="4,0"
+                   Foreground="{DynamicResource TextBrush}" FontStyle="Italic"
+                   TextTrimming="CharacterEllipsis"
+                   Visibility="{Binding IsModItem, ElementName=Root, Converter={StaticResource BoolToVis}}" />
         <!-- Clear item button -->
         <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.player_editor_clear_slot}"
                 Click="ClearItem_Click">

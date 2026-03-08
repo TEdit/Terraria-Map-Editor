@@ -408,6 +408,12 @@ public partial class WorldViewModel
             item.NetId = 0;
             item.StackSize = 0;
             item.Prefix = 0;
+            item.ModName = null;
+            item.ModItemName = null;
+            item.ModItemData = null;
+            item.ModGlobalData = null;
+            item.ModPrefixMod = null;
+            item.ModPrefixName = null;
         }
     }
 
@@ -421,13 +427,13 @@ public partial class WorldViewModel
         }
         else if (container is TileEntity te)
         {
-            if (te.EntityType == TileEntityType.ItemFrame &&
-                te.StackSize > 0 &&
-                te.NetId != 0)
+            if ((te.EntityType == TileEntityType.ItemFrame ||
+                 te.EntityType == TileEntityType.WeaponRack ||
+                 te.EntityType == TileEntityType.FoodPlatter ||
+                 te.EntityType == TileEntityType.DeadCellsDisplayJar) &&
+                (te.StackSize > 0 || te.IsModItem))
             {
-                var frameItem = new Item(te.StackSize, te.NetId, te.Prefix);
-
-                CopyChestItem(frameItem);
+                CopyChestItem(te.ToItem());
             }
         }
     }
@@ -455,20 +461,12 @@ public partial class WorldViewModel
         }
         else if (parameter is TileEntity te)
         {
-            if (te.EntityType == TileEntityType.ItemFrame)
+            if (te.EntityType == TileEntityType.ItemFrame ||
+                te.EntityType == TileEntityType.WeaponRack ||
+                te.EntityType == TileEntityType.FoodPlatter ||
+                te.EntityType == TileEntityType.DeadCellsDisplayJar)
             {
-                if (_chestItemClipboard != null)
-                {
-                    te.NetId = _chestItemClipboard.NetId;
-                    te.Prefix = _chestItemClipboard.Prefix;
-                    te.StackSize = (short)_chestItemClipboard.StackSize;
-                }
-                else
-                {
-                    te.NetId = 0;
-                    te.Prefix = 0;
-                    te.StackSize = 0;
-                }
+                te.FromItem(_chestItemClipboard);
             }
         }
     }
@@ -480,6 +478,12 @@ public partial class WorldViewModel
             item.NetId = _chestItemClipboard.NetId;
             item.Prefix = _chestItemClipboard.Prefix;
             item.StackSize = _chestItemClipboard.StackSize;
+            item.ModName = _chestItemClipboard.ModName;
+            item.ModItemName = _chestItemClipboard.ModItemName;
+            item.ModPrefixMod = _chestItemClipboard.ModPrefixMod;
+            item.ModPrefixName = _chestItemClipboard.ModPrefixName;
+            item.ModItemData = _chestItemClipboard.ModItemData;
+            item.ModGlobalData = _chestItemClipboard.ModGlobalData;
         }
         else
         {
@@ -503,9 +507,13 @@ public partial class WorldViewModel
         {
             SetItemMaxStack(item);
         }
-        else if (container is TileEntity te && te.EntityType == TileEntityType.ItemFrame)
+        else if (container is TileEntity te &&
+                 (te.EntityType == TileEntityType.ItemFrame ||
+                  te.EntityType == TileEntityType.WeaponRack ||
+                  te.EntityType == TileEntityType.FoodPlatter ||
+                  te.EntityType == TileEntityType.DeadCellsDisplayJar))
         {
-            var teItem = new Item(te.StackSize, te.NetId, te.Prefix);
+            var teItem = te.ToItem();
             SetItemMaxStack(teItem);
             te.StackSize = (short)teItem.StackSize;
         }
@@ -653,6 +661,7 @@ public partial class WorldViewModel
             }
             catch (Exception ex)
             {
+                ErrorLogging.LogException(ex);
                 world.Bestiary = bestiary;
                 world.KilledMobs.Clear();
                 world.KilledMobs.AddRange(killTally);
@@ -689,6 +698,7 @@ public partial class WorldViewModel
                 }
                 catch (Exception ex)
                 {
+                    ErrorLogging.LogException(ex);
                     await App.DialogService.ShowExceptionAsync(ex.Message);
                 }
             }
@@ -712,6 +722,7 @@ public partial class WorldViewModel
             }
             catch (Exception ex)
             {
+                ErrorLogging.LogException(ex);
                 await App.DialogService.ShowExceptionAsync(ex.Message);
             }
         }

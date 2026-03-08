@@ -696,8 +696,9 @@ public partial class ClipboardBuffer
                 }
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            System.Diagnostics.Debug.WriteLine($"Schematic load error: {ex.Message}");
             failed = true;
         }
 
@@ -773,8 +774,9 @@ public partial class ClipboardBuffer
                     }
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine($"Schematic tile recovery: {ex.Message}");
                     for (int x = 0; x < buffer.Size.X; x++)
                     {
                         // default(Tile) is valid zero state for struct
@@ -902,8 +904,9 @@ public partial class ClipboardBuffer
                     }
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine($"Schematic tile recovery: {ex.Message}");
                     for (int x = 0; x < buffer.Size.X; x++)
                     {
                         // default(Tile) is valid zero state for struct

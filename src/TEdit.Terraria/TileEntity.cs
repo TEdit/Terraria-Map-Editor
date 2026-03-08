@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using TEdit.Common.IO;
 
 namespace TEdit.Terraria;
 
@@ -109,6 +111,92 @@ public partial class TileEntity : ReactiveObject
 
     [Reactive]
     private bool _on;
+
+    // Mod item identity for single-item entities (ItemFrame, WeaponRack, FoodPlatter, etc.)
+    private string _modName;
+    public string ModName
+    {
+        get => _modName;
+        set { this.RaiseAndSetIfChanged(ref _modName, value); this.RaisePropertyChanged(nameof(ItemDisplayName)); this.RaisePropertyChanged(nameof(IsModItem)); }
+    }
+
+    private string _modItemName;
+    public string ModItemName
+    {
+        get => _modItemName;
+        set { this.RaiseAndSetIfChanged(ref _modItemName, value); this.RaisePropertyChanged(nameof(ItemDisplayName)); }
+    }
+
+    public string ModPrefixMod { get; set; }
+    public string ModPrefixName { get; set; }
+    public TagCompound ModItemData { get; set; }
+    public List<TagCompound> ModGlobalData { get; set; }
+
+    public bool IsModItem => !string.IsNullOrEmpty(ModName) && ModName != "Terraria";
+
+    public string ItemDisplayName
+    {
+        get
+        {
+            if (IsModItem)
+                return $"{ModName}:{ModItemName}";
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Creates an Item from this single-item entity's fields (ItemFrame, WeaponRack, FoodPlatter, etc.).
+    /// </summary>
+    public Item ToItem()
+    {
+        var item = new Item(StackSize, NetId, Prefix);
+        if (IsModItem)
+        {
+            item.ModName = _modName;
+            item.ModItemName = _modItemName;
+            item.ModPrefixMod = ModPrefixMod;
+            item.ModPrefixName = ModPrefixName;
+            item.ModItemData = ModItemData;
+            item.ModGlobalData = ModGlobalData;
+        }
+        return item;
+    }
+
+    /// <summary>
+    /// Sets this single-item entity's fields from an Item (for paste operations).
+    /// </summary>
+    public void FromItem(Item item)
+    {
+        if (item == null)
+        {
+            NetId = 0;
+            Prefix = 0;
+            StackSize = 0;
+            ModName = null;
+            ModItemName = null;
+            ModPrefixMod = null;
+            ModPrefixName = null;
+            ModItemData = null;
+            ModGlobalData = null;
+            return;
+        }
+
+        // Set mod fields first (before NetId setter clears them)
+        _modName = item.ModName;
+        _modItemName = item.ModItemName;
+        ModPrefixMod = item.ModPrefixMod;
+        ModPrefixName = item.ModPrefixName;
+        ModItemData = item.ModItemData;
+        ModGlobalData = item.ModGlobalData;
+
+        // Set vanilla fields — use backing fields to avoid clearing mod identity
+        this.RaiseAndSetIfChanged(ref _netId, item.NetId);
+        Prefix = item.Prefix;
+        StackSize = (short)item.StackSize;
+
+        this.RaisePropertyChanged(nameof(IsModItem));
+        this.RaisePropertyChanged(nameof(ItemDisplayName));
+    }
 
     // display doll
     public ObservableCollection<TileEntityItem> Items { get; set; } = new ObservableCollection<TileEntityItem>();
@@ -578,9 +666,17 @@ public partial class TileEntity : ReactiveObject
 
         frame.Npc = Npc;
         frame.Pose = Pose;
-        frame.NetId = NetId;
+        frame._netId = NetId;
         frame.StackSize = StackSize;
         frame.Prefix = Prefix;
+
+        // Copy mod fields for single-item entities
+        frame._modName = _modName;
+        frame._modItemName = _modItemName;
+        frame.ModPrefixMod = ModPrefixMod;
+        frame.ModPrefixName = ModPrefixName;
+        frame.ModItemData = ModItemData;
+        frame.ModGlobalData = ModGlobalData;
 
         frame.LogicCheck = LogicCheck;
         frame.On = On;

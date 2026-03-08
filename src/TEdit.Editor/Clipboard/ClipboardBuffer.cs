@@ -132,59 +132,58 @@ public partial class ClipboardBuffer : ITileData
                 }
                 // ---- END FILTERING ----
 
-                if (curTile.IsChest())
+                // Copy chests, signs, and tile entities.
+                // For vanilla types, use anchor detection; for mod tiles, use proximity search.
+                bool isModTile = curTile.Type >= WorldConfiguration.TileCount;
+                bool isAnchorTile = false;
+
+                if (!isModTile)
                 {
-                    if (buffer.GetChestAtTile(x, y) == null)
+                    var anchor = world.GetAnchor(x + area.X, y + area.Y);
+                    isAnchorTile = anchor.X == x + area.X && anchor.Y == y + area.Y;
+                }
+
+                if (curTile.IsChest() || isModTile)
+                {
+                    if (buffer.GetChestAtTile(x, y) == null && (isAnchorTile || isModTile))
                     {
-                        var anchor = world.GetAnchor(x + area.X, y + area.Y);
-                        if (anchor.X == x + area.X && anchor.Y == y + area.Y)
+                        var data = world.GetChestAtTile(x + area.X, y + area.Y, true);
+                        if (data != null)
                         {
-                            var data = world.GetChestAtTile(x + area.X, y + area.Y);
-                            if (data != null)
-                            {
-                                var newChest = data.Copy();
-                                newChest.X = x;
-                                newChest.Y = y;
-                                buffer.Chests.Add(newChest);
-                            }
+                            var newChest = data.Copy();
+                            newChest.X = x;
+                            newChest.Y = y;
+                            buffer.Chests.Add(newChest);
                         }
                     }
                 }
 
-                if (curTile.IsSign())
+                if (curTile.IsSign() || isModTile)
                 {
-                    if (buffer.GetSignAtTile(x, y) == null)
+                    if (buffer.GetSignAtTile(x, y) == null && (isAnchorTile || isModTile))
                     {
-                        var anchor = world.GetAnchor(x + area.X, y + area.Y);
-                        if (anchor.X == x + area.X && anchor.Y == y + area.Y)
+                        var data = world.GetSignAtTile(x + area.X, y + area.Y, true);
+                        if (data != null)
                         {
-                            var data = world.GetSignAtTile(x + area.X, y + area.Y);
-                            if (data != null)
-                            {
-                                var newSign = data.Copy();
-                                newSign.X = x;
-                                newSign.Y = y;
-                                buffer.Signs.Add(newSign);
-                            }
+                            var newSign = data.Copy();
+                            newSign.X = x;
+                            newSign.Y = y;
+                            buffer.Signs.Add(newSign);
                         }
                     }
                 }
 
-                if (curTile.IsTileEntity())
+                if (curTile.IsTileEntity() || isModTile)
                 {
-                    if (buffer.GetTileEntityAtTile(x, y) == null)
+                    if (buffer.GetTileEntityAtTile(x, y) == null && (isAnchorTile || isModTile))
                     {
-                        var anchor = world.GetAnchor(x + area.X, y + area.Y);
-                        if (anchor.X == x + area.X && anchor.Y == y + area.Y)
+                        var data = world.GetTileEntityAtTile(x + area.X, y + area.Y, true);
+                        if (data != null)
                         {
-                            var data = world.GetTileEntityAtTile(x + area.X, y + area.Y);
-                            if (data != null)
-                            {
-                                var newEntity = data.Copy();
-                                newEntity.PosX = (short)x;
-                                newEntity.PosY = (short)y;
-                                buffer.TileEntities.Add(newEntity);
-                            }
+                            var newEntity = data.Copy();
+                            newEntity.PosX = (short)x;
+                            newEntity.PosY = (short)y;
+                            buffer.TileEntities.Add(newEntity);
                         }
                     }
                 }
@@ -246,16 +245,17 @@ public partial class ClipboardBuffer : ITileData
 
     private void UpdateContainers(World world, int x, int y, int worldX, int worldY, Tile pasteTile)
     {
-        // Add new chest data
-        if (pasteTile.IsChest())
-        {
-            var existingChest = world.GetChestAtTile(worldX, worldY);
-            if (existingChest != null) { world.Chests.Remove(existingChest); }
+        bool isModTile = pasteTile.Type >= WorldConfiguration.TileCount;
 
+        // Add new chest data
+        if (pasteTile.IsChest() || isModTile)
+        {
             var data = GetChestAtTile(x, y);
-            if (data != null) // allow? chest copying may not work...
+            if (data != null)
             {
-                // Copied chest
+                var existingChest = world.GetChestAtTile(worldX, worldY);
+                if (existingChest != null) { world.Chests.Remove(existingChest); }
+
                 var newChest = data.Copy();
                 newChest.X = worldX;
                 newChest.Y = worldY;
@@ -264,36 +264,34 @@ public partial class ClipboardBuffer : ITileData
         }
 
         // Add new sign data
-        if (pasteTile.IsSign())
+        if (pasteTile.IsSign() || isModTile)
         {
-            if (world.GetSignAtTile(worldX, worldY) == null)
+            var data = GetSignAtTile(x, y);
+            if (data != null)
             {
-                var data = GetSignAtTile(x, y);
-                if (data != null)
-                {
-                    // Copied sign
-                    var newSign = data.Copy();
-                    newSign.X = worldX;
-                    newSign.Y = worldY;
-                    world.Signs.Add(newSign);
-                }
+                var existingSign = world.GetSignAtTile(worldX, worldY);
+                if (existingSign != null) { world.Signs.Remove(existingSign); }
+
+                var newSign = data.Copy();
+                newSign.X = worldX;
+                newSign.Y = worldY;
+                world.Signs.Add(newSign);
             }
         }
 
         // Add new tile entity data
-        if (pasteTile.IsTileEntity())
+        if (pasteTile.IsTileEntity() || isModTile)
         {
-            if (world.GetTileEntityAtTile(worldX, worldY) == null)
+            var data = GetTileEntityAtTile(x, y);
+            if (data != null)
             {
-                var data = GetTileEntityAtTile(x, y);
-                if (data != null)
-                {
-                    // Copied sign
-                    var newEntity = data.Copy();
-                    newEntity.PosX = (short)(worldX);
-                    newEntity.PosY = (short)(worldY);
-                    world.TileEntities.Add(newEntity);
-                }
+                var existingEntity = world.GetTileEntityAtTile(worldX, worldY);
+                if (existingEntity != null) { world.TileEntities.Remove(existingEntity); }
+
+                var newEntity = data.Copy();
+                newEntity.PosX = (short)(worldX);
+                newEntity.PosY = (short)(worldY);
+                world.TileEntities.Add(newEntity);
             }
         }
     }
@@ -301,9 +299,23 @@ public partial class ClipboardBuffer : ITileData
     private static void UpdateWorldTileFromBuffer(PasteOptions pasteOptions, ref Tile worldTile, Tile pasteTile)
     {
         // paste regular tiles or sprites if pasteSprites active
-        if ( pasteTile.Type < WorldConfiguration.SettingsTileFrameImportant.Length &&
-            ((pasteOptions.PasteTiles && !WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type]) ||
-            (pasteOptions.PasteSprites && WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type])))
+        // For mod tiles (beyond vanilla SettingsTileFrameImportant range), check TileProperties
+        bool isFrameImportant;
+        if (pasteTile.Type < WorldConfiguration.SettingsTileFrameImportant.Length)
+        {
+            isFrameImportant = WorldConfiguration.SettingsTileFrameImportant[pasteTile.Type];
+        }
+        else if (pasteTile.Type < WorldConfiguration.TileProperties.Count)
+        {
+            isFrameImportant = WorldConfiguration.TileProperties[pasteTile.Type].IsFramed;
+        }
+        else
+        {
+            isFrameImportant = false; // unknown tile — treat as solid
+        }
+
+        if ((pasteOptions.PasteTiles && !isFrameImportant) ||
+            (pasteOptions.PasteSprites && isFrameImportant))
         {
             worldTile.IsActive        = pasteTile.IsActive;
             worldTile.Type            = pasteTile.Type;
@@ -552,9 +564,9 @@ public partial class ClipboardBuffer : ITileData
                             curTile.U = tiles[x, y].X;
                             curTile.V = tiles[x, y].Y;
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            System.Diagnostics.Debug.WriteLine($"Sprite flip error: {ex.Message}");
                         }
                     }
                 }
@@ -590,9 +602,9 @@ public partial class ClipboardBuffer : ITileData
                             }
                             */
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
-
+                            System.Diagnostics.Debug.WriteLine($"Sprite flip error: {ex.Message}");
                         }
                     }
                 }

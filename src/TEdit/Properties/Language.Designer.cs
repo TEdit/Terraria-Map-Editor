@@ -2717,6 +2717,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NBT Explorer.
+        /// </summary>
+        public static string nbt_explorer_title {
+            get {
+                return ResourceManager.GetString("nbt_explorer_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Ash.
         /// </summary>
         public static string newworld_add_ash {
@@ -8592,6 +8601,24 @@ namespace TEdit.Properties {
         public static string world_explorer_search_placeholder {
             get {
                 return ResourceManager.GetString("world_explorer_search_placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tModLoader.
+        /// </summary>
+        public static string world_explorer_tab_tmodloader {
+            get {
+                return ResourceManager.GetString("world_explorer_tab_tmodloader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vanilla.
+        /// </summary>
+        public static string world_explorer_tab_vanilla {
+            get {
+                return ResourceManager.GetString("world_explorer_tab_vanilla", resourceCulture);
             }
         }
         

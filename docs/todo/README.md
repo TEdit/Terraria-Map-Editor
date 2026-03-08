@@ -13,8 +13,8 @@
 ## Minor
 - Startup Tips (#2171)
 
-## Deferred Post-Release
-- #1075 — Mod support
+## tModLoader / Mod Support (#1075)
+- [tmodloader-support.md](tmodloader-support.md) — .twld parsing, texture rendering, chest editing, tile/sprite placement, copy/paste
 - #1262 — World generation
 - #1909 — Dependency updates
 

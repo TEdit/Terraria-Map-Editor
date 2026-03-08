@@ -227,6 +227,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.Bestiary = bestiary;
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
+            ErrorLogging.LogException(ex);
             await App.DialogService.ShowExceptionAsync($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
         }
     }
@@ -259,6 +260,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.Bestiary = bestiary;
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
+            ErrorLogging.LogException(ex);
             await App.DialogService.ShowExceptionAsync($"Error resetting Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
         }
     }
@@ -300,6 +302,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.Bestiary = bestiary;
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
+            ErrorLogging.LogException(ex);
             await App.DialogService.ShowExceptionAsync($"Error saving Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
         }
     }
