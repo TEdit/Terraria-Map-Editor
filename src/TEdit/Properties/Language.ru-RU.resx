@@ -162,6 +162,18 @@
   <data name="about_wiki" xml:space="preserve">
     <value>Вики</value>
   </data>
+  <data name="backup_type_autosave" xml:space="preserve">
+    <value>Автосохранение</value>
+  </data>
+  <data name="backup_type_generic" xml:space="preserve">
+    <value>Резервная копия</value>
+  </data>
+  <data name="backup_type_tedit" xml:space="preserve">
+    <value>Резервная копия TEdit</value>
+  </data>
+  <data name="backup_type_terraria" xml:space="preserve">
+    <value>Резервная копия Terraria</value>
+  </data>
   <data name="banner_category" xml:space="preserve">
     <value>Категория:</value>
   </data>

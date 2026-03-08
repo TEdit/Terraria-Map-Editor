@@ -196,6 +196,42 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Autosave.
+        /// </summary>
+        public static string backup_type_autosave {
+            get {
+                return ResourceManager.GetString("backup_type_autosave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup.
+        /// </summary>
+        public static string backup_type_generic {
+            get {
+                return ResourceManager.GetString("backup_type_generic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEdit Backup.
+        /// </summary>
+        public static string backup_type_tedit {
+            get {
+                return ResourceManager.GetString("backup_type_tedit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terraria Backup.
+        /// </summary>
+        public static string backup_type_terraria {
+            get {
+                return ResourceManager.GetString("backup_type_terraria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category:.
         /// </summary>
         public static string banner_category {
