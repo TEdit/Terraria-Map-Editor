@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -320,10 +321,10 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         }
     }
 
-    public void Undo()
+    public IReadOnlyList<Vector2Int32> Undo()
     {
         if (_currentIndex <= 0)
-            return;
+            return Array.Empty<Vector2Int32>();
 
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
@@ -332,18 +333,17 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         UndoBuffer redo = new UndoBuffer(redoFileName, _world);
 
         Debug.WriteLine($"Opening undo file for undo: {Path.GetFileNameWithoutExtension(undoFileName)}");
+        var changedTiles = new List<Vector2Int32>();
+
         using (var stream = new FileStream(undoFileName, FileMode.Open))
         using (BinaryReader br = new BinaryReader(stream, System.Text.Encoding.UTF8, false))
         {
             foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br, _world.TileFrameImportant))
             {
-
                 Vector2Int32 pixel = undoTile.Location;
                 SaveTileToBuffer(redo, pixel.X, pixel.Y, true);
                 _world.Tiles[pixel.X, pixel.Y] = (Tile)undoTile.Tile;
-
-                /* Heathtech */
-                _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
+                changedTiles.Add(pixel);
             }
 
             redo.Close();
@@ -367,14 +367,16 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         _currentIndex--; // move index back one, create a new buffer
         CreateBuffer();
         _undoApplied?.Invoke();
+
+        return changedTiles;
     }
 
 
 
-    public void Redo()
+    public IReadOnlyList<Vector2Int32> Redo()
     {
         if (_currentIndex > _maxIndex)
-            return;
+            return Array.Empty<Vector2Int32>();
 
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
@@ -383,10 +385,12 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
         if (!File.Exists(redoFileName))
         {
-            return;
+            return Array.Empty<Vector2Int32>();
         }
 
         Debug.WriteLine($"Opening redo file for redo: {Path.GetFileNameWithoutExtension(redoFileName)}");
+        var changedTiles = new List<Vector2Int32>();
+
         using (var stream = new FileStream(redoFileName, FileMode.Open))
         using (BinaryReader br = new BinaryReader(stream))
         {
@@ -415,8 +419,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
                 }
 
                 _world.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
-
-                _notifyTileChanged?.Invoke(undoTile.Location.X, undoTile.Location.Y, 1, 1);
+                changedTiles.Add(undoTile.Location);
             }
             foreach (var chest in World.LoadChestData(br, version))
             {
@@ -433,6 +436,8 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         }
 
         SaveUndo(updateMax: false);
+
+        return changedTiles;
     }
 
     #region IUndoManager
@@ -449,16 +454,14 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         return Task.CompletedTask;
     }
 
-    public Task UndoAsync(World world)
+    public Task<IReadOnlyList<Vector2Int32>> UndoAsync(World world)
     {
-        Undo();
-        return Task.CompletedTask;
+        return Task.FromResult(Undo());
     }
 
-    public Task RedoAsync(World world)
+    public Task<IReadOnlyList<Vector2Int32>> RedoAsync(World world)
     {
-        Redo();
-        return Task.CompletedTask;
+        return Task.FromResult(Redo());
     }
 
     public Task StartUndoAsync() => Task.CompletedTask;

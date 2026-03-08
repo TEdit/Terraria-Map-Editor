@@ -22,7 +22,12 @@ public class RenderBlender : INotifyTileChanged
 
     public void UpdateTile(int x, int y, int width = 1, int height = 1)
     {
-        BlendRules.ResetUVCache(_world, _tilePicker,x, y, width, height);
+        BlendRules.ResetUVCache(_world, _tilePicker, x, y, width, height);
+    }
+
+    public void UpdateTiles(IReadOnlyList<Vector2Int32> tiles)
+    {
+        BlendRules.ResetUVCache(_world, tiles);
     }
 }
 
@@ -303,6 +308,31 @@ class BlendRules
     //This function resets the UV state for the specified tile locations (as well as nearby tiles) such that the UV cache must be re-evaluated
     public static void ResetUVCache(WorldViewModel _wvm, int tileStartX, int tileStartY, int regionWidth, int regionHeight) =>
         ResetUVCache(_wvm.CurrentWorld, _wvm.TilePicker, tileStartX, tileStartY, regionWidth, regionHeight);
+
+    public static void ResetUVCache(World world, IReadOnlyList<Vector2Int32> tiles)
+    {
+        int tilesWide = world.TilesWide;
+        int tilesHigh = world.TilesHigh;
+
+        // Reset UV cache for each tile and its neighbors
+        foreach (var tile in tiles)
+        {
+            for (int x = tile.X - 1; x <= tile.X + 1; x++)
+            {
+                for (int y = tile.Y - 1; y <= tile.Y + 1; y++)
+                {
+                    if (x < 0 || y < 0 || x >= tilesWide || y >= tilesHigh)
+                        continue;
+
+                    ref Tile curtile = ref world.Tiles[x, y];
+                    curtile.uvTileCache = 0xFFFF;
+                    curtile.lazyMergeId = 0xFF;
+                    curtile.hasLazyChecked = false;
+                    curtile.uvWallCache = 0xFFFF;
+                }
+            }
+        }
+    }
 
     public static void ResetUVCache(
         World world,

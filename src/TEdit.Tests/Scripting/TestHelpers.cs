@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using TEdit.Editor.Undo;
@@ -8,6 +9,8 @@ namespace TEdit.Tests.Scripting;
 
 public class NoOpUndoManager : IUndoManager
 {
+    private static readonly IReadOnlyList<Vector2Int32> Empty = Array.Empty<Vector2Int32>();
+
     public List<(int X, int Y)> SavedTiles { get; } = new();
 
     public void SaveTile(World world, Vector2Int32 location, bool removeEntities = false) =>
@@ -18,8 +21,8 @@ public class NoOpUndoManager : IUndoManager
 
     public Task SaveUndoAsync() => Task.CompletedTask;
     public Task StartUndoAsync() => Task.CompletedTask;
-    public Task UndoAsync(World world) => Task.CompletedTask;
-    public Task RedoAsync(World world) => Task.CompletedTask;
+    public Task<IReadOnlyList<Vector2Int32>> UndoAsync(World world) => Task.FromResult(Empty);
+    public Task<IReadOnlyList<Vector2Int32>> RedoAsync(World world) => Task.FromResult(Empty);
     public void Dispose() { }
 }
 

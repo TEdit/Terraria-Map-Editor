@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TEdit.Geometry;
 using TEdit.Terraria;
@@ -14,6 +15,6 @@ public interface IUndoManager : IDisposable
 
     Task SaveUndoAsync();
 
-    Task UndoAsync(World world);
-    Task RedoAsync(World world);
+    Task<IReadOnlyList<Vector2Int32>> UndoAsync(World world);
+    Task<IReadOnlyList<Vector2Int32>> RedoAsync(World world);
 }

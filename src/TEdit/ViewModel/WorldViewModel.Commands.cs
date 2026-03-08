@@ -335,10 +335,26 @@ public partial class WorldViewModel
     private void Expand() => ExpandWorld();
 
     [ReactiveCommand]
-    private void Redo() => UndoManager?.Redo();
+    private void Redo()
+    {
+        var changedTiles = UndoManager?.Redo();
+        if (changedTiles?.Count > 0)
+        {
+            UpdateRenderPixels(changedTiles);
+            _renderBlender?.UpdateTiles(changedTiles);
+        }
+    }
 
     [ReactiveCommand]
-    private void Undo() => UndoManager?.Undo();
+    private void Undo()
+    {
+        var changedTiles = UndoManager?.Undo();
+        if (changedTiles?.Count > 0)
+        {
+            UpdateRenderPixels(changedTiles);
+            _renderBlender?.UpdateTiles(changedTiles);
+        }
+    }
 
     private bool CanCopy()
     {
