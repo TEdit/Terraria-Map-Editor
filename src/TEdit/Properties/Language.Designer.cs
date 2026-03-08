@@ -4220,6 +4220,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max Backups.
+        /// </summary>
+        public static string settings_max_backups {
+            get {
+                return ResourceManager.GetString("settings_max_backups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of TEdit backup files (.TEdit) to keep per world when saving.
+        /// </summary>
+        public static string settings_max_backups_desc {
+            get {
+                return ResourceManager.GetString("settings_max_backups_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimap Background.
         /// </summary>
         public static string settings_minimap_background {

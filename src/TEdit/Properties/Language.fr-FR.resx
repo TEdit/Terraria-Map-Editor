@@ -1516,6 +1516,12 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="settings_language_desc" xml:space="preserve">
     <value>Définir le langage d’affichage de l’application</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>Sauvegardes Max</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>Nombre de fichiers de sauvegarde TEdit (.TEdit) à conserver par monde lors de l'enregistrement</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>Contexte de la mini-carte</value>
   </data>

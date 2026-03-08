@@ -185,6 +185,46 @@ public partial class WorldExplorerViewModel
                 }
             }
 
+            // Collect .bak and .TEdit backup files next to each world
+            var collectedDirs = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var world in worldEntries)
+            {
+                if (world.IsMissing || string.IsNullOrEmpty(world.FilePath)) continue;
+                string dir = Path.GetDirectoryName(world.FilePath);
+                if (string.IsNullOrEmpty(dir) || !collectedDirs.Add(dir)) continue;
+
+                try
+                {
+                    // .bak files: WorldName.wld.bak
+                    foreach (var file in Directory.GetFiles(dir, "*.bak"))
+                    {
+                        string name = Path.GetFileName(file);
+                        // Strip .bak to get the world filename
+                        string wldName = name.Substring(0, name.Length - 4); // remove .bak
+                        string stem = Path.GetFileNameWithoutExtension(wldName);
+                        backupEntries.Add((stem, new BackupEntryViewModel(file)));
+                    }
+
+                    // .TEdit files: WorldName.wld.TEdit, WorldName.wld.TEdit.2, etc.
+                    foreach (var file in Directory.GetFiles(dir, "*.TEdit*"))
+                    {
+                        // Skip non-backup TEdit files (e.g. .TEditSch)
+                        string name = Path.GetFileName(file);
+                        if (!name.Contains(".wld.TEdit", StringComparison.OrdinalIgnoreCase)) continue;
+
+                        // Extract world stem: everything before .wld.TEdit
+                        int wldIdx = name.IndexOf(".wld", StringComparison.OrdinalIgnoreCase);
+                        if (wldIdx < 0) continue;
+                        string stem = name.Substring(0, wldIdx);
+                        backupEntries.Add((stem, new BackupEntryViewModel(file)));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorLogging.LogException(ex);
+                }
+            }
+
             // Match backups to worlds by filename stem (case-insensitive)
             // Note: before hydration, Title == filename stem, so matching works the same
             var worldsByKey = new Dictionary<string, WorldEntryViewModel>(StringComparer.OrdinalIgnoreCase);

@@ -1516,6 +1516,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_language_desc" xml:space="preserve">
     <value>Stellen Sie die Anzeigesprache der Anwendung ein</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>Maximale Backups</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>Anzahl der TEdit-Backup-Dateien (.TEdit), die pro Welt beim Speichern behalten werden sollen</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>Minimap-Hintergrund</value>
   </data>

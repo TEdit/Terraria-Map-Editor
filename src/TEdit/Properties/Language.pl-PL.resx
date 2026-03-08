@@ -1516,6 +1516,12 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="settings_language_desc" xml:space="preserve">
     <value>Ustaw język wyświetlania aplikacji</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>Maksymalne kopie zapasowe</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>Liczba plików kopii zapasowej TEdit (.TEdit) do zachowania na świat podczas zapisywania</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>Tło minimapy</value>
   </data>

@@ -1455,6 +1455,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>Max Backups</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>Number of TEdit backup files (.TEdit) to keep per world when saving</value>
+  </data>
   <data name="settings_category_experimental" xml:space="preserve">
     <value>Experimental Features</value>
     <comment>Settings category for experimental/preview features</comment>
@@ -1648,12 +1654,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
     <value>Size of sprite thumbnails in the sprite picker</value>
   </data>
-  <data name="settings_terraria_path" xml:space="preserve">
-    <value>Terraria Content Path</value>
-  </data>
-  <data name="settings_terraria_path_desc" xml:space="preserve">
-    <value>Path to Terraria's Content folder for texture loading</value>
-  </data>
   <data name="settings_steam_user_id" xml:space="preserve">
     <value>Steam User ID</value>
   </data>
@@ -1662,6 +1662,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>Auto-detect</value>
+  </data>
+  <data name="settings_terraria_path" xml:space="preserve">
+    <value>Terraria Content Path</value>
+  </data>
+  <data name="settings_terraria_path_desc" xml:space="preserve">
+    <value>Path to Terraria's Content folder for texture loading</value>
   </data>
   <data name="settings_texture_zoom" xml:space="preserve">
     <value>Texture Visibility Zoom Level</value>

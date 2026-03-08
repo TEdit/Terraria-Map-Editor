@@ -1516,6 +1516,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_language_desc" xml:space="preserve">
     <value>Defina a linguagem de exibição da aplicação</value>
   </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>Máximo de Backups</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>Número de arquivos de backup do TEdit (.TEdit) a serem mantidos por mundo ao salvar</value>
+  </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>Contexto do Minimapa</value>
   </data>
