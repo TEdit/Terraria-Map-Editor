@@ -113,7 +113,7 @@ public class UndoBuffer : IDisposable
         }
     }
 
-    public bool IsEmpty => !_undoTiles.Any();
+    public bool IsEmpty => !_undoTiles.Any() && _uniqueTileGroupsWritten == 0;
 
     public void SaveTileData()
     {
