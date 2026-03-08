@@ -1832,16 +1832,14 @@ public partial class WorldViewModel : ReactiveObject
                 _lastUserSavedUndoIndex = 0;
                 _hasUnsavedUserPropertyChanges = false;
 
-                var undo = new UndoManagerWrapper(UndoManager);
-
                 // Preserve clipboard between world loads.
                 if (_clipboardManager == null)
                 {
-                    Clipboard = new ClipboardManager(Selection, undo, rb.UpdateTile);
+                    Clipboard = new ClipboardManager(Selection, UndoManager, rb.UpdateTile);
                 }
                 else
                 {
-                    Clipboard = new ClipboardManager(Selection, undo, rb.UpdateTile);
+                    Clipboard = new ClipboardManager(Selection, UndoManager, rb.UpdateTile);
 
                     // Add all previously loaded buffers to the new clipboard.
                     foreach (var buffer in _clipboardManager.LoadedBuffers)
@@ -1857,7 +1855,7 @@ public partial class WorldViewModel : ReactiveObject
                 }
                 _clipboardManager = Clipboard;
 
-                WorldEditor = new WorldEditor(TilePicker, MaskSettings, CurrentWorld, Selection, undo, updateTiles);
+                WorldEditor = new WorldEditor(TilePicker, MaskSettings, CurrentWorld, Selection, UndoManager, updateTiles);
 
                 // Subscribe to new world property changes
                 _currentWorld.PropertyChanged += OnWorldPropertyChanged;

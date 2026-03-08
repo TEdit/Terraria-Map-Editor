@@ -31,11 +31,10 @@ public class ScriptApi : IDisposable
     public ScriptApi(WorldViewModel wvm, ScriptExecutionContext context)
     {
         _wvm = wvm;
-        var undo = new UndoManagerWrapper(wvm.UndoManager);
         var world = wvm.CurrentWorld;
 
-        Tile = new TileApi(world, undo);
-        Geometry = new GeometryApi(world, undo);
+        Tile = new TileApi(world, wvm.UndoManager);
+        Geometry = new GeometryApi(world, wvm.UndoManager);
         Chests = new ChestApi(world);
         Signs = new SignApi(world);
         TileEntities = new TileEntityApi(world);
@@ -44,12 +43,12 @@ public class ScriptApi : IDisposable
         Selection = new SelectionApi(wvm.Selection);
         Metadata = new MetadataApi();
         Log = new LogApi(context);
-        Batch = new BatchApi(world, wvm.Selection, undo, context);
+        Batch = new BatchApi(world, wvm.Selection, wvm.UndoManager, context);
         Tools = new ToolsApi(wvm);
         Finder = new FinderApi(context);
-        Sprites = new SpriteApi(world, undo);
-        Draw = new DrawApi(world, undo, wvm.Selection);
-        Generate = new GenerateApi(world, undo, wvm.Selection);
+        Sprites = new SpriteApi(world, wvm.UndoManager);
+        Draw = new DrawApi(world, wvm.UndoManager, wvm.Selection);
+        Generate = new GenerateApi(world, wvm.UndoManager, wvm.Selection);
     }
 
     /// <summary>

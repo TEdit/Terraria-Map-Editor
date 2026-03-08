@@ -12,59 +12,15 @@ using TEdit.ViewModel;
 
 namespace TEdit.Editor.Undo;
 
-public class UndoManagerWrapper : IUndoManager, IDisposable
+
+public partial class UndoManager : ReactiveObject, IUndoManager
 {
-    private readonly UndoManager _um;
-
-    public UndoManagerWrapper(UndoManager um)
-    {
-        _um = um;
-    }
-
-    public void Dispose()
-    {
-        _um.Dispose();
-    }
-
-    public Task RedoAsync(World world)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void SaveTile(World world, Vector2Int32 location, bool removeEntities = false) =>
-        SaveTile(world, location.X, location.Y, removeEntities);
-
-    public void SaveTile(World world, int x, int y, bool removeEntities = false) =>
-        _um.SaveTile(x, y, removeEntities);
-
-    public Task SaveUndoAsync()
-    {
-        _um.SaveUndo();
-        return Task.CompletedTask;
-    }
-
-    public Task StartUndoAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UndoAsync(World world)
-    {
-        throw new NotImplementedException();
-    }
-}
-
-
-public partial class UndoManager : ReactiveObject, IDisposable
-{
-    private static Random r = new Random();
     private static string uniqueVal;
     private static Timer undoAliveTimer;
     private static string UndoAliveFile;
 
     static UndoManager()
     {
-        r = new Random();
         uniqueVal = DateTime.Now.ToString("yyyyMMddHHmmss");
         Dir = Path.Combine(WorldViewModel.TempPath, "undo", "undo_" + uniqueVal);
         UndoFile = Path.Combine(Dir, "undo_temp_{0}");
@@ -414,13 +370,18 @@ public partial class UndoManager : ReactiveObject, IDisposable
 
     public void Redo()
     {
-        if (_currentIndex > _maxIndex || _currentIndex <= 0)
+        if (_currentIndex > _maxIndex)
             return;
 
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
         // close current undo buffer and get a new one with a new name after redo
         string redoFileName = string.Format(RedoFile, _currentIndex + 1); // load redo file at +1
+
+        if (!File.Exists(redoFileName))
+        {
+            return;
+        }
 
         Debug.WriteLine($"Opening redo file for redo: {Path.GetFileNameWithoutExtension(redoFileName)}");
         using (var stream = new FileStream(redoFileName, FileMode.Open))
@@ -466,9 +427,37 @@ public partial class UndoManager : ReactiveObject, IDisposable
         }
 
         SaveUndo(updateMax: false);
-
-        _undoApplied?.Invoke();
     }
+
+    #region IUndoManager
+
+    public void SaveTile(World world, Vector2Int32 location, bool removeEntities = false) =>
+        SaveTile(location.X, location.Y, removeEntities);
+
+    public void SaveTile(World world, int x, int y, bool removeEntities = false) =>
+        SaveTile(x, y, removeEntities);
+
+    public Task SaveUndoAsync()
+    {
+        SaveUndo();
+        return Task.CompletedTask;
+    }
+
+    public Task UndoAsync(World world)
+    {
+        Undo();
+        return Task.CompletedTask;
+    }
+
+    public Task RedoAsync(World world)
+    {
+        Redo();
+        return Task.CompletedTask;
+    }
+
+    public Task StartUndoAsync() => Task.CompletedTask;
+
+    #endregion
 
     #region Destructor to cleanup files
     private bool disposed = false;
