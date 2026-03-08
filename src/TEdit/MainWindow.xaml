@@ -245,6 +245,9 @@
         <MenuItem Header="{x:Static p:Language.menu_plugins}" ItemsSource="{Binding Plugins}" ItemContainerStyle="{StaticResource SubmenuItemStyle}">
 
                 </MenuItem>
+                <MenuItem Header="Debug">
+                    <MenuItem Header="Show NBT Overlay" IsCheckable="True" IsChecked="{Binding ShowNbtOverlay}" />
+                </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_help}">
                     <MenuItem Header="{x:Static p:Language.menu_help_wiki}" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=help.wiki}" />

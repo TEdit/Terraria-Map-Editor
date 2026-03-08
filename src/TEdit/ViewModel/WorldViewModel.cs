@@ -110,6 +110,7 @@ public partial class WorldViewModel : ReactiveObject
     private bool _showAllWires = true;
     private bool _showWorldBorder = false;
     private bool _worldBorderOverlay = false;
+    private bool _showNbtOverlay = false;
     private bool _showWireTransparency = true;
     private HashSet<Vector2Int32> _wireTraceHighlight;
     private int _wireTraceColor; // 0=none, 1=red, 2=blue, 3=green, 4=yellow
@@ -2214,6 +2215,12 @@ public partial class WorldViewModel : ReactiveObject
     {
         get { return _worldBorderOverlay; }
         set { this.RaiseAndSetIfChanged(ref _worldBorderOverlay, value); }
+    }
+
+    public bool ShowNbtOverlay
+    {
+        get { return _showNbtOverlay; }
+        set { this.RaiseAndSetIfChanged(ref _showNbtOverlay, value); }
     }
 
     public bool ShowBuffRadii
