@@ -54,6 +54,7 @@ public partial class WorldViewModel : ReactiveObject
     private readonly MorphToolOptions _MorphToolOptions = new MorphToolOptions();
     private readonly ObservableCollection<ITool> _tools = new ObservableCollection<ITool>();
     private UndoManager _undoManager;
+    private RenderBlender _renderBlender;
     public int[] CheckTiles;
     public int CheckTileGeneration = 1;
     private ITool _activeTool;
@@ -1815,7 +1816,8 @@ public partial class WorldViewModel : ReactiveObject
 
                 WorldEditor?.Dispose();
 
-                var rb = new RenderBlender(CurrentWorld, TilePicker);
+                _renderBlender = new RenderBlender(CurrentWorld, TilePicker);
+                var rb = _renderBlender;
 
                 NotifyTileChanged updateTiles = (x, y, width, height) =>
                 {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -533,6 +534,28 @@ public partial class WorldViewModel
         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
         UpdateFilterOverlayPixel(x, y);
         BuffTileCache.UpdateTile(x, y, CurrentWorld.Tiles[x, y]);
+    }
+
+    public void UpdateRenderPixels(IReadOnlyList<Vector2Int32> tiles)
+    {
+        if (CurrentWorld == null) return;
+
+        // Always render synchronously to avoid reading stale tile data
+        // from a background thread while undo/redo mutates tiles.
+        UpdateRenderPixelsCore(tiles);
+    }
+
+    private void UpdateRenderPixelsCore(IReadOnlyList<Vector2Int32> tiles)
+    {
+        foreach (var tile in tiles)
+        {
+            int x = tile.X;
+            int y = tile.Y;
+            Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
+            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
+            UpdateFilterOverlayPixel(x, y);
+            BuffTileCache.UpdateTile(x, y, CurrentWorld.Tiles[x, y]);
+        }
     }
 
     public void UpdateRenderRegion(RectangleInt32 area)
