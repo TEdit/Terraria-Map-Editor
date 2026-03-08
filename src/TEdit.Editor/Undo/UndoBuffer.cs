@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using TEdit.Terraria;
 using TEdit.Geometry;
 
@@ -14,6 +17,17 @@ public class UndoBuffer : IDisposable
     private string file;
     private static readonly object UndoSaveLock = new object();
 
+    // Background flush infrastructure
+    private readonly record struct FlushBatch(
+        List<Tile> TileOrder,
+        Dictionary<Tile, HashSet<Vector2Int32>> UndoTiles,
+        uint Version,
+        int MaxTileId,
+        int MaxWallId,
+        bool[] TileFrameImportant);
+    private readonly BlockingCollection<FlushBatch> _flushQueue = new();
+    private readonly Task _writerTask;
+
     public UndoBuffer(string fileName, World world)
     {
         file = Path.GetFileNameWithoutExtension(fileName);
@@ -21,8 +35,43 @@ public class UndoBuffer : IDisposable
         _writer = new BinaryWriter(new FileStream(fileName, FileMode.Create), System.Text.Encoding.UTF8, false);
         _writer.Write((Int32)0);
         _world = world;
+
+        // Start background writer
+        _writerTask = Task.Run(BackgroundWriter);
     }
 
+    private void BackgroundWriter()
+    {
+        foreach (var batch in _flushQueue.GetConsumingEnumerable())
+        {
+            foreach (var tile in batch.TileOrder)
+            {
+                if (!batch.UndoTiles.TryGetValue(tile, out var locations))
+                    continue;
+
+                // Serialize tile data
+                byte[] tileData = World.SerializeTileData(
+                    tile,
+                    (int)batch.Version,
+                    batch.MaxTileId,
+                    batch.MaxWallId,
+                    batch.TileFrameImportant,
+                    out int dataIndex,
+                    out int headerIndex);
+
+                _writer.Write(tileData, headerIndex, dataIndex - headerIndex);
+
+                // Write location count and locations
+                _writer.Write(locations.Count);
+                foreach (var loc in locations)
+                {
+                    _writer.Write(loc.X);
+                    _writer.Write(loc.Y);
+                }
+            }
+            _uniqueTileGroupsWritten += batch.UndoTiles.Count;
+        }
+    }
 
     private readonly Dictionary<Tile, HashSet<Vector2Int32>> _undoTiles = new();
     private readonly List<Tile> _tileOrder = new(); // For order preservation
@@ -93,6 +142,8 @@ public class UndoBuffer : IDisposable
 
     public void Add(Vector2Int32 location, Tile tile)
     {
+        bool shouldFlush = false;
+
         lock (UndoSaveLock)
         {
             // Find or create tile entry
@@ -105,15 +156,16 @@ public class UndoBuffer : IDisposable
 
             locations.Add(location);
             LastTile = new UndoTile(tile, location); // For compatibility
+            shouldFlush = GetTotalTileCount() > FlushSize;
         }
 
-        if (GetTotalTileCount() > FlushSize)
+        if (shouldFlush)
         {
             SaveTileData();
         }
     }
 
-    public bool IsEmpty => !_undoTiles.Any() && _uniqueTileGroupsWritten == 0;
+    public bool IsEmpty => !_undoTiles.Any() && _uniqueTileGroupsWritten == 0 && _flushQueue.Count == 0;
 
     public void SaveTileData()
     {
@@ -124,70 +176,76 @@ public class UndoBuffer : IDisposable
         int maxTileId = WorldConfiguration.SaveConfiguration.GetData(version).MaxTileId;
         int maxWallId = WorldConfiguration.SaveConfiguration.GetData(version).MaxWallId;
 
+        FlushBatch batch;
+
         lock (UndoSaveLock)
         {
+            if (!_undoTiles.Any()) return;
+
             int totalCount = GetTotalTileCount();
-            int uniqueThisBatch = _undoTiles.Count;
+            Debug.WriteLine($"Flushing Undo Buffer: {totalCount} Tiles ({_undoTiles.Count} unique)");
 
-            if (totalCount == 0) return;
+            // Snapshot the collections — Tile is a struct so dictionary keys are value copies
+            var snapshotTiles = new Dictionary<Tile, HashSet<Vector2Int32>>(_undoTiles);
+            var snapshotOrder = new List<Tile>(_tileOrder);
 
-            Debug.WriteLine($"Flushing Undo Buffer: {totalCount} Tiles ({uniqueThisBatch} unique)");
+            batch = new FlushBatch(snapshotOrder, snapshotTiles, version, maxTileId, maxWallId, tileFrameImportant);
 
-            // Don't write count per batch - we write total at Close() in position 0
-            // Write each unique tile and its locations
-            foreach (var tile in _tileOrder) // Maintain order
-            {
-                if (!_undoTiles.TryGetValue(tile, out var locations))
-                    continue;
-
-                // Serialize tile data
-                int dataIndex;
-                int headerIndex;
-
-                byte[] tileData = World.SerializeTileData(
-                    tile,
-                    (int)version,
-                    maxTileId,
-                    maxWallId,
-                    tileFrameImportant,
-                    out dataIndex,
-                    out headerIndex);
-
-                _writer.Write(tileData, headerIndex, dataIndex - headerIndex);
-
-                // Write location count and locations
-                _writer.Write(locations.Count);
-                foreach (var loc in locations)
-                {
-                    _writer.Write(loc.X);
-                    _writer.Write(loc.Y);
-                }
-            }
-
-            // Track unique tile groups written for file header
-            _uniqueTileGroupsWritten += uniqueThisBatch;
-
-            // Clear processed data
-            Clear();
+            // Clear immediately so Add() can continue with fresh collections
+            _undoTiles.Clear();
+            _tileOrder.Clear();
+            LastTile = null;
         }
+
+        // Queue for background serialization + writing — returns instantly
+        _flushQueue.Add(batch);
     }
 
-    public void Close()
+    /// <summary>
+    /// Initiates an async close. Returns a Task that completes when the file is fully written.
+    /// The caller does NOT need to await unless it needs to read the file immediately.
+    /// </summary>
+    public Task CloseAsync()
     {
-        var world = _world;
-        var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
-
         Debug.WriteLine($"Saving {file}");
         SaveTileData();
-        World.SaveChests(Chests, _writer, (int)version);
-        World.SaveSigns(Signs, _writer, (int)version);
-        World.SaveTileEntities(TileEntities, _writer, version);
-        _writer.BaseStream.Position = (long)0;
-        _writer.Write(_uniqueTileGroupsWritten);
-        _writer.Close();
-        _writer.Dispose();
-        _writer = null;
+
+        // Signal no more batches
+        _flushQueue.CompleteAdding();
+
+        // Capture state needed for finalization
+        var world = _world;
+        var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
+        var chests = _chests.ToList();
+        var signs = _signs.ToList();
+        var tileEntities = _tileEntities.ToList();
+
+        // Chain finalization after background writer completes
+        _closeTask = _writerTask.ContinueWith(_ =>
+        {
+            World.SaveChests(chests, _writer, (int)version);
+            World.SaveSigns(signs, _writer, (int)version);
+            World.SaveTileEntities(tileEntities, _writer, version);
+            _writer.BaseStream.Position = (long)0;
+            _writer.Write(_uniqueTileGroupsWritten);
+            _writer.Close();
+            _writer.Dispose();
+            _writer = null;
+        }, TaskContinuationOptions.ExecuteSynchronously);
+
+        return _closeTask;
     }
+
+    /// <summary>
+    /// Synchronous close — blocks until fully written. Use for redo buffers
+    /// or anywhere the file must be complete before continuing.
+    /// </summary>
+    public void Close()
+    {
+        CloseAsync().Wait();
+    }
+
+    private Task _closeTask;
 
     public bool[] TileImportance => _world?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
@@ -238,6 +296,18 @@ public class UndoBuffer : IDisposable
             if (disposing)
             {
                 Debug.WriteLine($"Disposing {file}");
+                // Wait for async close if in progress, otherwise signal and wait
+                if (_closeTask != null)
+                {
+                    _closeTask.Wait();
+                }
+                else
+                {
+                    if (!_flushQueue.IsAddingCompleted)
+                        _flushQueue.CompleteAdding();
+                    _writerTask?.Wait();
+                }
+                _flushQueue.Dispose();
                 // free managed
                 _writer?.Dispose();
             }

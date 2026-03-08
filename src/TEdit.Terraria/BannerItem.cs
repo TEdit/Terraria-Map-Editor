@@ -14,6 +14,12 @@ public partial class BannerItem : ReactiveObject
     /// <summary>First NPC ID with this banner, used for icon preview.</summary>
     public int NpcId { get; set; }
 
+    /// <summary>Forces WPF to re-evaluate the NpcId binding (for deferred preview loading).</summary>
+    public void NotifyPreviewChanged() => this.RaisePropertyChanged(nameof(NpcId));
+
+    /// <summary>Bestiary display index (the # shown in-game).</summary>
+    public int BestiaryIndex { get; set; }
+
     /// <summary>Kill count from KilledMobs (read-only display).</summary>
     [Reactive]
     private int _kills;

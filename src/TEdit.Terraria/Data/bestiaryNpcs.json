@@ -8,7 +8,8 @@
       "bestiaryId": "JungleSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 258,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 1
     },
     {
       "id": -9,
@@ -18,7 +19,8 @@
       "bestiaryId": "YellowSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 184,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 3
     },
     {
       "id": -8,
@@ -28,7 +30,8 @@
       "bestiaryId": "RedSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 183,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 1
     },
     {
       "id": -7,
@@ -38,7 +41,8 @@
       "bestiaryId": "PurpleSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 133,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 1
     },
     {
       "id": -6,
@@ -48,7 +52,8 @@
       "bestiaryId": "BlackSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 189,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 1
     },
     {
       "id": -5,
@@ -57,7 +62,8 @@
       "name": "Baby Slime",
       "bestiaryId": "BabySlime",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 188
+      "bestiaryDisplayIndex": 188,
+      "bestiaryStars": 1
     },
     {
       "id": -4,
@@ -67,7 +73,8 @@
       "bestiaryId": "Pinky",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 134,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 4
     },
     {
       "id": -3,
@@ -77,7 +84,8 @@
       "bestiaryId": "GreenSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 131,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 1
     },
     {
       "id": -1,
@@ -86,7 +94,8 @@
       "name": "Slimeling",
       "bestiaryId": "Slimeling",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 331
+      "bestiaryDisplayIndex": 331,
+      "bestiaryStars": 2
     },
     {
       "id": 1,
@@ -96,7 +105,8 @@
       "bestiaryId": "BlueSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 132,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 1
     },
     {
       "id": 2,
@@ -106,7 +116,8 @@
       "bestiaryId": "DemonEye",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 143,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 3,
@@ -116,7 +127,8 @@
       "bestiaryId": "Zombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 150,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 4,
@@ -125,7 +137,8 @@
       "name": "Eye of Cthulhu",
       "bestiaryId": "EyeofCthulhu",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 510
+      "bestiaryDisplayIndex": 510,
+      "bestiaryStars": 2
     },
     {
       "id": 5,
@@ -134,7 +147,8 @@
       "name": "Servant of Cthulhu",
       "bestiaryId": "ServantofCthulhu",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 511
+      "bestiaryDisplayIndex": 511,
+      "bestiaryStars": 1
     },
     {
       "id": 6,
@@ -144,7 +158,8 @@
       "bestiaryId": "EaterofSouls",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 333,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 1
     },
     {
       "id": 7,
@@ -154,7 +169,8 @@
       "bestiaryId": "DevourerHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 335,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 2
     },
     {
       "id": 10,
@@ -164,7 +180,8 @@
       "bestiaryId": "GiantWormHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 186,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 1
     },
     {
       "id": 13,
@@ -172,7 +189,9 @@
       "fullName": "Eater of Worlds",
       "name": "Eater of Worlds",
       "bestiaryId": "EaterofWorldsHead",
-      "bestiaryDisplayIndex": 513
+      "isKillCredit": true,
+      "bestiaryDisplayIndex": 513,
+      "bestiaryStars": 3
     },
     {
       "id": 16,
@@ -182,7 +201,8 @@
       "bestiaryId": "MotherSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 191,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 2
     },
     {
       "id": 21,
@@ -192,7 +212,8 @@
       "bestiaryId": "Skeleton",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 194,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 1
     },
     {
       "id": 23,
@@ -202,7 +223,8 @@
       "bestiaryId": "MeteorHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 283,
-      "category": "Meteorite"
+      "category": "Meteorite",
+      "bestiaryStars": 2
     },
     {
       "id": 24,
@@ -212,7 +234,8 @@
       "bestiaryId": "FireImp",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 322,
-      "category": "Underworld"
+      "category": "Underworld",
+      "bestiaryStars": 2
     },
     {
       "id": 26,
@@ -222,7 +245,8 @@
       "bestiaryId": "GoblinPeon",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 385,
-      "category": "Goblin Army"
+      "category": "Goblin Army",
+      "bestiaryStars": 1
     },
     {
       "id": 27,
@@ -232,7 +256,8 @@
       "bestiaryId": "GoblinThief",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 386,
-      "category": "Goblin Army"
+      "category": "Goblin Army",
+      "bestiaryStars": 1
     },
     {
       "id": 28,
@@ -242,7 +267,8 @@
       "bestiaryId": "GoblinWarrior",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 388,
-      "category": "Goblin Army"
+      "category": "Goblin Army",
+      "bestiaryStars": 2
     },
     {
       "id": 29,
@@ -252,7 +278,8 @@
       "bestiaryId": "GoblinSorcerer",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 390,
-      "category": "Goblin Army"
+      "category": "Goblin Army",
+      "bestiaryStars": 2
     },
     {
       "id": 31,
@@ -262,7 +289,8 @@
       "bestiaryId": "AngryBones",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 285,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 32,
@@ -272,7 +300,8 @@
       "bestiaryId": "DarkCaster",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 306,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 1
     },
     {
       "id": 34,
@@ -282,7 +311,8 @@
       "bestiaryId": "CursedSkull",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 315,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 35,
@@ -291,7 +321,8 @@
       "name": "Skeletron",
       "bestiaryId": "SkeletronHead",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 517
+      "bestiaryDisplayIndex": 517,
+      "bestiaryStars": 3
     },
     {
       "id": 39,
@@ -301,7 +332,8 @@
       "bestiaryId": "BoneSerpentHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 321,
-      "category": "Underworld"
+      "category": "Underworld",
+      "bestiaryStars": 2
     },
     {
       "id": 42,
@@ -311,7 +343,8 @@
       "bestiaryId": "Hornet",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 269,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 1
     },
     {
       "id": 43,
@@ -321,7 +354,8 @@
       "bestiaryId": "ManEater",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 275,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 2
     },
     {
       "id": 44,
@@ -331,7 +365,8 @@
       "bestiaryId": "UndeadMiner",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 199,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 3
     },
     {
       "id": 45,
@@ -341,7 +376,8 @@
       "bestiaryId": "Tim",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 204,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 5
     },
     {
       "id": 46,
@@ -352,7 +388,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 42,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 47,
@@ -362,7 +399,8 @@
       "bestiaryId": "CorruptBunny",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 159,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 3
     },
     {
       "id": 48,
@@ -372,7 +410,8 @@
       "bestiaryId": "Harpy",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 329,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 2
     },
     {
       "id": 49,
@@ -382,7 +421,8 @@
       "bestiaryId": "CaveBat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 206,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 1
     },
     {
       "id": 50,
@@ -391,7 +431,8 @@
       "name": "King Slime",
       "bestiaryId": "KingSlime",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 512
+      "bestiaryDisplayIndex": 512,
+      "bestiaryStars": 2
     },
     {
       "id": 51,
@@ -401,7 +442,8 @@
       "bestiaryId": "JungleBat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 277,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 1
     },
     {
       "id": 52,
@@ -411,7 +453,8 @@
       "bestiaryId": "DoctorBones",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 264,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 5
     },
     {
       "id": 53,
@@ -421,7 +464,8 @@
       "bestiaryId": "TheGroom",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 164,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 5
     },
     {
       "id": 55,
@@ -432,7 +476,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 57,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 56,
@@ -442,7 +487,8 @@
       "bestiaryId": "Snatcher",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 259,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 1
     },
     {
       "id": 57,
@@ -452,7 +498,8 @@
       "bestiaryId": "CorruptGoldfish",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 170,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 3
     },
     {
       "id": 58,
@@ -462,7 +509,8 @@
       "bestiaryId": "Piranha",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 278,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 1
     },
     {
       "id": 59,
@@ -472,7 +520,8 @@
       "bestiaryId": "LavaSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 319,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 1
     },
     {
       "id": 60,
@@ -482,7 +531,8 @@
       "bestiaryId": "Hellbat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 323,
-      "category": "Underworld"
+      "category": "Underworld",
+      "bestiaryStars": 2
     },
     {
       "id": 61,
@@ -492,7 +542,8 @@
       "bestiaryId": "Vulture",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 235,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 1
     },
     {
       "id": 62,
@@ -502,7 +553,8 @@
       "bestiaryId": "Demon",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 324,
-      "category": "Underworld"
+      "category": "Underworld",
+      "bestiaryStars": 2
     },
     {
       "id": 63,
@@ -512,7 +564,8 @@
       "bestiaryId": "BlueJellyfish",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 208,
-      "category": "Ocean"
+      "category": "Ocean",
+      "bestiaryStars": 1
     },
     {
       "id": 64,
@@ -522,7 +575,8 @@
       "bestiaryId": "PinkJellyfish",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 257,
-      "category": "Ocean"
+      "category": "Ocean",
+      "bestiaryStars": 2
     },
     {
       "id": 65,
@@ -532,7 +586,8 @@
       "bestiaryId": "Shark",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 254,
-      "category": "Ocean"
+      "category": "Ocean",
+      "bestiaryStars": 2
     },
     {
       "id": 66,
@@ -542,7 +597,8 @@
       "bestiaryId": "VoodooDemon",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 325,
-      "category": "Underworld"
+      "category": "Underworld",
+      "bestiaryStars": 3
     },
     {
       "id": 67,
@@ -552,7 +608,8 @@
       "bestiaryId": "Crab",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 252,
-      "category": "Ocean"
+      "category": "Ocean",
+      "bestiaryStars": 1
     },
     {
       "id": 68,
@@ -561,7 +618,8 @@
       "name": "Dungeon Guardian",
       "bestiaryId": "DungeonGuardian",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 317
+      "bestiaryDisplayIndex": 317,
+      "bestiaryStars": 4
     },
     {
       "id": 69,
@@ -571,7 +629,8 @@
       "bestiaryId": "Antlion",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 243,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 1
     },
     {
       "id": 71,
@@ -581,7 +640,8 @@
       "bestiaryId": "DungeonSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 284,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 4
     },
     {
       "id": 73,
@@ -591,7 +651,8 @@
       "bestiaryId": "GoblinScout",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 130,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 74,
@@ -602,7 +663,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 48,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 75,
@@ -612,7 +674,8 @@
       "bestiaryId": "Pixie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 363,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 2
     },
     {
       "id": 77,
@@ -622,7 +685,8 @@
       "bestiaryId": "ArmoredSkeleton",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 202,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 78,
@@ -632,7 +696,8 @@
       "bestiaryId": "Mummy",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 239,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 79,
@@ -642,7 +707,8 @@
       "bestiaryId": "DarkMummy",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 343,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 2
     },
     {
       "id": 80,
@@ -652,7 +718,8 @@
       "bestiaryId": "LightMummy",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 373,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 2
     },
     {
       "id": 81,
@@ -662,7 +729,8 @@
       "bestiaryId": "CorruptSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 332,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 2
     },
     {
       "id": 82,
@@ -672,7 +740,8 @@
       "bestiaryId": "Wraith",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 158,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 2
     },
     {
       "id": 83,
@@ -682,7 +751,8 @@
       "bestiaryId": "CursedHammer",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 339,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 2
     },
     {
       "id": 84,
@@ -692,7 +762,8 @@
       "bestiaryId": "EnchantedSword",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 369,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 2
     },
     {
       "id": 85,
@@ -702,7 +773,8 @@
       "bestiaryId": "Mimic",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 210,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 5
     },
     {
       "id": 86,
@@ -712,7 +784,8 @@
       "bestiaryId": "Unicorn",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 365,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 2
     },
     {
       "id": 87,
@@ -722,7 +795,8 @@
       "bestiaryId": "WyvernHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 328,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 93,
@@ -732,7 +806,8 @@
       "bestiaryId": "GiantBat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 207,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 94,
@@ -742,7 +817,8 @@
       "bestiaryId": "Corruptor",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 334,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 2
     },
     {
       "id": 95,
@@ -752,7 +828,8 @@
       "bestiaryId": "DiggerHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 187,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 98,
@@ -762,7 +839,8 @@
       "bestiaryId": "SeekerHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 336,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 2
     },
     {
       "id": 101,
@@ -772,7 +850,8 @@
       "bestiaryId": "Clinger",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 337,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 2
     },
     {
       "id": 102,
@@ -782,7 +861,8 @@
       "bestiaryId": "AnglerFish",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 279,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 103,
@@ -792,7 +872,8 @@
       "bestiaryId": "GreenJellyfish",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 209,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 104,
@@ -802,7 +883,8 @@
       "bestiaryId": "Werewolf",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 157,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 2
     },
     {
       "id": 109,
@@ -812,7 +894,8 @@
       "bestiaryId": "Clown",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 167,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 4
     },
     {
       "id": 110,
@@ -822,7 +905,8 @@
       "bestiaryId": "SkeletonArcher",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 200,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 111,
@@ -832,7 +916,8 @@
       "bestiaryId": "GoblinArcher",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 387,
-      "category": "Goblin Army"
+      "category": "Goblin Army",
+      "bestiaryStars": 1
     },
     {
       "id": 113,
@@ -841,7 +926,8 @@
       "name": "Wall of Flesh",
       "bestiaryId": "WallofFlesh",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 519
+      "bestiaryDisplayIndex": 519,
+      "bestiaryStars": 4
     },
     {
       "id": 115,
@@ -850,7 +936,8 @@
       "name": "The Hungry",
       "bestiaryId": "TheHungry",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 521
+      "bestiaryDisplayIndex": 521,
+      "bestiaryStars": 2
     },
     {
       "id": 116,
@@ -859,7 +946,8 @@
       "name": "The Hungry",
       "bestiaryId": "TheHungryII",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 522
+      "bestiaryDisplayIndex": 522,
+      "bestiaryStars": 2
     },
     {
       "id": 117,
@@ -868,7 +956,8 @@
       "name": "Leech",
       "bestiaryId": "LeechHead",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 520
+      "bestiaryDisplayIndex": 520,
+      "bestiaryStars": 1
     },
     {
       "id": 120,
@@ -878,7 +967,8 @@
       "bestiaryId": "ChaosElemental",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 367,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 2
     },
     {
       "id": 121,
@@ -886,7 +976,9 @@
       "fullName": "Slimer",
       "name": "Slimer",
       "bestiaryId": "Slimer",
-      "bestiaryDisplayIndex": 338
+      "isKillCredit": true,
+      "bestiaryDisplayIndex": 338,
+      "bestiaryStars": 2
     },
     {
       "id": 122,
@@ -896,7 +988,8 @@
       "bestiaryId": "Gastropod",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 364,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 2
     },
     {
       "id": 125,
@@ -905,7 +998,8 @@
       "name": "Retinazer",
       "bestiaryId": "Retinazer",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 527
+      "bestiaryDisplayIndex": 527,
+      "bestiaryStars": 4
     },
     {
       "id": 126,
@@ -914,7 +1008,8 @@
       "name": "Spazmatism",
       "bestiaryId": "Spazmatism",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 528
+      "bestiaryDisplayIndex": 528,
+      "bestiaryStars": 4
     },
     {
       "id": 127,
@@ -923,7 +1018,8 @@
       "name": "Skeletron Prime",
       "bestiaryId": "SkeletronPrime",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 531
+      "bestiaryDisplayIndex": 531,
+      "bestiaryStars": 4
     },
     {
       "id": 132,
@@ -933,7 +1029,8 @@
       "bestiaryId": "BaldZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 149,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 133,
@@ -943,7 +1040,8 @@
       "bestiaryId": "WanderingEye",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 146,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 2
     },
     {
       "id": 134,
@@ -952,7 +1050,8 @@
       "name": "The Destroyer",
       "bestiaryId": "TheDestroyer",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 529
+      "bestiaryDisplayIndex": 529,
+      "bestiaryStars": 4
     },
     {
       "id": 137,
@@ -962,7 +1061,8 @@
       "bestiaryId": "IlluminantBat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 368,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 2
     },
     {
       "id": 138,
@@ -972,7 +1072,8 @@
       "bestiaryId": "IlluminantSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 366,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 2
     },
     {
       "id": 139,
@@ -981,7 +1082,8 @@
       "name": "Probe",
       "bestiaryId": "Probe",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 530
+      "bestiaryDisplayIndex": 530,
+      "bestiaryStars": 2
     },
     {
       "id": 140,
@@ -991,7 +1093,8 @@
       "bestiaryId": "PossessedArmor",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 156,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 2
     },
     {
       "id": 141,
@@ -1001,7 +1104,8 @@
       "bestiaryId": "ToxicSludge",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 185,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 2
     },
     {
       "id": 143,
@@ -1011,7 +1115,8 @@
       "bestiaryId": "SnowmanGangsta",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 484,
-      "category": "Frost Legion"
+      "category": "Frost Legion",
+      "bestiaryStars": 2
     },
     {
       "id": 144,
@@ -1021,7 +1126,8 @@
       "bestiaryId": "MisterStabby",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 486,
-      "category": "Frost Legion"
+      "category": "Frost Legion",
+      "bestiaryStars": 2
     },
     {
       "id": 145,
@@ -1031,7 +1137,8 @@
       "bestiaryId": "SnowBalla",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 485,
-      "category": "Frost Legion"
+      "category": "Frost Legion",
+      "bestiaryStars": 2
     },
     {
       "id": 147,
@@ -1041,7 +1148,8 @@
       "bestiaryId": "IceSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 221,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 1
     },
     {
       "id": 148,
@@ -1052,7 +1160,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 109,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 1
     },
     {
       "id": 149,
@@ -1063,7 +1172,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 110,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 2
     },
     {
       "id": 150,
@@ -1073,7 +1183,8 @@
       "bestiaryId": "IceBat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 231,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 1
     },
     {
       "id": 151,
@@ -1083,7 +1194,8 @@
       "bestiaryId": "Lavabat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 326,
-      "category": "Underworld"
+      "category": "Underworld",
+      "bestiaryStars": 2
     },
     {
       "id": 152,
@@ -1093,7 +1205,8 @@
       "bestiaryId": "GiantFlyingFox",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 260,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 2
     },
     {
       "id": 153,
@@ -1103,7 +1216,8 @@
       "bestiaryId": "GiantTortoise",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 281,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 2
     },
     {
       "id": 154,
@@ -1113,7 +1227,8 @@
       "bestiaryId": "IceTortoise",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 234,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 2
     },
     {
       "id": 155,
@@ -1123,7 +1238,8 @@
       "bestiaryId": "Wolf",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 224,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 2
     },
     {
       "id": 156,
@@ -1133,7 +1249,8 @@
       "bestiaryId": "RedDevil",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 327,
-      "category": "Underworld"
+      "category": "Underworld",
+      "bestiaryStars": 2
     },
     {
       "id": 157,
@@ -1143,7 +1260,8 @@
       "bestiaryId": "Arapaima",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 280,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 2
     },
     {
       "id": 159,
@@ -1153,7 +1271,8 @@
       "bestiaryId": "Vampire",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 432,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 161,
@@ -1163,7 +1282,8 @@
       "bestiaryId": "ZombieEskimo",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 222,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 2
     },
     {
       "id": 162,
@@ -1173,7 +1293,8 @@
       "bestiaryId": "Frankenstein",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 425,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 165,
@@ -1183,7 +1304,8 @@
       "bestiaryId": "WallCreeperWall",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 219,
-      "category": "Spider Nest"
+      "category": "Spider Nest",
+      "bestiaryStars": 2
     },
     {
       "id": 166,
@@ -1193,7 +1315,8 @@
       "bestiaryId": "SwampThing",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 427,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 167,
@@ -1203,7 +1326,8 @@
       "bestiaryId": "UndeadViking",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 227,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 2
     },
     {
       "id": 168,
@@ -1213,7 +1337,8 @@
       "bestiaryId": "CorruptPenguin",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 160,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 3
     },
     {
       "id": 169,
@@ -1223,7 +1348,8 @@
       "bestiaryId": "IceElemental",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 232,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 2
     },
     {
       "id": 170,
@@ -1233,7 +1359,8 @@
       "bestiaryId": "PigronCorruption",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 341,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 3
     },
     {
       "id": 171,
@@ -1243,7 +1370,8 @@
       "bestiaryId": "PigronHallow",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 371,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 3
     },
     {
       "id": 172,
@@ -1253,7 +1381,8 @@
       "bestiaryId": "RuneWizard",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 205,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 5
     },
     {
       "id": 173,
@@ -1263,7 +1392,8 @@
       "bestiaryId": "Crimera",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 347,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 1
     },
     {
       "id": 174,
@@ -1273,7 +1403,8 @@
       "bestiaryId": "Herpling",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 354,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 175,
@@ -1283,7 +1414,8 @@
       "bestiaryId": "AngryTrapper",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 276,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 2
     },
     {
       "id": 176,
@@ -1293,7 +1425,8 @@
       "bestiaryId": "MossHornet",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 273,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 2
     },
     {
       "id": 177,
@@ -1303,7 +1436,8 @@
       "bestiaryId": "Derpling",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 261,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 2
     },
     {
       "id": 179,
@@ -1313,7 +1447,8 @@
       "bestiaryId": "CrimsonAxe",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 352,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 180,
@@ -1323,7 +1458,8 @@
       "bestiaryId": "PigronCrimson",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 356,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 3
     },
     {
       "id": 181,
@@ -1333,7 +1469,8 @@
       "bestiaryId": "FaceMonster",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 346,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 182,
@@ -1343,7 +1480,8 @@
       "bestiaryId": "FloatyGross",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 350,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 183,
@@ -1353,7 +1491,8 @@
       "bestiaryId": "Crimslime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 345,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 2
     },
     {
       "id": 184,
@@ -1363,7 +1502,8 @@
       "bestiaryId": "SpikedIceSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 225,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 2
     },
     {
       "id": 185,
@@ -1373,7 +1513,8 @@
       "bestiaryId": "SnowFlinx",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 228,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 3
     },
     {
       "id": 186,
@@ -1383,7 +1524,8 @@
       "bestiaryId": "PincushionZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 154,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 187,
@@ -1393,7 +1535,8 @@
       "bestiaryId": "SlimedZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 148,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 188,
@@ -1403,7 +1546,8 @@
       "bestiaryId": "SwampZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 153,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 189,
@@ -1413,7 +1557,8 @@
       "bestiaryId": "TwiggyZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 151,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 190,
@@ -1423,7 +1568,8 @@
       "bestiaryId": "CataractEye",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 145,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 191,
@@ -1433,7 +1579,8 @@
       "bestiaryId": "SleepyEye",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 141,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 192,
@@ -1443,7 +1590,8 @@
       "bestiaryId": "DialatedEye",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 140,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 193,
@@ -1453,7 +1601,8 @@
       "bestiaryId": "GreenEye",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 144,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 194,
@@ -1463,7 +1612,8 @@
       "bestiaryId": "PurpleEye",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 142,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 195,
@@ -1473,7 +1623,8 @@
       "bestiaryId": "Nymph",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 212,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 5
     },
     {
       "id": 196,
@@ -1483,7 +1634,8 @@
       "bestiaryId": "Nymph",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 201,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 5
     },
     {
       "id": 197,
@@ -1493,7 +1645,8 @@
       "bestiaryId": "ArmoredViking",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 229,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 2
     },
     {
       "id": 198,
@@ -1503,7 +1656,8 @@
       "bestiaryId": "LihzahrdCrawler",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 383,
-      "category": "Temple"
+      "category": "Temple",
+      "bestiaryStars": 2
     },
     {
       "id": 200,
@@ -1513,7 +1667,8 @@
       "bestiaryId": "FemaleZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 147,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 201,
@@ -1523,7 +1678,8 @@
       "bestiaryId": "HeadacheSkeleton",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 196,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 1
     },
     {
       "id": 202,
@@ -1533,7 +1689,8 @@
       "bestiaryId": "MisassembledSkeleton",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 193,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 1
     },
     {
       "id": 203,
@@ -1543,7 +1700,8 @@
       "bestiaryId": "PantlessSkeleton",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 197,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 1
     },
     {
       "id": 204,
@@ -1553,7 +1711,8 @@
       "bestiaryId": "SpikedJungleSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 262,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 2
     },
     {
       "id": 205,
@@ -1563,7 +1722,8 @@
       "bestiaryId": "Moth",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 274,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 4
     },
     {
       "id": 206,
@@ -1573,7 +1733,8 @@
       "bestiaryId": "IcyMerman",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 230,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 3
     },
     {
       "id": 210,
@@ -1582,7 +1743,8 @@
       "name": "Bee",
       "bestiaryId": "Bee",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 266
+      "bestiaryDisplayIndex": 266,
+      "bestiaryStars": 1
     },
     {
       "id": 211,
@@ -1591,7 +1753,8 @@
       "name": "Bee",
       "bestiaryId": "BeeSmall",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 265
+      "bestiaryDisplayIndex": 265,
+      "bestiaryStars": 1
     },
     {
       "id": 212,
@@ -1601,7 +1764,8 @@
       "bestiaryId": "PirateDeckhand",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 406,
-      "category": "Pirate Invasion"
+      "category": "Pirate Invasion",
+      "bestiaryStars": 2
     },
     {
       "id": 213,
@@ -1611,7 +1775,8 @@
       "bestiaryId": "PirateCorsair",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 408,
-      "category": "Pirate Invasion"
+      "category": "Pirate Invasion",
+      "bestiaryStars": 2
     },
     {
       "id": 214,
@@ -1621,7 +1786,8 @@
       "bestiaryId": "PirateDeadeye",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 405,
-      "category": "Pirate Invasion"
+      "category": "Pirate Invasion",
+      "bestiaryStars": 2
     },
     {
       "id": 215,
@@ -1631,7 +1797,8 @@
       "bestiaryId": "PirateCrossbower",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 407,
-      "category": "Pirate Invasion"
+      "category": "Pirate Invasion",
+      "bestiaryStars": 2
     },
     {
       "id": 216,
@@ -1641,7 +1808,8 @@
       "bestiaryId": "PirateCaptain",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 409,
-      "category": "Pirate Invasion"
+      "category": "Pirate Invasion",
+      "bestiaryStars": 3
     },
     {
       "id": 217,
@@ -1651,7 +1819,8 @@
       "bestiaryId": "CochinealBeetle",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 192,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 3
     },
     {
       "id": 218,
@@ -1661,7 +1830,8 @@
       "bestiaryId": "CyanBeetle",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 226,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 3
     },
     {
       "id": 219,
@@ -1671,7 +1841,8 @@
       "bestiaryId": "LacBeetle",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 263,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 3
     },
     {
       "id": 220,
@@ -1681,7 +1852,8 @@
       "bestiaryId": "SeaSnail",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 253,
-      "category": "Ocean"
+      "category": "Ocean",
+      "bestiaryStars": 4
     },
     {
       "id": 221,
@@ -1691,7 +1863,8 @@
       "bestiaryId": "Squid",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 256,
-      "category": "Ocean"
+      "category": "Ocean",
+      "bestiaryStars": 3
     },
     {
       "id": 222,
@@ -1700,7 +1873,8 @@
       "name": "Queen Bee",
       "bestiaryId": "QueenBee",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 518
+      "bestiaryDisplayIndex": 518,
+      "bestiaryStars": 3
     },
     {
       "id": 223,
@@ -1710,7 +1884,8 @@
       "bestiaryId": "ZombieRaincoat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 155,
-      "category": "Rain"
+      "category": "Rain",
+      "bestiaryStars": 2
     },
     {
       "id": 224,
@@ -1720,7 +1895,8 @@
       "bestiaryId": "FlyingFish",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 138,
-      "category": "Rain"
+      "category": "Rain",
+      "bestiaryStars": 2
     },
     {
       "id": 225,
@@ -1730,7 +1906,8 @@
       "bestiaryId": "UmbrellaSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 137,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 2
     },
     {
       "id": 226,
@@ -1740,7 +1917,8 @@
       "bestiaryId": "FlyingSnake",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 384,
-      "category": "Temple"
+      "category": "Temple",
+      "bestiaryStars": 2
     },
     {
       "id": 231,
@@ -1750,7 +1928,8 @@
       "bestiaryId": "HornetFatty",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 270,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 1
     },
     {
       "id": 232,
@@ -1760,7 +1939,8 @@
       "bestiaryId": "HornetHoney",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 271,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 1
     },
     {
       "id": 233,
@@ -1770,7 +1950,8 @@
       "bestiaryId": "HornetLeafy",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 272,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 2
     },
     {
       "id": 234,
@@ -1780,7 +1961,8 @@
       "bestiaryId": "HornetSpikey",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 268,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 1
     },
     {
       "id": 235,
@@ -1790,7 +1972,8 @@
       "bestiaryId": "HornetStingy",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 267,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 1
     },
     {
       "id": 237,
@@ -1800,7 +1983,8 @@
       "bestiaryId": "JungleCreeperWall",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 282,
-      "category": "Jungle"
+      "category": "Jungle",
+      "bestiaryStars": 2
     },
     {
       "id": 238,
@@ -1810,7 +1994,8 @@
       "bestiaryId": "BlackRecluseWall",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 220,
-      "category": "Spider Nest"
+      "category": "Spider Nest",
+      "bestiaryStars": 2
     },
     {
       "id": 240,
@@ -1820,7 +2005,8 @@
       "bestiaryId": "BloodCrawlerWall",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 353,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 241,
@@ -1830,7 +2016,8 @@
       "bestiaryId": "BloodFeeder",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 348,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 242,
@@ -1840,7 +2027,8 @@
       "bestiaryId": "BloodJelly",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 349,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 243,
@@ -1850,7 +2038,8 @@
       "bestiaryId": "IceGolem",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 223,
-      "category": "Rain"
+      "category": "Rain",
+      "bestiaryStars": 5
     },
     {
       "id": 244,
@@ -1860,7 +2049,8 @@
       "bestiaryId": "RainbowSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 362,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 4
     },
     {
       "id": 245,
@@ -1869,7 +2059,8 @@
       "name": "Golem",
       "bestiaryId": "Golem",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 534
+      "bestiaryDisplayIndex": 534,
+      "bestiaryStars": 4
     },
     {
       "id": 250,
@@ -1879,7 +2070,8 @@
       "bestiaryId": "AngryNimbus",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 139,
-      "category": "Rain"
+      "category": "Rain",
+      "bestiaryStars": 3
     },
     {
       "id": 251,
@@ -1889,7 +2081,8 @@
       "bestiaryId": "Eyezor",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 433,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 5
     },
     {
       "id": 252,
@@ -1899,7 +2092,8 @@
       "bestiaryId": "Parrot",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 410,
-      "category": "Pirate Invasion"
+      "category": "Pirate Invasion",
+      "bestiaryStars": 2
     },
     {
       "id": 253,
@@ -1909,7 +2103,8 @@
       "bestiaryId": "Reaper",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 435,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 254,
@@ -1919,7 +2114,8 @@
       "bestiaryId": "ZombieMushroom",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 376,
-      "category": "Mushroom"
+      "category": "Mushroom",
+      "bestiaryStars": 2
     },
     {
       "id": 255,
@@ -1929,7 +2125,8 @@
       "bestiaryId": "ZombieMushroomHat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 377,
-      "category": "Mushroom"
+      "category": "Mushroom",
+      "bestiaryStars": 2
     },
     {
       "id": 256,
@@ -1939,7 +2136,8 @@
       "bestiaryId": "FungoFish",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 382,
-      "category": "Mushroom"
+      "category": "Mushroom",
+      "bestiaryStars": 2
     },
     {
       "id": 257,
@@ -1949,7 +2147,8 @@
       "bestiaryId": "AnomuraFungus",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 378,
-      "category": "Mushroom"
+      "category": "Mushroom",
+      "bestiaryStars": 2
     },
     {
       "id": 258,
@@ -1959,7 +2158,8 @@
       "bestiaryId": "MushiLadybug",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 379,
-      "category": "Mushroom"
+      "category": "Mushroom",
+      "bestiaryStars": 2
     },
     {
       "id": 259,
@@ -1969,7 +2169,8 @@
       "bestiaryId": "FungiBulb",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 380,
-      "category": "Mushroom"
+      "category": "Mushroom",
+      "bestiaryStars": 1
     },
     {
       "id": 260,
@@ -1979,7 +2180,8 @@
       "bestiaryId": "GiantFungiBulb",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 381,
-      "category": "Mushroom"
+      "category": "Mushroom",
+      "bestiaryStars": 2
     },
     {
       "id": 262,
@@ -1988,7 +2190,8 @@
       "name": "Plantera",
       "bestiaryId": "Plantera",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 532
+      "bestiaryDisplayIndex": 532,
+      "bestiaryStars": 4
     },
     {
       "id": 266,
@@ -1997,7 +2200,8 @@
       "name": "Brain of Cthulhu",
       "bestiaryId": "BrainofCthulhu",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 514
+      "bestiaryDisplayIndex": 514,
+      "bestiaryStars": 3
     },
     {
       "id": 267,
@@ -2006,7 +2210,8 @@
       "name": "Creeper",
       "bestiaryId": "Creeper",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 515
+      "bestiaryDisplayIndex": 515,
+      "bestiaryStars": 2
     },
     {
       "id": 268,
@@ -2016,7 +2221,8 @@
       "bestiaryId": "IchorSticker",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 351,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 269,
@@ -2026,7 +2232,8 @@
       "bestiaryId": "RustyArmoredBonesAxe",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 302,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 270,
@@ -2036,7 +2243,8 @@
       "bestiaryId": "RustyArmoredBonesFlail",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 295,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 271,
@@ -2046,7 +2254,8 @@
       "bestiaryId": "RustyArmoredBonesSword",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 298,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 272,
@@ -2056,7 +2265,8 @@
       "bestiaryId": "RustyArmoredBonesSwordNoArmor",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 294,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 273,
@@ -2066,7 +2276,8 @@
       "bestiaryId": "BlueArmoredBones",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 297,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 274,
@@ -2076,7 +2287,8 @@
       "bestiaryId": "BlueArmoredBonesMace",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 289,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 275,
@@ -2086,7 +2298,8 @@
       "bestiaryId": "BlueArmoredBonesNoPants",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 300,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 276,
@@ -2096,7 +2309,8 @@
       "bestiaryId": "BlueArmoredBonesSword",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 303,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 277,
@@ -2106,7 +2320,8 @@
       "bestiaryId": "HellArmoredBones",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 293,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 278,
@@ -2116,7 +2331,8 @@
       "bestiaryId": "HellArmoredBonesSpikeShield",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 299,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 279,
@@ -2126,7 +2342,8 @@
       "bestiaryId": "HellArmoredBonesMace",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 296,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 280,
@@ -2136,7 +2353,8 @@
       "bestiaryId": "HellArmoredBonesSword",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 301,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 281,
@@ -2146,7 +2364,8 @@
       "bestiaryId": "RaggedCaster",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 311,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 282,
@@ -2156,7 +2375,8 @@
       "bestiaryId": "RaggedCasterOpenCoat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 313,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 283,
@@ -2166,7 +2386,8 @@
       "bestiaryId": "Necromancer",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 310,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 284,
@@ -2176,7 +2397,8 @@
       "bestiaryId": "NecromancerArmored",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 312,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 285,
@@ -2186,7 +2408,8 @@
       "bestiaryId": "DiabolistRed",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 308,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 286,
@@ -2196,7 +2419,8 @@
       "bestiaryId": "DiabolistWhite",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 309,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 287,
@@ -2206,7 +2430,8 @@
       "bestiaryId": "BoneLee",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 304,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 4
     },
     {
       "id": 288,
@@ -2216,7 +2441,8 @@
       "bestiaryId": "DungeonSpirit",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 318,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 289,
@@ -2226,7 +2452,8 @@
       "bestiaryId": "GiantCursedSkull",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 316,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 290,
@@ -2236,7 +2463,8 @@
       "bestiaryId": "Paladin",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 305,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 5
     },
     {
       "id": 291,
@@ -2246,7 +2474,8 @@
       "bestiaryId": "SkeletonSniper",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 290,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 4
     },
     {
       "id": 292,
@@ -2256,7 +2485,8 @@
       "bestiaryId": "TacticalSkeleton",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 291,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 4
     },
     {
       "id": 293,
@@ -2266,7 +2496,8 @@
       "bestiaryId": "SkeletonCommando",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 292,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 4
     },
     {
       "id": 294,
@@ -2276,7 +2507,8 @@
       "bestiaryId": "AngryBonesBig",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 286,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 295,
@@ -2286,7 +2518,8 @@
       "bestiaryId": "AngryBonesBigMuscle",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 287,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 296,
@@ -2296,7 +2529,8 @@
       "bestiaryId": "AngryBonesBigHelmet",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 288,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 2
     },
     {
       "id": 297,
@@ -2307,7 +2541,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 49,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 298,
@@ -2318,7 +2553,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 50,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 2
     },
     {
       "id": 299,
@@ -2328,7 +2564,8 @@
       "bestiaryId": "Squirrel",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 59
+      "bestiaryDisplayIndex": 59,
+      "bestiaryStars": 1
     },
     {
       "id": 300,
@@ -2338,7 +2575,8 @@
       "bestiaryId": "Mouse",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 62
+      "bestiaryDisplayIndex": 62,
+      "bestiaryStars": 1
     },
     {
       "id": 301,
@@ -2348,7 +2586,8 @@
       "bestiaryId": "Raven",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 180,
-      "category": "Halloween"
+      "category": "Halloween",
+      "bestiaryStars": 2
     },
     {
       "id": 302,
@@ -2358,7 +2597,8 @@
       "bestiaryId": "SlimeMasked",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 469,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 3
     },
     {
       "id": 303,
@@ -2369,7 +2609,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 45,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 4
     },
     {
       "id": 304,
@@ -2379,7 +2620,8 @@
       "bestiaryId": "HoppinJack",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 177,
-      "category": "Halloween"
+      "category": "Halloween",
+      "bestiaryStars": 2
     },
     {
       "id": 305,
@@ -2389,7 +2631,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 443,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 306,
@@ -2399,7 +2642,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 439,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 307,
@@ -2409,7 +2653,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 447,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 308,
@@ -2419,7 +2664,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 445,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 309,
@@ -2429,7 +2675,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 441,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 310,
@@ -2439,7 +2686,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 444,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 311,
@@ -2449,7 +2697,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 440,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 312,
@@ -2459,7 +2708,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 448,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 313,
@@ -2469,7 +2719,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 446,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 314,
@@ -2479,7 +2730,8 @@
       "bestiaryId": "Scarecrow1",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 442,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 315,
@@ -2489,7 +2741,8 @@
       "bestiaryId": "HeadlessHorseman",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 452,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 3
     },
     {
       "id": 316,
@@ -2499,7 +2752,8 @@
       "bestiaryId": "Ghost",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 181,
-      "category": "Halloween"
+      "category": "Halloween",
+      "bestiaryStars": 3
     },
     {
       "id": 317,
@@ -2509,7 +2763,8 @@
       "bestiaryId": "DemonEyeOwl",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 471,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 318,
@@ -2519,7 +2774,8 @@
       "bestiaryId": "DemonEyeSpaceship",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 470,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 319,
@@ -2529,7 +2785,8 @@
       "bestiaryId": "ZombieDoctor",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 472,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 320,
@@ -2539,7 +2796,8 @@
       "bestiaryId": "ZombieSuperman",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 473,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 321,
@@ -2549,7 +2807,8 @@
       "bestiaryId": "ZombiePixie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 474,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 322,
@@ -2559,7 +2818,8 @@
       "bestiaryId": "SkeletonTopHat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 477,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 3
     },
     {
       "id": 323,
@@ -2569,7 +2829,8 @@
       "bestiaryId": "SkeletonAstonaut",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 475,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 3
     },
     {
       "id": 324,
@@ -2579,7 +2840,8 @@
       "bestiaryId": "SkeletonAlien",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 476,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 3
     },
     {
       "id": 325,
@@ -2588,7 +2850,8 @@
       "name": "Mourning Wood",
       "bestiaryId": "MourningWood",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 453
+      "bestiaryDisplayIndex": 453,
+      "bestiaryStars": 3
     },
     {
       "id": 326,
@@ -2598,7 +2861,8 @@
       "bestiaryId": "Splinterling",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 449,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 327,
@@ -2607,7 +2871,8 @@
       "name": "Pumpking",
       "bestiaryId": "Pumpking",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 454
+      "bestiaryDisplayIndex": 454,
+      "bestiaryStars": 4
     },
     {
       "id": 329,
@@ -2617,7 +2882,8 @@
       "bestiaryId": "Hellhound",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 451,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 3
     },
     {
       "id": 330,
@@ -2627,7 +2893,8 @@
       "bestiaryId": "Poltergeist",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 450,
-      "category": "Pumpkin Moon"
+      "category": "Pumpkin Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 331,
@@ -2637,7 +2904,8 @@
       "bestiaryId": "ZombieXmas",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 482,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 332,
@@ -2647,7 +2915,8 @@
       "bestiaryId": "ZombieSweater",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 483,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 333,
@@ -2657,7 +2926,8 @@
       "bestiaryId": "SlimeRibbonWhite",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 480,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 3
     },
     {
       "id": 334,
@@ -2667,7 +2937,8 @@
       "bestiaryId": "SlimeRibbonYellow",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 479,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 3
     },
     {
       "id": 335,
@@ -2677,7 +2948,8 @@
       "bestiaryId": "SlimeRibbonGreen",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 481,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 3
     },
     {
       "id": 336,
@@ -2687,7 +2959,8 @@
       "bestiaryId": "SlimeRibbonRed",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 478,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 3
     },
     {
       "id": 337,
@@ -2698,7 +2971,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 46,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 4
     },
     {
       "id": 338,
@@ -2708,7 +2982,8 @@
       "bestiaryId": "ZombieElf",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 456,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 339,
@@ -2718,7 +2993,8 @@
       "bestiaryId": "ZombieElfBeard",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 457,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 340,
@@ -2728,7 +3004,8 @@
       "bestiaryId": "ZombieElfGirl",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 455,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 341,
@@ -2738,7 +3015,8 @@
       "bestiaryId": "PresentMimic",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 463,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 342,
@@ -2748,7 +3026,8 @@
       "bestiaryId": "GingerbreadMan",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 458,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 343,
@@ -2758,7 +3037,8 @@
       "bestiaryId": "Yeti",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 462,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 3
     },
     {
       "id": 344,
@@ -2767,7 +3047,8 @@
       "name": "Everscream",
       "bestiaryId": "Everscream",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 464
+      "bestiaryDisplayIndex": 464,
+      "bestiaryStars": 3
     },
     {
       "id": 345,
@@ -2776,7 +3057,8 @@
       "name": "Ice Queen",
       "bestiaryId": "IceQueen",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 465
+      "bestiaryDisplayIndex": 465,
+      "bestiaryStars": 4
     },
     {
       "id": 346,
@@ -2785,7 +3067,8 @@
       "name": "Santa-NK1",
       "bestiaryId": "SantaNK1",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 466
+      "bestiaryDisplayIndex": 466,
+      "bestiaryStars": 3
     },
     {
       "id": 347,
@@ -2795,7 +3078,8 @@
       "bestiaryId": "ElfCopter",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 467,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 349,
@@ -2805,7 +3089,8 @@
       "bestiaryId": "NutcrackerSpinning",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 460,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 3
     },
     {
       "id": 350,
@@ -2815,7 +3100,8 @@
       "bestiaryId": "ElfArcher",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 459,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 351,
@@ -2825,7 +3111,8 @@
       "bestiaryId": "Krampus",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 461,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 3
     },
     {
       "id": 352,
@@ -2835,7 +3122,8 @@
       "bestiaryId": "Flocko",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 468,
-      "category": "Frost Moon"
+      "category": "Frost Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 355,
@@ -2845,7 +3133,8 @@
       "bestiaryId": "Firefly",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 86
+      "bestiaryDisplayIndex": 86,
+      "bestiaryStars": 2
     },
     {
       "id": 356,
@@ -2855,7 +3144,8 @@
       "bestiaryId": "Butterfly",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 68
+      "bestiaryDisplayIndex": 68,
+      "bestiaryStars": 1
     },
     {
       "id": 357,
@@ -2865,7 +3155,8 @@
       "bestiaryId": "Worm",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 70
+      "bestiaryDisplayIndex": 70,
+      "bestiaryStars": 1
     },
     {
       "id": 358,
@@ -2875,7 +3166,8 @@
       "bestiaryId": "LightningBug",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 126
+      "bestiaryDisplayIndex": 126,
+      "bestiaryStars": 3
     },
     {
       "id": 359,
@@ -2885,7 +3177,8 @@
       "bestiaryId": "Snail",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 107
+      "bestiaryDisplayIndex": 107,
+      "bestiaryStars": 1
     },
     {
       "id": 360,
@@ -2895,7 +3188,8 @@
       "bestiaryId": "GlowingSnail",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 128
+      "bestiaryDisplayIndex": 128,
+      "bestiaryStars": 3
     },
     {
       "id": 361,
@@ -2905,7 +3199,8 @@
       "bestiaryId": "Frog",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 64
+      "bestiaryDisplayIndex": 64,
+      "bestiaryStars": 1
     },
     {
       "id": 362,
@@ -2915,7 +3210,8 @@
       "bestiaryId": "Duck",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 82
+      "bestiaryDisplayIndex": 82,
+      "bestiaryStars": 2
     },
     {
       "id": 364,
@@ -2925,7 +3221,8 @@
       "bestiaryId": "DuckWhite",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 83
+      "bestiaryDisplayIndex": 83,
+      "bestiaryStars": 2
     },
     {
       "id": 366,
@@ -2935,7 +3232,8 @@
       "bestiaryId": "ScorpionBlack",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 112
+      "bestiaryDisplayIndex": 112,
+      "bestiaryStars": 2
     },
     {
       "id": 367,
@@ -2945,7 +3243,8 @@
       "bestiaryId": "Scorpion",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 111
+      "bestiaryDisplayIndex": 111,
+      "bestiaryStars": 1
     },
     {
       "id": 370,
@@ -2954,7 +3253,8 @@
       "name": "Duke Fishron",
       "bestiaryId": "DukeFishron",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 535
+      "bestiaryDisplayIndex": 535,
+      "bestiaryStars": 5
     },
     {
       "id": 372,
@@ -2963,7 +3263,8 @@
       "name": "Sharkron",
       "bestiaryId": "Sharkron",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 536
+      "bestiaryDisplayIndex": 536,
+      "bestiaryStars": 2
     },
     {
       "id": 374,
@@ -2973,7 +3274,8 @@
       "bestiaryId": "TruffleWorm",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 108
+      "bestiaryDisplayIndex": 108,
+      "bestiaryStars": 3
     },
     {
       "id": 377,
@@ -2983,7 +3285,8 @@
       "bestiaryId": "Grasshopper",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 66
+      "bestiaryDisplayIndex": 66,
+      "bestiaryStars": 1
     },
     {
       "id": 378,
@@ -2992,7 +3295,8 @@
       "name": "Chattering Teeth Bomb",
       "bestiaryId": "ChatteringTeethBomb",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 173
+      "bestiaryDisplayIndex": 173,
+      "bestiaryStars": 2
     },
     {
       "id": 379,
@@ -3002,7 +3306,8 @@
       "bestiaryId": "CultistArcherBlue",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 539,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 381,
@@ -3012,7 +3317,8 @@
       "bestiaryId": "BrainScrambler",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 412,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 382,
@@ -3022,7 +3328,8 @@
       "bestiaryId": "RayGunner",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 413,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 383,
@@ -3032,7 +3339,8 @@
       "bestiaryId": "MartianOfficer",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 415,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 385,
@@ -3042,7 +3350,8 @@
       "bestiaryId": "GrayGrunt",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 418,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 386,
@@ -3052,7 +3361,8 @@
       "bestiaryId": "MartianEngineer",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 414,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 387,
@@ -3062,7 +3372,8 @@
       "bestiaryId": "MartianTurret",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 420,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 388,
@@ -3072,7 +3383,8 @@
       "bestiaryId": "MartianDrone",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 421,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 389,
@@ -3082,7 +3394,8 @@
       "bestiaryId": "GigaZapper",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 416,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 390,
@@ -3092,7 +3405,8 @@
       "bestiaryId": "ScutlixRider",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 422,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 391,
@@ -3102,7 +3416,8 @@
       "bestiaryId": "Scutlix",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 417,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 2
     },
     {
       "id": 395,
@@ -3111,7 +3426,8 @@
       "name": "Martian Saucer",
       "bestiaryId": "MartianSaucerCore",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 423
+      "bestiaryDisplayIndex": 423,
+      "bestiaryStars": 4
     },
     {
       "id": 398,
@@ -3120,7 +3436,8 @@
       "name": "Moon Lord\u0027s Core",
       "bestiaryId": "MoonLordCore",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 546
+      "bestiaryDisplayIndex": 546,
+      "bestiaryStars": 5
     },
     {
       "id": 399,
@@ -3129,7 +3446,8 @@
       "name": "Martian Probe",
       "bestiaryId": "MartianProbe",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 330
+      "bestiaryDisplayIndex": 330,
+      "bestiaryStars": 4
     },
     {
       "id": 402,
@@ -3139,7 +3457,8 @@
       "bestiaryId": "StardustWormHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 505,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 405,
@@ -3149,7 +3468,8 @@
       "bestiaryId": "StardustCellBig",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 506,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 406,
@@ -3159,7 +3479,8 @@
       "bestiaryId": "StardustCellSmall",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 507,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 407,
@@ -3169,7 +3490,8 @@
       "bestiaryId": "StardustJellyfishBig",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 508,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 409,
@@ -3179,7 +3501,8 @@
       "bestiaryId": "StardustSpiderBig",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 504,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 411,
@@ -3189,7 +3512,8 @@
       "bestiaryId": "StardustSoldier",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 503,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 412,
@@ -3199,7 +3523,8 @@
       "bestiaryId": "SolarCrawltipedeHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 494,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 3
     },
     {
       "id": 415,
@@ -3209,7 +3534,8 @@
       "bestiaryId": "SolarDrakomire",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 491,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 416,
@@ -3219,7 +3545,8 @@
       "bestiaryId": "SolarDrakomireRider",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 497,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 417,
@@ -3229,7 +3556,8 @@
       "bestiaryId": "SolarSroller",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 495,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 418,
@@ -3239,7 +3567,8 @@
       "bestiaryId": "SolarCorite",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 496,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 419,
@@ -3249,7 +3578,8 @@
       "bestiaryId": "SolarSolenian",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 492,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 420,
@@ -3259,7 +3589,8 @@
       "bestiaryId": "NebulaBrain",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 490,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 421,
@@ -3269,7 +3600,8 @@
       "bestiaryId": "NebulaHeadcrab",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 489,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 422,
@@ -3278,7 +3610,8 @@
       "name": "Vortex Pillar",
       "bestiaryId": "LunarTowerVortex",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 544
+      "bestiaryDisplayIndex": 544,
+      "bestiaryStars": 4
     },
     {
       "id": 423,
@@ -3288,7 +3621,8 @@
       "bestiaryId": "NebulaBeast",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 488,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 424,
@@ -3298,7 +3632,8 @@
       "bestiaryId": "NebulaSoldier",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 487,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 425,
@@ -3308,7 +3643,8 @@
       "bestiaryId": "VortexRifleman",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 501,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 426,
@@ -3318,7 +3654,8 @@
       "bestiaryId": "VortexHornetQueen",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 502,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 427,
@@ -3328,7 +3665,8 @@
       "bestiaryId": "VortexHornet",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 499,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 428,
@@ -3338,7 +3676,8 @@
       "bestiaryId": "VortexLarva",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 498,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 429,
@@ -3348,7 +3687,8 @@
       "bestiaryId": "VortexSoldier",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 500,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 438,
@@ -3358,7 +3698,8 @@
       "bestiaryId": "CultistDevote",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 538,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 439,
@@ -3367,7 +3708,8 @@
       "name": "Lunatic Cultist",
       "bestiaryId": "CultistBoss",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 537
+      "bestiaryDisplayIndex": 537,
+      "bestiaryStars": 4
     },
     {
       "id": 442,
@@ -3377,7 +3719,8 @@
       "bestiaryId": "GoldBird",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 56
+      "bestiaryDisplayIndex": 56,
+      "bestiaryStars": 5
     },
     {
       "id": 443,
@@ -3387,7 +3730,8 @@
       "bestiaryId": "GoldBunny",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 47
+      "bestiaryDisplayIndex": 47,
+      "bestiaryStars": 5
     },
     {
       "id": 444,
@@ -3397,7 +3741,8 @@
       "bestiaryId": "GoldButterfly",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 69
+      "bestiaryDisplayIndex": 69,
+      "bestiaryStars": 5
     },
     {
       "id": 445,
@@ -3407,7 +3752,8 @@
       "bestiaryId": "GoldFrog",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 65
+      "bestiaryDisplayIndex": 65,
+      "bestiaryStars": 5
     },
     {
       "id": 446,
@@ -3417,7 +3763,8 @@
       "bestiaryId": "GoldGrasshopper",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 67
+      "bestiaryDisplayIndex": 67,
+      "bestiaryStars": 5
     },
     {
       "id": 447,
@@ -3427,7 +3774,8 @@
       "bestiaryId": "GoldMouse",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 63
+      "bestiaryDisplayIndex": 63,
+      "bestiaryStars": 5
     },
     {
       "id": 448,
@@ -3437,7 +3785,8 @@
       "bestiaryId": "GoldWorm",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 71
+      "bestiaryDisplayIndex": 71,
+      "bestiaryStars": 5
     },
     {
       "id": 454,
@@ -3446,7 +3795,8 @@
       "name": "Phantasm Dragon",
       "bestiaryId": "CultistDragonHead",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 541
+      "bestiaryDisplayIndex": 541,
+      "bestiaryStars": 3
     },
     {
       "id": 460,
@@ -3456,7 +3806,8 @@
       "bestiaryId": "Butcher",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 431,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 461,
@@ -3466,7 +3817,8 @@
       "bestiaryId": "CreatureFromTheDeep",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 426,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 462,
@@ -3476,7 +3828,8 @@
       "bestiaryId": "Fritz",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 424,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 463,
@@ -3486,7 +3839,8 @@
       "bestiaryId": "Nailhead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 434,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 3
     },
     {
       "id": 464,
@@ -3496,7 +3850,8 @@
       "bestiaryId": "CrimsonBunny",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 161,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 3
     },
     {
       "id": 465,
@@ -3506,7 +3861,8 @@
       "bestiaryId": "CrimsonGoldfish",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 171,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 3
     },
     {
       "id": 466,
@@ -3516,7 +3872,8 @@
       "bestiaryId": "Psycho",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 430,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 467,
@@ -3526,7 +3883,8 @@
       "bestiaryId": "DeadlySphere",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 436,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 468,
@@ -3536,7 +3894,8 @@
       "bestiaryId": "DrManFly",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 428,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 469,
@@ -3546,7 +3905,8 @@
       "bestiaryId": "ThePossessed",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 429,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 2
     },
     {
       "id": 470,
@@ -3556,7 +3916,8 @@
       "bestiaryId": "CrimsonPenguin",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 162,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 3
     },
     {
       "id": 471,
@@ -3566,7 +3927,8 @@
       "bestiaryId": "GoblinSummoner",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 389,
-      "category": "Goblin Army"
+      "category": "Goblin Army",
+      "bestiaryStars": 4
     },
     {
       "id": 472,
@@ -3575,7 +3937,8 @@
       "name": "Shadowflame Apparition",
       "bestiaryId": "ShadowFlameApparition",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 391
+      "bestiaryDisplayIndex": 391,
+      "bestiaryStars": 2
     },
     {
       "id": 473,
@@ -3585,7 +3948,8 @@
       "bestiaryId": "BigMimicCorruption",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 340,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 5
     },
     {
       "id": 474,
@@ -3595,7 +3959,8 @@
       "bestiaryId": "BigMimicCrimson",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 355,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 5
     },
     {
       "id": 475,
@@ -3605,7 +3970,8 @@
       "bestiaryId": "BigMimicHallow",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 370,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 5
     },
     {
       "id": 477,
@@ -3615,7 +3981,8 @@
       "bestiaryId": "Mothron",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 437,
-      "category": "Solar Eclipse"
+      "category": "Solar Eclipse",
+      "bestiaryStars": 5
     },
     {
       "id": 479,
@@ -3624,7 +3991,8 @@
       "name": "Baby Mothron",
       "bestiaryId": "MothronSpawn",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 438
+      "bestiaryDisplayIndex": 438,
+      "bestiaryStars": 2
     },
     {
       "id": 480,
@@ -3634,7 +4002,8 @@
       "bestiaryId": "Medusa",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 216,
-      "category": "Marble Cave"
+      "category": "Marble Cave",
+      "bestiaryStars": 4
     },
     {
       "id": 481,
@@ -3644,7 +4013,8 @@
       "bestiaryId": "GreekSkeleton",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 215,
-      "category": "Marble Cave"
+      "category": "Marble Cave",
+      "bestiaryStars": 2
     },
     {
       "id": 482,
@@ -3654,7 +4024,8 @@
       "bestiaryId": "GraniteGolem",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 213,
-      "category": "Granite Cave"
+      "category": "Granite Cave",
+      "bestiaryStars": 2
     },
     {
       "id": 483,
@@ -3664,7 +4035,8 @@
       "bestiaryId": "GraniteFlyer",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 214,
-      "category": "Granite Cave"
+      "category": "Granite Cave",
+      "bestiaryStars": 2
     },
     {
       "id": 484,
@@ -3674,7 +4046,8 @@
       "bestiaryId": "EnchantedNightcrawler",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 87
+      "bestiaryDisplayIndex": 87,
+      "bestiaryStars": 5
     },
     {
       "id": 485,
@@ -3684,7 +4057,8 @@
       "bestiaryId": "Grubby",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 120
+      "bestiaryDisplayIndex": 120,
+      "bestiaryStars": 1
     },
     {
       "id": 486,
@@ -3694,7 +4068,8 @@
       "bestiaryId": "Sluggy",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 121
+      "bestiaryDisplayIndex": 121,
+      "bestiaryStars": 2
     },
     {
       "id": 487,
@@ -3704,7 +4079,8 @@
       "bestiaryId": "Buggy",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 122
+      "bestiaryDisplayIndex": 122,
+      "bestiaryStars": 3
     },
     {
       "id": 489,
@@ -3714,7 +4090,8 @@
       "bestiaryId": "BloodZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 163,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 1
     },
     {
       "id": 490,
@@ -3724,7 +4101,8 @@
       "bestiaryId": "Drippler",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 172,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 491,
@@ -3733,7 +4111,8 @@
       "name": "Flying Dutchman",
       "bestiaryId": "PirateShip",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 411
+      "bestiaryDisplayIndex": 411,
+      "bestiaryStars": 4
     },
     {
       "id": 493,
@@ -3742,7 +4121,8 @@
       "name": "Stardust Pillar",
       "bestiaryId": "LunarTowerStardust",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 545
+      "bestiaryDisplayIndex": 545,
+      "bestiaryStars": 4
     },
     {
       "id": 494,
@@ -3752,7 +4132,8 @@
       "bestiaryId": "Crawdad",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 198,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 496,
@@ -3762,7 +4143,8 @@
       "bestiaryId": "GiantShelly",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 211,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 499,
@@ -3772,7 +4154,8 @@
       "bestiaryId": "Salamander2",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 195,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 507,
@@ -3781,7 +4164,8 @@
       "name": "Nebula Pillar",
       "bestiaryId": "LunarTowerNebula",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 542
+      "bestiaryDisplayIndex": 542,
+      "bestiaryStars": 4
     },
     {
       "id": 508,
@@ -3791,7 +4175,8 @@
       "bestiaryId": "GiantWalkingAntlion",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 238,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 509,
@@ -3801,7 +4186,8 @@
       "bestiaryId": "GiantFlyingAntlion",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 245,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 510,
@@ -3811,7 +4197,8 @@
       "bestiaryId": "DuneSplicerHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 247,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 513,
@@ -3821,7 +4208,8 @@
       "bestiaryId": "TombCrawlerHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 242,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 1
     },
     {
       "id": 517,
@@ -3830,7 +4218,8 @@
       "name": "Solar Pillar",
       "bestiaryId": "LunarTowerSolar",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 543
+      "bestiaryDisplayIndex": 543,
+      "bestiaryStars": 4
     },
     {
       "id": 518,
@@ -3840,7 +4229,8 @@
       "bestiaryId": "SolarSpearman",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 493,
-      "category": "Lunar Event"
+      "category": "Lunar Event",
+      "bestiaryStars": 2
     },
     {
       "id": 520,
@@ -3850,7 +4240,8 @@
       "bestiaryId": "MartianWalker",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 419,
-      "category": "Martian Madness"
+      "category": "Martian Madness",
+      "bestiaryStars": 3
     },
     {
       "id": 521,
@@ -3859,7 +4250,8 @@
       "name": "Ancient Vision",
       "bestiaryId": "AncientCultistSquidhead",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 540
+      "bestiaryDisplayIndex": 540,
+      "bestiaryStars": 3
     },
     {
       "id": 524,
@@ -3869,7 +4261,8 @@
       "bestiaryId": "DesertGhoul",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 240,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 525,
@@ -3879,7 +4272,8 @@
       "bestiaryId": "DesertGhoulCorruption",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 344,
-      "category": "Corruption"
+      "category": "Corruption",
+      "bestiaryStars": 2
     },
     {
       "id": 526,
@@ -3889,7 +4283,8 @@
       "bestiaryId": "DesertGhoulCrimson",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 359,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 527,
@@ -3899,7 +4294,8 @@
       "bestiaryId": "DesertGhoulHallow",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 374,
-      "category": "Hallow"
+      "category": "Hallow",
+      "bestiaryStars": 2
     },
     {
       "id": 528,
@@ -3909,7 +4305,8 @@
       "bestiaryId": "DesertLamiaLight",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 375,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 529,
@@ -3919,7 +4316,8 @@
       "bestiaryId": "DesertLamiaDark",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 360,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 531,
@@ -3929,7 +4327,8 @@
       "bestiaryId": "DesertScorpionWall",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 244,
-      "category": "Sandstorm"
+      "category": "Sandstorm",
+      "bestiaryStars": 2
     },
     {
       "id": 532,
@@ -3939,7 +4338,8 @@
       "bestiaryId": "DesertBeast",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 241,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 533,
@@ -3949,7 +4349,8 @@
       "bestiaryId": "DesertDjinn",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 361,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 534,
@@ -3958,7 +4359,8 @@
       "name": "Tortured Soul",
       "bestiaryId": "DemonTaxCollector",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 320
+      "bestiaryDisplayIndex": 320,
+      "bestiaryStars": 5
     },
     {
       "id": 536,
@@ -3968,7 +4370,8 @@
       "bestiaryId": "TheBride",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 165,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 5
     },
     {
       "id": 537,
@@ -3978,7 +4381,8 @@
       "bestiaryId": "SandSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 236,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 2
     },
     {
       "id": 538,
@@ -3988,7 +4392,8 @@
       "bestiaryId": "SquirrelRed",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 60
+      "bestiaryDisplayIndex": 60,
+      "bestiaryStars": 1
     },
     {
       "id": 539,
@@ -3998,7 +4403,8 @@
       "bestiaryId": "SquirrelGold",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 61
+      "bestiaryDisplayIndex": 61,
+      "bestiaryStars": 5
     },
     {
       "id": 540,
@@ -4009,7 +4415,8 @@
       "isCritter": true,
       "isKillCredit": true,
       "bestiaryDisplayIndex": 43,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 2
     },
     {
       "id": 541,
@@ -4019,7 +4426,8 @@
       "bestiaryId": "SandElemental",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 250,
-      "category": "Sandstorm"
+      "category": "Sandstorm",
+      "bestiaryStars": 4
     },
     {
       "id": 542,
@@ -4029,7 +4437,8 @@
       "bestiaryId": "SandShark",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 251,
-      "category": "Sandstorm"
+      "category": "Sandstorm",
+      "bestiaryStars": 2
     },
     {
       "id": 543,
@@ -4039,7 +4448,8 @@
       "bestiaryId": "SandsharkCorrupt",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 342,
-      "category": "Sandstorm"
+      "category": "Sandstorm",
+      "bestiaryStars": 2
     },
     {
       "id": 544,
@@ -4049,7 +4459,8 @@
       "bestiaryId": "SandsharkCrimson",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 357,
-      "category": "Sandstorm"
+      "category": "Sandstorm",
+      "bestiaryStars": 2
     },
     {
       "id": 545,
@@ -4059,7 +4470,8 @@
       "bestiaryId": "SandsharkHallow",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 372,
-      "category": "Sandstorm"
+      "category": "Sandstorm",
+      "bestiaryStars": 2
     },
     {
       "id": 546,
@@ -4069,7 +4481,8 @@
       "bestiaryId": "Tumbleweed",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 248,
-      "category": "Sandstorm"
+      "category": "Sandstorm",
+      "bestiaryStars": 2
     },
     {
       "id": 551,
@@ -4078,7 +4491,8 @@
       "name": "Betsy",
       "bestiaryId": "DD2Betsy",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 403
+      "bestiaryDisplayIndex": 403,
+      "bestiaryStars": 4
     },
     {
       "id": 554,
@@ -4088,7 +4502,8 @@
       "bestiaryId": "DD2GoblinT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 393,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 2
     },
     {
       "id": 557,
@@ -4098,7 +4513,8 @@
       "bestiaryId": "DD2GoblinBomberT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 394,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 2
     },
     {
       "id": 560,
@@ -4108,7 +4524,8 @@
       "bestiaryId": "DD2WyvernT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 401,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 2
     },
     {
       "id": 563,
@@ -4118,7 +4535,8 @@
       "bestiaryId": "DD2JavelinstT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 396,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 2
     },
     {
       "id": 565,
@@ -4127,7 +4545,8 @@
       "name": "Dark Mage",
       "bestiaryId": "DD2DarkMageT3",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 402
+      "bestiaryDisplayIndex": 402,
+      "bestiaryStars": 3
     },
     {
       "id": 567,
@@ -4137,7 +4556,8 @@
       "bestiaryId": "DD2SkeletonT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 392,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 2
     },
     {
       "id": 569,
@@ -4147,7 +4567,8 @@
       "bestiaryId": "DD2WitherBeastT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 397,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 2
     },
     {
       "id": 571,
@@ -4157,7 +4578,8 @@
       "bestiaryId": "DD2DrakinT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 398,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 3
     },
     {
       "id": 573,
@@ -4167,7 +4589,8 @@
       "bestiaryId": "DD2KoboldWalkerT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 395,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 2
     },
     {
       "id": 575,
@@ -4177,7 +4600,8 @@
       "bestiaryId": "DD2KoboldFlyerT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 400,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 2
     },
     {
       "id": 577,
@@ -4186,7 +4610,8 @@
       "name": "Ogre",
       "bestiaryId": "DD2OgreT3",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 399
+      "bestiaryDisplayIndex": 399,
+      "bestiaryStars": 3
     },
     {
       "id": 578,
@@ -4196,7 +4621,8 @@
       "bestiaryId": "DD2LightningBugT3",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 404,
-      "category": "Old One\u0027s Army"
+      "category": "Old One\u0027s Army",
+      "bestiaryStars": 2
     },
     {
       "id": 580,
@@ -4206,7 +4632,8 @@
       "bestiaryId": "WalkingAntlion",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 246,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 581,
@@ -4216,7 +4643,8 @@
       "bestiaryId": "FlyingAntlion",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 249,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 2
     },
     {
       "id": 582,
@@ -4226,7 +4654,8 @@
       "bestiaryId": "LarvaeAntlion",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 237,
-      "category": "Desert"
+      "category": "Desert",
+      "bestiaryStars": 1
     },
     {
       "id": 583,
@@ -4236,7 +4665,8 @@
       "bestiaryId": "FairyCritterPink",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 88
+      "bestiaryDisplayIndex": 88,
+      "bestiaryStars": 4
     },
     {
       "id": 584,
@@ -4246,7 +4676,8 @@
       "bestiaryId": "FairyCritterGreen",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 89
+      "bestiaryDisplayIndex": 89,
+      "bestiaryStars": 4
     },
     {
       "id": 585,
@@ -4256,7 +4687,8 @@
       "bestiaryId": "FairyCritterBlue",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 90
+      "bestiaryDisplayIndex": 90,
+      "bestiaryStars": 4
     },
     {
       "id": 586,
@@ -4266,7 +4698,8 @@
       "bestiaryId": "ZombieMerman",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 166,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 4
     },
     {
       "id": 587,
@@ -4276,7 +4709,8 @@
       "bestiaryId": "EyeballFlyingFish",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 174,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 4
     },
     {
       "id": 590,
@@ -4286,7 +4720,8 @@
       "bestiaryId": "TorchZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 152,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 592,
@@ -4296,7 +4731,8 @@
       "bestiaryId": "GoldGoldfish",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 58
+      "bestiaryDisplayIndex": 58,
+      "bestiaryStars": 5
     },
     {
       "id": 594,
@@ -4305,7 +4741,8 @@
       "name": "Windy Balloon",
       "bestiaryId": "WindyBalloon",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 135
+      "bestiaryDisplayIndex": 135,
+      "bestiaryStars": 2
     },
     {
       "id": 599,
@@ -4315,7 +4752,8 @@
       "bestiaryId": "RedDragonfly",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 72
+      "bestiaryDisplayIndex": 72,
+      "bestiaryStars": 3
     },
     {
       "id": 601,
@@ -4325,7 +4763,8 @@
       "bestiaryId": "GoldDragonfly",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 73
+      "bestiaryDisplayIndex": 73,
+      "bestiaryStars": 5
     },
     {
       "id": 602,
@@ -4335,7 +4774,8 @@
       "bestiaryId": "Seagull",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 115
+      "bestiaryDisplayIndex": 115,
+      "bestiaryStars": 1
     },
     {
       "id": 604,
@@ -4345,7 +4785,8 @@
       "bestiaryId": "LadyBug",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 78
+      "bestiaryDisplayIndex": 78,
+      "bestiaryStars": 3
     },
     {
       "id": 605,
@@ -4355,7 +4796,8 @@
       "bestiaryId": "GoldLadyBug",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 79
+      "bestiaryDisplayIndex": 79,
+      "bestiaryStars": 5
     },
     {
       "id": 606,
@@ -4365,7 +4807,8 @@
       "bestiaryId": "Maggot",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 92
+      "bestiaryDisplayIndex": 92,
+      "bestiaryStars": 1
     },
     {
       "id": 607,
@@ -4375,7 +4818,8 @@
       "bestiaryId": "Pupfish",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 114
+      "bestiaryDisplayIndex": 114,
+      "bestiaryStars": 2
     },
     {
       "id": 608,
@@ -4385,7 +4829,8 @@
       "bestiaryId": "Grebe",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 113
+      "bestiaryDisplayIndex": 113,
+      "bestiaryStars": 2
     },
     {
       "id": 610,
@@ -4395,7 +4840,8 @@
       "bestiaryId": "Rat",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 91
+      "bestiaryDisplayIndex": 91,
+      "bestiaryStars": 1
     },
     {
       "id": 611,
@@ -4405,7 +4851,8 @@
       "bestiaryId": "Owl",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 85
+      "bestiaryDisplayIndex": 85,
+      "bestiaryStars": 3
     },
     {
       "id": 612,
@@ -4415,7 +4862,8 @@
       "bestiaryId": "WaterStrider",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 76
+      "bestiaryDisplayIndex": 76,
+      "bestiaryStars": 2
     },
     {
       "id": 613,
@@ -4425,7 +4873,8 @@
       "bestiaryId": "GoldWaterStrider",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 77
+      "bestiaryDisplayIndex": 77,
+      "bestiaryStars": 5
     },
     {
       "id": 614,
@@ -4435,7 +4884,8 @@
       "bestiaryId": "ExplosiveBunny",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 44
+      "bestiaryDisplayIndex": 44,
+      "bestiaryStars": 4
     },
     {
       "id": 615,
@@ -4445,7 +4895,8 @@
       "bestiaryId": "Dolphin",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 118
+      "bestiaryDisplayIndex": 118,
+      "bestiaryStars": 3
     },
     {
       "id": 616,
@@ -4455,7 +4906,8 @@
       "bestiaryId": "Turtle",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 84
+      "bestiaryDisplayIndex": 84,
+      "bestiaryStars": 2
     },
     {
       "id": 617,
@@ -4465,7 +4917,8 @@
       "bestiaryId": "TurtleJungle",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 119
+      "bestiaryDisplayIndex": 119,
+      "bestiaryStars": 1
     },
     {
       "id": 618,
@@ -4475,7 +4928,8 @@
       "bestiaryId": "BloodNautilus",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 176,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 5
     },
     {
       "id": 619,
@@ -4485,7 +4939,8 @@
       "bestiaryId": "BloodSquid",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 168,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 2
     },
     {
       "id": 620,
@@ -4495,7 +4950,8 @@
       "bestiaryId": "GoblinShark",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 175,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 5
     },
     {
       "id": 621,
@@ -4505,7 +4961,8 @@
       "bestiaryId": "BloodEelHead",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 169,
-      "category": "Blood Moon"
+      "category": "Blood Moon",
+      "bestiaryStars": 5
     },
     {
       "id": 624,
@@ -4515,7 +4972,8 @@
       "bestiaryId": "Gnome",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 129,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 3
     },
     {
       "id": 625,
@@ -4525,7 +4983,8 @@
       "bestiaryId": "SeaTurtle",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 116
+      "bestiaryDisplayIndex": 116,
+      "bestiaryStars": 1
     },
     {
       "id": 626,
@@ -4535,7 +4994,8 @@
       "bestiaryId": "Seahorse",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 74
+      "bestiaryDisplayIndex": 74,
+      "bestiaryStars": 2
     },
     {
       "id": 627,
@@ -4545,7 +5005,8 @@
       "bestiaryId": "GoldSeahorse",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 75
+      "bestiaryDisplayIndex": 75,
+      "bestiaryStars": 5
     },
     {
       "id": 628,
@@ -4555,7 +5016,8 @@
       "bestiaryId": "Dandelion",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 136,
-      "category": "Windy Day"
+      "category": "Windy Day",
+      "bestiaryStars": 2
     },
     {
       "id": 629,
@@ -4565,7 +5027,8 @@
       "bestiaryId": "IceMimic",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 233,
-      "category": "Snow"
+      "category": "Snow",
+      "bestiaryStars": 5
     },
     {
       "id": 630,
@@ -4575,7 +5038,8 @@
       "bestiaryId": "BloodMummy",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 358,
-      "category": "Crimson"
+      "category": "Crimson",
+      "bestiaryStars": 2
     },
     {
       "id": 631,
@@ -4585,7 +5049,8 @@
       "bestiaryId": "RockGolem",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 203,
-      "category": "Cavern"
+      "category": "Cavern",
+      "bestiaryStars": 2
     },
     {
       "id": 632,
@@ -4595,7 +5060,8 @@
       "bestiaryId": "MaggotZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 178,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 1
     },
     {
       "id": 634,
@@ -4605,7 +5071,8 @@
       "bestiaryId": "SporeBat",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 218,
-      "category": "Mushroom"
+      "category": "Mushroom",
+      "bestiaryStars": 1
     },
     {
       "id": 635,
@@ -4615,7 +5082,8 @@
       "bestiaryId": "SporeSkeleton",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 217,
-      "category": "Mushroom"
+      "category": "Mushroom",
+      "bestiaryStars": 1
     },
     {
       "id": 636,
@@ -4624,7 +5092,8 @@
       "name": "Empress of Light",
       "bestiaryId": "HallowBoss",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 533
+      "bestiaryDisplayIndex": 533,
+      "bestiaryStars": 5
     },
     {
       "id": 639,
@@ -4634,7 +5103,8 @@
       "bestiaryId": "GemSquirrelAmethyst",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 93
+      "bestiaryDisplayIndex": 93,
+      "bestiaryStars": 1
     },
     {
       "id": 640,
@@ -4644,7 +5114,8 @@
       "bestiaryId": "GemSquirrelTopaz",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 94
+      "bestiaryDisplayIndex": 94,
+      "bestiaryStars": 1
     },
     {
       "id": 641,
@@ -4654,7 +5125,8 @@
       "bestiaryId": "GemSquirrelSapphire",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 95
+      "bestiaryDisplayIndex": 95,
+      "bestiaryStars": 1
     },
     {
       "id": 642,
@@ -4664,7 +5136,8 @@
       "bestiaryId": "GemSquirrelEmerald",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 96
+      "bestiaryDisplayIndex": 96,
+      "bestiaryStars": 1
     },
     {
       "id": 643,
@@ -4674,7 +5147,8 @@
       "bestiaryId": "GemSquirrelRuby",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 97
+      "bestiaryDisplayIndex": 97,
+      "bestiaryStars": 1
     },
     {
       "id": 644,
@@ -4684,7 +5158,8 @@
       "bestiaryId": "GemSquirrelDiamond",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 98
+      "bestiaryDisplayIndex": 98,
+      "bestiaryStars": 1
     },
     {
       "id": 645,
@@ -4694,7 +5169,8 @@
       "bestiaryId": "GemSquirrelAmber",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 99
+      "bestiaryDisplayIndex": 99,
+      "bestiaryStars": 1
     },
     {
       "id": 646,
@@ -4704,7 +5180,8 @@
       "bestiaryId": "GemBunnyAmethyst",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 100
+      "bestiaryDisplayIndex": 100,
+      "bestiaryStars": 1
     },
     {
       "id": 647,
@@ -4714,7 +5191,8 @@
       "bestiaryId": "GemBunnyTopaz",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 101
+      "bestiaryDisplayIndex": 101,
+      "bestiaryStars": 1
     },
     {
       "id": 648,
@@ -4724,7 +5202,8 @@
       "bestiaryId": "GemBunnySapphire",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 102
+      "bestiaryDisplayIndex": 102,
+      "bestiaryStars": 1
     },
     {
       "id": 649,
@@ -4734,7 +5213,8 @@
       "bestiaryId": "GemBunnyEmerald",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 103
+      "bestiaryDisplayIndex": 103,
+      "bestiaryStars": 1
     },
     {
       "id": 650,
@@ -4744,7 +5224,8 @@
       "bestiaryId": "GemBunnyRuby",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 104
+      "bestiaryDisplayIndex": 104,
+      "bestiaryStars": 1
     },
     {
       "id": 651,
@@ -4754,7 +5235,8 @@
       "bestiaryId": "GemBunnyDiamond",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 105
+      "bestiaryDisplayIndex": 105,
+      "bestiaryStars": 1
     },
     {
       "id": 652,
@@ -4764,7 +5246,8 @@
       "bestiaryId": "GemBunnyAmber",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 106
+      "bestiaryDisplayIndex": 106,
+      "bestiaryStars": 1
     },
     {
       "id": 653,
@@ -4774,7 +5257,8 @@
       "bestiaryId": "HellButterfly",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 124
+      "bestiaryDisplayIndex": 124,
+      "bestiaryStars": 2
     },
     {
       "id": 654,
@@ -4784,7 +5268,8 @@
       "bestiaryId": "Lavafly",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 123
+      "bestiaryDisplayIndex": 123,
+      "bestiaryStars": 3
     },
     {
       "id": 655,
@@ -4794,7 +5279,8 @@
       "bestiaryId": "MagmaSnail",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 125
+      "bestiaryDisplayIndex": 125,
+      "bestiaryStars": 2
     },
     {
       "id": 657,
@@ -4803,7 +5289,8 @@
       "name": "Queen Slime",
       "bestiaryId": "QueenSlimeBoss",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 523
+      "bestiaryDisplayIndex": 523,
+      "bestiaryStars": 4
     },
     {
       "id": 658,
@@ -4812,7 +5299,8 @@
       "name": "Crystal Slime",
       "bestiaryId": "QueenSlimeMinionBlue",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 524
+      "bestiaryDisplayIndex": 524,
+      "bestiaryStars": 2
     },
     {
       "id": 659,
@@ -4821,7 +5309,8 @@
       "name": "Bouncy Slime",
       "bestiaryId": "QueenSlimeMinionPink",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 525
+      "bestiaryDisplayIndex": 525,
+      "bestiaryStars": 2
     },
     {
       "id": 660,
@@ -4830,7 +5319,8 @@
       "name": "Heavenly Slime",
       "bestiaryId": "QueenSlimeMinionPurple",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 526
+      "bestiaryDisplayIndex": 526,
+      "bestiaryStars": 2
     },
     {
       "id": 661,
@@ -4840,7 +5330,8 @@
       "bestiaryId": "EmpressButterfly",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 127
+      "bestiaryDisplayIndex": 127,
+      "bestiaryStars": 3
     },
     {
       "id": 664,
@@ -4849,7 +5340,8 @@
       "name": "The Torch God",
       "bestiaryId": "TorchGod",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 509
+      "bestiaryDisplayIndex": 509,
+      "bestiaryStars": 5
     },
     {
       "id": 668,
@@ -4858,7 +5350,8 @@
       "name": "Deerclops",
       "bestiaryId": "Deerclops",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 516
+      "bestiaryDisplayIndex": 516,
+      "bestiaryStars": 3
     },
     {
       "id": 669,
@@ -4868,7 +5361,8 @@
       "bestiaryId": "Stinkbug",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 80
+      "bestiaryDisplayIndex": 80,
+      "bestiaryStars": 3
     },
     {
       "id": 671,
@@ -4878,7 +5372,8 @@
       "bestiaryId": "ScarletMacaw",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 51
+      "bestiaryDisplayIndex": 51,
+      "bestiaryStars": 3
     },
     {
       "id": 672,
@@ -4888,7 +5383,8 @@
       "bestiaryId": "BlueMacaw",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 52
+      "bestiaryDisplayIndex": 52,
+      "bestiaryStars": 3
     },
     {
       "id": 673,
@@ -4898,7 +5394,8 @@
       "bestiaryId": "Toucan",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 53
+      "bestiaryDisplayIndex": 53,
+      "bestiaryStars": 3
     },
     {
       "id": 674,
@@ -4908,7 +5405,8 @@
       "bestiaryId": "YellowCockatiel",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 54
+      "bestiaryDisplayIndex": 54,
+      "bestiaryStars": 3
     },
     {
       "id": 675,
@@ -4918,7 +5416,8 @@
       "bestiaryId": "GrayCockatiel",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 55
+      "bestiaryDisplayIndex": 55,
+      "bestiaryStars": 3
     },
     {
       "id": 676,
@@ -4928,7 +5427,8 @@
       "bestiaryId": "ShimmerSlime",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 190,
-      "category": "Slime"
+      "category": "Slime",
+      "bestiaryStars": 5
     },
     {
       "id": 677,
@@ -4938,7 +5438,8 @@
       "bestiaryId": "Shimmerfly",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 81
+      "bestiaryDisplayIndex": 81,
+      "bestiaryStars": 5
     },
     {
       "id": 687,
@@ -4948,7 +5449,8 @@
       "bestiaryId": "BoundTownSlimeYellow",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 41
+      "bestiaryDisplayIndex": 41,
+      "bestiaryStars": 4
     },
     {
       "id": 688,
@@ -4958,7 +5460,8 @@
       "bestiaryId": "Pufferfish",
       "isCritter": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 117
+      "bestiaryDisplayIndex": 117,
+      "bestiaryStars": 1
     },
     {
       "id": 690,
@@ -4967,7 +5470,8 @@
       "name": "Statue",
       "bestiaryId": "StatueMimic",
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 182
+      "bestiaryDisplayIndex": 182,
+      "bestiaryStars": 5
     },
     {
       "id": 691,
@@ -4977,7 +5481,8 @@
       "bestiaryId": "MossZombie",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 179,
-      "category": "Surface"
+      "category": "Surface",
+      "bestiaryStars": 4
     },
     {
       "id": 692,
@@ -4987,7 +5492,8 @@
       "bestiaryId": "Orca",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 255,
-      "category": "Ocean"
+      "category": "Ocean",
+      "bestiaryStars": 2
     },
     {
       "id": 693,
@@ -4997,7 +5503,8 @@
       "bestiaryId": "LibrarianSkeleton",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 307,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 1
     },
     {
       "id": 694,
@@ -5007,7 +5514,8 @@
       "bestiaryId": "WaterBoltMimic",
       "isKillCredit": true,
       "bestiaryDisplayIndex": 314,
-      "category": "Dungeon"
+      "category": "Dungeon",
+      "bestiaryStars": 1
     },
     {
       "id": 22,
@@ -5018,7 +5526,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 1
+      "bestiaryDisplayIndex": 1,
+      "bestiaryStars": 1
     },
     {
       "id": 17,
@@ -5029,7 +5538,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 2
+      "bestiaryDisplayIndex": 2,
+      "bestiaryStars": 1
     },
     {
       "id": 18,
@@ -5040,7 +5550,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 3
+      "bestiaryDisplayIndex": 3,
+      "bestiaryStars": 1
     },
     {
       "id": 19,
@@ -5051,7 +5562,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 7
+      "bestiaryDisplayIndex": 7,
+      "bestiaryStars": 1
     },
     {
       "id": 20,
@@ -5062,7 +5574,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 6
+      "bestiaryDisplayIndex": 6,
+      "bestiaryStars": 3
     },
     {
       "id": 37,
@@ -5073,7 +5586,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 40
+      "bestiaryDisplayIndex": 40,
+      "bestiaryStars": 2
     },
     {
       "id": 54,
@@ -5084,7 +5598,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 17
+      "bestiaryDisplayIndex": 17,
+      "bestiaryStars": 2
     },
     {
       "id": 38,
@@ -5095,7 +5610,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 4
+      "bestiaryDisplayIndex": 4,
+      "bestiaryStars": 1
     },
     {
       "id": 107,
@@ -5106,7 +5622,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 14
+      "bestiaryDisplayIndex": 14,
+      "bestiaryStars": 3
     },
     {
       "id": 108,
@@ -5117,7 +5634,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 18
+      "bestiaryDisplayIndex": 18,
+      "bestiaryStars": 3
     },
     {
       "id": 124,
@@ -5128,7 +5646,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 16
+      "bestiaryDisplayIndex": 16,
+      "bestiaryStars": 2
     },
     {
       "id": 142,
@@ -5139,7 +5658,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 26
+      "bestiaryDisplayIndex": 26,
+      "bestiaryStars": 5
     },
     {
       "id": 160,
@@ -5150,7 +5670,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 21
+      "bestiaryDisplayIndex": 21,
+      "bestiaryStars": 5
     },
     {
       "id": 178,
@@ -5161,7 +5682,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 19
+      "bestiaryDisplayIndex": 19,
+      "bestiaryStars": 3
     },
     {
       "id": 207,
@@ -5172,7 +5694,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 8
+      "bestiaryDisplayIndex": 8,
+      "bestiaryStars": 2
     },
     {
       "id": 208,
@@ -5183,7 +5706,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 24
+      "bestiaryDisplayIndex": 24,
+      "bestiaryStars": 4
     },
     {
       "id": 209,
@@ -5194,7 +5718,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 23
+      "bestiaryDisplayIndex": 23,
+      "bestiaryStars": 3
     },
     {
       "id": 227,
@@ -5205,7 +5730,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 9
+      "bestiaryDisplayIndex": 9,
+      "bestiaryStars": 2
     },
     {
       "id": 228,
@@ -5216,7 +5742,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 15
+      "bestiaryDisplayIndex": 15,
+      "bestiaryStars": 2
     },
     {
       "id": 229,
@@ -5227,7 +5754,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 20
+      "bestiaryDisplayIndex": 20,
+      "bestiaryStars": 2
     },
     {
       "id": 353,
@@ -5238,7 +5766,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 10
+      "bestiaryDisplayIndex": 10,
+      "bestiaryStars": 2
     },
     {
       "id": 369,
@@ -5249,7 +5778,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 5
+      "bestiaryDisplayIndex": 5,
+      "bestiaryStars": 2
     },
     {
       "id": 441,
@@ -5260,7 +5790,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 22
+      "bestiaryDisplayIndex": 22,
+      "bestiaryStars": 5
     },
     {
       "id": 550,
@@ -5271,7 +5802,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 12
+      "bestiaryDisplayIndex": 12,
+      "bestiaryStars": 2
     },
     {
       "id": 588,
@@ -5282,7 +5814,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 13
+      "bestiaryDisplayIndex": 13,
+      "bestiaryStars": 2
     },
     {
       "id": 368,
@@ -5293,7 +5826,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 38
+      "bestiaryDisplayIndex": 38,
+      "bestiaryStars": 3
     },
     {
       "id": 453,
@@ -5303,7 +5837,8 @@
       "bestiaryId": "SkeletonMerchant",
       "canTalk": true,
       "isKillCredit": true,
-      "bestiaryDisplayIndex": 39
+      "bestiaryDisplayIndex": 39,
+      "bestiaryStars": 4
     },
     {
       "id": 633,
@@ -5314,7 +5849,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 11
+      "bestiaryDisplayIndex": 11,
+      "bestiaryStars": 5
     },
     {
       "id": 663,
@@ -5325,7 +5861,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 25
+      "bestiaryDisplayIndex": 25,
+      "bestiaryStars": 5
     },
     {
       "id": 638,
@@ -5336,7 +5873,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 28
+      "bestiaryDisplayIndex": 28,
+      "bestiaryStars": 3
     },
     {
       "id": 637,
@@ -5347,7 +5885,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 27
+      "bestiaryDisplayIndex": 27,
+      "bestiaryStars": 3
     },
     {
       "id": 656,
@@ -5358,7 +5897,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 29
+      "bestiaryDisplayIndex": 29,
+      "bestiaryStars": 3
     },
     {
       "id": 670,
@@ -5369,7 +5909,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 30
+      "bestiaryDisplayIndex": 30,
+      "bestiaryStars": 3
     },
     {
       "id": 678,
@@ -5380,7 +5921,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 31
+      "bestiaryDisplayIndex": 31,
+      "bestiaryStars": 3
     },
     {
       "id": 679,
@@ -5391,7 +5933,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 32
+      "bestiaryDisplayIndex": 32,
+      "bestiaryStars": 3
     },
     {
       "id": 680,
@@ -5402,7 +5945,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 33
+      "bestiaryDisplayIndex": 33,
+      "bestiaryStars": 3
     },
     {
       "id": 681,
@@ -5413,7 +5957,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 34
+      "bestiaryDisplayIndex": 34,
+      "bestiaryStars": 3
     },
     {
       "id": 682,
@@ -5424,7 +5969,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 35
+      "bestiaryDisplayIndex": 35,
+      "bestiaryStars": 3
     },
     {
       "id": 683,
@@ -5435,7 +5981,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 36
+      "bestiaryDisplayIndex": 36,
+      "bestiaryStars": 3
     },
     {
       "id": 684,
@@ -5446,7 +5993,8 @@
       "canTalk": true,
       "isKillCredit": true,
       "isTownNpc": true,
-      "bestiaryDisplayIndex": 37
+      "bestiaryDisplayIndex": 37,
+      "bestiaryStars": 3
     }
   ]
 }

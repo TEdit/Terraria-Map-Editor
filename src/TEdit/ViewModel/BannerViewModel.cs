@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using TEdit.Render;
 using TEdit.Terraria;
 
 namespace TEdit.ViewModel;
@@ -37,6 +38,16 @@ public partial class BannerViewModel : ReactiveObject
             .Where(w => w != null)
             .ObserveOn(RxSchedulers.MainThreadScheduler)
             .Subscribe(_ => PopulateBanners());
+
+        NpcPreviewCache.PreviewsLoaded += OnNpcPreviewsLoaded;
+    }
+
+    private void OnNpcPreviewsLoaded()
+    {
+        foreach (var item in BannerData)
+        {
+            item.NotifyPreviewChanged();
+        }
     }
 
     [Reactive]
@@ -65,12 +76,30 @@ public partial class BannerViewModel : ReactiveObject
 
         if (!string.IsNullOrEmpty(FilterText) &&
             !item.Name.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
-            !item.Category.Contains(FilterText, StringComparison.OrdinalIgnoreCase))
+            !item.Category.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
+            !item.NpcId.ToString().Contains(FilterText, StringComparison.Ordinal) &&
+            !item.BestiaryIndex.ToString().Contains(FilterText, StringComparison.Ordinal))
         {
             return false;
         }
 
         return true;
+    }
+
+    public void ApplySort(string propertyName)
+    {
+        var direction = ListSortDirection.Ascending;
+
+        if (BannersView.SortDescriptions.Count > 0 &&
+            BannersView.SortDescriptions[0].PropertyName == propertyName)
+        {
+            direction = BannersView.SortDescriptions[0].Direction == ListSortDirection.Ascending
+                ? ListSortDirection.Descending
+                : ListSortDirection.Ascending;
+        }
+
+        BannersView.SortDescriptions.Clear();
+        BannersView.SortDescriptions.Add(new SortDescription(propertyName, direction));
     }
 
     /// <summary>
@@ -96,13 +125,15 @@ public partial class BannerViewModel : ReactiveObject
             int tallyIndex = kvp.Key;
             string bannerName = kvp.Value;
 
-            // Get category and NPC ID from bestiary data
+            // Get category, NPC ID, and bestiary index from bestiary data
             string category = "";
             int npcId = 0;
+            int bestiaryIndex = 0;
             if (npcByBanner.TryGetValue(tallyIndex, out var npcData))
             {
                 category = npcData.Category ?? "";
                 npcId = npcData.Id;
+                bestiaryIndex = npcData.BestiaryDisplayIndex;
             }
 
             // Read current values from world
@@ -124,6 +155,7 @@ public partial class BannerViewModel : ReactiveObject
                 Name = bannerName,
                 Category = string.IsNullOrEmpty(category) ? "Other" : category,
                 NpcId = npcId,
+                BestiaryIndex = bestiaryIndex,
                 Kills = kills,
                 Count = bannerCount,
             });

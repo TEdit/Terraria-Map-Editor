@@ -13,6 +13,10 @@
 ## Minor
 - Startup Tips (#2171)
 
+## Performance
+- [plan-undo-redo-memory-improvements.md](plan-undo-redo-memory-improvements.md) — Hybrid memory/disk undo, pooled buffers, serialization speed
+- [plan-brush-render-speed-improvements.md](plan-brush-render-speed-improvements.md) — Batched render updates, deferred UV cache, async minimap
+
 ## Deferred Post-Release
 - #1075 — Mod support
 - #1262 — World generation
