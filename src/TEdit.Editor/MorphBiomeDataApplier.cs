@@ -262,7 +262,16 @@ public class MorphBiomeDataApplier
                     {
                         if (options.MossType >= 0)
                         {
-                            source.Type = (ushort)options.MossType;
+                            // Real moss types grow on any surface; non-moss (e.g. grass)
+                            // only replaces dirt-target blocks, not stone
+                            if (WorldConfiguration.MorphSettings.IsMoss((ushort)options.MossType) || id == 0)
+                            {
+                                source.Type = (ushort)options.MossType;
+                            }
+                            else
+                            {
+                                source.Type = id;
+                            }
                         }
                         else
                         {

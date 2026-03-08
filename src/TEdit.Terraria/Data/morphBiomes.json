@@ -19,11 +19,15 @@
           "spriteOffsets": []
         },
         {
-          "name": "tileSiltDirt",
-          "default": {
-            "skyId": 0
-          },
+          "name": "tileSiltStone",
+          "default": { "skyId": 1, "rockId": 0 },
           "sourceIds": [123],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMudDirt",
+          "default": { "skyId": 0, "rockId": 1 },
+          "sourceIds": [59],
           "spriteOffsets": []
         },
         {
@@ -41,7 +45,7 @@
           "default": {
             "skyId": 1
           },
-          "sourceIds": [1, 25, 203, 117, 59],
+          "sourceIds": [1, 25, 203, 117],
           "spriteOffsets": []
         },
         {
@@ -356,11 +360,15 @@
           "spriteOffsets": []
         },
         {
-          "name": "tileSiltDirt",
-          "default": {
-            "skyId": 0
-          },
+          "name": "tileSiltStone",
+          "default": { "skyId": 25, "rockId": 0 },
           "sourceIds": [123],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMudDirt",
+          "default": { "skyId": 0, "rockId": 25 },
+          "sourceIds": [59],
           "spriteOffsets": []
         },
         {
@@ -377,7 +385,7 @@
           "default": {
             "skyId": 25
           },
-          "sourceIds": [1, 25, 203, 117, 59],
+          "sourceIds": [1, 25, 203, 117],
           "spriteOffsets": []
         },
         {
@@ -764,11 +772,15 @@
           "spriteOffsets": []
         },
         {
-          "name": "tileSiltDirt",
-          "default": {
-            "skyId": 0
-          },
+          "name": "tileSiltStone",
+          "default": { "skyId": 203, "rockId": 0 },
           "sourceIds": [123],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMudDirt",
+          "default": { "skyId": 0, "rockId": 203 },
+          "sourceIds": [59],
           "spriteOffsets": []
         },
         {
@@ -785,7 +797,7 @@
           "default": {
             "skyId": 203
           },
-          "sourceIds": [1, 25, 203, 117, 59],
+          "sourceIds": [1, 25, 203, 117],
           "spriteOffsets": []
         },
         {
@@ -1180,11 +1192,15 @@
           "spriteOffsets": []
         },
         {
-          "name": "tileSiltDirt",
-          "default": {
-            "skyId": 0
-          },
+          "name": "tileSiltStone",
+          "default": { "skyId": 117, "rockId": 0 },
           "sourceIds": [123],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMudDirt",
+          "default": { "skyId": 0, "rockId": 117 },
+          "sourceIds": [59],
           "spriteOffsets": []
         },
         {
@@ -1201,7 +1217,7 @@
           "default": {
             "skyId": 117
           },
-          "sourceIds": [1, 25, 203, 117, 59],
+          "sourceIds": [1, 25, 203, 117],
           "spriteOffsets": []
         },
         {
@@ -1608,18 +1624,14 @@
           "spriteOffsets": []
         },
         {
-          "name": "tileDirtSilt",
-          "default": {
-            "skyId": 123
-          },
+          "name": "tileDirtMud",
+          "default": { "skyId": 59, "rockId": 123 },
           "sourceIds": [0],
           "spriteOffsets": []
         },
         {
-          "name": "tileStoneMud",
-          "default": {
-            "skyId": 59
-          },
+          "name": "tileStoneSilt",
+          "default": { "skyId": 123, "rockId": 59 },
           "touchingAir": {
             "skyId": 70
           },
@@ -1628,9 +1640,7 @@
         },
         {
           "name": "tileMoss",
-          "default": {
-            "skyId": 59
-          },
+          "default": { "skyId": 123, "rockId": 59 },
           "touchingAir": {
             "skyId": 70
           },
@@ -1932,18 +1942,14 @@
           "spriteOffsets": []
         },
         {
-          "name": "tileDirtSilt",
-          "default": {
-            "skyId": 123
-          },
+          "name": "tileDirtMud",
+          "default": { "skyId": 59, "rockId": 123 },
           "sourceIds": [0],
           "spriteOffsets": []
         },
         {
-          "name": "tileStoneMud",
-          "default": {
-            "skyId": 59
-          },
+          "name": "tileStoneSilt",
+          "default": { "skyId": 123, "rockId": 59 },
           "touchingAir": {
             "skyId": 60
           },
@@ -1952,9 +1958,7 @@
         },
         {
           "name": "tileMoss",
-          "default": {
-            "skyId": 59
-          },
+          "default": { "skyId": 123, "rockId": 59 },
           "touchingAir": {
             "skyId": 60
           },
@@ -2265,11 +2269,15 @@
           "spriteOffsets": []
         },
         {
-          "name": "tileSiltDirt",
-          "default": {
-            "skyId": 0
-          },
+          "name": "tileSiltStone",
+          "default": { "skyId": 1, "rockId": 0 },
           "sourceIds": [123],
+          "spriteOffsets": []
+        },
+        {
+          "name": "tileMudDirt",
+          "default": { "skyId": 0, "rockId": 1 },
+          "sourceIds": [59],
           "spriteOffsets": []
         },
         {
@@ -2312,9 +2320,8 @@
         },
         {
           "name": "tileJungleGrass",
-          "useMoss": true,
           "default": {
-            "skyId": 179
+            "skyId": 2
           },
           "sourceIds": [60, 70, 661, 662],
           "spriteOffsets": []
@@ -2325,7 +2332,7 @@
           "default": {
             "skyId": 1
           },
-          "sourceIds": [1, 161, 396, 59],
+          "sourceIds": [1, 161, 396],
           "spriteOffsets": []
         },
         {
@@ -2765,7 +2772,7 @@
           "default": {
             "skyId": 147
           },
-          "sourceIds": [0, 2, 23, 199, 109, 147, 123],
+          "sourceIds": [0, 2, 23, 199, 109, 147, 123, 59],
           "spriteOffsets": []
         },
         {
@@ -2797,7 +2804,7 @@
           "default": {
             "skyId": 161
           },
-          "sourceIds": [1, 161, 396, 59],
+          "sourceIds": [1, 161, 396],
           "spriteOffsets": []
         },
         {
@@ -3172,7 +3179,7 @@
           "gravity": {
             "skyId": 397
           },
-          "sourceIds": [0, 2, 477, 147, 123],
+          "sourceIds": [0, 2, 477, 147, 123, 59],
           "spriteOffsets": []
         },
         {
@@ -3246,7 +3253,7 @@
           "default": {
             "skyId": 396
           },
-          "sourceIds": [1, 161, 396, 59],
+          "sourceIds": [1, 161, 396],
           "spriteOffsets": []
         },
         {
