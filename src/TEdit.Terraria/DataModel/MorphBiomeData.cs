@@ -30,6 +30,13 @@ public class MorphId
 
     public HashSet<ushort> SourceIds { get; set; } = [];
     public List<MorphSpriteUVOffset> SpriteOffsets { get; set; } = [];
+
+    /// <summary>
+    /// When set, this MorphId replaces a multi-tile sprite with a different tile type.
+    /// Populated by ExpandGroups() — not serialized in JSON.
+    /// </summary>
+    [System.Text.Json.Serialization.JsonIgnore]
+    public MorphSpriteReplacement? SpriteReplacement { get; set; }
 }
 
 public class MorphIdLevels
@@ -71,6 +78,16 @@ public class MorphIdLevels
         // default to sky
         return SkyId;
     }
+}
+
+/// <summary>
+/// Flags a MorphId as a cross-tile-ID multi-tile sprite replacement.
+/// At morph time, source and target SpriteItems are resolved from WorldConfiguration.Sprites2.
+/// Populated by MorphConfiguration.ExpandGroups() — not serialized.
+/// </summary>
+public class MorphSpriteReplacement
+{
+    public ushort TargetTileId { get; set; }
 }
 
 public class MorphSpriteUVOffset

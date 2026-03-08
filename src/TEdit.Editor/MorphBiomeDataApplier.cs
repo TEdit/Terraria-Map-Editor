@@ -4,6 +4,7 @@ using System.Linq;
 using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Terraria.DataModel;
+using TEdit.Terraria.Objects;
 
 namespace TEdit.Editor;
 
@@ -91,7 +92,7 @@ public class MorphBiomeDataApplier
 
     public List<Vector2Int32> ApplyMorph(MorphToolOptions options, World world, ref Tile source, MorphLevel level, Vector2Int32 location)
     {
-        ApplyTileMorph(options, world, ref source, level, location);
+        var extraLocations = ApplyTileMorph(options, world, ref source, level, location);
         ApplyWallMorph(options, world, ref source, level, location);
 
         // After converting a block to moss stone, grow moss plants on exposed faces
@@ -101,10 +102,14 @@ public class MorphBiomeDataApplier
             source.BrickStyle == BrickStyle.Full &&
             WorldConfiguration.MorphSettings.IsMoss(source.Type))
         {
-            return GrowMossPlants(options, world, location);
+            var mossPlants = GrowMossPlants(options, world, location);
+            if (extraLocations == null)
+                return mossPlants;
+            if (mossPlants != null)
+                extraLocations.AddRange(mossPlants);
         }
 
-        return null;
+        return extraLocations;
     }
 
     /// <summary>
@@ -203,23 +208,29 @@ public class MorphBiomeDataApplier
         }
     }
 
-    private void ApplyTileMorph(MorphToolOptions options, World world, ref Tile source, MorphLevel level, Vector2Int32 location)
+    private List<Vector2Int32> ApplyTileMorph(MorphToolOptions options, World world, ref Tile source, MorphLevel level, Vector2Int32 location)
     {
-        if (!source.IsActive) { return; }
+        if (!source.IsActive) { return null; }
         ushort sourceId = source.Type;
 
-        if (!_tileCache.TryGetValue(sourceId, out var morphId)) { return; }
+        if (!_tileCache.TryGetValue(sourceId, out var morphId)) { return null; }
         bool useEvil = options.EnableEvilTiles;
 
         if (morphId.SourceIds.Contains(sourceId))
         {
+            // Multi-tile sprite replacement (e.g. altars, orbs)
+            if (morphId.SpriteReplacement != null && options.EnableSprites)
+            {
+                return ApplySpriteReplacement(morphId, world, source, sourceId, location);
+            }
+
             if (morphId.Delete)
             {
                 if (options.EnableBaseTiles)
                 {
                     source.ClearTile();
                 }
-                return;
+                return null;
             }
 
             // Tile type conversion (guarded by EnableBaseTiles)
@@ -306,6 +317,73 @@ public class MorphBiomeDataApplier
                 }
             }
         }
+        return null;
+    }
+
+    /// <summary>
+    /// Replace a multi-tile sprite (e.g. altar, orb) with its target biome equivalent.
+    /// Only processes when the current tile is the top-left anchor of the sprite.
+    /// Returns extra modified tile locations for undo/render, or null if skipped.
+    /// </summary>
+    private List<Vector2Int32> ApplySpriteReplacement(MorphId morphId, World world, Tile source, ushort sourceId, Vector2Int32 location)
+    {
+        var replacement = morphId.SpriteReplacement!;
+
+        // Find source sprite sheet and style
+        var sourceSheet = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == sourceId);
+        if (sourceSheet == null) return null;
+
+        var sourceSprite = sourceSheet.GetStyleFromUV(new Vector2Short(source.U, source.V));
+        if (sourceSprite == null) return null;
+
+        // Only process at the anchor (top-left tile of the sprite)
+        var anchorUV = sourceSprite.GetTiles()[0, 0];
+        if (source.U != anchorUV.X || source.V != anchorUV.Y)
+            return null;
+
+        // Find target sprite sheet and use its default style
+        var targetSheet = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == replacement.TargetTileId);
+        if (targetSheet == null) return null;
+
+        var targetSprite = targetSheet.Default;
+        if (targetSprite == null) return null;
+
+        int anchorX = location.X;
+        int anchorY = location.Y;
+
+        // Bounds check: ensure the target sprite fits within the world
+        if (anchorX + targetSprite.SizeTiles.X > world.TilesWide ||
+            anchorY + targetSprite.SizeTiles.Y > world.TilesHigh)
+            return null;
+
+        // Clear source sprite footprint
+        SpritePlacer.ClearSprite(anchorX, anchorY, sourceSprite.SizeTiles.X, sourceSprite.SizeTiles.Y, world);
+
+        // Place target sprite
+        SpritePlacer.Place(targetSprite, anchorX, anchorY, world);
+
+        // Collect all modified tile positions (excluding the anchor, which the caller handles)
+        var extraLocations = new List<Vector2Int32>();
+        for (int x = 0; x < targetSprite.SizeTiles.X; x++)
+        {
+            for (int y = 0; y < targetSprite.SizeTiles.Y; y++)
+            {
+                if (x == 0 && y == 0) continue;
+                extraLocations.Add(new Vector2Int32(anchorX + x, anchorY + y));
+            }
+        }
+
+        // If source was larger than target, include cleared tiles too
+        for (int x = 0; x < sourceSprite.SizeTiles.X; x++)
+        {
+            for (int y = 0; y < sourceSprite.SizeTiles.Y; y++)
+            {
+                if (x < targetSprite.SizeTiles.X && y < targetSprite.SizeTiles.Y) continue;
+                extraLocations.Add(new Vector2Int32(anchorX + x, anchorY + y));
+            }
+        }
+
+        return extraLocations;
     }
 
     public static bool AirBelow(World world, int x, int y)
