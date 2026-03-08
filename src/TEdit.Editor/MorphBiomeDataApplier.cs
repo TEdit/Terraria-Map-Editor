@@ -444,14 +444,7 @@ public class MorphBiomeDataApplier
         {
             foreach (var id in item.SourceIds)
             {
-                try
-                {
-                    _tileCache.Add(id, item);
-                }
-                catch (Exception ex)
-                {
-                    throw new IndexOutOfRangeException($"morphSetting tile entry is invalid or duplicate: {item.Name} [{id}]", ex);
-                }
+                _tileCache.TryAdd(id, item);
             }
         }
 
@@ -460,14 +453,7 @@ public class MorphBiomeDataApplier
         {
             foreach (var id in item.SourceIds)
             {
-                try
-                {
-                    _wallCache.Add(id, item);
-                }
-                catch (Exception ex)
-                {
-                    throw new IndexOutOfRangeException($"morphSetting wall entry is invalid or duplicate: {item.Name} [{id}]", ex);
-                }
+                _wallCache.TryAdd(id, item);
             }
         }
     }

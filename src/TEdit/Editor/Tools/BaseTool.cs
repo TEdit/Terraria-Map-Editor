@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Editor.Clipboard;
 using TEdit.Geometry;
 using TEdit.Input;
 using TEdit.Terraria;
@@ -106,6 +107,8 @@ public abstract partial class BaseTool : ReactiveObject, ITool
     public virtual bool IsFloatingPaste => false;
     public virtual Vector2Int32 FloatingPasteAnchor => default;
     public virtual Vector2Int32 FloatingPasteSize => default;
+    public virtual ClipboardBuffer FloatingPasteBuffer => null;
+    public virtual bool IsPasteInteracting => false;
     public virtual void AcceptPaste() { }
     public virtual void CancelPaste() { }
     public virtual CursorHint GetCursorHint(Vector2Int32 tilePos) => CursorHint.Default;

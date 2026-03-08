@@ -4,7 +4,7 @@
 app:
   width: 1024
   height: 768
-  # Maximum render size for clipboard previews (64-4096)
+  # Maximum render size for sidebar clipboard previews (64-4096)
   clipboardRenderSize: 512
   # Override path to Terraria Content folder (leave empty for auto-detect)
   # Useful when Terraria is not installed or in a custom location

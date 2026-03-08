@@ -286,14 +286,69 @@
       <enum:EnumItem Value="38">Tropical Barracuda</enum:EnumItem>
     </enum:EnumItemList>
 
-    <Style x:Key="TimeBackgroundStyle" TargetType="{x:Type Rectangle}">
-      <Setter Property="Fill" Value="{DynamicResource DayGradient}" />
-      <Style.Triggers>
-        <DataTrigger Binding="{Binding ElementName=dayCheckBox, Path=IsChecked}" Value="False">
-          <Setter Property="Fill" Value="{DynamicResource NightGradient}" />
-        </DataTrigger>
-      </Style.Triggers>
+    <converters:TerrariaTimeConverter x:Key="TerrariaTimeConverter" />
+    <converters:ContinuousTimeSliderConverter x:Key="ContinuousTimeSliderConverter" />
+
+    <!-- Transparent repeat button for track click-to-seek -->
+    <Style x:Key="TimeSliderButtonStyle" TargetType="{x:Type RepeatButton}">
+      <Setter Property="IsTabStop" Value="False"/>
+      <Setter Property="Focusable" Value="False"/>
+      <Setter Property="OverridesDefaultStyle" Value="True"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="{x:Type RepeatButton}">
+            <Border Background="Transparent"/>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
     </Style>
+
+    <!-- Slider template with gradient track (like HSL color sliders) -->
+    <ControlTemplate x:Key="TimeGradientSliderTemplate" TargetType="{x:Type Slider}">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="TrackBackground"
+                Grid.Row="1"
+                Height="10" CornerRadius="5"
+                Background="{TemplateBinding Background}"
+                BorderBrush="#30000000" BorderThickness="0.5"/>
+        <Track x:Name="PART_Track" Grid.Row="1">
+          <Track.DecreaseRepeatButton>
+            <RepeatButton Command="Slider.DecreaseLarge"
+                          Style="{StaticResource TimeSliderButtonStyle}"/>
+          </Track.DecreaseRepeatButton>
+          <Track.Thumb>
+            <Thumb>
+              <Thumb.Style>
+                <Style TargetType="{x:Type Thumb}">
+                  <Setter Property="Width" Value="16"/>
+                  <Setter Property="Height" Value="16"/>
+                  <Setter Property="Template">
+                    <Setter.Value>
+                      <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Ellipse Width="14" Height="14" Fill="White" StrokeThickness="1" Stroke="#60000000">
+                          <Ellipse.Effect>
+                            <DropShadowEffect BlurRadius="3" ShadowDepth="1" Opacity="0.3" Color="Black"/>
+                          </Ellipse.Effect>
+                        </Ellipse>
+                      </ControlTemplate>
+                    </Setter.Value>
+                  </Setter>
+                </Style>
+              </Thumb.Style>
+            </Thumb>
+          </Track.Thumb>
+          <Track.IncreaseRepeatButton>
+            <RepeatButton Command="Slider.IncreaseLarge"
+                          Style="{StaticResource TimeSliderButtonStyle}"/>
+          </Track.IncreaseRepeatButton>
+        </Track>
+      </Grid>
+    </ControlTemplate>
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
       <Setter Property="Margin" Value="3,2" />
       <Setter Property="VerticalAlignment" Value="Center" />
@@ -370,12 +425,32 @@
     <CheckBox IsChecked="{Binding CurrentWorld.IsEclipse}" Content="{x:Static p:Language.tool_wp_moon_eclipse}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <Separator Grid.ColumnSpan="2" />
     <TextBlock Text="{x:Static p:Language.tool_wp_time_label}" HorizontalAlignment="Right" />
-    <Grid Height="20">
-      <Rectangle Style="{DynamicResource TimeBackgroundStyle}" VerticalAlignment="Stretch" Margin="0,1"/>
-      <Slider Value="{Binding CurrentWorld.Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center"  HorizontalAlignment="Stretch" Minimum="0" Maximum="54000" />
-    </Grid>
+    <DockPanel>
+      <TextBox DockPanel.Dock="Right" Width="72" Margin="4,0,0,0" VerticalAlignment="Center" FontSize="11"
+               HorizontalContentAlignment="Center">
+        <TextBox.Text>
+          <MultiBinding Converter="{StaticResource TerrariaTimeConverter}" UpdateSourceTrigger="LostFocus">
+            <Binding Path="CurrentWorld.Time" Mode="TwoWay" />
+            <Binding Path="CurrentWorld.DayTime" Mode="TwoWay" />
+          </MultiBinding>
+        </TextBox.Text>
+      </TextBox>
+      <Slider x:Name="timeSlider"
+              VerticalAlignment="Center" HorizontalAlignment="Stretch"
+              Minimum="0" Maximum="86400" Height="20"
+              Background="{DynamicResource FullDayCycleGradient}"
+              Template="{StaticResource TimeGradientSliderTemplate}">
+        <Slider.Value>
+          <MultiBinding Converter="{StaticResource ContinuousTimeSliderConverter}" Mode="TwoWay">
+            <Binding Path="CurrentWorld.Time" Mode="TwoWay" />
+            <Binding Path="CurrentWorld.DayTime" Mode="TwoWay" />
+          </MultiBinding>
+        </Slider.Value>
+      </Slider>
+    </DockPanel>
     <TextBlock />
-    <CheckBox x:Name="dayCheckBox" Content="{x:Static p:Language.tool_wp_time_day}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding CurrentWorld.DayTime, Mode=TwoWay}"/>
+    <CheckBox x:Name="dayCheckBox" Content="{x:Static p:Language.tool_wp_time_day}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1"
+              IsChecked="{Binding CurrentWorld.DayTime, Mode=OneWay}" IsHitTestVisible="False" Focusable="False" />
     <TextBlock />
     <CheckBox IsChecked="{Binding CurrentWorld.FastForwardTime}" Content="{x:Static p:Language.tool_wp_time_sundial}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock Text="{x:Static p:Language.tool_wp_time_sundial_cooldown}" HorizontalAlignment="Right" />
