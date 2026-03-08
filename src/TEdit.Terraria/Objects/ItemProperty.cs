@@ -49,6 +49,10 @@ public class ItemProperty : ITile
     public int? HandOffSlot { get; set; }
     public int? FrontSlot { get; set; }
 
+    // Tile/wall placement: which tile or wall this item places (null = none)
+    public int? CreateTile { get; set; }
+    public int? CreateWall { get; set; }
+
     // Texture alias: when set, use Item_{TextureId}.xnb instead of Item_{Id}.xnb
     // From ItemID.Sets.TextureCopyLoad — trapped chests, etc.
     public int? TextureId { get; set; }

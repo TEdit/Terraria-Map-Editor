@@ -56,6 +56,10 @@ public class TerrariaDataStore
     public Dictionary<int, ItemProperty> RackableItems { get; } = new();
     public Dictionary<int, string> TallyNames { get; } = new();
 
+    // Reverse lookups: tile/wall ID → first item ID that places it
+    public Dictionary<int, int> TileItemLookup { get; } = new();
+    public Dictionary<int, int> WallItemLookup { get; } = new();
+
     // Dye color lookup (item ID → static tint color)
     public Dictionary<int, DyeProperty> DyeColorById { get; } = new();
 
@@ -304,6 +308,8 @@ public class TerrariaDataStore
         DyeItems.Clear();
         RackableItems.Clear();
         TallyNames.Clear();
+        TileItemLookup.Clear();
+        WallItemLookup.Clear();
 
         foreach (var item in items)
         {
@@ -321,6 +327,12 @@ public class TerrariaDataStore
             if (item.IsAccessory) AccessoryItems[item.Id] = item;
             if (item.IsMount) MountItems[item.Id] = item;
             if (item.Name.Contains("Dye")) DyeItems[item.Id] = item;
+
+            // Build reverse lookups: tile/wall → first item that places it
+            if (item.CreateTile.HasValue && !TileItemLookup.ContainsKey(item.CreateTile.Value))
+                TileItemLookup[item.CreateTile.Value] = item.Id;
+            if (item.CreateWall.HasValue && !WallItemLookup.ContainsKey(item.CreateWall.Value))
+                WallItemLookup[item.CreateWall.Value] = item.Id;
         }
     }
 

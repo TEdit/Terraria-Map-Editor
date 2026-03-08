@@ -1013,6 +1013,8 @@ namespace SettingsFileUpdater.TerrariaHost
                     HandOnSlot = curitem.handOnSlot > 0 ? curitem.handOnSlot : null,
                     HandOffSlot = curitem.handOffSlot > 0 ? curitem.handOffSlot : null,
                     FrontSlot = curitem.frontSlot > 0 ? curitem.frontSlot : null,
+                    CreateTile = curitem.createTile >= 0 ? curitem.createTile : null,
+                    CreateWall = curitem.createWall > 0 ? curitem.createWall : null,
                     TextureId = textureId,
                     Tally = tally,
                     Rarity = GetRarityName(curitem.rare)

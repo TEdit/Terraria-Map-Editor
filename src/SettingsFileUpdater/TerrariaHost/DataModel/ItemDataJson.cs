@@ -71,6 +71,13 @@ public class ItemDataJson
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? DrawHatHair { get; set; }
 
+    // Tile/wall placement: which tile or wall this item places (-1 = none, omitted from JSON)
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public int? CreateTile { get; set; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public int? CreateWall { get; set; }
+
     // Texture alias: when set, use Item_{TextureId}.xnb instead of Item_{Id}.xnb
     // Populated from ItemID.Sets.TextureCopyLoad (resolved transitively)
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
