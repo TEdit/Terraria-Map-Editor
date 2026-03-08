@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -162,18 +162,6 @@
   <data name="about_wiki" xml:space="preserve">
     <value>ويكي</value>
   </data>
-  <data name="backup_type_autosave" xml:space="preserve">
-    <value>حفظ تلقائي</value>
-  </data>
-  <data name="backup_type_generic" xml:space="preserve">
-    <value>نسخة احتياطية</value>
-  </data>
-  <data name="backup_type_tedit" xml:space="preserve">
-    <value>نسخة احتياطية من TEdit</value>
-  </data>
-  <data name="backup_type_terraria" xml:space="preserve">
-    <value>نسخة احتياطية من Terraria</value>
-  </data>
   <data name="banner_category" xml:space="preserve">
     <value>الفئة:</value>
   </data>
@@ -197,6 +185,18 @@
   </data>
   <data name="banner_save" xml:space="preserve">
     <value>أنقذ</value>
+  </data>
+  <data name="backup_type_autosave" xml:space="preserve">
+    <value>Autosave</value>
+  </data>
+  <data name="backup_type_generic" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="backup_type_tedit" xml:space="preserve">
+    <value>TEdit Backup</value>
+  </data>
+  <data name="backup_type_terraria" xml:space="preserve">
+    <value>Terraria Backup</value>
   </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>ثَرْثَرَ</value>
@@ -1529,10 +1529,10 @@
     <value>حدد لغة عرض التطبيق</value>
   </data>
   <data name="settings_max_backups" xml:space="preserve">
-    <value>النسخ الاحتياطية القصوى</value>
+    <value>Max Backups</value>
   </data>
   <data name="settings_max_backups_desc" xml:space="preserve">
-    <value>عدد ملفات النسخ الاحتياطية لـ TEdit (.TEdit) التي يجب الاحتفاظ بها لكل عالم عند الحفظ</value>
+    <value>Number of TEdit backup files (.TEdit) to keep per world when saving</value>
   </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>خلفية الخريطة المصغرة</value>
