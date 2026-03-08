@@ -67,21 +67,23 @@ public partial class TileWallPickerViewModel
                 foreach (var item in WorldConfiguration.ItemProperties.OrderBy(x => x.Name))
                 {
                     // Items don't have a color property, use a default
-                    AllItems.Add(new PickerItemViewModel(item.Id, item.Name, TEditColor.White));
+                    AllItems.Add(new PickerItemViewModel(item.Id, item.Name, TEditColor.White, itemId: item.Id));
                 }
                 break;
 
             case PickerDataSource.TileBricks:
                 foreach (var tile in WorldConfiguration.TileBricks.OrderBy(x => x.Name))
                 {
-                    AllItems.Add(new PickerItemViewModel(tile.Id, tile.Name, tile.Color));
+                    WorldConfiguration.TileItemLookup.TryGetValue(tile.Id, out int tileItemId);
+                    AllItems.Add(new PickerItemViewModel(tile.Id, tile.Name, tile.Color, itemId: tileItemId));
                 }
                 break;
 
             case PickerDataSource.Walls:
                 foreach (var wall in WorldConfiguration.WallProperties.OrderBy(x => x.Name))
                 {
-                    AllItems.Add(new PickerItemViewModel(wall.Id, wall.Name, wall.Color));
+                    WorldConfiguration.WallItemLookup.TryGetValue(wall.Id, out int wallItemId);
+                    AllItems.Add(new PickerItemViewModel(wall.Id, wall.Name, wall.Color, itemId: wallItemId));
                 }
                 break;
 

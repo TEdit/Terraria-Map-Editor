@@ -620,6 +620,9 @@ public class WorldConfiguration
 
     public static Dictionary<int, DyeProperty> DyeColorById => TerrariaDataStore.Instance.DyeColorById;
 
+    public static Dictionary<int, int> TileItemLookup => TerrariaDataStore.Instance.TileItemLookup;
+    public static Dictionary<int, int> WallItemLookup => TerrariaDataStore.Instance.WallItemLookup;
+
     public static ObservableCollection<SpriteSheet> Sprites2 { get; } = new ObservableCollection<SpriteSheet>();
 
     /// <summary>

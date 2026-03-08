@@ -77,7 +77,7 @@
                         <!-- Item preview image (shown when ItemPreviewCache has a texture) -->
                         <Image x:Name="ItemPreview"
                                DockPanel.Dock="Left"
-                               Source="{Binding Id, Converter={StaticResource ItemIdToPreviewConverter}}"
+                               Source="{Binding ItemId, Converter={StaticResource ItemIdToPreviewConverter}}"
                                Width="20" Height="20" Stretch="Uniform"
                                Margin="0,0,6,0"
                                VerticalAlignment="Center"
