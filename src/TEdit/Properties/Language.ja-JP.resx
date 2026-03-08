@@ -162,6 +162,18 @@
   <data name="about_wiki" xml:space="preserve">
     <value>ウィキ</value>
   </data>
+  <data name="backup_type_autosave" xml:space="preserve">
+    <value>自動保存</value>
+  </data>
+  <data name="backup_type_generic" xml:space="preserve">
+    <value>バックアップ</value>
+  </data>
+  <data name="backup_type_tedit" xml:space="preserve">
+    <value>TEdit バックアップ</value>
+  </data>
+  <data name="backup_type_terraria" xml:space="preserve">
+    <value>Terraria バックアップ</value>
+  </data>
   <data name="banner_category" xml:space="preserve">
     <value>カテゴリ:</value>
   </data>

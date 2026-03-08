@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using TEdit.Properties;
 using TEdit.Utility;
 
 namespace TEdit.ViewModel;
@@ -29,10 +30,10 @@ public class BackupEntryViewModel
     public bool IsTEditBackup { get; }
 
     public string TypeLabel =>
-        IsAutosave ? "Autosave" :
-        IsTerrariaBackup ? "Terraria Backup" :
-        IsTEditBackup ? "TEdit Backup" :
-        "Backup";
+        IsAutosave ? Language.backup_type_autosave :
+        IsTerrariaBackup ? Language.backup_type_terraria :
+        IsTEditBackup ? Language.backup_type_tedit :
+        Language.backup_type_generic;
 
     public string TimestampText => Timestamp.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
     public string SizeText => FileMaintenance.FormatFileSize(FileSizeBytes);

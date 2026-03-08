@@ -162,6 +162,18 @@
   <data name="about_wiki" xml:space="preserve">
     <value>Wiki</value>
   </data>
+  <data name="backup_type_autosave" xml:space="preserve">
+    <value>Automatyczne zapisywanie</value>
+  </data>
+  <data name="backup_type_generic" xml:space="preserve">
+    <value>Kopia zapasowa</value>
+  </data>
+  <data name="backup_type_tedit" xml:space="preserve">
+    <value>Kopia zapasowa TEdit</value>
+  </data>
+  <data name="backup_type_terraria" xml:space="preserve">
+    <value>Kopia zapasowa Terraria</value>
+  </data>
   <data name="banner_category" xml:space="preserve">
     <value>Kategoria:</value>
   </data>

@@ -186,6 +186,18 @@
   <data name="banner_save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="backup_type_autosave" xml:space="preserve">
+    <value>Autosave</value>
+  </data>
+  <data name="backup_type_generic" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="backup_type_tedit" xml:space="preserve">
+    <value>TEdit Backup</value>
+  </data>
+  <data name="backup_type_terraria" xml:space="preserve">
+    <value>Terraria Backup</value>
+  </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>Chat</value>
   </data>
@@ -1455,12 +1467,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="settings_max_backups" xml:space="preserve">
-    <value>Max Backups</value>
-  </data>
-  <data name="settings_max_backups_desc" xml:space="preserve">
-    <value>Number of TEdit backup files (.TEdit) to keep per world when saving</value>
-  </data>
   <data name="settings_category_experimental" xml:space="preserve">
     <value>Experimental Features</value>
     <comment>Settings category for experimental/preview features</comment>
@@ -1521,6 +1527,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_language_desc" xml:space="preserve">
     <value>Set the application display language</value>
+  </data>
+  <data name="settings_max_backups" xml:space="preserve">
+    <value>Max Backups</value>
+  </data>
+  <data name="settings_max_backups_desc" xml:space="preserve">
+    <value>Number of TEdit backup files (.TEdit) to keep per world when saving</value>
   </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>Minimap Background</value>

@@ -162,6 +162,18 @@
   <data name="about_wiki" xml:space="preserve">
     <value>ويكي</value>
   </data>
+  <data name="backup_type_autosave" xml:space="preserve">
+    <value>حفظ تلقائي</value>
+  </data>
+  <data name="backup_type_generic" xml:space="preserve">
+    <value>نسخة احتياطية</value>
+  </data>
+  <data name="backup_type_tedit" xml:space="preserve">
+    <value>نسخة احتياطية من TEdit</value>
+  </data>
+  <data name="backup_type_terraria" xml:space="preserve">
+    <value>نسخة احتياطية من Terraria</value>
+  </data>
   <data name="banner_category" xml:space="preserve">
     <value>الفئة:</value>
   </data>
