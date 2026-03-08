@@ -173,8 +173,8 @@ public partial class Item : ReactiveObject
             _modItemName = _modItemName,
             ModPrefixMod = ModPrefixMod,
             ModPrefixName = ModPrefixName,
-            ModItemData = ModItemData,
-            ModGlobalData = ModGlobalData,
+            ModItemData = ModItemData?.Clone(),
+            ModGlobalData = ModGlobalData?.Select(t => t?.Clone()).ToList(),
         };
     }
 

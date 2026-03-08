@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TEdit.Common.IO;
 
 namespace TEdit.Terraria;
@@ -91,8 +92,8 @@ public partial class TileEntityItem : ReactiveObject
         _modItemName = this._modItemName,
         ModPrefixMod = this.ModPrefixMod,
         ModPrefixName = this.ModPrefixName,
-        ModItemData = this.ModItemData,
-        ModGlobalData = this.ModGlobalData,
+        ModItemData = this.ModItemData?.Clone(),
+        ModGlobalData = this.ModGlobalData?.Select(t => t?.Clone()).ToList(),
     };
 
     public static implicit operator TileEntityItem(Item item)

@@ -119,6 +119,57 @@ public class TagCompound : IEnumerable<KeyValuePair<string, object>>
     public IEnumerator<KeyValuePair<string, object>> GetEnumerator() => _tags.GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+    /// <summary>
+    /// Creates a deep copy of this TagCompound, recursively cloning nested
+    /// TagCompounds, Lists, and byte[]/int[] arrays.
+    /// </summary>
+    public TagCompound Clone()
+    {
+        var clone = new TagCompound();
+        foreach (var kvp in _tags)
+        {
+            clone._tags[kvp.Key] = CloneValue(kvp.Value);
+        }
+        return clone;
+    }
+
+    private static object CloneValue(object value)
+    {
+        return value switch
+        {
+            TagCompound tc => tc.Clone(),
+            byte[] ba => (byte[])ba.Clone(),
+            int[] ia => (int[])ia.Clone(),
+            IList list => CloneList(list),
+            _ => value // primitives and strings are immutable
+        };
+    }
+
+    private static IList CloneList(IList source)
+    {
+        // Preserve the generic List<T> type
+        var sourceType = source.GetType();
+        if (sourceType.IsGenericType && sourceType.GetGenericTypeDefinition() == typeof(List<>))
+        {
+            var elementType = sourceType.GetGenericArguments()[0];
+            var listType = typeof(List<>).MakeGenericType(elementType);
+            var clone = (IList)Activator.CreateInstance(listType, source.Count);
+            foreach (var item in source)
+            {
+                clone.Add(CloneValue(item));
+            }
+            return clone;
+        }
+
+        // Fallback: List<object>
+        var fallback = new List<object>(source.Count);
+        foreach (var item in source)
+        {
+            fallback.Add(CloneValue(item));
+        }
+        return fallback;
+    }
+
     public override string ToString()
     {
         return $"TagCompound({Count} entries)";

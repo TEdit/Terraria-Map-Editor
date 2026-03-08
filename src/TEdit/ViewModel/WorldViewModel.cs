@@ -454,6 +454,7 @@ public partial class WorldViewModel : ReactiveObject
 
         int totalTiles = 0, totalWalls = 0, totalItems = 0;
         int modsFound = 0, modsNotFound = 0;
+        var missingMods = new List<string>();
 
         ModItemPreviewCache.Clear();
 
@@ -464,6 +465,7 @@ public partial class WorldViewModel : ReactiveObject
             {
                 ErrorLogging.LogDebug($"LoadModTextures: .tmod not found for mod '{modName}'");
                 modsNotFound++;
+                missingMods.Add(modName);
                 continue;
             }
 
@@ -636,6 +638,18 @@ public partial class WorldViewModel : ReactiveObject
         }
 
         ErrorLogging.LogDebug($"LoadModTextures: Complete — {modsFound}/{usedMods.Count} mods found, {totalTiles} tile textures queued, {totalWalls} wall textures queued, {totalItems} item previews queued, {modsNotFound} mods not found on disk");
+
+        if (missingMods.Count > 0)
+        {
+            var modList = string.Join(", ", missingMods);
+            ErrorLogging.LogWarn($"Missing .tmod files for: {modList}");
+            App.SnackbarService?.Show(
+                "Missing Mod Files",
+                $"{missingMods.Count} mod(s) not found on disk: {modList}. Mod tiles and items from these mods will not render correctly.",
+                Wpf.Ui.Controls.ControlAppearance.Caution,
+                Wpf.Ui.Controls.SymbolRegular.Warning20,
+                System.TimeSpan.FromSeconds(10));
+        }
     }
 
     private Microsoft.Xna.Framework.Graphics.Texture2D LoadRawImgTexture(byte[] rawImgData)

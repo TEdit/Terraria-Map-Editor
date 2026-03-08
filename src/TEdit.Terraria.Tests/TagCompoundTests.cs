@@ -261,4 +261,84 @@ public class TagCompoundTests
         tag.Set("key", null);
         tag.ContainsKey("key").ShouldBeFalse();
     }
+
+    [Fact]
+    public void Clone_DeepCopiesPrimitives()
+    {
+        var original = new TagCompound();
+        original.Set("int", 42);
+        original.Set("string", "hello");
+        original.Set("float", 3.14f);
+
+        var clone = original.Clone();
+
+        clone.GetInt("int").ShouldBe(42);
+        clone.GetString("string").ShouldBe("hello");
+        clone.GetFloat("float").ShouldBe(3.14f);
+
+        // Mutate clone, original unchanged
+        clone.Set("int", 99);
+        original.GetInt("int").ShouldBe(42);
+    }
+
+    [Fact]
+    public void Clone_DeepCopiesNestedCompound()
+    {
+        var inner = new TagCompound();
+        inner.Set("val", "original");
+
+        var original = new TagCompound();
+        original.Set("child", inner);
+
+        var clone = original.Clone();
+        clone.GetCompound("child").Set("val", "modified");
+
+        // Original's inner compound should be unchanged
+        original.GetCompound("child").GetString("val").ShouldBe("original");
+    }
+
+    [Fact]
+    public void Clone_DeepCopiesArrays()
+    {
+        var original = new TagCompound();
+        original.Set("bytes", new byte[] { 1, 2, 3 });
+        original.Set("ints", new int[] { 10, 20 });
+
+        var clone = original.Clone();
+
+        // Mutate cloned arrays
+        clone.GetByteArray("bytes")[0] = 99;
+        clone.GetIntArray("ints")[0] = 99;
+
+        // Originals unchanged
+        original.GetByteArray("bytes")[0].ShouldBe((byte)1);
+        original.GetIntArray("ints")[0].ShouldBe(10);
+    }
+
+    [Fact]
+    public void Clone_DeepCopiesListOfCompounds()
+    {
+        var item = new TagCompound();
+        item.Set("name", "sword");
+        item.Set("damage", 50);
+
+        var original = new TagCompound();
+        original.Set("items", new List<TagCompound> { item });
+
+        var clone = original.Clone();
+
+        // Mutate cloned list entry
+        clone.GetList<TagCompound>("items")[0].Set("name", "axe");
+
+        // Original unchanged
+        original.GetList<TagCompound>("items")[0].GetString("name").ShouldBe("sword");
+    }
+
+    [Fact]
+    public void Clone_NullReturnsNull()
+    {
+        TagCompound tc = null;
+        var result = tc?.Clone();
+        result.ShouldBeNull();
+    }
 }

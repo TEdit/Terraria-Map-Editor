@@ -675,8 +675,8 @@ public partial class TileEntity : ReactiveObject
         frame._modItemName = _modItemName;
         frame.ModPrefixMod = ModPrefixMod;
         frame.ModPrefixName = ModPrefixName;
-        frame.ModItemData = ModItemData;
-        frame.ModGlobalData = ModGlobalData;
+        frame.ModItemData = ModItemData?.Clone();
+        frame.ModGlobalData = ModGlobalData?.Select(t => t?.Clone()).ToList();
 
         frame.LogicCheck = LogicCheck;
         frame.On = On;
