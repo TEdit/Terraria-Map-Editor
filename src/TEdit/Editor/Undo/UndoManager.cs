@@ -394,18 +394,15 @@ public partial class UndoManager : ReactiveObject, IDisposable
             redo.Dispose();
             redo = null;
 
-            foreach (var chest in World.LoadChestData(br, version))
-            {
-                _world.Chests.Add(chest);
-            }
+            var loadedChests = World.LoadChestData(br, version).ToList();
+            foreach (var chest in loadedChests) { _world.Chests.Add(chest); }
             foreach (var sign in World.LoadSignData(br))
             {
                 _world.Signs.Add(sign);
             }
-            foreach (var te in World.LoadTileEntityData(br, version))
-            {
-                _world.TileEntities.Add(te);
-            }
+            var loadedEntities = World.LoadTileEntityData(br, version).ToList();
+            foreach (var te in loadedEntities) { _world.TileEntities.Add(te); }
+            ModDataSerializer.LoadModPayload(br, loadedChests, loadedEntities);
         }
 
         _currentIndex--; // move index back one, create a new buffer
@@ -457,18 +454,15 @@ public partial class UndoManager : ReactiveObject, IDisposable
 
                 _notifyTileChanged?.Invoke(undoTile.Location.X, undoTile.Location.Y, 1, 1);
             }
-            foreach (var chest in World.LoadChestData(br, version))
-            {
-                _world.Chests.Add(chest);
-            }
+            var loadedChests = World.LoadChestData(br, version).ToList();
+            foreach (var chest in loadedChests) { _world.Chests.Add(chest); }
             foreach (var sign in World.LoadSignData(br))
             {
                 _world.Signs.Add(sign);
             }
-            foreach (var te in World.LoadTileEntityData(br, version))
-            {
-                _world.TileEntities.Add(te);
-            }
+            var loadedEntities = World.LoadTileEntityData(br, version).ToList();
+            foreach (var te in loadedEntities) { _world.TileEntities.Add(te); }
+            ModDataSerializer.LoadModPayload(br, loadedChests, loadedEntities);
         }
 
         SaveUndo(updateMax: false);

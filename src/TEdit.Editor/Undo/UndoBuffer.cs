@@ -182,6 +182,7 @@ public class UndoBuffer : IDisposable
         World.SaveChests(Chests, _writer, (int)version);
         World.SaveSigns(Signs, _writer, (int)version);
         World.SaveTileEntities(TileEntities, _writer, version);
+        ModDataSerializer.SaveModPayload(_writer, Chests, TileEntities);
         _writer.BaseStream.Position = (long)0;
         _writer.Write(_uniqueTileGroupsWritten);
         _writer.Close();

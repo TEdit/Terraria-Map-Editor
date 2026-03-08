@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Terraria.Objects;
@@ -22,7 +24,7 @@ public partial class ClipboardBuffer
         {
             using (var bw = new BinaryWriter(stream))
             {
-                SaveV4(bw, version ?? WorldConfiguration.CompatibleVersion);
+                SaveV5(bw, version ?? WorldConfiguration.CompatibleVersion);
                 bw.Close();
             }
         }
@@ -139,6 +141,66 @@ public partial class ClipboardBuffer
         bw.Write(Size.Y);
     }
 
+    private void SaveV5(BinaryWriter bw, uint version)
+    {
+        var tileFrameImportant = this.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
+
+        bw.Write(Name);
+        bw.Write(version + 20000);
+        World.WriteBitArray(bw, tileFrameImportant);
+        bw.Write(Size.X);
+        bw.Write(Size.Y);
+
+        var frames = new bool[0];
+        if ((int)version <= WorldConfiguration.CompatibleVersion)
+            frames = WorldConfiguration.SaveConfiguration.GetData((int)version).GetFrames();
+        else
+            frames = WorldConfiguration.SaveConfiguration.GetData((int)WorldConfiguration.CompatibleVersion).GetFrames();
+
+        World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
+        World.SaveChests(Chests, bw, (int)version);
+        World.SaveSigns(Signs, bw, (int)version);
+        World.SaveTileEntities(TileEntities, bw, version);
+        ModDataSerializer.SaveModPayload(bw, Chests, TileEntities);
+
+        bw.Write(Name);
+        bw.Write(version);
+        bw.Write(Size.X);
+        bw.Write(Size.Y);
+    }
+
+    private static ClipboardBuffer LoadV5(BinaryReader b, string name, int version)
+    {
+        var tileFrameImportant = World.ReadBitArray(b);
+        int sizeX = b.ReadInt32();
+        int sizeY = b.ReadInt32();
+        var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY), tileFrameImportant: tileFrameImportant);
+        buffer.Name = name;
+
+        buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, tileFrameImportant);
+        buffer.Chests.AddRange(World.LoadChestData(b, (uint)version));
+        buffer.Signs.AddRange(World.LoadSignData(b));
+        buffer.TileEntities.AddRange(World.LoadTileEntityData(b, (uint)version));
+        ModDataSerializer.LoadModPayload(b, buffer.Chests, buffer.TileEntities);
+
+        string verifyName = b.ReadString();
+        int verifyVersion = b.ReadInt32();
+        int verifyX = b.ReadInt32();
+        int verifyY = b.ReadInt32();
+
+        b.Close();
+
+        if (buffer.Name == verifyName &&
+            version <= verifyVersion &&
+            buffer.Size.X == verifyX &&
+            buffer.Size.Y == verifyY)
+        {
+            return buffer;
+        }
+
+        return null;
+    }
+
     private static ClipboardBuffer LoadV4(BinaryReader b, string name, int version)
     {
         var tileFrameImportant = World.ReadBitArray(b);
@@ -247,6 +309,11 @@ public partial class ClipboardBuffer
                 uint tVersion = (uint)version;
 
                 // check all the old versions
+                if (version > 20000)
+                {
+                    tVersion = (uint)(version - 20000);
+                    return LoadV5(b, name, (int)tVersion);
+                }
                 if (version > 10000)
                 {
                     tVersion = (uint)(version - 10000);
