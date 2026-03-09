@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.ViewModel;
-using TEdit.Render;
 using TEdit.UI;
 using Wpf.Ui.Controls;
 
@@ -442,13 +442,27 @@ public class BrushToolBase : BaseTool
             PreviewOffsetX = center.X - minX;
             PreviewOffsetY = center.Y - minY;
 
-            // Offset points so min corner maps to (0,0)
-            foreach (var p in points)
+            // Batch all pixel writes in a single Lock/Unlock to avoid
+            // per-pixel presentationframework.dll Lock/Unlock interop overhead.
+            int a = previewColor.A + 1;
+            int argb = (previewColor.A << 24)
+                       | ((byte)((previewColor.R * a) >> 8) << 16)
+                       | ((byte)((previewColor.G * a) >> 8) << 8)
+                       | ((byte)((previewColor.B * a) >> 8));
+            bmp.Lock();
+            unsafe
             {
-                int px = p.X - minX;
-                int py = p.Y - minY;
-                bmp.SetPixel(px, py, previewColor);
+                var pixels = (int*)bmp.BackBuffer;
+                int stride = bmp.BackBufferStride / 4;
+                foreach (var p in points)
+                {
+                    int px = p.X - minX;
+                    int py = p.Y - minY;
+                    pixels[py * stride + px] = argb;
+                }
             }
+            bmp.AddDirtyRect(new Int32Rect(0, 0, previewW, previewH));
+            bmp.Unlock();
 
             _preview = bmp;
         }
@@ -545,7 +559,6 @@ public class BrushToolBase : BaseTool
                 {
                     _wvm.UndoManager.SaveTile(pixel);
                     _wvm.SetPixel(pixel.X, pixel.Y);
-                    BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
                 }
             }
         }
@@ -569,7 +582,6 @@ public class BrushToolBase : BaseTool
 
         _wvm.UndoManager.SaveTile(pixel);
         _wvm.SetPixel(pixel.X, pixel.Y);
-        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
         _wvm.UndoManager.SaveUndo();
     }
 
@@ -748,26 +760,31 @@ public class BrushToolBase : BaseTool
 
     protected void FillRectangleLine(Vector2Int32 start, Vector2Int32 end)
     {
-        var area = Fill.FillRectangleVectorCenter(start, end, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height)).ToList();
-        FillSolid(area);
+        _stampBuffer.Clear();
+        foreach (var p in Fill.FillRectangleVectorCenter(start, end, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height)))
+            _stampBuffer.Add(p);
+        FillSolid(_stampBuffer);
     }
 
     protected void FillRectangle(Vector2Int32 point)
     {
-        var area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height)).ToList();
+        _stampBuffer.Clear();
+        foreach (var p in Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height)))
+            _stampBuffer.Add(p);
         if (_wvm.Brush.IsOutline)
         {
-
-            var interrior = Fill.FillRectangleCentered(
+            _interiorBuffer.Clear();
+            foreach (var p in Fill.FillRectangleCentered(
                 point,
                 new Vector2Int32(
                     _wvm.Brush.Width - _wvm.Brush.Outline * 2,
-                    _wvm.Brush.Height - _wvm.Brush.Outline * 2)).ToList();
-            FillHollow(area, interrior);
+                    _wvm.Brush.Height - _wvm.Brush.Outline * 2)))
+                _interiorBuffer.Add(p);
+            FillHollow(_stampBuffer, _interiorBuffer);
         }
         else
         {
-            FillSolid(area);
+            FillSolid(_stampBuffer);
         }
     }
 
@@ -778,24 +795,46 @@ public class BrushToolBase : BaseTool
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;
 
-        for (int i = 0; i < count; i++)
+        int minX = int.MaxValue, minY = int.MaxValue;
+        int maxX = int.MinValue, maxY = int.MinValue;
+        bool anyModified = false;
+
+        _wvm.WorldEditor.SuppressNotify = true;
+        try
         {
-            Vector2Int32 pixel = area[i];
-            if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
-
-            int index = pixel.X + pixel.Y * tilesWide;
-            if (_wvm.CheckTiles[index] != generation)
+            for (int i = 0; i < count; i++)
             {
-                _wvm.CheckTiles[index] = generation;
-                if (_wvm.Selection.IsValid(pixel))
-                {
-                    _wvm.UndoManager.SaveTile(pixel);
-                    _wvm.SetPixel(pixel.X, pixel.Y);
+                Vector2Int32 pixel = area[i];
+                if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-                    /* Heathtech */
-                    BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                int index = pixel.X + pixel.Y * tilesWide;
+                if (_wvm.CheckTiles[index] != generation)
+                {
+                    _wvm.CheckTiles[index] = generation;
+                    if (_wvm.Selection.IsValid(pixel))
+                    {
+                        _wvm.UndoManager.SaveTile(pixel);
+                        _wvm.SetPixel(pixel.X, pixel.Y);
+
+                        if (pixel.X < minX) minX = pixel.X;
+                        if (pixel.Y < minY) minY = pixel.Y;
+                        if (pixel.X > maxX) maxX = pixel.X;
+                        if (pixel.Y > maxY) maxY = pixel.Y;
+                        anyModified = true;
+                    }
                 }
             }
+        }
+        finally
+        {
+            _wvm.WorldEditor.SuppressNotify = false;
+        }
+
+        if (anyModified)
+        {
+            int w = maxX - minX + 1;
+            int h = maxY - minY + 1;
+            _wvm.QueueUVCacheReset(minX, minY, w, h);
         }
     }
 
@@ -808,15 +847,53 @@ public class BrushToolBase : BaseTool
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;
 
-        // Draw the border
-        if (_wvm.TilePicker.TileStyleActive)
+        int minX = int.MaxValue, minY = int.MaxValue;
+        int maxX = int.MinValue, maxY = int.MinValue;
+        bool anyModified = false;
+
+        _wvm.WorldEditor.SuppressNotify = true;
+        try
         {
+            // Draw the border
+            if (_wvm.TilePicker.TileStyleActive)
+            {
+                foreach (Vector2Int32 pixel in area)
+                {
+                    var rel = new Vector2Int32(pixel.X - center.X, pixel.Y - center.Y);
+                    if (_interiorOffsetSet.Contains(rel)) continue;
+                    if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+
+                    int index = pixel.X + pixel.Y * tilesWide;
+                    if (_wvm.CheckTiles[index] != generation)
+                    {
+                        _wvm.CheckTiles[index] = generation;
+                        if (_wvm.Selection.IsValid(pixel))
+                        {
+                            _wvm.UndoManager.SaveTile(pixel);
+                            if (_wvm.TilePicker.WallStyleActive)
+                            {
+                                _wvm.TilePicker.WallStyleActive = false;
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                                _wvm.TilePicker.WallStyleActive = true;
+                            }
+                            else
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+
+                            if (pixel.X < minX) minX = pixel.X;
+                            if (pixel.Y < minY) minY = pixel.Y;
+                            if (pixel.X > maxX) maxX = pixel.X;
+                            if (pixel.Y > maxY) maxY = pixel.Y;
+                            anyModified = true;
+                        }
+                    }
+                }
+            }
+
+            // Draw the wall in the interior, exclude the border so no overlaps
             foreach (Vector2Int32 pixel in area)
             {
-                // Check if this pixel is interior using center-relative offset lookup
                 var rel = new Vector2Int32(pixel.X - center.X, pixel.Y - center.Y);
-                if (_interiorOffsetSet.Contains(rel)) continue;
-
+                if (!_interiorOffsetSet.Contains(rel)) continue;
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
                 int index = pixel.X + pixel.Y * tilesWide;
@@ -826,50 +903,39 @@ public class BrushToolBase : BaseTool
                     if (_wvm.Selection.IsValid(pixel))
                     {
                         _wvm.UndoManager.SaveTile(pixel);
+                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall, erase: true);
+
                         if (_wvm.TilePicker.WallStyleActive)
                         {
-                            _wvm.TilePicker.WallStyleActive = false;
-                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
-                            _wvm.TilePicker.WallStyleActive = true;
+                            if (_wvm.TilePicker.TileStyleActive)
+                            {
+                                _wvm.TilePicker.TileStyleActive = false;
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                                _wvm.TilePicker.TileStyleActive = true;
+                            }
+                            else
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
                         }
-                        else
-                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
 
-                        /* Heathtech */
-                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                        if (pixel.X < minX) minX = pixel.X;
+                        if (pixel.Y < minY) minY = pixel.Y;
+                        if (pixel.X > maxX) maxX = pixel.X;
+                        if (pixel.Y > maxY) maxY = pixel.Y;
+                        anyModified = true;
                     }
                 }
             }
         }
-
-        // Draw the wall in the interior, exclude the border so no overlaps
-        foreach (Vector2Int32 pixel in area)
+        finally
         {
-            var rel = new Vector2Int32(pixel.X - center.X, pixel.Y - center.Y);
-            if (!_interiorOffsetSet.Contains(rel)) continue;
+            _wvm.WorldEditor.SuppressNotify = false;
+        }
 
-            if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
-
-            if (_wvm.Selection.IsValid(pixel))
-            {
-                _wvm.UndoManager.SaveTile(pixel);
-                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall, erase: true);
-
-                if (_wvm.TilePicker.WallStyleActive)
-                {
-                    if (_wvm.TilePicker.TileStyleActive)
-                    {
-                        _wvm.TilePicker.TileStyleActive = false;
-                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
-                        _wvm.TilePicker.TileStyleActive = true;
-                    }
-                    else
-                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
-                }
-
-                /* Heathtech */
-                BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
-            }
+        if (anyModified)
+        {
+            int w = maxX - minX + 1;
+            int h = maxY - minY + 1;
+            _wvm.QueueUVCacheReset(minX, minY, w, h);
         }
     }
 
@@ -882,63 +948,93 @@ public class BrushToolBase : BaseTool
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;
 
-        // Draw the border
-        if (_wvm.TilePicker.TileStyleActive)
+        int minX = int.MaxValue, minY = int.MaxValue;
+        int maxX = int.MinValue, maxY = int.MinValue;
+        bool anyModified = false;
+
+        _wvm.WorldEditor.SuppressNotify = true;
+        try
         {
-            foreach (Vector2Int32 pixel in area)
+            // Draw the border
+            if (_wvm.TilePicker.TileStyleActive)
             {
-                if (interiorSet.Contains(pixel)) continue;
+                foreach (Vector2Int32 pixel in area)
+                {
+                    if (interiorSet.Contains(pixel)) continue;
+                    if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+
+                    int index = pixel.X + pixel.Y * tilesWide;
+
+                    if (_wvm.CheckTiles[index] != generation)
+                    {
+                        _wvm.CheckTiles[index] = generation;
+                        if (_wvm.Selection.IsValid(pixel))
+                        {
+                            _wvm.UndoManager.SaveTile(pixel);
+                            if (_wvm.TilePicker.WallStyleActive)
+                            {
+                                _wvm.TilePicker.WallStyleActive = false;
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                                _wvm.TilePicker.WallStyleActive = true;
+                            }
+                            else
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+
+                            if (pixel.X < minX) minX = pixel.X;
+                            if (pixel.Y < minY) minY = pixel.Y;
+                            if (pixel.X > maxX) maxX = pixel.X;
+                            if (pixel.Y > maxY) maxY = pixel.Y;
+                            anyModified = true;
+                        }
+                    }
+                }
+            }
+
+            // Draw the wall in the interrior, exclude the border so no overlaps
+            foreach (Vector2Int32 pixel in interrior)
+            {
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
                 int index = pixel.X + pixel.Y * tilesWide;
-
                 if (_wvm.CheckTiles[index] != generation)
                 {
                     _wvm.CheckTiles[index] = generation;
                     if (_wvm.Selection.IsValid(pixel))
                     {
                         _wvm.UndoManager.SaveTile(pixel);
+                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall, erase: true);
+
                         if (_wvm.TilePicker.WallStyleActive)
                         {
-                            _wvm.TilePicker.WallStyleActive = false;
-                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
-                            _wvm.TilePicker.WallStyleActive = true;
+                            if (_wvm.TilePicker.TileStyleActive)
+                            {
+                                _wvm.TilePicker.TileStyleActive = false;
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                                _wvm.TilePicker.TileStyleActive = true;
+                            }
+                            else
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
                         }
-                        else
-                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
 
-                        /* Heathtech */
-                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                        if (pixel.X < minX) minX = pixel.X;
+                        if (pixel.Y < minY) minY = pixel.Y;
+                        if (pixel.X > maxX) maxX = pixel.X;
+                        if (pixel.Y > maxY) maxY = pixel.Y;
+                        anyModified = true;
                     }
                 }
             }
         }
-
-        // Draw the wall in the interrior, exclude the border so no overlaps
-        foreach (Vector2Int32 pixel in interrior)
+        finally
         {
-            if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+            _wvm.WorldEditor.SuppressNotify = false;
+        }
 
-            if (_wvm.Selection.IsValid(pixel))
-            {
-                _wvm.UndoManager.SaveTile(pixel);
-                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall, erase: true);
-
-                if (_wvm.TilePicker.WallStyleActive)
-                {
-                    if (_wvm.TilePicker.TileStyleActive)
-                    {
-                        _wvm.TilePicker.TileStyleActive = false;
-                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
-                        _wvm.TilePicker.TileStyleActive = true;
-                    }
-                    else
-                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
-                }
-
-                /* Heathtech */
-                BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
-            }
+        if (anyModified)
+        {
+            int w = maxX - minX + 1;
+            int h = maxY - minY + 1;
+            _wvm.QueueUVCacheReset(minX, minY, w, h);
         }
     }
 }

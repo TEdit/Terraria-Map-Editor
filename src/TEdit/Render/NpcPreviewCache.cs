@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using System.Windows.Media.Imaging;
 
@@ -11,6 +12,12 @@ public static class NpcPreviewCache
 {
     private static readonly ConcurrentDictionary<int, WriteableBitmap> _previews = new();
     private static readonly ConcurrentDictionary<(int NpcId, int Variant), WriteableBitmap> _variantPreviews = new();
+
+    /// <summary>
+    /// Raised on UI thread when all deferred NPC previews have been loaded.
+    /// Subscribers should re-evaluate NPC preview bindings.
+    /// </summary>
+    public static event Action PreviewsLoaded;
 
     /// <summary>
     /// Gets whether the cache has been populated.
@@ -52,11 +59,12 @@ public static class NpcPreviewCache
     }
 
     /// <summary>
-    /// Marks the cache as populated.
+    /// Marks the cache as populated and raises PreviewsLoaded.
     /// </summary>
     public static void MarkPopulated()
     {
         IsPopulated = true;
+        PreviewsLoaded?.Invoke();
     }
 
     /// <summary>

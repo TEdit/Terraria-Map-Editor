@@ -142,6 +142,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
     private int _currentIndex = 0;
     private int _maxIndex = 0;
+    private Task _pendingClose;
 
     public int CurrentIndex => _currentIndex;
 
@@ -179,10 +180,23 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         //ValidateAndRemoveChests();
         if (updateMax) { _maxIndex = _currentIndex; }
         _currentIndex++;
-        _buffer.Close();
+        _pendingClose = _buffer.CloseAsync();
         CreateBuffer();
         _undoApplied?.Invoke();
 
+    }
+
+    /// <summary>
+    /// Blocks until any pending undo file serialization is complete.
+    /// Must be called before reading undo/redo files.
+    /// </summary>
+    private void WaitForPendingClose()
+    {
+        if (_pendingClose != null)
+        {
+            _pendingClose.Wait();
+            _pendingClose = null;
+        }
     }
 
     private void CreateBuffer()
@@ -252,9 +266,20 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         if (Buffer == null || Buffer.LastTile == null)
             return;
 
-
         var lastTile = Buffer.LastTile;
+
+        // Fast path: skip all entity validation if neither the saved tile
+        // nor the current world tile at that location is a chest, sign, or entity.
+        // This avoids the expensive IsAnchor/GetAnchor/FirstOrDefault calls
+        // for the vast majority of tiles during brush painting.
+        bool savedIsEntity = lastTile.Tile.IsActive &&
+            (lastTile.Tile.IsChest() || lastTile.Tile.IsSign() || lastTile.Tile.IsTileEntity());
+
         var existingLastTile = _world.Tiles[lastTile.Location.X, lastTile.Location.Y];
+        bool currentIsEntity = existingLastTile.IsActive &&
+            (existingLastTile.IsChest() || existingLastTile.IsSign() || existingLastTile.IsTileEntity());
+
+        if (!savedIsEntity && !currentIsEntity) return;
 
         // remove deleted chests or signs if required
         if (lastTile.Tile.IsChest())
@@ -326,6 +351,8 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         if (_currentIndex <= 0)
             return Array.Empty<Vector2Int32>();
 
+        WaitForPendingClose();
+
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
         string undoFileName = string.Format(UndoFile, _currentIndex - 1); // load previous undo file
@@ -374,6 +401,8 @@ public partial class UndoManager : ReactiveObject, IUndoManager
     {
         if (_currentIndex > _maxIndex)
             return Array.Empty<Vector2Int32>();
+
+        WaitForPendingClose();
 
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 

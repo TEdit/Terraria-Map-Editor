@@ -798,68 +798,74 @@ public partial class WorldRenderXna : UserControl
     }
 
     /// <summary>
-    /// Generate preview bitmaps for town NPCs only.
-    /// Regular NPCs (enemies, critters) don't appear in the NPC placement picker.
+    /// Generate preview bitmaps for town NPCs at startup (fast path).
+    /// Remaining NPCs are deferred-loaded in ProcessDeferredLoadingAsync.
     /// </summary>
     private void GenerateNpcPreviews()
     {
+        const int PreviewSize = 24;
+
         foreach (var kvp in WorldConfiguration.NpcById)
         {
             var npcData = kvp.Value;
             var npcId = npcData.Id;
 
-            // Only generate previews for town NPCs
+            // Only generate previews for town NPCs at startup
             if (!WorldConfiguration.BestiaryData.NpcById.TryGetValue(npcId, out var bestiaryData)
                 || !bestiaryData.IsTownNpc)
                 continue;
 
-            var texture = _textureDictionary.GetNPC(npcId);
-            if (texture == null || texture == _textureDictionary.DefaultTexture)
-                continue;
-
-            // Use sourceRect from JSON data, or fall back to texture size
-            var sourceRect = npcData.SourceRect;
-            int width = sourceRect.Width > 0 ? sourceRect.Width : texture.Width;
-            int height = sourceRect.Height > 0 ? sourceRect.Height : texture.Height;
-            int x = sourceRect.X;
-            int y = sourceRect.Y;
-
-            // Clamp to texture bounds
-            if (x + width > texture.Width) width = texture.Width - x;
-            if (y + height > texture.Height) height = texture.Height - y;
-            if (width <= 0 || height <= 0) continue;
-
-            var xnaRect = new Rectangle(x, y, width, height);
-            var pixelData = new int[width * height];
-
-            try
-            {
-                texture.GetData(0, xnaRect, pixelData, 0, pixelData.Length);
-            }
-            catch
-            {
-                continue;
-            }
-
-            // Create WriteableBitmap on UI thread
-            var widthCopy = width;
-            var heightCopy = height;
-            var pixelDataCopy = pixelData;
-            var npcIdCopy = npcId;
-
-            DispatcherHelper.CheckBeginInvokeOnUI(() =>
-            {
-                var preview = CreateWriteableBitmapFromPixelData(pixelDataCopy, widthCopy, heightCopy);
-                NpcPreviewCache.SetPreview(npcIdCopy, preview);
-            });
+            GenerateNpcPreviewForId(npcId, npcData, PreviewSize);
         }
 
         // Generate variant previews for town NPCs
         GenerateNpcVariantPreviews();
 
+        // Don't mark populated yet — deferred loading will add remaining NPCs
+    }
+
+    /// <summary>
+    /// Extract first frame from an NPC texture and create a scaled 24x24 preview.
+    /// </summary>
+    private void GenerateNpcPreviewForId(int npcId, NpcData npcData, int previewSize)
+    {
+        var texture = _textureDictionary.GetNPC(npcId);
+        if (texture == null || texture == _textureDictionary.DefaultTexture)
+            return;
+
+        // Use sourceRect from JSON data, or fall back to first frame estimate
+        var sourceRect = npcData.SourceRect;
+        int width = sourceRect.Width > 0 ? sourceRect.Width : texture.Width;
+        int height = sourceRect.Height > 0 ? sourceRect.Height : Math.Min(texture.Width * 2, texture.Height);
+        int x = sourceRect.X;
+        int y = sourceRect.Y;
+
+        // Clamp to texture bounds
+        if (x + width > texture.Width) width = texture.Width - x;
+        if (y + height > texture.Height) height = texture.Height - y;
+        if (width <= 0 || height <= 0) return;
+
+        var xnaRect = new Rectangle(x, y, width, height);
+        var pixelData = new int[width * height];
+
+        try
+        {
+            texture.GetData(0, xnaRect, pixelData, 0, pixelData.Length);
+        }
+        catch
+        {
+            return;
+        }
+
+        var widthCopy = width;
+        var heightCopy = height;
+        var pixelDataCopy = pixelData;
+        var npcIdCopy = npcId;
+
         DispatcherHelper.CheckBeginInvokeOnUI(() =>
         {
-            NpcPreviewCache.MarkPopulated();
+            var preview = CreateScaledItemPreview(pixelDataCopy, widthCopy, heightCopy, previewSize);
+            NpcPreviewCache.SetPreview(npcIdCopy, preview);
         });
     }
 
@@ -1299,6 +1305,47 @@ public partial class WorldRenderXna : UserControl
         {
             ItemPreviewCache.MarkPopulated();
         });
+
+        // Generate NPC previews for all bestiary NPCs not already cached (non-town NPCs)
+        var bestiaryNpcIds = WorldConfiguration.BestiaryData.NpcById.Keys
+            .Where(id => NpcPreviewCache.GetPreview(id) == null)
+            .ToList();
+        ErrorLogging.LogDebug($"Starting deferred NPC preview generation: {bestiaryNpcIds.Count} NPCs");
+        const int NpcBatchSize = 50;
+        const int NpcPreviewSize = 24;
+
+        for (int i = 0; i < bestiaryNpcIds.Count && !cancellationToken.IsCancellationRequested; i += NpcBatchSize)
+        {
+            var batch = bestiaryNpcIds.Skip(i).Take(NpcBatchSize).ToList();
+            var tcs = new TaskCompletionSource<bool>();
+
+            _textureDictionary.QueueTextureCreation(() =>
+            {
+                try
+                {
+                    foreach (var npcId in batch)
+                    {
+                        if (WorldConfiguration.NpcById.TryGetValue(npcId, out var npcData))
+                        {
+                            GenerateNpcPreviewForId(npcId, npcData, NpcPreviewSize);
+                        }
+                    }
+                }
+                finally
+                {
+                    tcs.TrySetResult(true);
+                }
+            });
+
+            await tcs.Task;
+        }
+
+        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+        {
+            NpcPreviewCache.MarkPopulated();
+        });
+
+        ErrorLogging.LogDebug("Deferred NPC preview generation complete");
 
         // Unload all preview-only textures (items, NPCs, armor, player, accessories).
         // Previews are cached as WriteableBitmaps; originals no longer needed.
@@ -2949,6 +2996,9 @@ public partial class WorldRenderXna : UserControl
 
         // Start SpriteBatch (Immediate mode — draw order is final order)
         _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+
+        // Flush deferred UV cache resets before drawing textures
+        _wvm.FlushPendingUVCacheReset();
 
         // Draw layers based on whether textures are visible
         if (_wvm.ShowTextures && _textureDictionary.Valid && AreTexturesVisible())
@@ -7033,8 +7083,8 @@ public partial class WorldRenderXna : UserControl
                 sourceRect = new Rectangle(
                     npcData.SourceRect.X,
                     npcData.SourceRect.Y,
-                    npcData.SourceRect.Width,
-                    npcData.SourceRect.Height);
+                    Math.Min(npcData.SourceRect.Width, npcTexture.Width - npcData.SourceRect.X),
+                    Math.Min(npcData.SourceRect.Height, npcTexture.Height - npcData.SourceRect.Y));
             }
             else
             {
@@ -7080,8 +7130,8 @@ public partial class WorldRenderXna : UserControl
                 sourceRect = new Rectangle(
                     npcData.SourceRect.X,
                     npcData.SourceRect.Y,
-                    npcData.SourceRect.Width,
-                    npcData.SourceRect.Height);
+                    Math.Min(npcData.SourceRect.Width, tex.Width - npcData.SourceRect.X),
+                    Math.Min(npcData.SourceRect.Height, tex.Height - npcData.SourceRect.Y));
             }
             else
             {

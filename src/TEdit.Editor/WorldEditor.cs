@@ -31,6 +31,12 @@ public class WorldEditor : IDisposable
     private readonly ISelection _selection;
     private readonly IUndoManager _undo;
     private readonly NotifyTileChanged? _notifyTileChanged;
+
+    /// <summary>
+    /// When true, per-tile notifications are suppressed. Used by BrushTool for batched updates.
+    /// </summary>
+    public bool SuppressNotify { get; set; }
+
     public int[] _checkTiles;
     public int _checkTileGeneration = 1;
     public TilePicker TilePicker { get; }
@@ -563,7 +569,7 @@ public class WorldEditor : IDisposable
                 {
                     _undo.SaveTile(_world, new Vector2Int32(x, ty));
                     above.ClearTile();
-                    _notifyTileChanged?.Invoke(x, ty, 1, 1);
+                    if (!SuppressNotify) _notifyTileChanged?.Invoke(x, ty, 1, 1);
                 }
             }
 
@@ -637,7 +643,7 @@ public class WorldEditor : IDisposable
         {
             _undo.SaveTile(_world, v);
             t.BrickStyle = style.Value;
-            _notifyTileChanged?.Invoke(x, y, 1, 1);
+            if (!SuppressNotify) _notifyTileChanged?.Invoke(x, y, 1, 1);
         }
     }
 
@@ -683,13 +689,13 @@ public class WorldEditor : IDisposable
             // Stair placement: column 8 for right, 10 for left — no neighbor detection
             int col = stairDir > 0 ? 8 : 10;
             curTile.U = (short)(col * 18);
-            _notifyTileChanged?.Invoke(x, y, 1, 1);
+            if (!SuppressNotify) _notifyTileChanged?.Invoke(x, y, 1, 1);
             // Don't reframe neighbors — stair tiles are user-controlled
         }
         else
         {
             curTile.U = (short)(ComputePlatformFrameX(x, y) * 18);
-            _notifyTileChanged?.Invoke(x, y, 1, 1);
+            if (!SuppressNotify) _notifyTileChanged?.Invoke(x, y, 1, 1);
             ReframePlatformNeighbors(x, y);
         }
     }
@@ -719,7 +725,7 @@ public class WorldEditor : IDisposable
         if (t.U != newU)
         {
             t.U = newU;
-            _notifyTileChanged?.Invoke(x, y, 1, 1);
+            if (!SuppressNotify) _notifyTileChanged?.Invoke(x, y, 1, 1);
         }
     }
 
@@ -999,7 +1005,7 @@ public class WorldEditor : IDisposable
                     _undo.SaveTile(_world, pixel);
                     SetPixel(pixel.X, pixel.Y);
 
-                    _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
+                    if (!SuppressNotify) _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
                 }
                 _checkTiles[index] = _checkTileGeneration;
             }
@@ -1035,7 +1041,7 @@ public class WorldEditor : IDisposable
                             SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
 
                         // BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
-                        _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
+                        if (!SuppressNotify) _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
                     }
                 }
             }
@@ -1064,7 +1070,7 @@ public class WorldEditor : IDisposable
                 }
 
                 /* Heathtech */
-                _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
+                if (!SuppressNotify) _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
             }
         }
     }
@@ -1096,7 +1102,7 @@ public class WorldEditor : IDisposable
 
                 _undo.SaveTile(_world, x, y);
                 SetPixel(x, y);
-                _notifyTileChanged?.Invoke(x, y, 1, 1);
+                if (!SuppressNotify) _notifyTileChanged?.Invoke(x, y, 1, 1);
             }
         }
 

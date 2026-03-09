@@ -8,6 +8,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using TEdit.Helper;
+using TEdit.Render;
 using TEdit.Terraria;
 
 namespace TEdit.ViewModel;
@@ -17,6 +18,18 @@ public partial class BestiaryItem : ReactiveObject
 {
     [Reactive]
     private string _name;
+
+    /// <summary>NPC ID for preview icon lookup.</summary>
+    public int NpcId { get; set; }
+
+    /// <summary>Forces WPF to re-evaluate the NpcId binding (for deferred preview loading).</summary>
+    public void NotifyPreviewChanged() => this.RaisePropertyChanged(nameof(NpcId));
+
+    /// <summary>Bestiary display index (the # shown in-game).</summary>
+    public int BestiaryIndex { get; set; }
+
+    /// <summary>Star rating (1-5) shown in-game bestiary.</summary>
+    public int BestiaryStars { get; set; }
 
     private Int32 _defeated;
     public Int32 Defeated
@@ -110,6 +123,16 @@ public partial class BestiaryViewModel : ReactiveObject
             .Throttle(TimeSpan.FromMilliseconds(200))
             .ObserveOn(RxSchedulers.MainThreadScheduler)
             .Subscribe(_ => BestiaryView.Refresh());
+
+        NpcPreviewCache.PreviewsLoaded += OnNpcPreviewsLoaded;
+    }
+
+    private void OnNpcPreviewsLoaded()
+    {
+        foreach (var item in BestiaryData)
+        {
+            item.NotifyPreviewChanged();
+        }
     }
 
     [Reactive]
@@ -122,12 +145,31 @@ public partial class BestiaryViewModel : ReactiveObject
         if (obj is not BestiaryItem item) return false;
 
         if (!string.IsNullOrEmpty(FilterText) &&
-            !item.Name.Contains(FilterText, StringComparison.OrdinalIgnoreCase))
+            !item.Name.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
+            !item.NpcId.ToString().Contains(FilterText, StringComparison.Ordinal) &&
+            !item.BestiaryIndex.ToString().Contains(FilterText, StringComparison.Ordinal))
         {
             return false;
         }
 
         return true;
+    }
+
+    public void ApplySort(string propertyName)
+    {
+        var direction = ListSortDirection.Ascending;
+
+        // Toggle direction if already sorted by this column
+        if (BestiaryView.SortDescriptions.Count > 0 &&
+            BestiaryView.SortDescriptions[0].PropertyName == propertyName)
+        {
+            direction = BestiaryView.SortDescriptions[0].Direction == ListSortDirection.Ascending
+                ? ListSortDirection.Descending
+                : ListSortDirection.Ascending;
+        }
+
+        BestiaryView.SortDescriptions.Clear();
+        BestiaryView.SortDescriptions.Add(new SortDescription(propertyName, direction));
     }
 
     [ReactiveCommand]
@@ -169,12 +211,25 @@ public partial class BestiaryViewModel : ReactiveObject
             bool near = _wvm.CurrentWorld.Bestiary.NPCNear.Contains(entity);
             bool talked = _wvm.CurrentWorld.Bestiary.NPCChat.Contains(entity);
 
+            int npcId = 0;
+            int bestiaryIndex = 0;
+            int bestiaryStars = 1;
+            if (WorldConfiguration.BestiaryData.NpcData.TryGetValue(entity, out var npcData))
+            {
+                npcId = npcData.Id;
+                bestiaryIndex = npcData.BestiaryDisplayIndex;
+                bestiaryStars = npcData.BestiaryStars;
+            }
+
             BestiaryData.Add(new BestiaryItem
             {
                 CanKill = WorldConfiguration.BestiaryData.BestiaryKilledIDs.Contains(entity),
                 CanNear = WorldConfiguration.BestiaryData.BestiaryNearIDs.Contains(entity),
                 CanTalk = WorldConfiguration.BestiaryData.BestiaryTalkedIDs.Contains(entity),
                 Name = entity,
+                NpcId = npcId,
+                BestiaryIndex = bestiaryIndex,
+                BestiaryStars = bestiaryStars,
                 Defeated = kills,
                 Near = near,
                 Talked = talked,

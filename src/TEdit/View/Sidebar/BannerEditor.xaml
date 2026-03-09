@@ -13,6 +13,7 @@
 
     <UserControl.Resources>
         <converters:BannerTallyToPreviewConverter x:Key="BannerTallyToPreviewConverter" />
+        <converters:NpcIdToPreviewConverter x:Key="NpcPreviewConverter" />
     </UserControl.Resources>
 
     <DockPanel Background="{DynamicResource SidebarBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -51,7 +52,8 @@
             Name="BannerReadout"
             ItemsSource="{Binding BannersView}"
             VirtualizingStackPanel.IsVirtualizing="True"
-            VirtualizingStackPanel.VirtualizationMode="Recycling">
+            VirtualizingStackPanel.VirtualizationMode="Recycling"
+            GridViewColumnHeader.Click="GridViewColumnHeader_Click">
 
             <ListView.GroupStyle>
                 <GroupStyle>
@@ -78,8 +80,21 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
+                    <!-- NPC preview icon -->
+                    <GridViewColumn Width="36" Header="">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="24" Height="24" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                       Source="{Binding NpcId, Converter={StaticResource NpcPreviewConverter}}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Width="40" Header="ID" DisplayMemberBinding="{Binding NpcId}" />
+                    <GridViewColumn Width="40" Header="BID" DisplayMemberBinding="{Binding BestiaryIndex}" />
+
                     <!-- Banner Name -->
-                    <GridViewColumn Width="150" Header="{x:Static p:Language.bestiary_name}" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Width="120" Header="{x:Static p:Language.bestiary_name}" DisplayMemberBinding="{Binding Name}" />
 
                     <!-- Kill count (read-only) -->
                     <GridViewColumn Header="{x:Static p:Language.banner_kills}" Width="55">
