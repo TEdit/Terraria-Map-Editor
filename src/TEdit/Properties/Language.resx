@@ -316,6 +316,36 @@
   <data name="common_search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="depth_center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="depth_east" xml:space="preserve">
+    <value>{0}' East</value>
+  </data>
+  <data name="depth_feet" xml:space="preserve">
+    <value>{0}'</value>
+  </data>
+  <data name="depth_layer_caverns" xml:space="preserve">
+    <value>Caverns</value>
+  </data>
+  <data name="depth_layer_space" xml:space="preserve">
+    <value>Space</value>
+  </data>
+  <data name="depth_layer_surface" xml:space="preserve">
+    <value>Surface</value>
+  </data>
+  <data name="depth_layer_underground" xml:space="preserve">
+    <value>Underground</value>
+  </data>
+  <data name="depth_layer_underworld" xml:space="preserve">
+    <value>Underworld</value>
+  </data>
+  <data name="depth_level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="depth_west" xml:space="preserve">
+    <value>{0}' West</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>Directory does not appear to contain Terraria Content.
 Press retry to pick a new folder or cancel to use {0} as your terraria path.</value>
@@ -1896,7 +1926,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Tile ID: {0}</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
-    <value>Feet</value>
+    <value>GPS</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
@@ -3015,35 +3045,5 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
-  </data>
-  <data name="depth_east" xml:space="preserve">
-    <value>{0}' East</value>
-  </data>
-  <data name="depth_west" xml:space="preserve">
-    <value>{0}' West</value>
-  </data>
-  <data name="depth_center" xml:space="preserve">
-    <value>Center</value>
-  </data>
-  <data name="depth_layer_space" xml:space="preserve">
-    <value>Space</value>
-  </data>
-  <data name="depth_layer_surface" xml:space="preserve">
-    <value>Surface</value>
-  </data>
-  <data name="depth_layer_underground" xml:space="preserve">
-    <value>Underground</value>
-  </data>
-  <data name="depth_layer_caverns" xml:space="preserve">
-    <value>Caverns</value>
-  </data>
-  <data name="depth_layer_underworld" xml:space="preserve">
-    <value>Underworld</value>
-  </data>
-  <data name="depth_feet" xml:space="preserve">
-    <value>{0}'</value>
-  </data>
-  <data name="depth_level" xml:space="preserve">
-    <value>Level</value>
   </data>
 </root>

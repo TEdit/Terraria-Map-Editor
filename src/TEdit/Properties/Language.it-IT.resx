@@ -1926,7 +1926,7 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
     <value>ID tessella: {0}</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
-    <value>Piedi</value>
+    <value>GPS</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>

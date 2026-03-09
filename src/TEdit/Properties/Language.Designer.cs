@@ -5462,7 +5462,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feet.
+        ///   Looks up a localized string similar to GPS.
         /// </summary>
         public static string statusbar_depth_label {
             get {

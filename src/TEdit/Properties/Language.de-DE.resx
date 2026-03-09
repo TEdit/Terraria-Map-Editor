@@ -1926,7 +1926,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Kachel-ID: {0}</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
-    <value>Fuß</value>
+    <value>GPS</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extras</value>

@@ -1926,7 +1926,7 @@
     <value>タイルID:{0}</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
-    <value>フィート</value>
+    <value>GPS</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>特典</value>
