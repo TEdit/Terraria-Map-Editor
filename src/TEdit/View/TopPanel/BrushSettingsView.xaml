@@ -24,9 +24,10 @@
             <!-- 1: textboxes -->
             <ColumnDefinition Width="104" />
             <!-- 2: sliders -->
+            <ColumnDefinition Width="24" />
+
             <ColumnDefinition Width="Auto" />
             <!-- 3: toggle buttons -->
-            <ColumnDefinition Width="Auto" />
             <!-- 4: separator -->
             <ColumnDefinition Width="Auto" />
             <!-- 5: labels -->
@@ -34,8 +35,8 @@
             <!-- 6: textboxes -->
             <ColumnDefinition Width="104" />
             <!-- 7: sliders -->
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -52,11 +53,11 @@
         <Slider    Grid.Row="0" Grid.Column="2" Value="{Binding Brush.Width, Mode=TwoWay}"
                    Minimum="{Binding Brush.MinWidth}" Maximum="{Binding Brush.MaxWidth}"
                    SmallChange="1" LargeChange="10" VerticalAlignment="Center"  />
-        <ToggleButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="0" Margin="16,0,0,0" BorderThickness="1"
-                      Width="22" Height="10" 
+        <ToggleButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Padding="0" Margin="2" BorderThickness="1"
+                      Width="20" Height="48" 
                       IsChecked="{Binding Brush.IsLocked}"
                       ToolTip="{x:Static p:Language.tool_brush_lock_ratio_tooltip}">
-            <ui:SymbolIcon Symbol="LockClosed16" FontSize="8" />
+            <ui:SymbolIcon Symbol="LockClosed16" FontSize="12" />
         </ToggleButton>
 
         <!-- Row 1: Height -->
@@ -84,7 +85,7 @@
         <!-- Row 3: Shape -->
         <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static p:Language.tool_brush_shape_label}"
                    HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,1,4,1" />
-        <ComboBox  Grid.Row="3" Grid.Column="2" 
+    <ComboBox  Grid.Row="3" Grid.Column="2"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
                    ItemsSource="{StaticResource BrushShapeEnum}" SelectedValue="{Binding Brush.Shape}"
                    SelectedValuePath="Value" Height="22" Margin="0,1" />
 
@@ -146,7 +147,7 @@
                    VerticalAlignment="Center" Margin="0,1"
                    Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
         <Slider    Grid.Row="3" Grid.Column="7" Value="{Binding Brush.SprayTickMs, Mode=TwoWay}"
-                   Minimum="10" Maximum="100" SmallChange="5" LargeChange="10"
+                   Minimum="10" Maximum="250" SmallChange="10" LargeChange="25"
                    VerticalAlignment="Center" 
                    Visibility="{Binding Brush.IsSpray, Converter={StaticResource BoolToVis}}" />
     </Grid>

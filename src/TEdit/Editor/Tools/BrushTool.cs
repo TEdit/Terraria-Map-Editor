@@ -399,22 +399,12 @@ public class BrushToolBase : BaseTool
         var brush = _wvm.Brush;
         var previewColor = Color.FromArgb(127, 0, 90, 255);
 
-        bool isLine = BrushSettings.IsLineShape(brush.Shape);
-        bool usePointPreview = brush.HasTransform || isLine ||
-            brush.Shape == BrushShape.Star ||
-            brush.Shape == BrushShape.Triangle ||
-            brush.Shape == BrushShape.Crescent ||
-            brush.Shape == BrushShape.Donut;
-
-        if (usePointPreview)
+        // Use the exact same cached stamps as the painting path for pixel-perfect preview.
         {
-            // Generate points at origin center, then find actual bounding box
-            var center = new Vector2Int32(brush.Width / 2, brush.Height / 2);
-            var points = GetShapePoints(center);
-
-            // Line shapes: always apply outline as line thickness
-            if (isLine)
-                points = BrushSettings.ThickenLine(points, brush.Outline);
+            var origin = new Vector2Int32(0, 0);
+            var stampBuffer = new List<Vector2Int32>();
+            brush.StampOffsets(origin, stampBuffer);
+            IList<Vector2Int32> points = stampBuffer;
 
             if (points.Count == 0)
             {
@@ -422,7 +412,7 @@ public class BrushToolBase : BaseTool
                 return _preview;
             }
 
-            // Find bounding box of transformed points
+            // Find bounding box of origin-relative points
             int minX = int.MaxValue, minY = int.MaxValue;
             int maxX = int.MinValue, maxY = int.MinValue;
             foreach (var p in points)
@@ -438,12 +428,11 @@ public class BrushToolBase : BaseTool
             var bmp = new WriteableBitmap(previewW, previewH, 96, 96, PixelFormats.Bgra32, null);
             bmp.Clear();
 
-            // Track where the center falls within the bitmap
-            PreviewOffsetX = center.X - minX;
-            PreviewOffsetY = center.Y - minY;
+            // Offset = where origin (0,0) falls in the bitmap = -minX, -minY
+            PreviewOffsetX = -minX;
+            PreviewOffsetY = -minY;
 
-            // Batch all pixel writes in a single Lock/Unlock to avoid
-            // per-pixel presentationframework.dll Lock/Unlock interop overhead.
+            // Batch all pixel writes in a single Lock/Unlock
             int a = previewColor.A + 1;
             int argb = (previewColor.A << 24)
                        | ((byte)((previewColor.R * a) >> 8) << 16)
@@ -463,34 +452,6 @@ public class BrushToolBase : BaseTool
             }
             bmp.AddDirtyRect(new Int32Rect(0, 0, previewW, previewH));
             bmp.Unlock();
-
-            _preview = bmp;
-        }
-        else
-        {
-            PreviewOffsetX = -1;
-            PreviewOffsetY = -1;
-            int previewW = brush.Width + 1;
-            int previewH = brush.Height + 1;
-            var bmp = new WriteableBitmap(previewW, previewH, 96, 96, PixelFormats.Bgra32, null);
-            bmp.Clear();
-
-            if (IsSimpleRectShape())
-            {
-                bmp.FillRectangle(0, 0, brush.Width, brush.Height, previewColor);
-            }
-            else if (brush.Shape == BrushShape.Left)
-            {
-                bmp.DrawLine(0, 0, brush.Width, brush.Height, previewColor);
-            }
-            else if (brush.Shape == BrushShape.Right)
-            {
-                bmp.DrawLine(0, brush.Height, brush.Width, 0, previewColor);
-            }
-            else
-            {
-                bmp.FillEllipse(0, 0, brush.Width, brush.Height, previewColor);
-            }
 
             _preview = bmp;
         }
@@ -640,10 +601,6 @@ public class BrushToolBase : BaseTool
                 FillRectangleLine(_lineBuffer[i - 1], _lineBuffer[i]);
             }
         }
-        else if (BrushSettings.IsLineShape(_wvm.Brush.Shape) && !_wvm.Brush.IsOutline)
-        {
-            FillLineShapeSweep(_startPoint, to);
-        }
         else
         {
             foreach (Vector2Int32 point in _lineBuffer)
@@ -670,10 +627,6 @@ public class BrushToolBase : BaseTool
                 FillRectangleLine(_lineBuffer[i - 1], _lineBuffer[i]);
             }
         }
-        else if (BrushSettings.IsLineShape(_wvm.Brush.Shape) && !_wvm.Brush.IsOutline)
-        {
-            FillLineShapeSweep(_startPoint, _endPoint);
-        }
         else
         {
             foreach (Vector2Int32 point in _lineBuffer)
@@ -690,16 +643,20 @@ public class BrushToolBase : BaseTool
     protected void FillLineShapeSweep(Vector2Int32 from, Vector2Int32 to)
     {
         var brush = _wvm.Brush;
-        int hw = brush.Width / 2, hh = brush.Height / 2;
+        // Use FillRectangleCentered bounds to match GetLineShapePoints/preview exactly
+        int left = -brush.Width / 2;
+        int top = -brush.Height / 2;
+        int right = left + brush.Width - 1;
+        int bottom = top + brush.Height - 1;
 
         // Get the line segment endpoints (relative to center) for each sub-line
         (Vector2Int32 start, Vector2Int32 end)[] segments = brush.Shape switch
         {
-            BrushShape.Right => [(new(-hw, hh), new(hw, -hh))],
-            BrushShape.Left => [(new(-hw, -hh), new(hw, hh))],
+            BrushShape.Right => [(new(left, bottom), new(right, top))],
+            BrushShape.Left => [(new(left, top), new(right, bottom))],
             BrushShape.Cross => [
-                (new(-hw, -hh), new(hw, hh)),
-                (new(-hw, hh), new(hw, -hh))
+                (new(left, top), new(right, bottom)),
+                (new(left, bottom), new(right, top))
             ],
             _ => []
         };
@@ -717,19 +674,28 @@ public class BrushToolBase : BaseTool
             }
         }
 
-        // Fill a quadrilateral between the segment at "from" and "to" positions
+        // Draw line segments at both endpoints, then fill the quad between them.
+        // FillPolygon alone can miss boundary pixels on thin/degenerate quads.
         _sweepSet.Clear();
         foreach (var (relStart, relEnd) in segments)
         {
-            Vector2Int32[] quad =
-            [
-                new(from.X + relStart.X, from.Y + relStart.Y),
-                new(from.X + relEnd.X, from.Y + relEnd.Y),
-                new(to.X + relEnd.X, to.Y + relEnd.Y),
-                new(to.X + relStart.X, to.Y + relStart.Y),
-            ];
-            foreach (var p in Fill.FillPolygon(quad))
+            var fromStart = new Vector2Int32(from.X + relStart.X, from.Y + relStart.Y);
+            var fromEnd = new Vector2Int32(from.X + relEnd.X, from.Y + relEnd.Y);
+            var toStart = new Vector2Int32(to.X + relStart.X, to.Y + relStart.Y);
+            var toEnd = new Vector2Int32(to.X + relEnd.X, to.Y + relEnd.Y);
+
+            // Draw the actual lines at both positions to guarantee all pixels
+            foreach (var p in Shape.DrawLine(fromStart, fromEnd))
                 _sweepSet.Add(p);
+            if (from.X != to.X || from.Y != to.Y)
+            {
+                foreach (var p in Shape.DrawLine(toStart, toEnd))
+                    _sweepSet.Add(p);
+                // Fill the quad between the two line positions
+                Vector2Int32[] quad = [fromStart, fromEnd, toEnd, toStart];
+                foreach (var p in Fill.FillPolygon(quad))
+                    _sweepSet.Add(p);
+            }
         }
 
         // Apply thickness — need a temporary list for ThickenLine input

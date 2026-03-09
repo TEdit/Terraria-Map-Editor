@@ -316,6 +316,36 @@
   <data name="common_search" xml:space="preserve">
     <value>검색</value>
   </data>
+  <data name="depth_center" xml:space="preserve">
+    <value>중앙</value>
+  </data>
+  <data name="depth_east" xml:space="preserve">
+    <value>{0}도 동쪽</value>
+  </data>
+  <data name="depth_feet" xml:space="preserve">
+    <value>{0}도</value>
+  </data>
+  <data name="depth_layer_caverns" xml:space="preserve">
+    <value>동굴</value>
+  </data>
+  <data name="depth_layer_space" xml:space="preserve">
+    <value>우주</value>
+  </data>
+  <data name="depth_layer_surface" xml:space="preserve">
+    <value>표면</value>
+  </data>
+  <data name="depth_layer_underground" xml:space="preserve">
+    <value>지하</value>
+  </data>
+  <data name="depth_layer_underworld" xml:space="preserve">
+    <value>지하세계</value>
+  </data>
+  <data name="depth_level" xml:space="preserve">
+    <value>레벨</value>
+  </data>
+  <data name="depth_west" xml:space="preserve">
+    <value>{0}도 서쪽</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>디렉토리에는 테라리아 콘텐츠가 포함되어 있지 않은 것으로 보입니다.
 새 폴더를 선택하려면 재시도 버튼을 누르거나, 테라리아 경로로 {0} 사용하려면 취소하세요.</value>
@@ -1675,6 +1705,12 @@
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>자동 탐지</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>스팀 클라우드 월드 경로</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>스팀 클라우드 테라리아 월드로 가는 경로. 비어 있을 경우 스팀에서 자동 감지됩니다. 재시작이 필요합니다.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>테라리아 콘텐츠 경로</value>
   </data>
@@ -1711,6 +1747,12 @@
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>투명도가 있는 와이어 렌더링</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>월드 경로</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>로컬 테라리아 월드 폴더로 가는 경로. 비어 있을 경우 자동 감지됩니다. 재시작이 필요합니다.</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>발광 마스크</value>
@@ -1882,6 +1924,9 @@
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>타일 ID: {0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>피트</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>특별</value>

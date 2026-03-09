@@ -14,6 +14,7 @@ public static class DependencyChecker
     public const string REGISTRY_XNA = @"Software\Microsoft\XNA\Framework\v4.0";
     public static string PathToContent;
     public static string PathToWorlds;
+    public static string PathToSteamWorlds;
 
     public static void CheckPaths()
     {
@@ -178,7 +179,25 @@ public static class DependencyChecker
 
         try
         {
-            PathToWorlds = GetPathToWorlds(steamUserId);
+            // Local worlds path: explicit setting, then autodetect
+            string worldsPath = UserSettingsService.Current.WorldsPath;
+            if (!string.IsNullOrWhiteSpace(worldsPath) && Directory.Exists(worldsPath))
+                PathToWorlds = Path.GetFullPath(worldsPath);
+            else
+                PathToWorlds = AutodetectLocalWorldsPath();
+
+            // Steam cloud worlds path: explicit setting, then legacy SteamUserId, then autodetect
+            string steamWorldsPath = UserSettingsService.Current.SteamWorldsPath;
+            if (!string.IsNullOrWhiteSpace(steamWorldsPath) && Directory.Exists(steamWorldsPath))
+                PathToSteamWorlds = Path.GetFullPath(steamWorldsPath);
+            else if (steamUserId != null)
+                PathToSteamWorlds = GetPathToWorlds(steamUserId);
+            else
+            {
+                string autoSteam = AutodetectSteamWorldsPath();
+                if (!string.IsNullOrEmpty(autoSteam) && Directory.Exists(autoSteam))
+                    PathToSteamWorlds = autoSteam;
+            }
         }
         catch (Exception ex)
         {
@@ -278,6 +297,29 @@ public static class DependencyChecker
         }
 
         return results;
+    }
+
+    /// <summary>
+    /// Returns the local (My Documents) Terraria worlds path.
+    /// </summary>
+    public static string AutodetectLocalWorldsPath()
+    {
+        return Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+            @"My Games\Terraria\Worlds");
+    }
+
+    /// <summary>
+    /// Autodetects the Steam Cloud worlds path. Returns empty string if not found.
+    /// </summary>
+    public static string AutodetectSteamWorldsPath()
+    {
+        var steamPaths = GetAllSteamCloudWorldPaths();
+        if (steamPaths.Count == 1)
+            return steamPaths[0].WorldsPath;
+        if (steamPaths.Count > 1)
+            return steamPaths[0].WorldsPath;
+        return "";
     }
 
     // Updated function restores user prompting.

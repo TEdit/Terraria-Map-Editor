@@ -582,6 +582,8 @@ declare const tools: {
     setFilePath(path: string): void;
     /** Get the default Terraria worlds folder path. */
     getWorldsFolder(): string;
+    /** Get the Steam Cloud Terraria worlds folder path. */
+    getSteamWorldsFolder(): string;
     /** Get all Steam Cloud world folder paths. */
     getCloudWorldsFolders(): CloudWorldsFolder[];
 

@@ -422,18 +422,24 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
-            Name = Language.settings_steam_user_id,
-            Description = Language.settings_steam_user_id_desc,
+            Name = Language.settings_worlds_path,
+            Description = Language.settings_worlds_path_desc,
             Category = Language.settings_category_paths,
-            EditorType = SettingEditorType.TextBox,
-            Placeholder = Language.settings_steam_user_id_placeholder,
-            Getter = () => UserSettingsService.Current.SteamUserId?.ToString() ?? "",
-            Setter = v =>
-            {
-                var str = v as string;
-                UserSettingsService.Current.SteamUserId =
-                    !string.IsNullOrWhiteSpace(str) && int.TryParse(str, out var id) ? id : null;
-            }
+            EditorType = SettingEditorType.Path,
+            Placeholder = DependencyChecker.AutodetectLocalWorldsPath(),
+            Getter = () => UserSettingsService.Current.WorldsPath,
+            Setter = v => UserSettingsService.Current.WorldsPath = (string)v
+        });
+
+        AllSettings.Add(new SettingItem
+        {
+            Name = Language.settings_steam_worlds_path,
+            Description = Language.settings_steam_worlds_path_desc,
+            Category = Language.settings_category_paths,
+            EditorType = SettingEditorType.Path,
+            Placeholder = DependencyChecker.AutodetectSteamWorldsPath(),
+            Getter = () => UserSettingsService.Current.SteamWorldsPath,
+            Setter = v => UserSettingsService.Current.SteamWorldsPath = (string)v
         });
 
         // ── Keybindings ──

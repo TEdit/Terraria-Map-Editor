@@ -43,6 +43,8 @@ public class UserSettings : INotifyPropertyChanged
     private WindowLaunchMode _windowLaunchMode = WindowLaunchMode.CenterScreen;
 
     private int? _steamUserId;
+    private string _worldsPath = "";
+    private string _steamWorldsPath = "";
 
     // Tool Options
     private bool _wireChainMode = true;
@@ -59,6 +61,18 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _steamUserId;
         set => SetField(ref _steamUserId, value);
+    }
+
+    public string WorldsPath
+    {
+        get => _worldsPath;
+        set => SetField(ref _worldsPath, value ?? "");
+    }
+
+    public string SteamWorldsPath
+    {
+        get => _steamWorldsPath;
+        set => SetField(ref _steamWorldsPath, value ?? "");
     }
 
     public bool Autosave

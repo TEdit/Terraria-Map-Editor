@@ -131,9 +131,23 @@ public partial class WorldExplorerViewModel
                 }
             }
 
-            // Enumerate Steam cloud worlds from ALL user profiles
+            // Enumerate Steam cloud worlds — explicit path first, then autodetect
             try
             {
+                string explicitSteam = DependencyChecker.PathToSteamWorlds;
+                if (!string.IsNullOrEmpty(explicitSteam) && Directory.Exists(explicitSteam))
+                {
+                    foreach (var file in Directory.GetFiles(explicitSteam, "*.wld"))
+                    {
+                        if (loadedPaths.Contains(file)) continue;
+                        var fi = new FileInfo(file);
+                        worldEntries.Add(new WorldEntryViewModel(fi,
+                            pinnedWorlds.Contains(file),
+                            isCloudSave: true));
+                        loadedPaths.Add(file);
+                    }
+                }
+
                 var cloudPaths = DependencyChecker.GetAllSteamCloudWorldPaths();
                 foreach (var (userId, cloudWorldsDir) in cloudPaths)
                 {
