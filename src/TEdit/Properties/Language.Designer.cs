@@ -646,6 +646,96 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Center.
+        /// </summary>
+        public static string depth_center {
+            get {
+                return ResourceManager.GetString("depth_center", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}&apos; East.
+        /// </summary>
+        public static string depth_east {
+            get {
+                return ResourceManager.GetString("depth_east", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}&apos;.
+        /// </summary>
+        public static string depth_feet {
+            get {
+                return ResourceManager.GetString("depth_feet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Caverns.
+        /// </summary>
+        public static string depth_layer_caverns {
+            get {
+                return ResourceManager.GetString("depth_layer_caverns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Space.
+        /// </summary>
+        public static string depth_layer_space {
+            get {
+                return ResourceManager.GetString("depth_layer_space", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surface.
+        /// </summary>
+        public static string depth_layer_surface {
+            get {
+                return ResourceManager.GetString("depth_layer_surface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underground.
+        /// </summary>
+        public static string depth_layer_underground {
+            get {
+                return ResourceManager.GetString("depth_layer_underground", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underworld.
+        /// </summary>
+        public static string depth_layer_underworld {
+            get {
+                return ResourceManager.GetString("depth_layer_underworld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string depth_level {
+            get {
+                return ResourceManager.GetString("depth_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}&apos; West.
+        /// </summary>
+        public static string depth_west {
+            get {
+                return ResourceManager.GetString("depth_west", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory does not appear to contain Terraria Content.
         ///Press retry to pick a new folder or cancel to use {0} as your terraria path..
         /// </summary>

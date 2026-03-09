@@ -1,7 +1,7 @@
 using System;
-using System.Globalization;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Properties;
 using TEdit.Terraria;
 using TEdit.Geometry;
 
@@ -113,11 +113,11 @@ public partial class MouseTile : ReactiveObject
         int compassFeet = tileX * 2 - tilesWide;
         string compass;
         if (compassFeet > 0)
-            compass = string.Format(CultureInfo.CurrentCulture, "{0:N0}' East", compassFeet);
+            compass = string.Format(Language.depth_east, compassFeet);
         else if (compassFeet < 0)
-            compass = string.Format(CultureInfo.CurrentCulture, "{0:N0}' West", -compassFeet);
+            compass = string.Format(Language.depth_west, -compassFeet);
         else
-            compass = "Center";
+            compass = Language.depth_center;
 
         // Depth: feet above/below surface
         int depthFeet = (int)(tileY * 2 - groundLevel * 2);
@@ -125,30 +125,24 @@ public partial class MouseTile : ReactiveObject
         // Layer determination (matches Terraria source)
         string layer;
         if (tileY > tilesHigh - 204)
-        {
-            layer = "Underworld";
-        }
+            layer = Language.depth_layer_underworld;
         else if (tileY > rockLevel)
-        {
-            layer = "Caverns";
-        }
+            layer = Language.depth_layer_caverns;
         else if (depthFeet > 0)
-        {
-            layer = "Underground";
-        }
+            layer = Language.depth_layer_underground;
         else
         {
             // Space check: same formula as Terraria
             float sizeRatio = (float)tilesWide / 4200f;
             float sizeRatioSq = sizeRatio * sizeRatio;
             float spaceCheck = (float)((tileY - (65.0 + 10.0 * sizeRatioSq)) / (groundLevel / 5.0));
-            layer = spaceCheck < 1.0f ? "Space" : "Surface";
+            layer = spaceCheck < 1.0f ? Language.depth_layer_space : Language.depth_layer_surface;
         }
 
         int absFeet = Math.Abs(depthFeet);
         string depth = absFeet != 0
-            ? string.Format(CultureInfo.CurrentCulture, "{0:N0}' {1}", absFeet, layer)
-            : string.Format(CultureInfo.CurrentCulture, "Level {0}", layer);
+            ? $"{string.Format(Language.depth_feet, absFeet)} {layer}"
+            : $"{Language.depth_level} {layer}";
 
         DepthText = $"{compass}, {depth}";
     }

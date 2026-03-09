@@ -316,6 +316,36 @@
   <data name="common_search" xml:space="preserve">
     <value>Recherche</value>
   </data>
+  <data name="depth_center" xml:space="preserve">
+    <value>Centre</value>
+  </data>
+  <data name="depth_east" xml:space="preserve">
+    <value>{0}' Est</value>
+  </data>
+  <data name="depth_feet" xml:space="preserve">
+    <value>{0}'</value>
+  </data>
+  <data name="depth_layer_caverns" xml:space="preserve">
+    <value>Cavernes</value>
+  </data>
+  <data name="depth_layer_space" xml:space="preserve">
+    <value>Espace</value>
+  </data>
+  <data name="depth_layer_surface" xml:space="preserve">
+    <value>Surface</value>
+  </data>
+  <data name="depth_layer_underground" xml:space="preserve">
+    <value>Sous-sol</value>
+  </data>
+  <data name="depth_layer_underworld" xml:space="preserve">
+    <value>Monde souterrain</value>
+  </data>
+  <data name="depth_level" xml:space="preserve">
+    <value>Niveau</value>
+  </data>
+  <data name="depth_west" xml:space="preserve">
+    <value>{0}' Ouest</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>L’annuaire ne semble pas contenir le contenu de Terraria.
 Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0} comme chemin Terraria.</value>

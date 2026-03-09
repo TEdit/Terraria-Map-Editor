@@ -316,6 +316,36 @@
   <data name="common_search" xml:space="preserve">
     <value>搜尋</value>
   </data>
+  <data name="depth_center" xml:space="preserve">
+    <value>中心</value>
+  </data>
+  <data name="depth_east" xml:space="preserve">
+    <value>{0} 東</value>
+  </data>
+  <data name="depth_feet" xml:space="preserve">
+    <value>{0} 樣</value>
+  </data>
+  <data name="depth_layer_caverns" xml:space="preserve">
+    <value>洞穴</value>
+  </data>
+  <data name="depth_layer_space" xml:space="preserve">
+    <value>空間</value>
+  </data>
+  <data name="depth_layer_surface" xml:space="preserve">
+    <value>地表</value>
+  </data>
+  <data name="depth_layer_underground" xml:space="preserve">
+    <value>地下</value>
+  </data>
+  <data name="depth_layer_underworld" xml:space="preserve">
+    <value>黑社會</value>
+  </data>
+  <data name="depth_level" xml:space="preserve">
+    <value>層級</value>
+  </data>
+  <data name="depth_west" xml:space="preserve">
+    <value>{0} 西</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>目錄似乎不包含 Terraria 內容。
 按重試鍵選擇新資料夾，或取消{0}作為你的 Terraria 路徑。</value>
