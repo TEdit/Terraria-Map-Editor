@@ -1675,6 +1675,12 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>Détection automatique</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>Chemin des mondes Steam Cloud</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>Chemin vers les mondes Terraria sur Steam Cloud. Détecté automatiquement depuis Steam si vide. Nécessite un redémarrage.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Chemin de contenu Terraria</value>
   </data>
@@ -1711,6 +1717,12 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Rendre les fils avec transparence</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>Chemin des mondes</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>Chemin vers le dossier local des mondes Terraria. Détecté automatiquement si vide. Nécessite un redémarrage.</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>Masques lumineux</value>
@@ -1882,6 +1894,9 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>ID de la tuile : {0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>Pieds</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>

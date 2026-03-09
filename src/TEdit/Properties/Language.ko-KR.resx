@@ -1675,6 +1675,12 @@
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>자동 탐지</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>스팀 클라우드 월드 경로</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>스팀 클라우드 테라리아 월드로 가는 경로. 비어 있을 경우 스팀에서 자동 감지됩니다. 재시작이 필요합니다.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>테라리아 콘텐츠 경로</value>
   </data>
@@ -1711,6 +1717,12 @@
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>투명도가 있는 와이어 렌더링</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>월드 경로</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>로컬 테라리아 월드 폴더로 가는 경로. 비어 있을 경우 자동 감지됩니다. 재시작이 필요합니다.</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>발광 마스크</value>
@@ -1882,6 +1894,9 @@
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>타일 ID: {0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>피트</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>특별</value>

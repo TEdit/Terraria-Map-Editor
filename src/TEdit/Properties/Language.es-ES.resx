@@ -1675,6 +1675,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>Detección automática</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>Ruta de mundos de Steam Cloud</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>Ruta a los mundos de Terraria en Steam Cloud. Detectado automáticamente desde Steam si está en blanco. Requiere reinicio.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Ruta de los archivos de Terraria</value>
   </data>
@@ -1711,6 +1717,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Renderizar cables con transparencia</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>Ruta de mundos</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>Ruta a la carpeta local de mundos de Terraria. Detectado automáticamente si está en blanco. Requiere reinicio.</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>Máscaras Brillantes</value>
@@ -1882,6 +1894,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>ID de la ficha: {0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>Pies</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>

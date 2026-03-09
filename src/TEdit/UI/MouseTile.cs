@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Terraria;
@@ -22,6 +23,9 @@ public partial class MouseTile : ReactiveObject
 
     [Reactive]
     private string _paint;
+
+    [Reactive]
+    private string _depthText;
 
     [Reactive]
     private Vector2Short _uV;
@@ -97,5 +101,55 @@ public partial class MouseTile : ReactiveObject
         {
             Paint = "None";
         }
+    }
+
+    /// <summary>
+    /// Updates depth display text using Terraria's in-game GPS formulas.
+    /// 1 tile = 2 feet. Depth is relative to surface; compass is relative to world center.
+    /// </summary>
+    public void UpdateDepth(int tileX, int tileY, int tilesWide, int tilesHigh, double groundLevel, double rockLevel)
+    {
+        // Compass: feet east/west from center
+        int compassFeet = tileX * 2 - tilesWide;
+        string compass;
+        if (compassFeet > 0)
+            compass = string.Format(CultureInfo.CurrentCulture, "{0:N0}' East", compassFeet);
+        else if (compassFeet < 0)
+            compass = string.Format(CultureInfo.CurrentCulture, "{0:N0}' West", -compassFeet);
+        else
+            compass = "Center";
+
+        // Depth: feet above/below surface
+        int depthFeet = (int)(tileY * 2 - groundLevel * 2);
+
+        // Layer determination (matches Terraria source)
+        string layer;
+        if (tileY > tilesHigh - 204)
+        {
+            layer = "Underworld";
+        }
+        else if (tileY > rockLevel)
+        {
+            layer = "Caverns";
+        }
+        else if (depthFeet > 0)
+        {
+            layer = "Underground";
+        }
+        else
+        {
+            // Space check: same formula as Terraria
+            float sizeRatio = (float)tilesWide / 4200f;
+            float sizeRatioSq = sizeRatio * sizeRatio;
+            float spaceCheck = (float)((tileY - (65.0 + 10.0 * sizeRatioSq)) / (groundLevel / 5.0));
+            layer = spaceCheck < 1.0f ? "Space" : "Surface";
+        }
+
+        int absFeet = Math.Abs(depthFeet);
+        string depth = absFeet != 0
+            ? string.Format(CultureInfo.CurrentCulture, "{0:N0}' {1}", absFeet, layer)
+            : string.Format(CultureInfo.CurrentCulture, "Level {0}", layer);
+
+        DepthText = $"{compass}, {depth}";
     }
 }

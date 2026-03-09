@@ -4697,6 +4697,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Steam Cloud Worlds Path.
+        /// </summary>
+        public static string settings_steam_worlds_path {
+            get {
+                return ResourceManager.GetString("settings_steam_worlds_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to Steam Cloud Terraria worlds. Auto-detected from Steam if blank. Requires restart..
+        /// </summary>
+        public static string settings_steam_worlds_path_desc {
+            get {
+                return ResourceManager.GetString("settings_steam_worlds_path_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terraria Content Path.
         /// </summary>
         public static string settings_terraria_path {
@@ -4801,6 +4819,24 @@ namespace TEdit.Properties {
         public static string settings_wire_transparency_desc {
             get {
                 return ResourceManager.GetString("settings_wire_transparency_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Worlds Path.
+        /// </summary>
+        public static string settings_worlds_path {
+            get {
+                return ResourceManager.GetString("settings_worlds_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to the local Terraria worlds folder. Auto-detected if blank. Requires restart..
+        /// </summary>
+        public static string settings_worlds_path_desc {
+            get {
+                return ResourceManager.GetString("settings_worlds_path_desc", resourceCulture);
             }
         }
         
@@ -5332,6 +5368,15 @@ namespace TEdit.Properties {
         public static string status_textures_loaded {
             get {
                 return ResourceManager.GetString("status_textures_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feet.
+        /// </summary>
+        public static string statusbar_depth_label {
+            get {
+                return ResourceManager.GetString("statusbar_depth_label", resourceCulture);
             }
         }
         

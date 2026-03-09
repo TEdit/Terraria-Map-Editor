@@ -40,6 +40,9 @@ public class ToolsApi
     /// <summary>Returns the local Terraria worlds folder (Documents\My Games\Terraria\Worlds).</summary>
     public string GetWorldsFolder() => DependencyChecker.PathToWorlds ?? "";
 
+    /// <summary>Returns the Steam Cloud Terraria worlds folder.</summary>
+    public string GetSteamWorldsFolder() => DependencyChecker.PathToSteamWorlds ?? "";
+
     /// <summary>Returns all Steam Cloud world folder paths as [{userId, path}].</summary>
     public List<Dictionary<string, string>> GetCloudWorldsFolders()
     {

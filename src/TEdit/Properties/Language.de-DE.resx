@@ -1675,6 +1675,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>Automatische Erkennung</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>Steam Cloud Weltenpfad</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>Pfad zu den Steam Cloud Terraria-Welten. Automatisch von Steam erkannt, wenn leer. Ein Neustart ist erforderlich.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Terraria-Inhaltsverzeichnis</value>
   </data>
@@ -1711,6 +1717,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Drähte mit Transparenz rendern</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>Weltenpfad</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>Pfad zum lokalen Terraria-Weltenordner. Automatisch erkannt, wenn leer. Ein Neustart ist erforderlich.</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>Leuchtmasken</value>
@@ -1882,6 +1894,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>Kachel-ID: {0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>Fuß</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extras</value>

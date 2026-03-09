@@ -162,6 +162,18 @@
   <data name="about_wiki" xml:space="preserve">
     <value>Wiki</value>
   </data>
+  <data name="backup_type_autosave" xml:space="preserve">
+    <value>Autosave</value>
+  </data>
+  <data name="backup_type_generic" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="backup_type_tedit" xml:space="preserve">
+    <value>TEdit Backup</value>
+  </data>
+  <data name="backup_type_terraria" xml:space="preserve">
+    <value>Terraria Backup</value>
+  </data>
   <data name="banner_category" xml:space="preserve">
     <value>Category:</value>
   </data>
@@ -185,18 +197,6 @@
   </data>
   <data name="banner_save" xml:space="preserve">
     <value>Save</value>
-  </data>
-  <data name="backup_type_autosave" xml:space="preserve">
-    <value>Autosave</value>
-  </data>
-  <data name="backup_type_generic" xml:space="preserve">
-    <value>Backup</value>
-  </data>
-  <data name="backup_type_tedit" xml:space="preserve">
-    <value>TEdit Backup</value>
-  </data>
-  <data name="backup_type_terraria" xml:space="preserve">
-    <value>Terraria Backup</value>
   </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>Chat</value>
@@ -1675,6 +1675,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>Auto-detect</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>Steam Cloud Worlds Path</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>Path to Steam Cloud Terraria worlds. Auto-detected from Steam if blank. Requires restart.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Terraria Content Path</value>
   </data>
@@ -1711,6 +1717,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Render wires with transparency</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>Worlds Path</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>Path to the local Terraria worlds folder. Auto-detected if blank. Requires restart.</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>Glow Masks</value>
@@ -1882,6 +1894,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>Tile ID: {0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>Feet</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>

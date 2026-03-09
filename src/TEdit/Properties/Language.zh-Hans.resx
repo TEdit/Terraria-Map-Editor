@@ -1675,6 +1675,12 @@
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>自动检测</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>Steam云世界路径</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>通往Steam云Terraria世界的路径。如果为空，将自动从Steam检测。需要重启。</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>泰拉瑞亚Content文件夹路径</value>
   </data>
@@ -1711,6 +1717,12 @@
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>渲染电线时带有透明度</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>世界路径</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>本地Terraria世界文件夹的路径。如果为空，将自动检测。需要重启。</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>发光蒙版</value>
@@ -1882,6 +1894,9 @@
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>图格ID：{0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>英尺</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>附加</value>

@@ -142,7 +142,13 @@
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_export_map_tiles}" Command="{Binding ExportMapTilesCommand}" />
                     <Separator Margin="1"/>
-                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
+                    
+                    <StackPanel Orientation="Horizontal">
+                      <MenuItem Header="{x:Static p:Language.menu_file_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
+                      <Border Background="#E81123" CornerRadius="5" Width="10" Height="10" Margin="4,0,0,0"
+                             VerticalAlignment="Center"
+                             Visibility="{Binding IsUpdateAvailable, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            </StackPanel>
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_exit}" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>
@@ -258,6 +264,8 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{x:Static p:Language.statusbar_position_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.MouseState.Location, StringFormat={}{0}, Mode=OneWay}" Width="75" IsReadOnly="True" />
+                        <TextBlock Text="{x:Static p:Language.statusbar_depth_label}" VerticalAlignment="Center" Margin="5,0" />
+                        <TextBox Text="{Binding MouseOverTile.DepthText, Mode=OneWay}" Width="175" IsReadOnly="True" />
                         <TextBlock Text="{x:Static p:Language.statusbar_tile_label}" VerticalAlignment="Center" Margin="5,0"  />
                         <TextBox Text="{Binding MouseOverTile.TileName, Mode=OneWay}" Width="150" IsReadOnly="True" />
                         <TextBlock Text="{x:Static p:Language.statusbar_wall_label}" VerticalAlignment="Center" Margin="5,0"/>

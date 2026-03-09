@@ -1675,6 +1675,12 @@
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>اكتشاف تلقائي</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>مسار عوالم سحابة ستيم</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>مسار لعوالم تيراريا في سحابة ستيم. يتم اكتشافه تلقائيًا من ستيم إذا كان فارغًا. يتطلب إعادة تشغيل.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>مسار محتوى Terraria</value>
   </data>
@@ -1711,6 +1717,12 @@
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>عرض الأسلاك بشفافية</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>مسار العوالم</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>مسار لمجلد عوالم تيراريا المحلي. يتم اكتشافه تلقائيًا إذا كان فارغًا. يتطلب إعادة تشغيل.</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>أقنعة مضيئة</value>
@@ -1882,6 +1894,9 @@
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>معرف البلاط: {0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>أقدام</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>اضافيه</value>

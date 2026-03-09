@@ -37,8 +37,8 @@ public partial class BrushSettings : ReactiveObject
     private bool _flipVertical = false;
     [Reactive]
     private bool _isSpray = false;
-    private int _sprayDensity = 50;
-    private int _sprayTickMs = 30;
+    private int _sprayDensity = 15;
+    private int _sprayTickMs = 100;
     private BrushShape _shape = ToolDefaultData.BrushShape;
 
     public BrushSettings()
@@ -234,13 +234,13 @@ public partial class BrushSettings : ReactiveObject
         IEnumerable<Vector2Int32> points = Shape switch
         {
             BrushShape.Square => Fill.FillRectangleCentered(center, new Vector2Int32(width, height)),
-            BrushShape.Round => Fill.FillEllipseCentered(center, new Vector2Int32(width / 2, height / 2)),
-            BrushShape.Star => Fill.FillStarCentered(center, Math.Min(width, height) / 2, 0, 5),
+            BrushShape.Round => Fill.FillEllipseBySizeCentered(center, new Vector2Int32(width, height)),
+            BrushShape.Star => Fill.FillStarCentered(center, width / 2, height / 2, 0, 0, 5),
             BrushShape.Triangle => Fill.FillTriangleCentered(center, width / 2, height / 2),
             BrushShape.Crescent => FillCrescent(center, width, height),
             BrushShape.Donut => Fill.FillDonutCentered(center,
-                Math.Min(width, height) / 2,
-                Math.Max(1, Math.Min(width, height) / 4)),
+                height / 2,
+                Math.Max(0, height / 2 - Math.Max(1, width / 2))),
             _ => Fill.FillRectangleCentered(center, new Vector2Int32(width, height)),
         };
 
@@ -276,36 +276,38 @@ public partial class BrushSettings : ReactiveObject
                 new(center.X + hw, center.Y + hh),
                 new(center.X - hw, center.Y + hh),
             ],
-            BrushShape.Star => GetStarVertices(center, Math.Min(width, height) / 2, 5),
-            BrushShape.Triangle => GetTriangleVertices(center, hw),
+            BrushShape.Star => GetStarVertices(center, hw, hh, 5),
+            BrushShape.Triangle => GetTriangleVertices(center, hw, hh),
             _ => [center],
         };
     }
 
-    private static Vector2Int32[] GetStarVertices(Vector2Int32 center, int outerRadius, int numPoints)
+    private static Vector2Int32[] GetStarVertices(Vector2Int32 center, int outerRadiusX, int outerRadiusY, int numPoints)
     {
-        if (outerRadius <= 0 || numPoints < 3) return [center];
-        int innerRadius = (int)(outerRadius * Math.Cos(2 * Math.PI / numPoints) / Math.Cos(Math.PI / numPoints));
+        if ((outerRadiusX <= 0 && outerRadiusY <= 0) || numPoints < 3) return [center];
+        double ratio = Math.Cos(2 * Math.PI / numPoints) / Math.Cos(Math.PI / numPoints);
+        int innerRadiusX = (int)(outerRadiusX * ratio);
+        int innerRadiusY = (int)(outerRadiusY * ratio);
         var vertices = new Vector2Int32[numPoints * 2];
         double angleStep = Math.PI / numPoints;
         double startAngle = -Math.PI / 2;
         for (int i = 0; i < numPoints * 2; i++)
         {
             double angle = startAngle + i * angleStep;
-            int r = (i % 2 == 0) ? outerRadius : innerRadius;
+            int rx = (i % 2 == 0) ? outerRadiusX : innerRadiusX;
+            int ry = (i % 2 == 0) ? outerRadiusY : innerRadiusY;
             vertices[i] = new Vector2Int32(
-                center.X + (int)Math.Round(Math.Cos(angle) * r),
-                center.Y + (int)Math.Round(Math.Sin(angle) * r));
+                center.X + (int)Math.Round(Math.Cos(angle) * rx),
+                center.Y + (int)Math.Round(Math.Sin(angle) * ry));
         }
         return vertices;
     }
 
-    private static Vector2Int32[] GetTriangleVertices(Vector2Int32 center, int halfWidth)
+    private static Vector2Int32[] GetTriangleVertices(Vector2Int32 center, int halfWidth, int halfHeight)
     {
-        if (halfWidth <= 0) return [center];
-        int eqHeight = (int)Math.Round(halfWidth * Math.Sqrt(3));
-        int apexY = center.Y - eqHeight * 2 / 3;
-        int baseY = center.Y + eqHeight / 3;
+        if (halfWidth <= 0 || halfHeight <= 0) return [center];
+        int apexY = center.Y - halfHeight * 2 / 3;
+        int baseY = center.Y + halfHeight / 3;
         return [
             new(center.X, apexY),
             new(center.X - halfWidth, baseY),
@@ -315,23 +317,27 @@ public partial class BrushSettings : ReactiveObject
 
     private IList<Vector2Int32> GetLineShapePoints(Vector2Int32 center, int width, int height)
     {
-        int hw = width / 2, hh = height / 2;
+        // Use FillRectangleCentered bounds so X/diagonal lines match rectangle corners exactly
+        int left = center.X - width / 2;
+        int top = center.Y - height / 2;
+        int right = left + width - 1;
+        int bottom = top + height - 1;
 
         // Define endpoints for each line shape
         var endpoints = Shape switch
         {
             BrushShape.Right => new[]
             {
-                (new Vector2Int32(center.X - hw, center.Y + hh), new Vector2Int32(center.X + hw, center.Y - hh))
+                (new Vector2Int32(left, bottom), new Vector2Int32(right, top))
             },
             BrushShape.Left => new[]
             {
-                (new Vector2Int32(center.X - hw, center.Y - hh), new Vector2Int32(center.X + hw, center.Y + hh))
+                (new Vector2Int32(left, top), new Vector2Int32(right, bottom))
             },
             BrushShape.Cross => new[]
             {
-                (new Vector2Int32(center.X - hw, center.Y - hh), new Vector2Int32(center.X + hw, center.Y + hh)),
-                (new Vector2Int32(center.X - hw, center.Y + hh), new Vector2Int32(center.X + hw, center.Y - hh))
+                (new Vector2Int32(left, top), new Vector2Int32(right, bottom)),
+                (new Vector2Int32(left, bottom), new Vector2Int32(right, top))
             },
             _ => []
         };

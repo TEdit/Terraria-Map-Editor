@@ -1675,6 +1675,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>Auto-rilevamento</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>Percorso dei mondi di Steam Cloud</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>Percorso per i mondi di Terraria su Steam Cloud. Rilevato automaticamente da Steam se vuoto. Richiede riavvio.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Percorso di contenuto di Terraria</value>
   </data>
@@ -1711,6 +1717,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Renderizza i fili con trasparenza</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>Percorso dei mondi</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>Percorso per la cartella locale dei mondi di Terraria. Rilevato automaticamente se vuoto. Richiede riavvio.</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>Maschere Luminescenti</value>
@@ -1882,6 +1894,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>ID tessella: {0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>Piedi</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>

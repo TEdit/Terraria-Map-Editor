@@ -100,6 +100,45 @@ public static class Fill
         return FillEllipseCentered(center, radius);
     }
 
+    /// <summary>
+    /// Fill an ellipse by bounding size (handles both even and odd dimensions correctly).
+    /// The ellipse fills a width×height area centered on <paramref name="center"/>.
+    /// </summary>
+    public static IEnumerable<Vector2Int32> FillEllipseBySizeCentered(Vector2Int32 center, Vector2Int32 size)
+    {
+        if (size.X <= 0 || size.Y <= 0)
+        {
+            yield return center;
+            yield break;
+        }
+
+        int left = center.X - size.X / 2;
+        int top = center.Y - size.Y / 2;
+
+        // Ellipse center and radii in float for even/odd correctness
+        float cx = left + size.X * 0.5f;
+        float cy = top + size.Y * 0.5f;
+        float rx = size.X * 0.5f;
+        float ry = size.Y * 0.5f;
+
+        int bottom = top + size.Y;
+        int right = left + size.X;
+
+        for (int y = top; y < bottom; y++)
+        {
+            float dy = (y + 0.5f - cy) / ry;
+            float dySq = dy * dy;
+            if (dySq > 1.0f) continue;
+
+            float xSpan = rx * MathF.Sqrt(1.0f - dySq);
+            int xStart = Math.Max((int)MathF.Ceiling(cx - xSpan - 0.5f), left);
+            int xEnd = Math.Min((int)MathF.Floor(cx + xSpan - 0.5f), right - 1);
+
+            for (int x = xStart; x <= xEnd; x++)
+                yield return new Vector2Int32(x, y);
+        }
+    }
+
     public static IEnumerable<Vector2Int32> FillEllipseCentered(Vector2Int32 center, Vector2Int32 radius)
     {
         int xr = radius.X;
@@ -301,13 +340,17 @@ public static class Fill
     }
 
     public static IEnumerable<Vector2Int32> FillStarCentered(Vector2Int32 center, int outerRadius, int innerRadius, int numPoints = 5)
+        => FillStarCentered(center, outerRadius, outerRadius, innerRadius, innerRadius, numPoints);
+
+    public static IEnumerable<Vector2Int32> FillStarCentered(Vector2Int32 center, int outerRadiusX, int outerRadiusY, int innerRadiusX, int innerRadiusY, int numPoints = 5)
     {
-        if (outerRadius <= 0 || numPoints < 3) { yield return center; yield break; }
-        if (innerRadius <= 0)
+        if ((outerRadiusX <= 0 && outerRadiusY <= 0) || numPoints < 3) { yield return center; yield break; }
+        if (innerRadiusX <= 0 || innerRadiusY <= 0)
         {
             // Default to true {n/2} star polygon (pentagram for n=5)
-            // where edges pass through opposite vertices
-            innerRadius = (int)(outerRadius * Math.Cos(2 * Math.PI / numPoints) / Math.Cos(Math.PI / numPoints));
+            double ratio = Math.Cos(2 * Math.PI / numPoints) / Math.Cos(Math.PI / numPoints);
+            innerRadiusX = (int)(outerRadiusX * ratio);
+            innerRadiusY = (int)(outerRadiusY * ratio);
         }
 
         var vertices = new Vector2Int32[numPoints * 2];
@@ -317,10 +360,11 @@ public static class Fill
         for (int i = 0; i < numPoints * 2; i++)
         {
             double angle = startAngle + i * angleStep;
-            int r = (i % 2 == 0) ? outerRadius : innerRadius;
+            int rx = (i % 2 == 0) ? outerRadiusX : innerRadiusX;
+            int ry = (i % 2 == 0) ? outerRadiusY : innerRadiusY;
             vertices[i] = new Vector2Int32(
-                center.X + (int)Math.Round(Math.Cos(angle) * r),
-                center.Y + (int)Math.Round(Math.Sin(angle) * r));
+                center.X + (int)Math.Round(Math.Cos(angle) * rx),
+                center.Y + (int)Math.Round(Math.Sin(angle) * ry));
         }
 
         foreach (var p in FillPolygon(vertices))
@@ -331,11 +375,9 @@ public static class Fill
     {
         if (halfWidth <= 0 || halfHeight <= 0) { yield return center; yield break; }
 
-        // Equilateral triangle: height = halfWidth * sqrt(3) for 60-degree angles
-        int eqHeight = (int)Math.Round(halfWidth * Math.Sqrt(3));
         // Centroid is at 1/3 from base, 2/3 from apex
-        int apexY = center.Y - eqHeight * 2 / 3;
-        int baseY = center.Y + eqHeight / 3;
+        int apexY = center.Y - halfHeight * 2 / 3;
+        int baseY = center.Y + halfHeight / 3;
 
         var top = new Vector2Int32(center.X, apexY);
         var bottomLeft = new Vector2Int32(center.X - halfWidth, baseY);

@@ -2169,7 +2169,13 @@ public partial class WorldViewModel : ReactiveObject
         if (e.Location.X >= 0 && e.Location.Y >= 0 && e.Location.X < CurrentWorld.TilesWide && e.Location.Y < CurrentWorld.TilesHigh)
         {
             if (MouseOverTile.MouseState is null || e.Location != MouseOverTile.MouseState.Location)
+            {
                 MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
+                MouseOverTile.UpdateDepth(
+                    e.Location.X, e.Location.Y,
+                    CurrentWorld.TilesWide, CurrentWorld.TilesHigh,
+                    CurrentWorld.GroundLevel, CurrentWorld.RockLevel);
+            }
 
             MouseOverTile.MouseState = e;
 

@@ -133,11 +133,9 @@ public class Shape
             float y = start.Y;
 
             // Walk the line!
-            for (int i = 0; i < len; i++)
+            for (int i = 0; i <= len; i++)
             {
-
                 yield return new Vector2Int32((int)x, (int)y);
-
                 x += incx;
                 y += incy;
             }

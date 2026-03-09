@@ -1675,6 +1675,12 @@
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>Автоопределение</value>
   </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>Путь к мирам Steam Cloud</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>Путь к мирам Terraria в Steam Cloud. Автоматически определяется из Steam, если пусто. Требуется перезапуск.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Путь содержания Terraria</value>
   </data>
@@ -1711,6 +1717,12 @@
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
     <value>Рендеринг проводов с прозрачностью</value>
+  </data>
+  <data name="settings_worlds_path" xml:space="preserve">
+    <value>Путь к мирам</value>
+  </data>
+  <data name="settings_worlds_path_desc" xml:space="preserve">
+    <value>Путь к локальной папке миров Terraria. Автоматически определяется, если пусто. Требуется перезапуск.</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
     <value>Светящиеся маски</value>
@@ -1882,6 +1894,9 @@
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>Идентификатор плитки: {0}</value>
+  </data>
+  <data name="statusbar_depth_label" xml:space="preserve">
+    <value>Футы</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Ещё</value>
