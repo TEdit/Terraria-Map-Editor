@@ -1926,7 +1926,7 @@
     <value>图格ID：{0}</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
-    <value>英尺</value>
+    <value>全球定位系统</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>附加</value>

@@ -1926,7 +1926,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Identyfikator kafelka: {0}</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
-    <value>Stopy</value>
+    <value>GPS</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Dodatkowe</value>

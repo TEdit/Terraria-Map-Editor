@@ -1926,7 +1926,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
     <value>ID do bloco: {0}</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
-    <value>Pés</value>
+    <value>GPS</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>

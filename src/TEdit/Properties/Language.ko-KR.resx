@@ -1926,7 +1926,7 @@
     <value>타일 ID: {0}</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
-    <value>피트</value>
+    <value>GPS</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>특별</value>

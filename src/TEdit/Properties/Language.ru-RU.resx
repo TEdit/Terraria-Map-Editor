@@ -1926,7 +1926,7 @@
     <value>Идентификатор плитки: {0}</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
-    <value>Футы</value>
+    <value>GPS</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Ещё</value>
