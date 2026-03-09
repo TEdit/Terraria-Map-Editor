@@ -19,22 +19,52 @@ public static class Fill
 
     public static IEnumerable<Vector2Int32> FillRectangleVector(Vector2Int32 start, Vector2Int32 end, Vector2Int32 size)
     {
-        for (int y = end.Y; y < end.Y + size.Y; y++)
-        {
-            for (int x = end.X; x < end.X + size.X; x++)
-            {
-                // skip coordinates inside start rectangle
-                if (x > start.X && 
-                    x < (start.X + size.X) &&
-                    y > start.Y && 
-                    y < (start.Y + size.Y))
-                {
-                    continue;
-                }
+        int endLeft = end.X;
+        int endRight = end.X + size.X; // exclusive
+        int endTop = end.Y;
+        int endBottom = end.Y + size.Y; // exclusive
 
-                yield return new Vector2Int32(x, y);
-            }
+        // Inner skip region: strict inequality means border pixels of start rect are kept
+        int innerLeft = start.X + 1;
+        int innerRight = start.X + size.X - 1; // inclusive
+        int innerTop = start.Y + 1;
+        int innerBottom = start.Y + size.Y - 1; // inclusive
+
+        // Clamp inner region to end rect
+        int clampLeft = Math.Max(innerLeft, endLeft);
+        int clampRight = Math.Min(innerRight, endRight - 1);
+        int clampTop = Math.Max(innerTop, endTop);
+        int clampBottom = Math.Min(innerBottom, endBottom - 1);
+
+        bool hasInner = clampLeft <= clampRight && clampTop <= clampBottom;
+
+        if (!hasInner)
+        {
+            // No overlap — iterate full end rectangle
+            for (int y = endTop; y < endBottom; y++)
+                for (int x = endLeft; x < endRight; x++)
+                    yield return new Vector2Int32(x, y);
+            yield break;
         }
+
+        // Top strip: rows above the inner region
+        for (int y = endTop; y < clampTop; y++)
+            for (int x = endLeft; x < endRight; x++)
+                yield return new Vector2Int32(x, y);
+
+        // Middle rows: left and right strips only
+        for (int y = clampTop; y <= clampBottom; y++)
+        {
+            for (int x = endLeft; x < clampLeft; x++)
+                yield return new Vector2Int32(x, y);
+            for (int x = clampRight + 1; x < endRight; x++)
+                yield return new Vector2Int32(x, y);
+        }
+
+        // Bottom strip: rows below the inner region
+        for (int y = clampBottom + 1; y < endBottom; y++)
+            for (int x = endLeft; x < endRight; x++)
+                yield return new Vector2Int32(x, y);
     }
 
     public static IEnumerable<Vector2Int32> FillRectangleCentered(Vector2Int32 center, Vector2Int32 size)

@@ -266,9 +266,20 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         if (Buffer == null || Buffer.LastTile == null)
             return;
 
-
         var lastTile = Buffer.LastTile;
+
+        // Fast path: skip all entity validation if neither the saved tile
+        // nor the current world tile at that location is a chest, sign, or entity.
+        // This avoids the expensive IsAnchor/GetAnchor/FirstOrDefault calls
+        // for the vast majority of tiles during brush painting.
+        bool savedIsEntity = lastTile.Tile.IsActive &&
+            (lastTile.Tile.IsChest() || lastTile.Tile.IsSign() || lastTile.Tile.IsTileEntity());
+
         var existingLastTile = _world.Tiles[lastTile.Location.X, lastTile.Location.Y];
+        bool currentIsEntity = existingLastTile.IsActive &&
+            (existingLastTile.IsChest() || existingLastTile.IsSign() || existingLastTile.IsTileEntity());
+
+        if (!savedIsEntity && !currentIsEntity) return;
 
         // remove deleted chests or signs if required
         if (lastTile.Tile.IsChest())

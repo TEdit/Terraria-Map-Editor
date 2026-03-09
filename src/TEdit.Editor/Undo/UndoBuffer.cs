@@ -75,6 +75,7 @@ public class UndoBuffer : IDisposable
 
     private readonly Dictionary<Tile, HashSet<Vector2Int32>> _undoTiles = new();
     private readonly List<Tile> _tileOrder = new(); // For order preservation
+    private int _totalTileCount; // Maintained incrementally to avoid LINQ enumeration
     private int _uniqueTileGroupsWritten = 0; // Track across batches for file header
     private readonly List<Sign> _signs = new List<Sign>();
     private readonly List<Chest> _chests = new List<Chest>();
@@ -112,6 +113,7 @@ public class UndoBuffer : IDisposable
             {
                 if (kvp.Value.Remove(new Vector2Int32(x, y)))
                 {
+                    _totalTileCount--;
                     // If this was the last location for this tile, remove the tile entry
                     if (kvp.Value.Count == 0)
                     {
@@ -131,14 +133,12 @@ public class UndoBuffer : IDisposable
         {
             _undoTiles.Clear();
             _tileOrder.Clear();
+            _totalTileCount = 0;
             LastTile = null;
         }
     }
 
-    private int GetTotalTileCount()
-    {
-        return _undoTiles.Values.Sum(s => s.Count);
-    }
+    private int GetTotalTileCount() => _totalTileCount;
 
     public void Add(Vector2Int32 location, Tile tile)
     {
@@ -154,9 +154,10 @@ public class UndoBuffer : IDisposable
                 _tileOrder.Add(tile); // Track insertion order
             }
 
-            locations.Add(location);
+            if (locations.Add(location))
+                _totalTileCount++;
             LastTile = new UndoTile(tile, location); // For compatibility
-            shouldFlush = GetTotalTileCount() > FlushSize;
+            shouldFlush = _totalTileCount > FlushSize;
         }
 
         if (shouldFlush)
@@ -194,6 +195,7 @@ public class UndoBuffer : IDisposable
             // Clear immediately so Add() can continue with fresh collections
             _undoTiles.Clear();
             _tileOrder.Clear();
+            _totalTileCount = 0;
             LastTile = null;
         }
 

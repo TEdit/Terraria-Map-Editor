@@ -2993,6 +2993,9 @@ public partial class WorldRenderXna : UserControl
         // Start SpriteBatch (Immediate mode — draw order is final order)
         _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
+        // Flush deferred UV cache resets before drawing textures
+        _wvm.FlushPendingUVCacheReset();
+
         // Draw layers based on whether textures are visible
         if (_wvm.ShowTextures && _textureDictionary.Valid && AreTexturesVisible())
         {

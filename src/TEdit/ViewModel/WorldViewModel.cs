@@ -1254,7 +1254,7 @@ public partial class WorldViewModel : ReactiveObject
                     rb.UpdateTile(x, y, width, height);
                 };
 
-                _undoManager = new UndoManager(CurrentWorld, updateTiles, UpdateMinimap);
+                _undoManager = new UndoManager(CurrentWorld, updateTiles, InvalidateMinimap);
 
                 // Reset both autosave and user save tracking
                 _lastSavedUndoIndex = 0;
@@ -1932,14 +1932,41 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
-    private void UpdateMinimap()
+    private volatile bool _minimapDirty;
+    private System.Threading.Timer _minimapTimer;
+
+    private void InvalidateMinimap()
     {
-        if (CurrentWorld != null)
-        {
-            if (MinimapImage != null)
-                RenderMiniMap.UpdateMinimap(CurrentWorld, ref _minimapImage, UserSettingsService.Current.MinimapBackground);
-        }
+        _minimapDirty = true;
         UpdateTitle();
+
+        // Lazy-init the coalescing timer (fires every 500ms)
+        if (_minimapTimer == null)
+        {
+            _minimapTimer = new System.Threading.Timer(MinimapTimerTick, null, 500, 500);
+        }
+    }
+
+    private void MinimapTimerTick(object state)
+    {
+        if (!_minimapDirty) return;
+        _minimapDirty = false;
+
+        try
+        {
+            // Must access WriteableBitmap on UI thread
+            System.Windows.Application.Current?.Dispatcher?.BeginInvoke((Action)(() =>
+            {
+                if (CurrentWorld != null && MinimapImage != null)
+                {
+                    RenderMiniMap.UpdateMinimap(CurrentWorld, ref _minimapImage, UserSettingsService.Current.MinimapBackground);
+                }
+            }));
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
     }
 
     private void SaveTimerTick(object sender, ElapsedEventArgs e)

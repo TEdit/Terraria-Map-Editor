@@ -372,7 +372,7 @@ public partial class WorldViewModel
         }
     }
 
-    private WorldEditor WorldEditor
+    public WorldEditor WorldEditor
     {
         get => _worldEditor;
         set
@@ -556,6 +556,68 @@ public partial class WorldViewModel
             UpdateFilterOverlayPixel(x, y);
             BuffTileCache.UpdateTile(x, y, CurrentWorld.Tiles[x, y]);
         }
+    }
+
+    /// <summary>
+    /// Batched PixelMap + FilterOverlay + BuffTileCache update for a rectangular region.
+    /// Optimized: GetBackgroundColor computed once per row instead of per tile.
+    /// </summary>
+    public void UpdateRenderRegionSync(int x, int y, int width, int height)
+    {
+        if (CurrentWorld == null) return;
+
+        int left = Math.Max(x, 0);
+        int top = Math.Max(y, 0);
+        int right = Math.Min(x + width, CurrentWorld.TilesWide);
+        int bottom = Math.Min(y + height, CurrentWorld.TilesHigh);
+
+        for (int ty = top; ty < bottom; ty++)
+        {
+            Color curBgColor = new Color(GetBackgroundColor(ty).PackedValue);
+            for (int tx = left; tx < right; tx++)
+            {
+                PixelMap.SetPixelColor(tx, ty, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[tx, ty], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
+                UpdateFilterOverlayPixel(tx, ty);
+                BuffTileCache.UpdateTile(tx, ty, CurrentWorld.Tiles[tx, ty]);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Queue a UV cache reset for deferred processing by the render loop.
+    /// Resets are coalesced into a single bounding rect.
+    /// </summary>
+    public void QueueUVCacheReset(int x, int y, int width, int height)
+    {
+        if (_pendingUVReset == null)
+        {
+            _pendingUVReset = (x, y, width, height);
+        }
+        else
+        {
+            var (px, py, pw, ph) = _pendingUVReset.Value;
+            int left = Math.Min(px, x);
+            int top = Math.Min(py, y);
+            int right = Math.Max(px + pw, x + width);
+            int bottom = Math.Max(py + ph, y + height);
+            _pendingUVReset = (left, top, right - left, bottom - top);
+        }
+    }
+
+    /// <summary>
+    /// Pending UV cache reset region. Consumed by the XNA render loop.
+    /// </summary>
+    private (int X, int Y, int Width, int Height)? _pendingUVReset;
+
+    /// <summary>
+    /// Drains the pending UV cache reset and applies it. Called by the render loop.
+    /// </summary>
+    public void FlushPendingUVCacheReset()
+    {
+        if (_pendingUVReset == null) return;
+        var (x, y, w, h) = _pendingUVReset.Value;
+        _pendingUVReset = null;
+        _renderBlender?.UpdateTile(x, y, w, h);
     }
 
     public void UpdateRenderRegion(RectangleInt32 area)

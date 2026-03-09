@@ -165,15 +165,75 @@ public static class PixelMap
         return new Color((byte)(c.R * factor), (byte)(c.G * factor), (byte)(c.B * factor), c.A);
     }
 
+    // Cached global colors — resolved once on first use, invalidated on world load
+    private static Color s_wireRed, s_wireBlue, s_wireGreen, s_wireYellow;
+    private static Color s_lava, s_honey, s_shimmer, s_water;
+    private static bool s_globalColorsCached;
+
+    /// <summary>Call when world configuration changes (world load) to refresh cached colors.</summary>
+    public static void InvalidateGlobalColorCache() => s_globalColorsCached = false;
+
+    private static void EnsureGlobalColors()
+    {
+        if (s_globalColorsCached) return;
+        var gc = WorldConfiguration.GlobalColors;
+        s_wireRed = ToXnaColor(gc["Wire"]);
+        s_wireBlue = ToXnaColor(gc["Wire1"]);
+        s_wireGreen = ToXnaColor(gc["Wire2"]);
+        s_wireYellow = ToXnaColor(gc["Wire3"]);
+        s_lava = ToXnaColor(gc["Lava"]);
+        s_honey = ToXnaColor(gc["Honey"]);
+        s_shimmer = ToXnaColor(gc["Shimmer"]);
+        s_water = ToXnaColor(gc["Water"]);
+        s_globalColorsCached = true;
+    }
+
+    private static Color ToXnaColor(TEditColor c) => new Color(c.R, c.G, c.B, c.A);
+
+    /// <summary>Apply paint color to a tile/wall color with brightness.</summary>
+    private static void ApplyPaint(ref Color c, byte paintColor, byte brightness, TEditColor paintPropColor)
+    {
+        float bf = brightness * (1f / 255f);
+        switch (paintColor)
+        {
+            case 29:
+                float light = c.B * 0.3f * bf;
+                c.R = (byte)(c.R * light);
+                c.G = (byte)(c.G * light);
+                c.B = (byte)(c.B * light);
+                break;
+            case 30:
+                float half_bf = 0.5f * bf;
+                c.R = (byte)((byte.MaxValue - c.R) * half_bf);
+                c.G = (byte)((byte.MaxValue - c.G) * half_bf);
+                c.B = (byte)((byte.MaxValue - c.B) * half_bf);
+                break;
+            default:
+                var paint = paintPropColor;
+                paint.A = (byte)brightness;
+                c = c.AlphaBlend(paint);
+                break;
+        }
+    }
+
+    /// <summary>Apply brightness scaling to RGB channels.</summary>
+    private static void ApplyBrightness(ref Color c, byte brightness)
+    {
+        float bf = brightness * (1f / 255f);
+        c.R = (byte)(c.R * bf);
+        c.G = (byte)(c.G * bf);
+        c.B = (byte)(c.B * bf);
+    }
+
     public static Color GetTileColor(Tile tile, Color background, bool showWall = true, bool showTile = true, bool showLiquid = true, bool showRedWire = true, bool showBlueWire = true, bool showGreenWire = true, bool showYellowWire = true, bool showCoatings = true,
         bool wallDarken = false, bool tileDarken = false, bool liquidDarken = false,
         bool redWireDarken = false, bool blueWireDarken = false, bool greenWireDarken = false, bool yellowWireDarken = false)
     {
+        EnsureGlobalColors();
         var c = new Color(0, 0, 0, 0);
 
         if (tile.Wall > 0 && showWall)
         {
-
             if (WorldConfiguration.WallProperties.Count > tile.Wall)
             {
                 if (WorldConfiguration.WallProperties[tile.Wall].Color.A != 0)
@@ -187,10 +247,6 @@ public static class PixelMap
             byte brightness = 255;
             if (showCoatings)
             {
-                // echo: 169 
-                // normal: 211
-                // illuminant: 255
-
                 brightness = 211;
                 if (tile.InvisibleWall) { brightness = 169; }
                 if (tile.FullBrightWall) { brightness = 255; }
@@ -198,33 +254,9 @@ public static class PixelMap
 
             // blend paint
             if (tile.WallColor > 0 && (!showTile || tile.TileColor == 0))
-            {
-                var paint = WorldConfiguration.PaintProperties[tile.WallColor].Color;
-                switch (tile.WallColor)
-                {
-                    case 29:
-                        float light = c.B * 0.3f * (brightness / 255.0f);
-                        c.R = (byte)(c.R * light);
-                        c.G = (byte)(c.G * light);
-                        c.B = (byte)(c.B * light);
-                        break;
-                    case 30:
-                        c.R = (byte)((byte.MaxValue - c.R) * 0.5 * (brightness / 255.0f));
-                        c.G = (byte)((byte.MaxValue - c.G) * 0.5 * (brightness / 255.0f));
-                        c.B = (byte)((byte.MaxValue - c.B) * 0.5 * (brightness / 255.0f));
-                        break;
-                    default:
-                        paint.A = (byte)brightness;
-                        c = c.AlphaBlend(paint);
-                        break;
-                }
-            }
+                ApplyPaint(ref c, tile.WallColor, brightness, WorldConfiguration.PaintProperties[tile.WallColor].Color);
             else
-            {
-                c.R = (byte)(c.R * (brightness / 255.0f));
-                c.G = (byte)(c.G * (brightness / 255.0f));
-                c.B = (byte)(c.B * (brightness / 255.0f));
-            }
+                ApplyBrightness(ref c, brightness);
 
             if (wallDarken)
                 c = DarkenColor(c);
@@ -242,10 +274,6 @@ public static class PixelMap
             byte brightness = 255;
             if (showCoatings)
             {
-                // echo: 169 
-                // normal: 211
-                // illuminant: 255
-
                 brightness = 211;
                 if (tile.InvisibleBlock) { brightness = 169; }
                 if (tile.FullBrightBlock) { brightness = 255; }
@@ -253,34 +281,9 @@ public static class PixelMap
 
             // blend paint
             if (tile.TileColor > 0 && tile.TileColor <= WorldConfiguration.PaintProperties.Count)
-            {
-                var paint = WorldConfiguration.PaintProperties[tile.TileColor].Color;
-
-                switch (tile.TileColor)
-                {
-                    case 29:
-                        float light = c.B * 0.3f * (brightness / 255.0f);
-                        c.R = (byte)(c.R * light);
-                        c.G = (byte)(c.G * light);
-                        c.B = (byte)(c.B * light);
-                        break;
-                    case 30:
-                        c.R = (byte)((byte.MaxValue - c.R) * 0.5 * (brightness / 255.0f));
-                        c.G = (byte)((byte.MaxValue - c.G) * 0.5 * (brightness / 255.0f));
-                        c.B = (byte)((byte.MaxValue - c.B) * 0.5 * (brightness / 255.0f));
-                        break;
-                    default:
-                        paint.A = (byte)brightness;
-                        c = c.AlphaBlend(paint);
-                        break;
-                }
-            }
+                ApplyPaint(ref c, tile.TileColor, brightness, WorldConfiguration.PaintProperties[tile.TileColor].Color);
             else
-            {
-                c.R = (byte)(c.R * (brightness / 255.0f));
-                c.G = (byte)(c.G * (brightness / 255.0f));
-                c.B = (byte)(c.B * (brightness / 255.0f));
-            }
+                ApplyBrightness(ref c, brightness);
 
             if (tileDarken)
                 c = DarkenColor(c);
@@ -288,10 +291,10 @@ public static class PixelMap
 
         if (tile.LiquidAmount > 0 && showLiquid)
         {
-            if (tile.LiquidType == LiquidType.Lava) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Lava"]);
-            else if (tile.LiquidType == LiquidType.Honey) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Honey"]);
-            else if (tile.LiquidType == LiquidType.Shimmer) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Shimmer"]);
-            else c = c.AlphaBlend(WorldConfiguration.GlobalColors["Water"]);
+            if (tile.LiquidType == LiquidType.Lava) c = c.AlphaBlend(s_lava);
+            else if (tile.LiquidType == LiquidType.Honey) c = c.AlphaBlend(s_honey);
+            else if (tile.LiquidType == LiquidType.Shimmer) c = c.AlphaBlend(s_shimmer);
+            else c = c.AlphaBlend(s_water);
 
             if (liquidDarken)
                 c = DarkenColor(c);
@@ -299,29 +302,25 @@ public static class PixelMap
 
         if (tile.WireRed && showRedWire)
         {
-            c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire"]);
-
+            c = c.AlphaBlend(s_wireRed);
             if (redWireDarken)
                 c = DarkenColor(c);
         }
         if (tile.WireBlue && showBlueWire)
         {
-            c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire1"]);
-
+            c = c.AlphaBlend(s_wireBlue);
             if (blueWireDarken)
                 c = DarkenColor(c);
         }
         if (tile.WireGreen && showGreenWire)
         {
-            c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire2"]);
-
+            c = c.AlphaBlend(s_wireGreen);
             if (greenWireDarken)
                 c = DarkenColor(c);
         }
         if (tile.WireYellow && showYellowWire)
         {
-            c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire3"]);
-
+            c = c.AlphaBlend(s_wireYellow);
             if (yellowWireDarken)
                 c = DarkenColor(c);
         }
