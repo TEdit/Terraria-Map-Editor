@@ -28,8 +28,8 @@ public static class DependencyChecker
                 path = App.AppConfig.TerrariaContentPath;
         }
 
-        // if the folder is missing, reset.
-        if (!Directory.Exists(path))
+        // if the folder is missing or doesn't contain Terraria content, reset.
+        if (!DirectoryHasContentFolder(path))
         {
             UserSettingsService.Current.TerrariaPath = null;
             path = string.Empty;
@@ -156,7 +156,10 @@ public static class DependencyChecker
                     retry = false;
                 }
             }
-            UserSettingsService.Current.TerrariaPath = Path.Combine(tempPath, "Content");
+            path = DirectoryHasContentFolder(Path.Combine(tempPath, "Content"))
+                ? Path.Combine(tempPath, "Content")
+                : tempPath;
+            UserSettingsService.Current.TerrariaPath = path;
         }
 
         if (!string.IsNullOrWhiteSpace(path) && path.IndexOf("Content", StringComparison.OrdinalIgnoreCase) < 0)
@@ -166,7 +169,7 @@ public static class DependencyChecker
 
         try
         {
-            if (!string.IsNullOrWhiteSpace(path))
+            if (!string.IsNullOrWhiteSpace(path) && DirectoryHasContentFolder(path))
             {
                 path = Path.GetFullPath(path);
                 PathToContent = path;
@@ -322,9 +325,24 @@ public static class DependencyChecker
         return "";
     }
 
-    // Updated function restores user prompting.
+    /// <summary>
+    /// Validates that the given path is (or contains) a Terraria Content folder
+    /// by checking for known Terraria assets like Images/Tiles_0.xnb.
+    /// </summary>
     public static bool DirectoryHasContentFolder(string path)
-        => Directory.Exists(path);
+    {
+        if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
+            return false;
+
+        // Check if path itself is a Content folder with Terraria assets
+        if (File.Exists(Path.Combine(path, "Images", "Tiles_0.xnb")))
+            return true;
+
+        // Check if path contains a Content subfolder with Terraria assets
+        var contentSub = Path.Combine(path, "Content");
+        return Directory.Exists(contentSub) &&
+               File.Exists(Path.Combine(contentSub, "Images", "Tiles_0.xnb"));
+    }
 
     private static string BrowseForTerraria()
     {
