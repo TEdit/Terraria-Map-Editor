@@ -52681,5 +52681,23 @@
     "key": "MusicBoxSkeletron",
     "isAccessory": true,
     "createTile": 139
+  },
+  {
+    "id": 6145,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isAccessory": true,
+    "createTile": 139,
+    "rarity": "LightRed",
+    "name": "Music Box (Rainbow Boulder)"
+  },
+  {
+    "id": 6146,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isAccessory": true,
+    "createTile": 139,
+    "rarity": "LightRed",
+    "name": "Music Box (Silence)"
   }
 ]
