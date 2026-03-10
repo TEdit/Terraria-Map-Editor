@@ -18817,8 +18817,8 @@
     "frameGap": [2, 2],
     "frameSize": [[3, 3]],
     "frames": [
-      { "name": "Radio Thing", "variety": "On", "uv": [0, 0] },
-      { "name": "Radio Thing", "variety": "Off", "uv": [54, 54] }
+      { "name": "Radio Thing", "variety": "Off", "uv": [0, 0] },
+      { "name": "Radio Thing", "variety": "On", "uv": [54, 54] }
     ],
     "name": "Radio Thing",
     "key": "RadioThingMonolith",

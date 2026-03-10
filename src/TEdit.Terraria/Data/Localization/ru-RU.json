@@ -1,7 +1,7 @@
 {
   "items": {
     "AHorribleNightforAlchemy": "Кошмар алхимика",
-    "AMachineforTerrarians": "Машина\u00A0террариан",
+    "AMachineforTerrarians": "Машина для террарийцев",
     "AaronsBreastplate": "Нагрудник Aaron",
     "AaronsHelmet": "Шлем Aaron",
     "AaronsLeggings": "Ботинки Aaron",
@@ -67,7 +67,7 @@
     "AetheriumTable": "Стол эфира",
     "AetheriumToilet": "Туалет эфира",
     "AetheriumWorkbench": "Верстак эфира",
-    "Aglet": "Аксельбант",
+    "Aglet": "Эглет",
     "Aglet$Gender": "MasculineSingular",
     "AlchemyLantern": "Алхимический светильник",
     "AlchemyTable": "Алхимический стол",
@@ -523,7 +523,7 @@
     "Blinkroot": "Мерцающий корень",
     "BlinkrootPlanterBox": "Кадка для светящегося корня",
     "BlinkrootSeeds": "Семена мерцающего корня",
-    "BlizzardStaff": "Посох волшебника",
+    "BlizzardStaff": "Посох метели",
     "BlizzardStaff$Gender": "MasculineSingular",
     "BlizzardinaBalloon": "Снежная буря в шарике",
     "BlizzardinaBalloon$Gender": "FeminineSingular",
@@ -553,7 +553,7 @@
     "BloodWater": "Кровавая вода",
     "BloodWaterFountain": "Кровавый фонтан",
     "BloodZombieBanner": "Знамя кровавого зомби",
-    "BloodZombieStatue": "Знамя статуи зомби",
+    "BloodZombieStatue": "Статуя кровавого зомби",
     "BloodbathDye": "Кровавый краситель",
     "BloodyGoblet": "Кровавый кубок",
     "BloodyMachete": "Кровавый мачете",
@@ -621,8 +621,8 @@
     "BlueLunaticHood": "Капюшон лунного культиста",
     "BlueLunaticRobe": "Роба лунного культиста",
     "BlueMacaw": "Голубой ара",
-    "BlueMacawCage": "Клетка для\u00A0голубого ара",
-    "BlueMoon": "Синяя луна",
+    "BlueMacawCage": "Клетка для голубого ара",
+    "BlueMoon": "Голубая луна",
     "BlueMoon$Gender": "FeminineSingular",
     "BlueMoss": "Синий мох",
     "BluePaint": "Синяя краска",
@@ -711,7 +711,7 @@
     "BoosterTrack": "Ускоряющие рельсы",
     "BootStatue": "Статуя ботинка",
     "BorealBeam": "Балка из заснеженной древесины",
-    "BorealWood": "Заснеженная древесина",
+    "BorealWood": "Северная древесина",
     "BorealWoodBathtub": "Ванна из заснеженной древесины",
     "BorealWoodBed": "Кровать из заснеженной древесины",
     "BorealWoodBookcase": "Книжный шкаф из заснеженной древесины",
@@ -755,7 +755,7 @@
     "BottledHoney": "Бутылка с медом",
     "BottledWater": "Бутылка с водой",
     "BottomlessBucket": "Бездонное ведро воды",
-    "BottomlessHoneyBucket": "Бездонное ведро с\u00A0мёдом",
+    "BottomlessHoneyBucket": "Бездонное ведро с мёдом",
     "BottomlessLavaBucket": "Бездонное ведро лавы",
     "BottomlessShimmerBucket": "Бездонное мерцающее ведро",
     "Boulder": "Валун",
@@ -827,7 +827,7 @@
     "BrightTealDye": "Светлый бирюзовый краситель",
     "BrightVioletDye": "Светлый фиолетовый краситель",
     "BrightYellowDye": "Светлый желтый краситель",
-    "BrokenBatWing": "Сломанное крылья летучей мыши",
+    "BrokenBatWing": "Сломанное крыло летучей мыши",
     "BrokenHeroSword": "Сломаный меч героя",
     "BrownAndBlackDye": "Коричневый и черный краситель",
     "BrownAndSilverDye": "Коричневый и серебристый краситель",
@@ -890,7 +890,7 @@
     "CactusCandle": "Кактусовая свеча",
     "CactusChair": "Кактусовый стул",
     "CactusChandelier": "Кактусовая люстра",
-    "CactusChest": "Кактусовый стул",
+    "CactusChest": "Кактусовый сундук",
     "CactusClock": "Кактусовые часы",
     "CactusDoor": "Кактусовая дверь",
     "CactusDresser": "Кактусовый комод",
@@ -999,14 +999,14 @@
     "ChaosFish": "Рыба хаоса",
     "ChargedBlasterCannon": "Зарядная бластерная пушка",
     "ChargedBlasterCannon$Gender": "FeminineSingular",
-    "CharmofMyths": "Очарование мифов",
+    "CharmofMyths": "Амулет мифов",
     "CharmofMyths$Gender": "NeuterSingular",
     "ChefHat": "Колпак шеф-повара",
     "ChefPants": "Брюки шеф-повара",
     "ChefShirt": "Форма шеф-повара",
     "Cherry": "Вишня",
     "Chest": "Сундук",
-    "ChestLock": "Замок от\u00A0сундука",
+    "ChestLock": "Замок от сундука",
     "ChestStatue": "Статуя сундука",
     "ChesterPetItem": "Глазная кость",
     "ChickenBonesBody": "Куртка из куриных косточек",
@@ -1158,7 +1158,7 @@
     "Code1$Gender": "MasculineSingular",
     "Code2": "Код 2",
     "Code2$Gender": "MasculineSingular",
-    "CoffeeCup": "кофе",
+    "CoffeeCup": "Кофе",
     "CoffinMinecart": "Гробовагонетка",
     "Cog": "Шестеренка",
     "CogWall": "Стена из шестеренок",
@@ -1171,7 +1171,7 @@
     "CombatBookVolumeTwo": "Передовые боевые техники: выпуск 2",
     "CombatWrench": "Боевой гаечный ключ",
     "CombatWrench$Gender": "MasculineSingular",
-    "CompanionCube": "Куб-спутник",
+    "CompanionCube": "Куб-компаньон",
     "Compass": "Компас",
     "Compass$Gender": "MasculineSingular",
     "CompassRose": "Компасная роза",
@@ -1191,7 +1191,7 @@
     "CookedMarshmallow": "Приготовленный зефир",
     "CookedShrimp": "Приготовленная креветка",
     "CookingPot": "Котелок",
-    "CoolWhip": "Взбитые сливки",
+    "CoolWhip": "Холодный хлыст",
     "CoolWhip$Gender": "GlobalPlural",
     "CopperAxe": "Медный топор",
     "CopperAxe$Gender": "MasculineSingular",
@@ -1424,7 +1424,7 @@
     "CursedCampfire": "Проклятый костер",
     "CursedDart": "Проклятый дротик",
     "CursedFlame": "Проклятое пламя",
-    "CursedFlames": "Проклятый огонь",
+    "CursedFlames": "Проклятые огни",
     "CursedFlames$Gender": "MasculineSingular",
     "CursedFlare": "Проклятый факел",
     "CursedHammerBanner": "Знамя проклятого молота",
@@ -1523,9 +1523,9 @@
     "DarkSideHallow": "Темная сторона Освящения",
     "DarkSoulReaper": "Темный жнец душ",
     "Darkness": "Тьма",
-    "DartPistol": "Темный пистолет",
+    "DartPistol": "Дротиковый пистолет",
     "DartPistol$Gender": "MasculineSingular",
-    "DartRifle": "Темная винтовка",
+    "DartRifle": "Дротиковая винтовка",
     "DartRifle$Gender": "FeminineSingular",
     "DartTrap": "Ловушка с дротиком",
     "DayBloomPlanterBox": "Кадка для цветка дня",
@@ -1696,18 +1696,18 @@
     "DizzyHat": "Редкое пальто гекко Честер",
     "DjinnLamp": "Лампа духа пустыни",
     "DjinnsCurse": "Проклятие джина",
-    "DoNotEattheVileMushroom": "Не\u00A0есть ужасный гриб!",
+    "DoNotEattheVileMushroom": "Не есть ужасный гриб!",
     "DoNotStepontheGrass": "По газонам не ходить",
     "DoctorBonesBanner": "Знамя доктора Бонса",
     "DogEars": "Собачьи уши",
     "DogTail": "Собачий хвост",
     "DogWhistle": "Свисток для собак",
-    "DontHurtComboBook": "Руководство по\u00A0мирному сосуществованию",
-    "DontHurtComboBookInactive": "Руководство по\u00A0мирному сосуществованию (неактивное)",
+    "DontHurtComboBook": "Руководство по мирному сосуществованию",
+    "DontHurtComboBookInactive": "Руководство по мирному сосуществованию (неактивное)",
     "DontHurtCrittersBook": "Руководство по братьям меньшим",
     "DontHurtCrittersBookInactive": "Руководство по братьям меньшим (неактивное)",
-    "DontHurtNatureBook": "Руководство по\u00A0охране окружающей среды",
-    "DontHurtNatureBookInactive": "Руководство по\u00A0охране окружающей среды (неактивное)",
+    "DontHurtNatureBook": "Руководство по охране окружающей среды",
+    "DontHurtNatureBookInactive": "Руководство по охране окружающей среды (неактивное)",
     "DontStarveShaderItem": "Радио-штука",
     "DoubleCod": "Двойная треска",
     "DrManFlyBanner": "Знамя человека-мухи",
@@ -1715,7 +1715,7 @@
     "DrManFlyMask": "Маска человека-мухи",
     "DragonflyStatue": "Статуя стрекозы",
     "Dragonfruit": "Питахайя",
-    "Drax": "Молотобур",
+    "Drax": "Буропил",
     "Drax$Gender": "MasculineSingular",
     "DreadoftheRedSea": "Пред Красным морем",
     "Dresser": "Комод",
@@ -1905,7 +1905,7 @@
     "EngineeringHelmet": "Инженерный шлем",
     "EoCShield": "Щит Ктулху",
     "EoCShield$Gender": "MasculineSingular",
-    "Escargot": "Улитка",
+    "Escargot": "Эскарго",
     "EskimoCoat": "Снежный плащ",
     "EskimoHood": "Снежный капюшон",
     "EskimoPants": "Снежные брюки",
@@ -2131,7 +2131,7 @@
     "FireflyStatue": "Статуя светлячка",
     "FireflyinaBottle": "Светлячок в бутылке",
     "Fireplace": "Камин",
-    "FireproofBugNet": "Лавонепроницаемый сачок",
+    "FireproofBugNet": "Лавостойкий сачок",
     "FireworkFountain": "Фонтан фейерверков",
     "FireworksBox": "Ящик с фейерверками",
     "FireworksLauncher": "Празднование",
@@ -2150,21 +2150,21 @@
     "FishermansGuide": "Карманное руководство рыбака",
     "FishermansGuide$Gender": "NeuterSingular",
     "FisherofSouls": "Рыбак-душелов",
-    "FishingBobber": "Поплавок для\u00A0рыбалки",
+    "FishingBobber": "Поплавок для рыбалки",
     "FishingBobber$Gender": "MasculineSingular",
-    "FishingBobberGlowingArgon": "Поплавок для\u00A0рыбалки из\u00A0аргонового мха",
+    "FishingBobberGlowingArgon": "Поплавок для рыбалки из аргонового мха",
     "FishingBobberGlowingArgon$Gender": "MasculineSingular",
-    "FishingBobberGlowingKrypton": "Поплавок для\u00A0рыбалки из\u00A0криптонового мха",
+    "FishingBobberGlowingKrypton": "Поплавок для рыбалки из криптонового мха",
     "FishingBobberGlowingKrypton$Gender": "MasculineSingular",
-    "FishingBobberGlowingLava": "Поплавок для\u00A0рыбалки из\u00A0лавового мха",
+    "FishingBobberGlowingLava": "Поплавок для рыбалки из лавового мха",
     "FishingBobberGlowingLava$Gender": "MasculineSingular",
-    "FishingBobberGlowingRainbow": "Поплавок для\u00A0рыбалки из\u00A0гелиевого мха",
+    "FishingBobberGlowingRainbow": "Поплавок для рыбалки из гелиевого мха",
     "FishingBobberGlowingRainbow$Gender": "MasculineSingular",
-    "FishingBobberGlowingStar": "Светящийся поплавок для\u00A0рыбалки",
+    "FishingBobberGlowingStar": "Светящийся поплавок для рыбалки",
     "FishingBobberGlowingStar$Gender": "MasculineSingular",
-    "FishingBobberGlowingViolet": "Поплавок для\u00A0рыбалки из\u00A0неонового мха",
+    "FishingBobberGlowingViolet": "Поплавок для рыбалки из неонового мха",
     "FishingBobberGlowingViolet$Gender": "MasculineSingular",
-    "FishingBobberGlowingXenon": "Поплавок для\u00A0рыбалки из\u00A0ксенонового мха",
+    "FishingBobberGlowingXenon": "Поплавок для рыбалки из ксенонового мха",
     "FishingBobberGlowingXenon$Gender": "MasculineSingular",
     "FishingPotion": "Зелье рыбалки",
     "FishingSeaweed": "Водоросли",
@@ -2191,7 +2191,7 @@
     "Flamethrower": "Огнемет",
     "Flamethrower$Gender": "MasculineSingular",
     "FlamingArrow": "Подожженная стрела",
-    "FlamingMace": "Огненный жезл",
+    "FlamingMace": "Огненная булава",
     "FlamingMace$Gender": "MasculineSingular",
     "Flare": "Сигнальная ракета",
     "FlareGun": "Сигнальная ракетница",
@@ -2618,7 +2618,7 @@
     "GoldenBullet": "Золотая пуля",
     "GoldenCandelabra": "Золотой канделябр",
     "GoldenCandle": "Золотая свеча",
-    "GoldenCarp": "Серебряный карась",
+    "GoldenCarp": "Золотой карась",
     "GoldenChair": "Золотой стул",
     "GoldenChandelier": "Золотая люстра",
     "GoldenChest": "Золотой сундук",
@@ -2648,10 +2648,10 @@
     "GolemFist": "Кулак голема",
     "GolemFist$Gender": "MasculineSingular",
     "GolemMask": "Маска голема",
-    "GolemMasterTrophy": "Реликвия голема",
+    "GolemMasterTrophy": "Реликвия Голема",
     "GolemPetItem": "Голем-стражник",
     "GolemTrophy": "Трофей голема",
-    "GolfBall": "Золотой мяч",
+    "GolfBall": "Мяч для гольфа",
     "GolfBall$Gender": "MasculineSingular",
     "GolfBallDyedBlack": "Черный мяч для гольфа",
     "GolfBallDyedBlack$Gender": "MasculineSingular",
@@ -2801,7 +2801,7 @@
     "GrayBrick": "Серый кирпич",
     "GrayBrickWall": "Стена из серого кирпича",
     "GrayCockatiel": "Серый корелла",
-    "GrayCockatielCage": "Клетка для\u00A0серого кореллы",
+    "GrayCockatielCage": "Клетка для серого кореллы",
     "GrayPaint": "Серая краска",
     "GrayPressurePlate": "Серая нажимная плита",
     "GrayStucco": "Серая лепнина",
@@ -3087,7 +3087,7 @@
     "Holly": "Святой",
     "HolyArrow": "Святая стрела",
     "HolyWater": "Святая вода",
-    "HoneyAbsorbantSponge": "Губка для\u00A0мёда",
+    "HoneyAbsorbantSponge": "Губка для мёда",
     "HoneyBalloon": "Воздушный шарик в меде",
     "HoneyBalloon$Gender": "MasculineSingular",
     "HoneyBathtub": "Медовая ванна",
@@ -3129,7 +3129,7 @@
     "HornetStaff": "Посох шершня",
     "HornetStaff$Gender": "MasculineSingular",
     "HornetStatue": "Статуя шершня",
-    "HorseshoeBundle": "Связка шариков «Подкова»",
+    "HorseshoeBundle": "Связка шариков с подковой",
     "HorseshoeBundle$Gender": "FeminineSingular",
     "Hotdog": "Хотдог",
     "HotlineFishingHook": "Горящий рыболовный крючок",
@@ -3293,7 +3293,7 @@
     "JimsLeggings": "Ботинки Jim",
     "JimsWings": "Крылья Jim",
     "JimsWings$Gender": "GlobalPlural",
-    "JojaCola": "Хоха-кола",
+    "JojaCola": "Джоджа-кола",
     "JourneymanBait": "Наживка для специалиста",
     "JoustingLance": "Турнирное копье",
     "JoustingLance$Gender": "NeuterSingular",
@@ -3677,7 +3677,7 @@
     "Loom": "Ткацкий станок",
     "LostHopesofManBanner": "Знамя потерянных надежд",
     "LovePotion": "Любовное зелье",
-    "LoveisintheTrashSlot": "Любовь в\u00A0помойном ведре",
+    "LoveisintheTrashSlot": "Любовь в помойном ведре",
     "LuckPotion": "Зелье удачи",
     "LuckPotionGreater": "Большое зелье удачи",
     "LuckPotionLesser": "Маленькое зелье удачи",
@@ -3686,7 +3686,7 @@
     "LuckyCoin$Gender": "FeminineSingular",
     "LuckyHorseshoe": "Счастливая подкова",
     "LuckyHorseshoe$Gender": "FeminineSingular",
-    "LucyTheAxe": "Люси «Топор»",
+    "LucyTheAxe": "Топор Люси",
     "LucyTheAxe$Gender": "MasculineSingular",
     "LunarBar": "Люминитовый слиток",
     "LunarBlockNebula": "Блок фрагмента туманности",
@@ -3720,7 +3720,7 @@
     "LunaticCultistMasterTrophy": "Реликвия культиста-лунатика",
     "LunaticCultistPetItem": "Фрагмент плиты",
     "MacawStatue": "Статуя ара",
-    "Mace": "Жезл",
+    "Mace": "Булава",
     "Mace$Gender": "MasculineSingular",
     "MaceWhip": "Утренняя звезда",
     "MaceWhip$Gender": "FeminineSingular",
@@ -3771,7 +3771,7 @@
     "MallardDuck": "Кряква",
     "MallardDuckCage": "Клетка с кряквой",
     "ManEaterBanner": "Знамя растения-людоеда",
-    "ManaCloak": "Часы маны",
+    "ManaCloak": "Плащ маны",
     "ManaCloak$Gender": "GlobalPlural",
     "ManaCloakStar": "",
     "ManaCrystal": "Кристалл маны",
@@ -3809,7 +3809,7 @@
     "MarbleWall": "Мраморная стена",
     "MarbleWorkBench": "Мраморный верстак",
     "MarchingBonesBanner": "Знамя ходячего скелета",
-    "Marrow": "Сущность",
+    "Marrow": "Позвоночник",
     "Marrow$Gender": "FeminineSingular",
     "Marshmallow": "Зефир",
     "MarshmallowonaStick": "Зефир на палочке",
@@ -3933,7 +3933,7 @@
     "MimicBanner": "Знамя мимика",
     "Minecart": "Вагонетка",
     "MinecartMech": "Механическая вагонетка",
-    "MinecartPowerup": "Комплект для\u00A0модернизации вагонеток",
+    "MinecartPowerup": "Комплект для модернизации вагонеток",
     "MinecartTrack": "Вагонетка",
     "MiniNukeI": "Атомная мини-бомба I",
     "MiniNukeII": "Атомная мини-бомба II",
@@ -3990,7 +3990,7 @@
     "MoonLordBody": "Торс лунного лорда",
     "MoonLordBossBag": "Мешок с сокровищами (Лунный лорд)",
     "MoonLordLegs": "Ноги Лунного лорда",
-    "MoonLordMasterTrophy": "Реликвия лунного лорда",
+    "MoonLordMasterTrophy": "Реликвия Лунного лорда",
     "MoonLordPainting": "Не ребенок, не кальмар",
     "MoonLordPetItem": "Кусочек лунного кальмара",
     "MoonLordTrophy": "Трофей лунного лорда",
@@ -4009,7 +4009,7 @@
     "MoonlordBullet": "Люминитовая пуля",
     "MoonlordTurretStaff": "Посох лунного портала",
     "MoonlordTurretStaff$Gender": "MasculineSingular",
-    "MoonmanandCompany": "Лунатик и\u00A0Ко",
+    "MoonmanandCompany": "Лунатик и Ко",
     "MoonplateBathtub": "Закатная ванна",
     "MoonplateBed": "Закатная кровать",
     "MoonplateBlock": "Луноликий блок",
@@ -4175,8 +4175,10 @@
     "MusicBoxQueenBeeAlt": "Музыкальная шкатулка (другая Королева пчел)",
     "MusicBoxQueenSlime": "Музыкальная шкатулка (королева слизней)",
     "MusicBoxRain": "Музыкальная шкатулка (дождь)",
+    "MusicBoxRainbowBoulder": "Музыкальная шкатулка (радужный валун)",
     "MusicBoxSandstorm": "Музыкальная шкатулка (песчаная буря)",
     "MusicBoxShimmer": "Музыкальная шкатулка (эфир)",
+    "MusicBoxSilence": "Музыкальная шкатулка (тишина)",
     "MusicBoxSkeletron": "Музыкальная шкатулка (Скелетрон)",
     "MusicBoxSkeletronPrime": "Музыкальная шкатулка (Скелетрон Прайм)",
     "MusicBoxSlimeRain": "Музыкальная шкатулка (дождь слизней)",
@@ -4321,7 +4323,7 @@
     "NoirMonolith": "Кинопроектор",
     "NorthPole": "Северный полюс",
     "NorthPole$Gender": "MasculineSingular",
-    "NotSoLostInParadise": "Не\u00A0совсем потерянный рай",
+    "NotSoLostInParadise": "Не совсем потерянный рай",
     "NurseHat": "Шапка медсестры",
     "NurseLisa": "Сестра Лиза",
     "NursePants": "Штаны медсестры",
@@ -4993,7 +4995,7 @@
     "PygmyNecklace$Gender": "NeuterSingular",
     "PygmyStaff": "Посох пигмеев",
     "PygmyStaff$Gender": "MasculineSingular",
-    "QuadBarrelShotgun": "Дробовик с четырьмя стволами",
+    "QuadBarrelShotgun": "Четырёхствольный дробовик",
     "QuadBarrelShotgun$Gender": "MasculineSingular",
     "QueenBeeBossBag": "Мешок с сокровищами (королева пчел)",
     "QueenBeeMasterTrophy": "Реликвия Королевы Пчел",
@@ -5011,7 +5013,7 @@
     "QueenSpiderStaff": "Посох королевы пауков",
     "QueenSpiderStaff$Gender": "MasculineSingular",
     "QueenStatue": "Статуя королевы",
-    "REK": "R.E.K. 3000",
+    "REK": "Р. В. У. 3000",
     "REK$Gender": "MasculineSingular",
     "RabbitOrder": "Лежанка для кролика",
     "Radar": "Радар",
@@ -5374,7 +5376,7 @@
     "ScarecrowPants": "Штаны пугала",
     "ScarecrowShirt": "Рубаха пугала",
     "ScarletMacaw": "Красный ара",
-    "ScarletMacawCage": "Клетка для\u00A0красного ара",
+    "ScarletMacawCage": "Клетка для красного ара",
     "ScorpioFish": "Рыба-скорпион",
     "Scorpion": "Скорпион",
     "ScorpionCage": "Клетка со скорпионом",
@@ -5518,7 +5520,7 @@
     "ShrimpPoBoy": "Бутерброд с креветкой",
     "ShrimpyTruffle": "Хлипкий трюфель",
     "ShroomMinecart": "Грибная вагонетка",
-    "Shroomerang": "Сумеранг",
+    "Shroomerang": "Гриборанг",
     "Shroomerang$Gender": "MasculineSingular",
     "ShroomiteBar": "Грибной слиток",
     "ShroomiteBreastplate": "Грибной нагрудник",
@@ -5986,7 +5988,7 @@
     "StarTopper3": "Звезда на елку 3",
     "StarVeil": "Звездная завеса",
     "StarVeil$Gender": "FeminineSingular",
-    "StarWrath": "Звездная ярость",
+    "StarWrath": "Звёздный гнев",
     "StarWrath$Gender": "FeminineSingular",
     "StardustAxe": "Топор звездной пыли",
     "StardustBathtub": "Ванна звездной пыли",
@@ -6239,17 +6241,17 @@
     "TeamDye": "Командная краска",
     "TeamHairDye": "Командная краска",
     "TeleportationPotion": "Зелье телепортации",
-    "TeleportationPylonDesert": "Столб пустыни",
-    "TeleportationPylonHallow": "Столб Освящения",
-    "TeleportationPylonJungle": "Столб джунглей",
-    "TeleportationPylonMushroom": "Столб грибного биома",
-    "TeleportationPylonOcean": "Столб океана",
-    "TeleportationPylonPurity": "Столб леса",
+    "TeleportationPylonDesert": "Пустынный пилон",
+    "TeleportationPylonHallow": "Пилон освящения",
+    "TeleportationPylonJungle": "Пилон джунглей",
+    "TeleportationPylonMushroom": "Грибной пилон",
+    "TeleportationPylonOcean": "Пилон океана",
+    "TeleportationPylonPurity": "Лесной пилон",
     "TeleportationPylonShimmer": "Столб эфира",
-    "TeleportationPylonSnow": "Снежный снежного биома",
-    "TeleportationPylonUnderground": "Столб пещеры",
+    "TeleportationPylonSnow": "Снежный пилон",
+    "TeleportationPylonUnderground": "Пещерный пилон",
     "TeleportationPylonUnderworld": "Столб преисподней",
-    "TeleportationPylonVictory": "Универсальный столб",
+    "TeleportationPylonVictory": "Универсальный пилон",
     "Teleporter": "Телепорт",
     "TempestStaff": "Посох бури",
     "TempestStaff$Gender": "MasculineSingular",
@@ -6259,7 +6261,7 @@
     "TendonHook": "Сухожилистый крюк",
     "TentacleSpike": "Шип щупальца",
     "TentacleSpike$Gender": "MasculineSingular",
-    "TerraBlade": "Клинок Земли",
+    "TerraBlade": "Терра-клинок",
     "TerraBlade$Gender": "MasculineSingular",
     "TerraBladeChronicles": "Хроники клинка Земли",
     "TerraFartMinecart": "Гром-карт Земли",
@@ -6302,7 +6304,7 @@
     "ThePlan": "План",
     "ThePlan$Gender": "MasculineSingular",
     "ThePossessedBanner": "Знамя одержимой",
-    "TheRottedFork": "Гнилая вилка",
+    "TheRottedFork": "Гнилые вилы",
     "TheRottedFork$Gender": "FeminineSingular",
     "TheRunicPixie": "Руническая фея",
     "TheSandsOfSlime": "Пески слизня",
@@ -6461,7 +6463,7 @@
     "TorchGodsFavor": "Милость Бога факелов",
     "TortoiseBanner": "Знамя гигантской черепахи",
     "Toucan": "Тукан",
-    "ToucanCage": "Клетка для\u00A0тукана",
+    "ToucanCage": "Клетка для тукана",
     "ToucanStatue": "Статуя тукана",
     "ToxicFlask": "Колба с токсинами",
     "ToxicFlask$Gender": "MasculineSingular",
@@ -6604,7 +6606,7 @@
     "Valor": "Доблесть",
     "Valor$Gender": "FeminineSingular",
     "VampireBanner": "Знамя вампира",
-    "VampireFrogStaff": "Посох клыка вампира",
+    "VampireFrogStaff": "Посох лягушки-вампира",
     "VampireFrogStaff$Gender": "MasculineSingular",
     "VampireKnives": "Вампирские ножи",
     "VampireKnives$Gender": "GlobalPlural",
@@ -6708,7 +6710,7 @@
     "WalkingAntlionBanner": "Знамя пустынного муравья",
     "WallAnchor": "Настенный якорь",
     "WallCreeperStatue": "Статуя стенного ползуна",
-    "WallOfFleshBossBag": "Мешок с сокровищами (стена плоти)",
+    "WallOfFleshBossBag": "Мешок с сокровищами (Стена плоти)",
     "WallOfFleshGoatMountItem": "Козий череп",
     "WallSkeleton": "Настенный скелет",
     "WallofFleshMasterTrophy": "Реликвия Стены Плоти",
@@ -6867,7 +6869,7 @@
     "WoodPlatform": "Деревянная платформа",
     "WoodShelf": "Деревянная полка",
     "WoodWall": "Деревянная стена",
-    "WoodYoyo": "Деревянный йо-йо",
+    "WoodYoyo": "Деревянное йо-йо",
     "WoodYoyo$Gender": "MasculineSingular",
     "WoodenArrow": "Деревянная стрела",
     "WoodenBeam": "Деревянная балка",
@@ -6883,7 +6885,7 @@
     "WoodenHammer": "Деревянный молот",
     "WoodenHammer$Gender": "MasculineSingular",
     "WoodenSink": "Деревянная раковина",
-    "WoodenSpike": "Деревянное копье",
+    "WoodenSpike": "Деревянный шип",
     "WoodenSword": "Деревянный меч",
     "WoodenSword$Gender": "MasculineSingular",
     "WoodenTable": "Деревянный стол",
@@ -6922,7 +6924,7 @@
     "YellowBanner": "Желтое знамя",
     "YellowBulb": "Желтая игрушка",
     "YellowCockatiel": "Жёлтый корелла",
-    "YellowCockatielCage": "Клетка для\u00A0жёлтого кореллы",
+    "YellowCockatielCage": "Клетка для жёлтого кореллы",
     "YellowCounterweight": "Желтый противовес",
     "YellowCounterweight$Gender": "MasculineSingular",
     "YellowDragonfly": "Желтая стрекоза",
@@ -6982,9 +6984,1371 @@
     "ZombieFish": "Рыба-зомби",
     "ZombieMermanBanner": "Знамя тритона-зомби"
   },
+  "buffs": {
+    "AbigailMinion": {
+      "name": "Абигейл",
+      "description": "Абигейл сражается, чтобы защитить вас"
+    },
+    "AmberMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmethystMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmmoBox": {
+      "name": "Ящик с боеприпасами",
+      "description": "Шанс 20% не потратить боеприпасы"
+    },
+    "AmmoReservation": {
+      "name": "Экономия боеприпасов",
+      "description": "Шанс 20% не потратить боеприпасы"
+    },
+    "Archery": {
+      "name": "Лучник",
+      "description": "Увеличивает урон от лука на 10% и скорость стрел на 20%"
+    },
+    "AxeFairyPet": {
+      "name": "Сенакс",
+      "description": "Не стопорится задавать вопросы"
+    },
+    "BabyBird": {
+      "name": "Птенец зяблика",
+      "description": "Птенец зяблика сражается за вас"
+    },
+    "BabyDinosaur": {
+      "name": "Малыш динозавр",
+      "description": "Малыш динозавр следует за вами"
+    },
+    "BabyEater": {
+      "name": "Малыш пожиратель",
+      "description": "Малыш пожиратель душ следует за вами"
+    },
+    "BabyFaceMonster": {
+      "name": "Малыш лицевой монстр",
+      "description": "Малыш лицевой монстр следует за вами"
+    },
+    "BabyGrinch": {
+      "name": "Малыш Гринч",
+      "description": "Малыш Гринч следует за вами"
+    },
+    "BabyHornet": {
+      "name": "Малыш шершень",
+      "description": "Он думает, что вы — его мама"
+    },
+    "BabyImp": {
+      "name": "Бесёныш",
+      "description": "Просто дождитесь его несносного возраста!"
+    },
+    "BabyPenguin": {
+      "name": "Детёныш пингвина",
+      "description": "Думаю, он хочет вашу рыбку"
+    },
+    "BabyRedPanda": {
+      "name": "Детёныш красной панды",
+      "description": "Детёныш красной панды следует за вами"
+    },
+    "BabySkeletronHead": {
+      "name": "Мини-голова Скелетрона",
+      "description": "Даже не спрашивайте..."
+    },
+    "BabySlime": {
+      "name": "Малыш слизень",
+      "description": "Малыш слизень сражается за вас"
+    },
+    "BabySnowman": {
+      "name": "Снеговичок",
+      "description": "Детёныш снеговика следует за вами"
+    },
+    "BabyTruffle": {
+      "name": "Малыш трюфель",
+      "description": "Это тааак мило!"
+    },
+    "BabyWerewolf": {
+      "name": "Малыш оборотень",
+      "description": "Детёныш оборотня следует за вами"
+    },
+    "BallistaPanic": {
+      "name": "Паника баллисты!",
+      "description": "Ваши баллисты быстро стреляют в панике!"
+    },
+    "BasiliskMount": {
+      "name": "Ездовой василиск",
+      "description": "Бьет по всему... и по ВСЕМ!"
+    },
+    "BatMount": {
+      "name": "Проклятие летучей мыши",
+      "description": "Вы обратились в летучую мышь!"
+    },
+    "BatOfLight": {
+      "name": "Кровавая летучая мышь",
+      "description": "Кровавая летучая мышь сражается за вас"
+    },
+    "Battle": {
+      "name": "Бой",
+      "description": "Скорость появления врагов увеличена"
+    },
+    "BeeMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BeeMount": {
+      "name": "Ездовая пчела",
+      "description": "БзззБззБЗЗЗЗБззз"
+    },
+    "BeetleEndurance1": {
+      "name": "Выносливость жука",
+      "description": "Получаемый урон снижен на 15%"
+    },
+    "BeetleEndurance2": {
+      "name": "Выносливость жука",
+      "description": "Получаемый урон снижен на 30%"
+    },
+    "BeetleEndurance3": {
+      "name": "Выносливость жука",
+      "description": "Получаемый урон снижен на 45%"
+    },
+    "BeetleMight1": {
+      "name": "Мощь жука",
+      "description": "Урон и скорость в ближнем бою увеличены на 10%"
+    },
+    "BeetleMight2": {
+      "name": "Мощь жука",
+      "description": "Урон и скорость в ближнем бою увеличены на 20%"
+    },
+    "BeetleMight3": {
+      "name": "Мощь жука",
+      "description": "Урон и скорость в ближнем бою увеличены на 30%"
+    },
+    "BeetleMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BerniePet": {
+      "name": "Берни",
+      "description": "Ты всегда готов прийти на помощь, Берни"
+    },
+    "BetsysCurse": {
+      "name": "Проклятие Бетси",
+      "description": "Защита снижена"
+    },
+    "Bewitched": {
+      "name": "Заколдованный",
+      "description": "Максимальное количество миньонов увеличено"
+    },
+    "BiomeSight": {
+      "name": "Биомное зрение",
+      "description": "Показывает местоположение заражённых блоков"
+    },
+    "BlackCat": {
+      "name": "Чёрная кошка",
+      "description": "Чёрный котёнок следует за вами"
+    },
+    "Blackout": {
+      "name": "Затемнение",
+      "description": "Видимость значительно снижена"
+    },
+    "Bleeding": {
+      "name": "Кровотечение",
+      "description": "Не можете регенерировать здоровье"
+    },
+    "BloodButcherer": {
+      "name": "Кровавые порезы",
+      "description": "Быстро теряете кровь"
+    },
+    "BlueChickenPet": {
+      "name": "Синяя курица",
+      "description": "На жетоне написано «Шейн»"
+    },
+    "BoneJavelin": {
+      "name": "Пробитие",
+      "description": "Теряете кровь"
+    },
+    "BoulderPet": {
+      "name": "Дружелюбный валун",
+      "description": "Рядом с вами катится дружелюбный валун"
+    },
+    "BrainOfConfusionBuff": {
+      "name": "Церебральный обман разума",
+      "description": "Увеличивает шанс критического удара и урон питомца"
+    },
+    "BrainOfCthulhuPet": {
+      "name": "Паук-мозг",
+      "description": "Он ползает поблизости... мерзость"
+    },
+    "BrokenArmor": {
+      "name": "Сломанная броня",
+      "description": "Защита уменьшена вдвое"
+    },
+    "Builder": {
+      "name": "Строитель",
+      "description": "Скорость и дистанция размещения блоков увеличены"
+    },
+    "BunnyMount": {
+      "name": "Ездовой кролик",
+      "description": "Вам очень хочется морковки"
+    },
+    "Burning": {
+      "name": "Горение",
+      "description": "Потеря здоровья и замедленное движение"
+    },
+    "Calm": {
+      "name": "Спокойствие",
+      "description": "Скорость появления врагов уменьшена"
+    },
+    "Campfire": {
+      "name": "Уютный огонь",
+      "description": "Регенерация здоровья немного ускорена"
+    },
+    "CatBast": {
+      "name": "Защита Баст",
+      "description": "Защита увеличена на 5"
+    },
+    "CavelingGardener": {
+      "name": "Пещерник-садовник",
+      "description": "Хук арр грук ту!"
+    },
+    "ChaosState": {
+      "name": "Состояние хаоса",
+      "description": "Использование жезла раздора расходует здоровье"
+    },
+    "ChesterPet": {
+      "name": "Честер",
+      "description": "Отто фон Честерфилд, эсквайр"
+    },
+    "Chilled": {
+      "name": "Охлаждение",
+      "description": "Ваша скорость передвижения снижена"
+    },
+    "Clairvoyance": {
+      "name": "Ясновидение",
+      "description": "Магические силы увеличены"
+    },
+    "CobWhipPlayerBuff": {
+      "name": "Кнутовой паук",
+      "description": "Призывает паука, который сражается за вас"
+    },
+    "CoffinMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "CompanionCube": {
+      "name": "Куб-компаньон",
+      "description": "Не может угрожать перерезать вам горло и даже не умеет говорить"
+    },
+    "Confused": {
+      "name": "Запутанность",
+      "description": "Ваши движения перевёрнуты"
+    },
+    "CoolWhipPlayerBuff": {
+      "name": "Приятный морозец",
+      "description": "Призывает снежинку, которая сражается за вас"
+    },
+    "Crate": {
+      "name": "Ящики",
+      "description": "Шанс выловить ящик увеличен"
+    },
+    "CrimsonHeart": {
+      "name": "Багряное сердце",
+      "description": "Магическое сердце, излучающее свет"
+    },
+    "Cursed": {
+      "name": "Проклятие",
+      "description": "Не можете использовать никакие предметы"
+    },
+    "CursedInferno": {
+      "name": "Проклятое пекло",
+      "description": "Теряете здоровье"
+    },
+    "CursedSapling": {
+      "name": "Проклятый саженец",
+      "description": "Проклятый саженец следует за вами"
+    },
+    "CuteFishronMount": {
+      "name": "Милый ездовой Рыброн",
+      "description": "Только не заставляйте его ползать"
+    },
+    "DD2BetsyPet": {
+      "name": "Крохотная Бетси",
+      "description": "Крошка-Бетси следует за вами"
+    },
+    "DD2OgrePet": {
+      "name": "Малыш огр",
+      "description": "У него большая палка, и он не знает, как ей пользоваться"
+    },
+    "Dangersense": {
+      "name": "Чувство опасности",
+      "description": "Вы можете видеть ближайшие опасности"
+    },
+    "DarkHorseMount": {
+      "name": "Тёмная ездовая лошадь",
+      "description": "Верхом на тёмной лошадке"
+    },
+    "DarkMageBookMount": {
+      "name": "Ездовая книга",
+      "description": "Теперь книга направляет вас"
+    },
+    "Darkness": {
+      "name": "Тьма",
+      "description": "Зрение на свету ухудшено"
+    },
+    "Daybreak": {
+      "name": "Заря",
+      "description": "Испепеление солнечными лучами"
+    },
+    "Dazed": {
+      "name": "Ошеломление",
+      "description": "Движение значительно замедлено"
+    },
+    "DeadCellsMushroomBoiMinion": {
+      "name": "Грибной парниша!",
+      "description": "Грибной парниша будет сражаться за вас."
+    },
+    "DeadCellsPotionStation": {
+      "name": "Алхимическое усиление",
+      "description": "Свежие усиления действуют дольше"
+    },
+    "DeadCellsSwarmBiter": {
+      "name": "Роевой кусака",
+      "description": "Ням-ням"
+    },
+    "DeadlySphere": {
+      "name": "Смертельная сфера",
+      "description": "Смертельная сфера сражается за вас"
+    },
+    "DeerclopsPet": {
+      "name": "Маленький Циклоп-олень",
+      "description": "Святые угодники!"
+    },
+    "DesertMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DestroyerPet": {
+      "name": "Уничтожитель облегченный",
+      "description": "Для разрушения на ходу"
+    },
+    "DiamondMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DiggingMoleMinecart": {
+      "name": "Шахтерская кротовагонетка",
+      "description": "Кротовагонетка копает за вас"
+    },
+    "DirtiestBlock": {
+      "name": "Самый грязный блок",
+      "description": "Сразу легко заметить по лишней грязи"
+    },
+    "DrillMount": {
+      "name": "Ездовой бур",
+      "description": "Едете на летающем буре"
+    },
+    "DryadsWard": {
+      "name": "Благословение дриады",
+      "description": "Сила природы защищает вас"
+    },
+    "DryadsWardDebuff": {
+      "name": "Проклятие дриады",
+      "description": "Сила природы подчиняет вас"
+    },
+    "DualSlimePet": {
+      "name": "Королевские слизни",
+      "description": "Высшая власть, которая объединит королевства!"
+    },
+    "DukeFishronPet": {
+      "name": "Маленький Рыброн",
+      "description": "Маркиз цвета морской волны из бездны"
+    },
+    "DynamiteKitten": {
+      "name": "Динамитный котёнок",
+      "description": "Не использовать в пушках"
+    },
+    "EaterOfWorldsPet": {
+      "name": "Пожиратель червей",
+      "description": "Может разрушить несколько дворов"
+    },
+    "Electrified": {
+      "name": "Наэлектризован",
+      "description": "Вам больно двигаться!"
+    },
+    "EmeraldMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "EmpressBlade": {
+      "name": "Террапризма",
+      "description": "Клинки Императрицы сражаются за вас"
+    },
+    "Endurance": {
+      "name": "Выносливость",
+      "description": "Получаемый урон снижен на 10%"
+    },
+    "EverscreamPet": {
+      "name": "Растеньице Злобноели",
+      "description": "Выгуливание дерева!"
+    },
+    "EyeOfCthulhuPet": {
+      "name": "Подозрительный глаз",
+      "description": "Не сводит с вас глаз…"
+    },
+    "EyeballSpring": {
+      "name": "Глаз-пружинка",
+      "description": "Глаз-пружинка следует за вами"
+    },
+    "FairyBlue": {
+      "name": "Фея",
+      "description": "Фея следует за вами"
+    },
+    "FairyGreen": {
+      "name": "Фея",
+      "description": "Фея следует за вами"
+    },
+    "FairyQueenPet": {
+      "name": "Принцесса-фея",
+      "description": "Свет прекрасного народа освещает всё"
+    },
+    "FairyRed": {
+      "name": "Фея",
+      "description": "Фея следует за вами"
+    },
+    "FartMinecart": {
+      "name": "Вагонетка-унитаз",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Featherfall": {
+      "name": "Пёрышко",
+      "description": "Нажмите ВВЕРХ или ВНИЗ, чтобы контролировать скорость спуска"
+    },
+    "FennecFox": {
+      "name": "Фенек",
+      "description": "Что говорит лиса? А ещё лучше — что она СЛЫШИТ?!"
+    },
+    "FishMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Fishing": {
+      "name": "Рыбалка",
+      "description": "Мастерство рыбалки увеличено"
+    },
+    "Flamingo": {
+      "name": "Фламинго",
+      "description": "Фламингогого"
+    },
+    "FlinxMinion": {
+      "name": "Флинкс",
+      "description": "Снежный флинкс сражается за вас"
+    },
+    "Flipper": {
+      "name": "Ласты",
+      "description": "Двигаетесь в воде как по воздуху"
+    },
+    "Frostburn": {
+      "name": "Ледяной ожог",
+      "description": "Либо очень жарко, либо очень холодно. В любом случае это ДЕЙСТВИТЕЛЬНО больно"
+    },
+    "Frostburn2": {
+      "name": "Обморожение",
+      "description": "Либо очень жарко, либо очень холодно. В любом случае это ДЕЙСТВИТЕЛЬНО больно"
+    },
+    "Frozen": {
+      "name": "Заморожен",
+      "description": "Вы не можете двигаться!"
+    },
+    "GelBalloonBuff": {
+      "name": "Блестящая слизь",
+      "description": "Вы покрыты слизью и блёстками"
+    },
+    "Gills": {
+      "name": "Жабры",
+      "description": "Дышите водой вместо воздуха"
+    },
+    "GlitteryButterfly": {
+      "name": "Сверкающая бабочка",
+      "description": "Воистину, воистину возмутительно"
+    },
+    "GlommerPet": {
+      "name": "Гломмер",
+      "description": "Он пушистый! И склизкий..."
+    },
+    "GolemPet": {
+      "name": "Игрушечный голем",
+      "description": "У меня теперь плачущий, говорящий, спящий, ходящий, живой идол!"
+    },
+    "GolfCartMount": {
+      "name": "Гольфкар",
+      "description": "Пересекаем поля в полевых условиях"
+    },
+    "Gravitation": {
+      "name": "Гравитация",
+      "description": "Нажмите ВВЕРХ, чтобы изменить гравитацию"
+    },
+    "HeartLamp": {
+      "name": "Лампа-сердце",
+      "description": "Регенерация здоровья ускорена"
+    },
+    "Heartreach": {
+      "name": "Сердечный магнит",
+      "description": "Дистанция сбора сердец увеличена"
+    },
+    "HeartyMeal": {
+      "name": "Сытное блюдо",
+      "description": "Регенерация здоровья ускорена"
+    },
+    "HellMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Hemorrhage": {
+      "name": "Кровоизлияние",
+      "description": "Обильное кровотечение"
+    },
+    "Honey": {
+      "name": "Мёд",
+      "description": "Регенерация здоровья ускорена"
+    },
+    "HornetMinion": {
+      "name": "Шершень",
+      "description": "Шершень сражается за вас"
+    },
+    "Horrified": {
+      "name": "В ужасе",
+      "description": "Вы увидели что-то ужасное, бежать теперь некуда"
+    },
+    "Hunger": {
+      "name": "Голодный",
+      "description": "Вы очень голодны и чувствуете слабость."
+    },
+    "Hunter": {
+      "name": "Охотник",
+      "description": "Показывает местоположение врагов"
+    },
+    "IceBarrier": {
+      "name": "Ледяной барьер",
+      "description": "Получаемый урон снижен на 25%"
+    },
+    "IceQueenPet": {
+      "name": "Ледяная королева",
+      "description": "Ледяная королева переродилась и стала вашей спутницей"
+    },
+    "Ichor": {
+      "name": "Ихор",
+      "description": "Защита снижена"
+    },
+    "ImpMinion": {
+      "name": "Бес",
+      "description": "Бес сражается за вас"
+    },
+    "Inferno": {
+      "name": "Инферно",
+      "description": "Враги поблизости воспламеняются"
+    },
+    "Invisibility": {
+      "name": "Невидимость",
+      "description": "Даёт невидимость"
+    },
+    "Ironskin": {
+      "name": "Железная кожа",
+      "description": "Увеличивает защиту на 8"
+    },
+    "JunimoPet": {
+      "name": "Джунимо",
+      "description": "Хранитель леса"
+    },
+    "KingSlimePet": {
+      "name": "Слизень-принц",
+      "description": "Он отвечает перед высшей властью"
+    },
+    "Kite": {
+      "name": "Приподнятое настроение",
+      "description": "Незначительно увеличена скорость передвижения, добычи и размещения"
+    },
+    "LadybugMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "LavaSharkMount": {
+      "name": "Ездовая лавовая акула",
+      "description": "Плавает по раскалённым морям!"
+    },
+    "LeafCrystal": {
+      "name": "Лиственный кристалл",
+      "description": "Стреляет кристальными листьями в ближайших врагов"
+    },
+    "Lifeforce": {
+      "name": "Жизненная сила",
+      "description": "Макс. запас здоровья увеличен на 20%"
+    },
+    "LilHarpy": {
+      "name": "Маленькая гарпия",
+      "description": "Милота свыше"
+    },
+    "Lovestruck": {
+      "name": "Влюблённость",
+      "description": "Вы влюблены!"
+    },
+    "Lucky": {
+      "name": "Удача",
+      "description": "Вы чувствуете, что вам сопутствует удача"
+    },
+    "LunaticCultistPet": {
+      "name": "Иллюзорный дракон",
+      "description": "Он продолжает смотреть на Луну"
+    },
+    "MagicLantern": {
+      "name": "Магический фонарь",
+      "description": "Зачарованный фонарь освещает ваш путь"
+    },
+    "MagicPower": {
+      "name": "Магическая сила",
+      "description": "Магический урон увеличен на 20%"
+    },
+    "MajesticHorseMount": {
+      "name": "Величественная ездовая лошадь",
+      "description": "Верхом на величественной лошади"
+    },
+    "ManaRegeneration": {
+      "name": "Регенерация маны",
+      "description": "Ускоряет регенерацию маны"
+    },
+    "ManaSickness": {
+      "name": "Болезнь маны",
+      "description": "Наносимый магический урон снижен на "
+    },
+    "MartianPet": {
+      "name": "Инопланетный скейтер",
+      "description": "Как делишки, людишки?"
+    },
+    "MeowmereMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Merfolk": {
+      "name": "Мерфолк",
+      "description": "Можете дышать и легко двигаться под водой"
+    },
+    "Midas": {
+      "name": "Мидас",
+      "description": "Выпадает больше денег при смерти"
+    },
+    "Minecart": {
+      "name": "Вагонетка",
+      "description": "Поездка в вагонетке"
+    },
+    "MinecartMech": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MinecartWood": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MiniMinotaur": {
+      "name": "Фавн",
+      "description": "Его зовут Шон"
+    },
+    "Mining": {
+      "name": "Добыча",
+      "description": "Скорость добычи увеличена на 25%"
+    },
+    "MonsterBanner": {
+      "name": "Знамя",
+      "description": "Увеличенные урон и защита от следующих врагов:"
+    },
+    "MoonLeech": {
+      "name": "Лунный укус",
+      "description": "Вы не можете восстанавливать здоровье"
+    },
+    "MoonLordPet": {
+      "name": "Лунлинг",
+      "description": "Потусторонний друг"
+    },
+    "NebulaUpDmg1": {
+      "name": "Туманность урона",
+      "description": "Урон увеличен на 15%"
+    },
+    "NebulaUpDmg2": {
+      "name": "Туманность урона",
+      "description": "Урон увеличен на 30%"
+    },
+    "NebulaUpDmg3": {
+      "name": "Туманность урона",
+      "description": "Урон увеличен на 45%"
+    },
+    "NebulaUpLife1": {
+      "name": "Туманность жизни",
+      "description": "Ускоренная регенерация здоровья"
+    },
+    "NebulaUpLife2": {
+      "name": "Туманность жизни",
+      "description": "Ускоренная регенерация здоровья"
+    },
+    "NebulaUpLife3": {
+      "name": "Туманность жизни",
+      "description": "Ускоренная регенерация здоровья"
+    },
+    "NebulaUpMana1": {
+      "name": "Туманность маны",
+      "description": "Регенерация маны ускорена"
+    },
+    "NebulaUpMana2": {
+      "name": "Туманность маны",
+      "description": "Регенерация маны ускорена"
+    },
+    "NebulaUpMana3": {
+      "name": "Туманность маны",
+      "description": "Регенерация маны ускорена"
+    },
+    "NeutralHunger": {
+      "name": "Проголодавшийся",
+      "description": "Просыпается лёгкий голод, но пока терпимо."
+    },
+    "NightOwl": {
+      "name": "Полуночник",
+      "description": "Зрение в темноте улучшено"
+    },
+    "NoBuilding": {
+      "name": "Творческий шок",
+      "description": "Вы утратили силу творчества!"
+    },
+    "ObsidianSkin": {
+      "name": "Обсидиановая кожа",
+      "description": "Иммунитет к лаве"
+    },
+    "Obstructed": {
+      "name": "Затруднение зрения",
+      "description": "Вы не можете видеть!"
+    },
+    "OgreSpit": {
+      "name": "Увяз",
+      "description": "Движение значительно замедлено"
+    },
+    "Oiled": {
+      "name": "Промасленный",
+      "description": "Получаете больше урона от огня"
+    },
+    "OnFire": {
+      "name": "В огне!",
+      "description": "Медленно теряете здоровье"
+    },
+    "OnFire3": {
+      "name": "Адский огонь",
+      "description": "Медленно теряете здоровье"
+    },
+    "PaintedHorseMount": {
+      "name": "Пятнистая ездовая лошадь",
+      "description": "Верхом на пятнистой лошади"
+    },
+    "PaladinsShield": {
+      "name": "Щит паладина",
+      "description": "25% полученного урона будет перенаправлено другому игроку"
+    },
+    "PalworldMinionCattiva": {
+      "name": "Каттива",
+      "description": "Каттива будет сражаться за вас"
+    },
+    "PalworldMinionFoxsparks": {
+      "name": "Фокспаркс",
+      "description": "Фокспаркс будет сражаться за вас"
+    },
+    "PalworldPetChillet": {
+      "name": "Чиллет",
+      "description": "Чиллет исследует мир вместе с вами\nДвижение довольно интенсивное!"
+    },
+    "PalworldPetChilletIgnis": {
+      "name": "Чиллет Игнис",
+      "description": "Чиллет Игнис исследует мир вместе с вами\nБудьте осторожны — если гладить его слишком долго, полетят искры!"
+    },
+    "Panic": {
+      "name": "Паника!",
+      "description": "Скорость передвижения увеличена"
+    },
+    "ParryDamageBuff": {
+      "name": "Момент для удара",
+      "description": "Следующая атака в ближнем бою нанесёт на 400% больше урона"
+    },
+    "PartyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PeaceCandle": {
+      "name": "Свеча спокойствия",
+      "description": "Скорость появления монстров уменьшена"
+    },
+    "PetBunny": {
+      "name": "Ручной кролик",
+      "description": "Думаю, он хочет вашу морковку"
+    },
+    "PetDD2Dragon": {
+      "name": "Жаднодракон",
+      "description": "Жаднодракон следует за вами"
+    },
+    "PetDD2Gato": {
+      "name": "Гато с пропеллером",
+      "description": "Гато с пропеллером следует за вами"
+    },
+    "PetDD2Ghost": {
+      "name": "Огонёк",
+      "description": "Огонёк следует за вами"
+    },
+    "PetLizard": {
+      "name": "Ручная ящерица",
+      "description": "Расслабился, будто хвост скинул"
+    },
+    "PetParrot": {
+      "name": "Ручной попугай",
+      "description": "Полли хочет печеньку"
+    },
+    "PetSapling": {
+      "name": "Ручной саженец",
+      "description": "Маленький саженец следует за вами"
+    },
+    "PetSpider": {
+      "name": "Ручной паук",
+      "description": "Паук следует за вами"
+    },
+    "PetTurtle": {
+      "name": "Ручная черепаха",
+      "description": "Счастливое черепашье время!"
+    },
+    "PigPet": {
+      "name": "Свинья",
+      "description": "Ходячий бекон!"
+    },
+    "PigronMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PigronMount": {
+      "name": "Ездовой свинодракон",
+      "description": "Теперь ты меня видишь..."
+    },
+    "PirateMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PirateMinion": {
+      "name": "Пират",
+      "description": "Пират сражается за вас"
+    },
+    "PirateShipMount": {
+      "name": "Ездовой пиратский корабль",
+      "description": "Теперь вы капитан"
+    },
+    "PixieMount": {
+      "name": "Форма феи",
+      "description": "Вы превратились в пикси!"
+    },
+    "PlanteraPet": {
+      "name": "Саженец Плантеры",
+      "description": "Интересно — супом или водой?.."
+    },
+    "Plantero": {
+      "name": "Плантеро",
+      "description": "Маленький Плантеро следует за вами"
+    },
+    "PogoStickMount": {
+      "name": "Ездовой «кузнечик»",
+      "description": "Ксс-шик! Ксс-шик! Ксс-шик!"
+    },
+    "Poisoned": {
+      "name": "Отравление",
+      "description": "Медленно теряете здоровье"
+    },
+    "PotionSickness": {
+      "name": "Послезельевая болезнь",
+      "description": "Нельзя использовать лечащие предметы"
+    },
+    "Pufferfish": {
+      "name": "Рыба фугу",
+      "description": "За вами следует дружелюбная рыба фугу"
+    },
+    "PumpkingPet": {
+      "name": "Светильник Джека",
+      "description": "Маленький светильник Джека злобно освещает вам путь"
+    },
+    "Puppy": {
+      "name": "Щенок",
+      "description": "Щенок следует за вами"
+    },
+    "Pygmies": {
+      "name": "Пигмеи",
+      "description": "Пигмеи сражаются за вас"
+    },
+    "QueenBeePet": {
+      "name": "Медоносная пчела",
+      "description": "Медовая пчела следует за вами"
+    },
+    "QueenSlimeMount": {
+      "name": "Ездовой крылатый слизень",
+      "description": "ПРЫГ-СКОК-ШМЯК!"
+    },
+    "QueenSlimePet": {
+      "name": "Слизень-принцесса",
+      "description": "А вот и высшая власть"
+    },
+    "Rabies": {
+      "name": "Дикий укус",
+      "description": "Урон увеличен, регенерация здоровья замедлена, вызывает статусные эффекты"
+    },
+    "Rage": {
+      "name": "Ярость",
+      "description": "Шанс критического удара увеличен на 10%"
+    },
+    "RainbowBoulderPet": {
+      "name": "Дружелюбный радужный валун",
+      "description": "Рядом с вами катится дружелюбный радужный валун"
+    },
+    "RapidHealing": {
+      "name": "Быстрое лечение",
+      "description": "Регенерация здоровья значительно ускорена"
+    },
+    "RatMount": {
+      "name": "Природа крысы",
+      "description": "Вы обратились в крысу!"
+    },
+    "Ravens": {
+      "name": "Вороны",
+      "description": "Вороны атакуют ваших врагов"
+    },
+    "Regeneration": {
+      "name": "Регенерация",
+      "description": "Регенерация здоровья ускорена"
+    },
+    "RollerSkatesGreenMount": {
+      "name": "Зеленые ролики",
+      "description": "Вот так я катаюсь"
+    },
+    "RollerSkatesMount": {
+      "name": "Синие ролики",
+      "description": "Вот так я катаюсь"
+    },
+    "RollerSkatesPinkMount": {
+      "name": "Праздничные ролики",
+      "description": "Вот так я катаюсь"
+    },
+    "RollerSkatesWhiteMount": {
+      "name": "Классические ролики",
+      "description": "Вот так я катаюсь"
+    },
+    "RubyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Rudolph": {
+      "name": "Рудольф",
+      "description": "Верхом на красноносом северном олене"
+    },
+    "SantankMount": {
+      "name": "Ездовой Сантанк",
+      "description": "Вычёркиваем из списка тех, кто плохо себя вёл…"
+    },
+    "SapphireMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "ScutlixMount": {
+      "name": "Ездовой скутликс",
+      "description": "Пиу-пиу"
+    },
+    "ScytheWhipPlayerBuff": {
+      "name": "Время жатвы",
+      "description": "Скорость атаки хлыстом увеличена"
+    },
+    "ShadowCandle": {
+      "name": "Теневая свеча",
+      "description": "Нарушает покой городов"
+    },
+    "ShadowDodge": {
+      "name": "Святая защита",
+      "description": "Вы уклонитесь от следующей атаки"
+    },
+    "ShadowFlame": {
+      "name": "Теневое пламя",
+      "description": "Теряете здоровье"
+    },
+    "ShadowMimic": {
+      "name": "Теневой мимик",
+      "description": "Теневой мимик следует за вами"
+    },
+    "ShadowOrb": {
+      "name": "Теневая сфера",
+      "description": "Магическая сфера, излучающая свет"
+    },
+    "SharkPup": {
+      "name": "Акулёнок",
+      "description": "Ту-ру-ру-ру-ру"
+    },
+    "SharknadoMinion": {
+      "name": "Акулонадо",
+      "description": "Акулонадо сражается за вас"
+    },
+    "Sharpened": {
+      "name": "Заточено",
+      "description": "Оружие ближнего боя пробивает броню"
+    },
+    "Shimmer": {
+      "name": "Мерцание",
+      "description": "Вы стали нематериальными!"
+    },
+    "Shine": {
+      "name": "Сияние",
+      "description": "Испускаете свет"
+    },
+    "ShroomMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Silenced": {
+      "name": "Безмолвие",
+      "description": "Нельзя использовать предметы, требующие ману"
+    },
+    "SkeletronPet": {
+      "name": "Скелетрон-младший",
+      "description": "Скелетрон-младший следует за вами"
+    },
+    "SkeletronPrimePet": {
+      "name": "Мини-Прайм",
+      "description": "Что угодно может стать орудием убийства"
+    },
+    "SlimeMount": {
+      "name": "Ездовой слизень",
+      "description": "БДЫНЬ!"
+    },
+    "Slimed": {
+      "name": "Слизень",
+      "description": "Вы скользкие и липкие"
+    },
+    "Slow": {
+      "name": "Замедление",
+      "description": "Скорость передвижения снижена"
+    },
+    "Smolstar": {
+      "name": "Зачарованные кинжалы",
+      "description": "Смерть от тысячи порезов"
+    },
+    "SolarShield1": {
+      "name": "Солнечное пламя",
+      "description": "Получаемый урон снижен на 30%; отталкивание врагов при получении урона"
+    },
+    "SolarShield2": {
+      "name": "Солнечное пламя",
+      "description": "Получаемый урон снижен на 30%; отталкивание врагов при получении урона"
+    },
+    "SolarShield3": {
+      "name": "Солнечное пламя",
+      "description": "Получаемый урон снижен на 30%; отталкивание врагов при получении урона"
+    },
+    "Sonar": {
+      "name": "Сонар",
+      "description": "Вы можете видеть, что клюнуло на ваш крючок"
+    },
+    "SoulDrain": {
+      "name": "Похититель жизни",
+      "description": "Регенерация здоровья ускорена"
+    },
+    "Spelunker": {
+      "name": "Спелеолог",
+      "description": "Показывает местоположение сокровищ и руды"
+    },
+    "SpiderMinion": {
+      "name": "Паук",
+      "description": "Паук сражается за вас"
+    },
+    "Spiffo": {
+      "name": "Спиффо",
+      "description": "«Это история вашей смерти»"
+    },
+    "SpookyWoodMount": {
+      "name": "Ездовое дерево",
+      "description": "Беги, лес, беги!"
+    },
+    "Squashling": {
+      "name": "Тыковка",
+      "description": "Тыковка следует за вами"
+    },
+    "StarInBottle": {
+      "name": "Звезда в бутылке",
+      "description": "Ускоряет регенерацию маны"
+    },
+    "StardustDragonMinion": {
+      "name": "Дракон звёздной пыли",
+      "description": "Дракон звёздной пыли защищает вас"
+    },
+    "StardustGuardianMinion": {
+      "name": "Страж звёздной пыли",
+      "description": "Страж звёздной пыли защищает вас"
+    },
+    "StardustMinion": {
+      "name": "Клетка звёздной пыли",
+      "description": "Клетка звёздной пыли сражается за вас"
+    },
+    "StardustMinionBleed": {
+      "name": "В клетке",
+      "description": "поедается клетками"
+    },
+    "Starving": {
+      "name": "Голодающий",
+      "description": "Вы умираете от голода! Немедленно поешьте!"
+    },
+    "SteampunkMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Stinky": {
+      "name": "Вонючка",
+      "description": "Вы ужасно пахнете"
+    },
+    "Stoned": {
+      "name": "Окаменение",
+      "description": "Вы полностью окаменели!"
+    },
+    "StormTiger": {
+      "name": "Пустынный тигр",
+      "description": "Тигр пустыни сражается рядом с вами"
+    },
+    "Suffocation": {
+      "name": "Удушье",
+      "description": "Теряете здоровье"
+    },
+    "SugarGlider": {
+      "name": "Сахарный поссум",
+      "description": "Сахарный поссум следует за вами"
+    },
+    "SugarRush": {
+      "name": "Сахарная лихорадка",
+      "description": "Скорость передвижения и добычи увеличены на 20%"
+    },
+    "Summoning": {
+      "name": "Призыв",
+      "description": "Максимальное количество миньонов увеличено"
+    },
+    "Sunflower": {
+      "name": "Счастье!",
+      "description": "Скорость передвижения увеличена, а скорость появления монстров снижена"
+    },
+    "SunflowerMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "SuspiciousTentacle": {
+      "name": "Подозрительно выглядящий глаз",
+      "description": "Подозрительно выглядящий глаз, излучающий свет"
+    },
+    "Swiftness": {
+      "name": "Скорость",
+      "description": "Скорость передвижения увеличена на 25%"
+    },
+    "SwordWhipPlayerBuff": {
+      "name": "Благословение Дюрандаля",
+      "description": "Скорость атаки хлыстом увеличена"
+    },
+    "TerraFartMinecart": {
+      "name": "Зеленая вагонетка-унитаз",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TheTongue": {
+      "name": "Язык",
+      "description": "Вас засасывает в рот"
+    },
+    "ThornWhipPlayerBuff": {
+      "name": "Ярость джунглей",
+      "description": "Скорость атаки хлыстом увеличена"
+    },
+    "Thorns": {
+      "name": "Шипы",
+      "description": "Атакующие тоже получают урон"
+    },
+    "TikiSpirit": {
+      "name": "Дух тики",
+      "description": "Дружелюбный дух следует за вами"
+    },
+    "Tipsy": {
+      "name": "Опьянение",
+      "description": "Способности ближнего боя улучшены, защита снижена"
+    },
+    "Titan": {
+      "name": "Титан",
+      "description": "Увеличивает отбрасывание"
+    },
+    "TitaniumStorm": {
+      "name": "Титановый барьер",
+      "description": "Вас окружают защитные осколки"
+    },
+    "TopazMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TorchGodPotion": {
+      "name": "Благословение факела",
+      "description": "Факелы поблизости будут изменены, чтобы соответствовать биому"
+    },
+    "TurtleMount": {
+      "name": "Ездовая черепаха",
+      "description": "Тормозит на суше, мчится в море"
+    },
+    "TwinEyesMinion": {
+      "name": "Близнецы",
+      "description": "Близнецы сражаются за вас"
+    },
+    "TwinsPet": {
+      "name": "Рез и Спаз",
+      "description": "У вас особенные глаза!"
+    },
+    "UFOMinion": {
+      "name": "НЛО",
+      "description": "НЛО сражается за вас"
+    },
+    "UFOMount": {
+      "name": "Ездовое НЛО",
+      "description": "Хорошо, что у вас был Mac"
+    },
+    "UnicornMount": {
+      "name": "Ездовой единорог",
+      "description": "Мчитесь вперёд… с блеском!"
+    },
+    "UpbeatStar": {
+      "name": "Эсти",
+      "description": "Эсти следует за вами"
+    },
+    "VampireFrog": {
+      "name": "Лягушка-вампир",
+      "description": "Лягушка-вампир сражается за вас"
+    },
+    "VelociraptorMount": {
+      "name": "Инстинкт хищника",
+      "description": "Вы обратились в велоцираптора!"
+    },
+    "Venom": {
+      "name": "Кислотный яд",
+      "description": "Теряете здоровье"
+    },
+    "VoltBunny": {
+      "name": "Электрический кролик",
+      "description": "Электрический кролик в восторге от вас"
+    },
+    "VortexDebuff": {
+      "name": "Искажение",
+      "description": "Гравитация вокруг вас искажена"
+    },
+    "WallOfFleshGoatMount": {
+      "name": "Ездовой козёл",
+      "description": "Мчитесь вперёд в стиле метал!"
+    },
+    "WarTable": {
+      "name": "Стратег",
+      "description": "Максимальное количество часовых увеличено"
+    },
+    "Warmth": {
+      "name": "Тепло",
+      "description": "Урон от атак холодом снижен"
+    },
+    "WaterCandle": {
+      "name": "Водяная свеча",
+      "description": "Скорость появления монстров увеличена"
+    },
+    "WaterWalking": {
+      "name": "Хождение по воде",
+      "description": "Нажмите ВНИЗ, чтобы войти в воду"
+    },
+    "Weak": {
+      "name": "Слабый",
+      "description": "Физические способности снижены"
+    },
+    "WeaponImbueConfetti": {
+      "name": "Насыщение оружия: конфетти",
+      "description": "Атаки ближнего боя вызывают появление конфетти"
+    },
+    "WeaponImbueCursedFlames": {
+      "name": "Насыщение оружия: проклятые огни",
+      "description": "Атаки ближнего боя накладывают на врагов проклятое пламя"
+    },
+    "WeaponImbueFire": {
+      "name": "Насыщение оружия: огонь",
+      "description": "Атаки ближнего боя поджигают врагов"
+    },
+    "WeaponImbueGold": {
+      "name": "Насыщение оружия: золото",
+      "description": "Атаки ближнего боя заставляют врагов терять больше золота"
+    },
+    "WeaponImbueIchor": {
+      "name": "Насыщение оружия: ихор",
+      "description": "Атаки ближнего боя снижают защиту врагов"
+    },
+    "WeaponImbueNanites": {
+      "name": "Насыщение оружия: наниты",
+      "description": "Атаки ближнего боя запутывают врагов"
+    },
+    "WeaponImbuePoison": {
+      "name": "Насыщение оружия: отравление",
+      "description": "Атаки ближнего боя отравляют врагов"
+    },
+    "WeaponImbueVenom": {
+      "name": "Насыщение оружия: кислотный яд",
+      "description": "Атаки в ближнем бою накладывают кислотный яд на ваши цели"
+    },
+    "Webbed": {
+      "name": "В паутине",
+      "description": "Вы застряли"
+    },
+    "WellFed": {
+      "name": "Неплохой обед",
+      "description": "Незначительные бонусы ко всем характеристикам"
+    },
+    "WellFed2": {
+      "name": "Полное удовлетворение",
+      "description": "Умеренно повышает все характеристики"
+    },
+    "WellFed3": {
+      "name": "Изысканное удовлетворение",
+      "description": "Значительные бонусы ко всем характеристикам"
+    },
+    "Werewolf": {
+      "name": "Оборотень",
+      "description": "Физические способности улучшены"
+    },
+    "Wet": {
+      "name": "Промокание",
+      "description": "С вас капает вода"
+    },
+    "WindPushed": {
+      "name": "Сильный ветер",
+      "description": "Ветер сдвигает вас!"
+    },
+    "Wisp": {
+      "name": "Дух",
+      "description": "Дух следует за вами"
+    },
+    "WitchBroom": {
+      "name": "Метла ведьмы",
+      "description": "Она летает! КОЛДОВСТВО!"
+    },
+    "WitheredArmor": {
+      "name": "Иссушённая броня",
+      "description": "Ваша защита снижена!"
+    },
+    "WitheredWeapon": {
+      "name": "Иссушённое оружие",
+      "description": "Ваши атаки ослаблены!"
+    },
+    "WolfMount": {
+      "name": "Благословение луны",
+      "description": "Вы превратились в волка!"
+    },
+    "Wrath": {
+      "name": "Гнев",
+      "description": "Урон увеличен на 10%"
+    },
+    "ZephyrFish": {
+      "name": "Рыба-зефир",
+      "description": "Она любит плавать вокруг вас"
+    }
+  },
   "npcs": {
     "AncientCultistSquidhead": "Древнее видение",
-    "AncientDoom": "Древний рок",
+    "AncientDoom": "Древняя гибель",
     "AncientLight": "Древний свет",
     "Angler": "Рыбак",
     "AnglerFish": "Рыба-удильщик",
@@ -6993,14 +8357,14 @@
     "AngryBonesBigHelmet": "Злой скелет",
     "AngryBonesBigMuscle": "Злой скелет",
     "AngryNimbus": "Злая туча",
-    "AngryTrapper": "Злобный хвататель",
-    "AnomuraFungus": "Крабовый гриб",
+    "AngryTrapper": "Злой ловец",
+    "AnomuraFungus": "Грибной краб",
     "Antlion": "Муравьиный лев",
     "Arapaima": "Арапаима",
     "ArmedTorchZombie": "Зомби",
     "ArmedZombie": "Зомби",
     "ArmedZombieCenx": "Зомби",
-    "ArmedZombieEskimo": "Замороженный зомби",
+    "ArmedZombieEskimo": "Оледеневший зомби",
     "ArmedZombiePincussion": "Зомби",
     "ArmedZombieSlimed": "Зомби",
     "ArmedZombieSwamp": "Зомби",
@@ -7008,25 +8372,25 @@
     "ArmoredSkeleton": "Бронированный скелет",
     "ArmoredViking": "Бронированный викинг",
     "ArmsDealer": "Оружейник",
-    "BabySlime": "Слизнячок",
+    "BabySlime": "Слизень-малыш",
     "BaldZombie": "Зомби",
     "BartenderUnconscious": "Человек без сознания",
     "Bee": "Пчела",
     "BeeSmall": "Пчела",
     "BestiaryGirl": "Зоолог",
-    "BigMimicCorruption": "Порченый мимик",
-    "BigMimicCrimson": "Багряный мимик",
-    "BigMimicHallow": "Освященный мимик",
+    "BigMimicCorruption": "Мимик порчи",
+    "BigMimicCrimson": "Мимик багрянца",
+    "BigMimicHallow": "Мимик освящения",
     "BigMimicJungle": "Мимик джунглей",
     "BigRainZombie": "Зомби",
     "Bird": "Птица",
     "BirdBlue": "Голубая сойка",
     "BirdRed": "Кардинал",
     "BlackDragonfly": "Стрекоза",
-    "BlackRecluse": "Черный отшельник",
+    "BlackRecluse": "Чёрный паук-отшельник",
     "BlackRecluseWall": "Черный отшельник",
-    "BlackSlime": "Черный слизень",
-    "BlazingWheel": "Огненное колесо",
+    "BlackSlime": "Чёрный слизень",
+    "BlazingWheel": "Пылающее колесо",
     "BloodCrawler": "Кровавый ползун",
     "BloodCrawlerWall": "Кровавый ползун",
     "BloodEelBody": "Кровавый угорь",
@@ -7034,7 +8398,7 @@
     "BloodEelTail": "Кровавый угорь",
     "BloodFeeder": "Кровосос",
     "BloodJelly": "Кровавая медуза",
-    "BloodMummy": "Кровавая муммия",
+    "BloodMummy": "Кровавая мумия",
     "BloodNautilus": "Наутилоидеи",
     "BloodSquid": "Кровавый кальмар",
     "BloodZombie": "Кровавый зомби",
@@ -7054,15 +8418,15 @@
     "BoneThrowingSkeleton2": "Скелет",
     "BoneThrowingSkeleton3": "Скелет",
     "BoneThrowingSkeleton4": "Скелет",
-    "BoundGoblin": "Пленный гоблин",
-    "BoundMechanic": "Пленный механик",
+    "BoundGoblin": "Связанный гоблин",
+    "BoundMechanic": "Связанный механик",
     "BoundTownSlimeOld": "Старый трясущийся сундук",
-    "BoundTownSlimePurple": "Неуклюжий слизень с шариком",
+    "BoundTownSlimePurple": "Неуклюжий слизень на воздушном шарике",
     "BoundTownSlimeYellow": "Таинственная лягушка",
-    "BoundWizard": "Пленный волшебник",
+    "BoundWizard": "Связанный волшебник",
     "BrainScrambler": "Шифратор мозга",
     "BrainofCthulhu": "Мозг Ктулху",
-    "Buggy": "Букашечка",
+    "Buggy": "Букашка",
     "Bunny": "Кролик",
     "BunnySlimed": "Кролик",
     "BunnyXmas": "Кролик",
@@ -7074,7 +8438,7 @@
     "ChaosBall": "Шар хаоса",
     "ChaosBallTim": "{$NPCName.ChaosBall}",
     "ChaosElemental": "Элементаль хаоса",
-    "ChatteringTeethBomb": "Болтающая зубастая бомба",
+    "ChatteringTeethBomb": "Стучащая зубная бомба",
     "Clinger": "Хвататель",
     "Clothier": "Портной",
     "Clown": "Клоун",
@@ -7083,14 +8447,14 @@
     "CorruptGoldfish": "Порченая золотая рыбка",
     "CorruptPenguin": "Порченый пингвин",
     "CorruptSlime": "Порченый слизень",
-    "Corruptor": "Разлагатель",
+    "Corruptor": "Порчащий",
     "Crab": "Краб",
     "Crawdad": "Пресноводный рак",
     "Crawdad2": "Пресноводный рак",
     "CreatureFromTheDeep": "Существо из глубин",
     "Creeper": "Ползун",
     "Crimera": "Кримера",
-    "Crimslime": "Багровый слизень",
+    "Crimslime": "Багряный слизень",
     "CrimsonAxe": "Багровый топор",
     "CrimsonBunny": "Порочный кролик",
     "CrimsonGoldfish": "Порочная золотая рыбка",
@@ -7114,7 +8478,7 @@
     "DD2AttackerTest": "???",
     "DD2Bartender": "Трактирщик",
     "DD2Betsy": "Бетси",
-    "DD2DarkMageT1": "Темный маг",
+    "DD2DarkMageT1": "Тёмный маг",
     "DD2DarkMageT3": "{$NPCName.DD2DarkMageT1}",
     "DD2DrakinT2": "Дракин",
     "DD2DrakinT3": "{$NPCName.DD2DrakinT2}",
@@ -7125,18 +8489,18 @@
     "DD2GoblinT1": "Этерианский гоблин",
     "DD2GoblinT2": "{$NPCName.DD2GoblinT1}",
     "DD2GoblinT3": "{$NPCName.DD2GoblinT1}",
-    "DD2JavelinstT1": "Этерианский копьеметатель",
+    "DD2JavelinstT1": "Этерианский копейщик",
     "DD2JavelinstT2": "{$NPCName.DD2JavelinstT1}",
     "DD2JavelinstT3": "{$NPCName.DD2JavelinstT1}",
-    "DD2KoboldFlyerT2": "Кобольд на глайдере",
+    "DD2KoboldFlyerT2": "Кобольд-планёр",
     "DD2KoboldFlyerT3": "{$NPCName.DD2KoboldFlyerT2}",
     "DD2KoboldWalkerT2": "Кобольд",
     "DD2KoboldWalkerT3": "{$NPCName.DD2KoboldWalkerT2}",
     "DD2LanePortal": "Загадочный портал",
-    "DD2LightningBugT3": "Этерианский светляк",
+    "DD2LightningBugT3": "Этерианский светящийся жук",
     "DD2OgreT2": "Огр",
     "DD2OgreT3": "{$NPCName.DD2OgreT2}",
-    "DD2SkeletonT1": "Скелет Старца",
+    "DD2SkeletonT1": "Скелет Древнего",
     "DD2SkeletonT3": "{$NPCName.DD2SkeletonT1}",
     "DD2WitherBeastT2": "Усохшее чудовище",
     "DD2WitherBeastT3": "{$NPCName.DD2WitherBeastT2}",
@@ -7144,10 +8508,10 @@
     "DD2WyvernT2": "{$NPCName.DD2WyvernT1}",
     "DD2WyvernT3": "{$NPCName.DD2WyvernT1}",
     "Dandelion": "Злой одуванчик",
-    "DarkCaster": "Темный маг",
-    "DarkMummy": "Темная мумия",
+    "DarkCaster": "Тёмный колдун",
+    "DarkMummy": "Тёмная мумия",
     "DeadlySphere": "Смертельная сфера",
-    "Deerclops": "Циклолень",
+    "Deerclops": "Циклоп-олень",
     "Demolitionist": "Подрывник",
     "Demon": "Демон",
     "DemonEye": "Демонический глаз",
@@ -7461,7 +8825,7 @@
     "QueenSlimeBoss": "Королева слизней",
     "QueenSlimeMinionBlue": "Кристальный слизень",
     "QueenSlimeMinionPink": "Отскакивающий слизняк",
-    "QueenSlimeMinionPurple": "Райский слизень",
+    "QueenSlimeMinionPurple": "Небесный слизень",
     "RaggedCaster": "Оборванный колдун",
     "RaggedCasterOpenCoat": "Оборванный колдун",
     "RainbowSlime": "Радужный слизень",
@@ -7613,13 +8977,13 @@
     "TownBunny": "Кролик",
     "TownCat": "Кошка",
     "TownDog": "Собака",
-    "TownSlimeBlue": "Слизень-задрот",
-    "TownSlimeCopper": "Слизень Squire",
+    "TownSlimeBlue": "Слизень-ботан",
+    "TownSlimeCopper": "Слизень-оруженосец",
     "TownSlimeGreen": "Крутой слизень",
     "TownSlimeOld": "Слизень-старейшина",
     "TownSlimePurple": "Неуклюжий слизень",
     "TownSlimeRainbow": "Слизень-дива",
-    "TownSlimeRed": "Сердитый слизень",
+    "TownSlimeRed": "Угрюмый слизень",
     "TownSlimeYellow": "Таинственный слизень",
     "ToxicSludge": "Токсичный слизень",
     "TravellingMerchant": "Странствующий торговец",
@@ -7656,7 +9020,7 @@
     "WaterStrider": "Водомерка",
     "WebbedStylist": "Стилист в паутине",
     "Werewolf": "Оборотень",
-    "WindyBalloon": "Ветренный шарик",
+    "WindyBalloon": "Ветреный шарик",
     "WitchDoctor": "Знахарь",
     "Wizard": "Волшебник",
     "Wolf": "Волк",
@@ -7738,7 +9102,7 @@
     "Brisk$GlobalPlural": "Бойкие",
     "Brisk$MasculineSingular": "Бойкий",
     "Brisk$NeuterSingular": "Бойкое",
-    "Broken": "Сломаный",
+    "Broken": "Сломанный",
     "Broken$FeminineSingular": "Сломанная",
     "Broken$GlobalPlural": "Сломанные",
     "Broken$MasculineSingular": "Сломанный",
@@ -7928,7 +9292,7 @@
     "Lethargic$GlobalPlural": "Летаргические",
     "Lethargic$MasculineSingular": "Летаргический",
     "Lethargic$NeuterSingular": "Летаргическое",
-    "Light": "Свет",
+    "Light": "Лёгкий",
     "Light$FeminineSingular": "Светлая",
     "Light$GlobalPlural": "Светлые",
     "Light$MasculineSingular": "Светлый",
@@ -8078,7 +9442,7 @@
     "Skittish$GlobalPlural": "Пугливые",
     "Skittish$MasculineSingular": "Пугливый",
     "Skittish$NeuterSingular": "Пугливое",
-    "Slow": "Замедление",
+    "Slow": "Медлительный",
     "Slow$FeminineSingular": "Замедленная",
     "Slow$GlobalPlural": "Замедленные",
     "Slow$MasculineSingular": "Замедленный",
@@ -8224,7 +9588,7 @@
     "BlueFairyJar": "Банка с синей феей",
     "BlueJay": "Клетка с голубой сойкой",
     "BlueJellyfishBowl": "Синяя медуза в банке",
-    "BlueMacawCage": "Клетка для\u00A0голубого ара",
+    "BlueMacawCage": "Клетка для голубого ара",
     "BlueStarryGlassBlock": "Синий звездный блок",
     "BoneBlock": "Костяной блок",
     "BoneWelder": "Костяной сварочный аппарат",
@@ -8363,7 +9727,7 @@
     "GraniteColumn": "Гранитная колонна",
     "GrasshopperCage": "Клетка с кузнечиком",
     "GrayBrick": "Серый кирпич",
-    "GrayCockatielCage": "Клетка для\u00A0серого кореллы",
+    "GrayCockatielCage": "Клетка для серого кореллы",
     "GrayStucco": "Серая лепнина",
     "GrebeCage": "Клетка с поганкой",
     "GreenCandyCaneBlock": "Зеленая карамель",
@@ -8537,7 +9901,7 @@
     "SapphireGemspark": "Сапфировый блок",
     "SapphireSquirrelCage": "Клетка с сапфировой белкой",
     "Sawmill": "Лесопилка",
-    "ScarletMacawCage": "Клетка для\u00A0красного ара",
+    "ScarletMacawCage": "Клетка для красного ара",
     "ScorpionCage": "Клетка со скорпионом",
     "SeagullCage": "Клетка с чайкой",
     "SeahorseCage": "Клетка с морским коньком",
@@ -8633,7 +9997,7 @@
     "TopazBunnyCage": "Клетка с топазовым кроликом",
     "TopazGemspark": "Топазовый блок",
     "TopazSquirrelCage": "Клетка с топазовой белкой",
-    "ToucanCage": "Клетка для\u00A0тукана",
+    "ToucanCage": "Клетка для тукана",
     "ToyBreakerBlock": "Кирпич-игрушколом",
     "TrashCan": "Урна",
     "TreeNymphButterflyJar": "Банка с дриадой",
@@ -8670,7 +10034,7 @@
     "WormCage": "Клетка с червем",
     "XenonMossBlock": "Кирпич из ксенонового мха",
     "XenonMossBrick": "Кирпич из ксенонового мха",
-    "YellowCockatielCage": "Клетка для\u00A0жёлтого кореллы",
+    "YellowCockatielCage": "Клетка для жёлтого кореллы",
     "YellowDragonflyJar": "Банка с желтой стрекозой",
     "YellowStucco": "Желтая лепнина",
     "ZebraSwallowtailButterflyJar": "Банка с графией марцел"

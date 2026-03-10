@@ -1506,6 +1506,17 @@ public partial class WorldRenderXna : UserControl
                                     case 2: sourceY = sourceY % 54 + 54 * 20; break;
                                 }
                             }
+                            // Handle Radio Thing (tile 733) special case
+                            // On state: world UV Y < 54, texture X shifts by +54
+                            // Off state: world UV Y >= 54, both axes wrap by 54
+                            else if (sprite.Tile == 733)
+                            {
+                                if (uv.Y < 54)
+                                    sourceX = sourceX % 54 + 54;
+                                else
+                                    sourceX = sourceX % 54;
+                                sourceY = sourceY % 54;
+                            }
                             // Handle Relic Base (tiles 617) special case
                             else if (sprite.Tile == 617)
                             {
