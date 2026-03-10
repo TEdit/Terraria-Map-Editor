@@ -29,7 +29,7 @@
 	<PackageReference Include="ReactiveUI" Version="23.1.8" />
 	<PackageReference Include="ReactiveUI.SourceGenerators" Version="2.6.1" PrivateAssets="all" />
 
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.4" />
 
     <PackageReference Include="SkiaSharp" Version="3.119.2" />
   </ItemGroup>

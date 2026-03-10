@@ -21,9 +21,9 @@
     <PackageReference Include="ReactiveUI.WPF" Version="23.1.8" />
     <PackageReference Include="ReactiveUI.SourceGenerators" Version="2.6.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.3" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.3" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.4" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.142" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.4.1" />
     <PackageReference Include="NetEscapades.Configuration.Yaml" Version="3.1.0" />
