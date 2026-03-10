@@ -1772,6 +1772,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cu_t.
+        /// </summary>
+        public static string menu_edit_cut {
+            get {
+                return ResourceManager.GetString("menu_edit_cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Selection.
         /// </summary>
         public static string menu_edit_delete {

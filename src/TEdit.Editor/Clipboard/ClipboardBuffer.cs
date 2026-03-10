@@ -233,6 +233,10 @@ public partial class ClipboardBuffer : ITileData
 
                 UpdateWorldTileFromBuffer(pasteOptions, ref worldTile, pasteTile);
 
+                // Remove orphaned container entries after tile update
+                // (tile type has changed, so orphaned entries can be detected)
+                world.RemoveOrphanedContainerAt(worldX, worldY);
+
                 //  Update chest/sign data only if we've pasted tiles
                 if (pasteOptions.PasteSprites && pasteOptions.PasteOverTiles)
                 {
@@ -263,37 +267,35 @@ public partial class ClipboardBuffer : ITileData
             }
         }
 
-        // Add new sign data
+        // Add new sign data — remove existing then add (matches chest behavior)
         if (pasteTile.IsSign())
         {
-            if (world.GetSignAtTile(worldX, worldY) == null)
+            var existingSign = world.GetSignAtTile(worldX, worldY);
+            if (existingSign != null) { world.Signs.Remove(existingSign); }
+
+            var data = GetSignAtTile(x, y);
+            if (data != null)
             {
-                var data = GetSignAtTile(x, y);
-                if (data != null)
-                {
-                    // Copied sign
-                    var newSign = data.Copy();
-                    newSign.X = worldX;
-                    newSign.Y = worldY;
-                    world.Signs.Add(newSign);
-                }
+                var newSign = data.Copy();
+                newSign.X = worldX;
+                newSign.Y = worldY;
+                world.Signs.Add(newSign);
             }
         }
 
-        // Add new tile entity data
+        // Add new tile entity data — remove existing then add (matches chest behavior)
         if (pasteTile.IsTileEntity())
         {
-            if (world.GetTileEntityAtTile(worldX, worldY) == null)
+            var existingEntity = world.GetTileEntityAtTile(worldX, worldY);
+            if (existingEntity != null) { world.TileEntities.Remove(existingEntity); }
+
+            var data = GetTileEntityAtTile(x, y);
+            if (data != null)
             {
-                var data = GetTileEntityAtTile(x, y);
-                if (data != null)
-                {
-                    // Copied sign
-                    var newEntity = data.Copy();
-                    newEntity.PosX = (short)(worldX);
-                    newEntity.PosY = (short)(worldY);
-                    world.TileEntities.Add(newEntity);
-                }
+                var newEntity = data.Copy();
+                newEntity.PosX = (short)(worldX);
+                newEntity.PosY = (short)(worldY);
+                world.TileEntities.Add(newEntity);
             }
         }
     }

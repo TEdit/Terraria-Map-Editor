@@ -65,6 +65,15 @@ public partial class WorldViewModel
         this.SelectedTabIndex = (int)SidebarTab.Clipboard;
     }
 
+    public void EditCut()
+    {
+        if (!CanCopy())
+            return;
+
+        EditCopy();
+        EditDelete();
+    }
+
     public async Task CropWorldAsync()
     {
         if (CurrentWorld == null) return;

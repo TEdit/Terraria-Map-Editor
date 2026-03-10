@@ -33,6 +33,7 @@
         <ui:SymbolIcon x:Key="TB_UpdateIcon" x:Shared="false" Symbol="ArrowSync20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_UpdateXmlIcon" x:Shared="false" Symbol="Settings20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_CopyIcon" x:Shared="false" Symbol="Copy20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_CutIcon" x:Shared="false" Symbol="Cut20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_PasteIcon" x:Shared="false" Symbol="ClipboardPaste20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_UndoIcon" x:Shared="false" Symbol="ArrowUndo20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_RedoIcon" x:Shared="false" Symbol="ArrowRedo20" FontSize="16"/>
@@ -160,6 +161,8 @@
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_edit_copy}" Command="{Binding CopyCommand}" Icon="{StaticResource TB_CopyIcon}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.copy}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_cut}" Command="{Binding CutCommand}" Icon="{StaticResource TB_CutIcon}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.cut}" />
                     <MenuItem Header="{x:Static p:Language.menu_edit_paste}" Command="{Binding PasteCommand}" Icon="{StaticResource TB_PasteIcon}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.paste}" />
                     <Separator Margin="1" />

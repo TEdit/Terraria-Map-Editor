@@ -692,6 +692,9 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>作物世界</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>剪切</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>刪除選擇</value>
   </data>
@@ -1448,6 +1451,9 @@
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>選擇一個版本以儲存為：</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>保留較新版本的磚塊/牆壁/物品</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>精選世界版本</value>

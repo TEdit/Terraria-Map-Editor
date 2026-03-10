@@ -323,6 +323,9 @@ public partial class WorldViewModel
     private void Copy() => EditCopy();
 
     [ReactiveCommand]
+    private void Cut() => EditCut();
+
+    [ReactiveCommand]
     private void Paste() => EditPaste();
 
     [ReactiveCommand]
@@ -357,6 +360,11 @@ public partial class WorldViewModel
     }
 
     private bool CanCopy()
+    {
+        return _selection.IsActive;
+    }
+
+    private bool CanCut()
     {
         return _selection.IsActive;
     }
@@ -427,7 +435,7 @@ public partial class WorldViewModel
         }
     }
 
-    private Item _chestItemClipboard;
+    internal static Item ItemClipboard { get; set; }
 
     private void CopyChestItems(object container)
     {
@@ -450,7 +458,7 @@ public partial class WorldViewModel
 
     private void CopyChestItem(Item item)
     {
-        _chestItemClipboard = item?.Copy();
+        ItemClipboard = item?.Copy();
     }
 
     private void PasteChestItems(object parameter)
@@ -473,11 +481,11 @@ public partial class WorldViewModel
         {
             if (te.EntityType == TileEntityType.ItemFrame)
             {
-                if (_chestItemClipboard != null)
+                if (ItemClipboard != null)
                 {
-                    te.NetId = _chestItemClipboard.NetId;
-                    te.Prefix = _chestItemClipboard.Prefix;
-                    te.StackSize = (short)_chestItemClipboard.StackSize;
+                    te.NetId = ItemClipboard.NetId;
+                    te.Prefix = ItemClipboard.Prefix;
+                    te.StackSize = (short)ItemClipboard.StackSize;
                 }
                 else
                 {
@@ -491,11 +499,11 @@ public partial class WorldViewModel
 
     private void PasteChestItem(Item item)
     {
-        if (_chestItemClipboard != null)
+        if (ItemClipboard != null)
         {
-            item.NetId = _chestItemClipboard.NetId;
-            item.Prefix = _chestItemClipboard.Prefix;
-            item.StackSize = _chestItemClipboard.StackSize;
+            item.NetId = ItemClipboard.NetId;
+            item.Prefix = ItemClipboard.Prefix;
+            item.StackSize = ItemClipboard.StackSize;
         }
         else
         {

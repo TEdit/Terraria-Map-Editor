@@ -177,7 +177,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
             return;
         }
 
-        //ValidateAndRemoveChests();
+        ValidateAndRemoveChests();
         if (updateMax) { _maxIndex = _currentIndex; }
         _currentIndex++;
         _pendingClose = _buffer.CloseAsync();
@@ -281,42 +281,10 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
         if (!savedIsEntity && !currentIsEntity) return;
 
-        // remove deleted chests or signs if required
-        if (lastTile.Tile.IsChest())
-        {
-            if (!existingLastTile.IsChest() || !existingLastTile.IsActive)
-            {
-                var curchest = _world.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
-                if (curchest != null)
-                {
-                    _world.Chests.Remove(curchest);
-                }
-            }
-        }
-        else if (lastTile.Tile.IsSign())
-        {
-            if (!existingLastTile.IsSign() || !existingLastTile.IsActive)
-            {
-                var cursign = _world.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
-                if (cursign != null)
-                {
-                    _world.Signs.Remove(cursign);
-                }
-            }
-        }
-        else if (lastTile.Tile.IsTileEntity())
-        {
-            if (!existingLastTile.IsTileEntity() || !existingLastTile.IsActive)
-            {
-                var curTe = _world.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
-                if (curTe != null)
-                {
-                    _world.TileEntities.Remove(curTe);
-                }
-            }
-        }
+        // Remove orphaned container entries (tile changed or cleared)
+        _world.RemoveOrphanedContainerAt(lastTile.Location.X, lastTile.Location.Y);
 
-        // Add new chests and signs if required
+        // Add new container entries for newly placed container tiles
         if (_world.IsAnchor(lastTile.Location.X, lastTile.Location.Y))
         {
             if (existingLastTile.IsChest())

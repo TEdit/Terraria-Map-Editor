@@ -692,6 +692,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Świat upraw</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>Wy_cin</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Usuń Zaznaczone</value>
   </data>
@@ -1448,6 +1451,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Wybierz wersję do zapisu jako:</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>Zachowaj płytki/ściany/przedmioty z nowszych wersji</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>Wersja wybrana na świat</value>

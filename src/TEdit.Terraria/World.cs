@@ -642,6 +642,34 @@ public partial class World
         return TileEntities.FirstOrDefault(c => (c.PosX == anchor.X) && (c.PosY == anchor.Y));
     }
 
+    /// <summary>
+    /// Removes any chest, sign, or tile entity entry at the given tile location
+    /// whose corresponding tile no longer matches the expected container type.
+    /// Call after clearing or overwriting a tile to prevent ghost entries.
+    /// </summary>
+    public void RemoveOrphanedContainerAt(int x, int y)
+    {
+        var tile = Tiles[x, y];
+
+        if (!tile.IsActive || !tile.IsChest())
+        {
+            var chest = GetChestAtTile(x, y);
+            if (chest != null) { Chests.Remove(chest); }
+        }
+
+        if (!tile.IsActive || !tile.IsSign())
+        {
+            var sign = GetSignAtTile(x, y);
+            if (sign != null) { Signs.Remove(sign); }
+        }
+
+        if (!tile.IsActive || !tile.IsTileEntity())
+        {
+            var entity = GetTileEntityAtTile(x, y);
+            if (entity != null) { TileEntities.Remove(entity); }
+        }
+    }
+
     public Vector2Int32 GetMannequin(int x, int y)
     {
         Tile tile = Tiles[x, y];

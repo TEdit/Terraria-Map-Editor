@@ -692,6 +692,9 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>クロップワールド</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>切り取り</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>選択を削除</value>
   </data>
@@ -1448,6 +1451,9 @@
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>保存するバージョンを選択してください:</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>新しいバージョンのタイル/壁/アイテムを保持する</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>セレクト・ワールド・バージョン</value>

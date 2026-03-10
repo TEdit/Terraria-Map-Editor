@@ -692,6 +692,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Crop World</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>Cu_t</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Elimina selezione</value>
   </data>
@@ -1448,6 +1451,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Seleziona una versione da salvare come:</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>Mantieni piastrelle/muri/oggetti delle versioni più recenti</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>Versione del Mondo Selezionato</value>

@@ -692,6 +692,9 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Обрезать мир</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>Вырезать</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Удалить выделение</value>
   </data>
@@ -1448,6 +1451,9 @@
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Выберите версию для сохранения как:</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>Сохранить плитки/стены/предметы из более новых версий</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>Избранная версия мира</value>

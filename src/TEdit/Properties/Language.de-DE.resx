@@ -692,6 +692,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Welt zuschneiden</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>Sch_neiden</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Inhalte der Auswahl löschen</value>
   </data>
@@ -1448,6 +1451,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Wählen Sie eine Version aus, die gespeichert werden als:</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>Behalte Kacheln/Wände/Gegenstände aus neueren Versionen</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>Weltversion auswählen</value>

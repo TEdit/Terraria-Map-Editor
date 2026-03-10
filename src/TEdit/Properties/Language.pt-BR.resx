@@ -692,6 +692,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Mundo da colheita</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>Cortar</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Deletar Seleção</value>
   </data>
@@ -1448,6 +1451,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Selecione uma versão para salvar como:</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>Manter blocos/paredes/itens de versões mais novas</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>Versão Seleção do Mundo</value>

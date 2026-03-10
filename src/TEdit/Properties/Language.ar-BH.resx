@@ -692,6 +692,9 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>عالم المحاصيل</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>قص</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>حذف التحديد</value>
   </data>
@@ -1448,6 +1451,9 @@
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>اختر نسخة للحفظ بالتالي:</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>احتفظ بالبلاط/الجدران/العناصر من الإصدارات الأحدث</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>نسخة مختارة من العالم</value>

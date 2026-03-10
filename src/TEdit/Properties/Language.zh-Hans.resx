@@ -692,6 +692,9 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>裁剪世界</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>剪切</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>删除选区内容</value>
   </data>
@@ -1448,6 +1451,9 @@
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>选择另存为的版本：</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>保留新版本的瓷砖/墙壁/物品</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>选择世界版本</value>
