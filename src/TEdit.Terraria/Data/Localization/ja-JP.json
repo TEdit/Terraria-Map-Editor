@@ -6136,6 +6136,1368 @@
     "ZombieFish": "ゾンビフィッシュ",
     "ZombieMermanBanner": "ゾンビマーマンのバナー"
   },
+  "buffs": {
+    "AbigailMinion": {
+      "name": "アビゲイル",
+      "description": "アビゲイルが一緒に戦って守ってくれる"
+    },
+    "AmberMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmethystMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmmoBox": {
+      "name": "だんやくばこ",
+      "description": "だんやくを 消費しない（20%の確率）"
+    },
+    "AmmoReservation": {
+      "name": "せつやくじょうず",
+      "description": "だんやくを 消費しない（20%の確率）"
+    },
+    "Archery": {
+      "name": "ゆみや",
+      "description": "+20% ゆみやの速度 & +10% ゆみやのダメージ"
+    },
+    "AxeFairyPet": {
+      "name": "セナックス",
+      "description": "問答無用でぶった切る"
+    },
+    "BabyBird": {
+      "name": "ベビーフィンチ",
+      "description": "ベビーフィンチが てきを攻撃する"
+    },
+    "BabyDinosaur": {
+      "name": "ベビーダイナソー",
+      "description": "ベビーダイナソーがついてくる"
+    },
+    "BabyEater": {
+      "name": "ベビーイーター",
+      "description": "ベビーソウルイーターがついてくる"
+    },
+    "BabyFaceMonster": {
+      "name": "ベビーフェイスモンスター",
+      "description": "ベビーフェイスモンスターがついてくる"
+    },
+    "BabyGrinch": {
+      "name": "ベビーグリンチ",
+      "description": "ベビーグリンチがついてくる"
+    },
+    "BabyHornet": {
+      "name": "ベビーホーネット",
+      "description": "おかあさんと 思われているようだ"
+    },
+    "BabyImp": {
+      "name": "ベビーインプ",
+      "description": "魔の 2さいを むかえるまで まって！"
+    },
+    "BabyPenguin": {
+      "name": "ベビーペンギン",
+      "description": "サカナを ほしがってるようだ"
+    },
+    "BabyRedPanda": {
+      "name": "ベビーレッサーパンダ",
+      "description": "ベビーレッサーパンダが ついてくる"
+    },
+    "BabySkeletronHead": {
+      "name": "ベビースケルトロンヘッド",
+      "description": "よくこれを 手に入れたね"
+    },
+    "BabySlime": {
+      "name": "ベビースライム",
+      "description": "ベビースライムが てきを攻撃する"
+    },
+    "BabySnowman": {
+      "name": "ベビースノーマン",
+      "description": "ベビースノーマンがついてくる"
+    },
+    "BabyTruffle": {
+      "name": "ベビートリュフ",
+      "description": "キュートだよね？"
+    },
+    "BabyWerewolf": {
+      "name": "ベビーウェアウルフ",
+      "description": "ベビーウェアウルフが ついてくる"
+    },
+    "BallistaPanic": {
+      "name": "バリスタパニック！",
+      "description": "バリスタの連射力が上がる！"
+    },
+    "BasiliskMount": {
+      "name": "バジリスクのマウント",
+      "description": "とつげき...ぜんいんに！"
+    },
+    "BatMount": {
+      "name": "コウモリの呪い",
+      "description": "コウモリに変身した！"
+    },
+    "BatOfLight": {
+      "name": "きゅうけつコウモリ",
+      "description": "きゅうけつコウモリが てきを攻撃する"
+    },
+    "Battle": {
+      "name": "たたかい",
+      "description": "てきの出現率が上がる"
+    },
+    "BeeMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BeeMount": {
+      "name": "ハチのマウント",
+      "description": "ブンブンブーン"
+    },
+    "BeetleEndurance1": {
+      "name": "むしのまもり",
+      "description": "受けたダメージの15%を吸収する"
+    },
+    "BeetleEndurance2": {
+      "name": "むしのまもり",
+      "description": "受けたダメージの30%を吸収する"
+    },
+    "BeetleEndurance3": {
+      "name": "むしのまもり",
+      "description": "受けたダメージの45%を吸収する"
+    },
+    "BeetleMight1": {
+      "name": "むしのちから",
+      "description": "+10% 近接ダメージ & 攻撃速度"
+    },
+    "BeetleMight2": {
+      "name": "むしのちから",
+      "description": "+20% 近接ダメージ & 攻撃速度"
+    },
+    "BeetleMight3": {
+      "name": "むしのちから",
+      "description": "+30% 近接ダメージ & 攻撃速度"
+    },
+    "BeetleMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BerniePet": {
+      "name": "バーニー",
+      "description": "いつも一緒だよ、バーニー"
+    },
+    "BetsysCurse": {
+      "name": "ベッツィーののろい",
+      "description": "しゅび力が 下がる"
+    },
+    "Bewitched": {
+      "name": "みりょう",
+      "description": "ミニオンの最大数が1増加する"
+    },
+    "BiomeSight": {
+      "name": "バイオームサイト",
+      "description": "おせんされた ブロックのばしょを 表示する"
+    },
+    "BlackCat": {
+      "name": "クロネコ",
+      "description": "クロネコがついてくる"
+    },
+    "Blackout": {
+      "name": "まっくらやみ",
+      "description": "視界がとてもせまくなる"
+    },
+    "Bleeding": {
+      "name": "しゅっけつ",
+      "description": "ライフが 自動回復しない"
+    },
+    "BloodButcherer": {
+      "name": "ブラッドブッチャード",
+      "description": "すぐに 血が なくなる"
+    },
+    "BlueChickenPet": {
+      "name": "青いニワトリ",
+      "description": "名札によると 「シェイン」というらしい"
+    },
+    "BoneJavelin": {
+      "name": "かんつう",
+      "description": "しゅっけつしている"
+    },
+    "BoulderPet": {
+      "name": "人懐こい大岩",
+      "description": "人懐っこい大岩が回りを転がる"
+    },
+    "BrainOfConfusionBuff": {
+      "name": "マインドトリック",
+      "description": "クリティカル率とミニオンのダメージが増加する"
+    },
+    "BrainOfCthulhuPet": {
+      "name": "クモののうみそ",
+      "description": "はいまわっている… キモい"
+    },
+    "BrokenArmor": {
+      "name": "ぼうぐはそん",
+      "description": "しゅび力が 半分になる"
+    },
+    "Builder": {
+      "name": "ビルダー",
+      "description": "設置速度と範囲が増加"
+    },
+    "BunnyMount": {
+      "name": "ウサギのマウント",
+      "description": "にんじんだいすき"
+    },
+    "Burning": {
+      "name": "やけど",
+      "description": "ライフを失い 移動速度が下がる"
+    },
+    "Calm": {
+      "name": "へいおん",
+      "description": "てきの出現率が下がる"
+    },
+    "Campfire": {
+      "name": "ぬくもり",
+      "description": "ライフ回復速度が わずかに上がる"
+    },
+    "CatBast": {
+      "name": "バステトのしゅご",
+      "description": "しゅび力が 5上がる"
+    },
+    "CavelingGardener": {
+      "name": "ケイブガーデーナー",
+      "description": "ハクァグルクトゥ！"
+    },
+    "ChaosState": {
+      "name": "カオス",
+      "description": "カオスロッドが ライフをすいとる"
+    },
+    "ChesterPet": {
+      "name": "チェスター",
+      "description": "オットー・フォン・チェスタフィールド様"
+    },
+    "Chilled": {
+      "name": "さむけ",
+      "description": "移動速度が下がってしまった"
+    },
+    "Clairvoyance": {
+      "name": "せんりがん",
+      "description": "まりょくが上がる"
+    },
+    "CobWhipPlayerBuff": {
+      "name": "ムチクモ",
+      "description": "クモを召喚して一緒に戦う"
+    },
+    "CoffinMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "CompanionCube": {
+      "name": "コンパニオンキューブ",
+      "description": "おまえをおどしたりはしない しゃべれないからな"
+    },
+    "Confused": {
+      "name": "こんらん",
+      "description": "移動の操作がさかさになる"
+    },
+    "CoolWhipPlayerBuff": {
+      "name": "ナイスなバフ",
+      "description": "てきを攻撃する ゆきのけっしょうを 呼び出す"
+    },
+    "Crate": {
+      "name": "クレート",
+      "description": "クレートをつりあげる確率が上がる"
+    },
+    "CrimsonHeart": {
+      "name": "クリムゾンハート",
+      "description": "まほうのハートが 光を はなっている"
+    },
+    "Cursed": {
+      "name": "のろい",
+      "description": "アイテムをつかえない"
+    },
+    "CursedInferno": {
+      "name": "のろいのほのお",
+      "description": "ライフを失う"
+    },
+    "CursedSapling": {
+      "name": "イビルルート",
+      "description": "イビルルートがついてくる"
+    },
+    "CuteFishronMount": {
+      "name": "キュートフィッシュロンのマウント",
+      "description": "ビックリさせるなよ。"
+    },
+    "DD2BetsyPet": {
+      "name": "ちいさなベッツィー",
+      "description": "ちいさなベッツィーが ついてくる"
+    },
+    "DD2OgrePet": {
+      "name": "ベビーオーガ",
+      "description": "おおきな こんぼうを もっているくせに つかいかたを しらない"
+    },
+    "Dangersense": {
+      "name": "きけんよち",
+      "description": "周囲のききが めにみえる"
+    },
+    "DarkHorseMount": {
+      "name": "ダークホースのマウント",
+      "description": "ダークホースに のる"
+    },
+    "DarkMageBookMount": {
+      "name": "ほんのマウント",
+      "description": "このほんは あなたをみちびいてくれる"
+    },
+    "Darkness": {
+      "name": "くらやみ",
+      "description": "視界がせまくなる"
+    },
+    "Daybreak": {
+      "name": "じょうか",
+      "description": "太陽こうせんに やかれてしまった"
+    },
+    "Dazed": {
+      "name": "めまい",
+      "description": "移動速度が かなりおそくなる"
+    },
+    "DeadCellsMushroomBoiMinion": {
+      "name": "キノコボーイ！",
+      "description": "キノコボーイが一緒に戦ってくれる"
+    },
+    "DeadCellsPotionStation": {
+      "name": "錬金強化",
+      "description": "新しいバフの継続時間が延びる"
+    },
+    "DeadCellsSwarmBiter": {
+      "name": "スウォームバイター",
+      "description": "ガブガブ"
+    },
+    "DeadlySphere": {
+      "name": "きょうあくなたま",
+      "description": "きょうあくなたまが てきを攻撃する"
+    },
+    "DeerclopsPet": {
+      "name": "タイニーディアクロップス",
+      "description": "なんてこった！"
+    },
+    "DesertMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DestroyerPet": {
+      "name": "デストロイヤーライト",
+      "description": "ぶっこわすので いそがしい"
+    },
+    "DiamondMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DiggingMoleMinecart": {
+      "name": "掘削モグラのトロッコ",
+      "description": "モグラのトロッコが掘ってくれる"
+    },
+    "DirtiestBlock": {
+      "name": "とてもつちブロック",
+      "description": "よぶんなつちで わかります"
+    },
+    "DrillMount": {
+      "name": "ドリルのマウント",
+      "description": "空飛ぶドリルに乗っている"
+    },
+    "DryadsWard": {
+      "name": "ドライアドのしゅくふく",
+      "description": "しぜんのちからに まもられている"
+    },
+    "DryadsWardDebuff": {
+      "name": "ドライアドのくるしみ",
+      "description": "しぜんのちからに 強いられている"
+    },
+    "DualSlimePet": {
+      "name": "スライムのおうぞく",
+      "description": "おうこくを まとめあげる さいこうけんりょくしゃ"
+    },
+    "DukeFishronPet": {
+      "name": "ちいさなフィッシュロン",
+      "description": "ならくのそこから やってきた うすみどりいろの こうしゃく"
+    },
+    "DynamiteKitten": {
+      "name": "ダイナマイトキトゥン",
+      "description": "たいほうには つかえない"
+    },
+    "EaterOfWorldsPet": {
+      "name": "イーターオブワーム",
+      "description": "うらにわが いくつか だめになるかも"
+    },
+    "Electrified": {
+      "name": "かんでん",
+      "description": "うごくとダメージを受ける！"
+    },
+    "EmeraldMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "EmpressBlade": {
+      "name": "テラプリズマ",
+      "description": "じょていのつるぎが てきを攻撃する"
+    },
+    "Endurance": {
+      "name": "たいきゅう",
+      "description": "-10% ダメージ"
+    },
+    "EverscreamPet": {
+      "name": "エヴァースクリームのなえぎ",
+      "description": "きを さんぽにつれて いこう！"
+    },
+    "EyeOfCthulhuPet": {
+      "name": "あやしいめだま",
+      "description": "めを はなさないように…"
+    },
+    "EyeballSpring": {
+      "name": "バネめだま",
+      "description": "バネめだまがついてくる"
+    },
+    "FairyBlue": {
+      "name": "ようせい",
+      "description": "ようせいがついてくる"
+    },
+    "FairyGreen": {
+      "name": "ようせい",
+      "description": "ようせいがついてくる"
+    },
+    "FairyQueenPet": {
+      "name": "ようせいのプリンセス",
+      "description": "ようせいの ひかりは すべてをてらす"
+    },
+    "FairyRed": {
+      "name": "ようせい",
+      "description": "ようせいがついてくる"
+    },
+    "FartMinecart": {
+      "name": "おならトロッコ",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Featherfall": {
+      "name": "ふゆう",
+      "description": "↑か↓を押すと 落下速度を あやつれる"
+    },
+    "FennecFox": {
+      "name": "フェネック",
+      "description": "キツネは何といってる？ それより 何を聞いているのかが 気になる！"
+    },
+    "FishMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Fishing": {
+      "name": "つり",
+      "description": "つりの腕前が 上がる"
+    },
+    "Flamingo": {
+      "name": "フラミンゴ",
+      "description": "フラミンゴｰゴーゴー"
+    },
+    "FlinxMinion": {
+      "name": "フリンクス",
+      "description": "雪の妖精が攻撃してくれる"
+    },
+    "Flipper": {
+      "name": "あしヒレ",
+      "description": "みずの中でもふつうに動ける"
+    },
+    "Frostburn": {
+      "name": "フロストバーン",
+      "description": "いたい とにかくいたい"
+    },
+    "Frostburn2": {
+      "name": "フロストバイト",
+      "description": "めちゃくちゃ暑いかめちゃくちゃ寒いか。いずれにしてもめちゃくちゃ痛い"
+    },
+    "Frozen": {
+      "name": "とうけつ",
+      "description": "動けない！"
+    },
+    "GelBalloonBuff": {
+      "name": "スパークルスライム",
+      "description": "ぬるぬるで キラキラ"
+    },
+    "Gills": {
+      "name": "こきゅう",
+      "description": "液体内で呼吸できるようになる"
+    },
+    "GlitteryButterfly": {
+      "name": "ひかるチョウチョ",
+      "description": "ほんとうに ほんとうに とんでもない"
+    },
+    "GlommerPet": {
+      "name": "グロマー",
+      "description": "ふさふさだ！そしてぬるぬる…"
+    },
+    "GolemPet": {
+      "name": "おもちゃのゴーレム",
+      "description": "ないて はなして ねて あるく。かわいい おにんぎょうさん！"
+    },
+    "GolfCartMount": {
+      "name": "ゴルフカート",
+      "description": "フェアウェイを おうだんする フェアな ほうほう"
+    },
+    "Gravitation": {
+      "name": "じゅうりょく",
+      "description": "↑を押すと 重力がはんてんする"
+    },
+    "HeartLamp": {
+      "name": "ハートランプ",
+      "description": "ライフ回復速度が 上がる"
+    },
+    "Heartreach": {
+      "name": "ハートかくとく",
+      "description": "ハートを回収する範囲が増加"
+    },
+    "HeartyMeal": {
+      "name": "ハーティーミール",
+      "description": "ライフの回復速度アップ"
+    },
+    "HellMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Hemorrhage": {
+      "name": "大量出血",
+      "description": "大量に出血する"
+    },
+    "Honey": {
+      "name": "ハチミツ",
+      "description": "ライフ回復速度が 上がる"
+    },
+    "HornetMinion": {
+      "name": "ホーネット",
+      "description": "ホーネットが てきを攻撃する"
+    },
+    "Horrified": {
+      "name": "きょうふ",
+      "description": "とてもこわくて にげられない"
+    },
+    "Hunger": {
+      "name": "空腹",
+      "description": "かなりお腹がへってフラフラする"
+    },
+    "Hunter": {
+      "name": "かりうど",
+      "description": "マモノが光ってみえる"
+    },
+    "IceBarrier": {
+      "name": "アイスバリア",
+      "description": "-25% 受けるダメージ"
+    },
+    "IceQueenPet": {
+      "name": "こおりのじょおう",
+      "description": "アイスクイーンは なかまとして うまれかわった"
+    },
+    "Ichor": {
+      "name": "イコル",
+      "description": "しゅび力が下がる"
+    },
+    "ImpMinion": {
+      "name": "インプ",
+      "description": "インプが てきを攻撃する"
+    },
+    "Inferno": {
+      "name": "じごく",
+      "description": "周囲のマモノに ひがつく"
+    },
+    "Invisibility": {
+      "name": "とうめい",
+      "description": "とうめいになる"
+    },
+    "Ironskin": {
+      "name": "まもり",
+      "description": "+8 しゅび力"
+    },
+    "JunimoPet": {
+      "name": "Junimo",
+      "description": "もりのしゅごしゃ"
+    },
+    "KingSlimePet": {
+      "name": "スライムプリンス",
+      "description": "あなたの きたいに こたえてくれる はず"
+    },
+    "Kite": {
+      "name": "上機嫌",
+      "description": "移動・採掘・設置速度がわずかに上昇する"
+    },
+    "LadybugMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "LavaSharkMount": {
+      "name": "ラーバシャークのマウント",
+      "description": "ようがんのうみで サーフィンだ！"
+    },
+    "LeafCrystal": {
+      "name": "リーフクリスタル",
+      "description": "近くのてきに リーフクリスタルを うちだす"
+    },
+    "Lifeforce": {
+      "name": "せいめいりょく",
+      "description": "+20% 最大ライフ"
+    },
+    "LilHarpy": {
+      "name": "ミニハーピー",
+      "description": "てんからの キュートなおくりもの"
+    },
+    "Lovestruck": {
+      "name": "とりこ",
+      "description": "こいにむちゅう！"
+    },
+    "Lucky": {
+      "name": "こううんの",
+      "description": "なんだか ラッキーな きぶん"
+    },
+    "LunaticCultistPet": {
+      "name": "ファンタズムドラゴン",
+      "description": "ずっと つきを みている"
+    },
+    "MagicLantern": {
+      "name": "まほうのランタン",
+      "description": "まほうのランタンが 周囲をてらす"
+    },
+    "MagicPower": {
+      "name": "まりょく",
+      "description": "+20% まほうダメージ"
+    },
+    "MajesticHorseMount": {
+      "name": "マジェスティックホースのマウント",
+      "description": "マジェスティックホースに のる"
+    },
+    "ManaRegeneration": {
+      "name": "マナリジェネ",
+      "description": "マナの回復速度が 上がる"
+    },
+    "ManaSickness": {
+      "name": "マナちゅうどく",
+      "description": "まほうダメージが減少： "
+    },
+    "MartianPet": {
+      "name": "エイリアンスケーター",
+      "description": "げんきかい？ にんげんたち"
+    },
+    "MeowmereMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Merfolk": {
+      "name": "マーフォーク",
+      "description": "水中でこきゅうでき 移動しやすくなる"
+    },
+    "Midas": {
+      "name": "ミダース",
+      "description": "しぬとコインを たくさん落とす"
+    },
+    "Minecart": {
+      "name": "鉱山トロッコ",
+      "description": "鉱山トロッコに乗る"
+    },
+    "MinecartMech": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MinecartWood": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MiniMinotaur": {
+      "name": "ファウン",
+      "description": "彼の名前は「ショーン」だ"
+    },
+    "Mining": {
+      "name": "さいくつ",
+      "description": "+25% ほる速度"
+    },
+    "MonsterBanner": {
+      "name": "バナー",
+      "description": "与えるダメージとしゅび力が増加："
+    },
+    "MoonLeech": {
+      "name": "つきのかみきず",
+      "description": "回復できない"
+    },
+    "MoonLordPet": {
+      "name": "ムーンリング",
+      "description": "はるかかなたから きた ともだち"
+    },
+    "NebulaUpDmg1": {
+      "name": "ダメージネビュラ",
+      "description": "+15% ダメージ"
+    },
+    "NebulaUpDmg2": {
+      "name": "ダメージネビュラ",
+      "description": "+30% ダメージ"
+    },
+    "NebulaUpDmg3": {
+      "name": "ダメージネビュラ",
+      "description": "+45% ダメージ"
+    },
+    "NebulaUpLife1": {
+      "name": "ライフネビュラ",
+      "description": "ライフの回復速度が 上がる"
+    },
+    "NebulaUpLife2": {
+      "name": "ライフネビュラ",
+      "description": "ライフの回復速度が 上がる"
+    },
+    "NebulaUpLife3": {
+      "name": "ライフネビュラ",
+      "description": "ライフの回復速度が 上がる"
+    },
+    "NebulaUpMana1": {
+      "name": "マナネビュラ",
+      "description": "マナの回復速度が 上がる"
+    },
+    "NebulaUpMana2": {
+      "name": "マナネビュラ",
+      "description": "マナの回復速度が 上がる"
+    },
+    "NebulaUpMana3": {
+      "name": "マナネビュラ",
+      "description": "マナの回復速度が 上がる"
+    },
+    "NeutralHunger": {
+      "name": "小腹が空いた",
+      "description": "食べられるけど別に食べなくてもいいかな"
+    },
+    "NightOwl": {
+      "name": "ねこめ",
+      "description": "夜間の視界がひろがる"
+    },
+    "NoBuilding": {
+      "name": "ブロックショック",
+      "description": "ブロックをせっちする力を失ってしまった！"
+    },
+    "ObsidianSkin": {
+      "name": "ようがんむこう",
+      "description": "ようがんから ダメージを受けない"
+    },
+    "Obstructed": {
+      "name": "ぼうがい",
+      "description": "めがみえない！"
+    },
+    "OgreSpit": {
+      "name": "ないしゅっけつ",
+      "description": "移動速度が とてつもなくおそくなる"
+    },
+    "Oiled": {
+      "name": "あぶらまみれ",
+      "description": "えんじょう中に受けるダメージが増える"
+    },
+    "OnFire": {
+      "name": "えんじょう！",
+      "description": "ライフをゆっくり失う"
+    },
+    "OnFire3": {
+      "name": "ヘルファイア",
+      "description": "ゆっくりライフが減少"
+    },
+    "PaintedHorseMount": {
+      "name": "ペイントホースのマウント",
+      "description": "ペイントホースに のる"
+    },
+    "PaladinsShield": {
+      "name": "せいきしのたて",
+      "description": "受けたダメージの25%が 別のプレイヤーに むけられる"
+    },
+    "PalworldMinionCattiva": {
+      "name": "ツッパニャン",
+      "description": "ツッパニャンが一緒に戦ってくれる"
+    },
+    "PalworldMinionFoxsparks": {
+      "name": "キツネビ",
+      "description": "キツネビが一緒に戦ってくれる"
+    },
+    "PalworldPetChillet": {
+      "name": "オコチョ",
+      "description": "オコチョが冒険の仲間になる\nとっても動きが激しいぞ！"
+    },
+    "PalworldPetChilletIgnis": {
+      "name": "オコチョ・イグニス",
+      "description": "オコチョ・イグニスが冒険の仲間になる\n撫ですぎると火花が散るかも！"
+    },
+    "Panic": {
+      "name": "パニック！",
+      "description": "移動速度が上がる"
+    },
+    "ParryDamageBuff": {
+      "name": "ベストタイミング",
+      "description": "次の近接攻撃のダメージ +400%"
+    },
+    "PartyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PeaceCandle": {
+      "name": "ピースキャンドル",
+      "description": "マモノの出現率が下がる"
+    },
+    "PetBunny": {
+      "name": "ペットウサギ",
+      "description": "ニンジンを ほしがってるようだ"
+    },
+    "PetDD2Dragon": {
+      "name": "ホーダグロン",
+      "description": "ホーダグロンがついてくる"
+    },
+    "PetDD2Gato": {
+      "name": "プロペラガトー",
+      "description": "プロペラガトーがついてくる"
+    },
+    "PetDD2Ghost": {
+      "name": "フリッカーウィック",
+      "description": "フリッカーウィックがついてくる"
+    },
+    "PetLizard": {
+      "name": "ペットトカゲ",
+      "description": "はちゅうるいっぽい"
+    },
+    "PetParrot": {
+      "name": "ペットオウム",
+      "description": "ポリーは クラッカーを ほしがっている"
+    },
+    "PetSapling": {
+      "name": "ペットなえぎ",
+      "description": "なえぎがついてくる"
+    },
+    "PetSpider": {
+      "name": "ペットクモ",
+      "description": "クモがついてくる"
+    },
+    "PetTurtle": {
+      "name": "ペットカメ",
+      "description": "ハッピータートル！"
+    },
+    "PigPet": {
+      "name": "ピッグ",
+      "description": "歩くベーコン！"
+    },
+    "PigronMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PigronMount": {
+      "name": "ピグロンのマウント",
+      "description": "いまなら見えるぞ..."
+    },
+    "PirateMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PirateMinion": {
+      "name": "かいぞく",
+      "description": "かいぞくが てきを攻撃する"
+    },
+    "PirateShipMount": {
+      "name": "かいぞくせんのマウント",
+      "description": "あなたが キャプテンだ"
+    },
+    "PixieMount": {
+      "name": "妖精の姿",
+      "description": "妖精になっちゃった！"
+    },
+    "PlanteraPet": {
+      "name": "プランテラのなえぎ",
+      "description": "じっさいには 何をたべるの？"
+    },
+    "Plantero": {
+      "name": "プランテロ",
+      "description": "ちいさなプランテラが ついてくる"
+    },
+    "PogoStickMount": {
+      "name": "ホッピングのマウント",
+      "description": "ピョン！ ピョン！ ピョン！"
+    },
+    "Poisoned": {
+      "name": "どく",
+      "description": "ライフをゆっくり失う"
+    },
+    "PotionSickness": {
+      "name": "ポーションちゅうどく",
+      "description": "かいふくアイテムを 使用できない"
+    },
+    "Pufferfish": {
+      "name": "フグ",
+      "description": "人懐っこいフグが付いてくる"
+    },
+    "PumpkingPet": {
+      "name": "ジャックランタン",
+      "description": "ちいさなジャックランタンが あかるく みちをてらす"
+    },
+    "Puppy": {
+      "name": "こいぬ",
+      "description": "こいぬがついてくる"
+    },
+    "Pygmies": {
+      "name": "ピグミー",
+      "description": "ピグミーが てきを攻撃する"
+    },
+    "QueenBeePet": {
+      "name": "ミツバチ",
+      "description": "ミツバチが ついてくる"
+    },
+    "QueenSlimeMount": {
+      "name": "ウィングスライムのマウント",
+      "description": "ピョンピョン はねる！"
+    },
+    "QueenSlimePet": {
+      "name": "スライムプリンセス",
+      "description": "かのじょこそ しんの しはいしゃ"
+    },
+    "Rabies": {
+      "name": "やせいか",
+      "description": "ダメージ増加 ライフの回復速度減少 じょうたいを変化させる"
+    },
+    "Rage": {
+      "name": "いかり",
+      "description": "+10% クリティカル率"
+    },
+    "RainbowBoulderPet": {
+      "name": "人懐こい虹色の大岩",
+      "description": "人懐っこい虹色の大岩が回りを転がる"
+    },
+    "RapidHealing": {
+      "name": "ラピッドリジェネ",
+      "description": "ライフ回復速度が 大きく上がる"
+    },
+    "RatMount": {
+      "name": "ネズミの本性",
+      "description": "ネズミに変身した！"
+    },
+    "Ravens": {
+      "name": "カラス",
+      "description": "カラスが てきを攻撃する"
+    },
+    "Regeneration": {
+      "name": "リジェネ",
+      "description": "ライフをゆっくり 回復させる"
+    },
+    "RollerSkatesGreenMount": {
+      "name": "ローラースケート（緑）",
+      "description": "これでスイスイ走れる"
+    },
+    "RollerSkatesMount": {
+      "name": "ローラースケート（青）",
+      "description": "これでスイスイ走れる"
+    },
+    "RollerSkatesPinkMount": {
+      "name": "ローラースケート（パーティ）",
+      "description": "これでスイスイ走れる"
+    },
+    "RollerSkatesWhiteMount": {
+      "name": "ローラースケート（クラシック）",
+      "description": "これでスイスイ走れる"
+    },
+    "RubyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Rudolph": {
+      "name": "トナカイ",
+      "description": "あかはなのトナカイに乗っている"
+    },
+    "SantankMount": {
+      "name": "サンタンクのマウント",
+      "description": "わるいこの なまえは リストから けそう…"
+    },
+    "SapphireMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "ScutlixMount": {
+      "name": "スカットリックスのマウント",
+      "description": "ビビビ"
+    },
+    "ScytheWhipPlayerBuff": {
+      "name": "しゅうかくのじき",
+      "description": "ムチ攻撃の速度が 上がる"
+    },
+    "ShadowCandle": {
+      "name": "シャドウキャンドル",
+      "description": "まちの へいおんを うばいさる"
+    },
+    "ShadowDodge": {
+      "name": "せいなるほご",
+      "description": "次の攻撃を かいひする"
+    },
+    "ShadowFlame": {
+      "name": "シャドウフレイム",
+      "description": "ライフを失う"
+    },
+    "ShadowMimic": {
+      "name": "シャドウミミック",
+      "description": "シャドウミミックが ついてくる"
+    },
+    "ShadowOrb": {
+      "name": "シャドウオーブ",
+      "description": "オーブが 光を はなっている"
+    },
+    "SharkPup": {
+      "name": "ベビーシャーク",
+      "description": "ドゥー ドゥー ドゥー ドゥー ドゥー"
+    },
+    "SharknadoMinion": {
+      "name": "シャークネード",
+      "description": "シャークネードが てきを攻撃する"
+    },
+    "Sharpened": {
+      "name": "とぎたて",
+      "description": "近接武器が よろいをかんつうする"
+    },
+    "Shimmer": {
+      "name": "キラメいてる",
+      "description": "実体を うしなった！"
+    },
+    "Shine": {
+      "name": "ひかり",
+      "description": "体から光をはなつ"
+    },
+    "ShroomMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Silenced": {
+      "name": "ちんもく",
+      "description": "マナを消費するアイテムを つかえなくなる"
+    },
+    "SkeletronPet": {
+      "name": "スケルトロンJr.",
+      "description": "スケルトロンJr.が ついてくる"
+    },
+    "SkeletronPrimePet": {
+      "name": "ミニプライム",
+      "description": "いろんな どうぐで ひとを ころせる"
+    },
+    "SlimeMount": {
+      "name": "スライムのマウント",
+      "description": "ピョーーン"
+    },
+    "Slimed": {
+      "name": "スライム",
+      "description": "ぬるぬるでネバネバ"
+    },
+    "Slow": {
+      "name": "おそい",
+      "description": "移動速度が下がる"
+    },
+    "Smolstar": {
+      "name": "まほうのダガー",
+      "description": "せんぎりにされて しぬ"
+    },
+    "SolarShield1": {
+      "name": "しゃくねつのたいよう",
+      "description": "受けたダメージの20%を吸収し、ダメージを受けると敵を退ける"
+    },
+    "SolarShield2": {
+      "name": "しゃくねつのたいよう",
+      "description": "受けたダメージの20%を吸収し、ダメージを受けると敵を退ける"
+    },
+    "SolarShield3": {
+      "name": "しゃくねつのたいよう",
+      "description": "受けたダメージの20%を吸収し、ダメージを受けると敵を退ける"
+    },
+    "Sonar": {
+      "name": "けんち",
+      "description": "つりばりにかかったえものが見える"
+    },
+    "SoulDrain": {
+      "name": "ライフきゅうしゅう",
+      "description": "ライフの回復速度が 上がる"
+    },
+    "Spelunker": {
+      "name": "たんけんか",
+      "description": "たからやこうせきが 光ってみえる"
+    },
+    "SpiderMinion": {
+      "name": "クモ",
+      "description": "クモが てきを攻撃する"
+    },
+    "Spiffo": {
+      "name": "Spiffo",
+      "description": "ディス・イズ・ハウ・ユー・ダイ"
+    },
+    "SpookyWoodMount": {
+      "name": "きのマウント",
+      "description": "はしれ フォレスト はしるんだ！"
+    },
+    "Squashling": {
+      "name": "カボチャン",
+      "description": "カボチャンがついてくる"
+    },
+    "StarInBottle": {
+      "name": "ビンづめのおほしさま",
+      "description": "マナの回復速度が 上がる"
+    },
+    "StardustDragonMinion": {
+      "name": "スターダストドラゴン",
+      "description": "スターダストドラゴンに まもられている"
+    },
+    "StardustGuardianMinion": {
+      "name": "スターダストガーディアン",
+      "description": "スターダストガーティアンに まもられている"
+    },
+    "StardustMinion": {
+      "name": "スターダストセル",
+      "description": "スターダストセルが てきを攻撃する"
+    },
+    "StardustMinionBleed": {
+      "name": "セルか",
+      "description": "セルにたべられている"
+    },
+    "Starving": {
+      "name": "飢えている",
+      "description": "空腹で死にそう！何か食べて！"
+    },
+    "SteampunkMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Stinky": {
+      "name": "くさい",
+      "description": "ひどいにおいがする"
+    },
+    "Stoned": {
+      "name": "せきか",
+      "description": "完全に せきかしてしまった！"
+    },
+    "StormTiger": {
+      "name": "デザートタイガー",
+      "description": "デザートタイガーが てきを攻撃する"
+    },
+    "Suffocation": {
+      "name": "ちっそく",
+      "description": "ライフを失う"
+    },
+    "SugarGlider": {
+      "name": "モモンガ",
+      "description": "モモンガが ついてくる"
+    },
+    "SugarRush": {
+      "name": "シュガーラッシュ",
+      "description": "+20% 移動速度と ほる速度"
+    },
+    "Summoning": {
+      "name": "しょうかん",
+      "description": "ミニオンの最大数が1増加する"
+    },
+    "Sunflower": {
+      "name": "ハッピー！",
+      "description": "移動速度があがり マモノの出現率が下がる"
+    },
+    "SunflowerMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "SuspiciousTentacle": {
+      "name": "あやしいめだま",
+      "description": "あやしいめだまが 光を はなっている"
+    },
+    "Swiftness": {
+      "name": "すばやさ",
+      "description": "+25% 移動速度"
+    },
+    "SwordWhipPlayerBuff": {
+      "name": "ドライアドのしゅくふく",
+      "description": "ムチ攻撃の速度が 上がる"
+    },
+    "TerraFartMinecart": {
+      "name": "大地のおならトロッコ",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TheTongue": {
+      "name": "きょだいなした",
+      "description": "マモノの口に ひきよせられている"
+    },
+    "ThornWhipPlayerBuff": {
+      "name": "ジャングルのいかり",
+      "description": "ムチ攻撃の速度が 上がる"
+    },
+    "Thorns": {
+      "name": "いばら",
+      "description": "ダメージを はんしゃする"
+    },
+    "TikiSpirit": {
+      "name": "ティキスピリット",
+      "description": "ティキスピリットがついてくる"
+    },
+    "Tipsy": {
+      "name": "ほろよい",
+      "description": "近接能力が上がり しゅび力が下がる"
+    },
+    "Titan": {
+      "name": "きょじん",
+      "description": "ノックバック力が増加"
+    },
+    "TitaniumStorm": {
+      "name": "チタニウムのバリア",
+      "description": "かけらの バリアが あなたを まもる"
+    },
+    "TopazMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TorchGodPotion": {
+      "name": "たいまつの祝福",
+      "description": "周囲のたいまつがバイオームに合わせて変化する"
+    },
+    "TurtleMount": {
+      "name": "カメのマウント",
+      "description": "りくだと遅い うみだと速い"
+    },
+    "TwinEyesMinion": {
+      "name": "ツインズ",
+      "description": "ツインズが てきを攻撃する"
+    },
+    "TwinsPet": {
+      "name": "レズとスパズ",
+      "description": "めの つけどころが すごい！"
+    },
+    "UFOMinion": {
+      "name": "UFO",
+      "description": "UFOが てきを攻撃する"
+    },
+    "UFOMount": {
+      "name": "UFOのマウント",
+      "description": "MACがあればよかったんだけど"
+    },
+    "UnicornMount": {
+      "name": "ユニコーンのマウント",
+      "description": "ぜんりょくで...とつげき！"
+    },
+    "UpbeatStar": {
+      "name": "エスティ",
+      "description": "エスティが ついてくる"
+    },
+    "VampireFrog": {
+      "name": "ヴァンパイアガエル",
+      "description": "ヴァンパイアガエルが てきを攻撃する"
+    },
+    "VelociraptorMount": {
+      "name": "恐竜の本能",
+      "description": "ヴェロキラプトルに変身した！"
+    },
+    "Venom": {
+      "name": "もうどく",
+      "description": "ライフを失う"
+    },
+    "VoltBunny": {
+      "name": "ボルトウサギ",
+      "description": "ボルトウサギは あなたにむちゅうだ"
+    },
+    "VortexDebuff": {
+      "name": "ぐにゃぐにゃ",
+      "description": "周囲のじゅうりょくが ゆがんでいる"
+    },
+    "WallOfFleshGoatMount": {
+      "name": "ヤギのマウント",
+      "description": "のりごこちは ヘビメタ きゅうだ！"
+    },
+    "WarTable": {
+      "name": "せんりゃくか",
+      "description": "セントリーの最大数が1増加する"
+    },
+    "Warmth": {
+      "name": "あたたかさ",
+      "description": "冷たいものから受ける ダメージをへらす"
+    },
+    "WaterCandle": {
+      "name": "ウォーターキャンドル",
+      "description": "マモノの出現率が上がる"
+    },
+    "WaterWalking": {
+      "name": "アメンボ",
+      "description": "下を押して みずにもぐる"
+    },
+    "Weak": {
+      "name": "よわい",
+      "description": "近接能力が下がる"
+    },
+    "WeaponImbueConfetti": {
+      "name": "エンチャント：かみふぶき",
+      "description": "近接攻撃で かみふぶきが まう"
+    },
+    "WeaponImbueCursedFlames": {
+      "name": "エンチャント：カースフレイム",
+      "description": "近接攻撃で てきに カースフレイムを あたえる"
+    },
+    "WeaponImbueFire": {
+      "name": "エンチャント：ほのお",
+      "description": "近接攻撃で てきに 火をつける"
+    },
+    "WeaponImbueGold": {
+      "name": "エンチャント：ゴールド",
+      "description": "近接攻撃で てきが コインをたくさん落とす"
+    },
+    "WeaponImbueIchor": {
+      "name": "エンチャント：イコル",
+      "description": "近接攻撃で てきの しゅび力を さげる"
+    },
+    "WeaponImbueNanites": {
+      "name": "エンチャント：ナノマシン",
+      "description": "近接攻撃で てきを こんらんさせる"
+    },
+    "WeaponImbuePoison": {
+      "name": "エンチャント：どく",
+      "description": "近接攻撃で てきに どくをあたえる"
+    },
+    "WeaponImbueVenom": {
+      "name": "エンチャント：もうどく",
+      "description": "近接攻撃で てきに もうどくをあたえる"
+    },
+    "Webbed": {
+      "name": "クモのいと",
+      "description": "はさまっている"
+    },
+    "WellFed": {
+      "name": "おなかいっぱい",
+      "description": "全ステータスを わずかに上げる"
+    },
+    "WellFed2": {
+      "name": "かなりまんぞく",
+      "description": "全ステータスが上がる"
+    },
+    "WellFed3": {
+      "name": "とてもまんぷく",
+      "description": "全ステータスが大きく上がる"
+    },
+    "Werewolf": {
+      "name": "ウェアウルフ",
+      "description": "近接能力が上がる"
+    },
+    "Wet": {
+      "name": "ずぶぬれ",
+      "description": "みずにぬれている"
+    },
+    "WindPushed": {
+      "name": "きょうふう",
+      "description": "かぜに体がはこばれてしまう！"
+    },
+    "Wisp": {
+      "name": "ウィスプ",
+      "description": "ウィスプがついてくる"
+    },
+    "WitchBroom": {
+      "name": "まじょのほうき",
+      "description": "そらをとぶ！ まほうだ！"
+    },
+    "WitheredArmor": {
+      "name": "ふるびたよろい",
+      "description": "しゅび力が下がっている！"
+    },
+    "WitheredWeapon": {
+      "name": "ふるびたぶき",
+      "description": "こうげき力が下がっている！"
+    },
+    "WolfMount": {
+      "name": "月のめぐみ",
+      "description": "おおかみに なってしまった！"
+    },
+    "Wrath": {
+      "name": "げきど",
+      "description": "+10% ダメージ"
+    },
+    "ZephyrFish": {
+      "name": "ゼファーフィッシュ",
+      "description": "まるで 泳いでいるようだ"
+    }
+  },
   "npcs": {
     "AncientCultistSquidhead": "こだいのビジョン",
     "AncientDoom": "こだいのうんめい",

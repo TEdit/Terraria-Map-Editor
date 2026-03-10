@@ -6136,6 +6136,1368 @@
     "ZombieFish": "좀비물고기",
     "ZombieMermanBanner": "좀비 인어 배너"
   },
+  "buffs": {
+    "AbigailMinion": {
+      "name": "아비게일",
+      "description": "아비게일이 함께 싸우며 지켜준다"
+    },
+    "AmberMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmethystMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmmoBox": {
+      "name": "탄약 상자",
+      "description": "20% 확률로 탄약을 소모하지 않음"
+    },
+    "AmmoReservation": {
+      "name": "탄약 비축",
+      "description": "20% 확률로 탄약을 소모하지 않음"
+    },
+    "Archery": {
+      "name": "궁술",
+      "description": "활 공격력 10% 증가, 화살 속도 20% 증가"
+    },
+    "AxeFairyPet": {
+      "name": "세낙스",
+      "description": "사소한 문제는 쳐냅니다"
+    },
+    "BabyBird": {
+      "name": "아기 참새",
+      "description": "아기 참새가 같은 편으로 싸워줌"
+    },
+    "BabyDinosaur": {
+      "name": "아기 공룡",
+      "description": "아기 공룡이 따라다님"
+    },
+    "BabyEater": {
+      "name": "아기 영혼을 먹는 자",
+      "description": "아기 영혼을 먹는 자가 따라다님"
+    },
+    "BabyFaceMonster": {
+      "name": "아기 페이스 몬스터",
+      "description": "아기 페이스 몬스터가 따라다님"
+    },
+    "BabyGrinch": {
+      "name": "아기 그린치",
+      "description": "아기 그린치가 따라다님"
+    },
+    "BabyHornet": {
+      "name": "새끼 말벌",
+      "description": "당신을 엄마로 생각하고 있습니다"
+    },
+    "BabyImp": {
+      "name": "아기 임프",
+      "description": "끔찍한 둘을 기다리세요!"
+    },
+    "BabyPenguin": {
+      "name": "아기 펭귄",
+      "description": "당신의 물고기를 원하는 것 같습니다"
+    },
+    "BabyRedPanda": {
+      "name": "아기 레드판다",
+      "description": "아기 레드판다가 따라다님"
+    },
+    "BabySkeletronHead": {
+      "name": "아기 스켈레트론 헤드",
+      "description": "말도 마..."
+    },
+    "BabySlime": {
+      "name": "새끼 슬라임",
+      "description": "아기 슬라임이 같은 편으로 싸워줌"
+    },
+    "BabySnowman": {
+      "name": "아기 눈사람",
+      "description": "아기 눈사람이 따라다님"
+    },
+    "BabyTruffle": {
+      "name": "아기 트러플",
+      "description": "귀여워도 너어무 귀여운 거 아니야?"
+    },
+    "BabyWerewolf": {
+      "name": "아기 늑대인간",
+      "description": "아기 늑대인간이 따라다님"
+    },
+    "BallistaPanic": {
+      "name": "발리스타 패닉!",
+      "description": "발리스타가 패닉에 빠져 빠르게 쏴댑니다!"
+    },
+    "BasiliskMount": {
+      "name": "바실리스크 탑승",
+      "description": "아무나... 그리고 모두에게 달려들어라!"
+    },
+    "BatMount": {
+      "name": "박쥐의 저주",
+      "description": "박쥐로 변했습니다!"
+    },
+    "BatOfLight": {
+      "name": "핏빛 박쥐",
+      "description": "피의 박쥐가 같은 편으로 싸워줌"
+    },
+    "Battle": {
+      "name": "전투",
+      "description": "적 스폰 속도 증가"
+    },
+    "BeeMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BeeMount": {
+      "name": "꿀벌 탑승",
+      "description": "브즈즈브즈즈즈브즈즈..."
+    },
+    "BeetleEndurance1": {
+      "name": "딱정벌레의 지구력",
+      "description": "받는 대미지의 15%를 흡수합니다"
+    },
+    "BeetleEndurance2": {
+      "name": "딱정벌레의 지구력",
+      "description": "받는 대미지의 30%를 흡수합니다"
+    },
+    "BeetleEndurance3": {
+      "name": "딱정벌레의 지구력",
+      "description": "받는 대미지의 45%를 흡수합니다"
+    },
+    "BeetleMight1": {
+      "name": "딱정벌레의 근력",
+      "description": "근접 공격력 및 속도 10% 증가"
+    },
+    "BeetleMight2": {
+      "name": "딱정벌레의 근력",
+      "description": "근접 공격력 및 속도 20% 증가"
+    },
+    "BeetleMight3": {
+      "name": "딱정벌레의 근력",
+      "description": "근접 공격력 및 속도 30% 증가"
+    },
+    "BeetleMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BerniePet": {
+      "name": "버니",
+      "description": "버니, 언제나 내 곁에 있어 줘"
+    },
+    "BetsysCurse": {
+      "name": "벳시의 저주",
+      "description": "방어력 감소"
+    },
+    "Bewitched": {
+      "name": "요술",
+      "description": "최대 소환수 수가 1 증가합니다"
+    },
+    "BiomeSight": {
+      "name": "환경 탐지",
+      "description": "감염된 블록 위치 표시"
+    },
+    "BlackCat": {
+      "name": "검은 고양이",
+      "description": "검은 고양이가 따라다님"
+    },
+    "Blackout": {
+      "name": "암전",
+      "description": "빛의 시야 대폭 감소"
+    },
+    "Bleeding": {
+      "name": "출혈",
+      "description": "생명 재생 불가"
+    },
+    "BloodButcherer": {
+      "name": "피의 도살",
+      "description": "급속한 출혈 발생"
+    },
+    "BlueChickenPet": {
+      "name": "파란 닭",
+      "description": "이름표에 '셰인'이라 적혀 있음"
+    },
+    "BoneJavelin": {
+      "name": "관통",
+      "description": "출혈 발생"
+    },
+    "BoulderPet": {
+      "name": "친근한 바위",
+      "description": "바위 동료가 나와 함께 굴러다닙니다"
+    },
+    "BrainOfConfusionBuff": {
+      "name": "뇌의 혼란",
+      "description": "치명타 확률과 소환수 대미지가 증가합니다"
+    },
+    "BrainOfCthulhuPet": {
+      "name": "거미 뇌",
+      "description": "기어다니네... 징그러워"
+    },
+    "BrokenArmor": {
+      "name": "방어구 파손",
+      "description": "방어력이 절반으로 감소"
+    },
+    "Builder": {
+      "name": "건축가",
+      "description": "배치 속도 및 거리 증가"
+    },
+    "BunnyMount": {
+      "name": "토끼 탑승",
+      "description": "너는 지금 당근을 찾고 있구나"
+    },
+    "Burning": {
+      "name": "화상",
+      "description": "생명 상실 및 속도 감소"
+    },
+    "Calm": {
+      "name": "침착함",
+      "description": "적 스폰 속도 감소"
+    },
+    "Campfire": {
+      "name": "아늑한 불가",
+      "description": "생명 재생력 소폭 증가"
+    },
+    "CatBast": {
+      "name": "최선의방어",
+      "description": "방어력이 5 향상됨"
+    },
+    "CavelingGardener": {
+      "name": "케이브링 정원사",
+      "description": "훅 아르르 그룩 투!"
+    },
+    "ChaosState": {
+      "name": "혼돈 상태",
+      "description": "불화의 마법봉 사용 시 생명 소모"
+    },
+    "ChesterPet": {
+      "name": "체스터",
+      "description": "오토 폰 체스터필드 귀하."
+    },
+    "Chilled": {
+      "name": "한기",
+      "description": "이동 속도 감소"
+    },
+    "Clairvoyance": {
+      "name": "신통력",
+      "description": "마법 능력 증가"
+    },
+    "CobWhipPlayerBuff": {
+      "name": "채찍 거미",
+      "description": "당신을 위해 싸우는 거미를 소환합니다"
+    },
+    "CoffinMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "CompanionCube": {
+      "name": "동료 큐브",
+      "description": "당신을 찌르겠다고 위협하진 않지만, 실은 말을 못 하는 것뿐이랍니다."
+    },
+    "Confused": {
+      "name": "혼란",
+      "description": "이동 조작 반전"
+    },
+    "CoolWhipPlayerBuff": {
+      "name": "휼륭한 버프",
+      "description": "같이 싸워줄 눈송이를 소환"
+    },
+    "Crate": {
+      "name": "크레이트",
+      "description": "크레이트를 낚을 확률 대폭 증가"
+    },
+    "CrimsonHeart": {
+      "name": "진홍색 심장",
+      "description": "빛을 비추는 마법의 심장"
+    },
+    "Cursed": {
+      "name": "저주",
+      "description": "모든 아이템 사용 불가"
+    },
+    "CursedInferno": {
+      "name": "저주받은 지옥불",
+      "description": "생명 상실"
+    },
+    "CursedSapling": {
+      "name": "저주받은 묘목",
+      "description": "저주받은 묘목이 따라다님"
+    },
+    "CuteFishronMount": {
+      "name": "귀여운 피쉬론 탑승",
+      "description": "녀석이 땅을 기어다니게 하지 마세요."
+    },
+    "DD2BetsyPet": {
+      "name": "작은 벳시",
+      "description": "작은 벳시가 따라다님"
+    },
+    "DD2OgrePet": {
+      "name": "아기 오우거",
+      "description": "큰 몽둥이가 있는데 쓸 줄을 몰라요"
+    },
+    "Dangersense": {
+      "name": "위험 감지",
+      "description": "근처에 있는 위험 요소가 보임"
+    },
+    "DarkHorseMount": {
+      "name": "검은색 말 탑승",
+      "description": "검은색 말을 탐"
+    },
+    "DarkMageBookMount": {
+      "name": "책 탑승",
+      "description": "이제 책이 안내를 돕고 있습니다"
+    },
+    "Darkness": {
+      "name": "암흑",
+      "description": "빛의 시야 감소"
+    },
+    "Daybreak": {
+      "name": "여명의 영향",
+      "description": "태양 광선에 의한 소각"
+    },
+    "Dazed": {
+      "name": "멍함",
+      "description": "이동 속도 대폭 감소"
+    },
+    "DeadCellsMushroomBoiMinion": {
+      "name": "버섯 소년!",
+      "description": "머쉬룸 보이가 당신을 위해 싸웁니다"
+    },
+    "DeadCellsPotionStation": {
+      "name": "연금술 강화",
+      "description": "새로 얻은 버프가 더 오래 지속됩니다"
+    },
+    "DeadCellsSwarmBiter": {
+      "name": "벌레떼",
+      "description": "우적우적"
+    },
+    "DeadlySphere": {
+      "name": "치명적인 구체",
+      "description": "치명적인 구체가 같은 편으로 싸워줌"
+    },
+    "DeerclopsPet": {
+      "name": "작은 디어클롭스",
+      "description": "이럴 수가!"
+    },
+    "DesertMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DestroyerPet": {
+      "name": "파괴자 라이트",
+      "description": "끊임없는 파괴를 위하여"
+    },
+    "DiamondMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DiggingMoleMinecart": {
+      "name": "두더지 수레",
+      "description": "두더지 수레가 나를 위해 땅을 파줍니다"
+    },
+    "DirtiestBlock": {
+      "name": "가장 더러운 블록",
+      "description": "다른 흙을 통해 파악 가능"
+    },
+    "DrillMount": {
+      "name": "드릴 탑승",
+      "description": "비행 드릴에 탑승"
+    },
+    "DryadsWard": {
+      "name": "드라이어드의 축복",
+      "description": "자연의 힘이 그대를 보호하리라"
+    },
+    "DryadsWardDebuff": {
+      "name": "드라이어드의 저주",
+      "description": "자연의 힘이 그대를 압박하리라"
+    },
+    "DualSlimePet": {
+      "name": "슬라임 왕족",
+      "description": "최종 권한을 가진 그들이 왕국을 통일할 것이다!"
+    },
+    "DukeFishronPet": {
+      "name": "작은 피쉬론",
+      "description": "바다색 심연의 후작"
+    },
+    "DynamiteKitten": {
+      "name": "다이너마이트 고양이",
+      "description": "대포에 사용 불가"
+    },
+    "EaterOfWorldsPet": {
+      "name": "지렁이를 먹는 자",
+      "description": "마당 몇 군데는 망쳐놓을 듯"
+    },
+    "Electrified": {
+      "name": "전격",
+      "description": "이동 시 피해 발생!"
+    },
+    "EmeraldMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "EmpressBlade": {
+      "name": "테라프리즈마",
+      "description": "여제의 칼날이 함께 싸워줌"
+    },
+    "Endurance": {
+      "name": "지구력",
+      "description": "공격으로 받는 피해 10% 감소"
+    },
+    "EverscreamPet": {
+      "name": "에베스크림 묘목",
+      "description": "나무를 데리고 산책이나 가야지!"
+    },
+    "EyeOfCthulhuPet": {
+      "name": "수상한 눈",
+      "description": "눈 하나 빼놓고 다니는 것뿐..."
+    },
+    "EyeballSpring": {
+      "name": "눈알 용수철",
+      "description": "눈알 용수철이 따라다님"
+    },
+    "FairyBlue": {
+      "name": "요정",
+      "description": "요정이 따라다님"
+    },
+    "FairyGreen": {
+      "name": "요정",
+      "description": "요정이 따라다님"
+    },
+    "FairyQueenPet": {
+      "name": "요정 공주",
+      "description": "요정족의 빛은 모두를 비춘다"
+    },
+    "FairyRed": {
+      "name": "요정",
+      "description": "요정이 따라다님"
+    },
+    "FartMinecart": {
+      "name": "방귀 수레",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Featherfall": {
+      "name": "깃털 낙하",
+      "description": "상단 / 하단 키로 하강 속도 조절"
+    },
+    "FennecFox": {
+      "name": "페넥 여우",
+      "description": "여우가 뭐라고 하나요? 아니, 여우가 들은 게 뭔가요?"
+    },
+    "FishMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Fishing": {
+      "name": "낚시",
+      "description": "낚시 능력 증가"
+    },
+    "Flamingo": {
+      "name": "플라밍고",
+      "description": "플라밍고고고"
+    },
+    "FlinxMinion": {
+      "name": "플린스",
+      "description": "설원 플린스가 함께 싸워준다"
+    },
+    "Flipper": {
+      "name": "물갈퀴",
+      "description": "물에서도 평소처럼 이동"
+    },
+    "Frostburn": {
+      "name": "서리불꽃",
+      "description": "아주 뜨겁거나 아주 차갑거나. 어느 쪽이든 무지하게 아픕니다"
+    },
+    "Frostburn2": {
+      "name": "동상",
+      "description": "미치도록 뜨겁거나 미치도록 차갑거나... 어느 쪽이든 미치도록 아프다"
+    },
+    "Frozen": {
+      "name": "빙결",
+      "description": "움직일 수 없습니다!"
+    },
+    "GelBalloonBuff": {
+      "name": "반짝이는 슬라임",
+      "description": "질척이면서도 반짝이네"
+    },
+    "Gills": {
+      "name": "아가미",
+      "description": "액체 속에서 숨 쉴 수 있게 해줍니다"
+    },
+    "GlitteryButterfly": {
+      "name": "반짝거리는 나비",
+      "description": "진짜, 진짜 난리납니다"
+    },
+    "GlommerPet": {
+      "name": "글로머",
+      "description": "솜털 같아! 끈적끈적하기도 하네..."
+    },
+    "GolemPet": {
+      "name": "장난감 골렘",
+      "description": "울고 말하고 잠고 걸는, 살아 있는 우상을 얻었네!"
+    },
+    "GolfCartMount": {
+      "name": "골프 카트",
+      "description": "페어웨이를 가로지르는 괜찮은 방법"
+    },
+    "Gravitation": {
+      "name": "중력 조작",
+      "description": "상단 키를 누르면 중력 반전"
+    },
+    "HeartLamp": {
+      "name": "심장 등불",
+      "description": "생명 재생력 증가"
+    },
+    "Heartreach": {
+      "name": "심장 거리",
+      "description": "심장 습득 범위 증가"
+    },
+    "HeartyMeal": {
+      "name": "따뜻한 식사",
+      "description": "체력 회복이 빨라진다"
+    },
+    "HellMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Hemorrhage": {
+      "name": "출혈",
+      "description": "피를 많이 흘립니다"
+    },
+    "Honey": {
+      "name": "벌꿀",
+      "description": "생명 재생력 증가"
+    },
+    "HornetMinion": {
+      "name": "말벌",
+      "description": "말벌이 같은 편으로 싸워줌"
+    },
+    "Horrified": {
+      "name": "섬뜩한 공포",
+      "description": "끔찍한 무언가를 발견했습니다. 벗어날 방법은 없습니다."
+    },
+    "Hunger": {
+      "name": "배고픔",
+      "description": "쇠약해질 정도로 배고프다"
+    },
+    "Hunter": {
+      "name": "사냥꾼",
+      "description": "적의 위치 표시"
+    },
+    "IceBarrier": {
+      "name": "얼음 보호막",
+      "description": "공격으로 받는 피해 25% 감소"
+    },
+    "IceQueenPet": {
+      "name": "얼음 여왕",
+      "description": "얼음 여왕이 친구로 환생했어요"
+    },
+    "Ichor": {
+      "name": "영액",
+      "description": "방어력 감소"
+    },
+    "ImpMinion": {
+      "name": "임프",
+      "description": "임프가 같은 편으로 싸워줌"
+    },
+    "Inferno": {
+      "name": "지옥불",
+      "description": "주변 적들에게 불을 붙임"
+    },
+    "Invisibility": {
+      "name": "투명화",
+      "description": "투명화 능력 부여"
+    },
+    "Ironskin": {
+      "name": "강철 피부",
+      "description": "방어력 8 증가"
+    },
+    "JunimoPet": {
+      "name": "주니모",
+      "description": "숲의 수호자"
+    },
+    "KingSlimePet": {
+      "name": "슬라임 왕자",
+      "description": "더 높으신 분을 따르는 녀석"
+    },
+    "Kite": {
+      "name": "사기충천",
+      "description": "이동 속도, 채굴 속도, 배치 속도가 약간 증가합니다"
+    },
+    "LadybugMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "LavaSharkMount": {
+      "name": "용암 상어 탑승",
+      "description": "용암의 바다를 서핑한다!"
+    },
+    "LeafCrystal": {
+      "name": "나뭇잎 수정",
+      "description": "주변 적들에게 수정 잎사귀를 발사"
+    },
+    "Lifeforce": {
+      "name": "생명력",
+      "description": "최대 생명 20% 증가"
+    },
+    "LilHarpy": {
+      "name": "어린 하피",
+      "description": "하늘에서 내려온 귀여움"
+    },
+    "Lovestruck": {
+      "name": "상사병",
+      "description": "사랑에 빠졌습니다!"
+    },
+    "Lucky": {
+      "name": "행운의",
+      "description": "운이 좋을 것 같은 예감"
+    },
+    "LunaticCultistPet": {
+      "name": "판타즈멀 드래곤",
+      "description": "자꾸 달 쪽을 보네"
+    },
+    "MagicLantern": {
+      "name": "마법 등불",
+      "description": "길을 밝혀주는 마법 등불"
+    },
+    "MagicPower": {
+      "name": "마법 강화",
+      "description": "마법 공격력 20% 증가"
+    },
+    "MajesticHorseMount": {
+      "name": "장엄한 말 탑승",
+      "description": "장엄한 말을 탐"
+    },
+    "ManaRegeneration": {
+      "name": "마나 재생",
+      "description": "마나 재생력 증가"
+    },
+    "ManaSickness": {
+      "name": "마나 물림",
+      "description": "마법 공격력 감소"
+    },
+    "MartianPet": {
+      "name": "에일리언 스케이터",
+      "description": "인간 여러분, 안녕하세요?"
+    },
+    "MeowmereMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Merfolk": {
+      "name": "인어",
+      "description": "수중에서 호흡 및 편한 이동 가능"
+    },
+    "Midas": {
+      "name": "미다스",
+      "description": "사망 시 떨어뜨리는 돈 증가"
+    },
+    "Minecart": {
+      "name": "광산 수레",
+      "description": "광산 수레 타기"
+    },
+    "MinecartMech": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MinecartWood": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MiniMinotaur": {
+      "name": "파우누스",
+      "description": "그의 이름은 숀입니다"
+    },
+    "Mining": {
+      "name": "채굴",
+      "description": "채굴 속도 25% 증가"
+    },
+    "MonsterBanner": {
+      "name": "배너",
+      "description": "다음 대상에 대한 공격력 및 방어력 증가:"
+    },
+    "MoonLeech": {
+      "name": "달의 이빨",
+      "description": "생명 흡수 관련 효과를 누릴 수 없음"
+    },
+    "MoonLordPet": {
+      "name": "문링",
+      "description": "저세상에서 온 친구"
+    },
+    "NebulaUpDmg1": {
+      "name": "공격력 성운",
+      "description": "공격력 15% 증가"
+    },
+    "NebulaUpDmg2": {
+      "name": "공격력 성운",
+      "description": "공격력 30% 증가"
+    },
+    "NebulaUpDmg3": {
+      "name": "공격력 성운",
+      "description": "공격력 45% 증가"
+    },
+    "NebulaUpLife1": {
+      "name": "생명 성운",
+      "description": "생명 재생력 증가"
+    },
+    "NebulaUpLife2": {
+      "name": "생명 성운",
+      "description": "생명 재생력 증가"
+    },
+    "NebulaUpLife3": {
+      "name": "생명 성운",
+      "description": "생명 재생력 증가"
+    },
+    "NebulaUpMana1": {
+      "name": "마나 성운",
+      "description": "마나 재생력 증가"
+    },
+    "NebulaUpMana2": {
+      "name": "마나 성운",
+      "description": "마나 재생력 증가"
+    },
+    "NebulaUpMana3": {
+      "name": "마나 성운",
+      "description": "마나 재생력 증가"
+    },
+    "NeutralHunger": {
+      "name": "약간 배고픔",
+      "description": "뭔가 먹어야 하지만 그럭저럭 괜찮다"
+    },
+    "NightOwl": {
+      "name": "올빼미",
+      "description": "야간 시야 증가"
+    },
+    "NoBuilding": {
+      "name": "창조력 봉쇄",
+      "description": "창조하는 능력을 잃어버렸습니다!"
+    },
+    "ObsidianSkin": {
+      "name": "흑요석 피부",
+      "description": "용암 피해에 면역"
+    },
+    "Obstructed": {
+      "name": "차단",
+      "description": "아무것도 안 보여!"
+    },
+    "OgreSpit": {
+      "name": "점액",
+      "description": "이동 속도 대폭 감소"
+    },
+    "Oiled": {
+      "name": "기름",
+      "description": "불길에 휩싸일 때 더 큰 피해를 받음"
+    },
+    "OnFire": {
+      "name": "불이야!",
+      "description": "생명을 서서히 상실"
+    },
+    "OnFire3": {
+      "name": "지옥불",
+      "description": "체력을 조금씩 잃는다"
+    },
+    "PaintedHorseMount": {
+      "name": "색칠한 말 탑승",
+      "description": "색칠한 말을 탐"
+    },
+    "PaladinsShield": {
+      "name": "팔라딘의 방패",
+      "description": "받는 피해량의 25%를 다른 플레이어에게 전가"
+    },
+    "PalworldMinionCattiva": {
+      "name": "까부냥",
+      "description": "까부냥이 당신을 위해 싸웁니다"
+    },
+    "PalworldMinionFoxsparks": {
+      "name": "파이호",
+      "description": "파이호가 당신을 위해 싸웁니다"
+    },
+    "PalworldPetChillet": {
+      "name": "베비뇽",
+      "description": "베비뇽이 당신과 함께 탐험합니다\n움직임이 꽤 격렬합니다!"
+    },
+    "PalworldPetChilletIgnis": {
+      "name": "천도뇽",
+      "description": "천도뇽이 당신과 함께 탐험합니다\n너무 오래 쓰다듬으면 불꽃이 튈 수 있으니 주의하세요!"
+    },
+    "Panic": {
+      "name": "패닉!",
+      "description": "이동 속도 증가"
+    },
+    "ParryDamageBuff": {
+      "name": "순간의 일격",
+      "description": "다음 근접 공격력 400% 증가"
+    },
+    "PartyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PeaceCandle": {
+      "name": "평화의 양초",
+      "description": "몬스터 스폰 속도 감소"
+    },
+    "PetBunny": {
+      "name": "애완용 토끼",
+      "description": "당신의 당근을 원하는 것 같습니다"
+    },
+    "PetDD2Dragon": {
+      "name": "호드래곤",
+      "description": "호드래곤이 따라다님"
+    },
+    "PetDD2Gato": {
+      "name": "프로펠러 가토",
+      "description": "프로펠러 가토가 따라다님"
+    },
+    "PetDD2Ghost": {
+      "name": "플리커윅",
+      "description": "플리커윅이 따라다님"
+    },
+    "PetLizard": {
+      "name": "애완용 도마뱀",
+      "description": "파충류 인간처럼 멋진 녀석"
+    },
+    "PetParrot": {
+      "name": "애완용 앵무새",
+      "description": "폴리는 과자가 먹고 싶어요"
+    },
+    "PetSapling": {
+      "name": "애완용 묘목",
+      "description": "작은 묘목이 따라다님"
+    },
+    "PetSpider": {
+      "name": "애완용 거미",
+      "description": "거미가 따라다님"
+    },
+    "PetTurtle": {
+      "name": "애완용 거북이",
+      "description": "거북이와 즐거운 시간!"
+    },
+    "PigPet": {
+      "name": "돼지",
+      "description": "베이컨이 걸어 다닌다!"
+    },
+    "PigronMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PigronMount": {
+      "name": "피그론 탑승",
+      "description": "이제 내가 보이니..."
+    },
+    "PirateMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PirateMinion": {
+      "name": "해적",
+      "description": "해적이 같은 편으로 싸워줌"
+    },
+    "PirateShipMount": {
+      "name": "해적선 탑승",
+      "description": "선장이 되셨습니다"
+    },
+    "PixieMount": {
+      "name": "요정의 형상",
+      "description": "픽시로 변신했습니다!"
+    },
+    "PlanteraPet": {
+      "name": "플랜테라 묘목",
+      "description": "대체 뭘 먹여야 하는 거지?"
+    },
+    "Plantero": {
+      "name": "플랜테로",
+      "description": "작은 플랜테로가 따라다님"
+    },
+    "PogoStickMount": {
+      "name": "스카이콩콩 탑승",
+      "description": "콩! 콩! 콩!"
+    },
+    "Poisoned": {
+      "name": "중독",
+      "description": "생명을 서서히 상실"
+    },
+    "PotionSickness": {
+      "name": "물약 물림",
+      "description": "치유 아이템을 더 이상 소모할 수 없음"
+    },
+    "Pufferfish": {
+      "name": "복어",
+      "description": "복어 동료가 나를 따라다닙니다"
+    },
+    "PumpkingPet": {
+      "name": "잭 오 랜턴",
+      "description": "작은 호박등이 기괴하게 길을 밝히네"
+    },
+    "Puppy": {
+      "name": "강아지",
+      "description": "강아지가 따라다님"
+    },
+    "Pygmies": {
+      "name": "피그미",
+      "description": "피그미가 같은 편으로 싸워줌"
+    },
+    "QueenBeePet": {
+      "name": "꿀벌",
+      "description": "꿀벌이 따라다님"
+    },
+    "QueenSlimeMount": {
+      "name": "날개 달린 슬라임 탑승",
+      "description": "부우웅 푸드덕 부우웅!"
+    },
+    "QueenSlimePet": {
+      "name": "슬라임 공주",
+      "description": "그녀가 바로 높으신 분"
+    },
+    "Rabies": {
+      "name": "광견병",
+      "description": "공격력 증가, 생명 재생력 감소, 상태 이상 효과 유발"
+    },
+    "Rage": {
+      "name": "분노",
+      "description": "치명타 확률 10% 증가"
+    },
+    "RainbowBoulderPet": {
+      "name": "친근한 무지개 바위",
+      "description": "친근한 무지개 바위가 당신과 함께 굴러다닙니다"
+    },
+    "RapidHealing": {
+      "name": "급속 치유",
+      "description": "생명 재생력 대폭 증가"
+    },
+    "RatMount": {
+      "name": "쥐의 특성",
+      "description": "쥐로 변했습니다!"
+    },
+    "Ravens": {
+      "name": "까마귀",
+      "description": "까마귀들이 적들을 공격"
+    },
+    "Regeneration": {
+      "name": "재생",
+      "description": "생명 재생 제공"
+    },
+    "RollerSkatesGreenMount": {
+      "name": "초록색 롤러스케이트",
+      "description": "이게 내 스타일이야"
+    },
+    "RollerSkatesMount": {
+      "name": "파란색 롤러스케이트",
+      "description": "이게 내 스타일이야"
+    },
+    "RollerSkatesPinkMount": {
+      "name": "파티 롤러스케이트",
+      "description": "이게 내 스타일이야"
+    },
+    "RollerSkatesWhiteMount": {
+      "name": "클래식 롤러스케이트",
+      "description": "이게 내 스타일이야"
+    },
+    "RubyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Rudolph": {
+      "name": "루돌프",
+      "description": "코가 빨간 순록에 탑승"
+    },
+    "SantankMount": {
+      "name": "산타NK 탑승",
+      "description": "나쁜 애들에게 선물을 주는 중..."
+    },
+    "SapphireMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "ScutlixMount": {
+      "name": "스쿠트릭스 탑승",
+      "description": "피융 피융"
+    },
+    "ScytheWhipPlayerBuff": {
+      "name": "수확의 시간",
+      "description": "채찍 속도 증가"
+    },
+    "ShadowCandle": {
+      "name": "그림자 양초",
+      "description": "마을의 평화 상태 해제"
+    },
+    "ShadowDodge": {
+      "name": "성스러운 보호",
+      "description": "다음에 받는 공격을 회피"
+    },
+    "ShadowFlame": {
+      "name": "그림자불꽃",
+      "description": "생명 상실"
+    },
+    "ShadowMimic": {
+      "name": "그림자 미믹",
+      "description": "그림자 미믹이 따라다님"
+    },
+    "ShadowOrb": {
+      "name": "그림자 구체",
+      "description": "빛을 비추는 마법 구체"
+    },
+    "SharkPup": {
+      "name": "새끼 상어",
+      "description": "두 두 두 두 두 두"
+    },
+    "SharknadoMinion": {
+      "name": "샤크네이도",
+      "description": "샤크네이도가 같은 편으로 싸워줌"
+    },
+    "Sharpened": {
+      "name": "날카로움",
+      "description": "근접 무기가 방어구 관통력을 지님"
+    },
+    "Shimmer": {
+      "name": "미광",
+      "description": "실체가 사라졌습니다!"
+    },
+    "Shine": {
+      "name": "빛",
+      "description": "빛을 방출"
+    },
+    "ShroomMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Silenced": {
+      "name": "침묵",
+      "description": "마나를 요구하는 아이템 사용 불가"
+    },
+    "SkeletronPet": {
+      "name": "스켈레트론 주니어",
+      "description": "스켈레트론 주니어가 따라다님"
+    },
+    "SkeletronPrimePet": {
+      "name": "미니 프라임",
+      "description": "하나하나가 살인 병기"
+    },
+    "SlimeMount": {
+      "name": "슬라임 탑승",
+      "description": "띠용~!"
+    },
+    "Slimed": {
+      "name": "슬라임",
+      "description": "질척거리고 끈적거리는 상태"
+    },
+    "Slow": {
+      "name": "느린",
+      "description": "이동 속도 감소"
+    },
+    "Smolstar": {
+      "name": "마법에 걸린 단검",
+      "description": "수없이 베어서 사망"
+    },
+    "SolarShield1": {
+      "name": "태양의 광휘",
+      "description": "받는 대미지의 20%를 흡수하고, 대미지를 입으면 적을 튕겨냅니다"
+    },
+    "SolarShield2": {
+      "name": "태양의 광휘",
+      "description": "받는 대미지의 20%를 흡수하고, 대미지를 입으면 적을 튕겨냅니다"
+    },
+    "SolarShield3": {
+      "name": "태양의 광휘",
+      "description": "받는 대미지의 20%를 흡수하고, 대미지를 입으면 적을 튕겨냅니다"
+    },
+    "Sonar": {
+      "name": "음파 감지",
+      "description": "낚싯바늘을 문 대상을 볼 수 있음"
+    },
+    "SoulDrain": {
+      "name": "생명 흡수",
+      "description": "생명 재생력 증가"
+    },
+    "Spelunker": {
+      "name": "탐광자",
+      "description": "보물 및 광석 위치 표시"
+    },
+    "SpiderMinion": {
+      "name": "거미",
+      "description": "거미가 같은 편으로 싸워줌"
+    },
+    "Spiffo": {
+      "name": "스피포",
+      "description": "'넌 이렇게 죽는 거야.'"
+    },
+    "SpookyWoodMount": {
+      "name": "나무 탑승",
+      "description": "달려, 포레스트, 달려!"
+    },
+    "Squashling": {
+      "name": "스쿼실링",
+      "description": "스쿼실링이 따라다님"
+    },
+    "StarInBottle": {
+      "name": "병 안의 별",
+      "description": "마나 재생력 증가"
+    },
+    "StardustDragonMinion": {
+      "name": "소성단의 드래곤",
+      "description": "소성단의 드래곤의 보호를 받음"
+    },
+    "StardustGuardianMinion": {
+      "name": "소성단의 수호자",
+      "description": "소성단의 수호자의 보호를 받음"
+    },
+    "StardustMinion": {
+      "name": "소성단의 세포",
+      "description": "소성단의 세포가 같은 편으로 싸워줌"
+    },
+    "StardustMinionBleed": {
+      "name": "세포화",
+      "description": "세포에 잡아먹힘"
+    },
+    "Starving": {
+      "name": "심한 배고픔",
+      "description": "굶어 죽기 직전이야! 당장 음식을 먹어야 해!"
+    },
+    "SteampunkMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Stinky": {
+      "name": "악취",
+      "description": "끔찍한 냄새를 풍김"
+    },
+    "Stoned": {
+      "name": "석화",
+      "description": "몸이 완전히 굳어버렸습니다!"
+    },
+    "StormTiger": {
+      "name": "사막 호랑이",
+      "description": "사막 호랑이가 같은 편에서 싸워줌"
+    },
+    "Suffocation": {
+      "name": "질식",
+      "description": "생명 상실"
+    },
+    "SugarGlider": {
+      "name": "날다람쥐",
+      "description": "날다람쥐가 따라다님"
+    },
+    "SugarRush": {
+      "name": "슈가 러시",
+      "description": "이동 및 채굴 속도 20% 증가"
+    },
+    "Summoning": {
+      "name": "소환",
+      "description": "최대 소환수 수가 1 증가합니다"
+    },
+    "Sunflower": {
+      "name": "행복해!",
+      "description": "이동 속도 증가, 몬스터 스폰 속도 감소"
+    },
+    "SunflowerMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "SuspiciousTentacle": {
+      "name": "수상해 보이는 눈",
+      "description": "빛을 비추는 수상해 보이는 눈"
+    },
+    "Swiftness": {
+      "name": "신속",
+      "description": "이동 속도 25% 증가"
+    },
+    "SwordWhipPlayerBuff": {
+      "name": "듀란달의 축복",
+      "description": "채찍 속도 증가"
+    },
+    "TerraFartMinecart": {
+      "name": "테라 방귀 수레",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TheTongue": {
+      "name": "혓바닥",
+      "description": "입속으로 끌려가고 있습니다"
+    },
+    "ThornWhipPlayerBuff": {
+      "name": "정글의 격노",
+      "description": "채찍 속도 증가"
+    },
+    "Thorns": {
+      "name": "가시",
+      "description": "공격한 대상도 피해를 받음"
+    },
+    "TikiSpirit": {
+      "name": "티키 정령",
+      "description": "친숙한 정령이 따라다님"
+    },
+    "Tipsy": {
+      "name": "취함",
+      "description": "근접 능력 증가, 방어력 감소"
+    },
+    "Titan": {
+      "name": "거인",
+      "description": "밀쳐내기 증가"
+    },
+    "TitaniumStorm": {
+      "name": "티타늄 방배",
+      "description": "티타늄 파편이 주위를 둘러쌉니다"
+    },
+    "TopazMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TorchGodPotion": {
+      "name": "횃불의 축복",
+      "description": "주변 횃불이 생물 군계에 맞게 변환됩니다"
+    },
+    "TurtleMount": {
+      "name": "거북 탑승",
+      "description": "땅에서는 느릿, 바다에서는 씽씽"
+    },
+    "TwinEyesMinion": {
+      "name": "쌍둥이",
+      "description": "쌍둥이가 같은 편으로 싸워줌"
+    },
+    "TwinsPet": {
+      "name": "레즈와 스파즈",
+      "description": "눈이 참 예쁘시네요!"
+    },
+    "UFOMinion": {
+      "name": "UFO",
+      "description": "UFO가 같은 편으로 싸워줌"
+    },
+    "UFOMount": {
+      "name": "UFO 탑승",
+      "description": "MAC이 있었으면 좋았을 텐데"
+    },
+    "UnicornMount": {
+      "name": "유니콘 탑승",
+      "description": "전방을 향해... 멋드러지게 돌격하라!"
+    },
+    "UpbeatStar": {
+      "name": "에스티",
+      "description": "에스티가 따라다님"
+    },
+    "VampireFrog": {
+      "name": "흡혈 개구리",
+      "description": "흡혈 개구리가 같은 편으로 싸워줌"
+    },
+    "VelociraptorMount": {
+      "name": "랩터의 본능",
+      "description": "벨로시랩터로 변했습니다!"
+    },
+    "Venom": {
+      "name": "산성 맹독",
+      "description": "생명 상실"
+    },
+    "VoltBunny": {
+      "name": "볼트 토끼",
+      "description": "전기 토끼가 무척 따름"
+    },
+    "VortexDebuff": {
+      "name": "왜곡",
+      "description": "주변 중력이 왜곡됨"
+    },
+    "WallOfFleshGoatMount": {
+      "name": "염소 탑승",
+      "description": "메탈 음악을 틀어주세요!"
+    },
+    "WarTable": {
+      "name": "전략가",
+      "description": "최대 센트리 수가 1 증가합니다"
+    },
+    "Warmth": {
+      "name": "온기",
+      "description": "차가운 요인으로 인해 받는 피해 감소"
+    },
+    "WaterCandle": {
+      "name": "물 양초",
+      "description": "몬스터 스폰 속도 증가"
+    },
+    "WaterWalking": {
+      "name": "수상보행",
+      "description": "하단 키를 누르면 입수"
+    },
+    "Weak": {
+      "name": "약한",
+      "description": "신체 능력 감소"
+    },
+    "WeaponImbueConfetti": {
+      "name": "무기 주입: 색종이 조각",
+      "description": "근접 공격 시 색종이 조각 등장"
+    },
+    "WeaponImbueCursedFlames": {
+      "name": "무기 주입: 저주받은 불꽃",
+      "description": "근접 공격 시 적에게 저주받은 불꽃 부여"
+    },
+    "WeaponImbueFire": {
+      "name": "무기 주입: 화염",
+      "description": "근접 공격 시 적에게 불을 붙임"
+    },
+    "WeaponImbueGold": {
+      "name": "무기 주입: 금",
+      "description": "근접 공격 시 적이 떨어트리는 돈 증가"
+    },
+    "WeaponImbueIchor": {
+      "name": "무기 주입: 영액",
+      "description": "근접 공격 시 적의 방어력 감소"
+    },
+    "WeaponImbueNanites": {
+      "name": "무기 주입: 나나이트",
+      "description": "근접 공격 시 적에게 혼란 유발"
+    },
+    "WeaponImbuePoison": {
+      "name": "무기 주입: 중독",
+      "description": "근접 공격 시 적에게 중독 유발"
+    },
+    "WeaponImbueVenom": {
+      "name": "무기 주입: 산성 맹독",
+      "description": "근접 공격 시 대상에게 산성 맹독 유발"
+    },
+    "Webbed": {
+      "name": "거미줄",
+      "description": "이동 봉쇄"
+    },
+    "WellFed": {
+      "name": "배부름",
+      "description": "모든 능력치 소폭 향상"
+    },
+    "WellFed2": {
+      "name": "매우 만족스러움",
+      "description": "모든 능력치 중간 정도의 폭으로 향상"
+    },
+    "WellFed3": {
+      "name": "절묘하게 채워짐",
+      "description": "모든 능력치 대폭 향상"
+    },
+    "Werewolf": {
+      "name": "늑대인간",
+      "description": "신체 능력 증가"
+    },
+    "Wet": {
+      "name": "젖음",
+      "description": "물을 뚝뚝 흘리는 중"
+    },
+    "WindPushed": {
+      "name": "강풍",
+      "description": "바람의 힘에 끌려다닙니다!"
+    },
+    "Wisp": {
+      "name": "위스프",
+      "description": "위스프가 따라다님"
+    },
+    "WitchBroom": {
+      "name": "마녀의 빗자루",
+      "description": "날아다닌다! 마술이다!"
+    },
+    "WitheredArmor": {
+      "name": "방어구 약화",
+      "description": "방어력이 감소합니다!"
+    },
+    "WitheredWeapon": {
+      "name": "무기 약화",
+      "description": "위력이 약해집니다!"
+    },
+    "WolfMount": {
+      "name": "달의 축복",
+      "description": "늑대로 변했습니다!"
+    },
+    "Wrath": {
+      "name": "진노",
+      "description": "공격력 10% 증가"
+    },
+    "ZephyrFish": {
+      "name": "서풍의 물고기",
+      "description": "플레이어 주변을 헤엄치길 좋아함"
+    }
+  },
   "npcs": {
     "AncientCultistSquidhead": "고대의 화신",
     "AncientDoom": "고대의 파멸",

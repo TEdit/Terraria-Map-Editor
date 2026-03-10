@@ -11,6 +11,9 @@ public class LocalizationData
     [JsonPropertyName("items")]
     public Dictionary<string, string> Items { get; set; } = new();
 
+    [JsonPropertyName("buffs")]
+    public Dictionary<string, BuffLocalization> Buffs { get; set; } = new();
+
     [JsonPropertyName("npcs")]
     public Dictionary<string, string> Npcs { get; set; } = new();
 
@@ -22,4 +25,13 @@ public class LocalizationData
 
     [JsonPropertyName("walls")]
     public Dictionary<string, string> Walls { get; set; } = new();
+}
+
+public class BuffLocalization
+{
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+
+    [JsonPropertyName("description")]
+    public string Description { get; set; } = string.Empty;
 }

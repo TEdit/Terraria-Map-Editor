@@ -6984,6 +6984,1368 @@
     "ZombieFish": "Peixe Zumbi",
     "ZombieMermanBanner": "Bandeira do Tritão Zumbi"
   },
+  "buffs": {
+    "AbigailMinion": {
+      "name": "Abigail",
+      "description": "Abigail lutará para proteger você"
+    },
+    "AmberMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmethystMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmmoBox": {
+      "name": "Caixa de Munição",
+      "description": "20% de chance de economizar munição"
+    },
+    "AmmoReservation": {
+      "name": "Reserva de Munição",
+      "description": "20% de chance de economizar munição"
+    },
+    "Archery": {
+      "name": "Arco e flecha",
+      "description": "10% de aumento de dano com arcos e 20% de aumento de velocidade de flechas"
+    },
+    "AxeFairyPet": {
+      "name": "Machadacen",
+      "description": "Machado não é roubado."
+    },
+    "BabyBird": {
+      "name": "Filhote de Canário",
+      "description": "O filhote de canário vai lutar por você"
+    },
+    "BabyDinosaur": {
+      "name": "Filhote de Dinossauro",
+      "description": "Um filhote de dinossauro está seguindo você"
+    },
+    "BabyEater": {
+      "name": "Devorador Bebê",
+      "description": "Um filhote de Devorador de Almas está seguindo você"
+    },
+    "BabyFaceMonster": {
+      "name": "Monstro da Face Bebê",
+      "description": "Um monstro da face bebê está seguindo você\n"
+    },
+    "BabyGrinch": {
+      "name": "Filhote de Grinch",
+      "description": "Um filhote de grinch está seguindo você"
+    },
+    "BabyHornet": {
+      "name": "Filhote de Vespa",
+      "description": "Ele acha que você é sua mãe"
+    },
+    "BabyImp": {
+      "name": "Filhote de Demônio",
+      "description": "Só espera ele crescer um pouquinho!"
+    },
+    "BabyPenguin": {
+      "name": "Filhote de Pinguim",
+      "description": "Eu acho que ele quer seus peixes"
+    },
+    "BabyRedPanda": {
+      "name": "Filhote de Panda-vermelho",
+      "description": "Um panda-vermelho bebê está seguindo você"
+    },
+    "BabySkeletronHead": {
+      "name": "Cabeça de Esqueletron Bebê",
+      "description": "Não me pergunte..."
+    },
+    "BabySlime": {
+      "name": "Bebê de Geleia",
+      "description": "O filhote de geleia vai lutar por você"
+    },
+    "BabySnowman": {
+      "name": "Filhote de Boneco de Neve",
+      "description": "Um filhote de boneco de neve está seguindo você"
+    },
+    "BabyTruffle": {
+      "name": "Filhote de Trufa",
+      "description": "Não é a coisa mais fofa do mundo?"
+    },
+    "BabyWerewolf": {
+      "name": "Filhote de Lobisomem",
+      "description": "Um bebê lobisomem está seguindo você"
+    },
+    "BallistaPanic": {
+      "name": "Balista em Pânico!",
+      "description": "Suas balistas atiram rapidamente em pânico!"
+    },
+    "BasiliskMount": {
+      "name": "Montaria do Basilisco",
+      "description": "Bate em qualquer um... e em TODOS!"
+    },
+    "BatMount": {
+      "name": "Maldição do Morcego",
+      "description": "Você se transformou em um morcego!"
+    },
+    "BatOfLight": {
+      "name": "Morcego Sanguinário ",
+      "description": "O morcego sanguinário vai lutar por você "
+    },
+    "Battle": {
+      "name": "Batalha",
+      "description": "Taxa de criação de inimigos maior"
+    },
+    "BeeMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BeeMount": {
+      "name": "Montaria da Abelha",
+      "description": "BzzzBzzBZZZZBzzz"
+    },
+    "BeetleEndurance1": {
+      "name": "Resistência por Besouros",
+      "description": "Absorve 15% do dano sofrido."
+    },
+    "BeetleEndurance2": {
+      "name": "Resistência por Besouros",
+      "description": "Absorve 30% do dano sofrido."
+    },
+    "BeetleEndurance3": {
+      "name": "Resistência por Besouros",
+      "description": "Absorve 45% do dano sofrido."
+    },
+    "BeetleMight1": {
+      "name": "Poder dos Besouros",
+      "description": "Aumento de 10% nos danos físicos e na velocidade"
+    },
+    "BeetleMight2": {
+      "name": "Poder dos Besouros",
+      "description": "Aumento de 20% nos danos físicos e na velocidade"
+    },
+    "BeetleMight3": {
+      "name": "Poder dos Besouros",
+      "description": "Danos físicos e velocidade aumentam em 30%"
+    },
+    "BeetleMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BerniePet": {
+      "name": "Bernie",
+      "description": "Você está sempre lá para me ajudar, Bernie"
+    },
+    "BetsysCurse": {
+      "name": "Maldição de Betsy",
+      "description": "Diminuição da defesa"
+    },
+    "Bewitched": {
+      "name": "Enfeitiçado",
+      "description": "Aumentou seu número máximo de lacaios em 1."
+    },
+    "BiomeSight": {
+      "name": "Visão do Bioma",
+      "description": "Mostro o local de blocos infectados"
+    },
+    "BlackCat": {
+      "name": "Gato Preto",
+      "description": "Um gatinho preto está seguindo você"
+    },
+    "Blackout": {
+      "name": "Apagão",
+      "description": "A visão da luz é extremamente reduzida"
+    },
+    "Bleeding": {
+      "name": "Sangrando",
+      "description": "Não é possível regenerar a vida"
+    },
+    "BloodButcherer": {
+      "name": "Massacrado Sangrento",
+      "description": "Sangrando rapidamente"
+    },
+    "BlueChickenPet": {
+      "name": "Galinha Azul",
+      "description": "A plaquinha com o nome diz “Shane”"
+    },
+    "BoneJavelin": {
+      "name": "Penetrado",
+      "description": "Sangrando"
+    },
+    "BoulderPet": {
+      "name": "Rochedo amigável",
+      "description": "Um rochedo amigável está rolando ao redor de você."
+    },
+    "BrainOfConfusionBuff": {
+      "name": "Truque Cerebral",
+      "description": "Aumentou a chance de crítico e o dano de lacaios."
+    },
+    "BrainOfCthulhuPet": {
+      "name": "Cérebro de Aranha",
+      "description": "Está se arrastando... eca"
+    },
+    "BrokenArmor": {
+      "name": "Armadura Quebrada",
+      "description": "A defesa foi cortada pela metade"
+    },
+    "Builder": {
+      "name": "Construtor",
+      "description": "Maior velocidade e alcance no posicionamento"
+    },
+    "BunnyMount": {
+      "name": "Montaria de Coelho",
+      "description": "Você está com desejo por cenouras"
+    },
+    "Burning": {
+      "name": "Queimando",
+      "description": "Perde uma vida e tem os movimentos desacelerados"
+    },
+    "Calm": {
+      "name": "Calma",
+      "description": "Diminui a taxa de criação de inimigos"
+    },
+    "Campfire": {
+      "name": "Fogo Aconchegante",
+      "description": "Regeneração de vida levemente maior"
+    },
+    "CatBast": {
+      "name": "A Defesa do Bastet",
+      "description": "A defesa aumenta em 5"
+    },
+    "CavelingGardener": {
+      "name": "Jardineiro Cavernoso",
+      "description": "Huk arrr gruk tu!"
+    },
+    "ChaosState": {
+      "name": "Estado de Caos",
+      "description": "Usar o Cajado da discórdia vai consumir sua vida"
+    },
+    "ChesterPet": {
+      "name": "Chester",
+      "description": "Doutor Otto von Chesterfield"
+    },
+    "Chilled": {
+      "name": "Resfriado",
+      "description": "A velocidade de seus movimentos foi reduzida"
+    },
+    "Clairvoyance": {
+      "name": "Clarividência",
+      "description": "Os poderes mágicos ficam mais fortes"
+    },
+    "CobWhipPlayerBuff": {
+      "name": "Aranha do Chicote",
+      "description": "Invoca uma aranha para lutar por você"
+    },
+    "CoffinMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "CompanionCube": {
+      "name": "Cubo Companheiro",
+      "description": "Nunca ameaçará esfaquear você e, na verdade, não é capaz de falar"
+    },
+    "Confused": {
+      "name": "Confuso",
+      "description": "Os movimentos são invertidos"
+    },
+    "CoolWhipPlayerBuff": {
+      "name": "Reforço Legal",
+      "description": "Invoca um floco de neve para lutar por você"
+    },
+    "Crate": {
+      "name": "Caixote",
+      "description": "Maior chance de pescar um caixote"
+    },
+    "CrimsonHeart": {
+      "name": "Coração de Carmim",
+      "description": "Um coração mágico que fornece luz"
+    },
+    "Cursed": {
+      "name": "Amaldiçoado",
+      "description": "Não é possível utilizar qualquer item"
+    },
+    "CursedInferno": {
+      "name": "Inferno Amaldiçoado",
+      "description": "Perdendo vida"
+    },
+    "CursedSapling": {
+      "name": "Plantinha Amaldiçoada",
+      "description": "Uma plantinha amaldiçoada está seguindo você"
+    },
+    "CuteFishronMount": {
+      "name": "Montaria do Peixe-dragão Fofinho",
+      "description": "Só não faça ele rastejar."
+    },
+    "DD2BetsyPet": {
+      "name": "Betsy Pequenina",
+      "description": "A Betsy Pequenina está seguindo você"
+    },
+    "DD2OgrePet": {
+      "name": "Filhote de Ogro",
+      "description": "Ele tem uma clava grande e não sabe como usá-la"
+    },
+    "Dangersense": {
+      "name": "Instinto-perigo",
+      "description": "Você pode ver ameaças próximas"
+    },
+    "DarkHorseMount": {
+      "name": "Montaria Cavalo Sombrio",
+      "description": "Montado em um Cavalo Sombrio"
+    },
+    "DarkMageBookMount": {
+      "name": "Montaria Livro",
+      "description": "O Livro ajuda a guiar você"
+    },
+    "Darkness": {
+      "name": "Trevas",
+      "description": "Menor visão da luz"
+    },
+    "Daybreak": {
+      "name": "Queimado pelo Sol",
+      "description": "Incinerado por raios solares"
+    },
+    "Dazed": {
+      "name": "Atordoado",
+      "description": "Os movimentos são desacelerados consideravelmente"
+    },
+    "DeadCellsMushroomBoiMinion": {
+      "name": "Garoto Cogumelo!",
+      "description": "O Garoto Cogumelo lutará por você"
+    },
+    "DeadCellsPotionStation": {
+      "name": "Aprimoramento Alquímico",
+      "description": "Bônus recentes duram mais"
+    },
+    "DeadCellsSwarmBiter": {
+      "name": "Mordedor do Enxame",
+      "description": "Nhac nhac"
+    },
+    "DeadlySphere": {
+      "name": "Esfera Mortal",
+      "description": "A Esfera Mortal lutará por você"
+    },
+    "DeerclopsPet": {
+      "name": "Cervoclope Pequeno",
+      "description": "Minha nossa!"
+    },
+    "DesertMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DestroyerPet": {
+      "name": "Minidestruidor",
+      "description": "Destruição portátil"
+    },
+    "DiamondMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DiggingMoleMinecart": {
+      "name": "Carrotatu Escavador",
+      "description": "O Carrotatu vai cavar por você"
+    },
+    "DirtiestBlock": {
+      "name": "O Bloco Mais Sujo",
+      "description": "Dá para dizer pela terra extra"
+    },
+    "DrillMount": {
+      "name": "Montaria de Furadeira",
+      "description": "Andando em uma furadeira voadora"
+    },
+    "DryadsWard": {
+      "name": "Bênção da Dríade",
+      "description": "O poder da natureza protege você"
+    },
+    "DryadsWardDebuff": {
+      "name": "Maldição da Dríade",
+      "description": "O poder da natureza comanda você"
+    },
+    "DualSlimePet": {
+      "name": "Geleias Reais",
+      "description": "A autoridade suprema que unirá os reinos!"
+    },
+    "DukeFishronPet": {
+      "name": "Peixe-dragão Pequeno",
+      "description": "Um marquês do abismo verde-água"
+    },
+    "DynamiteKitten": {
+      "name": "Gatinho Dinamite",
+      "description": "Não use em canhões"
+    },
+    "EaterOfWorldsPet": {
+      "name": "Devorador de Vermes",
+      "description": "Talvez arruíne alguns quintais"
+    },
+    "Electrified": {
+      "name": "Eletrificado",
+      "description": "Mexer dói!"
+    },
+    "EmeraldMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "EmpressBlade": {
+      "name": "Terraprisma",
+      "description": "A Lâmina da Imperatriz lutará por você"
+    },
+    "Endurance": {
+      "name": "Resistência",
+      "description": "Redução de 10% nos danos"
+    },
+    "EverscreamPet": {
+      "name": "Muda de Everscream",
+      "description": "Leve a árvore para passear!"
+    },
+    "EyeOfCthulhuPet": {
+      "name": "Olho Suspeito",
+      "description": "Só observando..."
+    },
+    "EyeballSpring": {
+      "name": "Olho Saltitante",
+      "description": "Um olho saltitante está seguindo você"
+    },
+    "FairyBlue": {
+      "name": "Fada",
+      "description": "Uma fada vai seguir você"
+    },
+    "FairyGreen": {
+      "name": "Fada",
+      "description": "Uma fada vai seguir você"
+    },
+    "FairyQueenPet": {
+      "name": "Princesa Fada",
+      "description": "A luz das fadas ilumina tudo"
+    },
+    "FairyRed": {
+      "name": "Fada",
+      "description": "Uma fada vai seguir você"
+    },
+    "FartMinecart": {
+      "name": "Carrinho Peidinho",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Featherfall": {
+      "name": "Queda de Penas",
+      "description": "Pressione PARA CIMA ou PARA BAIXO para controlar a velocidade da descida"
+    },
+    "FennecFox": {
+      "name": "Feneco",
+      "description": "O essencial é invisível aos olhos. Mas nada escapa a estas orelhas!"
+    },
+    "FishMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Fishing": {
+      "name": "Pescaria",
+      "description": "Maior poder de pescaria"
+    },
+    "Flamingo": {
+      "name": "Flamingo",
+      "description": "Flamingogogo"
+    },
+    "FlinxMinion": {
+      "name": "Flinx",
+      "description": "O flinx de neve lutará por você"
+    },
+    "Flipper": {
+      "name": "Nadadeira",
+      "description": "Mova-se normalmente embaixo d'água"
+    },
+    "Frostburn": {
+      "name": "Queimadura de Gelo",
+      "description": "Ou está bem quente ou bem frio. De qualquer maneira, machuca MUITO"
+    },
+    "Frostburn2": {
+      "name": "Queimadura de Frio",
+      "description": "Ou está bem quente ou bem frio. De qualquer maneira, machuca MUITO"
+    },
+    "Frozen": {
+      "name": "Congelado",
+      "description": "Você não pode mover-se!"
+    },
+    "GelBalloonBuff": {
+      "name": "Geleia Brilhante",
+      "description": "Você é melequento e brilhante"
+    },
+    "Gills": {
+      "name": "Guelras",
+      "description": "Permite que você respire líquidos."
+    },
+    "GlitteryButterfly": {
+      "name": "Borboleta Brilhante",
+      "description": "Quase tão colorida quanto um balão mágico"
+    },
+    "GlommerPet": {
+      "name": "Glommer",
+      "description": "É crespo! E gosmento..."
+    },
+    "GolemPet": {
+      "name": "Golem de Brinquedo",
+      "description": "Este é o golem. Este aqui também é o golem. E este golem vai brincar na sua casa!"
+    },
+    "GolfCartMount": {
+      "name": "Carrinho de Golfe",
+      "description": "Atravesse os gramados com estilo"
+    },
+    "Gravitation": {
+      "name": "Gravitação",
+      "description": "Pressione PARA CIMA para reverter a gravidade"
+    },
+    "HeartLamp": {
+      "name": "Lâmpada do Coração",
+      "description": "A regeneração de vida aumenta"
+    },
+    "Heartreach": {
+      "name": "Agarra-corações",
+      "description": "Maior alcance de coleta de corações"
+    },
+    "HeartyMeal": {
+      "name": "Refeição Farta",
+      "description": "Regeneração de vida maior"
+    },
+    "HellMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Hemorrhage": {
+      "name": "Hemorragia",
+      "description": "Sangrando profusamente."
+    },
+    "Honey": {
+      "name": "Mel",
+      "description": "A regeneração de vida aumentou"
+    },
+    "HornetMinion": {
+      "name": "Vespa",
+      "description": "A vespa lutará por você"
+    },
+    "Horrified": {
+      "name": "Aterrorizado",
+      "description": "Você viu algo terrível, não há escapatória."
+    },
+    "Hunger": {
+      "name": "Com Fome",
+      "description": "Você está com fome, sentindo uma leve fraqueza."
+    },
+    "Hunter": {
+      "name": "Caçador",
+      "description": "Exibe a localização dos inimigos"
+    },
+    "IceBarrier": {
+      "name": "Barreira de Gelo",
+      "description": "Redução de 25% nos danos sofridos"
+    },
+    "IceQueenPet": {
+      "name": "Rainha do Gelo",
+      "description": "A Rainha do Gelo renasceu como sua companheira"
+    },
+    "Ichor": {
+      "name": "Ichor",
+      "description": "Defesa reduzida"
+    },
+    "ImpMinion": {
+      "name": "Demônio",
+      "description": "O demônio lutará por você"
+    },
+    "Inferno": {
+      "name": "Inferno",
+      "description": "Os inimigos próximos são incinerados"
+    },
+    "Invisibility": {
+      "name": "Invisibilidade",
+      "description": "Oferece invisibilidade"
+    },
+    "Ironskin": {
+      "name": "Pele de Ferro",
+      "description": "Aumenta a defesa em 8"
+    },
+    "JunimoPet": {
+      "name": "Junimo",
+      "description": "Guardião da Floresta"
+    },
+    "KingSlimePet": {
+      "name": "Príncipe Geleia",
+      "description": "Ele responde a uma autoridade superior"
+    },
+    "Kite": {
+      "name": "Alto Astral",
+      "description": "Aumenta levemente a velocidade de movimento, mineração e posicionamento"
+    },
+    "LadybugMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "LavaSharkMount": {
+      "name": "Montaria Tubarão de Lava",
+      "description": "Surfando os mares de lava!"
+    },
+    "LeafCrystal": {
+      "name": "Cristal de Folha",
+      "description": "Atira folhas de cristal em inimigos próximos"
+    },
+    "Lifeforce": {
+      "name": "Força-vital",
+      "description": "Aumento de 20% no máximo de vida"
+    },
+    "LilHarpy": {
+      "name": "Harpinha",
+      "description": "Fofura que vem do céu"
+    },
+    "Lovestruck": {
+      "name": "Apaixonado",
+      "description": "Você está apaixonado!"
+    },
+    "Lucky": {
+      "name": "Sortudo",
+      "description": "Você está com sorte"
+    },
+    "LunaticCultistPet": {
+      "name": "Dragão Fantasmagórico",
+      "description": "Ele não para de olhar para a Lua"
+    },
+    "MagicLantern": {
+      "name": "Lanterna Mágica",
+      "description": "Uma lanterna encantada ilumina o seu caminho"
+    },
+    "MagicPower": {
+      "name": "Poder Mágico",
+      "description": "20% de aumento nos danos por magia"
+    },
+    "MajesticHorseMount": {
+      "name": "Montaria Cavalo Majestoso",
+      "description": "Montado em um Cavalo Majestoso"
+    },
+    "ManaRegeneration": {
+      "name": "Restauração de mana",
+      "description": "Maior regeneração de mana"
+    },
+    "ManaSickness": {
+      "name": "Enjoo por Mana",
+      "description": "Danos mágicos reduzidos em "
+    },
+    "MartianPet": {
+      "name": "Skatista Marciano",
+      "description": "Sim, eu sou humano, claro! Não dá pra ver?"
+    },
+    "MeowmereMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Merfolk": {
+      "name": "Tritão",
+      "description": "É possível respirar e mover-se facilmente embaixo d'água"
+    },
+    "Midas": {
+      "name": "Midas",
+      "description": "Mais dinheiro é perdido se você morrer"
+    },
+    "Minecart": {
+      "name": "Vagoneta",
+      "description": "Andando em uma vagoneta"
+    },
+    "MinecartMech": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MinecartWood": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MiniMinotaur": {
+      "name": "Fauno",
+      "description": "O nome dele é Shaun."
+    },
+    "Mining": {
+      "name": "Mineração",
+      "description": "Aumento de 25% na velocidade de mineração"
+    },
+    "MonsterBanner": {
+      "name": "Bandeira",
+      "description": "Maiores danos e defesa contra:"
+    },
+    "MoonLeech": {
+      "name": "Mordida da Lua",
+      "description": "Você não pode absorver efeitos de cura"
+    },
+    "MoonLordPet": {
+      "name": "Lunar",
+      "description": "Um amigo do além"
+    },
+    "NebulaUpDmg1": {
+      "name": "Nébula de Danos",
+      "description": "Aumento de 15% nos danos"
+    },
+    "NebulaUpDmg2": {
+      "name": "Nébula de Danos",
+      "description": "Aumento de 30% nos danos"
+    },
+    "NebulaUpDmg3": {
+      "name": "Nébula de Danos",
+      "description": "Aumento de 45% nos danos"
+    },
+    "NebulaUpLife1": {
+      "name": "Nébula da Vida",
+      "description": "Regeneração de vida maior"
+    },
+    "NebulaUpLife2": {
+      "name": "Nébula da Vida",
+      "description": "Regeneração de vida maior"
+    },
+    "NebulaUpLife3": {
+      "name": "Nébula da Vida",
+      "description": "Regeneração de vida maior"
+    },
+    "NebulaUpMana1": {
+      "name": "Nébula de Mana",
+      "description": "Maior regeneração de mana"
+    },
+    "NebulaUpMana2": {
+      "name": "Nébula de Mana",
+      "description": "Maior regeneração de mana"
+    },
+    "NebulaUpMana3": {
+      "name": "Nébula de Mana",
+      "description": "Maior regeneração de mana"
+    },
+    "NeutralHunger": {
+      "name": "Com Fominha",
+      "description": "Você aceitaria comer, mas não está tão ruim assim."
+    },
+    "NightOwl": {
+      "name": "Coruja da Noite",
+      "description": "Visão noturna maior"
+    },
+    "NoBuilding": {
+      "name": "Choque de Criatividade",
+      "description": "Você perdeu o poder de criação!"
+    },
+    "ObsidianSkin": {
+      "name": "Pele Obsidiana",
+      "description": "Imune a lava"
+    },
+    "Obstructed": {
+      "name": "Obstruído",
+      "description": "Você não consegue ver!"
+    },
+    "OgreSpit": {
+      "name": "Esvaído",
+      "description": "Movimentos consideravelmente reduzidos"
+    },
+    "Oiled": {
+      "name": "Oleoso",
+      "description": "Maiores danos por estar em chamas"
+    },
+    "OnFire": {
+      "name": "Em Chamas!",
+      "description": "Lentamente perdendo a vida"
+    },
+    "OnFire3": {
+      "name": "Fogo do Inferno",
+      "description": "Lentamente perdendo a vida"
+    },
+    "PaintedHorseMount": {
+      "name": "Montaria Cavalo Pintado",
+      "description": "Montado em um Cavalo Pintado"
+    },
+    "PaladinsShield": {
+      "name": "Escudo do Paladino",
+      "description": "25% de danos sofridos serão redirecionados a outro jogador"
+    },
+    "PalworldMinionCattiva": {
+      "name": "Cattiva",
+      "description": "Cattiva lutará por você"
+    },
+    "PalworldMinionFoxsparks": {
+      "name": "Foxparks",
+      "description": "Foxparks lutará por você"
+    },
+    "PalworldPetChillet": {
+      "name": "Chillet",
+      "description": "Chillet está explorando com você\nO movimento é bem intenso!"
+    },
+    "PalworldPetChilletIgnis": {
+      "name": "Chillet Ignis",
+      "description": "Chillet Ignis está explorando com você\nTome cuidado ao acariciá-lo por muito tempo, ou faíscas VÃO começar a voar!"
+    },
+    "Panic": {
+      "name": "Pânico!",
+      "description": "A velocidade de movimentação aumenta"
+    },
+    "ParryDamageBuff": {
+      "name": "Momento do Ataque",
+      "description": "Aumento de 400% nos danos para o próximo ataque físico"
+    },
+    "PartyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PeaceCandle": {
+      "name": "Vela da Paz",
+      "description": "Taxa de criação de monstros menor"
+    },
+    "PetBunny": {
+      "name": "Coelhinho de Estimação",
+      "description": "Acho que ele quer sua cenoura"
+    },
+    "PetDD2Dragon": {
+      "name": "Coleciodragão",
+      "description": "Um coleciodragão está seguindo você"
+    },
+    "PetDD2Gato": {
+      "name": "Gato de Hélices",
+      "description": "Um gato de hélices está seguindo você"
+    },
+    "PetDD2Ghost": {
+      "name": "Velinha",
+      "description": "Uma velinha está seguindo você"
+    },
+    "PetLizard": {
+      "name": "Lagarto de Estimação",
+      "description": "Sossegado como uma lagartixa"
+    },
+    "PetParrot": {
+      "name": "Papagaio de Estimação",
+      "description": "Loro quer biscoito"
+    },
+    "PetSapling": {
+      "name": "Plantinha de Estimação",
+      "description": "Uma plantinha está seguindo você"
+    },
+    "PetSpider": {
+      "name": "Aranha de Estimação",
+      "description": "Uma aranha está seguindo você"
+    },
+    "PetTurtle": {
+      "name": "Tartaruga de Estimação",
+      "description": "Feliz hora da tartaruga!"
+    },
+    "PigPet": {
+      "name": "Porco",
+      "description": "Bacon ao contrário!"
+    },
+    "PigronMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PigronMount": {
+      "name": "Montaria do Porco-dragão",
+      "description": "Agora você me vê..."
+    },
+    "PirateMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PirateMinion": {
+      "name": "Pirata",
+      "description": "O pirata lutará por você"
+    },
+    "PirateShipMount": {
+      "name": "Montaria Navio Pirata",
+      "description": "Olhe para você, você é o capitão agora"
+    },
+    "PixieMount": {
+      "name": "Forma da Fada",
+      "description": "Você se transformou em uma fada!"
+    },
+    "PlanteraPet": {
+      "name": "Muda de Plantera",
+      "description": "Mas o que ele come, mesmo?"
+    },
+    "Plantero": {
+      "name": "Plantero",
+      "description": "O pequeno Plantero está seguindo você"
+    },
+    "PogoStickMount": {
+      "name": "Montaria Pula-pula",
+      "description": "Boing! Boing! Boing!"
+    },
+    "Poisoned": {
+      "name": "Envenenado",
+      "description": "Lentamente perdendo a vida"
+    },
+    "PotionSickness": {
+      "name": "Enjoo por Poção",
+      "description": "Não é possível consumir itens de cura"
+    },
+    "Pufferfish": {
+      "name": "Baiacu",
+      "description": "Um baiacu amigável está seguindo você."
+    },
+    "PumpkingPet": {
+      "name": "Abóbora do Dia das Bruxas",
+      "description": "Uma pequena abóbora ilumina o caminho de forma amigável"
+    },
+    "Puppy": {
+      "name": "Cachorrinho",
+      "description": "Um filhote está seguindo você"
+    },
+    "Pygmies": {
+      "name": "Pigmeus",
+      "description": "Os pigmeus lutarão por você"
+    },
+    "QueenBeePet": {
+      "name": "Abelhinha",
+      "description": "Uma abelhinha está seguindo você"
+    },
+    "QueenSlimeMount": {
+      "name": "Montaria Geleia Alada",
+      "description": "POCOTÓ PLOF POCOTÓ!"
+    },
+    "QueenSlimePet": {
+      "name": "Princesa Geleia",
+      "description": "Ela é a autoridade superior"
+    },
+    "Rabies": {
+      "name": "Mordida Feroz",
+      "description": "Danos maiores, regeneração de vida menor, causa efeitos de status"
+    },
+    "Rage": {
+      "name": "Raiva",
+      "description": "Aumento de 10% na chance de acerto crítico"
+    },
+    "RainbowBoulderPet": {
+      "name": "Rochedo de Arco-íris Amigável",
+      "description": "Um rochedo de arco-íris amigável está rolando ao redor de você."
+    },
+    "RapidHealing": {
+      "name": "Cura Rápida",
+      "description": "A regeneração de vida aumentou bastante"
+    },
+    "RatMount": {
+      "name": "Natureza do Rato",
+      "description": "Você se transformou em um rato!"
+    },
+    "Ravens": {
+      "name": "Corvos",
+      "description": "Os corvos atacarão seus inimigos"
+    },
+    "Regeneration": {
+      "name": "Regeneração",
+      "description": "Fornece regeneração da vida"
+    },
+    "RollerSkatesGreenMount": {
+      "name": "Patins Verde",
+      "description": "Rolando pela vida afora."
+    },
+    "RollerSkatesMount": {
+      "name": "Patins Azuis",
+      "description": "Rolando pela vida afora."
+    },
+    "RollerSkatesPinkMount": {
+      "name": "Patins Festivos",
+      "description": "Rolando pela vida afora."
+    },
+    "RollerSkatesWhiteMount": {
+      "name": "Patins Clássicos",
+      "description": "Rolando pela vida afora."
+    },
+    "RubyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Rudolph": {
+      "name": "Rodolfo",
+      "description": "Andando na rena do nariz vermelho"
+    },
+    "SantankMount": {
+      "name": "Montaria Tanquoel",
+      "description": "Cruzando da lista dos mais levados..."
+    },
+    "SapphireMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "ScutlixMount": {
+      "name": "Montaria do Scutlix",
+      "description": "Pow Pow"
+    },
+    "ScytheWhipPlayerBuff": {
+      "name": "Hora da Colheita",
+      "description": "A velocidade dos chicotes aumenta"
+    },
+    "ShadowCandle": {
+      "name": "Vela Sombria",
+      "description": "Acaba com a paz das cidades"
+    },
+    "ShadowDodge": {
+      "name": "Proteção Divina",
+      "description": "Você vai desviar do próximo ataque"
+    },
+    "ShadowFlame": {
+      "name": "Chamas das Sombras",
+      "description": "Perdendo vida"
+    },
+    "ShadowMimic": {
+      "name": "Mímico das Sombras",
+      "description": "Um mímico das sombras está seguindo você"
+    },
+    "ShadowOrb": {
+      "name": "Esfera das Sombras",
+      "description": "Uma esfera mágica que fornece luz"
+    },
+    "SharkPup": {
+      "name": "Filhote de Tubarão",
+      "description": "Doo doo doo doo doo doo"
+    },
+    "SharknadoMinion": {
+      "name": "Tornado de Tubarões",
+      "description": "O tornado de tubarões lutará por você"
+    },
+    "Sharpened": {
+      "name": "Afiado",
+      "description": "Armas de ataque físico perfuram a blindagem"
+    },
+    "Shimmer": {
+      "name": "Brilhando",
+      "description": "Você ficou insubstancial!"
+    },
+    "Shine": {
+      "name": "Brilho",
+      "description": "Emitindo luz"
+    },
+    "ShroomMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Silenced": {
+      "name": "Silenciado",
+      "description": "Não é possível utilizar itens que requerem mana"
+    },
+    "SkeletronPet": {
+      "name": "Esqueletron Jr.",
+      "description": "O Esqueletron Jr. está seguindo você"
+    },
+    "SkeletronPrimePet": {
+      "name": "Mini Alfa",
+      "description": "Cada ferramenta é capaz de cometer assassinato"
+    },
+    "SlimeMount": {
+      "name": "Montaria da Geleia",
+      "description": "BOOOIIINNNG!"
+    },
+    "Slimed": {
+      "name": "Geleia",
+      "description": "Você é melequento e pegajoso"
+    },
+    "Slow": {
+      "name": "Lento",
+      "description": "A velocidade de movimentação é reduzida"
+    },
+    "Smolstar": {
+      "name": "Adagas Enfeitiçadas",
+      "description": "Retalhado em mil pedacinhos"
+    },
+    "SolarShield1": {
+      "name": "Fogo Solar",
+      "description": "Absorve 20% do dano sofrido, afasta inimigos ao sofrer danos."
+    },
+    "SolarShield2": {
+      "name": "Fogo Solar",
+      "description": "Absorve 20% do dano sofrido, afasta inimigos ao sofrer danos."
+    },
+    "SolarShield3": {
+      "name": "Fogo Solar",
+      "description": "Absorve 20% do dano sofrido, afasta inimigos ao sofrer danos."
+    },
+    "Sonar": {
+      "name": "Sonar",
+      "description": "Você pode ver o que está mordendo seu anzol"
+    },
+    "SoulDrain": {
+      "name": "Drenagem da Vida",
+      "description": "Regeneração de vida maior"
+    },
+    "Spelunker": {
+      "name": "Espeleólogo",
+      "description": "Exibe a localização de tesouros e minério"
+    },
+    "SpiderMinion": {
+      "name": "Aranha",
+      "description": "A aranha lutará por você"
+    },
+    "Spiffo": {
+      "name": "Spiffo",
+      "description": "“É assim que você morreu”"
+    },
+    "SpookyWoodMount": {
+      "name": "Montaria da Árvore",
+      "description": "Corra, floresta, corra!"
+    },
+    "Squashling": {
+      "name": "Abóbora",
+      "description": "Uma abóbora está seguindo você"
+    },
+    "StarInBottle": {
+      "name": "Estrela na Garrafa",
+      "description": "Maior regeneração de mana"
+    },
+    "StardustDragonMinion": {
+      "name": "Dragão de Pó das Estrelas",
+      "description": "O dragão de pó das estrelas protegerá você"
+    },
+    "StardustGuardianMinion": {
+      "name": "Guardião de Pó das Estrelas",
+      "description": "O guardião de pó das estrelas protegerá você"
+    },
+    "StardustMinion": {
+      "name": "Célula de Pó das Estrelas",
+      "description": "A célula de pó das estrelas lutará por você"
+    },
+    "StardustMinionBleed": {
+      "name": "Celular",
+      "description": "sendo devorado por células"
+    },
+    "Starving": {
+      "name": "Morrendo de fome",
+      "description": "Você está morrendo de fome! Coma imediatamente!"
+    },
+    "SteampunkMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Stinky": {
+      "name": "Fedorento",
+      "description": "Você está com um cheiro terrível"
+    },
+    "Stoned": {
+      "name": "Petrificado",
+      "description": "Você foi completamente petrificado!"
+    },
+    "StormTiger": {
+      "name": "Tigre do Deserto",
+      "description": "O tigre do deserto lutará ao seu lado"
+    },
+    "Suffocation": {
+      "name": "Asfixia",
+      "description": "Perdendo vida"
+    },
+    "SugarGlider": {
+      "name": "Petauro-do-açúcar",
+      "description": "Um petauro-do-açúcar está seguindo você"
+    },
+    "SugarRush": {
+      "name": "Pico de Açúcar",
+      "description": "20% de aumento na velocidade dos movimentos e de mineração"
+    },
+    "Summoning": {
+      "name": "Invocação",
+      "description": "Aumentou seu número máximo de lacaios em 1."
+    },
+    "Sunflower": {
+      "name": "Feliz!",
+      "description": "Velocidade dos movimento maior e menor número de monstros"
+    },
+    "SunflowerMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "SuspiciousTentacle": {
+      "name": "Olho Suspeito",
+      "description": "Um olho suspeito, capaz de gerar luz"
+    },
+    "Swiftness": {
+      "name": "Rapidez",
+      "description": "25% de aumento na velocidade dos movimentos"
+    },
+    "SwordWhipPlayerBuff": {
+      "name": "Bênção de Durindana",
+      "description": "A velocidade dos chicotes aumenta"
+    },
+    "TerraFartMinecart": {
+      "name": "Carrinho Peidinho da Terra",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TheTongue": {
+      "name": "A Língua",
+      "description": "A boca está sugando você"
+    },
+    "ThornWhipPlayerBuff": {
+      "name": "Fúria Selvagem",
+      "description": "A velocidade dos chicotes aumenta"
+    },
+    "Thorns": {
+      "name": "Espinhos",
+      "description": "Atacantes também sofrem danos"
+    },
+    "TikiSpirit": {
+      "name": "Espírito Tiki",
+      "description": "Um espírito amigável está seguindo você"
+    },
+    "Tipsy": {
+      "name": "Tonto",
+      "description": "Maiores habilidades em ataques físicos, menor defesa"
+    },
+    "Titan": {
+      "name": "Titã",
+      "description": "Maior recuo"
+    },
+    "TitaniumStorm": {
+      "name": "Barreira de Titânio",
+      "description": "Fragmentos defensivos cercam você"
+    },
+    "TopazMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TorchGodPotion": {
+      "name": "Bênção da Tocha",
+      "description": "Tochas próximas serão convertidas para corresponder ao bioma."
+    },
+    "TurtleMount": {
+      "name": "Montaria de Tartaruga",
+      "description": "Devagar na terra, apressado no mar"
+    },
+    "TwinEyesMinion": {
+      "name": "Gêmeos",
+      "description": "Os gêmeos lutarão por você"
+    },
+    "TwinsPet": {
+      "name": "Rez e Spaz",
+      "description": "Você tem um par de olhos especial!"
+    },
+    "UFOMinion": {
+      "name": "OVNI",
+      "description": "O OVNI lutará por você"
+    },
+    "UFOMount": {
+      "name": "Montaria de OVNI",
+      "description": "Ainda bem que você tinha um MAC"
+    },
+    "UnicornMount": {
+      "name": "Montaria de Unicórnio",
+      "description": "Corra ao ataque... fabuloso!"
+    },
+    "UpbeatStar": {
+      "name": "Estee",
+      "description": "Estee está seguindo você"
+    },
+    "VampireFrog": {
+      "name": "Sapo Vampiro",
+      "description": "O sapo vampiro lutará por você"
+    },
+    "VelociraptorMount": {
+      "name": "Instinto do Raptor",
+      "description": "Você se transformou em um velociraptor!"
+    },
+    "Venom": {
+      "name": "Peçonha Ácida",
+      "description": "Perdendo vida"
+    },
+    "VoltBunny": {
+      "name": "Coelhinho Pilhado",
+      "description": "O coelhinho pilhado está animado por você"
+    },
+    "VortexDebuff": {
+      "name": "Distorcido",
+      "description": "A gravidade é distorcida ao seu redor"
+    },
+    "WallOfFleshGoatMount": {
+      "name": "Montaria Cabra",
+      "description": "Esta montaria é radical!"
+    },
+    "WarTable": {
+      "name": "Estrategista",
+      "description": "Aumentou seu número máximo de sentinelas em 1."
+    },
+    "Warmth": {
+      "name": "Calor",
+      "description": "Redução nos danos sofridos por fontes frias"
+    },
+    "WaterCandle": {
+      "name": "Vela d'água",
+      "description": "Taxa de criação de monstros maior"
+    },
+    "WaterWalking": {
+      "name": "Andar Sobre a Água",
+      "description": "Pressione PARA BAIXO para entrar na água"
+    },
+    "Weak": {
+      "name": "Fraco",
+      "description": "As habilidades físicas sofrem queda"
+    },
+    "WeaponImbueConfetti": {
+      "name": "Efeito da arma: Confetes",
+      "description": "Ataques físicos fazem com que confetes apareçam"
+    },
+    "WeaponImbueCursedFlames": {
+      "name": "Efeito da arma: Chamas Amaldiçoadas",
+      "description": "Ataques físicos fazem com que seus inimigos queimem com chamas amaldiçoadas"
+    },
+    "WeaponImbueFire": {
+      "name": "Efeito da arma: Fogo",
+      "description": "Ataques físicos incendeiam seus inimigos"
+    },
+    "WeaponImbueGold": {
+      "name": "Efeito da arma: Ouro",
+      "description": "Ataques físicos fazem com que seus inimigos deixem cair mais ouro"
+    },
+    "WeaponImbueIchor": {
+      "name": "Efeito da arma: Ichor",
+      "description": "Ataques físicos diminuem as defesas dos inimigos"
+    },
+    "WeaponImbueNanites": {
+      "name": "Efeito da arma: Nanobôs",
+      "description": "Ataques físicos confundem seus inimigos"
+    },
+    "WeaponImbuePoison": {
+      "name": "Efeito da arma: Veneno",
+      "description": "Ataques físicos envenenam seus inimigos"
+    },
+    "WeaponImbueVenom": {
+      "name": "Efeito da arma: Peçonha Ácida",
+      "description": "Ataques físicos aplicam peçonha ácida em seus alvos"
+    },
+    "Webbed": {
+      "name": "Preso",
+      "description": "Você está preso"
+    },
+    "WellFed": {
+      "name": "Bem Alimentado",
+      "description": "Pequenas melhorias em todas as estatísticas"
+    },
+    "WellFed2": {
+      "name": "Muito Satisfeito",
+      "description": "Melhoria média em todas as estatísticas"
+    },
+    "WellFed3": {
+      "name": "Extremamente Satisfeito",
+      "description": "Grande melhoria em todas as estatísticas"
+    },
+    "Werewolf": {
+      "name": "Lobisomem",
+      "description": "As habilidades físicas são melhoradas"
+    },
+    "Wet": {
+      "name": "Molhado",
+      "description": "Você está vazando água"
+    },
+    "WindPushed": {
+      "name": "Vento Poderoso",
+      "description": "O vento move-se ao seu redor!"
+    },
+    "Wisp": {
+      "name": "Luz Fantasma",
+      "description": "Uma luz fantasma está seguindo você"
+    },
+    "WitchBroom": {
+      "name": "Vassoura da Bruxa",
+      "description": "Voa! Não é tecnologia, é feitiçaria!"
+    },
+    "WitheredArmor": {
+      "name": "Armadura Ressecada",
+      "description": "Sua armadura caiu!"
+    },
+    "WitheredWeapon": {
+      "name": "Arma Ressecada",
+      "description": "Seus ataques estão mais fracos!"
+    },
+    "WolfMount": {
+      "name": "Bênção da Lua",
+      "description": "Você se transformou em um lobo!"
+    },
+    "Wrath": {
+      "name": "Ira",
+      "description": "10% de aumento nos danos"
+    },
+    "ZephyrFish": {
+      "name": "Peixe do Zéfiro",
+      "description": "Ele gosta de nadar ao seu redor"
+    }
+  },
   "npcs": {
     "AncientCultistSquidhead": "Visão Antiga",
     "AncientDoom": "Desgraça Antiga",

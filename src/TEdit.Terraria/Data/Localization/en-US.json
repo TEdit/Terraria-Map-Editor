@@ -6136,6 +6136,1368 @@
     "ZombieFish": "Zombie Fish",
     "ZombieMermanBanner": "Zombie Merman Banner"
   },
+  "buffs": {
+    "AbigailMinion": {
+      "name": "Abigail",
+      "description": "Abigail will fight to protect you"
+    },
+    "AmberMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmethystMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmmoBox": {
+      "name": "Ammo Box",
+      "description": "20% chance to save ammo"
+    },
+    "AmmoReservation": {
+      "name": "Ammo Reservation",
+      "description": "20% chance to save ammo"
+    },
+    "Archery": {
+      "name": "Archery",
+      "description": "10% increased bow damage and 20% increased arrow speed"
+    },
+    "AxeFairyPet": {
+      "name": "Cenaxe",
+      "description": "Axing the real questions"
+    },
+    "BabyBird": {
+      "name": "Baby Finch",
+      "description": "The baby finch will fight for you"
+    },
+    "BabyDinosaur": {
+      "name": "Baby Dinosaur",
+      "description": "A baby dinosaur is following you"
+    },
+    "BabyEater": {
+      "name": "Baby Eater",
+      "description": "A baby Eater of Souls is following you"
+    },
+    "BabyFaceMonster": {
+      "name": "Baby Face Monster",
+      "description": "A baby face monster is following you"
+    },
+    "BabyGrinch": {
+      "name": "Baby Grinch",
+      "description": "A baby grinch is following you"
+    },
+    "BabyHornet": {
+      "name": "Baby Hornet",
+      "description": "It thinks you are its mother"
+    },
+    "BabyImp": {
+      "name": "Baby Imp",
+      "description": "Just wait till his terrible twos!"
+    },
+    "BabyPenguin": {
+      "name": "Baby Penguin",
+      "description": "I think it wants your fish"
+    },
+    "BabyRedPanda": {
+      "name": "Baby Red Panda",
+      "description": "A baby red panda is following you"
+    },
+    "BabySkeletronHead": {
+      "name": "Baby Skeletron Head",
+      "description": "Don't even ask..."
+    },
+    "BabySlime": {
+      "name": "Baby Slime",
+      "description": "The baby slime will fight for you"
+    },
+    "BabySnowman": {
+      "name": "Baby Snowman",
+      "description": "A baby snowman is following you"
+    },
+    "BabyTruffle": {
+      "name": "Baby Truffle",
+      "description": "Isn't this just soooo cute?"
+    },
+    "BabyWerewolf": {
+      "name": "Baby Werewolf",
+      "description": "A baby werewolf is following you"
+    },
+    "BallistaPanic": {
+      "name": "Ballista Panic!",
+      "description": "Your ballistas rapidly shoot in panic!"
+    },
+    "BasiliskMount": {
+      "name": "Basilisk Mount",
+      "description": "Crash into anyone... and EVERYONE!"
+    },
+    "BatMount": {
+      "name": "Curse of the Bat",
+      "description": "You turned into a bat!"
+    },
+    "BatOfLight": {
+      "name": "Sanguine Bat",
+      "description": "The sanguine bat will fight for you"
+    },
+    "Battle": {
+      "name": "Battle",
+      "description": "Increased enemy spawn rate"
+    },
+    "BeeMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BeeMount": {
+      "name": "Bee Mount",
+      "description": "BzzzBzzBZZZZBzzz"
+    },
+    "BeetleEndurance1": {
+      "name": "Beetle Endurance",
+      "description": "Absorbs 15% of damage taken"
+    },
+    "BeetleEndurance2": {
+      "name": "Beetle Endurance",
+      "description": "Absorbs 30% of damage taken"
+    },
+    "BeetleEndurance3": {
+      "name": "Beetle Endurance",
+      "description": "Absorbs 45% of damage taken"
+    },
+    "BeetleMight1": {
+      "name": "Beetle Might",
+      "description": "Melee damage and speed increase by 10%"
+    },
+    "BeetleMight2": {
+      "name": "Beetle Might",
+      "description": "Melee damage and speed increase by 20%"
+    },
+    "BeetleMight3": {
+      "name": "Beetle Might",
+      "description": "Melee damage and speed increase by 30%"
+    },
+    "BeetleMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BerniePet": {
+      "name": "Bernie",
+      "description": "You're always there for me, Bernie"
+    },
+    "BetsysCurse": {
+      "name": "Betsy's Curse",
+      "description": "Defense is lowered"
+    },
+    "Bewitched": {
+      "name": "Bewitched",
+      "description": "Increased your max number of minions by 1"
+    },
+    "BiomeSight": {
+      "name": "Biome Sight",
+      "description": "Shows the location of infected blocks"
+    },
+    "BlackCat": {
+      "name": "Black Cat",
+      "description": "A black kitty is following you"
+    },
+    "Blackout": {
+      "name": "Blackout",
+      "description": "Light vision severely reduced"
+    },
+    "Bleeding": {
+      "name": "Bleeding",
+      "description": "Cannot regenerate life"
+    },
+    "BloodButcherer": {
+      "name": "Blood Butchered",
+      "description": "Bleeding out rapidly"
+    },
+    "BlueChickenPet": {
+      "name": "Blue Chicken",
+      "description": "The nametag says 'Shane'"
+    },
+    "BoneJavelin": {
+      "name": "Penetrated",
+      "description": "Bleeding Out"
+    },
+    "BoulderPet": {
+      "name": "Friendly Boulder",
+      "description": "A friendly boulder is rolling around with you"
+    },
+    "BrainOfConfusionBuff": {
+      "name": "Cerebral Mindtrick",
+      "description": "Increased critical chance and minion damage"
+    },
+    "BrainOfCthulhuPet": {
+      "name": "Spider Brain",
+      "description": "It's crawling around... icky"
+    },
+    "BrokenArmor": {
+      "name": "Broken Armor",
+      "description": "Defense is cut in half"
+    },
+    "Builder": {
+      "name": "Builder",
+      "description": "Increased placement speed and range"
+    },
+    "BunnyMount": {
+      "name": "Bunny Mount",
+      "description": "You are craving carrots"
+    },
+    "Burning": {
+      "name": "Burning",
+      "description": "Losing life and slowed movement"
+    },
+    "Calm": {
+      "name": "Calm",
+      "description": "Decreased enemy spawn rate"
+    },
+    "Campfire": {
+      "name": "Cozy Fire",
+      "description": "Life regen is slightly increased"
+    },
+    "CatBast": {
+      "name": "The Bast Defense",
+      "description": "Defense is increased by 5"
+    },
+    "CavelingGardener": {
+      "name": "Caveling Gardener",
+      "description": "Huk arrr gruk tu!"
+    },
+    "ChaosState": {
+      "name": "Chaos State",
+      "description": "Using the Rod of Discord will take life"
+    },
+    "ChesterPet": {
+      "name": "Chester",
+      "description": "Otto von Chesterfield, Esquire"
+    },
+    "Chilled": {
+      "name": "Chilled",
+      "description": "Your movement speed has been reduced"
+    },
+    "Clairvoyance": {
+      "name": "Clairvoyance",
+      "description": "Magic powers are increased"
+    },
+    "CobWhipPlayerBuff": {
+      "name": "Whip Spider",
+      "description": "Summons a spider to fight for you"
+    },
+    "CoffinMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "CompanionCube": {
+      "name": "Companion Cube",
+      "description": "Will never threaten to stab you and, in fact, cannot speak"
+    },
+    "Confused": {
+      "name": "Confused",
+      "description": "Movement is reversed"
+    },
+    "CoolWhipPlayerBuff": {
+      "name": "A Nice Buff",
+      "description": "Summons a snowflake to fight for you"
+    },
+    "Crate": {
+      "name": "Crate",
+      "description": "Greater chance of fishing up a crate"
+    },
+    "CrimsonHeart": {
+      "name": "Crimson Heart",
+      "description": "A magical heart that provides light"
+    },
+    "Cursed": {
+      "name": "Cursed",
+      "description": "Cannot use any items"
+    },
+    "CursedInferno": {
+      "name": "Cursed Inferno",
+      "description": "Losing life"
+    },
+    "CursedSapling": {
+      "name": "Cursed Sapling",
+      "description": "A cursed sapling is following you"
+    },
+    "CuteFishronMount": {
+      "name": "Cute Fishron Mount",
+      "description": "Just don't make it crawl."
+    },
+    "DD2BetsyPet": {
+      "name": "Itsy Betsy",
+      "description": "Itsy Betsy is following you"
+    },
+    "DD2OgrePet": {
+      "name": "Baby Ogre",
+      "description": "He's got a big stick and he doesn't know how to use it"
+    },
+    "Dangersense": {
+      "name": "Dangersense",
+      "description": "You can see nearby hazards"
+    },
+    "DarkHorseMount": {
+      "name": "Dark Horse Mount",
+      "description": "Riding a Dark Horse"
+    },
+    "DarkMageBookMount": {
+      "name": "Book Mount",
+      "description": "The Book is now helping in your guidance"
+    },
+    "Darkness": {
+      "name": "Darkness",
+      "description": "Decreased light vision"
+    },
+    "Daybreak": {
+      "name": "Daybroken",
+      "description": "Incinerated by solar rays"
+    },
+    "Dazed": {
+      "name": "Dazed",
+      "description": "Movement is greatly slowed"
+    },
+    "DeadCellsMushroomBoiMinion": {
+      "name": "Mushroom Boi!",
+      "description": "Mushroom Boi will fight for you"
+    },
+    "DeadCellsPotionStation": {
+      "name": "Alchemic Enhancement",
+      "description": "Fresh buffs last longer"
+    },
+    "DeadCellsSwarmBiter": {
+      "name": "Swarm Biter",
+      "description": "Chomp chomp"
+    },
+    "DeadlySphere": {
+      "name": "Deadly Sphere",
+      "description": "The Deadly Sphere will fight for you"
+    },
+    "DeerclopsPet": {
+      "name": "Tiny Deerclops",
+      "description": "Holy crap!"
+    },
+    "DesertMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DestroyerPet": {
+      "name": "Destroyer-Lite",
+      "description": "For destruction on the go"
+    },
+    "DiamondMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DiggingMoleMinecart": {
+      "name": "Digging Molecart",
+      "description": "The Molecart will dig for you"
+    },
+    "DirtiestBlock": {
+      "name": "The Dirtiest Block",
+      "description": "You can tell by all the extra dirt"
+    },
+    "DrillMount": {
+      "name": "Drill Mount",
+      "description": "Riding in a flying drill"
+    },
+    "DryadsWard": {
+      "name": "Dryad's Blessing",
+      "description": "The power of nature protects you"
+    },
+    "DryadsWardDebuff": {
+      "name": "Dryad's Bane",
+      "description": "The power of nature compells you"
+    },
+    "DualSlimePet": {
+      "name": "Slime Royals",
+      "description": "The final authority, they will unite the kingdoms!"
+    },
+    "DukeFishronPet": {
+      "name": "Tiny Fishron",
+      "description": "A sea-green marquess of the abyss"
+    },
+    "DynamiteKitten": {
+      "name": "Dynamite Kitten",
+      "description": "Not for use in cannons"
+    },
+    "EaterOfWorldsPet": {
+      "name": "Eater of Worms",
+      "description": "May ruin several backyards"
+    },
+    "Electrified": {
+      "name": "Electrified",
+      "description": "Moving hurts!"
+    },
+    "EmeraldMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "EmpressBlade": {
+      "name": "Terraprisma",
+      "description": "The Blades of the Empress will fight for you"
+    },
+    "Endurance": {
+      "name": "Endurance",
+      "description": "10% reduced damage"
+    },
+    "EverscreamPet": {
+      "name": "Everscream Sapling",
+      "description": "Taking the tree for a walk!"
+    },
+    "EyeOfCthulhuPet": {
+      "name": "Suspicious Eye",
+      "description": "Just keepin' an eye out..."
+    },
+    "EyeballSpring": {
+      "name": "Eyeball Spring",
+      "description": "An eyeball spring is following you"
+    },
+    "FairyBlue": {
+      "name": "Fairy",
+      "description": "A fairy is following you"
+    },
+    "FairyGreen": {
+      "name": "Fairy",
+      "description": "A fairy is following you"
+    },
+    "FairyQueenPet": {
+      "name": "Fairy Princess",
+      "description": "The light of the fair folk illuminates all"
+    },
+    "FairyRed": {
+      "name": "Fairy",
+      "description": "A fairy is following you"
+    },
+    "FartMinecart": {
+      "name": "Fart Kart",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Featherfall": {
+      "name": "Featherfall",
+      "description": "Press UP or DOWN to control speed of descent"
+    },
+    "FennecFox": {
+      "name": "Fennec Fox",
+      "description": "What does the fox say? Better yet, what does the fox HEAR?!"
+    },
+    "FishMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Fishing": {
+      "name": "Fishing",
+      "description": "Increased fishing power"
+    },
+    "Flamingo": {
+      "name": "Flamingo",
+      "description": "Flamingogogo"
+    },
+    "FlinxMinion": {
+      "name": "Flinx",
+      "description": "The snow flinx will fight for you"
+    },
+    "Flipper": {
+      "name": "Flipper",
+      "description": "Move like normal in water"
+    },
+    "Frostburn": {
+      "name": "Frostburn",
+      "description": "It's either really hot or really cold. Either way it REALLY hurts"
+    },
+    "Frostburn2": {
+      "name": "Frostbite",
+      "description": "It's either really hot or really cold. Either way it REALLY hurts"
+    },
+    "Frozen": {
+      "name": "Frozen",
+      "description": "You can't move!"
+    },
+    "GelBalloonBuff": {
+      "name": "Sparkle Slime",
+      "description": "You are slimy and sparkly"
+    },
+    "Gills": {
+      "name": "Gills",
+      "description": "Allows you to breathe in liquids"
+    },
+    "GlitteryButterfly": {
+      "name": "Glittery Butterfly",
+      "description": "Truly, truly outrageous"
+    },
+    "GlommerPet": {
+      "name": "Glommer",
+      "description": "It's fuzzy! And slimy..."
+    },
+    "GolemPet": {
+      "name": "Toy Golem",
+      "description": "Got myself a crying, talking, sleeping, walking, living idol!"
+    },
+    "GolfCartMount": {
+      "name": "Golf Cart",
+      "description": "A fair way to cross the fairway"
+    },
+    "Gravitation": {
+      "name": "Gravitation",
+      "description": "Press UP to reverse gravity"
+    },
+    "HeartLamp": {
+      "name": "Heart Lamp",
+      "description": "Life regen is increased"
+    },
+    "Heartreach": {
+      "name": "Heartreach",
+      "description": "Increased heart pickup range"
+    },
+    "HeartyMeal": {
+      "name": "Hearty Meal",
+      "description": "Increased Life Regeneration"
+    },
+    "HellMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Hemorrhage": {
+      "name": "Hemorrhage",
+      "description": "Bleeding profusely"
+    },
+    "Honey": {
+      "name": "Honey",
+      "description": "Life regeneration is increased"
+    },
+    "HornetMinion": {
+      "name": "Hornet",
+      "description": "The hornet will fight for you"
+    },
+    "Horrified": {
+      "name": "Horrified",
+      "description": "You have seen something nasty, there is no escape."
+    },
+    "Hunger": {
+      "name": "Hungry",
+      "description": "You are quite hungry and feeling weak."
+    },
+    "Hunter": {
+      "name": "Hunter",
+      "description": "Shows the location of enemies"
+    },
+    "IceBarrier": {
+      "name": "Ice Barrier",
+      "description": "Damage taken is reduced by 25%"
+    },
+    "IceQueenPet": {
+      "name": "Ice Queen",
+      "description": "Ice Queen has been reborn as your companion"
+    },
+    "Ichor": {
+      "name": "Ichor",
+      "description": "Reduced defense"
+    },
+    "ImpMinion": {
+      "name": "Imp",
+      "description": "The imp will fight for you"
+    },
+    "Inferno": {
+      "name": "Inferno",
+      "description": "Nearby enemies are ignited"
+    },
+    "Invisibility": {
+      "name": "Invisibility",
+      "description": "Grants invisibility"
+    },
+    "Ironskin": {
+      "name": "Ironskin",
+      "description": "Increase defense by 8"
+    },
+    "JunimoPet": {
+      "name": "Junimo",
+      "description": "Keeper of the Forest"
+    },
+    "KingSlimePet": {
+      "name": "Slime Prince",
+      "description": "He answers to a higher authority"
+    },
+    "Kite": {
+      "name": "High Spirits",
+      "description": "Slightly increased movement speed, mining speed, and placement speed"
+    },
+    "LadybugMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "LavaSharkMount": {
+      "name": "Lava Shark Mount",
+      "description": "Surfing the molten seas!"
+    },
+    "LeafCrystal": {
+      "name": "Leaf Crystal",
+      "description": "Shoots crystal leaves at nearby enemies"
+    },
+    "Lifeforce": {
+      "name": "Lifeforce",
+      "description": "20% increased max life"
+    },
+    "LilHarpy": {
+      "name": "Lil' Harpy",
+      "description": "Cuteness from above"
+    },
+    "Lovestruck": {
+      "name": "Lovestruck",
+      "description": "You are in love!"
+    },
+    "Lucky": {
+      "name": "Lucky",
+      "description": "You are feeling pretty lucky"
+    },
+    "LunaticCultistPet": {
+      "name": "Phantasmal Dragon",
+      "description": "It keeps looking at the Moon"
+    },
+    "MagicLantern": {
+      "name": "Magic Lantern",
+      "description": "An enchanted lantern is lighting your way"
+    },
+    "MagicPower": {
+      "name": "Magic Power",
+      "description": "20% increased magic damage"
+    },
+    "MajesticHorseMount": {
+      "name": "Majestic Horse Mount",
+      "description": "Riding a Majestic Horse"
+    },
+    "ManaRegeneration": {
+      "name": "Mana Regeneration",
+      "description": "Increased mana regeneration"
+    },
+    "ManaSickness": {
+      "name": "Mana Sickness",
+      "description": "Magic damage reduced by "
+    },
+    "MartianPet": {
+      "name": "Alien Skater",
+      "description": "How do you do, fellow humans?"
+    },
+    "MeowmereMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Merfolk": {
+      "name": "Merfolk",
+      "description": "Can breathe and move easily underwater"
+    },
+    "Midas": {
+      "name": "Midas",
+      "description": "Drop more money on death"
+    },
+    "Minecart": {
+      "name": "Minecart",
+      "description": "Riding in a minecart"
+    },
+    "MinecartMech": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MinecartWood": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MiniMinotaur": {
+      "name": "Faun",
+      "description": "His name is Shaun"
+    },
+    "Mining": {
+      "name": "Mining",
+      "description": "25% increased mining speed"
+    },
+    "MonsterBanner": {
+      "name": "Banner",
+      "description": "Increased damage and defense from the following:"
+    },
+    "MoonLeech": {
+      "name": "Moon Bite",
+      "description": "You are unable to absorb healing effects"
+    },
+    "MoonLordPet": {
+      "name": "Moonling",
+      "description": "A friend from beyond"
+    },
+    "NebulaUpDmg1": {
+      "name": "Damage Nebula",
+      "description": "15% increased damage"
+    },
+    "NebulaUpDmg2": {
+      "name": "Damage Nebula",
+      "description": "30% increased damage"
+    },
+    "NebulaUpDmg3": {
+      "name": "Damage Nebula",
+      "description": "45% increased damage"
+    },
+    "NebulaUpLife1": {
+      "name": "Life Nebula",
+      "description": "Increased life regeneration"
+    },
+    "NebulaUpLife2": {
+      "name": "Life Nebula",
+      "description": "Increased life regeneration"
+    },
+    "NebulaUpLife3": {
+      "name": "Life Nebula",
+      "description": "Increased life regeneration"
+    },
+    "NebulaUpMana1": {
+      "name": "Mana Nebula",
+      "description": "Increased mana regeneration"
+    },
+    "NebulaUpMana2": {
+      "name": "Mana Nebula",
+      "description": "Increased mana regeneration"
+    },
+    "NebulaUpMana3": {
+      "name": "Mana Nebula",
+      "description": "Increased mana regeneration"
+    },
+    "NeutralHunger": {
+      "name": "Peckish",
+      "description": "You could eat, but it's not so bad."
+    },
+    "NightOwl": {
+      "name": "Night Owl",
+      "description": "Increased night vision"
+    },
+    "NoBuilding": {
+      "name": "Creative Shock",
+      "description": "You have lost the power of creation!"
+    },
+    "ObsidianSkin": {
+      "name": "Obsidian Skin",
+      "description": "Immune to lava"
+    },
+    "Obstructed": {
+      "name": "Obstructed",
+      "description": "You can't see!"
+    },
+    "OgreSpit": {
+      "name": "Oozed",
+      "description": "Movement is significantly reduced"
+    },
+    "Oiled": {
+      "name": "Oiled",
+      "description": "Taking more damage from being on fire"
+    },
+    "OnFire": {
+      "name": "On Fire!",
+      "description": "Slowly losing life"
+    },
+    "OnFire3": {
+      "name": "Hellfire",
+      "description": "Slowly losing life"
+    },
+    "PaintedHorseMount": {
+      "name": "Painted Horse Mount",
+      "description": "Riding a Painted Horse"
+    },
+    "PaladinsShield": {
+      "name": "Paladin's Shield",
+      "description": "25% of damage taken will be redirected to another player"
+    },
+    "PalworldMinionCattiva": {
+      "name": "Cattiva",
+      "description": "Cattiva will fight for you"
+    },
+    "PalworldMinionFoxsparks": {
+      "name": "Foxparks",
+      "description": "Foxparks will fight for you"
+    },
+    "PalworldPetChillet": {
+      "name": "Chillet",
+      "description": "Chillet is exploring with you\nThe movement is quite intense!"
+    },
+    "PalworldPetChilletIgnis": {
+      "name": "Chillet Ignis",
+      "description": "Chillet Ignis is exploring with you\nBe careful of petting it too long, or sparks WILL start flying!"
+    },
+    "Panic": {
+      "name": "Panic!",
+      "description": "Movement speed is increased"
+    },
+    "ParryDamageBuff": {
+      "name": "Striking Moment",
+      "description": "400% increased damage for next melee strike"
+    },
+    "PartyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PeaceCandle": {
+      "name": "Peace Candle",
+      "description": "Decreased monster spawn rate"
+    },
+    "PetBunny": {
+      "name": "Pet Bunny",
+      "description": "I think it wants your carrot"
+    },
+    "PetDD2Dragon": {
+      "name": "Hoardagron",
+      "description": "A hoardagron is following you"
+    },
+    "PetDD2Gato": {
+      "name": "Propeller Gato",
+      "description": "A propeller gato is following you"
+    },
+    "PetDD2Ghost": {
+      "name": "Flickerwick",
+      "description": "A flickerwick is following you"
+    },
+    "PetLizard": {
+      "name": "Pet Lizard",
+      "description": "Chillin' like a reptilian"
+    },
+    "PetParrot": {
+      "name": "Pet Parrot",
+      "description": "Polly wants the cracker"
+    },
+    "PetSapling": {
+      "name": "Pet Sapling",
+      "description": "A little sapling is following you"
+    },
+    "PetSpider": {
+      "name": "Pet Spider",
+      "description": "A spider is following you"
+    },
+    "PetTurtle": {
+      "name": "Pet Turtle",
+      "description": "Happy turtle time!"
+    },
+    "PigPet": {
+      "name": "Pig",
+      "description": "Walking back bacon!"
+    },
+    "PigronMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PigronMount": {
+      "name": "Pigron Mount",
+      "description": "Now you see me..."
+    },
+    "PirateMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PirateMinion": {
+      "name": "Pirate",
+      "description": "The pirate will fight for you"
+    },
+    "PirateShipMount": {
+      "name": "Pirate Ship Mount",
+      "description": "You're the captain now"
+    },
+    "PixieMount": {
+      "name": "Form of the Fae",
+      "description": "You turned into a pixie!"
+    },
+    "PlanteraPet": {
+      "name": "Plantera Seedling",
+      "description": "What exactly does it eat, anyway?"
+    },
+    "Plantero": {
+      "name": "Plantero",
+      "description": "Little Plantero is following you"
+    },
+    "PogoStickMount": {
+      "name": "Pogo Stick Mount",
+      "description": "Kss-shik! Kss-shik! Kss-shik!"
+    },
+    "Poisoned": {
+      "name": "Poisoned",
+      "description": "Slowly losing life"
+    },
+    "PotionSickness": {
+      "name": "Potion Sickness",
+      "description": "Cannot consume anymore healing items"
+    },
+    "Pufferfish": {
+      "name": "Pufferfish",
+      "description": "A friendly pufferfish is following you"
+    },
+    "PumpkingPet": {
+      "name": "Jack 'O Lantern",
+      "description": "A small Jack 'O Lantern is fiendishly lighting the way"
+    },
+    "Puppy": {
+      "name": "Puppy",
+      "description": "A puppy is following you"
+    },
+    "Pygmies": {
+      "name": "Pygmies",
+      "description": "The pygmies will fight for you"
+    },
+    "QueenBeePet": {
+      "name": "Honey Bee",
+      "description": "A honey bee is following you"
+    },
+    "QueenSlimeMount": {
+      "name": "Winged Slime Mount",
+      "description": "BOING FLAP BOING!"
+    },
+    "QueenSlimePet": {
+      "name": "Slime Princess",
+      "description": "She is the higher authority"
+    },
+    "Rabies": {
+      "name": "Feral Bite",
+      "description": "Increased damage, Decreased life regen, Causes status effects"
+    },
+    "Rage": {
+      "name": "Rage",
+      "description": "10% increased critical chance"
+    },
+    "RainbowBoulderPet": {
+      "name": "Friendly Rainbow Boulder",
+      "description": "A friendly rainbow boulder is rolling around with you"
+    },
+    "RapidHealing": {
+      "name": "Rapid Healing",
+      "description": "Life regeneration is greatly increased"
+    },
+    "RatMount": {
+      "name": "Nature of the Rat",
+      "description": "You turned into a rat!"
+    },
+    "Ravens": {
+      "name": "Ravens",
+      "description": "The ravens will attack your enemies"
+    },
+    "Regeneration": {
+      "name": "Regeneration",
+      "description": "Provides life regeneration"
+    },
+    "RollerSkatesGreenMount": {
+      "name": "Green Roller Skates",
+      "description": "This is how I roll"
+    },
+    "RollerSkatesMount": {
+      "name": "Blue Roller Skates",
+      "description": "This is how I roll"
+    },
+    "RollerSkatesPinkMount": {
+      "name": "Party Roller Skates",
+      "description": "This is how I roll"
+    },
+    "RollerSkatesWhiteMount": {
+      "name": "Classic Roller Skates",
+      "description": "This is how I roll"
+    },
+    "RubyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Rudolph": {
+      "name": "Rudolph",
+      "description": "Riding the red nosed reindeer"
+    },
+    "SantankMount": {
+      "name": "Santank Mount",
+      "description": "Crossing off the naughty list..."
+    },
+    "SapphireMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "ScutlixMount": {
+      "name": "Scutlix Mount",
+      "description": "Pew Pew"
+    },
+    "ScytheWhipPlayerBuff": {
+      "name": "Harvest Time",
+      "description": "Whip speed is increased"
+    },
+    "ShadowCandle": {
+      "name": "Shadow Candle",
+      "description": "Dispels the peace of towns"
+    },
+    "ShadowDodge": {
+      "name": "Holy Protection",
+      "description": "You will dodge the next attack"
+    },
+    "ShadowFlame": {
+      "name": "Shadowflame",
+      "description": "Losing life"
+    },
+    "ShadowMimic": {
+      "name": "Shadow Mimic",
+      "description": "A shadow mimic is following you"
+    },
+    "ShadowOrb": {
+      "name": "Shadow Orb",
+      "description": "A magical orb that provides light"
+    },
+    "SharkPup": {
+      "name": "Shark Pup",
+      "description": "Doo doo doo doo doo doo"
+    },
+    "SharknadoMinion": {
+      "name": "Sharknado",
+      "description": "The sharknado will fight for you"
+    },
+    "Sharpened": {
+      "name": "Sharpened",
+      "description": "Melee weapons have armor penetration"
+    },
+    "Shimmer": {
+      "name": "Shimmering",
+      "description": "You've gone insubstantial!"
+    },
+    "Shine": {
+      "name": "Shine",
+      "description": "Emitting light"
+    },
+    "ShroomMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Silenced": {
+      "name": "Silenced",
+      "description": "Cannot use items that require mana"
+    },
+    "SkeletronPet": {
+      "name": "Skeletron Jr.",
+      "description": "Skeletron Jr. Is following you"
+    },
+    "SkeletronPrimePet": {
+      "name": "Mini Prime",
+      "description": "Each tool can commit murder"
+    },
+    "SlimeMount": {
+      "name": "Slime Mount",
+      "description": "BOOOIIINNNG!"
+    },
+    "Slimed": {
+      "name": "Slime",
+      "description": "You are slimy and sticky"
+    },
+    "Slow": {
+      "name": "Slow",
+      "description": "Movement speed is reduced"
+    },
+    "Smolstar": {
+      "name": "Enchanted Daggers",
+      "description": "Death by a thousand cuts"
+    },
+    "SolarShield1": {
+      "name": "Solar Blaze",
+      "description": "Absorbs 20% of damage taken, repel enemies when taking damage"
+    },
+    "SolarShield2": {
+      "name": "Solar Blaze",
+      "description": "Absorbs 20% of damage taken, repel enemies when taking damage"
+    },
+    "SolarShield3": {
+      "name": "Solar Blaze",
+      "description": "Absorbs 20% of damage taken, repel enemies when taking damage"
+    },
+    "Sonar": {
+      "name": "Sonar",
+      "description": "You can see what's biting your hook"
+    },
+    "SoulDrain": {
+      "name": "Life Drain",
+      "description": "Increased life regeneration"
+    },
+    "Spelunker": {
+      "name": "Spelunker",
+      "description": "Shows the location of treasure and ore"
+    },
+    "SpiderMinion": {
+      "name": "Spider",
+      "description": "The spider will fight for you"
+    },
+    "Spiffo": {
+      "name": "Spiffo",
+      "description": "'This is how you died'"
+    },
+    "SpookyWoodMount": {
+      "name": "Tree Mount",
+      "description": "Run, forest, run!"
+    },
+    "Squashling": {
+      "name": "Squashling",
+      "description": "A squashling is following you"
+    },
+    "StarInBottle": {
+      "name": "Star in a Bottle",
+      "description": "Increased mana regeneration"
+    },
+    "StardustDragonMinion": {
+      "name": "Stardust Dragon",
+      "description": "The stardust dragon will protect you"
+    },
+    "StardustGuardianMinion": {
+      "name": "Stardust Guardian",
+      "description": "The stardust guardian will protect you"
+    },
+    "StardustMinion": {
+      "name": "Stardust Cell",
+      "description": "The stardust cell will fight for you"
+    },
+    "StardustMinionBleed": {
+      "name": "Celled",
+      "description": "being eaten by cells"
+    },
+    "Starving": {
+      "name": "Starving",
+      "description": "You are starving to death! Eat immediately!"
+    },
+    "SteampunkMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Stinky": {
+      "name": "Stinky",
+      "description": "You smell terrible"
+    },
+    "Stoned": {
+      "name": "Stoned",
+      "description": "You are completely petrified!"
+    },
+    "StormTiger": {
+      "name": "Desert Tiger",
+      "description": "The desert tiger will fight beside you"
+    },
+    "Suffocation": {
+      "name": "Suffocation",
+      "description": "Losing life"
+    },
+    "SugarGlider": {
+      "name": "Sugar Glider",
+      "description": "A sugar glider is following you"
+    },
+    "SugarRush": {
+      "name": "Sugar Rush",
+      "description": "20% increased movement and mining speed"
+    },
+    "Summoning": {
+      "name": "Summoning",
+      "description": "Increased your max number of minions by 1"
+    },
+    "Sunflower": {
+      "name": "Happy!",
+      "description": "Movement speed increased and monster spawns reduced"
+    },
+    "SunflowerMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "SuspiciousTentacle": {
+      "name": "Suspicious Looking Eye",
+      "description": "A suspicious looking eye that provides light"
+    },
+    "Swiftness": {
+      "name": "Swiftness",
+      "description": "25% increased movement speed"
+    },
+    "SwordWhipPlayerBuff": {
+      "name": "Durendal's Blessing",
+      "description": "Whip speed is increased"
+    },
+    "TerraFartMinecart": {
+      "name": "Terra Fart Kart",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TheTongue": {
+      "name": "The Tongue",
+      "description": "You are being sucked into the mouth"
+    },
+    "ThornWhipPlayerBuff": {
+      "name": "Jungle's Fury",
+      "description": "Whip speed is increased"
+    },
+    "Thorns": {
+      "name": "Thorns",
+      "description": "Attackers also take damage"
+    },
+    "TikiSpirit": {
+      "name": "Tiki Spirit",
+      "description": "A friendly spirit is following you"
+    },
+    "Tipsy": {
+      "name": "Tipsy",
+      "description": "Increased melee abilities, lowered defense"
+    },
+    "Titan": {
+      "name": "Titan",
+      "description": "Increased knockback"
+    },
+    "TitaniumStorm": {
+      "name": "Titanium Barrier",
+      "description": "Defensive shards surround you"
+    },
+    "TopazMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TorchGodPotion": {
+      "name": "Torch Blessing",
+      "description": "Nearby torches will be converted to match the biome"
+    },
+    "TurtleMount": {
+      "name": "Turtle Mount",
+      "description": "Slow if by land, zoom if by sea"
+    },
+    "TwinEyesMinion": {
+      "name": "Twins",
+      "description": "The twins will fight for you"
+    },
+    "TwinsPet": {
+      "name": "Rez and Spaz",
+      "description": "You have special eyes!"
+    },
+    "UFOMinion": {
+      "name": "UFO",
+      "description": "The UFO will fight for you"
+    },
+    "UFOMount": {
+      "name": "UFO Mount",
+      "description": "It's a good thing you had a MAC"
+    },
+    "UnicornMount": {
+      "name": "Unicorn Mount",
+      "description": "Charge ahead... fabulously!"
+    },
+    "UpbeatStar": {
+      "name": "Estee",
+      "description": "Estee is following you"
+    },
+    "VampireFrog": {
+      "name": "Vampire Frog",
+      "description": "The vampire frog will fight for you"
+    },
+    "VelociraptorMount": {
+      "name": "Instinct of the Raptor",
+      "description": "You turned into a velociraptor!"
+    },
+    "Venom": {
+      "name": "Acid Venom",
+      "description": "Losing life"
+    },
+    "VoltBunny": {
+      "name": "Volt Bunny",
+      "description": "A volt bunny is ecstatic about you"
+    },
+    "VortexDebuff": {
+      "name": "Distorted",
+      "description": "Gravity around you is distorted"
+    },
+    "WallOfFleshGoatMount": {
+      "name": "Goat Mount",
+      "description": "This ride is totally metal!"
+    },
+    "WarTable": {
+      "name": "Strategist",
+      "description": "Increased your max number of sentries by 1"
+    },
+    "Warmth": {
+      "name": "Warmth",
+      "description": "Reduced damage from cold sources"
+    },
+    "WaterCandle": {
+      "name": "Water Candle",
+      "description": "Increased monster spawn rate"
+    },
+    "WaterWalking": {
+      "name": "Water Walking",
+      "description": "Press DOWN to enter water"
+    },
+    "Weak": {
+      "name": "Weak",
+      "description": "Physical abilities are decreased"
+    },
+    "WeaponImbueConfetti": {
+      "name": "Weapon Imbue: Confetti",
+      "description": "Melee attacks cause confetti to appear"
+    },
+    "WeaponImbueCursedFlames": {
+      "name": "Weapon Imbue: Cursed Flames",
+      "description": "Melee attacks inflict enemies with cursed flames"
+    },
+    "WeaponImbueFire": {
+      "name": "Weapon Imbue: Fire",
+      "description": "Melee attacks set enemies on fire"
+    },
+    "WeaponImbueGold": {
+      "name": "Weapon Imbue: Gold",
+      "description": "Melee attacks make enemies drop more gold"
+    },
+    "WeaponImbueIchor": {
+      "name": "Weapon Imbue: Ichor",
+      "description": "Melee attacks decrease enemies defense"
+    },
+    "WeaponImbueNanites": {
+      "name": "Weapon Imbue: Nanites",
+      "description": "Melee attacks confuse enemies"
+    },
+    "WeaponImbuePoison": {
+      "name": "Weapon Imbue: Poison",
+      "description": "Melee attacks poison enemies"
+    },
+    "WeaponImbueVenom": {
+      "name": "Weapon Imbue: Acid Venom",
+      "description": "Melee attacks inflict acid venom on your targets"
+    },
+    "Webbed": {
+      "name": "Webbed",
+      "description": "You are stuck"
+    },
+    "WellFed": {
+      "name": "Well Fed",
+      "description": "Minor improvements to all stats"
+    },
+    "WellFed2": {
+      "name": "Plenty Satisfied",
+      "description": "Medium improvements to all stats"
+    },
+    "WellFed3": {
+      "name": "Exquisitely Stuffed",
+      "description": "Major improvements to all stats"
+    },
+    "Werewolf": {
+      "name": "Werewolf",
+      "description": "Physical abilities are increased"
+    },
+    "Wet": {
+      "name": "Wet",
+      "description": "You are dripping water"
+    },
+    "WindPushed": {
+      "name": "Mighty Wind",
+      "description": "The wind moves you around!"
+    },
+    "Wisp": {
+      "name": "Wisp",
+      "description": "A wisp is following you"
+    },
+    "WitchBroom": {
+      "name": "Witch's Broom",
+      "description": "It flies! WITCHCRAFT!"
+    },
+    "WitheredArmor": {
+      "name": "Withered Armor",
+      "description": "Your armor is lowered!"
+    },
+    "WitheredWeapon": {
+      "name": "Withered Weapon",
+      "description": "Your attacks are weaker!"
+    },
+    "WolfMount": {
+      "name": "Blessing of the Moon",
+      "description": "You turned into a wolf!"
+    },
+    "Wrath": {
+      "name": "Wrath",
+      "description": "10% increased damage"
+    },
+    "ZephyrFish": {
+      "name": "Zephyr Fish",
+      "description": "It likes swimming around you"
+    }
+  },
   "npcs": {
     "AncientCultistSquidhead": "Ancient Vision",
     "AncientDoom": "Ancient Doom",

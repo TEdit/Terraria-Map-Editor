@@ -1900,7 +1900,7 @@
     "Fishron": "猪龙鱼",
     "FishronBossBag": "宝藏袋（猪龙鱼公爵）",
     "FishronWings": "猪龙鱼之翼",
-    "Flairon": "猪鲨链球",
+    "Flairon": "猪龙鱼链球",
     "FlaironFlail": "猪鲨链球",
     "Flamarang": "烈焰回旋镖",
     "FlameAndBlackDye": "红焰黑染料",
@@ -2167,7 +2167,7 @@
     "GemTreeTopazSeed": "黄玉宝石果",
     "GenderChangePotion": "变性药水",
     "Geode": "晶洞",
-    "GeyserTrap": "间歇泉",
+    "GeyserTrap": "热喷泉",
     "GhostBanner": "鬼魂旗",
     "GhostManifestation": "鬼魂显现",
     "GhostMask": "鬼魂面具",
@@ -2464,7 +2464,7 @@
     "GrayStucco": "灰泥灰",
     "GrayStuccoWall": "灰泥灰墙",
     "GraySwimshorts": "灰色泳裤",
-    "GreatWave": "巨浪",
+    "GreatWave": "浪里",
     "GreaterHealingPotion": "强效治疗药水",
     "GreaterManaPotion": "强效魔力药水",
     "Grebe": "䴙䴘",
@@ -4610,7 +4610,7 @@
     "Rocks3Echo": "斑驳石墙",
     "Rocks4Echo": "断裂石墙",
     "RodOfHarmony": "和谐传送杖",
-    "RodofDiscord": "混沌传送杖",
+    "RodofDiscord": "混沌传送杖、混沌杖",
     "RollerSkatesBlueMountItem": "蓝色溜冰鞋",
     "RollerSkatesClassicMountItem": "经典溜冰鞋",
     "RollerSkatesGreenMountItem": "绿溜冰鞋",
@@ -6135,6 +6135,1368 @@
     "ZombieEskimoBanner": "冰冻僵尸旗",
     "ZombieFish": "僵尸鱼",
     "ZombieMermanBanner": "僵尸人鱼旗"
+  },
+  "buffs": {
+    "AbigailMinion": {
+      "name": "阿比盖尔",
+      "description": "阿比盖尔会为了保护你而战"
+    },
+    "AmberMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmethystMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "AmmoBox": {
+      "name": "弹药箱",
+      "description": "20%几率省下弹药"
+    },
+    "AmmoReservation": {
+      "name": "弹药储备",
+      "description": "20%几率省下弹药"
+    },
+    "Archery": {
+      "name": "箭术",
+      "description": "弓伤害提高10%，箭速度提高20%"
+    },
+    "AxeFairyPet": {
+      "name": "塞纳克斯",
+      "description": "刨根问底"
+    },
+    "BabyBird": {
+      "name": "雀宝宝",
+      "description": "雀宝宝将为你而战"
+    },
+    "BabyDinosaur": {
+      "name": "恐龙宝宝",
+      "description": "恐龙宝宝正跟着你"
+    },
+    "BabyEater": {
+      "name": "吞噬怪宝宝",
+      "description": "噬魂怪宝宝正跟着你"
+    },
+    "BabyFaceMonster": {
+      "name": "脸怪宝宝",
+      "description": "脸怪宝宝正跟着你"
+    },
+    "BabyGrinch": {
+      "name": "格林奇宝宝",
+      "description": "格林奇宝宝正跟着你"
+    },
+    "BabyHornet": {
+      "name": "黄蜂宝宝",
+      "description": "它认为你是它的妈妈"
+    },
+    "BabyImp": {
+      "name": "小鬼宝宝",
+      "description": "等到他两岁的时候走着瞧吧！"
+    },
+    "BabyPenguin": {
+      "name": "企鹅宝宝",
+      "description": "我想它想要你的鱼"
+    },
+    "BabyRedPanda": {
+      "name": "小熊猫宝宝",
+      "description": "小熊猫宝宝正跟着你"
+    },
+    "BabySkeletronHead": {
+      "name": "骷髅王头宝宝",
+      "description": "别问了……"
+    },
+    "BabySlime": {
+      "name": "史莱姆宝宝",
+      "description": "史莱姆宝宝将为你而战"
+    },
+    "BabySnowman": {
+      "name": "雪人宝宝",
+      "description": "雪人宝宝正跟着你"
+    },
+    "BabyTruffle": {
+      "name": "松露人宝宝",
+      "description": "这简直太太太可爱了！"
+    },
+    "BabyWerewolf": {
+      "name": "狼人宝宝",
+      "description": "狼人宝宝正跟着你"
+    },
+    "BallistaPanic": {
+      "name": "弩车恐慌！",
+      "description": "你的弩车在恐慌之中快速射击！"
+    },
+    "BasiliskMount": {
+      "name": "蛇蜥怪坐骑",
+      "description": "谁都敢撞……谁都要撞！"
+    },
+    "BatMount": {
+      "name": "蝙蝠诅咒",
+      "description": "你变成了蝙蝠！"
+    },
+    "BatOfLight": {
+      "name": "血红蝙蝠",
+      "description": "血红蝙蝠将为你而战"
+    },
+    "Battle": {
+      "name": "战斗",
+      "description": "提高敌人生成速度"
+    },
+    "BeeMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BeeMount": {
+      "name": "蜜蜂坐骑",
+      "description": "嗡嗡嗡嗡"
+    },
+    "BeetleEndurance1": {
+      "name": "甲虫耐力",
+      "description": "吸收15%所受伤害"
+    },
+    "BeetleEndurance2": {
+      "name": "甲虫耐力",
+      "description": "吸收30%所受伤害"
+    },
+    "BeetleEndurance3": {
+      "name": "甲虫耐力",
+      "description": "吸收45%所受伤害"
+    },
+    "BeetleMight1": {
+      "name": "甲虫力量",
+      "description": "近战伤害和近战速度各提高10%"
+    },
+    "BeetleMight2": {
+      "name": "甲虫力量",
+      "description": "近战伤害和近战速度各提高20%"
+    },
+    "BeetleMight3": {
+      "name": "甲虫力量",
+      "description": "近战伤害和近战速度各提高30%"
+    },
+    "BeetleMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "BerniePet": {
+      "name": "伯尼",
+      "description": "伯尼，你总是陪在我身边"
+    },
+    "BetsysCurse": {
+      "name": "双足翼龙诅咒",
+      "description": "防御力降低"
+    },
+    "Bewitched": {
+      "name": "着魔",
+      "description": "仆从数量上限增加1"
+    },
+    "BiomeSight": {
+      "name": "生物群系视觉",
+      "description": "显示感染物块的位置"
+    },
+    "BlackCat": {
+      "name": "黑猫",
+      "description": "黑猫正跟着你"
+    },
+    "Blackout": {
+      "name": "黑视",
+      "description": "光视能力严重下降"
+    },
+    "Bleeding": {
+      "name": "流血",
+      "description": "无法再生生命"
+    },
+    "BloodButcherer": {
+      "name": "血腥屠宰",
+      "description": "迅速出血"
+    },
+    "BlueChickenPet": {
+      "name": "蓝鸡",
+      "description": "名牌上写着“Shane”"
+    },
+    "BoneJavelin": {
+      "name": "穿透",
+      "description": "血流不止"
+    },
+    "BoulderPet": {
+      "name": "友好巨石",
+      "description": "一个友好巨石将与你一起滚动"
+    },
+    "BrainOfConfusionBuff": {
+      "name": "控脑术",
+      "description": "提高暴击率和仆从伤害"
+    },
+    "BrainOfCthulhuPet": {
+      "name": "蜘蛛脑",
+      "description": "它爬来爬去的……真恶心"
+    },
+    "BrokenArmor": {
+      "name": "破损盔甲",
+      "description": "防御力减半"
+    },
+    "Builder": {
+      "name": "建筑工",
+      "description": "提高放置速度和范围"
+    },
+    "BunnyMount": {
+      "name": "兔兔坐骑",
+      "description": "你渴望胡萝卜"
+    },
+    "Burning": {
+      "name": "燃烧",
+      "description": "正在损失生命值且移动已放缓"
+    },
+    "Calm": {
+      "name": "冷静",
+      "description": "敌人生成速度降低"
+    },
+    "Campfire": {
+      "name": "温馨之火",
+      "description": "生命再生速度略有提高"
+    },
+    "CatBast": {
+      "name": "巴斯特防御",
+      "description": "防御力增加5点"
+    },
+    "CavelingGardener": {
+      "name": "洞穴园丁",
+      "description": "哈嘿啊忒！"
+    },
+    "ChaosState": {
+      "name": "混沌状态",
+      "description": "使用混沌传送杖将消耗生命值"
+    },
+    "ChesterPet": {
+      "name": "切斯特",
+      "description": "奥特·冯·切斯特菲尔德先生"
+    },
+    "Chilled": {
+      "name": "冷冻",
+      "description": "你的移动速度已降低"
+    },
+    "Clairvoyance": {
+      "name": "灵视",
+      "description": "提高魔能"
+    },
+    "CobWhipPlayerBuff": {
+      "name": "鞭蜘蛛",
+      "description": "召唤一只蜘蛛来为你战斗"
+    },
+    "CoffinMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "CompanionCube": {
+      "name": "同伴方块",
+      "description": "永远不会威胁要刺伤你，而且，其实，也不会说话"
+    },
+    "Confused": {
+      "name": "困惑",
+      "description": "移动方向逆转"
+    },
+    "CoolWhipPlayerBuff": {
+      "name": "一种不错的增益",
+      "description": "召唤雪花来为你战斗"
+    },
+    "Crate": {
+      "name": "宝匣",
+      "description": "钓上宝匣的几率更大"
+    },
+    "CrimsonHeart": {
+      "name": "猩红之心",
+      "description": "提供照明的魔法心"
+    },
+    "Cursed": {
+      "name": "诅咒",
+      "description": "无法使用任何物品"
+    },
+    "CursedInferno": {
+      "name": "诅咒狱火",
+      "description": "正在损失生命值"
+    },
+    "CursedSapling": {
+      "name": "诅咒树苗",
+      "description": "诅咒树苗正跟着你"
+    },
+    "CuteFishronMount": {
+      "name": "可爱猪龙鱼坐骑",
+      "description": "不要让它爬行。"
+    },
+    "DD2BetsyPet": {
+      "name": "小双足翼龙",
+      "description": "小双足翼龙正跟着你"
+    },
+    "DD2OgrePet": {
+      "name": "食人魔宝宝",
+      "description": "他有一根大棒，但不知道怎么用它"
+    },
+    "Dangersense": {
+      "name": "危险感",
+      "description": "你可以看到附近的危险"
+    },
+    "DarkHorseMount": {
+      "name": "黑马坐骑",
+      "description": "骑上一匹黑马"
+    },
+    "DarkMageBookMount": {
+      "name": "书坐骑",
+      "description": "这本书在你的指引下现在有点用了"
+    },
+    "Darkness": {
+      "name": "黑暗",
+      "description": "光视力下降"
+    },
+    "Daybreak": {
+      "name": "破晓",
+      "description": "被日耀射线焚烧"
+    },
+    "Dazed": {
+      "name": "眩晕",
+      "description": "移动大大减慢"
+    },
+    "DeadCellsMushroomBoiMinion": {
+      "name": "蘑菇小伙伴！",
+      "description": "蘑菇小伙伴将为你而战"
+    },
+    "DeadCellsPotionStation": {
+      "name": "炼金强化",
+      "description": "新增益持续更长时间"
+    },
+    "DeadCellsSwarmBiter": {
+      "name": "虫群啃噬者",
+      "description": "大嚼特嚼"
+    },
+    "DeadlySphere": {
+      "name": "致命球",
+      "description": "致命球将为你而战"
+    },
+    "DeerclopsPet": {
+      "name": "小独眼巨鹿",
+      "description": "我的天啊！"
+    },
+    "DesertMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DestroyerPet": {
+      "name": "微型毁灭者",
+      "description": "随时随地准备摧毁"
+    },
+    "DiamondMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "DiggingMoleMinecart": {
+      "name": "挖掘鼹鼠矿车",
+      "description": "鼹鼠矿车将为你挖掘"
+    },
+    "DirtiestBlock": {
+      "name": "最土的块",
+      "description": "你可以从这些额外的泥土看出来"
+    },
+    "DrillMount": {
+      "name": "钻头坐骑",
+      "description": "骑上飞行钻头"
+    },
+    "DryadsWard": {
+      "name": "树妖祝福",
+      "description": "自然的力量保护你"
+    },
+    "DryadsWardDebuff": {
+      "name": "树妖祸害",
+      "description": "自然的力量逼迫你"
+    },
+    "DualSlimePet": {
+      "name": "皇家史莱姆",
+      "description": "最终权威，他们将统一王国！"
+    },
+    "DukeFishronPet": {
+      "name": "小猪龙鱼",
+      "description": "海绿色的深渊侯爵"
+    },
+    "DynamiteKitten": {
+      "name": "雷管小猫",
+      "description": "不可用于大炮"
+    },
+    "EaterOfWorldsPet": {
+      "name": "蠕虫吞噬怪",
+      "description": "可能会毁掉几个后院"
+    },
+    "Electrified": {
+      "name": "带电",
+      "description": "一动就痛！"
+    },
+    "EmeraldMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "EmpressBlade": {
+      "name": "泰拉棱镜",
+      "description": "女皇之刃将为你而战"
+    },
+    "Endurance": {
+      "name": "耐力",
+      "description": "伤害降低10%"
+    },
+    "EverscreamPet": {
+      "name": "常绿尖叫怪树苗",
+      "description": "带着这棵树散步！"
+    },
+    "EyeOfCthulhuPet": {
+      "name": "可疑眼睛",
+      "description": "盯着点……"
+    },
+    "EyeballSpring": {
+      "name": "弹簧眼",
+      "description": "弹簧眼正跟着你"
+    },
+    "FairyBlue": {
+      "name": "仙灵",
+      "description": "仙灵正跟着你"
+    },
+    "FairyGreen": {
+      "name": "仙灵",
+      "description": "仙灵正跟着你"
+    },
+    "FairyQueenPet": {
+      "name": "仙灵公主",
+      "description": "仙灵之光普照众生"
+    },
+    "FairyRed": {
+      "name": "仙灵",
+      "description": "仙灵正跟着你"
+    },
+    "FartMinecart": {
+      "name": "臭屁卡丁车",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Featherfall": {
+      "name": "羽落",
+      "description": "按向上键或向下键来控制下降速度"
+    },
+    "FennecFox": {
+      "name": "耳廓狐",
+      "description": "狐狸说了什么？不如说，狐狸听到了什么？！"
+    },
+    "FishMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Fishing": {
+      "name": "钓鱼",
+      "description": "提高渔力"
+    },
+    "Flamingo": {
+      "name": "火烈鸟",
+      "description": "火烈鸟冲冲冲"
+    },
+    "FlinxMinion": {
+      "name": "小雪怪",
+      "description": "小雪怪将为你而战"
+    },
+    "Flipper": {
+      "name": "脚蹼",
+      "description": "在水中移动如常"
+    },
+    "Frostburn": {
+      "name": "霜冻",
+      "description": "不是特别烫就是特别冻。反正都是特别特别痛"
+    },
+    "Frostburn2": {
+      "name": "冻伤",
+      "description": "不是特别烫就是特别冻。反正都是特别特别痛"
+    },
+    "Frozen": {
+      "name": "冰冻",
+      "description": "你不能动！"
+    },
+    "GelBalloonBuff": {
+      "name": "闪耀史莱姆",
+      "description": "你黏糊糊的，亮闪闪的"
+    },
+    "Gills": {
+      "name": "鱼鳃",
+      "description": "允许你在液体中呼吸"
+    },
+    "GlitteryButterfly": {
+      "name": "闪光蝴蝶",
+      "description": "真的真的荒唐"
+    },
+    "GlommerPet": {
+      "name": "咕噜咪",
+      "description": "毛茸茸！还黏糊糊……"
+    },
+    "GolemPet": {
+      "name": "玩具石巨人",
+      "description": "给自己一个会哭、会说话、会睡觉、会走路的活神像！"
+    },
+    "GolfCartMount": {
+      "name": "高尔夫球车",
+      "description": "穿过球道的好方法"
+    },
+    "Gravitation": {
+      "name": "重力",
+      "description": "按向上键可逆转重力"
+    },
+    "HeartLamp": {
+      "name": "心灯",
+      "description": "生命再生速度提高"
+    },
+    "Heartreach": {
+      "name": "拾心",
+      "description": "扩大心的拾取范围"
+    },
+    "HeartyMeal": {
+      "name": "丰盛大餐",
+      "description": "提高生命再生速度"
+    },
+    "HellMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Hemorrhage": {
+      "name": "出血",
+      "description": "血流如注"
+    },
+    "Honey": {
+      "name": "蜂蜜",
+      "description": "生命再生速度提高"
+    },
+    "HornetMinion": {
+      "name": "黄蜂",
+      "description": "黄蜂将为你而战"
+    },
+    "Horrified": {
+      "name": "惊恐",
+      "description": "你已看到污秽之物，无可逃脱。"
+    },
+    "Hunger": {
+      "name": "饥饿",
+      "description": "你很饿，而且感觉很虚弱。"
+    },
+    "Hunter": {
+      "name": "猎人",
+      "description": "显示敌人位置"
+    },
+    "IceBarrier": {
+      "name": "冰障",
+      "description": "所受伤害降低25%"
+    },
+    "IceQueenPet": {
+      "name": "冰雪女王",
+      "description": "冰雪女王已经重生为你的同伴"
+    },
+    "Ichor": {
+      "name": "灵液",
+      "description": "降低防御力"
+    },
+    "ImpMinion": {
+      "name": "小鬼",
+      "description": "小鬼将为你而战"
+    },
+    "Inferno": {
+      "name": "狱火",
+      "description": "附近的敌人被点燃"
+    },
+    "Invisibility": {
+      "name": "隐身",
+      "description": "隐身"
+    },
+    "Ironskin": {
+      "name": "铁皮",
+      "description": "防御力提高8点"
+    },
+    "JunimoPet": {
+      "name": "祝尼魔",
+      "description": "森林守护者"
+    },
+    "KingSlimePet": {
+      "name": "史莱姆王子",
+      "description": "他听命于上级"
+    },
+    "Kite": {
+      "name": "腾灵",
+      "description": "略微提高的移动速度、挖矿速度和放置速度"
+    },
+    "LadybugMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "LavaSharkMount": {
+      "name": "熔岩鲨坐骑",
+      "description": "在熔岩海中冲浪！"
+    },
+    "LeafCrystal": {
+      "name": "叶状水晶",
+      "description": "朝附近的敌人射出水晶叶"
+    },
+    "Lifeforce": {
+      "name": "生命力",
+      "description": "最大生命值提高20%"
+    },
+    "LilHarpy": {
+      "name": "小鸟妖",
+      "description": "从天而降的可爱"
+    },
+    "Lovestruck": {
+      "name": "热恋",
+      "description": "你已坠入爱河！"
+    },
+    "Lucky": {
+      "name": "幸运",
+      "description": "你觉得自己很幸运"
+    },
+    "LunaticCultistPet": {
+      "name": "小幻影龙",
+      "description": "它一直看着月亮"
+    },
+    "MagicLantern": {
+      "name": "魔法灯笼",
+      "description": "附魔灯笼照亮前路"
+    },
+    "MagicPower": {
+      "name": "魔能",
+      "description": "魔法伤害提高20%"
+    },
+    "MajesticHorseMount": {
+      "name": "骏马坐骑",
+      "description": "骑上一匹骏马"
+    },
+    "ManaRegeneration": {
+      "name": "魔力再生",
+      "description": "提高魔力再生速度"
+    },
+    "ManaSickness": {
+      "name": "耐魔性",
+      "description": "魔法伤害降低 "
+    },
+    "MartianPet": {
+      "name": "异星滑板小子",
+      "description": "你们好，人类同胞们？"
+    },
+    "MeowmereMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Merfolk": {
+      "name": "人鱼",
+      "description": "可在水下顺畅呼吸和移动"
+    },
+    "Midas": {
+      "name": "迈达斯",
+      "description": "死亡时掉落更多钱"
+    },
+    "Minecart": {
+      "name": "矿车",
+      "description": "驾驶矿车"
+    },
+    "MinecartMech": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MinecartWood": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "MiniMinotaur": {
+      "name": "福恩",
+      "description": "他叫肖恩"
+    },
+    "Mining": {
+      "name": "挖矿",
+      "description": "挖矿速度提高25%"
+    },
+    "MonsterBanner": {
+      "name": "旗帜",
+      "description": "提高对以下怪的伤害和防御力："
+    },
+    "MoonLeech": {
+      "name": "月噬",
+      "description": "你无法吸收治疗效果"
+    },
+    "MoonLordPet": {
+      "name": "月精灵",
+      "description": "有朋自远方来"
+    },
+    "NebulaUpDmg1": {
+      "name": "伤害星云",
+      "description": "伤害提高15%"
+    },
+    "NebulaUpDmg2": {
+      "name": "伤害星云",
+      "description": "伤害提高30%"
+    },
+    "NebulaUpDmg3": {
+      "name": "伤害星云",
+      "description": "伤害提高45%"
+    },
+    "NebulaUpLife1": {
+      "name": "生命星云",
+      "description": "提高生命再生速度"
+    },
+    "NebulaUpLife2": {
+      "name": "生命星云",
+      "description": "提高生命再生速度"
+    },
+    "NebulaUpLife3": {
+      "name": "生命星云",
+      "description": "提高生命再生速度"
+    },
+    "NebulaUpMana1": {
+      "name": "魔力星云",
+      "description": "提高魔力再生速度"
+    },
+    "NebulaUpMana2": {
+      "name": "魔力星云",
+      "description": "提高魔力再生速度"
+    },
+    "NebulaUpMana3": {
+      "name": "魔力星云",
+      "description": "提高魔力再生速度"
+    },
+    "NeutralHunger": {
+      "name": "稍饿",
+      "description": "你可以吃东西，但还没到非吃不可的地步。"
+    },
+    "NightOwl": {
+      "name": "夜猫子",
+      "description": "提升夜视能力"
+    },
+    "NoBuilding": {
+      "name": "创意震撼",
+      "description": "你已失去创造能力！"
+    },
+    "ObsidianSkin": {
+      "name": "黑曜石皮",
+      "description": "对熔岩免疫"
+    },
+    "Obstructed": {
+      "name": "遮挡",
+      "description": "你看不见了！"
+    },
+    "OgreSpit": {
+      "name": "分泌物",
+      "description": "移动速度显著降低"
+    },
+    "Oiled": {
+      "name": "涂油",
+      "description": "提高因着火而受到的伤害"
+    },
+    "OnFire": {
+      "name": "着火了！",
+      "description": "缓慢损失生命值"
+    },
+    "OnFire3": {
+      "name": "狱炎",
+      "description": "缓慢损失生命值"
+    },
+    "PaintedHorseMount": {
+      "name": "花马坐骑",
+      "description": "骑上一匹花马"
+    },
+    "PaladinsShield": {
+      "name": "圣骑士护盾",
+      "description": "所受伤害的25%将被转移到另一名玩家身上"
+    },
+    "PalworldMinionCattiva": {
+      "name": "捣蛋猫",
+      "description": "捣蛋猫将为你而战"
+    },
+    "PalworldMinionFoxsparks": {
+      "name": "火绒狐",
+      "description": "火绒狐将为你而战"
+    },
+    "PalworldPetChillet": {
+      "name": "疾旋鼬",
+      "description": "疾旋鼬将陪你一起探索\n它跑起来相当威猛！"
+    },
+    "PalworldPetChilletIgnis": {
+      "name": "疾旋火鼬",
+      "description": "疾旋火鼬将陪你一起探索\n小心别抚摸它太长时间，否则火花将会开始飞舞！"
+    },
+    "Panic": {
+      "name": "恐慌！",
+      "description": "移动速度提高"
+    },
+    "ParryDamageBuff": {
+      "name": "惊人一刻",
+      "description": "下次近战攻击伤害提高400%"
+    },
+    "PartyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PeaceCandle": {
+      "name": "和平蜡烛",
+      "description": "怪物生成速度降低"
+    },
+    "PetBunny": {
+      "name": "宠物兔兔",
+      "description": "我想它想要你的胡萝卜"
+    },
+    "PetDD2Dragon": {
+      "name": "Hoardagron",
+      "description": "Hoardagron正跟着你"
+    },
+    "PetDD2Gato": {
+      "name": "飞翔Gato",
+      "description": "飞翔Gato正跟着你"
+    },
+    "PetDD2Ghost": {
+      "name": "闪烁灯芯",
+      "description": "闪烁灯芯正跟着你"
+    },
+    "PetLizard": {
+      "name": "宠物蜥蜴",
+      "description": "像爬行动物一样冰凉"
+    },
+    "PetParrot": {
+      "name": "宠物鹦鹉",
+      "description": "波利想要饼干"
+    },
+    "PetSapling": {
+      "name": "宠物树苗",
+      "description": "小树苗正跟着你"
+    },
+    "PetSpider": {
+      "name": "宠物蜘蛛",
+      "description": "蜘蛛正跟着你"
+    },
+    "PetTurtle": {
+      "name": "宠物海龟",
+      "description": "欢乐乌龟时光！"
+    },
+    "PigPet": {
+      "name": "猪",
+      "description": "行走的培根！"
+    },
+    "PigronMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PigronMount": {
+      "name": "猪龙坐骑",
+      "description": "你现在看到我了……"
+    },
+    "PirateMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "PirateMinion": {
+      "name": "海盗",
+      "description": "海盗将为你而战"
+    },
+    "PirateShipMount": {
+      "name": "海盗船坐骑",
+      "description": "你现在是船长了"
+    },
+    "PixieMount": {
+      "name": "法埃的形态",
+      "description": "你变成了一只妖精！"
+    },
+    "PlanteraPet": {
+      "name": "世纪之花幼苗",
+      "description": "它到底吃什么呢？"
+    },
+    "Plantero": {
+      "name": "微型世纪之花",
+      "description": "小小世纪之花正跟着你"
+    },
+    "PogoStickMount": {
+      "name": "蹦蹦跷坐骑",
+      "description": "咔咝唏嗑！咔咝唏嗑！咔咝唏嗑！"
+    },
+    "Poisoned": {
+      "name": "中毒",
+      "description": "缓慢损失生命值"
+    },
+    "PotionSickness": {
+      "name": "耐药性",
+      "description": "不能再消耗治疗物品"
+    },
+    "Pufferfish": {
+      "name": "河豚",
+      "description": "一只友好河豚将跟着你"
+    },
+    "PumpkingPet": {
+      "name": "杰克南瓜灯",
+      "description": "一盏小杰克南瓜灯狡黠地照亮道路"
+    },
+    "Puppy": {
+      "name": "小狗",
+      "description": "小狗正跟着你"
+    },
+    "Pygmies": {
+      "name": "矮人",
+      "description": "矮人将为你而战"
+    },
+    "QueenBeePet": {
+      "name": "宝贝蜜蜂",
+      "description": "蜜蜂正跟着你"
+    },
+    "QueenSlimeMount": {
+      "name": "羽翼史莱姆坐骑",
+      "description": "啵嘤扑扑啵嘤！"
+    },
+    "QueenSlimePet": {
+      "name": "史莱姆公主",
+      "description": "她就是上级"
+    },
+    "Rabies": {
+      "name": "野性咬噬",
+      "description": "提高伤害，降低生命再生速度，对状态造成影响"
+    },
+    "Rage": {
+      "name": "暴怒",
+      "description": "暴击率提高10%"
+    },
+    "RainbowBoulderPet": {
+      "name": "友好彩虹巨石",
+      "description": "一个友好的彩虹巨石正跟在你身边滚来滚去"
+    },
+    "RapidHealing": {
+      "name": "快速治疗",
+      "description": "生命再生速度大幅提高"
+    },
+    "RatMount": {
+      "name": "大鼠本性",
+      "description": "你变成了大鼠！"
+    },
+    "Ravens": {
+      "name": "乌鸦",
+      "description": "乌鸦将攻击你的敌人"
+    },
+    "Regeneration": {
+      "name": "再生",
+      "description": "提供生命再生"
+    },
+    "RollerSkatesGreenMount": {
+      "name": "绿溜冰鞋",
+      "description": "这就是我的滚动风格"
+    },
+    "RollerSkatesMount": {
+      "name": "蓝溜冰鞋",
+      "description": "这就是我的滚动风格"
+    },
+    "RollerSkatesPinkMount": {
+      "name": "派对溜冰鞋",
+      "description": "这就是我的滚动风格"
+    },
+    "RollerSkatesWhiteMount": {
+      "name": "经典溜冰鞋",
+      "description": "这就是我的滚动风格"
+    },
+    "RubyMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Rudolph": {
+      "name": "鲁道夫",
+      "description": "骑上红鼻子驯鹿"
+    },
+    "SantankMount": {
+      "name": "圣诞老人坦克坐骑",
+      "description": "从淘气名单上划掉……"
+    },
+    "SapphireMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "ScutlixMount": {
+      "name": "鳞甲怪坐骑",
+      "description": "PIU PIU"
+    },
+    "ScytheWhipPlayerBuff": {
+      "name": "收割时刻",
+      "description": "鞭的速度提高"
+    },
+    "ShadowCandle": {
+      "name": "暗影蜡烛",
+      "description": "驱散城镇的宁静"
+    },
+    "ShadowDodge": {
+      "name": "神圣防护",
+      "description": "你将闪避下一次攻击"
+    },
+    "ShadowFlame": {
+      "name": "暗影焰",
+      "description": "正在损失生命值"
+    },
+    "ShadowMimic": {
+      "name": "暗影宝箱怪",
+      "description": "暗影宝箱怪正跟着你"
+    },
+    "ShadowOrb": {
+      "name": "暗影珠",
+      "description": "提供照明的魔法珠"
+    },
+    "SharkPup": {
+      "name": "小鲨鱼",
+      "description": "嘟嘟嘟嘟嘟嘟"
+    },
+    "SharknadoMinion": {
+      "name": "鲨鱼旋风",
+      "description": "鲨鱼旋风将为你而战"
+    },
+    "Sharpened": {
+      "name": "锋利",
+      "description": "近战武器具有盔甲穿透力"
+    },
+    "Shimmer": {
+      "name": "微光闪烁",
+      "description": "你虚化了！"
+    },
+    "Shine": {
+      "name": "光芒",
+      "description": "发光"
+    },
+    "ShroomMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Silenced": {
+      "name": "沉默",
+      "description": "无法使用需要魔力的物品"
+    },
+    "SkeletronPet": {
+      "name": "小骷髅王",
+      "description": "小骷髅王正跟着你"
+    },
+    "SkeletronPrimePet": {
+      "name": "小机械骷髅王",
+      "description": "每一种武器都致命"
+    },
+    "SlimeMount": {
+      "name": "史莱姆坐骑",
+      "description": "啵嘤！"
+    },
+    "Slimed": {
+      "name": "黏液",
+      "description": "你黏糊糊的"
+    },
+    "Slow": {
+      "name": "缓慢",
+      "description": "移动速度降低"
+    },
+    "Smolstar": {
+      "name": "附魔飞刀",
+      "description": "千刀万剐"
+    },
+    "SolarShield1": {
+      "name": "日耀烈焰",
+      "description": "吸收20%所受伤害，受到伤害时推开敌人"
+    },
+    "SolarShield2": {
+      "name": "日耀烈焰",
+      "description": "吸收20%所受伤害，受到伤害时推开敌人"
+    },
+    "SolarShield3": {
+      "name": "日耀烈焰",
+      "description": "吸收20%所受伤害，受到伤害时推开敌人"
+    },
+    "Sonar": {
+      "name": "声呐",
+      "description": "你能看到是什么在咬你的鱼钩"
+    },
+    "SoulDrain": {
+      "name": "夺命杖",
+      "description": "提高生命再生速度"
+    },
+    "Spelunker": {
+      "name": "洞穴探险",
+      "description": "显示宝藏和矿石的位置"
+    },
+    "SpiderMinion": {
+      "name": "蜘蛛",
+      "description": "蜘蛛将为你而战"
+    },
+    "Spiffo": {
+      "name": "Spiffo",
+      "description": "“你就是这样没命的”"
+    },
+    "SpookyWoodMount": {
+      "name": "阴森树坐骑",
+      "description": "向前跑，小树林，别回头！"
+    },
+    "Squashling": {
+      "name": "南瓜娃娃",
+      "description": "南瓜娃娃正跟着你"
+    },
+    "StarInBottle": {
+      "name": "星星瓶",
+      "description": "提高魔力再生速度"
+    },
+    "StardustDragonMinion": {
+      "name": "星尘之龙",
+      "description": "星尘之龙会保护你"
+    },
+    "StardustGuardianMinion": {
+      "name": "星尘守卫",
+      "description": "星尘守卫会保护你"
+    },
+    "StardustMinion": {
+      "name": "星尘细胞",
+      "description": "星尘细胞将为你而战"
+    },
+    "StardustMinionBleed": {
+      "name": "细胞附着",
+      "description": "被细胞吞噬"
+    },
+    "Starving": {
+      "name": "极饿",
+      "description": "你快饿死了！马上吃点东西！"
+    },
+    "SteampunkMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "Stinky": {
+      "name": "恶臭",
+      "description": "你的味道真难闻"
+    },
+    "Stoned": {
+      "name": "石化",
+      "description": "你彻底石化了！"
+    },
+    "StormTiger": {
+      "name": "沙漠虎",
+      "description": "沙漠虎将与你并肩作战"
+    },
+    "Suffocation": {
+      "name": "窒息",
+      "description": "正在损失生命值"
+    },
+    "SugarGlider": {
+      "name": "蜜袋鼯",
+      "description": "蜜袋鼯正跟着你"
+    },
+    "SugarRush": {
+      "name": "糖果冲刺",
+      "description": "移动和采矿速度各提高20%"
+    },
+    "Summoning": {
+      "name": "召唤",
+      "description": "仆从数量上限增加1"
+    },
+    "Sunflower": {
+      "name": "快乐！",
+      "description": "移动速度提高，怪物生成减少"
+    },
+    "SunflowerMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "SuspiciousTentacle": {
+      "name": "可疑眼球",
+      "description": "提供照明的可疑眼球"
+    },
+    "Swiftness": {
+      "name": "敏捷",
+      "description": "移动速度提高25%"
+    },
+    "SwordWhipPlayerBuff": {
+      "name": "迪朗达尔祝福",
+      "description": "鞭的速度提高"
+    },
+    "TerraFartMinecart": {
+      "name": "泰拉臭屁卡丁车",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TheTongue": {
+      "name": "狂卷之舌",
+      "description": "你被吸入嘴中"
+    },
+    "ThornWhipPlayerBuff": {
+      "name": "丛林之怒",
+      "description": "鞭的速度提高"
+    },
+    "Thorns": {
+      "name": "荆棘",
+      "description": "攻击者也会受到伤害"
+    },
+    "TikiSpirit": {
+      "name": "提基幽魂",
+      "description": "友好幽魂正跟着你"
+    },
+    "Tipsy": {
+      "name": "踉跄",
+      "description": "提高近战能力，降低防御力"
+    },
+    "Titan": {
+      "name": "泰坦",
+      "description": "提高击退力"
+    },
+    "TitaniumStorm": {
+      "name": "钛金屏障",
+      "description": "防御碎片环绕着你"
+    },
+    "TopazMinecart": {
+      "name": "{$BuffName.Minecart}",
+      "description": "{$BuffDescription.Minecart}"
+    },
+    "TorchGodPotion": {
+      "name": "火把祝福",
+      "description": "附近的火把将会被转换以匹配生物群落"
+    },
+    "TurtleMount": {
+      "name": "海龟坐骑",
+      "description": "陆地上速度缓慢，海上则可急速疾行"
+    },
+    "TwinEyesMinion": {
+      "name": "双子魔眼",
+      "description": "双子魔眼将为你而战"
+    },
+    "TwinsPet": {
+      "name": "激光眼和魔焰眼",
+      "description": "你有一双特别的眼睛！"
+    },
+    "UFOMinion": {
+      "name": "UFO",
+      "description": "UFO将为你而战"
+    },
+    "UFOMount": {
+      "name": "UFO坐骑",
+      "description": "幸好你有MAC"
+    },
+    "UnicornMount": {
+      "name": "独角兽坐骑",
+      "description": "向前冲……太棒了！"
+    },
+    "UpbeatStar": {
+      "name": "埃斯蒂",
+      "description": "埃斯蒂正跟着你"
+    },
+    "VampireFrog": {
+      "name": "吸血鬼青蛙",
+      "description": "吸血鬼青蛙将为你而战"
+    },
+    "VelociraptorMount": {
+      "name": "猛禽本能",
+      "description": "你变成了迅猛龙！"
+    },
+    "Venom": {
+      "name": "酸性毒液",
+      "description": "正在损失生命值"
+    },
+    "VoltBunny": {
+      "name": "伏特兔",
+      "description": "伏特兔迷上你了"
+    },
+    "VortexDebuff": {
+      "name": "扭曲",
+      "description": "你周围的重力是扭曲的"
+    },
+    "WallOfFleshGoatMount": {
+      "name": "山羊坐骑",
+      "description": "这完全是金属摇滚范儿！"
+    },
+    "WarTable": {
+      "name": "战略家",
+      "description": "哨兵数量上限增加1"
+    },
+    "Warmth": {
+      "name": "温暖",
+      "description": "降低所受冷系伤害"
+    },
+    "WaterCandle": {
+      "name": "水蜡烛",
+      "description": "提高怪物生成速度"
+    },
+    "WaterWalking": {
+      "name": "水上漂",
+      "description": "按向下键进入水中"
+    },
+    "Weak": {
+      "name": "虚弱",
+      "description": "体能降低"
+    },
+    "WeaponImbueConfetti": {
+      "name": "武器灌注：彩纸",
+      "description": "近战攻击会喷撒彩纸"
+    },
+    "WeaponImbueCursedFlames": {
+      "name": "武器灌注：诅咒焰",
+      "description": "近战攻击会对敌人施放诅咒焰"
+    },
+    "WeaponImbueFire": {
+      "name": "武器灌注：火焰",
+      "description": "近战攻击会使敌人着火"
+    },
+    "WeaponImbueGold": {
+      "name": "武器灌注：金",
+      "description": "近战攻击会使敌人掉落更多金子"
+    },
+    "WeaponImbueIchor": {
+      "name": "武器灌注：灵液",
+      "description": "近战攻击会降低敌人防御力"
+    },
+    "WeaponImbueNanites": {
+      "name": "武器灌注：纳米机器人",
+      "description": "近战攻击会使敌人困惑"
+    },
+    "WeaponImbuePoison": {
+      "name": "武器灌注：毒药",
+      "description": "近战攻击会使敌人中毒"
+    },
+    "WeaponImbueVenom": {
+      "name": "武器灌注：酸性毒液",
+      "description": "近战攻击会对你的目标施放酸性毒液"
+    },
+    "Webbed": {
+      "name": "被网住",
+      "description": "你动不了了"
+    },
+    "WellFed": {
+      "name": "吃得好",
+      "description": "所有属性小幅提升"
+    },
+    "WellFed2": {
+      "name": "很满意",
+      "description": "所有属性中幅提升"
+    },
+    "WellFed3": {
+      "name": "酒足饭饱",
+      "description": "所有属性大幅提升"
+    },
+    "Werewolf": {
+      "name": "狼人",
+      "description": "体能提高"
+    },
+    "Wet": {
+      "name": "潮湿",
+      "description": "你在滴水"
+    },
+    "WindPushed": {
+      "name": "强风",
+      "description": "风将你吹动！"
+    },
+    "Wisp": {
+      "name": "妖灵",
+      "description": "妖灵正跟着你"
+    },
+    "WitchBroom": {
+      "name": "女巫扫帚",
+      "description": "它飞起来了！这是巫术！"
+    },
+    "WitheredArmor": {
+      "name": "枯萎盔甲",
+      "description": "你的盔甲降级了！"
+    },
+    "WitheredWeapon": {
+      "name": "枯萎武器",
+      "description": "你的攻击变弱了！"
+    },
+    "WolfMount": {
+      "name": "月亮祝福",
+      "description": "你变成了狼！"
+    },
+    "Wrath": {
+      "name": "怒气",
+      "description": "伤害提高10%"
+    },
+    "ZephyrFish": {
+      "name": "和风鱼",
+      "description": "它喜欢在你周围游泳"
+    }
   },
   "npcs": {
     "AncientCultistSquidhead": "远古幻影妖",
