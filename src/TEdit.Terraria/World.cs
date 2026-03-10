@@ -61,7 +61,7 @@ public partial class World
         CharacterNames.Clear();
     }
 
-    public static async Task SaveAsync(World world, string filename, bool resetTime = false, int versionOverride = 0, bool incrementRevision = true, IProgress<ProgressChangedEventArgs>? progress = null)
+    public static async Task SaveAsync(World world, string filename, bool resetTime = false, int versionOverride = 0, bool incrementRevision = true, bool preserveAll = true, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         await Task.Run(() =>
         {
@@ -97,7 +97,7 @@ public partial class World
                             }
                             else if (world.Version > 87 && world.Version != 38)
                             {
-                                SaveV2(world, bw, incrementRevision, progress);
+                                SaveV2(world, bw, incrementRevision, preserveAll, progress);
                             }
                             else
                             {
@@ -144,6 +144,7 @@ public partial class World
         bool resetTime = false,
         int versionOverride = 0,
         bool incrementRevision = true,
+        bool preserveAll = true,
         IProgress<ProgressChangedEventArgs>? progress = null)
     {
         lock (_fileLock)
@@ -176,7 +177,7 @@ public partial class World
                         }
                         else if (world.Version > 87 && world.Version != 38)
                         {
-                            SaveV2(world, bw, incrementRevision, progress);
+                            SaveV2(world, bw, incrementRevision, preserveAll, progress);
                         }
                         else
                         {

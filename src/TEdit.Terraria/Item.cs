@@ -54,7 +54,7 @@ public partial class Item : ReactiveObject
         if (_currentItemProperty != null)
             return _currentItemProperty.Name;
 
-        return "[empty]";
+        return _netId != 0 ? $"[unknown:{_netId}]" : "[empty]";
     }
 
     public byte Prefix

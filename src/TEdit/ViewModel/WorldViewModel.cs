@@ -2775,11 +2775,12 @@ public partial class WorldViewModel : ReactiveObject
 
         bool pickVersion = (bool)w.ShowDialog();
         uint version = w.WorldVersion;
+        bool preserveAll = w.PreserveAll;
 
         if (pickVersion && (bool)sfd.ShowDialog())
         {
             CurrentFile = sfd.FileName;
-            await SaveWorldFileAsync(GetSaveVersion_MaxConfig(version)); // Clamp to the max config version.
+            await SaveWorldFileAsync(GetSaveVersion_MaxConfig(version), preserveAll);
         }
     }
 
@@ -2846,7 +2847,7 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
-    private async Task SaveWorldFileAsync(uint version = 0)
+    private async Task SaveWorldFileAsync(uint version = 0, bool preserveAll = true)
     {
         if (CurrentWorld == null)
             return;
@@ -2907,10 +2908,10 @@ public partial class WorldViewModel : ReactiveObject
 
         _loadedFromBackup = false;
         _originalBackupPath = null;
-        await SaveWorldThreadedAsync(CurrentFile, GetSaveVersion_MaxConfig(version));
+        await SaveWorldThreadedAsync(CurrentFile, GetSaveVersion_MaxConfig(version), preserveAll);
     }
 
-    private async Task SaveWorldThreadedAsync(string filename, uint version = 0)
+    private async Task SaveWorldThreadedAsync(string filename, uint version = 0, bool preserveAll = true)
     {
         await Task.Run(async () =>
         {
@@ -2936,7 +2937,7 @@ public partial class WorldViewModel : ReactiveObject
                     return;
             }
 
-            await World.SaveAsync(CurrentWorld, filename, versionOverride: (int)version, progress: new Progress<ProgressChangedEventArgs>(e =>
+            await World.SaveAsync(CurrentWorld, filename, versionOverride: (int)version, preserveAll: preserveAll, progress: new Progress<ProgressChangedEventArgs>(e =>
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
             }));

@@ -1449,6 +1449,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="saveas_instruction" xml:space="preserve">
     <value>Select a version to save as:</value>
   </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>Keep tiles/walls/items from newer versions</value>
+  </data>
   <data name="saveas_title" xml:space="preserve">
     <value>Select World Version</value>
   </data>

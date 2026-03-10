@@ -4022,6 +4022,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keep tiles/walls/items from newer versions.
+        /// </summary>
+        public static string saveas_preserve_all {
+            get {
+                return ResourceManager.GetString("saveas_preserve_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select World Version.
         /// </summary>
         public static string saveas_title {

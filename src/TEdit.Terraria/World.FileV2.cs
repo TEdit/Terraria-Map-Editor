@@ -108,7 +108,7 @@ public partial class World
         }
     }
 
-    public static void SaveV2(World world, BinaryWriter bw, bool incrementRevision = true, IProgress<ProgressChangedEventArgs>? progress = null)
+    public static void SaveV2(World world, BinaryWriter bw, bool incrementRevision = true, bool preserveAll = false, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         world.Validate(progress);
 
@@ -118,21 +118,40 @@ public partial class World
         }
 
         int[] sectionPointers = new int[world.GetSectionCount()];
-        bool[] tileFrameImportant = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)world.Version);
+        bool[] configFrames = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)world.Version);
+
+        // Use the world's own TileFrameImportant (from file header) as the primary source.
+        // This preserves frame data for tiles beyond what the config knows about.
+        // Fall back to config-based frames only when the world has no stored data (e.g., new world).
+        bool[] tileFrameImportant;
+        if (world.TileFrameImportant != null && world.TileFrameImportant.Length > 0)
+        {
+            // Start with the world's data, then overlay config data for known tiles
+            int maxLen = Math.Max(world.TileFrameImportant.Length, configFrames.Length);
+            tileFrameImportant = new bool[maxLen];
+            Array.Copy(world.TileFrameImportant, tileFrameImportant, world.TileFrameImportant.Length);
+            // Config frames are authoritative for tiles TEdit knows about
+            for (int i = 0; i < configFrames.Length; i++)
+                tileFrameImportant[i] = configFrames[i];
+        }
+        else
+        {
+            tileFrameImportant = configFrames;
+        }
 
         progress?.Report(new ProgressChangedEventArgs(0, "Save headers..."));
         sectionPointers[0] = SaveSectionHeader(world, bw, tileFrameImportant);
         sectionPointers[1] = SaveHeaderFlags(world, bw, (int)world.Version);
         progress?.Report(new ProgressChangedEventArgs(0, "Save Tiles..."));
-        sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, tileFrameImportant);
+        sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, tileFrameImportant, preserveAll);
 
         progress?.Report(new ProgressChangedEventArgs(91, "Save Chests..."));
-        sectionPointers[3] = SaveChests(world.Chests, bw, (int)world.Version);
+        sectionPointers[3] = SaveChests(world.Chests, bw, (int)world.Version, preserveAll);
         progress?.Report(new ProgressChangedEventArgs(92, "Save Signs..."));
         sectionPointers[4] = SaveSigns(world.Signs, bw, (int)world.Version);
         progress?.Report(new ProgressChangedEventArgs(93, "Save NPCs..."));
 
-        sectionPointers[5] = SaveNPCs(world, bw, (int)world.Version);
+        sectionPointers[5] = SaveNPCs(world, bw, (int)world.Version, preserveAll);
 
         if (world.Version >= 140)
         {
@@ -149,7 +168,7 @@ public partial class World
         if (world.Version >= 189)
         {
             progress?.Report(new ProgressChangedEventArgs(97, "Save Town Manager..."));
-            sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw, (int)world.Version);
+            sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw, (int)world.Version, preserveAll);
         }
 
         if (world.Version >= 210)
@@ -170,11 +189,11 @@ public partial class World
         progress?.Report(new ProgressChangedEventArgs(100, "Save Complete."));
     }
 
-    public static int SaveTiles(Tile[,] tiles, int version, int maxX, int maxY, BinaryWriter bw, bool[] tileFrameImportant, IProgress<ProgressChangedEventArgs>? progress = null)
+    public static int SaveTiles(Tile[,] tiles, int version, int maxX, int maxY, BinaryWriter bw, bool[] tileFrameImportant, bool preserveAll = false, IProgress<ProgressChangedEventArgs>? progress = null)
     {
-
-        int maxTileId = WorldConfiguration.SaveConfiguration.GetData(version).MaxTileId;
-        int maxWallId = WorldConfiguration.SaveConfiguration.GetData(version).MaxWallId;
+        var versionData = WorldConfiguration.SaveConfiguration.GetData(version);
+        int maxTileId = preserveAll ? ushort.MaxValue : versionData.MaxTileId;
+        int maxWallId = preserveAll ? ushort.MaxValue : versionData.MaxWallId;
 
         for (int x = 0; x < maxX; x++)
         {
@@ -282,7 +301,8 @@ public partial class World
             }
 
 
-            if (tileFrameImportant[tile.Type])
+            // For tiles beyond tileFrameImportant array, assume framed (preserve UV data)
+            if (tile.Type < tileFrameImportant.Length ? tileFrameImportant[tile.Type] : true)
             {
                 // pack UV coords
                 tileData[dataIndex++] = (byte)(tile.U & 0xFF); // low byte
@@ -494,8 +514,10 @@ public partial class World
         return tileData;
     }
 
-    public static int SaveChests(IList<Chest> chests, BinaryWriter bw, int version)
+    public static int SaveChests(IList<Chest> chests, BinaryWriter bw, int version, bool preserveAll = false)
     {
+        int maxItemId = preserveAll ? int.MaxValue : WorldConfiguration.SaveConfiguration.GetData(version).MaxItemId;
+
         bool useLegacyLimit = version < 216;
         Int16 count = useLegacyLimit ? (Int16)Math.Min(chests.Count, Chest.LegacyLimit) : (Int16)chests.Count;
         bw.Write(count);
@@ -524,7 +546,7 @@ public partial class World
                 Item item = chest.Items[slot];
 
                 // check if target version allows item.
-                if (item != null && item.NetId <= WorldConfiguration.SaveConfiguration.GetData(version).MaxItemId)
+                if (item != null && item.NetId <= maxItemId)
                 {
                     bw.Write((short)item.StackSize);
                     if (item.StackSize > 0)
@@ -567,9 +589,9 @@ public partial class World
         return (int)bw.BaseStream.Position;
     }
 
-    public static int SaveNPCs(World world, BinaryWriter bw, int version)
+    public static int SaveNPCs(World world, BinaryWriter bw, int version, bool preserveAll = false)
     {
-        var maxNPC = WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
+        var maxNPC = preserveAll ? int.MaxValue : WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
 
         if (world.Version >= 268)
         {
@@ -646,9 +668,9 @@ public partial class World
         return (int)bw.BaseStream.Position;
     }
 
-    public static int SaveTownManager(IList<TownManager> rooms, BinaryWriter bw, int version)
+    public static int SaveTownManager(IList<TownManager> rooms, BinaryWriter bw, int version, bool preserveAll = false)
     {
-        var maxNPC = WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
+        var maxNPC = preserveAll ? int.MaxValue : WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
 
         var validRoomsForVersion = rooms.Where(r => r.NpcId <= maxNPC).ToList();
 
@@ -1574,7 +1596,9 @@ public partial class World
             tile.Type = (ushort)tileType; // convert type to ushort after bit operations
 
             // read frame UV coords
-            if (!tileFrameImportant[tileType])
+            // For tiles beyond tileFrameImportant array, assume framed (read UV data)
+            bool isFramed = tileType < tileFrameImportant.Length ? tileFrameImportant[tileType] : true;
+            if (!isFramed)
             {
                 tile.U = 0;//-1;
                 tile.V = 0;//-1;
@@ -1649,9 +1673,15 @@ public partial class World
 
             // grab bits[4, 5, 6] and shift 4 places to 0,1,2. This byte is our brick style
             byte brickStyle = (byte)((header2 & 0b_0111_0000) >> 4);
-            if (brickStyle != 0 && WorldConfiguration.TileProperties.Count > tile.Type && WorldConfiguration.TileProperties[tile.Type].HasSlopes)
+            if (brickStyle != 0)
             {
-                tile.BrickStyle = (BrickStyle)brickStyle;
+                // For unknown tiles (beyond TileProperties), preserve brick style data
+                bool hasSlopes = tile.Type >= WorldConfiguration.TileProperties.Count
+                    || WorldConfiguration.TileProperties[tile.Type].HasSlopes;
+                if (hasSlopes)
+                {
+                    tile.BrickStyle = (BrickStyle)brickStyle;
+                }
             }
         }
 
