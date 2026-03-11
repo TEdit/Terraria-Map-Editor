@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -199,7 +199,7 @@
     <value>保存</value>
   </data>
   <data name="bestiary_chat" xml:space="preserve">
-    <value>聊天</value>
+    <value>已聊天</value>
   </data>
   <data name="bestiary_clear" xml:space="preserve">
     <value>清除</value>
@@ -208,7 +208,7 @@
     <value>完成图鉴</value>
   </data>
   <data name="bestiary_defeated" xml:space="preserve">
-    <value>打败</value>
+    <value>已打败</value>
   </data>
   <data name="bestiary_load" xml:space="preserve">
     <value>加载</value>
@@ -378,7 +378,7 @@
     <value>特殊物块</value>
   </data>
   <data name="editor_tabs_sprites" xml:space="preserve">
-    <value>物品</value>
+    <value>物体</value>
   </data>
   <data name="editor_tabs_tally" xml:space="preserve">
     <value>杀怪</value>
@@ -405,28 +405,28 @@
     <value>拓展世界</value>
   </data>
   <data name="export_complete" xml:space="preserve">
-    <value>Selection exported to {0}</value>
+    <value>选区已导出至{0}</value>
   </data>
   <data name="export_size_limit_exceeded" xml:space="preserve">
-    <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
+    <value>导出大小为{0}×{1}像素（{2}Megapixel），超过{3}Megapixel的限制。</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>导出大小将为{0}×{1}像素（{2}Megapixel，预计为{3}）。这可能需要一段时间。是否继续？</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
-    <value>Large Export Warning</value>
+    <value>大型导出警告</value>
   </data>
   <data name="export_tiles_cancelled" xml:space="preserve">
     <value>导出已取消。</value>
   </data>
   <data name="export_tiles_complete" xml:space="preserve">
-    <value>地图瓷砖已导出到 {0}</value>
+    <value>地图图格已导出到 {0}</value>
   </data>
   <data name="export_tiles_progress" xml:space="preserve">
-    <value>正在导出瓷砖：缩放 {0}，瓷砖 {1}/{2}...</value>
+    <value>正在导出图格：缩放{0}，图格{1}/{2}……</value>
   </data>
   <data name="export_tiles_warning" xml:space="preserve">
-    <value>这将导出 {0} 块，跨越 {1} 个缩放级别。继续吗？</value>
+    <value>这将导出{0}个图格，跨越{1}个缩放级别。是否继续？</value>
   </data>
   <data name="export_tiles_warning_title" xml:space="preserve">
     <value>地图块导出</value>
@@ -444,37 +444,37 @@
     <value>查找</value>
   </data>
   <data name="find_distance_label" xml:space="preserve">
-    <value>Distance: {0}</value>
+    <value>距离：{0}</value>
   </data>
   <data name="find_next" xml:space="preserve">
     <value>下一个</value>
   </data>
   <data name="find_no_results" xml:space="preserve">
-    <value>No results</value>
+    <value>无结果</value>
   </data>
   <data name="find_no_selection" xml:space="preserve">
-    <value>No selection</value>
+    <value>无选择</value>
   </data>
   <data name="find_no_world_loaded" xml:space="preserve">
-    <value>No world loaded.</value>
+    <value>未加载世界。</value>
   </data>
   <data name="find_prev" xml:space="preserve">
     <value>上一个</value>
   </data>
   <data name="find_result_summary" xml:space="preserve">
-    <value>{0} of {1}</value>
+    <value>第{0}个（共{1}个）</value>
   </data>
   <data name="find_result_type_chest" xml:space="preserve">
-    <value>Chest</value>
+    <value>宝箱</value>
   </data>
   <data name="find_result_type_sprite" xml:space="preserve">
-    <value>Sprite</value>
+    <value>物体</value>
   </data>
   <data name="find_result_type_tile" xml:space="preserve">
     <value>物块</value>
   </data>
   <data name="find_result_type_tile_entity" xml:space="preserve">
-    <value>TileEntity</value>
+    <value>图格实体</value>
   </data>
   <data name="find_result_type_wall" xml:space="preserve">
     <value>墙</value>
@@ -483,22 +483,22 @@
     <value>在世界中搜索</value>
   </data>
   <data name="find_selected_items" xml:space="preserve">
-    <value>{0} items</value>
+    <value>{0}种物品</value>
   </data>
   <data name="find_selected_sprites" xml:space="preserve">
-    <value>{0} sprites</value>
+    <value>{0}种物体</value>
   </data>
   <data name="find_selected_tiles" xml:space="preserve">
-    <value>{0} tiles</value>
+    <value>{0}种物块</value>
   </data>
   <data name="find_selected_walls" xml:space="preserve">
-    <value>{0} walls</value>
+    <value>{0}种墙</value>
   </data>
   <data name="find_selection_summary" xml:space="preserve">
-    <value>Selected: {0}</value>
+    <value>已选择：{0}</value>
   </data>
   <data name="find_tab_chests" xml:space="preserve">
-    <value>箱子里的物品</value>
+    <value>宝箱里的物品</value>
   </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>喜欢TEdit？支持我们！</value>
@@ -689,11 +689,11 @@
   <data name="menu_edit_copy" xml:space="preserve">
     <value>复制</value>
   </data>
-  <data name="menu_edit_crop" xml:space="preserve">
-    <value>裁剪世界</value>
-  </data>
   <data name="menu_edit_cut" xml:space="preserve">
     <value>剪切</value>
+  </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>裁剪世界</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>删除选区内容</value>
@@ -702,22 +702,22 @@
     <value>拓展世界</value>
   </data>
   <data name="menu_edit_export_full_texture" xml:space="preserve">
-    <value>Full Texture (16px/tile)</value>
+    <value>完整纹理（16像素/图格）</value>
   </data>
   <data name="menu_edit_export_half_texture" xml:space="preserve">
-    <value>Half Texture (8px/tile)</value>
+    <value>一半纹理（8像素/图格）</value>
   </data>
   <data name="menu_edit_export_map_tiles" xml:space="preserve">
-    <value>地图地砖......</value>
+    <value>地图图格……</value>
   </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
-    <value>Pixel Map (1px/tile)</value>
+    <value>纹理地图（1像素/图格）</value>
   </data>
   <data name="menu_edit_export_quarter_texture" xml:space="preserve">
-    <value>Quarter Texture (4px/tile)</value>
+    <value>四分之一纹理（4像素/图格）</value>
   </data>
   <data name="menu_edit_export_selection" xml:space="preserve">
-    <value>Export Selection</value>
+    <value>导出选区</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
     <value>粘贴</value>
@@ -741,7 +741,7 @@
     <value>退出</value>
   </data>
   <data name="menu_file_export_map_tiles" xml:space="preserve">
-    <value>导出地图磁砖......</value>
+    <value>导出地图图格……</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>新建</value>
@@ -804,7 +804,7 @@
     <value>液体</value>
   </data>
   <data name="menu_filter_header_sprites" xml:space="preserve">
-    <value>物品</value>
+    <value>物体</value>
   </data>
   <data name="menu_filter_header_tiles" xml:space="preserve">
     <value>物块</value>
@@ -906,7 +906,7 @@
     <value>背景</value>
   </data>
   <data name="menu_layers_bg_scale" xml:space="preserve">
-    <value>BG Scale</value>
+    <value>背景尺寸</value>
   </data>
   <data name="menu_layers_buff_radii" xml:space="preserve">
     <value>增益家具作用范围</value>
@@ -1159,7 +1159,7 @@
     <value>平台</value>
   </data>
   <data name="PaintMode_Sprites" xml:space="preserve">
-    <value>物品</value>
+    <value>物体</value>
   </data>
   <data name="PaintMode_TileAndWall" xml:space="preserve">
     <value>物块/墙</value>
@@ -1210,7 +1210,7 @@
     <value>前缀</value>
   </data>
   <data name="picker_search_sprites_placeholder" xml:space="preserve">
-    <value>搜索物品……</value>
+    <value>搜索物体……</value>
   </data>
   <data name="picker_search_tiles_placeholder" xml:space="preserve">
     <value>搜索物块……</value>
@@ -1535,7 +1535,7 @@
     <value>启用云母（Mica）背景</value>
   </data>
   <data name="settings_enable_mica_desc" xml:space="preserve">
-    <value>使用半透明的云母窗口背景。若有窗口显示为完全透明，请禁用。需要重启应用程序。</value>
+    <value>使用半透明的云母窗口背景。若有窗口显示为完全透明，请禁用。需要重启。</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
     <value>启用玩家编辑器</value>
@@ -1697,10 +1697,10 @@
     <value>切换黄电线可见性</value>
   </data>
   <data name="settings_sprite_thumbnail" xml:space="preserve">
-    <value>物品缩略图尺寸</value>
+    <value>物体缩略图尺寸</value>
   </data>
   <data name="settings_sprite_thumbnail_desc" xml:space="preserve">
-    <value>物品选择器中物品缩略图的尺寸</value>
+    <value>物体选择器中物体缩略图的尺寸</value>
   </data>
   <data name="settings_steam_user_id" xml:space="preserve">
     <value>Steam 用户 ID</value>
@@ -1956,10 +1956,10 @@
     <value>墙</value>
   </data>
   <data name="status_loading_textures" xml:space="preserve">
-    <value>Loading textures: {0}/{1}</value>
+    <value>正在加载纹理：{0}/{1}</value>
   </data>
   <data name="status_textures_loaded" xml:space="preserve">
-    <value>Textures loaded</value>
+    <value>纹理已加载</value>
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>怪物图鉴</value>
@@ -2009,7 +2009,7 @@
     <value>纹理加载</value>
   </data>
   <data name="toolbar_deselect" xml:space="preserve">
-    <value>Deselect</value>
+    <value>取消选择</value>
   </data>
   <data name="toolbar_export" xml:space="preserve">
     <value>导出</value>
@@ -2120,7 +2120,7 @@
     <value>粘贴液体</value>
   </data>
   <data name="tool_clipboard_ispastesprite" xml:space="preserve">
-    <value>粘贴物品</value>
+    <value>粘贴物体</value>
   </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
     <value>粘贴物块</value>
@@ -2342,7 +2342,7 @@
     <value>特殊地点</value>
   </data>
   <data name="tool_sprite2_title" xml:space="preserve">
-    <value>物品放置器</value>
+    <value>物体放置器</value>
   </data>
   <data name="tool_sprite_filter_button" xml:space="preserve">
     <value>筛选</value>
@@ -2357,7 +2357,7 @@
     <value>物块类型筛选：</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
-    <value>物品放置器（旧版）</value>
+    <value>物体放置器（旧版）</value>
   </data>
   <data name="tool_wp_adamantite" xml:space="preserve">
     <value>精金矿</value>
@@ -2756,13 +2756,13 @@
     <value>撒旦军队</value>
   </data>
   <data name="tool_wp_oldonesarmy_t1" xml:space="preserve">
-    <value>撒旦军队 一级</value>
+    <value>撒旦军队1级</value>
   </data>
   <data name="tool_wp_oldonesarmy_t2" xml:space="preserve">
-    <value>撒旦军队 二级</value>
+    <value>撒旦军队2级</value>
   </data>
   <data name="tool_wp_oldonesarmy_t3" xml:space="preserve">
-    <value>撒旦军队 三级</value>
+    <value>撒旦军队3级</value>
   </data>
   <data name="tool_wp_orbs" xml:space="preserve">
     <value>已破坏暗影珠/猩红之心数</value>
@@ -2975,7 +2975,7 @@
     <value>绿线</value>
   </data>
   <data name="WireReplaceMode_Off" xml:space="preserve">
-    <value>关掉</value>
+    <value>关闭</value>
   </data>
   <data name="WireReplaceMode_Red" xml:space="preserve">
     <value>红线</value>
