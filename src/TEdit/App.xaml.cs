@@ -101,7 +101,7 @@ public partial class App : Application
         var sw = Stopwatch.StartNew();
 
         var splashScreen = new SplashScreen("Images/te5-logo.png");
-        splashScreen.Show(autoClose: true, topMost: true);
+        splashScreen.Show(autoClose: true, topMost: false);
         ErrorLogging.LogDebug($"[Startup] SplashScreen.Show: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
