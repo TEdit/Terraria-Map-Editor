@@ -114,14 +114,14 @@
                     Grid.Column="3"
                     ToolTip="{x:Static p:Language.menu_pasteall}"
                     Command="{Binding PasteChestItemCommand}"
-                    CommandParameter="{Binding SelectedChest.Items}">
+                    CommandParameter="{Binding SelectedItems, ElementName=ChestList}">
                 <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
             </Button>
             <Button Margin="2,0,0,0" Style="{StaticResource CompactIconButton}"
                     Grid.Column="4"
-                    ToolTip="{x:Static p:Language.chest_max_stack}" 
+                    ToolTip="{x:Static p:Language.chest_max_stack}"
                     Command="{Binding ChestItemSetToMaxStackCommand}"
-                    CommandParameter="{Binding SelectedChest.Items}">
+                    CommandParameter="{Binding SelectedItems, ElementName=ChestList}">
         <ui:SymbolIcon Symbol="ArrowUp16" FontSize="14"/>
             </Button>
           <Button Grid.Column="5" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_clear_all_items_tooltip}"
