@@ -446,6 +446,13 @@ public partial class MainWindow : FluentWindow
                     _vm.SelectedTabIndex = (int)SidebarTab.Clipboard;
                 }
                 return true;
+            case "edit.cut":
+                if (_vm.CurrentWorld != null && ((ICommand)_vm.CutCommand).CanExecute(null))
+                {
+                    ((ICommand)_vm.CutCommand).Execute(null);
+                    _vm.SelectedTabIndex = (int)SidebarTab.Clipboard;
+                }
+                return true;
             case "edit.paste":
                 if (_vm.CurrentWorld != null && ((ICommand)_vm.PasteCommand).CanExecute(null))
                 {

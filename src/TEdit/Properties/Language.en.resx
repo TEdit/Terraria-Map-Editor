@@ -692,6 +692,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Crop World</value>
   </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>Cu_t,saveas_preserve_all=Preserve newer tile/wall/item data</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Delete Selection</value>
   </data>
@@ -1708,17 +1711,17 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>Auto-detect</value>
   </data>
-  <data name="settings_steam_worlds_path" xml:space="preserve">
-    <value>Steam Cloud Worlds Path</value>
-  </data>
-  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
-    <value>Path to Steam Cloud Terraria worlds. Auto-detected from Steam if blank. Requires restart.</value>
-  </data>
   <data name="settings_steam_workshop_path" xml:space="preserve">
     <value>Steam Workshop Path</value>
   </data>
   <data name="settings_steam_workshop_path_desc" xml:space="preserve">
     <value>Path to the Steam Workshop content folder for tModLoader mods. Auto-detected from Steam library folders if blank.</value>
+  </data>
+  <data name="settings_steam_worlds_path" xml:space="preserve">
+    <value>Steam Cloud Worlds Path</value>
+  </data>
+  <data name="settings_steam_worlds_path_desc" xml:space="preserve">
+    <value>Path to Steam Cloud Terraria worlds. Auto-detected from Steam if blank. Requires restart.</value>
   </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Terraria Content Path</value>
@@ -3057,5 +3060,8 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
+  </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>Preserve newer tile/wall/item data</value>
   </data>
 </root>

@@ -33,6 +33,7 @@
         <ui:SymbolIcon x:Key="TB_UpdateIcon" x:Shared="false" Symbol="ArrowSync20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_UpdateXmlIcon" x:Shared="false" Symbol="Settings20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_CopyIcon" x:Shared="false" Symbol="Copy20" FontSize="16"/>
+        <ui:SymbolIcon x:Key="TB_CutIcon" x:Shared="false" Symbol="Cut20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_PasteIcon" x:Shared="false" Symbol="ClipboardPaste20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_UndoIcon" x:Shared="false" Symbol="ArrowUndo20" FontSize="16"/>
         <ui:SymbolIcon x:Key="TB_RedoIcon" x:Shared="false" Symbol="ArrowRedo20" FontSize="16"/>
@@ -160,6 +161,8 @@
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_edit_copy}" Command="{Binding CopyCommand}" Icon="{StaticResource TB_CopyIcon}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.copy}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_cut}" Command="{Binding CutCommand}" Icon="{StaticResource TB_CutIcon}"
+                            InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.cut}" />
                     <MenuItem Header="{x:Static p:Language.menu_edit_paste}" Command="{Binding PasteCommand}" Icon="{StaticResource TB_PasteIcon}"
                             InputGestureText="{Binding Converter={StaticResource KeybindingConverter}, ConverterParameter=edit.paste}" />
                     <Separator Margin="1" />
@@ -263,32 +266,34 @@
                 </MenuItem>
             </Menu>
             <StatusBar DockPanel.Dock="Bottom"  Background="{x:Null}" Padding="0" Foreground="{StaticResource TextBrush}">
-                <StatusBarItem HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{x:Static p:Language.statusbar_position_label}" VerticalAlignment="Center" Margin="5,0"/>
-                        <TextBox Text="{Binding MouseOverTile.MouseState.Location, StringFormat={}{0}, Mode=OneWay}" Width="75" IsReadOnly="True" />
-                        <TextBlock Text="{x:Static p:Language.statusbar_depth_label}" VerticalAlignment="Center" Margin="5,0" />
-                        <TextBox Text="{Binding MouseOverTile.DepthText, Mode=OneWay}" Width="175" IsReadOnly="True" />
-                        <TextBlock Text="{x:Static p:Language.statusbar_tile_label}" VerticalAlignment="Center" Margin="5,0"  />
-                        <TextBox Text="{Binding MouseOverTile.TileName, Mode=OneWay}" Width="150" IsReadOnly="True" />
-                        <TextBlock Text="{x:Static p:Language.statusbar_wall_label}" VerticalAlignment="Center" Margin="5,0"/>
-                        <TextBox Text="{Binding MouseOverTile.WallName, Mode=OneWay}" Width="150" IsReadOnly="True" />
-                        <TextBlock Text="{x:Static p:Language.statusbar_extra_label}" VerticalAlignment="Center" Margin="5,0"/>
-                        <TextBox Text="{Binding MouseOverTile.TileExtras, Mode=OneWay}" Width="100" IsReadOnly="True" />
-                        <TextBlock Text="{x:Static p:Language.statusbar_frame_label}" VerticalAlignment="Center" Margin="5,0"/>
-                        <TextBox Text="{Binding MouseOverTile.UV, StringFormat={}{0}, Mode=OneWay}" Width="50" IsReadOnly="True" PreviewMouseDown="TextBox_PreviewMouseDown"/>
-                        <TextBlock Text="{x:Static p:Language.statusbar_paint_label}" VerticalAlignment="Center" Margin="5,0"/>
-                        <TextBox Text="{Binding MouseOverTile.Paint, Mode=OneWay}" Width="180" IsReadOnly="True" />
-                        <TextBlock Text="{x:Static p:Language.statusbar_selection_label}" VerticalAlignment="Center" Margin="5,0"/>
-                        <TextBox Text="{Binding Selection.SelectionArea.Size, Mode=OneWay}" Width="180" IsReadOnly="True"  />
-                        <TextBox Text="{Binding DrawingModeText, Mode=OneWay}" Width="80" IsReadOnly="True" Margin="5,0" />
-                    </StackPanel>
-                </StatusBarItem>
-                <StatusBarItem HorizontalAlignment="Right">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Progress.UserState, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0" />
-                        <ProgressBar Height="20" Width="100" Value="{Binding Path=Progress.ProgressPercentage, Mode=OneWay}" />
-                    </StackPanel>
+                <StatusBarItem HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                    <DockPanel LastChildFill="True">
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Progress.UserState, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0" />
+                            <ProgressBar Height="20" Width="100" Value="{Binding Path=Progress.ProgressPercentage, Mode=OneWay}" />
+                        </StackPanel>
+                        <Viewbox DockPanel.Dock="Left" Stretch="Uniform" StretchDirection="DownOnly" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Language.statusbar_position_label}" VerticalAlignment="Center" Margin="5,0"/>
+                                <TextBox Text="{Binding MouseOverTile.MouseState.Location, StringFormat={}{0}, Mode=OneWay}" Width="75" IsReadOnly="True" />
+                                <TextBlock Text="{x:Static p:Language.statusbar_depth_label}" VerticalAlignment="Center" Margin="5,0" />
+                                <TextBox Text="{Binding MouseOverTile.DepthText, Mode=OneWay}" Width="140" IsReadOnly="True" />
+                                <TextBlock Text="{x:Static p:Language.statusbar_tile_label}" VerticalAlignment="Center" Margin="5,0"  />
+                                <TextBox Text="{Binding MouseOverTile.TileName, Mode=OneWay}" Width="140" IsReadOnly="True" />
+                                <TextBlock Text="{x:Static p:Language.statusbar_wall_label}" VerticalAlignment="Center" Margin="5,0"/>
+                                <TextBox Text="{Binding MouseOverTile.WallName, Mode=OneWay}" Width="140" IsReadOnly="True" />
+                                <TextBlock Text="{x:Static p:Language.statusbar_extra_label}" VerticalAlignment="Center" Margin="5,0"/>
+                                <TextBox Text="{Binding MouseOverTile.TileExtras, Mode=OneWay}" Width="100" IsReadOnly="True" />
+                                <TextBlock Text="{x:Static p:Language.statusbar_frame_label}" VerticalAlignment="Center" Margin="5,0"/>
+                                <TextBox Text="{Binding MouseOverTile.UV, StringFormat={}{0}, Mode=OneWay}" Width="50" IsReadOnly="True" PreviewMouseDown="TextBox_PreviewMouseDown"/>
+                                <TextBlock Text="{x:Static p:Language.statusbar_paint_label}" VerticalAlignment="Center" Margin="5,0"/>
+                                <TextBox Text="{Binding MouseOverTile.Paint, Mode=OneWay}" Width="140" IsReadOnly="True" />
+                                <TextBlock Text="{x:Static p:Language.statusbar_selection_label}" VerticalAlignment="Center" Margin="5,0"/>
+                                <TextBox Text="{Binding Selection.SelectionArea.Size, Mode=OneWay}" Width="100" IsReadOnly="True"  />
+                                <TextBox Text="{Binding DrawingModeText, Mode=OneWay}" Width="80" IsReadOnly="True" Margin="5,0" />
+                            </StackPanel>
+                        </Viewbox>
+                    </DockPanel>
                 </StatusBarItem>
             </StatusBar>
             <WrapPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="1">

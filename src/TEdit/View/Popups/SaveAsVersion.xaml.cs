@@ -18,6 +18,9 @@ namespace TEdit.UI.Xaml
         public static readonly DependencyProperty WorldVersionProperty =
             DependencyProperty.Register("WorldVersion", typeof(uint), typeof(SaveAsVersionGUI), new PropertyMetadata((uint)0));
 
+        public static readonly DependencyProperty PreserveAllProperty =
+            DependencyProperty.Register("PreserveAll", typeof(bool), typeof(SaveAsVersionGUI), new PropertyMetadata(false));
+
         public SaveAsVersionGUI()
         {
             InitializeComponent();
@@ -28,6 +31,15 @@ namespace TEdit.UI.Xaml
         {
             get { return (uint)GetValue(WorldVersionProperty); }
             set { SetValue(WorldVersionProperty, value); }
+        }
+
+        /// <summary>
+        /// When true, tiles/walls/items/NPCs exceeding the target version's limits are preserved.
+        /// </summary>
+        public bool PreserveAll
+        {
+            get { return (bool)GetValue(PreserveAllProperty); }
+            set { SetValue(PreserveAllProperty, value); }
         }
 
         public IEnumerable<string> SortedVersions =>

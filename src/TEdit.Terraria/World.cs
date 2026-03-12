@@ -62,7 +62,7 @@ public partial class World
         CharacterNames.Clear();
     }
 
-    public static async Task SaveAsync(World world, string filename, bool resetTime = false, int versionOverride = 0, bool incrementRevision = true, IProgress<ProgressChangedEventArgs>? progress = null)
+    public static async Task SaveAsync(World world, string filename, bool resetTime = false, int versionOverride = 0, bool incrementRevision = true, bool preserveAll = true, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         await Task.Run(() =>
         {
@@ -106,7 +106,7 @@ public partial class World
                             }
                             else if (world.Version > 87 && world.Version != 38)
                             {
-                                SaveV2(world, bw, incrementRevision, progress);
+                                SaveV2(world, bw, incrementRevision, preserveAll, progress);
                             }
                             else
                             {
@@ -163,6 +163,7 @@ public partial class World
         bool resetTime = false,
         int versionOverride = 0,
         bool incrementRevision = true,
+        bool preserveAll = true,
         IProgress<ProgressChangedEventArgs>? progress = null)
     {
         lock (_fileLock)
@@ -202,7 +203,7 @@ public partial class World
                         }
                         else if (world.Version > 87 && world.Version != 38)
                         {
-                            SaveV2(world, bw, incrementRevision, progress);
+                            SaveV2(world, bw, incrementRevision, preserveAll, progress);
                         }
                         else
                         {
@@ -768,6 +769,34 @@ public partial class World
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Removes any chest, sign, or tile entity entry at the given tile location
+    /// whose corresponding tile no longer matches the expected container type.
+    /// Call after clearing or overwriting a tile to prevent ghost entries.
+    /// </summary>
+    public void RemoveOrphanedContainerAt(int x, int y)
+    {
+        var tile = Tiles[x, y];
+
+        if (!tile.IsActive || !tile.IsChest())
+        {
+            var chest = GetChestAtTile(x, y);
+            if (chest != null) { Chests.Remove(chest); }
+        }
+
+        if (!tile.IsActive || !tile.IsSign())
+        {
+            var sign = GetSignAtTile(x, y);
+            if (sign != null) { Signs.Remove(sign); }
+        }
+
+        if (!tile.IsActive || !tile.IsTileEntity())
+        {
+            var entity = GetTileEntityAtTile(x, y);
+            if (entity != null) { TileEntities.Remove(entity); }
+        }
     }
 
     public Vector2Int32 GetMannequin(int x, int y)

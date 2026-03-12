@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -127,7 +127,7 @@
     <value>資料統計</value>
   </data>
   <data name="about_github" xml:space="preserve">
-    <value>GitHub 發佈</value>
+    <value>GitHub 發佈頁</value>
   </data>
   <data name="about_items_loaded" xml:space="preserve">
     <value>物品</value>
@@ -136,7 +136,7 @@
     <value>連結</value>
   </data>
   <data name="about_patreon" xml:space="preserve">
-    <value>Patreon 支援</value>
+    <value>在 Patreon 上支持我</value>
   </data>
   <data name="about_terraria_not_found" xml:space="preserve">
     <value>未找到</value>
@@ -148,16 +148,16 @@
     <value>可用的材質</value>
   </data>
   <data name="about_tiles_loaded" xml:space="preserve">
-    <value>瓷磚</value>
+    <value>物塊</value>
   </data>
   <data name="about_title" xml:space="preserve">
-    <value>關於TEdit</value>
+    <value>關於 TEdit</value>
   </data>
   <data name="about_version" xml:space="preserve">
     <value>版本</value>
   </data>
   <data name="about_walls_loaded" xml:space="preserve">
-    <value>城牆</value>
+    <value>牆壁</value>
   </data>
   <data name="about_wiki" xml:space="preserve">
     <value>維基</value>
@@ -178,40 +178,40 @@
     <value>分類：</value>
   </data>
   <data name="banner_count" xml:space="preserve">
-    <value>伯爵</value>
+    <value>數量</value>
   </data>
   <data name="banner_filter" xml:space="preserve">
     <value>篩選：</value>
   </data>
   <data name="banner_import" xml:space="preserve">
-    <value>進口</value>
+    <value>導入</value>
   </data>
   <data name="banner_kills" xml:space="preserve">
-    <value>擊殺紀錄</value>
+    <value>擊殺</value>
   </data>
   <data name="banner_maxout" xml:space="preserve">
-    <value>滿載</value>
+    <value>最大化</value>
   </data>
   <data name="banner_reset" xml:space="preserve">
     <value>重置</value>
   </data>
   <data name="banner_save" xml:space="preserve">
-    <value>存檔</value>
+    <value>保存</value>
   </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>聊天室</value>
   </data>
   <data name="bestiary_clear" xml:space="preserve">
-    <value>清場</value>
+    <value>清除</value>
   </data>
   <data name="bestiary_complete" xml:space="preserve">
-    <value>完結</value>
+    <value>完成圖鑑</value>
   </data>
   <data name="bestiary_defeated" xml:space="preserve">
-    <value>敗北</value>
+    <value>已擊敗</value>
   </data>
   <data name="bestiary_load" xml:space="preserve">
-    <value>負載</value>
+    <value>載入</value>
   </data>
   <data name="bestiary_name" xml:space="preserve">
     <value>名稱</value>
@@ -220,31 +220,31 @@
     <value>接近</value>
   </data>
   <data name="bestiary_save" xml:space="preserve">
-    <value>存檔</value>
+    <value>保存</value>
   </data>
   <data name="bestiary_talked" xml:space="preserve">
-    <value>談話</value>
+    <value>已交談</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
     <value>更新</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
-    <value>全磚</value>
+    <value>完整方塊</value>
   </data>
   <data name="BrickStyle_HalfBrick" xml:space="preserve">
     <value>半磚</value>
   </data>
   <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
-    <value>左下坡</value>
+    <value>左下斜坡</value>
   </data>
   <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
-    <value>坡面右下角</value>
+    <value>右下斜坡</value>
   </data>
   <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
-    <value>左上坡</value>
+    <value>左上斜坡</value>
   </data>
   <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
-    <value>右上方斜坡</value>
+    <value>右上斜坡</value>
   </data>
   <data name="BrushShape_Crescent" xml:space="preserve">
     <value>新月形</value>
@@ -278,7 +278,7 @@
     <value>清除所有物品</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
-    <value>麥克斯</value>
+    <value>最大堆疊數量</value>
   </data>
   <data name="common_browse" xml:space="preserve">
     <value>瀏覽......</value>
@@ -354,10 +354,10 @@
     <value>未找到 Terraria 內容</value>
   </data>
   <data name="drawing_mode_wire45" xml:space="preserve">
-    <value>Wire 45°</value>
+    <value>電線 45°</value>
   </data>
   <data name="drawing_mode_wire90" xml:space="preserve">
-    <value>Wire 90°</value>
+    <value>電線 90°</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>分析</value>
@@ -585,7 +585,7 @@
     <value>熔岩</value>
   </data>
   <data name="LiquidType_None" xml:space="preserve">
-    <value>不要液體</value>
+    <value>無液體</value>
   </data>
   <data name="LiquidType_Shimmer" xml:space="preserve">
     <value>閃爍</value>
@@ -606,7 +606,7 @@
     <value>編輯：不匹配</value>
   </data>
   <data name="MaskMode_Off" xml:space="preserve">
-    <value>解除面具</value>
+    <value>解除遮罩</value>
   </data>
   <data name="MaskPreset_Custom" xml:space="preserve">
     <value>Match Custom</value>
@@ -688,6 +688,9 @@
   </data>
   <data name="menu_edit_copy" xml:space="preserve">
     <value>收到</value>
+  </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>剪切</value>
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
     <value>作物世界</value>
@@ -834,7 +837,7 @@
     <value>透明</value>
   </data>
   <data name="menu_help" xml:space="preserve">
-    <value>救命</value>
+    <value>幫助</value>
   </data>
   <data name="menu_help_about" xml:space="preserve">
     <value>關於</value>
@@ -894,7 +897,7 @@
     <value>中文 (繁體)</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
-    <value>層次</value>
+    <value>圖層</value>
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>執行器</value>
@@ -960,7 +963,7 @@
     <value>紅線</value>
   </data>
   <data name="menu_layers_wire_transparency" xml:space="preserve">
-    <value>線材透明</value>
+    <value>電線透明</value>
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>黃線</value>
@@ -1162,7 +1165,7 @@
     <value>瓷磚/牆面</value>
   </data>
   <data name="PaintMode_Track" xml:space="preserve">
-    <value>田徑</value>
+    <value>軌道</value>
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>鋼索</value>
@@ -1387,7 +1390,7 @@
     <value>國會議員：</value>
   </data>
   <data name="player_stats_show_armor" xml:space="preserve">
-    <value>展示裝甲</value>
+    <value>顯示盔甲</value>
   </data>
   <data name="player_stats_spawn_points" xml:space="preserve">
     <value>出生點</value>
@@ -1449,6 +1452,9 @@
   <data name="saveas_instruction" xml:space="preserve">
     <value>選擇一個版本以儲存為：</value>
   </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>保留較新版本的磚塊/牆壁/物品</value>
+  </data>
   <data name="saveas_title" xml:space="preserve">
     <value>精選世界版本</value>
   </data>
@@ -1486,7 +1492,7 @@
     <value>停下</value>
   </data>
   <data name="scripting_title" xml:space="preserve">
-    <value>腳本編寫</value>
+    <value>編輯腳本</value>
   </data>
   <data name="settings_autosave" xml:space="preserve">
     <value>啟用自動存檔</value>
@@ -1505,7 +1511,7 @@
     <value>概述</value>
   </data>
   <data name="settings_category_layers" xml:space="preserve">
-    <value>層次</value>
+    <value>圖層</value>
   </data>
   <data name="settings_category_paths" xml:space="preserve">
     <value>路徑</value>
@@ -1517,7 +1523,7 @@
     <value>渲染</value>
   </data>
   <data name="settings_category_scripting" xml:space="preserve">
-    <value>腳本編寫</value>
+    <value>腳本</value>
   </data>
   <data name="settings_color_mode" xml:space="preserve">
     <value>彩色模式</value>
@@ -1586,16 +1592,16 @@
     <value>存檔</value>
   </data>
   <data name="settings_script_timeout" xml:space="preserve">
-    <value>腳本超時（秒數）</value>
+    <value>腳本超時（秒）</value>
   </data>
   <data name="settings_script_timeout_desc" xml:space="preserve">
-    <value>腳本可執行的最長時間（10-300秒）</value>
+    <value>腳本可執行的最長時間（10-300 秒）</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
     <value>搜尋設定......</value>
   </data>
   <data name="settings_show_actuators" xml:space="preserve">
-    <value>表演執行器</value>
+    <value>顯示制動器</value>
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>切換執行器可見性</value>
@@ -1613,61 +1619,61 @@
     <value>一次切換所有線路層</value>
   </data>
   <data name="settings_show_backgrounds" xml:space="preserve">
-    <value>節目背景</value>
+    <value>顯示背景</value>
   </data>
   <data name="settings_show_backgrounds_desc" xml:space="preserve">
     <value>切換背景渲染</value>
   </data>
   <data name="settings_show_blue_wires" xml:space="preserve">
-    <value>藍線秀</value>
+    <value>顯示藍電線</value>
   </data>
   <data name="settings_show_blue_wires_desc" xml:space="preserve">
     <value>切換藍線可見性</value>
   </data>
   <data name="settings_show_coatings" xml:space="preserve">
-    <value>展覽塗層</value>
+    <value>顯示塗料</value>
   </data>
   <data name="settings_show_coatings_desc" xml:space="preserve">
     <value>切換塗層可見性</value>
   </data>
   <data name="settings_show_green_wires" xml:space="preserve">
-    <value>綠線秀</value>
+    <value>顯示綠電線</value>
   </data>
   <data name="settings_show_green_wires_desc" xml:space="preserve">
     <value>切換綠線可見性</value>
   </data>
   <data name="settings_show_grid" xml:space="preserve">
-    <value>展會格子</value>
+    <value>顯示網格</value>
   </data>
   <data name="settings_show_grid_desc" xml:space="preserve">
     <value>切換網格覆蓋</value>
   </data>
   <data name="settings_show_liquid" xml:space="preserve">
-    <value>秀液</value>
+    <value>顯示液體</value>
   </data>
   <data name="settings_show_liquid_desc" xml:space="preserve">
-    <value>切換液體層可見性</value>
+    <value>切換液體圖層可見性</value>
   </data>
   <data name="settings_show_news" xml:space="preserve">
-    <value>節目新聞</value>
+    <value>顯示新訊息</value>
   </data>
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>在編輯器中顯示新聞與公告</value>
   </data>
   <data name="settings_show_points" xml:space="preserve">
-    <value>節目重點</value>
+    <value>顯示地點</value>
   </data>
   <data name="settings_show_points_desc" xml:space="preserve">
     <value>切換生成點/NPC 點標記</value>
   </data>
   <data name="settings_show_red_wires" xml:space="preserve">
-    <value>展示紅線</value>
+    <value>顯示紅電線</value>
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>切換紅線可見性</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
-    <value>節目材質</value>
+    <value>顯示材質</value>
   </data>
   <data name="settings_show_textures_desc" xml:space="preserve">
     <value>切換圖塊貼圖渲染</value>
@@ -1679,13 +1685,13 @@
     <value>切換圖塊圖層可見性</value>
   </data>
   <data name="settings_show_walls" xml:space="preserve">
-    <value>展牆</value>
+    <value>顯示牆</value>
   </data>
   <data name="settings_show_walls_desc" xml:space="preserve">
     <value>切換牆面圖層可見性</value>
   </data>
   <data name="settings_show_yellow_wires" xml:space="preserve">
-    <value>展示黃色電線</value>
+    <value>顯示黃電線</value>
   </data>
   <data name="settings_show_yellow_wires_desc" xml:space="preserve">
     <value>切換黃色線路可見性</value>
@@ -1697,10 +1703,10 @@
     <value>精靈選擇器中精靈縮圖的大小</value>
   </data>
   <data name="settings_steam_user_id" xml:space="preserve">
-    <value>Steam 用戶 ID</value>
+    <value>Steam 使用者 ID</value>
   </data>
   <data name="settings_steam_user_id_desc" xml:space="preserve">
-    <value>將您的 Steam 用戶 ID 設置為使用 Steam 雲存檔作為默認世界文件夾。留空以自動檢測。需要重啟。</value>
+    <value>將您的 Steam 使用者 ID 設置為使用 Steam 雲端存檔作為預設世界文件夾，留空以自動檢測。需要重啟。</value>
   </data>
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>自動偵測</value>
@@ -1743,10 +1749,10 @@
     <value>主視窗在啟動時的位置設定（預設 = 作業系統位置，置中 = 中央，最大化 = 全螢幕）</value>
   </data>
   <data name="settings_wire_transparency" xml:space="preserve">
-    <value>線材透明</value>
+    <value>電線透明</value>
   </data>
   <data name="settings_wire_transparency_desc" xml:space="preserve">
-    <value>渲染帶有透明度的線材</value>
+    <value>渲染帶有透明度的電線</value>
   </data>
   <data name="settings_worlds_path" xml:space="preserve">
     <value>世界路徑</value>
@@ -1755,7 +1761,7 @@
     <value>通往本地 Terraria 世界資料夾的路徑。如果為空，將自動偵測。需要重新啟動。</value>
   </data>
   <data name="show_glow_masks" xml:space="preserve">
-    <value>發光面具</value>
+    <value>發光遮罩</value>
   </data>
   <data name="sidebar_banner_title" xml:space="preserve">
     <value>旗幟</value>
@@ -1776,7 +1782,7 @@
     <value>Palette</value>
   </data>
   <data name="sidebar_scripting_tooltip" xml:space="preserve">
-    <value>腳本編寫</value>
+    <value>腳本</value>
   </data>
   <data name="sidebar_tileentity_title" xml:space="preserve">
     <value>瓦片實體</value>
@@ -1884,7 +1890,7 @@
     <value>燈光</value>
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
-    <value>明星</value>
+    <value>星星</value>
   </data>
   <data name="specialtile_show_all_items" xml:space="preserve">
     <value>顯示所有項目</value>
@@ -1920,7 +1926,7 @@
     <value>風格：{0}</value>
   </data>
   <data name="sprite_tiletype" xml:space="preserve">
-    <value>磁磚類型過濾器</value>
+    <value>物塊類型過濾器</value>
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>地塊識別碼：{0}</value>
@@ -2111,7 +2117,7 @@
     <value>貼上空白瓷磚</value>
   </data>
   <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
-    <value>膏狀液體</value>
+    <value>貼上液體</value>
   </data>
   <data name="tool_clipboard_ispastesprite" xml:space="preserve">
     <value>貼圖精靈</value>
@@ -2240,7 +2246,7 @@
     <comment>Illuminant</comment>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
-    <value>執行器/磁磚非啟用</value>
+    <value>制動/虛化</value>
   </data>
   <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
     <value>新增面向左側的交叉口接線盒。</value>
@@ -2255,7 +2261,7 @@
     <value>液體</value>
   </data>
   <data name="tool_paint_mask" xml:space="preserve">
-    <value>面具</value>
+    <value>遮罩</value>
   </data>
   <data name="tool_paint_maskmode" xml:space="preserve">
     <value>遮罩模式</value>
@@ -2273,13 +2279,13 @@
     <value>在現有軌道上加入增強器，搭配橡皮擦只移除增強功能。</value>
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
-    <value>使用Hammer修改軌道端、交叉口和助推器方向。</value>
+    <value>使用錘子工具修改軌道末端、交叉處樣式和增速軌道的方向。</value>
   </data>
   <data name="tool_paint_track_header" xml:space="preserve">
     <value>礦車軌道</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
-    <value>在現有軌道上加裝壓力板，搭配橡皮擦只用來移除壓力板。</value>
+    <value>將普通鐵軌轉換成壓力板鐵軌，使用擦除模式反向操作。</value>
   </data>
   <data name="tool_paint_track_smooth" xml:space="preserve">
     <value>Smooth</value>
@@ -2315,7 +2321,7 @@
     <value>紅色</value>
   </data>
   <data name="tool_paint_wire_replace_header" xml:space="preserve">
-    <value>線材更換</value>
+    <value>替換電線</value>
   </data>
   <data name="tool_paint_wire_route" xml:space="preserve">
     <value>路線</value>
@@ -2468,7 +2474,7 @@
     <value>蜂后</value>
   </data>
   <data name="tool_wp_boss_queenslime" xml:space="preserve">
-    <value>史萊姆女王</value>
+    <value>史萊姆皇后</value>
   </data>
   <data name="tool_wp_boss_santank1" xml:space="preserve">
     <value>聖塔NK1</value>
@@ -2498,19 +2504,19 @@
     <value>洞穴層</value>
   </data>
   <data name="tool_wp_chinese" xml:space="preserve">
-    <value>中國世界版</value>
+    <value>中國版世界</value>
   </data>
   <data name="tool_wp_cloud_bg_active" xml:space="preserve">
-    <value>雲端BG主動</value>
+    <value>背景雲速度</value>
   </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>鈷級</value>
   </data>
   <data name="tool_wp_combatbook" xml:space="preserve">
-    <value>戰鬥書</value>
+    <value>先進戰鬥技術</value>
   </data>
   <data name="tool_wp_combatbooktwo" xml:space="preserve">
-    <value>戰鬥書第二卷</value>
+    <value>先進戰鬥技術：卷二</value>
   </data>
   <data name="tool_wp_console" xml:space="preserve">
     <value>主機世界版</value>
@@ -2549,7 +2555,7 @@
     <value>金級</value>
   </data>
   <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>為配得上者（FTW）</value>
+    <value>For The Worthy（FTW）</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>世界GUID</value>
@@ -2558,16 +2564,16 @@
     <value>困難模式</value>
   </data>
   <data name="tool_wp_holiday" xml:space="preserve">
-    <value>原力假期</value>
+    <value>強制節日</value>
   </data>
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>萬聖節</value>
   </data>
   <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
-    <value>萬聖節永遠的原力</value>
+    <value>永遠強制開啟萬聖節</value>
   </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
-    <value>XMas</value>
+    <value>聖誕節</value>
   </data>
   <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
     <value>永遠的聖誕節</value>
@@ -2627,13 +2633,13 @@
     <value>生成流星</value>
   </data>
   <data name="tool_wp_moondial_cooldown" xml:space="preserve">
-    <value>月亮冷卻時間</value>
+    <value>月晷冷卻</value>
   </data>
   <data name="tool_wp_moon_blood" xml:space="preserve">
     <value>血月</value>
   </data>
   <data name="tool_wp_moon_eclipse" xml:space="preserve">
-    <value>是蝕</value>
+    <value>日蝕</value>
   </data>
   <data name="tool_wp_moon_phase" xml:space="preserve">
     <value>月相</value>
@@ -2714,7 +2720,7 @@
     <value>綠色史萊姆</value>
   </data>
   <data name="tool_wp_npc_slime_old" xml:space="preserve">
-    <value>老史萊姆</value>
+    <value>長者史萊姆</value>
   </data>
   <data name="tool_wp_npc_slime_purple" xml:space="preserve">
     <value>紫色史萊姆</value>
@@ -2762,10 +2768,10 @@
     <value>球體被擊碎</value>
   </data>
   <data name="tool_wp_partyofdoom" xml:space="preserve">
-    <value>末日黨</value>
+    <value>派對後死亡</value>
   </data>
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
-    <value>小販手包</value>
+    <value>商販背包</value>
   </data>
   <data name="tool_wp_pillars_active" xml:space="preserve">
     <value>支柱活躍</value>
@@ -2792,10 +2798,10 @@
     <value>正在下雨</value>
   </data>
   <data name="tool_wp_rain_max" xml:space="preserve">
-    <value>麥克斯·雷恩</value>
+    <value>最大降雨</value>
   </data>
   <data name="tool_wp_rain_slime" xml:space="preserve">
-    <value>史萊姆雨時刻</value>
+    <value>史萊姆雨</value>
   </data>
   <data name="tool_wp_rain_time" xml:space="preserve">
     <value>雨季</value>
@@ -2813,10 +2819,10 @@
     <value>風暴正在來</value>
   </data>
   <data name="tool_wp_sandstorm_severity" xml:space="preserve">
-    <value>嚴重程度</value>
+    <value>強度</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>嚴重程度</value>
+    <value>預期強度</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>剩餘時間</value>
@@ -2837,7 +2843,7 @@
     <value>混音版本</value>
   </data>
   <data name="tool_wp_seed_skyblock" xml:space="preserve">
-    <value>天空封鎖</value>
+    <value>空島（Skyblock）</value>
   </data>
   <data name="tool_wp_seed_vampire" xml:space="preserve">
     <value>吸血鬼</value>
@@ -2903,7 +2909,7 @@
     <value>十週年紀念</value>
   </data>
   <data name="tool_wp_time_day" xml:space="preserve">
-    <value>是白天</value>
+    <value>白天</value>
   </data>
   <data name="tool_wp_time_label" xml:space="preserve">
     <value>時間</value>
@@ -2918,25 +2924,25 @@
     <value>允許不安全的值</value>
   </data>
   <data name="tool_wp_usemoondial" xml:space="preserve">
-    <value>使用Moondial</value>
+    <value>使用月晷</value>
   </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
-    <value>數字雲</value>
+    <value>雲量</value>
   </data>
   <data name="tool_wp_weather_windspeed" xml:space="preserve">
     <value>風速</value>
   </data>
   <data name="TrackMode_Booster" xml:space="preserve">
-    <value>助推器</value>
+    <value>增速軌道</value>
   </data>
   <data name="TrackMode_Hammer" xml:space="preserve">
     <value>錘子</value>
   </data>
   <data name="TrackMode_Pressure" xml:space="preserve">
-    <value>壓力</value>
+    <value>壓力板鐵軌</value>
   </data>
   <data name="TrackMode_Track" xml:space="preserve">
-    <value>田徑</value>
+    <value>鐵軌</value>
   </data>
   <data name="update_available_notify" xml:space="preserve">
     <value>TEdit 有新版本可用。</value>

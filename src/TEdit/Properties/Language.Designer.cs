@@ -1772,6 +1772,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cu_t,saveas_preserve_all=Preserve newer tile/wall/item data.
+        /// </summary>
+        public static string menu_edit_cut {
+            get {
+                return ResourceManager.GetString("menu_edit_cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Selection.
         /// </summary>
         public static string menu_edit_delete {
@@ -4027,6 +4036,15 @@ namespace TEdit.Properties {
         public static string saveas_instruction {
             get {
                 return ResourceManager.GetString("saveas_instruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preserve newer tile/wall/item data.
+        /// </summary>
+        public static string saveas_preserve_all {
+            get {
+                return ResourceManager.GetString("saveas_preserve_all", resourceCulture);
             }
         }
         

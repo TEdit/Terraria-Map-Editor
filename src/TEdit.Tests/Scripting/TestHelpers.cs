@@ -89,6 +89,7 @@ public static class TestWorldFactory
         var world = CreateWorldWithTerrain(width, height);
 
         // Add a chest at (10, 40) with some items
+        // Chest constructor already adds 40 empty item slots
         var chest1 = new Chest(10, 40, "Gold Chest");
         chest1.Items[0].NetId = 29; // Life Crystal
         chest1.Items[0].StackSize = 1;

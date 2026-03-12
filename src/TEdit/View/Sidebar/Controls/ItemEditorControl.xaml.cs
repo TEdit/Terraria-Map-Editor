@@ -3,7 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using TEdit.Terraria;
 using TEdit.UI.Controls;
+using TEdit.ViewModel;
 
 namespace TEdit.View.Sidebar.Controls;
 
@@ -25,6 +27,37 @@ public partial class ItemEditorControl : UserControl
     public ItemEditorControl()
     {
         InitializeComponent();
+        PreviewKeyDown += OnPreviewKeyDown;
+    }
+
+    private void OnPreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (Keyboard.FocusedElement is TextBox) return;
+        if (e.KeyboardDevice.Modifiers != ModifierKeys.Control) return;
+
+        switch (e.Key)
+        {
+            case Key.C:
+                WorldViewModel.ItemClipboard = new Item(StackSize, ItemId, Prefix);
+                e.Handled = true;
+                break;
+            case Key.X:
+                WorldViewModel.ItemClipboard = new Item(StackSize, ItemId, Prefix);
+                ItemId = 0;
+                StackSize = 0;
+                Prefix = 0;
+                e.Handled = true;
+                break;
+            case Key.V:
+                if (WorldViewModel.ItemClipboard != null)
+                {
+                    ItemId = WorldViewModel.ItemClipboard.NetId;
+                    StackSize = WorldViewModel.ItemClipboard.StackSize;
+                    Prefix = WorldViewModel.ItemClipboard.Prefix;
+                }
+                e.Handled = true;
+                break;
+        }
     }
 
     #region Dependency Properties

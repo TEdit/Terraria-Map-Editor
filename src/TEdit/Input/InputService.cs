@@ -128,6 +128,15 @@ public class InputService
 
         Register(new InputAction
         {
+            Id = "edit.cut",
+            Name = "Cut",
+            Category = InputCategory.Editing,
+            Scope = InputScope.Application,
+            DefaultBindings = { InputBinding.Keyboard(Key.X, ModifierKeys.Control) }
+        });
+
+        Register(new InputAction
+        {
             Id = "edit.paste",
             Name = "Paste",
             Category = InputCategory.Editing,

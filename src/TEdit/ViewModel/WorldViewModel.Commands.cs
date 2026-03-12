@@ -323,6 +323,9 @@ public partial class WorldViewModel
     private void Copy() => EditCopy();
 
     [ReactiveCommand]
+    private void Cut() => EditCut();
+
+    [ReactiveCommand]
     private void Paste() => EditPaste();
 
     [ReactiveCommand]
@@ -357,6 +360,11 @@ public partial class WorldViewModel
     }
 
     private bool CanCopy()
+    {
+        return _selection.IsActive;
+    }
+
+    private bool CanCut()
     {
         return _selection.IsActive;
     }
@@ -433,7 +441,7 @@ public partial class WorldViewModel
         }
     }
 
-    private Item _chestItemClipboard;
+    internal static Item ItemClipboard { get; set; }
 
     private void CopyChestItems(object container)
     {
@@ -456,7 +464,7 @@ public partial class WorldViewModel
 
     private void CopyChestItem(Item item)
     {
-        _chestItemClipboard = item?.Copy();
+        ItemClipboard = item?.Copy();
     }
 
     private void PasteChestItems(object parameter)
@@ -482,24 +490,33 @@ public partial class WorldViewModel
                 te.EntityType == TileEntityType.FoodPlatter ||
                 te.EntityType == TileEntityType.DeadCellsDisplayJar)
             {
-                te.FromItem(_chestItemClipboard);
+                if (ItemClipboard != null)
+                {
+                    te.FromItem(ItemClipboard);
+                }
+                else
+                {
+                    te.NetId = 0;
+                    te.Prefix = 0;
+                    te.StackSize = 0;
+                }
             }
         }
     }
 
     private void PasteChestItem(Item item)
     {
-        if (_chestItemClipboard != null)
+        if (ItemClipboard != null)
         {
-            item.NetId = _chestItemClipboard.NetId;
-            item.Prefix = _chestItemClipboard.Prefix;
-            item.StackSize = _chestItemClipboard.StackSize;
-            item.ModName = _chestItemClipboard.ModName;
-            item.ModItemName = _chestItemClipboard.ModItemName;
-            item.ModPrefixMod = _chestItemClipboard.ModPrefixMod;
-            item.ModPrefixName = _chestItemClipboard.ModPrefixName;
-            item.ModItemData = _chestItemClipboard.ModItemData;
-            item.ModGlobalData = _chestItemClipboard.ModGlobalData;
+            item.NetId = ItemClipboard.NetId;
+            item.Prefix = ItemClipboard.Prefix;
+            item.StackSize = ItemClipboard.StackSize;
+            item.ModName = ItemClipboard.ModName;
+            item.ModItemName = ItemClipboard.ModItemName;
+            item.ModPrefixMod = ItemClipboard.ModPrefixMod;
+            item.ModPrefixName = ItemClipboard.ModPrefixName;
+            item.ModItemData = ItemClipboard.ModItemData;
+            item.ModGlobalData = ItemClipboard.ModGlobalData;
         }
         else
         {
