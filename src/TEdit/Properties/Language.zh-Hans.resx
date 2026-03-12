@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -280,6 +280,9 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>最大堆叠</value>
   </data>
+  <data name="common_all" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="common_browse" xml:space="preserve">
     <value>浏览……</value>
   </data>
@@ -292,11 +295,17 @@
   <data name="common_close" xml:space="preserve">
     <value>关闭</value>
   </data>
+  <data name="common_edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
   <data name="common_enabled" xml:space="preserve">
     <value>启用</value>
   </data>
   <data name="common_generate" xml:space="preserve">
     <value>生成</value>
+  </data>
+  <data name="common_none" xml:space="preserve">
+    <value>无</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>确认</value>
@@ -1907,6 +1916,111 @@
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>使用“箭头工具”右键单击标牌、宝箱、人体模型、武器架、物品框、或圣诞树。</value>
   </data>
+  <data name="spriteeditor_add_frame" xml:space="preserve">
+    <value>Add Frame</value>
+  </data>
+  <data name="spriteeditor_add_frame_tooltip" xml:space="preserve">
+    <value>Add a new frame entry</value>
+  </data>
+  <data name="spriteeditor_add_selection" xml:space="preserve">
+    <value>Add Selection</value>
+  </data>
+  <data name="spriteeditor_add_selection_tooltip" xml:space="preserve">
+    <value>Add the selected tile region as a new frame</value>
+  </data>
+  <data name="spriteeditor_anchor_label" xml:space="preserve">
+    <value>Anchor:</value>
+  </data>
+  <data name="spriteeditor_auto_detect" xml:space="preserve">
+    <value>Auto Detect</value>
+  </data>
+  <data name="spriteeditor_auto_detect_tooltip" xml:space="preserve">
+    <value>Auto-detect frame grid from texture dimensions</value>
+  </data>
+  <data name="spriteeditor_edit_tooltip" xml:space="preserve">
+    <value>Open sprite sheet editor for this tile</value>
+  </data>
+  <data name="spriteeditor_frames" xml:space="preserve">
+    <value>Frames</value>
+  </data>
+  <data name="spriteeditor_frame_properties" xml:space="preserve">
+    <value>Frame Properties</value>
+  </data>
+  <data name="spriteeditor_gap_x" xml:space="preserve">
+    <value>Gap X:</value>
+  </data>
+  <data name="spriteeditor_gap_y" xml:space="preserve">
+    <value>Gap Y:</value>
+  </data>
+  <data name="spriteeditor_grid_h" xml:space="preserve">
+    <value>Grid H:</value>
+  </data>
+  <data name="spriteeditor_grid_settings" xml:space="preserve">
+    <value>Grid Settings</value>
+  </data>
+  <data name="spriteeditor_grid_w" xml:space="preserve">
+    <value>Grid W:</value>
+  </data>
+  <data name="spriteeditor_is_animated" xml:space="preserve">
+    <value>Is Animated</value>
+  </data>
+  <data name="spriteeditor_name_label" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="spriteeditor_regen_grid" xml:space="preserve">
+    <value>Regen Grid</value>
+  </data>
+  <data name="spriteeditor_regen_grid_tooltip" xml:space="preserve">
+    <value>Regenerate frames using current grid settings</value>
+  </data>
+  <data name="spriteeditor_remove_frame_tooltip" xml:space="preserve">
+    <value>Remove this frame</value>
+  </data>
+  <data name="spriteeditor_row_heights" xml:space="preserve">
+    <value>Row Heights:</value>
+  </data>
+  <data name="spriteeditor_row_heights_tooltip" xml:space="preserve">
+    <value>Per-row pixel heights (e.g. 16, 18 for chests). Blank = uniform Grid H.</value>
+  </data>
+  <data name="spriteeditor_select_frame_hint" xml:space="preserve">
+    <value>Select a frame to edit its properties</value>
+  </data>
+  <data name="spriteeditor_single_frame" xml:space="preserve">
+    <value>Single Frame</value>
+  </data>
+  <data name="spriteeditor_single_frame_tooltip" xml:space="preserve">
+    <value>Set frame size to cover entire texture as one frame</value>
+  </data>
+  <data name="spriteeditor_size_h" xml:space="preserve">
+    <value>Size H:</value>
+  </data>
+  <data name="spriteeditor_size_w" xml:space="preserve">
+    <value>Size W:</value>
+  </data>
+  <data name="spriteeditor_test" xml:space="preserve">
+    <value>Test Value</value>
+  </data>
+  <data name="spriteeditor_test2" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="spriteeditor_title_format" xml:space="preserve">
+    <value>Sprite Editor — {0}</value>
+  </data>
+  <data name="spriteeditor_uv_x" xml:space="preserve">
+    <value>UV X:</value>
+  </data>
+  <data name="spriteeditor_uv_y" xml:space="preserve">
+    <value>UV Y:</value>
+  </data>
+  <data name="spriteeditor_variety_label" xml:space="preserve">
+    <value>Variety:</value>
+  </data>
+  <data name="spriteeditor_zoom_in" xml:space="preserve">
+    <value>Zoom +</value>
+  </data>
+  <data name="spriteeditor_zoom_out" xml:space="preserve">
+    <value>Zoom -</value>
+  </data>
   <data name="sprite_biome_auto" xml:space="preserve">
     <value>自动</value>
   </data>
@@ -1921,6 +2035,12 @@
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
     <value>筛选条件：</value>
+  </data>
+  <data name="sprite_mods_label" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="sprite_mods_tooltip" xml:space="preserve">
+    <value>Show modded sprites</value>
   </data>
   <data name="sprite_size_label" xml:space="preserve">
     <value>尺寸：</value>
@@ -1939,6 +2059,12 @@
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>图格ID：{0}</value>
+  </data>
+  <data name="sprite_vanilla_label" xml:space="preserve">
+    <value>Terraria</value>
+  </data>
+  <data name="sprite_vanilla_tooltip" xml:space="preserve">
+    <value>Show vanilla Terraria sprites</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
     <value>全球定位系统</value>
