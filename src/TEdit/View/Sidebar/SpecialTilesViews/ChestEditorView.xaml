@@ -49,11 +49,11 @@
                         <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
                     </Button>
                     <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_paste}"
-                            Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}">
+                            Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">
                         <ui:SymbolIcon Symbol="ClipboardPaste20" FontSize="14"/>
                     </Button>
                     <Button Grid.Column="7" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.chest_max_stack}"
-                            Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding SelectedItems, ElementName=ChestList}">
+                            Command="{Binding DataContext.ChestItemSetToMaxStackCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}">
                         <ui:SymbolIcon Symbol="ArrowMaximize20" FontSize="14"/>
                     </Button>
                 </Grid>
@@ -71,9 +71,9 @@
                     CopyCommand="{Binding DataContext.CopyChestItemCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                     CommandParameter="{Binding}"
                     PasteCommand="{Binding DataContext.PasteChestItemCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                    PasteCommandParameter="{Binding SelectedItems, ElementName=ChestList}"
+                    PasteCommandParameter="{Binding}"
                     MaxStackCommand="{Binding DataContext.ChestItemSetToMaxStackCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                    MaxStackCommandParameter="{Binding SelectedItems, ElementName=ChestList}" />
+                    MaxStackCommandParameter="{Binding}" />
             </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>

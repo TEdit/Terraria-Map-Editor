@@ -389,7 +389,6 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
-        // close current undo buffer and get a new one with a new name after redo
         string redoFileName = string.Format(RedoFile, _currentIndex + 1); // load redo file at +1
 
         if (!File.Exists(redoFileName))
@@ -406,8 +405,15 @@ public partial class UndoManager : ReactiveObject, IUndoManager
             foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br, _world.TileFrameImportant))
             {
                 var curTile = (Tile)_world.Tiles[undoTile.Location.X, undoTile.Location.Y];
-                SaveTile(undoTile.Location);
 
+                // Save current tile state to the shared undo buffer directly,
+                // bypassing SaveTile/ValidateAndRemoveChests which creates
+                // spurious empty entities during the tight redo tile loop.
+                SaveTileToBuffer(Buffer, undoTile.Location.X, undoTile.Location.Y, false);
+
+                // Remove entities at this position from the world.
+                // Use findOrigin: true so non-anchor tiles of multi-tile
+                // entities (e.g. 2×2 chests) still find and remove the entity.
                 if (curTile.IsChest())
                 {
                     var curchest = _world.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y, true);
