@@ -280,6 +280,9 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>
+  <data name="common_all" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="common_browse" xml:space="preserve">
     <value>Browse...</value>
   </data>
@@ -292,11 +295,17 @@
   <data name="common_close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="common_edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="common_enabled" xml:space="preserve">
     <value>Enabled</value>
   </data>
   <data name="common_generate" xml:space="preserve">
     <value>Generate</value>
+  </data>
+  <data name="common_none" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>OK</value>
@@ -1913,6 +1922,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="spriteeditor_add_frame_tooltip" xml:space="preserve">
     <value>Add a new frame entry</value>
   </data>
+  <data name="spriteeditor_add_selection" xml:space="preserve">
+    <value>Add Selection</value>
+  </data>
+  <data name="spriteeditor_add_selection_tooltip" xml:space="preserve">
+    <value>Add the selected tile region as a new frame</value>
+  </data>
   <data name="spriteeditor_anchor_label" xml:space="preserve">
     <value>Anchor:</value>
   </data>
@@ -1921,6 +1936,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="spriteeditor_auto_detect_tooltip" xml:space="preserve">
     <value>Auto-detect frame grid from texture dimensions</value>
+  </data>
+  <data name="spriteeditor_edit_tooltip" xml:space="preserve">
+    <value>Open sprite sheet editor for this tile</value>
   </data>
   <data name="spriteeditor_frames" xml:space="preserve">
     <value>Frames</value>
@@ -2018,6 +2036,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="sprite_filter_label" xml:space="preserve">
     <value>Filter: </value>
   </data>
+  <data name="sprite_mods_label" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="sprite_mods_tooltip" xml:space="preserve">
+    <value>Show modded sprites</value>
+  </data>
   <data name="sprite_size_label" xml:space="preserve">
     <value>Size:</value>
   </data>
@@ -2038,6 +2062,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="sprite_vanilla_label" xml:space="preserve">
     <value>Terraria</value>
+  </data>
+  <data name="sprite_vanilla_tooltip" xml:space="preserve">
+    <value>Show vanilla Terraria sprites</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
     <value>GPS</value>
@@ -3165,32 +3192,5 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
-  </data>
-  <data name="spriteeditor_add_selection" xml:space="preserve">
-    <value>Add Selection</value>
-  </data>
-  <data name="spriteeditor_add_selection_tooltip" xml:space="preserve">
-    <value>Add the selected tile region as a new frame</value>
-  </data>
-  <data name="spriteeditor_edit_tooltip" xml:space="preserve">
-    <value>Open sprite sheet editor for this tile</value>
-  </data>
-  <data name="common_edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="common_all" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="common_none" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="sprite_vanilla_tooltip" xml:space="preserve">
-    <value>Show vanilla Terraria sprites</value>
-  </data>
-  <data name="sprite_mods_label" xml:space="preserve">
-    <value>Mods</value>
-  </data>
-  <data name="sprite_mods_tooltip" xml:space="preserve">
-    <value>Show modded sprites</value>
   </data>
 </root>
