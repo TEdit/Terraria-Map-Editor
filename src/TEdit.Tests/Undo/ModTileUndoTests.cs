@@ -61,14 +61,11 @@ public class ModTileUndoTests : IDisposable
     }
 
     [Fact]
-    public void UndoBuffer_RoundTrip_VanillaTilePreservesType()
+    public void UndoBuffer_RoundTrip_ModTilePreservesVirtualId()
     {
-        // Undo serialization uses vanilla .wld tile format which caps at MaxTileId.
-        // Mod tiles with virtual IDs beyond MaxTileId lose their Type during undo
-        // (tracked as a known limitation — entity NBT is preserved separately).
-        // This test verifies the vanilla path works correctly.
         var fileName = GetTestFileName();
-        var tile = new Tile { IsActive = true, Type = 21, U = 18, V = 36 }; // Chest tile
+        ushort modTileId = (ushort)(WorldConfiguration.TileCount + 10);
+        var tile = new Tile { IsActive = true, Type = modTileId, U = 18, V = 36 };
         var location = new Vector2Int32(100, 200);
 
         using (var buffer = new UndoBuffer(fileName, null!))
@@ -82,7 +79,7 @@ public class ModTileUndoTests : IDisposable
         var tiles = UndoBuffer.ReadUndoTilesFromStream(reader).ToList();
 
         tiles.Count.ShouldBe(1);
-        tiles[0].Tile.Type.ShouldBe((ushort)21);
+        tiles[0].Tile.Type.ShouldBe(modTileId);
         tiles[0].Tile.U.ShouldBe((short)18);
         tiles[0].Tile.V.ShouldBe((short)36);
         tiles[0].Location.ShouldBe(location);

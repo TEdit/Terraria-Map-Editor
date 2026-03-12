@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
@@ -365,6 +366,94 @@ public class ModTileCopyPasteTests
 
         // Tile should be updated
         world.Tiles[targetX, targetY].Type.ShouldBe((ushort)(ModTileId + 1));
+    }
+
+    #endregion
+
+    #region Clipboard File Serialization
+
+    [Fact]
+    public void ClipboardFile_RoundTrip_ModTilePreservesVirtualId()
+    {
+        var tempFile = Path.Combine(Path.GetTempPath(), $"TEdit_ClipTest_{Guid.NewGuid():N}.TEditSch");
+        try
+        {
+            var buffer = new ClipboardBuffer(
+                new Vector2Int32(2, 1),
+                tileFrameImportant: WorldConfiguration.SettingsTileFrameImportant);
+            buffer.Name = "ModTileTest";
+            buffer.Tiles[0, 0] = new Tile { IsActive = true, Type = 1 }; // Vanilla
+            buffer.Tiles[1, 0] = new Tile { IsActive = true, Type = ModTileId, U = 36, V = 54 }; // Mod
+
+            buffer.Save(tempFile, WorldConfiguration.CompatibleVersion);
+            var loaded = ClipboardBuffer.Load(tempFile);
+
+            loaded.ShouldNotBeNull();
+            loaded!.Size.X.ShouldBe(2);
+            loaded.Tiles[0, 0].Type.ShouldBe((ushort)1);
+            loaded.Tiles[1, 0].Type.ShouldBe(ModTileId);
+            loaded.Tiles[1, 0].U.ShouldBe((short)36);
+            loaded.Tiles[1, 0].V.ShouldBe((short)54);
+        }
+        finally
+        {
+            if (File.Exists(tempFile)) File.Delete(tempFile);
+        }
+    }
+
+    [Fact]
+    public void ClipboardFile_RoundTrip_ModChestAndEntityPreservesNbt()
+    {
+        var tempFile = Path.Combine(Path.GetTempPath(), $"TEdit_ClipTest_{Guid.NewGuid():N}.TEditSch");
+        try
+        {
+            var buffer = new ClipboardBuffer(
+                new Vector2Int32(2, 1),
+                tileFrameImportant: WorldConfiguration.SettingsTileFrameImportant);
+            buffer.Name = "ModEntityTest";
+            buffer.Tiles[0, 0] = new Tile { IsActive = true, Type = ModTileId };
+            buffer.Tiles[1, 0] = new Tile { IsActive = true, Type = ModTileId };
+
+            var chest = new Chest(0, 0);
+            chest.Items[0] = new Item(1, 10)
+            {
+                ModName = "CalamityMod",
+                ModItemName = "Murasama",
+                ModItemData = CreateModItemData(),
+                ModGlobalData = CreateGlobalData(),
+            };
+            buffer.Chests.Add(chest);
+
+            var entity = new TileEntity
+            {
+                Type = (byte)TileEntityType.ItemFrame,
+                Id = 0,
+                PosX = 1,
+                PosY = 0,
+                ModItemData = CreateModItemData("EntityMod", 42),
+            };
+            buffer.TileEntities.Add(entity);
+
+            buffer.Save(tempFile, WorldConfiguration.CompatibleVersion);
+            var loaded = ClipboardBuffer.Load(tempFile);
+
+            loaded.ShouldNotBeNull();
+
+            // Verify mod chest
+            loaded!.Chests.Count.ShouldBe(1);
+            loaded.Chests[0].Items[0].ModName.ShouldBe("CalamityMod");
+            loaded.Chests[0].Items[0].ModItemData.ShouldNotBeNull();
+            loaded.Chests[0].Items[0].ModItemData!.GetInt("damage").ShouldBe(9999);
+
+            // Verify mod entity
+            loaded.TileEntities.Count.ShouldBe(1);
+            loaded.TileEntities[0].ModItemData.ShouldNotBeNull();
+            loaded.TileEntities[0].ModItemData!.GetString("name").ShouldBe("EntityMod");
+        }
+        finally
+        {
+            if (File.Exists(tempFile)) File.Delete(tempFile);
+        }
     }
 
     #endregion

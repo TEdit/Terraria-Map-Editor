@@ -174,8 +174,10 @@ public class UndoBuffer : IDisposable
         var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
         var tileFrameImportant = world?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
-        int maxTileId = WorldConfiguration.SaveConfiguration.GetData(version).MaxTileId;
-        int maxWallId = WorldConfiguration.SaveConfiguration.GetData(version).MaxWallId;
+        // Use ushort.MaxValue so mod tiles with virtual IDs beyond vanilla MaxTileId
+        // are preserved during undo/redo serialization (same as preserveAll in SaveTiles).
+        int maxTileId = ushort.MaxValue;
+        int maxWallId = ushort.MaxValue;
 
         FlushBatch batch;
 

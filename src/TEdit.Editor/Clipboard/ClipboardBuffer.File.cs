@@ -157,7 +157,8 @@ public partial class ClipboardBuffer
         else
             frames = WorldConfiguration.SaveConfiguration.GetData((int)WorldConfiguration.CompatibleVersion).GetFrames();
 
-        World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
+        // preserveAll: true so mod tiles with virtual IDs beyond vanilla MaxTileId survive clipboard serialization
+        World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames, preserveAll: true);
         World.SaveChests(Chests, bw, (int)version);
         World.SaveSigns(Signs, bw, (int)version);
         World.SaveTileEntities(TileEntities, bw, version);
