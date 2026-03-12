@@ -283,11 +283,13 @@ public class TmodTextureExtractorTests
         if (candidates.Count == 0)
             return null;
 
-        // Sort descending by version directory name to get latest
+        // Sort descending by version directory name to get latest (use Version.TryParse for numeric comparison)
         candidates.Sort((a, b) =>
         {
             string dirA = Path.GetFileName(Path.GetDirectoryName(a));
             string dirB = Path.GetFileName(Path.GetDirectoryName(b));
+            if (Version.TryParse(dirA, out var verA) && Version.TryParse(dirB, out var verB))
+                return verB.CompareTo(verA);
             return string.Compare(dirB, dirA, StringComparison.OrdinalIgnoreCase);
         });
 
@@ -418,74 +420,154 @@ public class TmodTextureExtractorTests
         matchRate.ShouldBeGreaterThan(0.5, $"Only {matched}/{matched + unmatched} ({matchRate:P0}) tiles matched textures");
     }
 
-    // Diagnostic test — uncomment for investigating unmatched tiles
+    // Diagnostic test — uncomment [SkippableFact] to audit all installed mods' archive structures
     // [SkippableFact]
-    internal void CalamityTmod_DiagnoseUnmatchedTiles()
+    internal void AuditAllModArchiveStructures()
     {
-        string tmodPath = FindCalamityTmod();
-        Skip.If(tmodPath == null, "CalamityMod.tmod not found in Steam workshop");
+        string workshopBase = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+            "Steam", "steamapps", "workshop", "content", "1281930");
+        string localMods = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+            "Documents", "My Games", "Terraria", "tModLoader", "Mods");
 
-        string wldPath = @"D:\dev\ai\tedit\tModLoaderData\Worlds\Calamity2.wld";
-        Skip.IfNot(File.Exists(TwldFile.GetTwldPath(wldPath)), "Calamity2.twld test fixture not found");
+        Skip.IfNot(Directory.Exists(workshopBase), "Steam workshop path not found");
 
-        WorldConfiguration.Initialize();
-        var twldData = TwldFile.Load(wldPath);
-        twldData.ShouldNotBeNull();
-
-        ushort virtualTileBase = (ushort)WorldConfiguration.TileCount;
-        for (int i = 0; i < twldData.TileMap.Count; i++)
-            twldData.MapIndexToVirtualTileId[i] = (ushort)(virtualTileBase + i);
-
-        ushort virtualWallBase = (ushort)WorldConfiguration.WallCount;
-        for (int i = 0; i < twldData.WallMap.Count; i++)
-            twldData.MapIndexToVirtualWallId[i] = (ushort)(virtualWallBase + i);
-
-        var tileNameToId = TwldFile.BuildTileNameToVirtualIdMap(twldData);
-        var wallNameToId = TwldFile.BuildWallNameToVirtualIdMap(twldData);
-        var extractor = TmodTextureExtractor.Open(tmodPath);
-        var tileTextures = extractor.ExtractTileTextures();
-        var wallTextures = extractor.ExtractWallTextures();
-        var allFiles = extractor.ListAllFiles().ToList();
-
-        // Check specific missing tiles in the archive
-        var checkNames = new[] { "AbyssCoral", "AgedBiolight", "CagedBiolight", "HostilePlagueTurret", "SunkenStalagmites" };
-        var checkWalls = new[] { "EutrophicGlassWall", "GiantHiveWall" };
+        // Collect latest .tmod from each workshop item + any local mods
+        var tmodFiles = new List<string>();
+        foreach (var workshopDir in Directory.EnumerateDirectories(workshopBase))
+        {
+            string best = null;
+            Version bestParsed = null;
+            foreach (var versionDir in Directory.EnumerateDirectories(workshopDir))
+            {
+                foreach (var tmod in Directory.EnumerateFiles(versionDir, "*.tmod"))
+                {
+                    string vName = Path.GetFileName(versionDir);
+                    if (Version.TryParse(vName, out var parsed))
+                    {
+                        if (bestParsed == null || parsed > bestParsed)
+                        {
+                            best = tmod;
+                            bestParsed = parsed;
+                        }
+                    }
+                    else if (best == null) best = tmod;
+                }
+            }
+            if (best != null) tmodFiles.Add(best);
+        }
+        if (Directory.Exists(localMods))
+        {
+            foreach (var tmod in Directory.EnumerateFiles(localMods, "*.tmod"))
+                tmodFiles.Add(tmod);
+        }
 
         var lines = new List<string>();
+        lines.Add($"Found {tmodFiles.Count} mods to audit\n");
 
-        // Check what Abyss/Coral files ARE in the archive
-        var abyssFiles = allFiles.Where(f => f.Contains("Abyss", StringComparison.OrdinalIgnoreCase) && f.Contains("Tile", StringComparison.OrdinalIgnoreCase)).Take(20).ToList();
-        lines.Add($"Abyss+Tile archive files: [{string.Join(", ", abyssFiles)}]");
-        var coralFiles = allFiles.Where(f => f.Contains("Coral", StringComparison.OrdinalIgnoreCase)).Take(20).ToList();
-        lines.Add($"Coral archive files: [{string.Join(", ", coralFiles)}]");
-
-        foreach (var name in checkNames)
+        foreach (var tmodPath in tmodFiles)
         {
-            bool inTwld = twldData.TileMap.Any(e => e.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-            bool inTextures = tileTextures.ContainsKey(name);
-            var archiveMatches = allFiles.Where(f => f.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
-            lines.Add($"TILE {name}: twld={inTwld}, extracted={inTextures}, archive=[{string.Join(", ", archiveMatches)}]");
-        }
-        foreach (var name in checkWalls)
-        {
-            bool inTwld = twldData.WallMap.Any(e => e.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-            bool inTextures = wallTextures.ContainsKey(name);
-            var archiveMatches = allFiles.Where(f => f.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
-            lines.Add($"WALL {name}: twld={inTwld}, extracted={inTextures}, archive=[{string.Join(", ", archiveMatches)}]");
-        }
+            var extractor = TmodTextureExtractor.Open(tmodPath);
+            var allFiles = extractor.ListAllFiles().ToList();
+            var imageFiles = allFiles.Where(f =>
+                f.EndsWith(".rawimg", StringComparison.OrdinalIgnoreCase) ||
+                f.EndsWith(".png", StringComparison.OrdinalIgnoreCase)).ToList();
 
-        // Count total unmatched
-        var unmatchedTiles = twldData.TileMap.Where(e => e.ModName == "CalamityMod" && !tileTextures.ContainsKey(e.Name)).Select(e => e.Name).ToList();
-        var unmatchedWalls = twldData.WallMap.Where(e => e.ModName == "CalamityMod" && !wallTextures.ContainsKey(e.Name)).Select(e => e.Name).ToList();
+            // Categorize paths by top-level directory
+            var topLevelDirs = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            // Track unique path patterns for texture files
+            var tilePathPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var wallPathPatterns = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-        lines.Add($"\nTotal unmatched tiles: {unmatchedTiles.Count}/{twldData.TileMap.Count(e => e.ModName == "CalamityMod")}");
-        lines.Add($"Total unmatched walls: {unmatchedWalls.Count}/{twldData.WallMap.Count(e => e.ModName == "CalamityMod")}");
-        lines.Add($"Total tile textures extracted: {tileTextures.Count}");
-        lines.Add($"Total wall textures extracted: {wallTextures.Count}");
-        lines.Add($"Total archive files: {allFiles.Count}");
+            foreach (var f in imageFiles)
+            {
+                string topDir = f.Split('/', '\\')[0];
+                topLevelDirs.TryGetValue(topDir, out int count);
+                topLevelDirs[topDir] = count + 1;
+
+                // Check various patterns that could contain tile/wall textures
+                if (f.Contains("/Tiles/", StringComparison.OrdinalIgnoreCase) ||
+                    f.Contains(@"\Tiles\", StringComparison.OrdinalIgnoreCase) ||
+                    f.StartsWith("Tiles/", StringComparison.OrdinalIgnoreCase) ||
+                    f.StartsWith(@"Tiles\", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Get the path prefix up to and including "Tiles/"
+                    int idx = f.IndexOf("Tiles/", StringComparison.OrdinalIgnoreCase);
+                    if (idx < 0) idx = f.IndexOf(@"Tiles\", StringComparison.OrdinalIgnoreCase);
+                    if (idx >= 0) tilePathPatterns.Add(f[..idx] + "Tiles/");
+                }
+                if (f.Contains("/Walls/", StringComparison.OrdinalIgnoreCase) ||
+                    f.Contains(@"\Walls\", StringComparison.OrdinalIgnoreCase) ||
+                    f.StartsWith("Walls/", StringComparison.OrdinalIgnoreCase) ||
+                    f.StartsWith(@"Walls\", StringComparison.OrdinalIgnoreCase))
+                {
+                    int idx = f.IndexOf("Walls/", StringComparison.OrdinalIgnoreCase);
+                    if (idx < 0) idx = f.IndexOf(@"Walls\", StringComparison.OrdinalIgnoreCase);
+                    if (idx >= 0) wallPathPatterns.Add(f[..idx] + "Walls/");
+                }
+            }
+
+            // Run actual extraction and report counts
+            var tileTextures = extractor.ExtractTileTextures();
+            var wallTextures = extractor.ExtractWallTextures();
+
+            // Check if any tile textures came from Items/ paths (shadowing issue)
+            var tileFromItems = tileTextures.Values
+                .Where(t => t.SourcePath.StartsWith("Items/", StringComparison.OrdinalIgnoreCase) ||
+                            t.SourcePath.StartsWith(@"Items\", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+            var wallFromItems = wallTextures.Values
+                .Where(t => t.SourcePath.StartsWith("Items/", StringComparison.OrdinalIgnoreCase) ||
+                            t.SourcePath.StartsWith(@"Items\", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            // Check if fallback was triggered (no root Tiles/ or nested /Tiles/ found)
+            bool hasTilesDir = imageFiles.Any(f =>
+                f.StartsWith("Tiles/", StringComparison.OrdinalIgnoreCase) ||
+                f.StartsWith(@"Tiles\", StringComparison.OrdinalIgnoreCase));
+            bool hasNestedTiles = imageFiles.Any(f =>
+                f.Contains("/Tiles/", StringComparison.OrdinalIgnoreCase) ||
+                f.Contains(@"\Tiles\", StringComparison.OrdinalIgnoreCase));
+            bool hasWallsDir = imageFiles.Any(f =>
+                f.StartsWith("Walls/", StringComparison.OrdinalIgnoreCase) ||
+                f.StartsWith(@"Walls\", StringComparison.OrdinalIgnoreCase));
+            bool hasNestedWalls = imageFiles.Any(f =>
+                f.Contains("/Walls/", StringComparison.OrdinalIgnoreCase) ||
+                f.Contains(@"\Walls\", StringComparison.OrdinalIgnoreCase));
+
+            lines.Add($"{'=',-70}");
+            lines.Add($"  {extractor.ModName} v{extractor.ModVersion}");
+            lines.Add($"  Path: {tmodPath}");
+            lines.Add($"  Archive: {allFiles.Count} files, {imageFiles.Count} images");
+            lines.Add($"  Extracted: {tileTextures.Count} tiles, {wallTextures.Count} walls");
+            lines.Add($"  Top-level dirs (images): {string.Join(", ", topLevelDirs.OrderByDescending(kv => kv.Value).Select(kv => $"{kv.Key}({kv.Value})"))}");
+            lines.Add($"  Tile path patterns: [{string.Join(", ", tilePathPatterns.OrderBy(p => p))}]");
+            lines.Add($"  Wall path patterns: [{string.Join(", ", wallPathPatterns.OrderBy(p => p))}]");
+            lines.Add($"  Has root Tiles/: {hasTilesDir} | Nested /Tiles/: {hasNestedTiles}");
+            lines.Add($"  Has root Walls/: {hasWallsDir} | Nested /Walls/: {hasNestedWalls}");
+            if (tileFromItems.Count > 0)
+                lines.Add($"  WARNING: {tileFromItems.Count} tile textures from Items/ paths!");
+            if (wallFromItems.Count > 0)
+                lines.Add($"  WARNING: {wallFromItems.Count} wall textures from Items/ paths!");
+            if (!hasTilesDir && !hasNestedTiles && tileTextures.Count > 0)
+                lines.Add($"  NOTE: Tile extraction used FALLBACK (no Tiles/ paths found)");
+            if (!hasWallsDir && !hasNestedWalls && wallTextures.Count > 0)
+                lines.Add($"  NOTE: Wall extraction used FALLBACK (no Walls/ paths found)");
+
+            // Show sample image paths (first 5 from each top-level dir)
+            foreach (var topDir in topLevelDirs.Keys.OrderBy(k => k).Take(10))
+            {
+                var samples = imageFiles.Where(f => f.StartsWith(topDir + "/", StringComparison.OrdinalIgnoreCase) ||
+                                                    f.StartsWith(topDir + @"\", StringComparison.OrdinalIgnoreCase))
+                    .Take(3).ToList();
+                lines.Add($"  Samples from {topDir}/: {string.Join(", ", samples)}");
+            }
+            lines.Add("");
+        }
 
         string report = string.Join("\n", lines);
-        unmatchedTiles.Count.ShouldBe(0, report);
+        Assert.Fail($"Archive structure audit (not a real failure):\n{report}");
     }
 
     #endregion

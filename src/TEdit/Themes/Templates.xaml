@@ -25,6 +25,7 @@
   <cv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
   <cv:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
   <cv:ItemIdToPreviewConverter x:Key="ItemIdToPreviewConverter" />
+  <cv:GreaterThanConverter x:Key="GreaterThanConverter" />
 
   <DataTemplate x:Key="ColorPickerTemplate" >
         <DockPanel LastChildFill="True" MinWidth="220">
@@ -111,7 +112,7 @@
 
     <!-- MaskMode: icon-only when collapsed, icon + text when expanded -->
     <DataTemplate x:Key="MaskModeIconTemplate">
-        <DockPanel>
+        <DockPanel x:Name="RootPanel">
             <ui:SymbolIcon x:Name="ModeIcon" DockPanel.Dock="Left"
                            Symbol="Dismiss20" FontSize="16"
                            VerticalAlignment="Center" Margin="0,0,4,0" />
@@ -119,11 +120,15 @@
                        VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
         </DockPanel>
         <DataTemplate.Triggers>
-            <!-- In collapsed selection box: no ComboBoxItem ancestor, hide text -->
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBoxItem}, FallbackValue={x:Null}}" Value="{x:Null}">
+            <!-- In collapsed selection box: hide text when narrow (< 60px), show when wide -->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBoxItem}, FallbackValue={x:Null}}" Value="{x:Null}" />
+                    <Condition Binding="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ComboBox}, FallbackValue=0, Converter={StaticResource GreaterThanConverter}, ConverterParameter=60}" Value="False" />
+                </MultiDataTrigger.Conditions>
                 <Setter TargetName="ModeText" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="ModeIcon" Property="Margin" Value="0" />
-            </DataTrigger>
+            </MultiDataTrigger>
             <!-- Icon per MaskMode value -->
             <DataTrigger Binding="{Binding Value}" Value="{x:Static editor:MaskMode.Off}">
                 <Setter TargetName="ModeIcon" Property="Symbol" Value="Dismiss20" />

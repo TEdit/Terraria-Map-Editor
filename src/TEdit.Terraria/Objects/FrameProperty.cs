@@ -18,6 +18,17 @@ public class FrameProperty : ITile
     public string Name { get; set; } = "Default";
 
     /// <summary>
+    /// Custom source rectangle [x, y, width, height] within the texture.
+    /// When set, preview reads from this region instead of UV-based grid calculation.
+    /// </summary>
+    public int[]? SourceRect { get; set; }
+
+    /// <summary>
+    /// Pixel offset [x, y] for preview positioning relative to the tile anchor.
+    /// </summary>
+    public short[]? OffsetPx { get; set; }
+
+    /// <summary>
     /// Half-width and half-height (in tiles) of the buff detection zone for this specific frame.
     /// Overrides tile-level BuffRadius when present.
     /// </summary>

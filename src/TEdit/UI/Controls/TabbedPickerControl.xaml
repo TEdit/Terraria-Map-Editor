@@ -1,0 +1,157 @@
+<UserControl x:Class="TEdit.UI.Controls.TabbedPickerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             x:Name="Root"
+             Focusable="False"
+             SnapsToDevicePixels="True">
+
+    <UserControl.Resources>
+        <Thickness x:Key="PickerItemMargin">3,1,3,0</Thickness>
+        <Thickness x:Key="PickerItemContentMargin">4,2,4,2</Thickness>
+
+        <!-- Mod item template: shows ShortName instead of full Name -->
+        <DataTemplate x:Key="ModItemTemplate">
+            <DockPanel LastChildFill="True">
+                <Border BorderBrush="{DynamicResource NormalBorderBrush}" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" VerticalAlignment="Center">
+                    <Rectangle Height="12" Width="12">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding Path=Color, Converter={StaticResource TEditColorToMediaColorConverter}}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+                <TextBlock Text="{Binding Path=ShortName}" Margin="1,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+            </DockPanel>
+        </DataTemplate>
+
+        <!-- Group header for mod name -->
+        <Style x:Key="ModGroupHeaderStyle" TargetType="{x:Type GroupItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="11" FontWeight="SemiBold"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                       Margin="4,4,4,2" />
+                            <ItemsPresenter />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Compact item container style -->
+        <Style x:Key="TabbedPickerItemStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
+            <Setter Property="Foreground" Value="{DynamicResource ComboBoxForeground}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="{StaticResource PickerItemContentMargin}" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Border.CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid Background="Transparent">
+                            <Border x:Name="ContentBorder"
+                                    Margin="{StaticResource PickerItemMargin}"
+                                    Padding="0"
+                                    VerticalAlignment="Stretch"
+                                    CornerRadius="{TemplateBinding Border.CornerRadius}"
+                                    SnapsToDevicePixels="True">
+                                <Grid>
+                                    <ContentPresenter x:Name="PART_ContentPresenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="Center" />
+                                    <Rectangle x:Name="ActiveRectangle"
+                                               Width="3" Height="12"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Fill="{DynamicResource ComboBoxItemPillFillBrush}"
+                                               RadiusX="2" RadiusY="2"
+                                               Visibility="Collapsed" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource ComboBoxItemBackgroundSelected}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ActiveRectangle" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="PART_ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource ComboBoxItemForegroundSelected}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Border Background="{DynamicResource ComboBoxDropDownBackground}"
+            BorderBrush="{DynamicResource ControlElevationBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{DynamicResource ControlCornerRadius}"
+            Padding="4"
+            SnapsToDevicePixels="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />  <!-- Search box -->
+                <RowDefinition Height="Auto" />  <!-- Tabs -->
+                <RowDefinition Height="*" />      <!-- ListBox -->
+            </Grid.RowDefinitions>
+
+            <!-- Search TextBox -->
+            <ui:TextBox x:Name="PART_SearchBox"
+                        Grid.Row="0"
+                        Icon="{ui:SymbolIcon Search16}"
+                        PlaceholderText="Search..."
+                        ClearButtonEnabled="True"
+                        Margin="0,0,0,4"
+                        FontSize="12"
+                        TextChanged="SearchBox_TextChanged" />
+
+            <!-- Tab Buttons -->
+            <UniformGrid Grid.Row="1" Rows="1" Margin="0,0,0,4">
+                <ToggleButton x:Name="PART_TerrariaTab"
+                              Content="Terraria"
+                              IsChecked="True"
+                              FontSize="11" Padding="4,3"
+                              Margin="0,0,2,0"
+                              Checked="TerrariaTab_Checked" />
+                <ToggleButton x:Name="PART_ModsTab"
+                              Content="Mods"
+                              FontSize="11" Padding="4,3"
+                              Margin="2,0,0,0"
+                              Checked="ModsTab_Checked" />
+            </UniformGrid>
+
+            <!-- ListBox (always visible, 5 items) -->
+            <ListBox x:Name="PART_ItemsList"
+                     Grid.Row="2"
+                     VirtualizingPanel.IsVirtualizing="True"
+                     VirtualizingPanel.VirtualizationMode="Recycling"
+                     VirtualizingPanel.ScrollUnit="Pixel"
+                     ScrollViewer.CanContentScroll="True"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     BorderThickness="0"
+                     Background="Transparent"
+                     ItemContainerStyle="{StaticResource TabbedPickerItemStyle}"
+                     SelectionChanged="ItemsList_SelectionChanged">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsVirtualizing="True"
+                                                 VirtualizationMode="Recycling" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.GroupStyle>
+                    <GroupStyle ContainerStyle="{StaticResource ModGroupHeaderStyle}" />
+                </ListBox.GroupStyle>
+            </ListBox>
+        </Grid>
+    </Border>
+
+</UserControl>

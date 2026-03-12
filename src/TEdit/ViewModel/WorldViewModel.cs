@@ -117,6 +117,7 @@ public partial class WorldViewModel : ReactiveObject
     private int _wireTraceColor; // 0=none, 1=red, 2=blue, 3=green, 4=yellow
     private string _spriteFilter;
     private bool _showModSprites;
+    private bool _showVanillaSprites = true;
     private bool _hasTwldData;
     private ushort _spriteTileFilter;
     private ListCollectionView _spriteSheetView;
@@ -315,6 +316,356 @@ public partial class WorldViewModel : ReactiveObject
     }
 
     /// <summary>
+    /// Rebuilds the SpriteSheet entry for a single tile without touching other tiles.
+    /// Use after saving frame overrides from the sprite editor.
+    /// </summary>
+    public void RebuildSpriteForTile(int tileId)
+    {
+        if (tileId >= WorldConfiguration.TileProperties.Count) return;
+        var tile = WorldConfiguration.TileProperties[tileId];
+        if (!tile.IsFramed || tile.Frames == null || tile.Frames.Count == 0) return;
+
+        var newSprite = new SpriteSheet
+        {
+            Tile = (ushort)tile.Id,
+            Name = tile.Name,
+            SizeTiles = tile.FrameSize,
+            SizePixelsRender = tile.TextureGrid,
+            SizePixelsInterval = tile.TextureGrid + tile.FrameGap,
+            IsAnimated = tile.IsAnimated,
+        };
+
+        int styleIndex = 0;
+        foreach (var frame in tile.Frames)
+        {
+            var spriteItem = new SpriteItemPreview
+            {
+                Tile = newSprite.Tile,
+                Style = styleIndex++,
+                Name = frame.ToString(),
+                UV = frame.UV,
+                SizeTiles = frame.Size.X > 0 && frame.Size.Y > 0 ? frame.Size : tile.FrameSize[0],
+                SizePixelsInterval = newSprite.SizePixelsInterval,
+                Anchor = frame.Anchor,
+                StyleColor = frame.Color.A > 0 ? frame.Color : tile.Color,
+                Preview = null,
+            };
+            ConfigureSpecialTilePreview(spriteItem, tile, frame);
+            newSprite.Styles.Add(spriteItem);
+        }
+
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            var existing = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == tileId);
+            if (existing != null)
+            {
+                int idx = WorldConfiguration.Sprites2.IndexOf(existing);
+                WorldConfiguration.Sprites2[idx] = newSprite;
+            }
+            else
+            {
+                WorldConfiguration.Sprites2.Add(newSprite);
+            }
+        }
+
+        ErrorLogging.LogDebug($"RebuildSpriteForTile: Rebuilt sprite sheet for tile {tileId} ({tile.Name}) with {newSprite.Styles.Count} styles");
+    }
+
+    /// <summary>
+    /// Regenerates preview bitmaps for a specific tile's sprite sheet styles.
+    /// Call after editing frame data to update the sprite picker and style list.
+    /// Must be called on the UI thread.
+    /// </summary>
+    public void RegeneratePreviewsForTile(int tileId)
+    {
+        if (Textures == null) return;
+        if (!Textures.Tiles.TryGetValue(tileId, out var tex2d) || tex2d == null) return;
+
+        SpriteSheet? sprite;
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == tileId);
+        }
+        if (sprite == null) return;
+
+        sprite.SizeTexture = new Geometry.Vector2Short((short)tex2d.Width, (short)tex2d.Height);
+
+        int regenerated = 0;
+        foreach (var style in sprite.Styles.OfType<SpriteItemPreview>())
+        {
+            try
+            {
+                var uv = TileProperty.GetRenderUV((ushort)tileId, style.UV.X, style.UV.Y);
+                var sizeTiles = style.SizeTiles;
+                if (sizeTiles.X <= 0 || sizeTiles.Y <= 0 ||
+                    sprite.SizePixelsRender.X <= 0 || sprite.SizePixelsRender.Y <= 0)
+                    continue;
+
+                int previewW = sizeTiles.X * sprite.SizePixelsRender.X;
+                int previewH = sizeTiles.Y * sprite.SizePixelsRender.Y;
+                if (previewW <= 0 || previewH <= 0) continue;
+
+                // Extract pixel data from the XNA texture
+                var fullBmp = tex2d.Texture2DToWriteableBitmap();
+                var preview = new WriteableBitmap(previewW, previewH, 96, 96,
+                    System.Windows.Media.PixelFormats.Bgra32, null);
+
+                // Copy tile-by-tile from source texture to preview
+                for (int tx = 0; tx < sizeTiles.X; tx++)
+                {
+                    for (int ty = 0; ty < sizeTiles.Y; ty++)
+                    {
+                        int srcX = uv.X + tx * sprite.SizePixelsInterval.X;
+                        int srcY = uv.Y + ty * sprite.SizePixelsInterval.Y;
+                        int dstX = tx * sprite.SizePixelsRender.X;
+                        int dstY = ty * sprite.SizePixelsRender.Y;
+                        int copyW = sprite.SizePixelsRender.X;
+                        int copyH = sprite.SizePixelsRender.Y;
+
+                        // Bounds check
+                        if (srcX < 0 || srcY < 0 ||
+                            srcX + copyW > fullBmp.PixelWidth ||
+                            srcY + copyH > fullBmp.PixelHeight)
+                            continue;
+
+                        // Copy pixel region
+                        var stride = copyW * 4;
+                        var pixels = new byte[stride * copyH];
+                        fullBmp.CopyPixels(new System.Windows.Int32Rect(srcX, srcY, copyW, copyH),
+                            pixels, stride, 0);
+                        preview.WritePixels(new System.Windows.Int32Rect(dstX, dstY, copyW, copyH),
+                            pixels, stride, 0);
+                    }
+                }
+
+                preview.Freeze();
+                style.Preview = preview;
+                regenerated++;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogDebug($"RegeneratePreviewsForTile: Failed for tile {tileId} style {style.Style}: {ex.Message}");
+            }
+        }
+
+        ErrorLogging.LogDebug($"RegeneratePreviewsForTile: Regenerated {regenerated} previews for tile {tileId}");
+    }
+
+    /// <summary>
+    /// Applies autoframe heuristic to a mod tile based on texture dimensions.
+    /// Updates TileProperty frames and the SpriteSheet in Sprites2.
+    /// Returns 1 if applied, 0 if skipped.
+    /// </summary>
+    private int ApplyAutoFrameToTile(ushort virtualId, int texWidth, int texHeight, TEditColor color,
+        byte[] texData = null, bool isRawImg = false, short[] coordinateHeights = null, bool isAnimated = false)
+    {
+        if (virtualId >= WorldConfiguration.TileProperties.Count) return 0;
+        var prop = WorldConfiguration.TileProperties[virtualId];
+        if (!prop.IsFramed) return 0;
+
+        // Use current grid/gap settings (default 16+2)
+        int gridX = prop.TextureGrid.X > 0 ? prop.TextureGrid.X : 16;
+        int gridY = prop.TextureGrid.Y > 0 ? prop.TextureGrid.Y : 16;
+        int gapX = prop.FrameGap.X;
+        int gapY = prop.FrameGap.Y;
+        int intervalX = gridX + gapX;
+        int intervalY = gridY + gapY;
+
+        int cols = intervalX > 0 ? (texWidth + gapX) / intervalX : 1;
+        int rows = intervalY > 0 ? (texHeight + gapY) / intervalY : 1;
+        if (cols < 1) cols = 1;
+        if (rows < 1) rows = 1;
+
+        short fw, fh;
+        string reason;
+
+        // Pixel-based frame size detection: check if content bridges cell boundaries.
+        // Falls back to dimension heuristic when no pixel data is available.
+        if (texData != null && isRawImg && (cols > 1 || rows > 1))
+        {
+            (fw, fh) = TmodTextureExtractor.DetectFrameSize(
+                texData, isRawImg, gridX, gridY, gapX, gapY, cols, rows);
+            reason = $"pixel-detected {fw}x{fh}";
+        }
+        else
+        {
+            SpriteSheetEditorViewModel.AutoFrameHeuristic(cols, rows, out fw, out fh, out reason);
+        }
+
+        // Compute frame dimensions and stride.
+        // Priority: 1) explicit CoordinateHeights  2) pixel detection  3) uniform grid
+        int strideX = intervalX * fw;
+        int strideY;
+        int frameW = fw * gridX + (fw - 1) * gapX;
+        int frameH;
+
+        if (coordinateHeights != null && coordinateHeights.Length == fh)
+        {
+            strideY = TmodTextureExtractor.ComputeStrideFromCoordinateHeights(coordinateHeights, gapY);
+            frameH = TmodTextureExtractor.ComputeFrameHeightFromCoordinateHeights(coordinateHeights, gapY);
+        }
+        else if (texData != null && fh > 1)
+        {
+            strideY = TmodTextureExtractor.DetectVerticalFrameStride(texData, isRawImg, gridY, gapY, fh);
+            frameH = fh * gridY + (fh - 1) * gapY;
+        }
+        else
+        {
+            strideY = intervalY * fh;
+            frameH = fh * gridY + (fh - 1) * gapY;
+        }
+        var frames = new List<FrameProperty>();
+        int index = 0;
+        // For animated tiles, only use the first row — animation frames are stacked vertically.
+        int maxY = isAnimated ? frameH : texHeight + gapY;
+        // Allow tolerance of one gap to handle textures without trailing gap
+        for (int y = 0; y + frameH <= maxY; y += strideY)
+        {
+            for (int x = 0; x + frameW <= texWidth + gapX; x += strideX)
+            {
+                frames.Add(new FrameProperty
+                {
+                    Name = $"Frame {index}",
+                    UV = new Vector2Short((short)x, (short)y),
+                    Size = new Vector2Short(fw, fh),
+                });
+                index++;
+            }
+        }
+
+        if (frames.Count == 0) return 0;
+
+        // Update TileProperty
+        prop.FrameSize = [new Vector2Short(fw, fh)];
+        prop.Frames = frames;
+
+        // Update SpriteSheet in Sprites2
+        var grid = new Vector2Short((short)gridX, (short)gridY);
+        var interval = grid + prop.FrameGap;
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            var existing = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == virtualId);
+            if (existing != null)
+            {
+                existing.SizeTiles = prop.FrameSize;
+                existing.SizePixelsRender = grid;
+                existing.SizePixelsInterval = interval;
+                existing.Styles.Clear();
+
+                int styleIndex = 0;
+                foreach (var frame in frames)
+                {
+                    existing.Styles.Add(new SpriteItemPreview
+                    {
+                        Tile = virtualId,
+                        Style = styleIndex++,
+                        Name = frame.ToString(),
+                        UV = frame.UV,
+                        SizeTiles = frame.Size,
+                        SizePixelsInterval = interval,
+                        Anchor = frame.Anchor,
+                        StyleColor = color,
+                        Preview = null,
+                    });
+                }
+            }
+        }
+
+        ErrorLogging.LogTrace($"AutoFrame: {prop.Name} → {fw}x{fh} ({frames.Count} frames, {reason})");
+        return 1;
+    }
+
+    /// <summary>
+    /// Generates preview bitmaps for a mod tile's sprite styles from a loaded Texture2D.
+    /// Called on the graphics thread; dispatches WriteableBitmap creation to the UI thread.
+    /// </summary>
+    private void GenerateModTilePreviews(ushort virtualId, Microsoft.Xna.Framework.Graphics.Texture2D texture)
+    {
+        SpriteSheet? sprite;
+        lock (WorldConfiguration.Sprites2Lock)
+        {
+            sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == virtualId);
+        }
+        if (sprite == null) return;
+
+        sprite.SizeTexture = new Vector2Short((short)texture.Width, (short)texture.Height);
+        int renderX = sprite.SizePixelsRender.X;
+        int renderY = sprite.SizePixelsRender.Y;
+        int intervalX = sprite.SizePixelsInterval.X;
+        int intervalY = sprite.SizePixelsInterval.Y;
+
+        foreach (var style in sprite.Styles.OfType<SpriteItemPreview>())
+        {
+            if (style.Preview != null) continue;
+
+            var sizeTiles = style.SizeTiles;
+            if (sizeTiles.X <= 0 || sizeTiles.Y <= 0 || renderX <= 0 || renderY <= 0) continue;
+
+            int previewW = sizeTiles.X * renderX;
+            int previewH = sizeTiles.Y * renderY;
+            if (previewW <= 0 || previewH <= 0) continue;
+
+            try
+            {
+                // Build composite preview from grid cells
+                var previewPixels = new int[previewW * previewH];
+                var uv = style.UV;
+                bool hasData = false;
+
+                for (int tx = 0; tx < sizeTiles.X; tx++)
+                {
+                    for (int ty = 0; ty < sizeTiles.Y; ty++)
+                    {
+                        int srcX = uv.X + tx * intervalX;
+                        int srcY = uv.Y + ty * intervalY;
+                        int dstX = tx * renderX;
+                        int dstY = ty * renderY;
+
+                        if (srcX < 0 || srcY < 0 || srcX + renderX > texture.Width || srcY + renderY > texture.Height)
+                            continue;
+
+                        var cellColors = new Microsoft.Xna.Framework.Color[renderX * renderY];
+                        var srcRect = new Microsoft.Xna.Framework.Rectangle(srcX, srcY, renderX, renderY);
+                        texture.GetData(0, srcRect, cellColors, 0, cellColors.Length);
+
+                        for (int py = 0; py < renderY; py++)
+                        {
+                            for (int px = 0; px < renderX; px++)
+                            {
+                                var c = cellColors[py * renderX + px];
+                                if (c.A > 0) hasData = true;
+                                // BGRA for WriteableBitmap
+                                previewPixels[(dstY + py) * previewW + (dstX + px)] =
+                                    (c.A << 24) | (c.R << 16) | (c.G << 8) | c.B;
+                            }
+                        }
+                    }
+                }
+
+                if (!hasData) continue;
+
+                var capturedPixels = previewPixels;
+                var capturedW = previewW;
+                var capturedH = previewH;
+                var capturedStyle = style;
+                DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                {
+                    var bmp = new WriteableBitmap(capturedW, capturedH, 96, 96,
+                        System.Windows.Media.PixelFormats.Bgra32, null);
+                    bmp.WritePixels(new System.Windows.Int32Rect(0, 0, capturedW, capturedH),
+                        capturedPixels, capturedW * 4, 0);
+                    bmp.Freeze();
+                    capturedStyle.Preview = bmp;
+                });
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogDebug($"GenerateModTilePreviews: Failed for tile {virtualId} style {style.Style}: {ex.Message}");
+            }
+        }
+    }
+
+    /// <summary>
     /// Registers mod framed tiles as placeholder SpriteSheet entries in Sprites2.
     /// Must be called on the UI thread after RegisterModProperties.
     /// </summary>
@@ -322,7 +673,9 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (data == null) return;
 
+        var configStore = new ModTileConfigStore(AppDataPaths.DataDir);
         int added = 0;
+        int overrideCount = 0;
         lock (WorldConfiguration.Sprites2Lock)
         {
             for (int i = 0; i < data.TileMap.Count; i++)
@@ -340,40 +693,86 @@ public partial class WorldViewModel : ReactiveObject
 
                 var color = prop?.Color ?? TwldFile.GenerateModColor(entry.FullName);
 
-                // Create a placeholder preview bitmap (16x16 colored square)
-                var preview = CreateColoredPreview(color);
+                // Check for user override
+                var modName = entry.FullName.Contains(':') ? entry.FullName[..entry.FullName.IndexOf(':')] : entry.FullName;
+                var tileName = entry.FullName.Contains(':') ? entry.FullName[(entry.FullName.IndexOf(':') + 1)..] : entry.FullName;
+                var tileOverride = configStore.GetTileOverride(modName, tileName);
 
-                var spriteItem = new SpriteItemPreview
+                if (tileOverride?.Frames != null && tileOverride.Frames.Count > 0)
                 {
-                    Tile = virtualId,
-                    Style = 0,
-                    Name = entry.FullName,
-                    UV = new Geometry.Vector2Short(0, 0),
-                    SizeTiles = new Geometry.Vector2Short(1, 1),
-                    SizeTexture = new Geometry.Vector2Short(16, 16),
-                    SizePixelsInterval = new Geometry.Vector2Short(18, 18),
-                    Preview = preview,
-                };
+                    // Build sprite sheet from user override data
+                    var sprite = new SpriteSheet
+                    {
+                        Tile = virtualId,
+                        Name = entry.FullName,
+                        SizeTiles = tileOverride.FrameSize ?? [new Geometry.Vector2Short(1, 1)],
+                        SizePixelsRender = tileOverride.TextureGrid,
+                        SizePixelsInterval = tileOverride.TextureGrid + tileOverride.FrameGap,
+                        IsAnimated = tileOverride.IsAnimated,
+                    };
 
-                var sprite = new SpriteSheet
+                    int styleIndex = 0;
+                    foreach (var frame in tileOverride.Frames)
+                    {
+                        var sizeTiles = (frame.Size.X > 0 && frame.Size.Y > 0)
+                            ? frame.Size
+                            : (tileOverride.FrameSize?.Length > 0 ? tileOverride.FrameSize[0] : new Geometry.Vector2Short(1, 1));
+
+                        sprite.Styles.Add(new SpriteItemPreview
+                        {
+                            Tile = virtualId,
+                            Style = styleIndex++,
+                            Name = frame.ToString(),
+                            UV = frame.UV,
+                            SizeTiles = sizeTiles,
+                            SizePixelsInterval = sprite.SizePixelsInterval,
+                            Anchor = frame.Anchor,
+                            StyleColor = frame.Color.A > 0 ? frame.Color : color,
+                            Preview = null, // Set later when textures load
+                        });
+                    }
+
+                    WorldConfiguration.Sprites2.Add(sprite);
+                    added++;
+                    overrideCount++;
+                }
+                else
                 {
-                    Tile = virtualId,
-                    Name = entry.FullName,
-                    SizeTiles = new[] { new Geometry.Vector2Short(1, 1) },
-                    SizePixelsRender = new Geometry.Vector2Short(16, 16),
-                    SizePixelsInterval = new Geometry.Vector2Short(18, 18),
-                    SizeTexture = new Geometry.Vector2Short(16, 16),
-                };
-                sprite.Styles.Add(spriteItem);
+                    // Create a placeholder preview bitmap (16x16 colored square)
+                    var preview = CreateColoredPreview(color);
 
-                WorldConfiguration.Sprites2.Add(sprite);
-                added++;
+                    var spriteItem = new SpriteItemPreview
+                    {
+                        Tile = virtualId,
+                        Style = 0,
+                        Name = entry.FullName,
+                        UV = new Geometry.Vector2Short(0, 0),
+                        SizeTiles = new Geometry.Vector2Short(1, 1),
+                        SizeTexture = new Geometry.Vector2Short(16, 16),
+                        SizePixelsInterval = new Geometry.Vector2Short(18, 18),
+                        Preview = preview,
+                    };
+
+                    var sprite = new SpriteSheet
+                    {
+                        Tile = virtualId,
+                        Name = entry.FullName,
+                        SizeTiles = new[] { new Geometry.Vector2Short(1, 1) },
+                        SizePixelsRender = new Geometry.Vector2Short(16, 16),
+                        SizePixelsInterval = new Geometry.Vector2Short(18, 18),
+                        SizeTexture = new Geometry.Vector2Short(16, 16),
+                    };
+                    sprite.Styles.Add(spriteItem);
+
+                    WorldConfiguration.Sprites2.Add(sprite);
+                    added++;
+                }
             }
         }
 
         if (added > 0)
         {
-            ErrorLogging.LogDebug($"RegisterModSprites: {added} mod framed tile sprites added");
+            ErrorLogging.LogDebug($"RegisterModSprites: {added} mod framed tile sprites added ({overrideCount} with user overrides)");
             // Reinitialize sprite views so the new entries appear
             InitSpriteViews();
         }
@@ -413,6 +812,7 @@ public partial class WorldViewModel : ReactiveObject
             return;
         }
 
+        var configStore = new ModTileConfigStore(AppDataPaths.DataDir);
         var usedMods = TwldFile.GetUsedModNames(data);
         if (usedMods.Count == 0)
         {
@@ -480,6 +880,7 @@ public partial class WorldViewModel : ReactiveObject
                 // Extract and queue tile textures
                 var tileTextures = extractor.ExtractTileTextures();
                 int modTileMatches = 0, modTileSkipped = 0;
+                int autoFramed = 0;
                 foreach (var (tileName, tex) in tileTextures)
                 {
                     if (!tileNameToId.TryGetValue((modName, tileName), out ushort virtualId))
@@ -493,6 +894,18 @@ public partial class WorldViewModel : ReactiveObject
                     if (sampledColor.HasValue && virtualId < WorldConfiguration.TileProperties.Count)
                     {
                         WorldConfiguration.TileProperties[virtualId].Color = sampledColor.Value;
+                    }
+
+                    // Apply autoframe heuristic for tiles without explicit frame overrides.
+                    // If override has CoordinateHeights but no Frames, use those heights for stride.
+                    var tileOverride = configStore.GetTileOverride(modName, tileName);
+                    if (tileOverride == null || (tileOverride.Frames == null && tileOverride.CoordinateHeights != null))
+                    {
+                        var dims = TmodTextureExtractor.ReadTextureDimensions(tex.Data, tex.IsRawImg);
+                        if (dims.HasValue)
+                            autoFramed += ApplyAutoFrameToTile(virtualId, dims.Value.Width, dims.Value.Height,
+                                sampledColor ?? TEditColor.White, tex.Data, tex.IsRawImg,
+                                tileOverride?.CoordinateHeights, tileOverride?.IsAnimated ?? false);
                     }
 
                     // Pre-populate the dictionary with the default texture as placeholder
@@ -514,6 +927,9 @@ public partial class WorldViewModel : ReactiveObject
                         {
                             Textures.Tiles[capturedId] = texture2d;
                             ErrorLogging.LogTrace($"LoadModTextures: Loaded tile texture {capturedName} → virtualId={capturedId} ({texture2d.Width}x{texture2d.Height})");
+
+                            // Generate sprite previews now that texture is available
+                            GenerateModTilePreviews(capturedId, texture2d);
                         }
                         else
                         {
@@ -522,6 +938,97 @@ public partial class WorldViewModel : ReactiveObject
                     });
                     modTileMatches++;
                     totalTiles++;
+                }
+
+                // Reverse lookup: find tile map entries that had no matching texture,
+                // trying fuzzy name matching (Tile suffix, etc.)
+                var matchedVirtualIds = new HashSet<ushort>();
+                foreach (var (tileName, _) in tileTextures)
+                {
+                    if (tileNameToId.TryGetValue((modName, tileName), out ushort vid))
+                        matchedVirtualIds.Add(vid);
+                }
+
+                foreach (var ((mapModName, mapTileName), mapVirtualId) in tileNameToId)
+                {
+                    if (!string.Equals(mapModName, modName, StringComparison.OrdinalIgnoreCase)) continue;
+                    if (matchedVirtualIds.Contains(mapVirtualId)) continue;
+
+                    // Try common naming variations
+                    var candidateList = new List<string>
+                    {
+                        mapTileName + "Tile",                    // AbyssCoral → AbyssCoralTile
+                        mapTileName + "Block",                   // SulphurousSand → SulphurousSandBlock
+                    };
+                    if (mapTileName.EndsWith("Tile", StringComparison.Ordinal))
+                        candidateList.Add(mapTileName[..^4]);    // AbyssCoralTile → AbyssCoral
+                    if (mapTileName.EndsWith("Block", StringComparison.Ordinal))
+                        candidateList.Add(mapTileName[..^5]);
+                    // Hostile* → Player* (turrets sharing textures with player variants)
+                    if (mapTileName.StartsWith("Hostile", StringComparison.Ordinal))
+                        candidateList.Add("Player" + mapTileName[7..]);
+                    // DraedonLabTurret → PlayerLabTurret
+                    if (mapTileName.StartsWith("Draedon", StringComparison.Ordinal))
+                        candidateList.Add("Player" + mapTileName[7..]);
+                    string[] candidates = candidateList.ToArray();
+
+                    ExtractedTexture? matchedTex = null;
+                    string? matchedName = null;
+                    foreach (var candidate in candidates)
+                    {
+                        if (candidate != null && tileTextures.TryGetValue(candidate, out var candidateTex))
+                        {
+                            matchedTex = candidateTex;
+                            matchedName = candidate;
+                            break;
+                        }
+                    }
+
+                    if (matchedTex != null)
+                    {
+                        // Process this fuzzy-matched tile
+                        var tex = matchedTex;
+                        var sampledColor = TmodTextureExtractor.SampleFirstFrameColor(tex.Data, tex.IsRawImg);
+                        if (sampledColor.HasValue && mapVirtualId < WorldConfiguration.TileProperties.Count)
+                            WorldConfiguration.TileProperties[mapVirtualId].Color = sampledColor.Value;
+
+                        var tileOvr = configStore.GetTileOverride(modName, mapTileName);
+                        if (tileOvr == null || (tileOvr.Frames == null && tileOvr.CoordinateHeights != null))
+                        {
+                            var dims = TmodTextureExtractor.ReadTextureDimensions(tex.Data, tex.IsRawImg);
+                            if (dims.HasValue)
+                                autoFramed += ApplyAutoFrameToTile(mapVirtualId, dims.Value.Width, dims.Value.Height,
+                                    sampledColor ?? TEditColor.White, tex.Data, tex.IsRawImg,
+                                    tileOvr?.CoordinateHeights, tileOvr?.IsAnimated ?? false);
+                        }
+
+                        if (!Textures.Tiles.ContainsKey(mapVirtualId))
+                            Textures.Tiles[mapVirtualId] = Textures.DefaultTexture;
+
+                        var capturedTex = tex;
+                        var capturedId = mapVirtualId;
+                        var capturedName = $"{modName}:{mapTileName}";
+                        Textures.QueueTextureCreation(() =>
+                        {
+                            var texture2d = capturedTex.IsRawImg
+                                ? LoadRawImgTexture(capturedTex.Data)
+                                : Textures.LoadTextureFromPngBytes(capturedTex.Data);
+                            if (texture2d != null && texture2d != Textures.DefaultTexture)
+                            {
+                                Textures.Tiles[capturedId] = texture2d;
+                                ErrorLogging.LogTrace($"LoadModTextures: Loaded tile texture {capturedName} (fuzzy: {matchedName}) → virtualId={capturedId} ({texture2d.Width}x{texture2d.Height})");
+                                GenerateModTilePreviews(capturedId, texture2d);
+                            }
+                        });
+                        modTileMatches++;
+                        totalTiles++;
+                        matchedVirtualIds.Add(mapVirtualId);
+                        ErrorLogging.LogTrace($"LoadModTextures: Fuzzy-matched tile '{mapModName}:{mapTileName}' → texture '{matchedName}'");
+                    }
+                    else
+                    {
+                        ErrorLogging.LogDebug($"LoadModTextures: Unmatched tile '{mapModName}:{mapTileName}' (virtualId={mapVirtualId}) — no texture found in .tmod");
+                    }
                 }
 
                 // Extract and queue wall textures
@@ -629,7 +1136,7 @@ public partial class WorldViewModel : ReactiveObject
                     }
                 }
 
-                ErrorLogging.LogDebug($"LoadModTextures: {modName} — tiles: {modTileMatches} matched, {modTileSkipped} unmatched of {tileTextures.Count} extracted; walls: {modWallMatches} matched, {modWallSkipped} unmatched of {wallTextures.Count} extracted; items: {modItemMatches} of {modItemsForThisMod.Count} needed");
+                ErrorLogging.LogDebug($"LoadModTextures: {modName} — tiles: {modTileMatches} matched ({autoFramed} auto-framed), {modTileSkipped} unmatched of {tileTextures.Count} extracted; walls: {modWallMatches} matched, {modWallSkipped} unmatched of {wallTextures.Count} extracted; items: {modItemMatches} of {modItemsForThisMod.Count} needed");
             }
             catch (Exception ex)
             {
@@ -782,19 +1289,21 @@ public partial class WorldViewModel : ReactiveObject
 
         void AddIfExists(string path)
         {
-            if (Directory.Exists(path) && seen.Add(Path.GetFullPath(path)))
-                paths.Add(path);
+            if (!string.IsNullOrWhiteSpace(path) && Directory.Exists(path) && seen.Add(Path.GetFullPath(path)))
+                paths.Add(Path.GetFullPath(path));
         }
 
         // tModLoader Mods folder
         string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         AddIfExists(Path.Combine(userProfile, "Documents", "My Games", "Terraria", "tModLoader", "Mods"));
 
-        // Steam workshop paths (common locations, deduplicated)
-        AddIfExists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
-            "Steam", "steamapps", "workshop", "content", "1281930"));
-        AddIfExists(Path.Combine("C:", "Program Files (x86)", "Steam", "steamapps", "workshop", "content", "1281930"));
-        AddIfExists(Path.Combine("D:", "SteamLibrary", "steamapps", "workshop", "content", "1281930"));
+        // User-configured Steam Workshop path (highest priority for workshop)
+        string userWorkshopPath = UserSettingsService.Current?.SteamWorkshopPath;
+        AddIfExists(userWorkshopPath);
+
+        // Autodetect from Steam library folders (registry + libraryfolders.vdf)
+        string autoWorkshopPath = DependencyChecker.AutodetectSteamWorkshopPath();
+        AddIfExists(autoWorkshopPath);
 
         return paths;
     }
@@ -831,13 +1340,25 @@ public partial class WorldViewModel : ReactiveObject
                     // Sort descending to prefer the latest version
                     string bestMatch = null;
                     string bestVersion = null;
+                    Version bestParsed = null;
                     foreach (var versionDir in Directory.EnumerateDirectories(workshopIdDir))
                     {
                         string versionPath = Path.Combine(versionDir, tmodFileName);
                         if (File.Exists(versionPath))
                         {
                             string versionName = Path.GetFileName(versionDir);
-                            if (bestMatch == null || string.Compare(versionName, bestVersion, StringComparison.OrdinalIgnoreCase) > 0)
+                            // Use Version.TryParse for proper numeric comparison
+                            // (e.g. "2025.12" > "2025.9", not string compare where "9" > "1")
+                            if (Version.TryParse(versionName, out var parsed))
+                            {
+                                if (bestParsed == null || parsed > bestParsed)
+                                {
+                                    bestMatch = versionPath;
+                                    bestVersion = versionName;
+                                    bestParsed = parsed;
+                                }
+                            }
+                            else if (bestMatch == null || string.Compare(versionName, bestVersion, StringComparison.OrdinalIgnoreCase) > 0)
                             {
                                 bestMatch = versionPath;
                                 bestVersion = versionName;
@@ -1123,9 +1644,10 @@ public partial class WorldViewModel : ReactiveObject
         {
             var sprite = (SpriteSheet)o;
 
-            // Hide mod sprites unless the toggle is on
-            if (sprite.Tile >= WorldConfiguration.TileCount && !_showModSprites)
-                return false;
+            // Tab filter: vanilla vs mod sprites
+            bool isMod = sprite.Tile >= WorldConfiguration.TileCount;
+            if (_showVanillaSprites && isMod) return false;
+            if (_showModSprites && !isMod) return false;
 
             if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
             var filter = _spriteFilter.Trim();
@@ -1253,6 +1775,27 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _showModSprites, value);
+            if (value && _showVanillaSprites)
+            {
+                _showVanillaSprites = false;
+                this.RaisePropertyChanged(nameof(ShowVanillaSprites));
+            }
+            SpriteSheetView?.Refresh();
+            SpriteStylesView?.Refresh();
+        }
+    }
+
+    public bool ShowVanillaSprites
+    {
+        get { return _showVanillaSprites; }
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _showVanillaSprites, value);
+            if (value && _showModSprites)
+            {
+                _showModSprites = false;
+                this.RaisePropertyChanged(nameof(ShowModSprites));
+            }
             SpriteSheetView?.Refresh();
             SpriteStylesView?.Refresh();
         }

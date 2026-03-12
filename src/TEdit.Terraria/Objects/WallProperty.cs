@@ -24,5 +24,13 @@ public class WallProperty : ReactiveObject, ITile
     [JsonPropertyOrder(5)]
     public int BlendType { get; set; } = -1;
 
+    /// <summary>Mod name prefix (before ':') or empty for vanilla walls.</summary>
+    [JsonIgnore]
+    public string ModName => Name.Contains(':') ? Name[..Name.IndexOf(':')] : string.Empty;
+
+    /// <summary>Short display name (after ':') or full Name for vanilla walls.</summary>
+    [JsonIgnore]
+    public string ShortName => Name.Contains(':') ? Name[(Name.IndexOf(':') + 1)..] : Name;
+
     public override string ToString() => Name;
 }

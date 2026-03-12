@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
@@ -323,6 +324,69 @@ public static class DependencyChecker
         if (steamPaths.Count > 1)
             return steamPaths[0].WorldsPath;
         return "";
+    }
+
+    /// <summary>
+    /// Autodetects the Steam Workshop content path for tModLoader (app 1281930).
+    /// Searches all Steam library folders via libraryfolders.vdf.
+    /// Returns the workshop content path, or empty string if not found.
+    /// </summary>
+    public static string AutodetectSteamWorkshopPath()
+    {
+        try
+        {
+            foreach (var libraryPath in GetSteamLibraryPaths())
+            {
+                string workshopPath = Path.Combine(libraryPath, "steamapps", "workshop", "content", "1281930");
+                if (Directory.Exists(workshopPath))
+                    return Path.GetFullPath(workshopPath);
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogWarn($"Failed to autodetect Steam workshop path: {ex.Message}");
+        }
+
+        return "";
+    }
+
+    /// <summary>
+    /// Reads Steam's libraryfolders.vdf to find all Steam library paths.
+    /// Falls back to registry SteamPath if vdf is not found.
+    /// </summary>
+    private static List<string> GetSteamLibraryPaths()
+    {
+        var paths = new List<string>();
+
+        string steamPath = GetSteamPath();
+        if (string.IsNullOrEmpty(steamPath))
+            return paths;
+
+        paths.Add(steamPath);
+
+        // Parse libraryfolders.vdf for additional library locations
+        string vdfPath = Path.Combine(steamPath, "steamapps", "libraryfolders.vdf");
+        if (File.Exists(vdfPath))
+        {
+            try
+            {
+                string content = File.ReadAllText(vdfPath);
+                // Match "path" entries: "path"		"C:\\SteamLibrary"
+                foreach (System.Text.RegularExpressions.Match match in
+                    System.Text.RegularExpressions.Regex.Matches(content, "\"path\"\\s+\"([^\"]+)\""))
+                {
+                    string libPath = match.Groups[1].Value.Replace("\\\\", "\\");
+                    if (Directory.Exists(libPath) && !paths.Any(p => string.Equals(p, libPath, StringComparison.OrdinalIgnoreCase)))
+                        paths.Add(libPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogWarn($"Failed to parse libraryfolders.vdf: {ex.Message}");
+            }
+        }
+
+        return paths;
     }
 
     /// <summary>

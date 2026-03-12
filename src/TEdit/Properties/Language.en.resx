@@ -1714,6 +1714,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_steam_worlds_path_desc" xml:space="preserve">
     <value>Path to Steam Cloud Terraria worlds. Auto-detected from Steam if blank. Requires restart.</value>
   </data>
+  <data name="settings_steam_workshop_path" xml:space="preserve">
+    <value>Steam Workshop Path</value>
+  </data>
+  <data name="settings_steam_workshop_path_desc" xml:space="preserve">
+    <value>Path to the Steam Workshop content folder for tModLoader mods. Auto-detected from Steam library folders if blank.</value>
+  </data>
   <data name="settings_terraria_path" xml:space="preserve">
     <value>Terraria Content Path</value>
   </data>

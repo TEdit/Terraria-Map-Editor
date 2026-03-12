@@ -45,6 +45,7 @@ public class UserSettings : INotifyPropertyChanged
     private int? _steamUserId;
     private string _worldsPath = "";
     private string _steamWorldsPath = "";
+    private string _steamWorkshopPath = "";
 
     // Tool Options
     private bool _wireChainMode = true;
@@ -73,6 +74,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _steamWorldsPath;
         set => SetField(ref _steamWorldsPath, value ?? "");
+    }
+
+    public string SteamWorkshopPath
+    {
+        get => _steamWorkshopPath;
+        set => SetField(ref _steamWorkshopPath, value ?? "");
     }
 
     public bool Autosave

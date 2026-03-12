@@ -84,9 +84,9 @@ public class TerrariaDataStore
     public List<string> BestiaryKilledIDs { get; } = [];
 
     // Version-dependent limits
-    public int TileCount { get; private set; } = 752;
-    public int WallCount { get; private set; } = 366;
-    public int MaxNpcId { get; private set; } = 696;
+    public int TileCount { get; private set; } = 753;  // MaxTileId (752) + 1
+    public int WallCount { get; private set; } = 367;  // MaxWallId (366) + 1
+    public int MaxNpcId { get; private set; } = 697;   // MaxNpcId  (696) + 1
     public bool[] TileFrameImportant { get; private set; } = [];
 
     /// <summary>
@@ -469,7 +469,7 @@ public class TerrariaDataStore
 
     private void RebuildFrameImportant()
     {
-        var count = TileCount + 1;
+        var count = TileCount;
         var arr = new bool[count];
         var limit = Math.Min(count, Tiles.Count);
         for (int i = 0; i < limit; i++)
@@ -486,9 +486,9 @@ public class TerrariaDataStore
         if (VersionManager == null) return;
 
         var data = VersionManager.GetData(worldVersion);
-        TileCount = data.MaxTileId;
-        WallCount = data.MaxWallId;
-        MaxNpcId = data.MaxNpcId;
+        TileCount = data.MaxTileId + 1;
+        WallCount = data.MaxWallId + 1;
+        MaxNpcId = data.MaxNpcId + 1;
         RebuildFrameImportant();
     }
 }

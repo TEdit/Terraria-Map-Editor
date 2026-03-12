@@ -4796,6 +4796,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Steam Workshop Path.
+        /// </summary>
+        public static string settings_steam_workshop_path {
+            get {
+                return ResourceManager.GetString("settings_steam_workshop_path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path to the Steam Workshop content folder for tModLoader mods. Auto-detected from Steam library folders if blank..
+        /// </summary>
+        public static string settings_steam_workshop_path_desc {
+            get {
+                return ResourceManager.GetString("settings_steam_workshop_path_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Steam Cloud Worlds Path.
         /// </summary>
         public static string settings_steam_worlds_path {

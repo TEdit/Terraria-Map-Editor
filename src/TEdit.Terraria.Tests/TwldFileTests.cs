@@ -406,8 +406,8 @@ public class TwldFileTests
     {
         // WorldConfiguration.TileCount and WallCount should stay at vanilla values
         // when no mod data is loaded
-        WorldConfiguration.TileCount.ShouldBe((short)752);
-        WorldConfiguration.WallCount.ShouldBe((short)366);
+        WorldConfiguration.TileCount.ShouldBe((short)753);
+        WorldConfiguration.WallCount.ShouldBe((short)367);
     }
 
     [Fact]

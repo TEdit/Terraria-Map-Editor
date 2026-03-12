@@ -13,9 +13,9 @@ public class WorldConfiguration
     // Baseline fallbacks ONLY (used if config files are missing/broken).
     // Baselines use v1.4.5.4 (latest of 02Feb26).
     private const uint  DefaultCompatibleVersion = 317;
-    private const short DefaultTileCount         = 752;
-    private const short DefaultWallCount         = 366;
-    private const short DefaultMaxNpcId          = 696;
+    private const short DefaultTileCount         = 753;  // MaxTileId (752) + 1
+    private const short DefaultWallCount         = 367;  // MaxWallId (366) + 1
+    private const short DefaultMaxNpcId          = 697;  // MaxNpcId  (696) + 1
     private const int   DefaultMaxChests         = 8000;
     private const int   DefaultMaxSigns          = 32767;
     private const int   DefaultCavernToBottom    = 478;
@@ -370,9 +370,9 @@ public class WorldConfiguration
 
         CompatibleVersion = (uint)SaveConfiguration.GetMaxVersion();
 
-        TileCount = (short)data.MaxTileId;
-        WallCount = (short)data.MaxWallId;
-        MaxNpcID  = (short)data.MaxNpcId;
+        TileCount = (short)(data.MaxTileId + 1);
+        WallCount = (short)(data.MaxWallId + 1);
+        MaxNpcID  = (short)(data.MaxNpcId + 1);
 
         // OPTIONAL: Only if your JSON/version data actually contains these fields.
         // If it doesn't, keep the defaults.

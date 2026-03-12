@@ -18,6 +18,19 @@ public enum TextureWrapAxis
 }
 
 /// <summary>
+/// Rendering pipeline for tree-type tiles that need code-driven texture assembly.
+/// </summary>
+public enum TreeMode
+{
+    None,       // Standard frame-based rendering (default)
+    Forest,     // Standard trees (tile 5) — tops, branches, trunks
+    Palm,       // Palm trees (tile 323) — palm tops, angled trunks
+    Gem,        // Gem trees (tiles 583-589) — recolored tree rendering
+    Vanity,     // Vanity trees (tiles 596, 616) — custom tree tops
+    Ash,        // Ash tree (tile 634) — special ash-style rendering
+}
+
+/// <summary>
 /// Biome variant for tiles that automatically adapt appearance based on biome.
 /// Used for preview rendering with biome dropdown selection.
 /// </summary>
@@ -97,6 +110,14 @@ public class TileProperty : ITile
     public List<FrameProperty>? Frames { get; set; }
     public Vector2Short[]? FrameSize { get; set; } = [new Vector2Short(1, 1)];
 
+    /// <summary>Mod name prefix (before ':') or empty for vanilla tiles.</summary>
+    [JsonIgnore]
+    public string ModName => Name.Contains(':') ? Name[..Name.IndexOf(':')] : string.Empty;
+
+    /// <summary>Short display name (after ':') or full Name for vanilla tiles.</summary>
+    [JsonIgnore]
+    public string ShortName => Name.Contains(':') ? Name[(Name.IndexOf(':') + 1)..] : Name;
+
     public bool IsFramed { get; set; }
     public bool IsGrass { get; set; }
     public bool IsPlatform { get; set; }
@@ -107,6 +128,14 @@ public class TileProperty : ITile
     public string? FrameNameSuffix { get; set; }
     public TextureWrap? TextureWrap { get; set; }
     public byte LargeFrameType { get; set; } = 0;
+
+    /// <summary>
+    /// Activates code-driven tree rendering pipeline for tree-type tiles.
+    /// When set, the preview system uses tree-specific texture assembly (tops, branches, trunks)
+    /// instead of standard frame-based preview.
+    /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public TreeMode TreeMode { get; set; } = TreeMode.None;
 
     /// <summary>
     /// Biome variants for tiles that automatically adapt based on biome (e.g., palm trees).

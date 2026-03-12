@@ -442,6 +442,17 @@ public partial class SettingsViewModel
             Setter = v => UserSettingsService.Current.SteamWorldsPath = (string)v
         });
 
+        AllSettings.Add(new SettingItem
+        {
+            Name = Language.settings_steam_workshop_path,
+            Description = Language.settings_steam_workshop_path_desc,
+            Category = Language.settings_category_paths,
+            EditorType = SettingEditorType.Path,
+            Placeholder = DependencyChecker.AutodetectSteamWorkshopPath(),
+            Getter = () => UserSettingsService.Current.SteamWorkshopPath,
+            Setter = v => UserSettingsService.Current.SteamWorkshopPath = (string)v
+        });
+
         // ── Keybindings ──
         PopulateKeybindings();
 
