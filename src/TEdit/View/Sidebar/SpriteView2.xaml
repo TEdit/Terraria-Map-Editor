@@ -42,15 +42,15 @@
             <TextBox Grid.Column="1"
                      Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=300}"/>
             <UniformGrid Grid.Column="2" Rows="1" Margin="4,0,0,0">
-                <ToggleButton Content="Terraria"
+                <ToggleButton Content="{x:Static p:Language.sprite_vanilla_label}"
                               IsChecked="{Binding ShowVanillaSprites, Mode=TwoWay}"
                               Padding="6,4" FontSize="11"
                               Margin="0,0,2,0"
-                              ToolTip="Show vanilla Terraria sprites"/>
-                <ToggleButton Content="Mods"
+                              ToolTip="{x:Static p:Language.sprite_vanilla_tooltip}"/>
+                <ToggleButton Content="{x:Static p:Language.sprite_mods_label}"
                               IsChecked="{Binding ShowModSprites, Mode=TwoWay}"
                               Padding="6,4" FontSize="11"
-                              ToolTip="Show modded sprites"/>
+                              ToolTip="{x:Static p:Language.sprite_mods_tooltip}"/>
             </UniformGrid>
             <ui:Button Grid.Column="3"
                        Content="{x:Static p:Language.bestiary_clear}"
@@ -114,9 +114,9 @@
                                            Margin="0,0,0,4"/>
                                     <TextBlock Text="{Binding Name}" FontWeight="Bold"
                                                TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Tile, StringFormat='Tile ID: {0}'}"
+                                    <TextBlock Text="{Binding Tile, StringFormat={x:Static p:Language.sprite_tile_id_format}}"
                                                Foreground="Gray" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="{Binding Styles.Count, StringFormat='{}{0} styles'}"
+                                    <TextBlock Text="{Binding Styles.Count, StringFormat={x:Static p:Language.sprite_styles_format}}"
                                                Foreground="Gray" HorizontalAlignment="Center"/>
                                 </StackPanel>
                             </Grid.ToolTip>
@@ -136,10 +136,10 @@
 
         <!-- Row 5: Style Label + Edit Button -->
         <DockPanel Grid.Row="5" Margin="8,4">
-            <ui:Button DockPanel.Dock="Right" Content="Edit" Padding="8,2" FontSize="11"
+            <ui:Button DockPanel.Dock="Right" Content="{x:Static p:Language.common_edit}" Padding="8,2" FontSize="11"
                        Click="EditSpriteSheet_Click"
                        Visibility="{Binding SelectedSpriteSheet, Converter={StaticResource NullToVisibilityConverter}}"
-                       ToolTip="Open sprite sheet editor for this tile"/>
+                       ToolTip="{x:Static p:Language.spriteeditor_edit_tooltip}"/>
             <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" VerticalAlignment="Center">
                 <Run Text="{Binding SelectedSpriteSheet.Name, Mode=OneWay}"/>
                 <Run Text="{x:Static p:Language.sprite_styletype}"/>
@@ -196,7 +196,7 @@
                                        Margin="0,0,0,4"/>
                                 <TextBlock Text="{Binding Name}" FontWeight="Bold"
                                            TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Style, StringFormat='Style: {0}'}"
+                                <TextBlock Text="{Binding Style, StringFormat={x:Static p:Language.sprite_style_format}}"
                                            Foreground="Gray" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Image.ToolTip>

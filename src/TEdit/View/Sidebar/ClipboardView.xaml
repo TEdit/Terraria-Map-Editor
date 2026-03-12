@@ -43,7 +43,7 @@
             <!-- Toolbar -->
             <UniformGrid Columns="2" Style="{DynamicResource SidebarButtonRow}">
                 <ui:Button Content="{x:Static p:Language.tool_clipboard_empty}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding EmptyClipboardCommand}" />
-                <ui:Button Content="{x:Static p:Language.tool_clipboard_importschematic}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource False}" />
+                <ui:Button Content="{x:Static p:Language.bestiary_load}" Margin="2" Padding="6,4" HorizontalAlignment="Stretch" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource False}" />
             </UniformGrid>
             <!-- Instant paste toggle -->
             <ui:ToggleSwitch Margin="4,2" IsChecked="{Binding Clipboard.InstantPaste}" HorizontalAlignment="Center"

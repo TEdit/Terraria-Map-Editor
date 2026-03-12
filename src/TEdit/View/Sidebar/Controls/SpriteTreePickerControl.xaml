@@ -35,7 +35,7 @@
                         Margin="0,0,5,0" />
 
             <ui:Button Grid.Column="1"
-                       Content="All"
+                       Content="{x:Static p:Language.common_all}"
                        ToolTip="{x:Static p:Language.picker_check_all_tooltip}"
                        Command="{Binding CheckAllCommand}"
                        Visibility="{Binding ShowCheckboxes, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -43,7 +43,7 @@
                        Padding="8,4" />
 
             <ui:Button Grid.Column="2"
-                       Content="None"
+                       Content="{x:Static p:Language.common_none}"
                        ToolTip="{x:Static p:Language.picker_uncheck_all_tooltip}"
                        Command="{Binding UncheckAllCommand}"
                        Visibility="{Binding ShowCheckboxes, Converter={StaticResource BoolToVisibilityConverter}}"

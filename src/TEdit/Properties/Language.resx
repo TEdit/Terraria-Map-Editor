@@ -1455,6 +1455,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="saveas_instruction" xml:space="preserve">
     <value>Select a version to save as:</value>
   </data>
+  <data name="saveas_preserve_all" xml:space="preserve">
+    <value>Preserve newer tile/wall/item data</value>
+  </data>
   <data name="saveas_title" xml:space="preserve">
     <value>Select World Version</value>
   </data>
@@ -1904,6 +1907,102 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="specialtile_tooltip" xml:space="preserve">
     <value>With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree.</value>
   </data>
+  <data name="spriteeditor_add_frame" xml:space="preserve">
+    <value>Add Frame</value>
+  </data>
+  <data name="spriteeditor_add_frame_tooltip" xml:space="preserve">
+    <value>Add a new frame entry</value>
+  </data>
+  <data name="spriteeditor_anchor_label" xml:space="preserve">
+    <value>Anchor:</value>
+  </data>
+  <data name="spriteeditor_auto_detect" xml:space="preserve">
+    <value>Auto Detect</value>
+  </data>
+  <data name="spriteeditor_auto_detect_tooltip" xml:space="preserve">
+    <value>Auto-detect frame grid from texture dimensions</value>
+  </data>
+  <data name="spriteeditor_frames" xml:space="preserve">
+    <value>Frames</value>
+  </data>
+  <data name="spriteeditor_frame_properties" xml:space="preserve">
+    <value>Frame Properties</value>
+  </data>
+  <data name="spriteeditor_gap_x" xml:space="preserve">
+    <value>Gap X:</value>
+  </data>
+  <data name="spriteeditor_gap_y" xml:space="preserve">
+    <value>Gap Y:</value>
+  </data>
+  <data name="spriteeditor_grid_h" xml:space="preserve">
+    <value>Grid H:</value>
+  </data>
+  <data name="spriteeditor_grid_settings" xml:space="preserve">
+    <value>Grid Settings</value>
+  </data>
+  <data name="spriteeditor_grid_w" xml:space="preserve">
+    <value>Grid W:</value>
+  </data>
+  <data name="spriteeditor_is_animated" xml:space="preserve">
+    <value>Is Animated</value>
+  </data>
+  <data name="spriteeditor_name_label" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="spriteeditor_regen_grid" xml:space="preserve">
+    <value>Regen Grid</value>
+  </data>
+  <data name="spriteeditor_regen_grid_tooltip" xml:space="preserve">
+    <value>Regenerate frames using current grid settings</value>
+  </data>
+  <data name="spriteeditor_remove_frame_tooltip" xml:space="preserve">
+    <value>Remove this frame</value>
+  </data>
+  <data name="spriteeditor_row_heights" xml:space="preserve">
+    <value>Row Heights:</value>
+  </data>
+  <data name="spriteeditor_row_heights_tooltip" xml:space="preserve">
+    <value>Per-row pixel heights (e.g. 16, 18 for chests). Blank = uniform Grid H.</value>
+  </data>
+  <data name="spriteeditor_select_frame_hint" xml:space="preserve">
+    <value>Select a frame to edit its properties</value>
+  </data>
+  <data name="spriteeditor_single_frame" xml:space="preserve">
+    <value>Single Frame</value>
+  </data>
+  <data name="spriteeditor_single_frame_tooltip" xml:space="preserve">
+    <value>Set frame size to cover entire texture as one frame</value>
+  </data>
+  <data name="spriteeditor_size_h" xml:space="preserve">
+    <value>Size H:</value>
+  </data>
+  <data name="spriteeditor_size_w" xml:space="preserve">
+    <value>Size W:</value>
+  </data>
+  <data name="spriteeditor_test" xml:space="preserve">
+    <value>Test Value</value>
+  </data>
+  <data name="spriteeditor_test2" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="spriteeditor_title_format" xml:space="preserve">
+    <value>Sprite Editor — {0}</value>
+  </data>
+  <data name="spriteeditor_uv_x" xml:space="preserve">
+    <value>UV X:</value>
+  </data>
+  <data name="spriteeditor_uv_y" xml:space="preserve">
+    <value>UV Y:</value>
+  </data>
+  <data name="spriteeditor_variety_label" xml:space="preserve">
+    <value>Variety:</value>
+  </data>
+  <data name="spriteeditor_zoom_in" xml:space="preserve">
+    <value>Zoom +</value>
+  </data>
+  <data name="spriteeditor_zoom_out" xml:space="preserve">
+    <value>Zoom -</value>
+  </data>
   <data name="sprite_biome_auto" xml:space="preserve">
     <value>Auto</value>
   </data>
@@ -1936,6 +2035,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>Tile ID: {0}</value>
+  </data>
+  <data name="sprite_vanilla_label" xml:space="preserve">
+    <value>Terraria</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
     <value>GPS</value>
@@ -3064,7 +3166,31 @@ Would you like to enable error reporting?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
-  <data name="saveas_preserve_all" xml:space="preserve">
-    <value>Preserve newer tile/wall/item data</value>
+  <data name="spriteeditor_add_selection" xml:space="preserve">
+    <value>Add Selection</value>
+  </data>
+  <data name="spriteeditor_add_selection_tooltip" xml:space="preserve">
+    <value>Add the selected tile region as a new frame</value>
+  </data>
+  <data name="spriteeditor_edit_tooltip" xml:space="preserve">
+    <value>Open sprite sheet editor for this tile</value>
+  </data>
+  <data name="common_edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="common_all" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="common_none" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="sprite_vanilla_tooltip" xml:space="preserve">
+    <value>Show vanilla Terraria sprites</value>
+  </data>
+  <data name="sprite_mods_label" xml:space="preserve">
+    <value>Mods</value>
+  </data>
+  <data name="sprite_mods_tooltip" xml:space="preserve">
+    <value>Show modded sprites</value>
   </data>
 </root>

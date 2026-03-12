@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:vm="clr-namespace:TEdit.ViewModel"
-        Title="{Binding TileName, StringFormat='Sprite Editor — {0}'}"
+        xmlns:p="clr-namespace:TEdit.Properties"
+        Title="{Binding TileName, StringFormat={x:Static p:Language.spriteeditor_title_format}}"
         WindowStartupLocation="CenterOwner"
         ExtendsContentIntoTitleBar="True"
         Background="{DynamicResource ControlBackgroundBrush}"
@@ -55,8 +56,8 @@
         <!-- Top toolbar: tile info + texture-level actions -->
         <DockPanel Grid.Row="0" Grid.ColumnSpan="3" Margin="0,0,0,8">
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                <ui:Button Content="Zoom -" Command="{Binding ZoomOutCommand}" Padding="8,4" Margin="0,0,2,0"/>
-                <ui:Button Content="Zoom +" Command="{Binding ZoomInCommand}" Padding="8,4" Margin="0,0,4,0"/>
+                <ui:Button Content="{x:Static p:Language.spriteeditor_zoom_out}" Command="{Binding ZoomOutCommand}" Padding="8,4" Margin="0,0,2,0"/>
+                <ui:Button Content="{x:Static p:Language.spriteeditor_zoom_in}" Command="{Binding ZoomInCommand}" Padding="8,4" Margin="0,0,4,0"/>
                 <TextBlock Text="{Binding ZoomLevel, StringFormat='{}{0:F1}x'}"
                            VerticalAlignment="Center" Margin="4,0,0,0" Foreground="Gray"/>
             </StackPanel>
@@ -128,7 +129,7 @@
                 <!-- Grid Settings -->
                 <TextBox Text="{Binding TileName}" IsReadOnly="True" FontWeight="Bold" Margin="0,0,0,8"/>
 
-                <TextBlock Text="Grid Settings" FontWeight="Bold" Margin="0,0,0,8"/>
+                <TextBlock Text="{x:Static p:Language.spriteeditor_grid_settings}" FontWeight="Bold" Margin="0,0,0,8"/>
 
                 <Grid Margin="0,0,0,4">
                     <Grid.ColumnDefinitions>
@@ -145,52 +146,52 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Grid W:" VerticalAlignment="Center" Margin="0,0,4,4"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_grid_w}" VerticalAlignment="Center" Margin="0,0,4,4"/>
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding TextureGridX, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,8,4"/>
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Grid H:" VerticalAlignment="Center" Margin="0,0,4,4"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="{x:Static p:Language.spriteeditor_grid_h}" VerticalAlignment="Center" Margin="0,0,4,4"/>
                     <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding TextureGridY, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,4"/>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Gap X:" VerticalAlignment="Center" Margin="0,0,4,4"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_gap_x}" VerticalAlignment="Center" Margin="0,0,4,4"/>
                     <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FrameGapX, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,8,4"/>
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Gap Y:" VerticalAlignment="Center" Margin="0,0,4,4"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{x:Static p:Language.spriteeditor_gap_y}" VerticalAlignment="Center" Margin="0,0,4,4"/>
                     <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding FrameGapY, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,4"/>
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Size W:" VerticalAlignment="Center" Margin="0,0,4,4"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_size_w}" VerticalAlignment="Center" Margin="0,0,4,4"/>
                     <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FrameSizeX, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,8,4"/>
-                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Size H:" VerticalAlignment="Center" Margin="0,0,4,4"/>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{x:Static p:Language.spriteeditor_size_h}" VerticalAlignment="Center" Margin="0,0,4,4"/>
                     <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding FrameSizeY, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,4"/>
 
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Row Heights:" VerticalAlignment="Center" Margin="0,0,4,4"
-                               ToolTip="Per-row pixel heights (e.g. 16, 18 for chests). Blank = uniform Grid H."/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_row_heights}" VerticalAlignment="Center" Margin="0,0,4,4"
+                               ToolTip="{x:Static p:Language.spriteeditor_row_heights_tooltip}"/>
                     <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
                              Text="{Binding CoordinateHeightsText, UpdateSourceTrigger=PropertyChanged}"
-                             ToolTip="Per-row pixel heights (e.g. 16, 18 for chests). Blank = uniform Grid H."
+                             ToolTip="{x:Static p:Language.spriteeditor_row_heights_tooltip}"
                              Margin="0,0,0,4"/>
 
                     <CheckBox Grid.Row="4" Grid.ColumnSpan="4"
-                              Content="Is Animated"
+                              Content="{x:Static p:Language.spriteeditor_is_animated}"
                               IsChecked="{Binding IsAnimated}"
                               Margin="0,4,0,4"/>
                 </Grid>
 
                 <!-- Grid action buttons -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                    <ui:Button Content="Auto Detect" Command="{Binding AutoDetectCommand}"
+                    <ui:Button Content="{x:Static p:Language.spriteeditor_auto_detect}" Command="{Binding AutoDetectCommand}"
                                Padding="8,4" Margin="0,0,4,0"
-                               ToolTip="Auto-detect frame grid from texture dimensions"/>
-                    <ui:Button Content="Regen Grid" Click="RegenerateGrid_Click"
+                               ToolTip="{x:Static p:Language.spriteeditor_auto_detect_tooltip}"/>
+                    <ui:Button Content="{x:Static p:Language.spriteeditor_regen_grid}" Click="RegenerateGrid_Click"
                                Padding="8,4" Margin="0,0,4,0"
-                               ToolTip="Regenerate frames using current grid settings"/>
-                    <ui:Button Content="Single Frame" Click="SingleFrame_Click"
+                               ToolTip="{x:Static p:Language.spriteeditor_regen_grid_tooltip}"/>
+                    <ui:Button Content="{x:Static p:Language.spriteeditor_single_frame}" Click="SingleFrame_Click"
                                Padding="8,4"
-                               ToolTip="Set frame size to cover entire texture as one frame"/>
+                               ToolTip="{x:Static p:Language.spriteeditor_single_frame_tooltip}"/>
                 </StackPanel>
 
                 <Separator Margin="0,0,0,8"/>
 
                 <!-- Frame List -->
                 <TextBlock FontWeight="Bold" Margin="0,0,0,4">
-                    <Run Text="Frames"/>
+                    <Run Text="{x:Static p:Language.spriteeditor_frames}"/>
                     <Run Text="{Binding Frames.Count, Mode=OneWay, StringFormat='({0})'}" Foreground="Gray"/>
                 </TextBlock>
 
@@ -208,7 +209,7 @@
                                         VerticalAlignment="Center" Margin="4,0,0,0"
                                         Click="RemoveFrame_Click"
                                         Tag="{Binding}"
-                                        ToolTip="Remove this frame"
+                                        ToolTip="{x:Static p:Language.spriteeditor_remove_frame_tooltip}"
                                         Background="Transparent" BorderThickness="0"
                                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
                                 <TextBlock VerticalAlignment="Center">
@@ -222,15 +223,15 @@
                 </ListBox>
 
                 <!-- Add Frame button below the list -->
-                <ui:Button Content="Add Frame" Command="{Binding AddFrameCommand}"
+                <ui:Button Content="{x:Static p:Language.spriteeditor_add_frame}" Command="{Binding AddFrameCommand}"
                            Padding="8,4" Margin="0,4,0,0"
                            HorizontalAlignment="Stretch"
-                           ToolTip="Add a new frame entry"/>
+                           ToolTip="{x:Static p:Language.spriteeditor_add_frame_tooltip}"/>
 
                 <Separator Margin="0,8,0,8"/>
 
                 <!-- Selected Frame Properties -->
-                <TextBlock Text="Frame Properties" FontWeight="Bold" Margin="0,0,0,8"/>
+                <TextBlock Text="{x:Static p:Language.spriteeditor_frame_properties}" FontWeight="Bold" Margin="0,0,0,8"/>
 
                 <StackPanel Visibility="{Binding SelectedFrame, Converter={StaticResource NullToVisibilityConverter}}"
                             DataContext="{Binding SelectedFrame}">
@@ -249,25 +250,25 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" VerticalAlignment="Center" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_name_label}" VerticalAlignment="Center" Margin="0,0,8,4"/>
                         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,4"/>
 
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Variety:" VerticalAlignment="Center" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_variety_label}" VerticalAlignment="Center" Margin="0,0,8,4"/>
                         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Variety, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,4"/>
 
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="UV X:" VerticalAlignment="Center" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_uv_x}" VerticalAlignment="Center" Margin="0,0,8,4"/>
                         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding UvX, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,4"/>
 
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="UV Y:" VerticalAlignment="Center" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_uv_y}" VerticalAlignment="Center" Margin="0,0,8,4"/>
                         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding UvY, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,4"/>
 
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Size W:" VerticalAlignment="Center" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_size_w}" VerticalAlignment="Center" Margin="0,0,8,4"/>
                         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding SizeX, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,4"/>
 
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Size H:" VerticalAlignment="Center" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_size_h}" VerticalAlignment="Center" Margin="0,0,8,4"/>
                         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding SizeY, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,4"/>
 
-                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Anchor:" VerticalAlignment="Center" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_anchor_label}" VerticalAlignment="Center" Margin="0,0,8,4"/>
                         <ComboBox Grid.Row="6" Grid.Column="1" Margin="0,0,0,4"
                                   SelectedValue="{Binding Anchor}"
                                   ItemsSource="{Binding Source={x:Static vm:SpriteSheetEditorViewModel.AnchorValues}}"/>
@@ -275,7 +276,7 @@
                 </StackPanel>
 
                 <!-- Hint shown when no frame selected (properties panel is collapsed) -->
-                <TextBlock Text="Select a frame to edit its properties"
+                <TextBlock Text="{x:Static p:Language.spriteeditor_select_frame_hint}"
                            Foreground="Gray" FontStyle="Italic" Margin="0,4,0,0"
                            x:Name="NoFrameHint"/>
             </StackPanel>
@@ -290,16 +291,16 @@
                            Foreground="Gray" Margin="16,0,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <ui:Button x:Name="AddSelectionButton" Content="Add Selection"
+                <ui:Button x:Name="AddSelectionButton" Content="{x:Static p:Language.spriteeditor_add_selection}"
                            Click="AddSelection_Click"
                            Padding="8,4" Margin="0,0,8,0"
                            Visibility="Collapsed"
-                           ToolTip="Add the selected tile region as a new frame"/>
-                <ui:Button Content="Reset" Command="{Binding ResetCommand}"
+                           ToolTip="{x:Static p:Language.spriteeditor_add_selection_tooltip}"/>
+                <ui:Button Content="{x:Static p:Language.common_reset}" Command="{Binding ResetCommand}"
                            Padding="12,6" Margin="0,0,8,0"/>
-                <ui:Button Content="Save" Command="{Binding SaveCommand}"
+                <ui:Button Content="{x:Static p:Language.common_save}" Command="{Binding SaveCommand}"
                            Padding="12,6" Margin="0,0,8,0" Appearance="Primary"/>
-                <ui:Button Content="Close" Padding="12,6"
+                <ui:Button Content="{x:Static p:Language.common_close}" Padding="12,6"
                            Click="Close_Click"/>
             </StackPanel>
         </Grid>

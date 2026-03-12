@@ -538,6 +538,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string common_all {
+            get {
+                return ResourceManager.GetString("common_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Browse....
         /// </summary>
         public static string common_browse {
@@ -574,6 +583,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string common_edit {
+            get {
+                return ResourceManager.GetString("common_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enabled.
         /// </summary>
         public static string common_enabled {
@@ -588,6 +606,15 @@ namespace TEdit.Properties {
         public static string common_generate {
             get {
                 return ResourceManager.GetString("common_generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string common_none {
+            get {
+                return ResourceManager.GetString("common_none", resourceCulture);
             }
         }
         
@@ -5435,6 +5462,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mods.
+        /// </summary>
+        public static string sprite_mods_label {
+            get {
+                return ResourceManager.GetString("sprite_mods_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show modded sprites.
+        /// </summary>
+        public static string sprite_mods_tooltip {
+            get {
+                return ResourceManager.GetString("sprite_mods_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Size:.
         /// </summary>
         public static string sprite_size_label {
@@ -5485,6 +5530,339 @@ namespace TEdit.Properties {
         public static string sprite_tiletype {
             get {
                 return ResourceManager.GetString("sprite_tiletype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terraria.
+        /// </summary>
+        public static string sprite_vanilla_label {
+            get {
+                return ResourceManager.GetString("sprite_vanilla_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show vanilla Terraria sprites.
+        /// </summary>
+        public static string sprite_vanilla_tooltip {
+            get {
+                return ResourceManager.GetString("sprite_vanilla_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Frame.
+        /// </summary>
+        public static string spriteeditor_add_frame {
+            get {
+                return ResourceManager.GetString("spriteeditor_add_frame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a new frame entry.
+        /// </summary>
+        public static string spriteeditor_add_frame_tooltip {
+            get {
+                return ResourceManager.GetString("spriteeditor_add_frame_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Selection.
+        /// </summary>
+        public static string spriteeditor_add_selection {
+            get {
+                return ResourceManager.GetString("spriteeditor_add_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add the selected tile region as a new frame.
+        /// </summary>
+        public static string spriteeditor_add_selection_tooltip {
+            get {
+                return ResourceManager.GetString("spriteeditor_add_selection_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anchor:.
+        /// </summary>
+        public static string spriteeditor_anchor_label {
+            get {
+                return ResourceManager.GetString("spriteeditor_anchor_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Detect.
+        /// </summary>
+        public static string spriteeditor_auto_detect {
+            get {
+                return ResourceManager.GetString("spriteeditor_auto_detect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto-detect frame grid from texture dimensions.
+        /// </summary>
+        public static string spriteeditor_auto_detect_tooltip {
+            get {
+                return ResourceManager.GetString("spriteeditor_auto_detect_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open sprite sheet editor for this tile.
+        /// </summary>
+        public static string spriteeditor_edit_tooltip {
+            get {
+                return ResourceManager.GetString("spriteeditor_edit_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frame Properties.
+        /// </summary>
+        public static string spriteeditor_frame_properties {
+            get {
+                return ResourceManager.GetString("spriteeditor_frame_properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frames.
+        /// </summary>
+        public static string spriteeditor_frames {
+            get {
+                return ResourceManager.GetString("spriteeditor_frames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gap X:.
+        /// </summary>
+        public static string spriteeditor_gap_x {
+            get {
+                return ResourceManager.GetString("spriteeditor_gap_x", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gap Y:.
+        /// </summary>
+        public static string spriteeditor_gap_y {
+            get {
+                return ResourceManager.GetString("spriteeditor_gap_y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid H:.
+        /// </summary>
+        public static string spriteeditor_grid_h {
+            get {
+                return ResourceManager.GetString("spriteeditor_grid_h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid Settings.
+        /// </summary>
+        public static string spriteeditor_grid_settings {
+            get {
+                return ResourceManager.GetString("spriteeditor_grid_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid W:.
+        /// </summary>
+        public static string spriteeditor_grid_w {
+            get {
+                return ResourceManager.GetString("spriteeditor_grid_w", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Animated.
+        /// </summary>
+        public static string spriteeditor_is_animated {
+            get {
+                return ResourceManager.GetString("spriteeditor_is_animated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string spriteeditor_name_label {
+            get {
+                return ResourceManager.GetString("spriteeditor_name_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regen Grid.
+        /// </summary>
+        public static string spriteeditor_regen_grid {
+            get {
+                return ResourceManager.GetString("spriteeditor_regen_grid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regenerate frames using current grid settings.
+        /// </summary>
+        public static string spriteeditor_regen_grid_tooltip {
+            get {
+                return ResourceManager.GetString("spriteeditor_regen_grid_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove this frame.
+        /// </summary>
+        public static string spriteeditor_remove_frame_tooltip {
+            get {
+                return ResourceManager.GetString("spriteeditor_remove_frame_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row Heights:.
+        /// </summary>
+        public static string spriteeditor_row_heights {
+            get {
+                return ResourceManager.GetString("spriteeditor_row_heights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per-row pixel heights (e.g. 16, 18 for chests). Blank = uniform Grid H..
+        /// </summary>
+        public static string spriteeditor_row_heights_tooltip {
+            get {
+                return ResourceManager.GetString("spriteeditor_row_heights_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a frame to edit its properties.
+        /// </summary>
+        public static string spriteeditor_select_frame_hint {
+            get {
+                return ResourceManager.GetString("spriteeditor_select_frame_hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Frame.
+        /// </summary>
+        public static string spriteeditor_single_frame {
+            get {
+                return ResourceManager.GetString("spriteeditor_single_frame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set frame size to cover entire texture as one frame.
+        /// </summary>
+        public static string spriteeditor_single_frame_tooltip {
+            get {
+                return ResourceManager.GetString("spriteeditor_single_frame_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size H:.
+        /// </summary>
+        public static string spriteeditor_size_h {
+            get {
+                return ResourceManager.GetString("spriteeditor_size_h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size W:.
+        /// </summary>
+        public static string spriteeditor_size_w {
+            get {
+                return ResourceManager.GetString("spriteeditor_size_w", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test Value.
+        /// </summary>
+        public static string spriteeditor_test {
+            get {
+                return ResourceManager.GetString("spriteeditor_test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test.
+        /// </summary>
+        public static string spriteeditor_test2 {
+            get {
+                return ResourceManager.GetString("spriteeditor_test2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sprite Editor — {0}.
+        /// </summary>
+        public static string spriteeditor_title_format {
+            get {
+                return ResourceManager.GetString("spriteeditor_title_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UV X:.
+        /// </summary>
+        public static string spriteeditor_uv_x {
+            get {
+                return ResourceManager.GetString("spriteeditor_uv_x", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UV Y:.
+        /// </summary>
+        public static string spriteeditor_uv_y {
+            get {
+                return ResourceManager.GetString("spriteeditor_uv_y", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variety:.
+        /// </summary>
+        public static string spriteeditor_variety_label {
+            get {
+                return ResourceManager.GetString("spriteeditor_variety_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom +.
+        /// </summary>
+        public static string spriteeditor_zoom_in {
+            get {
+                return ResourceManager.GetString("spriteeditor_zoom_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom -.
+        /// </summary>
+        public static string spriteeditor_zoom_out {
+            get {
+                return ResourceManager.GetString("spriteeditor_zoom_out", resourceCulture);
             }
         }
         

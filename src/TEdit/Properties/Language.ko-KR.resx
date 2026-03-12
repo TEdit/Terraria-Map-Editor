@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -689,11 +689,11 @@
   <data name="menu_edit_copy" xml:space="preserve">
     <value>알겠습니다</value>
   </data>
-  <data name="menu_edit_cut" xml:space="preserve">
-    <value>자르기</value>
-  </data>
   <data name="menu_edit_crop" xml:space="preserve">
     <value>크롭 월드</value>
+  </data>
+  <data name="menu_edit_cut" xml:space="preserve">
+    <value>자르기</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>선택 삭제</value>
@@ -1046,6 +1046,9 @@
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>정화</value>
     <comment>enum:MorphBiome.Purify</comment>
+  </data>
+  <data name="nbt_explorer_title" xml:space="preserve">
+    <value>NBT 익스플로러</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>재 추가하세요</value>
@@ -1710,6 +1713,12 @@
   </data>
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>자동 탐지</value>
+  </data>
+  <data name="settings_steam_workshop_path" xml:space="preserve">
+    <value>스팀 워크숍 경로</value>
+  </data>
+  <data name="settings_steam_workshop_path_desc" xml:space="preserve">
+    <value>tModLoader 모드용 스팀 워크샵 콘텐츠 폴더로 가는 경로입니다. 스팀 라이브러리 폴더가 비어 있으면 자동 감지됩니다.</value>
   </data>
   <data name="settings_steam_worlds_path" xml:space="preserve">
     <value>스팀 클라우드 월드 경로</value>
@@ -3039,6 +3048,12 @@
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
     <value>세계를 탐색하라...</value>
+  </data>
+  <data name="world_explorer_tab_tmodloader" xml:space="preserve">
+    <value>tModLoader</value>
+  </data>
+  <data name="world_explorer_tab_vanilla" xml:space="preserve">
+    <value>바닐라</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>월드 익스플로러</value>

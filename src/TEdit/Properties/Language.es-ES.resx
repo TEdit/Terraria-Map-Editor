@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -689,10 +689,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_edit_copy" xml:space="preserve">
     <value>Copiar</value>
   </data>
-  <data name="menu_edit_cut" xml:space="preserve">
+  <data name="menu_edit_crop" xml:space="preserve">
     <value>Cortar</value>
   </data>
-  <data name="menu_edit_crop" xml:space="preserve">
+  <data name="menu_edit_cut" xml:space="preserve">
     <value>Cortar</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
@@ -1046,6 +1046,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>Purificar</value>
     <comment>enum:MorphBiome.Purify</comment>
+  </data>
+  <data name="nbt_explorer_title" xml:space="preserve">
+    <value>Explorador NBT</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>Añadir ceniza</value>
@@ -1710,6 +1713,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   </data>
   <data name="settings_steam_user_id_placeholder" xml:space="preserve">
     <value>Detección automática</value>
+  </data>
+  <data name="settings_steam_workshop_path" xml:space="preserve">
+    <value>Ruta del Taller de Steam</value>
+  </data>
+  <data name="settings_steam_workshop_path_desc" xml:space="preserve">
+    <value>Ruta a la carpeta de contenido del Taller de Steam para mods de tModLoader. Detectado automáticamente desde las carpetas de la biblioteca de Steam si está vacío.</value>
   </data>
   <data name="settings_steam_worlds_path" xml:space="preserve">
     <value>Ruta de mundos de Steam Cloud</value>
@@ -3040,6 +3049,12 @@ Qué NO se recolecta:
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
     <value>Buscar mundos...</value>
+  </data>
+  <data name="world_explorer_tab_tmodloader" xml:space="preserve">
+    <value>tModLoader</value>
+  </data>
+  <data name="world_explorer_tab_vanilla" xml:space="preserve">
+    <value>Vanilla</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>Explorador del mundo</value>
