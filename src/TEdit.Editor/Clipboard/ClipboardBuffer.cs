@@ -145,14 +145,19 @@ public partial class ClipboardBuffer : ITileData
 
                 if (curTile.IsChest() || isModTile)
                 {
-                    if (buffer.GetChestAtTile(x, y) == null && (isAnchorTile || isModTile))
+                    var data = world.GetChestAtTile(x + area.X, y + area.Y, true);
+                    if (data != null)
                     {
-                        var data = world.GetChestAtTile(x + area.X, y + area.Y, true);
-                        if (data != null)
+                        // For mod tiles, the chest's world position IS the anchor.
+                        // Use it to compute the buffer-relative position and deduplicate.
+                        int bufChestX = isModTile ? data.X - area.X : x;
+                        int bufChestY = isModTile ? data.Y - area.Y : y;
+
+                        if ((isAnchorTile || isModTile) && buffer.GetChestAtTile(bufChestX, bufChestY) == null)
                         {
                             var newChest = data.Copy();
-                            newChest.X = x;
-                            newChest.Y = y;
+                            newChest.X = bufChestX;
+                            newChest.Y = bufChestY;
                             buffer.Chests.Add(newChest);
                         }
                     }
@@ -160,14 +165,17 @@ public partial class ClipboardBuffer : ITileData
 
                 if (curTile.IsSign() || isModTile)
                 {
-                    if (buffer.GetSignAtTile(x, y) == null && (isAnchorTile || isModTile))
+                    var data = world.GetSignAtTile(x + area.X, y + area.Y, true);
+                    if (data != null)
                     {
-                        var data = world.GetSignAtTile(x + area.X, y + area.Y, true);
-                        if (data != null)
+                        int bufSignX = isModTile ? data.X - area.X : x;
+                        int bufSignY = isModTile ? data.Y - area.Y : y;
+
+                        if ((isAnchorTile || isModTile) && buffer.GetSignAtTile(bufSignX, bufSignY) == null)
                         {
                             var newSign = data.Copy();
-                            newSign.X = x;
-                            newSign.Y = y;
+                            newSign.X = bufSignX;
+                            newSign.Y = bufSignY;
                             buffer.Signs.Add(newSign);
                         }
                     }
@@ -175,14 +183,17 @@ public partial class ClipboardBuffer : ITileData
 
                 if (curTile.IsTileEntity() || isModTile)
                 {
-                    if (buffer.GetTileEntityAtTile(x, y) == null && (isAnchorTile || isModTile))
+                    var data = world.GetTileEntityAtTile(x + area.X, y + area.Y, true);
+                    if (data != null)
                     {
-                        var data = world.GetTileEntityAtTile(x + area.X, y + area.Y, true);
-                        if (data != null)
+                        int bufTeX = isModTile ? data.PosX - area.X : x;
+                        int bufTeY = isModTile ? data.PosY - area.Y : y;
+
+                        if ((isAnchorTile || isModTile) && buffer.GetTileEntityAtTile(bufTeX, bufTeY) == null)
                         {
                             var newEntity = data.Copy();
-                            newEntity.PosX = (short)x;
-                            newEntity.PosY = (short)y;
+                            newEntity.PosX = (short)bufTeX;
+                            newEntity.PosY = (short)bufTeY;
                             buffer.TileEntities.Add(newEntity);
                         }
                     }

@@ -64,6 +64,7 @@ public class ModTileUndoTests : IDisposable
     public void UndoBuffer_RoundTrip_ModTilePreservesVirtualId()
     {
         var fileName = GetTestFileName();
+        var version = WorldConfiguration.CompatibleVersion;
         ushort modTileId = (ushort)(WorldConfiguration.TileCount + 10);
         var tile = new Tile { IsActive = true, Type = modTileId, U = 18, V = 36 };
         var location = new Vector2Int32(100, 200);
@@ -74,15 +75,30 @@ public class ModTileUndoTests : IDisposable
             buffer.Close();
         }
 
+        // Read — same sequence as UndoManager.Undo():
+        // tiles → chests → signs → entities → mod NBT overlay
         using var stream = new FileStream(fileName, FileMode.Open);
         using var reader = new BinaryReader(stream);
         var tiles = UndoBuffer.ReadUndoTilesFromStream(reader).ToList();
+        var loadedChests = World.LoadChestData(reader, version).ToList();
+        var loadedSigns = World.LoadSignData(reader).ToList();
+        var loadedEntities = World.LoadTileEntityData(reader, version).ToList();
+        ModDataSerializer.LoadModPayload(reader, loadedChests, loadedEntities,
+            out var modTiles, out var modWalls);
 
+        // Vanilla tile data has Type stripped (> maxTileId), but NBT overlay restores it
         tiles.Count.ShouldBe(1);
-        tiles[0].Tile.Type.ShouldBe(modTileId);
-        tiles[0].Tile.U.ShouldBe((short)18);
-        tiles[0].Tile.V.ShouldBe((short)36);
         tiles[0].Location.ShouldBe(location);
+
+        // Apply overlay to a small tile grid to verify restoration
+        var tileGrid = new Tile[201, 301];
+        foreach (var ut in tiles)
+            tileGrid[ut.Location.X, ut.Location.Y] = (Tile)ut.Tile;
+        ModDataSerializer.ApplyOverlays(tileGrid, 201, 301, modTiles, modWalls);
+
+        tileGrid[100, 200].Type.ShouldBe(modTileId);
+        tileGrid[100, 200].U.ShouldBe((short)18);
+        tileGrid[100, 200].V.ShouldBe((short)36);
     }
 
     [Fact]

@@ -727,7 +727,7 @@ public partial class WorldViewModel
             {
                 try
                 {
-                    _clipboard.Import(file);
+                    _clipboard.Import(file, this.CurrentWorld?.TwldData);
                 }
                 catch (Exception ex)
                 {
@@ -751,7 +751,7 @@ public partial class WorldViewModel
         {
             try
             {
-                buffer.Buffer.Save(sfd.FileName, this.CurrentWorld?.Version ?? WorldConfiguration.CompatibleVersion);
+                buffer.Buffer.Save(sfd.FileName, this.CurrentWorld?.Version ?? WorldConfiguration.CompatibleVersion, this.CurrentWorld?.TwldData);
             }
             catch (Exception ex)
             {

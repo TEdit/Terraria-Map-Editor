@@ -4,6 +4,7 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Configuration;
 using TEdit.Terraria;
+using TEdit.Terraria.TModLoader;
 using TEdit.Geometry;
 using TEdit.Editor.Undo;
 using TEdit.ViewModel;
@@ -77,9 +78,9 @@ public partial class ClipboardManager : ReactiveObject
             LoadedBuffers.Remove(item);
     }
 
-    public void Import(string filename)
+    public void Import(string filename, TwldData targetTwldData = null)
     {
-        var bufferData = ClipboardBuffer.Load(filename);
+        var bufferData = ClipboardBuffer.Load(filename, targetTwldData);
         var buffer = new ClipboardBufferPreview(bufferData);
 
         if (buffer != null)

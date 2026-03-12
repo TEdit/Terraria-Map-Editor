@@ -5367,9 +5367,12 @@ public partial class WorldRenderXna : UserControl
                                     {
                                         _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, spriteEffect, LayerTileTextures);
                                     }
-                                    // Actuator Overlay
+                                    // Actuator Overlay — always draw at standard tile size, not the (possibly inflated) dest
                                     if (curtile.Actuator && _wvm.ShowActuators)
-                                        _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                    {
+                                        var actuatorDest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                        _spriteBatch.Draw(_textureDictionary.Actuator, actuatorDest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                    }
 
                                 }
                             }
@@ -5444,9 +5447,12 @@ public partial class WorldRenderXna : UserControl
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                     _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
-                                    // Actuator Overlay
+                                    // Actuator Overlay — always draw at standard tile size
                                     if (curtile.Actuator && _wvm.ShowActuators)
-                                        _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                    {
+                                        var actuatorDest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                        _spriteBatch.Draw(_textureDictionary.Actuator, actuatorDest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                    }
 
                                 }
                             }
@@ -5940,9 +5946,12 @@ public partial class WorldRenderXna : UserControl
                                     }
 
 
-                                    // Actuator Overlay
+                                    // Actuator Overlay — always draw at standard tile size, not the (possibly modified) dest
                                     if (curtile.Actuator && _wvm.ShowActuators)
-                                        _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                    {
+                                        var actuatorDest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                        _spriteBatch.Draw(_textureDictionary.Actuator, actuatorDest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                    }
 
                                 }
                             }

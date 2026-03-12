@@ -222,39 +222,49 @@ public partial class UndoManager : ReactiveObject, IUndoManager
     {
         var curTile = _world.Tiles[x, y];
 
-        if (curTile.IsActive && curTile.Type < buffer.TileImportance.Length && buffer.TileImportance[curTile.Type])
+        bool isModTile = curTile.IsActive && curTile.Type >= WorldConfiguration.TileCount;
+        bool isVanillaFramed = curTile.IsActive &&
+            curTile.Type < buffer.TileImportance.Length &&
+            buffer.TileImportance[curTile.Type];
+
+        if (isVanillaFramed || isModTile)
         {
-            if (_world.IsAnchor(x, y))
+            // For vanilla tiles, use anchor detection; for mod tiles, the chest/sign/entity
+            // position IS the anchor — direct lookup will only match at the anchor position.
+            bool isAnchor = isModTile || _world.IsAnchor(x, y);
+
+            if (isAnchor)
             {
-                if (curTile.IsChest())
+                // Check chest — for mod tiles, also check via findOrigin since
+                // the chest may be registered at a different tile of the sprite
+                var curchest = isModTile
+                    ? _world.GetChestAtTile(x, y, true)
+                    : _world.GetChestAtTile(x, y);
+                if (curchest != null && buffer.Chests.All(c => c.X != curchest.X || c.Y != curchest.Y))
                 {
-                    var curchest = _world.GetChestAtTile(x, y);
-                    if (curchest != null)
-                    {
-                        if (removeEntities) { _world.Chests.Remove(curchest); }
-                        var chest = curchest.Copy();
-                        buffer.Chests.Add(chest);
-                    }
+                    if (removeEntities) { _world.Chests.Remove(curchest); }
+                    var chest = curchest.Copy();
+                    buffer.Chests.Add(chest);
                 }
-                if (curTile.IsSign())
+
+                var cursign = isModTile
+                    ? _world.GetSignAtTile(x, y, true)
+                    : _world.GetSignAtTile(x, y);
+                if (cursign != null && buffer.Signs.All(s => s.X != cursign.X || s.Y != cursign.Y))
                 {
-                    var cursign = _world.GetSignAtTile(x, y);
-                    if (cursign != null)
-                    {
-                        if (removeEntities) { _world.Signs.Remove(cursign); }
-                        var sign = cursign.Copy();
-                        buffer.Signs.Add(sign);
-                    }
+                    if (removeEntities) { _world.Signs.Remove(cursign); }
+                    var sign = cursign.Copy();
+                    buffer.Signs.Add(sign);
                 }
-                if (curTile.IsTileEntity())
+
+                var curTe = isModTile
+                    ? _world.GetTileEntityAtTile(x, y, true)
+                    : _world.GetTileEntityAtTile(x, y);
+                if (curTe != null && buffer.TileEntities.All(te => te.PosX != curTe.PosX || te.PosY != curTe.PosY))
                 {
-                    var curTe = _world.GetTileEntityAtTile(x, y);
-                    if (curTe != null)
-                    {
-                        if (removeEntities) { _world.TileEntities.Remove(curTe); }
-                        var te = curTe.Copy();
-                        buffer.TileEntities.Add(te);
-                    }
+                    if (removeEntities) { _world.TileEntities.Remove(curTe); }
+                    var te = curTe.Copy();
+                    buffer.TileEntities.Add(te);
                 }
             }
         }
@@ -353,7 +363,12 @@ public partial class UndoManager : ReactiveObject, IUndoManager
             }
             var loadedEntities = World.LoadTileEntityData(br, version).ToList();
             foreach (var te in loadedEntities) { _world.TileEntities.Add(te); }
-            ModDataSerializer.LoadModPayload(br, loadedChests, loadedEntities);
+            ModDataSerializer.LoadModPayload(br, loadedChests, loadedEntities,
+                out var modTiles, out var modWalls, _world.TwldData);
+
+            // Apply mod tile/wall overlay from NBT (restores mod identity stripped by vanilla serializer)
+            ModDataSerializer.ApplyOverlays(_world.Tiles, _world.TilesWide, _world.TilesHigh,
+                modTiles, modWalls);
         }
 
         _currentIndex--; // move index back one, create a new buffer
@@ -423,7 +438,12 @@ public partial class UndoManager : ReactiveObject, IUndoManager
             }
             var loadedEntities = World.LoadTileEntityData(br, version).ToList();
             foreach (var te in loadedEntities) { _world.TileEntities.Add(te); }
-            ModDataSerializer.LoadModPayload(br, loadedChests, loadedEntities);
+            ModDataSerializer.LoadModPayload(br, loadedChests, loadedEntities,
+                out var modTiles, out var modWalls, _world.TwldData);
+
+            // Apply mod tile/wall overlay from NBT (restores mod identity stripped by vanilla serializer)
+            ModDataSerializer.ApplyOverlays(_world.Tiles, _world.TilesWide, _world.TilesHigh,
+                modTiles, modWalls);
         }
 
         SaveUndo(updateMax: false);

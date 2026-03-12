@@ -170,6 +170,54 @@ public partial class NbtExplorerViewModel
         return null;
     }
 
+    /// <summary>
+    /// Navigates to and selects the NBT node matching the given entity kind and coordinates.
+    /// Expands parent nodes along the way so the node is visible.
+    /// </summary>
+    public bool NavigateToEntity(NbtEntityKind kind, int x, int y)
+    {
+        foreach (var root in RootNodes)
+        {
+            var found = FindEntityNode(root, kind, x, y);
+            if (found != null)
+            {
+                // Expand ancestor nodes
+                ExpandPathTo(root, found);
+                SelectedNode = found;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static NbtNodeViewModel? FindEntityNode(NbtNodeViewModel node, NbtEntityKind kind, int x, int y)
+    {
+        if (node.EntityKind == kind && node.CoordX == x && node.CoordY == y)
+            return node;
+
+        foreach (var child in node.Children)
+        {
+            var found = FindEntityNode(child, kind, x, y);
+            if (found != null) return found;
+        }
+        return null;
+    }
+
+    private static bool ExpandPathTo(NbtNodeViewModel current, NbtNodeViewModel target)
+    {
+        if (current == target) return true;
+
+        foreach (var child in current.Children)
+        {
+            if (ExpandPathTo(child, target))
+            {
+                current.IsExpanded = true;
+                return true;
+            }
+        }
+        return false;
+    }
+
     private bool FilterRootNode(object obj)
     {
         if (obj is not NbtNodeViewModel node) return false;

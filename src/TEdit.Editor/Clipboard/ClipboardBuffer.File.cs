@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TEdit.Terraria;
+using TEdit.Terraria.TModLoader;
 using TEdit.Geometry;
 using TEdit.Terraria.Objects;
 
@@ -10,7 +11,7 @@ namespace TEdit.Editor.Clipboard;
 
 public partial class ClipboardBuffer
 {
-    public void Save(string filename, uint? version)
+    public void Save(string filename, uint? version, TwldData twldData = null)
     {
         // Catch pngs that are real color
         if (string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
@@ -24,7 +25,7 @@ public partial class ClipboardBuffer
         {
             using (var bw = new BinaryWriter(stream))
             {
-                SaveV5(bw, version ?? WorldConfiguration.CompatibleVersion);
+                SaveV5(bw, version ?? WorldConfiguration.CompatibleVersion, twldData);
                 bw.Close();
             }
         }
@@ -141,7 +142,7 @@ public partial class ClipboardBuffer
         bw.Write(Size.Y);
     }
 
-    private void SaveV5(BinaryWriter bw, uint version)
+    private void SaveV5(BinaryWriter bw, uint version, TwldData twldData = null)
     {
         var tileFrameImportant = this.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
@@ -157,12 +158,15 @@ public partial class ClipboardBuffer
         else
             frames = WorldConfiguration.SaveConfiguration.GetData((int)WorldConfiguration.CompatibleVersion).GetFrames();
 
-        // preserveAll: true so mod tiles with virtual IDs beyond vanilla MaxTileId survive clipboard serialization
-        World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames, preserveAll: true);
+        // Collect mod tile/wall overlay before saving vanilla tiles
+        // (vanilla serialization strips tiles with Type > MaxTileId)
+        ModDataSerializer.CollectOverlays(Tiles, Size.X, Size.Y, out var modTiles, out var modWalls);
+
+        World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
         World.SaveChests(Chests, bw, (int)version);
         World.SaveSigns(Signs, bw, (int)version);
         World.SaveTileEntities(TileEntities, bw, version);
-        ModDataSerializer.SaveModPayload(bw, Chests, TileEntities);
+        ModDataSerializer.SaveModPayload(bw, Chests, TileEntities, modTiles, modWalls, twldData);
 
         bw.Write(Name);
         bw.Write(version);
@@ -170,7 +174,7 @@ public partial class ClipboardBuffer
         bw.Write(Size.Y);
     }
 
-    private static ClipboardBuffer LoadV5(BinaryReader b, string name, int version)
+    private static ClipboardBuffer LoadV5(BinaryReader b, string name, int version, TwldData targetTwldData = null)
     {
         var tileFrameImportant = World.ReadBitArray(b);
         int sizeX = b.ReadInt32();
@@ -182,7 +186,11 @@ public partial class ClipboardBuffer
         buffer.Chests.AddRange(World.LoadChestData(b, (uint)version));
         buffer.Signs.AddRange(World.LoadSignData(b));
         buffer.TileEntities.AddRange(World.LoadTileEntityData(b, (uint)version));
-        ModDataSerializer.LoadModPayload(b, buffer.Chests, buffer.TileEntities);
+        ModDataSerializer.LoadModPayload(b, buffer.Chests, buffer.TileEntities,
+            out var modTiles, out var modWalls, targetTwldData);
+
+        // Apply mod tile/wall overlay from NBT (restores mod identity stripped by vanilla serializer)
+        ModDataSerializer.ApplyOverlays(buffer.Tiles, sizeX, sizeY, modTiles, modWalls);
 
         string verifyName = b.ReadString();
         int verifyVersion = b.ReadInt32();
@@ -293,7 +301,7 @@ public partial class ClipboardBuffer
         return null;
     }
 
-    public static ClipboardBuffer Load(string filename)
+    public static ClipboardBuffer Load(string filename, TwldData targetTwldData = null)
     {
         string ext = Path.GetExtension(filename);
         if (string.Equals(ext, ".jpg", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".png", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".bmp", StringComparison.InvariantCultureIgnoreCase))
@@ -313,7 +321,7 @@ public partial class ClipboardBuffer
                 if (version > 20000)
                 {
                     tVersion = (uint)(version - 20000);
-                    return LoadV5(b, name, (int)tVersion);
+                    return LoadV5(b, name, (int)tVersion, targetTwldData);
                 }
                 if (version > 10000)
                 {

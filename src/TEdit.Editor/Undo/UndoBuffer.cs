@@ -80,6 +80,8 @@ public class UndoBuffer : IDisposable
     private readonly List<Sign> _signs = new List<Sign>();
     private readonly List<Chest> _chests = new List<Chest>();
     private readonly List<TileEntity> _tileEntities = new List<TileEntity>();
+    private readonly List<ModTileOverlayEntry> _modTileOverlays = new();
+    private readonly List<ModWallOverlayEntry> _modWallOverlays = new();
     private readonly World _world;
 
     public IList<Chest> Chests
@@ -158,6 +160,27 @@ public class UndoBuffer : IDisposable
                 _totalTileCount++;
             LastTile = new UndoTile(tile, location); // For compatibility
             shouldFlush = _totalTileCount > FlushSize;
+
+            // Track mod tile/wall overlays for NBT serialization
+            if (tile.IsActive && tile.Type >= WorldConfiguration.TileCount)
+            {
+                _modTileOverlays.Add(new ModTileOverlayEntry
+                {
+                    X = location.X, Y = location.Y,
+                    Type = tile.Type,
+                    Color = tile.TileColor,
+                    U = tile.U, V = tile.V,
+                });
+            }
+            if (tile.Wall >= WorldConfiguration.WallCount)
+            {
+                _modWallOverlays.Add(new ModWallOverlayEntry
+                {
+                    X = location.X, Y = location.Y,
+                    Wall = tile.Wall,
+                    WallColor = tile.WallColor,
+                });
+            }
         }
 
         if (shouldFlush)
@@ -174,10 +197,8 @@ public class UndoBuffer : IDisposable
         var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
         var tileFrameImportant = world?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
-        // Use ushort.MaxValue so mod tiles with virtual IDs beyond vanilla MaxTileId
-        // are preserved during undo/redo serialization (same as preserveAll in SaveTiles).
-        int maxTileId = ushort.MaxValue;
-        int maxWallId = ushort.MaxValue;
+        int maxTileId = WorldConfiguration.SaveConfiguration.GetData(version).MaxTileId;
+        int maxWallId = WorldConfiguration.SaveConfiguration.GetData(version).MaxWallId;
 
         FlushBatch batch;
 
@@ -223,6 +244,8 @@ public class UndoBuffer : IDisposable
         var chests = _chests.ToList();
         var signs = _signs.ToList();
         var tileEntities = _tileEntities.ToList();
+        var modTiles = _modTileOverlays.ToList();
+        var modWalls = _modWallOverlays.ToList();
 
         // Chain finalization after background writer completes
         _closeTask = _writerTask.ContinueWith(_ =>
@@ -230,7 +253,7 @@ public class UndoBuffer : IDisposable
             World.SaveChests(chests, _writer, (int)version);
             World.SaveSigns(signs, _writer, (int)version);
             World.SaveTileEntities(tileEntities, _writer, version);
-            ModDataSerializer.SaveModPayload(_writer, chests, tileEntities);
+            ModDataSerializer.SaveModPayload(_writer, chests, tileEntities, modTiles, modWalls, world?.TwldData);
             _writer.BaseStream.Position = (long)0;
             _writer.Write(_uniqueTileGroupsWritten);
             _writer.Close();

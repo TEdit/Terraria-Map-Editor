@@ -370,6 +370,121 @@ public class ModTileCopyPasteTests
 
     #endregion
 
+    #region Chest Deduplication
+
+    [Fact]
+    public void ClipboardFixture_ModloaderChest_OldFile_HasDuplicateChests()
+    {
+        // Negative test: this fixture was saved with the bug that duplicated chest
+        // entries for each tile of a multi-tile mod chest. It documents the known
+        // bad state that old schematics may contain.
+        var fixturePath = Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory, "WorldFiles", "modloader-chest.TEditSch");
+
+        var buffer = ClipboardBuffer.Load(fixturePath);
+        buffer.ShouldNotBeNull();
+
+        _output.WriteLine($"Buffer size: {buffer!.Size.X}x{buffer.Size.Y}");
+        _output.WriteLine($"Chest count: {buffer.Chests.Count}");
+        foreach (var c in buffer.Chests)
+            _output.WriteLine($"  Chest at ({c.X},{c.Y})");
+
+        // Old file has 4 chests (one per tile of the 2x2 mod chest) — this is the bug
+        buffer.Chests.Count.ShouldBeGreaterThan(1,
+            "Old fixture should demonstrate the duplicate chest bug");
+    }
+
+    [Fact]
+    public void ClipboardFixture_ModloaderChestFixed_HasExactlyOneChest()
+    {
+        // Positive test: fixture exported after the deduplication fix
+        var fixturePath = Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory, "WorldFiles", "modloader-chest-fixed.TEditSch");
+
+        var buffer = ClipboardBuffer.Load(fixturePath);
+        buffer.ShouldNotBeNull();
+
+        _output.WriteLine($"Buffer size: {buffer!.Size.X}x{buffer.Size.Y}");
+        _output.WriteLine($"Chest count: {buffer.Chests.Count}");
+        foreach (var c in buffer.Chests)
+            _output.WriteLine($"  Chest at ({c.X},{c.Y})");
+
+        buffer.Chests.Count.ShouldBe(1,
+            "Fixed fixture should have exactly 1 chest entry for a single mod chest");
+    }
+
+    [Fact]
+    public void ClipboardFixture_ModloaderChestFixed_RoundTrip_PreservesSingleChest()
+    {
+        var fixturePath = Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory, "WorldFiles", "modloader-chest-fixed.TEditSch");
+
+        var buffer = ClipboardBuffer.Load(fixturePath);
+        buffer.ShouldNotBeNull();
+
+        // Re-export and re-load
+        var tempFile = Path.Combine(Path.GetTempPath(), $"TEdit_ChestDedup_{Guid.NewGuid():N}.TEditSch");
+        try
+        {
+            buffer!.Save(tempFile, WorldConfiguration.CompatibleVersion);
+            var reloaded = ClipboardBuffer.Load(tempFile);
+
+            reloaded.ShouldNotBeNull();
+            reloaded!.Chests.Count.ShouldBe(buffer.Chests.Count,
+                "Re-exported schematic should preserve exactly the same number of chests");
+
+            // Verify no duplicate positions
+            var positions = reloaded.Chests.Select(c => (c.X, c.Y)).ToList();
+            positions.Distinct().Count().ShouldBe(positions.Count,
+                "Each chest should have a unique position");
+        }
+        finally
+        {
+            if (File.Exists(tempFile)) File.Delete(tempFile);
+        }
+    }
+
+    [Fact]
+    public void GetSelectionBuffer_MultiTileModChest_ProducesExactlyOneChestEntry()
+    {
+        var world = TestWorldFactory.CreateSmallWorld();
+        int anchorX = 10, anchorY = 40;
+
+        // Simulate a 2x2 mod chest (anchor at top-left)
+        for (int dx = 0; dx < 2; dx++)
+        {
+            for (int dy = 0; dy < 2; dy++)
+            {
+                world.Tiles[anchorX + dx, anchorY + dy].IsActive = true;
+                world.Tiles[anchorX + dx, anchorY + dy].Type = ModTileId;
+                world.Tiles[anchorX + dx, anchorY + dy].U = (short)(dx * 18);
+                world.Tiles[anchorX + dx, anchorY + dy].V = (short)(dy * 18);
+            }
+        }
+
+        // Chest is registered at the anchor position
+        var chest = new Chest(anchorX, anchorY);
+        chest.Items[0] = new Item(1, 10)
+        {
+            ModName = "CalamityMod",
+            ModItemName = "Murasama",
+            ModItemData = CreateModItemData(),
+        };
+        world.Chests.Add(chest);
+
+        // Copy the 2x2 region
+        var region = new RectangleInt32(anchorX, anchorY, 2, 2);
+        var buffer = ClipboardBuffer.GetSelectionBuffer(world, region);
+
+        buffer.Chests.Count.ShouldBe(1,
+            "A 2x2 mod chest should produce exactly 1 chest entry in the clipboard, not one per tile");
+        buffer.Chests[0].X.ShouldBe(0);
+        buffer.Chests[0].Y.ShouldBe(0);
+        buffer.Chests[0].Items[0].ModName.ShouldBe("CalamityMod");
+    }
+
+    #endregion
+
     #region Clipboard File Serialization
 
     [Fact]
