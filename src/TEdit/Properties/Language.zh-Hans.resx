@@ -172,7 +172,7 @@
     <value>TEdit 备份</value>
   </data>
   <data name="backup_type_terraria" xml:space="preserve">
-    <value>Terraria 备份</value>
+    <value>泰拉瑞亚备份</value>
   </data>
   <data name="banner_category" xml:space="preserve">
     <value>类别：</value>
@@ -281,7 +281,7 @@
     <value>最大堆叠</value>
   </data>
   <data name="common_all" xml:space="preserve">
-    <value>All</value>
+    <value>全部</value>
   </data>
   <data name="common_browse" xml:space="preserve">
     <value>浏览……</value>
@@ -1465,7 +1465,7 @@
     <value>选择另存为的版本：</value>
   </data>
   <data name="saveas_preserve_all" xml:space="preserve">
-    <value>保留新版本的瓷砖/墙壁/物品</value>
+    <value>保留新版本的物块/墙/物品数据</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
     <value>选择世界版本</value>
@@ -1580,7 +1580,7 @@
     <value>最大备份</value>
   </data>
   <data name="settings_max_backups_desc" xml:space="preserve">
-    <value>保存时每个世界要保留的 TEdit 备份文件 (.TEdit) 的数量</value>
+    <value>保存时每个世界要保留的TEdit备份文件（.TEdit）的数量</value>
   </data>
   <data name="settings_minimap_background" xml:space="preserve">
     <value>小地图背景</value>
@@ -1724,10 +1724,10 @@
     <value>自动检测</value>
   </data>
   <data name="settings_steam_workshop_path" xml:space="preserve">
-    <value>蒸汽工作坊路径</value>
+    <value>Steam创意工坊路径</value>
   </data>
   <data name="settings_steam_workshop_path_desc" xml:space="preserve">
-    <value>通往 Steam 创意工坊 tModLoader 模组内容文件夹的路径。如果是空白，Steam库文件夹会自动检测。</value>
+    <value>Steam创意工坊tModLoader模组内容文件夹的路径。如果为空，将自动从Steam库文件夹检测。</value>
   </data>
   <data name="settings_steam_worlds_path" xml:space="preserve">
     <value>Steam云世界路径</value>
@@ -1917,109 +1917,109 @@
     <value>使用“箭头工具”右键单击标牌、宝箱、人体模型、武器架、物品框、或圣诞树。</value>
   </data>
   <data name="spriteeditor_add_frame" xml:space="preserve">
-    <value>Add Frame</value>
+    <value>添加帧</value>
   </data>
   <data name="spriteeditor_add_frame_tooltip" xml:space="preserve">
-    <value>Add a new frame entry</value>
+    <value>添加新的帧条目</value>
   </data>
   <data name="spriteeditor_add_selection" xml:space="preserve">
-    <value>Add Selection</value>
+    <value>添加选区</value>
   </data>
   <data name="spriteeditor_add_selection_tooltip" xml:space="preserve">
-    <value>Add the selected tile region as a new frame</value>
+    <value>将选定的图格区域添加为新帧</value>
   </data>
   <data name="spriteeditor_anchor_label" xml:space="preserve">
-    <value>Anchor:</value>
+    <value>锚点：</value>
   </data>
   <data name="spriteeditor_auto_detect" xml:space="preserve">
-    <value>Auto Detect</value>
+    <value>自动检测</value>
   </data>
   <data name="spriteeditor_auto_detect_tooltip" xml:space="preserve">
-    <value>Auto-detect frame grid from texture dimensions</value>
+    <value>通过纹理尺寸自动检测帧网格</value>
   </data>
   <data name="spriteeditor_edit_tooltip" xml:space="preserve">
-    <value>Open sprite sheet editor for this tile</value>
+    <value>打开该图格的精灵表编辑器</value>
   </data>
   <data name="spriteeditor_frames" xml:space="preserve">
-    <value>Frames</value>
+    <value>帧</value>
   </data>
   <data name="spriteeditor_frame_properties" xml:space="preserve">
-    <value>Frame Properties</value>
+    <value>帧属性</value>
   </data>
   <data name="spriteeditor_gap_x" xml:space="preserve">
-    <value>Gap X:</value>
+    <value>间隔X：</value>
   </data>
   <data name="spriteeditor_gap_y" xml:space="preserve">
-    <value>Gap Y:</value>
+    <value>间隔Y：</value>
   </data>
   <data name="spriteeditor_grid_h" xml:space="preserve">
-    <value>Grid H:</value>
+    <value>网格高度：</value>
   </data>
   <data name="spriteeditor_grid_settings" xml:space="preserve">
-    <value>Grid Settings</value>
+    <value>网格设置</value>
   </data>
   <data name="spriteeditor_grid_w" xml:space="preserve">
-    <value>Grid W:</value>
+    <value>网格宽度：</value>
   </data>
   <data name="spriteeditor_is_animated" xml:space="preserve">
-    <value>Is Animated</value>
+    <value>动态</value>
   </data>
   <data name="spriteeditor_name_label" xml:space="preserve">
-    <value>Name:</value>
+    <value>名称：</value>
   </data>
   <data name="spriteeditor_regen_grid" xml:space="preserve">
-    <value>Regen Grid</value>
+    <value>重新生成网格</value>
   </data>
   <data name="spriteeditor_regen_grid_tooltip" xml:space="preserve">
-    <value>Regenerate frames using current grid settings</value>
+    <value>用当前的网格设置重新生成帧</value>
   </data>
   <data name="spriteeditor_remove_frame_tooltip" xml:space="preserve">
-    <value>Remove this frame</value>
+    <value>移除该帧</value>
   </data>
   <data name="spriteeditor_row_heights" xml:space="preserve">
-    <value>Row Heights:</value>
+    <value>行高：</value>
   </data>
   <data name="spriteeditor_row_heights_tooltip" xml:space="preserve">
-    <value>Per-row pixel heights (e.g. 16, 18 for chests). Blank = uniform Grid H.</value>
+    <value>每行像素高度（如宝箱为16、18）。留空时使用均匀网格高度。</value>
   </data>
   <data name="spriteeditor_select_frame_hint" xml:space="preserve">
-    <value>Select a frame to edit its properties</value>
+    <value>选择一帧以编辑其属性</value>
   </data>
   <data name="spriteeditor_single_frame" xml:space="preserve">
-    <value>Single Frame</value>
+    <value>单一帧</value>
   </data>
   <data name="spriteeditor_single_frame_tooltip" xml:space="preserve">
-    <value>Set frame size to cover entire texture as one frame</value>
+    <value>将帧大小设置为覆盖整个纹理，作为单一帧</value>
   </data>
   <data name="spriteeditor_size_h" xml:space="preserve">
-    <value>Size H:</value>
+    <value>尺寸高度：</value>
   </data>
   <data name="spriteeditor_size_w" xml:space="preserve">
-    <value>Size W:</value>
+    <value>尺寸宽度：</value>
   </data>
   <data name="spriteeditor_test" xml:space="preserve">
-    <value>Test Value</value>
+    <value>测试值</value>
   </data>
   <data name="spriteeditor_test2" xml:space="preserve">
-    <value>Test</value>
+    <value>测试</value>
   </data>
   <data name="spriteeditor_title_format" xml:space="preserve">
-    <value>Sprite Editor — {0}</value>
+    <value>物体编辑器 — {0}</value>
   </data>
   <data name="spriteeditor_uv_x" xml:space="preserve">
-    <value>UV X:</value>
+    <value>UV X：</value>
   </data>
   <data name="spriteeditor_uv_y" xml:space="preserve">
-    <value>UV Y:</value>
+    <value>UV Y：</value>
   </data>
   <data name="spriteeditor_variety_label" xml:space="preserve">
-    <value>Variety:</value>
+    <value>变体：</value>
   </data>
   <data name="spriteeditor_zoom_in" xml:space="preserve">
-    <value>Zoom +</value>
+    <value>放大</value>
   </data>
   <data name="spriteeditor_zoom_out" xml:space="preserve">
-    <value>Zoom -</value>
+    <value>缩小</value>
   </data>
   <data name="sprite_biome_auto" xml:space="preserve">
     <value>自动</value>
@@ -2037,10 +2037,10 @@
     <value>筛选条件：</value>
   </data>
   <data name="sprite_mods_label" xml:space="preserve">
-    <value>Mods</value>
+    <value>模组</value>
   </data>
   <data name="sprite_mods_tooltip" xml:space="preserve">
-    <value>Show modded sprites</value>
+    <value>显示模组物体</value>
   </data>
   <data name="sprite_size_label" xml:space="preserve">
     <value>尺寸：</value>
@@ -2061,10 +2061,10 @@
     <value>图格ID：{0}</value>
   </data>
   <data name="sprite_vanilla_label" xml:space="preserve">
-    <value>Terraria</value>
+    <value>泰拉瑞亚</value>
   </data>
   <data name="sprite_vanilla_tooltip" xml:space="preserve">
-    <value>Show vanilla Terraria sprites</value>
+    <value>显示原版泰拉瑞亚物体</value>
   </data>
   <data name="statusbar_depth_label" xml:space="preserve">
     <value>全球定位系统</value>
@@ -3084,13 +3084,13 @@
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
   <data name="update_checking" xml:space="preserve">
-    <value>查看最新消息……</value>
+    <value>正在检查更新……</value>
   </data>
   <data name="update_check_failed" xml:space="preserve">
     <value>更新检查失败。</value>
   </data>
   <data name="update_downloaded_toast" xml:space="preserve">
-    <value>更新已下载。使用文件&gt;检查安装时的更新。</value>
+    <value>更新已下载。使用文件&gt;检查更新以安装。</value>
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
   </data>
   <data name="update_restart_prompt" xml:space="preserve">
