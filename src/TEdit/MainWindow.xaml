@@ -5,7 +5,7 @@
         xmlns:View="clr-namespace:TEdit.View"
         xmlns:Sidebar="clr-namespace:TEdit.View.Sidebar"
         x:Name="Shell"
-        Title="{Binding WindowTitle}" Height="1080" Width="1920"
+        Title="{Binding WindowTitle}" Height="900" Width="1600"
         MaxWidth="4339"
         Loaded="MainWindow_Loaded"
         WindowStartupLocation="Manual"
