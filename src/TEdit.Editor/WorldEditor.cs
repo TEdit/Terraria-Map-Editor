@@ -82,6 +82,7 @@ public class WorldEditor : IDisposable
         if (TilePicker == null) return;
 
         int index = GetTileIndex(x, y);
+        if (index < 0 || index >= _checkTiles.Length) return;
         if (_checkTiles[index] == _checkTileGeneration) { return; }
         // else { _checkTiles[index] = _checkTileGeneration; }
 

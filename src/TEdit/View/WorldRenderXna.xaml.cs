@@ -1424,7 +1424,15 @@ public partial class WorldRenderXna : UserControl
 
                     previewTexture = new Texture2D(e.GraphicsDevice, xnaRect.Width, xnaRect.Height);
                     var colorData = new Color[xnaRect.Width * xnaRect.Height];
-                    sourceTexture.GetData(0, xnaRect, colorData, 0, colorData.Length);
+                    try
+                    {
+                        sourceTexture.GetData(0, xnaRect, colorData, 0, colorData.Length);
+                    }
+                    catch (ArgumentException)
+                    {
+                        previewTexture.Dispose();
+                        continue;
+                    }
                     previewTexture.SetData(colorData);
 
                     // Check if we have any visible pixels

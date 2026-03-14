@@ -168,6 +168,7 @@ public sealed class SpriteTool2 : BaseTool
     private void DrawLine(Vector2Int32 to)
     {
         if (_wvm.CurrentWorld == null || _wvm.CheckTiles == null) return;
+        if (_wvm.SelectedSpriteItem == null) return;
 
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;
@@ -192,6 +193,7 @@ public sealed class SpriteTool2 : BaseTool
     private void DrawLineP2P(Vector2Int32 endPoint)
     {
         if (_wvm.CurrentWorld == null || _wvm.CheckTiles == null) return;
+        if (_wvm.SelectedSpriteItem == null) return;
 
         int generation = _wvm.CheckTileGeneration;
         int tilesWide = _wvm.CurrentWorld.TilesWide;

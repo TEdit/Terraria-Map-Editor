@@ -113,7 +113,14 @@ public partial class UndoManager : ReactiveObject, IUndoManager
                 if (!Equals(dir, undoPath) && !IsUndoDirAlive(dir))
                 {
                     ErrorLogging.LogDebug($"Removing old undo cache: {dir}");
-                    Directory.Delete(dir, true);
+                    try
+                    {
+                        Directory.Delete(dir, true);
+                    }
+                    catch (IOException)
+                    {
+                        // Directory may be locked by concurrent undo operations; skip and retry next cycle
+                    }
                 }
             }
 
