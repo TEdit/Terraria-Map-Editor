@@ -35,6 +35,11 @@ public class TileApi
     public int GetFrameV(int x, int y) { Validate(x, y); return _world.Tiles[x, y].V; }
     public string GetSlope(int x, int y) { Validate(x, y); return _world.Tiles[x, y].BrickStyle.ToString(); }
 
+    public bool GetTileEcho(int x, int y) { Validate(x, y); return _world.Tiles[x, y].InvisibleBlock; }
+    public bool GetWallEcho(int x, int y) { Validate(x, y); return _world.Tiles[x, y].InvisibleWall; }
+    public bool GetTileIlluminant(int x, int y) { Validate(x, y); return _world.Tiles[x, y].FullBrightBlock; }
+    public bool GetWallIlluminant(int x, int y) { Validate(x, y); return _world.Tiles[x, y].FullBrightWall; }
+
     public bool GetWire(int x, int y, int color)
     {
         Validate(x, y);
@@ -115,6 +120,30 @@ public class TileApi
         Validate(x, y); SaveUndo(x, y);
         _world.Tiles[x, y].U = (short)u;
         _world.Tiles[x, y].V = (short)v;
+    }
+
+    public void SetTileEcho(int x, int y, bool value)
+    {
+        Validate(x, y); SaveUndo(x, y);
+        _world.Tiles[x, y].InvisibleBlock = value;
+    }
+
+    public void SetWallEcho(int x, int y, bool value)
+    {
+        Validate(x, y); SaveUndo(x, y);
+        _world.Tiles[x, y].InvisibleWall = value;
+    }
+
+    public void SetTileIlluminant(int x, int y, bool value)
+    {
+        Validate(x, y); SaveUndo(x, y);
+        _world.Tiles[x, y].FullBrightBlock = value;
+    }
+
+    public void SetWallIlluminant(int x, int y, bool value)
+    {
+        Validate(x, y); SaveUndo(x, y);
+        _world.Tiles[x, y].FullBrightWall = value;
     }
 
     public void Clear(int x, int y)

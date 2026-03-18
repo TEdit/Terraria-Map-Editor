@@ -110,6 +110,14 @@ declare const tile: {
     getSlope(x: number, y: number): string;
     /** Check wire state. color: 1=red, 2=blue, 3=green, 4=yellow. */
     getWire(x: number, y: number, color: number): boolean;
+    /** Check if tile has echo (invisible) coating at (x, y). */
+    getTileEcho(x: number, y: number): boolean;
+    /** Check if wall has echo (invisible) coating at (x, y). */
+    getWallEcho(x: number, y: number): boolean;
+    /** Check if tile has illuminant (full bright) coating at (x, y). */
+    getTileIlluminant(x: number, y: number): boolean;
+    /** Check if wall has illuminant (full bright) coating at (x, y). */
+    getWallIlluminant(x: number, y: number): boolean;
 
     /** Set tile active state at (x, y). */
     setActive(x: number, y: number, active: boolean): void;
@@ -129,6 +137,14 @@ declare const tile: {
     setSlope(x: number, y: number, slope: string): void;
     /** Set sprite frame coordinates at (x, y). */
     setFrameUV(x: number, y: number, u: number, v: number): void;
+    /** Set tile echo (invisible) coating at (x, y). */
+    setTileEcho(x: number, y: number, value: boolean): void;
+    /** Set wall echo (invisible) coating at (x, y). */
+    setWallEcho(x: number, y: number, value: boolean): void;
+    /** Set tile illuminant (full bright) coating at (x, y). */
+    setTileIlluminant(x: number, y: number, value: boolean): void;
+    /** Set wall illuminant (full bright) coating at (x, y). */
+    setWallIlluminant(x: number, y: number, value: boolean): void;
     /** Reset tile to default empty state. */
     clear(x: number, y: number): void;
     /** Copy all properties from one tile to another. */
