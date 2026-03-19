@@ -227,6 +227,9 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
     private void SaveTileToBuffer(UndoBuffer buffer, int x, int y, bool removeEntities = false)
     {
+        if (x < 0 || x >= _world.TilesWide || y < 0 || y >= _world.TilesHigh)
+            return;
+
         var curTile = _world.Tiles[x, y];
 
         bool isModTile = curTile.IsActive && curTile.Type >= WorldConfiguration.TileCount;
@@ -346,6 +349,15 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
         Debug.WriteLine($"Opening undo file for undo: {Path.GetFileNameWithoutExtension(undoFileName)}");
         var changedTiles = new List<Vector2Int32>();
+
+        if (!File.Exists(undoFileName))
+        {
+            Debug.WriteLine($"Undo file missing, skipping: {undoFileName}");
+            redo.Dispose();
+            _currentIndex--;
+            CreateBuffer();
+            return changedTiles;
+        }
 
         using (var stream = new FileStream(undoFileName, FileMode.Open))
         using (BinaryReader br = new BinaryReader(stream, System.Text.Encoding.UTF8, false))
