@@ -26,15 +26,15 @@ public class UpdateService
         _managers.Add(CreateManager("stable"));
 
         if (channel >= UpdateChannel.Beta)
-            _managers.Add(CreateManager("beta"));
+            _managers.Add(CreateManager("beta", prerelease: true));
 
         if (channel >= UpdateChannel.Alpha)
-            _managers.Add(CreateManager("alpha"));
+            _managers.Add(CreateManager("alpha", prerelease: true));
     }
 
-    private static UpdateManager CreateManager(string channelName)
+    private static UpdateManager CreateManager(string channelName, bool prerelease = false)
     {
-        var source = new GithubSource(GithubRepo, null, false);
+        var source = new GithubSource(GithubRepo, null, prerelease);
         var options = new UpdateOptions
         {
             ExplicitChannel = channelName,
