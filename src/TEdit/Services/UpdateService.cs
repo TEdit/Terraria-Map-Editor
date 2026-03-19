@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using TEdit.ViewModel;
 using Velopack;
@@ -10,6 +11,12 @@ namespace TEdit.Services;
 public class UpdateService
 {
     private const string GithubRepo = "https://github.com/TEdit/Terraria-Map-Editor";
+
+    // Serialize all Velopack operations to avoid lock file contention
+    private static readonly SemaphoreSlim _updateLock = new(1, 1);
+
+    /// <summary>True while any instance is downloading an update.</summary>
+    public static bool IsUpdateInProgress => _updateLock.CurrentCount == 0;
 
     private readonly List<UpdateManager> _managers = new();
     private UpdateManager _lastDownloadManager;
@@ -86,6 +93,7 @@ public class UpdateService
             return false;
         }
 
+        await _updateLock.WaitAsync();
         try
         {
             var result = await FindBestUpdateAsync();
@@ -104,6 +112,10 @@ public class UpdateService
             ErrorLogging.LogException(ex);
             return false;
         }
+        finally
+        {
+            _updateLock.Release();
+        }
     }
 
     public async Task<bool> CheckAndDownloadAsync()
@@ -114,6 +126,7 @@ public class UpdateService
             return false;
         }
 
+        await _updateLock.WaitAsync();
         try
         {
             var result = await FindBestUpdateAsync();
@@ -139,6 +152,10 @@ public class UpdateService
             ErrorLogging.LogWarn($"[Update] Check failed: {ex.Message}");
             ErrorLogging.LogException(ex);
             return false;
+        }
+        finally
+        {
+            _updateLock.Release();
         }
     }
 

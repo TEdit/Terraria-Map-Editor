@@ -8495,7 +8495,16 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("update_checking", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to An update is already downloading, please wait....
+        /// </summary>
+        public static string update_downloading {
+            get {
+                return ResourceManager.GetString("update_downloading", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Update downloaded. Use File &gt; Check for Updates to install..
         /// </summary>

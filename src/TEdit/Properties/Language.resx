@@ -2951,6 +2951,9 @@ Would you like to enable error reporting?</value>
   <data name="update_checking" xml:space="preserve">
     <value>Checking for updates...</value>
   </data>
+  <data name="update_downloading" xml:space="preserve">
+    <value>An update is already downloading, please wait...</value>
+  </data>
   <data name="update_check_failed" xml:space="preserve">
     <value>Update check failed.</value>
   </data>

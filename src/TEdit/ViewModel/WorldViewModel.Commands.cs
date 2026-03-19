@@ -262,6 +262,14 @@ public partial class WorldViewModel
                 return;
             }
 
+            if (Services.UpdateService.IsUpdateInProgress)
+            {
+                App.SnackbarService.ShowInfo(
+                    Properties.Language.update_downloading,
+                    Properties.Language.update_title);
+                return;
+            }
+
             App.SnackbarService.ShowInfo(
                 Properties.Language.update_checking,
                 Properties.Language.update_title);
