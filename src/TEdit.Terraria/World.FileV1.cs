@@ -333,21 +333,22 @@ public partial class World
             {
                 Item item = chest.Items[slot];
 
-                if (item.NetId == 0)
-                    item.StackSize = 0;
+                // Write stack=0 for items with no NetId (mod items) without mutating the in-memory item.
+                // RebuildModChestItems reads StackSize after this, so mutation would zero mod item stacks.
+                int writeStack = item.NetId == 0 ? 0 : item.StackSize;
 
                 if (item != null && item.NetId <= maxItemId)
                 {
                     if (version < 59)
                     {
-                        bw.Write((byte)Math.Min(byte.MaxValue, item.StackSize));
+                        bw.Write((byte)Math.Min(byte.MaxValue, writeStack));
                     }
                     else
                     {
-                        bw.Write((short)item.StackSize);
+                        bw.Write((short)writeStack);
                     }
 
-                    if (item.StackSize > 0)
+                    if (writeStack > 0)
                     {
                         if (version >= 38)
                         {
