@@ -17,6 +17,12 @@ public class ModWallEntry
     /// <summary>Wall internal name (e.g., "AstralMonolithWall").</summary>
     public string Name { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Original TagCompound from the .twld file. Preserved during save to retain
+    /// tModLoader-required fields that TEdit doesn't parse.
+    /// </summary>
+    public TagCompound RawTag { get; set; }
+
     public string FullName => $"{ModName}:{Name}";
 
     public static ModWallEntry FromTag(TagCompound tag, int index)
@@ -32,15 +38,28 @@ public class ModWallEntry
             SaveType = saveType,
             ModName = tag.GetString("mod"),
             Name = tag.GetString("name"),
+            RawTag = tag,
         };
     }
 
     public TagCompound ToTag()
     {
-        var tag = new TagCompound();
-        tag.Set("value", (short)SaveType); // NBT stores as short; tModLoader deserializes as ushort
-        tag.Set("mod", ModName);
-        tag.Set("name", Name);
-        return tag;
+        // If we have the original tag, clone it and update fields we may have changed.
+        // This preserves tModLoader-required fields.
+        if (RawTag != null)
+        {
+            var tag = RawTag.Clone();
+            tag.Set("value", (short)SaveType);
+            tag.Set("mod", ModName);
+            tag.Set("name", Name);
+            return tag;
+        }
+
+        // New entry — create minimal tag
+        var newTag = new TagCompound();
+        newTag.Set("value", (short)SaveType);
+        newTag.Set("mod", ModName);
+        newTag.Set("name", Name);
+        return newTag;
     }
 }

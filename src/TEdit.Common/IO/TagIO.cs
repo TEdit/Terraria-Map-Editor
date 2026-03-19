@@ -90,9 +90,15 @@ public static class TagIO
     {
         if (compressed)
         {
+            // Buffer all NBT data first, then compress in one shot.
+            // Writing many small chunks directly through GZipStream produces ~4x worse
+            // compression because each tiny write can trigger internal deflate flushes.
+            using var buffer = new MemoryStream();
+            using (var writer = new BigEndianWriter(buffer))
+                WriteRootTag(tag, writer);
+
             using var gzip = new GZipStream(stream, CompressionMode.Compress, leaveOpen: true);
-            using var writer = new BigEndianWriter(gzip);
-            WriteRootTag(tag, writer);
+            gzip.Write(buffer.GetBuffer(), 0, (int)buffer.Length);
         }
         else
         {

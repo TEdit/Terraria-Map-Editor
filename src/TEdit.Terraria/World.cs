@@ -137,8 +137,12 @@ public partial class World
                     if (world.IsTModLoader && world.TwldData != null)
                     {
                         progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
-                        TwldFile.RebuildModChestItems(world, world.TwldData);
-                        TwldFile.RebuildModTileEntityItems(world, world.TwldData);
+                        // Note: We intentionally do NOT rebuild ModChestItems or ModTileEntities.
+                        // The original tags loaded from the .twld are preserved exactly as tModLoader
+                        // wrote them (key ordering, implicit defaults, type metadata). Rebuilding from
+                        // scratch produces semantically equivalent but binary-different tags that
+                        // tModLoader may reject. The tile binary data (tileData/wallData) IS rebuilt
+                        // by StripFromWorld above to reflect any tile edits.
                         TwldFile.Save(filename, world.TwldData);
                         TwldFile.ReapplyToWorld(world, world.TwldData);
                     }
@@ -235,8 +239,6 @@ public partial class World
                 if (world.IsTModLoader && world.TwldData != null)
                 {
                     progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
-                    TwldFile.RebuildModChestItems(world, world.TwldData);
-                    TwldFile.RebuildModTileEntityItems(world, world.TwldData);
                     TwldFile.Save(filename, world.TwldData);
                     TwldFile.ReapplyToWorld(world, world.TwldData);
                 }
