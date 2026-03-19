@@ -729,7 +729,7 @@
     <value>Export Selection</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
-    <value>ペースト</value>
+    <value>貼り付け</value>
   </data>
   <data name="menu_edit_redo" xml:space="preserve">
     <value>やり直し</value>
@@ -1477,7 +1477,7 @@
     <value>APIREFERENCE.md を生成する</value>
   </data>
   <data name="scripting_api_tooltip" xml:space="preserve">
-    <value>Toggle API参照パネル</value>
+    <value>API 参照パネルの切り替え</value>
   </data>
   <data name="scripting_engine_label" xml:space="preserve">
     <value>エンジン:</value>
@@ -1553,7 +1553,7 @@
     <value>プレイヤーエディターを有効にする</value>
   </data>
   <data name="settings_enable_player_editor_desc" xml:space="preserve">
-    <value>サイドバーのプレイヤーエディタータブを表示して、.plrプレーヤーファイルを編集する(実験的)</value>
+    <value>.plrプレイヤーファイルを編集するためのプレイヤーエディタータブをサイドバーに表示 (実験的)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>エラー報告を有効にする</value>
@@ -2082,7 +2082,7 @@
     <value>位置</value>
   </data>
   <data name="statusbar_selection_label" xml:space="preserve">
-    <value>選考</value>
+    <value>選択</value>
   </data>
   <data name="statusbar_tile_label" xml:space="preserve">
     <value>タイル</value>
@@ -2147,7 +2147,7 @@
     <value>Deselect</value>
   </data>
   <data name="toolbar_export" xml:space="preserve">
-    <value>輸出</value>
+    <value>エクスポート</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>分析</value>
@@ -2225,7 +2225,7 @@
     <value>幅</value>
   </data>
   <data name="tool_clipboard_empty" xml:space="preserve">
-    <value>空のクリップボード</value>
+    <value>クリップボードを空にする</value>
   </data>
   <data name="tool_clipboard_export" xml:space="preserve">
     <value>輸出</value>
@@ -2243,7 +2243,7 @@
     <value>回路図または画像のインポート</value>
   </data>
   <data name="tool_clipboard_instant_paste" xml:space="preserve">
-    <value>インスタントペースト</value>
+    <value>即時貼り付け</value>
   </data>
   <data name="tool_clipboard_instant_paste_tooltip" xml:space="preserve">
     <value>ドラッグせずにすぐに貼り付け</value>
@@ -2654,7 +2654,7 @@
     <value>コンバット・ブック 第2巻</value>
   </data>
   <data name="tool_wp_console" xml:space="preserve">
-    <value>コンソールワールド版</value>
+    <value>コンソール版</value>
   </data>
   <data name="tool_wp_copper" xml:space="preserve">
     <value>銅層</value>
@@ -3122,7 +3122,7 @@
     <value>バックアップは存在します</value>
   </data>
   <data name="world_explorer_browse" xml:space="preserve">
-    <value>閲覧して...</value>
+    <value>ブラウズ…</value>
   </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>寸法</value>
@@ -3173,7 +3173,7 @@
     <value>プレビューワールドマップ</value>
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
-    <value>サーチワールド...</value>
+    <value>ワールドを検索…</value>
   </data>
   <data name="world_explorer_tab_tmodloader" xml:space="preserve">
     <value>tModLoader</value>
