@@ -103,6 +103,42 @@ public class TagCompoundTests
     }
 
     [Fact]
+    public void RoundTrip_EmptyCompoundList_WritesValidElementType()
+    {
+        // tModLoader rejects TagEnd (0) as a list element type.
+        // Empty List<TagCompound> must write TagCompound (10) as element type, not TagEnd (0).
+        var original = new TagCompound();
+        original.Set("tileMap", new List<TagCompound>());
+        original.Set("wallMap", new List<TagCompound>());
+        original.Set("strings", new List<string>());
+
+        using var ms = new MemoryStream();
+        TagIO.ToStream(original, ms, compressed: false);
+
+        // Verify round-trip
+        ms.Position = 0;
+        var loaded = TagIO.FromStream(ms, compressed: false);
+        loaded.GetList<TagCompound>("tileMap").Count.ShouldBe(0);
+        loaded.GetList<TagCompound>("wallMap").Count.ShouldBe(0);
+        loaded.GetList<string>("strings").Count.ShouldBe(0);
+
+        // Verify binary: scan for list tags (type=9) and check their element type byte
+        var bytes = ms.ToArray();
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            if (bytes[i] != 9) continue; // not a list tag
+
+            // Skip the tag name (2-byte big-endian length + string bytes)
+            int nameLen = (bytes[i + 1] << 8) | bytes[i + 2];
+            int elemTypePos = i + 1 + 2 + nameLen; // past tag type + name length + name
+            if (elemTypePos >= bytes.Length) continue;
+
+            byte elemType = bytes[elemTypePos];
+            elemType.ShouldNotBe((byte)0, $"List element type at byte {elemTypePos} must not be TagEnd (0)");
+        }
+    }
+
+    [Fact]
     public void RoundTrip_NestedCompounds()
     {
         var root = new TagCompound();

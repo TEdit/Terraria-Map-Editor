@@ -291,7 +291,7 @@ public static class TagIO
     {
         if (list.Count == 0)
         {
-            writer.Write(TagEnd); // element type = end (no type for empty list)
+            writer.Write(GetListElementTypeId(list));
             writer.Write(0); // count
             return;
         }
@@ -302,6 +302,31 @@ public static class TagIO
 
         foreach (object item in list)
             WritePayload(writer, item, elemTypeId);
+    }
+
+    /// <summary>
+    /// Determines the NBT element type for an empty list from its generic type argument.
+    /// tModLoader rejects TagEnd (0) as a list element type, so we must write a valid type.
+    /// </summary>
+    private static byte GetListElementTypeId(IList list)
+    {
+        var listType = list.GetType();
+        if (listType.IsGenericType)
+        {
+            var elemType = listType.GetGenericArguments()[0];
+            if (elemType == typeof(byte) || elemType == typeof(bool)) return TagByte;
+            if (elemType == typeof(short)) return TagShort;
+            if (elemType == typeof(int)) return TagInt;
+            if (elemType == typeof(long)) return TagLong;
+            if (elemType == typeof(float)) return TagFloat;
+            if (elemType == typeof(double)) return TagDouble;
+            if (elemType == typeof(byte[])) return TagByteArray;
+            if (elemType == typeof(string)) return TagString;
+            if (elemType == typeof(int[])) return TagIntArray;
+            if (typeof(TagCompound).IsAssignableFrom(elemType)) return TagCompoundId;
+            if (typeof(IList).IsAssignableFrom(elemType)) return TagList;
+        }
+        return TagByte; // fallback: valid type, count is 0 so no elements read
     }
 
     #endregion
