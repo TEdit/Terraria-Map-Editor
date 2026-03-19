@@ -166,16 +166,18 @@ public partial class Item : ReactiveObject
 
     public Item Copy()
     {
-        return new Item(_stackSize, _netId)
-        {
-            Prefix = _prefix,
-            _modName = _modName,
-            _modItemName = _modItemName,
-            ModPrefixMod = ModPrefixMod,
-            ModPrefixName = ModPrefixName,
-            ModItemData = ModItemData?.Clone(),
-            ModGlobalData = ModGlobalData?.Select(t => t?.Clone()).ToList(),
-        };
+        var copy = new Item();
+        copy._stackSize = _stackSize;
+        copy._netId = _netId;
+        copy._prefix = _prefix;
+        copy._currentItemProperty = _currentItemProperty;
+        copy._modName = _modName;
+        copy._modItemName = _modItemName;
+        copy.ModPrefixMod = ModPrefixMod;
+        copy.ModPrefixName = ModPrefixName;
+        copy.ModItemData = ModItemData?.Clone();
+        copy.ModGlobalData = ModGlobalData?.Select(t => t?.Clone()).ToList();
+        return copy;
     }
 
     //public Visibility IsVisible
