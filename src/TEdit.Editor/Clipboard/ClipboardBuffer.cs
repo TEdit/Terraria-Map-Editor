@@ -553,6 +553,7 @@ public partial class ClipboardBuffer : ITileData
                             curTile.Type = sprite.Tile;
                             curTile.U = tiles[x, y].X;
                             curTile.V = tiles[x, y].Y;
+                            flippedBuffer.Tiles[tilex, tiley] = curTile;
                         }
                         catch (Exception)
                         {
@@ -583,6 +584,7 @@ public partial class ClipboardBuffer : ITileData
                             targetTile.Type = sourceTile.Type;
                             targetTile.U = sourceTile.U;
                             targetTile.V = sourceTile.V;
+                            flippedBuffer.Tiles[targetX, targetY] = targetTile;
 
                             /*
                             if (targetTile.Type == (uint)TileType.JunctionBox)
