@@ -219,7 +219,7 @@ public class MorphBiomeDataApplier
         if (morphId.SourceIds.Contains(sourceId))
         {
             // Multi-tile sprite replacement (e.g. altars, orbs)
-            if (morphId.SpriteReplacement != null && options.EnableSprites)
+            if (morphId.SpriteReplacement != null && options.EnableSprites && options.EnableDecoSprites)
             {
                 return ApplySpriteReplacement(morphId, world, source, sourceId, location);
             }

@@ -17,4 +17,6 @@ public partial class MorphToolOptions : ReactiveObject
     private bool _enableMoss = true;
     [Reactive]
     private bool _enableSprites = true;
+    [Reactive]
+    private bool _enableDecoSprites = true;
 }

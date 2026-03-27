@@ -34,6 +34,7 @@
             <CheckBox Content="{x:Static p:Language.tool_morph_moss}" IsChecked="{Binding MorphToolOptions.EnableMoss}"/>
             <CheckBox Content="{x:Static p:Language.tool_morph_evil}" IsChecked="{Binding MorphToolOptions.EnableEvilTiles}"/>
             <CheckBox Content="{x:Static p:Language.tool_morph_decorations}" IsChecked="{Binding MorphToolOptions.EnableSprites}"/>
+            <CheckBox Content="{x:Static p:Language.tool_morph_deco_sprites}" IsChecked="{Binding MorphToolOptions.EnableDecoSprites}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

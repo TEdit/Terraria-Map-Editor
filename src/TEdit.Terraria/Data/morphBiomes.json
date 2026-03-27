@@ -7,7 +7,7 @@
           "default": {
             "skyId": 2
           },
-          "sourceIds": [2, 23, 199, 109],
+          "sourceIds": [23, 199, 109],
           "spriteOffsets": []
         },
         {
@@ -15,53 +15,15 @@
           "default": {
             "skyId": 477
           },
-          "sourceIds": [477, 492],
-          "spriteOffsets": []
-        },
-        {
-          "name": "tileSiltStone",
-          "default": { "skyId": 1, "dirtId": 0, "rockId": 0 },
-          "sourceIds": [123],
-          "spriteOffsets": []
-        },
-        {
-          "name": "tileMudDirt",
-          "default": { "skyId": 0, "dirtId": 1, "rockId": 1 },
-          "sourceIds": [59],
-          "spriteOffsets": []
-        },
-        {
-          "name": "tileJungleGrass",
-          "useMoss": true,
-          "default": {
-            "skyId": 179
-          },
-          "sourceIds": [60, 70, 661, 662],
+          "sourceIds": [492],
           "spriteOffsets": []
         },
         {
           "name": "tileStone",
-          "useMoss": true,
           "default": {
             "skyId": 1
           },
-          "sourceIds": [1, 25, 203, 117],
-          "spriteOffsets": []
-        },
-        {
-          "name": "tileMoss",
-          "useMoss": true,
-          "default": {},
-          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
-          "spriteOffsets": []
-        },
-        {
-          "name": "spriteMossPlant",
-          "useMoss": true,
-          "default": {
-            "skyId": 184
-          },
-          "sourceIds": [184],
+          "sourceIds": [25, 203, 117],
           "spriteOffsets": []
         },
         {
@@ -69,7 +31,7 @@
           "default": {
             "skyId": 161
           },
-          "sourceIds": [161, 163, 200, 164],
+          "sourceIds": [163, 200, 164],
           "spriteOffsets": []
         },
         {
@@ -77,7 +39,7 @@
           "default": {
             "skyId": 53
           },
-          "sourceIds": [53, 112, 234, 116],
+          "sourceIds": [112, 234, 116],
           "spriteOffsets": []
         },
         {
@@ -85,7 +47,7 @@
           "default": {
             "skyId": 397
           },
-          "sourceIds": [397, 398, 399, 402],
+          "sourceIds": [398, 399, 402],
           "spriteOffsets": []
         },
         {
@@ -93,14 +55,14 @@
           "default": {
             "skyId": 396
           },
-          "sourceIds": [396, 400, 401, 403],
+          "sourceIds": [400, 401, 403],
           "spriteOffsets": []
         },
         {
           "name": "spriteGrass",
           "delete": true,
           "default": {},
-          "sourceIds": [71, 24, 201, 110, 113],
+          "sourceIds": [24, 201, 110, 113],
           "spriteOffsets": []
         },
         {
@@ -110,27 +72,9 @@
           },
           "sourceIds": [165],
           "spriteOffsets": [
-            {
-              "maxU": 36
-            },
-            { "minU": 54, "maxU": 90 },
-            { "minU": 216, "maxU": 252, "offsetU": -162 },
-            { "minU": 270, "maxU": 306, "offsetU": -216 },
-            { "minU": 324, "maxU": 362, "offsetU": -270 },
-            { "minU": 378, "maxU": 414 },
             { "minU": 540, "maxU": 576, "offsetU": -540 },
             { "minU": 594, "maxU": 630, "offsetU": -594 },
             { "minU": 648, "maxU": 684, "offsetU": -270 }
-          ]
-        },
-        {
-          "name": "spriteMushroomGrassyStone",
-          "default": {
-            "skyId": 186
-          },
-          "sourceIds": [186],
-          "spriteOffsets": [
-            { "minU": 1728, "maxU": 1872, "delete": true }
           ]
         },
         {
@@ -138,15 +82,7 @@
           "default": {
             "skyId": 52
           },
-          "sourceIds": [52, 636, 205, 115],
-          "spriteOffsets": []
-        },
-        {
-          "name": "spriteJungleVines",
-          "default": {
-            "skyId": 62
-          },
-          "sourceIds": [62, 528],
+          "sourceIds": [636, 205, 115],
           "spriteOffsets": []
         },
         {
@@ -154,43 +90,6 @@
           "delete": true,
           "default": {},
           "sourceIds": [32, 352],
-          "spriteOffsets": []
-        },
-        {
-          "name": "spriteHerbsSeed",
-          "default": {
-            "skyId": 82
-          },
-          "sourceIds": [82],
-          "spriteOffsets": [
-            { "minU": 54, "maxU": 54, "delete": true }
-          ]
-        },
-        {
-          "name": "spriteHerbsMature",
-          "default": {
-            "skyId": 83
-          },
-          "sourceIds": [83],
-          "spriteOffsets": [
-            { "minU": 54, "maxU": 54, "delete": true }
-          ]
-        },
-        {
-          "name": "spriteHerbsBloom",
-          "default": {
-            "skyId": 84
-          },
-          "sourceIds": [84],
-          "spriteOffsets": [
-            { "minU": 54, "maxU": 54, "delete": true }
-          ]
-        },
-        {
-          "name": "spriteLilyPad",
-          "delete": true,
-          "default": {},
-          "sourceIds": [518],
           "spriteOffsets": []
         },
         {
@@ -204,14 +103,6 @@
             { "minU": 418, "maxU": 418, "offsetU": -418 },
             { "minU": 440, "maxU": 440, "offsetU": -440 }
           ]
-        },
-        {
-          "name": "tileMossBrick",
-          "default": {
-            "skyId": 1
-          },
-          "sourceIds": [512, 513, 514, 515, 516, 517, 535, 537, 540, 626, 628],
-          "spriteOffsets": []
         }
       ],
       "morphWalls": [
@@ -220,7 +111,7 @@
           "default": {
             "skyId": 63
           },
-          "sourceIds": [63, 69, 81, 70],
+          "sourceIds": [69, 81, 70],
           "spriteOffsets": []
         },
         {
@@ -228,31 +119,19 @@
           "default": {
             "skyId": 66
           },
-          "sourceIds": [66, 264, 268, 265],
-          "spriteOffsets": []
-        },
-        {
-          "name": "wallJungleNatural",
-          "default": { "skyId": 2, "dirtId": 198, "rockId": 61 },
-          "sourceIds": [15, 80, 64, 204, 205, 206, 207],
-          "spriteOffsets": []
-        },
-        {
-          "name": "wallJungle",
-          "default": { "skyId": 16, "dirtId": 286, "rockId": 1 },
-          "sourceIds": [247, 74, 67, 292, 293, 294, 295],
+          "sourceIds": [264, 268, 265],
           "spriteOffsets": []
         },
         {
           "name": "wallStoneNatural",
           "default": { "skyId": 61, "rockId": 185 },
-          "sourceIds": [61, 185, 3, 83, 28],
+          "sourceIds": [3, 83, 28],
           "spriteOffsets": []
         },
         {
           "name": "wallStone",
           "default": { "skyId": 1, "dirtId": 262, "rockId": 274 },
-          "sourceIds": [1, 262, 274, 246, 269, 248],
+          "sourceIds": [246, 269, 248],
           "spriteOffsets": []
         },
         {
@@ -260,7 +139,7 @@
           "default": {
             "skyId": 216
           },
-          "sourceIds": [216, 217, 218, 219],
+          "sourceIds": [217, 218, 219],
           "spriteOffsets": []
         },
         {
@@ -268,7 +147,7 @@
           "default": {
             "skyId": 304
           },
-          "sourceIds": [304, 305, 306, 307],
+          "sourceIds": [305, 306, 307],
           "spriteOffsets": []
         },
         {
@@ -276,7 +155,7 @@
           "default": {
             "skyId": 187
           },
-          "sourceIds": [187, 220, 221, 222],
+          "sourceIds": [220, 221, 222],
           "spriteOffsets": []
         },
         {
@@ -284,7 +163,7 @@
           "default": {
             "skyId": 275
           },
-          "sourceIds": [275, 308, 309, 310],
+          "sourceIds": [308, 309, 310],
           "spriteOffsets": []
         },
         {
@@ -292,7 +171,7 @@
           "default": {
             "skyId": 212
           },
-          "sourceIds": [212, 188, 192, 200],
+          "sourceIds": [188, 192, 200],
           "spriteOffsets": []
         },
         {
@@ -300,7 +179,7 @@
           "default": {
             "skyId": 213
           },
-          "sourceIds": [213, 189, 193, 201],
+          "sourceIds": [189, 193, 201],
           "spriteOffsets": []
         },
         {
@@ -308,7 +187,7 @@
           "default": {
             "skyId": 214
           },
-          "sourceIds": [214, 190, 194, 202],
+          "sourceIds": [190, 194, 202],
           "spriteOffsets": []
         },
         {
@@ -316,7 +195,7 @@
           "default": {
             "skyId": 215
           },
-          "sourceIds": [215, 191, 195, 203],
+          "sourceIds": [191, 195, 203],
           "spriteOffsets": []
         },
         {
@@ -324,7 +203,7 @@
           "default": {
             "skyId": 300
           },
-          "sourceIds": [300, 276, 280, 288],
+          "sourceIds": [276, 280, 288],
           "spriteOffsets": []
         },
         {
@@ -332,7 +211,7 @@
           "default": {
             "skyId": 301
           },
-          "sourceIds": [301, 277, 281, 289],
+          "sourceIds": [277, 281, 289],
           "spriteOffsets": []
         },
         {
@@ -340,7 +219,7 @@
           "default": {
             "skyId": 302
           },
-          "sourceIds": [302, 278, 282, 290],
+          "sourceIds": [278, 282, 290],
           "spriteOffsets": []
         },
         {
@@ -348,7 +227,7 @@
           "default": {
             "skyId": 303
           },
-          "sourceIds": [303, 279, 283, 291],
+          "sourceIds": [279, 283, 291],
           "spriteOffsets": []
         }
       ]

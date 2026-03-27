@@ -6607,6 +6607,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Altars/Orbs.
+        /// </summary>
+        public static string tool_morph_deco_sprites {
+            get {
+                return ResourceManager.GetString("tool_morph_deco_sprites", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Decorations.
         /// </summary>
         public static string tool_morph_decorations {
@@ -6614,7 +6623,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_morph_decorations", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Evil.
         /// </summary>
