@@ -33,6 +33,7 @@ public sealed class SpriteTool2 : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
         if (_wvm.SelectedSpriteItem == null)
             return;
 
@@ -99,6 +100,7 @@ public sealed class SpriteTool2 : BaseTool
 
     public override void MouseMove(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
         if (_wvm.SelectedSpriteItem == null) return;
 
         var actions = GetActiveActions(e);
@@ -114,6 +116,7 @@ public sealed class SpriteTool2 : BaseTool
 
     public override void MouseUp(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
         if (_wvm.SelectedSpriteItem == null) return;
 
         if (_wvm.SelectedSpriteItem.SizeTiles.X == 1 && _wvm.SelectedSpriteItem.SizeTiles.Y == 1)

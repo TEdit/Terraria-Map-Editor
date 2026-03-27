@@ -131,6 +131,8 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
+
         // Wire trace intercept (Alt+Click)
         var traceActions = GetActiveActions(e);
         if (traceActions.Contains("editor.wire.trace"))
@@ -225,6 +227,8 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseMove(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
+
         // CAD wire mode: update preview path (liquid bypasses CAD)
         if (_isCadWireMode && _isCadAnchored && _wvm.TilePicker.PaintMode != PaintMode.Liquid)
         {
@@ -242,6 +246,8 @@ public sealed class PencilTool : BaseTool
 
     public override void MouseUp(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
+
         // CAD wire mode: clicks are handled in MouseDown, no action on MouseUp (liquid bypasses CAD)
         if (_isCadWireMode && _isCadAnchored && _wvm.TilePicker.PaintMode != PaintMode.Liquid)
             return;

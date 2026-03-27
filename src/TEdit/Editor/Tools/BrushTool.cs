@@ -177,6 +177,8 @@ public class BrushToolBase : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
+
         // Wire trace intercept (Alt+Click)
         var traceActions = GetActiveActions(e);
         if (traceActions.Contains("editor.wire.trace"))
@@ -287,6 +289,8 @@ public class BrushToolBase : BaseTool
 
     public override void MouseMove(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
+
         // CAD wire bus mode: update preview path
         if (_isCadWireMode && _isCadAnchored)
         {
@@ -311,6 +315,8 @@ public class BrushToolBase : BaseTool
 
     public override void MouseUp(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
+
         // CAD wire bus mode: clicks are handled in MouseDown, no action on MouseUp
         if (_isCadWireMode && _isCadAnchored)
             return;

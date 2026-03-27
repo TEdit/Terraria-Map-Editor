@@ -29,6 +29,8 @@ public sealed class FillTool : BaseTool
 
     public override void MouseDown(TileMouseState e)
     {
+        if (_wvm.UndoManager == null) return;
+
         var actions = GetActiveActions(e);
         if (actions.Contains("editor.draw") &&
             (_wvm.TilePicker.PaintMode == PaintMode.TileAndWall ||
