@@ -75,7 +75,7 @@ public partial class HouseGenPlugin : BasePlugin
         private Vector2Int32 _generatedSchematicSize;
         public Vector2Int32 GeneratedSchematicSize
         {
-            get { return GeneratedSchematicSize; }
+            get { return _generatedSchematicSize; }
         }
 
         private IObservable<bool> CanGenerate =>
@@ -97,7 +97,10 @@ public partial class HouseGenPlugin : BasePlugin
         {
             _templates = new ObservableCollection<HouseGenTemplate>();
             _clipboardManagerLoadedBuffers = loadedBuffers;
-            //TODO: Load all templates located in templates folder.   
+            //TODO: Load all templates located in templates folder.
+
+            this.WhenAnyValue(x => x.GeneratedSchematic)
+                .Subscribe(_ => this.RaisePropertyChanged(nameof(Preview)));
         }
 
         private void ImportTemplateSchematic()

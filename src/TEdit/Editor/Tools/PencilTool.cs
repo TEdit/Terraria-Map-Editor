@@ -95,8 +95,10 @@ public sealed class PencilTool : BaseTool
         _cadRoutingMode = mode;
         _cadVerticalFirstOverride = verticalFirst;
         if (!enabled)
+        {
             _cadPreviewPath.Clear();
             _cadPreviewTunnel.Clear();
+        }
     }
 
     /// <summary>Exit CAD wire mode entirely. Clears anchor and preview.</summary>
