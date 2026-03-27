@@ -15,7 +15,7 @@ namespace TEdit.Terraria;
 
 public partial class World
 {
-    public static readonly string[] TeamNames = ["Red", "Green", "Blue", "Yellow", "Pink", "White"];
+    public static readonly string[] TeamNames = ["White", "Red", "Green", "Blue", "Yellow", "Pink"];
     public const int TeamCount = 6;
 
     private static readonly object _fileLock = new object();

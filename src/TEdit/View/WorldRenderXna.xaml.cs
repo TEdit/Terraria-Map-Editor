@@ -6815,6 +6815,39 @@ public partial class WorldRenderXna : UserControl
             SpriteEffects.None,
             LayerLocations);
 
+        // Team spawn points
+        if (_wvm.CurrentWorld.TeamBasedSpawnsSeed)
+        {
+            Color[] teamColors =
+            [
+                Color.FromNonPremultiplied(236, 240, 241, 128), // White
+                Color.FromNonPremultiplied(231, 76,  60,  128), // Red
+                Color.FromNonPremultiplied(46,  204, 113, 128), // Green
+                Color.FromNonPremultiplied(52,  152, 219, 128), // Blue
+                Color.FromNonPremultiplied(241, 196, 15,  128), // Yellow
+                Color.FromNonPremultiplied(233, 30,  158, 128), // Pink
+            ];
+
+            for (int i = 0; i < _wvm.CurrentWorld.TeamSpawns.Count && i < World.TeamCount; i++)
+            {
+                var ts = _wvm.CurrentWorld.TeamSpawns[i];
+                if (ts.X == 0 && ts.Y == 0) continue;
+                if (ts.X == _wvm.CurrentWorld.SpawnX && ts.Y == _wvm.CurrentWorld.SpawnY) continue;
+
+                var tint = i < teamColors.Length ? teamColors[i] : Color.FromNonPremultiplied(200, 200, 200, 128);
+                _spriteBatch.Draw(
+                    _textures["Spawn"],
+                    GetOverlayLocation(ts.X, ts.Y),
+                    _textures["Spawn"].Bounds,
+                    tint,
+                    0f,
+                    Vector2.Zero,
+                    Vector2.One,
+                    SpriteEffects.None,
+                    LayerLocations);
+            }
+        }
+
     }
 
     private void DrawNbtOverlay()

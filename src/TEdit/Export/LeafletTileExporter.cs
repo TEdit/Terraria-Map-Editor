@@ -432,7 +432,7 @@ function mkIcon(emoji, size) {
         // Team spawns (if present and different from main spawn)
         if (world.TeamBasedSpawnsSeed && world.TeamSpawns.Count > 0)
         {
-            string[] teamColors = ["#e74c3c", "#2ecc71", "#3498db", "#f1c40f", "#e91e9e", "#ecf0f1"];
+            string[] teamColors = ["#ecf0f1", "#e74c3c", "#2ecc71", "#3498db", "#f1c40f", "#e91e9e"];
             for (int i = 0; i < world.TeamSpawns.Count && i < World.TeamCount; i++)
             {
                 var ts = world.TeamSpawns[i];
