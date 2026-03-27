@@ -702,7 +702,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Crop World</value>
   </data>
   <data name="menu_edit_cut" xml:space="preserve">
-    <value>Cu_t,saveas_preserve_all=Preserve newer tile/wall/item data</value>
+    <value>Cut</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Delete Selection</value>
