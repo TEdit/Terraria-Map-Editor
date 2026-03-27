@@ -38,6 +38,7 @@ interface SignInfo {
 interface NpcInfo {
     name: string;
     displayName: string;
+    spriteId: number;
     x: number;
     y: number;
     homeX: number;
@@ -273,10 +274,18 @@ declare const signs: {
 declare const npcs: {
     /** Total number of NPCs. */
     readonly count: number;
-    /** Get all NPCs. */
+    /** Get all NPCs including duplicates of the same type. */
     getAll(): NpcInfo[];
-    /** Set NPC home location by name. */
+    /** Set home for first NPC matching name (by Name or DisplayName, case-insensitive). */
     setHome(name: string, x: number, y: number): void;
+    /** Set home for Nth NPC matching name (0-based index for duplicates). */
+    setHome(name: string, x: number, y: number, index: number): void;
+    /** Set home for all NPCs matching name. Returns count of NPCs moved. */
+    setHomeAll(name: string, x: number, y: number): number;
+    /** Create a new NPC. Name can be internal name (e.g., "Merchant") or sprite ID. */
+    create(name: string, displayName: string, x: number, y: number): void;
+    /** Remove first NPC matching name. Returns true if removed. */
+    remove(name: string): boolean;
 };
 
 // ─── world ───────────────────────────────────────────────────────────────────

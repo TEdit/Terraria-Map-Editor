@@ -93,11 +93,23 @@ public class NpcListItem : ReactiveObject
         }
     }
 
-    public NpcListItem(int spriteId, string defaultName, List<string> variants = null, bool canShimmer = false)
+    /// <summary>
+    /// For duplicate NPCs, which instance of this type this represents (0-based).
+    /// -1 means this is the type catalog entry (first or only instance).
+    /// </summary>
+    public int InstanceIndex { get; }
+
+    /// <summary>
+    /// True if this is an extra instance entry (duplicate NPC of same type).
+    /// </summary>
+    public bool IsDuplicateInstance => InstanceIndex >= 0;
+
+    public NpcListItem(int spriteId, string defaultName, List<string> variants = null, bool canShimmer = false, int instanceIndex = -1)
     {
         SpriteId = spriteId;
         DefaultName = defaultName;
         AvailableVariants = variants;
         CanShimmer = canShimmer;
+        InstanceIndex = instanceIndex;
     }
 }

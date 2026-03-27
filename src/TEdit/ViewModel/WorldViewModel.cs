@@ -2239,7 +2239,8 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (obj is not NpcListItem item) return false;
         if (string.IsNullOrWhiteSpace(NpcSearchText)) return true;
-        return item.DefaultName.Contains(NpcSearchText, StringComparison.OrdinalIgnoreCase);
+        return item.DefaultName.Contains(NpcSearchText, StringComparison.OrdinalIgnoreCase)
+            || (item.WorldNpc?.DisplayName?.Contains(NpcSearchText, StringComparison.OrdinalIgnoreCase) ?? false);
     }
 
     public string SelectedPoint
@@ -2275,6 +2276,13 @@ public partial class WorldViewModel : ReactiveObject
 
     private void RefreshAllNpcs()
     {
+        // Remove any previous duplicate instance entries
+        for (int i = _allNpcs.Count - 1; i >= 0; i--)
+        {
+            if (_allNpcs[i].IsDuplicateInstance)
+                _allNpcs.RemoveAt(i);
+        }
+
         if (_allNpcs.Count == 0)
         {
             foreach (var kvp in WorldConfiguration.NpcNames.OrderBy(x => x.Value))
@@ -2287,10 +2295,30 @@ public partial class WorldViewModel : ReactiveObject
             }
         }
 
-        foreach (var item in _allNpcs)
+        // Map first NPC of each type to the catalog entry, and add extra entries for duplicates
+        foreach (var item in _allNpcs.Where(i => !i.IsDuplicateInstance).ToList())
         {
             item.World = CurrentWorld;
-            item.WorldNpc = CurrentWorld?.NPCs.FirstOrDefault(n => n.SpriteId == item.SpriteId);
+            var worldNpcs = CurrentWorld?.NPCs.Where(n => n.SpriteId == item.SpriteId).ToList();
+            item.WorldNpc = worldNpcs?.FirstOrDefault();
+
+            // Add extra entries for duplicate NPCs of the same type
+            if (worldNpcs?.Count > 1)
+            {
+                WorldConfiguration.NpcById.TryGetValue(item.SpriteId, out var npcData);
+                int insertIndex = _allNpcs.IndexOf(item);
+                for (int i = 1; i < worldNpcs.Count; i++)
+                {
+                    var dupItem = new NpcListItem(
+                        item.SpriteId, item.DefaultName,
+                        npcData?.Variants,
+                        npcData?.CanShimmer ?? false,
+                        instanceIndex: i);
+                    dupItem.World = CurrentWorld;
+                    dupItem.WorldNpc = worldNpcs[i];
+                    _allNpcs.Insert(insertIndex + i, dupItem);
+                }
+            }
         }
 
         AllNpcsView.Refresh();

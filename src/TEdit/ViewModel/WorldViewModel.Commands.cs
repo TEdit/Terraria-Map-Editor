@@ -94,23 +94,34 @@ public partial class WorldViewModel
     }
 
     [ReactiveCommand]
-    private void NpcRemove(int npcId)
+    private void NpcRemove(object parameter)
     {
         if (CurrentWorld == null)
             return;
 
-        var npc = CurrentWorld.NPCs.FirstOrDefault(n => n.SpriteId == npcId);
+        NPC npc;
+        if (parameter is NpcListItem listItem)
+        {
+            // Remove the specific NPC instance bound to this list item
+            npc = listItem.WorldNpc;
+        }
+        else if (parameter is int npcId)
+        {
+            // Legacy: remove first NPC of this type
+            npc = CurrentWorld.NPCs.FirstOrDefault(n => n.SpriteId == npcId);
+        }
+        else
+        {
+            return;
+        }
+
         if (npc == null)
             return;
 
         CurrentWorld.NPCs.Remove(npc);
         Points.Remove(npc.Name);
 
-        var listItem = AllNpcs.FirstOrDefault(i => i.SpriteId == npcId);
-        if (listItem != null)
-            listItem.WorldNpc = null;
-
-        AllNpcsView.Refresh();
+        RefreshAllNpcs();
     }
 
     [ReactiveCommand]
