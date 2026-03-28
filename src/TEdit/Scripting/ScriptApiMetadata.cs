@@ -111,14 +111,14 @@ public static class ScriptApiMetadata
             new("setText",  "setText(x, y, text)",             "Update sign text"),
         ]),
 
-        new("npcs", "Query and modify town NPC data",
+        new("npcs", "Query and modify world NPCs (town NPCs, bosses, enemies, and all bestiary entries)",
         [
             new("count",      "count → int",                      "Total number of NPCs"),
             new("getAll",     "getAll() → [{name, displayName, spriteId, x, y, homeX, homeY, isHomeless}]", "Get all NPCs including duplicates"),
             new("setHome",    "setHome(name, x, y)",              "Set home for first NPC matching name"),
             new("setHome",    "setHome(name, x, y, index)",       "Set home for Nth NPC matching name (0-based)"),
             new("setHomeAll", "setHomeAll(name, x, y) → int",     "Set home for all NPCs matching name, returns count"),
-            new("create",     "create(name, displayName, x, y)",  "Create a new NPC (name or sprite ID)"),
+            new("create",     "create(name, displayName, x, y)",  "Create NPC by name, fullName, bestiaryId, or sprite ID"),
             new("remove",     "remove(name) → bool",              "Remove first NPC matching name"),
         ]),
 

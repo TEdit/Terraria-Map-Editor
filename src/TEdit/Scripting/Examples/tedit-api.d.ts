@@ -270,7 +270,7 @@ declare const signs: {
 
 // ─── npcs ────────────────────────────────────────────────────────────────────
 
-/** Query and modify town NPC data. */
+/** Query and modify world NPCs (town NPCs, bosses, enemies, and all bestiary entries). */
 declare const npcs: {
     /** Total number of NPCs. */
     readonly count: number;
@@ -282,7 +282,7 @@ declare const npcs: {
     setHome(name: string, x: number, y: number, index: number): void;
     /** Set home for all NPCs matching name. Returns count of NPCs moved. */
     setHomeAll(name: string, x: number, y: number): number;
-    /** Create a new NPC. Name can be internal name (e.g., "Merchant") or sprite ID. */
+    /** Create NPC by name, fullName, bestiaryId, or numeric sprite ID. Supports all bestiary entries. */
     create(name: string, displayName: string, x: number, y: number): void;
     /** Remove first NPC matching name. Returns true if removed. */
     remove(name: string): boolean;
