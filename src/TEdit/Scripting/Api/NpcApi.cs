@@ -107,15 +107,19 @@ public class NpcApi
         }
         else
         {
-            // Try case-insensitive match
+            // Try case-insensitive match against town NPCs
             var match = WorldConfiguration.NpcIds
                 .FirstOrDefault(kv => string.Equals(kv.Key, name, StringComparison.OrdinalIgnoreCase));
 
-            if (match.Key == null)
+            if (match.Key != null)
+            {
+                spriteId = match.Value;
+                internalName = match.Key;
+            }
+            else if (!TryResolveBestiaryNpc(name, id, out spriteId, out internalName))
+            {
                 return;
-
-            spriteId = match.Value;
-            internalName = match.Key;
+            }
         }
 
         var npc = new NPC
@@ -129,6 +133,41 @@ public class NpcApi
         };
 
         _world.NPCs.Add(npc);
+    }
+
+    /// <summary>
+    /// Resolves an NPC from bestiary data by numeric ID or name/fullName match.
+    /// </summary>
+    private static bool TryResolveBestiaryNpc(string name, int parsedId, out int spriteId, out string internalName)
+    {
+        spriteId = 0;
+        internalName = "";
+
+        var bestiary = WorldConfiguration.BestiaryData;
+        if (bestiary == null) return false;
+
+        // Try by parsed numeric ID
+        if (parsedId > 0 && bestiary.NpcById.TryGetValue(parsedId, out var byId))
+        {
+            spriteId = byId.Id;
+            internalName = byId.Name;
+            return true;
+        }
+
+        // Try by name or fullName (case-insensitive)
+        foreach (var npc in bestiary.NpcById.Values)
+        {
+            if (string.Equals(npc.Name, name, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(npc.FullName, name, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(npc.BestiaryId, name, StringComparison.OrdinalIgnoreCase))
+            {
+                spriteId = npc.Id;
+                internalName = npc.Name;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>
