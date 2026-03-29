@@ -3632,9 +3632,6 @@
       "name": "Vines",
       "category": "tile",
       "variants": {
-        "Purify": {
-          "tileId": 52
-        },
         "Corruption": {
           "tileId": 636
         },
