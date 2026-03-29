@@ -3212,7 +3212,7 @@ public partial class WorldRenderXna : UserControl
         Rectangle source;
         Rectangle visibleBounds = GetViewingArea();
 
-        foreach (var te in _wvm.CurrentWorld.TileEntities)
+        foreach (var te in _wvm.CurrentWorld.TileEntities.ToArray())
         {
             if (!visibleBounds.Contains(te.PosX, te.PosY)) continue;
 
