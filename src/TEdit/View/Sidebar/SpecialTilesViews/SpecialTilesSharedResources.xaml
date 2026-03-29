@@ -133,8 +133,8 @@
             </DockPanel>
         </Grid>
         <DataTemplate.Triggers>
-            <!-- Hide text when rendered in selection box (no ComboBoxItem ancestor) -->
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBoxItem}, FallbackValue={x:Null}}" Value="{x:Null}">
+            <!-- Hide text when rendered in selection box (no ListBoxItem ancestor) -->
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, FallbackValue={x:Null}}" Value="{x:Null}">
                 <Setter TargetName="ItemText" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="ItemId" Property="Visibility" Value="Collapsed" />
             </DataTrigger>
@@ -154,7 +154,7 @@
             </DockPanel>
         </Grid>
         <DataTemplate.Triggers>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBoxItem}, FallbackValue={x:Null}}" Value="{x:Null}">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, FallbackValue={x:Null}}" Value="{x:Null}">
                 <Setter TargetName="ItemText" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="ItemId" Property="Visibility" Value="Collapsed" />
             </DataTrigger>

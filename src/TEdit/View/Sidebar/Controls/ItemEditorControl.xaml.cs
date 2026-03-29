@@ -312,6 +312,9 @@ public partial class ItemEditorControl : UserControl
             combo.ItemContainerStyle = TryFindResource("RarityItemContainerStyle") as Style;
         }
 
+        if (DisplayMode == ItemDisplayMode.ImageOnly)
+            combo.Placeholder = string.Empty;
+
         // Bind SelectedValue to ItemId
         var binding = new Binding(nameof(ItemId))
         {
