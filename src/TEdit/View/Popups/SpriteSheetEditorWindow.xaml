@@ -127,7 +127,7 @@
             <StackPanel Margin="4,0,0,0">
 
                 <!-- Grid Settings -->
-                <TextBox Text="{Binding TileName}" IsReadOnly="True" FontWeight="Bold" Margin="0,0,0,8"/>
+                <TextBox Text="{Binding TileName, Mode=OneWay}" IsReadOnly="True" FontWeight="Bold" Margin="0,0,0,8"/>
 
                 <TextBlock Text="{x:Static p:Language.spriteeditor_grid_settings}" FontWeight="Bold" Margin="0,0,0,8"/>
 
