@@ -59,6 +59,14 @@
           "spriteOffsets": []
         },
         {
+          "name": "tileCorruptJungleGrass",
+          "default": {
+            "skyId": 60
+          },
+          "sourceIds": [661, 662],
+          "spriteOffsets": []
+        },
+        {
           "name": "spriteGrass",
           "delete": true,
           "default": {},
