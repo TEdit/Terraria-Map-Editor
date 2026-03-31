@@ -10,6 +10,7 @@ public class SaveVersionData
     public int MaxWallId { get; set; }
     public int MaxItemId { get; set; }
     public int MaxNpcId { get; set; }
+    public int MaxBannerTypes { get; set; }
     public int MaxMoonId { get; set; }
     public HashSet<int> FramedTileIds { get; set; } = [];
 

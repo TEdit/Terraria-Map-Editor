@@ -1070,27 +1070,28 @@ public partial class World
             return (int)bw.BaseStream.Position;
         }
 
-        // TODO: reformat for banner system
-        var maxNPCId = WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
-        bw.Write((short)(maxNPCId + 1));
-        for (int i = 0; i <= maxNPCId; i++)
+        // Write kill tally. The game uses BannerSystem.MaxBannerTypes (293 in
+        // v1.4.5.x), which is independent of MaxNpcId. Writing maxNpcId+1 entries
+        // bloats the file and causes PlayStation saves to be rejected.
+        // Use MaxBannerTypes from version config when available (version convert),
+        // otherwise preserve the file's original count.
+        var versionData = WorldConfiguration.SaveConfiguration.GetData(version);
+        int bannerCount = versionData.MaxBannerTypes > 0
+            ? versionData.MaxBannerTypes
+            : world.KilledMobs.Count;
+
+        bw.Write((short)bannerCount);
+        for (int i = 0; i < bannerCount; i++)
         {
-            if (world.KilledMobs.Count > i)
-            {
-                bw.Write(world.KilledMobs[i]);
-            }
-            else
-            {
-                bw.Write(0);
-            }
+            bw.Write(i < world.KilledMobs.Count ? world.KilledMobs[i] : 0);
         }
 
         if (world.Version >= 289)
         {
-            bw.Write((short)world.ClaimableBanners.Count);
-            foreach (var banner in world.ClaimableBanners)
+            bw.Write((short)bannerCount);
+            for (int i = 0; i < bannerCount; i++)
             {
-                bw.Write(banner);
+                bw.Write(i < world.ClaimableBanners.Count ? world.ClaimableBanners[i] : (ushort)0);
             }
         }
 
@@ -2464,19 +2465,12 @@ public partial class World
 
     private static void LoadBanners(BinaryReader r, World w)
     {
-        var maxNpcId = WorldConfiguration.SaveConfiguration.GetData(WorldConfiguration.SaveConfiguration.GetMaxVersion()).MaxNpcId;
-
         w.KilledMobs.Clear();
 
         int numberOfMobs = r.ReadInt16();
         for (int i = 0; i < numberOfMobs; i++)
         {
             w.KilledMobs.Add(r.ReadInt32());
-        }
-        // pad to maxNpcId so every mob index has an entry
-        for (int i = w.KilledMobs.Count; i <= maxNpcId; i++)
-        {
-            w.KilledMobs.Add(0);
         }
 
         if (w.Version < 289) { return; }
@@ -2487,11 +2481,6 @@ public partial class World
         for (int i = 0; i < claimableBannerCount; i++)
         {
             w.ClaimableBanners.Add(r.ReadUInt16());
-        }
-        // pad to maxNpcId so every mob index has an entry
-        for (int i = w.ClaimableBanners.Count; i <= maxNpcId; i++)
-        {
-            w.ClaimableBanners.Add(0);
         }
     }
 
