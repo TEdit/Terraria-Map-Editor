@@ -7,6 +7,7 @@ Index.dat
 *.gpState
 *.obj
 *.zip
+!src/TEdit.Tests/WorldFiles/*.zip
 *.exe
 *.pdb
 *.user
@@ -69,3 +70,6 @@ copilot-instructions.md
 CLAUDE.md
 /.serena/project.yml
 /.serena/
+
+# Ignore extracted wld files (they are stored in world-files.zip)
+src/TEdit.Tests/WorldFiles/**/*.wld

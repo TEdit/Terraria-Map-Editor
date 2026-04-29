@@ -40,7 +40,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="WorldFiles\*.wld">
+		<None Update="WorldFiles\world-files.zip">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="WorldFiles\*.twld">
