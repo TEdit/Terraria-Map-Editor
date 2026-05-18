@@ -3193,4 +3193,7 @@ Would you like to enable error reporting?</value>
   <data name="tool_morph_deco_sprites" xml:space="preserve">
     <value>Altars/Orbs</value>
   </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Read the full privacy policy</value>
+  </data>
 </root>

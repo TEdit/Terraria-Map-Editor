@@ -6040,6 +6040,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Read the full privacy policy.
+        /// </summary>
+        public static string telemetry_prompt_link {
+            get {
+                return ResourceManager.GetString("telemetry_prompt_link", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to TEdit Error Reporting.
         /// </summary>
         public static string telemetry_prompt_title {

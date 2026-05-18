@@ -173,9 +173,7 @@ public partial class MainWindow : FluentWindow
 
         if (shouldAsk)
         {
-            var result = await App.DialogService.ShowConfirmationAsync(
-                Properties.Language.telemetry_prompt_title,
-                Properties.Language.telemetry_prompt_message);
+            bool result = await ShowTelemetryPromptAsync();
 
             if (result)
             {
@@ -195,6 +193,54 @@ public partial class MainWindow : FluentWindow
         {
             Dispatcher.InvokeAsync(() => ShowWorldExplorer(), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
         }
+    }
+
+    private static async Task<bool> ShowTelemetryPromptAsync()
+    {
+        const string privacyUrl = "https://github.com/TEdit/Terraria-Map-Editor/blob/main/PRIVACY.md";
+
+        var textBlock = new System.Windows.Controls.TextBlock { TextWrapping = TextWrapping.Wrap };
+        textBlock.Inlines.Add(new System.Windows.Documents.Run(Properties.Language.telemetry_prompt_message));
+        textBlock.Inlines.Add(new System.Windows.Documents.LineBreak());
+        textBlock.Inlines.Add(new System.Windows.Documents.LineBreak());
+
+        var link = new System.Windows.Documents.Hyperlink(
+            new System.Windows.Documents.Run(Properties.Language.telemetry_prompt_link))
+        {
+            NavigateUri = new Uri(privacyUrl)
+        };
+        link.RequestNavigate += (_, e) =>
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = e.Uri.AbsoluteUri,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogException(ex);
+            }
+            e.Handled = true;
+        };
+        textBlock.Inlines.Add(link);
+
+        var messageBox = new Wpf.Ui.Controls.MessageBox
+        {
+            Title = Properties.Language.telemetry_prompt_title,
+            Content = textBlock,
+            PrimaryButtonText = "Yes",
+            SecondaryButtonText = "No",
+            IsPrimaryButtonEnabled = true,
+            IsSecondaryButtonEnabled = true,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Owner = Application.Current.MainWindow
+        };
+
+        var result = await messageBox.ShowDialogAsync();
+        return result == Wpf.Ui.Controls.MessageBoxResult.Primary;
     }
 
     private void HandleKeyUpEvent(object sender, KeyEventArgs e)
