@@ -3193,4 +3193,10 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corrigir lacuna de plano de fundo</value>
   </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>Altars/Orbs</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Read the full privacy policy</value>
+  </data>
 </root>
