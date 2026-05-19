@@ -471,7 +471,7 @@
     <value>Предыдущий</value>
   </data>
   <data name="find_result_summary" xml:space="preserve">
-    <value>{0} of {1}</value>
+    <value>{0} из {1}</value>
   </data>
   <data name="find_result_type_chest" xml:space="preserve">
     <value>Chest</value>
@@ -3179,7 +3179,7 @@
     <value>tModLoader</value>
   </data>
   <data name="world_explorer_tab_vanilla" xml:space="preserve">
-    <value>Vanilla</value>
+    <value>Классика</value>
   </data>
   <data name="world_explorer_title" xml:space="preserve">
     <value>Исследователь мира</value>
@@ -3192,5 +3192,11 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Исправление фонового пробела</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>Алтари/Сферы</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Read the full privacy policy</value>
   </data>
 </root>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="about_compatible_version" xml:space="preserve">
-    <value>兼容世界版本</value>
+    <value>Compatible World Version</value>
   </data>
   <data name="about_content_path" xml:space="preserve">
     <value>Content路径</value>
@@ -1057,7 +1057,7 @@
     <comment>enum:MorphBiome.Purify</comment>
   </data>
   <data name="nbt_explorer_title" xml:space="preserve">
-    <value>NBT探险者</value>
+    <value>NBT浏览器</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>添加灰烬</value>
@@ -3192,5 +3192,11 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>祭坛/珠子</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Read the full privacy policy</value>
   </data>
 </root>
