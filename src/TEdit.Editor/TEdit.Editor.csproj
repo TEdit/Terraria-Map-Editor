@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ReactiveUI.SourceGenerators" Version="2.6.30" PrivateAssets="all" />
+    <PackageReference Include="ReactiveUI.SourceGenerators" Version="3.1.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

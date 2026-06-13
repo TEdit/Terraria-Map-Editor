@@ -17,7 +17,7 @@
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="12.0.4" />
     <PackageReference Include="Avalonia.Desktop" Version="12.0.4" />
-    <PackageReference Include="ReactiveUI.Avalonia" Version="12.0.1" />
+    <PackageReference Include="ReactiveUI.Avalonia" Version="12.0.3" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="12.0.4" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="12.0.4" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
@@ -27,7 +27,7 @@
     <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="9.6.2" />
 
 	<PackageReference Include="ReactiveUI" Version="23.2.27" />
-	<PackageReference Include="ReactiveUI.SourceGenerators" Version="2.6.30" PrivateAssets="all" />
+	<PackageReference Include="ReactiveUI.SourceGenerators" Version="3.1.0" PrivateAssets="all" />
 
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.9" />
 
