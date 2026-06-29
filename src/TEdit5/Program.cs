@@ -1,5 +1,8 @@
-﻿using Avalonia;
-using ReactiveUI.Avalonia;
+
+using ReactiveUI.Builder;
+
+
+using Avalonia;
 using Projektanker.Icons.Avalonia;
 using Projektanker.Icons.Avalonia.MaterialDesign;
 using System;
@@ -12,8 +15,15 @@ class Program
     // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
     // yet and stuff might break.
     [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
+    public static void Main(string[] args)
+    {
+        ReactiveUI.Builder.RxAppBuilder.CreateReactiveUIBuilder()
+            .WithCoreServices()
+            .BuildApp();
+
+        BuildAvaloniaApp()
+            .StartWithClassicDesktopLifetime(args);
+    }
 
     // Avalonia configuration, don't remove; also used by visual designer.
     public static AppBuilder BuildAvaloniaApp()
@@ -22,10 +32,13 @@ class Program
             //.Register<FontAwesomeIconProvider>()
             .Register<MaterialDesignIconProvider>();
 
+
+
+
+
         return AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .WithInterFont()
-                .LogToTrace()
-                .UseReactiveUI(builder => { });
+                .LogToTrace();
     }
 }

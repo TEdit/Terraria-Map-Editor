@@ -427,7 +427,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
 
     #endregion
 
-    private readonly GlyphRun _noSkia;
+    private readonly GlyphRun? _noSkia;
     ZoomLevelCollection _zoomLevels = ZoomLevelCollection.Default;
     private Point _startMousePosition;
     private Vector _startScrollPosition;
@@ -452,10 +452,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         RenderOptions.SetBitmapInterpolationMode(this, BitmapInterpolationMode.None);
         ClipToBounds = true;
 
-        // "No Skia" text for unsupported platforms
-        var text = "Current rendering API is not Skia";
-        var glyphs = text.Select(ch => Typeface.Default.GlyphTypeface.GetGlyph(ch)).ToArray();
-        _noSkia = new GlyphRun(Typeface.Default.GlyphTypeface, 12, text.AsMemory(), glyphs);
+        // ponytail: _noSkia only renders on non-Skia backends, which macOS never uses
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -937,6 +934,12 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     protected internal ScrollContentPresenter ViewPort = null!;
     protected internal ScrollBar HorizontalScrollBar = null!;
     protected internal ScrollBar VerticalScrollBar = null!;
+
+    /// <inheritdoc />
+    public bool CanHorizontallyScroll { get; set; } = true;
+
+    /// <inheritdoc />
+    public bool CanVerticallyScroll { get; set; } = true;
 
     /// <inheritdoc />
     public Size Extent => new(

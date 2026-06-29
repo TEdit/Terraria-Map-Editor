@@ -12,7 +12,7 @@ namespace TEdit5.Controls;
 
 public class SkiaMinimapRenderBox : Control
 {
-    private readonly GlyphRun _noSkia;
+    private readonly GlyphRun? _noSkia;
 
     static SkiaMinimapRenderBox()
     {
@@ -27,10 +27,7 @@ public class SkiaMinimapRenderBox : Control
         RenderOptions.SetBitmapInterpolationMode(this, BitmapInterpolationMode.None);
         ClipToBounds = true;
 
-        // "No Skia" text for unsupported platforms
-        var text = "Current rendering API is not Skia";
-        var glyphs = text.Select(ch => Typeface.Default.GlyphTypeface.GetGlyph(ch)).ToArray();
-        _noSkia = new GlyphRun(Typeface.Default.GlyphTypeface, 12, text.AsMemory(), glyphs);
+        // ponytail: _noSkia only renders on non-Skia backends
     }
 
     public override void Render(DrawingContext context)
