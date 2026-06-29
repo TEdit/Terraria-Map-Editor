@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+using Avalonia.Threading;
+using ReactiveUI;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Concurrency;
 using TEdit5.Editor;
 
 namespace TEdit5.ViewModels;
@@ -17,17 +20,22 @@ public partial class ToolSelectionViewModel : ReactiveObject
     public ToolSelectionViewModel(IEnumerable<IMouseTool> tools)
     {
         _tools = tools.ToList();
-        SetToolCommand = ReactiveCommand.Create<IMouseTool>(SetTool);
+
+        SetToolCommand = ReactiveCommand.Create<IMouseTool>(
+            tool => SetTool(tool),
+            outputScheduler: CurrentThreadScheduler.Instance
+        );
 
         SetTool(Tools.FirstOrDefault(t => t.Name == "Arrow"));
     }
 
     private void SetTool(IMouseTool? tool)
     {
-        // deactivate previous tool
-        if (ActiveTool != null) { ActiveTool.IsActive = false; }
+        if (ActiveTool != null)
+        {
+            ActiveTool.IsActive = false;
+        }
 
-        // activate new tool
         if (tool != null)
         {
             tool.IsActive = true;

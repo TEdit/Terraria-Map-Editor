@@ -1,21 +1,24 @@
-﻿using Avalonia;
-using ReactiveUI.Avalonia;
+using System;
+using Avalonia;
+using ReactiveUI.Builder;
 using Projektanker.Icons.Avalonia;
 using Projektanker.Icons.Avalonia.MaterialDesign;
-using System;
 
 namespace TEdit5;
 
 class Program
 {
-    // Initialization code. Don't use any Avalonia, third-party APIs or any
-    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-    // yet and stuff might break.
     [STAThread]
-    public static void Main(string[] args) => BuildAvaloniaApp()
-        .StartWithClassicDesktopLifetime(args);
+    public static void Main(string[] args)
+    {
+        RxAppBuilder.CreateReactiveUIBuilder()
+            .WithCoreServices()
+            .BuildApp();
 
-    // Avalonia configuration, don't remove; also used by visual designer.
+        BuildAvaloniaApp()
+            .StartWithClassicDesktopLifetime(args);
+    }
+
     public static AppBuilder BuildAvaloniaApp()
     {
         IconProvider.Current
@@ -23,9 +26,8 @@ class Program
             .Register<MaterialDesignIconProvider>();
 
         return AppBuilder.Configure<App>()
-                .UsePlatformDetect()
-                .WithInterFont()
-                .LogToTrace()
-                .UseReactiveUI(builder => { });
+            .UsePlatformDetect()
+            .WithInterFont()
+            .LogToTrace();
     }
 }

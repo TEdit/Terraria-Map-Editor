@@ -8,12 +8,12 @@ namespace TEdit5.Controls.WorldRenderEngine.Layers;
 
 public class NoSkiaCustomDrawOp : ICustomDrawOperation
 {
-    private readonly IImmutableGlyphRunReference _noSkia;
+    private readonly IImmutableGlyphRunReference? _noSkia;
 
-    public NoSkiaCustomDrawOp(Rect bounds, GlyphRun noSkia)
+    public NoSkiaCustomDrawOp(Rect bounds, GlyphRun? noSkia)
     {
         Bounds = bounds;
-        _noSkia = noSkia.TryCreateImmutableGlyphRunReference();
+        _noSkia = noSkia?.TryCreateImmutableGlyphRunReference();
     }
 
     public void Dispose()
