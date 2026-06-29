@@ -24,9 +24,13 @@ public class DialogService : IDialogService
 public interface IDocumentService
 {
     ObservableCollection<DocumentViewModel> Documents { get; }
-    Task LoadWorldAsync(IStorageFile file, IProgress<ProgressChangedEventArgs>? progress = null);
-}
 
+    Task LoadWorldAsync(
+        IStorageFile file,
+        IProgress<ProgressChangedEventArgs>? progress = null);
+
+    Task SaveAsync(DocumentViewModel document);
+}
 
 public partial class DocumentService : ReactiveObject, IDocumentService
 {
@@ -51,7 +55,11 @@ public partial class DocumentService : ReactiveObject, IDocumentService
 
             if (world != null)
             {
-                var document = new DocumentViewModel(world, toolSelection, tilePicker);
+                var document = new DocumentViewModel(
+                    world,
+                    file.Path.LocalPath,
+                    toolSelection,
+                    tilePicker);
 
                 Documents.Add(document);
             }
@@ -61,5 +69,9 @@ public partial class DocumentService : ReactiveObject, IDocumentService
                 Debug.WriteLine("Error loading world: " + errors);
             }
         }
+    }
+    public async Task SaveAsync(DocumentViewModel document)
+    {
+        await document.SaveAsync();
     }
 }
