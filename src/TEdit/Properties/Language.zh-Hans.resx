@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="about_compatible_version" xml:space="preserve">
-    <value>兼容世界版本</value>
+    <value>兼容的世界文件版本</value>
   </data>
   <data name="about_content_path" xml:space="preserve">
     <value>Content路径</value>
@@ -1057,7 +1057,7 @@
     <comment>enum:MorphBiome.Purify</comment>
   </data>
   <data name="nbt_explorer_title" xml:space="preserve">
-    <value>NBT探险者</value>
+    <value>NBT浏览器</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>添加灰烬</value>
@@ -2552,7 +2552,7 @@
     <value>地下背景</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
-    <value>鹿角怪</value>
+    <value>独眼巨鹿</value>
   </data>
   <data name="tool_wp_boss_destroyer" xml:space="preserve">
     <value>毁灭者</value>
@@ -2966,7 +2966,7 @@
     <value>种子</value>
   </data>
   <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
-    <value>双重地下城</value>
+    <value>对偶地牢</value>
   </data>
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>感染者</value>
@@ -3192,5 +3192,11 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>祭坛/珠子</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>阅读完整的隐私政策</value>
   </data>
 </root>
