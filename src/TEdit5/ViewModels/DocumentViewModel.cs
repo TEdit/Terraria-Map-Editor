@@ -48,11 +48,15 @@ public partial class DocumentViewModel : ReactiveObject
             (x, y, height, width) => { });
     }
 
-    public async Task SaveAsync()
+    public Task SaveAsync()
     {
-        await World.SaveAsync(
-            World,
-            FileName
-        );
+        // Run synchronously on the UI thread. Saving mutates World state that is
+        // bound to the UI (the PropertyGrid over World, plus the Chests/Signs/
+        // TileEntities ObservableCollections that Validate() prunes, and
+        // FileRevision). World.SaveAsync does this work on a background thread,
+        // so those change notifications reach Avalonia bindings off-thread and
+        // throw "Call from invalid thread". World.Save is the synchronous variant.
+        World.Save(World, FileName);
+        return Task.CompletedTask;
     }
 }

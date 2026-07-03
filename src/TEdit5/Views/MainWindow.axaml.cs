@@ -23,6 +23,24 @@ public partial class MainWindow : Window
         await OpenWorldDialog();
     }
 
+    public async void SaveWorldButton_Clicked(object sender, RoutedEventArgs args)
+    {
+        var document = MainWindowViewModel.SelectedDocument;
+        if (document == null) return;
+
+        MainWindowViewModel.ProgressText = "Saving...";
+        try
+        {
+            await MainWindowViewModel.DocumentService.SaveAsync(document);
+            MainWindowViewModel.ProgressText = "Saved";
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine("SAVE FAILED: " + ex);
+            MainWindowViewModel.ProgressText = "Save failed: " + ex.Message;
+        }
+    }
+
     private async Task OpenWorldDialog()
     {
         var fileTypes = new List<FilePickerFileType>
