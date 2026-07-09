@@ -33,7 +33,11 @@
 
         <v:PaintModeView Grid.Column="0" DataContext="{Binding ToolSelection}"></v:PaintModeView>
         <Grid Grid.Column="1" Grid.RowSpan="3" RowDefinitions="30,30,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Button Grid.Row="0" Click="LoadWorldButton_Clicked" HorizontalAlignment="Stretch">Load World</Button>
+            <Grid Grid.Row="0" ColumnDefinitions="*,*">
+                <Button Grid.Column="0" Click="LoadWorldButton_Clicked" HorizontalAlignment="Stretch">Load World</Button>
+                <Button Grid.Column="1" Click="SaveWorldButton_Clicked" HorizontalAlignment="Stretch"
+                        IsEnabled="{Binding SelectedDocument, Converter={x:Static ObjectConverters.IsNotNull}}">Save World</Button>
+            </Grid>
             <TextBox Grid.Row="1" Text="{Binding SelectedDocument.World.Title}"  HorizontalAlignment="Stretch" />
             <v:WorldPropertiesView Grid.Row="2" DataContext="{Binding SelectedDocument}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </Grid>
