@@ -35,7 +35,7 @@
     <PackageReference Include="LuaCSharp" Version="0.5.3" />
     <PackageReference Include="WPF-UI" Version="4.3.0" />
     <PackageReference Include="AvalonEdit" Version="6.3.1.120" />
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.4.1" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.5" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
