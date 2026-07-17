@@ -1,0 +1,71 @@
+<ui:FluentWindow x:Class="TEdit.Editor.Plugins.ReplayPluginPlayerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    ResizeMode="NoResize" Width="300" Height="80"
+    WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Topmost="True"
+    ExtendsContentIntoTitleBar="True"
+    WindowBackdropType="Mica"
+    Title="Replay Player">
+
+    <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="Replay Player"/>
+
+        <DockPanel Grid.Row="1" Margin="4,2,4,0">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <ComboBox x:Name="ModeCombo" Width="80" Margin="0,0,4,0"
+                          SelectionChanged="ModeCombo_SelectionChanged">
+                    <ComboBoxItem Content="Speed" IsSelected="True"/>
+                    <ComboBoxItem Content="Delay"/>
+                </ComboBox>
+                <ComboBox x:Name="RateCombo" Width="96"
+                          SelectionChanged="RateCombo_SelectionChanged">
+                    <ComboBoxItem Content="0.5x"/>
+                    <ComboBoxItem Content="1x" IsSelected="True"/>
+                    <ComboBoxItem Content="2x"/>
+                    <ComboBoxItem Content="4x"/>
+                    <ComboBoxItem Content="16x"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="StartButton" Width="32" Height="24"
+                        Padding="0" Margin="0,0,2,0" Click="StartButton_Click">
+                    <ui:SymbolIcon Symbol="ArrowReset20" FontSize="14"/>
+                </Button>
+                <Button x:Name="StepBackButton" Width="32" Height="24"
+                        Padding="0" Margin="0,0,2,0" Click="StepBackButton_Click">
+                    <ui:SymbolIcon Symbol="CaretLeft20" FontSize="14"/>
+                </Button>
+                <Button x:Name="PlayPauseButton" Width="32" Height="24"
+                        Padding="0" Margin="0,0,2,0" Click="PlayPauseButton_Click">
+                    <ui:SymbolIcon x:Name="PlayPauseIcon" Symbol="Play20" FontSize="14"/>
+                </Button>
+                <Button x:Name="StepForwardButton" Width="32" Height="24"
+                        Padding="0" Margin="0,0,8,0" Click="StepForwardButton_Click">
+                    <ui:SymbolIcon Symbol="CaretRight20" FontSize="14"/>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+
+        <Grid Grid.Row="2" Margin="8,4,8,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="ProgressSlider" Minimum="0" Maximum="1" Value="0"
+                    VerticalAlignment="Center" Margin="0,0,8,0"
+                    ValueChanged="ProgressSlider_ValueChanged"/>
+
+            <TextBlock x:Name="PositionText" Text="00:00 / 00:00" Grid.Column="1"
+                       VerticalAlignment="Center"
+                       FontFamily="Consolas" FontSize="15"/>
+        </Grid>
+    </Grid>
+</ui:FluentWindow>
