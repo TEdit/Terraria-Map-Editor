@@ -23,7 +23,7 @@ public static class ViewModelLocator
             return _worldViewModel;
         }
     }
-    
+
     public static BestiaryViewModel GetBestiaryViewModel() => new BestiaryViewModel();
     public static BannerViewModel GetBannerViewModel() => new BannerViewModel();
     public static CreativePowersViewModel GetCreativePowersViewModel() => new CreativePowersViewModel();
@@ -98,6 +98,7 @@ public static class ViewModelLocator
         wvm.Plugins.Add(new RemoveAllChestsPlugin(wvm));
         wvm.Plugins.Add(new RemoveAllUnlockedChestsPlugin(wvm));
         wvm.Plugins.Add(new RemoveTileWithPlugin(wvm));
+        wvm.Plugins.Add(new ReplayPlugin(wvm));
 
         wvm.Plugins.Add(new SandSettlePlugin(wvm));
         wvm.Plugins.Add(new SimpleOreGeneratorPlugin(wvm));
@@ -107,7 +108,7 @@ public static class ViewModelLocator
 #endif
         wvm.Plugins.Add(new TextStatuePlugin(wvm));
         wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
-        
+
         return wvm;
     }
 }
