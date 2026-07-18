@@ -100,9 +100,12 @@ public partial class App : Application
         var totalSw = Stopwatch.StartNew();
         var sw = Stopwatch.StartNew();
 
-        var splashScreen = new SplashScreen("Images/te5-logo.png");
-        splashScreen.Show(autoClose: true, topMost: false);
-        ErrorLogging.LogDebug($"[Startup] SplashScreen.Show: {sw.ElapsedMilliseconds}ms");
+        if (UserSettingsService.Current.ShowSplashScreen)
+        {
+            var splashScreen = new SplashScreen("Images/te5-logo.png");
+            splashScreen.Show(autoClose: true, topMost: false);
+            ErrorLogging.LogDebug($"[Startup] SplashScreen.Show: {sw.ElapsedMilliseconds}ms");
+        }
 
         sw.Restart();
         // Initialize WPF UI theme

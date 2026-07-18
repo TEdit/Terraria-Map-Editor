@@ -1672,6 +1672,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>Show news and announcements in the editor</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>Show Intro Splash Screen</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>Show the TEdit logo while the application starts</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>Show Points</value>
   </data>

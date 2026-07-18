@@ -37,6 +37,7 @@ public class UserSettings : INotifyPropertyChanged
     private List<string> _pinnedWorlds = new();
     private List<string> _recentWorlds = new();
     private Dictionary<string, List<InputBinding>> _inputBindings = new();
+    private bool _showSplashScreen = true;
     private bool _showTextureLoadingNotice = true;
     private bool _enableMica = true;
     private bool _highQualityBrushPreview = true;
@@ -242,6 +243,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _showTextureLoadingNotice;
         set => SetField(ref _showTextureLoadingNotice, value);
+    }
+
+    public bool ShowSplashScreen
+    {
+        get => _showSplashScreen;
+        set => SetField(ref _showSplashScreen, value);
     }
 
     public bool EnableMica

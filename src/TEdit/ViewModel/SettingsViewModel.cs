@@ -227,6 +227,16 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
+            Name = Language.settings_show_splash_screen,
+            Description = Language.settings_show_splash_screen_desc,
+            Category = Language.settings_category_general,
+            EditorType = SettingEditorType.CheckBox,
+            Getter = () => UserSettingsService.Current.ShowSplashScreen,
+            Setter = v => UserSettingsService.Current.ShowSplashScreen = (bool)v
+        });
+
+        AllSettings.Add(new SettingItem
+        {
             Name = Language.settings_show_all_weapon_rack_items,
             Description = Language.settings_show_all_weapon_rack_items_desc,
             Category = Language.settings_category_general,

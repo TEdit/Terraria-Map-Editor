@@ -4686,7 +4686,25 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("settings_show_news_desc", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Show Intro Splash Screen.
+        /// </summary>
+        public static string settings_show_splash_screen {
+            get {
+                return ResourceManager.GetString("settings_show_splash_screen", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Show the TEdit logo while the application starts.
+        /// </summary>
+        public static string settings_show_splash_screen_desc {
+            get {
+                return ResourceManager.GetString("settings_show_splash_screen_desc", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Show Points.
         /// </summary>
