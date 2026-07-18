@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Win32;
 using TEdit.ViewModel;
+using TEdit.Utility;
 using Wpf.Ui.Controls;
 using Button = System.Windows.Controls.Button;
 using MessageBox = Wpf.Ui.Controls.MessageBox;
@@ -198,6 +199,42 @@ public partial class WorldExplorerWindow : FluentWindow
     private void Refresh_Click(object sender, RoutedEventArgs e)
     {
         _ = _vm.RefreshAsync();
+    }
+
+    private async void ClearCache_Click(object sender, RoutedEventArgs e)
+    {
+        var stats = FileMaintenance.GetTEditCacheStats();
+        var messageBox = new MessageBox
+        {
+            Title = "Clear TEdit Cache",
+            Content = $"Delete {stats.FileCount:N0} cached files ({FileMaintenance.FormatFileSize(stats.Bytes)})?\n\n" +
+                      "This removes TEdit backups, autosaves, and all undo/redo history. " +
+                      "Terraria world files and .bak files are not affected.",
+            PrimaryButtonText = "Clear Cache",
+            CloseButtonText = "Cancel",
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Owner = this
+        };
+
+        var confirmation = await messageBox.ShowDialogAsync();
+        if (confirmation != Wpf.Ui.Controls.MessageBoxResult.Primary) return;
+
+        var result = _wvm.ClearTEditCache();
+        await _vm.RefreshAsync();
+
+        var resultBox = new MessageBox
+        {
+            Title = "Cache Cleared",
+            Content = $"Deleted {result.DeletedFileCount:N0} files and freed " +
+                      $"{FileMaintenance.FormatFileSize(result.FreedBytes)}." +
+                      (result.FailedFileCount > 0
+                          ? $"\n\n{result.FailedFileCount:N0} files could not be deleted; see the log for details."
+                          : string.Empty),
+            PrimaryButtonText = "OK",
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Owner = this
+        };
+        await resultBox.ShowDialogAsync();
     }
 
     private void NewWorld_Click(object sender, RoutedEventArgs e)

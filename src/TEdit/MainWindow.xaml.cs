@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using ReactiveUI;
 using System.Windows.Input;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Editor;
@@ -44,6 +45,8 @@ public partial class MainWindow : FluentWindow
     private WorldViewModel _vm;
     private ITool _toolBeforePicker;
     private DateTime _pickerKeyDownTime;
+    private bool _allowClose;
+    private bool _closePromptActive;
 
     public MainWindow()
     {
@@ -192,6 +195,49 @@ public partial class MainWindow : FluentWindow
         if (Application.Current.Properties["OpenFile"] == null)
         {
             Dispatcher.InvokeAsync(() => ShowWorldExplorer(), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+        }
+    }
+
+    private async void MainWindow_Closing(object sender, CancelEventArgs e)
+    {
+        if (_allowClose || !_vm.HasUnsavedUserChanges) return;
+
+        e.Cancel = true;
+        if (_closePromptActive) return;
+        _closePromptActive = true;
+
+        try
+        {
+            var messageBox = new Wpf.Ui.Controls.MessageBox
+            {
+                Title = "Unsaved Changes",
+                Content = "Save changes before closing TEdit?",
+                PrimaryButtonText = "Save",
+                SecondaryButtonText = "Don't Save",
+                CloseButtonText = "Cancel",
+                IsPrimaryButtonEnabled = true,
+                IsSecondaryButtonEnabled = true,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                Owner = this
+            };
+
+            var result = await messageBox.ShowDialogAsync();
+            if (result == Wpf.Ui.Controls.MessageBoxResult.Primary)
+            {
+                await _vm.SaveBeforeCloseAsync();
+                if (_vm.HasUnsavedUserChanges) return;
+            }
+            else if (result != Wpf.Ui.Controls.MessageBoxResult.Secondary)
+            {
+                return;
+            }
+
+            _allowClose = true;
+            Close();
+        }
+        finally
+        {
+            _closePromptActive = false;
         }
     }
 

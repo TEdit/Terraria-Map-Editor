@@ -38,6 +38,33 @@ public class MorphConfigurationTests
     }
 
     [Fact]
+    public void Load_FromEmbeddedResource_UsesCurrentEvilJungleConversions()
+    {
+        using var stream = TEdit.Terraria.Loaders.JsonDataLoader.GetDataStream("morphBiomes.json");
+        var config = MorphConfiguration.Load(stream);
+
+        var purifyJungle = config.Biomes["Purify"].MorphTiles
+            .Single(m => m.Name == "tileCorruptJungleGrass");
+        purifyJungle.SourceIds.ShouldBe(new ushort[] { 661, 662 }, ignoreOrder: true);
+        purifyJungle.Default.SkyId.ShouldBe((ushort)60);
+
+        var corruptionJungle = config.Biomes["Corruption"].MorphTiles
+            .Single(m => m.Name == "tileJungleGrass");
+        corruptionJungle.Default.SkyId.ShouldBe((ushort)661);
+        corruptionJungle.UseMoss.ShouldBeFalse();
+
+        var crimsonJungle = config.Biomes["Crimson"].MorphTiles
+            .Single(m => m.Name == "tileJungleGrass");
+        crimsonJungle.Default.SkyId.ShouldBe((ushort)662);
+        crimsonJungle.UseMoss.ShouldBeFalse();
+
+        config.Biomes["Corruption"].MorphTiles
+            .ShouldNotContain(m => m.SourceIds.Contains((ushort)59));
+        config.Biomes["Crimson"].MorphTiles
+            .ShouldNotContain(m => m.SourceIds.Contains((ushort)59));
+    }
+
+    [Fact]
     public void IsMoss_ReturnsTrueForMossTypes()
     {
         using var stream = TEdit.Terraria.Loaders.JsonDataLoader.GetDataStream("morphBiomes.json");

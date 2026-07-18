@@ -400,6 +400,9 @@
         <DockPanel Grid.Row="3" Margin="10,8,10,10">
             <ui:Button DockPanel.Dock="Left" Content="{x:Static p:Language.menu_file_new}" Width="100" Padding="4"
                        Appearance="Success" Click="NewWorld_Click" />
+            <ui:Button DockPanel.Dock="Left" Content="Clear Cache" Padding="10,4" Margin="8,0,0,0"
+                       Appearance="Secondary" Click="ClearCache_Click"
+                       ToolTip="Delete TEdit backups, autosaves, and undo/redo history" />
             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
                 <ui:Button Content="{x:Static p:Language.world_explorer_open}" Width="80" Padding="4"
                            Appearance="Primary" Margin="0,0,8,0" Click="Open_Click" />

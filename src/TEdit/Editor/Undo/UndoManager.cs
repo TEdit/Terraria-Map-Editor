@@ -10,6 +10,7 @@ using ReactiveUI.SourceGenerators;
 using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.ViewModel;
+using TEdit.Utility;
 
 namespace TEdit.Editor.Undo;
 
@@ -152,6 +153,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
     private Task _pendingClose;
 
     public int CurrentIndex => _currentIndex;
+    public string CacheDirectory => Dir;
 
 
 
@@ -211,6 +213,23 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         _buffer?.Dispose();
         _buffer = null;
         Buffer = new UndoBuffer(GetUndoFileName(), _world);
+    }
+
+    public CacheCleanupResult ClearHistory()
+    {
+        WaitForPendingClose();
+        _buffer?.Dispose();
+        _buffer = null;
+
+        var result = FileMaintenance.ClearDirectoryContents(
+            Dir,
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase) { UndoAliveFile });
+
+        _currentIndex = 0;
+        _maxIndex = 0;
+        CreateBuffer();
+        _undoApplied?.Invoke();
+        return result;
     }
 
     public void SaveTile(Vector2Int32 p)

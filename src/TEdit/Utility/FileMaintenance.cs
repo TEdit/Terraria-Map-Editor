@@ -1,10 +1,21 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TEdit.Common;
 using TEdit.ViewModel;
 
 namespace TEdit.Utility;
+
+public readonly record struct CacheStats(int FileCount, long Bytes);
+
+public readonly record struct CacheCleanupResult(int DeletedFileCount, long FreedBytes, int FailedFileCount)
+{
+    public static CacheCleanupResult operator +(CacheCleanupResult left, CacheCleanupResult right) =>
+        new(left.DeletedFileCount + right.DeletedFileCount,
+            left.FreedBytes + right.FreedBytes,
+            left.FailedFileCount + right.FailedFileCount);
+}
 
 public static class FileMaintenance
 {
@@ -270,6 +281,138 @@ public static class FileMaintenance
         catch (Exception ex)
         {
             ErrorLogging.LogException(ex);
+        }
+    }
+
+    public static CacheStats GetTEditCacheStats()
+    {
+        var paths = new[]
+        {
+            WorldViewModel.BackupPath,
+            WorldViewModel.AutoSavePath,
+            Path.Combine(WorldViewModel.TempPath, "undo")
+        };
+
+        int fileCount = 0;
+        long bytes = 0;
+        foreach (var path in paths.Distinct(StringComparer.OrdinalIgnoreCase))
+        {
+            if (!Directory.Exists(path)) continue;
+
+            try
+            {
+                foreach (var file in Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories))
+                {
+                    try
+                    {
+                        fileCount++;
+                        bytes += new FileInfo(file).Length;
+                    }
+                    catch
+                    {
+                        // A cache file may disappear while statistics are collected.
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogWarn($"Unable to inspect cache directory {path}: {ex.Message}");
+            }
+        }
+
+        return new CacheStats(fileCount, bytes);
+    }
+
+    public static CacheCleanupResult ClearBackupAndAutosaveCaches() =>
+        ClearDirectoryContents(WorldViewModel.BackupPath) +
+        ClearDirectoryContents(WorldViewModel.AutoSavePath);
+
+    public static CacheCleanupResult ClearStaleUndoCaches(string activeUndoDirectory = null)
+    {
+        string undoRoot = Path.Combine(WorldViewModel.TempPath, "undo");
+        if (!Directory.Exists(undoRoot)) return default;
+
+        string activePath = string.IsNullOrWhiteSpace(activeUndoDirectory)
+            ? null
+            : Path.GetFullPath(activeUndoDirectory);
+        CacheCleanupResult result = default;
+
+        foreach (var file in Directory.GetFiles(undoRoot, "*", SearchOption.TopDirectoryOnly))
+            result += DeleteCacheFile(file);
+
+        foreach (var directory in Directory.GetDirectories(undoRoot, "*", SearchOption.TopDirectoryOnly))
+        {
+            if (activePath != null &&
+                string.Equals(Path.GetFullPath(directory), activePath, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            result += ClearDirectoryContents(directory);
+            try
+            {
+                Directory.Delete(directory, false);
+            }
+            catch (DirectoryNotFoundException)
+            {
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogWarn($"Unable to remove undo cache directory {directory}: {ex.Message}");
+            }
+        }
+
+        return result;
+    }
+
+    public static CacheCleanupResult ClearDirectoryContents(
+        string directory,
+        IReadOnlySet<string> excludedFiles = null)
+    {
+        if (!Directory.Exists(directory)) return default;
+
+        var exclusions = excludedFiles == null
+            ? null
+            : new HashSet<string>(excludedFiles.Select(Path.GetFullPath), StringComparer.OrdinalIgnoreCase);
+        CacheCleanupResult result = default;
+
+        foreach (var file in Directory.GetFiles(directory, "*", SearchOption.AllDirectories))
+        {
+            if (exclusions?.Contains(Path.GetFullPath(file)) == true) continue;
+            result += DeleteCacheFile(file);
+        }
+
+        foreach (var child in Directory.GetDirectories(directory, "*", SearchOption.AllDirectories)
+                     .OrderByDescending(path => path.Length))
+        {
+            try
+            {
+                if (!Directory.EnumerateFileSystemEntries(child).Any())
+                    Directory.Delete(child, false);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogWarn($"Unable to remove empty cache directory {child}: {ex.Message}");
+            }
+        }
+
+        return result;
+    }
+
+    private static CacheCleanupResult DeleteCacheFile(string file)
+    {
+        try
+        {
+            long size = new FileInfo(file).Length;
+            File.Delete(file);
+            return new CacheCleanupResult(1, size, 0);
+        }
+        catch (FileNotFoundException)
+        {
+            return default;
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogWarn($"Unable to delete cache file {file}: {ex.Message}");
+            return new CacheCleanupResult(0, 0, 1);
         }
     }
 

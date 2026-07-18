@@ -8,6 +8,7 @@
         Title="{Binding WindowTitle}" Height="900" Width="1600"
         MaxWidth="4339"
         Loaded="MainWindow_Loaded"
+        Closing="MainWindow_Closing"
         WindowStartupLocation="Manual"
         UseLayoutRounding="True" Icon="/TEdit;component/Images/te.ico"
         xmlns:p="clr-namespace:TEdit.Properties"

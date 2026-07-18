@@ -2187,6 +2187,35 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
+    public CacheCleanupResult ClearTEditCache()
+    {
+        bool hadUnsavedChanges = HasUnsavedChanges;
+        bool hadUnsavedUserChanges = HasUnsavedUserChanges;
+        CacheCleanupResult result = FileMaintenance.ClearBackupAndAutosaveCaches();
+
+        if (_undoManager != null)
+        {
+            result += _undoManager.ClearHistory();
+            result += FileMaintenance.ClearStaleUndoCaches(_undoManager.CacheDirectory);
+
+            _lastSavedUndoIndex = _undoManager.CurrentIndex;
+            _lastUserSavedUndoIndex = _undoManager.CurrentIndex;
+            _hasUnsavedPropertyChanges = hadUnsavedChanges;
+            _hasUnsavedUserPropertyChanges = hadUnsavedUserChanges;
+            this.RaisePropertyChanged(nameof(HasUnsavedChanges));
+            this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+            UpdateTitle();
+        }
+        else
+        {
+            result += FileMaintenance.ClearStaleUndoCaches();
+        }
+
+        return result;
+    }
+
+    public Task SaveBeforeCloseAsync() => SaveWorldAsync();
+
     public bool ShowGrid
     {
         get { return _showGrid; }
@@ -4067,6 +4096,7 @@ public partial class WorldViewModel : ReactiveObject
 
     private async Task SaveWorldThreadedAsync(string filename, uint version = 0, bool preserveAll = true)
     {
+        bool saveCompleted = false;
         await Task.Run(async () =>
         {
             try
@@ -4097,9 +4127,10 @@ public partial class WorldViewModel : ReactiveObject
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
             }));
+            saveCompleted = true;
         }).ContinueWith(t =>
         {
-            if (t.IsCompletedSuccessfully && _undoManager != null)
+            if (t.IsCompletedSuccessfully && saveCompleted && _undoManager != null)
             {
                 bool isAutosave = filename.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase);
 
