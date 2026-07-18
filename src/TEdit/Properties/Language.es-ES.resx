@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -1684,6 +1684,12 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>Activar/desactivar la visibilidad de cables rojos</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>Mostrar pantalla de inicio</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>Mostrar el logo de TEdit mientras se inicia la aplicación</value>
+  </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>Mostrar Texturas</value>
   </data>
@@ -2117,6 +2123,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Spawn del Equipo Amarillo</value>
   </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Leer la política de privacidad completa</value>
+  </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>TEdit puede enviar informes de error de forma anónima para ayudar a mejorar la estabilidad del programa.
 
@@ -2329,6 +2338,9 @@ Qué NO se recolecta:
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>Decoraciones</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>Altares/Orbes</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>Maldad</value>

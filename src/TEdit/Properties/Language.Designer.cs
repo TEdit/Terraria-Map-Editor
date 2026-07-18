@@ -4686,25 +4686,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("settings_show_news_desc", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Show Intro Splash Screen.
-        /// </summary>
-        public static string settings_show_splash_screen {
-            get {
-                return ResourceManager.GetString("settings_show_splash_screen", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Show the TEdit logo while the application starts.
-        /// </summary>
-        public static string settings_show_splash_screen_desc {
-            get {
-                return ResourceManager.GetString("settings_show_splash_screen_desc", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Show Points.
         /// </summary>
@@ -4738,6 +4720,24 @@ namespace TEdit.Properties {
         public static string settings_show_red_wires_desc {
             get {
                 return ResourceManager.GetString("settings_show_red_wires_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Intro Splash Screen.
+        /// </summary>
+        public static string settings_show_splash_screen {
+            get {
+                return ResourceManager.GetString("settings_show_splash_screen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show the TEdit logo while the application starts.
+        /// </summary>
+        public static string settings_show_splash_screen_desc {
+            get {
+                return ResourceManager.GetString("settings_show_splash_screen_desc", resourceCulture);
             }
         }
         
@@ -6038,6 +6038,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Read the full privacy policy.
+        /// </summary>
+        public static string telemetry_prompt_link {
+            get {
+                return ResourceManager.GetString("telemetry_prompt_link", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TEdit can send anonymous error reports to help improve stability.
         ///
         ///What is collected:
@@ -6057,15 +6066,6 @@ namespace TEdit.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Read the full privacy policy.
-        /// </summary>
-        public static string telemetry_prompt_link {
-            get {
-                return ResourceManager.GetString("telemetry_prompt_link", resourceCulture);
-            }
-        }
-
         /// <summary>
         ///   Looks up a localized string similar to TEdit Error Reporting.
         /// </summary>
@@ -6641,7 +6641,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_morph_deco_sprites", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Decorations.
         /// </summary>
@@ -6650,7 +6650,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_morph_decorations", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Evil.
         /// </summary>
