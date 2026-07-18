@@ -942,6 +942,15 @@ public class TwldFileTests
 
     private static string ResolvePath(string relativePath)
     {
+        const string sharedFixturePrefix = @"src\TEdit.Tests\";
+        if (relativePath.StartsWith(sharedFixturePrefix, StringComparison.OrdinalIgnoreCase))
+        {
+            var outputRelativePath = relativePath[sharedFixturePrefix.Length..];
+            var outputPath = Path.Combine(AppContext.BaseDirectory, outputRelativePath);
+            if (File.Exists(outputPath))
+                return outputPath;
+        }
+
         // Walk up from test bin dir to find repo root
         var dir = new DirectoryInfo(AppContext.BaseDirectory);
         while (dir != null && !File.Exists(Path.Combine(dir.FullName, "src", "TEdit.slnx")))

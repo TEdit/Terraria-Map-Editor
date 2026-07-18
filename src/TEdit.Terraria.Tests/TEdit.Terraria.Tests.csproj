@@ -28,4 +28,20 @@
     <ProjectReference Include="..\TEdit.Terraria\TEdit.Terraria.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\TEdit.Tests\TestWorldArchives.cs" Link="TestWorldArchives.cs" />
+    <Content Include="..\TEdit.Tests\WorldFiles\**\*.wld.zip">
+      <Link>WorldFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\TEdit.Tests\WorldFiles\**\*.wld">
+      <Link>WorldFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\TEdit.Tests\WorldFiles\**\*.twld">
+      <Link>WorldFiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
