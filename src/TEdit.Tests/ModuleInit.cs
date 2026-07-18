@@ -8,6 +8,7 @@ internal static class ModuleInit
     [ModuleInitializer]
     internal static void Initialize()
     {
+        TestWorldArchives.Prepare();
         RxAppBuilder.CreateReactiveUIBuilder().WithWpf().BuildApp();
     }
 }

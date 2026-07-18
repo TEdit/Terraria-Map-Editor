@@ -7,6 +7,8 @@ Index.dat
 *.gpState
 *.obj
 *.zip
+!src/TEdit.Tests/WorldFiles/*.wld.zip
+!src/TEdit.Tests/WorldFiles/**/*.wld.zip
 *.exe
 *.pdb
 *.user
@@ -69,3 +71,6 @@ copilot-instructions.md
 CLAUDE.md
 /.serena/project.yml
 /.serena/
+
+# Test worlds are stored as immutable per-world archives.
+src/TEdit.Tests/WorldFiles/**/*.wld
