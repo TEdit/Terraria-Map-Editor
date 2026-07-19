@@ -98,7 +98,11 @@ public partial class World
                     {
                         using (var bw = new BinaryWriter(fs))
                         {
-                            if (versionOverride < 0 || world.IsV0 || world.Version == 38)
+                            if (world.IsWinPhone && versionOverride == 0)
+                            {
+                                SaveWinPhoneVerifiedUnchanged(world, fs);
+                            }
+                            else if (versionOverride < 0 || world.IsV0 || world.Version == 38)
                             {
                                 bool addLight = (currentWorldVersion > world.Version); // Check if world is being downgraded.
                                 world.Version = (uint)Math.Abs(versionOverride);
@@ -197,7 +201,11 @@ public partial class World
                 {
                     using (var bw = new BinaryWriter(fs))
                     {
-                        if (versionOverride < 0 || world.IsV0 || world.Version == 38)
+                        if (world.IsWinPhone && versionOverride == 0)
+                        {
+                            SaveWinPhoneVerifiedUnchanged(world, fs);
+                        }
+                        else if (versionOverride < 0 || world.IsV0 || world.Version == 38)
                         {
                             bool addLight = (currentWorldVersion > world.Version) ? true : false; // Check if world is being downgraded.
                             world.Version = (uint)Math.Abs(versionOverride);
@@ -360,9 +368,16 @@ public partial class World
                         b.BaseStream.Position = (long)0;
 
                         progress?.Report(new ProgressChangedEventArgs(0, "Loading File Header..."));
-                        // read section pointers and tile frame data
-                        if (!LoadSectionHeader(b, out _, out _, w))
-                            throw new TEditFileFormatException("Invalid File Format Section");
+                        if (TryLoadWinPhone(b, w, headersOnly: true, progress))
+                        {
+                            status.LoaderVersion = 3;
+                        }
+                        else
+                        {
+                            // read section pointers and tile frame data
+                            if (!LoadSectionHeader(b, out _, out _, w))
+                                throw new TEditFileFormatException("Invalid File Format Section");
+                        }
 
                         if (w.IsChinese)
                         {
@@ -593,6 +608,11 @@ public partial class World
 
                         w.Version = b.ReadUInt32();
 
+                        bool loadedWinPhone = TryLoadWinPhone(b, w, headersOnly, progress);
+
+                        if (!loadedWinPhone)
+                        {
+
                         // only perform this check for v38 and under
                         if (w.Version <= 38)
                         {
@@ -620,6 +640,7 @@ public partial class World
                         else
                         {
                             LoadV1(b, filename, w, headersOnly, progress);
+                        }
                         }
                     }
                 }

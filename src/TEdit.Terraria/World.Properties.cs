@@ -156,6 +156,27 @@ public partial class World : ReactiveObject, ITileData
     [property: Category("World")]
     [Reactive] private bool _isConsole;
 
+    [property: Category("World")]
+    [Reactive] private bool _isWinPhone;
+
+    internal byte[]? WinPhoneSourceData { get; set; }
+    internal Chest?[]? WinPhoneChestSlots { get; set; }
+    internal Sign?[]? WinPhoneSignSlots { get; set; }
+    internal byte[]? WinPhoneSignTextFlags { get; set; }
+    internal int WinPhoneDataSectionOffset { get; set; }
+    internal int WinPhoneParsedLength { get; set; }
+    internal int WinPhoneTileSectionOffset { get; set; }
+    internal ushort[]? WinPhoneStoredTileTypes { get; set; }
+    internal byte[]? WinPhoneTileHeader1 { get; set; }
+    internal byte[]? WinPhoneTileHeader2 { get; set; }
+    internal byte[]? WinPhoneTileShape { get; set; }
+    internal byte[]? WinPhoneLegacyTileFlags { get; set; }
+    internal ushort[]? WinPhoneTileRunLengths { get; set; }
+    internal uint WinPhoneStoredCrc { get; set; }
+    internal byte WinPhoneCloudFlag { get; set; }
+    internal uint[]? WinPhoneHistory { get; set; }
+    internal WinPhonePrimitive[]? WinPhoneMetadataPrimitives { get; set; }
+
     #endregion
 
     #region Moon
