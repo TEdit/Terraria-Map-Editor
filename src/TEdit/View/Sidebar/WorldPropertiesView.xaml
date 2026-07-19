@@ -371,7 +371,170 @@
     <!-- Title -->
     <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.sidebar_worldprops_title}" Style="{DynamicResource SidebarPanelTitle}" />
 
+    <Border DockPanel.Dock="Top" Margin="4" Padding="8" BorderThickness="1" CornerRadius="4"
+            BorderBrush="{DynamicResource ControlElevationBorderBrush}">
+      <Border.Style>
+        <Style TargetType="Border">
+          <Setter Property="Visibility" Value="Collapsed" />
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding CurrentWorld.IsWinPhone}" Value="True">
+              <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Border.Style>
+      <StackPanel>
+        <TextBlock Text="Windows Phone world" FontWeight="SemiBold" />
+        <TextBlock Margin="0,2,0,8" TextWrapping="Wrap"
+                   Text="Edit supported native fields here. Tiles, chests, signs, NPCs, and NPC names also save in this format." />
+        <tedit:AutoGrid HorizontalAlignment="Stretch">
+          <tedit:AutoGrid.ColumnDefinitions>
+            <ColumnDefinition Width="145" />
+            <ColumnDefinition Width="*" />
+          </tedit:AutoGrid.ColumnDefinitions>
+
+          <TextBlock Text="{x:Static p:Language.tool_wp_name}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBlock Text="{x:Static p:Language.tool_wp_id}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.WorldId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+          <TextBlock Text="{x:Static p:Language.tool_wp_spawn_point}" HorizontalAlignment="Right" />
+          <StackPanel Orientation="Horizontal" ToolTip="Use the spawn point tool to move this point.">
+            <TextBlock Text="X: " />
+            <TextBlock Text="{Binding CurrentWorld.SpawnX}" />
+            <TextBlock Text="  Y: " />
+            <TextBlock Text="{Binding CurrentWorld.SpawnY}" />
+          </StackPanel>
+          <TextBlock Text="{x:Static p:Language.tool_wp_dungeon_point}" HorizontalAlignment="Right" />
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="X: " />
+            <TextBlock Text="{Binding CurrentWorld.DungeonX}" />
+            <TextBlock Text="  Y: " />
+            <TextBlock Text="{Binding CurrentWorld.DungeonY}" />
+          </StackPanel>
+
+          <TextBlock Text="{x:Static p:Language.tool_wp_time_label}" HorizontalAlignment="Right" />
+          <DockPanel>
+            <CheckBox DockPanel.Dock="Right" Margin="6,0,0,0" Content="Day"
+                      IsChecked="{Binding CurrentWorld.DayTime, Mode=TwoWay}" />
+            <TextBox Text="{Binding CurrentWorld.Time, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+          </DockPanel>
+          <TextBlock Text="{x:Static p:Language.tool_wp_moon_phase}" HorizontalAlignment="Right" />
+          <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay}" Minimum="0" Maximum="7"
+                  TickFrequency="1" IsSnapToTickEnabled="True" />
+          <TextBlock />
+          <CheckBox IsChecked="{Binding CurrentWorld.BloodMoon, Mode=TwoWay}"
+                    Content="{x:Static p:Language.tool_wp_moon_blood}" />
+
+          <TextBlock Text="{x:Static p:Language.tool_wp_surface_level}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+          <TextBlock Text="{x:Static p:Language.tool_wp_cavern_level}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+
+          <TextBlock Text="{x:Static p:Language.tool_wp_crimson}" HorizontalAlignment="Right" />
+          <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson, Mode=TwoWay}"
+                    IsEnabled="{Binding CurrentWorld.WinPhoneSupportsWeather}"
+                    ToolTip="This world version doesn't store this field." />
+          <TextBlock Text="{x:Static p:Language.tool_wp_rain}" HorizontalAlignment="Right" />
+          <CheckBox IsChecked="{Binding CurrentWorld.IsRaining, Mode=TwoWay}"
+                    IsEnabled="{Binding CurrentWorld.WinPhoneSupportsWeather}"
+                    Content="{x:Static p:Language.tool_wp_rain_active}"
+                    ToolTip="This world version doesn't store this field." />
+          <TextBlock Text="{x:Static p:Language.tool_wp_rain_time}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.TempRainTime, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                   IsEnabled="{Binding CurrentWorld.WinPhoneSupportsWeather}"
+                   ToolTip="This world version doesn't store this field." />
+          <TextBlock Text="{x:Static p:Language.tool_wp_rain_max}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.TempMaxRain, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                   IsEnabled="{Binding CurrentWorld.WinPhoneSupportsWeather}"
+                   ToolTip="This world version doesn't store this field." />
+
+          <Separator Grid.ColumnSpan="2" />
+          <TextBlock Text="World state" FontWeight="SemiBold" HorizontalAlignment="Right" />
+          <StackPanel>
+            <CheckBox IsChecked="{Binding CurrentWorld.HardMode, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_difficulty_hardmode}" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SpawnMeteor, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_meteor_spawn}" />
+            <CheckBox IsChecked="{Binding CurrentWorld.ShadowOrbSmashed, Mode=TwoWay}"
+                      Content="Shadow orb smashed" />
+          </StackPanel>
+          <TextBlock Text="{x:Static p:Language.tool_wp_orbs}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.ShadowOrbCount, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+          <TextBlock Text="{x:Static p:Language.tool_wp_altars}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.AltarCount, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+
+          <TextBlock Text="Ore tiers" HorizontalAlignment="Right" />
+          <StackPanel IsEnabled="{Binding CurrentWorld.WinPhoneSupportsExtendedProgression}"
+                      ToolTip="This world version doesn't store ore tiers.">
+            <ComboBox Height="20" ItemsSource="{StaticResource oreTierCobaltList}"
+                      SelectedValue="{Binding CurrentWorld.SavedOreTiersCobalt, Mode=TwoWay}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Margin="0,2,0,0" ItemsSource="{StaticResource oreTierMythrilList}"
+                      SelectedValue="{Binding CurrentWorld.SavedOreTiersMythril, Mode=TwoWay}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Margin="0,2,0,0" ItemsSource="{StaticResource oreTierAdamantiteList}"
+                      SelectedValue="{Binding CurrentWorld.SavedOreTiersAdamantite, Mode=TwoWay}" SelectedValuePath="Value" />
+          </StackPanel>
+
+          <TextBlock Text="{x:Static p:Language.tool_wp_invasion_type}" HorizontalAlignment="Right" />
+          <ComboBox Height="20" ItemsSource="{StaticResource invasionTypeList}"
+                    SelectedValue="{Binding CurrentWorld.InvasionType, Mode=TwoWay}" SelectedValuePath="Value" />
+          <TextBlock Text="{x:Static p:Language.tool_wp_invasion_size}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.InvasionSize, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+          <TextBlock Text="{x:Static p:Language.tool_wp_invasion_x}" HorizontalAlignment="Right" />
+          <TextBox Text="{Binding CurrentWorld.InvasionX, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+
+          <Separator Grid.ColumnSpan="2" />
+          <TextBlock Text="Progress" FontWeight="SemiBold" HorizontalAlignment="Right" />
+          <StackPanel>
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1EyeofCthulhu, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_boss_eyeofcthulhu}" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2EaterofWorlds, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_boss_eaterofworlds}" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss3Skeletron, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_boss_skeletron}" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_npc_goblintinkerer}" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedWizard, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_npc_wizard}" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedMech, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_npc_mechanic}" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedGoblins, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_invasion_goblinarmy}" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedClown, Mode=TwoWay}" Content="Clown defeated" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedFrost, Mode=TwoWay}"
+                      Content="{x:Static p:Language.tool_wp_invasion_frostlegion}" />
+            <StackPanel IsEnabled="{Binding CurrentWorld.WinPhoneSupportsExtendedProgression}"
+                        ToolTip="This world version doesn't store these fields.">
+              <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee, Mode=TwoWay}"
+                        Content="{x:Static p:Language.tool_wp_boss_queenbee}" />
+              <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1TheDestroyer, Mode=TwoWay}"
+                        Content="{x:Static p:Language.tool_wp_boss_destroyer}" />
+              <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2TheTwins, Mode=TwoWay}"
+                        Content="{x:Static p:Language.tool_wp_boss_twins}" />
+              <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3SkeletronPrime, Mode=TwoWay}"
+                        Content="{x:Static p:Language.tool_wp_boss_skeletronprime}" />
+              <CheckBox IsChecked="{Binding CurrentWorld.DownedPlantBoss, Mode=TwoWay}"
+                        Content="{x:Static p:Language.tool_wp_boss_plantera}" />
+              <CheckBox IsChecked="{Binding CurrentWorld.DownedGolemBoss, Mode=TwoWay}"
+                        Content="{x:Static p:Language.tool_wp_boss_golem}" />
+              <CheckBox IsChecked="{Binding CurrentWorld.DownedPirates, Mode=TwoWay}"
+                        Content="{x:Static p:Language.tool_wp_invasion_pirateinvasion}" />
+            </StackPanel>
+          </StackPanel>
+        </tedit:AutoGrid>
+      </StackPanel>
+    </Border>
+
   <tedit:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
+    <tedit:AutoGrid.Style>
+      <Style TargetType="{x:Type tedit:AutoGrid}">
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding CurrentWorld.IsWinPhone}" Value="True">
+            <Setter Property="Visibility" Value="Collapsed" />
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+    </tedit:AutoGrid.Style>
     <tedit:AutoGrid.ColumnDefinitions>
       <ColumnDefinition Width="145" />
       <ColumnDefinition Width="*" />
