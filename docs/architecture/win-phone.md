@@ -3,6 +3,9 @@
 Status: Windows Phone v49 and v60 containers are detected and decoded through their character-name tables. The native header, metadata primitives, tiles, chests, signs, NPCs, and names are reconstructed by a section-aware serializer. All three fixtures save byte-for-byte through `World.Save`.
 
 The implementation is in `src/TEdit.Terraria/World.FileWinPhone.cs`. Reverse-engineering notes for the local Ghidra setup are in `ghidra-winphone-quick-ref.md`.
+The editor-to-native metadata mapping is tracked in `win-phone-field-map.md`, and
+raw saved Ghidra decompilations are indexed under
+`docs/reverse-engineering/winphone/ghidra/`.
 
 ## Verified fixtures
 
@@ -39,8 +42,8 @@ The body begins with these verified fields:
 | `+12` | Bottom pixel bound | `int16` |
 | `+14` | Tile height | `int16` |
 | `+16` | Tile width | `int16` |
-| `+18` | Native horizontal bound/state | `int16` |
-| `+20` | Native horizontal bound/state | `int16` |
+| `+18` | Dungeon X | `int16` |
+| `+20` | Dungeon Y | `int16` |
 | `+22` | Surface level | `int16` |
 | `+24` | Rock level | `int16` |
 
@@ -60,6 +63,14 @@ The remaining pre-tile metadata has an exact versioned primitive layout:
 | Total body prefix before the first marker | 64 bytes | 127 bytes |
 
 Fields without a confirmed gameplay name are retained as typed `byte`, `int16`, or `int32` primitives rather than assigned speculative names. The serializer writes the primitive sequence, not copied source bytes.
+
+Confirmed editor-backed fields are now materialized from the prefix and written
+back from the normal `World` model: world ID, dungeon and spawn coordinates,
+surface and rock levels, time and moon state, progression flags, rescued NPCs,
+orb/meteor/altar state, hardmode, ore tiers, and the active invasion state.
+The compact time value is a `float32` stored in the primitive sequence as its raw
+four-byte bit pattern. Spawn follows the compact time/moon helper (9 bytes below
+v58 and 11 bytes at v58+); it is not the pair at body offsets `+18/+20`.
 
 The native body is divided by the little-endian `int32` marker `0x162E`. Its complete sequence is:
 
@@ -135,9 +146,18 @@ The v49 `Tutorial.world` is a fat bundled resource. The native v49 reader stops 
 
 ## Save behavior
 
-`World.SaveWinPhoneUnchanged` remains an explicit raw-copy utility. The normal `World.Save` and `World.SaveAsync` paths require a full load and verify that the parsed state is unchanged. They then reconstruct the header, metadata, tiles, section markers, chests, signs, NPCs, and character names. They do not emit the original parsed bytes.
+`World.SaveWinPhoneUnchanged` remains an explicit raw-copy utility. The normal
+`World.Save` and `World.SaveAsync` paths require a full load, validate supported
+edits, and reconstruct the header, metadata, tiles, section markers, chests,
+signs, NPCs, and character names. They do not emit the original parsed bytes.
 
-Chests, signs, NPCs, and character names are materialized into TEdit's models. Edited native saves remain disabled until native flag/RLE regeneration and CRC updates are exposed as a supported edit path. A detected edit throws `NotSupportedException`; it cannot be silently discarded.
+Header edits for the confirmed editor-backed fields are serialized, and nonzero
+native CRC values are regenerated. Chests and signs are reconciled back into the
+native 1,000-slot sparse tables; NPCs and character names serialize from their
+normal TEdit collections. A tile edit causes that native column to be rewritten
+as one-tile records while unchanged columns retain their original flags and RLE
+boundaries. The writer validates native type, coordinate, item-stack, liquid,
+paint, and shape limits rather than silently truncating unsupported values.
 
 ## Recovered native functions
 
@@ -163,6 +183,8 @@ Addresses below are from the v1.0.0.0 Ghidra project.
 
 ## Tests
 
-`WinPhoneWorldTests` verifies header dispatch, complete tile allocation, decoded section counts, native validation, edit rejection, and byte-for-byte `World.Save` output for all three fixtures.
+`WinPhoneWorldTests` verifies header dispatch, complete tile allocation, decoded
+section counts, native validation, byte-for-byte no-op saves, and edit/reload
+behavior for metadata, progression, world state, tiles, and sparse entity data.
 
 The strongest serializer test loads each file, overwrites every cached source byte from offset zero through the end of the parsed world with `0xA5`, and reconstructs it. Output still matches the original byte-for-byte. For v60 this means no original file bytes participate in reconstruction; for v49 only the native-reader-ignored bundle suffix is preserved.

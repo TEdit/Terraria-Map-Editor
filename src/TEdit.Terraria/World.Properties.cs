@@ -159,6 +159,12 @@ public partial class World : ReactiveObject, ITileData
     [property: Category("World")]
     [Reactive] private bool _isWinPhone;
 
+    [property: Category("World")]
+    [Reactive] private bool _winPhoneSupportsWeather;
+
+    [property: Category("World")]
+    [Reactive] private bool _winPhoneSupportsExtendedProgression;
+
     internal byte[]? WinPhoneSourceData { get; set; }
     internal Chest?[]? WinPhoneChestSlots { get; set; }
     internal Sign?[]? WinPhoneSignSlots { get; set; }

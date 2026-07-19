@@ -51,6 +51,8 @@ public partial class World
             }
 
             world.IsWinPhone = true;
+            world.WinPhoneSupportsWeather = header.Version >= 58;
+            world.WinPhoneSupportsExtendedProgression = header.Version >= 58;
             world.WinPhoneSourceData = source;
             world.WinPhoneStoredCrc = header.Crc;
             world.WinPhoneCloudFlag = header.CloudFlag;
@@ -67,6 +69,8 @@ public partial class World
             world.TilesWide = header.TilesWide;
             world.SpawnX = header.SpawnX;
             world.SpawnY = header.SpawnY;
+            world.DungeonX = header.DungeonX;
+            world.DungeonY = header.DungeonY;
             world.GroundLevel = header.GroundLevel;
             world.RockLevel = header.RockLevel;
 
@@ -100,6 +104,7 @@ public partial class World
         int position = markerOffset + 4;
         world.WinPhoneMetadataPrimitives = ReadWinPhoneMetadataPrimitives(
             source, header.BodyOffset, markerOffset, header.Version);
+        ApplyWinPhoneMetadataToWorld(world, header.Version);
         world.WinPhoneTileSectionOffset = position;
         bool[] frameImportant = CreateWinPhoneFrameImportant(header.Version);
         world.TileFrameImportant = (bool[])frameImportant.Clone();
@@ -643,6 +648,80 @@ public partial class World
         return [.. values];
     }
 
+    private static void ApplyWinPhoneMetadataToWorld(World world, uint version)
+    {
+        WinPhonePrimitive[] values = world.WinPhoneMetadataPrimitives!;
+        world.WorldId = values[0].Value;
+        world.RightWorld = values[2].Value;
+        world.BottomWorld = values[3].Value;
+        world.TilesHigh = values[4].Value;
+        world.TilesWide = values[5].Value;
+        world.DungeonX = values[6].Value;
+        world.DungeonY = values[7].Value;
+        world.GroundLevel = values[8].Value;
+        world.RockLevel = values[9].Value;
+        world.Time = BitConverter.Int32BitsToSingle(values[10].Value);
+        world.DayTime = values[11].Value != 0;
+        world.MoonPhase = values[12].Value;
+        world.BloodMoon = values[13].Value != 0;
+
+        int spawnIndex = version >= 58 ? 17 : 15;
+        world.SpawnX = values[spawnIndex].Value;
+        world.SpawnY = values[spawnIndex + 1].Value;
+        if (version >= 58)
+        {
+            world.IsCrimson = values[19].Value != 0;
+            world.IsRaining = values[20].Value != 0;
+            world.TempRainTime = values[21].Value;
+            world.TempMaxRain = BitConverter.Int32BitsToSingle(values[22].Value);
+        }
+
+        int progressionIndex = version >= 58 ? 24 : 17;
+        world.DownedBoss1EyeofCthulhu = values[progressionIndex].Value != 0;
+        world.DownedBoss2EaterofWorlds = values[progressionIndex + 1].Value != 0;
+        world.DownedBoss3Skeletron = values[progressionIndex + 2].Value != 0;
+        world.SavedGoblin = values[progressionIndex + 3].Value != 0;
+        world.SavedWizard = values[progressionIndex + 4].Value != 0;
+        world.SavedMech = values[progressionIndex + 5].Value != 0;
+        world.DownedGoblins = values[progressionIndex + 6].Value != 0;
+        world.DownedClown = values[progressionIndex + 7].Value != 0;
+        world.DownedFrost = values[progressionIndex + 8].Value != 0;
+        if (version >= 58)
+        {
+            // Slots +9 and +10 are the mobile-only Lepus and Turkor flags.
+            world.DownedQueenBee = values[progressionIndex + 11].Value != 0;
+            world.DownedMechBoss1TheDestroyer = values[progressionIndex + 12].Value != 0;
+            world.DownedMechBoss2TheTwins = values[progressionIndex + 13].Value != 0;
+            world.DownedMechBoss3SkeletronPrime = values[progressionIndex + 14].Value != 0;
+            // Slot +15 is the native derived "any mechanical boss" flag.
+            world.DownedPlantBoss = values[progressionIndex + 16].Value != 0;
+            world.DownedGolemBoss = values[progressionIndex + 17].Value != 0;
+            world.DownedPirates = values[progressionIndex + 18].Value != 0;
+        }
+
+        int worldStateIndex = version >= 58 ? 43 : 26;
+        world.ShadowOrbCount = values[worldStateIndex + 2].Value;
+        // ShadowOrbCount updates ShadowOrbSmashed in the editor model, so apply
+        // the independently stored native flag after the count.
+        world.ShadowOrbSmashed = values[worldStateIndex].Value != 0;
+        world.SpawnMeteor = values[worldStateIndex + 1].Value != 0;
+        world.AltarCount = values[worldStateIndex + 3].Value;
+        if (version >= 58)
+        {
+            world.SavedOreTiersCobalt = values[worldStateIndex + 4].Value;
+            world.SavedOreTiersMythril = values[worldStateIndex + 5].Value;
+            world.SavedOreTiersAdamantite = values[worldStateIndex + 6].Value;
+        }
+
+        int hardModeIndex = worldStateIndex + (version >= 58 ? 7 : 4);
+        world.HardMode = values[hardModeIndex].Value != 0;
+        int invasionIndex = hardModeIndex + (version > 55 ? 2 : 1);
+        world.InvasionDelay = values[invasionIndex].Value;
+        world.InvasionSize = values[invasionIndex + 1].Value;
+        world.InvasionType = values[invasionIndex + 2].Value;
+        world.InvasionX = BitConverter.Int32BitsToSingle(values[invasionIndex + 3].Value);
+    }
+
     private static byte ReadByte(ReadOnlySpan<byte> source, ref int position)
     {
         if ((uint)position >= (uint)source.Length)
@@ -677,6 +756,8 @@ public partial class World
             world.WinPhoneSignTextFlags is null)
             throw new InvalidOperationException("Windows Phone sparse section slots are unavailable.");
 
+        SynchronizeWinPhoneSparseSlots(world);
+
         using MemoryStream stream = new();
         using BinaryWriter writer = new(stream, Encoding.UTF8, leaveOpen: true);
         WriteWinPhoneChests(writer, world, version);
@@ -688,6 +769,59 @@ public partial class World
         WriteWinPhoneCharacterNames(writer, world, version);
         writer.Flush();
         return stream.ToArray();
+    }
+
+    private static void SynchronizeWinPhoneSparseSlots(World world)
+    {
+        SynchronizeWinPhoneSlots(world.WinPhoneChestSlots!, world.Chests, "chests");
+
+        Sign?[] signSlots = world.WinPhoneSignSlots!;
+        HashSet<Sign> previousSigns = new(ReferenceEqualityComparer.Instance);
+        foreach (Sign? sign in signSlots)
+            if (sign is not null)
+                previousSigns.Add(sign);
+        SynchronizeWinPhoneSlots(signSlots, world.Signs, "signs");
+        for (int index = 0; index < signSlots.Length; index++)
+        {
+            Sign? sign = signSlots[index];
+            if (sign is null)
+            {
+                world.WinPhoneSignTextFlags![index] = 0;
+            }
+            else if (!previousSigns.Contains(sign))
+            {
+                world.WinPhoneSignTextFlags![index] = string.IsNullOrEmpty(sign.Text) ? (byte)0 : (byte)1;
+            }
+        }
+    }
+
+    private static void SynchronizeWinPhoneSlots<T>(T?[] slots, IList<T> items, string sectionName)
+        where T : class
+    {
+        if (items.Count > slots.Length)
+            throw new InvalidDataException(
+                $"Windows Phone worlds support at most {slots.Length} {sectionName}.");
+
+        HashSet<T> current = new(items, ReferenceEqualityComparer.Instance);
+        HashSet<T> slotted = new(ReferenceEqualityComparer.Instance);
+        for (int index = 0; index < slots.Length; index++)
+        {
+            T? item = slots[index];
+            if (item is not null && current.Contains(item) && slotted.Add(item))
+                continue;
+            slots[index] = null;
+        }
+
+        foreach (T item in items)
+        {
+            if (slotted.Contains(item))
+                continue;
+            int freeIndex = Array.FindIndex(slots, static slot => slot is null);
+            if (freeIndex < 0)
+                throw new InvalidDataException($"No free Windows Phone {sectionName} slot is available.");
+            slots[freeIndex] = item;
+            slotted.Add(item);
+        }
     }
 
     private static byte[] SerializeWinPhoneTiles(World world, uint version)
@@ -716,7 +850,7 @@ public partial class World
                 }
 
                 if (version < 58)
-                    WriteWinPhoneLegacyTile(writer, world, frameImportant, x, y, run);
+                    WriteWinPhoneLegacyTile(writer, world, frameImportant, x, y, run, version);
                 else
                     WriteWinPhoneCompactTile(writer, world, frameImportant, x, y, run, version);
                 y += run + 1;
@@ -731,13 +865,21 @@ public partial class World
         if (world.WinPhoneMetadataPrimitives is null || world.WinPhoneHistory is null)
             throw new InvalidOperationException("Windows Phone metadata is unavailable.");
 
+        byte[] titleBytes = (world.Version < 50 ? Encoding.UTF8 : Encoding.Unicode)
+            .GetBytes(world.Title);
+        int titleLength = world.Version < 50 ? titleBytes.Length : world.Title.Length;
+        if (titleLength > WinPhoneMaxTitleLength)
+            throw new InvalidDataException(
+                $"Windows Phone world titles cannot exceed {WinPhoneMaxTitleLength} " +
+                (world.Version < 50 ? "UTF-8 bytes." : "characters."));
+
+        WinPhonePrimitive[] metadata = CreateWinPhoneMetadataForSave(world);
+
         using MemoryStream stream = new();
         using BinaryWriter writer = new(stream, Encoding.UTF8, leaveOpen: true);
         writer.Write(world.Version);
         writer.Write(world.WinPhoneStoredCrc);
-        byte[] titleBytes = (world.Version < 50 ? Encoding.UTF8 : Encoding.Unicode)
-            .GetBytes(world.Title);
-        writer.Write(world.Version < 50 ? titleBytes.Length : world.Title.Length);
+        writer.Write(titleLength);
         writer.Write(titleBytes);
         if (world.Version >= 53)
         {
@@ -754,7 +896,7 @@ public partial class World
             }
         }
 
-        foreach (WinPhonePrimitive value in world.WinPhoneMetadataPrimitives)
+        foreach (WinPhonePrimitive value in metadata)
         {
             switch (value.Kind)
             {
@@ -776,6 +918,165 @@ public partial class World
         return stream.ToArray();
     }
 
+    private static WinPhonePrimitive[] CreateWinPhoneMetadataForSave(World world)
+    {
+        WinPhonePrimitive[] values = (WinPhonePrimitive[])world.WinPhoneMetadataPrimitives!.Clone();
+        SetWinPhonePrimitive(values, 0, WinPhonePrimitiveKind.Int32, world.WorldId, nameof(world.WorldId));
+        SetWinPhonePrimitive(values, 2, WinPhonePrimitiveKind.Int32,
+            ToWinPhoneInt32(world.RightWorld, nameof(world.RightWorld)), nameof(world.RightWorld));
+        SetWinPhonePrimitive(values, 3, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.BottomWorld, nameof(world.BottomWorld)), nameof(world.BottomWorld));
+        SetWinPhonePrimitive(values, 4, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.TilesHigh, nameof(world.TilesHigh)), nameof(world.TilesHigh));
+        SetWinPhonePrimitive(values, 5, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.TilesWide, nameof(world.TilesWide)), nameof(world.TilesWide));
+        SetWinPhonePrimitive(values, 6, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.DungeonX, nameof(world.DungeonX)), nameof(world.DungeonX));
+        SetWinPhonePrimitive(values, 7, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.DungeonY, nameof(world.DungeonY)), nameof(world.DungeonY));
+        SetWinPhonePrimitive(values, 8, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.GroundLevel, nameof(world.GroundLevel)), nameof(world.GroundLevel));
+        SetWinPhonePrimitive(values, 9, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.RockLevel, nameof(world.RockLevel)), nameof(world.RockLevel));
+        SetWinPhonePrimitive(values, 10, WinPhonePrimitiveKind.Int32,
+            BitConverter.SingleToInt32Bits(checked((float)world.Time)), nameof(world.Time));
+        SetWinPhonePrimitive(values, 11, WinPhonePrimitiveKind.Byte,
+            world.DayTime ? 1 : 0, nameof(world.DayTime));
+        SetWinPhonePrimitive(values, 12, WinPhonePrimitiveKind.Byte,
+            ToWinPhoneByte(world.MoonPhase, nameof(world.MoonPhase)), nameof(world.MoonPhase));
+        SetWinPhonePrimitive(values, 13, WinPhonePrimitiveKind.Byte,
+            world.BloodMoon ? 1 : 0, nameof(world.BloodMoon));
+
+        int spawnIndex = world.Version >= 58 ? 17 : 15;
+        SetWinPhonePrimitive(values, spawnIndex, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.SpawnX, nameof(world.SpawnX)), nameof(world.SpawnX));
+        SetWinPhonePrimitive(values, spawnIndex + 1, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.SpawnY, nameof(world.SpawnY)), nameof(world.SpawnY));
+        if (world.Version >= 58)
+        {
+            if (world.TempRainTime < 0)
+                throw new InvalidDataException("Windows Phone rain time cannot be negative.");
+            if (!float.IsFinite(world.TempMaxRain) || world.TempMaxRain is < 0 or > 1)
+                throw new InvalidDataException("Windows Phone maximum rain intensity must be between 0 and 1.");
+            SetWinPhonePrimitive(values, 19, WinPhonePrimitiveKind.Byte,
+                world.IsCrimson ? 1 : 0, nameof(world.IsCrimson));
+            SetWinPhonePrimitive(values, 20, WinPhonePrimitiveKind.Byte,
+                world.IsRaining ? 1 : 0, nameof(world.IsRaining));
+            SetWinPhonePrimitive(values, 21, WinPhonePrimitiveKind.Int32,
+                world.TempRainTime, nameof(world.TempRainTime));
+            SetWinPhonePrimitive(values, 22, WinPhonePrimitiveKind.Int32,
+                BitConverter.SingleToInt32Bits(world.TempMaxRain), nameof(world.TempMaxRain));
+        }
+
+        int progressionIndex = world.Version >= 58 ? 24 : 17;
+        SetWinPhoneBoolean(values, progressionIndex, world.DownedBoss1EyeofCthulhu,
+            nameof(world.DownedBoss1EyeofCthulhu));
+        SetWinPhoneBoolean(values, progressionIndex + 1, world.DownedBoss2EaterofWorlds,
+            nameof(world.DownedBoss2EaterofWorlds));
+        SetWinPhoneBoolean(values, progressionIndex + 2, world.DownedBoss3Skeletron,
+            nameof(world.DownedBoss3Skeletron));
+        SetWinPhoneBoolean(values, progressionIndex + 3, world.SavedGoblin, nameof(world.SavedGoblin));
+        SetWinPhoneBoolean(values, progressionIndex + 4, world.SavedWizard, nameof(world.SavedWizard));
+        SetWinPhoneBoolean(values, progressionIndex + 5, world.SavedMech, nameof(world.SavedMech));
+        SetWinPhoneBoolean(values, progressionIndex + 6, world.DownedGoblins, nameof(world.DownedGoblins));
+        SetWinPhoneBoolean(values, progressionIndex + 7, world.DownedClown, nameof(world.DownedClown));
+        SetWinPhoneBoolean(values, progressionIndex + 8, world.DownedFrost, nameof(world.DownedFrost));
+        if (world.Version >= 58)
+        {
+            SetWinPhoneBoolean(values, progressionIndex + 11, world.DownedQueenBee, nameof(world.DownedQueenBee));
+            SetWinPhoneBoolean(values, progressionIndex + 12, world.DownedMechBoss1TheDestroyer,
+                nameof(world.DownedMechBoss1TheDestroyer));
+            SetWinPhoneBoolean(values, progressionIndex + 13, world.DownedMechBoss2TheTwins,
+                nameof(world.DownedMechBoss2TheTwins));
+            SetWinPhoneBoolean(values, progressionIndex + 14, world.DownedMechBoss3SkeletronPrime,
+                nameof(world.DownedMechBoss3SkeletronPrime));
+            SetWinPhoneBoolean(values, progressionIndex + 15, world.DownedMechBossAny,
+                nameof(world.DownedMechBossAny));
+            SetWinPhoneBoolean(values, progressionIndex + 16, world.DownedPlantBoss, nameof(world.DownedPlantBoss));
+            SetWinPhoneBoolean(values, progressionIndex + 17, world.DownedGolemBoss, nameof(world.DownedGolemBoss));
+            SetWinPhoneBoolean(values, progressionIndex + 18, world.DownedPirates, nameof(world.DownedPirates));
+        }
+
+        int worldStateIndex = world.Version >= 58 ? 43 : 26;
+        SetWinPhoneBoolean(values, worldStateIndex, world.ShadowOrbSmashed, nameof(world.ShadowOrbSmashed));
+        SetWinPhoneBoolean(values, worldStateIndex + 1, world.SpawnMeteor, nameof(world.SpawnMeteor));
+        SetWinPhonePrimitive(values, worldStateIndex + 2, WinPhonePrimitiveKind.Byte,
+            ToWinPhoneByte(world.ShadowOrbCount, nameof(world.ShadowOrbCount)), nameof(world.ShadowOrbCount));
+        SetWinPhonePrimitive(values, worldStateIndex + 3, WinPhonePrimitiveKind.Int32,
+            world.AltarCount, nameof(world.AltarCount));
+        if (world.Version >= 58)
+        {
+            SetWinPhonePrimitive(values, worldStateIndex + 4, WinPhonePrimitiveKind.Int16,
+                ToWinPhoneInt16(world.SavedOreTiersCobalt, nameof(world.SavedOreTiersCobalt)),
+                nameof(world.SavedOreTiersCobalt));
+            SetWinPhonePrimitive(values, worldStateIndex + 5, WinPhonePrimitiveKind.Int16,
+                ToWinPhoneInt16(world.SavedOreTiersMythril, nameof(world.SavedOreTiersMythril)),
+                nameof(world.SavedOreTiersMythril));
+            SetWinPhonePrimitive(values, worldStateIndex + 6, WinPhonePrimitiveKind.Int16,
+                ToWinPhoneInt16(world.SavedOreTiersAdamantite, nameof(world.SavedOreTiersAdamantite)),
+                nameof(world.SavedOreTiersAdamantite));
+        }
+
+        int hardModeIndex = worldStateIndex + (world.Version >= 58 ? 7 : 4);
+        SetWinPhoneBoolean(values, hardModeIndex, world.HardMode, nameof(world.HardMode));
+        int invasionIndex = hardModeIndex + (world.Version > 55 ? 2 : 1);
+        SetWinPhonePrimitive(values, invasionIndex, WinPhonePrimitiveKind.Byte,
+            ToWinPhoneByte(world.InvasionDelay, nameof(world.InvasionDelay)), nameof(world.InvasionDelay));
+        SetWinPhonePrimitive(values, invasionIndex + 1, WinPhonePrimitiveKind.Int16,
+            ToWinPhoneInt16(world.InvasionSize, nameof(world.InvasionSize)), nameof(world.InvasionSize));
+        SetWinPhonePrimitive(values, invasionIndex + 2, WinPhonePrimitiveKind.Byte,
+            ToWinPhoneByte(world.InvasionType, nameof(world.InvasionType)), nameof(world.InvasionType));
+        if (!double.IsFinite(world.InvasionX) || world.InvasionX is < -float.MaxValue or > float.MaxValue)
+            throw new InvalidDataException("Windows Phone invasion position must be a finite 32-bit number.");
+        SetWinPhonePrimitive(values, invasionIndex + 3, WinPhonePrimitiveKind.Int32,
+            BitConverter.SingleToInt32Bits((float)world.InvasionX), nameof(world.InvasionX));
+        return values;
+    }
+
+    private static void SetWinPhoneBoolean(
+        WinPhonePrimitive[] values,
+        int index,
+        bool value,
+        string fieldName) =>
+        SetWinPhonePrimitive(values, index, WinPhonePrimitiveKind.Byte, value ? 1 : 0, fieldName);
+
+    private static void SetWinPhonePrimitive(
+        WinPhonePrimitive[] values,
+        int index,
+        WinPhonePrimitiveKind expectedKind,
+        int value,
+        string fieldName)
+    {
+        if ((uint)index >= (uint)values.Length || values[index].Kind != expectedKind)
+            throw new InvalidDataException($"Windows Phone metadata layout does not contain {fieldName}.");
+        values[index] = new WinPhonePrimitive(expectedKind, value);
+    }
+
+    private static byte ToWinPhoneByte(int value, string fieldName)
+    {
+        if (value is < byte.MinValue or > byte.MaxValue)
+            throw new InvalidDataException($"{fieldName} value {value} is outside the Windows Phone byte range.");
+        return (byte)value;
+    }
+
+    private static short ToWinPhoneInt16(double value, string fieldName)
+    {
+        if (!double.IsFinite(value) || value != Math.Truncate(value) ||
+            value is < short.MinValue or > short.MaxValue)
+            throw new InvalidDataException(
+                $"{fieldName} value {value} is not a Windows Phone 16-bit integer.");
+        return (short)value;
+    }
+
+    private static int ToWinPhoneInt32(double value, string fieldName)
+    {
+        if (!double.IsFinite(value) || value != Math.Truncate(value) ||
+            value is < int.MinValue or > int.MaxValue)
+            throw new InvalidDataException(
+                $"{fieldName} value {value} is not a Windows Phone 32-bit integer.");
+        return (int)value;
+    }
+
     private static bool WinPhoneTilesEncodeEqual(World world, int x, int firstY, int secondY)
     {
         if (!world.Tiles[x, firstY].Equals(world.Tiles[x, secondY]))
@@ -789,13 +1090,92 @@ public partial class World
                world.WinPhoneLegacyTileFlags![first] == world.WinPhoneLegacyTileFlags[second];
     }
 
+    private static bool PrepareWinPhoneTilesForSave(World world, World original, uint version)
+    {
+        bool anyChanges = false;
+        for (int x = 0; x < world.TilesWide; x++)
+        {
+            bool changedColumn = false;
+            for (int y = 0; y < world.TilesHigh && !changedColumn; y++)
+                changedColumn = !world.Tiles[x, y].Equals(original.Tiles[x, y]);
+            if (!changedColumn)
+                continue;
+            anyChanges = true;
+
+            for (int y = 0; y < world.TilesHigh; y++)
+            {
+                int index = GetWinPhoneTileIndex(world, x, y);
+                world.WinPhoneTileRunLengths![index] = 0;
+                if (!world.Tiles[x, y].Equals(original.Tiles[x, y]))
+                    UpdateWinPhoneTileEncodingMetadata(world, version, x, y);
+            }
+        }
+        return anyChanges;
+    }
+
+    private static void UpdateWinPhoneTileEncodingMetadata(World world, uint version, int x, int y)
+    {
+        int index = GetWinPhoneTileIndex(world, x, y);
+        Tile tile = world.Tiles[x, y];
+        if (tile.Wall > byte.MaxValue)
+            throw new InvalidDataException($"Wall type {tile.Wall} at {x}, {y} is outside the Windows Phone range.");
+
+        if (version < 58)
+        {
+            if (tile.TileColor != 0 || (version <= 50 && tile.WallColor != 0) ||
+                tile.Actuator || tile.InActive || tile.WireYellow || tile.BrickStyle != BrickStyle.Full)
+                throw new InvalidDataException(
+                    $"Tile {x}, {y} uses paint, actuator, yellow-wire, or shape data unavailable in Windows Phone version {version}.");
+            if (tile.LiquidAmount != 0 && tile.LiquidType is not (LiquidType.Water or LiquidType.Lava))
+                throw new InvalidDataException(
+                    $"Liquid {tile.LiquidType} at {x}, {y} is unavailable in Windows Phone version {version}.");
+
+            ushort storedType = tile.Type == 500 ? (ushort)150 : tile.Type;
+            if (storedType > byte.MaxValue)
+                throw new InvalidDataException(
+                    $"Tile type {tile.Type} at {x}, {y} is outside the legacy Windows Phone range.");
+            world.WinPhoneStoredTileTypes![index] = storedType;
+            world.WinPhoneTileHeader1![index] = tile.IsActive ? (byte)1 : (byte)0;
+            world.WinPhoneLegacyTileFlags![index] = (byte)(
+                (world.WinPhoneLegacyTileFlags[index] & ~0x70) |
+                (tile.WireRed ? 0x10 : 0) |
+                (tile.WireGreen ? 0x20 : 0) |
+                (tile.WireBlue ? 0x40 : 0));
+            return;
+        }
+
+        if (tile.Type > 0x1FF)
+            throw new InvalidDataException(
+                $"Tile type {tile.Type} at {x}, {y} is outside the Windows Phone nine-bit range.");
+        if (tile.LiquidAmount != 0 && tile.LiquidType is not (LiquidType.Water or LiquidType.Lava or LiquidType.Honey))
+            throw new InvalidDataException(
+                $"Liquid {tile.LiquidType} at {x}, {y} is unavailable in Windows Phone version {version}.");
+
+        byte header1 = (byte)(world.WinPhoneTileHeader1![index] & 0xC0);
+        if (tile.IsActive) header1 |= 0x01;
+        if (tile.WireRed) header1 |= 0x02;
+        if (tile.WireGreen) header1 |= 0x04;
+        if (tile.WireBlue) header1 |= 0x08;
+        if (tile.Actuator) header1 |= 0x10;
+        if (tile.InActive) header1 |= 0x20;
+        world.WinPhoneTileHeader1[index] = header1;
+        world.WinPhoneStoredTileTypes![index] = tile.Type;
+
+        byte header2 = (byte)(world.WinPhoneTileHeader2![index] & ~0x10);
+        if (tile.WireYellow) header2 |= 0x10;
+        world.WinPhoneTileHeader2[index] = header2;
+        world.WinPhoneTileShape![index] = (byte)(
+            (world.WinPhoneTileShape[index] & 0x0F) | ((byte)tile.BrickStyle << 4));
+    }
+
     private static void WriteWinPhoneLegacyTile(
         BinaryWriter writer,
         World world,
         bool[] frameImportant,
         int x,
         int y,
-        int run)
+        int run,
+        uint version)
     {
         int index = GetWinPhoneTileIndex(world, x, y);
         Tile tile = world.Tiles[x, y];
@@ -817,6 +1197,8 @@ public partial class World
             }
         }
         writer.Write((byte)tile.Wall);
+        if (version > 50)
+            writer.Write(tile.WallColor);
         writer.Write(tile.LiquidAmount);
         if (tile.LiquidAmount != 0)
             writer.Write(tile.LiquidType == LiquidType.Lava);
@@ -880,10 +1262,14 @@ public partial class World
             if (chest is null)
                 continue;
 
-            writer.Write((short)chest.X);
-            writer.Write((short)chest.Y);
+            writer.Write(ToWinPhoneInt16(chest.X, "Chest X"));
+            writer.Write(ToWinPhoneInt16(chest.Y, "Chest Y"));
             if (version < 58)
             {
+                for (int slot = itemCount; slot < chest.Items.Count; slot++)
+                    if (chest.Items[slot].StackSize > 0 && chest.Items[slot].NetId != 0)
+                        throw new InvalidDataException(
+                            $"Windows Phone version {version} chests support only {itemCount} item slots.");
                 for (int slot = 0; slot < itemCount; slot++)
                     WriteWinPhoneChestItem(writer, chest.Items[slot], version);
                 continue;
@@ -909,6 +1295,12 @@ public partial class World
     private static void WriteWinPhoneChestItem(BinaryWriter writer, Item item, uint version)
     {
         int stack = item.NetId == 0 ? 0 : item.StackSize;
+        int maxStack = version < 55 ? byte.MaxValue : short.MaxValue;
+        if (stack is < 0 || stack > maxStack)
+            throw new InvalidDataException(
+                $"Item stack {stack} is outside the Windows Phone version {version} range.");
+        if (item.NetId is < short.MinValue or > short.MaxValue)
+            throw new InvalidDataException($"Item ID {item.NetId} is outside the Windows Phone range.");
         if (version < 55)
             writer.Write((byte)stack);
         else
@@ -928,8 +1320,8 @@ public partial class World
             writer.Write(sign is not null);
             if (sign is null)
                 continue;
-            writer.Write((short)sign.X);
-            writer.Write((short)sign.Y);
+            writer.Write(ToWinPhoneInt16(sign.X, "Sign X"));
+            writer.Write(ToWinPhoneInt16(sign.Y, "Sign Y"));
             if (version > 57)
                 writer.Write(world.WinPhoneSignTextFlags![signIndex]);
             WriteWinPhoneString(writer, sign.Text, version);
@@ -940,13 +1332,17 @@ public partial class World
     {
         foreach (NPC npc in world.NPCs)
         {
+            if (npc.SpriteId is < byte.MinValue or > byte.MaxValue)
+                throw new InvalidDataException($"NPC ID {npc.SpriteId} is outside the Windows Phone range.");
+            if (!float.IsFinite(npc.Position.X) || !float.IsFinite(npc.Position.Y))
+                throw new InvalidDataException("NPC positions must be finite Windows Phone float values.");
             writer.Write(true);
             writer.Write((byte)npc.SpriteId);
             writer.Write(npc.Position.X);
             writer.Write(npc.Position.Y);
             writer.Write(npc.IsHomeless);
-            writer.Write((short)npc.Home.X);
-            writer.Write((short)npc.Home.Y);
+            writer.Write(ToWinPhoneInt16(npc.Home.X, "NPC home X"));
+            writer.Write(ToWinPhoneInt16(npc.Home.Y, "NPC home Y"));
         }
         writer.Write(false);
     }
@@ -1008,15 +1404,24 @@ public partial class World
         byte[] prefix = SerializeWinPhonePrefix(world);
         byte[] tiles = SerializeWinPhoneTiles(world, world.Version);
         byte[] dataSections = SerializeWinPhoneDataSections(world, world.Version);
-        output.Write(prefix);
-        output.Write(tiles);
-        using (BinaryWriter writer = new(output, Encoding.UTF8, leaveOpen: true))
+        using MemoryStream native = new();
+        native.Write(prefix);
+        native.Write(tiles);
+        using (BinaryWriter writer = new(native, Encoding.UTF8, leaveOpen: true))
             writer.Write(0x162E);
-        output.Write(dataSections);
-        output.Write(
+        native.Write(dataSections);
+        native.Write(
             world.WinPhoneSourceData,
             world.WinPhoneParsedLength,
             world.WinPhoneSourceData.Length - world.WinPhoneParsedLength);
+
+        byte[] result = native.ToArray();
+        if (world.WinPhoneStoredCrc != 0)
+        {
+            uint crc = ComputeWinPhoneCrc32(result.AsSpan(8));
+            BitConverter.TryWriteBytes(result.AsSpan(4, 4), crc);
+        }
+        output.Write(result);
     }
 
     /// <summary>
@@ -1030,14 +1435,11 @@ public partial class World
             !TryReadWinPhoneHeader(world.WinPhoneSourceData, out WinPhoneHeader header))
             throw new InvalidOperationException("The original Windows Phone world data is unavailable.");
 
-        if (world.Version != header.Version || world.Title != header.Title ||
-            world.WorldId != header.WorldId || world.RightWorld != header.RightWorld ||
+        if (world.Version != header.Version || world.RightWorld != header.RightWorld ||
             world.BottomWorld != header.BottomWorld || world.TilesHigh != header.TilesHigh ||
-            world.TilesWide != header.TilesWide || world.SpawnX != header.SpawnX ||
-            world.SpawnY != header.SpawnY || world.GroundLevel != header.GroundLevel ||
-            world.RockLevel != header.RockLevel)
+            world.TilesWide != header.TilesWide)
             throw new NotSupportedException(
-                "Saving edited Windows Phone world metadata is not supported yet.");
+                "Changing Windows Phone world dimensions or native version is not supported yet.");
 
         if (world.Tiles is null || world.Tiles.Length != world.TilesWide * world.TilesHigh)
             throw new InvalidOperationException(
@@ -1053,19 +1455,13 @@ public partial class World
             world.WinPhoneSourceData, header, original, progress: null);
         LoadWinPhoneSections(world.WinPhoneSourceData, header, original, originalDataOffset);
 
-        for (int x = 0; x < world.TilesWide; x++)
-        for (int y = 0; y < world.TilesHigh; y++)
-        {
-            if (!world.Tiles[x, y].Equals(original.Tiles[x, y]))
-                throw new NotSupportedException(
-                    $"Saving edited Windows Phone tiles is not supported yet (first change at {x}, {y}).");
-        }
+        bool tileEdits = PrepareWinPhoneTilesForSave(world, original, header.Version);
 
         byte[] serializedTiles = SerializeWinPhoneTiles(world, header.Version);
         ReadOnlySpan<byte> originalTiles = world.WinPhoneSourceData.AsSpan(
             world.WinPhoneTileSectionOffset,
             world.WinPhoneDataSectionOffset - world.WinPhoneTileSectionOffset - 4);
-        if (!serializedTiles.AsSpan().SequenceEqual(originalTiles))
+        if (!tileEdits && !serializedTiles.AsSpan().SequenceEqual(originalTiles))
         {
             int commonLength = Math.Min(serializedTiles.Length, originalTiles.Length);
             int difference = 0;
@@ -1078,14 +1474,6 @@ public partial class World
                 $"serialized={Convert.ToHexString(serializedTiles.AsSpan(difference, diagnosticLength))}, " +
                 $"original={Convert.ToHexString(originalTiles.Slice(difference, diagnosticLength))}.");
         }
-
-        byte[] serializedSections = SerializeWinPhoneDataSections(world, header.Version);
-        ReadOnlySpan<byte> originalSections = world.WinPhoneSourceData.AsSpan(
-            world.WinPhoneDataSectionOffset,
-            world.WinPhoneParsedLength - world.WinPhoneDataSectionOffset);
-        if (!serializedSections.AsSpan().SequenceEqual(originalSections))
-            throw new NotSupportedException(
-                "Saving edited Windows Phone chests, signs, NPCs, or character names is not supported yet.");
 
         SaveWinPhoneReconstructed(world, output);
     }
@@ -1157,10 +1545,15 @@ public partial class World
         short bottomWorld = ReadInt16(source, position + 12);
         short tilesHigh = ReadInt16(source, position + 14);
         short tilesWide = ReadInt16(source, position + 16);
-        short spawnX = ReadInt16(source, position + 18);
-        short spawnY = ReadInt16(source, position + 20);
+        short dungeonX = ReadInt16(source, position + 18);
+        short dungeonY = ReadInt16(source, position + 20);
         short groundLevel = ReadInt16(source, position + 22);
         short rockLevel = ReadInt16(source, position + 24);
+        int spawnOffset = position + 26 + (version >= 58 ? 11 : 9);
+        if (spawnOffset + 4 > source.Length)
+            return false;
+        short spawnX = ReadInt16(source, spawnOffset);
+        short spawnY = ReadInt16(source, spawnOffset + 2);
 
         if (tilesWide <= 0 || tilesHigh <= 0 ||
             rightWorld != tilesWide * 16 || bottomWorld != tilesHigh * 16)
@@ -1181,6 +1574,8 @@ public partial class World
             bottomWorld,
             tilesHigh,
             tilesWide,
+            dungeonX,
+            dungeonY,
             spawnX,
             spawnY,
             groundLevel,
@@ -1223,6 +1618,8 @@ public partial class World
         short BottomWorld,
         short TilesHigh,
         short TilesWide,
+        short DungeonX,
+        short DungeonY,
         short SpawnX,
         short SpawnY,
         short GroundLevel,
