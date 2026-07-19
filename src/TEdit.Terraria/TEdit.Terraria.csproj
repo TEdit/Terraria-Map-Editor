@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="TEdit.Terraria.Tests" />
+    <InternalsVisibleTo Include="TEdit.Tests" />
   </ItemGroup>
 
   <ItemGroup>
