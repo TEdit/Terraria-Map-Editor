@@ -566,14 +566,14 @@
     <TextBlock Text="{x:Static p:Language.tool_wp_surface_level}" HorizontalAlignment="Right" />
     <DockPanel>
       <ui:NumberBox Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Minimum="6" Maximum="{Binding CurrentWorld.MaxGroundLevel}" SmallChange="6" MaxDecimalPlaces="2"
+                    Minimum="6" Maximum="{Binding CurrentWorld.MaxGroundLevel}" SmallChange="6" MaxDecimalPlaces="0"
                     ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="6" Maximum="{Binding CurrentWorld.MaxGroundLevel}" SmallChange="6" IsSnapToTickEnabled="True" TickFrequency="6" />
     </DockPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_cavern_level}" HorizontalAlignment="Right" />
     <DockPanel>
       <ui:NumberBox Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Minimum="12" Maximum="{Binding CurrentWorld.MaxCavernLevel}" SmallChange="6" MaxDecimalPlaces="2"
+                    Minimum="12" Maximum="{Binding CurrentWorld.MaxCavernLevel}" SmallChange="6" MaxDecimalPlaces="0"
                     ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="12" Maximum="{Binding CurrentWorld.MaxCavernLevel}" SmallChange="6" IsSnapToTickEnabled="True" TickFrequency="6" />
     </DockPanel>

@@ -3999,11 +3999,13 @@ public partial class WorldViewModel : ReactiveObject
         {
             // FilterIndex:
             // 1 = "Terraria World File"
-            // 2 = first game version entry
-            // 3 = second game version entry
+            // 2 = Windows Phone v1.2.4.3
+            // 3 = first game version entry
+            // 4 = second game version entry
             // ...
             Filter =
                 "Terraria World File|*.wld|" +
+                "Windows Phone v1.2.4.3 world|*.world|" +
                 string.Join("|", versionKeys.Select(v => $"Terraria v{v}|*.wld")),
 
             Title = "Save World As",
@@ -4015,12 +4017,18 @@ public partial class WorldViewModel : ReactiveObject
         {
             CurrentFile = sfd.FileName;
 
+            if (sfd.FilterIndex == 2)
+            {
+                await SaveWorldFileAsync(saveAsWinPhone: true);
+                return;
+            }
+
             // If they picked a specific Terraria version filter, use that gameVersion -> saveVersion mapping.
-            if (sfd.FilterIndex > 1)
+            if (sfd.FilterIndex > 2)
             {
                 try
                 {
-                    int idx = sfd.FilterIndex - 2; // map FilterIndex to versionKeys index
+                    int idx = sfd.FilterIndex - 3; // map FilterIndex to versionKeys index
 
                     if (idx >= 0 && idx < versionKeys.Count)
                     {
@@ -4045,7 +4053,10 @@ public partial class WorldViewModel : ReactiveObject
         }
     }
 
-    private async Task SaveWorldFileAsync(uint version = 0, bool preserveAll = true)
+    private async Task SaveWorldFileAsync(
+        uint version = 0,
+        bool preserveAll = true,
+        bool saveAsWinPhone = false)
     {
         if (CurrentWorld == null)
             return;
@@ -4106,19 +4117,31 @@ public partial class WorldViewModel : ReactiveObject
 
         _loadedFromBackup = false;
         _originalBackupPath = null;
-        await SaveWorldThreadedAsync(CurrentFile, GetSaveVersion_MaxConfig(version), preserveAll);
+        await SaveWorldThreadedAsync(
+            CurrentFile,
+            GetSaveVersion_MaxConfig(version),
+            preserveAll,
+            saveAsWinPhone);
     }
 
-    private async Task SaveWorldThreadedAsync(string filename, uint version = 0, bool preserveAll = true)
+    private async Task SaveWorldThreadedAsync(
+        string filename,
+        uint version = 0,
+        bool preserveAll = true,
+        bool saveAsWinPhone = false)
     {
         bool saveCompleted = false;
         try
         {
             OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Saving World..."));
-            await World.SaveAsync(CurrentWorld, filename, versionOverride: (int)version, preserveAll: preserveAll, progress: new Progress<ProgressChangedEventArgs>(e =>
+            Progress<ProgressChangedEventArgs> progress = new(e =>
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
-            }));
+            });
+            if (saveAsWinPhone)
+                await World.SaveWinPhoneAsync(CurrentWorld, filename, progress);
+            else
+                await World.SaveAsync(CurrentWorld, filename, versionOverride: (int)version, preserveAll: preserveAll, progress: progress);
             saveCompleted = true;
         }
         catch (Exception ex)
