@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -1672,6 +1672,12 @@
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>عرض الأخبار والإعلانات في المحرر</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>Show Intro Splash Screen</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>Show the TEdit logo while the application starts</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>عرض النقاط</value>
   </data>
@@ -1683,12 +1689,6 @@
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>تبديل رؤية الأسلاك الحمراء</value>
-  </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>عرض شاشة البداية</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>عرض شعار TEdit أثناء بدء التطبيق</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>عرض القوام</value>
@@ -2123,9 +2123,6 @@
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>نسل الفريق الأصفر</value>
   </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>اقرأ سياسة الخصوصية الكاملة</value>
-  </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>يمكن لـ TEdit إرسال تقارير أخطاء مجهولة الهوية للمساعدة في تحسين الاستقرار.
 
@@ -2337,9 +2334,6 @@
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>الأوسمة</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>المذابح/الكرات</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>الشر</value>
@@ -3204,5 +3198,11 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>Altars/Orbs</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Read the full privacy policy</value>
   </data>
 </root>
