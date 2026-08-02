@@ -1851,10 +1851,25 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             this.RaiseAndSetIfChanged(ref _selectedSpriteItem, value);
-            // Sync biome index to the new sprite item
             if (value != null)
             {
+                // Sync biome index to the new sprite item
                 value.SelectedBiomeIndex = SelectedBiomeVariantIndex;
+
+                // Select parent sheet when picking a style
+                if (_selectedSpriteSheet == null || _selectedSpriteSheet.Tile != value.Tile)
+                {
+                    _selectedSpriteSheet = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == value.Tile);
+
+                    this.RaisePropertyChanged(nameof(SelectedSpriteSheet));
+
+                    if (ActiveTool is not SpriteTool2)
+                    {
+                        SetActiveTool(Tools.FirstOrDefault(t => t is SpriteTool2));
+                    }
+
+                    UpdateBiomeVariants();
+                }
             }
             PreviewChange();
         }
