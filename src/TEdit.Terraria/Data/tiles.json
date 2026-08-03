@@ -12812,8 +12812,7 @@
     "frameSize": [[1, 1]],
     "frames": [
       { "name": "Pixel Box", "variety": "Off", "uv": [0, 0] },
-      { "name": "Pixel Box", "variety": "On", "uv": [18, 0] },
-      { "name": "Pixel Box", "variety": "C", "uv": [18, 18] }
+      { "name": "Pixel Box", "variety": "On", "uv": [18, 0] }
     ],
     "name": "Pixel Box",
     "key": "PixelBox",
