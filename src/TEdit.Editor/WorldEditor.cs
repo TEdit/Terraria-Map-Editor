@@ -800,7 +800,8 @@ public class WorldEditor : IDisposable
                 {
                     curTile.U = -1;
                     curTile.V = -1;
-                    curTile.LiquidAmount = 0;
+                    // All solid blocks can contain liquid.
+                    // curTile.LiquidAmount = 0;
                 }
             }
         }
@@ -881,8 +882,8 @@ public class WorldEditor : IDisposable
                 !WorldConfiguration.TileProperties[curTile.Type].IsPlatform &&
                 curTile.Type != 52 && // Exclude Vines
                 curTile.Type != 62 && // Exclude Jungle Vines
-                curTile.Type != 115 && // Exclude Hallowed Vines, 
-                curTile.Type != 205 && // Exclude Crimson Vines, 
+                curTile.Type != 115 && // Exclude Hallowed Vines,
+                curTile.Type != 205 && // Exclude Crimson Vines,
                 curTile.Type != 353 && // Exclude Vine Rope
                 curTile.Type != 382 && // Exclude Vine Flowers
                 curTile.Type != 365 && // Exclude Silk Rope
