@@ -8120,7 +8120,7 @@
     "textureGrid": [16, 16],
     "frameGap": [2, 2],
     "frameSize": [[1, 1], [2, 1]],
-    "textureWrap": { "axis": "U", "offsetIncrement": 18, "conditionalV": 18 },
+    "textureWrap": { "axis": "U", "offsetIncrement": 18, "conditionalV": 18, "wrapThreshold": 1908 },
     "frames": [
       { "name": "Small Decos", "variety": "Small Stone A", "uv": [0, 0] },
       { "name": "Small Decos", "variety": "Small Stone B", "uv": [18, 0] },
@@ -8253,23 +8253,23 @@
       { "name": "Small Decos", "variety": "Granite D2", "uv": [1800, 18], "size": [2, 1] },
       { "name": "Small Decos", "variety": "Granite E2", "uv": [1836, 18], "size": [2, 1] },
       { "name": "Small Decos", "variety": "Granite F2", "uv": [1872, 18], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Marble A2", "uv": [0, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Marble B2", "uv": [36, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Marble C2", "uv": [72, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Marble D2", "uv": [108, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Marble E2", "uv": [144, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Marble F2", "uv": [180, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Living Wood A", "uv": [216, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Living Wood B", "uv": [252, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Living Wood C", "uv": [288, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Sand A2", "uv": [324, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Sand B2", "uv": [360, 36], "size": [2, 1] },
-      { "name": "Small Decos", "variety": "Sand C2", "uv": [396, 36], "size": [2, 1] }
+      { "name": "Small Decos", "variety": "Marble A2", "uv": [1908, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Marble B2", "uv": [1944, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Marble C2", "uv": [1980, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Marble D2", "uv": [2016, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Marble E2", "uv": [2052, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Marble F2", "uv": [2088, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Living Wood A", "uv": [2124, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Living Wood B", "uv": [2160, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Living Wood C", "uv": [2196, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Sand A2", "uv": [2232, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Sand B2", "uv": [2268, 18], "size": [2, 1] },
+      { "name": "Small Decos", "variety": "Sand C2", "uv": [2304, 18], "size": [2, 1] }
     ],
     "name": "Small Decos",
     "key": "SmallPiles",
     "color": "#959573FF",
-    "textureWrap": { "axis": "U", "offsetIncrement": 18, "conditionalV": 18 }
+    "textureWrap": { "axis": "U", "offsetIncrement": 18, "conditionalV": 18, "wrapThreshold": 1908 }
   },
   {
     "id": 186,
@@ -12812,8 +12812,7 @@
     "frameSize": [[1, 1]],
     "frames": [
       { "name": "Pixel Box", "variety": "Off", "uv": [0, 0] },
-      { "name": "Pixel Box", "variety": "On", "uv": [18, 0] },
-      { "name": "Pixel Box", "variety": "C", "uv": [18, 18] }
+      { "name": "Pixel Box", "variety": "On", "uv": [18, 0] }
     ],
     "name": "Pixel Box",
     "key": "PixelBox",
