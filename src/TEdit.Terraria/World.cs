@@ -17,6 +17,7 @@ public partial class World
 {
     public static readonly string[] TeamNames = ["White", "Red", "Green", "Blue", "Yellow", "Pink"];
     public const int TeamCount = 6;
+    public const int SafeBorderTileCount = 20;
 
     private static readonly object _fileLock = new object();
 
@@ -876,8 +877,33 @@ public partial class World
 
     public Task ValidAsync(IProgress<ProgressChangedEventArgs>? progress = null) => Task.Run(() => Validate(progress));
 
+    /// <summary>
+    /// Terraria world generation keeps shaped blocks out of the outer 20-tile border.
+    /// Normalize any half-blocks or slopes in that reserved area to prevent edge crashes.
+    /// </summary>
+    private void NormalizeUnsafeBorderBrickStyles()
+    {
+        for (int x = 0; x < TilesWide; x++)
+        {
+            bool isSideBorder = x < SafeBorderTileCount || x >= TilesWide - SafeBorderTileCount;
+            for (int y = 0; y < TilesHigh; y++)
+            {
+                if (!isSideBorder && y >= SafeBorderTileCount && y < TilesHigh - SafeBorderTileCount)
+                    continue;
+
+                ref var tile = ref Tiles[x, y];
+                if (!tile.IsActive || tile.BrickStyle == BrickStyle.Full)
+                    continue;
+
+                tile.BrickStyle = BrickStyle.Full;
+            }
+        }
+    }
+
     public void Validate(IProgress<ProgressChangedEventArgs>? progress = null)
     {
+        NormalizeUnsafeBorderBrickStyles();
+
         for (int x = 0; x < TilesWide; x++)
         {
             progress?.Report(new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));

@@ -14,6 +14,7 @@ public partial class World
 
     public static void SaveV1(World world, BinaryWriter bw, bool ForceLighting, IProgress<ProgressChangedEventArgs>? progress = null)
     {
+        world.NormalizeUnsafeBorderBrickStyles();
         var version = world.Version;
 
         bw.Write(world.Version);
@@ -1504,6 +1505,7 @@ public partial class World
 
     public static void SaveV0(World world, BinaryWriter bw, bool ForceLighting, IProgress<ProgressChangedEventArgs>? progress = null)
     {
+        world.NormalizeUnsafeBorderBrickStyles();
         // Get the max values from json.
         var saveData = WorldConfiguration.SaveConfiguration.GetData(38);
 
