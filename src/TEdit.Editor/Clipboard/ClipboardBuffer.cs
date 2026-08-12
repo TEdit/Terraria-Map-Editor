@@ -247,8 +247,9 @@ public partial class ClipboardBuffer : ITileData
                 // (tile type has changed, so orphaned entries can be detected)
                 world.RemoveOrphanedContainerAt(worldX, worldY);
 
-                //  Update chest/sign data only if we've pasted tiles
-                if (pasteOptions.PasteSprites && pasteOptions.PasteOverTiles)
+                // PasteOverTiles was already enforced above. Container metadata
+                // must still be copied when a sprite is pasted into empty space.
+                if (pasteOptions.PasteSprites)
                 {
                     UpdateContainers(world, x, y, worldX, worldY, pasteTile);
                 }
