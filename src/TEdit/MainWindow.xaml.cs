@@ -233,7 +233,10 @@ public partial class MainWindow : FluentWindow
             }
 
             _allowClose = true;
-            Close();
+            // ShowDialogAsync can complete inside the modal dispatcher frame while
+            // WPF is still unwinding the original Close call. Defer the second
+            // Close until that operation has fully returned.
+            _ = Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(Close));
         }
         finally
         {
@@ -964,8 +967,8 @@ public partial class MainWindow : FluentWindow
             _vm.LoadWorld(filelocation);
         }
     }
-	
-	private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+
+    private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
     {
         // Check if the left mouse button was clicked
         if (e.LeftButton == MouseButtonState.Pressed)

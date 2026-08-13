@@ -386,7 +386,7 @@ public partial class WorldViewModel
     }
 
     [ReactiveCommand]
-    private void CloseApplication() => Application.Current.Shutdown();
+    private void CloseApplication() => Application.Current.MainWindow?.Close();
 
     [ReactiveCommand]
     private void SetTool(ITool tool) => SetActiveTool(tool);
