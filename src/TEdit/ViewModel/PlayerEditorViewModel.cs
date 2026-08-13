@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
@@ -16,12 +18,16 @@ using TEdit.Reactive;
 using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.Terraria.Player;
+using TEdit.UI.Xaml.Dialog;
 
 namespace TEdit.ViewModel;
 
 [IReactiveObject]
 public partial class PlayerEditorViewModel
 {
+    private readonly IDialogService _dialogService;
+    private byte[]? _loadedFileHash;
+
     [Reactive] private PlayerCharacter? _player;
     [Reactive] private string? _playerFilePath;
     public string? PlayerFileDisplayName => string.IsNullOrEmpty(PlayerFilePath) ? null : Path.GetFileNameWithoutExtension(PlayerFilePath);
@@ -68,8 +74,10 @@ public partial class PlayerEditorViewModel
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
         "My Games", "Terraria", "Players");
 
-    public PlayerEditorViewModel()
+    public PlayerEditorViewModel(IDialogService? dialogService = null)
     {
+        _dialogService = dialogService ?? App.DialogService;
+
         // Sync colors from VM back to model on change
         SetupColorSync(HairColorVm, p => p.Appearance.HairColor = HairColorVm.GetColor());
         SetupColorSync(SkinColorVm, p => p.Appearance.SkinColor = SkinColorVm.GetColor());
@@ -534,6 +542,7 @@ public partial class PlayerEditorViewModel
         {
             Player = PlayerFile.Load(path);
             PlayerFilePath = path;
+            _loadedFileHash = ComputeFileHash(path);
             SyncFromPlayer();
             StatusText = $"Loaded: {Player.Name}";
         }
@@ -544,14 +553,32 @@ public partial class PlayerEditorViewModel
     }
 
     [ReactiveCommand]
-    private void SavePlayer()
+    private async Task SavePlayer()
     {
         if (Player == null || string.IsNullOrEmpty(PlayerFilePath)) return;
 
         try
         {
+            if (_loadedFileHash != null &&
+                (!File.Exists(PlayerFilePath) ||
+                 !CryptographicOperations.FixedTimeEquals(_loadedFileHash, ComputeFileHash(PlayerFilePath))))
+            {
+                var overwriteResult = await _dialogService.ShowMessageAsync(
+                    $"{Path.GetFileName(PlayerFilePath)} was externally modified since it was loaded or last saved.\r\nDo you wish to overwrite it?",
+                    "Player Modified",
+                    DialogButton.OKCancel,
+                    DialogImage.Warning);
+
+                if (overwriteResult != DialogResponse.OK)
+                {
+                    StatusText = "Save canceled: player file was externally modified.";
+                    return;
+                }
+            }
+
             SyncToPlayer();
             PlayerFile.Save(PlayerFilePath, Player);
+            _loadedFileHash = ComputeFileHash(PlayerFilePath);
             StatusText = $"Saved: {Player.Name}";
         }
         catch (Exception ex)
@@ -561,7 +588,7 @@ public partial class PlayerEditorViewModel
     }
 
     [ReactiveCommand]
-    private void SavePlayerAs()
+    private async Task SavePlayerAs()
     {
         if (Player == null) return;
 
@@ -576,9 +603,12 @@ public partial class PlayerEditorViewModel
         if (dlg.ShowDialog() == true)
         {
             PlayerFilePath = dlg.FileName;
-            SavePlayer();
+            _loadedFileHash = null;
+            await SavePlayer();
         }
     }
+
+    private static byte[] ComputeFileHash(string path) => SHA256.HashData(File.ReadAllBytes(path));
 
     private void SyncFromPlayer()
     {

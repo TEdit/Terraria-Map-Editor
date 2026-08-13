@@ -4147,7 +4147,6 @@
     "name": "Vines",
     "key": "Vines",
     "color": "#17B14CFF",
-    "isSolid": true,
     "canBlend": true
   },
   {
@@ -4297,7 +4296,6 @@
     "name": "Jungle Vines",
     "key": "JungleVines",
     "color": "#79B018FF",
-    "isSolid": true,
     "canBlend": true
   },
   {
@@ -6478,7 +6476,6 @@
     "name": "Hallowed Vines",
     "key": "HallowedVines",
     "color": "#21ABCFFF",
-    "isSolid": true,
     "canBlend": true
   },
   {
@@ -8620,7 +8617,6 @@
     "name": "Crimson Vines",
     "key": "CrimsonVines",
     "color": "#BA3234FF",
-    "isSolid": true,
     "canBlend": true
   },
   {

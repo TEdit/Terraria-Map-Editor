@@ -21,6 +21,19 @@ public record FindResultItem(string Name, int X, int Y, string ResultType, strin
         : $"{Name} @ {X}, {Y} ({ResultType})";
 }
 
+internal sealed class FindResultAccumulator(int displayLimit)
+{
+    public int TotalCount { get; private set; }
+
+    public bool Add()
+    {
+        TotalCount++;
+        return TotalCount <= displayLimit;
+    }
+
+    public void Clear() => TotalCount = 0;
+}
+
 /// <summary>
 /// ViewModel for the Find sidebar tab. Manages search for items in containers
 /// and tiles/walls/sprites on the map, with aggregated results and navigation.
@@ -29,7 +42,8 @@ public record FindResultItem(string Name, int X, int Y, string ResultType, strin
 public partial class FindSidebarViewModel
 {
     private readonly WorldViewModel _wvm;
-    private const int MaxResults = 1000;
+    private readonly FindResultAccumulator _resultAccumulator = new(MaxDisplayedResults);
+    internal const int MaxDisplayedResults = 1000;
 
     // Picker sub-viewmodels (all multi-select, selections persist when switching tabs)
     public TileWallPickerViewModel ItemPicker { get; }    // Items in containers
@@ -46,8 +60,11 @@ public partial class FindSidebarViewModel
     [Reactive]
     private bool _autoZoomOnNavigate; // Default false - just pan, don't zoom
 
-    // Aggregated results (capped at MaxResults)
+    // Navigation list. The complete match set is retained separately for the overlay/count.
     public ObservableCollection<FindResultItem> Results { get; } = [];
+
+    [Reactive]
+    private int _totalMatchCount;
 
     [Reactive]
     private int _currentResultIndex = -1;
@@ -86,7 +103,10 @@ public partial class FindSidebarViewModel
     }
 
     public string ResultSummary => Results.Count > 0
-        ? string.Format(Properties.Language.find_result_summary, CurrentResultIndex + 1, Results.Count)
+        ? TotalMatchCount > Results.Count
+            ? string.Format(Properties.Language.find_result_summary_limited,
+                CurrentResultIndex + 1, Results.Count, TotalMatchCount)
+            : string.Format(Properties.Language.find_result_summary, CurrentResultIndex + 1, Results.Count)
         : Properties.Language.find_no_results;
 
     public FindSidebarViewModel(WorldViewModel worldViewModel)
@@ -112,7 +132,7 @@ public partial class FindSidebarViewModel
             });
 
         // Subscribe to result index changes
-        this.WhenAnyValue(x => x.CurrentResultIndex)
+        this.WhenAnyValue(x => x.CurrentResultIndex, x => x.TotalMatchCount)
             .Subscribe(_ => this.RaisePropertyChanged(nameof(ResultSummary)));
 
         // Subscribe to selected result changes (user clicking in the list)
@@ -145,6 +165,8 @@ public partial class FindSidebarViewModel
 
         Results.Clear();
         _overlayPositions.Clear();
+        _resultAccumulator.Clear();
+        TotalMatchCount = 0;
         CurrentResultIndex = -1;
         ShowCrosshair = false;
 
@@ -153,7 +175,7 @@ public partial class FindSidebarViewModel
 
         // 1. Search CONTAINERS for selected items
         var selectedItemIds = ItemPicker.GetSelectedIds();
-        if (selectedItemIds.Count > 0 && Results.Count < MaxResults)
+        if (selectedItemIds.Count > 0)
         {
             SearchContainers(selectedItemIds, spawn);
         }
@@ -163,11 +185,12 @@ public partial class FindSidebarViewModel
         var selectedWallIds = WallPicker.GetSelectedIds();
         var selectedSprites = SpritePicker.GetSelectedSprites();
 
-        if ((selectedTileIds.Count > 0 || selectedWallIds.Count > 0 || selectedSprites.Count > 0)
-            && Results.Count < MaxResults)
+        if (selectedTileIds.Count > 0 || selectedWallIds.Count > 0 || selectedSprites.Count > 0)
         {
             SearchMap(selectedTileIds, selectedWallIds, selectedSprites, spawn);
         }
+
+        TotalMatchCount = _resultAccumulator.TotalCount;
 
         // Sort by distance if enabled
         if (CalculateDistance && Results.Count > 0)
@@ -228,8 +251,6 @@ public partial class FindSidebarViewModel
         // Search chests
         foreach (var chest in world.Chests)
         {
-            if (Results.Count >= MaxResults) return;
-
             foreach (var item in chest.Items)
             {
                 if (item.NetId > 0 && itemIdSet.Contains(item.NetId))
@@ -239,14 +260,12 @@ public partial class FindSidebarViewModel
                         : null;
 
                     AddSpriteToOverlay(world, chest.X, chest.Y);
-                    Results.Add(new FindResultItem(
+                    AddResult(new FindResultItem(
                         item.GetName(),
                         chest.X,
                         chest.Y,
                         Properties.Language.find_result_type_chest,
                         extraInfo));
-
-                    if (Results.Count >= MaxResults) return;
                 }
             }
         }
@@ -254,8 +273,6 @@ public partial class FindSidebarViewModel
         // Search tile entities that can hold items (item frames, mannequins, etc.)
         foreach (var entity in world.TileEntities)
         {
-            if (Results.Count >= MaxResults) return;
-
             // Check if this entity has items
             if (entity.Items != null)
             {
@@ -272,14 +289,12 @@ public partial class FindSidebarViewModel
                         var itemName = itemProp?.Name ?? $"Item {item.Id}";
 
                         AddSpriteToOverlay(world, entity.PosX, entity.PosY);
-                        Results.Add(new FindResultItem(
+                        AddResult(new FindResultItem(
                             itemName,
                             entity.PosX,
                             entity.PosY,
                             Properties.Language.find_result_type_tile_entity,
                             extraInfo));
-
-                        if (Results.Count >= MaxResults) return;
                     }
                 }
             }
@@ -299,9 +314,9 @@ public partial class FindSidebarViewModel
         // Track which sprite anchors we've already added to Results (dedup)
         var seenSpriteAnchors = new HashSet<long>();
 
-        for (int x = 0; x < world.TilesWide && Results.Count < MaxResults; x++)
+        for (int x = 0; x < world.TilesWide; x++)
         {
-            for (int y = 0; y < world.TilesHigh && Results.Count < MaxResults; y++)
+            for (int y = 0; y < world.TilesHigh; y++)
             {
                 var tile = world.Tiles[x, y];
 
@@ -315,8 +330,7 @@ public partial class FindSidebarViewModel
                         ? string.Format(Properties.Language.find_distance_label, Math.Round(Vector2.Distance(spawn, new Vector2(x, y))))
                         : null;
 
-                    Results.Add(new FindResultItem(tileName, x, y, Properties.Language.find_result_type_tile, extraInfo));
-                    if (Results.Count >= MaxResults) return;
+                    AddResult(new FindResultItem(tileName, x, y, Properties.Language.find_result_type_tile, extraInfo));
                 }
 
                 // Check walls
@@ -329,8 +343,7 @@ public partial class FindSidebarViewModel
                         ? string.Format(Properties.Language.find_distance_label, Math.Round(Vector2.Distance(spawn, new Vector2(x, y))))
                         : null;
 
-                    Results.Add(new FindResultItem(wallName, x, y, Properties.Language.find_result_type_wall, extraInfo));
-                    if (Results.Count >= MaxResults) return;
+                    AddResult(new FindResultItem(wallName, x, y, Properties.Language.find_result_type_wall, extraInfo));
                 }
 
                 // Check sprites — highlight ALL matching tiles, but dedupe Results to anchors
@@ -361,12 +374,17 @@ public partial class FindSidebarViewModel
                             ? string.Format(Properties.Language.find_distance_label, Math.Round(Vector2.Distance(spawn, new Vector2(anchor.X, anchor.Y))))
                             : null;
 
-                        Results.Add(new FindResultItem(spriteName, anchor.X, anchor.Y, Properties.Language.find_result_type_sprite, extraInfo));
-                        if (Results.Count >= MaxResults) return;
+                        AddResult(new FindResultItem(spriteName, anchor.X, anchor.Y, Properties.Language.find_result_type_sprite, extraInfo));
                     }
                 }
             }
         }
+    }
+
+    private void AddResult(FindResultItem result)
+    {
+        if (_resultAccumulator.Add())
+            Results.Add(result);
     }
 
     private static string GetTileName(int tileId)
@@ -458,6 +476,8 @@ public partial class FindSidebarViewModel
         SpritePicker.ClearSelectionCommand.Execute().Subscribe();
 
         Results.Clear();
+        _resultAccumulator.Clear();
+        TotalMatchCount = 0;
         CurrentResultIndex = -1;
         ShowCrosshair = false;
 

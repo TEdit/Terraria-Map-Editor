@@ -473,6 +473,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="find_result_summary" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
+  <data name="find_result_summary_limited" xml:space="preserve">
+    <value>{0} of {1} shown ({2} total matches)</value>
+  </data>
   <data name="find_result_type_chest" xml:space="preserve">
     <value>Chest</value>
   </data>
