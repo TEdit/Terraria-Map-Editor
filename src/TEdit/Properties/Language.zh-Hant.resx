@@ -473,6 +473,9 @@
   <data name="find_result_summary" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
+  <data name="find_result_summary_limited" xml:space="preserve">
+    <value>顯示 {0} 的 {1} （共 {2} 個匹配）</value>
+  </data>
   <data name="find_result_type_chest" xml:space="preserve">
     <value>Chest</value>
   </data>

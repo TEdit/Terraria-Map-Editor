@@ -1113,7 +1113,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("find_result_summary", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} of {1} shown ({2} total matches).
         /// </summary>

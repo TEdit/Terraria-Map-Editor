@@ -473,6 +473,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="find_result_summary" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
+  <data name="find_result_summary_limited" xml:space="preserve">
+    <value>{0} von {1} angezeigt ({2} insgesamt Übereinstimmungen)</value>
+  </data>
   <data name="find_result_type_chest" xml:space="preserve">
     <value>Chest</value>
   </data>

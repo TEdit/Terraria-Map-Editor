@@ -473,6 +473,9 @@
   <data name="find_result_summary" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
+  <data name="find_result_summary_limited" xml:space="preserve">
+    <value>{0} / {1} 表示 ({2} 件の合計マッチ)</value>
+  </data>
   <data name="find_result_type_chest" xml:space="preserve">
     <value>Chest</value>
   </data>

@@ -473,6 +473,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="find_result_summary" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
+  <data name="find_result_summary_limited" xml:space="preserve">
+    <value>{0} de {1} mostrado ({2} coincidencias en total)</value>
+  </data>
   <data name="find_result_type_chest" xml:space="preserve">
     <value>Chest</value>
   </data>

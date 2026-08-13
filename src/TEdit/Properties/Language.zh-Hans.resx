@@ -473,6 +473,9 @@
   <data name="find_result_summary" xml:space="preserve">
     <value>第{0}个（共{1}个）</value>
   </data>
+  <data name="find_result_summary_limited" xml:space="preserve">
+    <value>{0} / {1} 显示 ({2} 总匹配)</value>
+  </data>
   <data name="find_result_type_chest" xml:space="preserve">
     <value>宝箱</value>
   </data>

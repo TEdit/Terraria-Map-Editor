@@ -473,6 +473,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="find_result_summary" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
+  <data name="find_result_summary_limited" xml:space="preserve">
+    <value>{0} di {1} mostrati ({2} corrispondenze totali)</value>
+  </data>
   <data name="find_result_type_chest" xml:space="preserve">
     <value>Chest</value>
   </data>

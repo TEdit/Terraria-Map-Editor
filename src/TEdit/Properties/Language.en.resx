@@ -473,6 +473,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="find_result_summary" xml:space="preserve">
     <value>{0} of {1}</value>
   </data>
+  <data name="find_result_summary_limited" xml:space="preserve">
+    <value>{0} of {1} shown ({2} total matches)</value>
+  </data>
   <data name="find_result_type_chest" xml:space="preserve">
     <value>Chest</value>
   </data>
@@ -1672,12 +1675,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>Show news and announcements in the editor</value>
   </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>Show Intro Splash Screen</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>Show the TEdit logo while the application starts</value>
-  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>Show Points</value>
   </data>
@@ -1689,6 +1686,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>Toggle red wire visibility</value>
+  </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>Show Intro Splash Screen</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>Show the TEdit logo while the application starts</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>Show Textures</value>
@@ -2123,6 +2126,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Yellow Team Spawn</value>
   </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Read the full privacy policy</value>
+  </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>TEdit can send anonymous error reports to help improve stability.
 
@@ -2334,6 +2340,9 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>Decorations</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>Altars/Orbs</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>Evil</value>
@@ -3195,11 +3204,5 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>Altars/Orbs</value>
-  </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>Read the full privacy policy</value>
   </data>
 </root>
