@@ -1,5 +1,9 @@
 # TEdit Release Todo
 
+## Source-Derived Triage
+
+- [video-transcript-fix-list.md](video-transcript-fix-list.md) — field-reported data-loss, transform, morph, masking, and plugin issues from a custom-world tutorial
+
 ## Masking System Overhaul (#2168)
 - [masking-system.md](masking-system.md) — Liquid masking, decoupled masks, wire mode extension
 - [pattern-selection.md](pattern-selection.md) — Unified tile picker control (compact 24x24 + full mode), pattern fill system
@@ -9,6 +13,7 @@
 
 ## Morph Tool (#533)
 - [morph-tool.md](morph-tool.md) — Customizable conversions, biome masking, desert fix, cleanse world
+- [morph-conversion-inventory.md](morph-conversion-inventory.md) — deterministic tile, wall, and sprite conversion contract
 
 ## Minor
 - Startup Tips (#2171)

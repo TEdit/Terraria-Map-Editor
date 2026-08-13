@@ -1,4 +1,5 @@
 using Shouldly;
+using TEdit.Terraria.DataModel;
 
 namespace TEdit.Terraria.Tests;
 
@@ -196,6 +197,22 @@ public class BridgeParityTests : IDisposable
         _store.Morphs.ShouldNotBeNull();
         WorldConfiguration.MorphSettings.Biomes.Count
             .ShouldBe(_store.Morphs!.Biomes.Count);
+    }
+
+    [Fact]
+    public void MorphModes_SelectIndependentConfigurationsAndTargetLists()
+    {
+        _store.Morphs.ShouldNotBeNull();
+        _store.DestructiveMorphs.ShouldNotBeNull();
+
+        WorldConfiguration.GetMorphSettings(MorphMode.SafeConvert)
+            .ShouldBeSameAs(WorldConfiguration.MorphSettings);
+        WorldConfiguration.GetMorphSettings(MorphMode.GenerateBiome)
+            .ShouldBeSameAs(WorldConfiguration.DestructiveMorphSettings);
+        WorldConfiguration.SafeBiomes
+            .ShouldBe(_store.Morphs!.Biomes.Keys, ignoreOrder: true);
+        WorldConfiguration.DestructiveBiomes
+            .ShouldBe(_store.DestructiveMorphs!.Biomes.Keys, ignoreOrder: true);
     }
 
     [Fact]

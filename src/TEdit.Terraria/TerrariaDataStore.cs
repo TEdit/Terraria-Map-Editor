@@ -71,6 +71,7 @@ public class TerrariaDataStore
     public DataModel.SaveVersionManager? VersionManager { get; private set; }
     public BestiaryNpcConfiguration? Bestiary { get; private set; }
     public DataModel.MorphConfiguration? Morphs { get; private set; }
+    public DataModel.MorphConfiguration? DestructiveMorphs { get; private set; }
     public DataModel.BackgroundStyleConfiguration? BackgroundStyles { get; private set; }
 
     // Prefix data for key resolution during localization
@@ -224,6 +225,18 @@ public class TerrariaDataStore
             Morphs = DataModel.MorphConfiguration.Load(stream);
         }
         catch (FileNotFoundException) { }
+
+        // Keep the original broad profile intact for explicit biome generation.
+        // Safe conversion uses the independently validated morphBiomes.json profile.
+        try
+        {
+            using var stream = JsonDataLoader.GetDataStream("morphBiomes.generate.json", dataPath);
+            DestructiveMorphs = DataModel.MorphConfiguration.Load(stream);
+        }
+        catch (FileNotFoundException)
+        {
+            DestructiveMorphs = Morphs;
+        }
 
         // Load background styles
         try

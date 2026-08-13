@@ -37,6 +37,7 @@ public class WorldConfiguration
     public static SaveVersionManager SaveConfiguration { get; private set; }
     public static BestiaryConfiguration BestiaryData { get; private set; }
     public static MorphConfiguration MorphSettings { get; private set; }
+    public static MorphConfiguration DestructiveMorphSettings { get; private set; }
     public static BackgroundStyleConfiguration BackgroundStyles => _store?.BackgroundStyles;
 
     // Tracks what we actually applied (handy for UI / warnings).
@@ -49,7 +50,9 @@ public class WorldConfiguration
     public const string DesktopHeader = "relogic";
     public const string ChineseHeader = "xindong";
 
-    public static List<string>            Biomes    => MorphSettings.Biomes.Keys.ToList();
+    public static List<string>            Biomes    => SafeBiomes;
+    public static List<string>            SafeBiomes => MorphSettings.Biomes.Keys.ToList();
+    public static List<string>            DestructiveBiomes => DestructiveMorphSettings.Biomes.Keys.ToList();
     public static Dictionary<string, int> MossTypes => MorphSettings.MossTypes;
     public static Dictionary<string, int> MossTypesWithNone
     {
@@ -93,6 +96,9 @@ public class WorldConfiguration
     private static readonly ObservableCollection<FrameProperty> _platformProperties = new ObservableCollection<FrameProperty>();
 
     private static TerrariaDataStore _store;
+
+    public static MorphConfiguration GetMorphSettings(MorphMode mode) =>
+        mode == MorphMode.GenerateBiome ? DestructiveMorphSettings : MorphSettings;
 
     static WorldConfiguration()
     {
@@ -144,6 +150,7 @@ public class WorldConfiguration
 
         SaveConfiguration = store.VersionManager;
         MorphSettings = store.Morphs;
+        DestructiveMorphSettings = store.DestructiveMorphs ?? store.Morphs;
 
         // Build BestiaryConfiguration from store data
         if (store.Bestiary != null)

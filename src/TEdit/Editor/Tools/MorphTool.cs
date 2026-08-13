@@ -30,7 +30,8 @@ public sealed class MorphTool : BrushToolBase
         _targetBiome = null;
         if (!_isDrawing && !_isConstraining && !_isLineMode)
         {
-            WorldConfiguration.MorphSettings.Biomes.TryGetValue(_wvm.MorphToolOptions.TargetBiome, out _targetBiome);
+            var morphSettings = WorldConfiguration.GetMorphSettings(_wvm.MorphToolOptions.Mode);
+            morphSettings.Biomes.TryGetValue(_wvm.MorphToolOptions.TargetBiome, out _targetBiome);
             _biomeMorpher = _targetBiome != null ? MorphBiomeDataApplier.GetMorpher(_targetBiome) : null;
         }
 

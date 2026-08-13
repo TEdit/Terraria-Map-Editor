@@ -153,6 +153,45 @@ public class TerrariaDataStoreTests : IDisposable
     }
 
     [Fact]
+    public void Initialize_LoadsIndependentSafeAndGenerateMorphProfiles()
+    {
+        var store = TerrariaDataStore.Initialize();
+
+        store.Morphs.ShouldNotBeNull();
+        store.DestructiveMorphs.ShouldNotBeNull();
+        ReferenceEquals(store.Morphs, store.DestructiveMorphs).ShouldBeFalse();
+        store.DestructiveMorphs!.Biomes.Keys.ShouldBe(store.Morphs!.Biomes.Keys, ignoreOrder: true);
+
+        var safeDeletes = store.Morphs.Biomes.Values
+            .SelectMany(biome => biome.MorphTiles.Concat(biome.MorphWalls))
+            .Count(rule => rule.Delete || rule.SpriteOffsets.Any(offset => offset.Delete));
+        var generateDeletes = store.DestructiveMorphs.Biomes.Values
+            .SelectMany(biome => biome.MorphTiles.Concat(biome.MorphWalls))
+            .Count(rule => rule.Delete || rule.SpriteOffsets.Any(offset => offset.Delete));
+
+        safeDeletes.ShouldBe(0);
+        generateDeletes.ShouldBeGreaterThan(0);
+    }
+
+    [Fact]
+    public void GenerateMorphProfile_RetainsBroadSnowAndDesertTerrainGeneration()
+    {
+        var store = TerrariaDataStore.Initialize();
+        var safe = store.Morphs!;
+        var generate = store.DestructiveMorphs!;
+
+        safe.Biomes["Snow"].MorphTiles.Single(rule => rule.Name == "tileDirt_Snow")
+            .SourceIds.ShouldNotContain((ushort)0);
+        generate.Biomes["Snow"].MorphTiles.Single(rule => rule.Name == "tileDirt_Snow")
+            .SourceIds.ShouldContain((ushort)0);
+
+        safe.Biomes["Desert"].MorphTiles.Single(rule => rule.Name == "tileDirt_Sand")
+            .SourceIds.ShouldNotContain((ushort)0);
+        generate.Biomes["Desert"].MorphTiles.Single(rule => rule.Name == "tileDirt_Sand")
+            .SourceIds.ShouldContain((ushort)0);
+    }
+
+    [Fact]
     public void TileBricks_ContainsOnlyNonFramedTiles()
     {
         var store = TerrariaDataStore.Initialize();

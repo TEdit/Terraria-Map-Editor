@@ -16,13 +16,19 @@ Related issue: #533 | Remaining work: `docs/todo/morph-tool.md`
 | `MorphToolOptions` | `TEdit.Editor/MorphToolOptions.cs` | Reactive UI options bound to the tool panel |
 | `MorphTool` | `src/TEdit/Editor/Tools/MorphTool.cs` | Interactive brush tool (WPF) |
 | `CleanseWorldPlugin` | `src/TEdit/Editor/Plugins/CleanseWorldPlugin.cs` | Whole-world Purify batch operation |
-| `morphBiomes.json` | `TEdit.Terraria/Data/morphBiomes.json` | Embedded data file — all biome rules |
+| `MorphMode` | `TEdit.Terraria/DataModel/MorphMode.cs` | Selects safe conversion or biome generation |
+| `morphBiomes.json` | `TEdit.Terraria/Data/morphBiomes.json` | Safe, non-destructive conversion rules |
+| `morphBiomes.generate.json` | `TEdit.Terraria/Data/` | Pinned original broad rules for explicit biome generation |
 
 `TEdit.Editor` is a shared library (`net10.0`) with no WPF dependency. `MorphBiomeDataApplier` accepts `World` as a parameter, making it usable from both the WPF app and Avalonia (TEdit5).
 
 ### 1.2 Data Loading
 
-`MorphConfiguration` is loaded from `morphBiomes.json` (embedded resource) via `TEdit.Terraria.Loaders.JsonDataLoader` and deserialized with `TEditJsonSerializer.DefaultOptions`. The result is stored in `WorldConfiguration.MorphSettings` (static) and `WorldConfiguration.Biomes` (key list exposed to the biome combo box).
+`TerrariaDataStore` loads the safe profile from `morphBiomes.json` and the pinned legacy generation profile from `morphBiomes.generate.json`. `WorldConfiguration.GetMorphSettings(mode)` selects the configuration, while `SafeBiomes` and `DestructiveBiomes` derive their target lists from the corresponding profile.
+
+The generation profile is deliberately a single canonical resource. A canonical JSON SHA-256 regression test pins its reviewed legacy semantics while ignoring formatting and line-ending differences, preventing a mechanical split or partial mapping change from passing unnoticed.
+
+Safe conversion is the default. Generate biome is explicit and can replace material families or remove decorations. Keeping separate data files prevents safe conversion from silently inheriting a destructive rule.
 
 ```csharp
 public class MorphConfiguration
@@ -59,7 +65,7 @@ public class MorphId
 }
 ```
 
-**Lookup is by source ID, not by name.** On initialization, `MorphBiomeDataApplier.InitCache()` builds two flat dictionaries (`_tileCache`, `_wallCache`) mapping each source ID to its `MorphId`. Duplicate source IDs across entries within the same biome throw `IndexOutOfRangeException`.
+**Lookup is by source ID, not by name.** On initialization, `MorphBiomeDataApplier.InitCache()` builds two flat dictionaries (`_tileCache`, `_wallCache`) mapping each source ID to its `MorphId`. The current implementation uses `TryAdd`, so duplicate source IDs are silently first-wins. This can hide later hand-authored or generated sprite rules and is tracked as a conversion-integrity defect in `docs/todo/morph-tool.md`.
 
 ### 1.4 MorphIdLevels — Depth-Dependent Target IDs
 
@@ -155,7 +161,9 @@ The first matching offset in the list is applied (short-circuit). When `UseFilte
 ```csharp
 public partial class MorphToolOptions : ReactiveObject
 {
+    MorphMode Mode = MorphMode.SafeConvert;
     string TargetBiome = "Purify";  // Key into WorldConfiguration.MorphSettings.Biomes
+    IReadOnlyList<string> TargetBiomes; // Selected mode's target list
     int    MossType    = 179;       // Tile ID for moss (default: Krypton Moss)
     bool   EnableBaseTiles = true;  // Guard on tile-type conversion
     bool   EnableEvilTiles = true;  // Prefer EvilId in MorphIdLevels.GetId()
@@ -174,7 +182,7 @@ Both `AirBelow` and `TouchingAir` check all 8 neighbors using a `[ThreadStatic]`
 ### 1.10 MorphTool (Interactive)
 
 `MorphTool` is a standard brush tool using `BaseTool`'s `DrawLine`/`FillSolid` infrastructure. Key behaviors:
-- On `MouseDown`: resolves `_targetBiome` and `_biomeMorpher` from `MorphToolOptions.TargetBiome`.
+- On `MouseDown`: resolves the mode-specific configuration, then resolves `_targetBiome` and `_biomeMorpher` from `MorphToolOptions.TargetBiome`.
 - Uses a `CheckTiles` generation counter to skip already-visited tiles within a single drag stroke.
 - Respects `_wvm.Selection.IsValid(pixel)` — morph is confined to the active selection.
 - Supports all brush shapes (Square, Round, Star, Triangle, Crescent, Donut) and transforms (rotation, flip).
@@ -187,6 +195,21 @@ Iterates the entire world from bottom to top, computes `MorphLevel` per row (not
 ---
 
 ## 2. Terraria WorldGen.Convert() Reference
+
+### 2.0 Source-of-truth policy
+
+Biome classifications and canonical conversion counterparts come from the decompiled Terraria game-code resources at `D:\dev\ai\tedit\_reference_sources\terraria-server-disassembly`, specifically:
+
+- `Terraria/WorldGen.cs`: `WorldGen.Convert()`, exposure checks, gravity/support checks, and target selection;
+- `Terraria/ID/TileID.cs`: `TileID.Sets.Conversion` membership sets and framed conversion helpers;
+- `Terraria/ID/WallID.cs`: `WallID.Sets.Conversion` membership sets;
+- `Terraria/ID/BiomeConversionID.cs`: conversion target identifiers.
+
+TEdit's executable biome data comes from the embedded resources `src/TEdit.Terraria/Data/morphBiomes.json` and `src/TEdit.Terraria/Data/tiles.json`. The former defines TEdit's mappings; the latter validates IDs, framing, sprites, and solidity. The root-level `tiles.json` is a different file and is not authoritative for morph validation.
+
+Tests should extract a normalized manifest from the supported game-code version and compare it with the two embedded JSON resources. GitHub issues and `docs/todo/biome-tile-catalog.md` provide history and review context, but they must not override the game resources or executable JSON.
+
+Terraria may delete content or perform one-way material conversions. Safe conversion treats those behaviors as biome-membership evidence and preserves unsupported content. Generate biome retains the broad TEdit behavior behind an explicit destructive mode. Tests cover both policies separately.
 
 ### 2.1 BiomeConversionID
 
@@ -252,16 +275,20 @@ TEdit's `spriteOffset` entries encode these same offsets as U-range filters with
 
 ## 3. Current Biomes in TEdit
 
+The table below documents current behavior, including behavior that violates the target MORPH contract. The intended contract is that MORPH changes biome identity only through complete one-to-one equivalence families. It must preserve unmatched content, must not delete implicitly, and must not collapse distinct materials into a target from which the original cannot be recovered.
+
+Because Terraria world files do not store TEdit morph provenance, exact reversal cannot rely on edit history. A supported conversion must have a unique inverse in the world data itself. Dirt↔mud↔silt↔sand-style substrate changes are therefore outside ordinary biome morphing unless a complete one-to-one family can be defined; otherwise the source is preserved.
+
 | Key | Notes |
 |---|---|
-| `Purify` | Converts evil/biome tiles to neutral. Deletes biome-specific sprites. |
+| `Purify` | Converts evil/biome tiles to neutral. Currently deletes some biome-specific sprites; implicit deletion violates the target contract. |
 | `Corruption` | Converts grass→ebongrass, stone→ebonstone, sand→corrupt sand, etc. |
 | `Crimson` | Same structure as Corruption with Crimson IDs. |
 | `Hallow` | Converts to hallowed variants. Does not delete thorns (converts them). |
 | `GlowingMushroom` | Converts jungle grass→mushroom grass and mud walls→mushroom walls. Limited tile set. |
-| `Forest` | Biome-aware: uses `EvilId` to preserve Corruption/Crimson/Hallow variants of walls. Converts sand to dirt at surface. |
-| `Snow` | Converts most tiles to ice/snow variants. Deletes vines. |
-| `Desert` | Uses `gravity` field for sand physics. Converts dirt to sand at surface. |
+| `Forest` | Biome-aware: uses `EvilId` to preserve Corruption/Crimson/Hallow variants of walls. Currently converts sand to dirt at surface; lossy substrate conversion violates the target contract. |
+| `Snow` | Converts most tiles to ice/snow variants. Currently deletes vines; implicit deletion violates the target contract. |
+| `Desert` | Uses `gravity` field for sand physics. Currently converts dirt to sand at surface; lossy substrate conversion violates the target contract. |
 
 ---
 

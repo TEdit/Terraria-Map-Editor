@@ -8,6 +8,7 @@
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
+             xmlns:terrariaData="clr-namespace:TEdit.Terraria.DataModel;assembly=TEdit.Terraria"
              d:DesignWidth="400"
              d:DesignHeight="150"
              Background="{StaticResource WindowBackgroundBrush}"
@@ -17,9 +18,20 @@
              mc:Ignorable="d" >
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical" Margin="2">
+            <TextBlock Text="Mode" Margin="2" />
+            <ComboBox Width="200"
+                      SelectedValue="{Binding MorphToolOptions.Mode}"
+                      SelectedValuePath="Tag">
+                <ComboBoxItem Content="Safe conversion"
+                              ToolTip="Converts matching biome tiles and keeps unsupported tiles unchanged."
+                              Tag="{x:Static terrariaData:MorphMode.SafeConvert}" />
+                <ComboBoxItem Content="Generate biome (destructive)"
+                              ToolTip="Changes terrain and can remove decorations. Use Undo to restore the original tiles."
+                              Tag="{x:Static terrariaData:MorphMode.GenerateBiome}" />
+            </ComboBox>
             <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
             <ComboBox Width="200"
-                  ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.Biomes}, Mode=OneTime}" 
+                  ItemsSource="{Binding MorphToolOptions.TargetBiomes}"
                   SelectedValue="{Binding MorphToolOptions.TargetBiome}" />
             <TextBlock Text="{x:Static p:Language.tool_morph_moss_type}" Margin="2" />
             <ComboBox Width="200"
