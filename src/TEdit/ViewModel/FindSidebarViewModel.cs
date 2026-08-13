@@ -452,10 +452,10 @@ public partial class FindSidebarViewModel
     [ReactiveCommand]
     private void ClearAllSelections()
     {
-        ItemPicker.ClearSelectionCommand.Execute(System.Reactive.Unit.Default).Subscribe();
-        TilePicker.ClearSelectionCommand.Execute(System.Reactive.Unit.Default).Subscribe();
-        WallPicker.ClearSelectionCommand.Execute(System.Reactive.Unit.Default).Subscribe();
-        SpritePicker.ClearSelectionCommand.Execute(System.Reactive.Unit.Default).Subscribe();
+        ItemPicker.ClearSelectionCommand.Execute().Subscribe();
+        TilePicker.ClearSelectionCommand.Execute().Subscribe();
+        WallPicker.ClearSelectionCommand.Execute().Subscribe();
+        SpritePicker.ClearSelectionCommand.Execute().Subscribe();
 
         Results.Clear();
         CurrentResultIndex = -1;

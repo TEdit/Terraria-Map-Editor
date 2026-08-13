@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
+using ReactiveUI.Primitives;
 using TEdit5.Editor;
 
 namespace TEdit5.ViewModels;
@@ -12,7 +12,7 @@ public partial class ToolSelectionViewModel : ReactiveObject
     [Reactive]
     private List<IMouseTool> _tools = [];
 
-    public ReactiveCommand<IMouseTool, Unit> SetToolCommand { get; }
+    public ReactiveCommand<IMouseTool, RxVoid> SetToolCommand { get; }
 
     public ToolSelectionViewModel(IEnumerable<IMouseTool> tools)
     {

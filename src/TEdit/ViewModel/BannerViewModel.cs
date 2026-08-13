@@ -9,6 +9,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using TEdit.Render;
+using TEdit.Reactive;
 using TEdit.Terraria;
 
 namespace TEdit.ViewModel;
@@ -30,13 +31,13 @@ public partial class BannerViewModel : ReactiveObject
 
         this.WhenAnyValue(x => x.FilterText, x => x.SelectedCategory)
             .Throttle(TimeSpan.FromMilliseconds(200))
-            .ObserveOn(RxSchedulers.MainThreadScheduler)
+            .ObserveOnMainThread()
             .Subscribe(_ => BannersView.Refresh());
 
         // Auto-populate banners when a world is opened
         _wvm.WhenAnyValue(x => x.CurrentWorld)
             .Where(w => w != null)
-            .ObserveOn(RxSchedulers.MainThreadScheduler)
+            .ObserveOnMainThread()
             .Subscribe(_ => PopulateBanners());
 
         NpcPreviewCache.PreviewsLoaded += OnNpcPreviewsLoaded;

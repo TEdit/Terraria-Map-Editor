@@ -27,6 +27,7 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Editor.Clipboard;
 using TEdit.Geometry;
+using TEdit.Reactive;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 
@@ -166,7 +167,7 @@ public partial class ImageToPixelartEditorViewModel
                 x => x.BuildSafe,
                 x => x.UniqueColors)
             .Throttle(TimeSpan.FromMilliseconds(200))
-            .ObserveOn(RxSchedulers.MainThreadScheduler)
+            .ObserveOnMainThread()
             .Subscribe(async _ => await BuildColorFilter());
 
         // Update GridColorBrush when GridColor changes

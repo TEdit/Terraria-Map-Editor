@@ -8,6 +8,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using TEdit.Helper;
+using TEdit.Reactive;
 using TEdit.Render;
 using TEdit.Terraria;
 
@@ -121,7 +122,7 @@ public partial class BestiaryViewModel : ReactiveObject
 
         this.WhenAnyValue(x => x.FilterText)
             .Throttle(TimeSpan.FromMilliseconds(200))
-            .ObserveOn(RxSchedulers.MainThreadScheduler)
+            .ObserveOnMainThread()
             .Subscribe(_ => BestiaryView.Refresh());
 
         NpcPreviewCache.PreviewsLoaded += OnNpcPreviewsLoaded;

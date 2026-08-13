@@ -187,7 +187,7 @@ public partial class FilterSidebarViewModel
         foreach (var item in WallPicker.AllItems) item.IsChecked = false;
         foreach (var item in LiquidPicker.AllItems) item.IsChecked = false;
         foreach (var item in WirePicker.AllItems) item.IsChecked = false;
-        SpritePicker.ClearSelectionCommand.Execute(System.Reactive.Unit.Default).Subscribe();
+        SpritePicker.ClearSelectionCommand.Execute().Subscribe();
     }
 
     [ReactiveCommand]

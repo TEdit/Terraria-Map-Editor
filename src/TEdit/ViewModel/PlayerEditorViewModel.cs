@@ -12,6 +12,7 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Common;
 using TEdit.Properties;
+using TEdit.Reactive;
 using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.Terraria.Player;
@@ -91,7 +92,7 @@ public partial class PlayerEditorViewModel
         {
             colorVm.WhenAnyValue(x => x.Hue, x => x.Saturation, x => x.Lightness)
                 .Throttle(TimeSpan.FromMilliseconds(100))
-                .ObserveOn(RxSchedulers.MainThreadScheduler)
+                .ObserveOnMainThread()
                 .Subscribe(_ => RegeneratePreview());
         }
 
@@ -164,7 +165,7 @@ public partial class PlayerEditorViewModel
     {
         colorVm.WhenAnyValue(x => x.Hue, x => x.Saturation, x => x.Lightness)
             .Throttle(TimeSpan.FromMilliseconds(50))
-            .ObserveOn(RxSchedulers.MainThreadScheduler)
+            .ObserveOnMainThread()
             .Subscribe(_ =>
             {
                 if (Player != null)
@@ -215,7 +216,7 @@ public partial class PlayerEditorViewModel
             var sub = ActiveArmor[i].WhenAnyValue(x => x.NetId)
                 .Skip(1) // skip initial value to avoid redundant render
                 .Throttle(TimeSpan.FromMilliseconds(50))
-                .ObserveOn(RxSchedulers.MainThreadScheduler)
+                .ObserveOnMainThread()
                 .Subscribe(_ => RegeneratePreview());
             _armorSlotSubscriptions.Add(sub);
         }
@@ -228,7 +229,7 @@ public partial class PlayerEditorViewModel
                 var sub = ActiveDye[i].WhenAnyValue(x => x.NetId)
                     .Skip(1)
                     .Throttle(TimeSpan.FromMilliseconds(50))
-                    .ObserveOn(RxSchedulers.MainThreadScheduler)
+                    .ObserveOnMainThread()
                     .Subscribe(_ => RegeneratePreview());
                 _armorSlotSubscriptions.Add(sub);
             }
