@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -4112,65 +4112,48 @@ public partial class WorldViewModel : ReactiveObject
     private async Task SaveWorldThreadedAsync(string filename, uint version = 0, bool preserveAll = true)
     {
         bool saveCompleted = false;
-        await Task.Run(async () =>
+        try
         {
-            try
-            {
-                OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Validating World..."));
-                // await CurrentWorld.ValidateAsync();
-            }
-            catch (ArgumentOutOfRangeException err)
-            {
-                ErrorLogging.LogException(err);
-                string msg = "There is a problem in your world.\r\n" + $"{err.ParamName}\r\n" + $"This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
-                var saveResult = await Application.Current.Dispatcher.InvokeAsync(async () =>
-                    await App.DialogService.ShowMessageAsync(msg, "World Error", DialogButton.YesNo, DialogImage.Error)).Task.Unwrap();
-                if (saveResult != DialogResponse.Yes)
-                    return;
-            }
-            catch (Exception ex)
-            {
-                ErrorLogging.LogException(ex);
-                string msg = "There is a problem in your world.\r\n" + $"{ex.Message}\r\n" + "This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
-                var saveResult = await Application.Current.Dispatcher.InvokeAsync(async () =>
-                    await App.DialogService.ShowMessageAsync(msg, "World Error", DialogButton.YesNo, DialogImage.Error)).Task.Unwrap();
-                if (saveResult != DialogResponse.Yes)
-                    return;
-            }
-
+            OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Saving World..."));
             await World.SaveAsync(CurrentWorld, filename, versionOverride: (int)version, preserveAll: preserveAll, progress: new Progress<ProgressChangedEventArgs>(e =>
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
             }));
             saveCompleted = true;
-        }).ContinueWith(t =>
+        }
+        catch (Exception ex)
         {
-            if (t.IsCompletedSuccessfully && saveCompleted && _undoManager != null)
-            {
-                bool isAutosave = filename.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase);
+            ErrorLogging.LogException(ex);
+            await App.DialogService.ShowExceptionAsync(
+                $"Failed to save the world. The open world was restored and your edits remain unsaved.\r\n{ex.Message}");
+        }
 
-                if (isAutosave)
-                {
-                    // World.SaveAsync handles .tmp → final copy internally, no rename needed here.
-                    // Only reset autosave tracking, keep user save tracking
-                    _lastSavedUndoIndex = _undoManager.CurrentIndex;
-                    _hasUnsavedPropertyChanges = false;
-                    this.RaisePropertyChanged(nameof(HasUnsavedChanges));
-                }
-                else
-                {
-                    // Manual save: reset both autosave and user save tracking
-                    _lastSavedUndoIndex = _undoManager.CurrentIndex;
-                    _hasUnsavedPropertyChanges = false;
-                    _lastUserSavedUndoIndex = _undoManager.CurrentIndex;
-                    _hasUnsavedUserPropertyChanges = false;
-                    this.RaisePropertyChanged(nameof(HasUnsavedChanges));
-                    this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
-                    UpdateTitle();
-                }
+        if (saveCompleted && _undoManager != null)
+        {
+            bool isAutosave = filename.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase);
+
+            if (isAutosave)
+            {
+                // World.SaveAsync handles .tmp → final copy internally, no rename needed here.
+                // Only reset autosave tracking, keep user save tracking
+                _lastSavedUndoIndex = _undoManager.CurrentIndex;
+                _hasUnsavedPropertyChanges = false;
+                this.RaisePropertyChanged(nameof(HasUnsavedChanges));
             }
-            CommandManager.InvalidateRequerySuggested();
-        }, TaskFactoryHelper.UiTaskScheduler);
+            else
+            {
+                // Manual save: reset both autosave and user save tracking
+                _lastSavedUndoIndex = _undoManager.CurrentIndex;
+                _hasUnsavedPropertyChanges = false;
+                _lastUserSavedUndoIndex = _undoManager.CurrentIndex;
+                _hasUnsavedUserPropertyChanges = false;
+                this.RaisePropertyChanged(nameof(HasUnsavedChanges));
+                this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+                UpdateTitle();
+            }
+        }
+
+        CommandManager.InvalidateRequerySuggested();
     }
 
     private uint GetSaveVersion_MaxConfig(uint requested = 0)

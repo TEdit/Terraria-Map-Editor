@@ -70,6 +70,7 @@ public partial class World
             lock (_fileLock)
             {
                 uint currentWorldVersion = world.Version;
+                bool modDataStripped = false;
                 try
                 {
                     // Set the world version for this save
@@ -91,6 +92,7 @@ public partial class World
                     if (world.IsTModLoader && world.TwldData != null)
                     {
                         progress?.Report(new ProgressChangedEventArgs(0, "Preparing tModLoader data..."));
+                        modDataStripped = true;
                         TwldFile.StripFromWorld(world, world.TwldData);
                     }
 
@@ -130,11 +132,11 @@ public partial class World
                             File.Copy(temp, filename, true);
                             // Delete temp save file
                             File.Delete(temp);
-                            progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));
                         }
                     }
 
-                    // Save .twld sidecar and re-apply mod data to in-memory world
+                    // Save the .twld sidecar. The overlay is restored in finally so a
+                    // failed vanilla or sidecar write cannot erase mod tiles in memory.
                     if (world.IsTModLoader && world.TwldData != null)
                     {
                         progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
@@ -143,13 +145,16 @@ public partial class World
                         TwldFile.RebuildModChestItems(world, world.TwldData);
                         TwldFile.RebuildModTileEntityItems(world, world.TwldData);
                         TwldFile.Save(filename, world.TwldData);
-                        TwldFile.ReapplyToWorld(world, world.TwldData);
                     }
 
                     world.LastSave = File.GetLastWriteTimeUtc(filename);
+                    progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));
                 }
                 finally
                 {
+                    if (modDataStripped && world.TwldData != null)
+                        TwldFile.ReapplyToWorld(world, world.TwldData);
+
                     // Restore the version
                     if (versionOverride > 0)
                     {
@@ -172,6 +177,7 @@ public partial class World
         lock (_fileLock)
         {
             uint currentWorldVersion = world.Version;
+            bool modDataStripped = false;
             try
             {
                 // set the world version for this save
@@ -190,6 +196,7 @@ public partial class World
                 if (world.IsTModLoader && world.TwldData != null)
                 {
                     progress?.Report(new ProgressChangedEventArgs(0, "Preparing tModLoader data..."));
+                    modDataStripped = true;
                     TwldFile.StripFromWorld(world, world.TwldData);
                 }
 
@@ -230,22 +237,25 @@ public partial class World
                         File.Copy(temp, filename, true);
                         // delete temp save file
                         File.Delete(temp);
-                        progress?.Report(new ProgressChangedEventArgs(0, "World Save Complete."));
                     }
                 }
 
-                // Save .twld sidecar and re-apply mod data to in-memory world
+                // Save the .twld sidecar. The overlay is restored in finally so a
+                // failed vanilla or sidecar write cannot erase mod tiles in memory.
                 if (world.IsTModLoader && world.TwldData != null)
                 {
                     progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
                     TwldFile.Save(filename, world.TwldData);
-                    TwldFile.ReapplyToWorld(world, world.TwldData);
                 }
 
                 world.LastSave = File.GetLastWriteTimeUtc(filename);
+                progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));
             }
             finally
             {
+                if (modDataStripped && world.TwldData != null)
+                    TwldFile.ReapplyToWorld(world, world.TwldData);
+
                 // restore the version
                 if (versionOverride > 0) { world.Version = currentWorldVersion; }
             }

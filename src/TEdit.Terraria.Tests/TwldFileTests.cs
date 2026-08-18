@@ -428,6 +428,34 @@ public class TwldFileTests
     }
 
     [Fact]
+    public void TwldFile_SaveFailure_PreservesExistingSidecar()
+    {
+        string tempDir = Path.Combine(Path.GetTempPath(), $"tedit_twld_atomic_{Guid.NewGuid()}");
+        Directory.CreateDirectory(tempDir);
+        string wldPath = Path.Combine(tempDir, "Atomic.wld");
+        string twldPath = Path.Combine(tempDir, "Atomic.twld");
+        byte[] original = [0x1F, 0x8B, 0x08, 0x00, 0x54, 0x45, 0x64, 0x69, 0x74];
+
+        try
+        {
+            File.WriteAllBytes(twldPath, original);
+            var data = new TwldData { RawTag = new TagCompound() };
+            data.RawTag.Set("unsupported", new object());
+
+            Should.Throw<IOException>(() => TwldFile.Save(wldPath, data));
+
+            File.ReadAllBytes(twldPath).ShouldBe(original,
+                "a failed sidecar serialization must not truncate the existing .twld");
+            File.Exists(twldPath + ".tmp").ShouldBeFalse();
+        }
+        finally
+        {
+            if (Directory.Exists(tempDir))
+                Directory.Delete(tempDir, recursive: true);
+        }
+    }
+
+    [Fact]
     public void ApplyToWorld_DoesNothingForNull()
     {
         // Passing null TwldData should be a safe no-op (no exception)
@@ -560,6 +588,49 @@ public class TwldFileTests
         ref var tile = ref world.Tiles[1, 1];
         tile.IsActive.ShouldBeTrue("Tile should be active after ReapplyToWorld");
         tile.Type.ShouldBe(expectedType);
+    }
+
+    [Fact]
+    public void SaveFailure_ReappliesModTileOverlay()
+    {
+        var world = CreateTestWorld(10, 10);
+        world.Version = WorldConfiguration.CompatibleVersion;
+        world.IsTModLoader = true;
+
+        var data = new TwldData { RawTileData = [0] };
+        data.TileMap.Add(new ModTileEntry
+        {
+            SaveType = (ushort)WorldConfiguration.TileCount,
+            ModName = "TestMod",
+            Name = "TestTile",
+            FrameImportant = false,
+        });
+        BuildSaveTypeLookups(data);
+        data.ModTileGrid[(1, 1)] = new ModTileData { TileMapIndex = 0 };
+        data.TileWallDataParsed = true;
+        world.TwldData = data;
+        TwldFile.ApplyToWorld(world, data);
+        ushort virtualType = world.Tiles[1, 1].Type;
+
+        string tempDir = Path.Combine(Path.GetTempPath(), $"tedit_save_restore_{Guid.NewGuid()}");
+        Directory.CreateDirectory(tempDir);
+        string wldPath = Path.Combine(tempDir, "Restore.wld");
+        string blockingTempPath = Path.Combine(tempDir, "Restore.twld.tmp");
+        Directory.CreateDirectory(blockingTempPath);
+
+        try
+        {
+            Should.Throw<Exception>(() => World.Save(world, wldPath));
+
+            world.Tiles[1, 1].IsActive.ShouldBeTrue(
+                "a failed save must not leave the in-memory mod overlay stripped");
+            world.Tiles[1, 1].Type.ShouldBe(virtualType);
+        }
+        finally
+        {
+            if (Directory.Exists(tempDir))
+                Directory.Delete(tempDir, recursive: true);
+        }
     }
 
     #endregion

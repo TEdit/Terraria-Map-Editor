@@ -36,8 +36,21 @@ public static class TwldFile
         if (data == null) return;
 
         string twldPath = GetTwldPath(wldPath);
+        string tempPath = twldPath + ".tmp";
         var rootTag = BuildRootTag(data);
-        TagIO.ToFile(rootTag, twldPath);
+        try
+        {
+            // Serialize completely before replacing the sidecar. Writing directly to
+            // the .twld path can leave a truncated file when serialization or disk I/O
+            // fails, which makes the world appear corrupt on the next load.
+            TagIO.ToFile(rootTag, tempPath);
+            File.Copy(tempPath, twldPath, true);
+        }
+        finally
+        {
+            if (File.Exists(tempPath))
+                File.Delete(tempPath);
+        }
     }
 
     /// <summary>
