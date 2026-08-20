@@ -52713,6 +52713,7 @@
     "id": 6148,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "Pink",
     "name": "Trusty Cattiva",
     "key": "PalworldMinionTrustyCattiva"
@@ -52721,6 +52722,7 @@
     "id": 6149,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "LightRed",
     "name": "Trusty Foxparks",
     "key": "PalworldMinionTrustyFoxsparks"
@@ -52747,6 +52749,7 @@
     "id": 6152,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "Blue",
     "name": "Daybloom Staff",
     "key": "DaybloomStaff"
@@ -52755,6 +52758,7 @@
     "id": 6153,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "Blue",
     "name": "Glacier Fang",
     "key": "GlacierFang"
@@ -52763,6 +52767,7 @@
     "id": 6154,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "Orange",
     "name": "Mystic Bloom",
     "key": "Petalstorm"
@@ -52771,6 +52776,7 @@
     "id": 6155,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "LightPurple",
     "name": "Lightning Strike",
     "key": "LightningStrike"
@@ -52828,6 +52834,7 @@
     "id": 6161,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "Blue",
     "name": "Clay Bud Staff",
     "key": "ClayPotMinion"
@@ -52857,6 +52864,7 @@
     "id": 6164,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "LightRed",
     "name": "Ruinous Staff",
     "key": "ForbiddenMinion"
@@ -52919,6 +52927,7 @@
     "id": 6171,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "Pink",
     "name": "Bejeweled Staff",
     "key": "BejeweledStaff"
@@ -52936,6 +52945,7 @@
     "id": 6173,
     "scale": 1,
     "maxStackSize": 9999,
+    "isRackable": true,
     "rarity": "StrongRed",
     "name": "Arc Surge",
     "key": "ArcSurge"
