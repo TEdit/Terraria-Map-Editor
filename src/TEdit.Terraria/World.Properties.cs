@@ -384,6 +384,12 @@ public partial class World : ReactiveObject, ITileData
     [property: Category("Seed")]
     [Reactive] private bool _dualDungeonsSeed;
 
+    [property: Category("Seed")]
+    [Reactive] private bool _moreLightningSeed;
+
+    [property: Category("Seed")]
+    [Reactive] private bool _noLightningSeed;
+
     #endregion Seed
 
     #region Ore Tier

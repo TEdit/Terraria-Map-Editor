@@ -378,6 +378,8 @@ declare const world: {
     vampireSeed: boolean;
     infectedSeed: boolean;
     dualDungeonsSeed: boolean;
+    moreLightningSeed: boolean;
+    noLightningSeed: boolean;
 
     // Ore Tiers
     isCrimson: boolean;

@@ -2986,6 +2986,12 @@
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>감염자</value>
   </data>
+  <data name="tool_wp_seed_morelightning" xml:space="preserve">
+    <value>번개 발생 빈도 증가</value>
+  </data>
+  <data name="tool_wp_seed_nolightning" xml:space="preserve">
+    <value>번개 비활성화</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>함정 금지</value>
   </data>

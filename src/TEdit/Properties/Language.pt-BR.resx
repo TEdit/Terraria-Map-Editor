@@ -2986,6 +2986,12 @@ Você gostaria de ativar o relatório de erros?</value>
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>Infectados</value>
   </data>
+  <data name="tool_wp_seed_morelightning" xml:space="preserve">
+    <value>Mais raios caem</value>
+  </data>
+  <data name="tool_wp_seed_nolightning" xml:space="preserve">
+    <value>Desativa a queda de raios</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Sem armadilhas</value>
   </data>

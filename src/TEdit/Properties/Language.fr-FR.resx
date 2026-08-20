@@ -2986,6 +2986,12 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>Infectés</value>
   </data>
+  <data name="tool_wp_seed_morelightning" xml:space="preserve">
+    <value>Plus d'éclairs</value>
+  </data>
+  <data name="tool_wp_seed_nolightning" xml:space="preserve">
+    <value>Éclairs désactivés</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Pas de pièges</value>
   </data>

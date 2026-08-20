@@ -2980,6 +2980,12 @@ Would you like to enable error reporting?</value>
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>Infected</value>
   </data>
+  <data name="tool_wp_seed_morelightning" xml:space="preserve">
+    <value>More Lightning</value>
+  </data>
+  <data name="tool_wp_seed_nolightning" xml:space="preserve">
+    <value>No Lightning</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>No Traps</value>
   </data>

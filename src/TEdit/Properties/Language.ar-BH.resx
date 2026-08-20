@@ -2986,6 +2986,12 @@
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>المصابون</value>
   </data>
+  <data name="tool_wp_seed_morelightning" xml:space="preserve">
+    <value>المزيد من البرق</value>
+  </data>
+  <data name="tool_wp_seed_nolightning" xml:space="preserve">
+    <value>لا برق</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>لا الفخاخ</value>
   </data>
