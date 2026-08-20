@@ -35,8 +35,8 @@ public class TerrariaFormatValidatorTests
         try
         {
             int version = r.ReadInt32();
-            if (version == 0 || version > 319)
-                return (false, $"Version {version} out of range (0 < v <= 319)");
+            if (version == 0 || version > 325)
+                return (false, $"Version {version} out of range (0 < v <= 325)");
 
             ms.Position = 0;
 
@@ -829,6 +829,11 @@ public class TerrariaFormatValidatorTests
         }
 
         if (version >= 304) { r.ReadBoolean(); Log(r, "dualDungeons"); }
+        if (version >= 323)
+        {
+            r.ReadBoolean(); Log(r, "moreLightningSeed");
+            r.ReadBoolean(); Log(r, "noLightningSeed");
+        }
 
         if (version >= 299 && version < 313)
         {

@@ -29,9 +29,12 @@ public class VersionData
     public int MaxNpcId { get; set; }
 
     [JsonPropertyOrder(6)]
-    public int MaxMoonId { get; set; }
+    public int MaxBannerTypes { get; set; }
 
     [JsonPropertyOrder(7)]
+    public int MaxMoonId { get; set; }
+
+    [JsonPropertyOrder(8)]
     public int[] FramedTileIds { get; set; } = [];
 }
 

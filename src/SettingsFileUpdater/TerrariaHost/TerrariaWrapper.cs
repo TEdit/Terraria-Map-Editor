@@ -302,7 +302,7 @@ namespace SettingsFileUpdater.TerrariaHost
             for (int i = 0; i < TileID.Count; i++)
             {
 
-                var color = MapHelper.GetMapTileXnaColor(MapTile.Create((ushort)i, byte.MaxValue, 0));
+                var color = MapHelper.GetMapTileXnaColor(MapTile.Create((ushort)i, byte.MaxValue, 0), 0, 0);
 
                 var node = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString());
                 string origName = node?.Attribute("Name").Value;
@@ -607,6 +607,7 @@ namespace SettingsFileUpdater.TerrariaHost
                 MaxWallId = WallID.Count - 1,
                 MaxItemId = ItemID.Count - 1,
                 MaxNpcId = NPCID.Count - 1,
+                MaxBannerTypes = BannerSystem.MaxBannerTypes,
                 MaxMoonId = Main.maxMoons,
                 FramedTileIds = framed.ToArray()
             };
@@ -625,6 +626,7 @@ namespace SettingsFileUpdater.TerrariaHost
                 "      \"maxWallId\": " + data.MaxWallId + "," + Environment.NewLine,
                 "      \"maxItemId\": " + data.MaxItemId + "," + Environment.NewLine,
                 "      \"maxNpcId\": " + data.MaxNpcId + "," + Environment.NewLine,
+                "      \"maxBannerTypes\": " + data.MaxBannerTypes + "," + Environment.NewLine,
                 "      \"maxMoonId\": " + data.MaxMoonId + "," + Environment.NewLine,
                 "      \"framedTileIds\": [ " + string.Join(", ", data.FramedTileIds) + " ]" + Environment.NewLine,
                 "    },"
@@ -796,7 +798,7 @@ namespace SettingsFileUpdater.TerrariaHost
 
             for (int i = 0; i < TileID.Count; i++)
             {
-                var color = MapHelper.GetMapTileXnaColor(MapTile.Create((ushort)i, byte.MaxValue, 0));
+                var color = MapHelper.GetMapTileXnaColor(MapTile.Create((ushort)i, byte.MaxValue, 0), 0, 0);
                 var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
                 string tileName = creatingItem?.Name ?? i.ToString();
 
@@ -913,7 +915,7 @@ namespace SettingsFileUpdater.TerrariaHost
             for (int i = 0; i < WallID.Count; i++)
             {
                 var creatingWall = curItems.FirstOrDefault(x => x.createWall == i);
-                var color = MapHelper.GetMapTileXnaColor(MapTile.Create(0, byte.MaxValue, (byte)i));
+                var color = MapHelper.GetMapTileXnaColor(MapTile.Create(0, byte.MaxValue, (byte)i), 0, 0);
 
                 result.Add(new WallDataJson
                 {
