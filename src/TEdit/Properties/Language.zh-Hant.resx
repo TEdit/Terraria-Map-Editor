@@ -2986,6 +2986,12 @@
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>感染者</value>
   </data>
+  <data name="tool_wp_seed_morelightning" xml:space="preserve">
+    <value>雷擊變多</value>
+  </data>
+  <data name="tool_wp_seed_nolightning" xml:space="preserve">
+    <value>停用雷擊</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>禁止陷阱</value>
   </data>

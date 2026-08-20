@@ -2987,6 +2987,12 @@ Qué NO se recolecta:
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>Infected (noInfection)</value>
   </data>
+  <data name="tool_wp_seed_morelightning" xml:space="preserve">
+    <value>Más relámpagos</value>
+  </data>
+  <data name="tool_wp_seed_nolightning" xml:space="preserve">
+    <value>Desactiva los relámpagos</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>notraps (sin trampas)</value>
   </data>

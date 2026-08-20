@@ -2986,6 +2986,12 @@
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>Заражённые</value>
   </data>
+  <data name="tool_wp_seed_morelightning" xml:space="preserve">
+    <value>Больше ударов молнии</value>
+  </data>
+  <data name="tool_wp_seed_nolightning" xml:space="preserve">
+    <value>Удары молнии отключены</value>
+  </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Без ловушек</value>
   </data>

@@ -97,6 +97,8 @@ public class WorldInfoApi
     public bool VampireSeed { get => _world.VampireSeed; set => _world.VampireSeed = value; }
     public bool InfectedSeed { get => _world.InfectedSeed; set => _world.InfectedSeed = value; }
     public bool DualDungeonsSeed { get => _world.DualDungeonsSeed; set => _world.DualDungeonsSeed = value; }
+    public bool MoreLightningSeed { get => _world.MoreLightningSeed; set => _world.MoreLightningSeed = value; }
+    public bool NoLightningSeed { get => _world.NoLightningSeed; set => _world.NoLightningSeed = value; }
 
     // ── Ore Tiers ───────────────────────────────────────────────────
     public bool IsCrimson { get => _world.IsCrimson; set => _world.IsCrimson = value; }

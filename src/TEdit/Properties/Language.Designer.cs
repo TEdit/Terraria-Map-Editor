@@ -8578,6 +8578,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More Lightning.
+        /// </summary>
+        public static string tool_wp_seed_morelightning {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_morelightning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Lightning.
+        /// </summary>
+        public static string tool_wp_seed_nolightning {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_nolightning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Traps.
         /// </summary>
         public static string tool_wp_seed_notraps {

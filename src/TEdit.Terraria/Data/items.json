@@ -52699,5 +52699,461 @@
     "createTile": 139,
     "rarity": "LightRed",
     "name": "Music Box (Silence)"
+  },
+  {
+    "id": 6147,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Blue",
+    "name": "Giant Tiki",
+    "key": "GiantTiki",
+    "createTile": 753
+  },
+  {
+    "id": 6148,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "Pink",
+    "name": "Trusty Cattiva",
+    "key": "PalworldMinionTrustyCattiva"
+  },
+  {
+    "id": 6149,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "LightRed",
+    "name": "Trusty Foxparks",
+    "key": "PalworldMinionTrustyFoxsparks"
+  },
+  {
+    "id": 6150,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Blue",
+    "name": "Trusty Chillet",
+    "key": "PalworldMountTrustyChillet",
+    "isMount": true
+  },
+  {
+    "id": 6151,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Trusty Chillet Ignis",
+    "key": "PalworldMountTrustyChilletIgnis",
+    "isMount": true
+  },
+  {
+    "id": 6152,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "Blue",
+    "name": "Daybloom Staff",
+    "key": "DaybloomStaff"
+  },
+  {
+    "id": 6153,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "Blue",
+    "name": "Glacier Fang",
+    "key": "GlacierFang"
+  },
+  {
+    "id": 6154,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "Orange",
+    "name": "Mystic Bloom",
+    "key": "Petalstorm"
+  },
+  {
+    "id": 6155,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "LightPurple",
+    "name": "Lightning Strike",
+    "key": "LightningStrike"
+  },
+  {
+    "id": 6156,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Green",
+    "name": "Silver Bracer",
+    "key": "SilverBracer",
+    "isAccessory": true,
+    "handOnSlot": 27,
+    "handOffSlot": 17
+  },
+  {
+    "id": 6157,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "LightRed",
+    "name": "Snake Band",
+    "key": "SnakeBand",
+    "isAccessory": true,
+    "handOnSlot": 28
+  },
+  {
+    "id": 6158,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Lime",
+    "name": "Mobius Strip",
+    "key": "MobiusStrip",
+    "isAccessory": true
+  },
+  {
+    "id": 6159,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "LightRed",
+    "name": "Wicked Armlet",
+    "key": "WickedArmlet",
+    "isAccessory": true,
+    "handOnSlot": 29
+  },
+  {
+    "id": 6160,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Orange",
+    "name": "Razortip",
+    "key": "SharpBarb",
+    "isAccessory": true
+  },
+  {
+    "id": 6161,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "Blue",
+    "name": "Clay Bud Staff",
+    "key": "ClayPotMinion"
+  },
+  {
+    "id": 6162,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Yellow",
+    "name": "Ouroboros Ring",
+    "key": "OuroborosRing",
+    "isAccessory": true,
+    "handOnSlot": 30
+  },
+  {
+    "id": 6163,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Twilight Grasp",
+    "key": "TwilightGrasp",
+    "isAccessory": true,
+    "handOnSlot": 31,
+    "handOffSlot": 18
+  },
+  {
+    "id": 6164,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "LightRed",
+    "name": "Ruinous Staff",
+    "key": "ForbiddenMinion"
+  },
+  {
+    "id": 6165,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Blue",
+    "name": "Poison Barb",
+    "key": "PoisonBarb",
+    "isAccessory": true
+  },
+  {
+    "id": 6166,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Green",
+    "name": "Harpy Charm",
+    "key": "HarpyCharm",
+    "isAccessory": true
+  },
+  {
+    "id": 6167,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Orange",
+    "name": "Snapping Stone",
+    "key": "SnappingStone",
+    "isAccessory": true
+  },
+  {
+    "id": 6168,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Chaos Cylinder",
+    "key": "AmmoCycler4",
+    "isAccessory": true
+  },
+  {
+    "id": 6169,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Chaos Cylinder (Full)",
+    "key": "AmmoCyclerFullInv",
+    "isAccessory": true
+  },
+  {
+    "id": 6170,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Orange",
+    "name": "Enchanted Timer",
+    "key": "TimerCrit",
+    "isAccessory": true
+  },
+  {
+    "id": 6171,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "Pink",
+    "name": "Bejeweled Staff",
+    "key": "BejeweledStaff"
+  },
+  {
+    "id": 6172,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Heavy Sling",
+    "key": "HeavySling",
+    "isAccessory": true
+  },
+  {
+    "id": 6173,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "isRackable": true,
+    "rarity": "StrongRed",
+    "name": "Arc Surge",
+    "key": "ArcSurge"
+  },
+  {
+    "id": 6174,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Orange",
+    "name": "Trusty Digtoise",
+    "key": "PalworldTrustyDigtoise"
+  },
+  {
+    "id": 6175,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Lime",
+    "name": "Scout's Sling",
+    "key": "ScoutSling",
+    "isAccessory": true
+  },
+  {
+    "id": 6176,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Yellow",
+    "name": "Templar's Sling",
+    "key": "TemplarSling",
+    "isAccessory": true
+  },
+  {
+    "id": 6177,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "LightPurple",
+    "name": "Royal Guard's Harness",
+    "key": "RoyalGuardHarness",
+    "isAccessory": true,
+    "shieldSlot": 11
+  },
+  {
+    "id": 6178,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "LightRed",
+    "name": "Pyroclastic Stone",
+    "key": "Pyroclast",
+    "isAccessory": true
+  },
+  {
+    "id": 6179,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Armlet Of Ruin",
+    "key": "ArmletOfRuin",
+    "isAccessory": true,
+    "handOnSlot": 32
+  },
+  {
+    "id": 6180,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Seraph Necklace",
+    "key": "SeraphNecklace",
+    "isAccessory": true,
+    "neckSlot": 14
+  },
+  {
+    "id": 6181,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "LightPurple",
+    "name": "Phoenix Quiver",
+    "key": "PhoenixQuiver",
+    "isAccessory": true,
+    "backSlot": 40
+  },
+  {
+    "id": 6182,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "LightRed",
+    "name": "Wicked Claws",
+    "key": "WickedClaws",
+    "isAccessory": true,
+    "handOnSlot": 25,
+    "handOffSlot": 16
+  },
+  {
+    "id": 6183,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Orange",
+    "name": "Silver Shield",
+    "key": "SilverShield",
+    "isAccessory": true,
+    "shieldSlot": 10
+  },
+  {
+    "id": 6184,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Orange",
+    "name": "Sweet Barb",
+    "key": "SweetBarb",
+    "isAccessory": true
+  },
+  {
+    "id": 6185,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Catalyst Band",
+    "key": "CatalystBand",
+    "isAccessory": true,
+    "handOnSlot": 26
+  },
+  {
+    "id": 6186,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Druidic Serpent Cloak",
+    "key": "DruidicSerpentCloak",
+    "isAccessory": true,
+    "frontSlot": 17,
+    "backSlot": 41
+  },
+  {
+    "id": 6187,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Crossed Heart Necklace",
+    "key": "CrossedHeartNecklace",
+    "isAccessory": true,
+    "neckSlot": 13
+  },
+  {
+    "id": 6188,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Green",
+    "name": "Restoration Shield",
+    "key": "RestorationShield",
+    "isAccessory": true,
+    "shieldSlot": 12
+  },
+  {
+    "id": 6189,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Yellow",
+    "name": "Mystic Arts Sash",
+    "key": "MysticArtsSash",
+    "isAccessory": true,
+    "waistSlot": 17
+  },
+  {
+    "id": 6190,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "StrongRed",
+    "name": "Guide to Old World Parkour",
+    "key": "OldStyleParkourBook"
+  },
+  {
+    "id": 6191,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Little Kinship Peach",
+    "key": "PalworldLittleKinshipPeach"
+  },
+  {
+    "id": 6192,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Lime",
+    "name": "Kinship Peach",
+    "key": "PalworldKinshipPeach"
+  },
+  {
+    "id": 6193,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Chaos Cylinder (Random)",
+    "key": "AmmoCyclerRandom",
+    "isAccessory": true
+  },
+  {
+    "id": 6194,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "Pink",
+    "name": "Chaos Cylinder (Simple)",
+    "key": "AmmoCyclerNoCycle",
+    "isAccessory": true
+  },
+  {
+    "id": 6195,
+    "scale": 1,
+    "maxStackSize": 9999,
+    "rarity": "StrongRed",
+    "name": "Guide to Old World Parkour (Inactive)",
+    "key": "OldStyleParkourBookInactive"
   }
 ]

@@ -1342,6 +1342,12 @@ public partial class World
             bw.Write(world.DualDungeonsSeed);
         }
 
+        if (world.Version >= 323)
+        {
+            bw.Write(world.MoreLightningSeed);
+            bw.Write(world.NoLightningSeed);
+        }
+
         if (world.Version >= 299 && world.Version < 313)
         {
             bw.Write(0u); // deprecated uint
@@ -2446,6 +2452,12 @@ public partial class World
         }
 
         w.DualDungeonsSeed = w.Version >= 304 && r.ReadBoolean();
+
+        if (w.Version >= 323)
+        {
+            w.MoreLightningSeed = r.ReadBoolean();
+            w.NoLightningSeed = r.ReadBoolean();
+        }
 
         if (w.Version >= 299 && w.Version < 313)
         {

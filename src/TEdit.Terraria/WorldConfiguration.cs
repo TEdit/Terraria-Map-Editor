@@ -11,9 +11,9 @@ namespace TEdit.Terraria;
 public class WorldConfiguration
 {
     // Baseline fallbacks ONLY (used if config files are missing/broken).
-    // Baselines use v1.4.5.4 (latest of 02Feb26).
-    private const uint  DefaultCompatibleVersion = 317;
-    private const short DefaultTileCount         = 753;  // MaxTileId (752) + 1
+    // Baselines use v1.4.5.7 (latest of 20Aug26).
+    private const uint  DefaultCompatibleVersion = 325;
+    private const short DefaultTileCount         = 754;  // MaxTileId (753) + 1
     private const short DefaultWallCount         = 367;  // MaxWallId (366) + 1
     private const short DefaultMaxNpcId          = 697;  // MaxNpcId  (696) + 1
     private const int   DefaultMaxChests         = 8000;
