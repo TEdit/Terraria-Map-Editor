@@ -8461,6 +8461,78 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0:0.##} days.
+        /// </summary>
+        public static string tool_wp_rain_duration_days {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_duration_days", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.##} hr.
+        /// </summary>
+        public static string tool_wp_rain_duration_hours {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_duration_hours", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.##} min.
+        /// </summary>
+        public static string tool_wp_rain_duration_minutes {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_duration_minutes", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        public static string tool_wp_rain_duration_normal {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_duration_normal", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to 1 year.
+        /// </summary>
+        public static string tool_wp_rain_duration_one_year {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_duration_one_year", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to Permanent.
+        /// </summary>
+        public static string tool_wp_rain_duration_permanent {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_duration_permanent", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to {0} (permanent).
+        /// </summary>
+        public static string tool_wp_rain_duration_permanent_format {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_duration_permanent_format", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.##} sec.
+        /// </summary>
+        public static string tool_wp_rain_duration_seconds {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_duration_seconds", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.##} years.
+        /// </summary>
+        public static string tool_wp_rain_duration_years {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_duration_years", resourceCulture);
+            }
+        }
+        /// <summary>
         ///   Looks up a localized string similar to Max Rain.
         /// </summary>
         public static string tool_wp_rain_max {

@@ -2947,6 +2947,33 @@
   <data name="tool_wp_rain_active" xml:space="preserve">
     <value>تمطر</value>
   </data>
+  <data name="tool_wp_rain_duration_days" xml:space="preserve">
+    <value>{0:0.##} أيام</value>
+  </data>
+  <data name="tool_wp_rain_duration_hours" xml:space="preserve">
+    <value>{0:0.##} س</value>
+  </data>
+  <data name="tool_wp_rain_duration_minutes" xml:space="preserve">
+    <value>{0:0.##} د</value>
+  </data>
+  <data name="tool_wp_rain_duration_normal" xml:space="preserve">
+    <value>طبيعي</value>
+  </data>
+  <data name="tool_wp_rain_duration_one_year" xml:space="preserve">
+    <value>سنة واحدة</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent" xml:space="preserve">
+    <value>دائم</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent_format" xml:space="preserve">
+    <value>{0} (دائم)</value>
+  </data>
+  <data name="tool_wp_rain_duration_seconds" xml:space="preserve">
+    <value>{0:0.##} ث</value>
+  </data>
+  <data name="tool_wp_rain_duration_years" xml:space="preserve">
+    <value>{0:0.##} سنوات</value>
+  </data>
   <data name="tool_wp_rain_max" xml:space="preserve">
     <value>ماكس المطر</value>
   </data>

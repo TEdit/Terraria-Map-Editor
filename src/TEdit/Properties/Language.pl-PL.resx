@@ -2947,6 +2947,33 @@ Czy chcesz włączyć raportowanie błędów?</value>
   <data name="tool_wp_rain_active" xml:space="preserve">
     <value>Jest Deszczowo</value>
   </data>
+  <data name="tool_wp_rain_duration_days" xml:space="preserve">
+    <value>{0:0.##} dni</value>
+  </data>
+  <data name="tool_wp_rain_duration_hours" xml:space="preserve">
+    <value>{0:0.##} godz.</value>
+  </data>
+  <data name="tool_wp_rain_duration_minutes" xml:space="preserve">
+    <value>{0:0.##} min</value>
+  </data>
+  <data name="tool_wp_rain_duration_normal" xml:space="preserve">
+    <value>Normalny</value>
+  </data>
+  <data name="tool_wp_rain_duration_one_year" xml:space="preserve">
+    <value>1 rok</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent" xml:space="preserve">
+    <value>Stały</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent_format" xml:space="preserve">
+    <value>{0} (stały)</value>
+  </data>
+  <data name="tool_wp_rain_duration_seconds" xml:space="preserve">
+    <value>{0:0.##} s</value>
+  </data>
+  <data name="tool_wp_rain_duration_years" xml:space="preserve">
+    <value>{0:0.##} lat</value>
+  </data>
   <data name="tool_wp_rain_max" xml:space="preserve">
     <value>Maksymalny Deszcz</value>
   </data>

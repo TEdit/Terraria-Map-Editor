@@ -284,7 +284,7 @@
     <value>全部</value>
   </data>
   <data name="common_browse" xml:space="preserve">
-    <value>浏览……</value>
+    <value>浏览...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>取消</value>
@@ -2947,6 +2947,33 @@
   <data name="tool_wp_rain_active" xml:space="preserve">
     <value>正在下雨</value>
   </data>
+  <data name="tool_wp_rain_duration_days" xml:space="preserve">
+    <value>{0:0.##} 天</value>
+  </data>
+  <data name="tool_wp_rain_duration_hours" xml:space="preserve">
+    <value>{0:0.##} 小时</value>
+  </data>
+  <data name="tool_wp_rain_duration_minutes" xml:space="preserve">
+    <value>{0:0.##} 分钟</value>
+  </data>
+  <data name="tool_wp_rain_duration_normal" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="tool_wp_rain_duration_one_year" xml:space="preserve">
+    <value>1 年</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent" xml:space="preserve">
+    <value>永久</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent_format" xml:space="preserve">
+    <value>{0}（永久）</value>
+  </data>
+  <data name="tool_wp_rain_duration_seconds" xml:space="preserve">
+    <value>{0:0.##} 秒</value>
+  </data>
+  <data name="tool_wp_rain_duration_years" xml:space="preserve">
+    <value>{0:0.##} 年</value>
+  </data>
   <data name="tool_wp_rain_max" xml:space="preserve">
     <value>最大降雨</value>
   </data>
@@ -3105,7 +3132,7 @@
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
   <data name="update_checking" xml:space="preserve">
-    <value>正在检查更新……</value>
+    <value>正在检查更新...</value>
   </data>
   <data name="update_check_failed" xml:space="preserve">
     <value>更新检查失败。</value>
@@ -3143,7 +3170,7 @@
     <value>有备份存在</value>
   </data>
   <data name="world_explorer_browse" xml:space="preserve">
-    <value>浏览……</value>
+    <value>浏览...</value>
   </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>尺寸</value>
@@ -3170,7 +3197,7 @@
     <value>删除备份</value>
   </data>
   <data name="world_explorer_loading_preview" xml:space="preserve">
-    <value>加载预览……</value>
+    <value>加载预览...</value>
   </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>无备份——点击创建.bak和TEdit备份</value>
@@ -3194,7 +3221,7 @@
     <value>预览世界地图</value>
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
-    <value>搜索世界……</value>
+    <value>搜索世界...</value>
   </data>
   <data name="world_explorer_tab_tmodloader" xml:space="preserve">
     <value>tModLoader</value>

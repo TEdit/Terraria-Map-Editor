@@ -10,6 +10,7 @@
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d"
              d:DesignWidth="450"
              Foreground="{DynamicResource TextBrush}"
@@ -18,7 +19,11 @@
     <converters:ByteIntConverter x:Key="ByteIntConverter" />
     <converters:IntByteConverter x:Key="IntByteConverter" />
     <converters:TeamIndexToNameConverter x:Key="TeamIndexToNameConverter" />
+    <converters:MaximumTileIndexConverter x:Key="MaximumTileIndexConverter" />
     <converters:WindSpeedToMphConverter x:Key="WindSpeedToMphConverter" />
+    <converters:RainTimeSliderConverter x:Key="RainTimeSliderConverter" />
+    <converters:RainTimeDisplayConverter x:Key="RainTimeDisplayConverter" />
+    <converters:PermanentRainTimeConverter x:Key="PermanentRainTimeConverter" />
     <!-- DataTemplate for style preview comboboxes (tree styles, backgrounds, caves) -->
     <DataTemplate x:Key="StylePreviewItemTemplate">
       <StackPanel Orientation="Horizontal" Margin="2">
@@ -284,6 +289,8 @@
       <enum:EnumItem Value="36">Mudfish</enum:EnumItem>
       <enum:EnumItem Value="37">Slimefish</enum:EnumItem>
       <enum:EnumItem Value="38">Tropical Barracuda</enum:EnumItem>
+      <enum:EnumItem Value="39">Scarab Fish</enum:EnumItem>
+      <enum:EnumItem Value="40">Scorpio Fish</enum:EnumItem>
     </enum:EnumItemList>
 
     <converters:TerrariaTimeConverter x:Key="TerrariaTimeConverter" />
@@ -414,7 +421,9 @@
     <Separator Grid.ColumnSpan="2" />
     <TextBlock Text="{x:Static p:Language.tool_wp_moon_phase}" HorizontalAlignment="Right" />
     <DockPanel>
-      <TextBox Text="{Binding CurrentWorld.MoonPhase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" Width="50" />
+      <ui:NumberBox Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Minimum="0" Maximum="7" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False"
+                    DockPanel.Dock="Right" Width="60" />
       <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="7" />
     </DockPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_moon_style}" HorizontalAlignment="Right" />
@@ -456,38 +465,64 @@
     <TextBlock Text="{x:Static p:Language.tool_wp_time_sundial_cooldown}" HorizontalAlignment="Right" />
     <DockPanel>
       <TextBlock Text="{Binding CurrentWorld.SundialCooldown, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.SundialCooldown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="127" SmallChange="1" />
+      <Slider Value="{Binding CurrentWorld.SundialCooldown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="8" SmallChange="1" />
     </DockPanel>
     <TextBlock />
     <CheckBox IsChecked="{Binding CurrentWorld.FastForwardTimeToDusk}" Content="{x:Static p:Language.tool_wp_usemoondial}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock Text="{x:Static p:Language.tool_wp_moondial_cooldown}" HorizontalAlignment="Right" />
     <DockPanel>
       <TextBlock Text="{Binding CurrentWorld.MoondialCooldown, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.MoondialCooldown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="127" SmallChange="1" />
+      <Slider Value="{Binding CurrentWorld.MoondialCooldown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="8" SmallChange="1" />
     </DockPanel>
     <Separator Grid.ColumnSpan="2" />
     <TextBlock Text="{x:Static p:Language.tool_wp_rain}" HorizontalAlignment="Right" />
     <CheckBox IsChecked="{Binding CurrentWorld.IsRaining, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_rain_active}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
     <TextBlock Text="{x:Static p:Language.tool_wp_rain_time}" HorizontalAlignment="Right" />
-    <DockPanel>
-      <TextBlock Text="{Binding CurrentWorld.TempRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="999999" SmallChange="1" />
-    </DockPanel>
+    <StackPanel>
+      <DockPanel>
+        <TextBlock Text="{Binding CurrentWorld.TempRainTime, Converter={StaticResource RainTimeDisplayConverter}}"
+                   Width="115" Margin="4,0,0,0" DockPanel.Dock="Right" TextAlignment="Right"
+                   TextTrimming="CharacterEllipsis"
+                   ToolTip="{Binding CurrentWorld.TempRainTime, Converter={StaticResource RainTimeDisplayConverter}}" />
+        <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RainTimeSliderConverter}}"
+                VerticalAlignment="Center" Minimum="0" Maximum="{x:Static converters:RainTimeValues.OneYearSliderValue}"
+                SmallChange="0.25" LargeChange="2">
+          <Slider.Style>
+            <Style TargetType="Slider" BasedOn="{StaticResource {x:Type Slider}}">
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentWorld.TempRainTime}" Value="{x:Static converters:RainTimeValues.Permanent}">
+                  <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </Slider.Style>
+        </Slider>
+      </DockPanel>
+      <Grid Margin="0,1,115,0" IsHitTestVisible="False">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1*" />
+          <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="{x:Static converters:RainTimeValues.OneHourLabel}" FontSize="9" HorizontalAlignment="Right" />
+        <TextBlock Grid.Column="1" Text="{x:Static p:Language.tool_wp_rain_duration_one_year}" FontSize="9" HorizontalAlignment="Right" />
+      </Grid>
+      <CheckBox Content="{x:Static p:Language.tool_wp_rain_duration_permanent}"
+                IsChecked="{Binding CurrentWorld.TempRainTime, Mode=TwoWay, Converter={StaticResource PermanentRainTimeConverter}}" />
+    </StackPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_rain_max}" HorizontalAlignment="Right" />
     <DockPanel>
-      <TextBlock Text="{Binding CurrentWorld.TempMaxRain, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.TempMaxRain, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="1" />
+      <TextBlock Text="{Binding CurrentWorld.TempMaxRain, StringFormat={}{0:0.00}}"
+                 Width="50" Margin="4,0,0,0" DockPanel.Dock="Right" TextAlignment="Right" />
+      <Slider Value="{Binding CurrentWorld.TempMaxRain, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+              VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1"
+              TickFrequency="0.01" IsSnapToTickEnabled="True" />
     </DockPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_rain_slime}" HorizontalAlignment="Right" />
-    <DockPanel>
-      <TextBlock Text="{Binding CurrentWorld.SlimeRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.SlimeRainTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
-    </DockPanel>
+    <ui:NumberBox Value="{Binding CurrentWorld.SlimeRainTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Minimum="-604700" Maximum="54000" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" />
     <TextBlock Text="{x:Static p:Language.tool_wp_cloud_bg_active}" HorizontalAlignment="Right" />
-    <DockPanel>
-      <TextBlock Text="{Binding CurrentWorld.CloudBgActive, StringFormat={}{0:0.0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.CloudBgActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.1" />
-    </DockPanel>
+    <ui:NumberBox Value="{Binding CurrentWorld.CloudBgActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Minimum="-345599" Maximum="172799" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" />
     <Separator Grid.ColumnSpan="2" />
     <TextBlock Text="{x:Static p:Language.tool_wp_holiday}" HorizontalAlignment="Right" />
     <CheckBox IsChecked="{Binding CurrentWorld.ForceHalloweenForToday, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_holiday_halloween}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
@@ -508,34 +543,38 @@
     </DockPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_sandstorm_severity}" HorizontalAlignment="Right" />
     <DockPanel>
-      <TextBlock Text="{Binding CurrentWorld.SandStormSeverity, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+      <TextBlock Text="{Binding CurrentWorld.SandStormSeverity, StringFormat={}{0:0.0}}" Width="30" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.SandStormSeverity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.1" />
     </DockPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_sandstorm_severity_target}" HorizontalAlignment="Right" />
     <DockPanel>
-      <TextBlock Text="{Binding CurrentWorld.SandStormIntendedSeverity, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.SandStormIntendedSeverity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.1" />
+      <TextBlock Text="{Binding CurrentWorld.SandStormIntendedSeverity, StringFormat={}{0:0.0}}" Width="30" DockPanel.Dock="Right" />
+      <Slider Value="{Binding CurrentWorld.SandStormIntendedSeverity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="1.4" SmallChange="0.1" />
     </DockPanel>
     <Separator Grid.ColumnSpan="2" />
     <TextBlock Text="{x:Static p:Language.tool_wp_weather_clouds}" HorizontalAlignment="Right" />
     <DockPanel>
       <TextBlock Text="{Binding CurrentWorld.NumClouds, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.NumClouds, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="128" />
+      <Slider Value="{Binding CurrentWorld.NumClouds, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="200" />
     </DockPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_weather_windspeed}" HorizontalAlignment="Right" />
     <DockPanel>
       <TextBlock Text="{Binding CurrentWorld.WindSpeedSet, Converter={StaticResource WindSpeedToMphConverter}}" Width="55" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.WindSpeedSet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="-1.2" Maximum="1.2" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" />
+      <Slider Value="{Binding CurrentWorld.WindSpeedSet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="-0.8" Maximum="0.8" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" />
     </DockPanel>
     <Separator Grid.ColumnSpan="2" />
     <TextBlock Text="{x:Static p:Language.tool_wp_surface_level}" HorizontalAlignment="Right" />
     <DockPanel>
-      <TextBox Text="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" DockPanel.Dock="Right" />
+      <ui:NumberBox Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Minimum="6" Maximum="{Binding CurrentWorld.MaxGroundLevel}" SmallChange="6" MaxDecimalPlaces="2"
+                    ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="6" Maximum="{Binding CurrentWorld.MaxGroundLevel}" SmallChange="6" IsSnapToTickEnabled="True" TickFrequency="6" />
     </DockPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_cavern_level}" HorizontalAlignment="Right" />
     <DockPanel>
-      <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" DockPanel.Dock="Right" />
+      <ui:NumberBox Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Minimum="12" Maximum="{Binding CurrentWorld.MaxCavernLevel}" SmallChange="6" MaxDecimalPlaces="2"
+                    ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="12" Maximum="{Binding CurrentWorld.MaxCavernLevel}" SmallChange="6" IsSnapToTickEnabled="True" TickFrequency="6" />
     </DockPanel>
     <TextBlock  />
@@ -593,14 +632,12 @@
     <TextBlock Text="{x:Static p:Language.tool_wp_crimson}" HorizontalAlignment="Right" />
     <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="{x:Static p:Language.tool_wp_crimson}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock Text="{x:Static p:Language.tool_wp_altars}" HorizontalAlignment="Right" />
-    <DockPanel>
-      <TextBlock Text="{Binding CurrentWorld.AltarCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.AltarCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
-    </DockPanel>
+    <ui:NumberBox Value="{Binding CurrentWorld.AltarCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Minimum="0" Maximum="{x:Static System:Int32.MaxValue}" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" />
     <TextBlock Text="{x:Static p:Language.tool_wp_orbs}" HorizontalAlignment="Right" />
     <DockPanel>
       <TextBlock Text="{Binding CurrentWorld.ShadowOrbCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.ShadowOrbCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
+      <Slider Value="{Binding CurrentWorld.ShadowOrbCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="2" />
     </DockPanel>
     <TextBlock Text="{x:Static p:Language.tool_wp_copper}" HorizontalAlignment="Right" />
     <ComboBox Height="20" ItemsSource="{StaticResource oreTierCopperList}" SelectedValue="{Binding CurrentWorld.SavedOreTiersCopper, Mode=TwoWay}" SelectedValuePath="Value" />
@@ -687,8 +724,9 @@
     </DockPanel>
 
     <Separator Grid.ColumnSpan="2" />
-    <TextBlock Text="{x:Static p:Language.tool_wp_lanternnight}" HorizontalAlignment="Right"/>
-    <CheckBox IsChecked="{Binding CurrentWorld.LanternNightCooldown}" Content="{x:Static p:Language.tool_wp_lanternnight_cooldown}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+    <TextBlock Text="{x:Static p:Language.tool_wp_lanternnight_cooldown}" HorizontalAlignment="Right"/>
+    <ui:NumberBox Value="{Binding CurrentWorld.LanternNightCooldown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Minimum="0" Maximum="10" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" />
     <TextBlock />
     <CheckBox IsChecked="{Binding CurrentWorld.LanternNightManual}" Content="{x:Static p:Language.tool_wp_lanternnight_manual}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock />
@@ -706,9 +744,13 @@
           <DockPanel Margin="0,1">
             <TextBlock Text="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ContentPresenter}, Converter={StaticResource TeamIndexToNameConverter}}" Width="50" VerticalAlignment="Center" />
             <TextBlock Text="X:" VerticalAlignment="Center" Margin="0,0,3,0" />
-            <TextBox Text="{Binding X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="45" Margin="0,0,5,0" />
+            <ui:NumberBox Value="{Binding X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Minimum="0" Maximum="{Binding DataContext.CurrentWorld.TilesWide, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource MaximumTileIndexConverter}}"
+                          SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" Width="65" Margin="0,0,5,0" />
             <TextBlock Text="Y:" VerticalAlignment="Center" Margin="0,0,3,0" />
-            <TextBox Text="{Binding Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="45" />
+            <ui:NumberBox Value="{Binding Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Minimum="0" Maximum="{Binding DataContext.CurrentWorld.TilesHigh, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource MaximumTileIndexConverter}}"
+                          SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" Width="65" />
           </DockPanel>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
@@ -802,10 +844,8 @@
     <TextBlock Text="{x:Static p:Language.tool_wp_invasion_type}" HorizontalAlignment="Right" />
     <ComboBox Height="20" ItemsSource="{StaticResource invasionTypeList}" SelectedValue="{Binding CurrentWorld.InvasionType, Mode=TwoWay}" SelectedValuePath="Value" />
     <TextBlock Text="{x:Static p:Language.tool_wp_invasion_size}" HorizontalAlignment="Right" />
-    <DockPanel>
-      <TextBlock Text="{Binding CurrentWorld.InvasionSize, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-      <Slider Value="{Binding CurrentWorld.InvasionSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"  Minimum="0" Maximum="1000" />
-    </DockPanel>
+    <ui:NumberBox Value="{Binding CurrentWorld.InvasionSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Minimum="0" Maximum="15420" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" />
     <TextBlock Text="{x:Static p:Language.tool_wp_invasion_x}" HorizontalAlignment="Right" />
     <DockPanel>
       <TextBlock Text="{Binding CurrentWorld.InvasionX, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
@@ -816,21 +856,21 @@
       <TextBlock Text="{x:Static p:Language.tool_wp_style_treex0}" HorizontalAlignment="Right" />
     </DockPanel>
     <DockPanel>
-      <TextBox Text="{Binding CurrentWorld.TreeX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
+      <ui:NumberBox Value="{Binding CurrentWorld.TreeX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.TreeX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" />
     </DockPanel>
     <DockPanel>
       <TextBlock Text="{x:Static p:Language.tool_wp_style_treex1}" HorizontalAlignment="Right" />
     </DockPanel>
     <DockPanel>
-      <TextBox Text="{Binding CurrentWorld.TreeX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
+      <ui:NumberBox Value="{Binding CurrentWorld.TreeX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.TreeX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" />
     </DockPanel>
     <DockPanel>
       <TextBlock Text="{x:Static p:Language.tool_wp_style_treex2}" HorizontalAlignment="Right" />
     </DockPanel>
     <DockPanel>
-      <TextBox Text="{Binding CurrentWorld.TreeX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
+      <ui:NumberBox Value="{Binding CurrentWorld.TreeX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.TreeX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" />
     </DockPanel>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -878,21 +918,21 @@
       <TextBlock Text="{x:Static p:Language.tool_wp_style_cavex0}" HorizontalAlignment="Right" />
     </DockPanel>
     <DockPanel>
-      <TextBox Text="{Binding CurrentWorld.CaveBackX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
+      <ui:NumberBox Value="{Binding CurrentWorld.CaveBackX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.CaveBackX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" />
     </DockPanel>
     <DockPanel>
       <TextBlock Text="{x:Static p:Language.tool_wp_style_cavex1}" HorizontalAlignment="Right" />
     </DockPanel>
     <DockPanel>
-      <TextBox Text="{Binding CurrentWorld.CaveBackX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
+      <ui:NumberBox Value="{Binding CurrentWorld.CaveBackX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.CaveBackX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" />
     </DockPanel>
     <DockPanel>
       <TextBlock Text="{x:Static p:Language.tool_wp_style_cavex2}" HorizontalAlignment="Right" />
     </DockPanel>
     <DockPanel>
-      <TextBox Text="{Binding CurrentWorld.CaveBackX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
+      <ui:NumberBox Value="{Binding CurrentWorld.CaveBackX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" Width="70" DockPanel.Dock="Right" />
       <Slider Value="{Binding CurrentWorld.CaveBackX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding CurrentWorld.TilesWide}" />
     </DockPanel>
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

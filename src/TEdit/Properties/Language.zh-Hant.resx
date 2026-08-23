@@ -284,7 +284,7 @@
     <value>All</value>
   </data>
   <data name="common_browse" xml:space="preserve">
-    <value>瀏覽......</value>
+    <value>瀏覽...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>取消</value>
@@ -2947,6 +2947,33 @@
   <data name="tool_wp_rain_active" xml:space="preserve">
     <value>正在下雨</value>
   </data>
+  <data name="tool_wp_rain_duration_days" xml:space="preserve">
+    <value>{0:0.##} 天</value>
+  </data>
+  <data name="tool_wp_rain_duration_hours" xml:space="preserve">
+    <value>{0:0.##} 小時</value>
+  </data>
+  <data name="tool_wp_rain_duration_minutes" xml:space="preserve">
+    <value>{0:0.##} 分鐘</value>
+  </data>
+  <data name="tool_wp_rain_duration_normal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="tool_wp_rain_duration_one_year" xml:space="preserve">
+    <value>1 年</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent" xml:space="preserve">
+    <value>永久</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent_format" xml:space="preserve">
+    <value>{0}（永久）</value>
+  </data>
+  <data name="tool_wp_rain_duration_seconds" xml:space="preserve">
+    <value>{0:0.##} 秒</value>
+  </data>
+  <data name="tool_wp_rain_duration_years" xml:space="preserve">
+    <value>{0:0.##} 年</value>
+  </data>
   <data name="tool_wp_rain_max" xml:space="preserve">
     <value>最大降雨</value>
   </data>
@@ -3143,7 +3170,7 @@
     <value>備援存在</value>
   </data>
   <data name="world_explorer_browse" xml:space="preserve">
-    <value>瀏覽......</value>
+    <value>瀏覽...</value>
   </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>尺寸</value>

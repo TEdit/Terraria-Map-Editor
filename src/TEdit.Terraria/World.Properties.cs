@@ -228,7 +228,7 @@ public partial class World : ReactiveObject, ITileData
     [Reactive] private short _numClouds;
 
     [property: Category("Weather")]
-    [property: Range(-1.2f, 1.2f)]
+    [property: Range(-0.8f, 0.8f)]
     [Reactive] private float _windSpeedSet;
 
     [property: Category("Weather")]

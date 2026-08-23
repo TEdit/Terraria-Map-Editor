@@ -179,6 +179,15 @@ public class TeamIndexToNameConverter : IValueConverter
     }
 }
 
+public class MaximumTileIndexConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
+        value is int size ? Math.Max(0, size - 1) : DependencyProperty.UnsetValue;
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+        DependencyProperty.UnsetValue;
+}
+
 public class WindSpeedToMphConverter : IValueConverter
 {
     // Terraria displays wind mph as: (int)(windSpeedCurrent * 50)

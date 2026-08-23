@@ -2947,6 +2947,33 @@
   <data name="tool_wp_rain_active" xml:space="preserve">
     <value>雨が降っている</value>
   </data>
+  <data name="tool_wp_rain_duration_days" xml:space="preserve">
+    <value>{0:0.##}日</value>
+  </data>
+  <data name="tool_wp_rain_duration_hours" xml:space="preserve">
+    <value>{0:0.##}時間</value>
+  </data>
+  <data name="tool_wp_rain_duration_minutes" xml:space="preserve">
+    <value>{0:0.##}分</value>
+  </data>
+  <data name="tool_wp_rain_duration_normal" xml:space="preserve">
+    <value>通常</value>
+  </data>
+  <data name="tool_wp_rain_duration_one_year" xml:space="preserve">
+    <value>1年</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent" xml:space="preserve">
+    <value>永続</value>
+  </data>
+  <data name="tool_wp_rain_duration_permanent_format" xml:space="preserve">
+    <value>{0}（永続）</value>
+  </data>
+  <data name="tool_wp_rain_duration_seconds" xml:space="preserve">
+    <value>{0:0.##}秒</value>
+  </data>
+  <data name="tool_wp_rain_duration_years" xml:space="preserve">
+    <value>{0:0.##}年</value>
+  </data>
   <data name="tool_wp_rain_max" xml:space="preserve">
     <value>マックス・レイン</value>
   </data>

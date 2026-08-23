@@ -132,4 +132,15 @@ public class SaveVersionManagerTests
         mgr.GetMaxVersion().ShouldBeGreaterThan(0);
         mgr.SaveVersions.Count.ShouldBeGreaterThan(0);
     }
+
+    [Fact]
+    public void Terraria1458_UsesTheUnchanged1457Configuration()
+    {
+        using var stream = TEdit.Terraria.Loaders.JsonDataLoader.GetDataStream("versions.json");
+        var mgr = SaveVersionManager.Load(stream);
+
+        mgr.GameVersionToSaveVersion["1.4.5.8"].ShouldBe(326u);
+        mgr.GetDataForGameVersion("1.4.5.8").SaveVersion.ShouldBe(325);
+        mgr.GetGameVersionForSaveVersion(326).ShouldBe("1.4.5.8");
+    }
 }
