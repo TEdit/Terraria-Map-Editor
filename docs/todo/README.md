@@ -1,9 +1,5 @@
 # TEdit Release Todo
 
-## Source-Derived Triage
-
-- [video-transcript-fix-list.md](video-transcript-fix-list.md) — field-reported data-loss, transform, morph, masking, and plugin issues from a custom-world tutorial
-
 ## Masking System Overhaul (#2168)
 - [masking-system.md](masking-system.md) — Liquid masking, decoupled masks, wire mode extension
 - [pattern-selection.md](pattern-selection.md) — Unified tile picker control (compact 24x24 + full mode), pattern fill system
