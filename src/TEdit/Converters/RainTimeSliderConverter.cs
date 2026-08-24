@@ -15,9 +15,6 @@ public static class RainTimeValues
 
     public const double OneHourSliderValue = 50;
     public const double OneYearSliderValue = 100;
-
-    public static string OneHourLabel =>
-        string.Format(CultureInfo.CurrentCulture, Language.tool_wp_rain_duration_hours, 1);
 }
 
 /// <summary>
@@ -118,9 +115,7 @@ public sealed class RainTimeDisplayConverter : IValueConverter
             _ => Format(seconds / SecondsPerDay / DaysPerYear, Language.tool_wp_rain_duration_years, culture),
         };
 
-        return rainTime >= RainTimeValues.Permanent
-            ? string.Format(culture, Language.tool_wp_rain_duration_permanent_format, duration)
-            : duration;
+        return duration;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>

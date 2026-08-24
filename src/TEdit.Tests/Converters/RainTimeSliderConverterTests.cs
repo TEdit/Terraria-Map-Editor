@@ -69,4 +69,13 @@ public class RainTimeSliderConverterTests
 
         _display.Convert(rainTime, typeof(string), null!, Culture).ShouldBe(expected);
     }
+
+    [Fact]
+    public void Display_DoesNotTreatLongerDurationsAsPermanent()
+    {
+        const int rainTime = 31207680;
+        string expected = string.Format(Culture, Language.tool_wp_rain_duration_days, 6.02);
+
+        _display.Convert(rainTime, typeof(string), null!, Culture).ShouldBe(expected);
+    }
 }

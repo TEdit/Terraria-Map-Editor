@@ -479,33 +479,22 @@
     <CheckBox IsChecked="{Binding CurrentWorld.IsRaining, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_rain_active}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
     <TextBlock Text="{x:Static p:Language.tool_wp_rain_time}" HorizontalAlignment="Right" />
     <StackPanel>
-      <DockPanel>
-        <TextBlock Text="{Binding CurrentWorld.TempRainTime, Converter={StaticResource RainTimeDisplayConverter}}"
-                   Width="115" Margin="4,0,0,0" DockPanel.Dock="Right" TextAlignment="Right"
-                   TextTrimming="CharacterEllipsis"
-                   ToolTip="{Binding CurrentWorld.TempRainTime, Converter={StaticResource RainTimeDisplayConverter}}" />
-        <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RainTimeSliderConverter}}"
-                VerticalAlignment="Center" Minimum="0" Maximum="{x:Static converters:RainTimeValues.OneYearSliderValue}"
-                SmallChange="0.25" LargeChange="2">
-          <Slider.Style>
-            <Style TargetType="Slider" BasedOn="{StaticResource {x:Type Slider}}">
-              <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentWorld.TempRainTime}" Value="{x:Static converters:RainTimeValues.Permanent}">
-                  <Setter Property="IsEnabled" Value="False" />
-                </DataTrigger>
-              </Style.Triggers>
-            </Style>
-          </Slider.Style>
-        </Slider>
-      </DockPanel>
-      <Grid Margin="0,1,115,0" IsHitTestVisible="False">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="1*" />
-          <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="{x:Static converters:RainTimeValues.OneHourLabel}" FontSize="9" HorizontalAlignment="Right" />
-        <TextBlock Grid.Column="1" Text="{x:Static p:Language.tool_wp_rain_duration_one_year}" FontSize="9" HorizontalAlignment="Right" />
-      </Grid>
+      <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RainTimeSliderConverter}}"
+              VerticalAlignment="Center" Minimum="0" Maximum="{x:Static converters:RainTimeValues.OneYearSliderValue}"
+              SmallChange="0.25" LargeChange="2">
+        <Slider.Style>
+          <Style TargetType="Slider" BasedOn="{StaticResource {x:Type Slider}}">
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding CurrentWorld.TempRainTime}" Value="{x:Static converters:RainTimeValues.Permanent}">
+                <Setter Property="IsEnabled" Value="False" />
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </Slider.Style>
+      </Slider>
+      <TextBlock Text="{Binding CurrentWorld.TempRainTime, Converter={StaticResource RainTimeDisplayConverter}}"
+                 Margin="0,1,0,0" TextAlignment="Center" TextTrimming="CharacterEllipsis"
+                 ToolTip="{Binding CurrentWorld.TempRainTime, Converter={StaticResource RainTimeDisplayConverter}}" />
       <CheckBox Content="{x:Static p:Language.tool_wp_rain_duration_permanent}"
                 IsChecked="{Binding CurrentWorld.TempRainTime, Mode=TwoWay, Converter={StaticResource PermanentRainTimeConverter}}" />
     </StackPanel>
@@ -633,7 +622,7 @@
     <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="{x:Static p:Language.tool_wp_crimson}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock Text="{x:Static p:Language.tool_wp_altars}" HorizontalAlignment="Right" />
     <ui:NumberBox Value="{Binding CurrentWorld.AltarCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                  Minimum="0" Maximum="{x:Static System:Int32.MaxValue}" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" />
+                  Minimum="0" Maximum="2147483647" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" />
     <TextBlock Text="{x:Static p:Language.tool_wp_orbs}" HorizontalAlignment="Right" />
     <DockPanel>
       <TextBlock Text="{Binding CurrentWorld.ShadowOrbCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
