@@ -52963,7 +52963,7 @@
     "scale": 1,
     "maxStackSize": 9999,
     "rarity": "Lime",
-    "name": "Scout\u0027s Sling",
+    "name": "Scout's Sling",
     "key": "ScoutSling",
     "isAccessory": true
   },
@@ -52972,7 +52972,7 @@
     "scale": 1,
     "maxStackSize": 9999,
     "rarity": "Yellow",
-    "name": "Templar\u0027s Sling",
+    "name": "Templar's Sling",
     "key": "TemplarSling",
     "isAccessory": true
   },
@@ -52981,7 +52981,7 @@
     "scale": 1,
     "maxStackSize": 9999,
     "rarity": "LightPurple",
-    "name": "Royal Guard\u0027s Harness",
+    "name": "Royal Guard's Harness",
     "key": "RoyalGuardHarness",
     "isAccessory": true,
     "shieldSlot": 11
