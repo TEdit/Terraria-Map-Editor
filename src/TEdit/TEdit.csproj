@@ -21,7 +21,7 @@
     <InternalsVisibleTo Include="TEdit.Tests" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ReactiveUI.WPF" Version="24.1.0" />
+    <PackageReference Include="ReactiveUI.WPF" Version="24.2.0" />
     <PackageReference Include="ReactiveUI.SourceGenerators" Version="3.2.0" PrivateAssets="all" />
     <PackageReference Include="System.Reactive" Version="7.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="3.1.2" />
