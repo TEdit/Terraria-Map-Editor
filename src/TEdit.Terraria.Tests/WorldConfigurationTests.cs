@@ -26,7 +26,7 @@ public class WorldConfigurationTests
     }
 
     [Fact]
-    public void Terraria1458_UsesVersion325ConfigurationPayload()
+    public void Terraria1458_UsesVersion326ConfigurationPayload()
     {
         WorldConfiguration.Reset();
 
@@ -36,9 +36,9 @@ public class WorldConfigurationTests
 
             WorldConfiguration.CompatibleVersion.ShouldBe(326u);
             WorldConfiguration.ApplyForWorldVersion(326, out uint configVersion).ShouldBeTrue();
-            configVersion.ShouldBe(325u);
+            configVersion.ShouldBe(326u);
             WorldConfiguration.ActiveWorldVersion.ShouldBe(326u);
-            WorldConfiguration.ActiveConfigVersion.ShouldBe(325u);
+            WorldConfiguration.ActiveConfigVersion.ShouldBe(326u);
         }
         finally
         {
