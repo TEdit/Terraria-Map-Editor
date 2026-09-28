@@ -35,8 +35,8 @@ public class TerrariaFormatValidatorTests
         try
         {
             int version = r.ReadInt32();
-            if (version == 0 || version > 325)
-                return (false, $"Version {version} out of range (0 < v <= 325)");
+            if (version == 0 || version > 326)
+                return (false, $"Version {version} out of range (0 < v <= 326)");
 
             ms.Position = 0;
 

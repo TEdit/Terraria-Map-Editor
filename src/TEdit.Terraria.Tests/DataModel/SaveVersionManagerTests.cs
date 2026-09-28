@@ -140,7 +140,7 @@ public class SaveVersionManagerTests
         var mgr = SaveVersionManager.Load(stream);
 
         mgr.GameVersionToSaveVersion["1.4.5.8"].ShouldBe(326u);
-        mgr.GetDataForGameVersion("1.4.5.8").SaveVersion.ShouldBe(325);
+        mgr.GetDataForGameVersion("1.4.5.8").SaveVersion.ShouldBe(326);
         mgr.GetGameVersionForSaveVersion(326).ShouldBe("1.4.5.8");
     }
 }
