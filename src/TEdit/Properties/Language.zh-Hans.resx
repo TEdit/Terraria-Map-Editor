@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="about_compatible_version" xml:space="preserve">
-    <value>兼容世界版本</value>
+    <value>兼容的世界文件版本</value>
   </data>
   <data name="about_content_path" xml:space="preserve">
     <value>Content路径</value>
@@ -169,7 +169,7 @@
     <value>备份</value>
   </data>
   <data name="backup_type_tedit" xml:space="preserve">
-    <value>TEdit 备份</value>
+    <value>TEdit备份</value>
   </data>
   <data name="backup_type_terraria" xml:space="preserve">
     <value>泰拉瑞亚备份</value>
@@ -1060,7 +1060,7 @@
     <comment>enum:MorphBiome.Purify</comment>
   </data>
   <data name="nbt_explorer_title" xml:space="preserve">
-    <value>NBT探险者</value>
+    <value>NBT浏览器</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>添加灰烬</value>
@@ -1675,6 +1675,12 @@
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>在编辑器中显示新闻和公告</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>显示介绍启动画面</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>在应用程序启动时显示 TEdit 标志</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>显示地点</value>
   </data>
@@ -1686,12 +1692,6 @@
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>切换红电线可见性</value>
-  </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>显示介绍启动画面</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>在应用程序启动时显示 TEdit 标志</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>显示纹理</value>
@@ -2126,9 +2126,6 @@
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>黄队生成点</value>
   </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>阅读完整的隐私政策</value>
-  </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>TEdit 可以发送匿名错误报告以帮助提高稳定性。
 
@@ -2340,9 +2337,6 @@
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>装饰物</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>祭坛/ orb</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>邪恶</value>
@@ -2567,7 +2561,7 @@
     <value>地下背景</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
-    <value>鹿角怪</value>
+    <value>独眼巨鹿</value>
   </data>
   <data name="tool_wp_boss_destroyer" xml:space="preserve">
     <value>毁灭者</value>
@@ -3008,7 +3002,7 @@
     <value>种子</value>
   </data>
   <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
-    <value>双重地下城</value>
+    <value>对偶地牢</value>
   </data>
   <data name="tool_wp_seed_infected" xml:space="preserve">
     <value>感染者</value>
@@ -3197,7 +3191,7 @@
     <value>删除备份</value>
   </data>
   <data name="world_explorer_loading_preview" xml:space="preserve">
-    <value>加载预览...</value>
+    <value>加载预览……</value>
   </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>无备份——点击创建.bak和TEdit备份</value>
@@ -3221,7 +3215,7 @@
     <value>预览世界地图</value>
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
-    <value>搜索世界...</value>
+    <value>搜索世界……</value>
   </data>
   <data name="world_explorer_tab_tmodloader" xml:space="preserve">
     <value>tModLoader</value>
@@ -3240,5 +3234,11 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>祭坛/ orb</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>阅读完整的隐私政策</value>
   </data>
 </root>
