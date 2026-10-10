@@ -92,6 +92,24 @@ public sealed class SelectionSpriteTests
                 Assert.Equal(expected, SpritePlacer.GetSpriteBounds(world, 30 + dx, 30 + dy));
     }
 
+    [Theory]
+    // UVs as Terraria saves them (taken from a real world): tiles are 18px apart even where FrameGap is larger.
+    [InlineData((ushort)15, 0, 960, 1, 2)]   // Pumpkin Chair, FrameGap (2, 4)
+    [InlineData((ushort)497, 18, 760, 1, 2)] // Pumpkin Toilet, FrameGap (2, 4)
+    [InlineData((ushort)172, 0, 722, 2, 2)]  // Pumpkin Sink, FrameGap (2, 3)
+    [InlineData((ushort)93, 0, 1188, 1, 3)]  // Pumpkin Lamp
+    public void GetSpriteBounds_GameSavedUVs_ReturnWholeSprite(ushort type, int u, int v, int width, int height)
+    {
+        var world = TestWorldFactory.CreateSmallWorld();
+        for (int dx = 0; dx < width; dx++)
+            for (int dy = 0; dy < height; dy++)
+                world.Tiles[30 + dx, 30 + dy] = new Tile { IsActive = true, Type = type, U = (short)(u + dx * 18), V = (short)(v + dy * 18) };
+
+        for (int dx = 0; dx < width; dx++)
+            for (int dy = 0; dy < height; dy++)
+                Assert.Equal(new RectangleInt32(30, 30, width, height), SpritePlacer.GetSpriteBounds(world, 30 + dx, 30 + dy));
+    }
+
     [Fact]
     public void GetSpriteBounds_PlainBlockOrAirOrOutsideWorld_IsNull()
     {

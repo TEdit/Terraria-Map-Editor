@@ -45,9 +45,21 @@ public static class SpritePlacer
         return RectangleInt32.Intersect(b, new RectangleInt32(0, 0, world.TilesWide, world.TilesHigh));
     }
 
-    private static RectangleInt32? FindFrameBounds(TileProperty prop, Vector2Short uv, int x, int y)
+    /// <summary>
+    /// UV distance between neighbouring tiles of one sprite as Terraria saves them. Tiles are padded by 2px;
+    /// a larger FrameGap (chairs, toilets, sinks) only spaces the styles apart in the texture.
+    /// </summary>
+    public static Vector2Short GetTileStep(TileProperty prop)
     {
         var interval = prop.TextureGrid + prop.FrameGap;
+        return new Vector2Short(
+            (short)System.Math.Min(interval.X, prop.TextureGrid.X + 2),
+            (short)System.Math.Min(interval.Y, prop.TextureGrid.Y + 2));
+    }
+
+    private static RectangleInt32? FindFrameBounds(TileProperty prop, Vector2Short uv, int x, int y)
+    {
+        var interval = GetTileStep(prop);
         if (prop.Frames == null || interval.X <= 0 || interval.Y <= 0 || prop.FrameSize == null || prop.FrameSize.Length == 0)
             return null;
 
