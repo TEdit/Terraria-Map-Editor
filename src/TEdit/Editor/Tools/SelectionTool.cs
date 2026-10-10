@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ReactiveUI;
 using TEdit.Editor;
 using TEdit.Geometry;
 using TEdit.UI;
@@ -34,16 +35,47 @@ public class SelectionTool : BaseTool
         _preview.SetPixel(0, 0, 127, 0, 90, 255);
 
         Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/shape_square.png"));
-        SymbolIcon = SymbolRegular.SelectObject24;
         Name = "Selection";
         IsActive = false;
         ToolType = ToolType.Pixel;
 
         _wvm.Selection.PropertyChanged += (_, e) =>
         {
-            if (e.PropertyName == nameof(Selection.Mode) && IsActive)
+            if (e.PropertyName != nameof(Selection.Mode))
+                return;
+            this.RaisePropertyChanged(nameof(SymbolIcon));
+            if (IsActive)
                 _wvm.PreviewChange();
         };
+    }
+
+    // The tool button shows the current selection shape.
+    public override SymbolRegular SymbolIcon => _wvm.Selection.Mode switch
+    {
+        SelectionShape.Brush => SymbolRegular.PaintBrush24,
+        SelectionShape.Lasso => SymbolRegular.Lasso24,
+        _ => SymbolRegular.SelectObject24,
+    };
+
+    public SelectionShape Mode => _wvm.Selection.Mode;
+
+    /// <summary>Switches to the given selection shape and activates the tool.</summary>
+    public void SelectMode(SelectionShape mode)
+    {
+        _wvm.Selection.Mode = mode;
+        _wvm.SetActiveTool(this);
+    }
+
+    /// <summary>Activates the tool, or moves to the next selection shape when it is already active.</summary>
+    public void CycleMode()
+    {
+        if (!IsActive)
+        {
+            _wvm.SetActiveTool(this);
+            return;
+        }
+        var shapes = Enum.GetValues<SelectionShape>();
+        SelectMode(shapes[(Array.IndexOf(shapes, Mode) + 1) % shapes.Length]);
     }
 
     public override IReadOnlyList<Vector2Int32> CadPreviewPath => _lassoOutline;

@@ -793,6 +793,10 @@ public partial class MainWindow : FluentWindow
             case "tool.selection":
                 SetActiveTool("Selection");
                 return true;
+            case "tool.selection.cycle":
+                _vm.Tools.OfType<SelectionTool>().FirstOrDefault()?.CycleMode();
+                UpdateDrawingModeText();
+                return true;
             case "tool.sprite":
                 SetActiveTool("Sprite2");
                 return true;
