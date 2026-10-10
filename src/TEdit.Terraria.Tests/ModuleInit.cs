@@ -10,5 +10,8 @@ internal static class ModuleInit
     {
         TestWorldArchives.Prepare();
         RxAppBuilder.CreateReactiveUIBuilder().BuildApp();
+
+        // new World() reads static config; load it once so no test depends on another having run first.
+        WorldConfiguration.Initialize();
     }
 }
