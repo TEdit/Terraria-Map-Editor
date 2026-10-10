@@ -2155,6 +2155,18 @@ Would you like to enable error reporting?</value>
   <data name="toolbar_deselect" xml:space="preserve">
     <value>Deselect</value>
   </data>
+  <data name="toolbar_selection_rectangle" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="toolbar_selection_brush" xml:space="preserve">
+    <value>Brush</value>
+  </data>
+  <data name="toolbar_selection_lasso" xml:space="preserve">
+    <value>Lasso</value>
+  </data>
+  <data name="toolbar_selection_freeform_hint" xml:space="preserve">
+    <value>Drag to add tiles, Ctrl+drag to remove, right-click to deselect. Brush uses the brush size and shape.</value>
+  </data>
   <data name="toolbar_export" xml:space="preserve">
     <value>Export</value>
   </data>

@@ -8965,6 +8965,42 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rectangle
+        /// </summary>
+        public static string toolbar_selection_rectangle {
+            get {
+                return ResourceManager.GetString("toolbar_selection_rectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brush
+        /// </summary>
+        public static string toolbar_selection_brush {
+            get {
+                return ResourceManager.GetString("toolbar_selection_brush", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lasso
+        /// </summary>
+        public static string toolbar_selection_lasso {
+            get {
+                return ResourceManager.GetString("toolbar_selection_lasso", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag to add tiles, Ctrl+drag to remove, right-click to deselect. Brush uses the brush size and shape.
+        /// </summary>
+        public static string toolbar_selection_freeform_hint {
+            get {
+                return ResourceManager.GetString("toolbar_selection_freeform_hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string toolbar_export {

@@ -612,6 +612,16 @@ public class InputService
 
         Register(new InputAction
         {
+            Id = "tool.selection.cycle",
+            Name = "Cycle Selection Shape",
+            Category = InputCategory.Tools,
+            Scope = InputScope.Application,
+            Description = "Cycle the selection shape: Rectangle, Brush, Lasso",
+            DefaultBindings = { InputBinding.Keyboard(Key.S, ModifierKeys.Shift) }
+        });
+
+        Register(new InputAction
+        {
             Id = "tool.sprite",
             Name = "Sprite Tool",
             Category = InputCategory.Tools,

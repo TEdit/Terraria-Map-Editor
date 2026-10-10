@@ -7417,8 +7417,11 @@ public partial class WorldRenderXna : UserControl
         }
         else
         {
-            position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X) * _zoom,
-                                   1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
+            // Pixel tools leave the offset at -1; the selection tool's brush mode sets it to center its footprint.
+            int offX = Math.Max(0, _wvm.ActiveTool.PreviewOffsetX);
+            int offY = Math.Max(0, _wvm.ActiveTool.PreviewOffsetY);
+            position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X - offX) * _zoom,
+                                   1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y - offY) * _zoom);
         }
 
         if (_wvm.ActiveTool.Name == "Sprite2" &&
@@ -8004,6 +8007,12 @@ public partial class WorldRenderXna : UserControl
 
     private void DrawSelection()
     {
+        if (_wvm.Selection.HasMask)
+        {
+            DrawSelectionMask();
+            return;
+        }
+
         Rectangle destinationRectangle = new Rectangle(
             (int)((_scrollPosition.X + _wvm.Selection.SelectionArea.Left) * _zoom),
             (int)((_scrollPosition.Y + _wvm.Selection.SelectionArea.Top) * _zoom),
@@ -8015,6 +8024,49 @@ public partial class WorldRenderXna : UserControl
             destinationRectangle, null,
              Color.White, 0, Vector2.Zero, SpriteEffects.None,
              LayerSelection);
+    }
+
+    private void DrawSelectionMask()
+    {
+        var selection = _wvm.Selection;
+        var area = selection.SelectionArea;
+        var visible = GetViewingArea();
+
+        int left = Math.Max(area.Left, visible.Left);
+        int right = Math.Min(area.Right, visible.Right);
+        int top = Math.Max(area.Top, visible.Top);
+        int bottom = Math.Min(area.Bottom, visible.Bottom);
+
+        // Zoomed out, a tile is smaller than a pixel: sample one tile per pixel instead of checking every tile.
+        int step = _zoom >= 1 ? 1 : (int)Math.Ceiling(1 / _zoom);
+
+        // One quad per horizontal run of selected cells keeps draw calls low.
+        for (int y = top; y < bottom; y += step)
+        {
+            int rowEnd = Math.Min(y + step, bottom);
+            int x = left;
+            while (x < right)
+            {
+                if (!selection.IsValid(x, y)) { x += step; continue; }
+
+                int runStart = x;
+                while (x < right && selection.IsValid(x, y)) x += step;
+                x = Math.Min(x, right);
+
+                // Compute both edges so adjacent rows and runs neither overlap nor leave gaps.
+                int x0 = (int)((_scrollPosition.X + runStart) * _zoom);
+                int x1 = (int)((_scrollPosition.X + x) * _zoom);
+                int y0 = (int)((_scrollPosition.Y + y) * _zoom);
+                int y1 = (int)((_scrollPosition.Y + rowEnd) * _zoom);
+                var dest = new Rectangle(x0, y0, Math.Max(1, x1 - x0), Math.Max(1, y1 - y0));
+
+                _spriteBatch.Draw(
+                    _selectionTexture,
+                    dest, null,
+                    Color.White, 0, Vector2.Zero, SpriteEffects.None,
+                    LayerSelection);
+            }
+        }
     }
 
     private Vector2 TileOrigin(int tileX, int tileY)

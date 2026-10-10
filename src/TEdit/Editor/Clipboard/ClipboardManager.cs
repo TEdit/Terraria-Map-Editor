@@ -89,7 +89,7 @@ public partial class ClipboardManager : ReactiveObject
         }
     }
 
-    public void CopySelection(World world, RectangleInt32 selection)
+    public void CopySelection(World world, RectangleInt32 selection, Func<int, int, bool> include = null)
     {
         bool onlyCopyFiltered = FilterManager.FilterClipboard;
         var bufferData = ClipboardBuffer.GetSelectionBuffer(
@@ -98,7 +98,8 @@ public partial class ClipboardManager : ReactiveObject
             tileFilter:   onlyCopyFiltered ? (id => FilterManager.TileIsNotAllowed(id) && FilterManager.SpriteIsNotAllowed(id)) : null,
             wallFilter:   onlyCopyFiltered ? FilterManager.WallIsNotAllowed : null,
             liquidFilter: onlyCopyFiltered ? (id => FilterManager.LiquidIsNotAllowed((LiquidType)id)) : null,
-            wireFilter:   onlyCopyFiltered ? (id => FilterManager.WireIsNotAllowed((FilterManager.WireType)id)) : null
+            wireFilter:   onlyCopyFiltered ? (id => FilterManager.WireIsNotAllowed((FilterManager.WireType)id)) : null,
+            include:      include
         );
 
         LoadedBuffers.Add(new ClipboardBufferPreview(bufferData));
