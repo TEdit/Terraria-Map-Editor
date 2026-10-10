@@ -308,7 +308,7 @@ public partial class ClipboardBuffer
            throw new NotImplementedException();
 //                return LoadFromImage(filename);
 
-        using (var stream = new FileStream(filename, FileMode.Open))
+        using (var stream = File.OpenRead(filename))
         {
             using (var b = new BinaryReader(stream))
             {
@@ -492,7 +492,7 @@ public partial class ClipboardBuffer
 
     public static ClipboardBuffer Load4(string filename)
     {
-        using (var stream = new FileStream(filename, FileMode.Open))
+        using (var stream = File.OpenRead(filename))
         {
             using (var b = new BinaryReader(stream))
             {
@@ -656,7 +656,7 @@ public partial class ClipboardBuffer
         bool failed = false;
         try
         {
-            using (var stream = new FileStream(filename, FileMode.Open))
+            using (var stream = File.OpenRead(filename))
             {
                 using (var br = new BinaryReader(stream))
                 {
@@ -788,7 +788,7 @@ public partial class ClipboardBuffer
 
     public static ClipboardBuffer Load2(string filename)
     {
-        using (var stream = new FileStream(filename, FileMode.Open))
+        using (var stream = File.OpenRead(filename))
         {
             using (var reader = new BinaryReader(stream))
             {
@@ -915,7 +915,7 @@ public partial class ClipboardBuffer
 
     public static ClipboardBuffer LoadOld(string filename)
     {
-        using (var stream = new FileStream(filename, FileMode.Open))
+        using (var stream = File.OpenRead(filename))
         {
             using (var reader = new BinaryReader(stream))
             {
