@@ -6,10 +6,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:cv="clr-namespace:TEdit.Converters"
+             xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
              mc:Ignorable="d"
              d:Height="40"
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
+    <UserControl.Resources>
+        <cv:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+    </UserControl.Resources>
     <StackPanel Orientation="Horizontal" Margin="2">
+        <!-- Selection shape -->
+        <StackPanel Orientation="Horizontal" Margin="1,0,6,0" VerticalAlignment="Center"
+                    ToolTip="{x:Static p:Language.toolbar_selection_freeform_hint}">
+            <RadioButton GroupName="SelectionShape" Margin="1,0,6,0" VerticalAlignment="Center"
+                         Content="{x:Static p:Language.toolbar_selection_rectangle}"
+                         IsChecked="{Binding Selection.Mode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static editor:SelectionShape.Rectangle}}" />
+            <RadioButton GroupName="SelectionShape" Margin="1,0,6,0" VerticalAlignment="Center"
+                         Content="{x:Static p:Language.toolbar_selection_brush}"
+                         IsChecked="{Binding Selection.Mode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static editor:SelectionShape.Brush}}" />
+            <RadioButton GroupName="SelectionShape" Margin="1,0,6,0" VerticalAlignment="Center"
+                         Content="{x:Static p:Language.toolbar_selection_lasso}"
+                         IsChecked="{Binding Selection.Mode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static editor:SelectionShape.Lasso}}" />
+        </StackPanel>
+
         <!-- Deselect -->
         <ui:Button ToolTip="{x:Static p:Language.toolbar_deselect}" Margin="1" Padding="6,2"
                    Command="{Binding DeselectCommand}">

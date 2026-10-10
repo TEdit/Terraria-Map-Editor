@@ -986,6 +986,7 @@ public partial class MainWindow : FluentWindow
             {
                 for (int y = _vm.Selection.SelectionArea.Top; y < _vm.Selection.SelectionArea.Bottom; y++)
                 {
+                    if (!_vm.Selection.IsValid(x, y)) continue;
                     positions.Add(new Vector2Int32(x, y));
                 }
             }

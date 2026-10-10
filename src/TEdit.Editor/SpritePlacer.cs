@@ -1,3 +1,4 @@
+using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 
@@ -5,6 +6,67 @@ namespace TEdit.Editor;
 
 public static class SpritePlacer
 {
+    /// <summary>
+    /// World-space footprint of the multi-tile sprite (chest, table, painting...) covering a tile,
+    /// clipped to the world. Null for single tiles, plain blocks and empty tiles.
+    /// </summary>
+    public static RectangleInt32? GetSpriteBounds(World world, int x, int y)
+    {
+        if (world == null || !world.ValidTileLocation(x, y))
+            return null;
+
+        var tile = world.Tiles[x, y];
+        if (!tile.IsActive)
+            return null;
+
+        var frameImportant = world.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
+        if (frameImportant == null || tile.Type >= frameImportant.Length || !frameImportant[tile.Type])
+            return null;
+
+        if (tile.Type >= WorldConfiguration.TileProperties.Count)
+            return null;
+        var prop = WorldConfiguration.TileProperties[tile.Type];
+        if (prop == null || !prop.IsFramed)
+            return null;
+
+        // Read frames from tile properties (always loaded) rather than Sprites2, which the UI fills later on another thread.
+        var bounds = FindFrameBounds(prop, tile.GetUV(), x, y);
+        if (bounds == null)
+        {
+            var size = prop.GetFrameSize(tile.V);
+            var anchor = world.GetAnchor(x, y);
+            bounds = new RectangleInt32(anchor.X, anchor.Y, size.X, size.Y);
+        }
+
+        var b = bounds.Value;
+        if (b.Width * b.Height <= 1 || !b.Contains(x, y))
+            return null;
+
+        return RectangleInt32.Intersect(b, new RectangleInt32(0, 0, world.TilesWide, world.TilesHigh));
+    }
+
+    private static RectangleInt32? FindFrameBounds(TileProperty prop, Vector2Short uv, int x, int y)
+    {
+        var interval = prop.TextureGrid + prop.FrameGap;
+        if (prop.Frames == null || interval.X <= 0 || interval.Y <= 0 || prop.FrameSize == null || prop.FrameSize.Length == 0)
+            return null;
+
+        foreach (var frame in prop.Frames)
+        {
+            var size = frame.Size.X > 0 && frame.Size.Y > 0 ? frame.Size : prop.FrameSize[0];
+            if (uv.X < frame.UV.X || uv.Y < frame.UV.Y ||
+                uv.X >= frame.UV.X + interval.X * size.X || uv.Y >= frame.UV.Y + interval.Y * size.Y)
+                continue;
+
+            // Offset of this tile inside the sprite, from its UV relative to the frame's origin UV.
+            int offsetX = (uv.X - frame.UV.X) / interval.X;
+            int offsetY = (uv.Y - frame.UV.Y) / interval.Y;
+            return new RectangleInt32(x - offsetX, y - offsetY, size.X, size.Y);
+        }
+
+        return null;
+    }
+
     /// <summary>
     /// Place a sprite on the tile grid. Sets Type, U, V for each tile in the sprite footprint.
     /// </summary>

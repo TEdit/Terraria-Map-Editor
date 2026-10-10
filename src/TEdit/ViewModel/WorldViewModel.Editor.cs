@@ -31,6 +31,8 @@ public partial class WorldViewModel
             {
                 for (int y = Selection.SelectionArea.Top; y < Selection.SelectionArea.Bottom; y++)
                 {
+                    if (!Selection.IsValid(x, y)) continue;
+
                     UndoManager.SaveTile(x, y);
                     CurrentWorld.Tiles[x, y].Reset();
 
@@ -39,15 +41,15 @@ public partial class WorldViewModel
                 }
             }
 
-            foreach (var te in CurrentWorld.TileEntities.Where(te => Selection.SelectionArea.Contains(te.PosX, te.PosY)).ToList())
+            foreach (var te in CurrentWorld.TileEntities.Where(te => Selection.IsValid(te.PosX, te.PosY)).ToList())
             {
                 CurrentWorld.TileEntities.Remove(te);
             }
-            foreach (var chest in CurrentWorld.Chests.Where(item => Selection.SelectionArea.Contains(item.X, item.Y)).ToList())
+            foreach (var chest in CurrentWorld.Chests.Where(item => Selection.IsValid(item.X, item.Y)).ToList())
             {
                 CurrentWorld.Chests.Remove(chest);
             }
-            foreach (var sign in CurrentWorld.Signs.Where(item => Selection.SelectionArea.Contains(item.X, item.Y)).ToList())
+            foreach (var sign in CurrentWorld.Signs.Where(item => Selection.IsValid(item.X, item.Y)).ToList())
             {
                 CurrentWorld.Signs.Remove(sign);
             }
@@ -61,7 +63,7 @@ public partial class WorldViewModel
         if (!CanCopy())
             return;
 
-        _clipboard.CopySelection(CurrentWorld, Selection.SelectionArea);
+        _clipboard.CopySelection(CurrentWorld, Selection.SelectionArea, Selection.HasMask ? Selection.IsValid : null);
         this.SelectedTabIndex = (int)SidebarTab.Clipboard;
     }
 
