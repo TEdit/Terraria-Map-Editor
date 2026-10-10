@@ -25,6 +25,20 @@ public class WinPhoneWorldTests
             "..", "_reference_sources", "winphone", "Terraria v1.2.4.3", "Tutorial.world")),
     ];
 
+    // The V60 fixture is committed; the V49 tutorials live in a local reference folder outside the repo.
+    private static readonly string[] V49Fixtures = Array.FindAll(V49FixtureCandidates, File.Exists);
+
+    private static string[] AvailableFixtures => [V60FixturePath, .. V49Fixtures];
+
+    private sealed class V49FixtureFactAttribute : FactAttribute
+    {
+        public V49FixtureFactAttribute()
+        {
+            if (V49Fixtures.Length == 0)
+                Skip = "WinPhone v49 Tutorial.world not found under _reference_sources/winphone";
+        }
+    }
+
     [Fact]
     public void LoadWorld_WinPhoneV60_ReadsNativeHeader()
     {
@@ -52,12 +66,10 @@ public class WinPhoneWorldTests
         AssertLosslessRoundTrip(V60FixturePath, expectedVersion: 60, expectedTitle: "ZSRR", fullLoad: true);
     }
 
-    [Fact]
+    [V49FixtureFact]
     public void LoadSave_WinPhoneV49Tutorial_IsByteIdentical()
     {
-        string[] fixtures = Array.FindAll(V49FixtureCandidates, File.Exists);
-        Assert.Equal(2, fixtures.Length);
-        foreach (string fixture in fixtures)
+        foreach (string fixture in V49Fixtures)
             AssertLosslessRoundTrip(fixture, expectedVersion: 49, expectedTitle: "Tutorial", fullLoad: true);
     }
 
@@ -77,8 +89,7 @@ public class WinPhoneWorldTests
     [Fact]
     public void Save_WinPhoneEditedTile_ReloadsChange()
     {
-        string[] fixtures = [V60FixturePath, Array.Find(V49FixtureCandidates, File.Exists)!];
-        Assert.DoesNotContain(fixtures, string.IsNullOrEmpty);
+        string[] fixtures = AvailableFixtures;
         foreach (string fixture in fixtures)
         {
             var (world, error) = World.LoadWorld(fixture);
@@ -151,8 +162,7 @@ public class WinPhoneWorldTests
     [Fact]
     public void Save_WinPhoneEditableMetadata_ReloadsChanges()
     {
-        string[] fixtures = [V60FixturePath, Array.Find(V49FixtureCandidates, File.Exists)!];
-        Assert.DoesNotContain(fixtures, string.IsNullOrEmpty);
+        string[] fixtures = AvailableFixtures;
 
         foreach (string fixture in fixtures)
         {
@@ -237,8 +247,7 @@ public class WinPhoneWorldTests
     [Fact]
     public void Save_WinPhoneProgressionAndWorldState_ReloadsChanges()
     {
-        string[] fixtures = [V60FixturePath, Array.Find(V49FixtureCandidates, File.Exists)!];
-        Assert.DoesNotContain(fixtures, string.IsNullOrEmpty);
+        string[] fixtures = AvailableFixtures;
 
         foreach (string fixture in fixtures)
         {
@@ -331,8 +340,7 @@ public class WinPhoneWorldTests
     [Fact]
     public void Save_WinPhoneSparseSections_AddAndRemoveEntries()
     {
-        string[] fixtures = [V60FixturePath, Array.Find(V49FixtureCandidates, File.Exists)!];
-        Assert.DoesNotContain(fixtures, string.IsNullOrEmpty);
+        string[] fixtures = AvailableFixtures;
 
         foreach (string fixture in fixtures)
         {
@@ -455,8 +463,7 @@ public class WinPhoneWorldTests
     [Fact]
     public void Reconstruct_WinPhoneDecodedSections_DoesNotCopyCachedSectionBytes()
     {
-        string[] fixtures = [V60FixturePath, .. Array.FindAll(V49FixtureCandidates, File.Exists)];
-        Assert.Equal(3, fixtures.Length);
+        string[] fixtures = AvailableFixtures;
 
         foreach (string fixture in fixtures)
         {
