@@ -64,6 +64,8 @@ public partial class WorldViewModel : ReactiveObject
     [Reactive] private int _pasteAnchorY;
     [Reactive] private int _pasteSizeW;
     [Reactive] private int _pasteSizeH;
+    [Reactive] private string _convertFromSet = Properties.Language.toolbar_convert_set_any;
+    [Reactive] private string _convertToSet = "Skyware";
     private UpdateMode _updateMode;
     private WindowLaunchMode _windowLaunchMode;
     private bool _isUpdateAvailable;

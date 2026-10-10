@@ -45,5 +45,21 @@
                 </ContextMenu>
             </ui:Button.ContextMenu>
         </ui:Button>
+
+        <!-- Furniture set conversion -->
+        <StackPanel Orientation="Horizontal" Margin="8,0,1,0" VerticalAlignment="Center"
+                    ToolTip="{x:Static p:Language.toolbar_convert_set_hint}">
+            <ComboBox Width="140" Margin="1,0" VerticalAlignment="Center"
+                      ItemsSource="{Binding FurnitureSetSources}" SelectedItem="{Binding ConvertFromSet}" />
+            <ui:SymbolIcon Symbol="ArrowRight20" FontSize="14" Margin="3,0" VerticalAlignment="Center" />
+            <ComboBox Width="140" Margin="1,0" VerticalAlignment="Center"
+                      ItemsSource="{Binding FurnitureSets}" SelectedItem="{Binding ConvertToSet}" />
+            <ui:Button Margin="2,1,1,1" Padding="6,2" Command="{Binding ConvertFurnitureSetCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Symbol="ArrowSwap20" FontSize="16" Margin="0,0,4,0" />
+                    <TextBlock Text="{x:Static p:Language.toolbar_convert_set}" VerticalAlignment="Center" />
+                </StackPanel>
+            </ui:Button>
+        </StackPanel>
     </StackPanel>
 </UserControl>

@@ -9001,6 +9001,51 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Convert set
+        /// </summary>
+        public static string toolbar_convert_set {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any set
+        /// </summary>
+        public static string toolbar_convert_set_any {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_any", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert the furniture, platforms, blocks and walls of one furniture set inside the selection into another set (for example Sandstone to Skyware). Only whole furniture pieces are converted; pieces with no equivalent in the target set are left unchanged.
+        /// </summary>
+        public static string toolbar_convert_set_hint {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Converted {0} furniture pieces, {1} blocks and {2} walls.
+        /// </summary>
+        public static string toolbar_convert_set_result {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left unchanged: {0} with no equivalent, {1} only partly selected.
+        /// </summary>
+        public static string toolbar_convert_set_skipped {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_skipped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string toolbar_export {
