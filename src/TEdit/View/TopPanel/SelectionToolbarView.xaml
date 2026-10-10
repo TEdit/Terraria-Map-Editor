@@ -20,7 +20,7 @@
         </ui:Button>
 
         <!-- Export button with context menu -->
-        <ui:Button x:Name="ExportButton" Margin="1" Padding="6,2" Click="ExportButton_Click">
+        <ui:Button x:Name="ExportButton" Margin="1" Padding="6,2" Click="DropDownButton_Click">
             <StackPanel Orientation="Horizontal">
                 <ui:SymbolIcon Symbol="ArrowExportLtr20" FontSize="16" Margin="0,0,4,0" />
                 <TextBlock Text="{x:Static p:Language.toolbar_export}" VerticalAlignment="Center" />
@@ -59,6 +59,29 @@
                     <ui:SymbolIcon Symbol="ArrowSwap20" FontSize="16" Margin="0,0,4,0" />
                     <TextBlock Text="{x:Static p:Language.toolbar_convert_set}" VerticalAlignment="Center" />
                 </StackPanel>
+            </ui:Button>
+            <ui:Button Margin="1" Padding="6,2" Click="DropDownButton_Click"
+                       ToolTip="{x:Static p:Language.toolbar_convert_set_options}">
+                <StackPanel Orientation="Horizontal">
+                    <ui:SymbolIcon Symbol="Options20" FontSize="16" />
+                    <ui:SymbolIcon Symbol="ChevronDown20" FontSize="10" Margin="4,0,0,0" />
+                </StackPanel>
+                <ui:Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="{x:Static p:Language.toolbar_convert_set_furniture}" IsCheckable="True" StaysOpenOnClick="True"
+                                  IsChecked="{Binding ConvertSetFurniture}" />
+                        <MenuItem Header="{x:Static p:Language.toolbar_convert_set_blocks}" IsCheckable="True" StaysOpenOnClick="True"
+                                  IsChecked="{Binding ConvertSetBlocks}" />
+                        <MenuItem Header="{x:Static p:Language.toolbar_convert_set_walls}" IsCheckable="True" StaysOpenOnClick="True"
+                                  IsChecked="{Binding ConvertSetWalls}" />
+                        <MenuItem Header="{x:Static p:Language.toolbar_convert_set_gem_trees}" IsCheckable="True" StaysOpenOnClick="True"
+                                  IsChecked="{Binding ConvertSetGemTrees}" />
+                        <Separator Margin="1" />
+                        <MenuItem Header="{x:Static p:Language.toolbar_convert_set_any_material}" IsCheckable="True" StaysOpenOnClick="True"
+                                  IsChecked="{Binding ConvertSetAnyMaterial}"
+                                  ToolTip="{x:Static p:Language.toolbar_convert_set_any_material_hint}" />
+                    </ContextMenu>
+                </ui:Button.ContextMenu>
             </ui:Button>
         </StackPanel>
     </StackPanel>

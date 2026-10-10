@@ -801,7 +801,15 @@ public partial class WorldViewModel
             Selection.HasMask ? Selection.IsValid : null,
             from,
             ConvertToSet,
-            UndoManager);
+            UndoManager,
+            new FurnitureSetOptions
+            {
+                Furniture = ConvertSetFurniture,
+                Blocks = ConvertSetBlocks,
+                Walls = ConvertSetWalls,
+                AnyBlockOrWall = ConvertSetAnyMaterial,
+                GemTrees = ConvertSetGemTrees,
+            });
 
         if (result.Changed > 0)
         {
@@ -809,7 +817,7 @@ public partial class WorldViewModel
             UpdateRenderRegion(Selection.SelectionArea);
         }
 
-        string message = string.Format(Properties.Language.toolbar_convert_set_result, result.Sprites, result.Blocks, result.Walls);
+        string message = string.Format(Properties.Language.toolbar_convert_set_result, result.Sprites, result.Blocks, result.Walls, result.GemTrees);
         if (result.Unmatched + result.Partial > 0)
             message += " " + string.Format(Properties.Language.toolbar_convert_set_skipped, result.Unmatched, result.Partial);
         App.SnackbarService.ShowInfo(message, Properties.Language.toolbar_convert_set);

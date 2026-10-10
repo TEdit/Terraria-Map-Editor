@@ -67,8 +67,8 @@ public sealed class FurnitureSetConverterTests
             }
     }
 
-    private static FurnitureSetConversion Convert(World world, string from, string to, System.Func<int, int, bool> include = null, IUndoManager undo = null) =>
-        Converter.Convert(world, Area, include, from, to, undo);
+    private static FurnitureSetConversion Convert(World world, string from, string to, System.Func<int, int, bool> include = null, IUndoManager undo = null, FurnitureSetOptions options = null) =>
+        Converter.Convert(world, Area, include, from, to, undo, options);
 
     private static ushort BlockId(string name) => (ushort)WorldConfiguration.TileProperties.First(t => t.Name == name && !t.IsFramed).Id;
 
@@ -439,6 +439,110 @@ public sealed class FurnitureSetConverterTests
 
         Assert.Equal(1, Convert(world, "Martian Hover", "Skyware").Blocks);
         Assert.Equal(BlockId("Sunplate Block"), world.Tiles[10, 10].Type);
+    }
+
+    // ── Options ─────────────────────────────────────────────────────
+
+    private static World HouseWorld()
+    {
+        var world = TestWorldFactory.CreateSmallWorld();
+        Place(world, "Chairs", "Sandstone Chair", 10, 10);
+        world.Tiles[12, 11] = new Tile { IsActive = true, Type = BlockId("Smooth Sandstone Block"), Wall = WallId("Smooth Sandstone Wall") };
+        // Built from materials that belong to no set: gray brick floor on a stone wall.
+        world.Tiles[13, 11] = new Tile { IsActive = true, Type = BlockId("Gray Brick"), Wall = WallId("Stone Wall") };
+        return world;
+    }
+
+    [Fact]
+    public void Options_FurnitureOff_LeavesFurnitureButConvertsBlocksAndWalls()
+    {
+        var world = HouseWorld();
+
+        var result = Convert(world, "Sandstone", "Skyware", options: new FurnitureSetOptions { Furniture = false });
+
+        Assert.Equal((0, 1, 1), (result.Sprites, result.Blocks, result.Walls));
+        AssertSprite(world, "Chairs", "Sandstone Chair", 10, 10);
+        Assert.Equal(BlockId("Sunplate Block"), world.Tiles[12, 11].Type);
+    }
+
+    [Fact]
+    public void Options_BlocksAndWallsOff_OnlyConvertsFurniture()
+    {
+        var world = HouseWorld();
+
+        var result = Convert(world, "Sandstone", "Skyware", options: new FurnitureSetOptions { Blocks = false, Walls = false });
+
+        Assert.Equal((1, 0, 0), (result.Sprites, result.Blocks, result.Walls));
+        Assert.Equal(BlockId("Smooth Sandstone Block"), world.Tiles[12, 11].Type);
+        Assert.Equal(WallId("Smooth Sandstone Wall"), world.Tiles[12, 11].Wall);
+    }
+
+    [Fact]
+    public void Options_ByDefault_OnlyTheSetsOwnMaterialsChange()
+    {
+        var world = HouseWorld();
+
+        Convert(world, "Sandstone", "Skyware");
+
+        Assert.Equal(BlockId("Gray Brick"), world.Tiles[13, 11].Type);
+        Assert.Equal(WallId("Stone Wall"), world.Tiles[13, 11].Wall);
+    }
+
+    [Fact]
+    public void Options_AnyBlockOrWall_ReplacesEverySolidBlockAndWall()
+    {
+        var world = HouseWorld();
+        world.Tiles[14, 11] = new Tile { IsActive = true, Type = (ushort)Locate("Torches", "Torch").Prop.Id }; // not a block, stays
+        world.Tiles[15, 11] = new Tile { IsActive = true, Type = BlockId("Sunplate Block") }; // already the target
+
+        var result = Convert(world, "Sandstone", "Skyware", options: new FurnitureSetOptions { AnyBlockOrWall = true });
+
+        Assert.Equal((1, 2, 2), (result.Sprites, result.Blocks, result.Walls));
+        Assert.Equal(BlockId("Sunplate Block"), world.Tiles[13, 11].Type);
+        Assert.Equal(WallId("Disc Wall"), world.Tiles[13, 11].Wall);
+        Assert.Equal((ushort)Locate("Torches", "Torch").Prop.Id, world.Tiles[14, 11].Type);
+        AssertSprite(world, "Chairs", "Skyware Chair", 10, 10);
+    }
+
+    // ── Gem trees ───────────────────────────────────────────────────
+
+    [Theory]
+    [InlineData("Slime", "Sapphire Tree")]   // blue
+    [InlineData("Crimtane", "Ruby Tree")]    // red
+    [InlineData("Golden", "Topaz Tree")]     // yellow
+    [InlineData("Crystal", "Amethyst Tree")] // purple
+    [InlineData("Feywood", "Emerald Tree")]  // green
+    [InlineData("Stone", "Diamond Tree")]    // gray, no hue
+    public void GemTree_MatchesTheSetsColor(string set, string tree)
+    {
+        Assert.Equal((ushort)Tile(tree).Id, Converter.GetGemTree(set));
+    }
+
+    [Fact]
+    public void GemTrees_TakeTheTargetSetsGem_AndKeepTheirShape()
+    {
+        var world = TestWorldFactory.CreateSmallWorld();
+        world.Tiles[10, 10] = new Tile { IsActive = true, Type = (ushort)Tile("Topaz Tree").Id, U = 22, V = 66 };
+        world.Tiles[10, 11] = new Tile { IsActive = true, Type = (ushort)Tile("Ruby Tree").Id, U = 44, V = 0 };
+
+        var result = Convert(world, null, "Slime");
+
+        Assert.Equal(2, result.GemTrees);
+        Assert.Equal((ushort)Tile("Sapphire Tree").Id, world.Tiles[10, 10].Type);
+        Assert.Equal((22, 66), (world.Tiles[10, 10].U, world.Tiles[10, 10].V));
+        Assert.Equal((ushort)Tile("Sapphire Tree").Id, world.Tiles[10, 11].Type);
+    }
+
+    [Fact]
+    public void GemTrees_Off_LeavesThem()
+    {
+        var world = TestWorldFactory.CreateSmallWorld();
+        world.Tiles[10, 10] = new Tile { IsActive = true, Type = (ushort)Tile("Topaz Tree").Id };
+
+        var result = Convert(world, null, "Slime", options: new FurnitureSetOptions { GemTrees = false });
+
+        Assert.Equal(0, result.GemTrees);
+        Assert.Equal((ushort)Tile("Topaz Tree").Id, world.Tiles[10, 10].Type);
     }
 
     // ── Undo ────────────────────────────────────────────────────────

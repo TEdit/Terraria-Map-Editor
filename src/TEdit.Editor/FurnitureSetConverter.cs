@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using TEdit.Common;
 using TEdit.Editor.Undo;
 using TEdit.Geometry;
 using TEdit.Terraria;
@@ -11,9 +12,29 @@ using TEdit.Terraria.Objects;
 namespace TEdit.Editor;
 
 /// <summary>Counts of what a furniture set conversion changed or had to leave alone.</summary>
-public readonly record struct FurnitureSetConversion(int Sprites, int Blocks, int Walls, int Unmatched, int Partial)
+public readonly record struct FurnitureSetConversion(int Sprites, int Blocks, int Walls, int Unmatched, int Partial, int GemTrees = 0)
 {
-    public int Changed => Sprites + Blocks + Walls;
+    public int Changed => Sprites + Blocks + Walls + GemTrees;
+}
+
+/// <summary>Which parts of the selection a furniture set conversion changes.</summary>
+public sealed record FurnitureSetOptions
+{
+    public static FurnitureSetOptions Default { get; } = new();
+
+    public bool Furniture { get; init; } = true;
+    public bool Blocks { get; init; } = true;
+    public bool Walls { get; init; } = true;
+
+    /// <summary>
+    /// Replace every solid block and every wall in the selection with the target set's block and wall,
+    /// not only the source set's own (e.g. a pumpkin house built from gray brick with stone slab walls).
+    /// Natural terrain inside the selection is replaced too, so select the building with the brush or lasso.
+    /// </summary>
+    public bool AnyBlockOrWall { get; init; }
+
+    /// <summary>Regrow gem trees as the gem whose color is closest to the target set's block (Sunplate to Topaz).</summary>
+    public bool GemTrees { get; init; } = true;
 }
 
 /// <summary>
@@ -130,6 +151,9 @@ public sealed class FurnitureSetConverter
     private readonly Dictionary<ushort, List<string>> _wallSets = new();
     private readonly Dictionary<string, ushort> _setBlocks = new(StringComparer.Ordinal);
     private readonly Dictionary<string, ushort> _setWalls = new(StringComparer.Ordinal);
+    private readonly HashSet<ushort> _solidBlocks = new();
+    private readonly Dictionary<string, ushort> _setGemTrees = new(StringComparer.Ordinal);
+    private readonly HashSet<ushort> _gemTrees = new();
 
     public FurnitureSetConverter(IEnumerable<TileProperty> tiles, IEnumerable<WallProperty> walls)
     {
@@ -174,6 +198,9 @@ public sealed class FurnitureSetConverter
             }
         }
 
+        foreach (var tile in tileList.Where(t => !t.IsFramed && t.IsSolid && t.Id is >= 0 and <= ushort.MaxValue))
+            _solidBlocks.Add((ushort)tile.Id);
+
         var blockIds = tileList.Where(t => !t.IsFramed && t.Id is >= 0 and <= ushort.MaxValue)
             .GroupBy(t => t.Name).ToDictionary(g => g.Key, g => (ushort)g.First().Id, StringComparer.Ordinal);
         var wallIds = walls.Where(w => w != null && w.Id is > 0 and <= ushort.MaxValue)
@@ -193,6 +220,27 @@ public sealed class FurnitureSetConverter
                 _setWalls[set] = wallId;
                 AddSet(_wallSets, wallId, set);
             }
+        }
+
+        // Gem trees pair with their gem stone by name ("Topaz Tree", "Topaz Stone Block"); the stone carries the gem's color.
+        var gems = tileList
+            .Where(t => t.IsFramed && t.Name.EndsWith(" Tree", StringComparison.Ordinal) && t.Id is >= 0 and <= ushort.MaxValue)
+            .Select(t => (Tree: (ushort)t.Id, Stone: tileList.FirstOrDefault(s => !s.IsFramed && s.Name == t.Name[..^5] + " Stone Block")))
+            .Where(g => g.Stone != null)
+            .ToList();
+        foreach (var (tree, _) in gems)
+            _gemTrees.Add(tree);
+        var colors = tileList.Where(t => t.Id is >= 0 and <= ushort.MaxValue).GroupBy(t => (ushort)t.Id).ToDictionary(g => g.Key, g => g.First().Color);
+        var diamond = gems.FirstOrDefault(g => g.Stone!.Name.StartsWith("Diamond", StringComparison.Ordinal));
+        foreach (var (set, block) in _setBlocks)
+        {
+            if (gems.Count == 0 || !colors.TryGetValue(block, out var color))
+                continue;
+            var (_, saturation, _) = ToHsv(color);
+            // Gray blocks (stone, obsidian) have no hue to match; diamond is the colorless gem.
+            _setGemTrees[set] = saturation < 0.15 && diamond.Stone != null
+                ? diamond.Tree
+                : gems.MinBy(g => ColorDistance(g.Stone!.Color, color)).Tree;
         }
 
         Sets = _setItems.Keys.OrderBy(s => s, StringComparer.CurrentCulture).ToList();
@@ -219,6 +267,9 @@ public sealed class FurnitureSetConverter
     public bool HasItem(string set, string family, string item) =>
         _setItems.TryGetValue(set, out var items) && items.Keys.Any(k => k.Family == family && k.Item == item);
 
+    /// <summary>Gem tree tile id whose gem color is closest to the set's block; null when the set has no block.</summary>
+    public ushort? GetGemTree(string set) => _setGemTrees.TryGetValue(set, out var id) ? id : null;
+
     /// <summary>Tile id of the block a set is built from; null if none.</summary>
     public ushort? GetBlock(string set) => _setBlocks.TryGetValue(set, out var id) ? id : null;
 
@@ -229,6 +280,7 @@ public sealed class FurnitureSetConverter
     /// Converts every selected tile of <paramref name="fromSet"/> (any set when null) to <paramref name="toSet"/>.
     /// Multi-tile furniture converts only when the whole sprite is selected, so no half-converted sprites are left.
     /// Furniture with no equivalent in the target set, or of a different size, is left unchanged and counted as unmatched.
+    /// <paramref name="options"/> picks the parts to change; by default furniture plus the source set's own blocks and walls.
     /// </summary>
     public FurnitureSetConversion Convert(
         World world,
@@ -236,9 +288,11 @@ public sealed class FurnitureSetConverter
         Func<int, int, bool>? include,
         string? fromSet,
         string toSet,
-        IUndoManager? undo)
+        IUndoManager? undo,
+        FurnitureSetOptions? options = null)
     {
-        if (world == null || !_setItems.ContainsKey(toSet) || toSet == fromSet)
+        options ??= FurnitureSetOptions.Default;
+        if (world == null || !_setItems.ContainsKey(toSet) || (toSet == fromSet && !options.AnyBlockOrWall))
             return default;
 
         area = RectangleInt32.Intersect(area, new RectangleInt32(0, 0, world.TilesWide, world.TilesHigh));
@@ -246,8 +300,13 @@ public sealed class FurnitureSetConverter
         bool FromSet(string set) => set != toSet && (fromSet == null || set == fromSet);
         // A block or wall shared with the target set (Martian Conduit Plating for both Martian sets) is already right.
         bool FromSets(List<string> sets) => !sets.Contains(toSet) && sets.Exists(FromSet);
+        bool IsSourceBlock(ushort type) => options.AnyBlockOrWall
+            ? _solidBlocks.Contains(type)
+            : _blockSets.TryGetValue(type, out var sets) && FromSets(sets);
+        bool IsSourceWall(ushort wall) => options.AnyBlockOrWall || (_wallSets.TryGetValue(wall, out var sets) && FromSets(sets));
 
-        int sprites = 0, blocks = 0, walls = 0, unmatched = 0, partial = 0;
+        int sprites = 0, blocks = 0, walls = 0, unmatched = 0, partial = 0, gemTrees = 0;
+        var targetGemTree = options.GemTrees ? GetGemTree(toSet) : null;
         var visited = new HashSet<Vector2Int32>();
         var targetBlock = GetBlock(toSet);
         var targetWall = GetWall(toSet);
@@ -262,9 +321,18 @@ public sealed class FurnitureSetConverter
                 ref var tile = ref world.Tiles[x, y];
                 bool saved = false;
 
-                if (tile.IsActive && FindFrame(tile) is { } frame)
+                var frame = tile.IsActive ? FindFrame(tile) : null;
+                if (tile.IsActive && targetGemTree is { } newTree && tile.Type != newTree && _gemTrees.Contains(tile.Type))
                 {
-                    if (FromSet(frame.Set))
+                    // Every gem tree uses the same frame layout, so only the type changes.
+                    undo?.SaveTile(world, x, y);
+                    saved = true;
+                    tile.Type = newTree;
+                    gemTrees++;
+                }
+                else if (frame != null)
+                {
+                    if (options.Furniture && FromSet(frame.Set))
                     {
                         var interval = _intervals[frame.Type];
                         var origin = new Vector2Int32(x - (tile.U - frame.UV.X) / interval.X, y - (tile.V - frame.UV.Y) / interval.Y);
@@ -284,8 +352,8 @@ public sealed class FurnitureSetConverter
                         }
                     }
                 }
-                else if (tile.IsActive && targetBlock is { } newBlock &&
-                         _blockSets.TryGetValue(tile.Type, out var blockSets) && FromSets(blockSets))
+                else if (options.Blocks && tile.IsActive && targetBlock is { } newBlock &&
+                         tile.Type != newBlock && IsSourceBlock(tile.Type))
                 {
                     undo?.SaveTile(world, x, y);
                     saved = true;
@@ -293,8 +361,8 @@ public sealed class FurnitureSetConverter
                     blocks++;
                 }
 
-                if (tile.Wall != 0 && targetWall is { } newWall &&
-                    _wallSets.TryGetValue(tile.Wall, out var wallSets) && FromSets(wallSets))
+                if (options.Walls && tile.Wall != 0 && targetWall is { } newWall &&
+                    tile.Wall != newWall && IsSourceWall(tile.Wall))
                 {
                     if (!saved)
                         undo?.SaveTile(world, x, y);
@@ -304,7 +372,29 @@ public sealed class FurnitureSetConverter
             }
         }
 
-        return new FurnitureSetConversion(sprites, blocks, walls, unmatched, partial);
+        return new FurnitureSetConversion(sprites, blocks, walls, unmatched, partial, gemTrees);
+    }
+
+    // Hue matters most (blue set, blue gem); saturation separates topaz from amber. Brightness is ignored,
+    // because map colors of dark blocks would otherwise all match the darkest gem.
+    private static double ColorDistance(TEditColor a, TEditColor b)
+    {
+        var (hueA, satA, _) = ToHsv(a);
+        var (hueB, satB, _) = ToHsv(b);
+        double hue = Math.Abs(hueA - hueB);
+        hue = Math.Min(hue, 1 - hue) * 2;
+        return hue * 2 + Math.Abs(satA - satB);
+    }
+
+    private static (double Hue, double Saturation, double Value) ToHsv(TEditColor color)
+    {
+        double r = color.R / 255.0, g = color.G / 255.0, b = color.B / 255.0;
+        double max = Math.Max(r, Math.Max(g, b)), min = Math.Min(r, Math.Min(g, b)), delta = max - min;
+        double hue = delta == 0 ? 0
+            : max == r ? ((g - b) / delta % 6 + 6) % 6
+            : max == g ? (b - r) / delta + 2
+            : (r - g) / delta + 4;
+        return (hue / 6, max == 0 ? 0 : delta / max, max);
     }
 
     private static void AddSet(Dictionary<ushort, List<string>> sets, ushort id, string set)

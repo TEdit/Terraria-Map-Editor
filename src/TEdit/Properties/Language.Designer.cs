@@ -9028,7 +9028,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Converted {0} furniture pieces, {1} blocks and {2} walls.
+        ///   Looks up a localized string similar to Converted {0} furniture pieces, {1} blocks, {2} walls and {3} gem tree tiles.
         /// </summary>
         public static string toolbar_convert_set_result {
             get {
@@ -9042,6 +9042,69 @@ namespace TEdit.Properties {
         public static string toolbar_convert_set_skipped {
             get {
                 return ResourceManager.GetString("toolbar_convert_set_skipped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options
+        /// </summary>
+        public static string toolbar_convert_set_options {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Furniture and platforms
+        /// </summary>
+        public static string toolbar_convert_set_furniture {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_furniture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blocks
+        /// </summary>
+        public static string toolbar_convert_set_blocks {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_blocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Walls
+        /// </summary>
+        public static string toolbar_convert_set_walls {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace every block and wall, not only the set's own
+        /// </summary>
+        public static string toolbar_convert_set_any_material {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_any_material", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also replaces stone, dirt and other natural blocks and walls inside the selection. Use the brush or lasso to select only the building.
+        /// </summary>
+        public static string toolbar_convert_set_any_material_hint {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_any_material_hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gem trees (closest gem color to the target set)
+        /// </summary>
+        public static string toolbar_convert_set_gem_trees {
+            get {
+                return ResourceManager.GetString("toolbar_convert_set_gem_trees", resourceCulture);
             }
         }
         
