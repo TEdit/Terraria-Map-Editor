@@ -2155,6 +2155,54 @@ Would you like to enable error reporting?</value>
   <data name="toolbar_deselect" xml:space="preserve">
     <value>Deselect</value>
   </data>
+  <data name="toolbar_selection_rectangle" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="toolbar_selection_brush" xml:space="preserve">
+    <value>Brush</value>
+  </data>
+  <data name="toolbar_selection_lasso" xml:space="preserve">
+    <value>Lasso</value>
+  </data>
+  <data name="toolbar_selection_freeform_hint" xml:space="preserve">
+    <value>Drag to add tiles, Ctrl+drag to remove, right-click to deselect. Brush uses the brush size and shape.</value>
+  </data>
+  <data name="toolbar_convert_set" xml:space="preserve">
+    <value>Convert set</value>
+  </data>
+  <data name="toolbar_convert_set_any" xml:space="preserve">
+    <value>Any set</value>
+  </data>
+  <data name="toolbar_convert_set_hint" xml:space="preserve">
+    <value>Convert the furniture, platforms, blocks and walls of one furniture set inside the selection into another set (for example Sandstone to Skyware). Only whole furniture pieces are converted; pieces with no equivalent in the target set are left unchanged.</value>
+  </data>
+  <data name="toolbar_convert_set_result" xml:space="preserve">
+    <value>Converted {0} furniture pieces, {1} blocks, {2} walls and {3} gem tree tiles.</value>
+  </data>
+  <data name="toolbar_convert_set_skipped" xml:space="preserve">
+    <value>Left unchanged: {0} with no equivalent, {1} only partly selected.</value>
+  </data>
+  <data name="toolbar_convert_set_options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="toolbar_convert_set_furniture" xml:space="preserve">
+    <value>Furniture and platforms</value>
+  </data>
+  <data name="toolbar_convert_set_blocks" xml:space="preserve">
+    <value>Blocks</value>
+  </data>
+  <data name="toolbar_convert_set_walls" xml:space="preserve">
+    <value>Walls</value>
+  </data>
+  <data name="toolbar_convert_set_any_material" xml:space="preserve">
+    <value>Replace every block and wall, not only the set's own</value>
+  </data>
+  <data name="toolbar_convert_set_any_material_hint" xml:space="preserve">
+    <value>Also replaces stone, dirt and other natural blocks and walls inside the selection. Use the brush or lasso to select only the building.</value>
+  </data>
+  <data name="toolbar_convert_set_gem_trees" xml:space="preserve">
+    <value>Gem trees (closest gem color to the target set)</value>
+  </data>
   <data name="toolbar_export" xml:space="preserve">
     <value>Export</value>
   </data>

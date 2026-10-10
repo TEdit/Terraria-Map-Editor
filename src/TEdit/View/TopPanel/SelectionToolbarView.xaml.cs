@@ -11,7 +11,7 @@ public partial class SelectionToolbarView : UserControl
         InitializeComponent();
     }
 
-    private void ExportButton_Click(object sender, RoutedEventArgs e)
+    private void DropDownButton_Click(object sender, RoutedEventArgs e)
     {
         if (sender is FrameworkElement button && button.ContextMenu != null)
         {

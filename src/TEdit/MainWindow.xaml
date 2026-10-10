@@ -14,6 +14,7 @@
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:vm="clr-namespace:TEdit.ViewModel"
         xmlns:cv="clr-namespace:TEdit.Converters"
+        xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:config="clr-namespace:TEdit.Configuration"
         AllowDrop="True"
@@ -367,6 +368,13 @@
                                         <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Morph">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ActiveTool.Name}" Value="Selection" />
+                                                <Condition Binding="{Binding Selection.Mode}" Value="{x:Static editor:SelectionShape.Brush}" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </MultiDataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </View:BrushSettingsView.Style>
@@ -426,6 +434,9 @@
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Selection.IsActive}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Selection">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>

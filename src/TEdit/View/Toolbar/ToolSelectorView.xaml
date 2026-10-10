@@ -12,7 +12,8 @@
         <DataTemplate x:Key="toolBarItemTemplate">
             <tedit:ToggleButtonDataBound Margin="1" Height="32" Width="32" FocusVisualStyle="{x:Null}"
                                       Command="{Binding DataContext.SetToolCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                                      CommandParameter="{Binding}" IsChecked="{Binding IsActive}" >
+                                      CommandParameter="{Binding}" IsChecked="{Binding IsActive}"
+                                      Loaded="ToolButton_Loaded" >
                 <tedit:ToggleButtonDataBound.ToolTip>
                     <TextBlock Text="{Binding ToolTipText}" FocusVisualStyle="{x:Null}"/>
                 </tedit:ToggleButtonDataBound.ToolTip>
@@ -68,6 +69,21 @@
                             </Style>
                         </Image.Style>
                     </Image>
+                    <!-- Corner triangle: right-click for more shapes -->
+                    <Path Data="M 5,0 L 5,5 L 0,5 Z" Fill="{DynamicResource TextFillColorSecondaryBrush}"
+                          HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-6,-6"
+                          IsHitTestVisible="False">
+                        <Path.Style>
+                            <Style TargetType="Path">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Name}" Value="Selection">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Path.Style>
+                    </Path>
                 </Grid>
             </tedit:ToggleButtonDataBound>
         </DataTemplate>

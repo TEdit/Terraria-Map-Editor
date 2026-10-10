@@ -37,6 +37,12 @@ public partial class ClipboardBuffer : ITileData
     public bool[] TileFrameImportant { get; set; }
     public Tile[,] Tiles { get; set; }
 
+    // Tiles to paste, for buffers copied from a free-form (brush / lasso) selection. Null means all.
+    // shortcut: not saved in schematic files, so a saved free-form copy pastes as its full rectangle; extend the file format if needed.
+    public bool[,] Mask { get; set; }
+
+    public bool IsMasked(int x, int y) => Mask != null && !Mask[x, y];
+
     public string Name { get; set; }
     public Vector2Int32 Size
     {
@@ -76,16 +82,30 @@ public partial class ClipboardBuffer : ITileData
         Func<int, bool> tileFilter   = null,
         Func<int, bool> wallFilter   = null,
         Func<int, bool> liquidFilter = null,
-        Func<int, bool> wireFilter   = null)
+        Func<int, bool> wireFilter   = null,
+        Func<int, int, bool> include = null)
     {
         var buffer = new ClipboardBuffer(
             new Vector2Int32(area.Width, area.Height),
             tileFrameImportant: world.TileFrameImportant);
 
+        if (include != null)
+            buffer.Mask = new bool[area.Width, area.Height];
+
         for (int x = 0; x < area.Width; x++)
         {
             for (int y = 0; y < area.Height; y++)
             {
+                if (include != null)
+                {
+                    if (!include(x + area.X, y + area.Y))
+                    {
+                        buffer.Tiles[x, y] = new Tile();
+                        continue;
+                    }
+                    buffer.Mask[x, y] = true;
+                }
+
                 Tile curTile = world.Tiles[x + area.X, y + area.Y];
 
                 // ---- FILTERING ----
@@ -222,6 +242,7 @@ public partial class ClipboardBuffer : ITileData
                 int worldY = y + anchor.Y;
 
                 if (!world.ValidTileLocation(new Vector2Int32(worldX, worldY))) { continue; }
+                if (IsMasked(x, y)) { continue; }
 
                 var pasteTile = Tiles[x, y];
                 ref var worldTile = ref world.Tiles[worldX, worldY];
@@ -376,6 +397,7 @@ public partial class ClipboardBuffer : ITileData
         var clone = new ClipboardBuffer(Size, tileFrameImportant: TileFrameImportant);
         clone.Name = Name;
         clone.RenderScale = RenderScale;
+        clone.Mask = (bool[,])Mask?.Clone();
         for (int x = 0; x < Size.X; x++)
             for (int y = 0; y < Size.Y; y++)
                 clone.Tiles[x, y] = Tiles[x, y];
@@ -391,6 +413,8 @@ public partial class ClipboardBuffer : ITileData
         if (newWidth == Size.X && newHeight == Size.Y) return Clone();
 
         var resized = new ClipboardBuffer(new Vector2Int32(newWidth, newHeight));
+        if (Mask != null)
+            resized.Mask = new bool[newWidth, newHeight];
         var claimed = new bool[Size.X, Size.Y];
         for (int x = 0; x < newWidth; x++)
         {
@@ -414,6 +438,8 @@ public partial class ClipboardBuffer : ITileData
                     claimed[srcX, srcY] = true;
 
                 resized.Tiles[x, y] = tile;
+                if (Mask != null)
+                    resized.Mask[x, y] = Mask[srcX, srcY];
             }
         }
         // Chests/Signs/TileEntities are position-dependent — don't copy them (same as Rotate)
@@ -427,6 +453,8 @@ public partial class ClipboardBuffer : ITileData
     public static ClipboardBuffer Flip(ClipboardBuffer buffer, bool flipX, bool rotate)
     {
         ClipboardBuffer flippedBuffer = new ClipboardBuffer(buffer.Size);
+        if (buffer.Mask != null)
+            flippedBuffer.Mask = new bool[buffer.Size.X, buffer.Size.Y];
         var tileFrameProps = new Dictionary<Vector2Int32, (TileProperty Tile, FrameProperty Frame)>();
         // var spriteSizes = new Dictionary<Vector2Int32, Vector2Short>();
         int maxX = buffer.Size.X - 1;
@@ -514,6 +542,8 @@ public partial class ClipboardBuffer : ITileData
 
                 // Store tile AFTER modifications (Tile is a struct/value type)
                 flippedBuffer.Tiles[bufferX, bufferY] = tile;
+                if (buffer.Mask != null)
+                    flippedBuffer.Mask[bufferX, bufferY] = buffer.Mask[x, y];
             }
         }
 
@@ -659,6 +689,8 @@ public partial class ClipboardBuffer : ITileData
         if (rotate)
         {
             ClipboardBuffer rotatedBuffer = new ClipboardBuffer(new Vector2Int32(flippedBuffer.Size.Y, flippedBuffer.Size.X));
+            if (flippedBuffer.Mask != null)
+                rotatedBuffer.Mask = new bool[flippedBuffer.Size.Y, flippedBuffer.Size.X];
             // Attempt to make a new buffer
             int FlipmaxX = flippedBuffer.Size.X - 1;
             int FlipmaxY = flippedBuffer.Size.Y - 1;
@@ -679,6 +711,8 @@ public partial class ClipboardBuffer : ITileData
                         tile.ClearTile();
                     }
                     rotatedBuffer.Tiles[y, x] = (Tile)tile; // Flipping x & y causes a rotation of 90 to the right
+                    if (flippedBuffer.Mask != null)
+                        rotatedBuffer.Mask[y, x] = flippedBuffer.Mask[x, y];
                 }
             }
 

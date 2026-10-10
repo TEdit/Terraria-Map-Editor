@@ -782,6 +782,47 @@ public partial class WorldViewModel
         Selection.IsActive = false;
     }
 
+    public IReadOnlyList<string> FurnitureSets => FurnitureSetConverter.Default.Sets;
+
+    private IReadOnlyList<string> _furnitureSetSources;
+    public IReadOnlyList<string> FurnitureSetSources =>
+        _furnitureSetSources ??= new[] { Properties.Language.toolbar_convert_set_any }.Concat(FurnitureSets).ToList();
+
+    [ReactiveCommand]
+    private void ConvertFurnitureSet()
+    {
+        if (CurrentWorld == null || !Selection.IsActive || string.IsNullOrEmpty(ConvertToSet))
+            return;
+
+        string from = ConvertFromSet == Properties.Language.toolbar_convert_set_any ? null : ConvertFromSet;
+        var result = FurnitureSetConverter.Default.Convert(
+            CurrentWorld,
+            Selection.SelectionArea,
+            Selection.HasMask ? Selection.IsValid : null,
+            from,
+            ConvertToSet,
+            UndoManager,
+            new FurnitureSetOptions
+            {
+                Furniture = ConvertSetFurniture,
+                Blocks = ConvertSetBlocks,
+                Walls = ConvertSetWalls,
+                AnyBlockOrWall = ConvertSetAnyMaterial,
+                GemTrees = ConvertSetGemTrees,
+            });
+
+        if (result.Changed > 0)
+        {
+            UndoManager.SaveUndo();
+            UpdateRenderRegion(Selection.SelectionArea);
+        }
+
+        string message = string.Format(Properties.Language.toolbar_convert_set_result, result.Sprites, result.Blocks, result.Walls, result.GemTrees);
+        if (result.Unmatched + result.Partial > 0)
+            message += " " + string.Format(Properties.Language.toolbar_convert_set_skipped, result.Unmatched, result.Partial);
+        App.SnackbarService.ShowInfo(message, Properties.Language.toolbar_convert_set);
+    }
+
     [ReactiveCommand]
     private async Task ExportSelectionAsPng(int scale)
     {
