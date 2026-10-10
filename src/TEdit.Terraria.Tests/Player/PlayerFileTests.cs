@@ -9,6 +9,18 @@ public class PlayerFileTests
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
         "my games", "Terraria", "Players");
 
+    // Always-present fixture: a fully populated character saved as an encrypted .plr, so the file tests run on every machine.
+    private const string SyntheticPlr = "synthetic.plr";
+
+    private static readonly Lazy<string> SyntheticPlrPath = new(() =>
+    {
+        string path = Path.Combine(Path.GetTempPath(), $"tedit-synthetic-{Guid.NewGuid():N}.plr");
+        PlayerFile.Save(path, CreateTestCharacter());
+        return path;
+    });
+
+    private static string ResolvePlr(string path) => path == SyntheticPlr ? SyntheticPlrPath.Value : path;
+
     [Fact]
     public void EncryptDecrypt_RoundTrip()
     {
@@ -41,6 +53,9 @@ public class PlayerFileTests
 
     public static IEnumerable<object[]> GetPlrFiles()
     {
+        yield return [SyntheticPlr];
+
+        // Local Terraria saves add real-world coverage on developer machines.
         if (!Directory.Exists(PlayersDir))
             yield break;
 
@@ -52,6 +67,7 @@ public class PlayerFileTests
     [MemberData(nameof(GetPlrFiles))]
     public void Load_RealPlrFile_DoesNotThrow(string path)
     {
+        path = ResolvePlr(path);
         var player = PlayerFile.Load(path);
         player.Name.ShouldNotBeNullOrEmpty();
     }
@@ -60,6 +76,7 @@ public class PlayerFileTests
     [MemberData(nameof(GetPlrFiles))]
     public void RoundTrip_RealPlrFile_PreservesData(string path)
     {
+        path = ResolvePlr(path);
         var original = PlayerFile.Load(path);
 
         // Save to unencrypted stream, reload from unencrypted stream
@@ -76,6 +93,7 @@ public class PlayerFileTests
     [MemberData(nameof(GetPlrFiles))]
     public void RoundTrip_RealPlrFile_ByteLevel(string path)
     {
+        path = ResolvePlr(path);
         // Decrypt original to check version
         byte[] originalData = PlayerFile.Decrypt(File.ReadAllBytes(path));
         int originalVersion = BitConverter.ToInt32(originalData, 0);
@@ -141,8 +159,22 @@ public class PlayerFileTests
         player.Inventory[0] = new PlayerItem(1, 1, 0, true);
         player.Inventory[1] = new PlayerItem(29, 1, 82);
 
-        // Add a spawn point
+        // Equipment, banks and buffs: every section the file format writes gets a value.
+        player.Armor[0] = new PlayerItem(88, 1, 15);          // Mining Helmet
+        player.Armor[3] = new PlayerItem(54, 1, 65);          // Hermes Boots in an accessory slot
+        player.Dye[0] = new PlayerItem(1007, 1);
+        player.MiscEquips[0] = new PlayerItem(115, 1);
+        player.MiscDyes[0] = new PlayerItem(1008, 1);
+        player.Bank1[0] = new PlayerItem(73, 99);
+        player.Bank2[1] = new PlayerItem(9, 250);
+        player.Bank3[2] = new PlayerItem(19, 30);
+        player.Bank4[3] = new PlayerItem(22, 5, 0, true);
+        player.Buffs[0] = new PlayerBuff(1, 3600);
+        player.Loadouts[1].Armor[0] = new PlayerItem(90, 1);
+
+        // Add spawn points
         player.SpawnPoints.Add(new SpawnPoint(100, 200, 12345, "TestWorld"));
+        player.SpawnPoints.Add(new SpawnPoint(4200, 300, 67890, "Second World"));
 
         // Add creative sacrifices
         player.CreativeSacrifices["Terraria/DirtBlock"] = 100;
@@ -195,10 +227,28 @@ public class PlayerFileTests
             b.SpawnPoints[i].WorldName.ShouldBe(a.SpawnPoints[i].WorldName);
         }
 
+        // Equipment and buffs
+        for (int i = 0; i < PlayerConstants.MaxArmorSlots; i++)
+            b.Armor[i].NetId.ShouldBe(a.Armor[i].NetId, $"Armor[{i}].NetId");
+        for (int i = 0; i < PlayerConstants.MaxDyeSlots; i++)
+            b.Dye[i].NetId.ShouldBe(a.Dye[i].NetId, $"Dye[{i}].NetId");
+        for (int i = 0; i < PlayerConstants.MaxMiscEquipSlots; i++)
+        {
+            b.MiscEquips[i].NetId.ShouldBe(a.MiscEquips[i].NetId, $"MiscEquips[{i}].NetId");
+            b.MiscDyes[i].NetId.ShouldBe(a.MiscDyes[i].NetId, $"MiscDyes[{i}].NetId");
+        }
+        for (int i = 0; i < PlayerConstants.MaxBuffSlots; i++)
+        {
+            b.Buffs[i].Type.ShouldBe(a.Buffs[i].Type, $"Buffs[{i}].Type");
+            b.Buffs[i].Time.ShouldBe(a.Buffs[i].Time, $"Buffs[{i}].Time");
+        }
+
         // Banks
         for (int i = 0; i < PlayerConstants.MaxBankSlots; i++)
         {
             b.Bank1[i].NetId.ShouldBe(a.Bank1[i].NetId, $"Bank1[{i}].NetId");
+            b.Bank2[i].NetId.ShouldBe(a.Bank2[i].NetId, $"Bank2[{i}].NetId");
+            b.Bank3[i].NetId.ShouldBe(a.Bank3[i].NetId, $"Bank3[{i}].NetId");
             b.Bank4[i].NetId.ShouldBe(a.Bank4[i].NetId, $"Bank4[{i}].NetId");
             b.Bank4[i].Favorited.ShouldBe(a.Bank4[i].Favorited, $"Bank4[{i}].Favorited");
         }
