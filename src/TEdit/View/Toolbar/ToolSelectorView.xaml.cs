@@ -29,7 +29,12 @@ public partial class ToolSelectorView : UserControl
             (SelectionShape.Lasso, Properties.Language.toolbar_selection_lasso),
         })
         {
-            var item = new MenuItem { Header = label, Tag = shape };
+            var item = new MenuItem
+            {
+                Header = label,
+                Tag = shape,
+                Icon = new Wpf.Ui.Controls.SymbolIcon { Symbol = SelectionTool.GetSymbol(shape) },
+            };
             if (shape != SelectionShape.Rectangle)
                 item.ToolTip = Properties.Language.toolbar_selection_freeform_hint;
             item.Click += (_, _) => tool.SelectMode(shape);

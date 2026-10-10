@@ -50,7 +50,9 @@ public class SelectionTool : BaseTool
     }
 
     // The tool button shows the current selection shape.
-    public override SymbolRegular SymbolIcon => _wvm.Selection.Mode switch
+    public override SymbolRegular SymbolIcon => GetSymbol(_wvm.Selection.Mode);
+
+    public static SymbolRegular GetSymbol(SelectionShape mode) => mode switch
     {
         SelectionShape.Brush => SymbolRegular.PaintBrush24,
         SelectionShape.Lasso => SymbolRegular.Lasso24,
