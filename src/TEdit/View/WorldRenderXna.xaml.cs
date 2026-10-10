@@ -7417,8 +7417,11 @@ public partial class WorldRenderXna : UserControl
         }
         else
         {
-            position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X) * _zoom,
-                                   1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
+            // Pixel tools leave the offset at -1; the selection tool's brush mode sets it to center its footprint.
+            int offX = Math.Max(0, _wvm.ActiveTool.PreviewOffsetX);
+            int offY = Math.Max(0, _wvm.ActiveTool.PreviewOffsetY);
+            position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X - offX) * _zoom,
+                                   1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y - offY) * _zoom);
         }
 
         if (_wvm.ActiveTool.Name == "Sprite2" &&
