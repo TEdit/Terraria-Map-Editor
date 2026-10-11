@@ -355,6 +355,9 @@ public partial class WorldViewModel
     {
         CurrentFile = null;
         PixelMap = RenderEntireWorld();
+        // Crop/Expand produce a new world that is not on disk yet; setting CurrentWorld
+        // reset the unsaved flags, so mark it unsaved again or close would not ask.
+        MarkWorldUnsaved();
         UpdateTitle();
 
         RefreshPoints();

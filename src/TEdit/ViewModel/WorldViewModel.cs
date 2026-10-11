@@ -3188,7 +3188,12 @@ public partial class WorldViewModel : ReactiveObject
             e.PropertyName == nameof(World.FileRevision))
             return;
 
-        // Mark as having unsaved changes for both autosave and user save tracking
+        MarkWorldUnsaved();
+    }
+
+    /// <summary>Marks the open world as having unsaved changes for both autosave and user save tracking.</summary>
+    private void MarkWorldUnsaved()
+    {
         _hasUnsavedPropertyChanges = true;
         _hasUnsavedUserPropertyChanges = true;
         this.RaisePropertyChanged(nameof(HasUnsavedChanges));
@@ -3475,6 +3480,7 @@ public partial class WorldViewModel : ReactiveObject
                 // Update UI elements after world generation and rendering
                 CurrentFile = null;
                 PixelMap = t.Result; // Set the pixel map for the world
+                MarkWorldUnsaved(); // A generated world exists only in memory until saved
                 UpdateTitle(); // Update the window title with the current world name
                 RefreshPoints();
                 MinimapImage = RenderMiniMap.Render(CurrentWorld, showBackground: UserSettingsService.Current.MinimapBackground); // Render and set the minimap image
