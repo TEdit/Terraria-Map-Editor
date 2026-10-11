@@ -69,6 +69,8 @@ public partial class WorldViewModel : ReactiveObject
     private bool _isUpdateAvailable;
     private string _currentFile;
     private bool _loadedFromBackup;
+    // Whether the last SaveWorldFileAsync wrote the file (false when it failed or was cancelled).
+    private bool _lastSaveSucceeded;
     private string _originalBackupPath;
     public static World _currentWorld;
     private ClipboardManager _clipboard;
@@ -4020,8 +4022,11 @@ public partial class WorldViewModel : ReactiveObject
 
         if (pickVersion && (bool)sfd.ShowDialog())
         {
+            string previousFile = CurrentFile;
             CurrentFile = sfd.FileName;
             await SaveWorldFileAsync(GetSaveVersion_MaxConfig(version), preserveAll);
+            // A failed or cancelled Save As must not leave Ctrl+S pointing at the new path.
+            if (!_lastSaveSucceeded) CurrentFile = previousFile;
         }
     }
 
@@ -4058,42 +4063,49 @@ public partial class WorldViewModel : ReactiveObject
 
         if ((bool)sfd.ShowDialog())
         {
+            string previousFile = CurrentFile;
             CurrentFile = sfd.FileName;
+            await SaveAsChosenFormatAsync(sfd.FilterIndex, versionKeys);
+            // A failed or cancelled Save As must not leave Ctrl+S pointing at the new path.
+            if (!_lastSaveSucceeded) CurrentFile = previousFile;
+        }
+    }
 
-            if (sfd.FilterIndex == 2)
-            {
-                await SaveWorldFileAsync(saveAsWinPhone: true);
-                return;
-            }
+    private async Task SaveAsChosenFormatAsync(int filterIndex, List<string> versionKeys)
+    {
+        if (filterIndex == 2)
+        {
+            await SaveWorldFileAsync(saveAsWinPhone: true);
+            return;
+        }
 
-            // If they picked a specific Terraria version filter, use that gameVersion -> saveVersion mapping.
-            if (sfd.FilterIndex > 2)
+        // If they picked a specific Terraria version filter, use that gameVersion -> saveVersion mapping.
+        if (filterIndex > 2)
+        {
+            try
             {
-                try
+                int idx = filterIndex - 3; // map FilterIndex to versionKeys index
+
+                if (idx >= 0 && idx < versionKeys.Count)
                 {
-                    int idx = sfd.FilterIndex - 3; // map FilterIndex to versionKeys index
+                    string selectedGameVersion = versionKeys[idx];
 
-                    if (idx >= 0 && idx < versionKeys.Count)
+                    if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(selectedGameVersion, out uint versionOverride))
                     {
-                        string selectedGameVersion = versionKeys[idx];
-
-                        if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(selectedGameVersion, out uint versionOverride))
-                        {
-                            await SaveWorldFileAsync(versionOverride);
-                            return;
-                        }
+                        await SaveWorldFileAsync(versionOverride);
+                        return;
                     }
                 }
-                catch (Exception)
-                {
-                    // fall through to default
-                }
             }
-
-            // Maintain the existing world version.
-            // This is also the fallback for parsing failures.
-            await SaveWorldFileAsync(GetSaveVersion_MaxConfig());
+            catch (Exception)
+            {
+                // fall through to default
+            }
         }
+
+        // Maintain the existing world version.
+        // This is also the fallback for parsing failures.
+        await SaveWorldFileAsync(GetSaveVersion_MaxConfig());
     }
 
     private async Task SaveWorldFileAsync(
@@ -4101,6 +4113,7 @@ public partial class WorldViewModel : ReactiveObject
         bool preserveAll = true,
         bool saveAsWinPhone = false)
     {
+        _lastSaveSucceeded = false;
         if (CurrentWorld == null)
             return;
 
@@ -4189,6 +4202,7 @@ public partial class WorldViewModel : ReactiveObject
             else
                 await World.SaveAsync(CurrentWorld, filename, versionOverride: (int)version, preserveAll: preserveAll, progress: progress);
             saveCompleted = true;
+            _lastSaveSucceeded = true;
         }
         catch (Exception ex)
         {
@@ -4407,6 +4421,8 @@ public partial class WorldViewModel : ReactiveObject
         .ContinueWith(t =>
         {
             CurrentWorld = t.Result;
+            // A failed or cancelled load leaves no world open; don't keep pointing at its file.
+            if (t.Result == null) CurrentFile = null;
             // Register mod tile/wall properties on UI thread (ObservableCollections are UI-bound)
             if (CurrentWorld?.TwldData != null)
             {

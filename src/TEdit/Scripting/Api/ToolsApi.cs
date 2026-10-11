@@ -85,8 +85,11 @@ public class ToolsApi
             return false;
 
         filename = ResolveWorldPath(filename);
+        // Only switch the current file once the save worked.
+        if (!SaveToFile(filename, version))
+            return false;
         _wvm.CurrentFile = filename;
-        return SaveToFile(filename, version);
+        return true;
     }
 
     // ── Load ──────────────────────────────────────────────────────
