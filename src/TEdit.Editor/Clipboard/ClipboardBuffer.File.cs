@@ -174,11 +174,20 @@ public partial class ClipboardBuffer
         bw.Write(Size.Y);
     }
 
+    // Sizes come from the file: reject ones that would overflow or allocate far more than any world.
+    // shortcut: fixed cap of 65536 per side and 100M tiles, raise if worlds ever get bigger.
+    public static void ValidateSize(int sizeX, int sizeY)
+    {
+        if (sizeX <= 0 || sizeY <= 0 || sizeX > 65536 || sizeY > 65536 || (long)sizeX * sizeY > 100_000_000)
+            throw new InvalidDataException($"Invalid schematic size {sizeX}x{sizeY}");
+    }
+
     private static ClipboardBuffer LoadV5(BinaryReader b, string name, int version, TwldData targetTwldData = null)
     {
         var tileFrameImportant = World.ReadBitArray(b);
         int sizeX = b.ReadInt32();
         int sizeY = b.ReadInt32();
+        ValidateSize(sizeX, sizeY);
         var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY), tileFrameImportant: tileFrameImportant);
         buffer.Name = name;
 
@@ -215,6 +224,7 @@ public partial class ClipboardBuffer
         var tileFrameImportant = World.ReadBitArray(b);
         int sizeX = b.ReadInt32();
         int sizeY = b.ReadInt32();
+        ValidateSize(sizeX, sizeY);
         var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY), tileFrameImportant: tileFrameImportant);
         buffer.Name = name;
 
@@ -246,6 +256,7 @@ public partial class ClipboardBuffer
     {
         int sizeX = b.ReadInt32();
         int sizeY = b.ReadInt32();
+        ValidateSize(sizeX, sizeY);
         var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
         buffer.Name = name;
 
@@ -276,6 +287,7 @@ public partial class ClipboardBuffer
     {
         int sizeX = b.ReadInt32();
         int sizeY = b.ReadInt32();
+        ValidateSize(sizeX, sizeY);
         var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
         buffer.Name = name;
 
@@ -438,6 +450,7 @@ public partial class ClipboardBuffer
     {
         int sizeX = b.ReadInt32();
         int sizeY = b.ReadInt32();
+        ValidateSize(sizeX, sizeY);
         var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
         buffer.Name = name;
         bool[] tileFrameImportant = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)version);
@@ -502,6 +515,7 @@ public partial class ClipboardBuffer
 
                 int sizeX = b.ReadInt32();
                 int sizeY = b.ReadInt32();
+                ValidateSize(sizeX, sizeY);
                 var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
                 buffer.Name = name;
 
@@ -665,6 +679,7 @@ public partial class ClipboardBuffer
 
                     int sizeX = br.ReadInt32();
                     int sizeY = br.ReadInt32();
+                    ValidateSize(sizeX, sizeY);
                     var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
                     buffer.Name = name;
 
@@ -796,6 +811,7 @@ public partial class ClipboardBuffer
                 int version = reader.ReadInt32();
                 int maxx = reader.ReadInt32();
                 int maxy = reader.ReadInt32();
+                ValidateSize(maxx, maxy);
 
                 var buffer = new ClipboardBuffer(new Vector2Int32(maxx, maxy));
 
@@ -923,6 +939,7 @@ public partial class ClipboardBuffer
                 int version = reader.ReadInt32();
                 int maxx = reader.ReadInt32();
                 int maxy = reader.ReadInt32();
+                ValidateSize(maxx, maxy);
 
                 var buffer = new ClipboardBuffer(new Vector2Int32(maxx, maxy));
 

@@ -1792,6 +1792,10 @@ public partial class World
             if (version >= 294)
             {
                 chest.MaxItems = r.ReadInt32();
+                // Each slot takes at least 2 bytes, so a count beyond the rest of the stream is corrupt
+                // (and would otherwise allocate up to int.MaxValue items).
+                if (chest.MaxItems < 0 || (r.BaseStream.CanSeek && chest.MaxItems > (r.BaseStream.Length - r.BaseStream.Position) / 2))
+                    throw new TEditFileFormatException($"Invalid chest size {chest.MaxItems} at ({chest.X}, {chest.Y})");
             }
 
             // ensure Items collection has enough slots for MaxItems
