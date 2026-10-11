@@ -248,14 +248,31 @@ public class UndoBuffer : IDisposable
         var modWalls = _modWallOverlays.ToList();
 
         // Chain finalization after background writer completes
-        _closeTask = _writerTask.ContinueWith(_ =>
+        _closeTask = _writerTask.ContinueWith(t =>
         {
+            int tileGroups = _uniqueTileGroupsWritten;
+            if (t.IsFaulted)
+            {
+                // The tile data is incomplete, so a header counting it would make undo read garbage.
+                // Store an empty step instead: this undo step is lost, the rest stay readable.
+                Trace.WriteLine($"[Undo] Writing undo step {file} failed, storing it empty: {t.Exception?.GetBaseException().Message}");
+                _writer.Flush();
+                _writer.BaseStream.SetLength(0);
+                _writer.Write((Int32)0);
+                tileGroups = 0;
+                chests.Clear();
+                signs.Clear();
+                tileEntities.Clear();
+                modTiles.Clear();
+                modWalls.Clear();
+            }
+
             World.SaveChests(chests, _writer, (int)version);
             World.SaveSigns(signs, _writer, (int)version);
             World.SaveTileEntities(tileEntities, _writer, version);
             ModDataSerializer.SaveModPayload(_writer, chests, tileEntities, modTiles, modWalls, world?.TwldData);
             _writer.BaseStream.Position = (long)0;
-            _writer.Write(_uniqueTileGroupsWritten);
+            _writer.Write(tileGroups);
             _writer.Close();
             _writer.Dispose();
             _writer = null;
