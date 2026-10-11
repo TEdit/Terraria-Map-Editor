@@ -10,5 +10,6 @@ internal static class ModuleInit
     {
         TestWorldArchives.Prepare();
         RxAppBuilder.CreateReactiveUIBuilder().BuildApp();
+        WorldConfiguration.Initialize();
     }
 }

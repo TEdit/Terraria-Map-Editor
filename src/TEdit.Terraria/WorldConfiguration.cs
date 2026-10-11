@@ -225,7 +225,7 @@ public class WorldConfiguration
             if (item.IsKite) _kiteItems[item.Id] = item;
             if (item.IsAccessory) _accessoryItems[item.Id] = item;
             if (item.IsMount) _mountItems[item.Id] = item;
-            if (item.Name.Contains("Dye")) _dyeItems[item.Id] = item;
+            if (store.DyeColorById.ContainsKey(item.Id)) _dyeItems[item.Id] = item;
         }
 
         // Add paints directly (already PaintProperty)
@@ -636,6 +636,14 @@ public class WorldConfiguration
     /// Use BindingOperations.EnableCollectionSynchronization with this lock in WPF apps.
     /// </summary>
     public static readonly object Sprites2Lock = new();
+
+    public static SpriteSheet? FindSprite(int tileType)
+    {
+        lock (Sprites2Lock)
+        {
+            return Sprites2.FirstOrDefault(sprite => sprite.Tile == tileType);
+        }
+    }
 
     public static Dictionary<int, string> TallyNames
     {
