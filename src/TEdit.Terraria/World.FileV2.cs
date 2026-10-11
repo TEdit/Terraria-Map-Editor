@@ -1358,7 +1358,7 @@ public partial class World
         }
 
         // unknown flags from data file
-        if (world.UnknownData != null && world.UnknownData.Length > 0)
+        if (world.UnknownData != null && world.UnknownData.Length > 0 && world.Version == world.UnknownDataVersion)
         {
             bw.Write(world.UnknownData);
         }
@@ -2481,6 +2481,7 @@ public partial class World
         if (r.BaseStream.Position < expectedPosition)
         {
             w.UnknownData = r.ReadBytes(expectedPosition - (int)r.BaseStream.Position);
+            w.UnknownDataVersion = w.Version;
         }
     }
 

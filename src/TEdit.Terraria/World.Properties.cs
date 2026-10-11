@@ -167,6 +167,13 @@ public partial class World : ReactiveObject, ITileData
     /// </summary>
     [Browsable(false)]
     public bool TileDataRecovered { get; set; }
+
+    /// <summary>
+    /// File version <see cref="UnknownData"/> was read from. Those header bytes belong to that
+    /// version's layout, so they are written back only when saving at the same version.
+    /// </summary>
+    [Browsable(false)]
+    public uint UnknownDataVersion { get; set; }
     internal Chest?[]? WinPhoneChestSlots { get; set; }
     internal Sign?[]? WinPhoneSignSlots { get; set; }
     internal byte[]? WinPhoneSignTextFlags { get; set; }
