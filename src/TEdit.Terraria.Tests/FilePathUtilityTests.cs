@@ -58,4 +58,24 @@ public class FilePathUtilityTests
     {
         FilePathUtility.FormatFileSize(bytes).ShouldBe(expected);
     }
+
+    [Fact]
+    public void GetBackupKey_SameNameInDifferentFolders_Differs()
+    {
+        string local = System.IO.Path.Combine("C:", "Worlds", "World_1.wld");
+        string cloud = System.IO.Path.Combine("C:", "Steam", "remote", "worlds", "World_1.wld");
+
+        FilePathUtility.GetBackupKey(local).ShouldNotBe(FilePathUtility.GetBackupKey(cloud));
+        FilePathUtility.GetBackupKey(local).ShouldStartWith("World_1.");
+    }
+
+    [Fact]
+    public void GetBackupKey_SameWorld_IsStable()
+    {
+        string path = System.IO.Path.Combine("C:", "Worlds", "World_1.wld");
+
+        FilePathUtility.GetBackupKey(path).ShouldBe(FilePathUtility.GetBackupKey(System.IO.Path.Combine("c:", "WORLDS", "World_1.wld")));
+        FilePathUtility.GetBackupKey(path + ".bak").ShouldBe(FilePathUtility.GetBackupKey(path));
+        FilePathUtility.GetBackupKey(path).ShouldMatch(@"^World_1\.[0-9a-f]{8}$");
+    }
 }

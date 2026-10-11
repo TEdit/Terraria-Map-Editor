@@ -278,6 +278,9 @@ public partial class WorldExplorerViewModel
             var worldsByKey = new Dictionary<string, WorldEntryViewModel>(StringComparer.OrdinalIgnoreCase);
             foreach (var w in worldEntries)
             {
+                // Backups and autosaves are named by stem + path hash; older ones by stem only.
+                if (!string.IsNullOrEmpty(w.FilePath))
+                    worldsByKey.TryAdd(TEdit.Common.FilePathUtility.GetBackupKey(w.FilePath), w);
                 worldsByKey.TryAdd(w.Title, w);
                 if (!string.IsNullOrEmpty(w.FileName))
                 {
@@ -475,7 +478,7 @@ public partial class WorldExplorerViewModel
             }
 
             // Create TEdit timestamped backup
-            string worldBaseName = Path.GetFileNameWithoutExtension(world.FilePath);
+            string worldBaseName = TEdit.Common.FilePathUtility.GetBackupKey(world.FilePath);
             string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmss");
             string backupDest = Path.Combine(WorldViewModel.BackupPath, $"{worldBaseName}.{timestamp}.wld");
 

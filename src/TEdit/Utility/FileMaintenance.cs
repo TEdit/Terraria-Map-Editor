@@ -188,8 +188,8 @@ public static class FileMaintenance
                 try
                 {
                     string fileName = Path.GetFileName(legacyFile);
-                    // Strip all backup extensions to get the world base name
-                    string worldBaseName = Path.GetFileNameWithoutExtension(NormalizeWorldFilePath(fileName));
+                    // Key by the world path (stem + hash), like new backups
+                    string worldBaseName = FilePathUtility.GetBackupKey(legacyFile);
 
                     // Use file modification time for the timestamp
                     var modTime = File.GetLastWriteTimeUtc(legacyFile);

@@ -3175,8 +3175,7 @@ public partial class WorldViewModel : ReactiveObject
     {
         if (!string.IsNullOrWhiteSpace(CurrentFile))
         {
-            string normalized = Utility.FileMaintenance.NormalizeWorldFilePath(CurrentFile);
-            return Path.GetFileNameWithoutExtension(normalized);
+            return FilePathUtility.GetBackupKey(CurrentFile);
         }
         return "newworld";
     }
@@ -4317,7 +4316,7 @@ public partial class WorldViewModel : ReactiveObject
             {
                 if (!isBackup && File.Exists(filename))
                 {
-                    string worldBaseName = Path.GetFileNameWithoutExtension(canonicalPath);
+                    string worldBaseName = FilePathUtility.GetBackupKey(canonicalPath);
                     string timestamp = DateTime.UtcNow.ToString("yyyyMMddHHmmss");
                     string backupDest = Path.Combine(BackupPath, $"{worldBaseName}.{timestamp}.wld");
 
