@@ -9,6 +9,11 @@ namespace TEdit.Terraria;
 
 public partial class TileEntity : ReactiveObject
 {
+    // One new item per slot: Enumerable.Repeat(new TileEntityItem(), n) put the same instance
+    // in every slot, so editing one slot (e.g. applying .twld mod items) changed them all.
+    private static ObservableCollection<TileEntityItem> EmptySlots(int count) =>
+        new(Enumerable.Range(0, count).Select(_ => new TileEntityItem()));
+
     public static TileEntity CreateForTile(Tile curTile, int x, int y, int id)
     {
         TileEntity TE = new TileEntity();
@@ -36,9 +41,9 @@ public partial class TileEntity : ReactiveObject
             case (int)TileType.WomannequinLegacy:
             case (int)TileType.DisplayDoll:
                 TE.Type = (byte)TileEntityType.DisplayDoll;
-                TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 9));
-                TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 9));
-                TE.Misc = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 1));
+                TE.Items = EmptySlots(9);
+                TE.Dyes = EmptySlots(9);
+                TE.Misc = EmptySlots(1);
                 TE.Pose = 0;
                 break;
             case (int)TileType.WeaponRackLegacy:
@@ -50,8 +55,8 @@ public partial class TileEntity : ReactiveObject
                 break;
             case (int)TileType.HatRack:
                 TE.Type = (byte)TileEntityType.HatRack;
-                TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
-                TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
+                TE.Items = EmptySlots(2);
+                TE.Dyes = EmptySlots(2);
                 break;
             case (int)TileType.FoodPlatter:
                 TE.Type = (byte)TileEntityType.FoodPlatter;
@@ -436,8 +441,8 @@ public partial class TileEntity : ReactiveObject
     {
         byte numSlots = 2;
         var slots = (BitsByte)r.ReadByte();
-        Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
-        Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
+        Items = EmptySlots(numSlots);
+        Dyes = EmptySlots(numSlots);
         for (int i = 0; i < numSlots; i++)
         {
             if (slots[i])
@@ -687,7 +692,7 @@ public partial class TileEntity : ReactiveObject
         {
             int itemsCount = this.Items.Count;
 
-            frame.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), itemsCount));
+            frame.Items = EmptySlots(itemsCount);
             for (int i = 0; i < itemsCount; i++)
             {
                 frame.Items[i] = Items[i]?.Copy();
@@ -698,7 +703,7 @@ public partial class TileEntity : ReactiveObject
         {
             int dyesCount = this.Dyes.Count;
 
-            frame.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), dyesCount));
+            frame.Dyes = EmptySlots(dyesCount);
             for (int i = 0; i < dyesCount; i++)
             {
                 frame.Dyes[i] = Dyes[i]?.Copy();
@@ -708,7 +713,7 @@ public partial class TileEntity : ReactiveObject
         if (this.Misc.Count > 0)
         {
             var miscCount = this.Misc.Count;
-            frame.Misc = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), miscCount));
+            frame.Misc = EmptySlots(miscCount);
             for (int i = 0; i < miscCount; i++)
             {
                 frame.Misc[i] = Misc[i]?.Copy();
