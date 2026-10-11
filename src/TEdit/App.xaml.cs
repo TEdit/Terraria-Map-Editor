@@ -134,6 +134,12 @@ public partial class App : Application
         Version = SemVersion.Parse(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion, SemVersionStyles.Any);
         ErrorLogging.Initialize();
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        DispatcherUnhandledException += App_DispatcherUnhandledException;
+        System.Threading.Tasks.TaskScheduler.UnobservedTaskException += (_, e) =>
+        {
+            ErrorLogging.LogException(e.Exception);
+            e.SetObserved();
+        };
         ErrorLogging.Log($"Starting TEdit {ErrorLogging.Version}");
         ErrorLogging.Log($"OS: {Environment.OSVersion}");
         ErrorLogging.LogDebug($"[Startup] ErrorLogging init: {sw.ElapsedMilliseconds}ms");
@@ -296,9 +302,25 @@ public partial class App : Application
 #if DEBUG
         throw (Exception)e.ExceptionObject;
 #else
-        ErrorLogging.LogException(e.ExceptionObject as Exception);
-        System.Windows.MessageBox.Show("An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted." + e.ExceptionObject.ToString(), "Unhandled Exception");
+        ErrorLogging.LogException(e.ExceptionObject as Exception ?? new Exception(e.ExceptionObject?.ToString()));
+        string next = e.IsTerminating
+            ? "TEdit has to close."
+            : "You may continue using TEdit, but operation may be unstable until the application has been restarted.";
+        System.Windows.MessageBox.Show($"An unhandled exception has occurred. {next}\n\n{e.ExceptionObject}", "Unhandled Exception");
         // Current.Shutdown();
+#endif
+    }
+
+    private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+    {
+        ErrorLogging.LogException(e.Exception);
+#if !DEBUG
+        // Keep running: unhandled UI-thread errors (commands, async void handlers, ReactiveUI's
+        // default handler) would otherwise end the process and lose unsaved edits.
+        e.Handled = true;
+        System.Windows.MessageBox.Show(
+            $"An unexpected error has occurred. Use Save As to keep a copy of your world, then restart TEdit.\n\n{e.Exception.Message}",
+            "Unexpected Error");
 #endif
     }
 
