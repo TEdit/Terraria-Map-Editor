@@ -976,19 +976,17 @@ public static class TwldFile
         {
             for (int y = 0; y < tilesHigh; y++)
             {
-                if (ms.Position + 1 >= ms.Length) return;
+                // Fail instead of dropping data: tiles missing from ModTileGrid are erased on the next save.
+                if (ms.Position + 1 >= ms.Length)
+                    throw new InvalidDataException($".twld tile data is truncated at ({x}, {y})");
 
                 ushort saveType = r.ReadUInt16();
                 if (saveType == 0) continue;
 
-                // Look up the TileMap index from the saveType written in the binary stream
+                // Look up the TileMap index from the saveType written in the binary stream.
+                // Unknown: can't tell whether frame data follows, so the rest can't be read.
                 if (!data.SaveTypeToTileMapIndex.TryGetValue(saveType, out int mapIndex))
-                {
-                    // Unknown saveType — skip the color byte and move on
-                    // (can't determine frameImportant without a valid entry)
-                    r.ReadByte();
-                    continue;
-                }
+                    throw new InvalidDataException($".twld tile data has unknown tile type {saveType} at ({x}, {y})");
 
                 byte color = r.ReadByte();
                 short frameX = 0, frameY = 0;
@@ -1025,18 +1023,16 @@ public static class TwldFile
         {
             for (int y = 0; y < tilesHigh; y++)
             {
-                if (ms.Position + 1 >= ms.Length) return;
+                // Fail instead of dropping data: walls missing from ModWallGrid are erased on the next save.
+                if (ms.Position + 1 >= ms.Length)
+                    throw new InvalidDataException($".twld wall data is truncated at ({x}, {y})");
 
                 ushort saveType = r.ReadUInt16();
                 if (saveType == 0) continue;
 
                 // Look up the WallMap index from the saveType written in the binary stream
                 if (!data.SaveTypeToWallMapIndex.TryGetValue(saveType, out int mapIndex))
-                {
-                    // Unknown saveType — skip the wallColor byte and move on
-                    r.ReadByte();
-                    continue;
-                }
+                    throw new InvalidDataException($".twld wall data has unknown wall type {saveType} at ({x}, {y})");
 
                 byte wallColor = r.ReadByte();
 

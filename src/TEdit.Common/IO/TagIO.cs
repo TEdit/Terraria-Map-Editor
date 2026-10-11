@@ -27,6 +27,8 @@ namespace TEdit.Common.IO;
 /// </remarks>
 public static class TagIO
 {
+    private const int MaxPreallocate = 1 << 20;
+
     private const byte TagEnd = 0;
     private const byte TagByte = 1;
     private const byte TagShort = 2;
@@ -164,17 +166,24 @@ public static class TagIO
     {
         int length = reader.ReadInt32();
         if (length < 0) throw new IOException($"Invalid byte array length: {length}");
-        return reader.ReadBytes(length);
+
+        // Read in chunks: a corrupt length must hit end of stream, not allocate up to 2 GB first.
+        using var buffer = new MemoryStream(Math.Min(length, MaxPreallocate));
+        while (buffer.Length < length)
+        {
+            byte[] chunk = reader.ReadBytes((int)Math.Min(length - buffer.Length, MaxPreallocate));
+            if (chunk.Length == 0)
+                throw new EndOfStreamException($"Byte array of {length} bytes is truncated at {buffer.Length} bytes");
+            buffer.Write(chunk, 0, chunk.Length);
+        }
+        return buffer.ToArray();
     }
 
     private static int[] ReadIntArray(BigEndianReader reader)
     {
         int length = reader.ReadInt32();
         if (length < 0) throw new IOException($"Invalid int array length: {length}");
-        var arr = new int[length];
-        for (int i = 0; i < length; i++)
-            arr[i] = reader.ReadInt32();
-        return arr;
+        return ReadTypedList(reader, length, r => r.ReadInt32()).ToArray();
     }
 
     private static IList ReadList(BigEndianReader reader)
@@ -203,7 +212,8 @@ public static class TagIO
 
     private static List<T> ReadTypedList<T>(BigEndianReader reader, int count, Func<BigEndianReader, T> readFunc)
     {
-        var list = new List<T>(count);
+        // Counts come from the file: cap the up-front capacity so a corrupt count fails at end of stream.
+        var list = new List<T>(Math.Min(count, MaxPreallocate));
         for (int i = 0; i < count; i++)
             list.Add(readFunc(reader));
         return list;
