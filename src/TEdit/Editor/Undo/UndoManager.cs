@@ -25,8 +25,6 @@ public partial class UndoManager : ReactiveObject, IUndoManager
     {
         uniqueVal = DateTime.Now.ToString("yyyyMMddHHmmss");
         Dir = Path.Combine(WorldViewModel.TempPath, "undo", "undo_" + uniqueVal);
-        UndoFile = Path.Combine(Dir, "undo_temp_{0}");
-        RedoFile = Path.Combine(Dir, "redo_temp_{0}");
         UndoAliveFile = Path.Combine(Dir, "alive.txt");
 
         try
@@ -85,7 +83,8 @@ public partial class UndoManager : ReactiveObject, IUndoManager
             return false;
 
         // if the keep alive file is older than 20 minutes, this undo dir is dead, remove it
-        if (File.GetLastAccessTimeUtc(aliveFile) < DateTime.UtcNow.AddMinutes(-20))
+        // (the keep-alive timer updates the write time; NTFS often does not update access time)
+        if (File.GetLastWriteTimeUtc(aliveFile) < DateTime.UtcNow.AddMinutes(-20))
             return false;
 
         return true;
@@ -138,8 +137,13 @@ public partial class UndoManager : ReactiveObject, IUndoManager
     }
 
     private static readonly string Dir;
-    private static readonly string UndoFile;
-    private static readonly string RedoFile;
+    private static int _instanceCount;
+
+    // Each manager (one per open world) keeps its undo/redo files in its own folder, so a
+    // new world never reads files a previous world left behind.
+    private readonly string _instanceDir;
+    private readonly string _undoFile;
+    private readonly string _redoFile;
 
     private readonly World _world;
     private readonly NotifyTileChanged _notifyTileChanged;
@@ -159,7 +163,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
     public string GetUndoFileName()
     {
-        return string.Format(UndoFile, _currentIndex);
+        return string.Format(_undoFile, _currentIndex);
     }
 
     public UndoManager(
@@ -167,10 +171,10 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         NotifyTileChanged? notifyTileChanged,
         Action undoApplied)
     {
-        if (!Directory.Exists(Dir))
-        {
-            Directory.CreateDirectory(Dir);
-        }
+        _instanceDir = Path.Combine(Dir, "w" + Interlocked.Increment(ref _instanceCount));
+        Directory.CreateDirectory(_instanceDir);
+        _undoFile = Path.Combine(_instanceDir, "undo_temp_{0}");
+        _redoFile = Path.Combine(_instanceDir, "redo_temp_{0}");
 
         _world = world;
         _buffer = new UndoBuffer(GetUndoFileName(), _world);
@@ -362,8 +366,8 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
-        string undoFileName = string.Format(UndoFile, _currentIndex - 1); // load previous undo file
-        string redoFileName = string.Format(RedoFile, _currentIndex);     // create redo file at current index
+        string undoFileName = string.Format(_undoFile, _currentIndex - 1); // load previous undo file
+        string redoFileName = string.Format(_redoFile, _currentIndex);     // create redo file at current index
         UndoBuffer redo = new UndoBuffer(redoFileName, _world);
 
         Debug.WriteLine($"Opening undo file for undo: {Path.GetFileNameWithoutExtension(undoFileName)}");
@@ -427,7 +431,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
         var version = _world?.Version ?? WorldConfiguration.CompatibleVersion;
 
-        string redoFileName = string.Format(RedoFile, _currentIndex + 1); // load redo file at +1
+        string redoFileName = string.Format(_redoFile, _currentIndex + 1); // load redo file at +1
 
         if (!File.Exists(redoFileName))
         {
@@ -543,6 +547,18 @@ public partial class UndoManager : ReactiveObject, IUndoManager
                     _buffer.Dispose();
                 }
                 _buffer = null;
+
+                // This world's undo history ends here; remove its files.
+                try
+                {
+                    WaitForPendingClose();
+                    if (Directory.Exists(_instanceDir))
+                        Directory.Delete(_instanceDir, true);
+                }
+                catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or AggregateException)
+                {
+                    ErrorLogging.LogDebug($"Could not remove undo folder {_instanceDir}: {ex.Message}");
+                }
             }
             // Free your own state (unmanaged objects).
             // Set large fields to null.
