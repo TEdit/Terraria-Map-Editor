@@ -10,6 +10,7 @@ namespace TEdit.Editor.Plugins
     {
         private PerlinNoise _noiseGenerator;
         private readonly Random _random;
+        private bool _onlySelection;
         private ushort _currentOreId;
         private bool IncludeAsh = true;
         private bool EnableUndo = true;
@@ -49,6 +50,7 @@ namespace TEdit.Editor.Plugins
 
             RectangleInt32 randomizationArea;
 
+            _onlySelection = view.OnlySelection;
             if (view.OnlySelection)
             {
                 // Set the randomizationArea to the selected area
@@ -73,7 +75,7 @@ namespace TEdit.Editor.Plugins
                 {
                     if (!visited[x - randomizationArea.Left, y - randomizationArea.Top])
                     {
-                        if (ShouldGenerateOre(x, y) && IsValidLocation(x, y))
+                        if (InSelection(x, y) && ShouldGenerateOre(x, y) && IsValidLocation(x, y))
                         {
                             _currentOreId = (ushort)selectedOres[_random.Next(selectedOres.Count)];
 
@@ -95,6 +97,8 @@ namespace TEdit.Editor.Plugins
             var result = OctaveGenerator(x, y);
             return result > 0.6 && result < 0.75;
         }
+
+        private bool InSelection(int x, int y) => !_onlySelection || _wvm.Selection.IsValid(x, y);
 
         private bool IsValidLocation(int x, int y)
         {
@@ -132,6 +136,9 @@ namespace TEdit.Editor.Plugins
                 var (x, y) = stack.Pop();
 
                 if (x < randomizationArea.Left || x >= randomizationArea.Right || y < randomizationArea.Top || y >= randomizationArea.Bottom)
+                    continue;
+
+                if (!InSelection(x, y))
                     continue;
 
                 if (visited[x - randomizationArea.Left, y - randomizationArea.Top])

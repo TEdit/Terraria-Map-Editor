@@ -58,7 +58,7 @@ public class BatchApi
             for (int y = area.Top; y < area.Bottom; y++)
             {
                 _context.CancellationToken.ThrowIfCancellationRequested();
-                if (_world.ValidTileLocation(x, y))
+                if (_world.ValidTileLocation(x, y) && _selection.IsValid(x, y))
                     callback(x, y);
 
                 count++;
@@ -260,7 +260,7 @@ public class BatchApi
             {
                 _context.CancellationToken.ThrowIfCancellationRequested();
 
-                if (_world.ValidTileLocation(x, y))
+                if (_world.ValidTileLocation(x, y) && _selection.IsValid(x, y))
                 {
                     ref var tile = ref _world.Tiles[x, y];
                     if (tile.IsActive && tile.Type == fromType)

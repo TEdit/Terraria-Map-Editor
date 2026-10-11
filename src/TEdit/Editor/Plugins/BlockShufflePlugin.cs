@@ -32,7 +32,8 @@ public sealed class BlockShufflePlugin : BasePlugin //Originally: HackedPlugin, 
         List<Tile> selectedTiles = new();
         for (int x = selectionArea.Left; x < selectionArea.Right; x++) //From left to right
             for (int y = selectionArea.Top; y < selectionArea.Bottom; y++) //From top to bottom
-                if (!IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y].Type))
+                if ((!settingsView.OnlySelection || _wvm.Selection.IsValid(x, y))
+                    && !IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y].Type))
                 {
                     if (!settingsView.IncludeTileEntities)
                         if (WorldConfiguration.GetTileProperties(_wvm.CurrentWorld.Tiles[x, y].Type).IsFramed)

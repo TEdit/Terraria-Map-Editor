@@ -793,6 +793,10 @@ public partial class MainWindow : FluentWindow
             case "tool.selection":
                 SetActiveTool("Selection");
                 return true;
+            case "tool.selection.cycle":
+                _vm.Tools.OfType<SelectionTool>().FirstOrDefault()?.CycleMode();
+                UpdateDrawingModeText();
+                return true;
             case "tool.sprite":
                 SetActiveTool("Sprite2");
                 return true;
@@ -986,6 +990,7 @@ public partial class MainWindow : FluentWindow
             {
                 for (int y = _vm.Selection.SelectionArea.Top; y < _vm.Selection.SelectionArea.Bottom; y++)
                 {
+                    if (!_vm.Selection.IsValid(x, y)) continue;
                     positions.Add(new Vector2Int32(x, y));
                 }
             }

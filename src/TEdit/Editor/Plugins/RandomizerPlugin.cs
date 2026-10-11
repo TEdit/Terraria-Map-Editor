@@ -60,6 +60,9 @@ public class RandomizerPlugin : BasePlugin
         {
             for (int y = randomizationArea.Top; y < randomizationArea.Bottom; y++)
             {
+                if (view.OnlySelection && !_wvm.Selection.IsValid(x, y))
+                    continue;
+
                 if (view.EnableUndo)
                     _wvm.UndoManager.SaveTile(x, y); // Store tile for undo
 

@@ -121,6 +121,8 @@ namespace TEdit.Editor.Plugins
             {
                 for (int y = startY; y < endY && y < worldTilesHigh; y++)
                 {
+                    if (!_wvm.Selection.IsValid(x, y)) continue;
+
                     Tile curTile = _wvm.CurrentWorld.Tiles[x, y];
                     var uv = curTile.GetUV();
 
