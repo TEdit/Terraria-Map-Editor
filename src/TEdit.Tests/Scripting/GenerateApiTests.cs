@@ -709,6 +709,36 @@ public class GenerateApiTests
         count.ShouldBeGreaterThan(0, "PlaceVines should place some vines");
     }
 
+    // ── Multi-tile decorations ────────────────────────────────────────
+
+    private int CountTiles(ushort type) =>
+        Enumerable.Range(0, _world.TilesWide).Sum(x =>
+            Enumerable.Range(0, _world.TilesHigh).Count(y => _world.Tiles[x, y].IsActive && _world.Tiles[x, y].Type == type));
+
+    [Fact]
+    public void PlacePots_PlacesWhole2x2Sprites()
+    {
+        int ground = (int)_world.GroundLevel;
+
+        int placed = _api.PlacePots(50, ground - 4, 50, 4, 5);
+
+        placed.ShouldBeGreaterThan(0);
+        CountTiles(28).ShouldBe(placed * 4);
+    }
+
+    [Fact]
+    public void PlaceSunflowers_PlacesWhole2x4Sprites()
+    {
+        int ground = (int)_world.GroundLevel;
+        for (int x = 50; x < 100; x++)
+            _world.Tiles[x, ground].Type = 2; // Grass
+
+        int placed = _api.PlaceSunflowers(50, ground - 6, 50, 10, 3);
+
+        placed.ShouldBeGreaterThan(0);
+        CountTiles(27).ShouldBe(placed * 8);
+    }
+
     // ── PlacePlants ────────────────────────────────────────────────────
 
     [Fact]

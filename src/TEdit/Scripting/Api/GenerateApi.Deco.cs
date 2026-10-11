@@ -168,14 +168,13 @@ public partial class GenerateApi
             int tx = _rand.Next(x1, x2);
             int ty = _rand.Next(y1, y2);
 
-            // Need solid below and empty at this position
-            if (ty >= _world.TilesHigh - 1) continue;
-            if (_world.Tiles[tx, ty].IsActive) continue;
-            if (!_world.Tiles[tx, ty + 1].IsActive) continue;
+            // A pot is a 2x2 sprite: (tx, ty) is its bottom-left, with solid ground under both columns.
+            if (ty < 1 || ty >= _world.TilesHigh - 1 || tx + 1 >= x2) continue;
+            if (!IsAreaEmpty(tx, ty - 1, 2, 2)) continue;
+            if (!_world.Tiles[tx, ty + 1].IsActive || !_world.Tiles[tx + 1, ty + 1].IsActive) continue;
 
-            SaveAndSet(tx, ty, TILE_POT);
-            _world.Tiles[tx, ty].U = (short)(_rand.Next(4) * 36);
-            _world.Tiles[tx, ty].V = 0;
+            // Forest pot: 3 styles across (U) and 4 rows (V), 36px per style.
+            PlaceFramed(tx, ty - 1, TILE_POT, 2, 2, (short)(_rand.Next(3) * 36), (short)(_rand.Next(4) * 36));
             placed++;
         }
 
@@ -380,6 +379,26 @@ public partial class GenerateApi
     /// <summary>
     /// Place sunflowers on grass surfaces. Returns count placed.
     /// </summary>
+    private bool IsAreaEmpty(int x, int y, int w, int h)
+    {
+        for (int dx = 0; dx < w; dx++)
+            for (int dy = 0; dy < h; dy++)
+                if (_world.Tiles[x + dx, y + dy].IsActive) return false;
+        return true;
+    }
+
+    /// <summary>Place a whole w x h framed sprite with its top-left at (x, y) and its first frame at (u0, v0).</summary>
+    private void PlaceFramed(int x, int y, ushort tileId, int w, int h, short u0, short v0)
+    {
+        for (int dx = 0; dx < w; dx++)
+            for (int dy = 0; dy < h; dy++)
+            {
+                SaveAndSet(x + dx, y + dy, tileId);
+                _world.Tiles[x + dx, y + dy].U = (short)(u0 + dx * 18);
+                _world.Tiles[x + dx, y + dy].V = (short)(v0 + dy * 18);
+            }
+    }
+
     public int PlaceSunflowers(int x, int y, int w, int h, int count = 0)
     {
         if (count <= 0) count = Math.Max(3, w / 30);
@@ -401,22 +420,14 @@ public partial class GenerateApi
                 if (_world.Tiles[tx, ty].Type != TILE_GRASS) continue;
                 if (ty <= 0 || _world.Tiles[tx, ty - 1].IsActive) continue;
 
-                // Need 2-wide space above
-                if (tx + 1 >= x2) break;
-                if (_world.Tiles[tx + 1, ty - 1].IsActive) break;
-                if (!_world.Tiles[tx + 1, ty].IsActive) break;
+                // A sunflower is a 2x4 sprite standing on two grass tiles.
+                if (tx + 1 >= x2 || ty < 4) break;
+                if (!_world.Tiles[tx + 1, ty].IsActive || _world.Tiles[tx + 1, ty].Type != TILE_GRASS) break;
+                if (!IsAreaEmpty(tx, ty - 4, 2, 4)) break;
 
-                // Place 2x2 sunflower (simplified)
-                if (ty >= 2)
-                {
-                    SaveAndSet(tx, ty - 1, TILE_SUNFLOWER);
-                    _world.Tiles[tx, ty - 1].U = 0;
-                    _world.Tiles[tx, ty - 1].V = 0;
-                    SaveAndSet(tx, ty - 2, TILE_SUNFLOWER);
-                    _world.Tiles[tx, ty - 2].U = 0;
-                    _world.Tiles[tx, ty - 2].V = 18;
-                    placed++;
-                }
+                // 3 varieties across (U), 36px apart.
+                PlaceFramed(tx, ty - 4, TILE_SUNFLOWER, 2, 4, (short)(_rand.Next(3) * 36), 0);
+                placed++;
                 break;
             }
         }
