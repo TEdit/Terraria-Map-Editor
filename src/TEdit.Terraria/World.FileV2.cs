@@ -610,7 +610,9 @@ public partial class World
 
         foreach (NPC npc in world.NPCs)
         {
-            if (npc.SpriteId > maxNPC) { break; }
+            // Skip (not stop at) NPCs the target version can't hold, so the rest are still saved.
+            string? npcName = null;
+            if (npc.SpriteId > maxNPC || (version < 190 && !WorldConfiguration.NpcNames.TryGetValue(npc.SpriteId, out npcName))) { continue; }
             bw.Write(true);
 
             if (version >= 190)
@@ -619,7 +621,7 @@ public partial class World
             }
             else
             {
-                bw.Write(WorldConfiguration.NpcNames[npc.SpriteId]);
+                bw.Write(npcName!);
             }
 
             // Check displayName for a null value encase the world is being upgraded from v0 or v1.
@@ -655,7 +657,8 @@ public partial class World
         {
             foreach (NPC mob in world.Mobs)
             {
-                if (mob.SpriteId > maxNPC) { break; }
+                string? mobName = null;
+                if (mob.SpriteId > maxNPC || (version < 190 && !WorldConfiguration.NpcNames.TryGetValue(mob.SpriteId, out mobName))) { continue; }
                 bw.Write(true);
                 if (version >= 190)
                 {
@@ -663,7 +666,7 @@ public partial class World
                 }
                 else
                 {
-                    bw.Write(WorldConfiguration.NpcNames[mob.SpriteId]);
+                    bw.Write(mobName!);
                 }
                 bw.Write(mob.Position.X);
                 bw.Write(mob.Position.Y);
