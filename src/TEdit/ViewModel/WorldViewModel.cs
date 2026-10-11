@@ -4113,6 +4113,17 @@ public partial class WorldViewModel : ReactiveObject
         catch (Exception ex)
         {
             ErrorLogging.LogException(ex);
+
+            // Without the backup, a bad save leaves nothing to go back to: let the user decide.
+            var backupResult = await App.DialogService.ShowMessageAsync(
+                $"TEdit could not make a backup of the world before saving:\r\n{ex.Message}\r\n\r\n" +
+                "Save over the original anyway?",
+                "Backup Failed",
+                DialogButton.OKCancel,
+                DialogImage.Warning);
+
+            if (backupResult == DialogResponse.Cancel)
+                return;
         }
 
         _loadedFromBackup = false;
