@@ -94,11 +94,17 @@ public class ToolsApi
     /// <summary>
     /// Load a world file, replacing the current world. Blocks until complete.
     /// If filename is just a name (no directory separator), loads from the default worlds folder.
+    /// Throws if the current world has unsaved changes. The other script APIs keep pointing at the
+    /// previous world, so end the script after loading.
     /// </summary>
     public bool Load(string filename)
     {
         if (string.IsNullOrWhiteSpace(filename))
             return false;
+
+        // Replacing the world would drop unsaved edits without the usual prompt.
+        if (_wvm.HasUnsavedChanges)
+            throw new InvalidOperationException("tools.load(): the current world has unsaved changes. Save it first.");
 
         filename = ResolveWorldPath(filename);
 
@@ -107,8 +113,9 @@ public class ToolsApi
 
         try
         {
+            // LoadWorld returns the partly read world together with the error; never open that.
             var (world, error) = World.LoadWorld(filename);
-            if (world == null)
+            if (world == null || error != null)
                 return false;
 
             // Must set CurrentWorld on UI thread since it triggers rendering
