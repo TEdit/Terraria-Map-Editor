@@ -23,11 +23,41 @@ jobs:
           fetch-depth: 0
           lfs: false
 
+      # Test worlds live in Git LFS (~90 MB); cache them so each run does not use LFS bandwidth.
+      - name: List LFS objects
+        run: git lfs ls-files --long | Out-File -Encoding ascii .lfs-assets-id
+        shell: pwsh
+
+      - name: Restore LFS cache
+        uses: actions/cache@v4
+        with:
+          path: .git/lfs
+          key: lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Pull LFS objects
+        run: git lfs pull
+
       # Install the .NET Core workload
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
         with:
           dotnet-version: "10.0.x"
+
+      - name: Test
+        shell: pwsh
+        run: |
+          dotnet test src/TEdit.Terraria.Tests/TEdit.Terraria.Tests.csproj -c Release --logger trx --results-directory TestResults
+          if ($LASTEXITCODE -ne 0) { $failed = $true }
+          dotnet test src/TEdit.Tests/TEdit.Tests.csproj -c Release --logger trx --results-directory TestResults
+          if ($LASTEXITCODE -ne 0 -or $failed) { exit 1 }
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results-${{ github.run_number }}
+          path: TestResults/*.trx
+          retention-days: 7
 
       - name: Install Velopack CLI
         run: dotnet tool install -g vpk
