@@ -891,7 +891,7 @@ public partial class World
                 return new Vector2Int32(x, y);
             }
 
-            var sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == tile.Type);
+            var sprite = WorldConfiguration.FindSprite(tile.Type);
             var style = sprite?.GetStyleFromUV(tile.GetUV());
 
             var sizeTiles = style?.SizeTiles ?? sprite?.SizeTiles?.FirstOrDefault() ?? tileprop.FrameSize.FirstOrDefault();

@@ -140,7 +140,7 @@ public partial class TextStatuePlugin : BasePlugin
         if (_textStatueTileProperties == null)
         {
             _textStatueTileProperties = WorldConfiguration.TileProperties[337];
-            var sprite = WorldConfiguration.Sprites2.FirstOrDefault(x => x.Tile == (uint)_textStatueTileProperties.Id);
+            var sprite = WorldConfiguration.FindSprite(_textStatueTileProperties.Id);
 
             _size = _textStatueTileProperties.FrameSize.FirstOrDefault();
 

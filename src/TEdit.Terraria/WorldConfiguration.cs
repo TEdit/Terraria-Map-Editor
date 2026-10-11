@@ -637,6 +637,18 @@ public class WorldConfiguration
     /// </summary>
     public static readonly object Sprites2Lock = new();
 
+    /// <summary>
+    /// The sprite sheet for a tile type, or null. Takes <see cref="Sprites2Lock"/>: the list is
+    /// changed from the render thread while tools and file code read it.
+    /// </summary>
+    public static SpriteSheet? FindSprite(int tileType)
+    {
+        lock (Sprites2Lock)
+        {
+            return Sprites2.FirstOrDefault(s => s.Tile == tileType);
+        }
+    }
+
     public static Dictionary<int, string> TallyNames
     {
         get { return _tallynames; }
