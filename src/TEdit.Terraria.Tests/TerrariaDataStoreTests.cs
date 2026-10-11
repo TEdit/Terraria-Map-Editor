@@ -257,8 +257,10 @@ public class TerrariaDataStoreTests : IDisposable
         store.AccessoryItems.Count.ShouldBeGreaterThan(0);
         store.RackableItems.Count.ShouldBeGreaterThan(0);
 
-        // Dye names derived from name containing "Dye"
+        // Dyes come from dyes.json by item id, not from (localized) names
         store.DyeItems.Count.ShouldBeGreaterThan(0);
+        store.DyeItems.Keys.ShouldBe(store.DyeColorById.Keys.Where(store.ItemById.ContainsKey), ignoreOrder: true);
+        store.DyeItems.Values.ShouldNotContain(i => i.Name == "Dye Vat");
     }
 
     [Fact]

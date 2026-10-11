@@ -339,7 +339,7 @@ public class TerrariaDataStore
             if (item.IsKite) KiteItems[item.Id] = item;
             if (item.IsAccessory) AccessoryItems[item.Id] = item;
             if (item.IsMount) MountItems[item.Id] = item;
-            if (item.Name.Contains("Dye")) DyeItems[item.Id] = item;
+            if (DyeColorById.ContainsKey(item.Id)) DyeItems[item.Id] = item;
 
             // Build reverse lookups: tile/wall → first item that places it
             if (item.CreateTile.HasValue && !TileItemLookup.ContainsKey(item.CreateTile.Value))
@@ -354,6 +354,12 @@ public class TerrariaDataStore
         DyeColorById.Clear();
         foreach (var dye in dyes)
             DyeColorById[dye.ItemId] = dye;
+
+        // Match dyes by item id: names are localized, so "Dye" only matches in English
+        // (and there it also matched Dye Vat and Dye Trader clothing).
+        DyeItems.Clear();
+        foreach (var item in Items)
+            if (DyeColorById.ContainsKey(item.Id)) DyeItems[item.Id] = item;
     }
 
     internal void PopulateNpcs(List<NpcData> npcs)
