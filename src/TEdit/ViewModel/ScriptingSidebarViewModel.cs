@@ -67,6 +67,7 @@ public partial class ScriptingSidebarViewModel
         }
 
         IsRunning = true;
+        _wvm.IsScriptRunning = true;
         Progress = 0;
         OutputLog = "";
 
@@ -147,6 +148,7 @@ public partial class ScriptingSidebarViewModel
 
         Progress = 0;
         IsRunning = false;
+        _wvm.IsScriptRunning = false;
         _cts = null;
     }
 

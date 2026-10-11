@@ -2235,8 +2235,23 @@ public partial class WorldViewModel : ReactiveObject
     /// Asks to save unsaved edits before the open world is replaced.
     /// Returns false when the user cancels or the save does not complete.
     /// </summary>
+    /// <summary>
+    /// True while a script edits the world on a background thread. Tools, undo, saving and
+    /// opening another world are blocked so they can't interleave with the script's edits.
+    /// </summary>
+    public bool IsScriptRunning { get; set; }
+
+    /// <summary>Returns true, and tells the user, when a running script blocks this action.</summary>
+    internal bool BlockedByScript()
+    {
+        if (!IsScriptRunning) return false;
+        App.SnackbarService.ShowWarning("Wait for the script to finish, or stop it.", "Script running");
+        return true;
+    }
+
     public async Task<bool> ConfirmDiscardUnsavedChangesAsync()
     {
+        if (BlockedByScript()) return false;
         if (!HasUnsavedUserChanges) return true;
 
         var response = await App.DialogService.ShowMessageAsync(
@@ -3188,7 +3203,7 @@ public partial class WorldViewModel : ReactiveObject
 
     private void SaveTimerTick(object sender, ElapsedEventArgs e)
     {
-        if (IsAutoSaveEnabled && HasUnsavedChanges)
+        if (IsAutoSaveEnabled && HasUnsavedChanges && !IsScriptRunning)
         {
             string baseName = GetWorldBaseName();
             _ = SaveWorldThreadedAsync(Path.Combine(AutoSavePath, baseName + ".autosave"), GetSaveVersion_MaxConfig());
@@ -3356,7 +3371,7 @@ public partial class WorldViewModel : ReactiveObject
 
     public void MouseDownTile(TileMouseState e)
     {
-        if (CurrentWorld == null) return;
+        if (CurrentWorld == null || BlockedByScript()) return;
 
         if (e.Location != MouseOverTile.MouseState.Location)
             MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
@@ -3369,7 +3384,7 @@ public partial class WorldViewModel : ReactiveObject
 
     public void MouseUpTile(TileMouseState e)
     {
-        if (CurrentWorld == null) return;
+        if (CurrentWorld == null || IsScriptRunning) return;
 
         if (e.Location != MouseOverTile.MouseState.Location)
             MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
@@ -3396,7 +3411,8 @@ public partial class WorldViewModel : ReactiveObject
 
             MouseOverTile.MouseState = e;
 
-            ActiveTool?.MouseMove(e);
+            if (!IsScriptRunning)
+                ActiveTool?.MouseMove(e);
         }
     }
 
@@ -4157,6 +4173,9 @@ public partial class WorldViewModel : ReactiveObject
         bool preserveAll = true,
         bool saveAsWinPhone = false)
     {
+        // A save during a script would write a half-edited world.
+        if (BlockedByScript()) return;
+
         bool saveCompleted = false;
         try
         {

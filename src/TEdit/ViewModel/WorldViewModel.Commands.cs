@@ -339,23 +339,24 @@ public partial class WorldViewModel
     private void Copy() => EditCopy();
 
     [ReactiveCommand]
-    private void Cut() => EditCut();
+    private void Cut() { if (!BlockedByScript()) EditCut(); }
 
     [ReactiveCommand]
-    private void Paste() => EditPaste();
+    private void Paste() { if (!BlockedByScript()) EditPaste(); }
 
     [ReactiveCommand]
-    private void Delete() => EditDelete();
+    private void Delete() { if (!BlockedByScript()) EditDelete(); }
 
     [ReactiveCommand]
-    private Task Crop() => CropWorldAsync();
+    private Task Crop() => BlockedByScript() ? Task.CompletedTask : CropWorldAsync();
 
     [ReactiveCommand]
-    private void Expand() => ExpandWorld();
+    private void Expand() { if (!BlockedByScript()) ExpandWorld(); }
 
     [ReactiveCommand]
     private void Redo()
     {
+        if (BlockedByScript()) return;
         var changedTiles = UndoManager?.Redo();
         if (changedTiles?.Count > 0)
         {
@@ -367,6 +368,7 @@ public partial class WorldViewModel
     [ReactiveCommand]
     private void Undo()
     {
+        if (BlockedByScript()) return;
         var changedTiles = UndoManager?.Undo();
         if (changedTiles?.Count > 0)
         {
