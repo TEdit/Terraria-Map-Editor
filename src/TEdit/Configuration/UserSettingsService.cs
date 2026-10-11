@@ -52,9 +52,13 @@ public static class UserSettingsService
                 }
             }
         }
-        catch
+        catch (Exception ex)
         {
-            // Corrupted file — fall through to defaults
+            // Corrupted file: keep a copy before the next Save overwrites it with defaults.
+            // Runs before ErrorLogging starts, so log to Trace.
+            System.Diagnostics.Trace.WriteLine($"[Settings] {SettingsPath} could not be read, using defaults: {ex.Message}");
+            try { File.Copy(SettingsPath, SettingsPath + ".corrupt", overwrite: true); }
+            catch (Exception copyEx) { System.Diagnostics.Trace.WriteLine($"[Settings] Could not keep a copy: {copyEx.Message}"); }
         }
 
         return new UserSettings();

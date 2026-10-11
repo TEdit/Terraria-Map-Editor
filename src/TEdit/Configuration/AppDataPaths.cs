@@ -26,18 +26,32 @@ public static class AppDataPaths
         // Auto-detect: no sq.version means this isn't a Velopack install (portable zip).
         bool isVelopackInstall = File.Exists(Path.Combine(exeDir, "sq.version"));
 
-        if (Directory.Exists(portableDir) || !isVelopackInstall)
+        if (Directory.Exists(portableDir) || (!isVelopackInstall && TryCreateDirectory(portableDir)))
         {
             IsPortable = true;
             DataDir = portableDir;
-            Directory.CreateDirectory(portableDir);
         }
         else
         {
+            // Velopack install, or a portable copy in a read-only folder (a throw here would
+            // fail this static constructor and crash startup).
             IsPortable = false;
             DataDir = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 "TEdit");
+        }
+    }
+
+    private static bool TryCreateDirectory(string path)
+    {
+        try
+        {
+            Directory.CreateDirectory(path);
+            return true;
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            return false;
         }
     }
 }
