@@ -48,8 +48,17 @@ public static class PlayerFile
         File.WriteAllBytes(path, encrypted);
     }
 
+    /// <summary>Oldest player version whose layout Serialize writes exactly as Deserialize reads it.</summary>
+    internal const int OldestWritableVersion = 124;
+
     public static void Save(Stream stream, PlayerCharacter player)
     {
+        // Serialize does not mirror Deserialize for 1.2-era layouts (armor, inventory, banks
+        // and legacy equipment are read but written differently), so such a file would be
+        // unreadable. Write those players in the current format, which every game reads.
+        if (player.Version < OldestWritableVersion)
+            player.Version = PlayerConstants.CurrentVersion;
+
         using var writer = new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true);
         writer.Write(player.Version);
         if (player.Version >= 135)

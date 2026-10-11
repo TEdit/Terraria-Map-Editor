@@ -51,6 +51,24 @@ public class PlayerFileTests
         AssertCharactersEqual(original, loaded);
     }
 
+    [Theory]
+    [InlineData(38)]   // 1.2 layout: armor/inventory/banks read differently than written
+    [InlineData(100)]
+    [InlineData(123)]
+    public void Save_PreVersion124Player_IsWrittenInCurrentFormatAndLoads(int oldVersion)
+    {
+        var original = CreateTestCharacter();
+        original.Version = oldVersion;
+
+        using var ms = new MemoryStream();
+        PlayerFile.Save(ms, original);
+        ms.Position = 0;
+        var loaded = PlayerFile.Load(ms);
+
+        loaded.Version.ShouldBe(PlayerConstants.CurrentVersion);
+        AssertCharactersEqual(original, loaded);
+    }
+
     public static IEnumerable<object[]> GetPlrFiles()
     {
         yield return [SyntheticPlr];
