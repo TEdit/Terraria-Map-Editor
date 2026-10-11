@@ -78,6 +78,9 @@ public class UndoBuffer : IDisposable
     private readonly List<Tile> _tileOrder = new(); // For order preservation
     private int _totalTileCount; // Maintained incrementally to avoid LINQ enumeration
     private int _uniqueTileGroupsWritten = 0; // Track across batches for file header
+    // Set under UndoSaveLock when tiles move to the flush queue. Batches are never empty, so from
+    // then on the step has tiles, even while a batch is between the lock and the queue or being written.
+    private bool _hasQueuedTiles;
     private readonly List<Sign> _signs = new List<Sign>();
     private readonly List<Chest> _chests = new List<Chest>();
     private readonly List<TileEntity> _tileEntities = new List<TileEntity>();
@@ -198,7 +201,16 @@ public class UndoBuffer : IDisposable
         }
     }
 
-    public bool IsEmpty => !_undoTiles.Any() && _uniqueTileGroupsWritten == 0 && _flushQueue.Count == 0;
+    public bool IsEmpty
+    {
+        get
+        {
+            lock (UndoSaveLock)
+            {
+                return !_undoTiles.Any() && !_hasQueuedTiles;
+            }
+        }
+    }
 
     public void SaveTileData()
     {
@@ -223,6 +235,7 @@ public class UndoBuffer : IDisposable
             var snapshotOrder = new List<Tile>(_tileOrder);
 
             batch = new FlushBatch(snapshotOrder, snapshotTiles, version, maxTileId, maxWallId, tileFrameImportant);
+            _hasQueuedTiles = true;
 
             // Clear immediately so Add() can continue with fresh collections
             _undoTiles.Clear();

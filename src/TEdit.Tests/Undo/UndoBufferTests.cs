@@ -87,6 +87,22 @@ public class UndoBufferTests : IDisposable
     }
 
     [Fact]
+    public void UndoBuffer_AfterFlush_IsNotEmpty()
+    {
+        // Once tiles are handed to the background writer the step must count as non-empty,
+        // whatever the writer is doing; otherwise SaveUndo can drop the step.
+        for (int i = 0; i < 200; i++)
+        {
+            using var buffer = new UndoBuffer(GetTestFileName(), null!);
+            buffer.Add(new Vector2Int32(1, 1), new Tile { IsActive = true, Type = 1 });
+            buffer.SaveTileData();
+
+            Assert.False(buffer.IsEmpty);
+            buffer.Close();
+        }
+    }
+
+    [Fact]
     public void UndoBuffer_RoundTrip_MultipleTiles_AllUnique()
     {
         // Arrange
