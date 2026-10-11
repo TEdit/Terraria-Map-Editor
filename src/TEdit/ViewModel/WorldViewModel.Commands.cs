@@ -316,7 +316,11 @@ public partial class WorldViewModel
 
     // Command wrappers for methods defined in other files
     [ReactiveCommand]
-    private void Open() => OpenWorld();
+    private async Task Open()
+    {
+        if (await ConfirmDiscardUnsavedChangesAsync())
+            OpenWorld();
+    }
 
     [ReactiveCommand]
     private Task Save() => SaveWorldAsync();

@@ -2231,6 +2231,29 @@ public partial class WorldViewModel : ReactiveObject
 
     public Task SaveBeforeCloseAsync() => SaveWorldAsync();
 
+    /// <summary>
+    /// Asks to save unsaved edits before the open world is replaced.
+    /// Returns false when the user cancels or the save does not complete.
+    /// </summary>
+    public async Task<bool> ConfirmDiscardUnsavedChangesAsync()
+    {
+        if (!HasUnsavedUserChanges) return true;
+
+        var response = await App.DialogService.ShowMessageAsync(
+            "Save changes to the current world first?",
+            "Unsaved Changes",
+            UI.Xaml.Dialog.DialogButton.YesNoCancel,
+            UI.Xaml.Dialog.DialogImage.Question);
+
+        if (response == UI.Xaml.Dialog.DialogResponse.Yes)
+        {
+            await SaveWorldAsync();
+            return !HasUnsavedUserChanges;
+        }
+
+        return response == UI.Xaml.Dialog.DialogResponse.No;
+    }
+
     public bool ShowGrid
     {
         get { return _showGrid; }
@@ -3384,8 +3407,11 @@ public partial class WorldViewModel : ReactiveObject
     }
 
     [ReactiveCommand]
-    private void NewWorld()
+    private async Task NewWorld()
     {
+        if (!await ConfirmDiscardUnsavedChangesAsync())
+            return;
+
         // Define the bool for prompting ore generation plugin
         bool generateOres = false;
 
