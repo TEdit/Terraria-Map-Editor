@@ -582,12 +582,10 @@ public partial class World
         int written = 0;
         foreach (Sign sign in signs)
         {
-            if (sign.Text != null)
-            {
-                bw.Write(sign.Text);
-                bw.Write(sign.X);
-                bw.Write(sign.Y);
-            }
+            // Write every counted sign: skipping one would misalign every section after it.
+            bw.Write(sign.Text ?? string.Empty);
+            bw.Write(sign.X);
+            bw.Write(sign.Y);
             written++;
             if (useLegacyLimit && written >= Sign.LegacyLimit) { break; }
         }
