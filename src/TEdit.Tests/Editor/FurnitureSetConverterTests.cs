@@ -549,12 +549,40 @@ public sealed class FurnitureSetConverterTests
     {
         var world = TerrainWorld();
 
-        Convert(world, null, "Skyware", options: new FurnitureSetOptions { AnyBlockOrWall = true });
+        world.Tiles[22, 21] = new Tile { IsActive = true, Type = BlockId("Cloud Block") };
+
+        Convert(world, null, "Golden", options: new FurnitureSetOptions { AnyBlockOrWall = true });
 
         Assert.Equal(BlockId("Dirt Block"), world.Tiles[20, 20].Type);
         Assert.Equal(BlockId("Stone Block"), world.Tiles[20, 21].Type);
         Assert.Equal(WallId("Dirt Wall (natural)"), world.Tiles[20, 20].Wall);
+        Assert.Equal(BlockId("Cloud Block"), world.Tiles[22, 21].Type);
+        Assert.Equal(BlockId("Gold Brick"), world.Tiles[13, 11].Type);
+    }
+
+    [Fact]
+    public void Options_AnyBlockOrWall_TurnsNaturalTerrainIntoCloudsForSkySets()
+    {
+        var world = TerrainWorld();
+
+        Convert(world, null, "Skyware", options: new FurnitureSetOptions { AnyBlockOrWall = true });
+
+        Assert.Equal(BlockId("Cloud Block"), world.Tiles[20, 20].Type);
+        Assert.Equal(BlockId("Cloud Block"), world.Tiles[20, 21].Type);
+        Assert.Equal(WallId("Dirt Wall (natural)"), world.Tiles[20, 20].Wall);
+        Assert.Equal(BlockId("Iron Ore"), world.Tiles[21, 21].Type);
         Assert.Equal(BlockId("Sunplate Block"), world.Tiles[13, 11].Type);
+    }
+
+    [Fact]
+    public void Options_AnyBlockOrWall_StillConvertsTheSourceSetsOwnNaturalBlock()
+    {
+        var world = TestWorldFactory.CreateSmallWorld();
+        world.Tiles[20, 20] = new Tile { IsActive = true, Type = BlockId("Cloud Block") };
+
+        Convert(world, "Cloud", "Golden", options: new FurnitureSetOptions { AnyBlockOrWall = true });
+
+        Assert.Equal(BlockId("Gold Brick"), world.Tiles[20, 20].Type);
     }
 
     // ── Gem trees ───────────────────────────────────────────────────

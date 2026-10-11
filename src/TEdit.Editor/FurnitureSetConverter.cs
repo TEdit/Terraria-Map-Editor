@@ -152,10 +152,13 @@ public sealed class FurnitureSetConverter
         ["Sandstone"] = "Desert", ["Cactus"] = "Desert", ["Forbidden"] = "Desert", ["Palm Wood"] = "Desert",
     };
 
-    /// <summary>Natural block and wall for sets of a cave layer no morph biome covers; they replace dirt, stone and other terrain.</summary>
+    /// <summary>Natural block and wall for sets of a layer no morph biome covers (caves, sky); they replace dirt, stone and other terrain.</summary>
     public static readonly IReadOnlyDictionary<string, (string Block, string? Wall)> NaturalMaterials =
         new Dictionary<string, (string Block, string? Wall)>(StringComparer.Ordinal)
         {
+            ["Skyware"] = ("Cloud Block", null),
+            ["Cloud"] = ("Cloud Block", null),
+            ["Harpy"] = ("Cloud Block", null),
             ["Granite"] = ("Granite Block", "Granite Wall (natural)"),
             ["Marble"] = ("Marble Block", "Marble Wall (natural)"),
             ["Ash Wood"] = ("Ash Block", null),
@@ -164,7 +167,7 @@ public sealed class FurnitureSetConverter
 
     // Natural blocks no morph biome converts; they are kept rather than replaced by the target set's block.
     private static readonly Regex NaturalBlockName = new(
-        @" Ore$|^(Amber|Amethyst|Diamond|Emerald|Ruby|Sapphire|Topaz) Stone Block$|^(Ash|Ash Grass|Clay|Desert Fossil|Granite|Hive|Marble|Obsidian|Shell Pile|Slush|Thin Ice) Block$",
+        @" Ore$|^(Amber|Amethyst|Diamond|Emerald|Ruby|Sapphire|Topaz) Stone Block$|^(Ash|Ash Grass|Clay|Cloud|Desert Fossil|Granite|Hive|Marble|Obsidian|Rain Cloud|Shell Pile|Slush|Snow Cloud|Thin Ice) Block$",
         RegexOptions.Compiled);
 
     // Only the base terrain changes: no evil variants, moss or sprites, which would write outside the tile.
@@ -372,8 +375,9 @@ public sealed class FurnitureSetConverter
         bool FromSet(string set) => set != toSet && (fromSet == null || set == fromSet);
         // A block or wall shared with the target set (Martian Conduit Plating for both Martian sets) is already right.
         bool FromSets(List<string> sets) => !sets.Contains(toSet) && sets.Exists(FromSet);
+        // Replacing every block keeps natural ones (clouds), unless they are the chosen source set's own (Cloud set's Cloud Block).
         bool IsSourceBlock(ushort type) => options.AnyBlockOrWall
-            ? _solidBlocks.Contains(type) && !_naturalBlocks.Contains(type)
+            ? _solidBlocks.Contains(type) && (!_naturalBlocks.Contains(type) || (fromSet != null && _blockSets.TryGetValue(type, out var own) && FromSets(own)))
             : _blockSets.TryGetValue(type, out var sets) && FromSets(sets);
         bool IsSourceWall(ushort wall) => options.AnyBlockOrWall
             ? !_naturalWalls.Contains(wall)
