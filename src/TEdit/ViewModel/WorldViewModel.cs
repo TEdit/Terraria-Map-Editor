@@ -3021,7 +3021,8 @@ public partial class WorldViewModel : ReactiveObject
                             UI.Xaml.Dialog.DialogButton.YesNo,
                             UI.Xaml.Dialog.DialogImage.Question);
 
-                        if (result == UI.Xaml.Dialog.DialogResponse.Yes)
+                        // ApplyAndRestart exits the process without the window-close prompt.
+                        if (result == UI.Xaml.Dialog.DialogResponse.Yes && await ConfirmDiscardUnsavedChangesAsync())
                         {
                             updateService.ApplyAndRestart();
                         }
