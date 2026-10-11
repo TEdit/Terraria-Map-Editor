@@ -132,8 +132,6 @@ public partial class World
 
                             bw.Close();
                             fs.Close();
-                            // Replace the actual file in one rename, so a crash never leaves it half-written
-                            File.Move(temp, filename, overwrite: true);
                         }
                     }
 
@@ -148,6 +146,10 @@ public partial class World
                         TwldFile.RebuildModTileEntityItems(world, world.TwldData);
                         TwldFile.Save(filename, world.TwldData);
                     }
+
+                    // Replace the .wld only after the .twld succeeded, so a failed sidecar
+                    // never leaves a new .wld next to a stale .twld. One rename: never half-written.
+                    File.Move(temp, filename, overwrite: true);
 
                     world.LastSave = File.GetLastWriteTimeUtc(filename);
                     progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));
@@ -238,9 +240,6 @@ public partial class World
 
                         bw.Close();
                         fs.Close();
-
-                        // Replace the actual file in one rename, so a crash never leaves it half-written
-                        File.Move(temp, filename, overwrite: true);
                     }
                 }
 
@@ -251,6 +250,10 @@ public partial class World
                     progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
                     TwldFile.Save(filename, world.TwldData);
                 }
+
+                // Replace the .wld only after the .twld succeeded, so a failed sidecar
+                // never leaves a new .wld next to a stale .twld. One rename: never half-written.
+                File.Move(temp, filename, overwrite: true);
 
                 world.LastSave = File.GetLastWriteTimeUtc(filename);
                 progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));

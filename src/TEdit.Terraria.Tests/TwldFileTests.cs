@@ -617,11 +617,15 @@ public class TwldFileTests
         string wldPath = Path.Combine(tempDir, "Restore.wld");
         string blockingTempPath = Path.Combine(tempDir, "Restore.twld.tmp");
         Directory.CreateDirectory(blockingTempPath);
+        byte[] originalWld = [1, 2, 3, 4];
+        File.WriteAllBytes(wldPath, originalWld);
 
         try
         {
             Should.Throw<Exception>(() => World.Save(world, wldPath));
 
+            File.ReadAllBytes(wldPath).ShouldBe(originalWld,
+                "a failed .twld write must not leave a new .wld next to the old .twld");
             world.Tiles[1, 1].IsActive.ShouldBeTrue(
                 "a failed save must not leave the in-memory mod overlay stripped");
             world.Tiles[1, 1].Type.ShouldBe(virtualType);
