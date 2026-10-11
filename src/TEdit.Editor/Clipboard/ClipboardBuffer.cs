@@ -629,9 +629,22 @@ public partial class ClipboardBuffer : ITileData
             }
         }
 
+        // Containers and signs aren't all 2x2 (dressers are 3x2): flip each by its real sprite size,
+        // or it lands off its anchor and its contents detach.
+        Vector2Short SpriteSizeAt(int x, int y)
+        {
+            if (x >= 0 && y >= 0 && x < buffer.Size.X && y < buffer.Size.Y)
+            {
+                var tile = buffer.Tiles[x, y];
+                if (tile.IsActive && tile.Type < WorldConfiguration.TileProperties.Count)
+                    return WorldConfiguration.TileProperties[tile.Type].FrameSize[0];
+            }
+            return new Vector2Short(2, 2);
+        }
+
         foreach (var chest in buffer.Chests)
         {
-            var flipOrigin = FlipFramed(buffer.Size, new Vector2Int32(chest.X, chest.Y), new Vector2Short(2, 2), flipX);
+            var flipOrigin = FlipFramed(buffer.Size, new Vector2Int32(chest.X, chest.Y), SpriteSizeAt(chest.X, chest.Y), flipX);
             chest.X = flipOrigin.X;
             chest.Y = flipOrigin.Y;
             flippedBuffer.Chests.Add(chest);
@@ -639,7 +652,7 @@ public partial class ClipboardBuffer : ITileData
 
         foreach (var sign in buffer.Signs)
         {
-            var flipOrigin = FlipFramed(buffer.Size, new Vector2Int32(sign.X, sign.Y), new Vector2Short(2, 2), flipX);
+            var flipOrigin = FlipFramed(buffer.Size, new Vector2Int32(sign.X, sign.Y), SpriteSizeAt(sign.X, sign.Y), flipX);
             sign.X = flipOrigin.X;
             sign.Y = flipOrigin.Y;
             flippedBuffer.Signs.Add(sign);
