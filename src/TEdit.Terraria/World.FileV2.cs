@@ -525,7 +525,8 @@ public partial class World
         int maxItemId = preserveAll ? int.MaxValue : WorldConfiguration.SaveConfiguration.GetData(version).MaxItemId;
 
         bool useLegacyLimit = version < 216;
-        Int16 count = useLegacyLimit ? (Int16)Math.Min(chests.Count, Chest.LegacyLimit) : (Int16)chests.Count;
+        if (useLegacyLimit) EnsureFitsLegacyLimit(chests.Count, Chest.LegacyLimit, "chests", version);
+        Int16 count = (Int16)chests.Count;
         bw.Write(count);
 
         if (version < 294)
@@ -573,10 +574,23 @@ public partial class World
         return (int)bw.BaseStream.Position;
     }
 
+    /// <summary>
+    /// Older formats hold at most <paramref name="limit"/> chests or signs. Fail the save with a clear
+    /// message instead of silently dropping the rest (and their items or text).
+    /// </summary>
+    internal static void EnsureFitsLegacyLimit(int count, int limit, string what, long version)
+    {
+        if (count > limit)
+            throw new InvalidOperationException(
+                $"This world has {count} {what}, but world version {version} can hold only {limit}. " +
+                $"Remove some, or save as a newer version.");
+    }
+
     public static int SaveSigns(IList<Sign> signs, BinaryWriter bw, int version)
     {
         bool useLegacyLimit = version < 216;
-        Int16 count = useLegacyLimit ? (Int16)Math.Min(signs.Count, Sign.LegacyLimit) : (Int16)signs.Count;
+        if (useLegacyLimit) EnsureFitsLegacyLimit(signs.Count, Sign.LegacyLimit, "signs", version);
+        Int16 count = (Int16)signs.Count;
         bw.Write(count);
 
         int written = 0;

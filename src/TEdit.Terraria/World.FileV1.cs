@@ -284,6 +284,7 @@ public partial class World
 
     public static void WriteSignDataToStreamV1(IList<Sign> signs, BinaryWriter bw, uint version)
     {
+        EnsureFitsLegacyLimit(signs.Count, 1000, "signs", version);
         for (int i = 0; i < 1000; ++i)
         {
             if (i >= signs.Count || string.IsNullOrWhiteSpace(signs[i].Text))
@@ -307,6 +308,7 @@ public partial class World
 
         var maxItemId = WorldConfiguration.SaveConfiguration.GetData((int)version).MaxItemId;
 
+        EnsureFitsLegacyLimit(chests.Count, 1000, "chests", version);
         for (int i = 0; i < 1000; ++i)
         {
             if (i >= chests.Count)
