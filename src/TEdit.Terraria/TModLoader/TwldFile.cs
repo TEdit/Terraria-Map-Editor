@@ -44,7 +44,7 @@ public static class TwldFile
             // the .twld path can leave a truncated file when serialization or disk I/O
             // fails, which makes the world appear corrupt on the next load.
             TagIO.ToFile(rootTag, tempPath);
-            File.Copy(tempPath, twldPath, true);
+            File.Move(tempPath, twldPath, overwrite: true);
         }
         finally
         {

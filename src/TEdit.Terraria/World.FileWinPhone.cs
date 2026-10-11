@@ -1499,8 +1499,7 @@ public partial class World
                 }
                 using (FileStream stream = new(temp, FileMode.Create))
                     stream.Write(result);
-                File.Copy(temp, filename, true);
-                File.Delete(temp);
+                File.Move(temp, filename, overwrite: true);
                 AdoptWinPhoneContainerState(world, result);
                 world.LastSave = File.GetLastWriteTimeUtc(filename);
                 progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));

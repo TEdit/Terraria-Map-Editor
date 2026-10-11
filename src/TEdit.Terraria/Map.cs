@@ -231,7 +231,6 @@ public partial class Map : ReactiveObject
             bw.Close();
         }
 
-        File.Copy(tempfileName, filename, true);
-        File.Delete(tempfileName);
+        File.Move(tempfileName, filename, overwrite: true);
     }
 }

@@ -45,7 +45,12 @@ public static class PlayerFile
         using var ms = new MemoryStream();
         Save(ms, player);
         byte[] encrypted = Encrypt(ms.ToArray());
-        File.WriteAllBytes(path, encrypted);
+
+        // Write a temp file next to the player, then replace it in one rename,
+        // so a crash or full disk never leaves a truncated, undecryptable .plr.
+        string temp = path + ".tmp";
+        File.WriteAllBytes(temp, encrypted);
+        File.Move(temp, path, overwrite: true);
     }
 
     public static void Save(Stream stream, PlayerCharacter player)

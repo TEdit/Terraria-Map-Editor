@@ -39,6 +39,26 @@ public class PlayerFileTests
         AssertCharactersEqual(original, loaded);
     }
 
+    [Fact]
+    public void Save_OverExistingFile_ReplacesItAndLeavesNoTempFile()
+    {
+        string path = Path.Combine(Path.GetTempPath(), $"tedit-replace-{Guid.NewGuid():N}.plr");
+        try
+        {
+            File.WriteAllBytes(path, [1, 2, 3]);
+            var player = CreateTestCharacter();
+
+            PlayerFile.Save(path, player);
+
+            File.Exists(path + ".tmp").ShouldBeFalse();
+            PlayerFile.Load(path).Name.ShouldBe(player.Name);
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+    }
+
     public static IEnumerable<object[]> GetPlrFiles()
     {
         if (!Directory.Exists(PlayersDir))

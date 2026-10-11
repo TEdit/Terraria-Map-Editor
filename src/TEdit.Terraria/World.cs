@@ -132,10 +132,8 @@ public partial class World
 
                             bw.Close();
                             fs.Close();
-                            // Replace the actual file with temp save file
-                            File.Copy(temp, filename, true);
-                            // Delete temp save file
-                            File.Delete(temp);
+                            // Replace the actual file in one rename, so a crash never leaves it half-written
+                            File.Move(temp, filename, overwrite: true);
                         }
                     }
 
@@ -241,10 +239,8 @@ public partial class World
                         bw.Close();
                         fs.Close();
 
-                        // replace actual file with temp save file
-                        File.Copy(temp, filename, true);
-                        // delete temp save file
-                        File.Delete(temp);
+                        // Replace the actual file in one rename, so a crash never leaves it half-written
+                        File.Move(temp, filename, overwrite: true);
                     }
                 }
 
