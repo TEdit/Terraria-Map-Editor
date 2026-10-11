@@ -74,6 +74,7 @@ public class UndoBuffer : IDisposable
     }
 
     private readonly Dictionary<Tile, HashSet<Vector2Int32>> _undoTiles = new();
+    private readonly HashSet<Vector2Int32> _savedLocations = new(); // Every location saved in this buffer, across flushes
     private readonly List<Tile> _tileOrder = new(); // For order preservation
     private int _totalTileCount; // Maintained incrementally to avoid LINQ enumeration
     private int _uniqueTileGroupsWritten = 0; // Track across batches for file header
@@ -115,6 +116,7 @@ public class UndoBuffer : IDisposable
             {
                 if (kvp.Value.Remove(new Vector2Int32(x, y)))
                 {
+                    _savedLocations.Remove(new Vector2Int32(x, y));
                     _totalTileCount--;
                     // If this was the last location for this tile, remove the tile entry
                     if (kvp.Value.Count == 0)
@@ -135,6 +137,7 @@ public class UndoBuffer : IDisposable
         {
             _undoTiles.Clear();
             _tileOrder.Clear();
+            _savedLocations.Clear();
             _totalTileCount = 0;
             LastTile = null;
         }
@@ -148,6 +151,13 @@ public class UndoBuffer : IDisposable
 
         lock (UndoSaveLock)
         {
+            LastTile = new UndoTile(tile, location); // For compatibility
+
+            // Undo restores the state before the operation, so only the first save of a
+            // location counts; later saves hold intermediate states (kept across flushes).
+            if (!_savedLocations.Add(location))
+                return;
+
             // Find or create tile entry
             if (!_undoTiles.TryGetValue(tile, out var locations))
             {
@@ -158,7 +168,6 @@ public class UndoBuffer : IDisposable
 
             if (locations.Add(location))
                 _totalTileCount++;
-            LastTile = new UndoTile(tile, location); // For compatibility
             shouldFlush = _totalTileCount > FlushSize;
 
             // Track mod tile/wall overlays for NBT serialization

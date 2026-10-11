@@ -62,6 +62,31 @@ public class UndoBufferTests : IDisposable
     }
 
     [Fact]
+    public void UndoBuffer_SameLocationSavedTwice_KeepsOriginalState()
+    {
+        // An operation can save a tile, change it, and save it again (set conversion with
+        // walls, morph, sand settle). Undo must restore the first, original state.
+        var fileName = GetTestFileName();
+        var location = new Vector2Int32(10, 20);
+        var original = new Tile { IsActive = true, Type = 1, Wall = 5 };
+        var intermediate = new Tile { IsActive = true, Type = 2, Wall = 6 };
+
+        using (var buffer = new UndoBuffer(fileName, null!))
+        {
+            buffer.Add(location, original);
+            buffer.Add(location, intermediate);
+            buffer.Close();
+        }
+
+        using var stream = new FileStream(fileName, FileMode.Open);
+        using var reader = new BinaryReader(stream);
+        var tiles = UndoBuffer.ReadUndoTilesFromStream(reader).ToList();
+
+        Assert.Single(tiles);
+        Assert.True(tiles[0].Tile.Equals(original));
+    }
+
+    [Fact]
     public void UndoBuffer_RoundTrip_MultipleTiles_AllUnique()
     {
         // Arrange
