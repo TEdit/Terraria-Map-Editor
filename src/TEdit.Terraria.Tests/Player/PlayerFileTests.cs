@@ -160,9 +160,9 @@ public class PlayerFileTests
         player.Inventory[1] = new PlayerItem(29, 1, 82);
 
         // Equipment, banks and buffs: every section the file format writes gets a value.
-        player.Armor[0] = new PlayerItem(88, 1, 15);          // Mining Helmet
+        player.Armor[0] = new PlayerItem(88, 1, 15, true);    // Mining Helmet, favorited (v322+)
         player.Armor[3] = new PlayerItem(54, 1, 65);          // Hermes Boots in an accessory slot
-        player.Dye[0] = new PlayerItem(1007, 1);
+        player.Dye[0] = new PlayerItem(1007, 1, 0, true);
         player.MiscEquips[0] = new PlayerItem(115, 1);
         player.MiscDyes[0] = new PlayerItem(1008, 1);
         player.Bank1[0] = new PlayerItem(73, 99);
@@ -170,7 +170,7 @@ public class PlayerFileTests
         player.Bank3[2] = new PlayerItem(19, 30);
         player.Bank4[3] = new PlayerItem(22, 5, 0, true);
         player.Buffs[0] = new PlayerBuff(1, 3600);
-        player.Loadouts[1].Armor[0] = new PlayerItem(90, 1);
+        player.Loadouts[1].Armor[0] = new PlayerItem(90, 1, 0, true);
 
         // Add spawn points
         player.SpawnPoints.Add(new SpawnPoint(100, 200, 12345, "TestWorld"));
@@ -229,9 +229,15 @@ public class PlayerFileTests
 
         // Equipment and buffs
         for (int i = 0; i < PlayerConstants.MaxArmorSlots; i++)
+        {
             b.Armor[i].NetId.ShouldBe(a.Armor[i].NetId, $"Armor[{i}].NetId");
+            b.Armor[i].Favorited.ShouldBe(a.Armor[i].Favorited, $"Armor[{i}].Favorited");
+        }
         for (int i = 0; i < PlayerConstants.MaxDyeSlots; i++)
+        {
             b.Dye[i].NetId.ShouldBe(a.Dye[i].NetId, $"Dye[{i}].NetId");
+            b.Dye[i].Favorited.ShouldBe(a.Dye[i].Favorited, $"Dye[{i}].Favorited");
+        }
         for (int i = 0; i < PlayerConstants.MaxMiscEquipSlots; i++)
         {
             b.MiscEquips[i].NetId.ShouldBe(a.MiscEquips[i].NetId, $"MiscEquips[{i}].NetId");
@@ -258,7 +264,10 @@ public class PlayerFileTests
         for (int l = 0; l < PlayerConstants.MaxLoadouts; l++)
         {
             for (int i = 0; i < PlayerConstants.MaxArmorSlots; i++)
+            {
                 b.Loadouts[l].Armor[i].NetId.ShouldBe(a.Loadouts[l].Armor[i].NetId, $"Loadout[{l}].Armor[{i}].NetId");
+                b.Loadouts[l].Armor[i].Favorited.ShouldBe(a.Loadouts[l].Armor[i].Favorited, $"Loadout[{l}].Armor[{i}].Favorited");
+            }
         }
 
         // Creative sacrifices

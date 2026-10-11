@@ -183,6 +183,8 @@ public static class PlayerFile
             w.Write(p.UsingBiomeTorches);
             if (v >= 256)
                 w.Write(p.AteArtisanBread);
+            if (v >= 324)
+                w.Write(false); // unused flag; the game always writes false
             if (v >= 260)
             {
                 w.Write(p.UsedAegisCrystal);
@@ -222,6 +224,8 @@ public static class PlayerFile
                 {
                     w.Write(p.Armor[i].NetId);
                     w.Write(p.Armor[i].Prefix);
+                    if (v >= 322)
+                        w.Write(p.Armor[i].Favorited);
                 }
             }
 
@@ -233,6 +237,8 @@ public static class PlayerFile
                 {
                     w.Write(p.Dye[i].NetId);
                     w.Write(p.Dye[i].Prefix);
+                    if (v >= 322)
+                        w.Write(p.Dye[i].Favorited);
                 }
             }
 
@@ -369,7 +375,7 @@ public static class PlayerFile
         {
             w.Write(p.CurrentLoadoutIndex);
             for (int i = 0; i < PlayerConstants.MaxLoadouts; i++)
-                SerializeLoadout(w, p.Loadouts[i]);
+                SerializeLoadout(w, p.Loadouts[i], v);
         }
 
         // Voice
@@ -491,6 +497,8 @@ public static class PlayerFile
             p.UsingBiomeTorches = r.ReadBoolean();
             if (version >= 256)
                 p.AteArtisanBread = r.ReadBoolean();
+            if (version >= 324)
+                r.ReadBoolean(); // unused flag; the game always writes false
             if (version >= 260)
             {
                 p.UsedAegisCrystal = r.ReadBoolean();
@@ -651,7 +659,7 @@ public static class PlayerFile
         {
             p.CurrentLoadoutIndex = Math.Clamp(r.ReadInt32(), 0, PlayerConstants.MaxLoadouts - 1);
             for (int i = 0; i < PlayerConstants.MaxLoadouts; i++)
-                DeserializeLoadout(r, p.Loadouts[i]);
+                DeserializeLoadout(r, p.Loadouts[i], version);
         }
 
         // Voice
@@ -711,7 +719,8 @@ public static class PlayerFile
             {
                 int type = r.ReadInt32();
                 byte prefix = r.ReadByte();
-                p.Armor[i] = new PlayerItem(type, type != 0 ? 1 : 0, prefix);
+                bool favorited = version >= 322 && r.ReadBoolean();
+                p.Armor[i] = new PlayerItem(type, type != 0 ? 1 : 0, prefix, favorited);
             }
         }
 
@@ -724,7 +733,8 @@ public static class PlayerFile
             {
                 int type = r.ReadInt32();
                 byte prefix = r.ReadByte();
-                p.Dye[i] = new PlayerItem(type, type != 0 ? 1 : 0, prefix);
+                bool favorited = version >= 322 && r.ReadBoolean();
+                p.Dye[i] = new PlayerItem(type, type != 0 ? 1 : 0, prefix, favorited);
             }
         }
     }
@@ -939,40 +949,40 @@ public static class PlayerFile
         }
     }
 
-    private static void SerializeLoadout(BinaryWriter w, EquipmentLoadout loadout)
+    private static void SerializeLoadout(BinaryWriter w, EquipmentLoadout loadout, int version)
     {
         for (int i = 0; i < PlayerConstants.MaxArmorSlots; i++)
-        {
-            w.Write(loadout.Armor[i].NetId);
-            w.Write(loadout.Armor[i].StackSize);
-            w.Write(loadout.Armor[i].Prefix);
-        }
+            WriteLoadoutItem(w, loadout.Armor[i], version);
         for (int i = 0; i < PlayerConstants.MaxDyeSlots; i++)
-        {
-            w.Write(loadout.Dye[i].NetId);
-            w.Write(loadout.Dye[i].StackSize);
-            w.Write(loadout.Dye[i].Prefix);
-        }
+            WriteLoadoutItem(w, loadout.Dye[i], version);
         for (int i = 0; i < PlayerConstants.MaxDyeSlots; i++)
             w.Write(loadout.Hide[i]);
     }
 
-    private static void DeserializeLoadout(BinaryReader r, EquipmentLoadout loadout)
+    private static void WriteLoadoutItem(BinaryWriter w, PlayerItem item, int version)
+    {
+        w.Write(item.NetId);
+        w.Write(item.StackSize);
+        w.Write(item.Prefix);
+        if (version >= 322)
+            w.Write(item.Favorited);
+    }
+
+    private static PlayerItem ReadLoadoutItem(BinaryReader r, int version)
+    {
+        int type = r.ReadInt32();
+        int stack = r.ReadInt32();
+        byte prefix = r.ReadByte();
+        bool favorited = version >= 322 && r.ReadBoolean();
+        return new PlayerItem(type, stack, prefix, favorited);
+    }
+
+    private static void DeserializeLoadout(BinaryReader r, EquipmentLoadout loadout, int version)
     {
         for (int i = 0; i < PlayerConstants.MaxArmorSlots; i++)
-        {
-            int type = r.ReadInt32();
-            int stack = r.ReadInt32();
-            byte prefix = r.ReadByte();
-            loadout.Armor[i] = new PlayerItem(type, stack, prefix);
-        }
+            loadout.Armor[i] = ReadLoadoutItem(r, version);
         for (int i = 0; i < PlayerConstants.MaxDyeSlots; i++)
-        {
-            int type = r.ReadInt32();
-            int stack = r.ReadInt32();
-            byte prefix = r.ReadByte();
-            loadout.Dye[i] = new PlayerItem(type, stack, prefix);
-        }
+            loadout.Dye[i] = ReadLoadoutItem(r, version);
         for (int i = 0; i < PlayerConstants.MaxDyeSlots; i++)
             loadout.Hide[i] = r.ReadBoolean();
     }
