@@ -33,6 +33,8 @@ public class LuaScriptEngine : IScriptEngine
             state.Environment["dofile"] = default(LuaValue);
             state.Environment["loadfile"] = default(LuaValue);
             state.Environment["package"] = default(LuaValue);
+            state.Environment["require"] = default(LuaValue);
+            state.Environment["load"] = default(LuaValue);
 
             // Expose API surfaces as tables with methods
             RegisterApi(state, "tile", api.Tile);
@@ -90,6 +92,8 @@ public class LuaScriptEngine : IScriptEngine
 
     private static void RegisterApi(LuaState state, string name, object apiObject)
     {
+        if (apiObject == null) return; // e.g. tools without a WorldViewModel
+
         var table = new LuaTable();
         var type = apiObject.GetType();
 
@@ -126,7 +130,7 @@ public class LuaScriptEngine : IScriptEngine
                             var luaState = ctx.State;
                             args[i] = new Action<int, int>((x, y) =>
                             {
-                                luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, CancellationToken.None)
+                                luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, ct)
                                     .AsTask().GetAwaiter().GetResult();
                             });
                         }
@@ -136,7 +140,7 @@ public class LuaScriptEngine : IScriptEngine
                             var luaState = ctx.State;
                             args[i] = new Func<int, int, bool>((x, y) =>
                             {
-                                var results = luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, CancellationToken.None)
+                                var results = luaState.CallAsync(luaFunc, new LuaValue[] { (double)x, (double)y }, ct)
                                     .AsTask().GetAwaiter().GetResult();
                                 return results.Length > 0 && results[0].TryRead<bool>(out var b) && b;
                             });

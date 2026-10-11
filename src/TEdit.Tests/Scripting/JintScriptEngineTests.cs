@@ -31,6 +31,16 @@ public class JintScriptEngineTests
     }
 
     [Fact]
+    public void Execute_RunawayRecursion_FailsInsteadOfOverflowingTheStack()
+    {
+        var (api, _, _, context) = CreateTestContext();
+
+        var result = _engine.Execute("function f(n) { return f(n + 1); } f(0);", api, context);
+
+        result.Success.ShouldBeFalse();
+    }
+
+    [Fact]
     public void Execute_SimpleScript_Succeeds()
     {
         var (api, _, logs, context) = CreateTestContext();

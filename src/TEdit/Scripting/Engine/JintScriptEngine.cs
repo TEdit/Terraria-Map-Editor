@@ -23,6 +23,8 @@ public class JintScriptEngine : IScriptEngine
             {
                 options.TimeoutInterval(TimeSpan.FromMilliseconds(context.TimeoutMs));
                 options.CancellationToken(context.CancellationToken);
+                // Deep script recursion would overflow the stack and kill TEdit; fail the script instead.
+                options.LimitRecursion(1000);
                 options.Strict(false);
                 options.Interop.TypeResolver.MemberNameCreator = ToCamelCase;
             });
