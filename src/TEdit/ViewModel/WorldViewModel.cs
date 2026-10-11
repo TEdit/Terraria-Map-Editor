@@ -4082,6 +4082,21 @@ public partial class WorldViewModel : ReactiveObject
                 return;
         }
 
+        if (CurrentWorld.TileDataRecovered && File.Exists(CurrentFile))
+        {
+            var damagedResult = await App.DialogService.ShowMessageAsync(
+                _currentWorld.Title + " was loaded with damaged tile data; the unread tiles are empty.\r\n" +
+                "Overwrite the original file anyway? Use Save As to keep it.",
+                "Damaged World",
+                DialogButton.OKCancel,
+                DialogImage.Warning);
+
+            if (damagedResult == DialogResponse.Cancel)
+                return;
+
+            CurrentWorld.TileDataRecovered = false; // the original is being replaced; ask only once
+        }
+
         // Create a TEdit backup of the current file before overwriting
         try
         {
@@ -4380,6 +4395,16 @@ public partial class WorldViewModel : ReactiveObject
             // (fast: only checks twld maps and unique paint IDs, not full tile scan)
             if (CurrentWorld != null)
                 LogMissingPropertyIds(CurrentWorld);
+
+            if (CurrentWorld?.TileDataRecovered == true)
+            {
+                _ = App.DialogService.ShowMessageAsync(
+                    "Part of this world's tile data could not be read, so some tiles are empty.\r\n" +
+                    "Use Save As to keep the original file; saving over it makes the loss permanent.",
+                    "Damaged World",
+                    DialogButton.OK,
+                    DialogImage.Warning);
+            }
         }, TaskFactoryHelper.UiTaskScheduler)
         .ContinueWith(t => RenderEntireWorld())
         .ContinueWith(t =>

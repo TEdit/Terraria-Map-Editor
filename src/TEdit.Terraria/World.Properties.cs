@@ -160,6 +160,13 @@ public partial class World : ReactiveObject, ITileData
     [Reactive] private bool _isWinPhone;
 
     internal byte[]? WinPhoneSourceData { get; set; }
+
+    /// <summary>
+    /// True when the tile section could not be read completely on load; the unread tiles are empty.
+    /// Saving such a world over its original file loses those tiles for good.
+    /// </summary>
+    [Browsable(false)]
+    public bool TileDataRecovered { get; set; }
     internal Chest?[]? WinPhoneChestSlots { get; set; }
     internal Sign?[]? WinPhoneSignSlots { get; set; }
     internal byte[]? WinPhoneSignTextFlags { get; set; }

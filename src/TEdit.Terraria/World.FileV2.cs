@@ -1418,8 +1418,11 @@ public partial class World
         if (headersOnly) { return; }
 
         progress?.Report(new ProgressChangedEventArgs(0, "Loading Tiles..."));
-        w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant);
+        w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant, out bool tileDataRecovered);
 
+        // A parse error or a wrong end position means some tiles were not read; keep the
+        // recovered world loadable but flag it so the editor can warn before overwriting.
+        w.TileDataRecovered = tileDataRecovered || b.BaseStream.Position != sectionPointers[2];
         if (b.BaseStream.Position != sectionPointers[2])
             b.BaseStream.Position = sectionPointers[2];
         //throw new FileFormatException("Unexpected Position: Invalid Tile Data");
@@ -1505,7 +1508,12 @@ public partial class World
     }
 
     public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant, IProgress<ProgressChangedEventArgs>? progress = null)
+        => LoadTileData(r, maxX, maxY, version, tileFrameImportant, out _, progress);
+
+    /// <param name="recovered">True when reading stopped early on bad data; the remaining tiles are empty.</param>
+    public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant, out bool recovered, IProgress<ProgressChangedEventArgs>? progress = null)
     {
+        recovered = false;
         var tiles = new Tile[maxX, maxY];
         int rle;
         for (int x = 0; x < maxX; x++)
@@ -1539,8 +1547,9 @@ public partial class World
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"Tile data recovery: {ex.Message}");
+                    System.Diagnostics.Trace.WriteLine($"Tile data recovery at [{x},{y}]: {ex.Message}");
                     // default(Tile) is valid zero state for structs — no null-fill needed
+                    recovered = true;
                     return tiles;
                 }
             }
