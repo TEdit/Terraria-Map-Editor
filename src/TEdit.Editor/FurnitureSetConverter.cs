@@ -7,6 +7,7 @@ using TEdit.Common;
 using TEdit.Editor.Undo;
 using TEdit.Geometry;
 using TEdit.Terraria;
+using TEdit.Terraria.DataModel;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Editor;
@@ -29,7 +30,8 @@ public sealed record FurnitureSetOptions
     /// <summary>
     /// Replace every solid block and every wall in the selection with the target set's block and wall,
     /// not only the source set's own (e.g. a pumpkin house built from gray brick with stone slab walls).
-    /// Natural terrain inside the selection is replaced too, so select the building with the brush or lasso.
+    /// Natural terrain inside the selection becomes the target set's biome (<see cref="FurnitureSetConverter.SetBiomes"/>)
+    /// or natural material, or stays natural, so select the building with the brush or lasso.
     /// </summary>
     public bool AnyBlockOrWall { get; init; }
 
@@ -134,8 +136,45 @@ public sealed class FurnitureSetConverter
             ["Wooden"] = ("Wood", "Wood Wall"),
         };
 
+    /// <summary>
+    /// Morph biome (morphBiomes.generate.json) of each set's natural terrain: with <see cref="FurnitureSetOptions.AnyBlockOrWall"/>,
+    /// natural blocks and walls are morphed into it (dirt to sand for Sandstone) instead of becoming the set's block.
+    /// </summary>
+    public static readonly IReadOnlyDictionary<string, string> SetBiomes = new Dictionary<string, string>(StringComparer.Ordinal)
+    {
+        ["Wooden"] = "Forest", ["Living Wood"] = "Forest",
+        ["Ebonwood"] = "Corruption", ["Demonite"] = "Corruption", ["Lesion"] = "Corruption",
+        ["Shadewood"] = "Crimson", ["Crimtane"] = "Crimson", ["Flesh"] = "Crimson",
+        ["Pearlwood"] = "Hallow", ["Hallowed"] = "Hallow", ["Crystal"] = "Hallow",
+        ["Rich Mahogany"] = "Jungle", ["Bamboo"] = "Jungle", ["Honey"] = "Jungle", ["Lihzahrd"] = "Jungle",
+        ["Mushroom"] = "GlowingMushroom",
+        ["Boreal Wood"] = "Snow", ["Frozen"] = "Snow", ["Snow"] = "Snow", ["Flinx Fur"] = "Snow",
+        ["Sandstone"] = "Desert", ["Cactus"] = "Desert", ["Forbidden"] = "Desert", ["Palm Wood"] = "Desert",
+    };
+
+    /// <summary>Natural block and wall for sets of a cave layer no morph biome covers; they replace dirt, stone and other terrain.</summary>
+    public static readonly IReadOnlyDictionary<string, (string Block, string? Wall)> NaturalMaterials =
+        new Dictionary<string, (string Block, string? Wall)>(StringComparer.Ordinal)
+        {
+            ["Granite"] = ("Granite Block", "Granite Wall (natural)"),
+            ["Marble"] = ("Marble Block", "Marble Wall (natural)"),
+            ["Ash Wood"] = ("Ash Block", null),
+            ["Obsidian"] = ("Ash Block", null),
+        };
+
+    // Natural blocks no morph biome converts; they are kept rather than replaced by the target set's block.
+    private static readonly Regex NaturalBlockName = new(
+        @" Ore$|^(Amber|Amethyst|Diamond|Emerald|Ruby|Sapphire|Topaz) Stone Block$|^(Ash|Ash Grass|Clay|Desert Fossil|Granite|Hive|Marble|Obsidian|Shell Pile|Slush|Thin Ice) Block$",
+        RegexOptions.Compiled);
+
+    // Only the base terrain changes: no evil variants, moss or sprites, which would write outside the tile.
+    private static readonly MorphToolOptions TerrainMorph = new()
+    {
+        EnableEvilTiles = false, EnableMoss = false, EnableSprites = false, EnableDecoSprites = false,
+    };
+
     private static readonly Lazy<FurnitureSetConverter> _default = new(
-        () => new FurnitureSetConverter(WorldConfiguration.TileProperties, WorldConfiguration.WallProperties));
+        () => new FurnitureSetConverter(WorldConfiguration.TileProperties, WorldConfiguration.WallProperties, WorldConfiguration.DestructiveMorphSettings));
 
     /// <summary>Converter built from the loaded game data.</summary>
     public static FurnitureSetConverter Default => _default.Value;
@@ -154,8 +193,15 @@ public sealed class FurnitureSetConverter
     private readonly HashSet<ushort> _solidBlocks = new();
     private readonly Dictionary<string, ushort> _setGemTrees = new(StringComparer.Ordinal);
     private readonly HashSet<ushort> _gemTrees = new();
+    // Terrain the morph biomes convert (dirt, stone, sand, grass, ice...); natural adds ores, gem stones and granite.
+    private readonly HashSet<ushort> _terrainBlocks = new();
+    private readonly HashSet<ushort> _naturalBlocks = new();
+    private readonly HashSet<ushort> _terrainWalls = new();
+    private readonly HashSet<ushort> _naturalWalls = new();
+    private readonly Dictionary<string, MorphBiomeDataApplier> _setMorphers = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, (ushort Block, ushort? Wall)> _setNatural = new(StringComparer.Ordinal);
 
-    public FurnitureSetConverter(IEnumerable<TileProperty> tiles, IEnumerable<WallProperty> walls)
+    public FurnitureSetConverter(IEnumerable<TileProperty> tiles, IEnumerable<WallProperty> walls, MorphConfiguration? morphs = null)
     {
         var tileList = tiles.Where(t => t != null).ToList();
         var aliases = BuildSetAliases(tileList);
@@ -220,6 +266,32 @@ public sealed class FurnitureSetConverter
                 _setWalls[set] = wallId;
                 AddSet(_wallSets, wallId, set);
             }
+        }
+
+        foreach (var wall in walls.Where(w => w != null && w.Id is > 0 and <= ushort.MaxValue &&
+                     (w.Name.Contains("(natural)") || w.Name.StartsWith("Treacherous ", StringComparison.Ordinal))))
+            _naturalWalls.Add((ushort)wall.Id);
+        if (morphs != null)
+        {
+            var framed = tileList.Where(t => t.IsFramed).Select(t => t.Id).ToHashSet();
+            foreach (var biome in morphs.Biomes.Values)
+            {
+                _terrainBlocks.UnionWith(biome.MorphTiles.SelectMany(m => m.SourceIds).Where(id => !framed.Contains(id)));
+                _terrainWalls.UnionWith(biome.MorphWalls.SelectMany(m => m.SourceIds).Where(_naturalWalls.Contains));
+            }
+            foreach (var (set, biome) in SetBiomes)
+            {
+                if (_setItems.ContainsKey(set) && morphs.Biomes.TryGetValue(biome, out var data))
+                    _setMorphers[set] = MorphBiomeDataApplier.GetMorpher(data);
+            }
+        }
+        _naturalBlocks.UnionWith(_terrainBlocks);
+        _naturalBlocks.UnionWith(tileList.Where(t => !t.IsFramed && t.Id is >= 0 and <= ushort.MaxValue && NaturalBlockName.IsMatch(t.Name))
+            .Select(t => (ushort)t.Id));
+        foreach (var (set, (block, wall)) in NaturalMaterials)
+        {
+            if (_setItems.ContainsKey(set) && blockIds.TryGetValue(block, out var blockId))
+                _setNatural[set] = (blockId, wall != null && wallIds.TryGetValue(wall, out var wallId) ? wallId : null);
         }
 
         // Gem trees pair with their gem stone by name ("Topaz Tree", "Topaz Stone Block"); the stone carries the gem's color.
@@ -301,9 +373,29 @@ public sealed class FurnitureSetConverter
         // A block or wall shared with the target set (Martian Conduit Plating for both Martian sets) is already right.
         bool FromSets(List<string> sets) => !sets.Contains(toSet) && sets.Exists(FromSet);
         bool IsSourceBlock(ushort type) => options.AnyBlockOrWall
-            ? _solidBlocks.Contains(type)
+            ? _solidBlocks.Contains(type) && !_naturalBlocks.Contains(type)
             : _blockSets.TryGetValue(type, out var sets) && FromSets(sets);
-        bool IsSourceWall(ushort wall) => options.AnyBlockOrWall || (_wallSets.TryGetValue(wall, out var sets) && FromSets(sets));
+        bool IsSourceWall(ushort wall) => options.AnyBlockOrWall
+            ? !_naturalWalls.Contains(wall)
+            : _wallSets.TryGetValue(wall, out var sets) && FromSets(sets);
+
+        // Natural terrain takes the target set's biome (sand for Sandstone) or natural material (granite); otherwise it stays.
+        var morpher = options.AnyBlockOrWall ? _setMorphers.GetValueOrDefault(toSet) : null;
+        (ushort Block, ushort? Wall)? natural = options.AnyBlockOrWall && _setNatural.TryGetValue(toSet, out var material) ? material : null;
+        Tile Morphed(int x, int y)
+        {
+            var copy = world.Tiles[x, y];
+            morpher!.ApplyMorph(TerrainMorph, world, ref copy, MorphBiomeDataApplier.ComputeMorphLevel(world, y), new Vector2Int32(x, y));
+            return copy;
+        }
+        ushort? NaturalBlock(int x, int y, ushort type) =>
+            !options.AnyBlockOrWall || !_terrainBlocks.Contains(type) ? null
+            : morpher != null ? (Morphed(x, y) is { IsActive: true } m ? m.Type : null)
+            : natural?.Block;
+        ushort? NaturalWall(int x, int y, ushort wall) =>
+            !options.AnyBlockOrWall || !_terrainWalls.Contains(wall) ? null
+            : morpher != null ? (Morphed(x, y) is { Wall: not 0 } m ? m.Wall : null)
+            : natural?.Wall;
 
         int sprites = 0, blocks = 0, walls = 0, unmatched = 0, partial = 0, gemTrees = 0;
         var targetGemTree = options.GemTrees ? GetGemTree(toSet) : null;
@@ -360,9 +452,16 @@ public sealed class FurnitureSetConverter
                     tile.Type = newBlock;
                     blocks++;
                 }
+                else if (options.Blocks && tile.IsActive && NaturalBlock(x, y, tile.Type) is { } naturalBlock && tile.Type != naturalBlock)
+                {
+                    undo?.SaveTile(world, x, y);
+                    saved = true;
+                    tile.Type = naturalBlock;
+                    blocks++;
+                }
 
-                if (options.Walls && tile.Wall != 0 && targetWall is { } newWall &&
-                    tile.Wall != newWall && IsSourceWall(tile.Wall))
+                if (options.Walls && tile.Wall != 0 &&
+                    (IsSourceWall(tile.Wall) ? targetWall : NaturalWall(x, y, tile.Wall)) is { } newWall && tile.Wall != newWall)
                 {
                     if (!saved)
                         undo?.SaveTile(world, x, y);

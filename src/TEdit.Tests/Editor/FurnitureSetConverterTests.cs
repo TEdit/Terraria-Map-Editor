@@ -504,6 +504,59 @@ public sealed class FurnitureSetConverterTests
         AssertSprite(world, "Chairs", "Skyware Chair", 10, 10);
     }
 
+    // Natural terrain next to a house: dirt on stone, an ore and a natural dirt wall.
+    private static World TerrainWorld()
+    {
+        var world = HouseWorld();
+        world.Tiles[20, 20] = new Tile { IsActive = true, Type = BlockId("Dirt Block"), Wall = WallId("Dirt Wall (natural)") };
+        world.Tiles[20, 21] = new Tile { IsActive = true, Type = BlockId("Stone Block") };
+        world.Tiles[21, 21] = new Tile { IsActive = true, Type = BlockId("Iron Ore") };
+        return world;
+    }
+
+    [Fact]
+    public void Options_AnyBlockOrWall_TurnsNaturalTerrainIntoTheTargetSetsBiome()
+    {
+        var world = TerrainWorld();
+
+        var result = Convert(world, null, "Sandstone", options: new FurnitureSetOptions { AnyBlockOrWall = true });
+
+        Assert.Equal(BlockId("Sand Block"), world.Tiles[20, 20].Type);
+        Assert.Equal(BlockId("Sandstone Block"), world.Tiles[20, 21].Type);
+        Assert.Equal(WallId("Treacherous Hardened Sand Wall"), world.Tiles[20, 20].Wall);
+        Assert.Equal(BlockId("Iron Ore"), world.Tiles[21, 21].Type);
+        // The house's gray brick and stone wall still become the set's own.
+        Assert.Equal(BlockId("Smooth Sandstone Block"), world.Tiles[13, 11].Type);
+        Assert.Equal(WallId("Smooth Sandstone Wall"), world.Tiles[13, 11].Wall);
+        Assert.Equal((3, 2), (result.Blocks, result.Walls));
+    }
+
+    [Fact]
+    public void Options_AnyBlockOrWall_UsesTheSetsNaturalMaterialWithoutABiome()
+    {
+        var world = TerrainWorld();
+
+        Convert(world, null, "Granite", options: new FurnitureSetOptions { AnyBlockOrWall = true });
+
+        Assert.Equal(BlockId("Granite Block"), world.Tiles[20, 20].Type);
+        Assert.Equal(BlockId("Granite Block"), world.Tiles[20, 21].Type);
+        Assert.Equal(WallId("Granite Wall (natural)"), world.Tiles[20, 20].Wall);
+        Assert.Equal(BlockId("Iron Ore"), world.Tiles[21, 21].Type);
+    }
+
+    [Fact]
+    public void Options_AnyBlockOrWall_KeepsNaturalTerrainForSetsWithoutOne()
+    {
+        var world = TerrainWorld();
+
+        Convert(world, null, "Skyware", options: new FurnitureSetOptions { AnyBlockOrWall = true });
+
+        Assert.Equal(BlockId("Dirt Block"), world.Tiles[20, 20].Type);
+        Assert.Equal(BlockId("Stone Block"), world.Tiles[20, 21].Type);
+        Assert.Equal(WallId("Dirt Wall (natural)"), world.Tiles[20, 20].Wall);
+        Assert.Equal(BlockId("Sunplate Block"), world.Tiles[13, 11].Type);
+    }
+
     // ── Gem trees ───────────────────────────────────────────────────
 
     [Theory]

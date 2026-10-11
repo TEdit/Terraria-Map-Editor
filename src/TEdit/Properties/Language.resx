@@ -2198,7 +2198,7 @@ Would you like to enable error reporting?</value>
     <value>Replace every block and wall, not only the set's own</value>
   </data>
   <data name="toolbar_convert_set_any_material_hint" xml:space="preserve">
-    <value>Also replaces stone, dirt and other natural blocks and walls inside the selection. Use the brush or lasso to select only the building.</value>
+    <value>Natural terrain inside the selection becomes the target set's biome (sand for Sandstone, snow for Boreal Wood) or stays natural. Use the brush or lasso to select only the building.</value>
   </data>
   <data name="toolbar_convert_set_gem_trees" xml:space="preserve">
     <value>Gem trees (closest gem color to the target set)</value>

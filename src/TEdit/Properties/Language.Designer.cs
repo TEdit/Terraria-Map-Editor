@@ -9091,7 +9091,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also replaces stone, dirt and other natural blocks and walls inside the selection. Use the brush or lasso to select only the building.
+        ///   Looks up a localized string similar to Natural terrain inside the selection becomes the target set's biome (sand for Sandstone, snow for Boreal Wood) or stays natural. Use the brush or lasso to select only the building.
         /// </summary>
         public static string toolbar_convert_set_any_material_hint {
             get {
