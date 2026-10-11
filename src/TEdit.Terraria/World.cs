@@ -63,111 +63,8 @@ public partial class World
         CharacterNames.Clear();
     }
 
-    public static async Task SaveAsync(World world, string filename, bool resetTime = false, int versionOverride = 0, bool incrementRevision = true, bool preserveAll = true, IProgress<ProgressChangedEventArgs>? progress = null)
-    {
-        await Task.Run(() =>
-        {
-            lock (_fileLock)
-            {
-                uint currentWorldVersion = world.Version;
-                bool modDataStripped = false;
-                try
-                {
-                    // Set the world version for this save
-                    if (versionOverride > 0)
-                    {
-                        world.Version = (uint)(versionOverride);
-                    }
-
-                    if (resetTime)
-                    {
-                        progress?.Report(new ProgressChangedEventArgs(0, "Resetting Time..."));
-                    // world.ResetTime();
-                    }
-
-                    if (filename == null)
-                        return;
-
-                    // Strip mod tile/wall data before vanilla save
-                    if (world.IsTModLoader && world.TwldData != null)
-                    {
-                        progress?.Report(new ProgressChangedEventArgs(0, "Preparing tModLoader data..."));
-                        modDataStripped = true;
-                        TwldFile.StripFromWorld(world, world.TwldData);
-                    }
-
-                    string temp = filename + ".tmp";
-                    using (var fs = new FileStream(temp, FileMode.Create))
-                    {
-                        using (var bw = new BinaryWriter(fs))
-                        {
-                            if (world.IsWinPhone && versionOverride == 0)
-                            {
-                                SaveWinPhoneVerifiedUnchanged(world, fs);
-                            }
-                            else if (versionOverride < 0 || world.IsV0 || world.Version == 38)
-                            {
-                                bool addLight = (currentWorldVersion > world.Version); // Check if world is being downgraded.
-                                world.Version = (uint)Math.Abs(versionOverride);
-                                SaveV0(world, bw, addLight, progress);
-                            }
-                            else if (world.Version > 87 && world.Version != 38)
-                            {
-                                SaveV2(world, bw, incrementRevision, preserveAll, progress);
-                            }
-                            else
-                            {
-                                // Check if world is being downgraded below v26.
-                                // currentWorldVersion = whatever version the file is now.
-                                // world.Version       = the target (downgrade‐to) version.
-                                bool addLight = world.Version <= 25
-                                             && currentWorldVersion > world.Version;
-                                SaveV1(world, bw, addLight, progress);
-                            }
-
-                            if (world.IsConsole)
-                            {
-                                ConsoleCompressor.CompressStream(fs);
-                            }
-
-                            bw.Close();
-                            fs.Close();
-                        }
-                    }
-
-                    // Save the .twld sidecar. The overlay is restored in finally so a
-                    // failed vanilla or sidecar write cannot erase mod tiles in memory.
-                    if (world.IsTModLoader && world.TwldData != null)
-                    {
-                        progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
-                        // Rebuild mod chest/entity items from current World state so that
-                        // edits (paste, delete, move) are reflected in the .twld sidecar.
-                        TwldFile.RebuildModChestItems(world, world.TwldData);
-                        TwldFile.RebuildModTileEntityItems(world, world.TwldData);
-                        TwldFile.Save(filename, world.TwldData);
-                    }
-
-                    // Replace the .wld only after the .twld succeeded, so a failed sidecar
-                    // never leaves a new .wld next to a stale .twld. One rename: never half-written.
-                    File.Move(temp, filename, overwrite: true);
-
-                    world.LastSave = File.GetLastWriteTimeUtc(filename);
-                    progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));
-                }
-                finally
-                {
-                    if (modDataStripped && world.TwldData != null)
-                        TwldFile.ReapplyToWorld(world, world.TwldData);
-
-                    // Restore the version
-                    if (versionOverride > 0)
-                    {
-                        world.Version = currentWorldVersion;
-                    }
-                }
-            }
-        });
-    }
+    public static Task SaveAsync(World world, string filename, bool resetTime = false, int versionOverride = 0, bool incrementRevision = true, bool preserveAll = true, IProgress<ProgressChangedEventArgs>? progress = null) =>
+        Task.Run(() => Save(world, filename, resetTime, versionOverride, incrementRevision, preserveAll, progress));
 
     public static void Save(
         World world,
@@ -248,6 +145,10 @@ public partial class World
                 if (world.IsTModLoader && world.TwldData != null)
                 {
                     progress?.Report(new ProgressChangedEventArgs(0, "Saving tModLoader data..."));
+                    // Rebuild mod chest/entity items from current World state so that
+                    // edits (paste, delete, move) are reflected in the .twld sidecar.
+                    TwldFile.RebuildModChestItems(world, world.TwldData);
+                    TwldFile.RebuildModTileEntityItems(world, world.TwldData);
                     TwldFile.Save(filename, world.TwldData);
                 }
 

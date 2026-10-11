@@ -390,8 +390,6 @@ public static class TwldFile
                 continue;
 
             var chestTag = new TagCompound();
-            chestTag.Set("x", chest.X);
-            chestTag.Set("y", chest.Y);
 
             var itemTags = new List<TagCompound>();
             for (int slot = 0; slot < chest.Items.Count; slot++)
@@ -421,8 +419,11 @@ public static class TwldFile
                     itemTag.Set("id", item.NetId);
                 }
 
-                itemTag.Set("stack", item.StackSize);
-                itemTag.Set("prefix", item.Prefix);
+                // Like tModLoader's ItemIO: defaults (stack 1, prefix 0) are left out; the loader fills them in.
+                if (item.StackSize != 1)
+                    itemTag.Set("stack", item.StackSize);
+                if (item.Prefix != 0)
+                    itemTag.Set("prefix", item.Prefix);
 
                 if (!string.IsNullOrEmpty(item.ModPrefixMod))
                 {
@@ -440,7 +441,10 @@ public static class TwldFile
 
             if (itemTags.Count > 0)
             {
+                // Same key order as tModLoader writes (items, x, y), so an unedited round trip is unchanged.
                 chestTag.Set("items", itemTags);
+                chestTag.Set("x", chest.X);
+                chestTag.Set("y", chest.Y);
                 newChestTags.Add(chestTag);
             }
         }
