@@ -4133,6 +4133,10 @@ public partial class WorldViewModel : ReactiveObject
         bool saveCompleted = false;
         // The file holds the world as of this undo step; edits made while the save runs stay unsaved.
         int undoIndexAtSaveStart = _undoManager?.CurrentIndex ?? 0;
+        // LastSave tracks the real world file for the "externally modified" check;
+        // an autosave writes elsewhere and must not move it forward.
+        bool isAutosaveFile = filename.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase);
+        DateTime? lastSaveBefore = CurrentWorld?.LastSave;
         try
         {
             OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Saving World..."));
@@ -4145,6 +4149,8 @@ public partial class WorldViewModel : ReactiveObject
             else
                 await World.SaveAsync(CurrentWorld, filename, versionOverride: (int)version, preserveAll: preserveAll, progress: progress);
             saveCompleted = true;
+            if (isAutosaveFile && lastSaveBefore.HasValue && CurrentWorld != null)
+                CurrentWorld.LastSave = lastSaveBefore.Value;
         }
         catch (Exception ex)
         {
