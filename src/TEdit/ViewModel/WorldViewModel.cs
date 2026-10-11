@@ -4131,6 +4131,8 @@ public partial class WorldViewModel : ReactiveObject
         bool saveAsWinPhone = false)
     {
         bool saveCompleted = false;
+        // The file holds the world as of this undo step; edits made while the save runs stay unsaved.
+        int undoIndexAtSaveStart = _undoManager?.CurrentIndex ?? 0;
         try
         {
             OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Saving World..."));
@@ -4159,16 +4161,16 @@ public partial class WorldViewModel : ReactiveObject
             {
                 // World.SaveAsync handles .tmp → final copy internally, no rename needed here.
                 // Only reset autosave tracking, keep user save tracking
-                _lastSavedUndoIndex = _undoManager.CurrentIndex;
+                _lastSavedUndoIndex = undoIndexAtSaveStart;
                 _hasUnsavedPropertyChanges = false;
                 this.RaisePropertyChanged(nameof(HasUnsavedChanges));
             }
             else
             {
                 // Manual save: reset both autosave and user save tracking
-                _lastSavedUndoIndex = _undoManager.CurrentIndex;
+                _lastSavedUndoIndex = undoIndexAtSaveStart;
                 _hasUnsavedPropertyChanges = false;
-                _lastUserSavedUndoIndex = _undoManager.CurrentIndex;
+                _lastUserSavedUndoIndex = undoIndexAtSaveStart;
                 _hasUnsavedUserPropertyChanges = false;
                 this.RaisePropertyChanged(nameof(HasUnsavedChanges));
                 this.RaisePropertyChanged(nameof(HasUnsavedUserChanges));
