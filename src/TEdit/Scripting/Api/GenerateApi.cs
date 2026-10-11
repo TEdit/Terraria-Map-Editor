@@ -11,7 +11,7 @@ public partial class GenerateApi
     private readonly World _world;
     private readonly IUndoManager _undo;
     private readonly ISelection _selection;
-    private readonly Random _rand = new();
+    private readonly Random _rand;
 
     private record TreeTypeInfo(string Name, ushort TileId, int MinHeight, int MaxHeight);
     private record OreTypeInfo(string Name, ushort TileId, double DefaultStrength, int DefaultSteps);
@@ -75,11 +75,13 @@ public partial class GenerateApi
             OreTypeMap[o.Name] = o;
     }
 
-    public GenerateApi(World world, IUndoManager undo, ISelection selection)
+    /// <param name="random">Pass a seeded instance for repeatable output (tests); scripts get a fresh one.</param>
+    public GenerateApi(World world, IUndoManager undo, ISelection selection, Random? random = null)
     {
         _world = world;
         _undo = undo;
         _selection = selection;
+        _rand = random ?? new Random();
     }
 
     /// <summary>

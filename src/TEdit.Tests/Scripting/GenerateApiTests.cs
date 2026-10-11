@@ -11,6 +11,9 @@ namespace TEdit.Tests.Scripting;
 
 public class GenerateApiTests
 {
+    // Generation is random; a fixed seed keeps every test repeatable.
+    private const int Seed = 12345;
+
     private readonly World _world;
     private readonly NoOpUndoManager _undo;
     private readonly GenerateApi _api;
@@ -19,7 +22,7 @@ public class GenerateApiTests
     {
         _world = TestWorldFactory.CreateWorldWithTerrain(200, 200);
         _undo = new NoOpUndoManager();
-        _api = new GenerateApi(_world, _undo, new NoOpSelection());
+        _api = new GenerateApi(_world, _undo, new NoOpSelection(), new Random(Seed));
     }
 
     // ── ListOreTypes ──────────────────────────────────────────────────
@@ -104,7 +107,7 @@ public class GenerateApiTests
     {
         // Speed bias should cause tiles to appear away from the start point
         var world = TestWorldFactory.CreateWorldWithTerrain(400, 200);
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         int startX = 100, startY = 100;
         api.TileRunner(startX, startY, 5.0, 30, 8, speedX: 1.0, speedY: 0.0);
@@ -221,7 +224,7 @@ public class GenerateApiTests
                 world.Tiles[x, y].IsActive = true;
                 world.Tiles[x, y].Type = 1;
             }
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         api.Lake(250, 350, "lava", 1.0);
 
@@ -245,7 +248,7 @@ public class GenerateApiTests
                 world.Tiles[x, y].IsActive = true;
                 world.Tiles[x, y].Type = 1;
             }
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         api.Lake(250, 350, "honey", 1.0);
 
@@ -290,10 +293,10 @@ public class GenerateApiTests
     {
         // Place small and large, count tiles
         var worldSmall = TestWorldFactory.CreateWorldWithTerrain(200, 200);
-        var apiSmall = new GenerateApi(worldSmall, new NoOpUndoManager(), new NoOpSelection());
+        var apiSmall = new GenerateApi(worldSmall, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         var worldLarge = TestWorldFactory.CreateWorldWithTerrain(200, 200);
-        var apiLarge = new GenerateApi(worldLarge, new NoOpUndoManager(), new NoOpSelection());
+        var apiLarge = new GenerateApi(worldLarge, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         apiSmall.OreVein("copper", 100, 80, "small");
         apiLarge.OreVein("copper", 100, 80, "large");
@@ -738,7 +741,7 @@ public class GenerateApiTests
     {
         // Use a wider world for ocean generation
         var world = TestWorldFactory.CreateWorldWithTerrain(500, 300);
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         int count = api.Ocean(direction: -1, oceanWidth: 80, maxDepth: 40);
 
@@ -763,7 +766,7 @@ public class GenerateApiTests
     public void Ocean_RightEdge_PlacesSandAndWater()
     {
         var world = TestWorldFactory.CreateWorldWithTerrain(500, 300);
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         int count = api.Ocean(direction: 1, oceanWidth: 80, maxDepth: 40);
 
@@ -782,7 +785,7 @@ public class GenerateApiTests
     public void Ocean_ExponentialDepth_DeeperAtEdge()
     {
         var world = TestWorldFactory.CreateWorldWithTerrain(500, 300);
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         api.Ocean(direction: -1, oceanWidth: 100, maxDepth: 60);
 
@@ -809,7 +812,7 @@ public class GenerateApiTests
     public void Underworld_PlacesAshAndLava()
     {
         var world = TestWorldFactory.CreateSmallWorld(200, 400);
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         int count = api.Underworld(300);
 
@@ -834,7 +837,7 @@ public class GenerateApiTests
     public void Underworld_HasHellstone()
     {
         var world = TestWorldFactory.CreateSmallWorld(300, 500);
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         api.Underworld(350);
 
@@ -851,7 +854,7 @@ public class GenerateApiTests
     public void Underworld_AutoDetectsYStart()
     {
         var world = TestWorldFactory.CreateSmallWorld(200, 400);
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         // Call with default yStart (0 → auto)
         int count = api.Underworld();
@@ -865,7 +868,7 @@ public class GenerateApiTests
     public void Corruption_VShape_WiderAtDepth()
     {
         var world = TestWorldFactory.CreateWorldWithTerrain(300, 200);
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         api.Corruption(120, 35, 30, 100);
 
@@ -972,7 +975,7 @@ public class GenerateApiTests
     {
         // With ditherWidth > 0, edges should have fewer converted tiles than center
         var world = TestWorldFactory.CreateWorldWithTerrain(300, 200);
-        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection());
+        var api = new GenerateApi(world, new NoOpUndoManager(), new NoOpSelection(), new Random(Seed));
 
         api.Jungle(100, 35, 80, 80, "rectangle", ditherWidth: 20);
 
