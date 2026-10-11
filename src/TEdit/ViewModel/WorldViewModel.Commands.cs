@@ -597,16 +597,16 @@ public partial class WorldViewModel
     }
 
     [ReactiveCommand]
-    private void PasteRotateCW()
+    private async Task PasteRotateCW()
     {
-        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste && await ConfirmRotateAsync(pt.FloatingBuffer))
             pt.RotateCW();
     }
 
     [ReactiveCommand]
-    private void PasteRotateCCW()
+    private async Task PasteRotateCCW()
     {
-        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste)
+        if (ActiveTool is TEdit.Editor.Tools.PasteTool pt && pt.IsFloatingPaste && await ConfirmRotateAsync(pt.FloatingBuffer))
             pt.RotateCCW();
     }
 
@@ -658,10 +658,24 @@ public partial class WorldViewModel
     }
 
     [ReactiveCommand]
-    private void ClipboardRotate(ClipboardBufferPreview buffer)
+    private async Task ClipboardRotate(ClipboardBufferPreview buffer)
     {
+        if (!await ConfirmRotateAsync(buffer?.Buffer)) return;
         _clipboard.Rotate(buffer);
         this.PreviewChange();
+    }
+
+    /// <summary>
+    /// Rotation removes furniture, and with it chests, signs and tile entities and their contents.
+    /// Ask first when the buffer has any, instead of dropping them silently.
+    /// </summary>
+    public async Task<bool> ConfirmRotateAsync(ClipboardBuffer buffer)
+    {
+        string loss = buffer?.DescribeRotationLoss();
+        if (loss == null) return true;
+        return await App.DialogService.ShowConfirmationAsync(
+            "Rotate Selection?",
+            $"Furniture can't be rotated, so rotating removes it, including {loss} with their items and text.\r\n\r\nRotate anyway?");
     }
 
     private void ActivateBuffer(ClipboardBufferPreview item)

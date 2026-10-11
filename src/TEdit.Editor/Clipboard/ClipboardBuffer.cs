@@ -424,6 +424,19 @@ public partial class ClipboardBuffer : ITileData
     public ClipboardBuffer FlipY() => Flip(this, false, false);
     public ClipboardBuffer Rotate() => Flip(this, false, true);
 
+    /// <summary>
+    /// What rotating would remove: rotation clears framed sprites (furniture can't be rotated),
+    /// and with them chests, signs and tile entities. Null when there is nothing with contents.
+    /// </summary>
+    public string? DescribeRotationLoss()
+    {
+        var parts = new System.Collections.Generic.List<string>();
+        if (Chests.Count > 0) parts.Add(Chests.Count == 1 ? "1 chest" : $"{Chests.Count} chests");
+        if (Signs.Count > 0) parts.Add(Signs.Count == 1 ? "1 sign" : $"{Signs.Count} signs");
+        if (TileEntities.Count > 0) parts.Add(TileEntities.Count == 1 ? "1 tile entity" : $"{TileEntities.Count} tile entities");
+        return parts.Count == 0 ? null : string.Join(", ", parts);
+    }
+
     public static ClipboardBuffer Flip(ClipboardBuffer buffer, bool flipX, bool rotate)
     {
         ClipboardBuffer flippedBuffer = new ClipboardBuffer(buffer.Size);

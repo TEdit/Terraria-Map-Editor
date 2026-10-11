@@ -509,6 +509,13 @@ public partial class MainWindow : FluentWindow
         }
     }
 
+    private async Task RotatePasteAsync(PasteTool pasteTool, bool clockwise)
+    {
+        if (!await _vm.ConfirmRotateAsync(pasteTool.FloatingBuffer)) return;
+        if (clockwise) pasteTool.RotateCW();
+        else pasteTool.RotateCCW();
+    }
+
     private bool HandleKeyDownAction(string actionId, KeyEventArgs e)
     {
         ScrollEventArgs scrollValue = null;
@@ -576,14 +583,14 @@ public partial class MainWindow : FluentWindow
             case "paste.rotate.cw":
                 if (_vm.ActiveTool is PasteTool rotateCwPt && rotateCwPt.IsFloatingPaste)
                 {
-                    rotateCwPt.RotateCW();
+                    _ = RotatePasteAsync(rotateCwPt, clockwise: true);
                     return true;
                 }
                 return false;
             case "paste.rotate.ccw":
                 if (_vm.ActiveTool is PasteTool rotateCcwPt && rotateCcwPt.IsFloatingPaste)
                 {
-                    rotateCcwPt.RotateCCW();
+                    _ = RotatePasteAsync(rotateCcwPt, clockwise: false);
                     return true;
                 }
                 return false;

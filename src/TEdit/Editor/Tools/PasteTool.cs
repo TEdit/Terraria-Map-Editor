@@ -44,6 +44,7 @@ public sealed class PasteTool : BaseTool
     }
 
     public override bool IsFloatingPaste => _state != PasteState.Idle;
+    public ClipboardBuffer FloatingBuffer => _floatingBuffer;
     public override Vector2Int32 FloatingPasteAnchor => _floatingAnchor;
     public override Vector2Int32 FloatingPasteSize => _floatingBuffer?.Size ?? default;
     public override ClipboardBuffer FloatingPasteBuffer => _floatingBuffer;
