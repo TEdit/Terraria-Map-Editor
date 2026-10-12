@@ -578,7 +578,10 @@ public partial class World
         bool useLegacyLimit = version < 216;
         // Match Terraria: null text is excluded from both the count and the records.
         var savedSigns = signs.Where(sign => sign.Text != null);
-        if (useLegacyLimit) savedSigns = savedSigns.Take(Sign.LegacyLimit);
+        if (useLegacyLimit)
+        {
+            savedSigns = savedSigns.Take(Sign.LegacyLimit);
+        }
         var records = savedSigns.ToArray();
         Int16 count = (Int16)records.Length;
         bw.Write(count);
