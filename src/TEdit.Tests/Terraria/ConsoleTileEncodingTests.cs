@@ -10,10 +10,10 @@ namespace TEdit.Tests.Terraria;
 public class ConsoleTileEncodingTests(ITestOutputHelper output)
 {
     [Theory]
-    [InlineData("console.wld")]
-    [InlineData("Challenge.wld")]
-    [InlineData("MAINWORLD.wld")]
-    public void Format279_RoundTrip_PreservesEveryTilePayloadAndNonTileSection(string name)
+    [InlineData("console.wld", 32)]
+    [InlineData("Challenge.wld", 0)]
+    [InlineData("MAINWORLD.wld", 0)]
+    public void Format279_RoundTrip_PreservesEveryTilePayloadAndNonTileSection(string name, int expectedIgnoredShapes)
     {
         string source = Path.Combine(AppContext.BaseDirectory, "WorldFiles", name);
         byte[] original = ReadConsole(source);
@@ -77,6 +77,7 @@ public class ConsoleTileEncodingTests(ITestOutputHelper output)
             var originalReader = new TileRecords(original, before);
             var savedReader = new TileRecords(saved, after);
             int changedPayloads = 0;
+            int ignoredShapes = 0;
             int changedRunExamples = 0;
             int originalRemaining = 0, savedRemaining = 0;
             Record originalRecord = default, savedRecord = default;
@@ -98,6 +99,11 @@ public class ConsoleTileEncodingTests(ITestOutputHelper output)
                     bool samePayload = (original[originalRecord.Offset] & 63) == (saved[savedRecord.Offset] & 63)
                         && original.AsSpan(originalRecord.Offset + 1, originalRecord.PayloadLength - 1)
                             .SequenceEqual(saved.AsSpan(savedRecord.Offset + 1, savedRecord.PayloadLength - 1));
+                    if (!samePayload && IsReferenceIgnoredShapeRemoval(original, originalRecord, saved, savedRecord))
+                    {
+                        ignoredShapes += count;
+                        samePayload = true;
+                    }
                     if (!samePayload)
                     {
                         if (changedPayloads < 20)
@@ -124,6 +130,7 @@ public class ConsoleTileEncodingTests(ITestOutputHelper output)
             output.WriteLine($"Saved records={savedReader.Count}; RLE modes={string.Join(",", savedReader.Modes)}; payload bytes={savedReader.PayloadBytes}; RLE bytes={savedReader.RleBytes}");
             output.WriteLine($"Compared {before.Width * before.Height} tile positions; changed non-RLE payloads={changedPayloads}");
             Assert.Equal(0, changedPayloads);
+            Assert.Equal(expectedIgnoredShapes, ignoredShapes);
             Assert.Empty(changedSections);
         }
         finally
@@ -131,6 +138,46 @@ public class ConsoleTileEncodingTests(ITestOutputHelper output)
             File.Delete(temporary);
             File.Delete(temporary + ".tmp");
         }
+    }
+
+    [Theory]
+    [InlineData("031034", "0234", true)]
+    [InlineData("031234", "030234", true)]
+    [InlineData("23107E02", "227E02", true)]
+    [InlineData("031001", "0201", false)] // Solid tile slope.
+    [InlineData("031083", "0283", false)] // NonSolidSaveSlopes exception 131.
+    [InlineData("031034", "032034", false)] // Different, nonzero shape.
+    [InlineData("031234", "0234", false)] // Wire loss.
+    [InlineData("07103401", "063402", false)] // Wall changed.
+    [InlineData("0B10347F", "0A347E", false)] // Liquid amount changed.
+    [InlineData("0311083403", "0301083404", false)] // Paint changed.
+    [InlineData("03110234", "0234", false)] // Actuator removed.
+    [InlineData("0311010234", "0301010434", false)] // Coating changed.
+    [InlineData("0350A55A002400", "02A55B002400", false)] // Frame changed.
+    [InlineData("031034", "023E", false)] // Tile type changed.
+    public void ShapeException_AcceptsOnlyReferenceIgnoredShapeRemoval(string originalHex, string savedHex, bool expected)
+    {
+        byte[] original = Convert.FromHexString(originalHex);
+        byte[] saved = Convert.FromHexString(savedHex);
+        bool[] frames = new bool[693];
+        frames[165] = true;
+        var before = new TileRecords(original, new Header([0, 0, original.Length], frames, 1, 1)).Read(1);
+        var after = new TileRecords(saved, new Header([0, 0, saved.Length], frames, 1, 1)).Read(1);
+        Assert.Equal(expected, IsReferenceIgnoredShapeRemoval(original, before, saved, after));
+    }
+
+    private static bool IsReferenceIgnoredShapeRemoval(byte[] original, Record before, byte[] saved, Record after)
+    {
+        // Verified against 1.4.4.9 Main.tileSolid and TileID.Sets.NonSolidSaveSlopes.
+        // Restrict the exception to the eight types observed in these format-279 fixtures.
+        // Keep every other flag and body byte; header-chain bits may disappear with an empty header.
+        return before.Type is 52 or 62 or 165 or 178 or 323 or 373 or 375 or 638
+            && (before.H2 & 0x70) != 0 && (after.H2 & 0x70) == 0
+            && (before.H1 & 0x3E) == (after.H1 & 0x3E)
+            && (before.H2 & 0x8E) == (after.H2 & 0x8E)
+            && (before.H3 & 0xFE) == (after.H3 & 0xFE) && before.H4 == after.H4
+            && original.AsSpan(before.BodyOffset, before.Offset + before.PayloadLength - before.BodyOffset)
+                .SequenceEqual(saved.AsSpan(after.BodyOffset, after.Offset + after.PayloadLength - after.BodyOffset));
     }
 
     private static byte[] ReadConsole(string path)
@@ -158,6 +205,7 @@ public class ConsoleTileEncodingTests(ITestOutputHelper output)
         Assert.Equal(11, reader.ReadInt16());
         int[] pointers = Enumerable.Range(0, 11).Select(_ => reader.ReadInt32()).ToArray();
         int frameCount = reader.ReadInt16();
+        Assert.Equal(693, frameCount);
         byte[] packedFrames = reader.ReadBytes((frameCount + 7) / 8);
         bool[] frames = Enumerable.Range(0, frameCount).Select(i => (packedFrames[i / 8] & (1 << (i % 8))) != 0).ToArray();
         Assert.Equal(pointers[0], reader.BaseStream.Position);
@@ -172,7 +220,8 @@ public class ConsoleTileEncodingTests(ITestOutputHelper output)
         return new Header(pointers, frames, width, height);
     }
 
-    private readonly record struct Record(int Offset, int PayloadLength, int Length, int Count);
+    private readonly record struct Record(int Offset, int PayloadLength, int Length, int Count,
+        int BodyOffset, int Type, byte H1, byte H2, byte H3, byte H4);
 
     // Independent wire reader based on format-279 WorldFile.LoadWorldTiles.
     // It retains ALL non-RLE bytes, including flags that TEdit's Tile model might ignore.
@@ -192,13 +241,12 @@ public class ConsoleTileEncodingTests(ITestOutputHelper output)
             byte h1 = data[Position++];
             byte h2 = (h1 & 1) != 0 ? data[Position++] : (byte)0;
             byte h3 = (h2 & 1) != 0 ? data[Position++] : (byte)0;
-            if ((h3 & 1) != 0)
-            {
-                Position++; // fourth header carries coatings and visibility
-            }
+            byte h4 = (h3 & 1) != 0 ? data[Position++] : (byte)0;
+            int bodyOffset = Position;
+            int type = -1;
             if ((h1 & 2) != 0)
             {
-                int type = data[Position++];
+                type = data[Position++];
                 if ((h1 & 32) != 0)
                 {
                     type |= data[Position++] << 8;
@@ -243,7 +291,8 @@ public class ConsoleTileEncodingTests(ITestOutputHelper output)
             Modes[mode]++;
             PayloadBytes += payloadLength;
             RleBytes += Position - start - payloadLength;
-            return new Record(start, payloadLength, Position - start, repeats + 1);
+            return new Record(start, payloadLength, Position - start, repeats + 1,
+                bodyOffset, type, h1, h2, h3, h4);
         }
 
         private int ReadRepeatInt16()
