@@ -1221,7 +1221,11 @@ public partial class World
             world.TreeTopVariations[2] = world.TreeStyle2;
             world.TreeTopVariations[3] = world.TreeStyle3;
             world.TreeTopVariations[4] = world.BgCorruption;
-            world.TreeTopVariations[5] = world.JungleBackStyle;
+            // Preserve independent console tree-top state; retain regular-world behavior.
+            if (!world.IsConsole)
+            {
+                world.TreeTopVariations[5] = world.JungleBackStyle;
+            }
             world.TreeTopVariations[6] = world.BgSnow;
             world.TreeTopVariations[7] = world.BgHallow;
             world.TreeTopVariations[8] = world.BgCrimson;
@@ -2066,9 +2070,20 @@ public partial class World
         w.CaveBackX[0] = r.ReadInt32();
         w.CaveBackX[1] = r.ReadInt32();
         w.CaveBackX[2] = r.ReadInt32();
-        w.CaveBackX2 = w.CaveBackX[2];
-        w.CaveBackX1 = w.CaveBackX[1];
-        w.CaveBackX0 = w.CaveBackX[0];
+        if (w.IsConsole)
+        {
+            // Terraria loads these verbatim, even when unsorted. Limit the bypass
+            // of editor constraints to console deserialization.
+            w._caveBackX0 = w.CaveBackX[0];
+            w._caveBackX1 = w.CaveBackX[1];
+            w._caveBackX2 = w.CaveBackX[2];
+        }
+        else
+        {
+            w.CaveBackX2 = w.CaveBackX[2];
+            w.CaveBackX1 = w.CaveBackX[1];
+            w.CaveBackX0 = w.CaveBackX[0];
+        }
         w.CaveBackStyle0 = r.ReadInt32();
         w.CaveBackStyle1 = r.ReadInt32();
         w.CaveBackStyle2 = r.ReadInt32();
@@ -2300,7 +2315,11 @@ public partial class World
             w.TreeStyle2 = w.TreeTopVariations[2];
             w.TreeStyle3 = w.TreeTopVariations[3];
             w.BgCorruption = (byte)w.TreeTopVariations[4];
-            w.JungleBackStyle = (byte)w.TreeTopVariations[5];
+            // Preserve the separately serialized console underground background.
+            if (!w.IsConsole)
+            {
+                w.JungleBackStyle = (byte)w.TreeTopVariations[5];
+            }
             w.BgSnow = (byte)w.TreeTopVariations[6];
             w.BgHallow = (byte)w.TreeTopVariations[7];
             w.BgCrimson = (byte)w.TreeTopVariations[8];

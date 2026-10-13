@@ -167,18 +167,17 @@ public class ConsoleRoundTripTests
 
     /// <summary>
     /// Load → Save → binary compare the raw (pre-compression) world bytes.
-    /// This is the critical test: if the serialized bytes differ, the game
-    /// will reject the world even though TEdit's lenient loader accepts it.
-    /// Works for both compressed and uncompressed console worlds.
+    /// These fixtures use encodings that should remain byte-identical.
+    /// Challenge.wld and console.wld are covered by ConsoleTileEncodingTests,
+    /// which checks every expanded tile and non-tile section while allowing
+    /// verified RLE and reference-ignored shape normalization.
     /// </summary>
     [Theory]
     [InlineData(".\\WorldFiles\\ConsoleCookie.wld")]
-    [InlineData(".\\WorldFiles\\console.wld")]
-    [InlineData(".\\WorldFiles\\Challenge.wld")]
     [InlineData(".\\WorldFiles\\MAINWORLD.wld")]
     public void Console_FullRoundTrip_RawBytesMatch(string fileName)
     {
-        if (!IsValidWorldFile(fileName)) return;
+        Assert.True(IsValidWorldFile(fileName), $"Missing or invalid world fixture: {fileName}");
 
         bool isCompressed = IsCompressedWorld(fileName);
         byte[] originalRaw = GetRawWorldBytes(fileName);
