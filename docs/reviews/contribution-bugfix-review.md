@@ -102,7 +102,7 @@ Results on the reviewed branch, against the baseline recorded above:
 | Baseline console comparison | The same three failing console cases reproduce with unchanged origin/main production code. A fourth case passes. The test-only dispatcher bootstrap remains enabled for this comparison. |
 | Release application build | Succeeded with zero errors and 16 warnings. |
 
-The three failures are `Console_FullRoundTrip_RawBytesMatch` for `console.wld`, `Challenge.wld`, and `MAINWORLD.wld`. They remain enabled. These results establish an existing byte-identity discrepancy, not game compatibility.
+The three failures are `Console_FullRoundTrip_RawBytesMatch` for `console.wld`, `Challenge.wld`, and `MAINWORLD.wld`. They remain enabled. The encoding audit, detailed investigation, and background-preservation fix work are tracked separately in [PR #2502](https://github.com/TEdit/Terraria-Map-Editor/pull/2502). Console-game compatibility remains unproven.
 
 The 11 core skips comprise six maintenance/data-generation operations and five Calamity cases. They are not counted as passes. In particular, the missing modded-world coverage remains a manual acceptance requirement.
 
