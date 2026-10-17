@@ -407,7 +407,7 @@ map.fitBounds(bounds);
         // Helper: convert world tile coords to Leaflet CRS.Simple coords
         // lat = -(tileY - area.Top) / CoordScale, lng = (tileX - area.Left) / CoordScale
         string ToLatLng(double tileX, double tileY) =>
-            $"[{-(tileY - area.Top) / CoordScale:F2}, {(tileX - area.Left) / CoordScale:F2}]";
+            FormattableString.Invariant($"[{-(tileY - area.Top) / CoordScale:F2}, {(tileX - area.Left) / CoordScale:F2}]");
 
         // Icon factory function
         sb.AppendLine(@"

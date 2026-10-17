@@ -36,9 +36,9 @@ public partial class TileEntity : ReactiveObject
             case (int)TileType.WomannequinLegacy:
             case (int)TileType.DisplayDoll:
                 TE.Type = (byte)TileEntityType.DisplayDoll;
-                TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 9));
-                TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 9));
-                TE.Misc = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 1));
+                TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 9).Select(_ => new TileEntityItem()));
+                TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 9).Select(_ => new TileEntityItem()));
+                TE.Misc = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 1).Select(_ => new TileEntityItem()));
                 TE.Pose = 0;
                 break;
             case (int)TileType.WeaponRackLegacy:
@@ -50,8 +50,8 @@ public partial class TileEntity : ReactiveObject
                 break;
             case (int)TileType.HatRack:
                 TE.Type = (byte)TileEntityType.HatRack;
-                TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
-                TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
+                TE.Items = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 2).Select(_ => new TileEntityItem()));
+                TE.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Range(0, 2).Select(_ => new TileEntityItem()));
                 break;
             case (int)TileType.FoodPlatter:
                 TE.Type = (byte)TileEntityType.FoodPlatter;
@@ -436,8 +436,8 @@ public partial class TileEntity : ReactiveObject
     {
         byte numSlots = 2;
         var slots = (BitsByte)r.ReadByte();
-        Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
-        Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
+        Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Range(0, numSlots).Select(_ => new TileEntityItem()));
+        Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Range(0, numSlots).Select(_ => new TileEntityItem()));
         for (int i = 0; i < numSlots; i++)
         {
             if (slots[i])

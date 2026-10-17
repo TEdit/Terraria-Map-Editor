@@ -54,7 +54,7 @@ public partial class Item : ReactiveObject
             ModGlobalData = null;
 
             this.RaiseAndSetIfChanged(ref _netId, value);
-            _currentItemProperty = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Id == _netId);
+            _currentItemProperty = WorldConfiguration.ItemLookupTable.GetValueOrDefault(_netId);
             if (_netId == 0)
                 StackSize = 0;
             else
