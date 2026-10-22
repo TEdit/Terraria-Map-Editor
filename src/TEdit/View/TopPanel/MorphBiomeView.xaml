@@ -18,15 +18,15 @@
              mc:Ignorable="d" >
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical" Margin="2">
-            <TextBlock Text="Mode" Margin="2" />
+            <TextBlock Text="{x:Static p:Language.MorphBiome_Mode}" Margin="2" />
             <ComboBox Width="200"
                       SelectedValue="{Binding MorphToolOptions.Mode}"
                       SelectedValuePath="Tag">
-                <ComboBoxItem Content="Safe conversion"
-                              ToolTip="Converts matching biome tiles and keeps unsupported tiles unchanged."
+                <ComboBoxItem Content="{x:Static p:Language.MorphBiome_SafeConversion}"
+                              ToolTip="{x:Static p:Language.MorphBiome_SafeConversion_Tooltip}"
                               Tag="{x:Static terrariaData:MorphMode.SafeConvert}" />
-                <ComboBoxItem Content="Generate biome (destructive)"
-                              ToolTip="Changes terrain and can remove decorations. Use Undo to restore the original tiles."
+                <ComboBoxItem Content="{x:Static p:Language.MorphBiome_DestructiveConversion}"
+                              ToolTip="{x:Static p:Language.MorphBiome_DestructiveConversion_Tooltip}"
                               Tag="{x:Static terrariaData:MorphMode.GenerateBiome}" />
             </ComboBox>
             <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />

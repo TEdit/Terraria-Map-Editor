@@ -9341,5 +9341,1634 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("wp_fixbackground", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string common_apply {
+            get {
+                return ResourceManager.GetString("common_apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both.
+        /// </summary>
+        public static string common_both {
+            get {
+                return ResourceManager.GetString("common_both", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center.
+        /// </summary>
+        public static string common_center {
+            get {
+                return ResourceManager.GetString("common_center", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string common_left {
+            get {
+                return ResourceManager.GetString("common_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Random.
+        /// </summary>
+        public static string common_random {
+            get {
+                return ResourceManager.GetString("common_random", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        public static string common_right {
+            get {
+                return ResourceManager.GetString("common_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug.
+        /// </summary>
+        public static string menu_debug {
+            get {
+                return ResourceManager.GetString("menu_debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show NBT Overlay.
+        /// </summary>
+        public static string menu_debug_show_nbt {
+            get {
+                return ResourceManager.GetString("menu_debug_show_nbt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate biome (destructive).
+        /// </summary>
+        public static string MorphBiome_DestructiveConversion {
+            get {
+                return ResourceManager.GetString("MorphBiome_DestructiveConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes terrain and can remove decorations. Use Undo to restore the original tiles..
+        /// </summary>
+        public static string MorphBiome_DestructiveConversion_Tooltip {
+            get {
+                return ResourceManager.GetString("MorphBiome_DestructiveConversion_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mode.
+        /// </summary>
+        public static string MorphBiome_Mode {
+            get {
+                return ResourceManager.GetString("MorphBiome_Mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Safe conversion.
+        /// </summary>
+        public static string MorphBiome_SafeConversion {
+            get {
+                return ResourceManager.GetString("MorphBiome_SafeConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Converts matching biome tiles and keeps unsupported tiles unchanged..
+        /// </summary>
+        public static string MorphBiome_SafeConversion_Tooltip {
+            get {
+                return ResourceManager.GetString("MorphBiome_SafeConversion_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open in editor.
+        /// </summary>
+        public static string nbt_open_in_editor_tooltip {
+            get {
+                return ResourceManager.GetString("nbt_open_in_editor_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search tags....
+        /// </summary>
+        public static string nbt_search_tags_placeholder {
+            get {
+                return ResourceManager.GetString("nbt_search_tags_placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom to this tile on the map.
+        /// </summary>
+        public static string nbt_zoom_to_tile_tooltip {
+            get {
+                return ResourceManager.GetString("nbt_zoom_to_tile_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace All.
+        /// </summary>
+        public static string palette_replace_all {
+            get {
+                return ResourceManager.GetString("palette_replace_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace all matching tiles in the world.
+        /// </summary>
+        public static string palette_replace_all_tooltip {
+            get {
+                return ResourceManager.GetString("palette_replace_all_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace Selection.
+        /// </summary>
+        public static string palette_replace_selection {
+            get {
+                return ResourceManager.GetString("palette_replace_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace matching tiles within the current selection.
+        /// </summary>
+        public static string palette_replace_selection_tooltip {
+            get {
+                return ResourceManager.GetString("palette_replace_selection_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search....
+        /// </summary>
+        public static string picker_search_placeholder {
+            get {
+                return ResourceManager.GetString("picker_search_placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mods.
+        /// </summary>
+        public static string picker_tab_mods {
+            get {
+                return ResourceManager.GetString("picker_tab_mods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply %-chance to everything.
+        /// </summary>
+        public static string plugin_blockshuffle_apply_chance_all {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_apply_chance_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also count liquids as empty (best with walls).
+        /// </summary>
+        public static string plugin_blockshuffle_count_liquids {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_count_liquids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also count walls (and wires) as empty.
+        /// </summary>
+        public static string plugin_blockshuffle_count_walls {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_count_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of empty blocks to be swapped:.
+        /// </summary>
+        public static string plugin_blockshuffle_empty_percent {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_empty_percent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable undo (Slow).
+        /// </summary>
+        public static string plugin_blockshuffle_enable_undo {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_enable_undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include Tile-Entities.
+        /// </summary>
+        public static string plugin_blockshuffle_include_entities {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_include_entities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep blocks below special Tile-Entities.
+        /// </summary>
+        public static string plugin_blockshuffle_keep_below_entities {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_keep_below_entities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string plugin_blockshuffle_scope_selection {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_scope_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World.
+        /// </summary>
+        public static string plugin_blockshuffle_scope_world {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_scope_world", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shuffle.
+        /// </summary>
+        public static string plugin_blockshuffle_shuffle_button {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_shuffle_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shuffle:.
+        /// </summary>
+        public static string plugin_blockshuffle_shuffle_label {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_shuffle_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shuffle Block Locations.
+        /// </summary>
+        public static string plugin_blockshuffle_title {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string plugin_housegen_add {
+            get {
+                return ResourceManager.GetString("plugin_housegen_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click [...] to Import Template Schematic.
+        /// </summary>
+        public static string plugin_housegen_import_hint {
+            get {
+                return ResourceManager.GetString("plugin_housegen_import_hint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House Generator.
+        /// </summary>
+        public static string plugin_housegen_title {
+            get {
+                return ResourceManager.GetString("plugin_housegen_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adamantite.
+        /// </summary>
+        public static string plugin_ore_adamantite {
+            get {
+                return ResourceManager.GetString("plugin_ore_adamantite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chlorophyte.
+        /// </summary>
+        public static string plugin_ore_chlorophyte {
+            get {
+                return ResourceManager.GetString("plugin_ore_chlorophyte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cobalt.
+        /// </summary>
+        public static string plugin_ore_cobalt {
+            get {
+                return ResourceManager.GetString("plugin_ore_cobalt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert Ash Blocks.
+        /// </summary>
+        public static string plugin_ore_convert_ash {
+            get {
+                return ResourceManager.GetString("plugin_ore_convert_ash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copper.
+        /// </summary>
+        public static string plugin_ore_copper {
+            get {
+                return ResourceManager.GetString("plugin_ore_copper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crimtane.
+        /// </summary>
+        public static string plugin_ore_crimtane {
+            get {
+                return ResourceManager.GetString("plugin_ore_crimtane", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Demonite.
+        /// </summary>
+        public static string plugin_ore_demonite {
+            get {
+                return ResourceManager.GetString("plugin_ore_demonite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Undo.
+        /// </summary>
+        public static string plugin_ore_enable_undo {
+            get {
+                return ResourceManager.GetString("plugin_ore_enable_undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gold.
+        /// </summary>
+        public static string plugin_ore_gold {
+            get {
+                return ResourceManager.GetString("plugin_ore_gold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hellstone.
+        /// </summary>
+        public static string plugin_ore_hellstone {
+            get {
+                return ResourceManager.GetString("plugin_ore_hellstone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iron.
+        /// </summary>
+        public static string plugin_ore_iron {
+            get {
+                return ResourceManager.GetString("plugin_ore_iron", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lead.
+        /// </summary>
+        public static string plugin_ore_lead {
+            get {
+                return ResourceManager.GetString("plugin_ore_lead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Luminite.
+        /// </summary>
+        public static string plugin_ore_luminite {
+            get {
+                return ResourceManager.GetString("plugin_ore_luminite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meteorite.
+        /// </summary>
+        public static string plugin_ore_meteorite {
+            get {
+                return ResourceManager.GetString("plugin_ore_meteorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mythril.
+        /// </summary>
+        public static string plugin_ore_mythril {
+            get {
+                return ResourceManager.GetString("plugin_ore_mythril", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsidian.
+        /// </summary>
+        public static string plugin_ore_obsidian {
+            get {
+                return ResourceManager.GetString("plugin_ore_obsidian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only Use Selection.
+        /// </summary>
+        public static string plugin_ore_only_selection {
+            get {
+                return ResourceManager.GetString("plugin_ore_only_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orichalcum.
+        /// </summary>
+        public static string plugin_ore_orichalcum {
+            get {
+                return ResourceManager.GetString("plugin_ore_orichalcum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Palladium.
+        /// </summary>
+        public static string plugin_ore_palladium {
+            get {
+                return ResourceManager.GetString("plugin_ore_palladium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Platinum.
+        /// </summary>
+        public static string plugin_ore_platinum {
+            get {
+                return ResourceManager.GetString("plugin_ore_platinum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silver.
+        /// </summary>
+        public static string plugin_ore_silver {
+            get {
+                return ResourceManager.GetString("plugin_ore_silver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 1.
+        /// </summary>
+        public static string plugin_ore_tier_1 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 10.
+        /// </summary>
+        public static string plugin_ore_tier_10 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 11.
+        /// </summary>
+        public static string plugin_ore_tier_11 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 12.
+        /// </summary>
+        public static string plugin_ore_tier_12 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 13.
+        /// </summary>
+        public static string plugin_ore_tier_13 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 2.
+        /// </summary>
+        public static string plugin_ore_tier_2 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 3.
+        /// </summary>
+        public static string plugin_ore_tier_3 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 4.
+        /// </summary>
+        public static string plugin_ore_tier_4 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 5.
+        /// </summary>
+        public static string plugin_ore_tier_5 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 6.
+        /// </summary>
+        public static string plugin_ore_tier_6 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 7.
+        /// </summary>
+        public static string plugin_ore_tier_7 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 8.
+        /// </summary>
+        public static string plugin_ore_tier_8 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 9.
+        /// </summary>
+        public static string plugin_ore_tier_9 {
+            get {
+                return ResourceManager.GetString("plugin_ore_tier_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tin.
+        /// </summary>
+        public static string plugin_ore_tin {
+            get {
+                return ResourceManager.GetString("plugin_ore_tin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Titanium.
+        /// </summary>
+        public static string plugin_ore_titanium {
+            get {
+                return ResourceManager.GetString("plugin_ore_titanium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simple Ore Generator.
+        /// </summary>
+        public static string plugin_ore_title {
+            get {
+                return ResourceManager.GetString("plugin_ore_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tungsten.
+        /// </summary>
+        public static string plugin_ore_tungsten {
+            get {
+                return ResourceManager.GetString("plugin_ore_tungsten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backdrop.
+        /// </summary>
+        public static string plugin_pixelart_backdrop {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_backdrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a backdrop to the transparent pixels..
+        /// </summary>
+        public static string plugin_pixelart_backdrop_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_backdrop_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic Configurations:.
+        /// </summary>
+        public static string plugin_pixelart_basic_config {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_basic_config", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bicubic.
+        /// </summary>
+        public static string plugin_pixelart_bicubic {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_bicubic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bilinear.
+        /// </summary>
+        public static string plugin_pixelart_bilinear {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_bilinear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build Safe.
+        /// </summary>
+        public static string plugin_pixelart_build_safe {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_build_safe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change the A=..
+        /// </summary>
+        public static string plugin_pixelart_change_a_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_change_a_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change the Sigma=..
+        /// </summary>
+        public static string plugin_pixelart_change_sigma_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_change_sigma_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color Filter Data:.
+        /// </summary>
+        public static string plugin_pixelart_color_filter_data {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_color_filter_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color Filter Settings:.
+        /// </summary>
+        public static string plugin_pixelart_color_filter_settings {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_color_filter_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color Filter Tools:.
+        /// </summary>
+        public static string plugin_pixelart_color_filter_tools {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_color_filter_tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert the current image to pixel art..
+        /// </summary>
+        public static string plugin_pixelart_convert_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_convert_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy To Clipboard.
+        /// </summary>
+        public static string plugin_pixelart_copy_to_clipboard {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_copy_to_clipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy the generated pixel art to the clipboard..
+        /// </summary>
+        public static string plugin_pixelart_copy_to_clipboard_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_copy_to_clipboard_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Image:.
+        /// </summary>
+        public static string plugin_pixelart_current_image {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_current_image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Del Null Colors.
+        /// </summary>
+        public static string plugin_pixelart_del_null_colors {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_del_null_colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove colors from filter not in rendered pixel art..
+        /// </summary>
+        public static string plugin_pixelart_del_null_colors_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_del_null_colors_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filtered Colors:.
+        /// </summary>
+        public static string plugin_pixelart_filtered_colors {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_filtered_colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gather Statistics.
+        /// </summary>
+        public static string plugin_pixelart_gather_statistics {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_gather_statistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record pixelart statistics..
+        /// </summary>
+        public static string plugin_pixelart_gather_statistics_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_gather_statistics_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gaussian.
+        /// </summary>
+        public static string plugin_pixelart_gaussian {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_gaussian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Schematic.
+        /// </summary>
+        public static string plugin_pixelart_generate_schematic {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_generate_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate schematic file while rendering pixel art (slight speed impact)..
+        /// </summary>
+        public static string plugin_pixelart_generate_schematic_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_generate_schematic_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid Color.
+        /// </summary>
+        public static string plugin_pixelart_grid_color {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_grid_color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change the grid color..
+        /// </summary>
+        public static string plugin_pixelart_grid_color_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_grid_color_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid Options:.
+        /// </summary>
+        public static string plugin_pixelart_grid_options {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_grid_options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid X Offset:.
+        /// </summary>
+        public static string plugin_pixelart_grid_x_offset {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_grid_x_offset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offset the grid X-Axis..
+        /// </summary>
+        public static string plugin_pixelart_grid_x_offset_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_grid_x_offset_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid Y Offset:.
+        /// </summary>
+        public static string plugin_pixelart_grid_y_offset {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_grid_y_offset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offset the grid Y-Axis..
+        /// </summary>
+        public static string plugin_pixelart_grid_y_offset_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_grid_y_offset_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hermite.
+        /// </summary>
+        public static string plugin_pixelart_hermite {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_hermite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lanczos.
+        /// </summary>
+        public static string plugin_pixelart_lanczos {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_lanczos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nearest Neighbor.
+        /// </summary>
+        public static string plugin_pixelart_nearest_neighbor {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_nearest_neighbor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Ratio % Level:.
+        /// </summary>
+        public static string plugin_pixelart_new_ratio_level {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_new_ratio_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Rotation.
+        /// </summary>
+        public static string plugin_pixelart_no_rotation {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_no_rotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open New Image.
+        /// </summary>
+        public static string plugin_pixelart_open_new_image {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_open_new_image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open a new image for conversion..
+        /// </summary>
+        public static string plugin_pixelart_open_new_image_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_open_new_image_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwrite Existing File.
+        /// </summary>
+        public static string plugin_pixelart_overwrite_existing {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_overwrite_existing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwrite the existing schematic..
+        /// </summary>
+        public static string plugin_pixelart_overwrite_existing_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_overwrite_existing_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progress:.
+        /// </summary>
+        public static string plugin_pixelart_progress {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progress Bar.
+        /// </summary>
+        public static string plugin_pixelart_progress_bar {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_progress_bar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show the pixel art progression (slight speed impact)..
+        /// </summary>
+        public static string plugin_pixelart_progress_bar_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_progress_bar_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Colors.
+        /// </summary>
+        public static string plugin_pixelart_reset_colors {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_reset_colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset the color filter to defined settings..
+        /// </summary>
+        public static string plugin_pixelart_reset_colors_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_reset_colors_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 180 Degrees.
+        /// </summary>
+        public static string plugin_pixelart_rot_180 {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_rot_180", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 270 Degrees.
+        /// </summary>
+        public static string plugin_pixelart_rot_270 {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_rot_270", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 90 Degrees.
+        /// </summary>
+        public static string plugin_pixelart_rot_90 {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_rot_90", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Directory:.
+        /// </summary>
+        public static string plugin_pixelart_save_directory {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_save_directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Image.
+        /// </summary>
+        public static string plugin_pixelart_save_image {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_save_image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save the generated pixel art as an image..
+        /// </summary>
+        public static string plugin_pixelart_save_image_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_save_image_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Schematic To File.
+        /// </summary>
+        public static string plugin_pixelart_save_schematic {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_save_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scaling Mode:.
+        /// </summary>
+        public static string plugin_pixelart_scaling_mode {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_scaling_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schematic Rotation:.
+        /// </summary>
+        public static string plugin_pixelart_schematic_rotation {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_schematic_rotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set New Ratio.
+        /// </summary>
+        public static string plugin_pixelart_set_new_ratio {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_set_new_ratio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set new image zoom ratio..
+        /// </summary>
+        public static string plugin_pixelart_set_new_ratio_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_set_new_ratio_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Place a grid over the rendered pixel art..
+        /// </summary>
+        public static string plugin_pixelart_show_grid_tooltip {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_show_grid_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spacing.
+        /// </summary>
+        public static string plugin_pixelart_spacing {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_spacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spline.
+        /// </summary>
+        public static string plugin_pixelart_spline {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_spline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel Art Statistics:.
+        /// </summary>
+        public static string plugin_pixelart_statistics {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_statistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image To Pixel-Art To Schematic v0.1 | Coded By: D.RUSS#2430 | Terraria Modding.
+        /// </summary>
+        public static string plugin_pixelart_title {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Blocks:.
+        /// </summary>
+        public static string plugin_pixelart_total_blocks {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_total_blocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Colors:.
+        /// </summary>
+        public static string plugin_pixelart_total_colors {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_total_colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Height:.
+        /// </summary>
+        public static string plugin_pixelart_total_height {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_total_height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Width:.
+        /// </summary>
+        public static string plugin_pixelart_total_width {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_total_width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unique Colors.
+        /// </summary>
+        public static string plugin_pixelart_unique_colors {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_unique_colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Tiles.
+        /// </summary>
+        public static string plugin_pixelart_use_tiles {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_use_tiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Walls.
+        /// </summary>
+        public static string plugin_pixelart_use_walls {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_use_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Axis:.
+        /// </summary>
+        public static string plugin_pixelart_world_axis {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_world_axis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X-Axis.
+        /// </summary>
+        public static string plugin_pixelart_x_axis {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_x_axis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y-Axis.
+        /// </summary>
+        public static string plugin_pixelart_y_axis {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_y_axis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Randomize background walls.
+        /// </summary>
+        public static string plugin_randomizer_bg_walls {
+            get {
+                return ResourceManager.GetString("plugin_randomizer_bg_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable undo (very slow).
+        /// </summary>
+        public static string plugin_randomizer_enable_undo {
+            get {
+                return ResourceManager.GetString("plugin_randomizer_enable_undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support gravity blocks (sand, etc.).
+        /// </summary>
+        public static string plugin_randomizer_gravity_blocks {
+            get {
+                return ResourceManager.GetString("plugin_randomizer_gravity_blocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don't randomize into instantly disappearing blocks.
+        /// </summary>
+        public static string plugin_randomizer_no_disappearing {
+            get {
+                return ResourceManager.GetString("plugin_randomizer_no_disappearing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only randomize selection.
+        /// </summary>
+        public static string plugin_randomizer_only_selection {
+            get {
+                return ResourceManager.GetString("plugin_randomizer_only_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Randomize.
+        /// </summary>
+        public static string plugin_randomizer_randomize {
+            get {
+                return ResourceManager.GetString("plugin_randomizer_randomize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Satisfy conditions for disappearing blocks (vines, etc.).
+        /// </summary>
+        public static string plugin_randomizer_satisfy_conditions {
+            get {
+                return ResourceManager.GetString("plugin_randomizer_satisfy_conditions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Randomize World.
+        /// </summary>
+        public static string plugin_randomizer_title {
+            get {
+                return ResourceManager.GetString("plugin_randomizer_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the name of the block or sprite you wish to remove..
+        /// </summary>
+        public static string plugin_removetile_hint_blocks {
+            get {
+                return ResourceManager.GetString("plugin_removetile_hint_blocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the name of the wall you wish to remove..
+        /// </summary>
+        public static string plugin_removetile_hint_walls {
+            get {
+                return ResourceManager.GetString("plugin_removetile_hint_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Tile.
+        /// </summary>
+        public static string plugin_removetile_title {
+            get {
+                return ResourceManager.GetString("plugin_removetile_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delay.
+        /// </summary>
+        public static string plugin_replay_delay {
+            get {
+                return ResourceManager.GetString("plugin_replay_delay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replay Player.
+        /// </summary>
+        public static string plugin_replay_player_title {
+            get {
+                return ResourceManager.GetString("plugin_replay_player_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replay Recorder.
+        /// </summary>
+        public static string plugin_replay_recorder_title {
+            get {
+                return ResourceManager.GetString("plugin_replay_recorder_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed.
+        /// </summary>
+        public static string plugin_replay_speed {
+            get {
+                return ResourceManager.GetString("plugin_replay_speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replay.
+        /// </summary>
+        public static string plugin_replay_title {
+            get {
+                return ResourceManager.GetString("plugin_replay_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seed: (Leave blank for random).
+        /// </summary>
+        public static string plugin_seed_label {
+            get {
+                return ResourceManager.GetString("plugin_seed_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add to Clipboard.
+        /// </summary>
+        public static string plugin_textstatue_add_to_clipboard {
+            get {
+                return ResourceManager.GetString("plugin_textstatue_add_to_clipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letter Spacing.
+        /// </summary>
+        public static string plugin_textstatue_letter_spacing {
+            get {
+                return ResourceManager.GetString("plugin_textstatue_letter_spacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line Spacing.
+        /// </summary>
+        public static string plugin_textstatue_line_spacing {
+            get {
+                return ResourceManager.GetString("plugin_textstatue_line_spacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Line Length.
+        /// </summary>
+        public static string plugin_textstatue_max_line_length {
+            get {
+                return ResourceManager.GetString("plugin_textstatue_max_line_length", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text Statue Generator.
+        /// </summary>
+        public static string plugin_textstatue_title {
+            get {
+                return ResourceManager.GetString("plugin_textstatue_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Items.
+        /// </summary>
+        public static string tileentity_items {
+            get {
+                return ResourceManager.GetString("tileentity_items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logic.
+        /// </summary>
+        public static string tileentity_logic {
+            get {
+                return ResourceManager.GetString("tileentity_logic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On.
+        /// </summary>
+        public static string tileentity_on {
+            get {
+                return ResourceManager.GetString("tileentity_on", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prefix.
+        /// </summary>
+        public static string tileentity_prefix {
+            get {
+                return ResourceManager.GetString("tileentity_prefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stack.
+        /// </summary>
+        public static string tileentity_stack {
+            get {
+                return ResourceManager.GetString("tileentity_stack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Cache.
+        /// </summary>
+        public static string world_explorer_clear_cache {
+            get {
+                return ResourceManager.GetString("world_explorer_clear_cache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete TEdit backups, autosaves, and undo/redo history.
+        /// </summary>
+        public static string world_explorer_clear_cache_tooltip {
+            get {
+                return ResourceManager.GetString("world_explorer_clear_cache_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle between Vanilla and tModLoader worlds.
+        /// </summary>
+        public static string world_explorer_toggle_tmodloader_tooltip {
+            get {
+                return ResourceManager.GetString("world_explorer_toggle_tmodloader_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string plugin_housegen_preview {
+            get {
+                return ResourceManager.GetString("plugin_housegen_preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schematics.
+        /// </summary>
+        public static string plugin_housegen_schematics {
+            get {
+                return ResourceManager.GetString("plugin_housegen_schematics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronize Groups.
+        /// </summary>
+        public static string plugin_housegen_sync_groups {
+            get {
+                return ResourceManager.GetString("plugin_housegen_sync_groups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zone 1 Description (Group 1).
+        /// </summary>
+        public static string plugin_housegen_zone1_desc {
+            get {
+                return ResourceManager.GetString("plugin_housegen_zone1_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zone 2 Description (Group 1).
+        /// </summary>
+        public static string plugin_housegen_zone2_desc {
+            get {
+                return ResourceManager.GetString("plugin_housegen_zone2_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zone 3.
+        /// </summary>
+        public static string plugin_housegen_zone3_desc {
+            get {
+                return ResourceManager.GetString("plugin_housegen_zone3_desc", resourceCulture);
+            }
+        }
     }
 }
