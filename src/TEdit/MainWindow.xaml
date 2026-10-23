@@ -56,7 +56,7 @@
             </MenuItem>
         </DataTemplate>
         <Style x:Key="SubmenuItemStyle" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
-            <Setter Property="Header" Value="{Binding Name}" />
+            <Setter Property="Header" Value="{Binding Title}" />
             <Setter Property="Command" Value="{Binding ElementName=Shell, Path=DataContext.RunPluginCommand}"/>
             <Setter Property="CommandParameter" Value="{Binding}"/>
         </Style>

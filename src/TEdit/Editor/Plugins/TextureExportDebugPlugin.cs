@@ -9,6 +9,7 @@ public sealed class TextureExportDebugPlugin : BasePlugin
         : base(worldViewModel)
     {
         Name = "Export Textures (DEBUG)";
+        TitleKey = "plugin_textureexport_menu";
     }
 
     public override async void Execute()

@@ -3,5 +3,6 @@
 public interface IPlugin
 {
     string Name { get; }
+    string Title { get; }
     void Execute();
 }

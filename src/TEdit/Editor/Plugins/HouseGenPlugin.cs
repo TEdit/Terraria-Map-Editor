@@ -37,6 +37,7 @@ public partial class HouseGenPlugin : BasePlugin
         : base(worldViewModel)
     {
         Name = "Procedural House Generator";
+        TitleKey = "plugin_housegen_menu";
     }
 
     public override void Execute()
