@@ -14,5 +14,11 @@ public abstract class BasePlugin : ReactiveObject, IPlugin
 
     public string Name { get; protected set; }
 
+    public string Title => string.IsNullOrEmpty(TitleKey)
+        ? Name
+        : Properties.Language.ResourceManager.GetString(TitleKey) ?? Name;
+
+    protected string TitleKey { get; set; }
+
     public abstract void Execute();
 }

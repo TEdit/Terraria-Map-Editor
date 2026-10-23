@@ -4067,6 +4067,123 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cleanse World.
+        /// </summary>
+        public static string plugin_cleanseworld_menu {
+            get {
+                return ResourceManager.GetString("plugin_cleanseworld_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Procedural House Generator.
+        /// </summary>
+        public static string plugin_housegen_menu {
+            get {
+                return ResourceManager.GetString("plugin_housegen_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image To Pixelart Editor.
+        /// </summary>
+        public static string plugin_pixelart_menu {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Render Player .map File.
+        /// </summary>
+        public static string plugin_playermap_menu {
+            get {
+                return ResourceManager.GetString("plugin_playermap_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Randomize All Blocks in the World.
+        /// </summary>
+        public static string plugin_randomizer_menu {
+            get {
+                return ResourceManager.GetString("plugin_randomizer_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove All Chests.
+        /// </summary>
+        public static string plugin_removeallchests_menu {
+            get {
+                return ResourceManager.GetString("plugin_removeallchests_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Sprite, Block, or Wall.
+        /// </summary>
+        public static string plugin_removetile_menu {
+            get {
+                return ResourceManager.GetString("plugin_removetile_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove All Unlocked Chests.
+        /// </summary>
+        public static string plugin_removeunlockedchests_menu {
+            get {
+                return ResourceManager.GetString("plugin_removeunlockedchests_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settle Sand.
+        /// </summary>
+        public static string plugin_sandsettle_menu {
+            get {
+                return ResourceManager.GetString("plugin_sandsettle_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Debug Sprites.
+        /// </summary>
+        public static string plugin_spritedebugger_menu {
+            get {
+                return ResourceManager.GetString("plugin_spritedebugger_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate Text Statues.
+        /// </summary>
+        public static string plugin_textstatue_menu {
+            get {
+                return ResourceManager.GetString("plugin_textstatue_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Textures (DEBUG).
+        /// </summary>
+        public static string plugin_textureexport_menu {
+            get {
+                return ResourceManager.GetString("plugin_textureexport_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock All Chests.
+        /// </summary>
+        public static string plugin_unlockallchests_menu {
+            get {
+                return ResourceManager.GetString("plugin_unlockallchests_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a version to save as:.
         /// </summary>
         public static string saveas_instruction {

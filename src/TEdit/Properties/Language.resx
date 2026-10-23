@@ -1464,6 +1464,45 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="player_stats_using_biome_torches" xml:space="preserve">
     <value>Using Biome Torches</value>
   </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>Cleanse World</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>Procedural House Generator</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>Image To Pixelart Editor</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>Render Player .map File</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>Randomize All Blocks in the World</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>Remove All Chests</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>Remove Sprite, Block, or Wall</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>Remove All Unlocked Chests</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>Settle Sand</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>Generate Debug Sprites</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>Generate Text Statues</value>
+  </data>
+  <data name="plugin_textureexport_menu" xml:space="preserve">
+    <value>Export Textures (DEBUG)</value>
+  </data>
+  <data name="plugin_unlockallchests_menu" xml:space="preserve">
+    <value>Unlock All Chests</value>
+  </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Select a version to save as:</value>
   </data>

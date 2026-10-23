@@ -12,6 +12,7 @@ public class RemoveAllChestsPlugin : BasePlugin
         : base(worldViewModel)
     {
         Name = "Remove All Chests";
+        TitleKey = "plugin_removeallchests_menu";
     }
 
     public override async void Execute()
