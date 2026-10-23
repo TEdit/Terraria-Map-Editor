@@ -10,6 +10,7 @@ public sealed class SpriteDebuggerPlugin : BasePlugin
         : base(worldViewModel)
     {
         Name = "Generate Debug Sprites";
+        TitleKey = "plugin_spritedebugger_menu";
     }
 
     public override void Execute()

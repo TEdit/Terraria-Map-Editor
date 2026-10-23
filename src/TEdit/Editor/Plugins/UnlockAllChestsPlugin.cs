@@ -9,6 +9,7 @@ public class UnlockAllChestsPlugin : BasePlugin
         : base(worldViewModel)
     {
         Name = "Unlock All Chests";
+        TitleKey = "plugin_unlockallchests_menu";
     }
 
     private short[] _lockedChestUs = new short[] { 72, 144, 828, 864, 900, 936, 972 };

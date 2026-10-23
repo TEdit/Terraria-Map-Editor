@@ -22,6 +22,7 @@ public partial class TextStatuePlugin : BasePlugin
     public TextStatuePlugin(WorldViewModel worldViewModel) : base(worldViewModel)
     {
         Name = "Generate Text Statues";
+        TitleKey = "plugin_textstatue_menu";
     }
 
     [Reactive]
