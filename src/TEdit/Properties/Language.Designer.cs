@@ -9341,5 +9341,203 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("wp_fixbackground", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calc....
+        /// </summary>
+        public static string plugin_pixelart_calc {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_calc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculating....
+        /// </summary>
+        public static string plugin_pixelart_calculating {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_calculating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel Conversion.
+        /// </summary>
+        public static string plugin_pixelart_cancel_conversion {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_cancel_conversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert To Pixel Art.
+        /// </summary>
+        public static string plugin_pixelart_convert_button {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_convert_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string plugin_pixelart_default {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR: {0}.
+        /// </summary>
+        public static string plugin_pixelart_error {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR: The color filter formatting is invalid! {0}.
+        /// </summary>
+        public static string plugin_pixelart_error_color_filter_invalid {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_color_filter_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The color filter is zero. Adjust your settings..
+        /// </summary>
+        public static string plugin_pixelart_error_color_filter_zero {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_color_filter_zero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR: You need to generate a pixelart first!.
+        /// </summary>
+        public static string plugin_pixelart_error_generate_first {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_generate_first", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred: {0}.
+        /// </summary>
+        public static string plugin_pixelart_error_generic {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_generic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error loading image: {0}.
+        /// </summary>
+        public static string plugin_pixelart_error_loading_image {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_loading_image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The 'Copy To Clipboard' feature requires a world to be loaded!.
+        /// </summary>
+        public static string plugin_pixelart_error_requires_world {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_requires_world", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to have previously saved a schematic first!.
+        /// </summary>
+        public static string plugin_pixelart_error_save_first {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_save_first", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error saving image: {0}.
+        /// </summary>
+        public static string plugin_pixelart_error_saving_image {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_saving_image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Saving Schematic: {0}.
+        /// </summary>
+        public static string plugin_pixelart_error_saving_schematic {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_saving_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The schematic data is empty! Generate a pixelart first!.
+        /// </summary>
+        public static string plugin_pixelart_error_schematic_empty {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_error_schematic_empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image Completed..
+        /// </summary>
+        public static string plugin_pixelart_image_completed {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_image_completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string plugin_pixelart_none {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rendering was cancelled..
+        /// </summary>
+        public static string plugin_pixelart_render_cancelled {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_render_cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schematic copied to clipboard..
+        /// </summary>
+        public static string plugin_pixelart_schematic_copied {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_schematic_copied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schematic has been overwritten..
+        /// </summary>
+        public static string plugin_pixelart_schematic_overwritten {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_schematic_overwritten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schematic has been saved..
+        /// </summary>
+        public static string plugin_pixelart_schematic_saved {
+            get {
+                return ResourceManager.GetString("plugin_pixelart_schematic_saved", resourceCulture);
+            }
+        }
     }
 }

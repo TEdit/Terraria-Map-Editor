@@ -3241,4 +3241,70 @@ Would you like to enable error reporting?</value>
   <data name="telemetry_prompt_link" xml:space="preserve">
     <value>Read the full privacy policy</value>
   </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>Calc...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>Calculating...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>Cancel Conversion</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>Convert To Pixel Art</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>ERROR: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>ERROR: The color filter formatting is invalid! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>The color filter is zero. Adjust your settings.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>ERROR: You need to generate a pixelart first!</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>An error occurred: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>Error loading image: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>The 'Copy To Clipboard' feature requires a world to be loaded!</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>You need to have previously saved a schematic first!</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>Error saving image: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>Error Saving Schematic: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>The schematic data is empty! Generate a pixelart first!</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>Image Completed.</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>Rendering was cancelled.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>Schematic copied to clipboard.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>Schematic has been overwritten.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>Schematic has been saved.</value>
+  </data>
 </root>
