@@ -14,6 +14,7 @@ public class RandomizerPlugin : BasePlugin
         : base(worldViewModel)
     {
         Name = "Randomize All Blocks in the World";
+        TitleKey = "plugin_randomizer_menu";
     }
 
     public override void Execute()

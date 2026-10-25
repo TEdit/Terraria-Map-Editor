@@ -10,6 +10,7 @@ public sealed class SandSettlePlugin : BasePlugin
         : base(worldViewModel)
     {
         Name = "Settle Sand";
+        TitleKey = "plugin_sandsettle_menu";
     }
 
     public override void Execute()

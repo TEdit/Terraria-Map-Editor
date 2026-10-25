@@ -13,6 +13,7 @@ namespace TEdit.Editor.Plugins
             : base(worldViewModel)
         {
             Name = "Remove Sprite, Block, or Wall";
+            TitleKey = "plugin_removetile_menu";
         }
 
         public override async void Execute()
