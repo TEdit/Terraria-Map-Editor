@@ -24,17 +24,17 @@
                         <TextBox Text="{Binding Id}" Margin="2,0" />
                         <Label Content="NetID" />
                         <TextBox Text="{Binding NetId}" Margin="2,0" />
-                        <Label Content="Stack" />
+                        <Label Content="{x:Static p:Language.tileentity_stack}" />
                         <TextBox Text="{Binding StackSize}" Margin="2,0" />
-                        <Label Content="Prefix" />
+                        <Label Content="{x:Static p:Language.tileentity_prefix}" />
                         <TextBox Text="{Binding Prefix}" Margin="2,0" />
                         <Label Content="Npc" />
                         <TextBox Text="{Binding Npc}" Margin="2,0" />
-                        <Label Content="Logic" />
+                        <Label Content="{x:Static p:Language.tileentity_logic}" />
                         <TextBox Text="{Binding LogicCheck}" Margin="2,0" />
-                        <Label Content="On" />
+                        <Label Content="{x:Static p:Language.tileentity_on}" />
                         <TextBox Text="{Binding On}" Margin="2,0" />
-                        <Label Content="Items" />
+                        <Label Content="{x:Static p:Language.tileentity_items}" />
                         <TextBox Text="{Binding Items.Count, Mode=OneWay}" Margin="2,0" />
 
                     </StackPanel>
