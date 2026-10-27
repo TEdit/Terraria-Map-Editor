@@ -2839,6 +2839,9 @@ public partial class WorldRenderXna : UserControl
 
         Update(e);
         Render(e);
+#if LOCAL_DIAGNOSTICS
+        CompleteDiagnosticCapture(e.GraphicsDevice);
+#endif
     }
 
     private void Update(GraphicsDeviceEventArgs e)
@@ -2903,6 +2906,83 @@ public partial class WorldRenderXna : UserControl
 
 
     private World? _lastRenderedWorld = null;
+#if LOCAL_DIAGNOSTICS
+    private TaskCompletionSource<byte[]>? _diagnosticCapture;
+    internal (int Width, int Height) GraphicsDeviceDimensions
+    {
+        get
+        {
+            var graphicsDevice = xnaViewport.GraphicsService.GraphicsDevice;
+            if (graphicsDevice is null)
+            {
+                throw new InvalidOperationException("The XNA graphics device is unavailable.");
+            }
+
+            return (graphicsDevice.PresentationParameters.BackBufferWidth, graphicsDevice.PresentationParameters.BackBufferHeight);
+        }
+    }
+
+    internal Task<byte[]> CaptureDiagnosticViewportAsync(TimeSpan timeout)
+    {
+        var capture = new TaskCompletionSource<byte[]>(TaskCreationOptions.RunContinuationsAsynchronously);
+        if (Interlocked.CompareExchange(ref _diagnosticCapture, capture, null) is not null)
+        {
+            throw new InvalidOperationException("A viewport capture is already pending.");
+        }
+
+        return WaitForDiagnosticCaptureAsync(capture, timeout);
+    }
+
+    private async Task<byte[]> WaitForDiagnosticCaptureAsync(TaskCompletionSource<byte[]> capture, TimeSpan timeout)
+    {
+        try
+        {
+            return await capture.Task.WaitAsync(timeout);
+        }
+        finally
+        {
+            Interlocked.CompareExchange(ref _diagnosticCapture, null, capture);
+        }
+    }
+
+    private void CompleteDiagnosticCapture(GraphicsDevice graphicsDevice)
+    {
+        var capture = Interlocked.Exchange(ref _diagnosticCapture, null);
+        if (capture is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var width = graphicsDevice.PresentationParameters.BackBufferWidth;
+            var height = graphicsDevice.PresentationParameters.BackBufferHeight;
+            if (width < 1 || height < 1 || (long)width * height > 32_000_000)
+            {
+                throw new InvalidOperationException("The XNA backbuffer has invalid dimensions.");
+            }
+
+            var pixels = new Color[width * height];
+            graphicsDevice.GetBackBufferData(pixels);
+            var bgra = new byte[pixels.Length * 4];
+            for (var i = 0; i < pixels.Length; i++)
+            {
+                var offset = i * 4;
+                bgra[offset] = pixels[i].B;
+                bgra[offset + 1] = pixels[i].G;
+                bgra[offset + 2] = pixels[i].R;
+                bgra[offset + 3] = pixels[i].A;
+            }
+
+            capture.TrySetResult(bgra);
+        }
+        catch (Exception error)
+        {
+            capture.TrySetException(error);
+        }
+    }
+#endif
+
     private void Render(GraphicsDeviceEventArgs e)
     {
         // NOTE: Texture queue processing is now handled by DispatcherTimer (StartPreviewProcessing)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -28,6 +29,9 @@ namespace TEdit;
 /// </summary>
 public partial class App : Application
 {
+#if LOCAL_DIAGNOSTICS
+    private LocalDiagnosticsServer? _localDiagnosticsServer;
+#endif
     static App()
     {
         var sw = Stopwatch.StartNew();
@@ -219,13 +223,19 @@ public partial class App : Application
         ErrorLogging.LogDebug($"[Startup] LogWorldBackupFiles: {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
+#if !LOCAL_DIAGNOSTICS
         if (!string.IsNullOrEmpty(DependencyChecker.PathToWorlds))
         {
             FileMaintenance.MigrateLegacyTEditBackups(DependencyChecker.PathToWorlds, ViewModel.WorldViewModel.BackupPath);
         }
+#endif
         ErrorLogging.LogDebug($"[Startup] MigrateLegacyBackups: {sw.ElapsedMilliseconds}ms");
 
-        if (e.Args != null && e.Args.Count() > 0)
+        if (e.Args != null && e.Args.Count() > 0
+#if LOCAL_DIAGNOSTICS
+            && e.Args[0] != "--local-control"
+#endif
+            )
         {
             ErrorLogging.Log($"Command Line Open: {e.Args[0]}");
             Properties["OpenFile"] = e.Args[0];
@@ -272,6 +282,33 @@ public partial class App : Application
 
         sw.Restart();
         // Create main window manually (StartupUri removed from App.xaml)
+#if LOCAL_DIAGNOSTICS
+        var sessionPath = Environment.GetEnvironmentVariable("TEDIT_LOCAL_SESSION");
+        if (string.IsNullOrWhiteSpace(sessionPath))
+        {
+            var args = Environment.GetCommandLineArgs();
+            var controlIndex = Array.IndexOf(args, "--local-control");
+            if (controlIndex >= 0 && controlIndex + 1 < args.Length)
+            {
+                sessionPath = args[controlIndex + 1];
+            }
+        }
+        if (!string.IsNullOrWhiteSpace(sessionPath))
+        {
+            var bootstrapLog = Path.Combine(AppDataPaths.DataDir, "diagnostics-bootstrap.log");
+            try
+            {
+                File.AppendAllText(bootstrapLog, $"{DateTimeOffset.UtcNow:O} starting {Environment.ProcessId} {Environment.ProcessPath}{Environment.NewLine}");
+                _localDiagnosticsServer = new LocalDiagnosticsServer(this, sessionPath);
+                File.AppendAllText(bootstrapLog, $"{DateTimeOffset.UtcNow:O} listening {Environment.ProcessId}{Environment.NewLine}");
+            }
+            catch (Exception error)
+            {
+                File.AppendAllText(bootstrapLog, $"{DateTimeOffset.UtcNow:O} failed: {error}{Environment.NewLine}");
+                throw;
+            }
+        }
+#endif
         var mainWindow = new MainWindow();
         MainWindow = mainWindow;
         mainWindow.Show();
@@ -289,6 +326,14 @@ public partial class App : Application
             }
         }
     }
+
+#if LOCAL_DIAGNOSTICS
+    protected override void OnExit(ExitEventArgs e)
+    {
+        _localDiagnosticsServer?.Dispose();
+        base.OnExit(e);
+    }
+#endif
 
 
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

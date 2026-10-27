@@ -19,6 +19,16 @@ public static class AppDataPaths
 
     static AppDataPaths()
     {
+#if LOCAL_DIAGNOSTICS
+        var diagnosticProfile = Environment.GetEnvironmentVariable("TEDIT_LOCAL_PROFILE");
+        if (!string.IsNullOrWhiteSpace(diagnosticProfile))
+        {
+            IsPortable = true;
+            DataDir = Path.GetFullPath(diagnosticProfile);
+            Directory.CreateDirectory(DataDir);
+            return;
+        }
+#endif
         var exeDir = AppDomain.CurrentDomain.BaseDirectory;
         var portableDir = Path.Combine(exeDir, "Data");
 

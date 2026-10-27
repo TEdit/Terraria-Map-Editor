@@ -17,6 +17,9 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(LocalDiagnostics)' == 'true'">
+    <DefineConstants>$(DefineConstants);LOCAL_DIAGNOSTICS</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="TEdit.Tests" />
   </ItemGroup>

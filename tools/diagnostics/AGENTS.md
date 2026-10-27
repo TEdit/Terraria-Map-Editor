@@ -1,0 +1,3 @@
+# Local diagnostic spider
+
+The diagnostic entry point and operator workflow are documented in [local-diagnostics.md](local-diagnostics.md). Keep the IPC server behind `LocalDiagnostics=true`; never add the flag to normal or release build defaults. The launcher uses a separate Windows desktop, profile, world fixture, settings, and logs. Requests that read or write files must remain confined to the explicitly allowed profile subdirectories. The target scenario is open a disposable world, resolve its version prompt by semantic button, edit a tile through `WorldEditor`, save through TEdit, inspect isolated settings/state, and capture both the WPF window and MonoGame backbuffer. Do not add evidence, logs, fixture copies, or generated build output to product changes.

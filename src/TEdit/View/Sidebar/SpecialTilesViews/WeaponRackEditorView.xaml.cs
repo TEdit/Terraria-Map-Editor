@@ -12,6 +12,11 @@ public partial class WeaponRackEditorView : UserControl
     public WeaponRackEditorView()
     {
         InitializeComponent();
+#if LOCAL_DIAGNOSTICS
+        // The isolated app instance can miss these application-level shared resources.
+        Resources["ItemsCollection"] = new CollectionViewSource { Source = WorldConfiguration.ItemProperties };
+        Resources["RackCollection"] = new CollectionViewSource { Source = WorldConfiguration.RackableItems };
+#endif
         Loaded += OnLoaded;
     }
 
