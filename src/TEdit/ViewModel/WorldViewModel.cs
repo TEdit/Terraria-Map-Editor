@@ -98,7 +98,6 @@ public partial class WorldViewModel : ReactiveObject
     private bool _showGrid = true;
     private bool _showLiquid = true;
     private bool _showPoints = true;
-    private bool _showTextures = true;
     private bool _showTiles = true;
     private bool _showCoatings = true;
     private bool _showWalls = true;
@@ -2239,8 +2238,8 @@ public partial class WorldViewModel : ReactiveObject
 
     public bool ShowTextures
     {
-        get { return _showTextures; }
-        set { this.RaiseAndSetIfChanged(ref _showTextures, value); }
+        get => UserSettingsService.Current.ShowTextures;
+        set => UserSettingsService.Current.ShowTextures = value;
     }
 
     public ObservableCollection<string> Points

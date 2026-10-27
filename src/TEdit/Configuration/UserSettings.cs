@@ -17,6 +17,7 @@ public class UserSettings : INotifyPropertyChanged
     private LanguageSelection _language = LanguageSelection.Automatic;
     private int _telemetry = -1;
     private float _textureVisibilityZoomLevel = 6f;
+    private bool _showTextures = true;
     private float _backgroundScaleZoom = 9f;
     private bool _showNews = true;
     private PixelMapColorMode _colorMode = PixelMapColorMode.Default;
@@ -112,6 +113,12 @@ public class UserSettings : INotifyPropertyChanged
     {
         get => _textureVisibilityZoomLevel;
         set => SetField(ref _textureVisibilityZoomLevel, value);
+    }
+
+    public bool ShowTextures
+    {
+        get => _showTextures;
+        set => SetField(ref _showTextures, value);
     }
 
     public float BackgroundScaleZoom

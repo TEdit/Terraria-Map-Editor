@@ -25,4 +25,25 @@ public class UserSettingsTests
         settings.ShouldNotBeNull();
         settings.ShowSplashScreen.ShouldBeFalse();
     }
+
+    [Fact]
+    public void TextureSettings_DefaultAndRoundTripThroughJson()
+    {
+        var defaults = JsonSerializer.Deserialize<UserSettings>("{}");
+
+        defaults.ShouldNotBeNull();
+        defaults.TextureVisibilityZoomLevel.ShouldBe(6f);
+        defaults.ShowTextures.ShouldBeTrue();
+
+        var json = JsonSerializer.Serialize(new UserSettings
+        {
+            TextureVisibilityZoomLevel = 8f,
+            ShowTextures = false
+        });
+        var settings = JsonSerializer.Deserialize<UserSettings>(json);
+
+        settings.ShouldNotBeNull();
+        settings.TextureVisibilityZoomLevel.ShouldBe(8f);
+        settings.ShowTextures.ShouldBeFalse();
+    }
 }
