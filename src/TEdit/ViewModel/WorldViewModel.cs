@@ -3073,10 +3073,10 @@ public partial class WorldViewModel : ReactiveObject
         set
         {
             value = (float)Math.Floor(MathHelper.Clamp(value, 3, 64));
-            if (this.RaiseAndSetIfChanged(ref _textureVisibilityZoomLevel, value) != value)
-            {
-                UserSettingsService.Current.TextureVisibilityZoomLevel = value;
-            }
+            if (_textureVisibilityZoomLevel == value) return;
+
+            this.RaiseAndSetIfChanged(ref _textureVisibilityZoomLevel, value);
+            UserSettingsService.Current.TextureVisibilityZoomLevel = value;
         }
     }
 

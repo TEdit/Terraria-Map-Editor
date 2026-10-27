@@ -1,6 +1,9 @@
 using System.Text.Json;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using Shouldly;
 using TEdit.Configuration;
+using TEdit.ViewModel;
 using Xunit;
 
 namespace TEdit.Tests.Configuration;
@@ -45,5 +48,27 @@ public class UserSettingsTests
         settings.ShouldNotBeNull();
         settings.TextureVisibilityZoomLevel.ShouldBe(8f);
         settings.ShowTextures.ShouldBeFalse();
+    }
+
+    [Fact]
+    public void TextureVisibilityZoomLevel_ViewModelChangesPersistToUserSettings()
+    {
+        var userSettings = UserSettingsService.Current;
+        var originalValue = userSettings.TextureVisibilityZoomLevel;
+        var viewModel = (WorldViewModel)RuntimeHelpers.GetUninitializedObject(typeof(WorldViewModel));
+        var zoomField = typeof(WorldViewModel).GetField("_textureVisibilityZoomLevel", BindingFlags.Instance | BindingFlags.Public)!;
+        zoomField.SetValue(viewModel, originalValue);
+
+        try
+        {
+            var changedValue = originalValue == 8f ? 7f : 8f;
+            viewModel.TextureVisibilityZoomLevel = changedValue;
+
+            userSettings.TextureVisibilityZoomLevel.ShouldBe(changedValue);
+        }
+        finally
+        {
+            userSettings.TextureVisibilityZoomLevel = originalValue;
+        }
     }
 }
