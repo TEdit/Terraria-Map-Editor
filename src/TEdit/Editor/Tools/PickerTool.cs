@@ -51,7 +51,7 @@ public sealed class PickerTool : BaseTool
         else
         {
 			// Retrieve the corresponding sprite configuration for the tile type.
-            var spriteConfig = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type);
+            var spriteConfig = WorldConfiguration.FindSprite(curTile.Type);
             if (spriteConfig != null)
             {
 				// Get the style from the UV coordinates of the current tile.

@@ -30,5 +30,5 @@ public class RectangleFloatJsonConverter : JsonConverter<RectangleFloat>
     }
 
     public override void Write(Utf8JsonWriter writer, RectangleFloat value, JsonSerializerOptions options) =>
-        writer.WriteRawValue($"[{value.X:0},{value.Y:0},{value.Width:0},{value.Height:0}]", true);
+        writer.WriteRawValue(FormattableString.Invariant($"[{value.X:0},{value.Y:0},{value.Width:0},{value.Height:0}]"), true);
 }
