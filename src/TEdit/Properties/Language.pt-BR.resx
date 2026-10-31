@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -441,7 +441,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
     <value>Exportação de Blocos do Mapa</value>
   </data>
   <data name="find_auto_zoom" xml:space="preserve">
-    <value>Auto Zoom</value>
+    <value>Zoom automático</value>
   </data>
   <data name="find_auto_zoom_tooltip" xml:space="preserve">
     <value>Dê zoom ao navegar para os resultados (desligado = apenas panorâmica)</value>
@@ -459,19 +459,19 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
     <value>Próximo</value>
   </data>
   <data name="find_no_results" xml:space="preserve">
-    <value>No results</value>
+    <value>Sem resultados</value>
   </data>
   <data name="find_no_selection" xml:space="preserve">
-    <value>No selection</value>
+    <value>Nada selecionado</value>
   </data>
   <data name="find_no_world_loaded" xml:space="preserve">
-    <value>No world loaded.</value>
+    <value>Nenhum mundo foi carregado.</value>
   </data>
   <data name="find_prev" xml:space="preserve">
     <value>Anterior</value>
   </data>
   <data name="find_result_summary" xml:space="preserve">
-    <value>{0} of {1}</value>
+    <value>{0} de {1}</value>
   </data>
   <data name="find_result_summary_limited" xml:space="preserve">
     <value>{0} de {1} exibidos ({2} correspondências no total)</value>
@@ -663,7 +663,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
     <value>Liquid Level</value>
   </data>
   <data name="mask_section_liquid_type" xml:space="preserve">
-    <value>Liquid Type</value>
+    <value>Tipo de Líquido</value>
   </data>
   <data name="mask_section_tile" xml:space="preserve">
     <value>Tile Type</value>
@@ -858,7 +858,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
     <value>Abrir o arquivo de registros</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Settings...</value>
+    <value>Configurações...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>Atualizar</value>
@@ -1675,6 +1675,12 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>Exiba notícias e anúncios no editor</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>Mostrar Tela de Introdução</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>Mostrar o logo do TEdit enquanto o aplicativo inicia</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>Pontos do Espetáculo</value>
   </data>
@@ -1686,12 +1692,6 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>Visibilidade do fio vermelho com toggle</value>
-  </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>Mostrar Tela de Introdução</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>Mostrar o logo do TEdit enquanto o aplicativo inicia</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>Mostrar Texturas</value>
@@ -2100,10 +2100,10 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
     <value>Parede</value>
   </data>
   <data name="status_loading_textures" xml:space="preserve">
-    <value>Loading textures: {0}/{1}</value>
+    <value>Carregando texturas: {0}/{1}</value>
   </data>
   <data name="status_textures_loaded" xml:space="preserve">
-    <value>Textures loaded</value>
+    <value>Texturas carregadas</value>
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>Bestiário</value>
@@ -2125,9 +2125,6 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Geração do Time Amarelo</value>
-  </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>Leia a política de privacidade completa</value>
   </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>O TEdit pode enviar relatórios de erros anônimos para ajudar a melhorar a estabilidade.
@@ -2340,9 +2337,6 @@ Você gostaria de ativar o relatório de erros?</value>
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>Condecorações</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>Altares/Orbes</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>Mal</value>
@@ -3240,5 +3234,11 @@ Você gostaria de ativar o relatório de erros?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corrigir lacuna de plano de fundo</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>Altares/Orbes</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Leia a política de privacidade completa</value>
   </data>
 </root>
