@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -1566,17 +1566,11 @@
   <data name="plugin_blockshuffle_title" xml:space="preserve">
     <value>تبديل مواقع الكتل</value>
   </data>
-  <data name="plugin_cleanseworld_menu" xml:space="preserve">
-    <value>تطهير العالم</value>
-  </data>
   <data name="plugin_housegen_add" xml:space="preserve">
     <value>إضافة</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
     <value>انقر على [...] لاستيراد مخطط القالب</value>
-  </data>
-  <data name="plugin_housegen_menu" xml:space="preserve">
-    <value>مولد المنازل الإجرائي</value>
   </data>
   <data name="plugin_housegen_preview" xml:space="preserve">
     <value>معاينة</value>
@@ -1731,15 +1725,6 @@
   <data name="plugin_pixelart_build_safe" xml:space="preserve">
     <value>بناء آمن</value>
   </data>
-  <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>حساب...</value>
-  </data>
-  <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>جارٍ الحساب...</value>
-  </data>
-  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
-    <value>إلغاء التحويل</value>
-  </data>
   <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
     <value>تغيير الـ أ=.</value>
   </data>
@@ -1755,9 +1740,6 @@
   <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
     <value>أدوات تصفية الألوان:</value>
   </data>
-  <data name="plugin_pixelart_convert_button" xml:space="preserve">
-    <value>تحويل إلى فن البكسل</value>
-  </data>
   <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
     <value>حوّل الصورة الحالية إلى فن البكسل.</value>
   </data>
@@ -1770,47 +1752,11 @@
   <data name="plugin_pixelart_current_image" xml:space="preserve">
     <value>الصورة الحالية:</value>
   </data>
-  <data name="plugin_pixelart_default" xml:space="preserve">
-    <value>افتراضي</value>
-  </data>
   <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
     <value>حذف الألوان الفارغة</value>
   </data>
   <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
     <value>إزالة الألوان من الفلتر غير الموجودة في فن البكسل المعروض.</value>
-  </data>
-  <data name="plugin_pixelart_error" xml:space="preserve">
-    <value>خطأ: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
-    <value>خطأ: تنسيق فلتر الألوان غير صالح! {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
-    <value>مرشح اللون هو صفر. قم بتعديل إعداداتك.</value>
-  </data>
-  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
-    <value>خطأ: تحتاج إلى إنشاء فن بكسل أولاً!</value>
-  </data>
-  <data name="plugin_pixelart_error_generic" xml:space="preserve">
-    <value>حدث خطأ: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
-    <value>خطأ في تحميل الصورة: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
-    <value>ميزة "نسخ إلى الحافظة" تتطلب تحميل عالم!</value>
-  </data>
-  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
-    <value>يجب أن تكون قد حفظت مخططًا مسبقًا أولاً!</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
-    <value>خطأ في حفظ الصورة: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
-    <value>خطأ في حفظ المخطط: {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
-    <value>البيانات التخطيطية فارغة! قم بإنشاء فن بكسل أولاً!</value>
   </data>
   <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
     <value>الألوان المصفاة:</value>
@@ -1854,23 +1800,14 @@
   <data name="plugin_pixelart_hermite" xml:space="preserve">
     <value>هيرميت</value>
   </data>
-  <data name="plugin_pixelart_image_completed" xml:space="preserve">
-    <value>اكتملت الصورة.</value>
-  </data>
   <data name="plugin_pixelart_lanczos" xml:space="preserve">
     <value>لانكزوس</value>
-  </data>
-  <data name="plugin_pixelart_menu" xml:space="preserve">
-    <value>محرر تحويل الصورة إلى فن البكسل</value>
   </data>
   <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
     <value>أقرب جار</value>
   </data>
   <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
     <value>نسبة جديدة % المستوى:</value>
-  </data>
-  <data name="plugin_pixelart_none" xml:space="preserve">
-    <value>لا أحد</value>
   </data>
   <data name="plugin_pixelart_no_rotation" xml:space="preserve">
     <value>بدون دوران</value>
@@ -1895,9 +1832,6 @@
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
     <value>عرض تقدم فن البكسل (تأثير طفيف على السرعة).</value>
-  </data>
-  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
-    <value>تم إلغاء العرض.</value>
   </data>
   <data name="plugin_pixelart_reset_colors" xml:space="preserve">
     <value>إعادة تعيين الألوان</value>
@@ -1929,17 +1863,8 @@
   <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
     <value>وضع التحجيم:</value>
   </data>
-  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
-    <value>تم نسخ المخطط إلى الحافظة.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
-    <value>تمت الكتابة فوق المخطط.</value>
-  </data>
   <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
     <value>دوران المخطط:</value>
-  </data>
-  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
-    <value>تم حفظ المخطط.</value>
   </data>
   <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
     <value>تعيين نسبة جديدة</value>
@@ -1992,9 +1917,6 @@
   <data name="plugin_pixelart_y_axis" xml:space="preserve">
     <value>المحور ص</value>
   </data>
-  <data name="plugin_playermap_menu" xml:space="preserve">
-    <value>عرض ملف .map للاعب</value>
-  </data>
   <data name="plugin_randomizer_bg_walls" xml:space="preserve">
     <value>توليد جدران خلفية عشوائية</value>
   </data>
@@ -2003,9 +1925,6 @@
   </data>
   <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
     <value>دعم الكتل المتأثرة بالجاذبية (مثل الرمل، إلخ)</value>
-  </data>
-  <data name="plugin_randomizer_menu" xml:space="preserve">
-    <value>توزيع عشوائي لجميع الكتل في العالم</value>
   </data>
   <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
     <value>لا تقم بالتوزيع العشوائي إلى كتل تختفي فورًا</value>
@@ -2022,23 +1941,14 @@
   <data name="plugin_randomizer_title" xml:space="preserve">
     <value>عشوائي العالم</value>
   </data>
-  <data name="plugin_removeallchests_menu" xml:space="preserve">
-    <value>إزالة جميع الصناديق</value>
-  </data>
   <data name="plugin_removetile_hint_blocks" xml:space="preserve">
     <value>أدخل اسم الكتلة أو الصورة التي ترغب في إزالتها.</value>
   </data>
   <data name="plugin_removetile_hint_walls" xml:space="preserve">
     <value>أدخل اسم الجدار الذي ترغب في إزالته.</value>
   </data>
-  <data name="plugin_removetile_menu" xml:space="preserve">
-    <value>إزالة الكائن أو الكتلة أو الجدار</value>
-  </data>
   <data name="plugin_removetile_title" xml:space="preserve">
     <value>إزالة البلاطة</value>
-  </data>
-  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
-    <value>إزالة جميع الصناديق غير المقفلة</value>
   </data>
   <data name="plugin_replay_delay" xml:space="preserve">
     <value>تأخير</value>
@@ -2055,14 +1965,8 @@
   <data name="plugin_replay_title" xml:space="preserve">
     <value>إعادة تشغيل</value>
   </data>
-  <data name="plugin_sandsettle_menu" xml:space="preserve">
-    <value>تسوية الرمل</value>
-  </data>
   <data name="plugin_seed_label" xml:space="preserve">
     <value>البذرة: (اتركها فارغة للاختيار العشوائي)</value>
-  </data>
-  <data name="plugin_spritedebugger_menu" xml:space="preserve">
-    <value>توليد رموز تصحيح الأخطاء</value>
   </data>
   <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
     <value>إضافة إلى الحافظة</value>
@@ -2076,11 +1980,41 @@
   <data name="plugin_textstatue_max_line_length" xml:space="preserve">
     <value>الحد الأقصى لطول الخط</value>
   </data>
-  <data name="plugin_textstatue_menu" xml:space="preserve">
-    <value>توليد تماثيل نصية</value>
-  </data>
   <data name="plugin_textstatue_title" xml:space="preserve">
     <value>مولد تمثال النصوص</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>تطهير العالم</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>مولد المنازل الإجرائي</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>محرر تحويل الصورة إلى فن البكسل</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>عرض ملف .map للاعب</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>توزيع عشوائي لجميع الكتل في العالم</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>إزالة جميع الصناديق</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>إزالة الكائن أو الكتلة أو الجدار</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>إزالة جميع الصناديق غير المقفلة</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>تسوية الرمل</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>توليد رموز تصحيح الأخطاء</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>توليد تماثيل نصية</value>
   </data>
   <data name="plugin_textureexport_menu" xml:space="preserve">
     <value>تصدير القوام (تصحيح الأخطاء)</value>
@@ -2299,6 +2233,12 @@
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>عرض الأخبار والإعلانات في المحرر</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>عرض شاشة البداية</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>عرض شعار TEdit أثناء بدء التطبيق</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>عرض النقاط</value>
   </data>
@@ -2310,12 +2250,6 @@
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>تبديل رؤية الأسلاك الحمراء</value>
-  </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>عرض شاشة البداية</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>عرض شعار TEdit أثناء بدء التطبيق</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>عرض القوام</value>
@@ -2750,9 +2684,6 @@
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>نسل الفريق الأصفر</value>
   </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>اقرأ سياسة الخصوصية الكاملة</value>
-  </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>يمكن لـ TEdit إرسال تقارير أخطاء مجهولة الهوية للمساعدة في تحسين الاستقرار.
 
@@ -2979,9 +2910,6 @@
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>الأوسمة</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>المذابح/الكرات</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>الشر</value>
@@ -3888,5 +3816,77 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>المذابح/الكرات</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>اقرأ سياسة الخصوصية الكاملة</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>حساب...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>جارٍ الحساب...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>إلغاء التحويل</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>تحويل إلى فن البكسل</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>افتراضي</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>خطأ: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>خطأ: تنسيق فلتر الألوان غير صالح! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>مرشح اللون هو صفر. قم بتعديل إعداداتك.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>خطأ: تحتاج إلى إنشاء فن بكسل أولاً!</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>حدث خطأ: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>خطأ في تحميل الصورة: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>ميزة "نسخ إلى الحافظة" تتطلب تحميل عالم!</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>يجب أن تكون قد حفظت مخططًا مسبقًا أولاً!</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>خطأ في حفظ الصورة: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>خطأ في حفظ المخطط: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>البيانات التخطيطية فارغة! قم بإنشاء فن بكسل أولاً!</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>اكتملت الصورة.</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>لا أحد</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>تم إلغاء العرض.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>تم نسخ المخطط إلى الحافظة.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>تمت الكتابة فوق المخطط.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>تم حفظ المخطط.</value>
   </data>
 </root>

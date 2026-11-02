@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="about_compatible_version" xml:space="preserve">
-    <value>兼容世界版本</value>
+    <value>兼容的世界文件版本</value>
   </data>
   <data name="about_content_path" xml:space="preserve">
     <value>Content路径</value>
@@ -169,7 +169,7 @@
     <value>备份</value>
   </data>
   <data name="backup_type_tedit" xml:space="preserve">
-    <value>TEdit 备份</value>
+    <value>TEdit备份</value>
   </data>
   <data name="backup_type_terraria" xml:space="preserve">
     <value>泰拉瑞亚备份</value>
@@ -1099,7 +1099,7 @@
     <value>转换匹配的生物群系图块，并保持不支持的图块不变。</value>
   </data>
   <data name="nbt_explorer_title" xml:space="preserve">
-    <value>NBT探险者</value>
+    <value>NBT浏览器</value>
   </data>
   <data name="nbt_open_in_editor_tooltip" xml:space="preserve">
     <value>在编辑器中打开</value>
@@ -1566,17 +1566,11 @@
   <data name="plugin_blockshuffle_title" xml:space="preserve">
     <value>随机打乱方块位置</value>
   </data>
-  <data name="plugin_cleanseworld_menu" xml:space="preserve">
-    <value>净化世界</value>
-  </data>
   <data name="plugin_housegen_add" xml:space="preserve">
     <value>添加</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
     <value>点击 [...] 导入模板蓝图</value>
-  </data>
-  <data name="plugin_housegen_menu" xml:space="preserve">
-    <value>程序化房屋生成器</value>
   </data>
   <data name="plugin_housegen_preview" xml:space="preserve">
     <value>预览</value>
@@ -1731,15 +1725,6 @@
   <data name="plugin_pixelart_build_safe" xml:space="preserve">
     <value>安全建造</value>
   </data>
-  <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>计算中...</value>
-  </data>
-  <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>正在计算...</value>
-  </data>
-  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
-    <value>取消转换</value>
-  </data>
   <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
     <value>更改 A=。</value>
   </data>
@@ -1755,9 +1740,6 @@
   <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
     <value>颜色筛选工具：</value>
   </data>
-  <data name="plugin_pixelart_convert_button" xml:space="preserve">
-    <value>转换为像素艺术</value>
-  </data>
   <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
     <value>将当前图像转换为像素艺术。</value>
   </data>
@@ -1770,47 +1752,11 @@
   <data name="plugin_pixelart_current_image" xml:space="preserve">
     <value>当前图像：</value>
   </data>
-  <data name="plugin_pixelart_default" xml:space="preserve">
-    <value>默认值</value>
-  </data>
   <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
     <value>删除空颜色</value>
   </data>
   <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
     <value>从筛选器中移除渲染后的像素画中不存在的颜色。</value>
-  </data>
-  <data name="plugin_pixelart_error" xml:space="preserve">
-    <value>错误：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
-    <value>错误：颜色筛选器格式无效！{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
-    <value>颜色滤镜值为零。请调整设置。</value>
-  </data>
-  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
-    <value>错误：你需要先生成像素画！</value>
-  </data>
-  <data name="plugin_pixelart_error_generic" xml:space="preserve">
-    <value>发生错误：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
-    <value>加载图像时出错：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
-    <value>“复制到剪贴板”功能需要先加载一个世界！</value>
-  </data>
-  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
-    <value>你必须先保存一个结构文件！</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
-    <value>保存图像时出错：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
-    <value>保存原理图时出错：{0}</value>
-  </data>
-  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
-    <value>示意图数据为空！请先生成像素画！</value>
   </data>
   <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
     <value>已筛选的颜色：</value>
@@ -1854,23 +1800,14 @@
   <data name="plugin_pixelart_hermite" xml:space="preserve">
     <value>埃尔米特</value>
   </data>
-  <data name="plugin_pixelart_image_completed" xml:space="preserve">
-    <value>图像处理完成。</value>
-  </data>
   <data name="plugin_pixelart_lanczos" xml:space="preserve">
     <value>兰佐斯</value>
-  </data>
-  <data name="plugin_pixelart_menu" xml:space="preserve">
-    <value>图像转像素艺术编辑器</value>
   </data>
   <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
     <value>最近邻</value>
   </data>
   <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
     <value>新比例 (%)：</value>
-  </data>
-  <data name="plugin_pixelart_none" xml:space="preserve">
-    <value>无</value>
   </data>
   <data name="plugin_pixelart_no_rotation" xml:space="preserve">
     <value>不旋转</value>
@@ -1895,9 +1832,6 @@
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
     <value>显示像素画绘制进度（对速度略有影响）</value>
-  </data>
-  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
-    <value>渲染已取消。</value>
   </data>
   <data name="plugin_pixelart_reset_colors" xml:space="preserve">
     <value>重置颜色</value>
@@ -1929,17 +1863,8 @@
   <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
     <value>缩放模式：</value>
   </data>
-  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
-    <value>已将蓝图复制到剪贴板。</value>
-  </data>
-  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
-    <value>原理图已被覆盖。</value>
-  </data>
   <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
     <value>蓝图旋转：</value>
-  </data>
-  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
-    <value>已保存示意图。</value>
   </data>
   <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
     <value>设置新比例</value>
@@ -1992,9 +1917,6 @@
   <data name="plugin_pixelart_y_axis" xml:space="preserve">
     <value>Y 轴</value>
   </data>
-  <data name="plugin_playermap_menu" xml:space="preserve">
-    <value>渲染玩家 .map 文件</value>
-  </data>
   <data name="plugin_randomizer_bg_walls" xml:space="preserve">
     <value>随机生成背景墙</value>
   </data>
@@ -2003,9 +1925,6 @@
   </data>
   <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
     <value>支持受重力影响的方块（如沙子等）</value>
-  </data>
-  <data name="plugin_randomizer_menu" xml:space="preserve">
-    <value>随机化世界中的所有方块</value>
   </data>
   <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
     <value>不要随机生成会立即消失的方块</value>
@@ -2022,23 +1941,14 @@
   <data name="plugin_randomizer_title" xml:space="preserve">
     <value>随机化世界</value>
   </data>
-  <data name="plugin_removeallchests_menu" xml:space="preserve">
-    <value>移除所有宝箱</value>
-  </data>
   <data name="plugin_removetile_hint_blocks" xml:space="preserve">
     <value>输入要移除的方块或精灵名称。</value>
   </data>
   <data name="plugin_removetile_hint_walls" xml:space="preserve">
     <value>输入要移除的墙壁名称。</value>
   </data>
-  <data name="plugin_removetile_menu" xml:space="preserve">
-    <value>移除精灵、方块或墙壁</value>
-  </data>
   <data name="plugin_removetile_title" xml:space="preserve">
     <value>移除图块</value>
-  </data>
-  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
-    <value>移除所有未上锁的宝箱</value>
   </data>
   <data name="plugin_replay_delay" xml:space="preserve">
     <value>延迟</value>
@@ -2055,14 +1965,8 @@
   <data name="plugin_replay_title" xml:space="preserve">
     <value>重播</value>
   </data>
-  <data name="plugin_sandsettle_menu" xml:space="preserve">
-    <value>让沙块自然下落</value>
-  </data>
   <data name="plugin_seed_label" xml:space="preserve">
     <value>种子：（留空以随机生成）</value>
-  </data>
-  <data name="plugin_spritedebugger_menu" xml:space="preserve">
-    <value>生成调试精灵图</value>
   </data>
   <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
     <value>添加到剪贴板</value>
@@ -2076,11 +1980,41 @@
   <data name="plugin_textstatue_max_line_length" xml:space="preserve">
     <value>每行最大字符数</value>
   </data>
-  <data name="plugin_textstatue_menu" xml:space="preserve">
-    <value>生成文字雕像</value>
-  </data>
   <data name="plugin_textstatue_title" xml:space="preserve">
     <value>文字雕像生成器</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>净化世界</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>程序化房屋生成器</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>图像转像素艺术编辑器</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>渲染玩家 .map 文件</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>随机化世界中的所有方块</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>移除所有宝箱</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>移除精灵、方块或墙壁</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>移除所有未上锁的宝箱</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>让沙块自然下落</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>生成调试精灵图</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>生成文字雕像</value>
   </data>
   <data name="plugin_textureexport_menu" xml:space="preserve">
     <value>导出纹理（调试）</value>
@@ -2299,6 +2233,12 @@
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>在编辑器中显示新闻和公告</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>显示介绍启动画面</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>在应用程序启动时显示 TEdit 标志</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>显示地点</value>
   </data>
@@ -2310,12 +2250,6 @@
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>切换红电线可见性</value>
-  </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>显示介绍启动画面</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>在应用程序启动时显示 TEdit 标志</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>显示纹理</value>
@@ -2750,9 +2684,6 @@
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>黄队生成点</value>
   </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>阅读完整的隐私政策</value>
-  </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>TEdit 可以发送匿名错误报告以帮助提高稳定性。
 
@@ -2980,9 +2911,6 @@
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>装饰物</value>
   </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>祭坛/ orb</value>
-  </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>邪恶</value>
   </data>
@@ -3206,7 +3134,7 @@
     <value>地下背景</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
-    <value>鹿角怪</value>
+    <value>独眼巨鹿</value>
   </data>
   <data name="tool_wp_boss_destroyer" xml:space="preserve">
     <value>毁灭者</value>
@@ -3344,7 +3272,7 @@
     <value>金矿</value>
   </data>
   <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>For the Worthy（FTW）</value>
+    <value>For The Worthy（FTW）</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>世界GUID</value>
@@ -3422,7 +3350,7 @@
     <value>生成陨石</value>
   </data>
   <data name="tool_wp_moondial_cooldown" xml:space="preserve">
-    <value>月晷冷却时间</value>
+    <value>附魔月晷冷却时间</value>
   </data>
   <data name="tool_wp_moon_blood" xml:space="preserve">
     <value>血月</value>
@@ -3443,7 +3371,7 @@
     <value>世界名称</value>
   </data>
   <data name="tool_wp_notthebees" xml:space="preserve">
-    <value>不要蜜蜂（Not the Bees）</value>
+    <value>不要蜜蜂（Not The Bees）</value>
   </data>
   <data name="tool_wp_npc_angler" xml:space="preserve">
     <value>渔夫</value>
@@ -3647,31 +3575,31 @@
     <value>种子</value>
   </data>
   <data name="tool_wp_seed_dualdungeons" xml:space="preserve">
-    <value>双重地下城</value>
+    <value>对偶地牢（Double daring dangers）</value>
   </data>
   <data name="tool_wp_seed_infected" xml:space="preserve">
-    <value>感染者</value>
+    <value>世界被感染（Purify this）</value>
   </data>
   <data name="tool_wp_seed_morelightning" xml:space="preserve">
-    <value>更多雷击</value>
+    <value>更多雷击（Electric boogaloo）</value>
   </data>
   <data name="tool_wp_seed_nolightning" xml:space="preserve">
-    <value>禁用雷击</value>
+    <value>禁用雷击（Calm before the storm）</value>
   </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>无陷阱（No Traps）</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
-    <value>反转种子（Don't dig up）</value>
+    <value>反转种子（Remix）</value>
   </data>
   <data name="tool_wp_seed_skyblock" xml:space="preserve">
     <value>空岛（Skyblock）</value>
   </data>
   <data name="tool_wp_seed_vampire" xml:space="preserve">
-    <value>吸血鬼（Vampirism）</value>
+    <value>吸血鬼症（Vampirism）</value>
   </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
-    <value>天顶种子（Get fixed boi）</value>
+    <value>天顶种子（Zenith）</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>银矿</value>
@@ -3737,16 +3665,16 @@
     <value>时间</value>
   </data>
   <data name="tool_wp_time_sundial" xml:space="preserve">
-    <value>使用日晷</value>
+    <value>使用附魔日晷</value>
   </data>
   <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
-    <value>日晷冷却时间</value>
+    <value>附魔日晷冷却时间</value>
   </data>
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>允许不安全的值</value>
   </data>
   <data name="tool_wp_usemoondial" xml:space="preserve">
-    <value>使用月晷</value>
+    <value>使用附魔月晷</value>
   </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
     <value>云量</value>
@@ -3842,7 +3770,7 @@
     <value>删除备份</value>
   </data>
   <data name="world_explorer_loading_preview" xml:space="preserve">
-    <value>加载预览...</value>
+    <value>加载预览……</value>
   </data>
   <data name="world_explorer_no_backup_tooltip" xml:space="preserve">
     <value>无备份——点击创建.bak和TEdit备份</value>
@@ -3866,7 +3794,7 @@
     <value>预览世界地图</value>
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
-    <value>搜索世界...</value>
+    <value>搜索世界……</value>
   </data>
   <data name="world_explorer_tab_tmodloader" xml:space="preserve">
     <value>tModLoader</value>
@@ -3888,5 +3816,77 @@
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>祭坛/ orb</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>阅读完整的隐私政策</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>计算中...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>正在计算...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>取消转换</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>转换为像素艺术</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>默认值</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>错误：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>错误：颜色筛选器格式无效！{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>颜色滤镜值为零。请调整设置。</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>错误：你需要先生成像素画！</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>发生错误：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>加载图像时出错：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>“复制到剪贴板”功能需要先加载一个世界！</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>你必须先保存一个结构文件！</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>保存图像时出错：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>保存原理图时出错：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>示意图数据为空！请先生成像素画！</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>图像处理完成。</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>渲染已取消。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>已将蓝图复制到剪贴板。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>原理图已被覆盖。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>已保存示意图。</value>
   </data>
 </root>
