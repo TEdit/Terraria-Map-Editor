@@ -37,8 +37,16 @@ public class ContributionLookupTests
             var expected = store.DyeColorById.Keys.Where(store.ItemById.ContainsKey).Order().ToArray();
             Assert.NotEmpty(expected);
             Assert.Equal(expected, store.DyeItems.Keys.Order().ToArray());
+            Assert.Contains(1007, store.DyeItems.Keys); // Red Dye
+            Assert.Contains(1050, store.DyeItems.Keys); // Black Dye
+            Assert.DoesNotContain(1120, store.DyeItems.Keys); // Dye Vat is not wearable dye.
         }
-        finally { WorldConfiguration.Initialize(); }
+        finally
+        {
+            WorldConfiguration.Reset();
+            WorldConfiguration.Initialize();
+        }
+        Assert.Same(TerrariaDataStore.Instance.ItemById[1007], WorldConfiguration.ItemLookupTable[1007]);
     }
 
     [Fact]

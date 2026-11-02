@@ -364,7 +364,7 @@ L.TileLayer.include({{
 // Map setup
 var bounds = L.latLngBounds(
   L.latLng(0, 0),
-  L.latLng(-{h}, {w})
+  {FormattableString.Invariant($"L.latLng(-{h}, {w})")}
 );
 
 var map = L.map('map', {{
