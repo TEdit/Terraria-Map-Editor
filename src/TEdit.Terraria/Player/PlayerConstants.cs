@@ -16,5 +16,5 @@ public static class PlayerConstants
     public const int MaxHideVisibleAccessory = 10;
     public const int MaxDpadBindings = 4;
     public const int MaxBuilderAccStatus = 12;
-    public const int CurrentVersion = 317;
+    public const int CurrentVersion = 326;
 }

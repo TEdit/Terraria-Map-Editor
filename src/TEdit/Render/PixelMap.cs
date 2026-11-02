@@ -253,7 +253,7 @@ public static class PixelMap
             }
 
             // blend paint
-            if (tile.WallColor > 0 && (!showTile || tile.TileColor == 0))
+            if (tile.WallColor > 0 && tile.WallColor < WorldConfiguration.PaintProperties.Count && (!showTile || tile.TileColor == 0))
                 ApplyPaint(ref c, tile.WallColor, brightness, WorldConfiguration.PaintProperties[tile.WallColor].Color);
             else
                 ApplyBrightness(ref c, brightness);
@@ -280,7 +280,7 @@ public static class PixelMap
             }
 
             // blend paint
-            if (tile.TileColor > 0 && tile.TileColor <= WorldConfiguration.PaintProperties.Count)
+            if (tile.TileColor > 0 && tile.TileColor < WorldConfiguration.PaintProperties.Count)
                 ApplyPaint(ref c, tile.TileColor, brightness, WorldConfiguration.PaintProperties[tile.TileColor].Color);
             else
                 ApplyBrightness(ref c, brightness);

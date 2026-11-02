@@ -30,5 +30,5 @@ public class Vector4ShortJsonConverter : JsonConverter<Vector4Short>
     }
 
     public override void Write(Utf8JsonWriter writer, Vector4Short value, JsonSerializerOptions options) =>
-        writer.WriteRawValue($"[{value.X:0},{value.Y:0},{value.Z:0},{value.W:0}]", true);
+        writer.WriteRawValue(FormattableString.Invariant($"[{value.X:0},{value.Y:0},{value.Z:0},{value.W:0}]"), true);
 }

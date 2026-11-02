@@ -576,20 +576,21 @@ public partial class World
     public static int SaveSigns(IList<Sign> signs, BinaryWriter bw, int version)
     {
         bool useLegacyLimit = version < 216;
-        Int16 count = useLegacyLimit ? (Int16)Math.Min(signs.Count, Sign.LegacyLimit) : (Int16)signs.Count;
+        // Match Terraria: null text is excluded from both the count and the records.
+        var savedSigns = signs.Where(sign => sign.Text != null);
+        if (useLegacyLimit)
+        {
+            savedSigns = savedSigns.Take(Sign.LegacyLimit);
+        }
+        var records = savedSigns.ToArray();
+        Int16 count = (Int16)records.Length;
         bw.Write(count);
 
-        int written = 0;
-        foreach (Sign sign in signs)
+        foreach (Sign sign in records)
         {
-            if (sign.Text != null)
-            {
-                bw.Write(sign.Text);
-                bw.Write(sign.X);
-                bw.Write(sign.Y);
-            }
-            written++;
-            if (useLegacyLimit && written >= Sign.LegacyLimit) { break; }
+            bw.Write(sign.Text);
+            bw.Write(sign.X);
+            bw.Write(sign.Y);
         }
 
         return (int)bw.BaseStream.Position;
@@ -610,7 +611,7 @@ public partial class World
 
         foreach (NPC npc in world.NPCs)
         {
-            if (npc.SpriteId > maxNPC) { break; }
+            if (npc.SpriteId > maxNPC) { continue; }
             bw.Write(true);
 
             if (version >= 190)
@@ -655,7 +656,7 @@ public partial class World
         {
             foreach (NPC mob in world.Mobs)
             {
-                if (mob.SpriteId > maxNPC) { break; }
+                if (mob.SpriteId > maxNPC) { continue; }
                 bw.Write(true);
                 if (version >= 190)
                 {

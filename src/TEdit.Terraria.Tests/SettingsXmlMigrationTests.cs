@@ -295,7 +295,7 @@ public class SettingsXmlMigrationTests
     /// Reformats all JSON data files to use compact numeric array format.
     /// Run this test to normalize formatting across all data files.
     /// </summary>
-    [Fact]
+    [Fact(Skip = "Maintenance operation: rewrites repository data files. Run explicitly when reformatting data.")]
     public void ReformatAllJsonFiles()
     {
         var repoRoot = GetRepoRoot();

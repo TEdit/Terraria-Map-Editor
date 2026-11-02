@@ -19,7 +19,7 @@ public class BannerTallyToPreviewConverter : IValueConverter
     {
         if (value is int tallyIndex && tallyIndex >= 0)
         {
-            var bannerSheet = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == BannerTileId);
+            var bannerSheet = WorldConfiguration.FindSprite(BannerTileId);
             if (bannerSheet != null)
             {
                 var style = bannerSheet.Styles.FirstOrDefault(s => s.Style == tallyIndex);

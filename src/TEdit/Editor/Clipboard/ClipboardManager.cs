@@ -81,12 +81,10 @@ public partial class ClipboardManager : ReactiveObject
     public void Import(string filename, TwldData targetTwldData = null)
     {
         var bufferData = ClipboardBuffer.Load(filename, targetTwldData);
-        var buffer = new ClipboardBufferPreview(bufferData);
+        if (bufferData == null)
+            throw new System.IO.InvalidDataException("The file is not a readable TEdit schematic.");
 
-        if (buffer != null)
-        {
-            LoadedBuffers.Add(buffer);
-        }
+        LoadedBuffers.Add(new ClipboardBufferPreview(bufferData));
     }
 
     public void CopySelection(World world, RectangleInt32 selection)

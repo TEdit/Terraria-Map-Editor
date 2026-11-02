@@ -28,5 +28,5 @@ public class Vector2FloatJsonConverter : JsonConverter<Vector2Float>
     }
 
     public override void Write(Utf8JsonWriter writer, Vector2Float value, JsonSerializerOptions options) =>
-        writer.WriteRawValue($"[{value.X:0},{value.Y:0}]", true);
+        writer.WriteRawValue(FormattableString.Invariant($"[{value.X:0},{value.Y:0}]"), true);
 }
