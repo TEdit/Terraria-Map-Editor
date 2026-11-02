@@ -283,11 +283,20 @@
   <data name="common_all" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="common_apply" xml:space="preserve">
+    <value>Applica</value>
+  </data>
+  <data name="common_both" xml:space="preserve">
+    <value>Entrambi</value>
+  </data>
   <data name="common_browse" xml:space="preserve">
     <value>Sfogliare...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>Cancella</value>
+  </data>
+  <data name="common_center" xml:space="preserve">
+    <value>Centro</value>
   </data>
   <data name="common_clear" xml:space="preserve">
     <value>Libero</value>
@@ -304,11 +313,17 @@
   <data name="common_generate" xml:space="preserve">
     <value>Genera</value>
   </data>
+  <data name="common_left" xml:space="preserve">
+    <value>Sinistra</value>
+  </data>
   <data name="common_none" xml:space="preserve">
     <value>Nessuna</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="common_random" xml:space="preserve">
+    <value>Casuale</value>
   </data>
   <data name="common_refresh" xml:space="preserve">
     <value>Refresh</value>
@@ -318,6 +333,9 @@
   </data>
   <data name="common_reset" xml:space="preserve">
     <value>Reset</value>
+  </data>
+  <data name="common_right" xml:space="preserve">
+    <value>Destra</value>
   </data>
   <data name="common_save" xml:space="preserve">
     <value>Salva</value>
@@ -695,6 +713,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>Copia primo elemento</value>
   </data>
+  <data name="menu_debug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="menu_debug_show_nbt" xml:space="preserve">
+    <value>Mostra sovrapposizione NBT</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>Modifica</value>
   </data>
@@ -1047,6 +1071,12 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
     <value>Deserto</value>
     <comment>enum:MorphBiome.Desert</comment>
   </data>
+  <data name="MorphBiome_DestructiveConversion" xml:space="preserve">
+    <value>Genera bioma (distruttivo)</value>
+  </data>
+  <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
+    <value>Modifica il terreno e può rimuovere le decorazioni. Usa Annulla per ripristinare le tessere originali.</value>
+  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>Sacro</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -1055,12 +1085,30 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
     <value>Giungla</value>
     <comment>enum:MorphBiome.Jungle</comment>
   </data>
+  <data name="MorphBiome_Mode" xml:space="preserve">
+    <value>Modalità</value>
+  </data>
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>Purificare</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="MorphBiome_SafeConversion" xml:space="preserve">
+    <value>Conversione sicura</value>
+  </data>
+  <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
+    <value>Converte le tile dei biomi corrispondenti e lascia invariate quelle non supportate.</value>
+  </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>Esplora NBT</value>
+  </data>
+  <data name="nbt_open_in_editor_tooltip" xml:space="preserve">
+    <value>Apri nell'editor</value>
+  </data>
+  <data name="nbt_search_tags_placeholder" xml:space="preserve">
+    <value>Cerca tag...</value>
+  </data>
+  <data name="nbt_zoom_to_tile_tooltip" xml:space="preserve">
+    <value>Centra la mappa su questa tessera</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>Aggiungi cenere</value>
@@ -1188,6 +1236,18 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="palette_mask_section" xml:space="preserve">
     <value>Mask Options</value>
   </data>
+  <data name="palette_replace_all" xml:space="preserve">
+    <value>Sostituisci tutto</value>
+  </data>
+  <data name="palette_replace_all_tooltip" xml:space="preserve">
+    <value>Sostituisci tutte le tessere corrispondenti nel mondo</value>
+  </data>
+  <data name="palette_replace_selection" xml:space="preserve">
+    <value>Sostituisci selezione</value>
+  </data>
+  <data name="palette_replace_selection_tooltip" xml:space="preserve">
+    <value>Sostituisci le tile corrispondenti all’interno della selezione corrente</value>
+  </data>
   <data name="palette_tile_section" xml:space="preserve">
     <value>Tile Picker</value>
   </data>
@@ -1218,6 +1278,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   <data name="picker_search_items_placeholder" xml:space="preserve">
     <value>Cerca oggetti...</value>
   </data>
+  <data name="picker_search_placeholder" xml:space="preserve">
+    <value>Cerca...</value>
+  </data>
   <data name="picker_search_platforms_placeholder" xml:space="preserve">
     <value>Piattaforme di ricerca...</value>
   </data>
@@ -1232,6 +1295,9 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="picker_search_walls_placeholder" xml:space="preserve">
     <value>Muri di perquisizione...</value>
+  </data>
+  <data name="picker_tab_mods" xml:space="preserve">
+    <value>Mods</value>
   </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Deseleziona tutti gli elementi visibili</value>
@@ -1463,6 +1529,564 @@ Premi riprova per scegliere una nuova cartella o annulla per usare {0} come perc
   </data>
   <data name="player_stats_using_biome_torches" xml:space="preserve">
     <value>Uso delle torce biomatiche</value>
+  </data>
+  <data name="plugin_blockshuffle_apply_chance_all" xml:space="preserve">
+    <value>Applica la probabilità percentuale a tutto</value>
+  </data>
+  <data name="plugin_blockshuffle_count_liquids" xml:space="preserve">
+    <value>Considera vuoti anche i liquidi (ideale con le pareti)</value>
+  </data>
+  <data name="plugin_blockshuffle_count_walls" xml:space="preserve">
+    <value>Considera vuoti anche i muri (e i cavi)</value>
+  </data>
+  <data name="plugin_blockshuffle_empty_percent" xml:space="preserve">
+    <value>% di blocchi vuoti da sostituire:</value>
+  </data>
+  <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
+    <value>Attiva annullamento (lento)</value>
+  </data>
+  <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
+    <value>Includi le entità delle tile</value>
+  </data>
+  <data name="plugin_blockshuffle_keep_below_entities" xml:space="preserve">
+    <value>Mantieni i blocchi sotto le entità speciali delle tile</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_selection" xml:space="preserve">
+    <value>Selezione</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_world" xml:space="preserve">
+    <value>Mondo</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_button" xml:space="preserve">
+    <value>Mescola</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_label" xml:space="preserve">
+    <value>Mescola:</value>
+  </data>
+  <data name="plugin_blockshuffle_title" xml:space="preserve">
+    <value>Rimescola le posizioni dei blocchi</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>Purifica il mondo</value>
+  </data>
+  <data name="plugin_housegen_add" xml:space="preserve">
+    <value>Aggiungi</value>
+  </data>
+  <data name="plugin_housegen_import_hint" xml:space="preserve">
+    <value>Fai clic su [...] per importare lo schema del modello</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>Generatore procedurale di case</value>
+  </data>
+  <data name="plugin_housegen_preview" xml:space="preserve">
+    <value>Anteprima</value>
+  </data>
+  <data name="plugin_housegen_schematics" xml:space="preserve">
+    <value>Schemi</value>
+  </data>
+  <data name="plugin_housegen_sync_groups" xml:space="preserve">
+    <value>Sincronizza gruppi</value>
+  </data>
+  <data name="plugin_housegen_title" xml:space="preserve">
+    <value>Generatore di case</value>
+  </data>
+  <data name="plugin_housegen_zone1_desc" xml:space="preserve">
+    <value>Descrizione zona 1 (Gruppo 1)</value>
+  </data>
+  <data name="plugin_housegen_zone2_desc" xml:space="preserve">
+    <value>Descrizione zona 2 (gruppo 1)</value>
+  </data>
+  <data name="plugin_housegen_zone3_desc" xml:space="preserve">
+    <value>Zona 3</value>
+  </data>
+  <data name="plugin_ore_adamantite" xml:space="preserve">
+    <value>Adamantite</value>
+  </data>
+  <data name="plugin_ore_chlorophyte" xml:space="preserve">
+    <value>Clorofita</value>
+  </data>
+  <data name="plugin_ore_cobalt" xml:space="preserve">
+    <value>Cobalto</value>
+  </data>
+  <data name="plugin_ore_convert_ash" xml:space="preserve">
+    <value>Converti blocchi di cenere</value>
+  </data>
+  <data name="plugin_ore_copper" xml:space="preserve">
+    <value>Rame</value>
+  </data>
+  <data name="plugin_ore_crimtane" xml:space="preserve">
+    <value>Crimtane</value>
+  </data>
+  <data name="plugin_ore_demonite" xml:space="preserve">
+    <value>Demonite</value>
+  </data>
+  <data name="plugin_ore_enable_undo" xml:space="preserve">
+    <value>Attiva annullamento</value>
+  </data>
+  <data name="plugin_ore_gold" xml:space="preserve">
+    <value>Oro</value>
+  </data>
+  <data name="plugin_ore_hellstone" xml:space="preserve">
+    <value>Pietrainferno</value>
+  </data>
+  <data name="plugin_ore_iron" xml:space="preserve">
+    <value>Ferro</value>
+  </data>
+  <data name="plugin_ore_lead" xml:space="preserve">
+    <value>Piombo</value>
+  </data>
+  <data name="plugin_ore_luminite" xml:space="preserve">
+    <value>Luminite</value>
+  </data>
+  <data name="plugin_ore_meteorite" xml:space="preserve">
+    <value>Meteorite</value>
+  </data>
+  <data name="plugin_ore_mythril" xml:space="preserve">
+    <value>Mithril</value>
+  </data>
+  <data name="plugin_ore_obsidian" xml:space="preserve">
+    <value>Ossidiana</value>
+  </data>
+  <data name="plugin_ore_only_selection" xml:space="preserve">
+    <value>Usa solo la selezione</value>
+  </data>
+  <data name="plugin_ore_orichalcum" xml:space="preserve">
+    <value>Oricalco</value>
+  </data>
+  <data name="plugin_ore_palladium" xml:space="preserve">
+    <value>Palladio</value>
+  </data>
+  <data name="plugin_ore_platinum" xml:space="preserve">
+    <value>Platino</value>
+  </data>
+  <data name="plugin_ore_silver" xml:space="preserve">
+    <value>Argento</value>
+  </data>
+  <data name="plugin_ore_tier_1" xml:space="preserve">
+    <value>Livello 1</value>
+  </data>
+  <data name="plugin_ore_tier_10" xml:space="preserve">
+    <value>Livello 10</value>
+  </data>
+  <data name="plugin_ore_tier_11" xml:space="preserve">
+    <value>Livello 11</value>
+  </data>
+  <data name="plugin_ore_tier_12" xml:space="preserve">
+    <value>Livello 12</value>
+  </data>
+  <data name="plugin_ore_tier_13" xml:space="preserve">
+    <value>Livello 13</value>
+  </data>
+  <data name="plugin_ore_tier_2" xml:space="preserve">
+    <value>Livello 2</value>
+  </data>
+  <data name="plugin_ore_tier_3" xml:space="preserve">
+    <value>Livello 3</value>
+  </data>
+  <data name="plugin_ore_tier_4" xml:space="preserve">
+    <value>Livello 4</value>
+  </data>
+  <data name="plugin_ore_tier_5" xml:space="preserve">
+    <value>Livello 5</value>
+  </data>
+  <data name="plugin_ore_tier_6" xml:space="preserve">
+    <value>Livello 6</value>
+  </data>
+  <data name="plugin_ore_tier_7" xml:space="preserve">
+    <value>Livello 7</value>
+  </data>
+  <data name="plugin_ore_tier_8" xml:space="preserve">
+    <value>Livello 8</value>
+  </data>
+  <data name="plugin_ore_tier_9" xml:space="preserve">
+    <value>Livello 9</value>
+  </data>
+  <data name="plugin_ore_tin" xml:space="preserve">
+    <value>Stagno</value>
+  </data>
+  <data name="plugin_ore_titanium" xml:space="preserve">
+    <value>Titanio</value>
+  </data>
+  <data name="plugin_ore_title" xml:space="preserve">
+    <value>Generatore di minerali semplice</value>
+  </data>
+  <data name="plugin_ore_tungsten" xml:space="preserve">
+    <value>Tungsteno</value>
+  </data>
+  <data name="plugin_pixelart_backdrop" xml:space="preserve">
+    <value>Sfondo</value>
+  </data>
+  <data name="plugin_pixelart_backdrop_tooltip" xml:space="preserve">
+    <value>Aggiungi uno sfondo ai pixel trasparenti.</value>
+  </data>
+  <data name="plugin_pixelart_basic_config" xml:space="preserve">
+    <value>Configurazioni di base:</value>
+  </data>
+  <data name="plugin_pixelart_bicubic" xml:space="preserve">
+    <value>Bicubica</value>
+  </data>
+  <data name="plugin_pixelart_bilinear" xml:space="preserve">
+    <value>Bilineare</value>
+  </data>
+  <data name="plugin_pixelart_build_safe" xml:space="preserve">
+    <value>Costruzione sicura</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>Calcolo...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>Calcolo in corso...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>Annulla conversione</value>
+  </data>
+  <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
+    <value>Modifica A=.</value>
+  </data>
+  <data name="plugin_pixelart_change_sigma_tooltip" xml:space="preserve">
+    <value>Modifica Sigma=.</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_data" xml:space="preserve">
+    <value>Dati filtro colore:</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_settings" xml:space="preserve">
+    <value>Impostazioni del filtro colore:</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
+    <value>Strumenti filtro colore:</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>Converti in pixel art</value>
+  </data>
+  <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
+    <value>Converti l’immagine attuale in pixel art.</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard" xml:space="preserve">
+    <value>Copia negli appunti</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard_tooltip" xml:space="preserve">
+    <value>Copia l'arte pixel generata negli appunti.</value>
+  </data>
+  <data name="plugin_pixelart_current_image" xml:space="preserve">
+    <value>Immagine attuale:</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>Predefinito</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
+    <value>Elimina i colori nulli</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
+    <value>Rimuovi dal filtro i colori non presenti nella pixel art renderizzata.</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>ERRORE: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>ERRORE: La formattazione del filtro colore non è valida! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>Il filtro colore è impostato su zero. Modifica le impostazioni.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>ERRORE: devi prima generare una pixel art!</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>Si è verificato un errore: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>Errore durante il caricamento dell’immagine: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>La funzione "Copia negli appunti" richiede che sia caricato un mondo!</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>Devi prima aver salvato uno schema!</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>Errore durante il salvataggio dell’immagine: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>Errore durante il salvataggio dello schema: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>I dati schematici sono vuoti! Genera prima un'immagine in pixel art!</value>
+  </data>
+  <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
+    <value>Colori filtrati:</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics" xml:space="preserve">
+    <value>Raccogli statistiche</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics_tooltip" xml:space="preserve">
+    <value>Registra le statistiche della pixel art.</value>
+  </data>
+  <data name="plugin_pixelart_gaussian" xml:space="preserve">
+    <value>Gaussiano</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic" xml:space="preserve">
+    <value>Genera schema</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic_tooltip" xml:space="preserve">
+    <value>Genera un file schematico durante il rendering della pixel art (con un lieve impatto sulla velocità).</value>
+  </data>
+  <data name="plugin_pixelart_grid_color" xml:space="preserve">
+    <value>Colore della griglia</value>
+  </data>
+  <data name="plugin_pixelart_grid_color_tooltip" xml:space="preserve">
+    <value>Cambia il colore della griglia.</value>
+  </data>
+  <data name="plugin_pixelart_grid_options" xml:space="preserve">
+    <value>Opzioni griglia:</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset" xml:space="preserve">
+    <value>Offset X della griglia:</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset_tooltip" xml:space="preserve">
+    <value>Sposta la griglia lungo l'asse X.</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset" xml:space="preserve">
+    <value>Scostamento Y della griglia:</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset_tooltip" xml:space="preserve">
+    <value>Sposta l’asse Y della griglia.</value>
+  </data>
+  <data name="plugin_pixelart_hermite" xml:space="preserve">
+    <value>Hermite</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>Immagine completata.</value>
+  </data>
+  <data name="plugin_pixelart_lanczos" xml:space="preserve">
+    <value>Lanczos</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>Editor di conversione da immagine a pixel art</value>
+  </data>
+  <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
+    <value>Punto più vicino</value>
+  </data>
+  <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
+    <value>Nuovo rapporto % livello:</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>Nessuna</value>
+  </data>
+  <data name="plugin_pixelart_no_rotation" xml:space="preserve">
+    <value>Nessuna rotazione</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image" xml:space="preserve">
+    <value>Apri nuova immagine</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image_tooltip" xml:space="preserve">
+    <value>Apri una nuova immagine da convertire.</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing" xml:space="preserve">
+    <value>Sovrascrivi il file esistente</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing_tooltip" xml:space="preserve">
+    <value>Sovrascrivi lo schema esistente.</value>
+  </data>
+  <data name="plugin_pixelart_progress" xml:space="preserve">
+    <value>Avanzamento:</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar" xml:space="preserve">
+    <value>Barra di avanzamento</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
+    <value>Mostra l’avanzamento della pixel art (con un lieve impatto sulla velocità).</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>Il rendering è stato annullato.</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors" xml:space="preserve">
+    <value>Reimposta i colori</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors_tooltip" xml:space="preserve">
+    <value>Reimposta il filtro colore sui valori predefiniti.</value>
+  </data>
+  <data name="plugin_pixelart_rot_180" xml:space="preserve">
+    <value>180 gradi</value>
+  </data>
+  <data name="plugin_pixelart_rot_270" xml:space="preserve">
+    <value>270 gradi</value>
+  </data>
+  <data name="plugin_pixelart_rot_90" xml:space="preserve">
+    <value>90 gradi</value>
+  </data>
+  <data name="plugin_pixelart_save_directory" xml:space="preserve">
+    <value>Directory di salvataggio:</value>
+  </data>
+  <data name="plugin_pixelart_save_image" xml:space="preserve">
+    <value>Salva immagine</value>
+  </data>
+  <data name="plugin_pixelart_save_image_tooltip" xml:space="preserve">
+    <value>Salva la pixel art generata come immagine.</value>
+  </data>
+  <data name="plugin_pixelart_save_schematic" xml:space="preserve">
+    <value>Salva schema su file</value>
+  </data>
+  <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
+    <value>Modalità di ridimensionamento:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>Schema copiato negli appunti.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>Lo schema è stato sovrascritto.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
+    <value>Rotazione dello schema:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>Lo schema è stato salvato.</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
+    <value>Imposta un nuovo rapporto</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio_tooltip" xml:space="preserve">
+    <value>Imposta il nuovo livello di zoom dell’immagine.</value>
+  </data>
+  <data name="plugin_pixelart_show_grid_tooltip" xml:space="preserve">
+    <value>Sovrapponi una griglia alla pixel art renderizzata.</value>
+  </data>
+  <data name="plugin_pixelart_spacing" xml:space="preserve">
+    <value>Spaziatura</value>
+  </data>
+  <data name="plugin_pixelart_spline" xml:space="preserve">
+    <value>Curva spline</value>
+  </data>
+  <data name="plugin_pixelart_statistics" xml:space="preserve">
+    <value>Statistiche pixel art:</value>
+  </data>
+  <data name="plugin_pixelart_title" xml:space="preserve">
+    <value>Da immagine a pixel art a schema v0.1 | Sviluppato da: D.RUSS#2430 | Modding di Terraria</value>
+  </data>
+  <data name="plugin_pixelart_total_blocks" xml:space="preserve">
+    <value>Blocchi totali:</value>
+  </data>
+  <data name="plugin_pixelart_total_colors" xml:space="preserve">
+    <value>Colori totali:</value>
+  </data>
+  <data name="plugin_pixelart_total_height" xml:space="preserve">
+    <value>Altezza totale:</value>
+  </data>
+  <data name="plugin_pixelart_total_width" xml:space="preserve">
+    <value>Larghezza totale:</value>
+  </data>
+  <data name="plugin_pixelart_unique_colors" xml:space="preserve">
+    <value>Colori univoci</value>
+  </data>
+  <data name="plugin_pixelart_use_tiles" xml:space="preserve">
+    <value>Usa le tessere</value>
+  </data>
+  <data name="plugin_pixelart_use_walls" xml:space="preserve">
+    <value>Usa pareti</value>
+  </data>
+  <data name="plugin_pixelart_world_axis" xml:space="preserve">
+    <value>Asse del mondo:</value>
+  </data>
+  <data name="plugin_pixelart_x_axis" xml:space="preserve">
+    <value>Asse X</value>
+  </data>
+  <data name="plugin_pixelart_y_axis" xml:space="preserve">
+    <value>Asse Y</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>Renderizza file .map del giocatore</value>
+  </data>
+  <data name="plugin_randomizer_bg_walls" xml:space="preserve">
+    <value>Randomizza le pareti di sfondo</value>
+  </data>
+  <data name="plugin_randomizer_enable_undo" xml:space="preserve">
+    <value>Abilita l’annullamento (molto lento)</value>
+  </data>
+  <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
+    <value>Supporta i blocchi soggetti alla gravità (sabbia, ecc.)</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>Randomizza tutti i blocchi del mondo</value>
+  </data>
+  <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
+    <value>Non randomizzare in blocchi che scompaiono all’istante</value>
+  </data>
+  <data name="plugin_randomizer_only_selection" xml:space="preserve">
+    <value>Randomizza solo la selezione</value>
+  </data>
+  <data name="plugin_randomizer_randomize" xml:space="preserve">
+    <value>Genera casualmente</value>
+  </data>
+  <data name="plugin_randomizer_satisfy_conditions" xml:space="preserve">
+    <value>Soddisfa le condizioni per far scomparire i blocchi (rampicanti, ecc.)</value>
+  </data>
+  <data name="plugin_randomizer_title" xml:space="preserve">
+    <value>Randomizza mondo</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>Rimuovi tutti i bauli</value>
+  </data>
+  <data name="plugin_removetile_hint_blocks" xml:space="preserve">
+    <value>Inserisci il nome del blocco o dello sprite che desideri rimuovere.</value>
+  </data>
+  <data name="plugin_removetile_hint_walls" xml:space="preserve">
+    <value>Inserisci il nome del muro che desideri rimuovere.</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>Rimuovi sprite, blocco o parete</value>
+  </data>
+  <data name="plugin_removetile_title" xml:space="preserve">
+    <value>Rimuovi tile</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>Rimuovi tutti i forzieri sbloccati</value>
+  </data>
+  <data name="plugin_replay_delay" xml:space="preserve">
+    <value>Ritardo</value>
+  </data>
+  <data name="plugin_replay_player_title" xml:space="preserve">
+    <value>Riproduttore di replay</value>
+  </data>
+  <data name="plugin_replay_recorder_title" xml:space="preserve">
+    <value>Registratore di replay</value>
+  </data>
+  <data name="plugin_replay_speed" xml:space="preserve">
+    <value>Velocità</value>
+  </data>
+  <data name="plugin_replay_title" xml:space="preserve">
+    <value>Riproduci</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>Assesta sabbia</value>
+  </data>
+  <data name="plugin_seed_label" xml:space="preserve">
+    <value>Seed: (Lascia vuoto per una scelta casuale)</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>Genera sprite di debug</value>
+  </data>
+  <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
+    <value>Aggiungi agli appunti</value>
+  </data>
+  <data name="plugin_textstatue_letter_spacing" xml:space="preserve">
+    <value>Spaziatura tra le lettere</value>
+  </data>
+  <data name="plugin_textstatue_line_spacing" xml:space="preserve">
+    <value>Interlinea</value>
+  </data>
+  <data name="plugin_textstatue_max_line_length" xml:space="preserve">
+    <value>Lunghezza massima della linea</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>Genera statue con testo</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>Generatore di statue di testo</value>
+  </data>
+  <data name="plugin_textureexport_menu" xml:space="preserve">
+    <value>Esporta texture (DEBUG)</value>
+  </data>
+  <data name="plugin_unlockallchests_menu" xml:space="preserve">
+    <value>Sblocca tutti i forzieri</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Seleziona una versione da salvare come:</value>
@@ -2154,6 +2778,21 @@ Vuoi abilitare la segnalazione degli errori?</value>
   </data>
   <data name="texture_loading_title" xml:space="preserve">
     <value>Caricamento delle texture</value>
+  </data>
+  <data name="tileentity_items" xml:space="preserve">
+    <value>Oggetti</value>
+  </data>
+  <data name="tileentity_logic" xml:space="preserve">
+    <value>Logica</value>
+  </data>
+  <data name="tileentity_on" xml:space="preserve">
+    <value>Attivato</value>
+  </data>
+  <data name="tileentity_prefix" xml:space="preserve">
+    <value>Prefisso</value>
+  </data>
+  <data name="tileentity_stack" xml:space="preserve">
+    <value>Impila</value>
   </data>
   <data name="toolbar_deselect" xml:space="preserve">
     <value>Deselect</value>
@@ -3172,6 +3811,12 @@ Vuoi abilitare la segnalazione degli errori?</value>
   <data name="world_explorer_browse" xml:space="preserve">
     <value>Sfogliare...</value>
   </data>
+  <data name="world_explorer_clear_cache" xml:space="preserve">
+    <value>Svuota cache</value>
+  </data>
+  <data name="world_explorer_clear_cache_tooltip" xml:space="preserve">
+    <value>Elimina i backup, i salvataggi automatici e la cronologia di annullamento/ripristino di TEdit</value>
+  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>Dimensioni</value>
   </data>
@@ -3234,6 +3879,9 @@ Vuoi abilitare la segnalazione degli errori?</value>
   </data>
   <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
     <value>Attiva il preferito</value>
+  </data>
+  <data name="world_explorer_toggle_tmodloader_tooltip" xml:space="preserve">
+    <value>Passa dai mondi Vanilla a quelli di tModLoader e viceversa</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Sblocca</value>

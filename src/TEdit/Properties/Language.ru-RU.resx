@@ -283,11 +283,20 @@
   <data name="common_all" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="common_apply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="common_both" xml:space="preserve">
+    <value>Оба</value>
+  </data>
   <data name="common_browse" xml:space="preserve">
     <value>Просмотр...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>Отмена</value>
+  </data>
+  <data name="common_center" xml:space="preserve">
+    <value>Центр</value>
   </data>
   <data name="common_clear" xml:space="preserve">
     <value>Ясный</value>
@@ -304,11 +313,17 @@
   <data name="common_generate" xml:space="preserve">
     <value>Генерировать</value>
   </data>
+  <data name="common_left" xml:space="preserve">
+    <value>Слева</value>
+  </data>
   <data name="common_none" xml:space="preserve">
     <value>Никто</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>ХОРОШО</value>
+  </data>
+  <data name="common_random" xml:space="preserve">
+    <value>Случайный</value>
   </data>
   <data name="common_refresh" xml:space="preserve">
     <value>Обновление</value>
@@ -318,6 +333,9 @@
   </data>
   <data name="common_reset" xml:space="preserve">
     <value>Сброс</value>
+  </data>
+  <data name="common_right" xml:space="preserve">
+    <value>Справа</value>
   </data>
   <data name="common_save" xml:space="preserve">
     <value>Сохранить</value>
@@ -695,6 +713,12 @@
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>Скопировать первый элемент</value>
   </data>
+  <data name="menu_debug" xml:space="preserve">
+    <value>Отладка</value>
+  </data>
+  <data name="menu_debug_show_nbt" xml:space="preserve">
+    <value>Показать наложение NBT</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>Редактировать</value>
   </data>
@@ -1047,6 +1071,12 @@
     <value>Пустыня</value>
     <comment>enum:MorphBiome.Desert</comment>
   </data>
+  <data name="MorphBiome_DestructiveConversion" xml:space="preserve">
+    <value>Создать биом (с разрушением)</value>
+  </data>
+  <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
+    <value>Изменяет рельеф и может удалять декорации. Используйте «Отменить», чтобы восстановить исходные блоки.</value>
+  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>Святые земли</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -1055,12 +1085,30 @@
     <value>Джунгли</value>
     <comment>enum:MorphBiome.Jungle</comment>
   </data>
+  <data name="MorphBiome_Mode" xml:space="preserve">
+    <value>Режим</value>
+  </data>
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>Ясно</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="MorphBiome_SafeConversion" xml:space="preserve">
+    <value>Безопасное преобразование</value>
+  </data>
+  <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
+    <value>Преобразует подходящие блоки биома, а неподдерживаемые оставляет без изменений.</value>
+  </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>NBT Explorer</value>
+  </data>
+  <data name="nbt_open_in_editor_tooltip" xml:space="preserve">
+    <value>Открыть в редакторе</value>
+  </data>
+  <data name="nbt_search_tags_placeholder" xml:space="preserve">
+    <value>Поиск тегов...</value>
+  </data>
+  <data name="nbt_zoom_to_tile_tooltip" xml:space="preserve">
+    <value>Приблизить карту к этому тайлу</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>Добавь пепел</value>
@@ -1188,6 +1236,18 @@
   <data name="palette_mask_section" xml:space="preserve">
     <value>Mask Options</value>
   </data>
+  <data name="palette_replace_all" xml:space="preserve">
+    <value>Заменить всё</value>
+  </data>
+  <data name="palette_replace_all_tooltip" xml:space="preserve">
+    <value>Заменить все совпадающие плитки в мире</value>
+  </data>
+  <data name="palette_replace_selection" xml:space="preserve">
+    <value>Заменить выделенную область</value>
+  </data>
+  <data name="palette_replace_selection_tooltip" xml:space="preserve">
+    <value>Заменить подходящие тайлы в текущей выделенной области</value>
+  </data>
   <data name="palette_tile_section" xml:space="preserve">
     <value>Tile Picker</value>
   </data>
@@ -1218,6 +1278,9 @@
   <data name="picker_search_items_placeholder" xml:space="preserve">
     <value>Поисковые предметы...</value>
   </data>
+  <data name="picker_search_placeholder" xml:space="preserve">
+    <value>Поиски...</value>
+  </data>
   <data name="picker_search_platforms_placeholder" xml:space="preserve">
     <value>Поисковые платформы...</value>
   </data>
@@ -1232,6 +1295,9 @@
   </data>
   <data name="picker_search_walls_placeholder" xml:space="preserve">
     <value>Стены для поиска...</value>
+  </data>
+  <data name="picker_tab_mods" xml:space="preserve">
+    <value>Mods</value>
   </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>Снимите галочку всех видимых элементов</value>
@@ -1463,6 +1529,564 @@
   </data>
   <data name="player_stats_using_biome_torches" xml:space="preserve">
     <value>Использование биомных факелов</value>
+  </data>
+  <data name="plugin_blockshuffle_apply_chance_all" xml:space="preserve">
+    <value>Применить вероятность (%) ко всему</value>
+  </data>
+  <data name="plugin_blockshuffle_count_liquids" xml:space="preserve">
+    <value>Также считать жидкости пустыми (лучше использовать со стенами)</value>
+  </data>
+  <data name="plugin_blockshuffle_count_walls" xml:space="preserve">
+    <value>Также считать стены (и провода) пустыми</value>
+  </data>
+  <data name="plugin_blockshuffle_empty_percent" xml:space="preserve">
+    <value>% пустых блоков для замены:</value>
+  </data>
+  <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
+    <value>Включить отмену действий (медленно)</value>
+  </data>
+  <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
+    <value>Включить сущности блоков</value>
+  </data>
+  <data name="plugin_blockshuffle_keep_below_entities" xml:space="preserve">
+    <value>Сохранять блоки под специальными сущностями тайлов</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_selection" xml:space="preserve">
+    <value>Выделение</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_world" xml:space="preserve">
+    <value>Мир</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_button" xml:space="preserve">
+    <value>Перемешать</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_label" xml:space="preserve">
+    <value>Перемешать:</value>
+  </data>
+  <data name="plugin_blockshuffle_title" xml:space="preserve">
+    <value>Перемешать расположение блоков</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>Очистить мир</value>
+  </data>
+  <data name="plugin_housegen_add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="plugin_housegen_import_hint" xml:space="preserve">
+    <value>Нажмите [...], чтобы импортировать шабему шаблона.</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>Генератор домов по алгоритму</value>
+  </data>
+  <data name="plugin_housegen_preview" xml:space="preserve">
+    <value>Предварительный просмотр</value>
+  </data>
+  <data name="plugin_housegen_schematics" xml:space="preserve">
+    <value>Схемы</value>
+  </data>
+  <data name="plugin_housegen_sync_groups" xml:space="preserve">
+    <value>Синхронизировать группы</value>
+  </data>
+  <data name="plugin_housegen_title" xml:space="preserve">
+    <value>Генератор домов</value>
+  </data>
+  <data name="plugin_housegen_zone1_desc" xml:space="preserve">
+    <value>Описание зоны 1 (группа 1)</value>
+  </data>
+  <data name="plugin_housegen_zone2_desc" xml:space="preserve">
+    <value>Описание зоны 2 (группа 1)</value>
+  </data>
+  <data name="plugin_housegen_zone3_desc" xml:space="preserve">
+    <value>Зона 3</value>
+  </data>
+  <data name="plugin_ore_adamantite" xml:space="preserve">
+    <value>Адамантит</value>
+  </data>
+  <data name="plugin_ore_chlorophyte" xml:space="preserve">
+    <value>Хлорофитовая руда</value>
+  </data>
+  <data name="plugin_ore_cobalt" xml:space="preserve">
+    <value>Кобальт</value>
+  </data>
+  <data name="plugin_ore_convert_ash" xml:space="preserve">
+    <value>Преобразовать блоки пепла</value>
+  </data>
+  <data name="plugin_ore_copper" xml:space="preserve">
+    <value>Медь</value>
+  </data>
+  <data name="plugin_ore_crimtane" xml:space="preserve">
+    <value>Кримтаний</value>
+  </data>
+  <data name="plugin_ore_demonite" xml:space="preserve">
+    <value>Демонит</value>
+  </data>
+  <data name="plugin_ore_enable_undo" xml:space="preserve">
+    <value>Включить отмену действий</value>
+  </data>
+  <data name="plugin_ore_gold" xml:space="preserve">
+    <value>Золото</value>
+  </data>
+  <data name="plugin_ore_hellstone" xml:space="preserve">
+    <value>Адский камень</value>
+  </data>
+  <data name="plugin_ore_iron" xml:space="preserve">
+    <value>Железо</value>
+  </data>
+  <data name="plugin_ore_lead" xml:space="preserve">
+    <value>Свинец</value>
+  </data>
+  <data name="plugin_ore_luminite" xml:space="preserve">
+    <value>Люминит</value>
+  </data>
+  <data name="plugin_ore_meteorite" xml:space="preserve">
+    <value>Метеорит</value>
+  </data>
+  <data name="plugin_ore_mythril" xml:space="preserve">
+    <value>Мифрил</value>
+  </data>
+  <data name="plugin_ore_obsidian" xml:space="preserve">
+    <value>Обсидиан</value>
+  </data>
+  <data name="plugin_ore_only_selection" xml:space="preserve">
+    <value>Использовать только выделенную область</value>
+  </data>
+  <data name="plugin_ore_orichalcum" xml:space="preserve">
+    <value>Орихалкум</value>
+  </data>
+  <data name="plugin_ore_palladium" xml:space="preserve">
+    <value>Палладий</value>
+  </data>
+  <data name="plugin_ore_platinum" xml:space="preserve">
+    <value>Платина</value>
+  </data>
+  <data name="plugin_ore_silver" xml:space="preserve">
+    <value>Серебро</value>
+  </data>
+  <data name="plugin_ore_tier_1" xml:space="preserve">
+    <value>Уровень 1</value>
+  </data>
+  <data name="plugin_ore_tier_10" xml:space="preserve">
+    <value>Уровень 10</value>
+  </data>
+  <data name="plugin_ore_tier_11" xml:space="preserve">
+    <value>Уровень 11</value>
+  </data>
+  <data name="plugin_ore_tier_12" xml:space="preserve">
+    <value>Уровень 12</value>
+  </data>
+  <data name="plugin_ore_tier_13" xml:space="preserve">
+    <value>Уровень 13</value>
+  </data>
+  <data name="plugin_ore_tier_2" xml:space="preserve">
+    <value>Уровень 2</value>
+  </data>
+  <data name="plugin_ore_tier_3" xml:space="preserve">
+    <value>Уровень 3</value>
+  </data>
+  <data name="plugin_ore_tier_4" xml:space="preserve">
+    <value>Уровень 4</value>
+  </data>
+  <data name="plugin_ore_tier_5" xml:space="preserve">
+    <value>Уровень 5</value>
+  </data>
+  <data name="plugin_ore_tier_6" xml:space="preserve">
+    <value>Уровень 6</value>
+  </data>
+  <data name="plugin_ore_tier_7" xml:space="preserve">
+    <value>Уровень 7</value>
+  </data>
+  <data name="plugin_ore_tier_8" xml:space="preserve">
+    <value>Уровень 8</value>
+  </data>
+  <data name="plugin_ore_tier_9" xml:space="preserve">
+    <value>Уровень 9</value>
+  </data>
+  <data name="plugin_ore_tin" xml:space="preserve">
+    <value>Олово</value>
+  </data>
+  <data name="plugin_ore_titanium" xml:space="preserve">
+    <value>Титан</value>
+  </data>
+  <data name="plugin_ore_title" xml:space="preserve">
+    <value>Простой генератор руды</value>
+  </data>
+  <data name="plugin_ore_tungsten" xml:space="preserve">
+    <value>Вольфрам</value>
+  </data>
+  <data name="plugin_pixelart_backdrop" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="plugin_pixelart_backdrop_tooltip" xml:space="preserve">
+    <value>Добавить фон для прозрачных пикселей.</value>
+  </data>
+  <data name="plugin_pixelart_basic_config" xml:space="preserve">
+    <value>Основные настройки:</value>
+  </data>
+  <data name="plugin_pixelart_bicubic" xml:space="preserve">
+    <value>Бикубическая интерполяция</value>
+  </data>
+  <data name="plugin_pixelart_bilinear" xml:space="preserve">
+    <value>Билинейная интерполяция</value>
+  </data>
+  <data name="plugin_pixelart_build_safe" xml:space="preserve">
+    <value>Безопасное строительство</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>Вычисление...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>Вычисление...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>Отменить конвертацию</value>
+  </data>
+  <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
+    <value>Изменить A=.</value>
+  </data>
+  <data name="plugin_pixelart_change_sigma_tooltip" xml:space="preserve">
+    <value>Изменить сигму=.</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_data" xml:space="preserve">
+    <value>Данные цветового фильтра:</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_settings" xml:space="preserve">
+    <value>Настройки цветового фильтра:</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
+    <value>Инструменты цветовых фильтров:</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>Преобразовать в пиксель-арт</value>
+  </data>
+  <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
+    <value>Преобразовать текущее изображение в пиксель-арт.</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard" xml:space="preserve">
+    <value>Копировать в буфер обмена</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard_tooltip" xml:space="preserve">
+    <value>Скопировать созданный пиксель-арт в буфер обмена.</value>
+  </data>
+  <data name="plugin_pixelart_current_image" xml:space="preserve">
+    <value>Текущее изображение:</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
+    <value>Удалить пустые цвета</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
+    <value>Удалить из фильтра цвета, отсутствующие в отрисованной пиксельной графике.</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>ОШИБКА: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>ОШИБКА: Неверный формат цветового фильтра! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>Цветовой фильтр установлен на ноль. Измените настройки.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>ОШИБКА: Сначала необходимо создать пиксель-арт!</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>Произошла ошибка: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>Ошибка при загрузке изображения: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>Для функции «Копировать в буфер обмена» необходимо загрузить мир!</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>Сначала необходимо сохранить схему!</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>Ошибка при сохранении изображения: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>Ошибка при сохранении схемы: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>Данные схемы пусты! Сначала создайте пиксель-арт!</value>
+  </data>
+  <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
+    <value>Цвета после фильтрации:</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics" xml:space="preserve">
+    <value>Собрать статистику</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics_tooltip" xml:space="preserve">
+    <value>Записывать статистику пиксель-арта.</value>
+  </data>
+  <data name="plugin_pixelart_gaussian" xml:space="preserve">
+    <value>Фильтр Гаусса</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic" xml:space="preserve">
+    <value>Создать схему</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic_tooltip" xml:space="preserve">
+    <value>Создавать файл схемы при отрисовке пиксель-арта (незначительно снижает производительность).</value>
+  </data>
+  <data name="plugin_pixelart_grid_color" xml:space="preserve">
+    <value>Цвет сетки</value>
+  </data>
+  <data name="plugin_pixelart_grid_color_tooltip" xml:space="preserve">
+    <value>Изменить цвет сетки.</value>
+  </data>
+  <data name="plugin_pixelart_grid_options" xml:space="preserve">
+    <value>Параметры сетки:</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset" xml:space="preserve">
+    <value>Смещение сетки по X:</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset_tooltip" xml:space="preserve">
+    <value>Сместить сетку по оси X.</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset" xml:space="preserve">
+    <value>Смещение сетки по Y:</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset_tooltip" xml:space="preserve">
+    <value>Сместить ось Y сетки.</value>
+  </data>
+  <data name="plugin_pixelart_hermite" xml:space="preserve">
+    <value>Эрмит</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>Обработка изображения завершена.</value>
+  </data>
+  <data name="plugin_pixelart_lanczos" xml:space="preserve">
+    <value>Ланцош</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>Редактор преобразования изображений в пиксель-арт</value>
+  </data>
+  <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
+    <value>Ближайший сосед</value>
+  </data>
+  <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
+    <value>Новый коэффициент % уровня:</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>Никто</value>
+  </data>
+  <data name="plugin_pixelart_no_rotation" xml:space="preserve">
+    <value>Без поворота</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image" xml:space="preserve">
+    <value>Открыть новое изображение</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image_tooltip" xml:space="preserve">
+    <value>Откройте новое изображение для преобразования.</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing" xml:space="preserve">
+    <value>Перезаписать существующий файл</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing_tooltip" xml:space="preserve">
+    <value>Перезаписать существующую схему.</value>
+  </data>
+  <data name="plugin_pixelart_progress" xml:space="preserve">
+    <value>Ход выполнения:</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar" xml:space="preserve">
+    <value>Индикатор выполнения</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
+    <value>Показывать процесс отрисовки пиксельной графики (незначительно снижает производительность)</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>Рендеринг отменён.</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors" xml:space="preserve">
+    <value>Сбросить цвета</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors_tooltip" xml:space="preserve">
+    <value>Сбросить цветовой фильтр к заданным настройкам.</value>
+  </data>
+  <data name="plugin_pixelart_rot_180" xml:space="preserve">
+    <value>180 градусов</value>
+  </data>
+  <data name="plugin_pixelart_rot_270" xml:space="preserve">
+    <value>270 градусов</value>
+  </data>
+  <data name="plugin_pixelart_rot_90" xml:space="preserve">
+    <value>90 градусов</value>
+  </data>
+  <data name="plugin_pixelart_save_directory" xml:space="preserve">
+    <value>Каталог сохранения:</value>
+  </data>
+  <data name="plugin_pixelart_save_image" xml:space="preserve">
+    <value>Сохранить изображение</value>
+  </data>
+  <data name="plugin_pixelart_save_image_tooltip" xml:space="preserve">
+    <value>Сохранить созданный пиксель-арт как изображение.</value>
+  </data>
+  <data name="plugin_pixelart_save_schematic" xml:space="preserve">
+    <value>Сохранить схему в файл</value>
+  </data>
+  <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
+    <value>Режим масштабирования:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>Схема скопирована в буфер обмена.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>Схема была перезаписана.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
+    <value>Поворот схемы:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>Схема сохранена.</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
+    <value>Задать новое соотношение</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio_tooltip" xml:space="preserve">
+    <value>Установить новый коэффициент масштабирования изображения.</value>
+  </data>
+  <data name="plugin_pixelart_show_grid_tooltip" xml:space="preserve">
+    <value>Наложить сетку на отрисованную пиксельную графику.</value>
+  </data>
+  <data name="plugin_pixelart_spacing" xml:space="preserve">
+    <value>Интервал</value>
+  </data>
+  <data name="plugin_pixelart_spline" xml:space="preserve">
+    <value>Сплайн</value>
+  </data>
+  <data name="plugin_pixelart_statistics" xml:space="preserve">
+    <value>Статистика пиксель-арта:</value>
+  </data>
+  <data name="plugin_pixelart_title" xml:space="preserve">
+    <value>Изображение в пиксель-арт, затем в схему v0.1 | Автор: D.RUSS#2430 | Моддинг Terraria</value>
+  </data>
+  <data name="plugin_pixelart_total_blocks" xml:space="preserve">
+    <value>Всего блоков:</value>
+  </data>
+  <data name="plugin_pixelart_total_colors" xml:space="preserve">
+    <value>Всего цветов:</value>
+  </data>
+  <data name="plugin_pixelart_total_height" xml:space="preserve">
+    <value>Общая высота:</value>
+  </data>
+  <data name="plugin_pixelart_total_width" xml:space="preserve">
+    <value>Общая ширина:</value>
+  </data>
+  <data name="plugin_pixelart_unique_colors" xml:space="preserve">
+    <value>Уникальные цвета</value>
+  </data>
+  <data name="plugin_pixelart_use_tiles" xml:space="preserve">
+    <value>Использовать блоки</value>
+  </data>
+  <data name="plugin_pixelart_use_walls" xml:space="preserve">
+    <value>Использовать стены</value>
+  </data>
+  <data name="plugin_pixelart_world_axis" xml:space="preserve">
+    <value>Ось мира:</value>
+  </data>
+  <data name="plugin_pixelart_x_axis" xml:space="preserve">
+    <value>Ось X</value>
+  </data>
+  <data name="plugin_pixelart_y_axis" xml:space="preserve">
+    <value>Ось Y</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>Отобразить .map-файл игрока</value>
+  </data>
+  <data name="plugin_randomizer_bg_walls" xml:space="preserve">
+    <value>Случайный выбор фоновых стен</value>
+  </data>
+  <data name="plugin_randomizer_enable_undo" xml:space="preserve">
+    <value>Включить отмену (очень медленно)</value>
+  </data>
+  <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
+    <value>Поддержка блоков, подверженных гравитации (песок и т. д.)</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>Случайным образом распределить все блоки в мире</value>
+  </data>
+  <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
+    <value>Не выбирать случайным образом блоки, которые мгновенно исчезают</value>
+  </data>
+  <data name="plugin_randomizer_only_selection" xml:space="preserve">
+    <value>Рандомизировать только выделенную область</value>
+  </data>
+  <data name="plugin_randomizer_randomize" xml:space="preserve">
+    <value>Случайный выбор</value>
+  </data>
+  <data name="plugin_randomizer_satisfy_conditions" xml:space="preserve">
+    <value>Выполнять условия исчезновения блоков (лиан и т. п.)</value>
+  </data>
+  <data name="plugin_randomizer_title" xml:space="preserve">
+    <value>Рандомизация мира</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>Удалить все сундуки</value>
+  </data>
+  <data name="plugin_removetile_hint_blocks" xml:space="preserve">
+    <value>Введите название блока или спрайта, который хотите удалить.</value>
+  </data>
+  <data name="plugin_removetile_hint_walls" xml:space="preserve">
+    <value>Введите название стены, которую хотите удалить.</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>Удалить спрайт, блок или стену</value>
+  </data>
+  <data name="plugin_removetile_title" xml:space="preserve">
+    <value>Удалить блок</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>Удалить все незапертые сундуки</value>
+  </data>
+  <data name="plugin_replay_delay" xml:space="preserve">
+    <value>Задержка</value>
+  </data>
+  <data name="plugin_replay_player_title" xml:space="preserve">
+    <value>Проигрыватель повторов</value>
+  </data>
+  <data name="plugin_replay_recorder_title" xml:space="preserve">
+    <value>Запись повторов</value>
+  </data>
+  <data name="plugin_replay_speed" xml:space="preserve">
+    <value>Скорость</value>
+  </data>
+  <data name="plugin_replay_title" xml:space="preserve">
+    <value>Повторить воспроизведение</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>Утрамбовать песок</value>
+  </data>
+  <data name="plugin_seed_label" xml:space="preserve">
+    <value>Сид: (оставьте пустым для случайного значения)</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>Создать отладочные спрайты</value>
+  </data>
+  <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
+    <value>Добавить в буфер обмена</value>
+  </data>
+  <data name="plugin_textstatue_letter_spacing" xml:space="preserve">
+    <value>Межбуквенный интервал</value>
+  </data>
+  <data name="plugin_textstatue_line_spacing" xml:space="preserve">
+    <value>Межстрочный интервал</value>
+  </data>
+  <data name="plugin_textstatue_max_line_length" xml:space="preserve">
+    <value>Максимальная длина линии</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>Создать текстовые статуи</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>Генератор статуй из текста</value>
+  </data>
+  <data name="plugin_textureexport_menu" xml:space="preserve">
+    <value>Экспортировать текстуры (ОТЛАДКА)</value>
+  </data>
+  <data name="plugin_unlockallchests_menu" xml:space="preserve">
+    <value>Разблокировать все сундуки</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>Выберите версию для сохранения как:</value>
@@ -2154,6 +2778,21 @@
   </data>
   <data name="texture_loading_title" xml:space="preserve">
     <value>Загрузка текстур</value>
+  </data>
+  <data name="tileentity_items" xml:space="preserve">
+    <value>Предметы</value>
+  </data>
+  <data name="tileentity_logic" xml:space="preserve">
+    <value>Логика</value>
+  </data>
+  <data name="tileentity_on" xml:space="preserve">
+    <value>Вкл.</value>
+  </data>
+  <data name="tileentity_prefix" xml:space="preserve">
+    <value>Префикс</value>
+  </data>
+  <data name="tileentity_stack" xml:space="preserve">
+    <value>Сложить в стопку</value>
   </data>
   <data name="toolbar_deselect" xml:space="preserve">
     <value>Deselect</value>
@@ -3172,6 +3811,12 @@
   <data name="world_explorer_browse" xml:space="preserve">
     <value>Просмотр...</value>
   </data>
+  <data name="world_explorer_clear_cache" xml:space="preserve">
+    <value>Очистить кэш</value>
+  </data>
+  <data name="world_explorer_clear_cache_tooltip" xml:space="preserve">
+    <value>Удалить резервные копии, автосохранения и историю отмены/повтора TEdit</value>
+  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>Размеры</value>
   </data>
@@ -3234,6 +3879,9 @@
   </data>
   <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
     <value>Переключение любимого режима</value>
+  </data>
+  <data name="world_explorer_toggle_tmodloader_tooltip" xml:space="preserve">
+    <value>Переключение между мирами Vanilla и tModLoader</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>Раззакрепить</value>
