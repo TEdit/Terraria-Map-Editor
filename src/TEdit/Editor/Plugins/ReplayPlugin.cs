@@ -10,6 +10,7 @@ public class ReplayPlugin : BasePlugin
     public ReplayPlugin(WorldViewModel worldViewModel) : base(worldViewModel)
     {
         Name = "Replay";
+        TitleKey = "plugin_replay_title";
     }
 
     public override void Execute()

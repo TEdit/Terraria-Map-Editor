@@ -18,6 +18,7 @@ namespace TEdit.Editor.Plugins
         public PlayerMapRenderer(WorldViewModel worldViewModel) : base(worldViewModel)
         {
             Name = "Render Player .map File";
+            TitleKey = "plugin_playermap_menu";
         }
 
         // Method to execute the plugin functionality

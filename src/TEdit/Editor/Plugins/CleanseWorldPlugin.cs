@@ -11,6 +11,7 @@ namespace TEdit.Editor.Plugins
             : base(worldViewModel)
         {
             Name = "Cleanse World";
+            TitleKey = "plugin_cleanseworld_menu";
         }
 
         public override void Execute()

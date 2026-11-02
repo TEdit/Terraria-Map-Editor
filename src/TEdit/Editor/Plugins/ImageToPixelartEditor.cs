@@ -12,6 +12,7 @@ namespace TEdit.Editor.Plugins
         public ImageToPixelartEditor(WorldViewModel worldViewModel) : base(worldViewModel)
         {
             Name = "Image To Pixelart Editor";
+            TitleKey = "plugin_pixelart_menu";
         }
 
         // Method to execute the plugin functionality.

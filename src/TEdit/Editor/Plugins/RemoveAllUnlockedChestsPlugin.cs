@@ -12,6 +12,7 @@ public class RemoveAllUnlockedChestsPlugin : BasePlugin
         : base(worldViewModel)
     {
         Name = "Remove All Unlocked Chests";
+        TitleKey = "plugin_removeunlockedchests_menu";
     }
 
     private short[] _lockedChestUs = new short[] { 72, 144, 828, 864, 900, 936, 972 };
