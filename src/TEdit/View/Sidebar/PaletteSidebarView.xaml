@@ -28,15 +28,15 @@
                 BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
                 BorderThickness="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <ui:Button Content="Replace All"
+                <ui:Button Content="{x:Static p:Language.palette_replace_all}"
                            Appearance="Primary"
                            Click="ReplaceAll_Click"
-                           ToolTip="Replace all matching tiles in the world"
+                           ToolTip="{x:Static p:Language.palette_replace_all_tooltip}"
                            Padding="12,4" Margin="0,0,4,0" FontSize="11" />
-                <ui:Button Content="Replace Selection"
+                <ui:Button Content="{x:Static p:Language.palette_replace_selection}"
                            Appearance="Info"
                            Click="ReplaceSelection_Click"
-                           ToolTip="Replace matching tiles within the current selection"
+                           ToolTip="{x:Static p:Language.palette_replace_selection_tooltip}"
                            IsEnabled="{Binding Selection.IsActive}"
                            Padding="12,4" FontSize="11" />
             </StackPanel>

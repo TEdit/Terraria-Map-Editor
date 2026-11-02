@@ -1,12 +1,13 @@
 <ui:FluentWindow x:Class="TEdit.Editor.Plugins.ReplayPluginPlayerView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:TEdit.Properties"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     ResizeMode="NoResize" MinWidth="0" MinHeight="0" Width="900" Height="120"
     WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Topmost="True"
     ExtendsContentIntoTitleBar="True"
     WindowBackdropType="Mica"
-    Title="Replay Player">
+    Title="{x:Static p:Language.plugin_replay_player_title}">
 
     <Grid>
     <Grid.RowDefinitions>
@@ -15,14 +16,14 @@
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
 
-        <ui:TitleBar Grid.Row="0" Title="Replay Player" ShowMaximize="False"/>
+        <ui:TitleBar Grid.Row="0" Title="{x:Static p:Language.plugin_replay_player_title}" ShowMaximize="False"/>
 
         <DockPanel Grid.Row="1" Margin="4,2,4,0">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                 <ComboBox x:Name="ModeCombo" Width="80" Margin="0,0,4,0"
                           SelectionChanged="ModeCombo_SelectionChanged">
-                    <ComboBoxItem Content="Speed" IsSelected="True"/>
-                    <ComboBoxItem Content="Delay"/>
+                    <ComboBoxItem Content="{x:Static p:Language.plugin_replay_speed}" IsSelected="True"/>
+                    <ComboBoxItem Content="{x:Static p:Language.plugin_replay_delay}"/>
                 </ComboBox>
                 <ComboBox x:Name="RateCombo" Width="96"
                           SelectionChanged="RateCombo_SelectionChanged">

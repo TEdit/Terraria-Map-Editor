@@ -27,6 +27,7 @@ using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Editor.Clipboard;
 using TEdit.Geometry;
+using TEdit.Properties;
 using TEdit.Reactive;
 using TEdit.Terraria;
 using TEdit.ViewModel;
@@ -79,8 +80,8 @@ public partial class ImageToPixelartEditorViewModel
     [Reactive] private string _totalHeightData = "0";
     [Reactive] private string _totalWidthData = "0";
     [Reactive] private string _totalBlocksData = "0";
-    [Reactive] private string _currentImageData = "Default";
-    [Reactive] private string _saveDirectoryData = "None";
+    [Reactive] private string _currentImageData = Language.plugin_pixelart_default;
+    [Reactive] private string _saveDirectoryData = Language.plugin_pixelart_none;
 
     // Image properties
     [Reactive] private System.Windows.Media.ImageSource? _backgroundImage1Source;
@@ -102,7 +103,7 @@ public partial class ImageToPixelartEditorViewModel
     [Reactive] private bool _isLanczosAEnabled;
     [Reactive] private bool _isSigmaEnabled;
     [Reactive] private bool _isConverting;
-    [Reactive] private string _convertButtonText = "Convert To Pixel Art";
+    [Reactive] private string _convertButtonText = Language.plugin_pixelart_convert_button;
     [Reactive] private System.Windows.Media.Brush? _gridColorBrush;
 
     // Data properties
@@ -198,7 +199,7 @@ public partial class ImageToPixelartEditorViewModel
     {
         try
         {
-            NewRatioPercentLevelData = "Calc...";
+            NewRatioPercentLevelData = Language.plugin_pixelart_calc;
             IsConvertEnabled = false;
             IsOpenNewImageEnabled = false;
             IsRefreshRatioEnabled = false;
@@ -246,7 +247,7 @@ public partial class ImageToPixelartEditorViewModel
         }
         catch (Exception ex)
         {
-            await ShowMessageInteraction.Handle($"ERROR: {ex.Message}");
+            await ShowMessageInteraction.Handle(string.Format(Language.plugin_pixelart_error, ex.Message));
         }
         finally
         {
@@ -268,14 +269,14 @@ public partial class ImageToPixelartEditorViewModel
 
         if (ClrsTileWallData == null || ClrsTileWallData.Count == 0)
         {
-            await ShowMessageInteraction.Handle("The color filter is zero. Adjust your settings.");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_error_color_filter_zero);
             return;
         }
 
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource = new CancellationTokenSource();
         IsConverting = true;
-        ConvertButtonText = "Cancel Conversion";
+        ConvertButtonText = Language.plugin_pixelart_cancel_conversion;
 
         try
         {
@@ -283,12 +284,12 @@ public partial class ImageToPixelartEditorViewModel
         }
         catch (OperationCanceledException)
         {
-            await ShowMessageInteraction.Handle("Rendering was cancelled.");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_render_cancelled);
         }
         finally
         {
             IsConverting = false;
-            ConvertButtonText = "Convert To Pixel Art";
+            ConvertButtonText = Language.plugin_pixelart_convert_button;
         }
     }
 
@@ -297,7 +298,7 @@ public partial class ImageToPixelartEditorViewModel
     {
         if (BackgroundImage2Source == null)
         {
-            await ShowMessageInteraction.Handle("ERROR: You need to generate a pixelart first!");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_error_generate_first);
             return;
         }
 
@@ -323,11 +324,11 @@ public partial class ImageToPixelartEditorViewModel
                     bitmap.Save(filePath, format);
                 }
 
-                await ShowMessageInteraction.Handle("Image Completed.");
+                await ShowMessageInteraction.Handle(Language.plugin_pixelart_image_completed);
             }
             catch (Exception ex)
             {
-                await ShowMessageInteraction.Handle($"Error saving image: {ex.Message}");
+                await ShowMessageInteraction.Handle(string.Format(Language.plugin_pixelart_error_saving_image, ex.Message));
             }
         }
     }
@@ -337,13 +338,13 @@ public partial class ImageToPixelartEditorViewModel
     {
         if (GeneratedSchematic == null)
         {
-            await ShowMessageInteraction.Handle("The schematic data is empty! Generate a pixelart first!");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_error_schematic_empty);
             return;
         }
 
         if (_worldViewModel.CurrentWorld == null)
         {
-            await ShowMessageInteraction.Handle("The 'Copy To Clipboard' feature requires a world to be loaded!");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_error_requires_world);
             return;
         }
 
@@ -354,7 +355,7 @@ public partial class ImageToPixelartEditorViewModel
             _worldViewModel.ClipboardSetActiveCommand.Execute(bufferRendered);
             _worldViewModel.SelectedTabIndex = (int)SidebarTab.Clipboard;
 
-            await ShowMessageInteraction.Handle("Schematic copied to clipboard.");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_schematic_copied);
         }
         catch (Exception ex)
         {
@@ -367,7 +368,7 @@ public partial class ImageToPixelartEditorViewModel
     {
         if (GeneratedSchematic == null)
         {
-            await ShowMessageInteraction.Handle("The schematic data is empty! Generate a pixelart first!");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_error_schematic_empty);
             return;
         }
 
@@ -381,11 +382,11 @@ public partial class ImageToPixelartEditorViewModel
                 SavedSchematicLocation = filePath;
                 GeneratedSchematic.Save(filePath, _worldViewModel.CurrentWorld?.Version ?? WorldConfiguration.CompatibleVersion);
                 SaveDirectoryData = filePath;
-                await ShowMessageInteraction.Handle("Schematic has been saved.");
+                await ShowMessageInteraction.Handle(Language.plugin_pixelart_schematic_saved);
             }
             catch (Exception ex)
             {
-                await ShowMessageInteraction.Handle($"Error Saving Schematic: {ex.Message}");
+                await ShowMessageInteraction.Handle(string.Format(Language.plugin_pixelart_error_saving_schematic, ex.Message));
             }
         }
     }
@@ -395,24 +396,24 @@ public partial class ImageToPixelartEditorViewModel
     {
         if (GeneratedSchematic == null)
         {
-            await ShowMessageInteraction.Handle("The schematic data is empty! Generate a pixelart first!");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_error_schematic_empty);
             return;
         }
 
         if (SavedSchematicLocation == null)
         {
-            await ShowMessageInteraction.Handle("You need to have previously saved a schematic first!");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_error_save_first);
             return;
         }
 
         try
         {
             GeneratedSchematic.Save(SavedSchematicLocation, _worldViewModel.CurrentWorld?.Version ?? WorldConfiguration.CompatibleVersion);
-            await ShowMessageInteraction.Handle("Schematic has been overwritten.");
+            await ShowMessageInteraction.Handle(Language.plugin_pixelart_schematic_overwritten);
         }
         catch (Exception ex)
         {
-            await ShowMessageInteraction.Handle($"Error Saving Schematic: {ex.Message}");
+            await ShowMessageInteraction.Handle(string.Format(Language.plugin_pixelart_error_saving_schematic, ex.Message));
         }
     }
 
@@ -470,7 +471,7 @@ public partial class ImageToPixelartEditorViewModel
         }
         catch (Exception ex)
         {
-            await ShowMessageInteraction.Handle($"An error occurred: {ex.Message}");
+            await ShowMessageInteraction.Handle(string.Format(Language.plugin_pixelart_error_generic, ex.Message));
         }
     }
 
@@ -506,7 +507,7 @@ public partial class ImageToPixelartEditorViewModel
         }
         catch (Exception ex)
         {
-            _ = ShowMessageInteraction.Handle($"Error loading image: {ex.Message}");
+            _ = ShowMessageInteraction.Handle(string.Format(Language.plugin_pixelart_error_loading_image, ex.Message));
         }
     }
 
@@ -607,7 +608,7 @@ public partial class ImageToPixelartEditorViewModel
 
             TotalHeightData = isRotation90Or270 ? blocksPerRow.ToString() : blocksPerColumn.ToString();
             TotalWidthData = isRotation90Or270 ? blocksPerColumn.ToString() : blocksPerRow.ToString();
-            TotalBlocksData = "Calculating...";
+            TotalBlocksData = Language.plugin_pixelart_calculating;
 
             if (ShowProgressBar)
             {
@@ -730,7 +731,7 @@ public partial class ImageToPixelartEditorViewModel
         catch (Exception ex)
         {
             ProgressValue = 0;
-            await ShowMessageInteraction.Handle($"ERROR: The color filter formatting is invalid! {ex}");
+            await ShowMessageInteraction.Handle(string.Format(Language.plugin_pixelart_error_color_filter_invalid, ex));
         }
         finally
         {

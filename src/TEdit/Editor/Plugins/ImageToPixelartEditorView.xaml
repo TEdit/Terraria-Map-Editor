@@ -2,11 +2,12 @@
         x:Class="TEdit.Editor.Plugins.ImageToPixelartEditorView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:view="clr-namespace:TEdit.View"
         xmlns:local="clr-namespace:TEdit.Editor.Plugins"
         xmlns:cv="clr-namespace:TEdit.Converters"
-        Title="Image To Pixel-Art To Schematic v0.1 | Coded By: D.RUSS#2430 | Terraria Modding"
+        Title="{x:Static p:Language.plugin_pixelart_title}"
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico"
         ResizeMode="CanResizeWithGrip"
@@ -64,7 +65,7 @@
       <!-- Basic Configurations GroupBox -->
       <GroupBox x:Name="BasicConfigurationGroupBox" BorderBrush="White" Margin="0,0,8,0">
         <GroupBox.Header>
-          <TextBlock Text="Basic Configurations:" Foreground="White"/>
+          <TextBlock Text="{x:Static p:Language.plugin_pixelart_basic_config}" Foreground="White"/>
         </GroupBox.Header>
         <Grid Margin="4">
           <Grid.ColumnDefinitions>
@@ -80,31 +81,31 @@
 
           <!-- Column 0: Spacing -->
           <StackPanel Grid.Column="0" Grid.Row="0" >
-            <TextBlock Text="Spacing" FontSize="11" Margin="2"/>
+            <TextBlock Text="{x:Static p:Language.plugin_pixelart_spacing}" FontSize="11" Margin="2"/>
             <ui:NumberBox x:Name="SpacingNumberBox" Value="{Binding Spacing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" TabIndex="1" Margin="2" HorizontalAlignment="Stretch"/>
           </StackPanel>
 
           <!-- Column 1: New Ratio % Level -->
           <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="New Ratio % Level: " FontSize="11" Margin="2"/>
+              <TextBlock Text="{x:Static p:Language.plugin_pixelart_new_ratio_level}" FontSize="11" Margin="2"/>
               <TextBlock Text="{Binding NewRatioPercentLevelData}" FontSize="11" Margin="2" />
             </StackPanel>
             <ui:NumberBox x:Name="RatioNumberBox" Value="{Binding RatioValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="-200" Maximum="200" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" TabIndex="2" Margin="2" HorizontalAlignment="Stretch" IsEnabled="{Binding IsRatioNumberBoxEnabled}"/>
           </StackPanel>
 
           <!-- Column 2: Copy To Clipboard -->
-          <Button Grid.Column="2" Grid.Row="0" Content="Copy To Clipboard" Command="{Binding CopyToClipboardCommand}" IsEnabled="{Binding IsCopyToClipboardEnabled}" ToolTip="Copy the generated pixel art to the clipboard." TabIndex="3" Margin="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="2" Grid.Row="0" Content="{x:Static p:Language.plugin_pixelart_copy_to_clipboard}" Command="{Binding CopyToClipboardCommand}" IsEnabled="{Binding IsCopyToClipboardEnabled}" ToolTip="{x:Static p:Language.plugin_pixelart_copy_to_clipboard_tooltip}" TabIndex="3" Margin="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
 
           <!-- Row 1: Save Image, Set New Ratio -->
-          <Button Grid.Column="0" Grid.Row="1" Content="Save Image" Command="{Binding SaveImageCommand}" ToolTip="Save the generated pixel art as an image." TabIndex="4" Margin="2" HorizontalAlignment="Stretch"/>
-          <Button Grid.Column="1" Grid.Row="1" Content="Set New Ratio" Command="{Binding RefreshRatioCommand}" IsEnabled="{Binding IsRefreshRatioEnabled}" ToolTip="Set new image zoom ratio." TabIndex="5" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="0" Grid.Row="1" Content="{x:Static p:Language.plugin_pixelart_save_image}" Command="{Binding SaveImageCommand}" ToolTip="{x:Static p:Language.plugin_pixelart_save_image_tooltip}" TabIndex="4" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="1" Grid.Row="1" Content="{x:Static p:Language.plugin_pixelart_set_new_ratio}" Command="{Binding RefreshRatioCommand}" IsEnabled="{Binding IsRefreshRatioEnabled}" ToolTip="{x:Static p:Language.plugin_pixelart_set_new_ratio_tooltip}" TabIndex="5" Margin="2" HorizontalAlignment="Stretch"/>
 
           <!-- Row 2: Open New Image, Convert To Pixel Art, Save Schematic -->
-          <Button Grid.Column="0" Grid.Row="2" Content="Open New Image" Command="{Binding OpenNewImageCommand}" IsEnabled="{Binding IsOpenNewImageEnabled}" ToolTip="Open a new image for conversion." TabIndex="6" Margin="2" HorizontalAlignment="Stretch"/>
-          <Button Grid.Column="1" Grid.Row="2" Content="{Binding ConvertButtonText}" Command="{Binding ConvertToPixelArtCommand}" IsEnabled="{Binding IsConvertEnabled}" ToolTip="Convert the current image to pixel art." TabIndex="7" Margin="2" HorizontalAlignment="Stretch"/>
-          <Button Grid.Column="2" Grid.Row="1" Content="Overwrite Existing File" Command="{Binding OverwriteExistingFileCommand}" IsEnabled="{Binding IsOverwriteEnabled}" ToolTip="Overwrite the existing schematic." TabIndex="8" Margin="2" HorizontalAlignment="Stretch"/>
-          <Button Grid.Column="2" Grid.Row="2" Content="Save Schematic To File" Command="{Binding SaveSchematicToFileCommand}" IsEnabled="{Binding IsSaveSchematicEnabled}" TabIndex="9" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="0" Grid.Row="2" Content="{x:Static p:Language.plugin_pixelart_open_new_image}" Command="{Binding OpenNewImageCommand}" IsEnabled="{Binding IsOpenNewImageEnabled}" ToolTip="{x:Static p:Language.plugin_pixelart_open_new_image_tooltip}" TabIndex="6" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="1" Grid.Row="2" Content="{Binding ConvertButtonText}" Command="{Binding ConvertToPixelArtCommand}" IsEnabled="{Binding IsConvertEnabled}" ToolTip="{x:Static p:Language.plugin_pixelart_convert_tooltip}" TabIndex="7" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="2" Grid.Row="1" Content="{x:Static p:Language.plugin_pixelart_overwrite_existing}" Command="{Binding OverwriteExistingFileCommand}" IsEnabled="{Binding IsOverwriteEnabled}" ToolTip="{x:Static p:Language.plugin_pixelart_overwrite_existing_tooltip}" TabIndex="8" Margin="2" HorizontalAlignment="Stretch"/>
+          <Button Grid.Column="2" Grid.Row="2" Content="{x:Static p:Language.plugin_pixelart_save_schematic}" Command="{Binding SaveSchematicToFileCommand}" IsEnabled="{Binding IsSaveSchematicEnabled}" TabIndex="9" Margin="2" HorizontalAlignment="Stretch"/>
         </Grid>
       </GroupBox>
 
@@ -112,7 +113,7 @@
       <StackPanel Margin="0,0,8,0">
         <GroupBox x:Name="SchematicRotationGroupBox" BorderBrush="White" Margin="0,0,0,8">
           <GroupBox.Header>
-            <TextBlock Text="Schematic Rotation:" Foreground="White"/>
+            <TextBlock Text="{x:Static p:Language.plugin_pixelart_schematic_rotation}" Foreground="White"/>
           </GroupBox.Header>
           <StackPanel Margin="4">
             <Grid>
@@ -124,24 +125,24 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
               </Grid.RowDefinitions>
-              <RadioButton Grid.Row="0" Grid.Column="0" Content="No Rotation" TabIndex="17" Margin="0,0,8,4"
+              <RadioButton Grid.Row="0" Grid.Column="0" Content="{x:Static p:Language.plugin_pixelart_no_rotation}" TabIndex="17" Margin="0,0,8,4"
                            IsChecked="{Binding RotationAngle, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:RotationAngle.None}}"/>
-              <RadioButton Grid.Row="0" Grid.Column="1" Content="90 Degrees" TabIndex="18" Margin="0,0,0,4"
+              <RadioButton Grid.Row="0" Grid.Column="1" Content="{x:Static p:Language.plugin_pixelart_rot_90}" TabIndex="18" Margin="0,0,0,4"
                            IsChecked="{Binding RotationAngle, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:RotationAngle.Rotate90}}"/>
-              <RadioButton Grid.Row="1" Grid.Column="0" Content="180 Degrees" TabIndex="19" Margin="0,0,8,4"
+              <RadioButton Grid.Row="1" Grid.Column="0" Content="{x:Static p:Language.plugin_pixelart_rot_180}" TabIndex="19" Margin="0,0,8,4"
                            IsChecked="{Binding RotationAngle, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:RotationAngle.Rotate180}}"/>
-              <RadioButton Grid.Row="1" Grid.Column="1" Content="270 Degrees" TabIndex="20" Margin="0,0,0,4"
+              <RadioButton Grid.Row="1" Grid.Column="1" Content="{x:Static p:Language.plugin_pixelart_rot_270}" TabIndex="20" Margin="0,0,0,4"
                            IsChecked="{Binding RotationAngle, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:RotationAngle.Rotate270}}"/>
             </Grid>
 
             <GroupBox BorderBrush="White" Margin="0,4,0,0">
               <GroupBox.Header>
-                <TextBlock Text="World Axis:" Foreground="White"/>
+                <TextBlock Text="{x:Static p:Language.plugin_pixelart_world_axis}" Foreground="White"/>
               </GroupBox.Header>
               <StackPanel Orientation="Horizontal" Margin="4">
-                <RadioButton Content="X-Axis" TabIndex="21" Margin="0,0,16,0"
+                <RadioButton Content="{x:Static p:Language.plugin_pixelart_x_axis}" TabIndex="21" Margin="0,0,16,0"
                              IsChecked="{Binding WorldAxis, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:WorldAxis.XAxis}}"/>
-                <RadioButton Content="Y-Axis" TabIndex="22"
+                <RadioButton Content="{x:Static p:Language.plugin_pixelart_y_axis}" TabIndex="22"
                              IsChecked="{Binding WorldAxis, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:WorldAxis.YAxis}}"/>
               </StackPanel>
             </GroupBox>
@@ -150,11 +151,11 @@
 
         <GroupBox x:Name="ColorFilterToolsGroupBox" BorderBrush="White">
           <GroupBox.Header>
-            <TextBlock Text="Color Filter Tools:" Foreground="White"/>
+            <TextBlock Text="{x:Static p:Language.plugin_pixelart_color_filter_tools}" Foreground="White"/>
           </GroupBox.Header>
           <StackPanel Orientation="Horizontal" Margin="4">
-            <Button Content="Del Null Colors" Command="{Binding DelNullColorsCommand}" ToolTip="Remove colors from filter not in rendered pixel art." TabIndex="23" Margin="0,0,4,0"/>
-            <Button Content="Reset Colors" Command="{Binding ResetColorsCommand}" ToolTip="Reset the color filter to defined settings." TabIndex="24"/>
+            <Button Content="{x:Static p:Language.plugin_pixelart_del_null_colors}" Command="{Binding DelNullColorsCommand}" ToolTip="{x:Static p:Language.plugin_pixelart_del_null_colors_tooltip}" TabIndex="23" Margin="0,0,4,0"/>
+            <Button Content="{x:Static p:Language.plugin_pixelart_reset_colors}" Command="{Binding ResetColorsCommand}" ToolTip="{x:Static p:Language.plugin_pixelart_reset_colors_tooltip}" TabIndex="24"/>
           </StackPanel>
         </GroupBox>
       </StackPanel>
@@ -162,28 +163,28 @@
       <!-- Grid Options GroupBox -->
       <GroupBox x:Name="GridOptionsGroupBox" BorderBrush="White" Margin="0,0,8,0">
         <GroupBox.Header>
-          <TextBlock Text="Grid Options:" Foreground="White"/>
+          <TextBlock Text="{x:Static p:Language.plugin_pixelart_grid_options}" Foreground="White"/>
         </GroupBox.Header>
         <StackPanel Margin="4">
           <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
-            <CheckBox Content="Show Grid" IsChecked="{Binding ShowGrid}" TabIndex="25" ToolTip="Place a grid over the rendered pixel art." Margin="0,0,8,0"/>
-            <CheckBox Content="Backdrop" IsChecked="{Binding Backdrop}" TabIndex="26" ToolTip="Add a backdrop to the transparent pixels."/>
+            <CheckBox Content="{x:Static p:Language.settings_show_grid}" IsChecked="{Binding ShowGrid}" TabIndex="25" ToolTip="{x:Static p:Language.plugin_pixelart_show_grid_tooltip}" Margin="0,0,8,0"/>
+            <CheckBox Content="{x:Static p:Language.plugin_pixelart_backdrop}" IsChecked="{Binding Backdrop}" TabIndex="26" ToolTip="{x:Static p:Language.plugin_pixelart_backdrop_tooltip}"/>
           </StackPanel>
 
-          <Button Background="{Binding GridColorBrush}" Command="{Binding PickGridColorCommand}" Content="Grid Color" ToolTip="Change the grid color." TabIndex="27" Margin="0,0,0,8"/>
+          <Button Background="{Binding GridColorBrush}" Command="{Binding PickGridColorCommand}" Content="{x:Static p:Language.plugin_pixelart_grid_color}" ToolTip="{x:Static p:Language.plugin_pixelart_grid_color_tooltip}" TabIndex="27" Margin="0,0,0,8"/>
 
-          <TextBlock Text="Grid Y Offset:" FontSize="11" Margin="0,0,0,2"/>
-          <ui:NumberBox Value="{Binding GridYOffset, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" HorizontalAlignment="Stretch" Margin="2" ToolTip="Offset the grid Y-Axis." TabIndex="28"/>
+          <TextBlock Text="{x:Static p:Language.plugin_pixelart_grid_y_offset}" FontSize="11" Margin="0,0,0,2"/>
+          <ui:NumberBox Value="{Binding GridYOffset, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" HorizontalAlignment="Stretch" Margin="2" ToolTip="{x:Static p:Language.plugin_pixelart_grid_y_offset_tooltip}" TabIndex="28"/>
 
-          <TextBlock Text="Grid X Offset:" FontSize="11" Margin="0,0,0,2"/>
-          <ui:NumberBox Value="{Binding GridXOffset, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" HorizontalAlignment="Stretch" Margin="2" ToolTip="Offset the grid X-Axis." TabIndex="29"/>
+          <TextBlock Text="{x:Static p:Language.plugin_pixelart_grid_x_offset}" FontSize="11" Margin="0,0,0,2"/>
+          <ui:NumberBox Value="{Binding GridXOffset, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="100" SmallChange="1" MaxDecimalPlaces="0" ClearButtonEnabled="False" HorizontalAlignment="Stretch" Margin="2" ToolTip="{x:Static p:Language.plugin_pixelart_grid_x_offset_tooltip}" TabIndex="29"/>
         </StackPanel>
       </GroupBox>
 
       <!-- Scaling Mode GroupBox -->
       <GroupBox x:Name="ScalingModeGroupBox" BorderBrush="White" Margin="0,0,8,0">
         <GroupBox.Header>
-          <TextBlock Text="Scaling Mode:" Foreground="White"/>
+          <TextBlock Text="{x:Static p:Language.plugin_pixelart_scaling_mode}" Foreground="White"/>
         </GroupBox.Header>
         <Grid Margin="4">
           <Grid.ColumnDefinitions>
@@ -200,23 +201,23 @@
             <RowDefinition Height="Auto"/>
           </Grid.RowDefinitions>
 
-          <RadioButton Grid.Row="0" Grid.Column="0" Content="Bilinear" TabIndex="30" Margin="0,0,0,2"
+          <RadioButton Grid.Row="0" Grid.Column="0" Content="{x:Static p:Language.plugin_pixelart_bilinear}" TabIndex="30" Margin="0,0,0,2"
                        IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Bilinear}}"/>
-          <RadioButton Grid.Row="1" Grid.Column="0" Content="Nearest Neighbor" TabIndex="31" Margin="0,0,0,2"
+          <RadioButton Grid.Row="1" Grid.Column="0" Content="{x:Static p:Language.plugin_pixelart_nearest_neighbor}" TabIndex="31" Margin="0,0,0,2"
                        IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.NearestNeighbor}}"/>
-          <RadioButton Grid.Row="2" Grid.Column="0" Content="Bicubic" TabIndex="32" Margin="0,0,0,2"
+          <RadioButton Grid.Row="2" Grid.Column="0" Content="{x:Static p:Language.plugin_pixelart_bicubic}" TabIndex="32" Margin="0,0,0,2"
                        IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Bicubic}}"/>
-          <RadioButton Grid.Row="3" Grid.Column="0" Content="Lanczos" TabIndex="33" Margin="0,0,0,2"
+          <RadioButton Grid.Row="3" Grid.Column="0" Content="{x:Static p:Language.plugin_pixelart_lanczos}" TabIndex="33" Margin="0,0,0,2"
                        IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Lanczos}}"/>
-          <RadioButton Grid.Row="4" Grid.Column="0" Content="Hermite" TabIndex="34" Margin="0,0,0,2"
+          <RadioButton Grid.Row="4" Grid.Column="0" Content="{x:Static p:Language.plugin_pixelart_hermite}" TabIndex="34" Margin="0,0,0,2"
                        IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Hermite}}"/>
-          <RadioButton Grid.Row="5" Grid.Column="0" Content="Spline" TabIndex="35" Margin="0,0,0,2"
+          <RadioButton Grid.Row="5" Grid.Column="0" Content="{x:Static p:Language.plugin_pixelart_spline}" TabIndex="35" Margin="0,0,0,2"
                        IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Spline}}"/>
-          <RadioButton Grid.Row="6" Grid.Column="0" Content="Gaussian" TabIndex="36"
+          <RadioButton Grid.Row="6" Grid.Column="0" Content="{x:Static p:Language.plugin_pixelart_gaussian}" TabIndex="36"
                        IsChecked="{Binding ScalingMode, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static local:ScalingMode.Gaussian}}"/>
 
-          <TextBox Grid.Row="3" Grid.Column="1" Height="20" Width="38" IsEnabled="{Binding IsLanczosAEnabled}" Text="{Binding LanczosA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Change the A=." TabIndex="37" Margin="8,0,0,2" VerticalAlignment="Center"/>
-          <TextBox Grid.Row="6" Grid.Column="1" Height="20" Width="38" IsEnabled="{Binding IsSigmaEnabled}" Text="{Binding GaussianSigma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Change the Sigma=." TabIndex="38" Margin="8,0,0,0" VerticalAlignment="Center"/>
+          <TextBox Grid.Row="3" Grid.Column="1" Height="20" Width="38" IsEnabled="{Binding IsLanczosAEnabled}" Text="{Binding LanczosA, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{x:Static p:Language.plugin_pixelart_change_a_tooltip}" TabIndex="37" Margin="8,0,0,2" VerticalAlignment="Center"/>
+          <TextBox Grid.Row="6" Grid.Column="1" Height="20" Width="38" IsEnabled="{Binding IsSigmaEnabled}" Text="{Binding GaussianSigma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="{x:Static p:Language.plugin_pixelart_change_sigma_tooltip}" TabIndex="38" Margin="8,0,0,0" VerticalAlignment="Center"/>
         </Grid>
       </GroupBox>
 
@@ -224,19 +225,19 @@
       <StackPanel Margin="0,0,8,0">
         <GroupBox x:Name="ColorFilterSettingsGroupBox" BorderBrush="White" Margin="0,0,0,8">
           <GroupBox.Header>
-            <TextBlock Text="Color Filter Settings:" Foreground="White"/>
+            <TextBlock Text="{x:Static p:Language.plugin_pixelart_color_filter_settings}" Foreground="White"/>
           </GroupBox.Header>
           <StackPanel Margin="4">
-            <CheckBox Content="Use Tiles" IsChecked="{Binding UseTiles}" TabIndex="39" Margin="0,0,0,4"/>
-            <CheckBox Content="Use Walls" IsChecked="{Binding UseWalls}" TabIndex="40" Margin="0,0,0,4"/>
-            <CheckBox Content="Build Safe" IsChecked="{Binding BuildSafe}" TabIndex="41" Margin="0,0,0,4"/>
-            <CheckBox Content="Unique Colors" IsChecked="{Binding UniqueColors}" TabIndex="42"/>
+            <CheckBox Content="{x:Static p:Language.plugin_pixelart_use_tiles}" IsChecked="{Binding UseTiles}" TabIndex="39" Margin="0,0,0,4"/>
+            <CheckBox Content="{x:Static p:Language.plugin_pixelart_use_walls}" IsChecked="{Binding UseWalls}" TabIndex="40" Margin="0,0,0,4"/>
+            <CheckBox Content="{x:Static p:Language.plugin_pixelart_build_safe}" IsChecked="{Binding BuildSafe}" TabIndex="41" Margin="0,0,0,4"/>
+            <CheckBox Content="{x:Static p:Language.plugin_pixelart_unique_colors}" IsChecked="{Binding UniqueColors}" TabIndex="42"/>
           </StackPanel>
         </GroupBox>
 
         <GroupBox x:Name="ColorFilterDataGroupBox" BorderBrush="White">
           <GroupBox.Header>
-            <TextBlock Text="Color Filter Data:" Foreground="White"/>
+            <TextBlock Text="{x:Static p:Language.plugin_pixelart_color_filter_data}" Foreground="White"/>
           </GroupBox.Header>
           <Grid Margin="4">
             <Grid.ColumnDefinitions>
@@ -248,9 +249,9 @@
               <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Total Colors:" FontSize="11" Margin="0,0,8,2"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.plugin_pixelart_total_colors}" FontSize="11" Margin="0,0,8,2"/>
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TotalColorsData}" FontSize="11" Margin="0,0,0,2"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Filtered Colors:" FontSize="11" Margin="0,0,8,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.plugin_pixelart_filtered_colors}" FontSize="11" Margin="0,0,8,0"/>
             <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FilteredColorsData}" FontSize="11"/>
           </Grid>
         </GroupBox>
@@ -259,7 +260,7 @@
       <!-- Pixel Art Statistics GroupBox -->
       <GroupBox x:Name="PixelArtStatisticsGroupBox" BorderBrush="White">
         <GroupBox.Header>
-          <TextBlock Text="Pixel Art Statistics:" Foreground="White"/>
+          <TextBlock Text="{x:Static p:Language.plugin_pixelart_statistics}" Foreground="White"/>
         </GroupBox.Header>
         <Grid Margin="4">
           <Grid.ColumnDefinitions>
@@ -277,28 +278,28 @@
           </Grid.RowDefinitions>
 
           <!-- Stats column -->
-          <TextBlock Grid.Row="0" Grid.Column="0" Text="Total Height:" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.plugin_pixelart_total_height}" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
           <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding TotalHeightData}" FontSize="11" Margin="0,0,0,2" VerticalAlignment="Center"/>
-          <TextBlock Grid.Row="1" Grid.Column="0" Text="Total Width:" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.plugin_pixelart_total_width}" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
           <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding TotalWidthData}" FontSize="11" Margin="0,0,0,2" VerticalAlignment="Center"/>
-          <TextBlock Grid.Row="2" Grid.Column="0" Text="Total Blocks:" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Language.plugin_pixelart_total_blocks}" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
           <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TotalBlocksData}" FontSize="11" Margin="0,0,0,2" VerticalAlignment="Center"/>
 
           <!-- Checkboxes column -->
-          <CheckBox Grid.Row="0" Grid.Column="2" Content="Generate Schematic" IsChecked="{Binding GenerateSchematic}" ToolTip="Generate schematic file while rendering pixel art (slight speed impact)." TabIndex="53" Margin="16,0,0,2"/>
-          <CheckBox Grid.Row="1" Grid.Column="2" Content="Gather Statistics" IsChecked="{Binding GatherStatistics}" ToolTip="Record pixelart statistics." TabIndex="54" Margin="16,0,0,2"/>
-          <CheckBox Grid.Row="2" Grid.Column="2" Content="Progress Bar" IsChecked="{Binding ShowProgressBar}" ToolTip="Show the pixel art progression (slight speed impact)." TabIndex="55" Margin="16,0,0,2"/>
+          <CheckBox Grid.Row="0" Grid.Column="2" Content="{x:Static p:Language.plugin_pixelart_generate_schematic}" IsChecked="{Binding GenerateSchematic}" ToolTip="{x:Static p:Language.plugin_pixelart_generate_schematic_tooltip}" TabIndex="53" Margin="16,0,0,2"/>
+          <CheckBox Grid.Row="1" Grid.Column="2" Content="{x:Static p:Language.plugin_pixelart_gather_statistics}" IsChecked="{Binding GatherStatistics}" ToolTip="{x:Static p:Language.plugin_pixelart_gather_statistics_tooltip}" TabIndex="54" Margin="16,0,0,2"/>
+          <CheckBox Grid.Row="2" Grid.Column="2" Content="{x:Static p:Language.plugin_pixelart_progress_bar}" IsChecked="{Binding ShowProgressBar}" ToolTip="{x:Static p:Language.plugin_pixelart_progress_bar_tooltip}" TabIndex="55" Margin="16,0,0,2"/>
 
           <!-- Current Image row -->
-          <TextBlock Grid.Row="3" Grid.Column="0" Text="Current Image:" FontSize="11" Margin="0,8,8,2" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="3" Grid.Column="0" Text="{x:Static p:Language.plugin_pixelart_current_image}" FontSize="11" Margin="0,8,8,2" VerticalAlignment="Center"/>
           <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="11" IsReadOnly="True" Text="{Binding CurrentImageData}" TabIndex="57" Margin="0,8,0,2"/>
 
           <!-- Save Directory row -->
-          <TextBlock Grid.Row="4" Grid.Column="0" Text="Save Directory:" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static p:Language.plugin_pixelart_save_directory}" FontSize="11" Margin="0,0,8,2" VerticalAlignment="Center"/>
           <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" FontSize="11" IsReadOnly="True" Text="{Binding SaveDirectoryData}" TabIndex="59" Margin="0,0,0,2"/>
 
           <!-- Progress row -->
-          <TextBlock Grid.Row="5" Grid.Column="0" Text="Progress:" FontSize="11" Margin="0,0,8,0" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="0" Text="{x:Static p:Language.plugin_pixelart_progress}" FontSize="11" Margin="0,0,8,0" VerticalAlignment="Center"/>
           <ProgressBar Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Height="18" Minimum="0" Maximum="{Binding ProgressMaximum}" Value="{Binding ProgressValue}"/>
         </Grid>
       </GroupBox>
