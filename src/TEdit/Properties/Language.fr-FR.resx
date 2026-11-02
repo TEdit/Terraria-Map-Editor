@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -1566,17 +1566,11 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_blockshuffle_title" xml:space="preserve">
     <value>Mélanger les positions des blocs</value>
   </data>
-  <data name="plugin_cleanseworld_menu" xml:space="preserve">
-    <value>Purifier le monde</value>
-  </data>
   <data name="plugin_housegen_add" xml:space="preserve">
     <value>Ajouter</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
     <value>Cliquez sur [...] pour importer un schéma de modèle.</value>
-  </data>
-  <data name="plugin_housegen_menu" xml:space="preserve">
-    <value>Générateur de maisons procédural</value>
   </data>
   <data name="plugin_housegen_preview" xml:space="preserve">
     <value>Aperçu</value>
@@ -1731,15 +1725,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_pixelart_build_safe" xml:space="preserve">
     <value>Construire en sécurité</value>
   </data>
-  <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>Calcul...</value>
-  </data>
-  <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>Calcul en cours...</value>
-  </data>
-  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
-    <value>Annuler la conversion</value>
-  </data>
   <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
     <value>Modifier A=.</value>
   </data>
@@ -1755,9 +1740,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
     <value>Outils de filtrage des couleurs :</value>
   </data>
-  <data name="plugin_pixelart_convert_button" xml:space="preserve">
-    <value>Convertir en pixel art</value>
-  </data>
   <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
     <value>Convertir l’image actuelle en pixel art.</value>
   </data>
@@ -1770,47 +1752,11 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_pixelart_current_image" xml:space="preserve">
     <value>Image actuelle :</value>
   </data>
-  <data name="plugin_pixelart_default" xml:space="preserve">
-    <value>Par défaut</value>
-  </data>
   <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
     <value>Supprimer les couleurs nulles</value>
   </data>
   <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
     <value>Supprimer du filtre les couleurs absentes du pixel art rendu.</value>
-  </data>
-  <data name="plugin_pixelart_error" xml:space="preserve">
-    <value>ERREUR : {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
-    <value>ERREUR : le format du filtre de couleur est invalide ! {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
-    <value>Le filtre de couleur est à zéro. Ajustez vos paramètres.</value>
-  </data>
-  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
-    <value>ERREUR : Vous devez d’abord générer un pixel art !</value>
-  </data>
-  <data name="plugin_pixelart_error_generic" xml:space="preserve">
-    <value>Une erreur s’est produite : {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
-    <value>Erreur lors du chargement de l’image : {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
-    <value>La fonction « Copier dans le presse-papiers » nécessite qu’un monde soit chargé !</value>
-  </data>
-  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
-    <value>Vous devez d’abord avoir enregistré un schéma !</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
-    <value>Erreur lors de l’enregistrement de l’image : {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
-    <value>Erreur lors de l’enregistrement du schéma : {0}</value>
-  </data>
-  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
-    <value>Les données du schéma sont vides ! Créez d’abord un pixel art !</value>
   </data>
   <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
     <value>Couleurs filtrées :</value>
@@ -1854,23 +1800,14 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_pixelart_hermite" xml:space="preserve">
     <value>Hermite</value>
   </data>
-  <data name="plugin_pixelart_image_completed" xml:space="preserve">
-    <value>Image terminée.</value>
-  </data>
   <data name="plugin_pixelart_lanczos" xml:space="preserve">
     <value>Lanczos</value>
-  </data>
-  <data name="plugin_pixelart_menu" xml:space="preserve">
-    <value>Éditeur de conversion d’image en pixel art</value>
   </data>
   <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
     <value>Plus proche voisin</value>
   </data>
   <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
     <value>Nouveau ratio % Niveau :</value>
-  </data>
-  <data name="plugin_pixelart_none" xml:space="preserve">
-    <value>Aucun</value>
   </data>
   <data name="plugin_pixelart_no_rotation" xml:space="preserve">
     <value>Aucune rotation</value>
@@ -1895,9 +1832,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
     <value>Afficher la progression du pixel art (impact léger sur la vitesse).</value>
-  </data>
-  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
-    <value>Le rendu a été annulé.</value>
   </data>
   <data name="plugin_pixelart_reset_colors" xml:space="preserve">
     <value>Réinitialiser les couleurs</value>
@@ -1929,17 +1863,8 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
     <value>Mode de mise à l’échelle :</value>
   </data>
-  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
-    <value>Schéma copié dans le presse-papiers.</value>
-  </data>
-  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
-    <value>Le schéma a été remplacé.</value>
-  </data>
   <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
     <value>Rotation du schéma :</value>
-  </data>
-  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
-    <value>Le schéma a été enregistré.</value>
   </data>
   <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
     <value>Définir un nouveau ratio</value>
@@ -1992,9 +1917,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_pixelart_y_axis" xml:space="preserve">
     <value>Axe Y</value>
   </data>
-  <data name="plugin_playermap_menu" xml:space="preserve">
-    <value>Rendre le fichier .map du joueur</value>
-  </data>
   <data name="plugin_randomizer_bg_walls" xml:space="preserve">
     <value>Générer des murs d’arrière-plan aléatoires</value>
   </data>
@@ -2003,9 +1925,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
     <value>Prendre en charge les blocs soumis à la gravité (sable, etc.)</value>
-  </data>
-  <data name="plugin_randomizer_menu" xml:space="preserve">
-    <value>Répartir aléatoirement tous les blocs du monde</value>
   </data>
   <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
     <value>Ne pas répartir aléatoirement en blocs qui disparaissent instantanément</value>
@@ -2022,23 +1941,14 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_randomizer_title" xml:space="preserve">
     <value>Randomiser le monde</value>
   </data>
-  <data name="plugin_removeallchests_menu" xml:space="preserve">
-    <value>Supprimer tous les coffres</value>
-  </data>
   <data name="plugin_removetile_hint_blocks" xml:space="preserve">
     <value>Saisissez le nom du bloc ou du sprite que vous souhaitez supprimer.</value>
   </data>
   <data name="plugin_removetile_hint_walls" xml:space="preserve">
     <value>Saisissez le nom du mur que vous souhaitez supprimer.</value>
   </data>
-  <data name="plugin_removetile_menu" xml:space="preserve">
-    <value>Supprimer le sprite, le bloc ou le mur</value>
-  </data>
   <data name="plugin_removetile_title" xml:space="preserve">
     <value>Supprimer la tuile</value>
-  </data>
-  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
-    <value>Supprimer tous les coffres déverrouillés</value>
   </data>
   <data name="plugin_replay_delay" xml:space="preserve">
     <value>Délai</value>
@@ -2055,14 +1965,8 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_replay_title" xml:space="preserve">
     <value>Rejouer</value>
   </data>
-  <data name="plugin_sandsettle_menu" xml:space="preserve">
-    <value>Tasser le sable</value>
-  </data>
   <data name="plugin_seed_label" xml:space="preserve">
     <value>Graine : (laisser vide pour une valeur aléatoire)</value>
-  </data>
-  <data name="plugin_spritedebugger_menu" xml:space="preserve">
-    <value>Générer les sprites de débogage</value>
   </data>
   <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
     <value>Ajouter au presse-papiers</value>
@@ -2076,11 +1980,41 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="plugin_textstatue_max_line_length" xml:space="preserve">
     <value>Longueur maximale de ligne</value>
   </data>
-  <data name="plugin_textstatue_menu" xml:space="preserve">
-    <value>Générer des statues de texte</value>
-  </data>
   <data name="plugin_textstatue_title" xml:space="preserve">
     <value>Générateur de statues à texte</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>Purifier le monde</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>Générateur de maisons procédural</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>Éditeur de conversion d’image en pixel art</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>Rendre le fichier .map du joueur</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>Répartir aléatoirement tous les blocs du monde</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>Supprimer tous les coffres</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>Supprimer le sprite, le bloc ou le mur</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>Supprimer tous les coffres déverrouillés</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>Tasser le sable</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>Générer les sprites de débogage</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>Générer des statues de texte</value>
   </data>
   <data name="plugin_textureexport_menu" xml:space="preserve">
     <value>Exporter les textures (DEBUG)</value>
@@ -2299,6 +2233,12 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>Afficher les actualités et annonces dans le rédacteur</value>
   </data>
+  <data name="settings_show_splash_screen" xml:space="preserve">
+    <value>Afficher l'écran d'introduction</value>
+  </data>
+  <data name="settings_show_splash_screen_desc" xml:space="preserve">
+    <value>Afficher le logo TEdit pendant le démarrage de l'application</value>
+  </data>
   <data name="settings_show_points" xml:space="preserve">
     <value>Points de spectacle</value>
   </data>
@@ -2310,12 +2250,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>Visibilité du fil rouge à bascule</value>
-  </data>
-  <data name="settings_show_splash_screen" xml:space="preserve">
-    <value>Afficher l'écran d'introduction</value>
-  </data>
-  <data name="settings_show_splash_screen_desc" xml:space="preserve">
-    <value>Afficher le logo TEdit pendant le démarrage de l'application</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
     <value>Afficher les textures</value>
@@ -2750,9 +2684,6 @@ Appuie sur réessayer pour choisir un nouveau dossier ou annule pour utiliser {0
   <data name="TeamSpawn_Yellow" xml:space="preserve">
     <value>Apparition de l’équipe Jaune</value>
   </data>
-  <data name="telemetry_prompt_link" xml:space="preserve">
-    <value>Lire la politique de confidentialité complète</value>
-  </data>
   <data name="telemetry_prompt_message" xml:space="preserve">
     <value>TEdit peut envoyer des rapports d’erreurs anonymes pour améliorer la stabilité.
 
@@ -2979,9 +2910,6 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   </data>
   <data name="tool_morph_decorations" xml:space="preserve">
     <value>Décorations</value>
-  </data>
-  <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>Autels/Orbes</value>
   </data>
   <data name="tool_morph_evil" xml:space="preserve">
     <value>Mauvais</value>
@@ -3888,5 +3816,77 @@ Souhaitez-vous activer le signalement d’erreurs ?</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corriger le fossé de fond</value>
+  </data>
+  <data name="tool_morph_deco_sprites" xml:space="preserve">
+    <value>Autels/Orbes</value>
+  </data>
+  <data name="telemetry_prompt_link" xml:space="preserve">
+    <value>Lire la politique de confidentialité complète</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>Calcul...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>Calcul en cours...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>Annuler la conversion</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>Convertir en pixel art</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>Par défaut</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>ERREUR : {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>ERREUR : le format du filtre de couleur est invalide ! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>Le filtre de couleur est à zéro. Ajustez vos paramètres.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>ERREUR : Vous devez d’abord générer un pixel art !</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>Une erreur s’est produite : {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>Erreur lors du chargement de l’image : {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>La fonction « Copier dans le presse-papiers » nécessite qu’un monde soit chargé !</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>Vous devez d’abord avoir enregistré un schéma !</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>Erreur lors de l’enregistrement de l’image : {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>Erreur lors de l’enregistrement du schéma : {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>Les données du schéma sont vides ! Créez d’abord un pixel art !</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>Image terminée.</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>Le rendu a été annulé.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>Schéma copié dans le presse-papiers.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>Le schéma a été remplacé.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>Le schéma a été enregistré.</value>
   </data>
 </root>
