@@ -283,11 +283,20 @@
   <data name="common_all" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="common_apply" xml:space="preserve">
+    <value>適用</value>
+  </data>
+  <data name="common_both" xml:space="preserve">
+    <value>両方</value>
+  </data>
   <data name="common_browse" xml:space="preserve">
     <value>閲覧して...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>キャンセル</value>
+  </data>
+  <data name="common_center" xml:space="preserve">
+    <value>中央</value>
   </data>
   <data name="common_clear" xml:space="preserve">
     <value>クリア</value>
@@ -304,11 +313,17 @@
   <data name="common_generate" xml:space="preserve">
     <value>生成</value>
   </data>
+  <data name="common_left" xml:space="preserve">
+    <value>左</value>
+  </data>
   <data name="common_none" xml:space="preserve">
     <value>全くありません</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>わかった</value>
+  </data>
+  <data name="common_random" xml:space="preserve">
+    <value>ランダム</value>
   </data>
   <data name="common_refresh" xml:space="preserve">
     <value>リフレッシュ</value>
@@ -318,6 +333,9 @@
   </data>
   <data name="common_reset" xml:space="preserve">
     <value>リセット</value>
+  </data>
+  <data name="common_right" xml:space="preserve">
+    <value>右</value>
   </data>
   <data name="common_save" xml:space="preserve">
     <value>セーブ</value>
@@ -695,6 +713,12 @@
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>最初の項目をコピーしてください</value>
   </data>
+  <data name="menu_debug" xml:space="preserve">
+    <value>デバッグ</value>
+  </data>
+  <data name="menu_debug_show_nbt" xml:space="preserve">
+    <value>NBTオーバーレイを表示</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>編集</value>
   </data>
@@ -1047,6 +1071,12 @@
     <value>砂漠</value>
     <comment>enum:MorphBiome.Desert</comment>
   </data>
+  <data name="MorphBiome_DestructiveConversion" xml:space="preserve">
+    <value>バイオームを生成（破壊的）</value>
+  </data>
+  <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
+    <value>地形を変更し、装飾を削除することがあります。元のタイルに戻すには「元に戻す」を使用してください。</value>
+  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>ハロー</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -1055,12 +1085,30 @@
     <value>ジャングル</value>
     <comment>enum:MorphBiome.Jungle</comment>
   </data>
+  <data name="MorphBiome_Mode" xml:space="preserve">
+    <value>モード</value>
+  </data>
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>浄化</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="MorphBiome_SafeConversion" xml:space="preserve">
+    <value>安全な変換</value>
+  </data>
+  <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
+    <value>一致するバイオームタイルを変換し、対応していないタイルは変更しません。</value>
+  </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>NBTエクスプローラー</value>
+  </data>
+  <data name="nbt_open_in_editor_tooltip" xml:space="preserve">
+    <value>エディターで開く</value>
+  </data>
+  <data name="nbt_search_tags_placeholder" xml:space="preserve">
+    <value>タグを検索...</value>
+  </data>
+  <data name="nbt_zoom_to_tile_tooltip" xml:space="preserve">
+    <value>マップ上でこのタイルにズームする</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>アッシュを加える</value>
@@ -1188,6 +1236,18 @@
   <data name="palette_mask_section" xml:space="preserve">
     <value>Mask Options</value>
   </data>
+  <data name="palette_replace_all" xml:space="preserve">
+    <value>すべて置換</value>
+  </data>
+  <data name="palette_replace_all_tooltip" xml:space="preserve">
+    <value>ワールド内の一致するタイルをすべて置き換える</value>
+  </data>
+  <data name="palette_replace_selection" xml:space="preserve">
+    <value>選択範囲を置換</value>
+  </data>
+  <data name="palette_replace_selection_tooltip" xml:space="preserve">
+    <value>現在の選択範囲内で一致するタイルを置き換える</value>
+  </data>
   <data name="palette_tile_section" xml:space="preserve">
     <value>Tile Picker</value>
   </data>
@@ -1218,6 +1278,9 @@
   <data name="picker_search_items_placeholder" xml:space="preserve">
     <value>アイテムを捜索...</value>
   </data>
+  <data name="picker_search_placeholder" xml:space="preserve">
+    <value>捜索...</value>
+  </data>
   <data name="picker_search_platforms_placeholder" xml:space="preserve">
     <value>検索プラットフォーム...</value>
   </data>
@@ -1232,6 +1295,9 @@
   </data>
   <data name="picker_search_walls_placeholder" xml:space="preserve">
     <value>壁を捜索し...</value>
+  </data>
+  <data name="picker_tab_mods" xml:space="preserve">
+    <value>Mods</value>
   </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>見えるすべての項目のチェックを外します</value>
@@ -1463,6 +1529,564 @@
   </data>
   <data name="player_stats_using_biome_torches" xml:space="preserve">
     <value>バイオームトーチの使用</value>
+  </data>
+  <data name="plugin_blockshuffle_apply_chance_all" xml:space="preserve">
+    <value>すべてに発生確率（%）を適用する</value>
+  </data>
+  <data name="plugin_blockshuffle_count_liquids" xml:space="preserve">
+    <value>液体も空として扱う（壁がある場合に最適）</value>
+  </data>
+  <data name="plugin_blockshuffle_count_walls" xml:space="preserve">
+    <value>壁（およびワイヤー）も空として数える</value>
+  </data>
+  <data name="plugin_blockshuffle_empty_percent" xml:space="preserve">
+    <value>置き換える空のブロックの割合：</value>
+  </data>
+  <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
+    <value>元に戻すを有効にする（低速）</value>
+  </data>
+  <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
+    <value>タイルエンティティを含める</value>
+  </data>
+  <data name="plugin_blockshuffle_keep_below_entities" xml:space="preserve">
+    <value>特殊なタイルエンティティの下にブロックを保持する</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_selection" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_world" xml:space="preserve">
+    <value>ワールド</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_button" xml:space="preserve">
+    <value>シャッフル</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_label" xml:space="preserve">
+    <value>シャッフル：</value>
+  </data>
+  <data name="plugin_blockshuffle_title" xml:space="preserve">
+    <value>ブロックの配置をシャッフルする</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>ワールドを浄化する</value>
+  </data>
+  <data name="plugin_housegen_add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="plugin_housegen_import_hint" xml:space="preserve">
+    <value>[...]をクリックしてテンプレートのスキーマをインポートします。</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>自動生成住宅ツール</value>
+  </data>
+  <data name="plugin_housegen_preview" xml:space="preserve">
+    <value>プレビュー</value>
+  </data>
+  <data name="plugin_housegen_schematics" xml:space="preserve">
+    <value>設計図</value>
+  </data>
+  <data name="plugin_housegen_sync_groups" xml:space="preserve">
+    <value>グループを同期する</value>
+  </data>
+  <data name="plugin_housegen_title" xml:space="preserve">
+    <value>家生成ツール</value>
+  </data>
+  <data name="plugin_housegen_zone1_desc" xml:space="preserve">
+    <value>ゾーン1の説明（グループ1）</value>
+  </data>
+  <data name="plugin_housegen_zone2_desc" xml:space="preserve">
+    <value>ゾーン2の説明（グループ1）</value>
+  </data>
+  <data name="plugin_housegen_zone3_desc" xml:space="preserve">
+    <value>ゾーン3</value>
+  </data>
+  <data name="plugin_ore_adamantite" xml:space="preserve">
+    <value>アダマンタイト</value>
+  </data>
+  <data name="plugin_ore_chlorophyte" xml:space="preserve">
+    <value>クロロファイト</value>
+  </data>
+  <data name="plugin_ore_cobalt" xml:space="preserve">
+    <value>コバルト</value>
+  </data>
+  <data name="plugin_ore_convert_ash" xml:space="preserve">
+    <value>灰ブロックを変換する</value>
+  </data>
+  <data name="plugin_ore_copper" xml:space="preserve">
+    <value>銅</value>
+  </data>
+  <data name="plugin_ore_crimtane" xml:space="preserve">
+    <value>クリムタン</value>
+  </data>
+  <data name="plugin_ore_demonite" xml:space="preserve">
+    <value>デモナイト</value>
+  </data>
+  <data name="plugin_ore_enable_undo" xml:space="preserve">
+    <value>元に戻すを有効にする</value>
+  </data>
+  <data name="plugin_ore_gold" xml:space="preserve">
+    <value>金</value>
+  </data>
+  <data name="plugin_ore_hellstone" xml:space="preserve">
+    <value>ヘルストーン</value>
+  </data>
+  <data name="plugin_ore_iron" xml:space="preserve">
+    <value>鉄</value>
+  </data>
+  <data name="plugin_ore_lead" xml:space="preserve">
+    <value>鉛</value>
+  </data>
+  <data name="plugin_ore_luminite" xml:space="preserve">
+    <value>ルミナイト</value>
+  </data>
+  <data name="plugin_ore_meteorite" xml:space="preserve">
+    <value>隕石</value>
+  </data>
+  <data name="plugin_ore_mythril" xml:space="preserve">
+    <value>ミスリル</value>
+  </data>
+  <data name="plugin_ore_obsidian" xml:space="preserve">
+    <value>黒曜石</value>
+  </data>
+  <data name="plugin_ore_only_selection" xml:space="preserve">
+    <value>選択範囲のみ使用</value>
+  </data>
+  <data name="plugin_ore_orichalcum" xml:space="preserve">
+    <value>オリハルコン</value>
+  </data>
+  <data name="plugin_ore_palladium" xml:space="preserve">
+    <value>パラジウム</value>
+  </data>
+  <data name="plugin_ore_platinum" xml:space="preserve">
+    <value>プラチナ</value>
+  </data>
+  <data name="plugin_ore_silver" xml:space="preserve">
+    <value>銀</value>
+  </data>
+  <data name="plugin_ore_tier_1" xml:space="preserve">
+    <value>ティア1</value>
+  </data>
+  <data name="plugin_ore_tier_10" xml:space="preserve">
+    <value>ティア10</value>
+  </data>
+  <data name="plugin_ore_tier_11" xml:space="preserve">
+    <value>ティア11</value>
+  </data>
+  <data name="plugin_ore_tier_12" xml:space="preserve">
+    <value>ティア12</value>
+  </data>
+  <data name="plugin_ore_tier_13" xml:space="preserve">
+    <value>ティア13</value>
+  </data>
+  <data name="plugin_ore_tier_2" xml:space="preserve">
+    <value>ティア2</value>
+  </data>
+  <data name="plugin_ore_tier_3" xml:space="preserve">
+    <value>ティア3</value>
+  </data>
+  <data name="plugin_ore_tier_4" xml:space="preserve">
+    <value>ティア4</value>
+  </data>
+  <data name="plugin_ore_tier_5" xml:space="preserve">
+    <value>ティア5</value>
+  </data>
+  <data name="plugin_ore_tier_6" xml:space="preserve">
+    <value>ティア6</value>
+  </data>
+  <data name="plugin_ore_tier_7" xml:space="preserve">
+    <value>ティア7</value>
+  </data>
+  <data name="plugin_ore_tier_8" xml:space="preserve">
+    <value>ティア 8</value>
+  </data>
+  <data name="plugin_ore_tier_9" xml:space="preserve">
+    <value>ティア 9</value>
+  </data>
+  <data name="plugin_ore_tin" xml:space="preserve">
+    <value>スズ</value>
+  </data>
+  <data name="plugin_ore_titanium" xml:space="preserve">
+    <value>チタン</value>
+  </data>
+  <data name="plugin_ore_title" xml:space="preserve">
+    <value>シンプルな鉱石生成器</value>
+  </data>
+  <data name="plugin_ore_tungsten" xml:space="preserve">
+    <value>タングステン</value>
+  </data>
+  <data name="plugin_pixelart_backdrop" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="plugin_pixelart_backdrop_tooltip" xml:space="preserve">
+    <value>透明なピクセルに背景を追加する。</value>
+  </data>
+  <data name="plugin_pixelart_basic_config" xml:space="preserve">
+    <value>基本設定：</value>
+  </data>
+  <data name="plugin_pixelart_bicubic" xml:space="preserve">
+    <value>バイキュービック</value>
+  </data>
+  <data name="plugin_pixelart_bilinear" xml:space="preserve">
+    <value>バイリニア</value>
+  </data>
+  <data name="plugin_pixelart_build_safe" xml:space="preserve">
+    <value>安全に建築する</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>計算中...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>計算中...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>変換をキャンセル</value>
+  </data>
+  <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
+    <value>A=を変更する</value>
+  </data>
+  <data name="plugin_pixelart_change_sigma_tooltip" xml:space="preserve">
+    <value>シグマを変更=.</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_data" xml:space="preserve">
+    <value>カラーフィルターデータ：</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_settings" xml:space="preserve">
+    <value>カラーフィルター設定：</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
+    <value>カラーフィルターツール:</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>ピクセルアートに変換する</value>
+  </data>
+  <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
+    <value>現在の画像をピクセルアートに変換する。</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard" xml:space="preserve">
+    <value>クリップボードにコピー</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard_tooltip" xml:space="preserve">
+    <value>生成されたピクセルアートをクリップボードにコピーします。</value>
+  </data>
+  <data name="plugin_pixelart_current_image" xml:space="preserve">
+    <value>現在の画像:</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>デフォルト</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
+    <value>空の色を削除する</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
+    <value>レンダリングされたピクセルアートに存在しない色をフィルターから削除する</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>エラー: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>エラー: カラーフィルターの書式が無効です！{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>色フィルターがゼロです。設定を調整してください。</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>エラー：まずピクセルアートを生成してください！</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>エラーが発生しました: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>画像の読み込みエラー: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>「クリップボードにコピー」機能を使用するには、ワールドを読み込む必要があります！</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>先にスケマティックを保存しておく必要があります！</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>画像の保存中にエラーが発生しました: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>スキーマの保存中にエラーが発生しました: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>スケマティックデータが空です！先にピクセルアートを生成してください！</value>
+  </data>
+  <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
+    <value>フィルター済みの色：</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics" xml:space="preserve">
+    <value>統計を集計する</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics_tooltip" xml:space="preserve">
+    <value>ピクセルアートの統計を記録する。</value>
+  </data>
+  <data name="plugin_pixelart_gaussian" xml:space="preserve">
+    <value>ガウスぼかし</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic" xml:space="preserve">
+    <value>設計図を生成</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic_tooltip" xml:space="preserve">
+    <value>ピクセルアートのレンダリング中にスケマティックファイルを生成する（速度への影響はわずかです）。</value>
+  </data>
+  <data name="plugin_pixelart_grid_color" xml:space="preserve">
+    <value>グリッドの色</value>
+  </data>
+  <data name="plugin_pixelart_grid_color_tooltip" xml:space="preserve">
+    <value>グリッドの色を変更します。</value>
+  </data>
+  <data name="plugin_pixelart_grid_options" xml:space="preserve">
+    <value>グリッドオプション：</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset" xml:space="preserve">
+    <value>グリッドのXオフセット：</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset_tooltip" xml:space="preserve">
+    <value>グリッドをX軸方向にずらす。</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset" xml:space="preserve">
+    <value>グリッドのY方向オフセット：</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset_tooltip" xml:space="preserve">
+    <value>グリッドのY軸をオフセットする。</value>
+  </data>
+  <data name="plugin_pixelart_hermite" xml:space="preserve">
+    <value>エルミート</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>画像の処理が完了しました。</value>
+  </data>
+  <data name="plugin_pixelart_lanczos" xml:space="preserve">
+    <value>Lanczos</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>画像をピクセルアートに変換するエディター</value>
+  </data>
+  <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
+    <value>ニアレストネイバー</value>
+  </data>
+  <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
+    <value>新しい比率 % レベル:</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>全くありません</value>
+  </data>
+  <data name="plugin_pixelart_no_rotation" xml:space="preserve">
+    <value>回転なし</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image" xml:space="preserve">
+    <value>新しい画像を開く</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image_tooltip" xml:space="preserve">
+    <value>変換する新しい画像を開きます。</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing" xml:space="preserve">
+    <value>既存のファイルを上書きする</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing_tooltip" xml:space="preserve">
+    <value>既存のスケマティックを上書きする。</value>
+  </data>
+  <data name="plugin_pixelart_progress" xml:space="preserve">
+    <value>進行状況：</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar" xml:space="preserve">
+    <value>進捗バー</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
+    <value>ピクセルアートの進行状況を表示する（速度への影響はわずか）</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>レンダリングはキャンセルされました。</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors" xml:space="preserve">
+    <value>色をリセットする</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors_tooltip" xml:space="preserve">
+    <value>色フィルターを定義済みの設定にリセットします。</value>
+  </data>
+  <data name="plugin_pixelart_rot_180" xml:space="preserve">
+    <value>180度</value>
+  </data>
+  <data name="plugin_pixelart_rot_270" xml:space="preserve">
+    <value>270度</value>
+  </data>
+  <data name="plugin_pixelart_rot_90" xml:space="preserve">
+    <value>90度</value>
+  </data>
+  <data name="plugin_pixelart_save_directory" xml:space="preserve">
+    <value>保存先ディレクトリ：</value>
+  </data>
+  <data name="plugin_pixelart_save_image" xml:space="preserve">
+    <value>画像を保存</value>
+  </data>
+  <data name="plugin_pixelart_save_image_tooltip" xml:space="preserve">
+    <value>生成したピクセルアートを画像として保存します。</value>
+  </data>
+  <data name="plugin_pixelart_save_schematic" xml:space="preserve">
+    <value>スキーマをファイルに保存</value>
+  </data>
+  <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
+    <value>拡大縮小モード:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>設計図をクリップボードにコピーしました。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>スキーマは上書きされました。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
+    <value>設計図の回転：</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>設計図を保存しました。</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
+    <value>新しい比率を設定する</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio_tooltip" xml:space="preserve">
+    <value>新しい画像のズーム倍率を設定します。</value>
+  </data>
+  <data name="plugin_pixelart_show_grid_tooltip" xml:space="preserve">
+    <value>レンダリングされたピクセルアートにグリッドを重ねる。</value>
+  </data>
+  <data name="plugin_pixelart_spacing" xml:space="preserve">
+    <value>間隔</value>
+  </data>
+  <data name="plugin_pixelart_spline" xml:space="preserve">
+    <value>スプライン</value>
+  </data>
+  <data name="plugin_pixelart_statistics" xml:space="preserve">
+    <value>ピクセルアート統計:</value>
+  </data>
+  <data name="plugin_pixelart_title" xml:space="preserve">
+    <value>画像からピクセルアート、そして設計図へ v0.1 | 開発者：D.RUSS#2430 | Terraria MOD制作</value>
+  </data>
+  <data name="plugin_pixelart_total_blocks" xml:space="preserve">
+    <value>ブロック総数：</value>
+  </data>
+  <data name="plugin_pixelart_total_colors" xml:space="preserve">
+    <value>色の総数：</value>
+  </data>
+  <data name="plugin_pixelart_total_height" xml:space="preserve">
+    <value>全高：</value>
+  </data>
+  <data name="plugin_pixelart_total_width" xml:space="preserve">
+    <value>全幅：</value>
+  </data>
+  <data name="plugin_pixelart_unique_colors" xml:space="preserve">
+    <value>固有色</value>
+  </data>
+  <data name="plugin_pixelart_use_tiles" xml:space="preserve">
+    <value>タイルを使用する</value>
+  </data>
+  <data name="plugin_pixelart_use_walls" xml:space="preserve">
+    <value>壁を使用する</value>
+  </data>
+  <data name="plugin_pixelart_world_axis" xml:space="preserve">
+    <value>ワールド軸：</value>
+  </data>
+  <data name="plugin_pixelart_x_axis" xml:space="preserve">
+    <value>X軸</value>
+  </data>
+  <data name="plugin_pixelart_y_axis" xml:space="preserve">
+    <value>Y軸</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>プレイヤーの.mapファイルを描画する</value>
+  </data>
+  <data name="plugin_randomizer_bg_walls" xml:space="preserve">
+    <value>背景の壁をランダム化する</value>
+  </data>
+  <data name="plugin_randomizer_enable_undo" xml:space="preserve">
+    <value>元に戻すを有効にする（非常に遅くなります）</value>
+  </data>
+  <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
+    <value>重力の影響を受けるブロックに対応（砂など）</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>ワールド内のすべてのブロックをランダム化する</value>
+  </data>
+  <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
+    <value>すぐに消えるブロックにランダム化しない</value>
+  </data>
+  <data name="plugin_randomizer_only_selection" xml:space="preserve">
+    <value>選択範囲のみをランダム化する</value>
+  </data>
+  <data name="plugin_randomizer_randomize" xml:space="preserve">
+    <value>ランダム化する</value>
+  </data>
+  <data name="plugin_randomizer_satisfy_conditions" xml:space="preserve">
+    <value>消えるブロック（つるなど）の条件を満たす</value>
+  </data>
+  <data name="plugin_randomizer_title" xml:space="preserve">
+    <value>ワールドをランダム化する</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>すべてのチェストを削除</value>
+  </data>
+  <data name="plugin_removetile_hint_blocks" xml:space="preserve">
+    <value>削除するブロックまたはスプライトの名前を入力してください。</value>
+  </data>
+  <data name="plugin_removetile_hint_walls" xml:space="preserve">
+    <value>削除する壁の名前を入力してください。</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>スプライト、ブロック、または壁を削除する</value>
+  </data>
+  <data name="plugin_removetile_title" xml:space="preserve">
+    <value>タイルを削除する</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>ロック解除済みの宝箱をすべて削除</value>
+  </data>
+  <data name="plugin_replay_delay" xml:space="preserve">
+    <value>遅延</value>
+  </data>
+  <data name="plugin_replay_player_title" xml:space="preserve">
+    <value>リプレイプレイヤー</value>
+  </data>
+  <data name="plugin_replay_recorder_title" xml:space="preserve">
+    <value>リプレイレコーダー</value>
+  </data>
+  <data name="plugin_replay_speed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="plugin_replay_title" xml:space="preserve">
+    <value>再生</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>砂をならす</value>
+  </data>
+  <data name="plugin_seed_label" xml:space="preserve">
+    <value>シード値：（ランダムにする場合は空欄にしてください）</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>デバッグ用スプライトを生成</value>
+  </data>
+  <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
+    <value>クリップボードに追加</value>
+  </data>
+  <data name="plugin_textstatue_letter_spacing" xml:space="preserve">
+    <value>文字間隔</value>
+  </data>
+  <data name="plugin_textstatue_line_spacing" xml:space="preserve">
+    <value>行間隔</value>
+  </data>
+  <data name="plugin_textstatue_max_line_length" xml:space="preserve">
+    <value>線の最大長さ</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>テキスト像を生成する</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>文字像ジェネレーター</value>
+  </data>
+  <data name="plugin_textureexport_menu" xml:space="preserve">
+    <value>テクスチャをエクスポート（デバッグ）</value>
+  </data>
+  <data name="plugin_unlockallchests_menu" xml:space="preserve">
+    <value>すべてのチェストを解放する</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>保存するバージョンを選択してください:</value>
@@ -2154,6 +2778,21 @@
   </data>
   <data name="texture_loading_title" xml:space="preserve">
     <value>テクスチャの読み込み</value>
+  </data>
+  <data name="tileentity_items" xml:space="preserve">
+    <value>アイテム</value>
+  </data>
+  <data name="tileentity_logic" xml:space="preserve">
+    <value>ロジック</value>
+  </data>
+  <data name="tileentity_on" xml:space="preserve">
+    <value>オン</value>
+  </data>
+  <data name="tileentity_prefix" xml:space="preserve">
+    <value>接頭辞</value>
+  </data>
+  <data name="tileentity_stack" xml:space="preserve">
+    <value>スタック</value>
   </data>
   <data name="toolbar_deselect" xml:space="preserve">
     <value>Deselect</value>
@@ -3172,6 +3811,12 @@
   <data name="world_explorer_browse" xml:space="preserve">
     <value>ブラウズ…</value>
   </data>
+  <data name="world_explorer_clear_cache" xml:space="preserve">
+    <value>キャッシュをクリアする</value>
+  </data>
+  <data name="world_explorer_clear_cache_tooltip" xml:space="preserve">
+    <value>TEditのバックアップ、自動保存、元に戻す／やり直しの履歴を削除する</value>
+  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>寸法</value>
   </data>
@@ -3234,6 +3879,9 @@
   </data>
   <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
     <value>お気に入りを切り替える</value>
+  </data>
+  <data name="world_explorer_toggle_tmodloader_tooltip" xml:space="preserve">
+    <value>VanillaワールドとtModLoaderワールドを切り替える</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>ピンを外せ</value>

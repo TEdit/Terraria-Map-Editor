@@ -283,11 +283,20 @@
   <data name="common_all" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="common_apply" xml:space="preserve">
+    <value>적용</value>
+  </data>
+  <data name="common_both" xml:space="preserve">
+    <value>둘 다</value>
+  </data>
   <data name="common_browse" xml:space="preserve">
     <value>둘러보기...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>취소</value>
+  </data>
+  <data name="common_center" xml:space="preserve">
+    <value>중앙</value>
   </data>
   <data name="common_clear" xml:space="preserve">
     <value>비켜</value>
@@ -304,11 +313,17 @@
   <data name="common_generate" xml:space="preserve">
     <value>생성</value>
   </data>
+  <data name="common_left" xml:space="preserve">
+    <value>왼쪽</value>
+  </data>
   <data name="common_none" xml:space="preserve">
     <value>전혀 없습니다</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>알겠어</value>
+  </data>
+  <data name="common_random" xml:space="preserve">
+    <value>무작위</value>
   </data>
   <data name="common_refresh" xml:space="preserve">
     <value>새로고침</value>
@@ -318,6 +333,9 @@
   </data>
   <data name="common_reset" xml:space="preserve">
     <value>리셋</value>
+  </data>
+  <data name="common_right" xml:space="preserve">
+    <value>오른쪽</value>
   </data>
   <data name="common_save" xml:space="preserve">
     <value>저장</value>
@@ -695,6 +713,12 @@
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>첫 번째 항목 복사</value>
   </data>
+  <data name="menu_debug" xml:space="preserve">
+    <value>디버그</value>
+  </data>
+  <data name="menu_debug_show_nbt" xml:space="preserve">
+    <value>NBT 오버레이 표시</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>수정</value>
   </data>
@@ -1047,6 +1071,12 @@
     <value>사막</value>
     <comment>enum:MorphBiome.Desert</comment>
   </data>
+  <data name="MorphBiome_DestructiveConversion" xml:space="preserve">
+    <value>생물 군계 생성(파괴적)</value>
+  </data>
+  <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
+    <value>지형을 변경하고 장식을 제거할 수 있습니다. 실행 취소를 사용해 원래 타일을 복원하세요.</value>
+  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>할로우</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -1055,12 +1085,30 @@
     <value>정글</value>
     <comment>enum:MorphBiome.Jungle</comment>
   </data>
+  <data name="MorphBiome_Mode" xml:space="preserve">
+    <value>모드</value>
+  </data>
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>정화</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="MorphBiome_SafeConversion" xml:space="preserve">
+    <value>안전한 변환</value>
+  </data>
+  <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
+    <value>일치하는 바이옴 타일을 변환하고 지원되지 않는 타일은 그대로 둡니다.</value>
+  </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>NBT 익스플로러</value>
+  </data>
+  <data name="nbt_open_in_editor_tooltip" xml:space="preserve">
+    <value>편집기에서 열기</value>
+  </data>
+  <data name="nbt_search_tags_placeholder" xml:space="preserve">
+    <value>태그 검색...</value>
+  </data>
+  <data name="nbt_zoom_to_tile_tooltip" xml:space="preserve">
+    <value>지도에서 이 타일로 확대하기</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>재 추가하세요</value>
@@ -1188,6 +1236,18 @@
   <data name="palette_mask_section" xml:space="preserve">
     <value>Mask Options</value>
   </data>
+  <data name="palette_replace_all" xml:space="preserve">
+    <value>모두 바꾸기</value>
+  </data>
+  <data name="palette_replace_all_tooltip" xml:space="preserve">
+    <value>월드에서 일치하는 모든 타일 바꾸기</value>
+  </data>
+  <data name="palette_replace_selection" xml:space="preserve">
+    <value>선택 영역 바꾸기</value>
+  </data>
+  <data name="palette_replace_selection_tooltip" xml:space="preserve">
+    <value>현재 선택 영역 내에서 일치하는 타일 바꾸기</value>
+  </data>
   <data name="palette_tile_section" xml:space="preserve">
     <value>Tile Picker</value>
   </data>
@@ -1218,6 +1278,9 @@
   <data name="picker_search_items_placeholder" xml:space="preserve">
     <value>수색 물건...</value>
   </data>
+  <data name="picker_search_placeholder" xml:space="preserve">
+    <value>수색...</value>
+  </data>
   <data name="picker_search_platforms_placeholder" xml:space="preserve">
     <value>검색 플랫폼...</value>
   </data>
@@ -1232,6 +1295,9 @@
   </data>
   <data name="picker_search_walls_placeholder" xml:space="preserve">
     <value>벽을 수색해...</value>
+  </data>
+  <data name="picker_tab_mods" xml:space="preserve">
+    <value>Mods</value>
   </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>보이는 모든 항목 체크 해제</value>
@@ -1463,6 +1529,564 @@
   </data>
   <data name="player_stats_using_biome_torches" xml:space="preserve">
     <value>바이옴 횃불 사용</value>
+  </data>
+  <data name="plugin_blockshuffle_apply_chance_all" xml:space="preserve">
+    <value>모든 항목에 % 확률 적용</value>
+  </data>
+  <data name="plugin_blockshuffle_count_liquids" xml:space="preserve">
+    <value>액체도 빈 공간으로 계산 (벽과 함께 사용 권장)</value>
+  </data>
+  <data name="plugin_blockshuffle_count_walls" xml:space="preserve">
+    <value>벽(및 전선)도 빈 공간으로 간주</value>
+  </data>
+  <data name="plugin_blockshuffle_empty_percent" xml:space="preserve">
+    <value>교체할 빈 블록 비율:</value>
+  </data>
+  <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
+    <value>실행 취소 사용(느림)</value>
+  </data>
+  <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
+    <value>타일 엔티티 포함</value>
+  </data>
+  <data name="plugin_blockshuffle_keep_below_entities" xml:space="preserve">
+    <value>특수 타일 엔티티 아래에 블록 유지</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_selection" xml:space="preserve">
+    <value>선택 영역</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_world" xml:space="preserve">
+    <value>월드</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_button" xml:space="preserve">
+    <value>섞기</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_label" xml:space="preserve">
+    <value>섞기:</value>
+  </data>
+  <data name="plugin_blockshuffle_title" xml:space="preserve">
+    <value>블록 위치 섞기</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>세계 정화하기</value>
+  </data>
+  <data name="plugin_housegen_add" xml:space="preserve">
+    <value>추가</value>
+  </data>
+  <data name="plugin_housegen_import_hint" xml:space="preserve">
+    <value>[...]을 클릭하여 템플릿 설계도를 가져오세요.</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>절차적 집 생성기</value>
+  </data>
+  <data name="plugin_housegen_preview" xml:space="preserve">
+    <value>미리보기</value>
+  </data>
+  <data name="plugin_housegen_schematics" xml:space="preserve">
+    <value>설계도</value>
+  </data>
+  <data name="plugin_housegen_sync_groups" xml:space="preserve">
+    <value>그룹 동기화</value>
+  </data>
+  <data name="plugin_housegen_title" xml:space="preserve">
+    <value>집 생성기</value>
+  </data>
+  <data name="plugin_housegen_zone1_desc" xml:space="preserve">
+    <value>구역 1 설명 (그룹 1)</value>
+  </data>
+  <data name="plugin_housegen_zone2_desc" xml:space="preserve">
+    <value>구역 2 설명(그룹 1)</value>
+  </data>
+  <data name="plugin_housegen_zone3_desc" xml:space="preserve">
+    <value>구역 3</value>
+  </data>
+  <data name="plugin_ore_adamantite" xml:space="preserve">
+    <value>아다만타이트</value>
+  </data>
+  <data name="plugin_ore_chlorophyte" xml:space="preserve">
+    <value>클로로파이트</value>
+  </data>
+  <data name="plugin_ore_cobalt" xml:space="preserve">
+    <value>코발트</value>
+  </data>
+  <data name="plugin_ore_convert_ash" xml:space="preserve">
+    <value>재 블록 변환</value>
+  </data>
+  <data name="plugin_ore_copper" xml:space="preserve">
+    <value>구리</value>
+  </data>
+  <data name="plugin_ore_crimtane" xml:space="preserve">
+    <value>크림테인</value>
+  </data>
+  <data name="plugin_ore_demonite" xml:space="preserve">
+    <value>데모나이트</value>
+  </data>
+  <data name="plugin_ore_enable_undo" xml:space="preserve">
+    <value>실행 취소 활성화</value>
+  </data>
+  <data name="plugin_ore_gold" xml:space="preserve">
+    <value>금</value>
+  </data>
+  <data name="plugin_ore_hellstone" xml:space="preserve">
+    <value>지옥석</value>
+  </data>
+  <data name="plugin_ore_iron" xml:space="preserve">
+    <value>철</value>
+  </data>
+  <data name="plugin_ore_lead" xml:space="preserve">
+    <value>납</value>
+  </data>
+  <data name="plugin_ore_luminite" xml:space="preserve">
+    <value>루미나이트</value>
+  </data>
+  <data name="plugin_ore_meteorite" xml:space="preserve">
+    <value>운석</value>
+  </data>
+  <data name="plugin_ore_mythril" xml:space="preserve">
+    <value>미스릴</value>
+  </data>
+  <data name="plugin_ore_obsidian" xml:space="preserve">
+    <value>흑요석</value>
+  </data>
+  <data name="plugin_ore_only_selection" xml:space="preserve">
+    <value>선택 영역만 사용</value>
+  </data>
+  <data name="plugin_ore_orichalcum" xml:space="preserve">
+    <value>오리칼쿰</value>
+  </data>
+  <data name="plugin_ore_palladium" xml:space="preserve">
+    <value>팔라듐</value>
+  </data>
+  <data name="plugin_ore_platinum" xml:space="preserve">
+    <value>백금</value>
+  </data>
+  <data name="plugin_ore_silver" xml:space="preserve">
+    <value>은</value>
+  </data>
+  <data name="plugin_ore_tier_1" xml:space="preserve">
+    <value>1단계</value>
+  </data>
+  <data name="plugin_ore_tier_10" xml:space="preserve">
+    <value>10단계</value>
+  </data>
+  <data name="plugin_ore_tier_11" xml:space="preserve">
+    <value>11단계</value>
+  </data>
+  <data name="plugin_ore_tier_12" xml:space="preserve">
+    <value>12단계</value>
+  </data>
+  <data name="plugin_ore_tier_13" xml:space="preserve">
+    <value>13단계</value>
+  </data>
+  <data name="plugin_ore_tier_2" xml:space="preserve">
+    <value>2단계</value>
+  </data>
+  <data name="plugin_ore_tier_3" xml:space="preserve">
+    <value>3단계</value>
+  </data>
+  <data name="plugin_ore_tier_4" xml:space="preserve">
+    <value>4단계</value>
+  </data>
+  <data name="plugin_ore_tier_5" xml:space="preserve">
+    <value>등급 5</value>
+  </data>
+  <data name="plugin_ore_tier_6" xml:space="preserve">
+    <value>티어 6</value>
+  </data>
+  <data name="plugin_ore_tier_7" xml:space="preserve">
+    <value>등급 7</value>
+  </data>
+  <data name="plugin_ore_tier_8" xml:space="preserve">
+    <value>등급 8</value>
+  </data>
+  <data name="plugin_ore_tier_9" xml:space="preserve">
+    <value>9단계</value>
+  </data>
+  <data name="plugin_ore_tin" xml:space="preserve">
+    <value>주석</value>
+  </data>
+  <data name="plugin_ore_titanium" xml:space="preserve">
+    <value>티타늄</value>
+  </data>
+  <data name="plugin_ore_title" xml:space="preserve">
+    <value>간단한 광석 생성기</value>
+  </data>
+  <data name="plugin_ore_tungsten" xml:space="preserve">
+    <value>텅스텐</value>
+  </data>
+  <data name="plugin_pixelart_backdrop" xml:space="preserve">
+    <value>배경</value>
+  </data>
+  <data name="plugin_pixelart_backdrop_tooltip" xml:space="preserve">
+    <value>투명 픽셀에 배경을 추가합니다.</value>
+  </data>
+  <data name="plugin_pixelart_basic_config" xml:space="preserve">
+    <value>기본 설정:</value>
+  </data>
+  <data name="plugin_pixelart_bicubic" xml:space="preserve">
+    <value>바이큐빅</value>
+  </data>
+  <data name="plugin_pixelart_bilinear" xml:space="preserve">
+    <value>쌍선형 보간</value>
+  </data>
+  <data name="plugin_pixelart_build_safe" xml:space="preserve">
+    <value>안전하게 건설하기</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>계산 중...</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>계산 중...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>변환 취소</value>
+  </data>
+  <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
+    <value>A= 변경.</value>
+  </data>
+  <data name="plugin_pixelart_change_sigma_tooltip" xml:space="preserve">
+    <value>시그마 변경=.</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_data" xml:space="preserve">
+    <value>색상 필터 데이터:</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_settings" xml:space="preserve">
+    <value>색상 필터 설정:</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
+    <value>색상 필터 도구:</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>픽셀 아트로 변환</value>
+  </data>
+  <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
+    <value>현재 이미지를 픽셀 아트로 변환합니다.</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard" xml:space="preserve">
+    <value>클립보드에 복사</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard_tooltip" xml:space="preserve">
+    <value>생성된 픽셀 아트를 클립보드에 복사합니다.</value>
+  </data>
+  <data name="plugin_pixelart_current_image" xml:space="preserve">
+    <value>현재 이미지:</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>기본값</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
+    <value>Null 색상 삭제</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
+    <value>렌더링된 픽셀 아트에 없는 색상을 필터에서 제거합니다.</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>오류: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>오류: 색상 필터 형식이 잘못되었습니다! {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>색상 필터 값이 0입니다. 설정을 조정하세요.</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>오류: 먼저 픽셀 아트를 생성해야 합니다!</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>오류가 발생했습니다: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>이미지 로드 오류: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>'클립보드에 복사' 기능을 사용하려면 월드를 불러와야 합니다!</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>먼저 스키매틱을 저장해야 합니다!</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>이미지 저장 오류: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>도식 저장 오류: {0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>도식 데이터가 비어 있습니다! 먼저 픽셀 아트를 생성하세요!</value>
+  </data>
+  <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
+    <value>필터링된 색상:</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics" xml:space="preserve">
+    <value>통계 수집</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics_tooltip" xml:space="preserve">
+    <value>픽셀 아트 통계 기록하기.</value>
+  </data>
+  <data name="plugin_pixelart_gaussian" xml:space="preserve">
+    <value>가우시안 필터</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic" xml:space="preserve">
+    <value>설계도 생성</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic_tooltip" xml:space="preserve">
+    <value>픽셀 아트를 렌더링하는 동안 스키매틱 파일 생성(속도에 약간 영향)</value>
+  </data>
+  <data name="plugin_pixelart_grid_color" xml:space="preserve">
+    <value>격자 색상</value>
+  </data>
+  <data name="plugin_pixelart_grid_color_tooltip" xml:space="preserve">
+    <value>격자 색상을 변경합니다.</value>
+  </data>
+  <data name="plugin_pixelart_grid_options" xml:space="preserve">
+    <value>격자 옵션:</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset" xml:space="preserve">
+    <value>격자 X 오프셋:</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset_tooltip" xml:space="preserve">
+    <value>X축 격자를 이동합니다.</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset" xml:space="preserve">
+    <value>격자 Y 오프셋:</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset_tooltip" xml:space="preserve">
+    <value>격자의 Y축을 오프셋합니다.</value>
+  </data>
+  <data name="plugin_pixelart_hermite" xml:space="preserve">
+    <value>에르미트</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>이미지 완료.</value>
+  </data>
+  <data name="plugin_pixelart_lanczos" xml:space="preserve">
+    <value>란초스</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>이미지를 픽셀 아트로 변환하는 편집기</value>
+  </data>
+  <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
+    <value>최근접 이웃</value>
+  </data>
+  <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
+    <value>새 비율 % 레벨:</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>전혀 없습니다</value>
+  </data>
+  <data name="plugin_pixelart_no_rotation" xml:space="preserve">
+    <value>회전 없음</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image" xml:space="preserve">
+    <value>새 이미지 열기</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image_tooltip" xml:space="preserve">
+    <value>변환할 새 이미지를 엽니다.</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing" xml:space="preserve">
+    <value>기존 파일 덮어쓰기</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing_tooltip" xml:space="preserve">
+    <value>기존 설계도를 덮어씁니다.</value>
+  </data>
+  <data name="plugin_pixelart_progress" xml:space="preserve">
+    <value>진행 상황:</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar" xml:space="preserve">
+    <value>진행률 표시줄</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
+    <value>픽셀 아트 진행 상황 표시(속도에 약간 영향을 줌)</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>렌더링이 취소되었습니다.</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors" xml:space="preserve">
+    <value>색상 초기화</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors_tooltip" xml:space="preserve">
+    <value>색상 필터를 지정된 설정으로 초기화합니다.</value>
+  </data>
+  <data name="plugin_pixelart_rot_180" xml:space="preserve">
+    <value>180도</value>
+  </data>
+  <data name="plugin_pixelart_rot_270" xml:space="preserve">
+    <value>270도</value>
+  </data>
+  <data name="plugin_pixelart_rot_90" xml:space="preserve">
+    <value>90도</value>
+  </data>
+  <data name="plugin_pixelart_save_directory" xml:space="preserve">
+    <value>저장 디렉터리:</value>
+  </data>
+  <data name="plugin_pixelart_save_image" xml:space="preserve">
+    <value>이미지 저장</value>
+  </data>
+  <data name="plugin_pixelart_save_image_tooltip" xml:space="preserve">
+    <value>생성된 픽셀 아트를 이미지로 저장합니다.</value>
+  </data>
+  <data name="plugin_pixelart_save_schematic" xml:space="preserve">
+    <value>도식을 파일로 저장</value>
+  </data>
+  <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
+    <value>크기 조정 모드:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>설계도를 클립보드에 복사했습니다.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>도식이 덮어쓰여졌습니다.</value>
+  </data>
+  <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
+    <value>도면 회전:</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>설계도를 저장했습니다.</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
+    <value>새 비율 설정</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio_tooltip" xml:space="preserve">
+    <value>새 이미지 확대 비율 설정.</value>
+  </data>
+  <data name="plugin_pixelart_show_grid_tooltip" xml:space="preserve">
+    <value>렌더링된 픽셀 아트 위에 격자를 표시합니다.</value>
+  </data>
+  <data name="plugin_pixelart_spacing" xml:space="preserve">
+    <value>간격</value>
+  </data>
+  <data name="plugin_pixelart_spline" xml:space="preserve">
+    <value>스플라인</value>
+  </data>
+  <data name="plugin_pixelart_statistics" xml:space="preserve">
+    <value>픽셀 아트 통계:</value>
+  </data>
+  <data name="plugin_pixelart_title" xml:space="preserve">
+    <value>이미지를 픽셀 아트로 변환한 뒤 설계도로 변환 v0.1 | 제작: D.RUSS#2430 | 테라리아 모딩</value>
+  </data>
+  <data name="plugin_pixelart_total_blocks" xml:space="preserve">
+    <value>총 블록 수:</value>
+  </data>
+  <data name="plugin_pixelart_total_colors" xml:space="preserve">
+    <value>총 색상:</value>
+  </data>
+  <data name="plugin_pixelart_total_height" xml:space="preserve">
+    <value>전체 높이:</value>
+  </data>
+  <data name="plugin_pixelart_total_width" xml:space="preserve">
+    <value>전체 너비:</value>
+  </data>
+  <data name="plugin_pixelart_unique_colors" xml:space="preserve">
+    <value>고유 색상</value>
+  </data>
+  <data name="plugin_pixelart_use_tiles" xml:space="preserve">
+    <value>타일 사용하기</value>
+  </data>
+  <data name="plugin_pixelart_use_walls" xml:space="preserve">
+    <value>벽 사용하기</value>
+  </data>
+  <data name="plugin_pixelart_world_axis" xml:space="preserve">
+    <value>월드 축:</value>
+  </data>
+  <data name="plugin_pixelart_x_axis" xml:space="preserve">
+    <value>X축</value>
+  </data>
+  <data name="plugin_pixelart_y_axis" xml:space="preserve">
+    <value>Y축</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>플레이어 .map 파일 렌더링</value>
+  </data>
+  <data name="plugin_randomizer_bg_walls" xml:space="preserve">
+    <value>배경 벽 무작위 설정</value>
+  </data>
+  <data name="plugin_randomizer_enable_undo" xml:space="preserve">
+    <value>실행 취소 사용(매우 느림)</value>
+  </data>
+  <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
+    <value>중력의 영향을 받는 블록 지원(모래 등)</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>월드의 모든 블록 무작위 배치</value>
+  </data>
+  <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
+    <value>즉시 사라지는 블록으로 무작위화하지 않기</value>
+  </data>
+  <data name="plugin_randomizer_only_selection" xml:space="preserve">
+    <value>선택 항목만 무작위로 변경</value>
+  </data>
+  <data name="plugin_randomizer_randomize" xml:space="preserve">
+    <value>무작위 설정</value>
+  </data>
+  <data name="plugin_randomizer_satisfy_conditions" xml:space="preserve">
+    <value>사라지는 블록(덩굴 등)의 조건 충족하기</value>
+  </data>
+  <data name="plugin_randomizer_title" xml:space="preserve">
+    <value>월드 무작위화</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>모든 상자 제거</value>
+  </data>
+  <data name="plugin_removetile_hint_blocks" xml:space="preserve">
+    <value>제거할 블록 또는 스프라이트의 이름을 입력하세요.</value>
+  </data>
+  <data name="plugin_removetile_hint_walls" xml:space="preserve">
+    <value>제거하려는 벽의 이름을 입력하세요.</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>스프라이트, 블록 또는 벽 제거</value>
+  </data>
+  <data name="plugin_removetile_title" xml:space="preserve">
+    <value>타일 제거</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>잠금 해제된 상자 모두 제거</value>
+  </data>
+  <data name="plugin_replay_delay" xml:space="preserve">
+    <value>지연</value>
+  </data>
+  <data name="plugin_replay_player_title" xml:space="preserve">
+    <value>리플레이 플레이어</value>
+  </data>
+  <data name="plugin_replay_recorder_title" xml:space="preserve">
+    <value>리플레이 녹화기</value>
+  </data>
+  <data name="plugin_replay_speed" xml:space="preserve">
+    <value>속도</value>
+  </data>
+  <data name="plugin_replay_title" xml:space="preserve">
+    <value>다시 재생</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>모래 정착시키기</value>
+  </data>
+  <data name="plugin_seed_label" xml:space="preserve">
+    <value>시드: (무작위로 설정하려면 비워 두세요)</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>디버그 스프라이트 생성</value>
+  </data>
+  <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
+    <value>클립보드에 추가</value>
+  </data>
+  <data name="plugin_textstatue_letter_spacing" xml:space="preserve">
+    <value>글자 간격</value>
+  </data>
+  <data name="plugin_textstatue_line_spacing" xml:space="preserve">
+    <value>줄 간격</value>
+  </data>
+  <data name="plugin_textstatue_max_line_length" xml:space="preserve">
+    <value>최대 선 길이</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>문자 조각상 생성</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>문자 조각상 생성기</value>
+  </data>
+  <data name="plugin_textureexport_menu" xml:space="preserve">
+    <value>텍스처 내보내기(디버그)</value>
+  </data>
+  <data name="plugin_unlockallchests_menu" xml:space="preserve">
+    <value>모든 상자 잠금 해제</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>저장할 버전을 선택하세요:</value>
@@ -2154,6 +2778,21 @@
   </data>
   <data name="texture_loading_title" xml:space="preserve">
     <value>텍스처 로딩</value>
+  </data>
+  <data name="tileentity_items" xml:space="preserve">
+    <value>항목</value>
+  </data>
+  <data name="tileentity_logic" xml:space="preserve">
+    <value>논리</value>
+  </data>
+  <data name="tileentity_on" xml:space="preserve">
+    <value>켜짐</value>
+  </data>
+  <data name="tileentity_prefix" xml:space="preserve">
+    <value>접두사</value>
+  </data>
+  <data name="tileentity_stack" xml:space="preserve">
+    <value>쌓기</value>
   </data>
   <data name="toolbar_deselect" xml:space="preserve">
     <value>Deselect</value>
@@ -3172,6 +3811,12 @@
   <data name="world_explorer_browse" xml:space="preserve">
     <value>둘러보기...</value>
   </data>
+  <data name="world_explorer_clear_cache" xml:space="preserve">
+    <value>캐시 지우기</value>
+  </data>
+  <data name="world_explorer_clear_cache_tooltip" xml:space="preserve">
+    <value>TEdit 백업, 자동 저장 파일 및 실행 취소/다시 실행 기록 삭제</value>
+  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>치수</value>
   </data>
@@ -3234,6 +3879,9 @@
   </data>
   <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
     <value>즐겨찾기 토글</value>
+  </data>
+  <data name="world_explorer_toggle_tmodloader_tooltip" xml:space="preserve">
+    <value>바닐라 월드와 tModLoader 월드 간 전환</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>핀 해제</value>

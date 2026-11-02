@@ -283,11 +283,20 @@
   <data name="common_all" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="common_apply" xml:space="preserve">
+    <value>套用</value>
+  </data>
+  <data name="common_both" xml:space="preserve">
+    <value>兩者皆有</value>
+  </data>
   <data name="common_browse" xml:space="preserve">
     <value>瀏覽...</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>取消</value>
+  </data>
+  <data name="common_center" xml:space="preserve">
+    <value>中心</value>
   </data>
   <data name="common_clear" xml:space="preserve">
     <value>清場</value>
@@ -304,11 +313,17 @@
   <data name="common_generate" xml:space="preserve">
     <value>生成</value>
   </data>
+  <data name="common_left" xml:space="preserve">
+    <value>左側</value>
+  </data>
   <data name="common_none" xml:space="preserve">
     <value>沒有</value>
   </data>
   <data name="common_ok" xml:space="preserve">
     <value>好</value>
+  </data>
+  <data name="common_random" xml:space="preserve">
+    <value>隨機</value>
   </data>
   <data name="common_refresh" xml:space="preserve">
     <value>刷新</value>
@@ -318,6 +333,9 @@
   </data>
   <data name="common_reset" xml:space="preserve">
     <value>重置</value>
+  </data>
+  <data name="common_right" xml:space="preserve">
+    <value>右方</value>
   </data>
   <data name="common_save" xml:space="preserve">
     <value>存檔</value>
@@ -695,6 +713,12 @@
   <data name="menu_copyfirstitem" xml:space="preserve">
     <value>第一項複製</value>
   </data>
+  <data name="menu_debug" xml:space="preserve">
+    <value>偵錯</value>
+  </data>
+  <data name="menu_debug_show_nbt" xml:space="preserve">
+    <value>顯示 NBT 疊加層</value>
+  </data>
   <data name="menu_edit" xml:space="preserve">
     <value>編輯</value>
   </data>
@@ -1047,6 +1071,12 @@
     <value>沙漠</value>
     <comment>enum:MorphBiome.Desert</comment>
   </data>
+  <data name="MorphBiome_DestructiveConversion" xml:space="preserve">
+    <value>生成生態域（具破壞性）</value>
+  </data>
+  <data name="MorphBiome_DestructiveConversion_Tooltip" xml:space="preserve">
+    <value>會變更地形，並可能移除裝飾。使用「復原」還原原始圖塊。</value>
+  </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
     <value>哈洛</value>
     <comment>enum:MorphBiome.Hallow</comment>
@@ -1055,12 +1085,30 @@
     <value>叢林</value>
     <comment>enum:MorphBiome.Jungle</comment>
   </data>
+  <data name="MorphBiome_Mode" xml:space="preserve">
+    <value>模式</value>
+  </data>
   <data name="MorphBiome_Purify" xml:space="preserve">
     <value>淨化</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
+  <data name="MorphBiome_SafeConversion" xml:space="preserve">
+    <value>安全轉換</value>
+  </data>
+  <data name="MorphBiome_SafeConversion_Tooltip" xml:space="preserve">
+    <value>轉換符合條件的生態域圖塊，並保留不支援的圖塊不變。</value>
+  </data>
   <data name="nbt_explorer_title" xml:space="preserve">
     <value>NBT 探險者</value>
+  </data>
+  <data name="nbt_open_in_editor_tooltip" xml:space="preserve">
+    <value>在編輯器中開啟</value>
+  </data>
+  <data name="nbt_search_tags_placeholder" xml:space="preserve">
+    <value>搜尋標籤……</value>
+  </data>
+  <data name="nbt_zoom_to_tile_tooltip" xml:space="preserve">
+    <value>放大至地圖上的這個圖格</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
     <value>加入灰燼</value>
@@ -1188,6 +1236,18 @@
   <data name="palette_mask_section" xml:space="preserve">
     <value>Mask Options</value>
   </data>
+  <data name="palette_replace_all" xml:space="preserve">
+    <value>全部取代</value>
+  </data>
+  <data name="palette_replace_all_tooltip" xml:space="preserve">
+    <value>取代世界中所有符合條件的磚塊</value>
+  </data>
+  <data name="palette_replace_selection" xml:space="preserve">
+    <value>取代選取範圍</value>
+  </data>
+  <data name="palette_replace_selection_tooltip" xml:space="preserve">
+    <value>在目前的選取範圍內取代符合條件的圖格</value>
+  </data>
   <data name="palette_tile_section" xml:space="preserve">
     <value>Tile Picker</value>
   </data>
@@ -1218,6 +1278,9 @@
   <data name="picker_search_items_placeholder" xml:space="preserve">
     <value>搜尋物品......</value>
   </data>
+  <data name="picker_search_placeholder" xml:space="preserve">
+    <value>搜尋......</value>
+  </data>
   <data name="picker_search_platforms_placeholder" xml:space="preserve">
     <value>搜尋平台......</value>
   </data>
@@ -1232,6 +1295,9 @@
   </data>
   <data name="picker_search_walls_placeholder" xml:space="preserve">
     <value>搜查牆壁......</value>
+  </data>
+  <data name="picker_tab_mods" xml:space="preserve">
+    <value>Mods</value>
   </data>
   <data name="picker_uncheck_all_tooltip" xml:space="preserve">
     <value>取消勾選所有可見項目</value>
@@ -1463,6 +1529,564 @@
   </data>
   <data name="player_stats_using_biome_torches" xml:space="preserve">
     <value>使用生物群系火炬</value>
+  </data>
+  <data name="plugin_blockshuffle_apply_chance_all" xml:space="preserve">
+    <value>將百分比機率套用至所有項目</value>
+  </data>
+  <data name="plugin_blockshuffle_count_liquids" xml:space="preserve">
+    <value>也將液體視為空間（搭配牆壁效果最佳）</value>
+  </data>
+  <data name="plugin_blockshuffle_count_walls" xml:space="preserve">
+    <value>也將牆壁（和電線）視為空的</value>
+  </data>
+  <data name="plugin_blockshuffle_empty_percent" xml:space="preserve">
+    <value>要替換的空磚塊百分比：</value>
+  </data>
+  <data name="plugin_blockshuffle_enable_undo" xml:space="preserve">
+    <value>啟用復原（速度較慢）</value>
+  </data>
+  <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
+    <value>包含圖格實體</value>
+  </data>
+  <data name="plugin_blockshuffle_keep_below_entities" xml:space="preserve">
+    <value>將方塊保留在特殊圖格實體下方</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_selection" xml:space="preserve">
+    <value>選取範圍</value>
+  </data>
+  <data name="plugin_blockshuffle_scope_world" xml:space="preserve">
+    <value>世界</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_button" xml:space="preserve">
+    <value>隨機排序</value>
+  </data>
+  <data name="plugin_blockshuffle_shuffle_label" xml:space="preserve">
+    <value>洗牌：</value>
+  </data>
+  <data name="plugin_blockshuffle_title" xml:space="preserve">
+    <value>隨機打亂方塊位置</value>
+  </data>
+  <data name="plugin_cleanseworld_menu" xml:space="preserve">
+    <value>淨化世界</value>
+  </data>
+  <data name="plugin_housegen_add" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="plugin_housegen_import_hint" xml:space="preserve">
+    <value>點擊 [...] 以匯入範本配置圖式</value>
+  </data>
+  <data name="plugin_housegen_menu" xml:space="preserve">
+    <value>程序化房屋產生器</value>
+  </data>
+  <data name="plugin_housegen_preview" xml:space="preserve">
+    <value>預覽</value>
+  </data>
+  <data name="plugin_housegen_schematics" xml:space="preserve">
+    <value>建築圖樣</value>
+  </data>
+  <data name="plugin_housegen_sync_groups" xml:space="preserve">
+    <value>同步群組</value>
+  </data>
+  <data name="plugin_housegen_title" xml:space="preserve">
+    <value>房屋產生器</value>
+  </data>
+  <data name="plugin_housegen_zone1_desc" xml:space="preserve">
+    <value>區域 1 說明（群組 1）</value>
+  </data>
+  <data name="plugin_housegen_zone2_desc" xml:space="preserve">
+    <value>區域 2 說明（群組 1）</value>
+  </data>
+  <data name="plugin_housegen_zone3_desc" xml:space="preserve">
+    <value>區域 3</value>
+  </data>
+  <data name="plugin_ore_adamantite" xml:space="preserve">
+    <value>精金礦</value>
+  </data>
+  <data name="plugin_ore_chlorophyte" xml:space="preserve">
+    <value>葉綠礦</value>
+  </data>
+  <data name="plugin_ore_cobalt" xml:space="preserve">
+    <value>鈷礦</value>
+  </data>
+  <data name="plugin_ore_convert_ash" xml:space="preserve">
+    <value>轉換灰燼方塊</value>
+  </data>
+  <data name="plugin_ore_copper" xml:space="preserve">
+    <value>銅</value>
+  </data>
+  <data name="plugin_ore_crimtane" xml:space="preserve">
+    <value>猩紅礦</value>
+  </data>
+  <data name="plugin_ore_demonite" xml:space="preserve">
+    <value>魔礦</value>
+  </data>
+  <data name="plugin_ore_enable_undo" xml:space="preserve">
+    <value>啟用復原</value>
+  </data>
+  <data name="plugin_ore_gold" xml:space="preserve">
+    <value>金</value>
+  </data>
+  <data name="plugin_ore_hellstone" xml:space="preserve">
+    <value>獄石</value>
+  </data>
+  <data name="plugin_ore_iron" xml:space="preserve">
+    <value>鐵</value>
+  </data>
+  <data name="plugin_ore_lead" xml:space="preserve">
+    <value>鉛</value>
+  </data>
+  <data name="plugin_ore_luminite" xml:space="preserve">
+    <value>夜明礦</value>
+  </data>
+  <data name="plugin_ore_meteorite" xml:space="preserve">
+    <value>隕石</value>
+  </data>
+  <data name="plugin_ore_mythril" xml:space="preserve">
+    <value>秘銀</value>
+  </data>
+  <data name="plugin_ore_obsidian" xml:space="preserve">
+    <value>黑曜石</value>
+  </data>
+  <data name="plugin_ore_only_selection" xml:space="preserve">
+    <value>僅使用選取範圍</value>
+  </data>
+  <data name="plugin_ore_orichalcum" xml:space="preserve">
+    <value>山銅</value>
+  </data>
+  <data name="plugin_ore_palladium" xml:space="preserve">
+    <value>鈀</value>
+  </data>
+  <data name="plugin_ore_platinum" xml:space="preserve">
+    <value>白金</value>
+  </data>
+  <data name="plugin_ore_silver" xml:space="preserve">
+    <value>銀</value>
+  </data>
+  <data name="plugin_ore_tier_1" xml:space="preserve">
+    <value>第一級</value>
+  </data>
+  <data name="plugin_ore_tier_10" xml:space="preserve">
+    <value>第 10 階級</value>
+  </data>
+  <data name="plugin_ore_tier_11" xml:space="preserve">
+    <value>第 11 階級</value>
+  </data>
+  <data name="plugin_ore_tier_12" xml:space="preserve">
+    <value>第 12 階級</value>
+  </data>
+  <data name="plugin_ore_tier_13" xml:space="preserve">
+    <value>第 13 階級</value>
+  </data>
+  <data name="plugin_ore_tier_2" xml:space="preserve">
+    <value>第二層級</value>
+  </data>
+  <data name="plugin_ore_tier_3" xml:space="preserve">
+    <value>第三級</value>
+  </data>
+  <data name="plugin_ore_tier_4" xml:space="preserve">
+    <value>第 4 階級</value>
+  </data>
+  <data name="plugin_ore_tier_5" xml:space="preserve">
+    <value>第 5 階級</value>
+  </data>
+  <data name="plugin_ore_tier_6" xml:space="preserve">
+    <value>第 6 階級</value>
+  </data>
+  <data name="plugin_ore_tier_7" xml:space="preserve">
+    <value>第 7 階</value>
+  </data>
+  <data name="plugin_ore_tier_8" xml:space="preserve">
+    <value>第 8 階級</value>
+  </data>
+  <data name="plugin_ore_tier_9" xml:space="preserve">
+    <value>第 9 階級</value>
+  </data>
+  <data name="plugin_ore_tin" xml:space="preserve">
+    <value>錫</value>
+  </data>
+  <data name="plugin_ore_titanium" xml:space="preserve">
+    <value>鈦金</value>
+  </data>
+  <data name="plugin_ore_title" xml:space="preserve">
+    <value>簡易礦石生成器</value>
+  </data>
+  <data name="plugin_ore_tungsten" xml:space="preserve">
+    <value>鎢</value>
+  </data>
+  <data name="plugin_pixelart_backdrop" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="plugin_pixelart_backdrop_tooltip" xml:space="preserve">
+    <value>為透明像素加入背景。</value>
+  </data>
+  <data name="plugin_pixelart_basic_config" xml:space="preserve">
+    <value>基本設定：</value>
+  </data>
+  <data name="plugin_pixelart_bicubic" xml:space="preserve">
+    <value>雙三次插值</value>
+  </data>
+  <data name="plugin_pixelart_bilinear" xml:space="preserve">
+    <value>雙線性插值</value>
+  </data>
+  <data name="plugin_pixelart_build_safe" xml:space="preserve">
+    <value>安全建造</value>
+  </data>
+  <data name="plugin_pixelart_calc" xml:space="preserve">
+    <value>計算中…</value>
+  </data>
+  <data name="plugin_pixelart_calculating" xml:space="preserve">
+    <value>計算中...</value>
+  </data>
+  <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
+    <value>取消轉換</value>
+  </data>
+  <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
+    <value>變更 A=。</value>
+  </data>
+  <data name="plugin_pixelart_change_sigma_tooltip" xml:space="preserve">
+    <value>變更 Sigma=。</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_data" xml:space="preserve">
+    <value>色彩篩選器資料：</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_settings" xml:space="preserve">
+    <value>色彩濾鏡設定：</value>
+  </data>
+  <data name="plugin_pixelart_color_filter_tools" xml:space="preserve">
+    <value>色彩篩選工具：</value>
+  </data>
+  <data name="plugin_pixelart_convert_button" xml:space="preserve">
+    <value>轉換為像素藝術</value>
+  </data>
+  <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
+    <value>將目前的圖片轉換為像素藝術。</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard" xml:space="preserve">
+    <value>複製到剪貼簿</value>
+  </data>
+  <data name="plugin_pixelart_copy_to_clipboard_tooltip" xml:space="preserve">
+    <value>將產生的像素藝術複製到剪貼簿。</value>
+  </data>
+  <data name="plugin_pixelart_current_image" xml:space="preserve">
+    <value>目前圖片：</value>
+  </data>
+  <data name="plugin_pixelart_default" xml:space="preserve">
+    <value>預設</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
+    <value>刪除空白顏色</value>
+  </data>
+  <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
+    <value>從篩選器中移除未出現在渲染像素畫中的顏色。</value>
+  </data>
+  <data name="plugin_pixelart_error" xml:space="preserve">
+    <value>錯誤：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_invalid" xml:space="preserve">
+    <value>錯誤：顏色篩選器格式無效！{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
+    <value>色彩濾鏡為零。請調整設定。</value>
+  </data>
+  <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
+    <value>錯誤：你需要先產生像素藝術！</value>
+  </data>
+  <data name="plugin_pixelart_error_generic" xml:space="preserve">
+    <value>發生錯誤：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_loading_image" xml:space="preserve">
+    <value>載入圖片時發生錯誤：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_requires_world" xml:space="preserve">
+    <value>「複製到剪貼簿」功能需要先載入世界！</value>
+  </data>
+  <data name="plugin_pixelart_error_save_first" xml:space="preserve">
+    <value>您必須先儲存一個結構檔！</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_image" xml:space="preserve">
+    <value>儲存圖片時發生錯誤：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
+    <value>儲存結構圖時發生錯誤：{0}</value>
+  </data>
+  <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
+    <value>結構資料是空的！請先產生像素藝術！</value>
+  </data>
+  <data name="plugin_pixelart_filtered_colors" xml:space="preserve">
+    <value>篩選後的顏色：</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics" xml:space="preserve">
+    <value>收集統計資料</value>
+  </data>
+  <data name="plugin_pixelart_gather_statistics_tooltip" xml:space="preserve">
+    <value>記錄像素藝術統計資料。</value>
+  </data>
+  <data name="plugin_pixelart_gaussian" xml:space="preserve">
+    <value>高斯濾鏡</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic" xml:space="preserve">
+    <value>產生藍圖</value>
+  </data>
+  <data name="plugin_pixelart_generate_schematic_tooltip" xml:space="preserve">
+    <value>渲染像素藝術時產生結構檔案（對速度略有影響）</value>
+  </data>
+  <data name="plugin_pixelart_grid_color" xml:space="preserve">
+    <value>網格顏色</value>
+  </data>
+  <data name="plugin_pixelart_grid_color_tooltip" xml:space="preserve">
+    <value>變更網格顏色。</value>
+  </data>
+  <data name="plugin_pixelart_grid_options" xml:space="preserve">
+    <value>網格選項：</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset" xml:space="preserve">
+    <value>網格 X 偏移量：</value>
+  </data>
+  <data name="plugin_pixelart_grid_x_offset_tooltip" xml:space="preserve">
+    <value>偏移 X 軸網格。</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset" xml:space="preserve">
+    <value>網格 Y 軸偏移：</value>
+  </data>
+  <data name="plugin_pixelart_grid_y_offset_tooltip" xml:space="preserve">
+    <value>偏移格線的 Y 軸。</value>
+  </data>
+  <data name="plugin_pixelart_hermite" xml:space="preserve">
+    <value>埃爾米特</value>
+  </data>
+  <data name="plugin_pixelart_image_completed" xml:space="preserve">
+    <value>影像處理完成。</value>
+  </data>
+  <data name="plugin_pixelart_lanczos" xml:space="preserve">
+    <value>Lanczos</value>
+  </data>
+  <data name="plugin_pixelart_menu" xml:space="preserve">
+    <value>圖片轉像素藝術編輯器</value>
+  </data>
+  <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
+    <value>最近鄰插值</value>
+  </data>
+  <data name="plugin_pixelart_new_ratio_level" xml:space="preserve">
+    <value>新比例 (%)：</value>
+  </data>
+  <data name="plugin_pixelart_none" xml:space="preserve">
+    <value>沒有</value>
+  </data>
+  <data name="plugin_pixelart_no_rotation" xml:space="preserve">
+    <value>無旋轉</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image" xml:space="preserve">
+    <value>開啟新圖片</value>
+  </data>
+  <data name="plugin_pixelart_open_new_image_tooltip" xml:space="preserve">
+    <value>開啟新圖片以進行轉換。</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing" xml:space="preserve">
+    <value>覆寫現有檔案</value>
+  </data>
+  <data name="plugin_pixelart_overwrite_existing_tooltip" xml:space="preserve">
+    <value>覆寫現有的藍圖。</value>
+  </data>
+  <data name="plugin_pixelart_progress" xml:space="preserve">
+    <value>進度：</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar" xml:space="preserve">
+    <value>進度條</value>
+  </data>
+  <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
+    <value>顯示像素藝術繪製進度（會稍微影響速度）</value>
+  </data>
+  <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
+    <value>渲染已取消。</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors" xml:space="preserve">
+    <value>重設顏色</value>
+  </data>
+  <data name="plugin_pixelart_reset_colors_tooltip" xml:space="preserve">
+    <value>將色彩篩選器重設為預設設定。</value>
+  </data>
+  <data name="plugin_pixelart_rot_180" xml:space="preserve">
+    <value>180 度</value>
+  </data>
+  <data name="plugin_pixelart_rot_270" xml:space="preserve">
+    <value>270 度</value>
+  </data>
+  <data name="plugin_pixelart_rot_90" xml:space="preserve">
+    <value>90 度</value>
+  </data>
+  <data name="plugin_pixelart_save_directory" xml:space="preserve">
+    <value>儲存目錄：</value>
+  </data>
+  <data name="plugin_pixelart_save_image" xml:space="preserve">
+    <value>儲存圖片</value>
+  </data>
+  <data name="plugin_pixelart_save_image_tooltip" xml:space="preserve">
+    <value>將生成的像素藝術儲存為圖片。</value>
+  </data>
+  <data name="plugin_pixelart_save_schematic" xml:space="preserve">
+    <value>將藍圖儲存至檔案</value>
+  </data>
+  <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
+    <value>縮放模式：</value>
+  </data>
+  <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
+    <value>已將藍圖複製到剪貼簿。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
+    <value>已覆寫配置圖。</value>
+  </data>
+  <data name="plugin_pixelart_schematic_rotation" xml:space="preserve">
+    <value>藍圖旋轉：</value>
+  </data>
+  <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
+    <value>已儲存藍圖。</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio" xml:space="preserve">
+    <value>設定新的比例</value>
+  </data>
+  <data name="plugin_pixelart_set_new_ratio_tooltip" xml:space="preserve">
+    <value>設定新的影像縮放比例。</value>
+  </data>
+  <data name="plugin_pixelart_show_grid_tooltip" xml:space="preserve">
+    <value>在算繪出的像素美術上疊加格線。</value>
+  </data>
+  <data name="plugin_pixelart_spacing" xml:space="preserve">
+    <value>間距</value>
+  </data>
+  <data name="plugin_pixelart_spline" xml:space="preserve">
+    <value>樣條曲線</value>
+  </data>
+  <data name="plugin_pixelart_statistics" xml:space="preserve">
+    <value>像素藝術統計：</value>
+  </data>
+  <data name="plugin_pixelart_title" xml:space="preserve">
+    <value>圖片轉像素藝術再轉為藍圖 v0.1 | 編寫者：D.RUSS#2430 | Terraria 模組製作</value>
+  </data>
+  <data name="plugin_pixelart_total_blocks" xml:space="preserve">
+    <value>方塊總數：</value>
+  </data>
+  <data name="plugin_pixelart_total_colors" xml:space="preserve">
+    <value>總顏色數：</value>
+  </data>
+  <data name="plugin_pixelart_total_height" xml:space="preserve">
+    <value>總高度：</value>
+  </data>
+  <data name="plugin_pixelart_total_width" xml:space="preserve">
+    <value>總寬度：</value>
+  </data>
+  <data name="plugin_pixelart_unique_colors" xml:space="preserve">
+    <value>獨特色彩</value>
+  </data>
+  <data name="plugin_pixelart_use_tiles" xml:space="preserve">
+    <value>使用圖塊</value>
+  </data>
+  <data name="plugin_pixelart_use_walls" xml:space="preserve">
+    <value>使用牆壁</value>
+  </data>
+  <data name="plugin_pixelart_world_axis" xml:space="preserve">
+    <value>世界座標軸：</value>
+  </data>
+  <data name="plugin_pixelart_x_axis" xml:space="preserve">
+    <value>X 軸</value>
+  </data>
+  <data name="plugin_pixelart_y_axis" xml:space="preserve">
+    <value>Y 軸</value>
+  </data>
+  <data name="plugin_playermap_menu" xml:space="preserve">
+    <value>渲染玩家 .map 檔案</value>
+  </data>
+  <data name="plugin_randomizer_bg_walls" xml:space="preserve">
+    <value>隨機化背景牆壁</value>
+  </data>
+  <data name="plugin_randomizer_enable_undo" xml:space="preserve">
+    <value>啟用復原（非常緩慢）</value>
+  </data>
+  <data name="plugin_randomizer_gravity_blocks" xml:space="preserve">
+    <value>支援受重力影響的方塊（如沙子等）</value>
+  </data>
+  <data name="plugin_randomizer_menu" xml:space="preserve">
+    <value>隨機化世界中的所有磚塊</value>
+  </data>
+  <data name="plugin_randomizer_no_disappearing" xml:space="preserve">
+    <value>不要隨機生成會立即消失的方塊</value>
+  </data>
+  <data name="plugin_randomizer_only_selection" xml:space="preserve">
+    <value>僅隨機化選取範圍</value>
+  </data>
+  <data name="plugin_randomizer_randomize" xml:space="preserve">
+    <value>隨機化</value>
+  </data>
+  <data name="plugin_randomizer_satisfy_conditions" xml:space="preserve">
+    <value>滿足容易消失的方塊（如藤蔓等）的存在條件</value>
+  </data>
+  <data name="plugin_randomizer_title" xml:space="preserve">
+    <value>隨機化世界</value>
+  </data>
+  <data name="plugin_removeallchests_menu" xml:space="preserve">
+    <value>移除所有寶箱</value>
+  </data>
+  <data name="plugin_removetile_hint_blocks" xml:space="preserve">
+    <value>輸入要移除的方塊或精靈名稱。</value>
+  </data>
+  <data name="plugin_removetile_hint_walls" xml:space="preserve">
+    <value>輸入您要移除的牆壁名稱。</value>
+  </data>
+  <data name="plugin_removetile_menu" xml:space="preserve">
+    <value>移除精靈圖、方塊或牆壁</value>
+  </data>
+  <data name="plugin_removetile_title" xml:space="preserve">
+    <value>移除圖塊</value>
+  </data>
+  <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
+    <value>移除所有未上鎖的寶箱</value>
+  </data>
+  <data name="plugin_replay_delay" xml:space="preserve">
+    <value>延遲</value>
+  </data>
+  <data name="plugin_replay_player_title" xml:space="preserve">
+    <value>重播播放器</value>
+  </data>
+  <data name="plugin_replay_recorder_title" xml:space="preserve">
+    <value>重播錄製器</value>
+  </data>
+  <data name="plugin_replay_speed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="plugin_replay_title" xml:space="preserve">
+    <value>重播</value>
+  </data>
+  <data name="plugin_sandsettle_menu" xml:space="preserve">
+    <value>讓沙塊自然落下</value>
+  </data>
+  <data name="plugin_seed_label" xml:space="preserve">
+    <value>種子：（留空以隨機產生）</value>
+  </data>
+  <data name="plugin_spritedebugger_menu" xml:space="preserve">
+    <value>產生除錯精靈圖</value>
+  </data>
+  <data name="plugin_textstatue_add_to_clipboard" xml:space="preserve">
+    <value>加入剪貼簿</value>
+  </data>
+  <data name="plugin_textstatue_letter_spacing" xml:space="preserve">
+    <value>字元間距</value>
+  </data>
+  <data name="plugin_textstatue_line_spacing" xml:space="preserve">
+    <value>行距</value>
+  </data>
+  <data name="plugin_textstatue_max_line_length" xml:space="preserve">
+    <value>每行最大字元數</value>
+  </data>
+  <data name="plugin_textstatue_menu" xml:space="preserve">
+    <value>生成文字雕像</value>
+  </data>
+  <data name="plugin_textstatue_title" xml:space="preserve">
+    <value>文字雕像產生器</value>
+  </data>
+  <data name="plugin_textureexport_menu" xml:space="preserve">
+    <value>匯出材質（除錯）</value>
+  </data>
+  <data name="plugin_unlockallchests_menu" xml:space="preserve">
+    <value>解鎖所有寶箱</value>
   </data>
   <data name="saveas_instruction" xml:space="preserve">
     <value>選擇一個版本以儲存為：</value>
@@ -2154,6 +2778,21 @@
   </data>
   <data name="texture_loading_title" xml:space="preserve">
     <value>貼圖載入</value>
+  </data>
+  <data name="tileentity_items" xml:space="preserve">
+    <value>物品</value>
+  </data>
+  <data name="tileentity_logic" xml:space="preserve">
+    <value>邏輯</value>
+  </data>
+  <data name="tileentity_on" xml:space="preserve">
+    <value>開啟</value>
+  </data>
+  <data name="tileentity_prefix" xml:space="preserve">
+    <value>前綴</value>
+  </data>
+  <data name="tileentity_stack" xml:space="preserve">
+    <value>堆疊</value>
   </data>
   <data name="toolbar_deselect" xml:space="preserve">
     <value>Deselect</value>
@@ -3172,6 +3811,12 @@
   <data name="world_explorer_browse" xml:space="preserve">
     <value>瀏覽...</value>
   </data>
+  <data name="world_explorer_clear_cache" xml:space="preserve">
+    <value>清除快取</value>
+  </data>
+  <data name="world_explorer_clear_cache_tooltip" xml:space="preserve">
+    <value>刪除 TEdit 備份、自動儲存檔案及復原／重做記錄</value>
+  </data>
   <data name="world_explorer_col_dimensions" xml:space="preserve">
     <value>尺寸</value>
   </data>
@@ -3234,6 +3879,9 @@
   </data>
   <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
     <value>切換最愛</value>
+  </data>
+  <data name="world_explorer_toggle_tmodloader_tooltip" xml:space="preserve">
+    <value>切換原版與 tModLoader 世界</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
     <value>解開</value>
