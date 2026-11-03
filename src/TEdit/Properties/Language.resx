@@ -4114,4 +4114,283 @@ Please check that this folder exists and TEdit has read access.
   <data name="dialog_export_textures_not_loaded" xml:space="preserve">
     <value>Textures not loaded yet. Please wait for texture loading to complete.</value>
   </data>
+  <data name="input_file_new" xml:space="preserve">
+    <value>New World</value>
+  </data>
+  <data name="input_file_open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="input_file_save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="input_file_saveas" xml:space="preserve">
+    <value>Save As</value>
+  </data>
+  <data name="input_file_saveasversion" xml:space="preserve">
+    <value>Save As Version</value>
+  </data>
+  <data name="input_file_reload" xml:space="preserve">
+    <value>Reload World</value>
+  </data>
+  <data name="input_edit_copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="input_edit_cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="input_edit_paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="input_edit_undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="input_edit_redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="input_paste_accept" xml:space="preserve">
+    <value>Accept Paste</value>
+  </data>
+  <data name="input_paste_rotate_cw" xml:space="preserve">
+    <value>Rotate Paste CW</value>
+  </data>
+  <data name="input_paste_rotate_ccw" xml:space="preserve">
+    <value>Rotate Paste CCW</value>
+  </data>
+  <data name="input_paste_flip_h" xml:space="preserve">
+    <value>Flip Paste Horizontal</value>
+  </data>
+  <data name="input_paste_flip_v" xml:space="preserve">
+    <value>Flip Paste Vertical</value>
+  </data>
+  <data name="input_selection_all" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="input_selection_none" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
+  <data name="input_selection_delete" xml:space="preserve">
+    <value>Delete Selection</value>
+  </data>
+  <data name="input_selection_move_up" xml:space="preserve">
+    <value>Move Selection Up</value>
+  </data>
+  <data name="input_selection_move_down" xml:space="preserve">
+    <value>Move Selection Down</value>
+  </data>
+  <data name="input_selection_move_left" xml:space="preserve">
+    <value>Move Selection Left</value>
+  </data>
+  <data name="input_selection_move_right" xml:space="preserve">
+    <value>Move Selection Right</value>
+  </data>
+  <data name="input_selection_move_up_fast" xml:space="preserve">
+    <value>Move Selection Up (Fast)</value>
+  </data>
+  <data name="input_selection_move_down_fast" xml:space="preserve">
+    <value>Move Selection Down (Fast)</value>
+  </data>
+  <data name="input_selection_move_left_fast" xml:space="preserve">
+    <value>Move Selection Left (Fast)</value>
+  </data>
+  <data name="input_selection_move_right_fast" xml:space="preserve">
+    <value>Move Selection Right (Fast)</value>
+  </data>
+  <data name="input_selection_resize_up" xml:space="preserve">
+    <value>Shrink Selection Height</value>
+  </data>
+  <data name="input_selection_resize_down" xml:space="preserve">
+    <value>Grow Selection Height</value>
+  </data>
+  <data name="input_selection_resize_left" xml:space="preserve">
+    <value>Shrink Selection Width</value>
+  </data>
+  <data name="input_selection_resize_right" xml:space="preserve">
+    <value>Grow Selection Width</value>
+  </data>
+  <data name="input_selection_resize_up_fast" xml:space="preserve">
+    <value>Shrink Selection Height (Fast)</value>
+  </data>
+  <data name="input_selection_resize_down_fast" xml:space="preserve">
+    <value>Grow Selection Height (Fast)</value>
+  </data>
+  <data name="input_selection_resize_left_fast" xml:space="preserve">
+    <value>Shrink Selection Width (Fast)</value>
+  </data>
+  <data name="input_selection_resize_right_fast" xml:space="preserve">
+    <value>Grow Selection Width (Fast)</value>
+  </data>
+  <data name="input_selection_adjust_startpoint" xml:space="preserve">
+    <value>Move Selection Start Point</value>
+  </data>
+  <data name="input_selection_adjust_startpoint_desc" xml:space="preserve">
+    <value>Ctrl+click/drag to move top-left corner of selection</value>
+  </data>
+  <data name="input_selection_adjust_endpoint" xml:space="preserve">
+    <value>Move Selection End Point</value>
+  </data>
+  <data name="input_selection_adjust_endpoint_desc" xml:space="preserve">
+    <value>Shift+click/drag to move bottom-right corner of selection</value>
+  </data>
+  <data name="input_edit_crop" xml:space="preserve">
+    <value>Crop World</value>
+  </data>
+  <data name="input_edit_expand" xml:space="preserve">
+    <value>Expand World</value>
+  </data>
+  <data name="input_app_settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="input_nav_scroll_up" xml:space="preserve">
+    <value>Scroll Up</value>
+  </data>
+  <data name="input_nav_scroll_down" xml:space="preserve">
+    <value>Scroll Down</value>
+  </data>
+  <data name="input_nav_scroll_left" xml:space="preserve">
+    <value>Scroll Left</value>
+  </data>
+  <data name="input_nav_scroll_right" xml:space="preserve">
+    <value>Scroll Right</value>
+  </data>
+  <data name="input_nav_scroll_up_fast" xml:space="preserve">
+    <value>Scroll Up Fast</value>
+  </data>
+  <data name="input_nav_scroll_down_fast" xml:space="preserve">
+    <value>Scroll Down Fast</value>
+  </data>
+  <data name="input_nav_scroll_left_fast" xml:space="preserve">
+    <value>Scroll Left Fast</value>
+  </data>
+  <data name="input_nav_scroll_right_fast" xml:space="preserve">
+    <value>Scroll Right Fast</value>
+  </data>
+  <data name="input_nav_pan" xml:space="preserve">
+    <value>Pan Mode</value>
+  </data>
+  <data name="input_nav_zoom_in" xml:space="preserve">
+    <value>Zoom In</value>
+  </data>
+  <data name="input_nav_zoom_out" xml:space="preserve">
+    <value>Zoom Out</value>
+  </data>
+  <data name="input_nav_reset" xml:space="preserve">
+    <value>Reset Tool / Deselect</value>
+  </data>
+  <data name="input_tool_arrow" xml:space="preserve">
+    <value>Arrow Tool</value>
+  </data>
+  <data name="input_tool_brush" xml:space="preserve">
+    <value>Brush Tool</value>
+  </data>
+  <data name="input_tool_pencil" xml:space="preserve">
+    <value>Pencil Tool</value>
+  </data>
+  <data name="input_tool_fill" xml:space="preserve">
+    <value>Fill Tool</value>
+  </data>
+  <data name="input_tool_picker" xml:space="preserve">
+    <value>Picker Tool</value>
+  </data>
+  <data name="input_tool_point" xml:space="preserve">
+    <value>Point Tool</value>
+  </data>
+  <data name="input_tool_selection" xml:space="preserve">
+    <value>Selection Tool</value>
+  </data>
+  <data name="input_tool_sprite" xml:space="preserve">
+    <value>Sprite Tool</value>
+  </data>
+  <data name="input_tool_hammer" xml:space="preserve">
+    <value>Hammer Tool</value>
+  </data>
+  <data name="input_tool_morph" xml:space="preserve">
+    <value>Morph Tool</value>
+  </data>
+  <data name="input_toggle_eraser" xml:space="preserve">
+    <value>Toggle Eraser</value>
+  </data>
+  <data name="input_toggle_swap" xml:space="preserve">
+    <value>Swap Colors</value>
+  </data>
+  <data name="input_editor_wire_modecycle" xml:space="preserve">
+    <value>Cycle Wire Drawing Mode</value>
+  </data>
+  <data name="input_editor_wire_modecycle_desc" xml:space="preserve">
+    <value>Cycle wire drawing mode: Off → Wire90 → Wire45 → Off</value>
+  </data>
+  <data name="input_editor_wire_togglehv" xml:space="preserve">
+    <value>Toggle Wire H/V Direction</value>
+  </data>
+  <data name="input_editor_wire_togglehv_desc" xml:space="preserve">
+    <value>Toggle between horizontal-first, vertical-first, and auto-detect wire routing</value>
+  </data>
+  <data name="input_editor_wire_color1" xml:space="preserve">
+    <value>Toggle Wire Red</value>
+  </data>
+  <data name="input_editor_wire_color1_desc" xml:space="preserve">
+    <value>Toggle red wire active</value>
+  </data>
+  <data name="input_editor_wire_color2" xml:space="preserve">
+    <value>Toggle Wire Blue</value>
+  </data>
+  <data name="input_editor_wire_color2_desc" xml:space="preserve">
+    <value>Toggle blue wire active</value>
+  </data>
+  <data name="input_editor_wire_color3" xml:space="preserve">
+    <value>Toggle Wire Green</value>
+  </data>
+  <data name="input_editor_wire_color3_desc" xml:space="preserve">
+    <value>Toggle green wire active</value>
+  </data>
+  <data name="input_editor_wire_color4" xml:space="preserve">
+    <value>Toggle Wire Yellow</value>
+  </data>
+  <data name="input_editor_wire_color4_desc" xml:space="preserve">
+    <value>Toggle yellow wire active</value>
+  </data>
+  <data name="input_editor_wire_trace" xml:space="preserve">
+    <value>Wire Trace Highlight</value>
+  </data>
+  <data name="input_editor_wire_trace_desc" xml:space="preserve">
+    <value>Alt+click to highlight all wires connected to the clicked tile</value>
+  </data>
+  <data name="input_toggle_tile" xml:space="preserve">
+    <value>Toggle Tile Style</value>
+  </data>
+  <data name="input_toggle_wall" xml:space="preserve">
+    <value>Toggle Wall Style</value>
+  </data>
+  <data name="input_editor_draw" xml:space="preserve">
+    <value>Draw / Primary Action</value>
+  </data>
+  <data name="input_editor_draw_desc" xml:space="preserve">
+    <value>Primary drawing action in tools</value>
+  </data>
+  <data name="input_editor_secondary" xml:space="preserve">
+    <value>Secondary Action</value>
+  </data>
+  <data name="input_editor_secondary_desc" xml:space="preserve">
+    <value>Secondary action in tools (inspect, deselect, pick mask, etc.)</value>
+  </data>
+  <data name="input_editor_draw_constrain" xml:space="preserve">
+    <value>Draw Constrained (H/V/45°)</value>
+  </data>
+  <data name="input_editor_draw_constrain_desc" xml:space="preserve">
+    <value>Constrain drawing to horizontal, vertical, or 45° diagonal lines</value>
+  </data>
+  <data name="input_editor_draw_line" xml:space="preserve">
+    <value>Draw Point-to-Point Line</value>
+  </data>
+  <data name="input_editor_draw_line_desc" xml:space="preserve">
+    <value>Draw straight lines between click points</value>
+  </data>
+  <data name="input_editor_pan" xml:space="preserve">
+    <value>Pan Viewport</value>
+  </data>
+  <data name="input_editor_pan_desc" xml:space="preserve">
+    <value>Drag to pan the viewport</value>
+  </data>
+  <data name="input_help_wiki" xml:space="preserve">
+    <value>Wiki / Help</value>
+  </data>
 </root>
