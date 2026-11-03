@@ -82,18 +82,21 @@ public class TEditDialogService : IDialogService
                 messageBox.PrimaryButtonText = Properties.Language.common_ok;
                 messageBox.IsPrimaryButtonEnabled = true;
                 messageBox.IsSecondaryButtonEnabled = false;
+                messageBox.IsCloseButtonEnabled = false;
                 break;
             case DialogButton.OKCancel:
                 messageBox.PrimaryButtonText = Properties.Language.common_ok;
                 messageBox.CloseButtonText = Properties.Language.common_cancel;
                 messageBox.IsPrimaryButtonEnabled = true;
                 messageBox.IsSecondaryButtonEnabled = false;
+                messageBox.IsCloseButtonEnabled = true;
                 break;
             case DialogButton.YesNo:
                 messageBox.PrimaryButtonText = Properties.Language.common_yes;
                 messageBox.SecondaryButtonText = Properties.Language.common_no;
                 messageBox.IsPrimaryButtonEnabled = true;
                 messageBox.IsSecondaryButtonEnabled = true;
+                messageBox.IsCloseButtonEnabled = false;
                 break;
             case DialogButton.YesNoCancel:
                 messageBox.PrimaryButtonText = Properties.Language.common_yes;
@@ -101,6 +104,7 @@ public class TEditDialogService : IDialogService
                 messageBox.CloseButtonText = Properties.Language.common_cancel;
                 messageBox.IsPrimaryButtonEnabled = true;
                 messageBox.IsSecondaryButtonEnabled = true;
+                messageBox.IsCloseButtonEnabled = true;
                 break;
         }
     }
