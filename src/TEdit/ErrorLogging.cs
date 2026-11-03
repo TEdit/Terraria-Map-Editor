@@ -29,7 +29,7 @@ public static class ErrorLogging
         }
         catch (Exception ex)
         {
-            System.Windows.MessageBox.Show($"Failed to open log file: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            System.Windows.MessageBox.Show(string.Format(Properties.Language.error_log_open_failed, ex.Message), Properties.Language.common_error, System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
         }
     }
 
@@ -44,8 +44,8 @@ public static class ErrorLogging
         }
         catch (Exception ex)
         {
-            System.Windows.Forms.MessageBox.Show($"Unable to create log folder. Application will exit.\r\n{LogDirectory}\r\n{ex.Message}",
-            "Unable to create log folder.", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            System.Windows.Forms.MessageBox.Show(string.Format(Properties.Language.error_log_folder_exit, LogDirectory, ex.Message),
+            Properties.Language.error_log_folder_title, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             App.Current.Shutdown();
         }
 

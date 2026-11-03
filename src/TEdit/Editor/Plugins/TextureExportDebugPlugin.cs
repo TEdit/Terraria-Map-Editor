@@ -16,8 +16,9 @@ public sealed class TextureExportDebugPlugin : BasePlugin
     {
         if (_wvm.ExportTexturesAction == null)
         {
-            await App.DialogService.ShowWarningAsync("Export Textures",
-                "Textures not loaded yet. Please wait for texture loading to complete.");
+            await App.DialogService.ShowWarningAsync(
+                Properties.Language.dialog_export_textures_title,
+                Properties.Language.dialog_export_textures_not_loaded);
             return;
         }
 

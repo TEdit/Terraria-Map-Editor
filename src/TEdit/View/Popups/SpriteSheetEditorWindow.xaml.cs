@@ -212,7 +212,7 @@ public partial class SpriteSheetEditorWindow : FluentWindow
         int col = intervalX > 0 ? px / intervalX : 0;
         int row = intervalY > 0 ? py / intervalY : 0;
 
-        MouseCoordsText.Text = $"Pixel: ({px}, {py})  Tile: [{col}, {row}]";
+        MouseCoordsText.Text = string.Format(Properties.Language.sprite_coords_format, px, py, col, row);
 
         // Update drag selection
         if (_isDragging)

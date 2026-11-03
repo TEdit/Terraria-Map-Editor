@@ -7,7 +7,7 @@
     WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Topmost="True"
     ExtendsContentIntoTitleBar="True"
     WindowBackdropType="Mica"
-    Title="{x:Static p:Language.plugin_replay_title}">
+    Title="{x:Static p:Language.plugin_replay_recorder_title}">
 
     <Grid>
     <Grid.RowDefinitions>

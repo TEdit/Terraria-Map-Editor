@@ -297,7 +297,7 @@ public partial class App : Application
         throw (Exception)e.ExceptionObject;
 #else
         ErrorLogging.LogException(e.ExceptionObject as Exception);
-        System.Windows.MessageBox.Show("An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted." + e.ExceptionObject.ToString(), "Unhandled Exception");
+        System.Windows.MessageBox.Show(TEdit.Properties.Language.error_unhandled + e.ExceptionObject.ToString(), TEdit.Properties.Language.error_unhandled_title);
         // Current.Shutdown();
 #endif
     }

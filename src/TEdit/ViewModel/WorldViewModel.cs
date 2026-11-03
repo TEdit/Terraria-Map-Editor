@@ -2692,7 +2692,7 @@ public partial class WorldViewModel : ReactiveObject
         {
             routingMode = bt.CadRoutingMode;
             verticalFirstOverride = bt.CadVerticalFirstOverride;
-            toolLabel = "Bus ";
+            toolLabel = Properties.Language.drawing_mode_bus + " ";
         }
 
         if (routingMode != null)
@@ -2701,7 +2701,7 @@ public partial class WorldViewModel : ReactiveObject
             {
                 WireRoutingMode.Elbow90 => Properties.Language.drawing_mode_wire90,
                 WireRoutingMode.Miter45 => Properties.Language.drawing_mode_wire45,
-                _ => "Wire"
+                _ => Properties.Language.drawing_mode_wire
             };
             var dir = verticalFirstOverride switch
             {
@@ -3212,7 +3212,7 @@ public partial class WorldViewModel : ReactiveObject
         sfd.DefaultExt = "Text File|*.txt";
         sfd.Filter = "Text Files|*.txt";
         sfd.FileName = CurrentWorld.Title + " Analysis.txt";
-        sfd.Title = "Save world analysis.";
+        sfd.Title = Properties.Language.dialog_save_world_analysis;
         sfd.OverwritePrompt = true;
         if (sfd.ShowDialog() == true)
         {
@@ -3967,7 +3967,7 @@ public partial class WorldViewModel : ReactiveObject
 
         var sfd = new SaveFileDialog();
         sfd.Filter = "Terraria World File|*.wld";
-        sfd.Title = "Save World As";
+        sfd.Title = Properties.Language.dialog_save_world_as;
         sfd.InitialDirectory = DependencyChecker.PathToWorlds;
         sfd.FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()));
 
@@ -4008,7 +4008,7 @@ public partial class WorldViewModel : ReactiveObject
                 "Windows Phone v1.2.4.3 world|*.world|" +
                 string.Join("|", versionKeys.Select(v => $"Terraria v{v}|*.wld")),
 
-            Title = "Save World As",
+            Title = Properties.Language.dialog_save_world_as,
             InitialDirectory = DependencyChecker.PathToWorlds,
             FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()))
         };

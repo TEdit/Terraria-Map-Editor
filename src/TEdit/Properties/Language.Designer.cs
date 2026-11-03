@@ -11285,5 +11285,656 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("plugin_pixelart_schematic_saved", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string common_error {
+            get {
+                return ResourceManager.GetString("common_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string common_delete {
+            get {
+                return ResourceManager.GetString("common_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string common_yes {
+            get {
+                return ResourceManager.GetString("common_yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel: ({0}, {1})  Tile: [{2}, {3}].
+        /// </summary>
+        public static string sprite_coords_format {
+            get {
+                return ResourceManager.GetString("sprite_coords_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string common_no {
+            get {
+                return ResourceManager.GetString("common_no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire.
+        /// </summary>
+        public static string drawing_mode_wire {
+            get {
+                return ResourceManager.GetString("drawing_mode_wire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bus.
+        /// </summary>
+        public static string drawing_mode_bus {
+            get {
+                return ResourceManager.GetString("drawing_mode_bus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        public static string plugin_ore_none {
+            get {
+                return ResourceManager.GetString("plugin_ore_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save World As.
+        /// </summary>
+        public static string dialog_save_world_as {
+            get {
+                return ResourceManager.GetString("dialog_save_world_as", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save world analysis..
+        /// </summary>
+        public static string dialog_save_world_analysis {
+            get {
+                return ResourceManager.GetString("dialog_save_world_analysis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Bestiary and Kills from World File.
+        /// </summary>
+        public static string dialog_import_bestiary {
+            get {
+                return ResourceManager.GetString("dialog_import_bestiary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import TEdit Schematic File.
+        /// </summary>
+        public static string dialog_import_schematic {
+            get {
+                return ResourceManager.GetString("dialog_import_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Schematic File.
+        /// </summary>
+        public static string dialog_export_schematic {
+            get {
+                return ResourceManager.GetString("dialog_export_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Banners from World File.
+        /// </summary>
+        public static string dialog_import_banners {
+            get {
+                return ResourceManager.GetString("dialog_import_banners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import TEdit House Gen Schematic File.
+        /// </summary>
+        public static string dialog_import_housegen_schematic {
+            get {
+                return ResourceManager.GetString("dialog_import_housegen_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Generated Pixelart.
+        /// </summary>
+        public static string dialog_save_pixelart {
+            get {
+                return ResourceManager.GetString("dialog_save_pixelart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Player File.
+        /// </summary>
+        public static string dialog_select_player_file {
+            get {
+                return ResourceManager.GetString("dialog_select_player_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open World File.
+        /// </summary>
+        public static string dialog_open_world_file {
+            get {
+                return ResourceManager.GetString("dialog_open_world_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsaved Changes.
+        /// </summary>
+        public static string dialog_unsaved_title {
+            get {
+                return ResourceManager.GetString("dialog_unsaved_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes before closing TEdit?.
+        /// </summary>
+        public static string dialog_unsaved_content {
+            get {
+                return ResourceManager.GetString("dialog_unsaved_content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t Save.
+        /// </summary>
+        public static string dialog_dont_save {
+            get {
+                return ResourceManager.GetString("dialog_dont_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Delete.
+        /// </summary>
+        public static string dialog_confirm_delete_title {
+            get {
+                return ResourceManager.GetString("dialog_confirm_delete_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete backup?
+        ///{0}.
+        /// </summary>
+        public static string dialog_delete_backup_prompt {
+            get {
+                return ResourceManager.GetString("dialog_delete_backup_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete {0:N0} cached files ({1})?
+        ///
+        ///This removes TEdit backups, autosaves, and all undo/redo history. Terraria world files and .bak files are not affected..
+        /// </summary>
+        public static string dialog_clear_cache_prompt {
+            get {
+                return ResourceManager.GetString("dialog_clear_cache_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear TEdit Cache.
+        /// </summary>
+        public static string dialog_clear_cache_title {
+            get {
+                return ResourceManager.GetString("dialog_clear_cache_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Cache.
+        /// </summary>
+        public static string dialog_clear_cache_button {
+            get {
+                return ResourceManager.GetString("dialog_clear_cache_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cache Cleared.
+        /// </summary>
+        public static string dialog_cache_cleared_title {
+            get {
+                return ResourceManager.GetString("dialog_cache_cleared_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted {0:N0} files and freed {1}..
+        /// </summary>
+        public static string dialog_cache_cleared_result {
+            get {
+                return ResourceManager.GetString("dialog_cache_cleared_result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:N0} files could not be deleted; see the log for details..
+        /// </summary>
+        public static string dialog_cache_cleared_failed {
+            get {
+                return ResourceManager.GetString("dialog_cache_cleared_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some special Tile-Entities (like chests or signs) are still protected and can&apos;t be shuffled..
+        /// </summary>
+        public static string plugin_blockshuffle_entity_info {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_entity_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include Information.
+        /// </summary>
+        public static string plugin_blockshuffle_entity_info_title {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_entity_info_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Check JSON Data for {1}.
+        /// </summary>
+        public static string plugin_housegen_json_entry_error {
+            get {
+                return ResourceManager.GetString("plugin_housegen_json_entry_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Check JSON Data for value &apos;Count&apos; to make sure it matches with associated schematic..
+        /// </summary>
+        public static string plugin_housegen_json_count_error {
+            get {
+                return ResourceManager.GetString("plugin_housegen_json_count_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open a world first..
+        /// </summary>
+        public static string plugin_replay_no_world {
+            get {
+                return ResourceManager.GetString("plugin_replay_no_world", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to open replay file.
+        ///
+        ///{0}.
+        /// </summary>
+        public static string plugin_replay_open_failed {
+            get {
+                return ResourceManager.GetString("plugin_replay_open_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error loading textures from {0}.
+        ///Please check that this folder exists and TEdit has read access.
+        ///
+        ///{1}.
+        /// </summary>
+        public static string error_texture_load {
+            get {
+                return ResourceManager.GetString("error_texture_load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Loading Textures.
+        /// </summary>
+        public static string error_texture_load_title {
+            get {
+                return ResourceManager.GetString("error_texture_load_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to open log file: {0}.
+        /// </summary>
+        public static string error_log_open_failed {
+            get {
+                return ResourceManager.GetString("error_log_open_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create log folder. Application will exit.
+        ///{0}
+        ///{1}.
+        /// </summary>
+        public static string error_log_folder_exit {
+            get {
+                return ResourceManager.GetString("error_log_folder_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create log folder..
+        /// </summary>
+        public static string error_log_folder_title {
+            get {
+                return ResourceManager.GetString("error_log_folder_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create undo temp folder. Application will exit.
+        ///{0}
+        ///{1}.
+        /// </summary>
+        public static string error_undo_folder_exit {
+            get {
+                return ResourceManager.GetString("error_undo_folder_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create undo folder..
+        /// </summary>
+        public static string error_undo_folder_title {
+            get {
+                return ResourceManager.GetString("error_undo_folder_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted..
+        /// </summary>
+        public static string error_unhandled {
+            get {
+                return ResourceManager.GetString("error_unhandled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled Exception.
+        /// </summary>
+        public static string error_unhandled_title {
+            get {
+                return ResourceManager.GetString("error_unhandled_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High Quality Brush Preview.
+        /// </summary>
+        public static string settings_brush_preview {
+            get {
+                return ResourceManager.GetString("settings_brush_preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show full brush shape along shift+line preview. Disable for a simpler single-pixel line preview..
+        /// </summary>
+        public static string settings_brush_preview_desc {
+            get {
+                return ResourceManager.GetString("settings_brush_preview_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter Mode.
+        /// </summary>
+        public static string settings_filter_mode {
+            get {
+                return ResourceManager.GetString("settings_filter_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default filter mode when applying tile/wall/liquid/wire filters.
+        /// </summary>
+        public static string settings_filter_mode_desc {
+            get {
+                return ResourceManager.GetString("settings_filter_mode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Darken Amount.
+        /// </summary>
+        public static string settings_darken_amount {
+            get {
+                return ResourceManager.GetString("settings_darken_amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opacity of the darken overlay for non-selected tiles (0-100%).
+        /// </summary>
+        public static string settings_darken_amount_desc {
+            get {
+                return ResourceManager.GetString("settings_darken_amount_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string spriteeditor_status_ready {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded from user override.
+        /// </summary>
+        public static string spriteeditor_status_override_loaded {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_override_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset to default tile data.
+        /// </summary>
+        public static string spriteeditor_status_reset_default {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_reset_default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No texture loaded - cannot auto-detect.
+        /// </summary>
+        public static string spriteeditor_status_no_texture_detect {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_no_texture_detect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No texture loaded.
+        /// </summary>
+        public static string spriteeditor_status_no_texture {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_no_texture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string spriteeditor_frame_default {
+            get {
+                return ResourceManager.GetString("spriteeditor_frame_default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frame {0}.
+        /// </summary>
+        public static string spriteeditor_frame_format {
+            get {
+                return ResourceManager.GetString("spriteeditor_frame_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save canceled: player file was externally modified..
+        /// </summary>
+        public static string player_editor_save_canceled {
+            get {
+                return ResourceManager.GetString("player_editor_save_canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select output folder for map tiles.
+        /// </summary>
+        public static string dialog_select_output_folder {
+            get {
+                return ResourceManager.GetString("dialog_select_output_folder", resourceCulture);
+            }
+        }
+    
+        /// <summary>
+        ///   Looks up a localized string similar to Hammer.
+        /// </summary>
+        public static string tool_hammer_title {
+            get {
+                return ResourceManager.GetString("tool_hammer_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string tool_selection_title {
+            get {
+                return ResourceManager.GetString("tool_selection_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Chests.
+        /// </summary>
+        public static string dialog_delete_chests_title {
+            get {
+                return ResourceManager.GetString("dialog_delete_chests_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete all chests?.
+        /// </summary>
+        public static string dialog_delete_all_chests_prompt {
+            get {
+                return ResourceManager.GetString("dialog_delete_all_chests_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete all unlocked chests?.
+        /// </summary>
+        public static string dialog_delete_all_unlocked_chests_prompt {
+            get {
+                return ResourceManager.GetString("dialog_delete_all_unlocked_chests_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Player Map.
+        /// </summary>
+        public static string plugin_playermap_title {
+            get {
+                return ResourceManager.GetString("plugin_playermap_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No player file selected..
+        /// </summary>
+        public static string plugin_playermap_no_file {
+            get {
+                return ResourceManager.GetString("plugin_playermap_no_file", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Map Generated!.
+        /// </summary>
+        public static string plugin_playermap_completed {
+            get {
+                return ResourceManager.GetString("plugin_playermap_completed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will completely remove any found tiles from your world. Continue?.
+        /// </summary>
+        public static string dialog_removetile_prompt {
+            get {
+                return ResourceManager.GetString("dialog_removetile_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0:N0} tiles have been found and removed..
+        /// </summary>
+        public static string dialog_removetile_result {
+            get {
+                return ResourceManager.GetString("dialog_removetile_result", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Export Textures.
+        /// </summary>
+        public static string dialog_export_textures_title {
+            get {
+                return ResourceManager.GetString("dialog_export_textures_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Textures not loaded yet. Please wait for texture loading to complete..
+        /// </summary>
+        public static string dialog_export_textures_not_loaded {
+            get {
+                return ResourceManager.GetString("dialog_export_textures_not_loaded", resourceCulture);
+            }
+        }
     }
 }

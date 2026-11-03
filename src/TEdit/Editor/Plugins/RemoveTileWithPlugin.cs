@@ -27,8 +27,9 @@ namespace TEdit.Editor.Plugins
                 return;
             }
 
-            if (!await App.DialogService.ShowConfirmationAsync("RemoveTileWithPlugin",
-                "This will completely remove any found tiles from your world. Continue?"))
+            if (!await App.DialogService.ShowConfirmationAsync(
+                Properties.Language.plugin_removetile_title,
+                Properties.Language.dialog_removetile_prompt))
                 return;
 
             string blockName = view.BlockToRemove.ToLower();
@@ -162,8 +163,9 @@ namespace TEdit.Editor.Plugins
             _wvm.UndoManager.SaveUndo(); // Add to the undo buffer.
 
             // Display the total tiles removed.
-            await App.DialogService.ShowAlertAsync("RemoveTileWithPlugin",
-                ItemsFound + " tiles have been found and removed.");
+            await App.DialogService.ShowAlertAsync(
+                Properties.Language.plugin_removetile_title,
+                string.Format(Properties.Language.dialog_removetile_result, ItemsFound));
         }
     }
 }

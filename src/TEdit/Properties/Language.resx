@@ -3889,4 +3889,229 @@ Would you like to enable error reporting?</value>
   <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
     <value>Schematic has been saved.</value>
   </data>
+  <data name="common_error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="common_delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="common_yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="sprite_coords_format" xml:space="preserve">
+    <value>Pixel: ({0}, {1})  Tile: [{2}, {3}]</value>
+  </data>
+  <data name="common_no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="drawing_mode_wire" xml:space="preserve">
+    <value>Wire</value>
+  </data>
+  <data name="drawing_mode_bus" xml:space="preserve">
+    <value>Bus</value>
+  </data>
+  <data name="plugin_ore_none" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="dialog_save_world_as" xml:space="preserve">
+    <value>Save World As</value>
+  </data>
+  <data name="dialog_save_world_analysis" xml:space="preserve">
+    <value>Save world analysis.</value>
+  </data>
+  <data name="dialog_import_bestiary" xml:space="preserve">
+    <value>Import Bestiary and Kills from World File</value>
+  </data>
+  <data name="dialog_import_schematic" xml:space="preserve">
+    <value>Import TEdit Schematic File</value>
+  </data>
+  <data name="dialog_export_schematic" xml:space="preserve">
+    <value>Export Schematic File</value>
+  </data>
+  <data name="dialog_import_banners" xml:space="preserve">
+    <value>Import Banners from World File</value>
+  </data>
+  <data name="dialog_import_housegen_schematic" xml:space="preserve">
+    <value>Import TEdit House Gen Schematic File</value>
+  </data>
+  <data name="dialog_save_pixelart" xml:space="preserve">
+    <value>Save Generated Pixelart</value>
+  </data>
+  <data name="dialog_select_player_file" xml:space="preserve">
+    <value>Select a Player File</value>
+  </data>
+  <data name="dialog_open_world_file" xml:space="preserve">
+    <value>Open World File</value>
+  </data>
+  <data name="dialog_unsaved_title" xml:space="preserve">
+    <value>Unsaved Changes</value>
+  </data>
+  <data name="dialog_unsaved_content" xml:space="preserve">
+    <value>Save changes before closing TEdit?</value>
+  </data>
+  <data name="dialog_dont_save" xml:space="preserve">
+    <value>Don't Save</value>
+  </data>
+  <data name="dialog_confirm_delete_title" xml:space="preserve">
+    <value>Confirm Delete</value>
+  </data>
+  <data name="dialog_delete_backup_prompt" xml:space="preserve">
+    <value>Delete backup?
+{0}</value>
+  </data>
+  <data name="dialog_clear_cache_title" xml:space="preserve">
+    <value>Clear TEdit Cache</value>
+  </data>
+  <data name="dialog_clear_cache_prompt" xml:space="preserve">
+    <value>Delete {0:N0} cached files ({1})?
+
+This removes TEdit backups, autosaves, and all undo/redo history. Terraria world files and .bak files are not affected.</value>
+  </data>
+  <data name="dialog_clear_cache_button" xml:space="preserve">
+    <value>Clear Cache</value>
+  </data>
+  <data name="dialog_cache_cleared_title" xml:space="preserve">
+    <value>Cache Cleared</value>
+  </data>
+  <data name="dialog_cache_cleared_result" xml:space="preserve">
+    <value>Deleted {0:N0} files and freed {1}.</value>
+  </data>
+  <data name="dialog_cache_cleared_failed" xml:space="preserve">
+    <value>{0:N0} files could not be deleted; see the log for details.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
+    <value>Some special Tile-Entities (like chests or signs) are still protected and can't be shuffled.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
+    <value>Include Information</value>
+  </data>
+  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
+    <value>{0} Check JSON Data for {1}</value>
+  </data>
+  <data name="plugin_housegen_json_count_error" xml:space="preserve">
+    <value>{0} Check JSON Data for value 'Count' to make sure it matches with associated schematic.</value>
+  </data>
+  <data name="plugin_replay_no_world" xml:space="preserve">
+    <value>Open a world first.</value>
+  </data>
+  <data name="plugin_replay_open_failed" xml:space="preserve">
+    <value>Failed to open replay file.
+
+{0}</value>
+  </data>
+  <data name="error_texture_load" xml:space="preserve">
+    <value>Error loading textures from {0}.
+Please check that this folder exists and TEdit has read access.
+
+{1}</value>
+  </data>
+  <data name="error_texture_load_title" xml:space="preserve">
+    <value>Error Loading Textures</value>
+  </data>
+  <data name="error_log_open_failed" xml:space="preserve">
+    <value>Failed to open log file: {0}</value>
+  </data>
+  <data name="error_log_folder_exit" xml:space="preserve">
+    <value>Unable to create log folder. Application will exit.
+{0}
+{1}</value>
+  </data>
+  <data name="error_log_folder_title" xml:space="preserve">
+    <value>Unable to create log folder.</value>
+  </data>
+  <data name="error_undo_folder_exit" xml:space="preserve">
+    <value>Unable to create undo temp folder. Application will exit.
+{0}
+{1}</value>
+  </data>
+  <data name="error_undo_folder_title" xml:space="preserve">
+    <value>Unable to create undo folder.</value>
+  </data>
+  <data name="error_unhandled" xml:space="preserve">
+    <value>An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted.</value>
+  </data>
+  <data name="error_unhandled_title" xml:space="preserve">
+    <value>Unhandled Exception</value>
+  </data>
+  <data name="settings_brush_preview" xml:space="preserve">
+    <value>High Quality Brush Preview</value>
+  </data>
+  <data name="settings_brush_preview_desc" xml:space="preserve">
+    <value>Show full brush shape along shift+line preview. Disable for a simpler single-pixel line preview.</value>
+  </data>
+  <data name="settings_filter_mode" xml:space="preserve">
+    <value>Filter Mode</value>
+  </data>
+  <data name="settings_filter_mode_desc" xml:space="preserve">
+    <value>Default filter mode when applying tile/wall/liquid/wire filters</value>
+  </data>
+  <data name="settings_darken_amount" xml:space="preserve">
+    <value>Darken Amount</value>
+  </data>
+  <data name="settings_darken_amount_desc" xml:space="preserve">
+    <value>Opacity of the darken overlay for non-selected tiles (0–100%)</value>
+  </data>
+  <data name="spriteeditor_status_ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
+    <value>Loaded from user override</value>
+  </data>
+  <data name="spriteeditor_status_reset_default" xml:space="preserve">
+    <value>Reset to default tile data</value>
+  </data>
+  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
+    <value>No texture loaded — cannot auto-detect</value>
+  </data>
+  <data name="spriteeditor_status_no_texture" xml:space="preserve">
+    <value>No texture loaded</value>
+  </data>
+  <data name="spriteeditor_frame_default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="spriteeditor_frame_format" xml:space="preserve">
+    <value>Frame {0}</value>
+  </data>
+  <data name="player_editor_save_canceled" xml:space="preserve">
+    <value>Save canceled: player file was externally modified.</value>
+  </data>
+  <data name="dialog_select_output_folder" xml:space="preserve">
+    <value>Select output folder for map tiles</value>
+  </data>
+  <data name="tool_hammer_title" xml:space="preserve">
+    <value>Hammer</value>
+  </data>
+  <data name="tool_selection_title" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="dialog_delete_chests_title" xml:space="preserve">
+    <value>Delete Chests</value>
+  </data>
+  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
+    <value>Are you sure you wish to delete all chests?</value>
+  </data>
+  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
+    <value>Are you sure you wish to delete all unlocked chests?</value>
+  </data>
+  <data name="plugin_playermap_title" xml:space="preserve">
+    <value>Player Map</value>
+  </data>
+  <data name="plugin_playermap_no_file" xml:space="preserve">
+    <value>No player file selected.</value>
+  </data>
+  <data name="plugin_playermap_completed" xml:space="preserve">
+    <value>Map Generated!</value>
+  </data>
+  <data name="dialog_removetile_prompt" xml:space="preserve">
+    <value>This will completely remove any found tiles from your world. Continue?</value>
+  </data>
+  <data name="dialog_removetile_result" xml:space="preserve">
+    <value>{0:N0} tiles have been found and removed.</value>
+  </data>
+  <data name="dialog_export_textures_title" xml:space="preserve">
+    <value>Export Textures</value>
+  </data>
+  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
+    <value>Textures not loaded yet. Please wait for texture loading to complete.</value>
+  </data>
 </root>

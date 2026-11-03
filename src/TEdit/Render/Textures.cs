@@ -137,7 +137,7 @@ public class Textures : IDisposable
             catch (Exception ex)
             {
                 ErrorLogging.LogException(ex);
-                System.Windows.Forms.MessageBox.Show($"Error loading textures from {path}.\r\nPlease check that this folder exists and TEdit has read access.\r\n\r\n{ex.Message}", "Error Loading Textures", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                System.Windows.Forms.MessageBox.Show(string.Format(Properties.Language.error_texture_load, path, ex.Message), Properties.Language.error_texture_load_title, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
 
         }
