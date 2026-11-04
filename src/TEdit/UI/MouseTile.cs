@@ -42,6 +42,15 @@ public partial class MouseTile : ReactiveObject
             });
     }
 
+    private static string GetLiquidName(LiquidType type) => type switch
+    {
+        LiquidType.Water => Language.LiquidType_Water,
+        LiquidType.Lava => Language.LiquidType_Lava,
+        LiquidType.Honey => Language.LiquidType_Honey,
+        LiquidType.Shimmer => Language.LiquidType_Shimmer,
+        _ => type.ToString(),
+    };
+
     private static string GetPaintName(byte colorId)
     {
         if (colorId == 0) return null;
@@ -74,7 +83,7 @@ public partial class MouseTile : ReactiveObject
 
         // Extras
         var extras = tile.LiquidAmount > 0
-            ? $"{tile.LiquidType}: {tile.LiquidAmount}"
+            ? $"{GetLiquidName(tile.LiquidType)}: {tile.LiquidAmount}"
             : string.Empty;
 
         if (tile.InActive)
