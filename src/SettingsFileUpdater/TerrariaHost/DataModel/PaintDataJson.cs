@@ -12,5 +12,8 @@ public class PaintDataJson
     public string Name { get; set; } = "UNKNOWN";
 
     [JsonPropertyOrder(2)]
+    public string? Key { get; set; }
+
+    [JsonPropertyOrder(3)]
     public TEditColor Color { get; set; } = TEditColor.Magenta;
 }
