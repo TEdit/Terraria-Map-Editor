@@ -31,7 +31,7 @@
 
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
 
-    <PackageReference Include="SkiaSharp" Version="4.154.0" />
+    <PackageReference Include="SkiaSharp" Version="4.155.0" />
   </ItemGroup>
 
   <ItemGroup>
