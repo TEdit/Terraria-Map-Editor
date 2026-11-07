@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TEdit.Common;
 using TEdit.Terraria.DataModel;
 using TEdit.Terraria.Loaders;
@@ -465,6 +466,27 @@ public class TerrariaDataStore
             if (wallsByKey.TryGetValue(kv.Key, out var wall))
                 wall.Name = kv.Value;
 
+        // Fallback for walls not covered by data.Walls
+        foreach (var wall in Walls)
+        {
+            if (wall.Key != null && !data.Walls.ContainsKey(wall.Key))
+            {
+                if (data.Items.TryGetValue(wall.Key, out var wallName))
+                    wall.Name = wallName;
+                else if (data.Items.TryGetValue(wall.Key + "Wall", out var wallNameWall))
+                    wall.Name = wallNameWall;
+                else if (WallItemLookup.TryGetValue(wall.Id, out var itemId) && ItemById.TryGetValue(itemId, out var item))
+                    wall.Name = item.Name;
+                else if (TryResolveWallFallback(wall.Key, data, out var fallbackName))
+                    wall.Name = fallbackName;
+            }
+        }
+
+        // Apply paint names
+        foreach (var paint in Paints)
+            if (paint.Key != null && data.Items.TryGetValue(paint.Key, out var paintName))
+                paint.Name = paintName;
+
         // Apply NPC names (+ maintain reverse lookups)
         foreach (var kv in data.Npcs)
         {
@@ -484,7 +506,51 @@ public class TerrariaDataStore
                 PrefixById[id] = kv.Value;
     }
 
-    private void RebuildFrameImportant()
+    private static bool TryResolveWallFallback(string key, LocalizationData data, out string? name)
+    {
+        bool TryLookup(string k, out string? val) =>
+            data.Walls.TryGetValue(k, out val) || data.Items.TryGetValue(k, out val);
+
+        // 1. Numbered natural walls: DirtUnsafe1 -> Dirt1Echo
+        var match = Regex.Match(key, @"^([A-Za-z]+)Unsafe(\d+)$");
+        if (match.Success && TryLookup($"{match.Groups[1].Value}{match.Groups[2].Value}Echo", out name))
+            return true;
+
+        // 2. Cave wall naming exceptions in vanilla data
+        var specialKey = key switch
+        {
+            "CaveUnsafe" => "Cave1Echo",
+            "CaveWall"   => "CaveWall1Echo",
+            "CaveWall2"  => "CaveWall2Echo",
+            _            => null
+        };
+        if (specialKey != null && TryLookup(specialKey, out name))
+            return true;
+
+        // 3. General Unsafe replacements (Echo walls and legacy safe walls)
+        if (key.Contains("Unsafe"))
+        {
+            var cleanKey = key.Replace("Unsafe", "");
+            string[] candidates =
+            [
+                key.Replace("Unsafe", "Echo"),
+                key.Replace("Unsafe", "WallEcho"),
+                cleanKey,
+                $"{cleanKey}Wall"
+            ];
+
+            foreach (var candidate in candidates)
+            {
+                if (TryLookup(candidate, out name))
+                    return true;
+            }
+        }
+
+        name = null;
+        return false;
+    }
+
+    private void RebuildFrameImportant()
     {
         var count = TileCount;
         var arr = new bool[count];
