@@ -571,7 +571,7 @@ public partial class PlayerEditorViewModel
 
                 if (overwriteResult != DialogResponse.OK)
                 {
-                    StatusText = "Save canceled: player file was externally modified.";
+                    StatusText = Language.player_editor_save_canceled;
                     return;
                 }
             }

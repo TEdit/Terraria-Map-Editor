@@ -40,7 +40,7 @@ public class TEditDialogService : IDialogService
         DialogImage image = DialogImage.Error,
         CancellationToken cancellationToken = default)
     {
-        return await ShowMessageAsync(message, "Error", DialogButton.OK, image, cancellationToken);
+        return await ShowMessageAsync(message, Properties.Language.common_error, DialogButton.OK, image, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -79,28 +79,32 @@ public class TEditDialogService : IDialogService
         switch (button)
         {
             case DialogButton.OK:
-                messageBox.PrimaryButtonText = "OK";
+                messageBox.PrimaryButtonText = Properties.Language.common_ok;
                 messageBox.IsPrimaryButtonEnabled = true;
                 messageBox.IsSecondaryButtonEnabled = false;
+                messageBox.IsCloseButtonEnabled = false;
                 break;
             case DialogButton.OKCancel:
-                messageBox.PrimaryButtonText = "OK";
-                messageBox.CloseButtonText = "Cancel";
+                messageBox.PrimaryButtonText = Properties.Language.common_ok;
+                messageBox.CloseButtonText = Properties.Language.common_cancel;
                 messageBox.IsPrimaryButtonEnabled = true;
                 messageBox.IsSecondaryButtonEnabled = false;
+                messageBox.IsCloseButtonEnabled = true;
                 break;
             case DialogButton.YesNo:
-                messageBox.PrimaryButtonText = "Yes";
-                messageBox.SecondaryButtonText = "No";
+                messageBox.PrimaryButtonText = Properties.Language.common_yes;
+                messageBox.SecondaryButtonText = Properties.Language.common_no;
                 messageBox.IsPrimaryButtonEnabled = true;
                 messageBox.IsSecondaryButtonEnabled = true;
+                messageBox.IsCloseButtonEnabled = false;
                 break;
             case DialogButton.YesNoCancel:
-                messageBox.PrimaryButtonText = "Yes";
-                messageBox.SecondaryButtonText = "No";
-                messageBox.CloseButtonText = "Cancel";
+                messageBox.PrimaryButtonText = Properties.Language.common_yes;
+                messageBox.SecondaryButtonText = Properties.Language.common_no;
+                messageBox.CloseButtonText = Properties.Language.common_cancel;
                 messageBox.IsPrimaryButtonEnabled = true;
                 messageBox.IsSecondaryButtonEnabled = true;
+                messageBox.IsCloseButtonEnabled = true;
                 break;
         }
     }

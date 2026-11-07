@@ -191,7 +191,7 @@ public partial class BannerViewModel : ReactiveObject
         {
             Filter = "Terraria World File|*.wld",
             DefaultExt = "Terraria World File|*.wld",
-            Title = "Import Banners from World File",
+            Title = Properties.Language.dialog_import_banners,
             InitialDirectory = DependencyChecker.PathToWorlds,
             Multiselect = false,
         };

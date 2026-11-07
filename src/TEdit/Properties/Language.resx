@@ -3889,4 +3889,508 @@ Would you like to enable error reporting?</value>
   <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
     <value>Schematic has been saved.</value>
   </data>
+  <data name="common_error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="common_delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="common_yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="sprite_coords_format" xml:space="preserve">
+    <value>Pixel: ({0}, {1})  Tile: [{2}, {3}]</value>
+  </data>
+  <data name="common_no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="drawing_mode_wire" xml:space="preserve">
+    <value>Wire</value>
+  </data>
+  <data name="drawing_mode_bus" xml:space="preserve">
+    <value>Bus</value>
+  </data>
+  <data name="plugin_ore_none" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="dialog_save_world_as" xml:space="preserve">
+    <value>Save World As</value>
+  </data>
+  <data name="dialog_save_world_analysis" xml:space="preserve">
+    <value>Save world analysis.</value>
+  </data>
+  <data name="dialog_import_bestiary" xml:space="preserve">
+    <value>Import Bestiary and Kills from World File</value>
+  </data>
+  <data name="dialog_import_schematic" xml:space="preserve">
+    <value>Import TEdit Schematic File</value>
+  </data>
+  <data name="dialog_export_schematic" xml:space="preserve">
+    <value>Export Schematic File</value>
+  </data>
+  <data name="dialog_import_banners" xml:space="preserve">
+    <value>Import Banners from World File</value>
+  </data>
+  <data name="dialog_import_housegen_schematic" xml:space="preserve">
+    <value>Import TEdit House Gen Schematic File</value>
+  </data>
+  <data name="dialog_save_pixelart" xml:space="preserve">
+    <value>Save Generated Pixelart</value>
+  </data>
+  <data name="dialog_select_player_file" xml:space="preserve">
+    <value>Select a Player File</value>
+  </data>
+  <data name="dialog_open_world_file" xml:space="preserve">
+    <value>Open World File</value>
+  </data>
+  <data name="dialog_unsaved_title" xml:space="preserve">
+    <value>Unsaved Changes</value>
+  </data>
+  <data name="dialog_unsaved_content" xml:space="preserve">
+    <value>Save changes before closing TEdit?</value>
+  </data>
+  <data name="dialog_dont_save" xml:space="preserve">
+    <value>Don't Save</value>
+  </data>
+  <data name="dialog_confirm_delete_title" xml:space="preserve">
+    <value>Confirm Delete</value>
+  </data>
+  <data name="dialog_delete_backup_prompt" xml:space="preserve">
+    <value>Delete backup?
+{0}</value>
+  </data>
+  <data name="dialog_clear_cache_title" xml:space="preserve">
+    <value>Clear TEdit Cache</value>
+  </data>
+  <data name="dialog_clear_cache_prompt" xml:space="preserve">
+    <value>Delete {0:N0} cached files ({1})?
+
+This removes TEdit backups, autosaves, and all undo/redo history. Terraria world files and .bak files are not affected.</value>
+  </data>
+  <data name="dialog_clear_cache_button" xml:space="preserve">
+    <value>Clear Cache</value>
+  </data>
+  <data name="dialog_cache_cleared_title" xml:space="preserve">
+    <value>Cache Cleared</value>
+  </data>
+  <data name="dialog_cache_cleared_result" xml:space="preserve">
+    <value>Deleted {0:N0} files and freed {1}.</value>
+  </data>
+  <data name="dialog_cache_cleared_failed" xml:space="preserve">
+    <value>{0:N0} files could not be deleted; see the log for details.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
+    <value>Some special Tile-Entities (like chests or signs) are still protected and can't be shuffled.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
+    <value>Include Information</value>
+  </data>
+  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
+    <value>{0} Check JSON Data for {1}</value>
+  </data>
+  <data name="plugin_housegen_json_count_error" xml:space="preserve">
+    <value>{0} Check JSON Data for value 'Count' to make sure it matches with associated schematic.</value>
+  </data>
+  <data name="plugin_replay_no_world" xml:space="preserve">
+    <value>Open a world first.</value>
+  </data>
+  <data name="plugin_replay_open_failed" xml:space="preserve">
+    <value>Failed to open replay file.
+
+{0}</value>
+  </data>
+  <data name="error_texture_load" xml:space="preserve">
+    <value>Error loading textures from {0}.
+Please check that this folder exists and TEdit has read access.
+
+{1}</value>
+  </data>
+  <data name="error_texture_load_title" xml:space="preserve">
+    <value>Error Loading Textures</value>
+  </data>
+  <data name="error_log_open_failed" xml:space="preserve">
+    <value>Failed to open log file: {0}</value>
+  </data>
+  <data name="error_log_folder_exit" xml:space="preserve">
+    <value>Unable to create log folder. Application will exit.
+{0}
+{1}</value>
+  </data>
+  <data name="error_log_folder_title" xml:space="preserve">
+    <value>Unable to create log folder.</value>
+  </data>
+  <data name="error_undo_folder_exit" xml:space="preserve">
+    <value>Unable to create undo temp folder. Application will exit.
+{0}
+{1}</value>
+  </data>
+  <data name="error_undo_folder_title" xml:space="preserve">
+    <value>Unable to create undo folder.</value>
+  </data>
+  <data name="error_unhandled" xml:space="preserve">
+    <value>An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted.</value>
+  </data>
+  <data name="error_unhandled_title" xml:space="preserve">
+    <value>Unhandled Exception</value>
+  </data>
+  <data name="settings_brush_preview" xml:space="preserve">
+    <value>High Quality Brush Preview</value>
+  </data>
+  <data name="settings_brush_preview_desc" xml:space="preserve">
+    <value>Show full brush shape along shift+line preview. Disable for a simpler single-pixel line preview.</value>
+  </data>
+  <data name="settings_filter_mode" xml:space="preserve">
+    <value>Filter Mode</value>
+  </data>
+  <data name="settings_filter_mode_desc" xml:space="preserve">
+    <value>Default filter mode when applying tile/wall/liquid/wire filters</value>
+  </data>
+  <data name="settings_darken_amount" xml:space="preserve">
+    <value>Darken Amount</value>
+  </data>
+  <data name="settings_darken_amount_desc" xml:space="preserve">
+    <value>Opacity of the darken overlay for non-selected tiles (0–100%)</value>
+  </data>
+  <data name="spriteeditor_status_ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
+    <value>Loaded from user override</value>
+  </data>
+  <data name="spriteeditor_status_reset_default" xml:space="preserve">
+    <value>Reset to default tile data</value>
+  </data>
+  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
+    <value>No texture loaded — cannot auto-detect</value>
+  </data>
+  <data name="spriteeditor_status_no_texture" xml:space="preserve">
+    <value>No texture loaded</value>
+  </data>
+  <data name="spriteeditor_frame_default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="spriteeditor_frame_format" xml:space="preserve">
+    <value>Frame {0}</value>
+  </data>
+  <data name="player_editor_save_canceled" xml:space="preserve">
+    <value>Save canceled: player file was externally modified.</value>
+  </data>
+  <data name="dialog_select_output_folder" xml:space="preserve">
+    <value>Select output folder for map tiles</value>
+  </data>
+  <data name="tool_hammer_title" xml:space="preserve">
+    <value>Hammer</value>
+  </data>
+  <data name="tool_selection_title" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="dialog_delete_chests_title" xml:space="preserve">
+    <value>Delete Chests</value>
+  </data>
+  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
+    <value>Are you sure you wish to delete all chests?</value>
+  </data>
+  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
+    <value>Are you sure you wish to delete all unlocked chests?</value>
+  </data>
+  <data name="plugin_playermap_title" xml:space="preserve">
+    <value>Player Map</value>
+  </data>
+  <data name="plugin_playermap_no_file" xml:space="preserve">
+    <value>No player file selected.</value>
+  </data>
+  <data name="plugin_playermap_completed" xml:space="preserve">
+    <value>Map Generated!</value>
+  </data>
+  <data name="dialog_removetile_prompt" xml:space="preserve">
+    <value>This will completely remove any found tiles from your world. Continue?</value>
+  </data>
+  <data name="dialog_removetile_result" xml:space="preserve">
+    <value>{0:N0} tiles have been found and removed.</value>
+  </data>
+  <data name="dialog_export_textures_title" xml:space="preserve">
+    <value>Export Textures</value>
+  </data>
+  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
+    <value>Textures not loaded yet. Please wait for texture loading to complete.</value>
+  </data>
+  <data name="input_file_new" xml:space="preserve">
+    <value>New World</value>
+  </data>
+  <data name="input_file_open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="input_file_save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="input_file_saveas" xml:space="preserve">
+    <value>Save As</value>
+  </data>
+  <data name="input_file_saveasversion" xml:space="preserve">
+    <value>Save As Version</value>
+  </data>
+  <data name="input_file_reload" xml:space="preserve">
+    <value>Reload World</value>
+  </data>
+  <data name="input_edit_copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="input_edit_cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="input_edit_paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="input_edit_undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="input_edit_redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="input_paste_accept" xml:space="preserve">
+    <value>Accept Paste</value>
+  </data>
+  <data name="input_paste_rotate_cw" xml:space="preserve">
+    <value>Rotate Paste CW</value>
+  </data>
+  <data name="input_paste_rotate_ccw" xml:space="preserve">
+    <value>Rotate Paste CCW</value>
+  </data>
+  <data name="input_paste_flip_h" xml:space="preserve">
+    <value>Flip Paste Horizontal</value>
+  </data>
+  <data name="input_paste_flip_v" xml:space="preserve">
+    <value>Flip Paste Vertical</value>
+  </data>
+  <data name="input_selection_all" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="input_selection_none" xml:space="preserve">
+    <value>Deselect</value>
+  </data>
+  <data name="input_selection_delete" xml:space="preserve">
+    <value>Delete Selection</value>
+  </data>
+  <data name="input_selection_move_up" xml:space="preserve">
+    <value>Move Selection Up</value>
+  </data>
+  <data name="input_selection_move_down" xml:space="preserve">
+    <value>Move Selection Down</value>
+  </data>
+  <data name="input_selection_move_left" xml:space="preserve">
+    <value>Move Selection Left</value>
+  </data>
+  <data name="input_selection_move_right" xml:space="preserve">
+    <value>Move Selection Right</value>
+  </data>
+  <data name="input_selection_move_up_fast" xml:space="preserve">
+    <value>Move Selection Up (Fast)</value>
+  </data>
+  <data name="input_selection_move_down_fast" xml:space="preserve">
+    <value>Move Selection Down (Fast)</value>
+  </data>
+  <data name="input_selection_move_left_fast" xml:space="preserve">
+    <value>Move Selection Left (Fast)</value>
+  </data>
+  <data name="input_selection_move_right_fast" xml:space="preserve">
+    <value>Move Selection Right (Fast)</value>
+  </data>
+  <data name="input_selection_resize_up" xml:space="preserve">
+    <value>Shrink Selection Height</value>
+  </data>
+  <data name="input_selection_resize_down" xml:space="preserve">
+    <value>Grow Selection Height</value>
+  </data>
+  <data name="input_selection_resize_left" xml:space="preserve">
+    <value>Shrink Selection Width</value>
+  </data>
+  <data name="input_selection_resize_right" xml:space="preserve">
+    <value>Grow Selection Width</value>
+  </data>
+  <data name="input_selection_resize_up_fast" xml:space="preserve">
+    <value>Shrink Selection Height (Fast)</value>
+  </data>
+  <data name="input_selection_resize_down_fast" xml:space="preserve">
+    <value>Grow Selection Height (Fast)</value>
+  </data>
+  <data name="input_selection_resize_left_fast" xml:space="preserve">
+    <value>Shrink Selection Width (Fast)</value>
+  </data>
+  <data name="input_selection_resize_right_fast" xml:space="preserve">
+    <value>Grow Selection Width (Fast)</value>
+  </data>
+  <data name="input_selection_adjust_startpoint" xml:space="preserve">
+    <value>Move Selection Start Point</value>
+  </data>
+  <data name="input_selection_adjust_startpoint_desc" xml:space="preserve">
+    <value>Ctrl+click/drag to move top-left corner of selection</value>
+  </data>
+  <data name="input_selection_adjust_endpoint" xml:space="preserve">
+    <value>Move Selection End Point</value>
+  </data>
+  <data name="input_selection_adjust_endpoint_desc" xml:space="preserve">
+    <value>Shift+click/drag to move bottom-right corner of selection</value>
+  </data>
+  <data name="input_edit_crop" xml:space="preserve">
+    <value>Crop World</value>
+  </data>
+  <data name="input_edit_expand" xml:space="preserve">
+    <value>Expand World</value>
+  </data>
+  <data name="input_app_settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="input_nav_scroll_up" xml:space="preserve">
+    <value>Scroll Up</value>
+  </data>
+  <data name="input_nav_scroll_down" xml:space="preserve">
+    <value>Scroll Down</value>
+  </data>
+  <data name="input_nav_scroll_left" xml:space="preserve">
+    <value>Scroll Left</value>
+  </data>
+  <data name="input_nav_scroll_right" xml:space="preserve">
+    <value>Scroll Right</value>
+  </data>
+  <data name="input_nav_scroll_up_fast" xml:space="preserve">
+    <value>Scroll Up Fast</value>
+  </data>
+  <data name="input_nav_scroll_down_fast" xml:space="preserve">
+    <value>Scroll Down Fast</value>
+  </data>
+  <data name="input_nav_scroll_left_fast" xml:space="preserve">
+    <value>Scroll Left Fast</value>
+  </data>
+  <data name="input_nav_scroll_right_fast" xml:space="preserve">
+    <value>Scroll Right Fast</value>
+  </data>
+  <data name="input_nav_pan" xml:space="preserve">
+    <value>Pan Mode</value>
+  </data>
+  <data name="input_nav_zoom_in" xml:space="preserve">
+    <value>Zoom In</value>
+  </data>
+  <data name="input_nav_zoom_out" xml:space="preserve">
+    <value>Zoom Out</value>
+  </data>
+  <data name="input_nav_reset" xml:space="preserve">
+    <value>Reset Tool / Deselect</value>
+  </data>
+  <data name="input_tool_arrow" xml:space="preserve">
+    <value>Arrow Tool</value>
+  </data>
+  <data name="input_tool_brush" xml:space="preserve">
+    <value>Brush Tool</value>
+  </data>
+  <data name="input_tool_pencil" xml:space="preserve">
+    <value>Pencil Tool</value>
+  </data>
+  <data name="input_tool_fill" xml:space="preserve">
+    <value>Fill Tool</value>
+  </data>
+  <data name="input_tool_picker" xml:space="preserve">
+    <value>Picker Tool</value>
+  </data>
+  <data name="input_tool_point" xml:space="preserve">
+    <value>Point Tool</value>
+  </data>
+  <data name="input_tool_selection" xml:space="preserve">
+    <value>Selection Tool</value>
+  </data>
+  <data name="input_tool_sprite" xml:space="preserve">
+    <value>Sprite Tool</value>
+  </data>
+  <data name="input_tool_hammer" xml:space="preserve">
+    <value>Hammer Tool</value>
+  </data>
+  <data name="input_tool_morph" xml:space="preserve">
+    <value>Morph Tool</value>
+  </data>
+  <data name="input_toggle_eraser" xml:space="preserve">
+    <value>Toggle Eraser</value>
+  </data>
+  <data name="input_toggle_swap" xml:space="preserve">
+    <value>Swap Colors</value>
+  </data>
+  <data name="input_editor_wire_modecycle" xml:space="preserve">
+    <value>Cycle Wire Drawing Mode</value>
+  </data>
+  <data name="input_editor_wire_modecycle_desc" xml:space="preserve">
+    <value>Cycle wire drawing mode: Off → Wire90 → Wire45 → Off</value>
+  </data>
+  <data name="input_editor_wire_togglehv" xml:space="preserve">
+    <value>Toggle Wire H/V Direction</value>
+  </data>
+  <data name="input_editor_wire_togglehv_desc" xml:space="preserve">
+    <value>Toggle between horizontal-first, vertical-first, and auto-detect wire routing</value>
+  </data>
+  <data name="input_editor_wire_color1" xml:space="preserve">
+    <value>Toggle Wire Red</value>
+  </data>
+  <data name="input_editor_wire_color1_desc" xml:space="preserve">
+    <value>Toggle red wire active</value>
+  </data>
+  <data name="input_editor_wire_color2" xml:space="preserve">
+    <value>Toggle Wire Blue</value>
+  </data>
+  <data name="input_editor_wire_color2_desc" xml:space="preserve">
+    <value>Toggle blue wire active</value>
+  </data>
+  <data name="input_editor_wire_color3" xml:space="preserve">
+    <value>Toggle Wire Green</value>
+  </data>
+  <data name="input_editor_wire_color3_desc" xml:space="preserve">
+    <value>Toggle green wire active</value>
+  </data>
+  <data name="input_editor_wire_color4" xml:space="preserve">
+    <value>Toggle Wire Yellow</value>
+  </data>
+  <data name="input_editor_wire_color4_desc" xml:space="preserve">
+    <value>Toggle yellow wire active</value>
+  </data>
+  <data name="input_editor_wire_trace" xml:space="preserve">
+    <value>Wire Trace Highlight</value>
+  </data>
+  <data name="input_editor_wire_trace_desc" xml:space="preserve">
+    <value>Alt+click to highlight all wires connected to the clicked tile</value>
+  </data>
+  <data name="input_toggle_tile" xml:space="preserve">
+    <value>Toggle Tile Style</value>
+  </data>
+  <data name="input_toggle_wall" xml:space="preserve">
+    <value>Toggle Wall Style</value>
+  </data>
+  <data name="input_editor_draw" xml:space="preserve">
+    <value>Draw / Primary Action</value>
+  </data>
+  <data name="input_editor_draw_desc" xml:space="preserve">
+    <value>Primary drawing action in tools</value>
+  </data>
+  <data name="input_editor_secondary" xml:space="preserve">
+    <value>Secondary Action</value>
+  </data>
+  <data name="input_editor_secondary_desc" xml:space="preserve">
+    <value>Secondary action in tools (inspect, deselect, pick mask, etc.)</value>
+  </data>
+  <data name="input_editor_draw_constrain" xml:space="preserve">
+    <value>Draw Constrained (H/V/45°)</value>
+  </data>
+  <data name="input_editor_draw_constrain_desc" xml:space="preserve">
+    <value>Constrain drawing to horizontal, vertical, or 45° diagonal lines</value>
+  </data>
+  <data name="input_editor_draw_line" xml:space="preserve">
+    <value>Draw Point-to-Point Line</value>
+  </data>
+  <data name="input_editor_draw_line_desc" xml:space="preserve">
+    <value>Draw straight lines between click points</value>
+  </data>
+  <data name="input_editor_pan" xml:space="preserve">
+    <value>Pan Viewport</value>
+  </data>
+  <data name="input_editor_pan_desc" xml:space="preserve">
+    <value>Drag to pan the viewport</value>
+  </data>
+  <data name="input_help_wiki" xml:space="preserve">
+    <value>Wiki / Help</value>
+  </data>
 </root>

@@ -686,7 +686,7 @@ public partial class WorldViewModel
         var ofd = new OpenFileDialog();
         ofd.Filter = "Terraria World File|*.wld";
         ofd.DefaultExt = "Terraria World File| *.wld";
-        ofd.Title = "Import Bestiary and Kills from World File";
+        ofd.Title = Properties.Language.dialog_import_bestiary;
         ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
         if (!Directory.Exists(ofd.InitialDirectory))
             Directory.CreateDirectory(ofd.InitialDirectory);
@@ -724,7 +724,7 @@ public partial class WorldViewModel
         {
             Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png|Bitmap Image (Real TileColor)|*.bmp",
             DefaultExt = "TEdit Schematic File|*.TEditSch",
-            Title = "Import TEdit Schematic File",
+            Title = Properties.Language.dialog_import_schematic,
             InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics"),
             Multiselect = true
         };
@@ -753,7 +753,7 @@ public partial class WorldViewModel
     {
         var sfd = new SaveFileDialog();
         sfd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png";
-        sfd.Title = "Export Schematic File";
+        sfd.Title = Properties.Language.dialog_export_schematic;
         sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
         if (!Directory.Exists(sfd.InitialDirectory))
             Directory.CreateDirectory(sfd.InitialDirectory);
@@ -874,7 +874,7 @@ public partial class WorldViewModel
         // Folder browser dialog
         var dlg = new System.Windows.Forms.FolderBrowserDialog
         {
-            Description = "Select output folder for map tiles",
+            Description = Properties.Language.dialog_select_output_folder,
             UseDescriptionForTitle = true,
         };
 

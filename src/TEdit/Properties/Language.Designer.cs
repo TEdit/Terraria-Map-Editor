@@ -11285,5 +11285,1493 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("plugin_pixelart_schematic_saved", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string common_error {
+            get {
+                return ResourceManager.GetString("common_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string common_delete {
+            get {
+                return ResourceManager.GetString("common_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string common_yes {
+            get {
+                return ResourceManager.GetString("common_yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel: ({0}, {1})  Tile: [{2}, {3}].
+        /// </summary>
+        public static string sprite_coords_format {
+            get {
+                return ResourceManager.GetString("sprite_coords_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string common_no {
+            get {
+                return ResourceManager.GetString("common_no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire.
+        /// </summary>
+        public static string drawing_mode_wire {
+            get {
+                return ResourceManager.GetString("drawing_mode_wire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bus.
+        /// </summary>
+        public static string drawing_mode_bus {
+            get {
+                return ResourceManager.GetString("drawing_mode_bus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        public static string plugin_ore_none {
+            get {
+                return ResourceManager.GetString("plugin_ore_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save World As.
+        /// </summary>
+        public static string dialog_save_world_as {
+            get {
+                return ResourceManager.GetString("dialog_save_world_as", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save world analysis..
+        /// </summary>
+        public static string dialog_save_world_analysis {
+            get {
+                return ResourceManager.GetString("dialog_save_world_analysis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Bestiary and Kills from World File.
+        /// </summary>
+        public static string dialog_import_bestiary {
+            get {
+                return ResourceManager.GetString("dialog_import_bestiary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import TEdit Schematic File.
+        /// </summary>
+        public static string dialog_import_schematic {
+            get {
+                return ResourceManager.GetString("dialog_import_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Schematic File.
+        /// </summary>
+        public static string dialog_export_schematic {
+            get {
+                return ResourceManager.GetString("dialog_export_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Banners from World File.
+        /// </summary>
+        public static string dialog_import_banners {
+            get {
+                return ResourceManager.GetString("dialog_import_banners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import TEdit House Gen Schematic File.
+        /// </summary>
+        public static string dialog_import_housegen_schematic {
+            get {
+                return ResourceManager.GetString("dialog_import_housegen_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Generated Pixelart.
+        /// </summary>
+        public static string dialog_save_pixelart {
+            get {
+                return ResourceManager.GetString("dialog_save_pixelart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Player File.
+        /// </summary>
+        public static string dialog_select_player_file {
+            get {
+                return ResourceManager.GetString("dialog_select_player_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open World File.
+        /// </summary>
+        public static string dialog_open_world_file {
+            get {
+                return ResourceManager.GetString("dialog_open_world_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsaved Changes.
+        /// </summary>
+        public static string dialog_unsaved_title {
+            get {
+                return ResourceManager.GetString("dialog_unsaved_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes before closing TEdit?.
+        /// </summary>
+        public static string dialog_unsaved_content {
+            get {
+                return ResourceManager.GetString("dialog_unsaved_content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t Save.
+        /// </summary>
+        public static string dialog_dont_save {
+            get {
+                return ResourceManager.GetString("dialog_dont_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Delete.
+        /// </summary>
+        public static string dialog_confirm_delete_title {
+            get {
+                return ResourceManager.GetString("dialog_confirm_delete_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete backup?
+        ///{0}.
+        /// </summary>
+        public static string dialog_delete_backup_prompt {
+            get {
+                return ResourceManager.GetString("dialog_delete_backup_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete {0:N0} cached files ({1})?
+        ///
+        ///This removes TEdit backups, autosaves, and all undo/redo history. Terraria world files and .bak files are not affected..
+        /// </summary>
+        public static string dialog_clear_cache_prompt {
+            get {
+                return ResourceManager.GetString("dialog_clear_cache_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear TEdit Cache.
+        /// </summary>
+        public static string dialog_clear_cache_title {
+            get {
+                return ResourceManager.GetString("dialog_clear_cache_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Cache.
+        /// </summary>
+        public static string dialog_clear_cache_button {
+            get {
+                return ResourceManager.GetString("dialog_clear_cache_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cache Cleared.
+        /// </summary>
+        public static string dialog_cache_cleared_title {
+            get {
+                return ResourceManager.GetString("dialog_cache_cleared_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted {0:N0} files and freed {1}..
+        /// </summary>
+        public static string dialog_cache_cleared_result {
+            get {
+                return ResourceManager.GetString("dialog_cache_cleared_result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:N0} files could not be deleted; see the log for details..
+        /// </summary>
+        public static string dialog_cache_cleared_failed {
+            get {
+                return ResourceManager.GetString("dialog_cache_cleared_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some special Tile-Entities (like chests or signs) are still protected and can&apos;t be shuffled..
+        /// </summary>
+        public static string plugin_blockshuffle_entity_info {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_entity_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include Information.
+        /// </summary>
+        public static string plugin_blockshuffle_entity_info_title {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_entity_info_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Check JSON Data for {1}.
+        /// </summary>
+        public static string plugin_housegen_json_entry_error {
+            get {
+                return ResourceManager.GetString("plugin_housegen_json_entry_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Check JSON Data for value &apos;Count&apos; to make sure it matches with associated schematic..
+        /// </summary>
+        public static string plugin_housegen_json_count_error {
+            get {
+                return ResourceManager.GetString("plugin_housegen_json_count_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open a world first..
+        /// </summary>
+        public static string plugin_replay_no_world {
+            get {
+                return ResourceManager.GetString("plugin_replay_no_world", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to open replay file.
+        ///
+        ///{0}.
+        /// </summary>
+        public static string plugin_replay_open_failed {
+            get {
+                return ResourceManager.GetString("plugin_replay_open_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error loading textures from {0}.
+        ///Please check that this folder exists and TEdit has read access.
+        ///
+        ///{1}.
+        /// </summary>
+        public static string error_texture_load {
+            get {
+                return ResourceManager.GetString("error_texture_load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Loading Textures.
+        /// </summary>
+        public static string error_texture_load_title {
+            get {
+                return ResourceManager.GetString("error_texture_load_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to open log file: {0}.
+        /// </summary>
+        public static string error_log_open_failed {
+            get {
+                return ResourceManager.GetString("error_log_open_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create log folder. Application will exit.
+        ///{0}
+        ///{1}.
+        /// </summary>
+        public static string error_log_folder_exit {
+            get {
+                return ResourceManager.GetString("error_log_folder_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create log folder..
+        /// </summary>
+        public static string error_log_folder_title {
+            get {
+                return ResourceManager.GetString("error_log_folder_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create undo temp folder. Application will exit.
+        ///{0}
+        ///{1}.
+        /// </summary>
+        public static string error_undo_folder_exit {
+            get {
+                return ResourceManager.GetString("error_undo_folder_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create undo folder..
+        /// </summary>
+        public static string error_undo_folder_title {
+            get {
+                return ResourceManager.GetString("error_undo_folder_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted..
+        /// </summary>
+        public static string error_unhandled {
+            get {
+                return ResourceManager.GetString("error_unhandled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled Exception.
+        /// </summary>
+        public static string error_unhandled_title {
+            get {
+                return ResourceManager.GetString("error_unhandled_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High Quality Brush Preview.
+        /// </summary>
+        public static string settings_brush_preview {
+            get {
+                return ResourceManager.GetString("settings_brush_preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show full brush shape along shift+line preview. Disable for a simpler single-pixel line preview..
+        /// </summary>
+        public static string settings_brush_preview_desc {
+            get {
+                return ResourceManager.GetString("settings_brush_preview_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter Mode.
+        /// </summary>
+        public static string settings_filter_mode {
+            get {
+                return ResourceManager.GetString("settings_filter_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default filter mode when applying tile/wall/liquid/wire filters.
+        /// </summary>
+        public static string settings_filter_mode_desc {
+            get {
+                return ResourceManager.GetString("settings_filter_mode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Darken Amount.
+        /// </summary>
+        public static string settings_darken_amount {
+            get {
+                return ResourceManager.GetString("settings_darken_amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opacity of the darken overlay for non-selected tiles (0-100%).
+        /// </summary>
+        public static string settings_darken_amount_desc {
+            get {
+                return ResourceManager.GetString("settings_darken_amount_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string spriteeditor_status_ready {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded from user override.
+        /// </summary>
+        public static string spriteeditor_status_override_loaded {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_override_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset to default tile data.
+        /// </summary>
+        public static string spriteeditor_status_reset_default {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_reset_default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No texture loaded - cannot auto-detect.
+        /// </summary>
+        public static string spriteeditor_status_no_texture_detect {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_no_texture_detect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No texture loaded.
+        /// </summary>
+        public static string spriteeditor_status_no_texture {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_no_texture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string spriteeditor_frame_default {
+            get {
+                return ResourceManager.GetString("spriteeditor_frame_default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frame {0}.
+        /// </summary>
+        public static string spriteeditor_frame_format {
+            get {
+                return ResourceManager.GetString("spriteeditor_frame_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save canceled: player file was externally modified..
+        /// </summary>
+        public static string player_editor_save_canceled {
+            get {
+                return ResourceManager.GetString("player_editor_save_canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select output folder for map tiles.
+        /// </summary>
+        public static string dialog_select_output_folder {
+            get {
+                return ResourceManager.GetString("dialog_select_output_folder", resourceCulture);
+            }
+        }
+    
+        /// <summary>
+        ///   Looks up a localized string similar to Hammer.
+        /// </summary>
+        public static string tool_hammer_title {
+            get {
+                return ResourceManager.GetString("tool_hammer_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string tool_selection_title {
+            get {
+                return ResourceManager.GetString("tool_selection_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Chests.
+        /// </summary>
+        public static string dialog_delete_chests_title {
+            get {
+                return ResourceManager.GetString("dialog_delete_chests_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete all chests?.
+        /// </summary>
+        public static string dialog_delete_all_chests_prompt {
+            get {
+                return ResourceManager.GetString("dialog_delete_all_chests_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete all unlocked chests?.
+        /// </summary>
+        public static string dialog_delete_all_unlocked_chests_prompt {
+            get {
+                return ResourceManager.GetString("dialog_delete_all_unlocked_chests_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Player Map.
+        /// </summary>
+        public static string plugin_playermap_title {
+            get {
+                return ResourceManager.GetString("plugin_playermap_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No player file selected..
+        /// </summary>
+        public static string plugin_playermap_no_file {
+            get {
+                return ResourceManager.GetString("plugin_playermap_no_file", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Map Generated!.
+        /// </summary>
+        public static string plugin_playermap_completed {
+            get {
+                return ResourceManager.GetString("plugin_playermap_completed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will completely remove any found tiles from your world. Continue?.
+        /// </summary>
+        public static string dialog_removetile_prompt {
+            get {
+                return ResourceManager.GetString("dialog_removetile_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0:N0} tiles have been found and removed..
+        /// </summary>
+        public static string dialog_removetile_result {
+            get {
+                return ResourceManager.GetString("dialog_removetile_result", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Export Textures.
+        /// </summary>
+        public static string dialog_export_textures_title {
+            get {
+                return ResourceManager.GetString("dialog_export_textures_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Textures not loaded yet. Please wait for texture loading to complete..
+        /// </summary>
+        public static string dialog_export_textures_not_loaded {
+            get {
+                return ResourceManager.GetString("dialog_export_textures_not_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New World.
+        /// </summary>
+        public static string input_file_new {
+            get {
+                return ResourceManager.GetString("input_file_new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string input_file_open {
+            get {
+                return ResourceManager.GetString("input_file_open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string input_file_save {
+            get {
+                return ResourceManager.GetString("input_file_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As.
+        /// </summary>
+        public static string input_file_saveas {
+            get {
+                return ResourceManager.GetString("input_file_saveas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As Version.
+        /// </summary>
+        public static string input_file_saveasversion {
+            get {
+                return ResourceManager.GetString("input_file_saveasversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reload World.
+        /// </summary>
+        public static string input_file_reload {
+            get {
+                return ResourceManager.GetString("input_file_reload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string input_edit_copy {
+            get {
+                return ResourceManager.GetString("input_edit_copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut.
+        /// </summary>
+        public static string input_edit_cut {
+            get {
+                return ResourceManager.GetString("input_edit_cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        public static string input_edit_paste {
+            get {
+                return ResourceManager.GetString("input_edit_paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        public static string input_edit_undo {
+            get {
+                return ResourceManager.GetString("input_edit_undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        public static string input_edit_redo {
+            get {
+                return ResourceManager.GetString("input_edit_redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accept Paste.
+        /// </summary>
+        public static string input_paste_accept {
+            get {
+                return ResourceManager.GetString("input_paste_accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate Paste CW.
+        /// </summary>
+        public static string input_paste_rotate_cw {
+            get {
+                return ResourceManager.GetString("input_paste_rotate_cw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate Paste CCW.
+        /// </summary>
+        public static string input_paste_rotate_ccw {
+            get {
+                return ResourceManager.GetString("input_paste_rotate_ccw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Paste Horizontal.
+        /// </summary>
+        public static string input_paste_flip_h {
+            get {
+                return ResourceManager.GetString("input_paste_flip_h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Paste Vertical.
+        /// </summary>
+        public static string input_paste_flip_v {
+            get {
+                return ResourceManager.GetString("input_paste_flip_v", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        public static string input_selection_all {
+            get {
+                return ResourceManager.GetString("input_selection_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deselect.
+        /// </summary>
+        public static string input_selection_none {
+            get {
+                return ResourceManager.GetString("input_selection_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Selection.
+        /// </summary>
+        public static string input_selection_delete {
+            get {
+                return ResourceManager.GetString("input_selection_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Up.
+        /// </summary>
+        public static string input_selection_move_up {
+            get {
+                return ResourceManager.GetString("input_selection_move_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Down.
+        /// </summary>
+        public static string input_selection_move_down {
+            get {
+                return ResourceManager.GetString("input_selection_move_down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Left.
+        /// </summary>
+        public static string input_selection_move_left {
+            get {
+                return ResourceManager.GetString("input_selection_move_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Right.
+        /// </summary>
+        public static string input_selection_move_right {
+            get {
+                return ResourceManager.GetString("input_selection_move_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Up (Fast).
+        /// </summary>
+        public static string input_selection_move_up_fast {
+            get {
+                return ResourceManager.GetString("input_selection_move_up_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Down (Fast).
+        /// </summary>
+        public static string input_selection_move_down_fast {
+            get {
+                return ResourceManager.GetString("input_selection_move_down_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Left (Fast).
+        /// </summary>
+        public static string input_selection_move_left_fast {
+            get {
+                return ResourceManager.GetString("input_selection_move_left_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Right (Fast).
+        /// </summary>
+        public static string input_selection_move_right_fast {
+            get {
+                return ResourceManager.GetString("input_selection_move_right_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrink Selection Height.
+        /// </summary>
+        public static string input_selection_resize_up {
+            get {
+                return ResourceManager.GetString("input_selection_resize_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grow Selection Height.
+        /// </summary>
+        public static string input_selection_resize_down {
+            get {
+                return ResourceManager.GetString("input_selection_resize_down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrink Selection Width.
+        /// </summary>
+        public static string input_selection_resize_left {
+            get {
+                return ResourceManager.GetString("input_selection_resize_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grow Selection Width.
+        /// </summary>
+        public static string input_selection_resize_right {
+            get {
+                return ResourceManager.GetString("input_selection_resize_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrink Selection Height (Fast).
+        /// </summary>
+        public static string input_selection_resize_up_fast {
+            get {
+                return ResourceManager.GetString("input_selection_resize_up_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grow Selection Height (Fast).
+        /// </summary>
+        public static string input_selection_resize_down_fast {
+            get {
+                return ResourceManager.GetString("input_selection_resize_down_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrink Selection Width (Fast).
+        /// </summary>
+        public static string input_selection_resize_left_fast {
+            get {
+                return ResourceManager.GetString("input_selection_resize_left_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grow Selection Width (Fast).
+        /// </summary>
+        public static string input_selection_resize_right_fast {
+            get {
+                return ResourceManager.GetString("input_selection_resize_right_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Start Point.
+        /// </summary>
+        public static string input_selection_adjust_startpoint {
+            get {
+                return ResourceManager.GetString("input_selection_adjust_startpoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl+click/drag to move top-left corner of selection.
+        /// </summary>
+        public static string input_selection_adjust_startpoint_desc {
+            get {
+                return ResourceManager.GetString("input_selection_adjust_startpoint_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection End Point.
+        /// </summary>
+        public static string input_selection_adjust_endpoint {
+            get {
+                return ResourceManager.GetString("input_selection_adjust_endpoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shift+click/drag to move bottom-right corner of selection.
+        /// </summary>
+        public static string input_selection_adjust_endpoint_desc {
+            get {
+                return ResourceManager.GetString("input_selection_adjust_endpoint_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crop World.
+        /// </summary>
+        public static string input_edit_crop {
+            get {
+                return ResourceManager.GetString("input_edit_crop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand World.
+        /// </summary>
+        public static string input_edit_expand {
+            get {
+                return ResourceManager.GetString("input_edit_expand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string input_app_settings {
+            get {
+                return ResourceManager.GetString("input_app_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Up.
+        /// </summary>
+        public static string input_nav_scroll_up {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Down.
+        /// </summary>
+        public static string input_nav_scroll_down {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Left.
+        /// </summary>
+        public static string input_nav_scroll_left {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Right.
+        /// </summary>
+        public static string input_nav_scroll_right {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Up Fast.
+        /// </summary>
+        public static string input_nav_scroll_up_fast {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_up_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Down Fast.
+        /// </summary>
+        public static string input_nav_scroll_down_fast {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_down_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Left Fast.
+        /// </summary>
+        public static string input_nav_scroll_left_fast {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_left_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Right Fast.
+        /// </summary>
+        public static string input_nav_scroll_right_fast {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_right_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pan Mode.
+        /// </summary>
+        public static string input_nav_pan {
+            get {
+                return ResourceManager.GetString("input_nav_pan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom In.
+        /// </summary>
+        public static string input_nav_zoom_in {
+            get {
+                return ResourceManager.GetString("input_nav_zoom_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom Out.
+        /// </summary>
+        public static string input_nav_zoom_out {
+            get {
+                return ResourceManager.GetString("input_nav_zoom_out", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Tool / Deselect.
+        /// </summary>
+        public static string input_nav_reset {
+            get {
+                return ResourceManager.GetString("input_nav_reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arrow Tool.
+        /// </summary>
+        public static string input_tool_arrow {
+            get {
+                return ResourceManager.GetString("input_tool_arrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brush Tool.
+        /// </summary>
+        public static string input_tool_brush {
+            get {
+                return ResourceManager.GetString("input_tool_brush", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pencil Tool.
+        /// </summary>
+        public static string input_tool_pencil {
+            get {
+                return ResourceManager.GetString("input_tool_pencil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Tool.
+        /// </summary>
+        public static string input_tool_fill {
+            get {
+                return ResourceManager.GetString("input_tool_fill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Picker Tool.
+        /// </summary>
+        public static string input_tool_picker {
+            get {
+                return ResourceManager.GetString("input_tool_picker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point Tool.
+        /// </summary>
+        public static string input_tool_point {
+            get {
+                return ResourceManager.GetString("input_tool_point", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection Tool.
+        /// </summary>
+        public static string input_tool_selection {
+            get {
+                return ResourceManager.GetString("input_tool_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sprite Tool.
+        /// </summary>
+        public static string input_tool_sprite {
+            get {
+                return ResourceManager.GetString("input_tool_sprite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hammer Tool.
+        /// </summary>
+        public static string input_tool_hammer {
+            get {
+                return ResourceManager.GetString("input_tool_hammer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Morph Tool.
+        /// </summary>
+        public static string input_tool_morph {
+            get {
+                return ResourceManager.GetString("input_tool_morph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Eraser.
+        /// </summary>
+        public static string input_toggle_eraser {
+            get {
+                return ResourceManager.GetString("input_toggle_eraser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swap Colors.
+        /// </summary>
+        public static string input_toggle_swap {
+            get {
+                return ResourceManager.GetString("input_toggle_swap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cycle Wire Drawing Mode.
+        /// </summary>
+        public static string input_editor_wire_modecycle {
+            get {
+                return ResourceManager.GetString("input_editor_wire_modecycle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cycle wire drawing mode: Off → Wire90 → Wire45 → Off.
+        /// </summary>
+        public static string input_editor_wire_modecycle_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_modecycle_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire H/V Direction.
+        /// </summary>
+        public static string input_editor_wire_togglehv {
+            get {
+                return ResourceManager.GetString("input_editor_wire_togglehv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle between horizontal-first, vertical-first, and auto-detect wire routing.
+        /// </summary>
+        public static string input_editor_wire_togglehv_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_togglehv_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire Red.
+        /// </summary>
+        public static string input_editor_wire_color1 {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle red wire active.
+        /// </summary>
+        public static string input_editor_wire_color1_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color1_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire Blue.
+        /// </summary>
+        public static string input_editor_wire_color2 {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle blue wire active.
+        /// </summary>
+        public static string input_editor_wire_color2_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color2_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire Green.
+        /// </summary>
+        public static string input_editor_wire_color3 {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle green wire active.
+        /// </summary>
+        public static string input_editor_wire_color3_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color3_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire Yellow.
+        /// </summary>
+        public static string input_editor_wire_color4 {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle yellow wire active.
+        /// </summary>
+        public static string input_editor_wire_color4_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color4_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire Trace Highlight.
+        /// </summary>
+        public static string input_editor_wire_trace {
+            get {
+                return ResourceManager.GetString("input_editor_wire_trace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alt+click to highlight all wires connected to the clicked tile.
+        /// </summary>
+        public static string input_editor_wire_trace_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_trace_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Tile Style.
+        /// </summary>
+        public static string input_toggle_tile {
+            get {
+                return ResourceManager.GetString("input_toggle_tile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wall Style.
+        /// </summary>
+        public static string input_toggle_wall {
+            get {
+                return ResourceManager.GetString("input_toggle_wall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw / Primary Action.
+        /// </summary>
+        public static string input_editor_draw {
+            get {
+                return ResourceManager.GetString("input_editor_draw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary drawing action in tools.
+        /// </summary>
+        public static string input_editor_draw_desc {
+            get {
+                return ResourceManager.GetString("input_editor_draw_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary Action.
+        /// </summary>
+        public static string input_editor_secondary {
+            get {
+                return ResourceManager.GetString("input_editor_secondary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary action in tools (inspect, deselect, pick mask, etc.).
+        /// </summary>
+        public static string input_editor_secondary_desc {
+            get {
+                return ResourceManager.GetString("input_editor_secondary_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw Constrained (H/V/45°).
+        /// </summary>
+        public static string input_editor_draw_constrain {
+            get {
+                return ResourceManager.GetString("input_editor_draw_constrain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Constrain drawing to horizontal, vertical, or 45° diagonal lines.
+        /// </summary>
+        public static string input_editor_draw_constrain_desc {
+            get {
+                return ResourceManager.GetString("input_editor_draw_constrain_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw Point-to-Point Line.
+        /// </summary>
+        public static string input_editor_draw_line {
+            get {
+                return ResourceManager.GetString("input_editor_draw_line", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw straight lines between click points.
+        /// </summary>
+        public static string input_editor_draw_line_desc {
+            get {
+                return ResourceManager.GetString("input_editor_draw_line_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pan Viewport.
+        /// </summary>
+        public static string input_editor_pan {
+            get {
+                return ResourceManager.GetString("input_editor_pan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag to pan the viewport.
+        /// </summary>
+        public static string input_editor_pan_desc {
+            get {
+                return ResourceManager.GetString("input_editor_pan_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiki / Help.
+        /// </summary>
+        public static string input_help_wiki {
+            get {
+                return ResourceManager.GetString("input_help_wiki", resourceCulture);
+            }
+        }
     }
 }

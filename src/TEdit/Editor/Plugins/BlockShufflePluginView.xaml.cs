@@ -75,7 +75,7 @@ public partial class BlockShufflePluginView : FluentWindow
 
     private void IncludeTileEntitiesCheckBox_Checked(object sender, RoutedEventArgs e)
     {
-        MessageBox.Show("Some special Tile-Entities (like chests or signs) are still protected and can't be shuffled.",
-                        "Include Information", MessageBoxButton.OK, MessageBoxImage.Information);
+        MessageBox.Show(Properties.Language.plugin_blockshuffle_entity_info,
+                        Properties.Language.plugin_blockshuffle_entity_info_title, MessageBoxButton.OK, MessageBoxImage.Information);
     }
 }

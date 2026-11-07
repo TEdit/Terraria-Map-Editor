@@ -306,8 +306,8 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
-            Name = "High Quality Brush Preview",
-            Description = "Show full brush shape along shift+line preview. Disable for a simpler single-pixel line preview.",
+            Name = Language.settings_brush_preview,
+            Description = Language.settings_brush_preview_desc,
             Category = Language.settings_category_rendering,
             EditorType = SettingEditorType.CheckBox,
             Getter = () => UserSettingsService.Current.HighQualityBrushPreview,
@@ -371,8 +371,8 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
-            Name = "Filter Mode",
-            Description = "Default filter mode when applying tile/wall/liquid/wire filters",
+            Name = Language.settings_filter_mode,
+            Description = Language.settings_filter_mode_desc,
             Category = filterCategory,
             EditorType = SettingEditorType.ComboBox,
             Getter = () => settings.FilterMode,
@@ -382,8 +382,8 @@ public partial class SettingsViewModel
 
         AllSettings.Add(new SettingItem
         {
-            Name = "Darken Amount",
-            Description = "Opacity of the darken overlay for non-selected tiles (0–100%)",
+            Name = Language.settings_darken_amount,
+            Description = Language.settings_darken_amount_desc,
             Category = filterCategory,
             EditorType = SettingEditorType.Slider,
             SliderMin = 0,
