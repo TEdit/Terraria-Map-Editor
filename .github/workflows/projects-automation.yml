@@ -11,7 +11,7 @@ jobs:
     name: Add to project board
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/add-to-project@v2.0.0
+      - uses: actions/add-to-project@v2.0.1
         with:
           project-url: https://github.com/orgs/TEdit/projects/2
           github-token: ${{ secrets.PROJECT_TOKEN }}
