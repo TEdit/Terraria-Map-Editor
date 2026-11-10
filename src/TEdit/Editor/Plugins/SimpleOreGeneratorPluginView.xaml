@@ -25,7 +25,7 @@
                     <RadioButton x:Name="Tier1BothRadioButton" Content="{x:Static p:Language.common_both}" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="1" IsChecked="False"/>
                     <RadioButton x:Name="CopperRadioButton" Content="{x:Static p:Language.plugin_ore_copper}" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="2" IsChecked="False"/>
                     <RadioButton x:Name="TinRadioButton" Content="{x:Static p:Language.plugin_ore_tin}" HorizontalAlignment="Left" Canvas.Left="116" VerticalAlignment="Center" TabIndex="3" IsChecked="False"/>
-                    <RadioButton x:Name="Tier1NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="158" VerticalAlignment="Center" TabIndex="4" IsChecked="False"/>
+                    <RadioButton x:Name="Tier1NARadioButton" Content="{x:Static p:Language.plugin_ore_none}" HorizontalAlignment="Left" Canvas.Left="158" VerticalAlignment="Center" TabIndex="4" IsChecked="False"/>
                 </Canvas>
             </GroupBox>
 
@@ -38,7 +38,7 @@
                     <RadioButton x:Name="Tier2BothRadioButton" Content="{x:Static p:Language.common_both}" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="5" IsChecked="False"/>
                     <RadioButton x:Name="IronRadioButton" Content="{x:Static p:Language.plugin_ore_iron}" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="6" IsChecked="False"/>
                     <RadioButton x:Name="LeadRadioButton" Content="{x:Static p:Language.plugin_ore_lead}" HorizontalAlignment="Left" Canvas.Left="98" VerticalAlignment="Center" TabIndex="7" IsChecked="False"/>
-                    <RadioButton x:Name="Tier2NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="149" VerticalAlignment="Center" TabIndex="8" IsChecked="False"/>
+                    <RadioButton x:Name="Tier2NARadioButton" Content="{x:Static p:Language.plugin_ore_none}" HorizontalAlignment="Left" Canvas.Left="149" VerticalAlignment="Center" TabIndex="8" IsChecked="False"/>
                 </Canvas>
             </GroupBox>
 
@@ -51,7 +51,7 @@
                     <RadioButton x:Name="Tier3BothRadioButton" Content="{x:Static p:Language.common_both}" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="9" IsChecked="False"/>
                     <RadioButton x:Name="SilverRadioButton" Content="{x:Static p:Language.plugin_ore_silver}" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="10" IsChecked="False"/>
                     <RadioButton x:Name="TungstenRadioButton" Content="{x:Static p:Language.plugin_ore_tungsten}" HorizontalAlignment="Left" Canvas.Left="105" VerticalAlignment="Center" TabIndex="11" IsChecked="False"/>
-                    <RadioButton x:Name="Tier3NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="180" VerticalAlignment="Center" TabIndex="12" IsChecked="False"/>
+                    <RadioButton x:Name="Tier3NARadioButton" Content="{x:Static p:Language.plugin_ore_none}" HorizontalAlignment="Left" Canvas.Left="180" VerticalAlignment="Center" TabIndex="12" IsChecked="False"/>
                 </Canvas>
             </GroupBox>
 
@@ -64,7 +64,7 @@
                     <RadioButton x:Name="Tier4BothRadioButton" Content="{x:Static p:Language.common_both}" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="13" IsChecked="False"/>
                     <RadioButton x:Name="GoldRadioButton" Content="{x:Static p:Language.plugin_ore_gold}" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="14" IsChecked="False"/>
                     <RadioButton x:Name="PlatinumRadioButton" Content="{x:Static p:Language.plugin_ore_platinum}" HorizontalAlignment="Left" Canvas.Left="102" VerticalAlignment="Center" TabIndex="15" IsChecked="False"/>
-                    <RadioButton x:Name="Tier4NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="175" VerticalAlignment="Center" TabIndex="16" IsChecked="False"/>
+                    <RadioButton x:Name="Tier4NARadioButton" Content="{x:Static p:Language.plugin_ore_none}" HorizontalAlignment="Left" Canvas.Left="175" VerticalAlignment="Center" TabIndex="16" IsChecked="False"/>
                 </Canvas>
             </GroupBox>
 
@@ -87,7 +87,7 @@
                     <RadioButton x:Name="Tier6BothRadioButton" Content="{x:Static p:Language.common_both}" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="18" IsChecked="False"/>
                     <RadioButton x:Name="DemoniteRadioButton" Content="{x:Static p:Language.plugin_ore_demonite}" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="19" IsChecked="False"/>
                     <RadioButton x:Name="CrimtaneRadioButton" Content="{x:Static p:Language.plugin_ore_crimtane}" HorizontalAlignment="Left" Canvas.Left="129" VerticalAlignment="Center" TabIndex="20" IsChecked="False"/>
-                    <RadioButton x:Name="Tier6NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="203" VerticalAlignment="Center" TabIndex="21" IsChecked="False"/>
+                    <RadioButton x:Name="Tier6NARadioButton" Content="{x:Static p:Language.plugin_ore_none}" HorizontalAlignment="Left" Canvas.Left="203" VerticalAlignment="Center" TabIndex="21" IsChecked="False"/>
                 </Canvas>
             </GroupBox>
 
@@ -120,7 +120,7 @@
                     <RadioButton x:Name="Tier9BothRadioButton" Content="{x:Static p:Language.common_both}" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="24" IsChecked="False"/>
                     <RadioButton x:Name="CobaltRadioButton" Content="{x:Static p:Language.plugin_ore_cobalt}" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="25" IsChecked="False"/>
                     <RadioButton x:Name="PalladiumRadioButton" Content="{x:Static p:Language.plugin_ore_palladium}" HorizontalAlignment="Left" Canvas.Left="112" VerticalAlignment="Center" TabIndex="26" IsChecked="False"/>
-                    <RadioButton x:Name="Tier9NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="189" VerticalAlignment="Center" TabIndex="27" IsChecked="False"/>
+                    <RadioButton x:Name="Tier9NARadioButton" Content="{x:Static p:Language.plugin_ore_none}" HorizontalAlignment="Left" Canvas.Left="189" VerticalAlignment="Center" TabIndex="27" IsChecked="False"/>
                 </Canvas>
             </GroupBox>
 
@@ -133,7 +133,7 @@
                     <RadioButton x:Name="Tier10BothRadioButton" Content="{x:Static p:Language.common_both}" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="28" IsChecked="False"/>
                     <RadioButton x:Name="MythrilRadioButton" Content="{x:Static p:Language.plugin_ore_mythril}" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="29" IsChecked="False"/>
                     <RadioButton x:Name="OrichalcumRadioButton" Content="{x:Static p:Language.plugin_ore_orichalcum}" HorizontalAlignment="Left" Canvas.Left="114" VerticalAlignment="Center" TabIndex="30" IsChecked="False"/>
-                    <RadioButton x:Name="Tier10NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="200" VerticalAlignment="Center" TabIndex="31" IsChecked="False"/>
+                    <RadioButton x:Name="Tier10NARadioButton" Content="{x:Static p:Language.plugin_ore_none}" HorizontalAlignment="Left" Canvas.Left="200" VerticalAlignment="Center" TabIndex="31" IsChecked="False"/>
                 </Canvas>
             </GroupBox>
 
@@ -146,7 +146,7 @@
                     <RadioButton x:Name="Tier11BothRadioButton" Content="{x:Static p:Language.common_both}" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="32" IsChecked="False"/>
                     <RadioButton x:Name="AdamantiteRadioButton" Content="{x:Static p:Language.plugin_ore_adamantite}" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="33" IsChecked="False"/>
                     <RadioButton x:Name="TitaniumRadioButton" Content="{x:Static p:Language.plugin_ore_titanium}" HorizontalAlignment="Left" Canvas.Left="138" VerticalAlignment="Center" TabIndex="34" IsChecked="False"/>
-                    <RadioButton x:Name="Tier11NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="210" VerticalAlignment="Center" TabIndex="35" IsChecked="False"/>
+                    <RadioButton x:Name="Tier11NARadioButton" Content="{x:Static p:Language.plugin_ore_none}" HorizontalAlignment="Left" Canvas.Left="210" VerticalAlignment="Center" TabIndex="35" IsChecked="False"/>
                 </Canvas>
             </GroupBox>
 

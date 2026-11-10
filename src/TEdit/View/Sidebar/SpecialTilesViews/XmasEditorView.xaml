@@ -15,48 +15,48 @@
                 <ResourceDictionary Source="SpecialTilesSharedResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <enum:EnumItemList x:Key="XmasStarCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
-                <enum:EnumItem Value="0">None</enum:EnumItem>
-                <enum:EnumItem Value="1">Star Topper 1</enum:EnumItem>
-                <enum:EnumItem Value="2">Star Topper 2</enum:EnumItem>
-                <enum:EnumItem Value="3">Star Topper 3</enum:EnumItem>
-                <enum:EnumItem Value="4">Bow Topper</enum:EnumItem>
+                <enum:EnumItem Value="0" DisplayValue="{x:Static p:Language.common_none}" />
+                <enum:EnumItem Value="1" DisplayValue="{x:Static p:Language.specialtile_xmas_star_topper_1}" />
+                <enum:EnumItem Value="2" DisplayValue="{x:Static p:Language.specialtile_xmas_star_topper_2}" />
+                <enum:EnumItem Value="3" DisplayValue="{x:Static p:Language.specialtile_xmas_star_topper_3}" />
+                <enum:EnumItem Value="4" DisplayValue="{x:Static p:Language.specialtile_xmas_bow_topper}" />
             </enum:EnumItemList>
             <enum:EnumItemList x:Key="XmasGarlandCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
-                <enum:EnumItem Value="0">None</enum:EnumItem>
-                <enum:EnumItem Value="1">White</enum:EnumItem>
-                <enum:EnumItem Value="2">White and Red</enum:EnumItem>
-                <enum:EnumItem Value="3">Red</enum:EnumItem>
-                <enum:EnumItem Value="4">Red and Green</enum:EnumItem>
-                <enum:EnumItem Value="5">Green</enum:EnumItem>
-                <enum:EnumItem Value="6">Green and White</enum:EnumItem>
+                <enum:EnumItem Value="0" DisplayValue="{x:Static p:Language.common_none}" />
+                <enum:EnumItem Value="1" DisplayValue="{x:Static p:Language.specialtile_xmas_white}" />
+                <enum:EnumItem Value="2" DisplayValue="{x:Static p:Language.specialtile_xmas_white_red}" />
+                <enum:EnumItem Value="3" DisplayValue="{x:Static p:Language.specialtile_xmas_red}" />
+                <enum:EnumItem Value="4" DisplayValue="{x:Static p:Language.specialtile_xmas_red_green}" />
+                <enum:EnumItem Value="5" DisplayValue="{x:Static p:Language.specialtile_xmas_green}" />
+                <enum:EnumItem Value="6" DisplayValue="{x:Static p:Language.specialtile_xmas_green_white}" />
             </enum:EnumItemList>
             <enum:EnumItemList x:Key="XmasBulbCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
-                <enum:EnumItem Value="0">None</enum:EnumItem>
-                <enum:EnumItem Value="1">Multicolored</enum:EnumItem>
-                <enum:EnumItem Value="2">Red</enum:EnumItem>
-                <enum:EnumItem Value="3">Yellow</enum:EnumItem>
-                <enum:EnumItem Value="4">Green</enum:EnumItem>
-                <enum:EnumItem Value="5">Red and Green</enum:EnumItem>
-                <enum:EnumItem Value="6">Yellow and Green</enum:EnumItem>
-                <enum:EnumItem Value="7">Red and Yellow</enum:EnumItem>
-                <enum:EnumItem Value="8">White</enum:EnumItem>
-                <enum:EnumItem Value="9">White and Red</enum:EnumItem>
-                <enum:EnumItem Value="10">White and Yellow</enum:EnumItem>
-                <enum:EnumItem Value="11">White and Green</enum:EnumItem>
+                <enum:EnumItem Value="0" DisplayValue="{x:Static p:Language.common_none}" />
+                <enum:EnumItem Value="1" DisplayValue="{x:Static p:Language.specialtile_xmas_multicolored}" />
+                <enum:EnumItem Value="2" DisplayValue="{x:Static p:Language.specialtile_xmas_red}" />
+                <enum:EnumItem Value="3" DisplayValue="{x:Static p:Language.specialtile_xmas_yellow}" />
+                <enum:EnumItem Value="4" DisplayValue="{x:Static p:Language.specialtile_xmas_green}" />
+                <enum:EnumItem Value="5" DisplayValue="{x:Static p:Language.specialtile_xmas_red_green}" />
+                <enum:EnumItem Value="6" DisplayValue="{x:Static p:Language.specialtile_xmas_yellow_green}" />
+                <enum:EnumItem Value="7" DisplayValue="{x:Static p:Language.specialtile_xmas_red_yellow}" />
+                <enum:EnumItem Value="8" DisplayValue="{x:Static p:Language.specialtile_xmas_white}" />
+                <enum:EnumItem Value="9" DisplayValue="{x:Static p:Language.specialtile_xmas_white_red}" />
+                <enum:EnumItem Value="10" DisplayValue="{x:Static p:Language.specialtile_xmas_white_yellow}" />
+                <enum:EnumItem Value="11" DisplayValue="{x:Static p:Language.specialtile_xmas_white_green}" />
             </enum:EnumItemList>
             <enum:EnumItemList x:Key="XmasLightCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
-                <enum:EnumItem Value="0">None</enum:EnumItem>
-                <enum:EnumItem Value="1">Multicolored</enum:EnumItem>
-                <enum:EnumItem Value="2">Red</enum:EnumItem>
-                <enum:EnumItem Value="3">Green</enum:EnumItem>
-                <enum:EnumItem Value="4">Blue</enum:EnumItem>
-                <enum:EnumItem Value="5">Yellow</enum:EnumItem>
-                <enum:EnumItem Value="6">Red and Yellow</enum:EnumItem>
-                <enum:EnumItem Value="7">Red and Green</enum:EnumItem>
-                <enum:EnumItem Value="8">Yellow and Green</enum:EnumItem>
-                <enum:EnumItem Value="9">Blue and Green</enum:EnumItem>
-                <enum:EnumItem Value="10">Red and Blue</enum:EnumItem>
-                <enum:EnumItem Value="11">Blue and Yellow</enum:EnumItem>
+                <enum:EnumItem Value="0" DisplayValue="{x:Static p:Language.common_none}" />
+                <enum:EnumItem Value="1" DisplayValue="{x:Static p:Language.specialtile_xmas_multicolored}" />
+                <enum:EnumItem Value="2" DisplayValue="{x:Static p:Language.specialtile_xmas_red}" />
+                <enum:EnumItem Value="3" DisplayValue="{x:Static p:Language.specialtile_xmas_green}" />
+                <enum:EnumItem Value="4" DisplayValue="{x:Static p:Language.specialtile_xmas_blue}" />
+                <enum:EnumItem Value="5" DisplayValue="{x:Static p:Language.specialtile_xmas_yellow}" />
+                <enum:EnumItem Value="6" DisplayValue="{x:Static p:Language.specialtile_xmas_red_yellow}" />
+                <enum:EnumItem Value="7" DisplayValue="{x:Static p:Language.specialtile_xmas_red_green}" />
+                <enum:EnumItem Value="8" DisplayValue="{x:Static p:Language.specialtile_xmas_yellow_green}" />
+                <enum:EnumItem Value="9" DisplayValue="{x:Static p:Language.specialtile_xmas_blue_green}" />
+                <enum:EnumItem Value="10" DisplayValue="{x:Static p:Language.specialtile_xmas_red_blue}" />
+                <enum:EnumItem Value="11" DisplayValue="{x:Static p:Language.specialtile_xmas_blue_yellow}" />
             </enum:EnumItemList>
         </ResourceDictionary>
     </UserControl.Resources>

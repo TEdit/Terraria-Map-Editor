@@ -11287,6 +11287,657 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string common_error {
+            get {
+                return ResourceManager.GetString("common_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string common_delete {
+            get {
+                return ResourceManager.GetString("common_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string common_yes {
+            get {
+                return ResourceManager.GetString("common_yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel: ({0}, {1})  Tile: [{2}, {3}].
+        /// </summary>
+        public static string sprite_coords_format {
+            get {
+                return ResourceManager.GetString("sprite_coords_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string common_no {
+            get {
+                return ResourceManager.GetString("common_no", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire.
+        /// </summary>
+        public static string drawing_mode_wire {
+            get {
+                return ResourceManager.GetString("drawing_mode_wire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bus.
+        /// </summary>
+        public static string drawing_mode_bus {
+            get {
+                return ResourceManager.GetString("drawing_mode_bus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        public static string plugin_ore_none {
+            get {
+                return ResourceManager.GetString("plugin_ore_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save World As.
+        /// </summary>
+        public static string dialog_save_world_as {
+            get {
+                return ResourceManager.GetString("dialog_save_world_as", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save world analysis..
+        /// </summary>
+        public static string dialog_save_world_analysis {
+            get {
+                return ResourceManager.GetString("dialog_save_world_analysis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Bestiary and Kills from World File.
+        /// </summary>
+        public static string dialog_import_bestiary {
+            get {
+                return ResourceManager.GetString("dialog_import_bestiary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import TEdit Schematic File.
+        /// </summary>
+        public static string dialog_import_schematic {
+            get {
+                return ResourceManager.GetString("dialog_import_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Schematic File.
+        /// </summary>
+        public static string dialog_export_schematic {
+            get {
+                return ResourceManager.GetString("dialog_export_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Banners from World File.
+        /// </summary>
+        public static string dialog_import_banners {
+            get {
+                return ResourceManager.GetString("dialog_import_banners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import TEdit House Gen Schematic File.
+        /// </summary>
+        public static string dialog_import_housegen_schematic {
+            get {
+                return ResourceManager.GetString("dialog_import_housegen_schematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Generated Pixelart.
+        /// </summary>
+        public static string dialog_save_pixelart {
+            get {
+                return ResourceManager.GetString("dialog_save_pixelart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Player File.
+        /// </summary>
+        public static string dialog_select_player_file {
+            get {
+                return ResourceManager.GetString("dialog_select_player_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open World File.
+        /// </summary>
+        public static string dialog_open_world_file {
+            get {
+                return ResourceManager.GetString("dialog_open_world_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsaved Changes.
+        /// </summary>
+        public static string dialog_unsaved_title {
+            get {
+                return ResourceManager.GetString("dialog_unsaved_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes before closing TEdit?.
+        /// </summary>
+        public static string dialog_unsaved_content {
+            get {
+                return ResourceManager.GetString("dialog_unsaved_content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t Save.
+        /// </summary>
+        public static string dialog_dont_save {
+            get {
+                return ResourceManager.GetString("dialog_dont_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Delete.
+        /// </summary>
+        public static string dialog_confirm_delete_title {
+            get {
+                return ResourceManager.GetString("dialog_confirm_delete_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete backup?
+        ///{0}.
+        /// </summary>
+        public static string dialog_delete_backup_prompt {
+            get {
+                return ResourceManager.GetString("dialog_delete_backup_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete {0:N0} cached files ({1})?
+        ///
+        ///This removes TEdit backups, autosaves, and all undo/redo history. Terraria world files and .bak files are not affected..
+        /// </summary>
+        public static string dialog_clear_cache_prompt {
+            get {
+                return ResourceManager.GetString("dialog_clear_cache_prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear TEdit Cache.
+        /// </summary>
+        public static string dialog_clear_cache_title {
+            get {
+                return ResourceManager.GetString("dialog_clear_cache_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear Cache.
+        /// </summary>
+        public static string dialog_clear_cache_button {
+            get {
+                return ResourceManager.GetString("dialog_clear_cache_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cache Cleared.
+        /// </summary>
+        public static string dialog_cache_cleared_title {
+            get {
+                return ResourceManager.GetString("dialog_cache_cleared_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted {0:N0} files and freed {1}..
+        /// </summary>
+        public static string dialog_cache_cleared_result {
+            get {
+                return ResourceManager.GetString("dialog_cache_cleared_result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:N0} files could not be deleted; see the log for details..
+        /// </summary>
+        public static string dialog_cache_cleared_failed {
+            get {
+                return ResourceManager.GetString("dialog_cache_cleared_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some special Tile-Entities (like chests or signs) are still protected and can&apos;t be shuffled..
+        /// </summary>
+        public static string plugin_blockshuffle_entity_info {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_entity_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include Information.
+        /// </summary>
+        public static string plugin_blockshuffle_entity_info_title {
+            get {
+                return ResourceManager.GetString("plugin_blockshuffle_entity_info_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Check JSON Data for {1}.
+        /// </summary>
+        public static string plugin_housegen_json_entry_error {
+            get {
+                return ResourceManager.GetString("plugin_housegen_json_entry_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Check JSON Data for value &apos;Count&apos; to make sure it matches with associated schematic..
+        /// </summary>
+        public static string plugin_housegen_json_count_error {
+            get {
+                return ResourceManager.GetString("plugin_housegen_json_count_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open a world first..
+        /// </summary>
+        public static string plugin_replay_no_world {
+            get {
+                return ResourceManager.GetString("plugin_replay_no_world", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to open replay file.
+        ///
+        ///{0}.
+        /// </summary>
+        public static string plugin_replay_open_failed {
+            get {
+                return ResourceManager.GetString("plugin_replay_open_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error loading textures from {0}.
+        ///Please check that this folder exists and TEdit has read access.
+        ///
+        ///{1}.
+        /// </summary>
+        public static string error_texture_load {
+            get {
+                return ResourceManager.GetString("error_texture_load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Loading Textures.
+        /// </summary>
+        public static string error_texture_load_title {
+            get {
+                return ResourceManager.GetString("error_texture_load_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to open log file: {0}.
+        /// </summary>
+        public static string error_log_open_failed {
+            get {
+                return ResourceManager.GetString("error_log_open_failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create log folder. Application will exit.
+        ///{0}
+        ///{1}.
+        /// </summary>
+        public static string error_log_folder_exit {
+            get {
+                return ResourceManager.GetString("error_log_folder_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create log folder..
+        /// </summary>
+        public static string error_log_folder_title {
+            get {
+                return ResourceManager.GetString("error_log_folder_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create undo temp folder. Application will exit.
+        ///{0}
+        ///{1}.
+        /// </summary>
+        public static string error_undo_folder_exit {
+            get {
+                return ResourceManager.GetString("error_undo_folder_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to create undo folder..
+        /// </summary>
+        public static string error_undo_folder_title {
+            get {
+                return ResourceManager.GetString("error_undo_folder_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted..
+        /// </summary>
+        public static string error_unhandled {
+            get {
+                return ResourceManager.GetString("error_unhandled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled Exception.
+        /// </summary>
+        public static string error_unhandled_title {
+            get {
+                return ResourceManager.GetString("error_unhandled_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High Quality Brush Preview.
+        /// </summary>
+        public static string settings_brush_preview {
+            get {
+                return ResourceManager.GetString("settings_brush_preview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show full brush shape along shift+line preview. Disable for a simpler single-pixel line preview..
+        /// </summary>
+        public static string settings_brush_preview_desc {
+            get {
+                return ResourceManager.GetString("settings_brush_preview_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter Mode.
+        /// </summary>
+        public static string settings_filter_mode {
+            get {
+                return ResourceManager.GetString("settings_filter_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default filter mode when applying tile/wall/liquid/wire filters.
+        /// </summary>
+        public static string settings_filter_mode_desc {
+            get {
+                return ResourceManager.GetString("settings_filter_mode_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Darken Amount.
+        /// </summary>
+        public static string settings_darken_amount {
+            get {
+                return ResourceManager.GetString("settings_darken_amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opacity of the darken overlay for non-selected tiles (0-100%).
+        /// </summary>
+        public static string settings_darken_amount_desc {
+            get {
+                return ResourceManager.GetString("settings_darken_amount_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string spriteeditor_status_ready {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded from user override.
+        /// </summary>
+        public static string spriteeditor_status_override_loaded {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_override_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset to default tile data.
+        /// </summary>
+        public static string spriteeditor_status_reset_default {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_reset_default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No texture loaded - cannot auto-detect.
+        /// </summary>
+        public static string spriteeditor_status_no_texture_detect {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_no_texture_detect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No texture loaded.
+        /// </summary>
+        public static string spriteeditor_status_no_texture {
+            get {
+                return ResourceManager.GetString("spriteeditor_status_no_texture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string spriteeditor_frame_default {
+            get {
+                return ResourceManager.GetString("spriteeditor_frame_default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frame {0}.
+        /// </summary>
+        public static string spriteeditor_frame_format {
+            get {
+                return ResourceManager.GetString("spriteeditor_frame_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save canceled: player file was externally modified..
+        /// </summary>
+        public static string player_editor_save_canceled {
+            get {
+                return ResourceManager.GetString("player_editor_save_canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select output folder for map tiles.
+        /// </summary>
+        public static string dialog_select_output_folder {
+            get {
+                return ResourceManager.GetString("dialog_select_output_folder", resourceCulture);
+            }
+        }
+    
+        /// <summary>
+        ///   Looks up a localized string similar to Hammer.
+        /// </summary>
+        public static string tool_hammer_title {
+            get {
+                return ResourceManager.GetString("tool_hammer_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string tool_selection_title {
+            get {
+                return ResourceManager.GetString("tool_selection_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Chests.
+        /// </summary>
+        public static string dialog_delete_chests_title {
+            get {
+                return ResourceManager.GetString("dialog_delete_chests_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete all chests?.
+        /// </summary>
+        public static string dialog_delete_all_chests_prompt {
+            get {
+                return ResourceManager.GetString("dialog_delete_all_chests_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete all unlocked chests?.
+        /// </summary>
+        public static string dialog_delete_all_unlocked_chests_prompt {
+            get {
+                return ResourceManager.GetString("dialog_delete_all_unlocked_chests_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Player Map.
+        /// </summary>
+        public static string plugin_playermap_title {
+            get {
+                return ResourceManager.GetString("plugin_playermap_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No player file selected..
+        /// </summary>
+        public static string plugin_playermap_no_file {
+            get {
+                return ResourceManager.GetString("plugin_playermap_no_file", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Map Generated!.
+        /// </summary>
+        public static string plugin_playermap_completed {
+            get {
+                return ResourceManager.GetString("plugin_playermap_completed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will completely remove any found tiles from your world. Continue?.
+        /// </summary>
+        public static string dialog_removetile_prompt {
+            get {
+                return ResourceManager.GetString("dialog_removetile_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0:N0} tiles have been found and removed..
+        /// </summary>
+        public static string dialog_removetile_result {
+            get {
+                return ResourceManager.GetString("dialog_removetile_result", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Export Textures.
+        /// </summary>
+        public static string dialog_export_textures_title {
+            get {
+                return ResourceManager.GetString("dialog_export_textures_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Textures not loaded yet. Please wait for texture loading to complete..
+        /// </summary>
+        public static string dialog_export_textures_not_loaded {
+            get {
+                return ResourceManager.GetString("dialog_export_textures_not_loaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New World.
         /// </summary>
         public static string input_file_new {
@@ -12120,6 +12771,1596 @@ namespace TEdit.Properties {
         public static string input_help_wiki {
             get {
                 return ResourceManager.GetString("input_help_wiki", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        public static string about_system {
+            get {
+                return ResourceManager.GetString("about_system", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Error completing Bestiary data. Your current bestiary has been restored. {0}.
+        /// </summary>
+        public static string dialog_complete_bestiary_error {
+            get {
+                return ResourceManager.GetString("dialog_complete_bestiary_error", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will completely replace your currently loaded world Bestiary and Kill Tally with a completed bestiary. Continue?.
+        /// </summary>
+        public static string dialog_complete_bestiary_prompt {
+            get {
+                return ResourceManager.GetString("dialog_complete_bestiary_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Complete Bestiary?.
+        /// </summary>
+        public static string dialog_complete_bestiary_title {
+            get {
+                return ResourceManager.GetString("dialog_complete_bestiary_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Add "edge of world" boundaries?.
+        /// </summary>
+        public static string dialog_crop_world_borders_prompt {
+            get {
+                return ResourceManager.GetString("dialog_crop_world_borders_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Crop World:.
+        /// </summary>
+        public static string dialog_crop_world_borders_title {
+            get {
+                return ResourceManager.GetString("dialog_crop_world_borders_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will generate a new world within the selected region. All progress outside of the cropped zone will be lost. Continue?.
+        /// </summary>
+        public static string dialog_crop_world_prompt {
+            get {
+                return ResourceManager.GetString("dialog_crop_world_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Crop World?.
+        /// </summary>
+        public static string dialog_crop_world_title {
+            get {
+                return ResourceManager.GetString("dialog_crop_world_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Error importing banner data from {0}. Your current banners have been restored. {1}.
+        /// </summary>
+        public static string dialog_import_banners_error {
+            get {
+                return ResourceManager.GetString("dialog_import_banners_error", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will replace your current banner counts with data from the selected world file. Continue?.
+        /// </summary>
+        public static string dialog_import_banners_prompt {
+            get {
+                return ResourceManager.GetString("dialog_import_banners_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Import Banners?.
+        /// </summary>
+        public static string dialog_import_banners_title {
+            get {
+                return ResourceManager.GetString("dialog_import_banners_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Error importing Bestiary data from {0}. Your current bestiary has been restored. {1}.
+        /// </summary>
+        public static string dialog_import_bestiary_error {
+            get {
+                return ResourceManager.GetString("dialog_import_bestiary_error", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Import Error.
+        /// </summary>
+        public static string dialog_import_error_title {
+            get {
+                return ResourceManager.GetString("dialog_import_error_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.  TEdit v{0} TEdit Max World: {1} Current World: {2}  Do you wish to force it to load anyway?  WARNING: This may have unexpected results including corrupt world files and program crashes.  The error is : {3}.
+        /// </summary>
+        public static string dialog_invalid_world_prompt {
+            get {
+                return ResourceManager.GetString("dialog_invalid_world_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load Invalid World?.
+        /// </summary>
+        public static string dialog_invalid_world_title {
+            get {
+                return ResourceManager.GetString("dialog_invalid_world_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Language changed to {0}. Do you wish to restart now?.
+        /// </summary>
+        public static string dialog_language_restart_prompt {
+            get {
+                return ResourceManager.GetString("dialog_language_restart_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Restart to change language.
+        /// </summary>
+        public static string dialog_language_restart_title {
+            get {
+                return ResourceManager.GetString("dialog_language_restart_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You are loading a legacy TModLoader world version: {0}. 1. Editing legacy files is a BETA feature. 2. Editing modded worlds is unsupported. Please make a backup as you may experience world file corruption. Do you wish to continue?.
+        /// </summary>
+        public static string dialog_legacy_tmodloader_prompt {
+            get {
+                return ResourceManager.GetString("dialog_legacy_tmodloader_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load Legacy TModLoader World?.
+        /// </summary>
+        public static string dialog_legacy_tmodloader_title {
+            get {
+                return ResourceManager.GetString("dialog_legacy_tmodloader_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You are loading a legacy world version: {0}. Editing legacy files could cause unexpected results. Please make a backup as you may experience world file corruption. Do you wish to continue?.
+        /// </summary>
+        public static string dialog_legacy_world_prompt {
+            get {
+                return ResourceManager.GetString("dialog_legacy_world_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load Legacy World?.
+        /// </summary>
+        public static string dialog_legacy_world_title {
+            get {
+                return ResourceManager.GetString("dialog_legacy_world_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to open external browser. Copy to clipboard?.
+        /// </summary>
+        public static string dialog_link_error_message {
+            get {
+                return ResourceManager.GetString("dialog_link_error_message", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Link Error.
+        /// </summary>
+        public static string dialog_link_error_title {
+            get {
+                return ResourceManager.GetString("dialog_link_error_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?.
+        /// </summary>
+        public static string dialog_load_bestiary_prompt {
+            get {
+                return ResourceManager.GetString("dialog_load_bestiary_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load Bestiary?.
+        /// </summary>
+        public static string dialog_load_bestiary_title {
+            get {
+                return ResourceManager.GetString("dialog_load_bestiary_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Locate Terraria Folder.
+        /// </summary>
+        public static string dialog_locate_terraria_folder {
+            get {
+                return ResourceManager.GetString("dialog_locate_terraria_folder", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Set all banner counts to maximum (9999)?.
+        /// </summary>
+        public static string dialog_max_banners_prompt {
+            get {
+                return ResourceManager.GetString("dialog_max_banners_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Max Out Banners?.
+        /// </summary>
+        public static string dialog_max_banners_title {
+            get {
+                return ResourceManager.GetString("dialog_max_banners_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You are loading a TModLoader world. Editing modded worlds is unsupported. Please make a backup as you may experience world file corruption. Do you wish to continue?.
+        /// </summary>
+        public static string dialog_mod_world_prompt {
+            get {
+                return ResourceManager.GetString("dialog_mod_world_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load Mod World?.
+        /// </summary>
+        public static string dialog_mod_world_title {
+            get {
+                return ResourceManager.GetString("dialog_mod_world_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This world version is NEWER than supported by TEdit's config.  World version: {0} Max supported: {1}  TEdit will fall back to config version {1} (missing newer tiles/walls/etc may cause issues).  Do you want to attempt to load anyway?.
+        /// </summary>
+        public static string dialog_newer_version_prompt {
+            get {
+                return ResourceManager.GetString("dialog_newer_version_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Newer World Version.
+        /// </summary>
+        public static string dialog_newer_version_title {
+            get {
+                return ResourceManager.GetString("dialog_newer_version_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} was externally modified since it was loaded or last saved. Do you wish to overwrite it?.
+        /// </summary>
+        public static string dialog_player_modified_prompt {
+            get {
+                return ResourceManager.GetString("dialog_player_modified_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Player Modified.
+        /// </summary>
+        public static string dialog_player_modified_title {
+            get {
+                return ResourceManager.GetString("dialog_player_modified_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to No opened world loaded for reloading..
+        /// </summary>
+        public static string dialog_reload_no_world {
+            get {
+                return ResourceManager.GetString("dialog_reload_no_world", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Unsaved work will be lost!.
+        /// </summary>
+        public static string dialog_reload_world_prompt {
+            get {
+                return ResourceManager.GetString("dialog_reload_world_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reload Current World?.
+        /// </summary>
+        public static string dialog_reload_world_title {
+            get {
+                return ResourceManager.GetString("dialog_reload_world_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Enable at least one mask to use replace. Masks define which tiles to match..
+        /// </summary>
+        public static string dialog_replace_mask_warning {
+            get {
+                return ResourceManager.GetString("dialog_replace_mask_warning", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Replace.
+        /// </summary>
+        public static string dialog_replace_title {
+            get {
+                return ResourceManager.GetString("dialog_replace_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reset all banner counts to zero?.
+        /// </summary>
+        public static string dialog_reset_banners_prompt {
+            get {
+                return ResourceManager.GetString("dialog_reset_banners_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Banners?.
+        /// </summary>
+        public static string dialog_reset_banners_title {
+            get {
+                return ResourceManager.GetString("dialog_reset_banners_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Error resetting Bestiary data. Your current bestiary has been restored. {0}.
+        /// </summary>
+        public static string dialog_reset_bestiary_error {
+            get {
+                return ResourceManager.GetString("dialog_reset_bestiary_error", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to This will completely replace your currently loaded world Bestiary and Kill Tally with a reset bestiary. Continue?.
+        /// </summary>
+        public static string dialog_reset_bestiary_prompt {
+            get {
+                return ResourceManager.GetString("dialog_reset_bestiary_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Bestiary?.
+        /// </summary>
+        public static string dialog_reset_bestiary_title {
+            get {
+                return ResourceManager.GetString("dialog_reset_bestiary_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Error saving banner data. Changes have been restored. {0}.
+        /// </summary>
+        public static string dialog_save_banners_error {
+            get {
+                return ResourceManager.GetString("dialog_save_banners_error", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save banner changes back to the world?.
+        /// </summary>
+        public static string dialog_save_banners_prompt {
+            get {
+                return ResourceManager.GetString("dialog_save_banners_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Banners?.
+        /// </summary>
+        public static string dialog_save_banners_title {
+            get {
+                return ResourceManager.GetString("dialog_save_banners_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Error saving Bestiary data. Your current bestiary has been restored. {0}.
+        /// </summary>
+        public static string dialog_save_bestiary_error {
+            get {
+                return ResourceManager.GetString("dialog_save_bestiary_error", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to save Bestiary changes?.
+        /// </summary>
+        public static string dialog_save_bestiary_prompt {
+            get {
+                return ResourceManager.GetString("dialog_save_bestiary_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Bestiary?.
+        /// </summary>
+        public static string dialog_save_bestiary_title {
+            get {
+                return ResourceManager.GetString("dialog_save_bestiary_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The world file appears to be empty or corrupt (all bytes are zero). This file cannot be recovered as no data exists.  What can I do? 1. Restore a previously made backup (.bak, .bak2). 2. Restore a previously made manual backup. 3. Restore a previously created TEdit checkpoint (.TEdit). 4. Restore a backup via windows file history (if previously enabled)..
+        /// </summary>
+        public static string dialog_world_corrupt_empty {
+            get {
+                return ResourceManager.GetString("dialog_world_corrupt_empty", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0} was externally modified since your last save. Do you wish to overwrite?.
+        /// </summary>
+        public static string dialog_world_modified_prompt {
+            get {
+                return ResourceManager.GetString("dialog_world_modified_prompt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to World Modified.
+        /// </summary>
+        public static string dialog_world_modified_title {
+            get {
+                return ResourceManager.GetString("dialog_world_modified_title", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.  TEdit v{0} TEdit Max World: {1} Current World: {2}  The error is : {3}.
+        /// </summary>
+        public static string dialog_world_read_error {
+            get {
+                return ResourceManager.GetString("dialog_world_read_error", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save the world. The open world was restored and your edits remain unsaved. {0}.
+        /// </summary>
+        public static string dialog_world_save_failed {
+            get {
+                return ResourceManager.GetString("dialog_world_save_failed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Editing.
+        /// </summary>
+        public static string input_category_editing {
+            get {
+                return ResourceManager.GetString("input_category_editing", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string input_category_file {
+            get {
+                return ResourceManager.GetString("input_category_file", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string input_category_help {
+            get {
+                return ResourceManager.GetString("input_category_help", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Navigation.
+        /// </summary>
+        public static string input_category_navigation {
+            get {
+                return ResourceManager.GetString("input_category_navigation", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string input_category_selection {
+            get {
+                return ResourceManager.GetString("input_category_selection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Toggles.
+        /// </summary>
+        public static string input_category_toggles {
+            get {
+                return ResourceManager.GetString("input_category_toggles", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tool Drawing.
+        /// </summary>
+        public static string input_category_tooldrawing {
+            get {
+                return ResourceManager.GetString("input_category_tooldrawing", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Tools.
+        /// </summary>
+        public static string input_category_tools {
+            get {
+                return ResourceManager.GetString("input_category_tools", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string input_category_view {
+            get {
+                return ResourceManager.GetString("input_category_view", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to More panels....
+        /// </summary>
+        public static string overflow_more_panels {
+            get {
+                return ResourceManager.GetString("overflow_more_panels", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load player file: {0}.
+        /// </summary>
+        public static string player_editor_error_load {
+            get {
+                return ResourceManager.GetString("player_editor_error_load", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save player file: {0}.
+        /// </summary>
+        public static string player_editor_error_save {
+            get {
+                return ResourceManager.GetString("player_editor_error_save", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded: {0}.
+        /// </summary>
+        public static string player_editor_status_loaded {
+            get {
+                return ResourceManager.GetString("player_editor_status_loaded", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saved: {0}.
+        /// </summary>
+        public static string player_editor_status_saved {
+            get {
+                return ResourceManager.GetString("player_editor_status_saved", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Filter & Search.
+        /// </summary>
+        public static string settings_category_filter {
+            get {
+                return ResourceManager.GetString("settings_category_filter", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Keybindings - {0}.
+        /// </summary>
+        public static string settings_category_keybindings_format {
+            get {
+                return ResourceManager.GetString("settings_category_keybindings_format", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to Not Determined.
+        /// </summary>
+        public static string common_not_determined {
+            get {
+                return ResourceManager.GetString("common_not_determined", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Goblin Invasion.
+        /// </summary>
+        public static string world_invasion_goblin {
+            get {
+                return ResourceManager.GetString("world_invasion_goblin", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Grey.
+        /// </summary>
+        public static string world_moon_grey {
+            get {
+                return ResourceManager.GetString("world_moon_grey", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Brown.
+        /// </summary>
+        public static string world_moon_brown {
+            get {
+                return ResourceManager.GetString("world_moon_brown", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Ringed.
+        /// </summary>
+        public static string world_moon_ringed {
+            get {
+                return ResourceManager.GetString("world_moon_ringed", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Blue Marble.
+        /// </summary>
+        public static string world_moon_blue_marble {
+            get {
+                return ResourceManager.GetString("world_moon_blue_marble", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to White Ice.
+        /// </summary>
+        public static string world_moon_white_ice {
+            get {
+                return ResourceManager.GetString("world_moon_white_ice", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Green Gas.
+        /// </summary>
+        public static string world_moon_green_gas {
+            get {
+                return ResourceManager.GetString("world_moon_green_gas", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Pink.
+        /// </summary>
+        public static string world_moon_pink {
+            get {
+                return ResourceManager.GetString("world_moon_pink", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Orange Venus.
+        /// </summary>
+        public static string world_moon_orange_venus {
+            get {
+                return ResourceManager.GetString("world_moon_orange_venus", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Triple Purple.
+        /// </summary>
+        public static string world_moon_triple_purple {
+            get {
+                return ResourceManager.GetString("world_moon_triple_purple", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Expert.
+        /// </summary>
+        public static string world_gamemode_expert {
+            get {
+                return ResourceManager.GetString("world_gamemode_expert", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Master.
+        /// </summary>
+        public static string world_gamemode_master {
+            get {
+                return ResourceManager.GetString("world_gamemode_master", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Star Topper 1.
+        /// </summary>
+        public static string specialtile_xmas_star_topper_1 {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_star_topper_1", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Star Topper 2.
+        /// </summary>
+        public static string specialtile_xmas_star_topper_2 {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_star_topper_2", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Star Topper 3.
+        /// </summary>
+        public static string specialtile_xmas_star_topper_3 {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_star_topper_3", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Bow Topper.
+        /// </summary>
+        public static string specialtile_xmas_bow_topper {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_bow_topper", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to White.
+        /// </summary>
+        public static string specialtile_xmas_white {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_white", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to White and Red.
+        /// </summary>
+        public static string specialtile_xmas_white_red {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_white_red", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string specialtile_xmas_red {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_red", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Red and Green.
+        /// </summary>
+        public static string specialtile_xmas_red_green {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_red_green", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string specialtile_xmas_green {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_green", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Green and White.
+        /// </summary>
+        public static string specialtile_xmas_green_white {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_green_white", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Multicolored.
+        /// </summary>
+        public static string specialtile_xmas_multicolored {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_multicolored", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow.
+        /// </summary>
+        public static string specialtile_xmas_yellow {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_yellow", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow and Green.
+        /// </summary>
+        public static string specialtile_xmas_yellow_green {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_yellow_green", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Red and Yellow.
+        /// </summary>
+        public static string specialtile_xmas_red_yellow {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_red_yellow", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to White and Yellow.
+        /// </summary>
+        public static string specialtile_xmas_white_yellow {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_white_yellow", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to White and Green.
+        /// </summary>
+        public static string specialtile_xmas_white_green {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_white_green", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string specialtile_xmas_blue {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_blue", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Blue and Green.
+        /// </summary>
+        public static string specialtile_xmas_blue_green {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_blue_green", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Red and Blue.
+        /// </summary>
+        public static string specialtile_xmas_red_blue {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_red_blue", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Blue and Yellow.
+        /// </summary>
+        public static string specialtile_xmas_blue_yellow {
+            get {
+                return ResourceManager.GetString("specialtile_xmas_blue_yellow", resourceCulture);
+            }
+        }
+        /// <summary>
+        ///   Looks up a localized string similar to Brain of Cthulhu.
+        /// </summary>
+        public static string tool_wp_boss_brainofcthulhu {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_brainofcthulhu", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to World Save Complete..
+        /// </summary>
+        public static string progress_world_save_complete {
+            get {
+                return ResourceManager.GetString("progress_world_save_complete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Complete..
+        /// </summary>
+        public static string progress_save_complete {
+            get {
+                return ResourceManager.GetString("progress_save_complete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving World....
+        /// </summary>
+        public static string progress_saving_world {
+            get {
+                return ResourceManager.GetString("progress_saving_world", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save headers....
+        /// </summary>
+        public static string progress_save_headers {
+            get {
+                return ResourceManager.GetString("progress_save_headers", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving Tiles....
+        /// </summary>
+        public static string progress_saving_tiles {
+            get {
+                return ResourceManager.GetString("progress_saving_tiles", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Tiles....
+        /// </summary>
+        public static string progress_save_tiles {
+            get {
+                return ResourceManager.GetString("progress_save_tiles", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving Chests....
+        /// </summary>
+        public static string progress_saving_chests {
+            get {
+                return ResourceManager.GetString("progress_saving_chests", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Chests....
+        /// </summary>
+        public static string progress_save_chests {
+            get {
+                return ResourceManager.GetString("progress_save_chests", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving Signs....
+        /// </summary>
+        public static string progress_saving_signs {
+            get {
+                return ResourceManager.GetString("progress_saving_signs", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Signs....
+        /// </summary>
+        public static string progress_save_signs {
+            get {
+                return ResourceManager.GetString("progress_save_signs", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save NPCs....
+        /// </summary>
+        public static string progress_save_npcs {
+            get {
+                return ResourceManager.GetString("progress_save_npcs", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving NPC Data....
+        /// </summary>
+        public static string progress_saving_npc_data {
+            get {
+                return ResourceManager.GetString("progress_saving_npc_data", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving NPC Names....
+        /// </summary>
+        public static string progress_saving_npc_names {
+            get {
+                return ResourceManager.GetString("progress_saving_npc_names", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Tile Entities Section....
+        /// </summary>
+        public static string progress_save_tile_entities_section {
+            get {
+                return ResourceManager.GetString("progress_save_tile_entities_section", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Weighted Pressure Plates....
+        /// </summary>
+        public static string progress_save_weighted_pressure_plates {
+            get {
+                return ResourceManager.GetString("progress_save_weighted_pressure_plates", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Town Manager....
+        /// </summary>
+        public static string progress_save_town_manager {
+            get {
+                return ResourceManager.GetString("progress_save_town_manager", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Bestiary....
+        /// </summary>
+        public static string progress_save_bestiary {
+            get {
+                return ResourceManager.GetString("progress_save_bestiary", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Creative Powers....
+        /// </summary>
+        public static string progress_save_creative_powers {
+            get {
+                return ResourceManager.GetString("progress_save_creative_powers", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save Footers....
+        /// </summary>
+        public static string progress_save_footers {
+            get {
+                return ResourceManager.GetString("progress_save_footers", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving Validation Data....
+        /// </summary>
+        public static string progress_saving_validation_data {
+            get {
+                return ResourceManager.GetString("progress_saving_validation_data", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Validating File....
+        /// </summary>
+        public static string progress_validating_file {
+            get {
+                return ResourceManager.GetString("progress_validating_file", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to World Load Complete..
+        /// </summary>
+        public static string progress_world_load_complete {
+            get {
+                return ResourceManager.GetString("progress_world_load_complete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading File Header....
+        /// </summary>
+        public static string progress_loading_file_header {
+            get {
+                return ResourceManager.GetString("progress_loading_file_header", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Tiles....
+        /// </summary>
+        public static string progress_loading_tiles {
+            get {
+                return ResourceManager.GetString("progress_loading_tiles", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Chests....
+        /// </summary>
+        public static string progress_loading_chests {
+            get {
+                return ResourceManager.GetString("progress_loading_chests", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Signs....
+        /// </summary>
+        public static string progress_loading_signs {
+            get {
+                return ResourceManager.GetString("progress_loading_signs", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading NPCs....
+        /// </summary>
+        public static string progress_loading_npcs {
+            get {
+                return ResourceManager.GetString("progress_loading_npcs", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading NPC Data....
+        /// </summary>
+        public static string progress_loading_npc_data {
+            get {
+                return ResourceManager.GetString("progress_loading_npc_data", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading NPC Names....
+        /// </summary>
+        public static string progress_loading_npc_names {
+            get {
+                return ResourceManager.GetString("progress_loading_npc_names", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Tile Entities Section....
+        /// </summary>
+        public static string progress_loading_tile_entities_section {
+            get {
+                return ResourceManager.GetString("progress_loading_tile_entities_section", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Render Complete.
+        /// </summary>
+        public static string progress_render_complete {
+            get {
+                return ResourceManager.GetString("progress_render_complete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Calculating Colors....
+        /// </summary>
+        public static string progress_calculating_colors {
+            get {
+                return ResourceManager.GetString("progress_calculating_colors", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cloning World....
+        /// </summary>
+        public static string progress_cloning_world {
+            get {
+                return ResourceManager.GetString("progress_cloning_world", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Generating World....
+        /// </summary>
+        public static string progress_generating_world {
+            get {
+                return ResourceManager.GetString("progress_generating_world", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Generating Hills....
+        /// </summary>
+        public static string progress_generating_hills {
+            get {
+                return ResourceManager.GetString("progress_generating_hills", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Generating Caves....
+        /// </summary>
+        public static string progress_generating_caves {
+            get {
+                return ResourceManager.GetString("progress_generating_caves", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Generating Cave Noise....
+        /// </summary>
+        public static string progress_generating_cave_noise {
+            get {
+                return ResourceManager.GetString("progress_generating_cave_noise", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Refining Caves....
+        /// </summary>
+        public static string progress_refining_caves {
+            get {
+                return ResourceManager.GetString("progress_refining_caves", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Placing Caves....
+        /// </summary>
+        public static string progress_placing_caves {
+            get {
+                return ResourceManager.GetString("progress_placing_caves", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Generating Underworld....
+        /// </summary>
+        public static string progress_generating_underworld {
+            get {
+                return ResourceManager.GetString("progress_generating_underworld", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Settling Sand....
+        /// </summary>
+        public static string progress_settling_sand {
+            get {
+                return ResourceManager.GetString("progress_settling_sand", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Removing Future Tiles....
+        /// </summary>
+        public static string progress_removing_future_tiles {
+            get {
+                return ResourceManager.GetString("progress_removing_future_tiles", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to World loaded in {0} seconds..
+        /// </summary>
+        public static string progress_world_loaded_in_seconds {
+            get {
+                return ResourceManager.GetString("progress_world_loaded_in_seconds", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic (Follow System).
+        /// </summary>
+        public static string enum_LanguageSelection_Automatic {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Automatic", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string enum_LanguageSelection_English {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_English", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Русский.
+        /// </summary>
+        public static string enum_LanguageSelection_Russian {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Russian", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to العربية.
+        /// </summary>
+        public static string enum_LanguageSelection_Arabic {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Arabic", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 中文 (简体).
+        /// </summary>
+        public static string enum_LanguageSelection_Chinese {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Chinese", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 中文 (繁體).
+        /// </summary>
+        public static string enum_LanguageSelection_ChineseTraditional {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_ChineseTraditional", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Polski.
+        /// </summary>
+        public static string enum_LanguageSelection_Polish {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Polish", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Deutsch.
+        /// </summary>
+        public static string enum_LanguageSelection_German {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_German", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Français.
+        /// </summary>
+        public static string enum_LanguageSelection_French {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_French", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Italiano.
+        /// </summary>
+        public static string enum_LanguageSelection_Italian {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Italian", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 日本語.
+        /// </summary>
+        public static string enum_LanguageSelection_Japanese {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Japanese", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to 한국어.
+        /// </summary>
+        public static string enum_LanguageSelection_Korean {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Korean", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Português.
+        /// </summary>
+        public static string enum_LanguageSelection_Portuguese {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Portuguese", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Español.
+        /// </summary>
+        public static string enum_LanguageSelection_Spanish {
+            get {
+                return ResourceManager.GetString("enum_LanguageSelection_Spanish", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string enum_UpdateMode_Disabled {
+            get {
+                return ResourceManager.GetString("enum_UpdateMode_Disabled", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Notify Only.
+        /// </summary>
+        public static string enum_UpdateMode_NotifyOnly {
+            get {
+                return ResourceManager.GetString("enum_UpdateMode_NotifyOnly", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Download.
+        /// </summary>
+        public static string enum_UpdateMode_AutoDownload {
+            get {
+                return ResourceManager.GetString("enum_UpdateMode_AutoDownload", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Install.
+        /// </summary>
+        public static string enum_UpdateMode_AutoInstall {
+            get {
+                return ResourceManager.GetString("enum_UpdateMode_AutoInstall", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Stable.
+        /// </summary>
+        public static string enum_UpdateChannel_Stable {
+            get {
+                return ResourceManager.GetString("enum_UpdateChannel_Stable", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Beta.
+        /// </summary>
+        public static string enum_UpdateChannel_Beta {
+            get {
+                return ResourceManager.GetString("enum_UpdateChannel_Beta", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Alpha.
+        /// </summary>
+        public static string enum_UpdateChannel_Alpha {
+            get {
+                return ResourceManager.GetString("enum_UpdateChannel_Alpha", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string enum_WindowLaunchMode_Default {
+            get {
+                return ResourceManager.GetString("enum_WindowLaunchMode_Default", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Center Screen.
+        /// </summary>
+        public static string enum_WindowLaunchMode_CenterScreen {
+            get {
+                return ResourceManager.GetString("enum_WindowLaunchMode_CenterScreen", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Maximized.
+        /// </summary>
+        public static string enum_WindowLaunchMode_Maximized {
+            get {
+                return ResourceManager.GetString("enum_WindowLaunchMode_Maximized", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string enum_PixelMapColorMode_Default {
+            get {
+                return ResourceManager.GetString("enum_PixelMapColorMode_Default", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Realistic.
+        /// </summary>
+        public static string enum_PixelMapColorMode_Realistic {
+            get {
+                return ResourceManager.GetString("enum_PixelMapColorMode_Realistic", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Minimap.
+        /// </summary>
+        public static string enum_PixelMapColorMode_Minimap {
+            get {
+                return ResourceManager.GetString("enum_PixelMapColorMode_Minimap", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Hide.
+        /// </summary>
+        public static string enum_FilterMode_Hide {
+            get {
+                return ResourceManager.GetString("enum_FilterMode_Hide", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Darken.
+        /// </summary>
+        public static string enum_FilterMode_Darken {
+            get {
+                return ResourceManager.GetString("enum_FilterMode_Darken", resourceCulture);
             }
         }
     }

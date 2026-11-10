@@ -40,7 +40,7 @@ public partial class PaletteSidebarView : UserControl
     private static async System.Threading.Tasks.Task ShowMaskWarningAsync()
     {
         await App.DialogService.ShowWarningAsync(
-            "Replace",
-            "Enable at least one mask to use replace. Masks define which tiles to match.");
+            Properties.Language.dialog_replace_title,
+            Properties.Language.dialog_replace_mask_warning);
     }
 }

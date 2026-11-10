@@ -7,6 +7,7 @@ using System.Windows.Data;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Common;
+using TEdit.Properties;
 using TEdit.Terraria;
 
 namespace TEdit.ViewModel.Shared;
@@ -88,24 +89,24 @@ public partial class TileWallPickerViewModel
                 break;
 
             case PickerDataSource.Liquids:
-                AddLiquid(LiquidType.Water, "Water");
-                AddLiquid(LiquidType.Lava, "Lava");
-                AddLiquid(LiquidType.Honey, "Honey");
-                AddLiquid(LiquidType.Shimmer, "Shimmer");
+                AddLiquid(LiquidType.Water, Language.LiquidType_Water, "Water");
+                AddLiquid(LiquidType.Lava, Language.LiquidType_Lava, "Lava");
+                AddLiquid(LiquidType.Honey, Language.LiquidType_Honey, "Honey");
+                AddLiquid(LiquidType.Shimmer, Language.LiquidType_Shimmer, "Shimmer");
                 break;
 
             case PickerDataSource.Wires:
-                AddWire(1, "Red Wire", "Wire");
-                AddWire(2, "Blue Wire", "Wire1");
-                AddWire(3, "Green Wire", "Wire2");
-                AddWire(4, "Yellow Wire", "Wire3");
+                AddWire(1, Language.menu_layers_wire_red, "Wire");
+                AddWire(2, Language.menu_layers_wire_blue, "Wire1");
+                AddWire(3, Language.menu_layers_wire_green, "Wire2");
+                AddWire(4, Language.menu_layers_wire_yellow, "Wire3");
                 break;
         }
     }
 
-    private void AddLiquid(LiquidType type, string name)
+    private void AddLiquid(LiquidType type, string name, string colorKey)
     {
-        var color = WorldConfiguration.GlobalColors.TryGetValue(name, out var c) ? c : TEditColor.Magenta;
+        var color = WorldConfiguration.GlobalColors.TryGetValue(colorKey, out var c) ? c : TEditColor.Magenta;
         AllItems.Add(new PickerItemViewModel((int)type, name, color));
     }
 

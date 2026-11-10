@@ -3889,6 +3889,231 @@ Would you like to enable error reporting?</value>
   <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
     <value>Schematic has been saved.</value>
   </data>
+  <data name="common_error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="common_delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="common_yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="sprite_coords_format" xml:space="preserve">
+    <value>Pixel: ({0}, {1})  Tile: [{2}, {3}]</value>
+  </data>
+  <data name="common_no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="drawing_mode_wire" xml:space="preserve">
+    <value>Wire</value>
+  </data>
+  <data name="drawing_mode_bus" xml:space="preserve">
+    <value>Bus</value>
+  </data>
+  <data name="plugin_ore_none" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="dialog_save_world_as" xml:space="preserve">
+    <value>Save World As</value>
+  </data>
+  <data name="dialog_save_world_analysis" xml:space="preserve">
+    <value>Save world analysis.</value>
+  </data>
+  <data name="dialog_import_bestiary" xml:space="preserve">
+    <value>Import Bestiary and Kills from World File</value>
+  </data>
+  <data name="dialog_import_schematic" xml:space="preserve">
+    <value>Import TEdit Schematic File</value>
+  </data>
+  <data name="dialog_export_schematic" xml:space="preserve">
+    <value>Export Schematic File</value>
+  </data>
+  <data name="dialog_import_banners" xml:space="preserve">
+    <value>Import Banners from World File</value>
+  </data>
+  <data name="dialog_import_housegen_schematic" xml:space="preserve">
+    <value>Import TEdit House Gen Schematic File</value>
+  </data>
+  <data name="dialog_save_pixelart" xml:space="preserve">
+    <value>Save Generated Pixelart</value>
+  </data>
+  <data name="dialog_select_player_file" xml:space="preserve">
+    <value>Select a Player File</value>
+  </data>
+  <data name="dialog_open_world_file" xml:space="preserve">
+    <value>Open World File</value>
+  </data>
+  <data name="dialog_unsaved_title" xml:space="preserve">
+    <value>Unsaved Changes</value>
+  </data>
+  <data name="dialog_unsaved_content" xml:space="preserve">
+    <value>Save changes before closing TEdit?</value>
+  </data>
+  <data name="dialog_dont_save" xml:space="preserve">
+    <value>Don't Save</value>
+  </data>
+  <data name="dialog_confirm_delete_title" xml:space="preserve">
+    <value>Confirm Delete</value>
+  </data>
+  <data name="dialog_delete_backup_prompt" xml:space="preserve">
+    <value>Delete backup?
+{0}</value>
+  </data>
+  <data name="dialog_clear_cache_title" xml:space="preserve">
+    <value>Clear TEdit Cache</value>
+  </data>
+  <data name="dialog_clear_cache_prompt" xml:space="preserve">
+    <value>Delete {0:N0} cached files ({1})?
+
+This removes TEdit backups, autosaves, and all undo/redo history. Terraria world files and .bak files are not affected.</value>
+  </data>
+  <data name="dialog_clear_cache_button" xml:space="preserve">
+    <value>Clear Cache</value>
+  </data>
+  <data name="dialog_cache_cleared_title" xml:space="preserve">
+    <value>Cache Cleared</value>
+  </data>
+  <data name="dialog_cache_cleared_result" xml:space="preserve">
+    <value>Deleted {0:N0} files and freed {1}.</value>
+  </data>
+  <data name="dialog_cache_cleared_failed" xml:space="preserve">
+    <value>{0:N0} files could not be deleted; see the log for details.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info" xml:space="preserve">
+    <value>Some special Tile-Entities (like chests or signs) are still protected and can't be shuffled.</value>
+  </data>
+  <data name="plugin_blockshuffle_entity_info_title" xml:space="preserve">
+    <value>Include Information</value>
+  </data>
+  <data name="plugin_housegen_json_entry_error" xml:space="preserve">
+    <value>{0} Check JSON Data for {1}</value>
+  </data>
+  <data name="plugin_housegen_json_count_error" xml:space="preserve">
+    <value>{0} Check JSON Data for value 'Count' to make sure it matches with associated schematic.</value>
+  </data>
+  <data name="plugin_replay_no_world" xml:space="preserve">
+    <value>Open a world first.</value>
+  </data>
+  <data name="plugin_replay_open_failed" xml:space="preserve">
+    <value>Failed to open replay file.
+
+{0}</value>
+  </data>
+  <data name="error_texture_load" xml:space="preserve">
+    <value>Error loading textures from {0}.
+Please check that this folder exists and TEdit has read access.
+
+{1}</value>
+  </data>
+  <data name="error_texture_load_title" xml:space="preserve">
+    <value>Error Loading Textures</value>
+  </data>
+  <data name="error_log_open_failed" xml:space="preserve">
+    <value>Failed to open log file: {0}</value>
+  </data>
+  <data name="error_log_folder_exit" xml:space="preserve">
+    <value>Unable to create log folder. Application will exit.
+{0}
+{1}</value>
+  </data>
+  <data name="error_log_folder_title" xml:space="preserve">
+    <value>Unable to create log folder.</value>
+  </data>
+  <data name="error_undo_folder_exit" xml:space="preserve">
+    <value>Unable to create undo temp folder. Application will exit.
+{0}
+{1}</value>
+  </data>
+  <data name="error_undo_folder_title" xml:space="preserve">
+    <value>Unable to create undo folder.</value>
+  </data>
+  <data name="error_unhandled" xml:space="preserve">
+    <value>An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted.</value>
+  </data>
+  <data name="error_unhandled_title" xml:space="preserve">
+    <value>Unhandled Exception</value>
+  </data>
+  <data name="settings_brush_preview" xml:space="preserve">
+    <value>High Quality Brush Preview</value>
+  </data>
+  <data name="settings_brush_preview_desc" xml:space="preserve">
+    <value>Show full brush shape along shift+line preview. Disable for a simpler single-pixel line preview.</value>
+  </data>
+  <data name="settings_filter_mode" xml:space="preserve">
+    <value>Filter Mode</value>
+  </data>
+  <data name="settings_filter_mode_desc" xml:space="preserve">
+    <value>Default filter mode when applying tile/wall/liquid/wire filters</value>
+  </data>
+  <data name="settings_darken_amount" xml:space="preserve">
+    <value>Darken Amount</value>
+  </data>
+  <data name="settings_darken_amount_desc" xml:space="preserve">
+    <value>Opacity of the darken overlay for non-selected tiles (0–100%)</value>
+  </data>
+  <data name="spriteeditor_status_ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="spriteeditor_status_override_loaded" xml:space="preserve">
+    <value>Loaded from user override</value>
+  </data>
+  <data name="spriteeditor_status_reset_default" xml:space="preserve">
+    <value>Reset to default tile data</value>
+  </data>
+  <data name="spriteeditor_status_no_texture_detect" xml:space="preserve">
+    <value>No texture loaded — cannot auto-detect</value>
+  </data>
+  <data name="spriteeditor_status_no_texture" xml:space="preserve">
+    <value>No texture loaded</value>
+  </data>
+  <data name="spriteeditor_frame_default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="spriteeditor_frame_format" xml:space="preserve">
+    <value>Frame {0}</value>
+  </data>
+  <data name="player_editor_save_canceled" xml:space="preserve">
+    <value>Save canceled: player file was externally modified.</value>
+  </data>
+  <data name="dialog_select_output_folder" xml:space="preserve">
+    <value>Select output folder for map tiles</value>
+  </data>
+  <data name="tool_hammer_title" xml:space="preserve">
+    <value>Hammer</value>
+  </data>
+  <data name="tool_selection_title" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="dialog_delete_chests_title" xml:space="preserve">
+    <value>Delete Chests</value>
+  </data>
+  <data name="dialog_delete_all_chests_prompt" xml:space="preserve">
+    <value>Are you sure you wish to delete all chests?</value>
+  </data>
+  <data name="dialog_delete_all_unlocked_chests_prompt" xml:space="preserve">
+    <value>Are you sure you wish to delete all unlocked chests?</value>
+  </data>
+  <data name="plugin_playermap_title" xml:space="preserve">
+    <value>Player Map</value>
+  </data>
+  <data name="plugin_playermap_no_file" xml:space="preserve">
+    <value>No player file selected.</value>
+  </data>
+  <data name="plugin_playermap_completed" xml:space="preserve">
+    <value>Map Generated!</value>
+  </data>
+  <data name="dialog_removetile_prompt" xml:space="preserve">
+    <value>This will completely remove any found tiles from your world. Continue?</value>
+  </data>
+  <data name="dialog_removetile_result" xml:space="preserve">
+    <value>{0:N0} tiles have been found and removed.</value>
+  </data>
+  <data name="dialog_export_textures_title" xml:space="preserve">
+    <value>Export Textures</value>
+  </data>
+  <data name="dialog_export_textures_not_loaded" xml:space="preserve">
+    <value>Textures not loaded yet. Please wait for texture loading to complete.</value>
+  </data>
   <data name="input_file_new" xml:space="preserve">
     <value>New World</value>
   </data>
@@ -4167,5 +4392,591 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="input_help_wiki" xml:space="preserve">
     <value>Wiki / Help</value>
+  </data>
+  <data name="about_system" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="dialog_complete_bestiary_error" xml:space="preserve">
+    <value>Error completing Bestiary data. Your current bestiary has been restored.
+{0}</value>
+  </data>
+  <data name="dialog_complete_bestiary_prompt" xml:space="preserve">
+    <value>This will completely replace your currently loaded world Bestiary and Kill Tally with a completed bestiary. Continue?</value>
+  </data>
+  <data name="dialog_complete_bestiary_title" xml:space="preserve">
+    <value>Complete Bestiary?</value>
+  </data>
+  <data name="dialog_crop_world_borders_prompt" xml:space="preserve">
+    <value>Add &quot;edge of world&quot; boundaries?</value>
+  </data>
+  <data name="dialog_crop_world_borders_title" xml:space="preserve">
+    <value>Crop World:</value>
+  </data>
+  <data name="dialog_crop_world_prompt" xml:space="preserve">
+    <value>This will generate a new world within the selected region.
+All progress outside of the cropped zone will be lost. Continue?</value>
+  </data>
+  <data name="dialog_crop_world_title" xml:space="preserve">
+    <value>Crop World?</value>
+  </data>
+  <data name="dialog_import_banners_error" xml:space="preserve">
+    <value>Error importing banner data from {0}. Your current banners have been restored.
+{1}</value>
+  </data>
+  <data name="dialog_import_banners_prompt" xml:space="preserve">
+    <value>This will replace your current banner counts with data from the selected world file. Continue?</value>
+  </data>
+  <data name="dialog_import_banners_title" xml:space="preserve">
+    <value>Import Banners?</value>
+  </data>
+  <data name="dialog_import_bestiary_error" xml:space="preserve">
+    <value>Error importing Bestiary data from {0}. Your current bestiary has been restored.
+{1}</value>
+  </data>
+  <data name="dialog_import_error_title" xml:space="preserve">
+    <value>Import Error</value>
+  </data>
+  <data name="dialog_invalid_world_prompt" xml:space="preserve">
+    <value>There was an error reading the world file.
+This is usually caused by a corrupt save file or a world version newer than supported.
+
+TEdit v{0}
+TEdit Max World: {1}
+Current World: {2}
+
+Do you wish to force it to load anyway?
+
+WARNING: This may have unexpected results including corrupt world files and program crashes.
+
+The error is :
+{3}</value>
+  </data>
+  <data name="dialog_invalid_world_title" xml:space="preserve">
+    <value>Load Invalid World?</value>
+  </data>
+  <data name="dialog_language_restart_prompt" xml:space="preserve">
+    <value>Language changed to {0}. Do you wish to restart now?</value>
+  </data>
+  <data name="dialog_language_restart_title" xml:space="preserve">
+    <value>Restart to change language</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_prompt" xml:space="preserve">
+    <value>You are loading a legacy TModLoader world version: {0}.
+1. Editing legacy files is a BETA feature.
+2. Editing modded worlds is unsupported.
+Please make a backup as you may experience world file corruption.
+Do you wish to continue?</value>
+  </data>
+  <data name="dialog_legacy_tmodloader_title" xml:space="preserve">
+    <value>Load Legacy TModLoader World?</value>
+  </data>
+  <data name="dialog_legacy_world_prompt" xml:space="preserve">
+    <value>You are loading a legacy world version: {0}.
+Editing legacy files could cause unexpected results.
+Please make a backup as you may experience world file corruption.
+Do you wish to continue?</value>
+  </data>
+  <data name="dialog_legacy_world_title" xml:space="preserve">
+    <value>Load Legacy World?</value>
+  </data>
+  <data name="dialog_link_error_message" xml:space="preserve">
+    <value>Unable to open external browser. Copy to clipboard?</value>
+  </data>
+  <data name="dialog_link_error_title" xml:space="preserve">
+    <value>Link Error</value>
+  </data>
+  <data name="dialog_load_bestiary_prompt" xml:space="preserve">
+    <value>This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?</value>
+  </data>
+  <data name="dialog_load_bestiary_title" xml:space="preserve">
+    <value>Load Bestiary?</value>
+  </data>
+  <data name="dialog_locate_terraria_folder" xml:space="preserve">
+    <value>Locate Terraria Folder</value>
+  </data>
+  <data name="dialog_max_banners_prompt" xml:space="preserve">
+    <value>Set all banner counts to maximum (9999)?</value>
+  </data>
+  <data name="dialog_max_banners_title" xml:space="preserve">
+    <value>Max Out Banners?</value>
+  </data>
+  <data name="dialog_mod_world_prompt" xml:space="preserve">
+    <value>You are loading a TModLoader world. Editing modded worlds is unsupported.
+Please make a backup as you may experience world file corruption.
+Do you wish to continue?</value>
+  </data>
+  <data name="dialog_mod_world_title" xml:space="preserve">
+    <value>Load Mod World?</value>
+  </data>
+  <data name="dialog_newer_version_prompt" xml:space="preserve">
+    <value>This world version is NEWER than supported by TEdit's config.
+
+World version: {0}
+Max supported: {1}
+
+TEdit will fall back to config version {1} (missing newer tiles/walls/etc may cause issues).
+
+Do you want to attempt to load anyway?</value>
+  </data>
+  <data name="dialog_newer_version_title" xml:space="preserve">
+    <value>Newer World Version</value>
+  </data>
+  <data name="dialog_player_modified_prompt" xml:space="preserve">
+    <value>{0} was externally modified since it was loaded or last saved.
+Do you wish to overwrite it?</value>
+  </data>
+  <data name="dialog_player_modified_title" xml:space="preserve">
+    <value>Player Modified</value>
+  </data>
+  <data name="dialog_reload_no_world" xml:space="preserve">
+    <value>No opened world loaded for reloading.</value>
+  </data>
+  <data name="dialog_reload_world_prompt" xml:space="preserve">
+    <value>Unsaved work will be lost!</value>
+  </data>
+  <data name="dialog_reload_world_title" xml:space="preserve">
+    <value>Reload Current World?</value>
+  </data>
+  <data name="dialog_replace_mask_warning" xml:space="preserve">
+    <value>Enable at least one mask to use replace. Masks define which tiles to match.</value>
+  </data>
+  <data name="dialog_replace_title" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="dialog_reset_banners_prompt" xml:space="preserve">
+    <value>Reset all banner counts to zero?</value>
+  </data>
+  <data name="dialog_reset_banners_title" xml:space="preserve">
+    <value>Reset Banners?</value>
+  </data>
+  <data name="dialog_reset_bestiary_error" xml:space="preserve">
+    <value>Error resetting Bestiary data. Your current bestiary has been restored.
+{0}</value>
+  </data>
+  <data name="dialog_reset_bestiary_prompt" xml:space="preserve">
+    <value>This will completely replace your currently loaded world Bestiary and Kill Tally with a reset bestiary. Continue?</value>
+  </data>
+  <data name="dialog_reset_bestiary_title" xml:space="preserve">
+    <value>Reset Bestiary?</value>
+  </data>
+  <data name="dialog_save_banners_error" xml:space="preserve">
+    <value>Error saving banner data. Changes have been restored.
+{0}</value>
+  </data>
+  <data name="dialog_save_banners_prompt" xml:space="preserve">
+    <value>Save banner changes back to the world?</value>
+  </data>
+  <data name="dialog_save_banners_title" xml:space="preserve">
+    <value>Save Banners?</value>
+  </data>
+  <data name="dialog_save_bestiary_error" xml:space="preserve">
+    <value>Error saving Bestiary data. Your current bestiary has been restored.
+{0}</value>
+  </data>
+  <data name="dialog_save_bestiary_prompt" xml:space="preserve">
+    <value>Are you sure you wish to save Bestiary changes?</value>
+  </data>
+  <data name="dialog_save_bestiary_title" xml:space="preserve">
+    <value>Save Bestiary?</value>
+  </data>
+  <data name="dialog_world_corrupt_empty" xml:space="preserve">
+    <value>The world file appears to be empty or corrupt (all bytes are zero).
+This file cannot be recovered as no data exists.
+
+What can I do?
+1. Restore a previously made backup (.bak, .bak2).
+2. Restore a previously made manual backup.
+3. Restore a previously created TEdit checkpoint (.TEdit).
+4. Restore a backup via windows file history (if previously enabled).</value>
+  </data>
+  <data name="dialog_world_modified_prompt" xml:space="preserve">
+    <value>{0} was externally modified since your last save.
+Do you wish to overwrite?</value>
+  </data>
+  <data name="dialog_world_modified_title" xml:space="preserve">
+    <value>World Modified</value>
+  </data>
+  <data name="dialog_world_read_error" xml:space="preserve">
+    <value>There was an error reading the world file.
+This is usually caused by a corrupt save file or a world version newer than supported.
+
+TEdit v{0}
+TEdit Max World: {1}
+Current World: {2}
+
+The error is :
+{3}</value>
+  </data>
+  <data name="dialog_world_save_failed" xml:space="preserve">
+    <value>Failed to save the world. The open world was restored and your edits remain unsaved.
+{0}</value>
+  </data>
+  <data name="input_category_editing" xml:space="preserve">
+    <value>Editing</value>
+  </data>
+  <data name="input_category_file" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="input_category_help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="input_category_navigation" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="input_category_selection" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="input_category_toggles" xml:space="preserve">
+    <value>Toggles</value>
+  </data>
+  <data name="input_category_tooldrawing" xml:space="preserve">
+    <value>Tool Drawing</value>
+  </data>
+  <data name="input_category_tools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="input_category_view" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="overflow_more_panels" xml:space="preserve">
+    <value>More panels...</value>
+  </data>
+  <data name="player_editor_error_load" xml:space="preserve">
+    <value>Failed to load player file:
+{0}</value>
+  </data>
+  <data name="player_editor_error_save" xml:space="preserve">
+    <value>Failed to save player file:
+{0}</value>
+  </data>
+  <data name="player_editor_status_loaded" xml:space="preserve">
+    <value>Loaded: {0}</value>
+  </data>
+  <data name="player_editor_status_saved" xml:space="preserve">
+    <value>Saved: {0}</value>
+  </data>
+  <data name="settings_category_filter" xml:space="preserve">
+    <value>Filter &amp; Search</value>
+  </data>
+  <data name="settings_category_keybindings_format" xml:space="preserve">
+    <value>Keybindings - {0}</value>
+  </data>
+  <data name="common_not_determined" xml:space="preserve">
+    <value>Not Determined</value>
+  </data>
+  <data name="world_invasion_goblin" xml:space="preserve">
+    <value>Goblin Invasion</value>
+  </data>
+  <data name="world_moon_grey" xml:space="preserve">
+    <value>Grey</value>
+  </data>
+  <data name="world_moon_brown" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="world_moon_ringed" xml:space="preserve">
+    <value>Ringed</value>
+  </data>
+  <data name="world_moon_blue_marble" xml:space="preserve">
+    <value>Blue Marble</value>
+  </data>
+  <data name="world_moon_white_ice" xml:space="preserve">
+    <value>White Ice</value>
+  </data>
+  <data name="world_moon_green_gas" xml:space="preserve">
+    <value>Green Gas</value>
+  </data>
+  <data name="world_moon_pink" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="world_moon_orange_venus" xml:space="preserve">
+    <value>Orange Venus</value>
+  </data>
+  <data name="world_moon_triple_purple" xml:space="preserve">
+    <value>Triple Purple</value>
+  </data>
+  <data name="world_gamemode_expert" xml:space="preserve">
+    <value>Expert</value>
+  </data>
+  <data name="world_gamemode_master" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="specialtile_xmas_star_topper_1" xml:space="preserve">
+    <value>Star Topper 1</value>
+  </data>
+  <data name="specialtile_xmas_star_topper_2" xml:space="preserve">
+    <value>Star Topper 2</value>
+  </data>
+  <data name="specialtile_xmas_star_topper_3" xml:space="preserve">
+    <value>Star Topper 3</value>
+  </data>
+  <data name="specialtile_xmas_bow_topper" xml:space="preserve">
+    <value>Bow Topper</value>
+  </data>
+  <data name="specialtile_xmas_white" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="specialtile_xmas_white_red" xml:space="preserve">
+    <value>White and Red</value>
+  </data>
+  <data name="specialtile_xmas_red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="specialtile_xmas_red_green" xml:space="preserve">
+    <value>Red and Green</value>
+  </data>
+  <data name="specialtile_xmas_green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="specialtile_xmas_green_white" xml:space="preserve">
+    <value>Green and White</value>
+  </data>
+  <data name="specialtile_xmas_multicolored" xml:space="preserve">
+    <value>Multicolored</value>
+  </data>
+  <data name="specialtile_xmas_yellow" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="specialtile_xmas_yellow_green" xml:space="preserve">
+    <value>Yellow and Green</value>
+  </data>
+  <data name="specialtile_xmas_red_yellow" xml:space="preserve">
+    <value>Red and Yellow</value>
+  </data>
+  <data name="specialtile_xmas_white_yellow" xml:space="preserve">
+    <value>White and Yellow</value>
+  </data>
+  <data name="specialtile_xmas_white_green" xml:space="preserve">
+    <value>White and Green</value>
+  </data>
+  <data name="specialtile_xmas_blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="specialtile_xmas_blue_green" xml:space="preserve">
+    <value>Blue and Green</value>
+  </data>
+  <data name="specialtile_xmas_red_blue" xml:space="preserve">
+    <value>Red and Blue</value>
+  </data>
+  <data name="specialtile_xmas_blue_yellow" xml:space="preserve">
+    <value>Blue and Yellow</value>
+  </data>
+  <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
+    <value>Brain of Cthulhu</value>
+  </data>
+  <data name="progress_world_save_complete" xml:space="preserve">
+    <value>World Save Complete.</value>
+  </data>
+  <data name="progress_save_complete" xml:space="preserve">
+    <value>Save Complete.</value>
+  </data>
+  <data name="progress_saving_world" xml:space="preserve">
+    <value>Saving World...</value>
+  </data>
+  <data name="progress_save_headers" xml:space="preserve">
+    <value>Save headers...</value>
+  </data>
+  <data name="progress_saving_tiles" xml:space="preserve">
+    <value>Saving Tiles...</value>
+  </data>
+  <data name="progress_save_tiles" xml:space="preserve">
+    <value>Save Tiles...</value>
+  </data>
+  <data name="progress_saving_chests" xml:space="preserve">
+    <value>Saving Chests...</value>
+  </data>
+  <data name="progress_save_chests" xml:space="preserve">
+    <value>Save Chests...</value>
+  </data>
+  <data name="progress_saving_signs" xml:space="preserve">
+    <value>Saving Signs...</value>
+  </data>
+  <data name="progress_save_signs" xml:space="preserve">
+    <value>Save Signs...</value>
+  </data>
+  <data name="progress_save_npcs" xml:space="preserve">
+    <value>Save NPCs...</value>
+  </data>
+  <data name="progress_saving_npc_data" xml:space="preserve">
+    <value>Saving NPC Data...</value>
+  </data>
+  <data name="progress_saving_npc_names" xml:space="preserve">
+    <value>Saving NPC Names...</value>
+  </data>
+  <data name="progress_save_tile_entities_section" xml:space="preserve">
+    <value>Save Tile Entities Section...</value>
+  </data>
+  <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
+    <value>Save Weighted Pressure Plates...</value>
+  </data>
+  <data name="progress_save_town_manager" xml:space="preserve">
+    <value>Save Town Manager...</value>
+  </data>
+  <data name="progress_save_bestiary" xml:space="preserve">
+    <value>Save Bestiary...</value>
+  </data>
+  <data name="progress_save_creative_powers" xml:space="preserve">
+    <value>Save Creative Powers...</value>
+  </data>
+  <data name="progress_save_footers" xml:space="preserve">
+    <value>Save Footers...</value>
+  </data>
+  <data name="progress_saving_validation_data" xml:space="preserve">
+    <value>Saving Validation Data...</value>
+  </data>
+  <data name="progress_validating_file" xml:space="preserve">
+    <value>Validating File...</value>
+  </data>
+  <data name="progress_world_load_complete" xml:space="preserve">
+    <value>World Load Complete.</value>
+  </data>
+  <data name="progress_loading_file_header" xml:space="preserve">
+    <value>Loading File Header...</value>
+  </data>
+  <data name="progress_loading_tiles" xml:space="preserve">
+    <value>Loading Tiles...</value>
+  </data>
+  <data name="progress_loading_chests" xml:space="preserve">
+    <value>Loading Chests...</value>
+  </data>
+  <data name="progress_loading_signs" xml:space="preserve">
+    <value>Loading Signs...</value>
+  </data>
+  <data name="progress_loading_npcs" xml:space="preserve">
+    <value>Loading NPCs...</value>
+  </data>
+  <data name="progress_loading_npc_data" xml:space="preserve">
+    <value>Loading NPC Data...</value>
+  </data>
+  <data name="progress_loading_npc_names" xml:space="preserve">
+    <value>Loading NPC Names...</value>
+  </data>
+  <data name="progress_loading_tile_entities_section" xml:space="preserve">
+    <value>Loading Tile Entities Section...</value>
+  </data>
+  <data name="progress_render_complete" xml:space="preserve">
+    <value>Render Complete</value>
+  </data>
+  <data name="progress_calculating_colors" xml:space="preserve">
+    <value>Calculating Colors...</value>
+  </data>
+  <data name="progress_cloning_world" xml:space="preserve">
+    <value>Cloning World...</value>
+  </data>
+  <data name="progress_generating_world" xml:space="preserve">
+    <value>Generating World...</value>
+  </data>
+  <data name="progress_generating_hills" xml:space="preserve">
+    <value>Generating Hills...</value>
+  </data>
+  <data name="progress_generating_caves" xml:space="preserve">
+    <value>Generating Caves...</value>
+  </data>
+  <data name="progress_generating_cave_noise" xml:space="preserve">
+    <value>Generating Cave Noise...</value>
+  </data>
+  <data name="progress_refining_caves" xml:space="preserve">
+    <value>Refining Caves...</value>
+  </data>
+  <data name="progress_placing_caves" xml:space="preserve">
+    <value>Placing Caves...</value>
+  </data>
+  <data name="progress_generating_underworld" xml:space="preserve">
+    <value>Generating Underworld...</value>
+  </data>
+  <data name="progress_settling_sand" xml:space="preserve">
+    <value>Settling Sand...</value>
+  </data>
+  <data name="progress_removing_future_tiles" xml:space="preserve">
+    <value>Removing Future Tiles...</value>
+  </data>
+  <data name="progress_world_loaded_in_seconds" xml:space="preserve">
+    <value>World loaded in {0} seconds.</value>
+  </data>
+  <data name="enum_LanguageSelection_Automatic" xml:space="preserve">
+    <value>Automatic (Follow System)</value>
+  </data>
+  <data name="enum_LanguageSelection_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="enum_LanguageSelection_Russian" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="enum_LanguageSelection_Arabic" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
+    <value>中文 (简体)</value>
+  </data>
+  <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
+    <value>中文 (繁體)</value>
+  </data>
+  <data name="enum_LanguageSelection_Polish" xml:space="preserve">
+    <value>Polski</value>
+  </data>
+  <data name="enum_LanguageSelection_German" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="enum_LanguageSelection_French" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="enum_LanguageSelection_Italian" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="enum_LanguageSelection_Japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="enum_LanguageSelection_Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="enum_LanguageSelection_Portuguese" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="enum_LanguageSelection_Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="enum_UpdateMode_Disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="enum_UpdateMode_NotifyOnly" xml:space="preserve">
+    <value>Notify Only</value>
+  </data>
+  <data name="enum_UpdateMode_AutoDownload" xml:space="preserve">
+    <value>Auto Download</value>
+  </data>
+  <data name="enum_UpdateMode_AutoInstall" xml:space="preserve">
+    <value>Auto Install</value>
+  </data>
+  <data name="enum_UpdateChannel_Stable" xml:space="preserve">
+    <value>Stable</value>
+  </data>
+  <data name="enum_UpdateChannel_Beta" xml:space="preserve">
+    <value>Beta</value>
+  </data>
+  <data name="enum_UpdateChannel_Alpha" xml:space="preserve">
+    <value>Alpha</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="enum_WindowLaunchMode_CenterScreen" xml:space="preserve">
+    <value>Center Screen</value>
+  </data>
+  <data name="enum_WindowLaunchMode_Maximized" xml:space="preserve">
+    <value>Maximized</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Realistic" xml:space="preserve">
+    <value>Realistic</value>
+  </data>
+  <data name="enum_PixelMapColorMode_Minimap" xml:space="preserve">
+    <value>Minimap</value>
+  </data>
+  <data name="enum_FilterMode_Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="enum_FilterMode_Darken" xml:space="preserve">
+    <value>Darken</value>
   </data>
 </root>

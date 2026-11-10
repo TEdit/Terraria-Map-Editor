@@ -83,15 +83,15 @@ public partial class WorldViewModel
         bool addBorders = false;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
-            "Crop World?",
-            "This will generate a new world within the selected region.\nAll progress outside of the cropped zone will be lost. Continue?");
+            Properties.Language.dialog_crop_world_title,
+            Properties.Language.dialog_crop_world_prompt);
 
         if (!confirm)
             return;
 
         addBorders = await App.DialogService.ShowConfirmationAsync(
-            "Crop World:",
-            "Add \"edge of world\" boundaries?");
+            Properties.Language.dialog_crop_world_borders_title,
+            Properties.Language.dialog_crop_world_borders_prompt);
 
         // Create clipboard
         //_clipboard.Buffer = _clipboard.GetSelectionBuffer();
@@ -363,7 +363,7 @@ public partial class WorldViewModel
 
         _loadTimer.Stop();
         OnProgressChanged(this, new ProgressChangedEventArgs(0,
-             $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
+             string.Format(Properties.Language.progress_world_loaded_in_seconds, _loadTimer.Elapsed.TotalSeconds)));
         _saveTimer.Start();
     }
 

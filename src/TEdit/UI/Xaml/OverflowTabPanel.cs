@@ -49,7 +49,7 @@ public class OverflowTabPanel : Panel
             Height = 48,
             Padding = new Thickness(0),
             Margin = new Thickness(0),
-            ToolTip = "More panels...",
+            ToolTip = Properties.Language.overflow_more_panels,
             Style = style,
         };
 

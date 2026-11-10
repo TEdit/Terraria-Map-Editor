@@ -19,8 +19,9 @@ public class RemoveAllChestsPlugin : BasePlugin
     {
         if (_wvm.CurrentWorld == null) return;
 
-        if (!await App.DialogService.ShowConfirmationAsync("Delete Chests",
-                "Are you sure you wish to delete all chests?"))
+        if (!await App.DialogService.ShowConfirmationAsync(
+                Properties.Language.dialog_delete_chests_title,
+                Properties.Language.dialog_delete_all_chests_prompt))
             return;
 
         var chestLocations = _wvm.CurrentWorld.Chests.Select(chest => new Vector2Int32 { X = chest.X, Y = chest.Y }).ToList();
