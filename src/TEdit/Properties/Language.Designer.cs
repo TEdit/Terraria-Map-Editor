@@ -11285,5 +11285,842 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("plugin_pixelart_schematic_saved", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New World.
+        /// </summary>
+        public static string input_file_new {
+            get {
+                return ResourceManager.GetString("input_file_new", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string input_file_open {
+            get {
+                return ResourceManager.GetString("input_file_open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string input_file_save {
+            get {
+                return ResourceManager.GetString("input_file_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As.
+        /// </summary>
+        public static string input_file_saveas {
+            get {
+                return ResourceManager.GetString("input_file_saveas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As Version.
+        /// </summary>
+        public static string input_file_saveasversion {
+            get {
+                return ResourceManager.GetString("input_file_saveasversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reload World.
+        /// </summary>
+        public static string input_file_reload {
+            get {
+                return ResourceManager.GetString("input_file_reload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string input_edit_copy {
+            get {
+                return ResourceManager.GetString("input_edit_copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cut.
+        /// </summary>
+        public static string input_edit_cut {
+            get {
+                return ResourceManager.GetString("input_edit_cut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste.
+        /// </summary>
+        public static string input_edit_paste {
+            get {
+                return ResourceManager.GetString("input_edit_paste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        public static string input_edit_undo {
+            get {
+                return ResourceManager.GetString("input_edit_undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redo.
+        /// </summary>
+        public static string input_edit_redo {
+            get {
+                return ResourceManager.GetString("input_edit_redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accept Paste.
+        /// </summary>
+        public static string input_paste_accept {
+            get {
+                return ResourceManager.GetString("input_paste_accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate Paste CW.
+        /// </summary>
+        public static string input_paste_rotate_cw {
+            get {
+                return ResourceManager.GetString("input_paste_rotate_cw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate Paste CCW.
+        /// </summary>
+        public static string input_paste_rotate_ccw {
+            get {
+                return ResourceManager.GetString("input_paste_rotate_ccw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Paste Horizontal.
+        /// </summary>
+        public static string input_paste_flip_h {
+            get {
+                return ResourceManager.GetString("input_paste_flip_h", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Paste Vertical.
+        /// </summary>
+        public static string input_paste_flip_v {
+            get {
+                return ResourceManager.GetString("input_paste_flip_v", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        public static string input_selection_all {
+            get {
+                return ResourceManager.GetString("input_selection_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deselect.
+        /// </summary>
+        public static string input_selection_none {
+            get {
+                return ResourceManager.GetString("input_selection_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Selection.
+        /// </summary>
+        public static string input_selection_delete {
+            get {
+                return ResourceManager.GetString("input_selection_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Up.
+        /// </summary>
+        public static string input_selection_move_up {
+            get {
+                return ResourceManager.GetString("input_selection_move_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Down.
+        /// </summary>
+        public static string input_selection_move_down {
+            get {
+                return ResourceManager.GetString("input_selection_move_down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Left.
+        /// </summary>
+        public static string input_selection_move_left {
+            get {
+                return ResourceManager.GetString("input_selection_move_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Right.
+        /// </summary>
+        public static string input_selection_move_right {
+            get {
+                return ResourceManager.GetString("input_selection_move_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Up (Fast).
+        /// </summary>
+        public static string input_selection_move_up_fast {
+            get {
+                return ResourceManager.GetString("input_selection_move_up_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Down (Fast).
+        /// </summary>
+        public static string input_selection_move_down_fast {
+            get {
+                return ResourceManager.GetString("input_selection_move_down_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Left (Fast).
+        /// </summary>
+        public static string input_selection_move_left_fast {
+            get {
+                return ResourceManager.GetString("input_selection_move_left_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Right (Fast).
+        /// </summary>
+        public static string input_selection_move_right_fast {
+            get {
+                return ResourceManager.GetString("input_selection_move_right_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrink Selection Height.
+        /// </summary>
+        public static string input_selection_resize_up {
+            get {
+                return ResourceManager.GetString("input_selection_resize_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grow Selection Height.
+        /// </summary>
+        public static string input_selection_resize_down {
+            get {
+                return ResourceManager.GetString("input_selection_resize_down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrink Selection Width.
+        /// </summary>
+        public static string input_selection_resize_left {
+            get {
+                return ResourceManager.GetString("input_selection_resize_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grow Selection Width.
+        /// </summary>
+        public static string input_selection_resize_right {
+            get {
+                return ResourceManager.GetString("input_selection_resize_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrink Selection Height (Fast).
+        /// </summary>
+        public static string input_selection_resize_up_fast {
+            get {
+                return ResourceManager.GetString("input_selection_resize_up_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grow Selection Height (Fast).
+        /// </summary>
+        public static string input_selection_resize_down_fast {
+            get {
+                return ResourceManager.GetString("input_selection_resize_down_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrink Selection Width (Fast).
+        /// </summary>
+        public static string input_selection_resize_left_fast {
+            get {
+                return ResourceManager.GetString("input_selection_resize_left_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grow Selection Width (Fast).
+        /// </summary>
+        public static string input_selection_resize_right_fast {
+            get {
+                return ResourceManager.GetString("input_selection_resize_right_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection Start Point.
+        /// </summary>
+        public static string input_selection_adjust_startpoint {
+            get {
+                return ResourceManager.GetString("input_selection_adjust_startpoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl+click/drag to move top-left corner of selection.
+        /// </summary>
+        public static string input_selection_adjust_startpoint_desc {
+            get {
+                return ResourceManager.GetString("input_selection_adjust_startpoint_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Selection End Point.
+        /// </summary>
+        public static string input_selection_adjust_endpoint {
+            get {
+                return ResourceManager.GetString("input_selection_adjust_endpoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shift+click/drag to move bottom-right corner of selection.
+        /// </summary>
+        public static string input_selection_adjust_endpoint_desc {
+            get {
+                return ResourceManager.GetString("input_selection_adjust_endpoint_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crop World.
+        /// </summary>
+        public static string input_edit_crop {
+            get {
+                return ResourceManager.GetString("input_edit_crop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand World.
+        /// </summary>
+        public static string input_edit_expand {
+            get {
+                return ResourceManager.GetString("input_edit_expand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string input_app_settings {
+            get {
+                return ResourceManager.GetString("input_app_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Up.
+        /// </summary>
+        public static string input_nav_scroll_up {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Down.
+        /// </summary>
+        public static string input_nav_scroll_down {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Left.
+        /// </summary>
+        public static string input_nav_scroll_left {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Right.
+        /// </summary>
+        public static string input_nav_scroll_right {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Up Fast.
+        /// </summary>
+        public static string input_nav_scroll_up_fast {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_up_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Down Fast.
+        /// </summary>
+        public static string input_nav_scroll_down_fast {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_down_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Left Fast.
+        /// </summary>
+        public static string input_nav_scroll_left_fast {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_left_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scroll Right Fast.
+        /// </summary>
+        public static string input_nav_scroll_right_fast {
+            get {
+                return ResourceManager.GetString("input_nav_scroll_right_fast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pan Mode.
+        /// </summary>
+        public static string input_nav_pan {
+            get {
+                return ResourceManager.GetString("input_nav_pan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom In.
+        /// </summary>
+        public static string input_nav_zoom_in {
+            get {
+                return ResourceManager.GetString("input_nav_zoom_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom Out.
+        /// </summary>
+        public static string input_nav_zoom_out {
+            get {
+                return ResourceManager.GetString("input_nav_zoom_out", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Tool / Deselect.
+        /// </summary>
+        public static string input_nav_reset {
+            get {
+                return ResourceManager.GetString("input_nav_reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arrow Tool.
+        /// </summary>
+        public static string input_tool_arrow {
+            get {
+                return ResourceManager.GetString("input_tool_arrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brush Tool.
+        /// </summary>
+        public static string input_tool_brush {
+            get {
+                return ResourceManager.GetString("input_tool_brush", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pencil Tool.
+        /// </summary>
+        public static string input_tool_pencil {
+            get {
+                return ResourceManager.GetString("input_tool_pencil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Tool.
+        /// </summary>
+        public static string input_tool_fill {
+            get {
+                return ResourceManager.GetString("input_tool_fill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Picker Tool.
+        /// </summary>
+        public static string input_tool_picker {
+            get {
+                return ResourceManager.GetString("input_tool_picker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point Tool.
+        /// </summary>
+        public static string input_tool_point {
+            get {
+                return ResourceManager.GetString("input_tool_point", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection Tool.
+        /// </summary>
+        public static string input_tool_selection {
+            get {
+                return ResourceManager.GetString("input_tool_selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sprite Tool.
+        /// </summary>
+        public static string input_tool_sprite {
+            get {
+                return ResourceManager.GetString("input_tool_sprite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hammer Tool.
+        /// </summary>
+        public static string input_tool_hammer {
+            get {
+                return ResourceManager.GetString("input_tool_hammer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Morph Tool.
+        /// </summary>
+        public static string input_tool_morph {
+            get {
+                return ResourceManager.GetString("input_tool_morph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Eraser.
+        /// </summary>
+        public static string input_toggle_eraser {
+            get {
+                return ResourceManager.GetString("input_toggle_eraser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swap Colors.
+        /// </summary>
+        public static string input_toggle_swap {
+            get {
+                return ResourceManager.GetString("input_toggle_swap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cycle Wire Drawing Mode.
+        /// </summary>
+        public static string input_editor_wire_modecycle {
+            get {
+                return ResourceManager.GetString("input_editor_wire_modecycle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cycle wire drawing mode: Off → Wire90 → Wire45 → Off.
+        /// </summary>
+        public static string input_editor_wire_modecycle_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_modecycle_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire H/V Direction.
+        /// </summary>
+        public static string input_editor_wire_togglehv {
+            get {
+                return ResourceManager.GetString("input_editor_wire_togglehv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle between horizontal-first, vertical-first, and auto-detect wire routing.
+        /// </summary>
+        public static string input_editor_wire_togglehv_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_togglehv_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire Red.
+        /// </summary>
+        public static string input_editor_wire_color1 {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle red wire active.
+        /// </summary>
+        public static string input_editor_wire_color1_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color1_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire Blue.
+        /// </summary>
+        public static string input_editor_wire_color2 {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle blue wire active.
+        /// </summary>
+        public static string input_editor_wire_color2_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color2_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire Green.
+        /// </summary>
+        public static string input_editor_wire_color3 {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle green wire active.
+        /// </summary>
+        public static string input_editor_wire_color3_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color3_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wire Yellow.
+        /// </summary>
+        public static string input_editor_wire_color4 {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle yellow wire active.
+        /// </summary>
+        public static string input_editor_wire_color4_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_color4_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire Trace Highlight.
+        /// </summary>
+        public static string input_editor_wire_trace {
+            get {
+                return ResourceManager.GetString("input_editor_wire_trace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alt+click to highlight all wires connected to the clicked tile.
+        /// </summary>
+        public static string input_editor_wire_trace_desc {
+            get {
+                return ResourceManager.GetString("input_editor_wire_trace_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Tile Style.
+        /// </summary>
+        public static string input_toggle_tile {
+            get {
+                return ResourceManager.GetString("input_toggle_tile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Wall Style.
+        /// </summary>
+        public static string input_toggle_wall {
+            get {
+                return ResourceManager.GetString("input_toggle_wall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw / Primary Action.
+        /// </summary>
+        public static string input_editor_draw {
+            get {
+                return ResourceManager.GetString("input_editor_draw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary drawing action in tools.
+        /// </summary>
+        public static string input_editor_draw_desc {
+            get {
+                return ResourceManager.GetString("input_editor_draw_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary Action.
+        /// </summary>
+        public static string input_editor_secondary {
+            get {
+                return ResourceManager.GetString("input_editor_secondary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary action in tools (inspect, deselect, pick mask, etc.).
+        /// </summary>
+        public static string input_editor_secondary_desc {
+            get {
+                return ResourceManager.GetString("input_editor_secondary_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw Constrained (H/V/45°).
+        /// </summary>
+        public static string input_editor_draw_constrain {
+            get {
+                return ResourceManager.GetString("input_editor_draw_constrain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Constrain drawing to horizontal, vertical, or 45° diagonal lines.
+        /// </summary>
+        public static string input_editor_draw_constrain_desc {
+            get {
+                return ResourceManager.GetString("input_editor_draw_constrain_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw Point-to-Point Line.
+        /// </summary>
+        public static string input_editor_draw_line {
+            get {
+                return ResourceManager.GetString("input_editor_draw_line", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw straight lines between click points.
+        /// </summary>
+        public static string input_editor_draw_line_desc {
+            get {
+                return ResourceManager.GetString("input_editor_draw_line_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pan Viewport.
+        /// </summary>
+        public static string input_editor_pan {
+            get {
+                return ResourceManager.GetString("input_editor_pan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag to pan the viewport.
+        /// </summary>
+        public static string input_editor_pan_desc {
+            get {
+                return ResourceManager.GetString("input_editor_pan_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wiki / Help.
+        /// </summary>
+        public static string input_help_wiki {
+            get {
+                return ResourceManager.GetString("input_help_wiki", resourceCulture);
+            }
+        }
     }
 }
