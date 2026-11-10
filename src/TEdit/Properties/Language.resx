@@ -4979,4 +4979,16 @@ The error is :
   <data name="enum_FilterMode_Darken" xml:space="preserve">
     <value>Darken</value>
   </data>
+  <data name="world_size_small" xml:space="preserve">
+    <value>Small</value>
+  </data>
+  <data name="world_size_medium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="world_size_large" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="world_size_custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
 </root>

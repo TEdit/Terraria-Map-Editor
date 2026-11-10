@@ -14363,5 +14363,41 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("enum_FilterMode_Darken", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Small.
+        /// </summary>
+        public static string world_size_small {
+            get {
+                return ResourceManager.GetString("world_size_small", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Medium.
+        /// </summary>
+        public static string world_size_medium {
+            get {
+                return ResourceManager.GetString("world_size_medium", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Large.
+        /// </summary>
+        public static string world_size_large {
+            get {
+                return ResourceManager.GetString("world_size_large", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        public static string world_size_custom {
+            get {
+                return ResourceManager.GetString("world_size_custom", resourceCulture);
+            }
+        }
     }
 }

@@ -225,7 +225,15 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
 
     public string CloudLabel => IsCloudSave ? $"☁ User {CloudUserId}" : "";
 
-    public string DimensionText => IsMissing ? "" : IsLoaded ? $"{TilesWide}x{TilesHigh} - {SizeCategory}" : "";
+    public string LocalizedSizeCategory => SizeCategory switch
+    {
+        "Small" => Properties.Language.world_size_small,
+        "Medium" => Properties.Language.world_size_medium,
+        "Large" => Properties.Language.world_size_large,
+        _ => Properties.Language.world_size_custom
+    };
+
+    public string DimensionText => IsMissing ? "" : IsLoaded ? $"{TilesWide}x{TilesHigh} - {LocalizedSizeCategory}" : "";
     public string VersionText => IsMissing ? "" : IsLoaded ? TerrariaVersionText ?? $"v{Version}" : "";
     public string SizeText => IsMissing ? "" : FileMaintenance.FormatFileSize(FileSizeBytes);
 
