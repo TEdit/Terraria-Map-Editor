@@ -3327,7 +3327,11 @@ public partial class WorldViewModel : ReactiveObject
 
     private void OnProgressChanged(object sender, ProgressChangedEventArgs e)
     {
-        DispatcherHelper.CheckBeginInvokeOnUI(() => Progress = e);
+        var state = ProgressLocalization.Translate(e.UserState);
+        var progress = ReferenceEquals(state, e.UserState)
+            ? e
+            : new ProgressChangedEventArgs(e.ProgressPercentage, state);
+        DispatcherHelper.CheckBeginInvokeOnUI(() => Progress = progress);
     }
 
     public void MouseDownTile(TileMouseState e)
@@ -3406,7 +3410,7 @@ public partial class WorldViewModel : ReactiveObject
                 World w = nwDialog.NewWorld;
 
                 // Report progress at the beginning of world generation
-                OnProgressChanged(w, new ProgressChangedEventArgs(100, "Generating World..."));
+                OnProgressChanged(w, new ProgressChangedEventArgs(100, Properties.Language.progress_generating_world));
 
                 // Generate a new seed if not provided
                 w.Seed = w.Seed;
@@ -3503,7 +3507,7 @@ public partial class WorldViewModel : ReactiveObject
         // Hill generation
         for (int y = 0; y < w.TilesHigh; y++) // Iterate through all y levels
         {
-            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Generating Hills..."));
+            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), Properties.Language.progress_generating_hills));
 
             for (int x = 0; x < w.TilesWide; x++)
             {
@@ -3650,7 +3654,7 @@ public partial class WorldViewModel : ReactiveObject
 
     private void GenerateCaves(World w, Random rand, double caveNoise, double caveMultiplier, double caveDensity, bool surfaceCaves, bool skipUnderworld, bool generateGrass, bool generateWalls)
     {
-        OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(0, w.TilesHigh), "Generating Caves..."));
+        OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(0, w.TilesHigh), Properties.Language.progress_generating_caves));
 
         int width = w.TilesWide;
         int height = w.TilesHigh;
@@ -3665,7 +3669,7 @@ public partial class WorldViewModel : ReactiveObject
 
         for (int y = 0; y < height; y++)
         {
-            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Generating Cave Noise..."));
+            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), Properties.Language.progress_generating_cave_noise));
 
             for (int x = 0; x < width; x++)
             {
@@ -3682,7 +3686,7 @@ public partial class WorldViewModel : ReactiveObject
 
             for (int y = 1; y < height - 1; y++)
             {
-                OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Refining Caves..."));
+                OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), Properties.Language.progress_refining_caves));
 
                 for (int x = 1; x < width - 1; x++)
                 {
@@ -3707,7 +3711,7 @@ public partial class WorldViewModel : ReactiveObject
         // Apply cave map to world with adjustable cave size
         for (int y = 0; y < height; y++)
         {
-            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Placing Caves..."));
+            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), Properties.Language.progress_placing_caves));
 
             if (!surfaceCaves && y < w.RockLevel) continue; // Skip tiles above ground level
             if (skipUnderworld && y > height - 200) continue; // Skip tiles in underworld
@@ -3801,7 +3805,7 @@ public partial class WorldViewModel : ReactiveObject
         // Iterate through the bottom 200 tiles to generate the underworld
         for (int y = underworldStart; y < height; y++)
         {
-            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, height), "Generating Underworld..."));
+            OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, height), Properties.Language.progress_generating_underworld));
 
             for (int x = 0; x < width; x++)
             {

@@ -13717,6 +13717,87 @@ namespace TEdit.Properties {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Verifying File....
+        /// </summary>
+        public static string progress_verifying_file {
+            get {
+                return ResourceManager.GetString("progress_verifying_file", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Load Complete..
+        /// </summary>
+        public static string progress_load_complete {
+            get {
+                return ResourceManager.GetString("progress_load_complete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Validating Complete....
+        /// </summary>
+        public static string progress_validating_complete {
+            get {
+                return ResourceManager.GetString("progress_validating_complete", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Resetting Time....
+        /// </summary>
+        public static string progress_resetting_time {
+            get {
+                return ResourceManager.GetString("progress_resetting_time", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing tModLoader data....
+        /// </summary>
+        public static string progress_preparing_tmodloader_data {
+            get {
+                return ResourceManager.GetString("progress_preparing_tmodloader_data", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Saving tModLoader data....
+        /// </summary>
+        public static string progress_saving_tmodloader_data {
+            get {
+                return ResourceManager.GetString("progress_saving_tmodloader_data", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading tModLoader data....
+        /// </summary>
+        public static string progress_loading_tmodloader_data {
+            get {
+                return ResourceManager.GetString("progress_loading_tmodloader_data", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded Windows Phone world header..
+        /// </summary>
+        public static string progress_loaded_windows_phone_header {
+            get {
+                return ResourceManager.GetString("progress_loaded_windows_phone_header", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Converting world to Windows Phone....
+        /// </summary>
+        public static string progress_converting_to_windows_phone {
+            get {
+                return ResourceManager.GetString("progress_converting_to_windows_phone", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to World Save Complete..
         /// </summary>
         public static string progress_world_save_complete {

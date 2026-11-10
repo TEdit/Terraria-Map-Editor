@@ -4763,6 +4763,33 @@ The error is :
   <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
     <value>Brain of Cthulhu</value>
   </data>
+  <data name="progress_verifying_file" xml:space="preserve">
+    <value>Verifying File...</value>
+  </data>
+  <data name="progress_load_complete" xml:space="preserve">
+    <value>Load Complete.</value>
+  </data>
+  <data name="progress_validating_complete" xml:space="preserve">
+    <value>Validating Complete...</value>
+  </data>
+  <data name="progress_resetting_time" xml:space="preserve">
+    <value>Resetting Time...</value>
+  </data>
+  <data name="progress_preparing_tmodloader_data" xml:space="preserve">
+    <value>Preparing tModLoader data...</value>
+  </data>
+  <data name="progress_saving_tmodloader_data" xml:space="preserve">
+    <value>Saving tModLoader data...</value>
+  </data>
+  <data name="progress_loading_tmodloader_data" xml:space="preserve">
+    <value>Loading tModLoader data...</value>
+  </data>
+  <data name="progress_loaded_windows_phone_header" xml:space="preserve">
+    <value>Loaded Windows Phone world header.</value>
+  </data>
+  <data name="progress_converting_to_windows_phone" xml:space="preserve">
+    <value>Converting world to Windows Phone...</value>
+  </data>
   <data name="progress_world_save_complete" xml:space="preserve">
     <value>World Save Complete.</value>
   </data>
