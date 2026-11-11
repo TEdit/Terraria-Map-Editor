@@ -2296,14 +2296,14 @@ public partial class WorldViewModel : ReactiveObject
     private void RefreshPoints()
     {
         Points.Clear();
-        Points.Add("Spawn");
-        Points.Add("Dungeon");
+        Points.Add(Properties.Language.tool_point_spawn);
+        Points.Add(Properties.Language.tool_point_dungeon);
 
         if (CurrentWorld?.TeamBasedSpawnsSeed == true)
         {
             for (int i = 0; i < World.TeamNames.Length; i++)
             {
-                Points.Add($"Team {World.TeamNames[i]}");
+                Points.Add(GetTeamPointName(i));
             }
         }
 
@@ -2316,6 +2316,22 @@ public partial class WorldViewModel : ReactiveObject
         }
 
         RefreshAllNpcs();
+    }
+
+    /// <summary>Gets the localized display name of a team spawn point (e.g. "Team Red" / "红队").</summary>
+    public static string GetTeamPointName(int teamIndex)
+    {
+        string color = World.TeamNames[teamIndex] switch
+        {
+            "White" => Properties.Language.player_stats_team_white,
+            "Red" => Properties.Language.player_stats_team_red,
+            "Green" => Properties.Language.player_stats_team_green,
+            "Blue" => Properties.Language.player_stats_team_blue,
+            "Yellow" => Properties.Language.player_stats_team_yellow,
+            "Pink" => Properties.Language.player_stats_team_pink,
+            _ => World.TeamNames[teamIndex]
+        };
+        return string.Format(Properties.Language.tool_point_team_format, color);
     }
 
     private void RefreshAllNpcs()

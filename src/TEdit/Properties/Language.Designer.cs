@@ -782,6 +782,87 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standing.
+        /// </summary>
+        public static string DisplayDollPoseID_Standing {
+            get {
+                return ResourceManager.GetString("DisplayDollPoseID_Standing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sitting.
+        /// </summary>
+        public static string DisplayDollPoseID_Sitting {
+            get {
+                return ResourceManager.GetString("DisplayDollPoseID_Sitting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jumping.
+        /// </summary>
+        public static string DisplayDollPoseID_Jumping {
+            get {
+                return ResourceManager.GetString("DisplayDollPoseID_Jumping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Walking.
+        /// </summary>
+        public static string DisplayDollPoseID_Walking {
+            get {
+                return ResourceManager.GetString("DisplayDollPoseID_Walking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use 1.
+        /// </summary>
+        public static string DisplayDollPoseID_Use1 {
+            get {
+                return ResourceManager.GetString("DisplayDollPoseID_Use1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use 2.
+        /// </summary>
+        public static string DisplayDollPoseID_Use2 {
+            get {
+                return ResourceManager.GetString("DisplayDollPoseID_Use2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use 3.
+        /// </summary>
+        public static string DisplayDollPoseID_Use3 {
+            get {
+                return ResourceManager.GetString("DisplayDollPoseID_Use3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use 4.
+        /// </summary>
+        public static string DisplayDollPoseID_Use4 {
+            get {
+                return ResourceManager.GetString("DisplayDollPoseID_Use4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use 5.
+        /// </summary>
+        public static string DisplayDollPoseID_Use5 {
+            get {
+                return ResourceManager.GetString("DisplayDollPoseID_Use5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wire 45°.
         /// </summary>
         public static string drawing_mode_wire45 {
@@ -2933,6 +3014,33 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        public static string newworld_cave_preset_normal {
+            get {
+                return ResourceManager.GetString("newworld_cave_preset_normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Large.
+        /// </summary>
+        public static string newworld_cave_preset_large {
+            get {
+                return ResourceManager.GetString("newworld_cave_preset_large", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Labyrinth.
+        /// </summary>
+        public static string newworld_cave_preset_labyrinth {
+            get {
+                return ResourceManager.GetString("newworld_cave_preset_labyrinth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cavern Level.
         /// </summary>
         public static string newworld_cavern {
@@ -3991,6 +4099,15 @@ namespace TEdit.Properties {
         public static string player_stats_team_red {
             get {
                 return ResourceManager.GetString("player_stats_team_red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White.
+        /// </summary>
+        public static string player_stats_team_white {
+            get {
+                return ResourceManager.GetString("player_stats_team_white", resourceCulture);
             }
         }
         
@@ -7210,6 +7327,33 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Spawn.
+        /// </summary>
+        public static string tool_point_spawn {
+            get {
+                return ResourceManager.GetString("tool_point_spawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dungeon.
+        /// </summary>
+        public static string tool_point_dungeon {
+            get {
+                return ResourceManager.GetString("tool_point_dungeon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team {0}.
+        /// </summary>
+        public static string tool_point_team_format {
+            get {
+                return ResourceManager.GetString("tool_point_team_format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string tool_sprite_filter_button {
@@ -9276,6 +9420,51 @@ namespace TEdit.Properties {
         public static string world_explorer_col_modified {
             get {
                 return ResourceManager.GetString("world_explorer_col_modified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Missing].
+        /// </summary>
+        public static string world_explorer_modified_missing {
+            get {
+                return ResourceManager.GetString("world_explorer_modified_missing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to just now.
+        /// </summary>
+        public static string world_explorer_modified_just_now {
+            get {
+                return ResourceManager.GetString("world_explorer_modified_just_now", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}m ago.
+        /// </summary>
+        public static string world_explorer_modified_minutes_ago {
+            get {
+                return ResourceManager.GetString("world_explorer_modified_minutes_ago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}h ago.
+        /// </summary>
+        public static string world_explorer_modified_hours_ago {
+            get {
+                return ResourceManager.GetString("world_explorer_modified_hours_ago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}d ago.
+        /// </summary>
+        public static string world_explorer_modified_days_ago {
+            get {
+                return ResourceManager.GetString("world_explorer_modified_days_ago", resourceCulture);
             }
         }
         

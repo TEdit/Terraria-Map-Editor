@@ -1140,6 +1140,15 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="newworld_cave_preset" xml:space="preserve">
     <value>Cave Preset</value>
   </data>
+  <data name="newworld_cave_preset_normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="newworld_cave_preset_large" xml:space="preserve">
+    <value>Large</value>
+  </data>
+  <data name="newworld_cave_preset_labyrinth" xml:space="preserve">
+    <value>Labyrinth</value>
+  </data>
   <data name="newworld_create" xml:space="preserve">
     <value>Create World</value>
   </data>
@@ -1505,6 +1514,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="player_stats_team_red" xml:space="preserve">
     <value>Red</value>
+  </data>
+  <data name="player_stats_team_white" xml:space="preserve">
+    <value>White</value>
   </data>
   <data name="player_stats_team_yellow" xml:space="preserve">
     <value>Yellow</value>
@@ -2450,6 +2462,33 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="specialtile_label_pose" xml:space="preserve">
     <value>Pose</value>
   </data>
+  <data name="DisplayDollPoseID_Standing" xml:space="preserve">
+    <value>Standing</value>
+  </data>
+  <data name="DisplayDollPoseID_Sitting" xml:space="preserve">
+    <value>Sitting</value>
+  </data>
+  <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
+    <value>Jumping</value>
+  </data>
+  <data name="DisplayDollPoseID_Walking" xml:space="preserve">
+    <value>Walking</value>
+  </data>
+  <data name="DisplayDollPoseID_Use1" xml:space="preserve">
+    <value>Use 1</value>
+  </data>
+  <data name="DisplayDollPoseID_Use2" xml:space="preserve">
+    <value>Use 2</value>
+  </data>
+  <data name="DisplayDollPoseID_Use3" xml:space="preserve">
+    <value>Use 3</value>
+  </data>
+  <data name="DisplayDollPoseID_Use4" xml:space="preserve">
+    <value>Use 4</value>
+  </data>
+  <data name="DisplayDollPoseID_Use5" xml:space="preserve">
+    <value>Use 5</value>
+  </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
     <value>Sign Text</value>
   </data>
@@ -3057,6 +3096,15 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="tool_point_title" xml:space="preserve">
     <value>Special Interest Points</value>
+  </data>
+  <data name="tool_point_spawn" xml:space="preserve">
+    <value>Spawn</value>
+  </data>
+  <data name="tool_point_dungeon" xml:space="preserve">
+    <value>Dungeon</value>
+  </data>
+  <data name="tool_point_team_format" xml:space="preserve">
+    <value>Team {0}</value>
   </data>
   <data name="tool_sprite2_title" xml:space="preserve">
     <value>Sprite Placer</value>
@@ -3753,6 +3801,21 @@ Would you like to enable error reporting?</value>
   </data>
   <data name="world_explorer_col_modified" xml:space="preserve">
     <value>Modified</value>
+  </data>
+  <data name="world_explorer_modified_missing" xml:space="preserve">
+    <value>[Missing]</value>
+  </data>
+  <data name="world_explorer_modified_just_now" xml:space="preserve">
+    <value>just now</value>
+  </data>
+  <data name="world_explorer_modified_minutes_ago" xml:space="preserve">
+    <value>{0}m ago</value>
+  </data>
+  <data name="world_explorer_modified_hours_ago" xml:space="preserve">
+    <value>{0}h ago</value>
+  </data>
+  <data name="world_explorer_modified_days_ago" xml:space="preserve">
+    <value>{0}d ago</value>
   </data>
   <data name="world_explorer_col_size" xml:space="preserve">
     <value>Size</value>
