@@ -10,6 +10,43 @@ namespace TEdit.Tests.Clipboard;
 
 public sealed class ChestPasteUndoRegressionTests
 {
+    [Theory]
+    [InlineData(2, 2)]
+    [InlineData(3, 2)]
+    [InlineData(2, 3)]
+    [InlineData(3, 3)]
+    public void PasteMultipleChests_PreservesDataAcrossRepeatedUndoRedo(int sourceX, int sourceY)
+    {
+        var world = TestWorldFactory.CreateSmallWorld();
+        PlaceChest(world, 10, 20, "First source", 29, 3);
+        PlaceChest(world, 10 + sourceX, 20 + sourceY, "Second source", 73, 50);
+        PlaceChest(world, 40, 20, "First destination", 8, 10);
+        PlaceChest(world, 42, 22, "Second destination", 9, 20);
+
+        var buffer = ClipboardBuffer.GetSelectionBuffer(world, new RectangleInt32(10, 20, 6, 6));
+        using var undo = new UndoManager(world, notifyTileChanged: null, undoApplied: () => { });
+        buffer.Paste(world, new Vector2Int32(40, 20), undo, new PasteOptions());
+
+        // Grouped tiles can replay the second destination chest's non-anchor
+        // before its anchor. Its metadata must survive the next undo as well.
+        for (int cycle = 0; cycle < 3; cycle++)
+        {
+            AssertChest(world, 40, 20, "First source", 29, 3);
+            AssertChest(world, 40 + sourceX, 20 + sourceY, "Second source", 73, 50);
+            Assert.Equal(4, world.Chests.Count);
+            undo.Undo();
+            AssertChest(world, 40, 20, "First destination", 8, 10);
+            AssertChest(world, 42, 22, "Second destination", 9, 20);
+            Assert.Equal(4, world.Chests.Count);
+            undo.Redo();
+        }
+        AssertChest(world, 10, 20, "First source", 29, 3);
+        AssertChest(world, 10 + sourceX, 20 + sourceY, "Second source", 73, 50);
+        AssertChest(world, 40, 20, "First source", 29, 3);
+        AssertChest(world, 40 + sourceX, 20 + sourceY, "Second source", 73, 50);
+        Assert.Equal(4, world.Chests.Count);
+    }
+
     [Fact]
     public void PasteChestIntoEmptySpace_WhenPasteOverTilesIsDisabled_PreservesDataThroughUndoRedo()
     {

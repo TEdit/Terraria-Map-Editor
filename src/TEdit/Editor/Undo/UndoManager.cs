@@ -258,17 +258,19 @@ public partial class UndoManager : ReactiveObject, IUndoManager
 
         if (isVanillaFramed || isModTile)
         {
-            // For vanilla tiles, use anchor detection; for mod tiles, the chest/sign/entity
-            // position IS the anchor — direct lookup will only match at the anchor position.
-            bool isAnchor = isModTile || _world.IsAnchor(x, y);
+            // Normal edits capture entities at their anchors. Replay may encounter
+            // any part of a sprite first because undo files group identical tiles.
+            var anchor = isModTile ? new Vector2Int32(x, y) : _world.GetAnchor(x, y);
+            bool isAnchor = anchor.X == x && anchor.Y == y;
 
-            if (isAnchor)
+            if (isAnchor || removeEntities)
             {
-                // Check chest — for mod tiles, also check via findOrigin since
-                // the chest may be registered at a different tile of the sprite
-                var curchest = isModTile
-                    ? _world.GetChestAtTile(x, y, true)
-                    : _world.GetChestAtTile(x, y);
+                // Use exact coordinates, not the proximity fallback: once an entity
+                // is removed, another tile of its sprite must not find a neighbor.
+                // Vanilla frames identify their origin even in modded worlds. Mod
+                // sprites have unknown dimensions, so capture them at their registered
+                // entity position when that tile is visited.
+                var curchest = _world.GetChestAtTile(anchor.X, anchor.Y);
                 if (curchest != null && buffer.Chests.All(c => c.X != curchest.X || c.Y != curchest.Y))
                 {
                     if (removeEntities) { _world.Chests.Remove(curchest); }
@@ -276,9 +278,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
                     buffer.Chests.Add(chest);
                 }
 
-                var cursign = isModTile
-                    ? _world.GetSignAtTile(x, y, true)
-                    : _world.GetSignAtTile(x, y);
+                var cursign = _world.GetSignAtTile(anchor.X, anchor.Y);
                 if (cursign != null && buffer.Signs.All(s => s.X != cursign.X || s.Y != cursign.Y))
                 {
                     if (removeEntities) { _world.Signs.Remove(cursign); }
@@ -286,9 +286,7 @@ public partial class UndoManager : ReactiveObject, IUndoManager
                     buffer.Signs.Add(sign);
                 }
 
-                var curTe = isModTile
-                    ? _world.GetTileEntityAtTile(x, y, true)
-                    : _world.GetTileEntityAtTile(x, y);
+                var curTe = _world.GetTileEntityAtTile(anchor.X, anchor.Y);
                 if (curTe != null && buffer.TileEntities.All(te => te.PosX != curTe.PosX || te.PosY != curTe.PosY))
                 {
                     if (removeEntities) { _world.TileEntities.Remove(curTe); }
@@ -442,35 +440,9 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         {
             foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br, _world.TileFrameImportant))
             {
-                var curTile = (Tile)_world.Tiles[undoTile.Location.X, undoTile.Location.Y];
-
-                // Save current tile state to the shared undo buffer directly,
-                // bypassing SaveTile/ValidateAndRemoveChests which creates
-                // spurious empty entities during the tight redo tile loop.
-                SaveTileToBuffer(Buffer, undoTile.Location.X, undoTile.Location.Y, false);
-
-                // Remove entities at this position from the world.
-                // Use findOrigin: true so non-anchor tiles of multi-tile
-                // entities (e.g. 2×2 chests) still find and remove the entity.
-                if (curTile.IsChest())
-                {
-                    var curchest = _world.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y, true);
-                    if (curchest != null)
-                        _world.Chests.Remove(curchest);
-                }
-                if (curTile.IsSign())
-                {
-                    var cursign = _world.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y, true);
-                    if (cursign != null)
-                        _world.Signs.Remove(cursign);
-                }
-                if (curTile.IsTileEntity())
-                {
-                    var curTe = _world.GetTileEntityAtTile(undoTile.Location.X, undoTile.Location.Y, true);
-                    if (curTe != null)
-                        _world.TileEntities.Remove(curTe);
-                }
-
+                // Capture and remove entities together, even when tile grouping
+                // replays a non-anchor tile before its anchor.
+                SaveTileToBuffer(Buffer, undoTile.Location.X, undoTile.Location.Y, true);
                 _world.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
                 changedTiles.Add(undoTile.Location);
             }
