@@ -14669,5 +14669,40 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("world_size_custom", resourceCulture);
             }
         }
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore.
+        /// </summary>
+        public static string LiquidLevelMaskMode_Ignore {
+            get {
+                return ResourceManager.GetString("LiquidLevelMaskMode_Ignore", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Greater Than.
+        /// </summary>
+        public static string LiquidLevelMaskMode_GreaterThan {
+            get {
+                return ResourceManager.GetString("LiquidLevelMaskMode_GreaterThan", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Less Than.
+        /// </summary>
+        public static string LiquidLevelMaskMode_LessThan {
+            get {
+                return ResourceManager.GetString("LiquidLevelMaskMode_LessThan", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Equal.
+        /// </summary>
+        public static string LiquidLevelMaskMode_Equal {
+            get {
+                return ResourceManager.GetString("LiquidLevelMaskMode_Equal", resourceCulture);
+            }
+        }
     }
 }
