@@ -112,7 +112,7 @@
                                            RenderOptions.BitmapScalingMode="NearestNeighbor"
                                            HorizontalAlignment="Center"
                                            Margin="0,0,0,4"/>
-                                    <TextBlock Text="{Binding Name}" FontWeight="Bold"
+                                    <TextBlock Text="{Binding LocalizedName}" FontWeight="Bold"
                                                TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock Text="{Binding Tile, StringFormat={x:Static p:Language.sprite_tile_id_format}}"
                                                Foreground="Gray" HorizontalAlignment="Center"/>
@@ -141,7 +141,7 @@
                        Visibility="{Binding SelectedSpriteSheet, Converter={StaticResource NullToVisibilityConverter}}"
                        ToolTip="{x:Static p:Language.spriteeditor_edit_tooltip}"/>
             <TextBlock Foreground="{DynamicResource TextFillColorPrimaryBrush}" VerticalAlignment="Center">
-                <Run Text="{Binding SelectedSpriteSheet.Name, Mode=OneWay}"/>
+                <Run Text="{Binding SelectedSpriteSheet.LocalizedName, Mode=OneWay}"/>
                 <Run Text="{x:Static p:Language.sprite_styletype}"/>
             </TextBlock>
         </DockPanel>
@@ -194,7 +194,7 @@
                                        RenderOptions.BitmapScalingMode="NearestNeighbor"
                                        HorizontalAlignment="Center"
                                        Margin="0,0,0,4"/>
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold"
+                                <TextBlock Text="{Binding LocalizedName}" FontWeight="Bold"
                                            TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding Style, StringFormat={x:Static p:Language.sprite_style_format}}"
                                            Foreground="Gray" HorizontalAlignment="Center"/>

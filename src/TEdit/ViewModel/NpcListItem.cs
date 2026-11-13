@@ -7,7 +7,8 @@ namespace TEdit.ViewModel;
 public class NpcListItem : ReactiveObject
 {
     public int SpriteId { get; }
-    public string DefaultName { get; }
+    public string Name { get; }
+    public string LocalizedName { get; }
     public List<string> AvailableVariants { get; }
     public bool CanShimmer { get; }
     public bool HasVariants => AvailableVariants?.Count > 1;
@@ -104,10 +105,11 @@ public class NpcListItem : ReactiveObject
     /// </summary>
     public bool IsDuplicateInstance => InstanceIndex >= 0;
 
-    public NpcListItem(int spriteId, string defaultName, List<string> variants = null, bool canShimmer = false, int instanceIndex = -1)
+    public NpcListItem(int spriteId, string name, string localizedName, List<string> variants = null, bool canShimmer = false, int instanceIndex = -1)
     {
         SpriteId = spriteId;
-        DefaultName = defaultName;
+        Name = name;
+        LocalizedName = localizedName;
         AvailableVariants = variants;
         CanShimmer = canShimmer;
         InstanceIndex = instanceIndex;

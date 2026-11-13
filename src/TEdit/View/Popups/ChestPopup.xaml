@@ -26,8 +26,8 @@
                                       ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.ItemProperties}, Mode=OneTime}"
                                       SelectedValue="{Binding ItemName, Mode=TwoWay}"
                                       SelectedValuePath="Name"
-                                      DisplayMemberPath="Name"
-                                      FilterMemberPath="Name"
+                                      DisplayMemberPath="LocalizedName"
+                                      FilterMemberPath="LocalizedName"
                                       Width="200" Margin="1,0"
                                       Placeholder="{x:Static p:Language.picker_search_items_placeholder}" />
                         </StackPanel>

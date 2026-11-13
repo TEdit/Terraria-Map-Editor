@@ -494,6 +494,12 @@ public partial class FilterablePickerControl : UserControl
         if (filterText.Contains(_pendingFilterText, StringComparison.OrdinalIgnoreCase))
             return true;
 
+        // Bilingual search: also match the stable English identity (Name) even when the displayed text is localized.
+        string identityText = GetPropertyValue(item, "Name")?.ToString();
+        if (!string.IsNullOrEmpty(identityText) &&
+            identityText.Contains(_pendingFilterText, StringComparison.OrdinalIgnoreCase))
+            return true;
+
         if (!string.IsNullOrEmpty(FilterIdMemberPath))
         {
             string idText = GetPropertyValue(item, FilterIdMemberPath)?.ToString() ?? string.Empty;
