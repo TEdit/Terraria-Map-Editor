@@ -5807,7 +5807,7 @@
     "TwilightDye": "Twilight Dye",
     "TwilightGrasp": "Twilight Grasp",
     "TwilightHairDye": "Twilight Hair Dye",
-    "TwinMask": "Twin Mask",
+    "TwinMask": "Twins Mask",
     "TwinsBossBag": "Treasure Bag (The Twins)",
     "TwinsMasterTrophy": "Twins Relic",
     "TwinsPetItem": "Pair of Eyeballs",
@@ -6190,6 +6190,10 @@
       "name": "Abigail",
       "description": "Abigail will fight to protect you"
     },
+    "AcceleratePoisons": {
+      "name": "Accelerated Afflictions",
+      "description": "Makes poison more potent"
+    },
     "AmberMinecart": {
       "name": "{$BuffName.Minecart}",
       "description": "{$BuffDescription.Minecart}"
@@ -6362,6 +6366,10 @@
       "name": "Blue Chicken",
       "description": "The nametag says 'Shane'"
     },
+    "BlueLightning": {
+      "name": "Zapped",
+      "description": "You feel tingly"
+    },
     "BoneJavelin": {
       "name": "Penetrated",
       "description": "Bleeding Out"
@@ -6422,9 +6430,17 @@
       "name": "Chilled",
       "description": "Your movement speed has been reduced"
     },
+    "ChlorophyteSpore": {
+      "name": "Spored",
+      "description": "Losing life"
+    },
     "Clairvoyance": {
       "name": "Clairvoyance",
       "description": "Magic powers are increased"
+    },
+    "ClayPotMinion": {
+      "name": "Clay Bud",
+      "description": "The clay bud will fight for you"
     },
     "CobWhipPlayerBuff": {
       "name": "Whip Spider",
@@ -6646,6 +6662,10 @@
       "name": "Flipper",
       "description": "Move like normal in water"
     },
+    "ForbiddenMinion": {
+      "name": "Forbidden Ruin",
+      "description": "The forbidden ruin will fight for you"
+    },
     "Frostburn": {
       "name": "Frostburn",
       "description": "It's either really hot or really cold. Either way it REALLY hurts"
@@ -6810,6 +6830,10 @@
       "name": "Majestic Horse Mount",
       "description": "Riding a Majestic Horse"
     },
+    "ManaHeat": {
+      "name": "Mana Surge",
+      "description": "Magic damage increased by "
+    },
     "ManaRegeneration": {
       "name": "Mana Regeneration",
       "description": "Increased mana regeneration"
@@ -6954,6 +6978,22 @@
       "name": "Foxparks",
       "description": "Foxparks will fight for you"
     },
+    "PalworldMinionTrustyCattiva": {
+      "name": "Trusty Cattiva",
+      "description": "Cattiva will fight for you"
+    },
+    "PalworldMinionTrustyFoxsparks": {
+      "name": "Trusty Foxparks",
+      "description": "Foxparks will fight for you"
+    },
+    "PalworldMountTrustyChillet": {
+      "name": "Trusty Chillet",
+      "description": "Chillet is exploring with you\nThe movement is quite intense!"
+    },
+    "PalworldMountTrustyChilletIgnis": {
+      "name": "Trusty Chillet Ignis",
+      "description": "Chillet Ignis is exploring with you\nBe careful of petting it too long, or sparks WILL start flying!"
+    },
     "PalworldPetChillet": {
       "name": "Chillet",
       "description": "Chillet is exploring with you\nThe movement is quite intense!"
@@ -7058,6 +7098,10 @@
       "name": "Poisoned",
       "description": "Slowly losing life"
     },
+    "PotentAcid": {
+      "name": "Potent Acid",
+      "description": "Losing life"
+    },
     "PotionSickness": {
       "name": "Potion Sickness",
       "description": "Cannot consume anymore healing items"
@@ -7113,6 +7157,10 @@
     "Ravens": {
       "name": "Ravens",
       "description": "The ravens will attack your enemies"
+    },
+    "RedLightning": {
+      "name": "Zapped",
+      "description": "You feel tingly"
     },
     "Regeneration": {
       "name": "Regeneration",
@@ -7444,7 +7492,7 @@
     },
     "Warmth": {
       "name": "Warmth",
-      "description": "Reduced damage from cold sources"
+      "description": "Reduced effects from cold sources"
     },
     "WaterCandle": {
       "name": "Water Candle",
@@ -7480,15 +7528,15 @@
     },
     "WeaponImbueNanites": {
       "name": "Weapon Imbue: Nanites",
-      "description": "Melee attacks confuse enemies"
+      "description": "Melee attacks confuse enemies and deal 5% extra damage"
     },
     "WeaponImbuePoison": {
       "name": "Weapon Imbue: Poison",
       "description": "Melee attacks poison enemies"
     },
     "WeaponImbueVenom": {
-      "name": "Weapon Imbue: Acid Venom",
-      "description": "Melee attacks inflict acid venom on your targets"
+      "name": "Weapon Imbue: Potent Venom",
+      "description": "Melee attacks inflict potent venom on your targets"
     },
     "Webbed": {
       "name": "Webbed",
@@ -8379,6 +8427,7 @@
     "AncientSilverBrick": "Ancient Silver Brick",
     "AnnouncementBox": "Announcement Box",
     "AntiPortalBlock": "Anti-Portal Block",
+    "Anvils": "Anvil",
     "ArgonMossBlock": "Argon Moss Brick",
     "ArgonMossBrick": "Argon Moss Brick",
     "ArrowSign": "Arrow Sign",
@@ -8388,6 +8437,7 @@
     "AstraBrick": "Astra Brick",
     "Autohammer": "Autohammer",
     "Bamboo": "Bamboo",
+    "Banners": "Banner",
     "BeeHive": "Bee Hive",
     "BewitchingTable": "Bewitching Table",
     "BirdCage": "Bird Cage",
@@ -8425,6 +8475,8 @@
     "CardinalCage": "Cardinal Cage",
     "CatBast": "Bast Statue",
     "Chain": "Chain",
+    "Chairs": "Chair",
+    "Chandeliers": "Chandelier",
     "Chimney": "Chimney",
     "ChimneySmoke": "Smoke Block",
     "ChineseLanterns": "Chinese Lantern",
@@ -8434,6 +8486,7 @@
     "ChristmasTree": "Christmas Tree",
     "ClayBlock": "Clay Block",
     "ClayPot": "Clay Pot",
+    "ClosedDoor": "Door",
     "Cobalt": "Cobalt Ore",
     "CobaltBrick": "Cobalt Brick",
     "Cobweb": "Cobweb",
@@ -8446,6 +8499,7 @@
     "Coral": "Coral",
     "Coralstone": "Coralstone Block",
     "CorruptIce": "Purple Ice Block",
+    "CorruptThorns": "Thorns",
     "CosmicEmberBrick": "Cosmic Ember Brick",
     "CrackedBlueDungeonBrick": "Cracked Blue Brick",
     "CrackedGreenDungeonBrick": "Cracked Green Brick",
@@ -8465,9 +8519,11 @@
     "DeadCellsDisplayJar": "Item Flask",
     "DeadCellsPotionStation": "Alchemy Flask",
     "DefendersForge": "Defender's Forge",
+    "DemonAltar": "Demon Altar",
     "DemonAltarReplica": "Replica Demon Altar",
     "Demonite": "Demonite Ore",
     "DemoniteBrick": "Demonite Brick",
+    "DesertFossil": "Fossil",
     "Detonator": "Detonator",
     "Diamond": "Diamond Stone Block",
     "DiamondBunnyCage": "Diamond Bunny Cage",
@@ -8495,10 +8551,13 @@
     "EmpressButterflyJar": "Prismatic Lacewing Jar",
     "Explosives": "Explosives",
     "Extractinator": "Extractinator",
+    "FallenLog": "Fallen Log",
+    "FallenLogEcho": "Fallen Log",
     "FallenStarBlock": "Fallen Star Block",
     "Feywood": "Feywood",
     "FireflyinaBottle": "Firefly in a Bottle",
     "Fireplace": "Fireplace",
+    "Firework": "Rocket",
     "FireworkFountain": "Firework Fountain",
     "FireworksBox": "Fireworks Box",
     "FishBowl": "Fish Bowl",
@@ -8509,10 +8568,12 @@
     "FogMachine": "Fog Machine",
     "FoodPlatter": "Plate",
     "ForbiddenBlock": "Forbidden Block",
+    "FossilOre": "Fossil",
     "FrogCage": "Frog Cage",
     "FrozenSlimeBlock": "Frozen Slime Block",
     "Furnaces": "Furnace",
     "GardenGnome": "Garden Gnome",
+    "GemSaplings": "Sapling",
     "GeyserTrap": "Geyser",
     "Ghoulder": "Ghoulder",
     "GiantTiki": "Giant Tiki",
@@ -8552,6 +8613,7 @@
     "GreenStucco": "Green Stucco",
     "HallowedBrick": "Hallowed Brick",
     "HallowedIce": "Pink Ice Block",
+    "HangingLanterns": "Lantern",
     "HardenedSand": "Hardened Sand Block",
     "HarpyBlock": "Harpy Block",
     "HatRack": "Hat Rack",
@@ -8559,8 +8621,10 @@
     "HellButterflyJar": "Hell Butterfly Jar",
     "Hellforge": "Hellforge",
     "HellstoneBrick": "Hellstone Brick",
+    "HolidayLights": "Christmas Light",
     "HoneyBlock": "Honey Block",
     "HoneyDispenser": "Honey Dispenser",
+    "HoneyDrip": "Dripping Honey",
     "Honeyfall": "Honeyfall Block",
     "IceBlock": "Ice Block",
     "IceBrick": "Ice Brick",
@@ -8575,14 +8639,18 @@
     "Jackolanterns": "Jack 'O Lantern",
     "JellyfishBlock": "Jellyfish Block",
     "JuliaButterflyJar": "Julia Butterfly Jar",
+    "JungleThorns": "Thorn",
     "Kegs": "Keg",
     "KryptonMossBlock": "Krypton Moss Brick",
     "KryptonMossBrick": "Krypton Moss Brick",
     "LadybugCage": "Ladybug Cage",
     "Lampposts": "Lamp Post",
+    "Lamps": "Floor Lamp",
     "LandMine": "Land Mine",
+    "Larva": "Larva",
     "LavaBoulder": "Lava Boulder",
     "LavaCloud": "Lava Cloud",
+    "LavaDrip": "Dripping Lava",
     "LavaLamp": "Lava Lamp",
     "LavaMoss": "Lava Moss",
     "LavaMossBlock": "Lava Moss Brick",
@@ -8608,6 +8676,7 @@
     "LivingFrostFire": "Living Frost Fire Block",
     "LivingLoom": "Living Loom",
     "LivingUltrabrightFire": "Living Ultrabright Fire Block",
+    "LivingWood": "Living Wood",
     "Loom": "Loom",
     "LunarBlockNebula": "Nebula Fragment Block",
     "LunarBlockSolar": "Solar Fragment Block",
@@ -8623,8 +8692,10 @@
     "MarbleBlock": "Smooth Marble Block",
     "MarbleColumn": "Marble Column",
     "MartianConduitPlating": "Martian Conduit Plating",
+    "MasterTrophyBase": "Relic",
     "MeatGrinder": "Meat Grinder",
     "MercuryBrick": "Mercury Brick",
+    "MetalBars": "Metal Bar",
     "MeteoriteBrick": "Meteorite Brick",
     "MinecartTrack": "Minecart Track",
     "MonarchButterflyJar": "Monarch Butterfly Jar",
@@ -8635,19 +8706,26 @@
     "Mudstone": "Mudstone Brick",
     "MushroomBeam": "Mushroom Beam",
     "MushroomStatue": "Mushroom Statue",
+    "MushroomTrees": "Giant Mushroom",
     "Mythril": "Mythril Ore",
     "MythrilBrick": "Mythril Brick",
     "NebulaBrick": "Nebula Brick",
     "NoirMonolith": "Film Projector",
     "ObsidianBrick": "Obsidian Brick",
     "OfficeBlock": "Office Block",
+    "OpenDoor": "Door",
     "OrangeDragonflyJar": "Orange Dragonfly Jar",
     "Orichalcum": "Orichalcum Ore",
     "OutletPump": "Outlet Pump",
     "OwlCage": "Owl Cage",
     "PaintedArrowSign": "Painted Arrow Sign",
+    "Painting2X3": "Picture",
+    "Painting3X2": "Picture",
+    "Painting3X3": "Trophy",
+    "Painting6X4": "Painting",
     "Palladium": "Palladium Ore",
     "PalladiumColumn": "Palladium Column",
+    "PalmTree": "Palm Tree",
     "PalmWood": "Palm Wood",
     "PartyBundleOfBalloonTile": "Silly Tied Bundle of Balloons",
     "PartyMonolith": "Party Center",
@@ -8667,12 +8745,15 @@
     "PinkJellyfishBowl": "Pink Jellyfish Jar",
     "PinkSlimeBlock": "Pink Slime Block",
     "PixelBox": "Pixel Box",
+    "PlanteraBulb": "Plantera's Bulb",
     "PlasmaLamp": "Plasma Lamp",
     "Platinum": "Platinum Ore",
     "PlatinumBrick": "Platinum Brick",
     "PlatinumCandelabra": "Platinum Candelabra",
     "PlatinumCandle": "Platinum Candle",
     "PoopBlock": "Poo",
+    "Pots": "Pot",
+    "PotsEcho": "Pot",
     "PottedLavaPlantTendrils": "Potted Ember Tendrils",
     "Poulder": "Poo Boulder",
     "ProjectilePressurePad": "Teal Pressure Pad",
@@ -8704,12 +8785,14 @@
     "RubySquirrelCage": "Ruby Squirrel Cage",
     "Safes": "Safe",
     "Sand": "Sand Block",
+    "SandDrip": "Sand Flow",
     "SandFallBlock": "Sandfall Block",
     "SandStoneSlab": "Sandstone Slab",
     "Sandcastles": "Sandcastle Bucket",
     "Sandstone": "Sandstone Block",
     "SandstoneBrick": "Sandstone Brick",
     "SandstoneColumn": "Sandstone Column",
+    "Saplings": "Sapling",
     "Sapphire": "Sapphire Stone Block",
     "SapphireBunnyCage": "Sapphire Bunny Cage",
     "SapphireGemspark": "Sapphire Gemspark Block",
@@ -8742,6 +8825,7 @@
     "Silt": "Silt Block",
     "Silver": "Silver Ore",
     "SilverBrick": "Silver Brick",
+    "Sinks": "Sink",
     "SkullLanterns": "Skull Lantern",
     "SkyMill": "Sky Mill",
     "SliceOfCake": "Slice of Cake",
@@ -8766,6 +8850,7 @@
     "StarCloud": "Star Cloud",
     "StarRoyaleBrick": "Star Royale Brick",
     "StardustBrick": "Stardust Brick",
+    "Statues": "Statue",
     "SteampunkBoiler": "Steampunk Boiler",
     "StinkbugCage": "Stinkbug Cage",
     "StinkbugHousingBlocker": "Stinkbug Blocker",
@@ -8778,6 +8863,8 @@
     "Sunplate": "Sunplate Block",
     "Switches": "Switch",
     "TNTBarrel": "TNT Barrel",
+    "Tables": "Table",
+    "Tables2": "Table",
     "TargetDummy": "Target Dummy",
     "TatteredWoodSign": "Tattered Wood Sign",
     "TeaKettle": "Teapot",
@@ -8801,28 +8888,42 @@
     "TeamBlockYellowVariant": "Dull Yellow Team Block",
     "Teleporter": "Teleporter",
     "Thrones": "Throne",
+    "Timers": "Timer",
     "Tin": "Tin Ore",
     "TinBrick": "Tin Brick",
     "TinPlating": "Tin Plating",
     "TinkerersWorkbench": "Tinkerer's Workshop",
     "Titanium": "Titanium Ore",
     "Titanstone": "Titanstone Block",
+    "Toilets": "Toilet",
     "Topaz": "Topaz Stone Block",
     "TopazBunnyCage": "Topaz Bunny Cage",
     "TopazGemspark": "Topaz Gemspark Block",
     "TopazSquirrelCage": "Topaz Squirrel Cage",
     "ToucanCage": "Toucan Cage",
     "ToyBreakerBlock": "Toybreaker Brick",
+    "Traps": "Trap",
     "TrashCan": "Trash Can",
+    "TreeAmber": "Tree",
+    "TreeAmethyst": "Tree",
+    "TreeAsh": "Tree",
+    "TreeDiamond": "Tree",
+    "TreeEmerald": "Tree",
     "TreeNymphButterflyJar": "Tree Nymph Butterfly Jar",
+    "TreeRuby": "Tree",
+    "TreeSapphire": "Tree",
+    "TreeTopaz": "Tree",
+    "Trees": "Tree",
     "TruffleWormCage": "Truffle Worm Cage",
     "Tungsten": "Tungsten Ore",
     "TungstenBrick": "Tungsten Brick",
     "TurtleCage": "Turtle Cage",
     "TurtleJungleCage": "Jungle Turtle Cage",
     "UlyssesButterflyJar": "Ulysses Butterfly Jar",
+    "VanityTreeSakura": "Tree",
     "VanityTreeSakuraSaplings": "Sakura Sapling",
     "VanityTreeWillowSaplings": "Yellow Willow Sapling",
+    "VanityTreeYellowWillow": "Tree",
     "VineRope": "Vine Rope",
     "VioletMossBlock": "Neon Moss Brick",
     "VioletMossBrick": "Neon Moss Brick",
@@ -8835,6 +8936,8 @@
     "WarTableBanner": "War Table Banner",
     "WaterBlock": "Aquarium Block",
     "WaterCandle": "Water Candle",
+    "WaterDrip": "Dripping Water",
+    "WaterFountain": "Water Fountain",
     "WaterStriderCage": "Water Strider Cage",
     "Waterfall": "Waterfall Block",
     "WeaponsRack2": "Weapon Rack",

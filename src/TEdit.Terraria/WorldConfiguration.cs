@@ -39,6 +39,7 @@ public class WorldConfiguration
     public static MorphConfiguration MorphSettings { get; private set; }
     public static MorphConfiguration DestructiveMorphSettings { get; private set; }
     public static BackgroundStyleConfiguration BackgroundStyles => _store?.BackgroundStyles;
+    public static IReadOnlyList<AnglerQuestProperty> AnglerQuests => _store?.AnglerQuests ?? [];
 
     // Tracks what we actually applied (handy for UI / warnings).
     public static uint ActiveWorldVersion  { get; private set; }
@@ -71,6 +72,8 @@ public class WorldConfiguration
     private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
     private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
     private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
+    // Localized banner tally names for display (same keys as _tallynames, which stays English for report suffix-stripping).
+    private static readonly Dictionary<int, string> _tallyLocalizedNames = new Dictionary<int, string>();
     private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
     private static readonly Dictionary<int, ItemProperty> _armorHeadItems = new Dictionary<int, ItemProperty>();
     private static readonly Dictionary<int, ItemProperty> _foodItems = new Dictionary<int, ItemProperty>();
@@ -111,7 +114,7 @@ public class WorldConfiguration
     /// Initialize WorldConfiguration from embedded JSON resources via TerrariaDataStore.
     /// Safe to call multiple times.
     /// </summary>
-    public static void Initialize()
+    public static void Initialize(string? locale = null)
     {
         if (_initialized) return;
 
@@ -121,8 +124,8 @@ public class WorldConfiguration
 
             try
             {
-                // Load data from TerrariaDataStore with locale from current UI culture
-                var locale = Loaders.LocalizationLoader.GetLocaleFromCurrentCulture();
+                // Load data from TerrariaDataStore with locale from explicit parameter or current UI culture
+                locale ??= Loaders.LocalizationLoader.GetLocaleFromCurrentCulture();
                 _store = TerrariaDataStore.Initialize(locale: locale);
                 PopulateFromStore(_store);
 
@@ -215,7 +218,11 @@ public class WorldConfiguration
             _itemProperties.Add(item);
             _itemLookup[item.Id] = item;
 
-            if (item.Tally > 0) _tallynames[item.Tally] = item.Name;
+            if (item.Tally > 0)
+            {
+                _tallynames[item.Tally] = item.Name;
+                _tallyLocalizedNames[item.Tally] = item.LocalizedName;
+            }
             if (item.Head.HasValue) _armorHeadItems[item.Id] = item;
             if (item.Body.HasValue) _armorBodyItems[item.Id] = item;
             if (item.Legs.HasValue) _armorLegsItems[item.Id] = item;
@@ -244,6 +251,7 @@ public class WorldConfiguration
                     {
                         Id = frame.UV.Y / 18,
                         Name = frame.Name,
+                        LocalizedName = store.GetLocalizedSpriteStyle(frame.Name),
                         Color = frame.Color
                     });
                 }
@@ -284,6 +292,7 @@ public class WorldConfiguration
         _prefix.Clear();
         _itemLookup.Clear();
         _tallynames.Clear();
+        _tallyLocalizedNames.Clear();
         _frameNames.Clear();
         _armorHeadItems.Clear();
         _armorBodyItems.Clear();
@@ -650,6 +659,12 @@ public class WorldConfiguration
         get { return _tallynames; }
     }
 
+    /// <summary>Localized banner tally names for display (same keys as <see cref="TallyNames"/>, which stays English).</summary>
+    public static Dictionary<int, string> TallyLocalizedNames
+    {
+        get { return _tallyLocalizedNames; }
+    }
+
     public static Dictionary<string, string> FrameNames
     {
         get { return _frameNames; }
@@ -660,4 +675,13 @@ public class WorldConfiguration
     {
         return id + ":" + u + "," + v;
     }
+
+    /// <summary>Gets the localized display name for a tile frame style.</summary>
+    public static string GetLocalizedFrameName(TileProperty tile, FrameProperty frame) => _store?.GetLocalizedFrameName(tile, frame) ?? frame.ToString();
+
+    /// <summary>Gets the localized frame-anchor name (e.g. "左") from localization data.</summary>
+    public static string GetLocalizedAnchor(FrameAnchor anchor) => _store?.GetLocalizedAnchor(anchor) ?? anchor.ToString();
+
+    /// <summary>Resolves a supplemental sprite-style / biome-variant label from localization data, falling back to the key.</summary>
+    public static string GetLocalizedSpriteStyle(string name) => _store?.GetLocalizedSpriteStyle(name) ?? name;
 }
