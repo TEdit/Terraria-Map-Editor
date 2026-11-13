@@ -83,15 +83,17 @@ public class SpriteApi
         {
             foreach (var sheet in WorldConfiguration.Sprites2)
             {
-                // Match sheet name or style name
-                if (string.Equals(sheet.Name, name, StringComparison.OrdinalIgnoreCase))
+                // Match localized or original English name
+                if (string.Equals(sheet.LocalizedName, name, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(sheet.Name, name, StringComparison.OrdinalIgnoreCase))
                 {
                     sprite = sheet.Default;
                     break;
                 }
 
                 var match = sheet.Styles.FirstOrDefault(
-                    s => string.Equals(s.Name, name, StringComparison.OrdinalIgnoreCase));
+                    s => string.Equals(s.LocalizedName, name, StringComparison.OrdinalIgnoreCase)
+                         || string.Equals(s.Name, name, StringComparison.OrdinalIgnoreCase));
                 if (match != null)
                 {
                     sprite = match;
