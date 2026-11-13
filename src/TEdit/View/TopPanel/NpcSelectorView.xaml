@@ -8,6 +8,6 @@
              mc:Ignorable="d" >
     <StackPanel Orientation="Vertical">
         <TextBlock Text="{x:Static p:Language.tool_point_title}" Margin="2" />
-        <ComboBox Width="200" ItemsSource="{Binding Points}" SelectedItem="{Binding SelectedPoint, Mode=OneWayToSource}" />
+        <ComboBox Width="200" ItemsSource="{Binding Points}" DisplayMemberPath="Label" SelectedValuePath="Name" SelectedValue="{Binding SelectedPoint, Mode=OneWayToSource}" />
     </StackPanel>
 </UserControl>
