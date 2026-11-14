@@ -249,49 +249,6 @@
       <enum:EnumItem Value="72">72</enum:EnumItem>
       <enum:EnumItem Value="73">73</enum:EnumItem>
     </enum:EnumItemList>
-    <enum:EnumItemList x:Key="anglerQuestList" EnumType="{x:Type System:Int32}" SortBy="Value">
-      <enum:EnumItem Value="0">Batfish</enum:EnumItem>
-      <enum:EnumItem Value="1">Bumblebee Tuna</enum:EnumItem>
-      <enum:EnumItem Value="2">Catfish</enum:EnumItem>
-      <enum:EnumItem Value="3">Cloudfish</enum:EnumItem>
-      <enum:EnumItem Value="4">Cursedfish</enum:EnumItem>
-      <enum:EnumItem Value="5">Dirtfish</enum:EnumItem>
-      <enum:EnumItem Value="6">Dynamite Fish</enum:EnumItem>
-      <enum:EnumItem Value="7">Eater of Plankton</enum:EnumItem>
-      <enum:EnumItem Value="8">Fallen Starfish</enum:EnumItem>
-      <enum:EnumItem Value="9">The Fish of Cthulhu</enum:EnumItem>
-      <enum:EnumItem Value="10">Fishotron</enum:EnumItem>
-      <enum:EnumItem Value="11">Harpyfish</enum:EnumItem>
-      <enum:EnumItem Value="12">Hungerfish</enum:EnumItem>
-      <enum:EnumItem Value="13">Ichorfish</enum:EnumItem>
-      <enum:EnumItem Value="14">Jewelfish</enum:EnumItem>
-      <enum:EnumItem Value="15">Mirage Fish</enum:EnumItem>
-      <enum:EnumItem Value="16">Mutant Flinxfin</enum:EnumItem>
-      <enum:EnumItem Value="17">Pengfish</enum:EnumItem>
-      <enum:EnumItem Value="18">Pixiefish</enum:EnumItem>
-      <enum:EnumItem Value="19">Spiderfish</enum:EnumItem>
-      <enum:EnumItem Value="20">Tundra Trout</enum:EnumItem>
-      <enum:EnumItem Value="21">Unicorn Fish</enum:EnumItem>
-      <enum:EnumItem Value="22">Guide Voodoo Fish</enum:EnumItem>
-      <enum:EnumItem Value="23">Wyverntail</enum:EnumItem>
-      <enum:EnumItem Value="24">Zombie Fish</enum:EnumItem>
-      <enum:EnumItem Value="25">Amanitia Fungifin</enum:EnumItem>
-      <enum:EnumItem Value="26">Angelfish</enum:EnumItem>
-      <enum:EnumItem Value="27">Bloody Manowar</enum:EnumItem>
-      <enum:EnumItem Value="28">Bonefish</enum:EnumItem>
-      <enum:EnumItem Value="29">Bunnyfish</enum:EnumItem>
-      <enum:EnumItem Value="30">Cap'n Tunabeard</enum:EnumItem>
-      <enum:EnumItem Value="31">Clownfish</enum:EnumItem>
-      <enum:EnumItem Value="32">Demonic Hellfish</enum:EnumItem>
-      <enum:EnumItem Value="33">Derpfish</enum:EnumItem>
-      <enum:EnumItem Value="34">Fishron</enum:EnumItem>
-      <enum:EnumItem Value="35">Infected Scabbardfish</enum:EnumItem>
-      <enum:EnumItem Value="36">Mudfish</enum:EnumItem>
-      <enum:EnumItem Value="37">Slimefish</enum:EnumItem>
-      <enum:EnumItem Value="38">Tropical Barracuda</enum:EnumItem>
-      <enum:EnumItem Value="39">Scarab Fish</enum:EnumItem>
-      <enum:EnumItem Value="40">Scorpio Fish</enum:EnumItem>
-    </enum:EnumItemList>
 
     <converters:TerrariaTimeConverter x:Key="TerrariaTimeConverter" />
     <converters:ContinuousTimeSliderConverter x:Key="ContinuousTimeSliderConverter" />
@@ -785,7 +742,7 @@
     <TextBlock />
     <CheckBox IsChecked="{Binding CurrentWorld.SavedGolfer}" Content="{x:Static p:Language.tool_wp_npc_golfer}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
     <TextBlock Text="{x:Static p:Language.tool_wp_npc_angler_mission}" HorizontalAlignment="Right" />
-    <ComboBox Height="20" ItemsSource="{StaticResource anglerQuestList}" SelectedValue="{Binding CurrentWorld.AnglerQuest, Mode=TwoWay}" SelectedValuePath="Value" />
+    <ComboBox Height="20" ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.AnglerQuests}, Mode=OneTime}" SelectedValue="{Binding CurrentWorld.AnglerQuest, Mode=TwoWay}" SelectedValuePath="QuestId" DisplayMemberPath="LocalizedName" />
 
     <Separator Grid.ColumnSpan="2" />
     <TextBlock Text="{x:Static p:Language.tool_wp_npc_spawn_unlocked}" HorizontalAlignment="Right" TextWrapping="Wrap"/>

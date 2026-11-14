@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Data\*.json" />
-    <EmbeddedResource Include="Data\Localization\*.json" />
+    <EmbeddedResource Include="Data\Localization\*.json" WithCulture="false" />
     <EmbeddedResource Include="Data\TileOverrides\*.json" />
   </ItemGroup>
 

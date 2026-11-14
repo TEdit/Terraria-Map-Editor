@@ -3889,4 +3889,142 @@ Would you like to enable error reporting?</value>
   <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
     <value>Schematic has been saved.</value>
   </data>
+  <data name="bg_tree_oak" xml:space="preserve">
+    <value>Oak</value>
+  </data>
+  <data name="bg_tree_boreal" xml:space="preserve">
+    <value>Boreal</value>
+  </data>
+  <data name="bg_tree_jungle" xml:space="preserve">
+    <value>Jungle-like</value>
+  </data>
+  <data name="bg_tree_sakura" xml:space="preserve">
+    <value>Sakura</value>
+  </data>
+  <data name="bg_tree_willow" xml:space="preserve">
+    <value>Willow</value>
+  </data>
+  <data name="bg_tree_palm" xml:space="preserve">
+    <value>Palm-like</value>
+  </data>
+  <data name="bg_cave_stone" xml:space="preserve">
+    <value>Stone</value>
+  </data>
+  <data name="bg_cave_gray" xml:space="preserve">
+    <value>Gray</value>
+  </data>
+  <data name="bg_cave_brown" xml:space="preserve">
+    <value>Brown</value>
+  </data>
+  <data name="bg_cave_blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="bg_cave_blue_alt" xml:space="preserve">
+    <value>Blue Alt</value>
+  </data>
+  <data name="bg_cave_green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="bg_cave_green_alt" xml:space="preserve">
+    <value>Green Alt</value>
+  </data>
+  <data name="bg_cave_purple" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="bg_default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="bg_mountains_only" xml:space="preserve">
+    <value>Mountains Only</value>
+  </data>
+  <data name="bg_mountains_alt" xml:space="preserve">
+    <value>Mountains Alt</value>
+  </data>
+  <data name="bg_mountains_tree" xml:space="preserve">
+    <value>Mountains + Tree</value>
+  </data>
+  <data name="bg_mountains_only_a" xml:space="preserve">
+    <value>Mountains Only A</value>
+  </data>
+  <data name="bg_mountains_only_b" xml:space="preserve">
+    <value>Mountains Only B</value>
+  </data>
+  <data name="bg_mountains_only_c" xml:space="preserve">
+    <value>Mountains Only C</value>
+  </data>
+  <data name="bg_trees_only_a" xml:space="preserve">
+    <value>Trees Only A</value>
+  </data>
+  <data name="bg_trees_only_b" xml:space="preserve">
+    <value>Trees Only B</value>
+  </data>
+  <data name="bg_variant_alt_letter" xml:space="preserve">
+    <value>Variant {0} Alt {1}</value>
+  </data>
+  <data name="bg_variant_alt" xml:space="preserve">
+    <value>Variant {0} Alt</value>
+  </data>
+  <data name="bg_variant_format" xml:space="preserve">
+    <value>Variant {0}</value>
+  </data>
+  <data name="bg_remix_format" xml:space="preserve">
+    <value>Remix {0}</value>
+  </data>
+  <data name="bg_multibiome_format" xml:space="preserve">
+    <value>Multi-Biome {0}</value>
+  </data>
+  <data name="bg_mnt_default_trees" xml:space="preserve">
+    <value>Mnt {0} + Default Trees</value>
+  </data>
+  <data name="bg_mnt_trees" xml:space="preserve">
+    <value>Mnt {0} + Trees</value>
+  </data>
+  <data name="MorphBiome_GlowingMushroom" xml:space="preserve">
+    <value>Glowing Mushroom</value>
+  </data>
+  <data name="MorphBiome_Forest" xml:space="preserve">
+    <value>Forest</value>
+  </data>
+  <data name="MorphBiome_Snow" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="morph_moss_None" xml:space="preserve">
+    <value>None (Remove)</value>
+  </data>
+  <data name="morph_moss_Grass" xml:space="preserve">
+    <value>Grass</value>
+  </data>
+  <data name="morph_moss_Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="morph_moss_Yellow" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="morph_moss_Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="morph_moss_Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="morph_moss_Purple" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="morph_moss_Lava" xml:space="preserve">
+    <value>Lava</value>
+  </data>
+  <data name="morph_moss_Krypton" xml:space="preserve">
+    <value>Krypton</value>
+  </data>
+  <data name="morph_moss_Xenon" xml:space="preserve">
+    <value>Xenon</value>
+  </data>
+  <data name="morph_moss_Argon" xml:space="preserve">
+    <value>Argon</value>
+  </data>
+  <data name="morph_moss_Neon" xml:space="preserve">
+    <value>Neon</value>
+  </data>
+  <data name="morph_moss_Helium" xml:space="preserve">
+    <value>Helium</value>
+  </data>
 </root>

@@ -213,7 +213,7 @@
                                         Background="Transparent" BorderThickness="0"
                                         Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
                                 <TextBlock VerticalAlignment="Center">
-                                    <Run Text="{Binding Name, Mode=OneWay}"/>
+                                    <Run Text="{Binding LocalizedName, Mode=OneWay}"/>
                                     <Run Text="{Binding UvX, Mode=OneWay, StringFormat='  UV({0},'}" Foreground="Gray"/>
                                     <Run Text="{Binding UvY, Mode=OneWay, StringFormat='{}{0})'}" Foreground="Gray"/>
                                 </TextBlock>
@@ -270,8 +270,9 @@
 
                         <TextBlock Grid.Row="6" Grid.Column="0" Text="{x:Static p:Language.spriteeditor_anchor_label}" VerticalAlignment="Center" Margin="0,0,8,4"/>
                         <ComboBox Grid.Row="6" Grid.Column="1" Margin="0,0,0,4"
-                                  SelectedValue="{Binding Anchor}"
-                                  ItemsSource="{Binding Source={x:Static vm:SpriteSheetEditorViewModel.AnchorValues}}"/>
+                                  SelectedValue="{Binding Anchor}" SelectedValuePath="Value"
+                                  ItemsSource="{Binding Source={x:Static vm:SpriteSheetEditorViewModel.AnchorOptions}}"
+                                  DisplayMemberPath="Label"/>
                     </Grid>
                 </StackPanel>
 

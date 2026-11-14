@@ -147,8 +147,10 @@ public partial class TextStatuePlugin : BasePlugin
 
             foreach (var frame in sprite.Styles)
             {
-                char c = frame.Name[13]; // [13] - skips the first 13 chars of the string.
-                _textFrames[c] = frame;
+                // The glyph is the raw "Text Statue: X Statue" character from the English name.
+                var raw = frame.Name;
+                if (raw.Length > 13)
+                    _textFrames[raw[13]] = frame;
             }
         }
     }

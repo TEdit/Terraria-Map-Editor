@@ -51,6 +51,7 @@ public class SpriteSheet
 {
     public ushort Tile { get; set; }
     public string Name { get; set; }
+    public string LocalizedName { get; set; }
     public Vector2Short[] SizeTiles { get; set; }
     public Vector2Short SizePixelsRender { get; set; }
     public Vector2Short SizePixelsInterval { get; set; }
@@ -87,6 +88,7 @@ public partial class SpriteItem : ReactiveObject
     public Vector2Short SizePixelsInterval { get; set; }
     public FrameAnchor Anchor { get; set; }
     public string Name { get; set; }
+    public string LocalizedName { get; set; }
 
     /// <summary>
     /// Custom preview configuration (null = use standard UV-based preview).

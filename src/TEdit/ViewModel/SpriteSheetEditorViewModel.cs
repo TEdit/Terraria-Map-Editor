@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -28,6 +29,9 @@ public partial class EditableFrame : ReactiveObject
     [Reactive] private FrameAnchor _anchor = FrameAnchor.None;
     [Reactive] private bool _isSelected;
 
+    /// <summary>Localized display name for the frame (resolves base name / item / style). Not persisted.</summary>
+    public string LocalizedName { get; set; } = string.Empty;
+
     /// <summary>Pixel X position on texture.</summary>
     public int PixelX { get; set; }
     /// <summary>Pixel Y position on texture.</summary>
@@ -37,13 +41,14 @@ public partial class EditableFrame : ReactiveObject
     /// <summary>Pixel height on texture.</summary>
     public int PixelHeight { get; set; }
 
-    public static EditableFrame FromFrameProperty(FrameProperty fp, Vector2Short textureGrid, Vector2Short frameGap, Vector2Short defaultSize)
+    public static EditableFrame FromFrameProperty(FrameProperty fp, TileProperty tile, Vector2Short textureGrid, Vector2Short frameGap, Vector2Short defaultSize)
     {
         var size = (fp.Size.X > 0 && fp.Size.Y > 0) ? fp.Size : defaultSize;
         var ef = new EditableFrame
         {
             Name = fp.Name,
             Variety = fp.Variety,
+            LocalizedName = WorldConfiguration.GetLocalizedFrameName(tile, fp),
             UvX = fp.UV.X,
             UvY = fp.UV.Y,
             SizeX = size.X,
@@ -103,7 +108,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
     public WriteableBitmap? TileTexture { get; }
 
     /// <summary>Tile name displayed in title bar.</summary>
-    public string TileName => _tileProperty.Name;
+    public string TileName => _tileProperty.LocalizedName;
 
     /// <summary>Tile ID.</summary>
     public int TileId => _tileProperty.Id;
@@ -154,8 +159,11 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
         ZoomOutCommand = ReactiveCommand.Create(() => ZoomLevel = Math.Max(ZoomLevel / 1.5, 0.25));
     }
 
-    /// <summary>Available FrameAnchor values for ComboBox binding.</summary>
-    public static FrameAnchor[] AnchorValues { get; } = Enum.GetValues<FrameAnchor>();
+    /// <summary>Anchor choices with localized labels for the combo box.</summary>
+    public static IReadOnlyList<AnchorOption> AnchorOptions { get; } =
+        Enum.GetValues<FrameAnchor>()
+            .Select(a => new AnchorOption(a, WorldConfiguration.GetLocalizedAnchor(a)))
+            .ToArray();
 
     public ICommand SaveCommand { get; }
     public ICommand ResetCommand { get; }
@@ -208,7 +216,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
             var defaultSize = new Vector2Short(FrameSizeX, FrameSizeY);
             foreach (var fp in over.Frames)
             {
-                Frames.Add(EditableFrame.FromFrameProperty(fp, grid, gap, defaultSize));
+                Frames.Add(EditableFrame.FromFrameProperty(fp, _tileProperty, grid, gap, defaultSize));
             }
         }
     }
@@ -223,7 +231,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
             var defaultSize = new Vector2Short(FrameSizeX, FrameSizeY);
             foreach (var fp in _tileProperty.Frames)
             {
-                Frames.Add(EditableFrame.FromFrameProperty(fp, grid, gap, defaultSize));
+                Frames.Add(EditableFrame.FromFrameProperty(fp, _tileProperty, grid, gap, defaultSize));
             }
         }
         StatusText = $"Loaded {Frames.Count} frames from tile data";
@@ -242,7 +250,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
         {
             // For vanilla tiles, save under a "Vanilla" override file
             _configStore.SaveTile("Vanilla", _tileProperty.Name, over);
-            StatusText = $"Saved vanilla override for {_tileProperty.Name}";
+            StatusText = $"Saved vanilla override for {_tileProperty.LocalizedName}";
         }
 
         // Update in-memory TileProperty so RebuildSpriteForTile sees the new data
@@ -638,3 +646,6 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
         return null;
     }
 }
+
+/// <summary>Anchor value with its localized label, for combo box binding.</summary>
+public sealed record AnchorOption(FrameAnchor Value, string Label);

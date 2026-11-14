@@ -112,7 +112,7 @@ public class ChestApiTests
         ((int)items[0]["stack"]).ShouldBeGreaterThan(0);
 
         // Slot 2 is empty
-        items[2]["name"].ShouldBe("[empty]");
+        items[2]["name"].ShouldBe(string.Empty);
         items[2]["stack"].ShouldBe(0);
         items[2]["slot"].ShouldBe(2);
     }

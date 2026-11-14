@@ -57,7 +57,7 @@ public partial class PlayerItem : ReactiveObject
 
     private ItemProperty _currentItemProperty;
 
-    public string Name => _currentItemProperty?.Name ?? "[empty]";
+    public string Name => _currentItemProperty?.LocalizedName ?? string.Empty;
 
     public string PrefixName =>
         WorldConfiguration.ItemPrefix.Count > Prefix
