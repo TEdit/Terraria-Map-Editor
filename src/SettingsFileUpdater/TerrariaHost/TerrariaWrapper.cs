@@ -1150,7 +1150,6 @@ namespace SettingsFileUpdater.TerrariaHost
                 { 28, ("Brown", "BrownPaint", new TEditColor(255, 178, 125, 255)) },
                 { 29, ("Shadow", "ShadowPaint", new TEditColor(25, 25, 25, 255)) },
                 { 30, ("Negative", "NegativePaint", new TEditColor(255, 255, 255, 255)) },
-                { 31, ("Illuminant Paint", "GlowPaint", new TEditColor(255, 255, 255, 255)) },
             };
 
             foreach (var kvp in paintColors.OrderBy(x => x.Key))
