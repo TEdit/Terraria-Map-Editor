@@ -11285,5 +11285,274 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("plugin_pixelart_schematic_saved", resourceCulture);
             }
         }
+        /// <summary>
+        ///   Looks up a localized string similar to Oak.
+        /// </summary>
+        public static string bg_tree_oak {
+            get {
+                return ResourceManager.GetString("bg_tree_oak", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Boreal.
+        /// </summary>
+        public static string bg_tree_boreal {
+            get {
+                return ResourceManager.GetString("bg_tree_boreal", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Jungle-like.
+        /// </summary>
+        public static string bg_tree_jungle {
+            get {
+                return ResourceManager.GetString("bg_tree_jungle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Sakura.
+        /// </summary>
+        public static string bg_tree_sakura {
+            get {
+                return ResourceManager.GetString("bg_tree_sakura", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Willow.
+        /// </summary>
+        public static string bg_tree_willow {
+            get {
+                return ResourceManager.GetString("bg_tree_willow", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Palm-like.
+        /// </summary>
+        public static string bg_tree_palm {
+            get {
+                return ResourceManager.GetString("bg_tree_palm", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Stone.
+        /// </summary>
+        public static string bg_cave_stone {
+            get {
+                return ResourceManager.GetString("bg_cave_stone", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Gray.
+        /// </summary>
+        public static string bg_cave_gray {
+            get {
+                return ResourceManager.GetString("bg_cave_gray", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Brown.
+        /// </summary>
+        public static string bg_cave_brown {
+            get {
+                return ResourceManager.GetString("bg_cave_brown", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string bg_cave_blue {
+            get {
+                return ResourceManager.GetString("bg_cave_blue", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Blue Alt.
+        /// </summary>
+        public static string bg_cave_blue_alt {
+            get {
+                return ResourceManager.GetString("bg_cave_blue_alt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string bg_cave_green {
+            get {
+                return ResourceManager.GetString("bg_cave_green", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Green Alt.
+        /// </summary>
+        public static string bg_cave_green_alt {
+            get {
+                return ResourceManager.GetString("bg_cave_green_alt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Purple.
+        /// </summary>
+        public static string bg_cave_purple {
+            get {
+                return ResourceManager.GetString("bg_cave_purple", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string bg_default {
+            get {
+                return ResourceManager.GetString("bg_default", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mountains Only.
+        /// </summary>
+        public static string bg_mountains_only {
+            get {
+                return ResourceManager.GetString("bg_mountains_only", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mountains Alt.
+        /// </summary>
+        public static string bg_mountains_alt {
+            get {
+                return ResourceManager.GetString("bg_mountains_alt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mountains + Tree.
+        /// </summary>
+        public static string bg_mountains_tree {
+            get {
+                return ResourceManager.GetString("bg_mountains_tree", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mountains Only A.
+        /// </summary>
+        public static string bg_mountains_only_a {
+            get {
+                return ResourceManager.GetString("bg_mountains_only_a", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mountains Only B.
+        /// </summary>
+        public static string bg_mountains_only_b {
+            get {
+                return ResourceManager.GetString("bg_mountains_only_b", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mountains Only C.
+        /// </summary>
+        public static string bg_mountains_only_c {
+            get {
+                return ResourceManager.GetString("bg_mountains_only_c", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Trees Only A.
+        /// </summary>
+        public static string bg_trees_only_a {
+            get {
+                return ResourceManager.GetString("bg_trees_only_a", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Trees Only B.
+        /// </summary>
+        public static string bg_trees_only_b {
+            get {
+                return ResourceManager.GetString("bg_trees_only_b", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Variant {0} Alt {1}.
+        /// </summary>
+        public static string bg_variant_alt_letter {
+            get {
+                return ResourceManager.GetString("bg_variant_alt_letter", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Variant {0} Alt.
+        /// </summary>
+        public static string bg_variant_alt {
+            get {
+                return ResourceManager.GetString("bg_variant_alt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Variant {0}.
+        /// </summary>
+        public static string bg_variant_format {
+            get {
+                return ResourceManager.GetString("bg_variant_format", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Remix {0}.
+        /// </summary>
+        public static string bg_remix_format {
+            get {
+                return ResourceManager.GetString("bg_remix_format", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Multi-Biome {0}.
+        /// </summary>
+        public static string bg_multibiome_format {
+            get {
+                return ResourceManager.GetString("bg_multibiome_format", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mnt {0} + Default Trees.
+        /// </summary>
+        public static string bg_mnt_default_trees {
+            get {
+                return ResourceManager.GetString("bg_mnt_default_trees", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mnt {0} + Trees.
+        /// </summary>
+        public static string bg_mnt_trees {
+            get {
+                return ResourceManager.GetString("bg_mnt_trees", resourceCulture);
+            }
+        }
     }
 }

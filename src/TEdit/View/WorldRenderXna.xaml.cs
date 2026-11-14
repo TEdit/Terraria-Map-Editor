@@ -2504,7 +2504,7 @@ public partial class WorldRenderXna : UserControl
                         _wvm.TreeStylePreviews.Add(new StylePreviewItem
                         {
                             Value = bg.Id,
-                            DisplayName = bg.Name,
+                            DisplayName = TEdit.Helper.BackgroundNameLocalizer.Get(bg.Name),
                             Preview = preview
                         });
                     }
@@ -2559,7 +2559,7 @@ public partial class WorldRenderXna : UserControl
                 collection.Add(new StylePreviewItem
                 {
                     Value = bg.Id,
-                    DisplayName = bg.Name,
+                    DisplayName = TEdit.Helper.BackgroundNameLocalizer.Get(bg.Name),
                     Preview = preview
                 });
             }
@@ -2586,7 +2586,7 @@ public partial class WorldRenderXna : UserControl
                 _wvm.UnderworldBgPreviews.Add(new StylePreviewItem
                 {
                     Value = bg.Id,
-                    DisplayName = bg.Name,
+                    DisplayName = TEdit.Helper.BackgroundNameLocalizer.Get(bg.Name),
                     Preview = CreateScaledPreview(texIndex, tex, 128)
                 });
             }
@@ -2613,7 +2613,7 @@ public partial class WorldRenderXna : UserControl
                 collection.Add(new StylePreviewItem
                 {
                     Value = bg.Id,
-                    DisplayName = bg.Name,
+                    DisplayName = TEdit.Helper.BackgroundNameLocalizer.Get(bg.Name),
                     Preview = preview,
                     TreeTopPreview = treeTopIdx >= 0 ? CreateTreeTopFramePreview(treeTopIdx) : null
                 });
