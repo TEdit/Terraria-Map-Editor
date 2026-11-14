@@ -1,3 +1,4 @@
+using System.Globalization;
 using ReactiveUI;
 using TEdit.ViewModel;
 
@@ -16,7 +17,7 @@ public abstract class BasePlugin : ReactiveObject, IPlugin
 
     public string Title => string.IsNullOrEmpty(TitleKey)
         ? Name
-        : Properties.Language.ResourceManager.GetString(TitleKey) ?? Name;
+        : Properties.Language.ResourceManager.GetString(TitleKey, CultureInfo.CurrentUICulture) ?? Name;
 
     protected string TitleKey { get; set; }
 

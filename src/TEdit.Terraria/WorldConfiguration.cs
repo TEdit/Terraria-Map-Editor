@@ -59,7 +59,7 @@ public class WorldConfiguration
     {
         get
         {
-            var dict = new Dictionary<string, int> { ["None (Remove)"] = -1, ["Grass"] = 2 };
+            var dict = new Dictionary<string, int> { ["None"] = -1, ["Grass"] = 2 };
             foreach (var kvp in MorphSettings.MossTypes)
                 dict[kvp.Key] = kvp.Value;
             return dict;

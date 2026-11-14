@@ -36,6 +36,14 @@ public class BackgroundStyle
     [JsonPropertyOrder(1)]
     public string Name { get; set; } = "";
 
+    /// <summary>Localization resource key for the display name.</summary>
+    [JsonPropertyOrder(2)]
+    public string? Key { get; set; }
+
+    /// <summary>Arguments for format-string keys (e.g. "Variant {0}").</summary>
+    [JsonPropertyOrder(3)]
+    public string[]? Args { get; set; }
+
     /// <summary>Primary texture indices.</summary>
     public int[]? Textures { get; set; }
 

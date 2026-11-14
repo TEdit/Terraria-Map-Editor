@@ -3979,4 +3979,52 @@ Would you like to enable error reporting?</value>
   <data name="bg_mnt_trees" xml:space="preserve">
     <value>Mnt {0} + Trees</value>
   </data>
+  <data name="MorphBiome_GlowingMushroom" xml:space="preserve">
+    <value>Glowing Mushroom</value>
+  </data>
+  <data name="MorphBiome_Forest" xml:space="preserve">
+    <value>Forest</value>
+  </data>
+  <data name="MorphBiome_Snow" xml:space="preserve">
+    <value>Snow</value>
+  </data>
+  <data name="morph_moss_None" xml:space="preserve">
+    <value>None (Remove)</value>
+  </data>
+  <data name="morph_moss_Grass" xml:space="preserve">
+    <value>Grass</value>
+  </data>
+  <data name="morph_moss_Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="morph_moss_Yellow" xml:space="preserve">
+    <value>Yellow</value>
+  </data>
+  <data name="morph_moss_Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="morph_moss_Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="morph_moss_Purple" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="morph_moss_Lava" xml:space="preserve">
+    <value>Lava</value>
+  </data>
+  <data name="morph_moss_Krypton" xml:space="preserve">
+    <value>Krypton</value>
+  </data>
+  <data name="morph_moss_Xenon" xml:space="preserve">
+    <value>Xenon</value>
+  </data>
+  <data name="morph_moss_Argon" xml:space="preserve">
+    <value>Argon</value>
+  </data>
+  <data name="morph_moss_Neon" xml:space="preserve">
+    <value>Neon</value>
+  </data>
+  <data name="morph_moss_Helium" xml:space="preserve">
+    <value>Helium</value>
+  </data>
 </root>
