@@ -56,7 +56,7 @@ public partial class ImageToPixelartEditorView : FluentWindow
             using var saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             saveFileDialog.Filter = "PNG Image|*.png|JPEG Image|*.jpg|Bitmap Image|*.bmp";
-            saveFileDialog.Title = "Save Generated Pixelart";
+            saveFileDialog.Title = Properties.Language.dialog_save_pixelart;
             saveFileDialog.FileName = "ImageOut";
 
             if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -75,7 +75,7 @@ public partial class ImageToPixelartEditorView : FluentWindow
             var sfd = new System.Windows.Forms.SaveFileDialog
             {
                 Filter = "TEdit Schematic File|*.TEditSch",
-                Title = "Export Schematic File",
+                Title = Properties.Language.dialog_export_schematic,
                 InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics")
             };
 

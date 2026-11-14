@@ -225,7 +225,15 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
 
     public string CloudLabel => IsCloudSave ? $"☁ User {CloudUserId}" : "";
 
-    public string DimensionText => IsMissing ? "" : IsLoaded ? $"{TilesWide}x{TilesHigh} - {SizeCategory}" : "";
+    public string LocalizedSizeCategory => SizeCategory switch
+    {
+        "Small" => Properties.Language.world_size_small,
+        "Medium" => Properties.Language.world_size_medium,
+        "Large" => Properties.Language.world_size_large,
+        _ => Properties.Language.world_size_custom
+    };
+
+    public string DimensionText => IsMissing ? "" : IsLoaded ? $"{TilesWide}x{TilesHigh} - {LocalizedSizeCategory}" : "";
     public string VersionText => IsMissing ? "" : IsLoaded ? TerrariaVersionText ?? $"v{Version}" : "";
     public string SizeText => IsMissing ? "" : FileMaintenance.FormatFileSize(FileSizeBytes);
 
@@ -233,12 +241,12 @@ public partial class WorldEntryViewModel : IComparable<WorldEntryViewModel>
     {
         get
         {
-            if (IsMissing) return "[Missing]";
+            if (IsMissing) return Properties.Language.world_explorer_modified_missing;
             var elapsed = DateTime.UtcNow - LastModified;
-            if (elapsed.TotalMinutes < 1) return "just now";
-            if (elapsed.TotalHours < 1) return $"{(int)elapsed.TotalMinutes}m ago";
-            if (elapsed.TotalDays < 1) return $"{(int)elapsed.TotalHours}h ago";
-            if (elapsed.TotalDays < 30) return $"{(int)elapsed.TotalDays}d ago";
+            if (elapsed.TotalMinutes < 1) return Properties.Language.world_explorer_modified_just_now;
+            if (elapsed.TotalHours < 1) return string.Format(Properties.Language.world_explorer_modified_minutes_ago, (int)elapsed.TotalMinutes);
+            if (elapsed.TotalDays < 1) return string.Format(Properties.Language.world_explorer_modified_hours_ago, (int)elapsed.TotalHours);
+            if (elapsed.TotalDays < 30) return string.Format(Properties.Language.world_explorer_modified_days_ago, (int)elapsed.TotalDays);
             return LastModified.ToLocalTime().ToString("yyyy-MM-dd");
         }
     }

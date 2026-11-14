@@ -63,65 +63,65 @@
       </StackPanel>
     </DataTemplate>
     <enum:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-      <enum:EnumItem Value="0">None</enum:EnumItem>
-      <enum:EnumItem Value="1">Goblin Invasion</enum:EnumItem>
-      <enum:EnumItem Value="2">Frost Legion</enum:EnumItem>
-      <enum:EnumItem Value="3">Pirate Invasion</enum:EnumItem>
-      <enum:EnumItem Value="4">Martian Madness</enum:EnumItem>
+      <enum:EnumItem Value="0" DisplayValue="{x:Static p:Language.common_none}" />
+      <enum:EnumItem Value="1" DisplayValue="{x:Static p:Language.world_invasion_goblin}" />
+      <enum:EnumItem Value="2" DisplayValue="{x:Static p:Language.tool_wp_invasion_frostlegion}" />
+      <enum:EnumItem Value="3" DisplayValue="{x:Static p:Language.tool_wp_invasion_pirateinvasion}" />
+      <enum:EnumItem Value="4" DisplayValue="{x:Static p:Language.tool_wp_invasion_martianmadness}" />
     </enum:EnumItemList>
     <enum:EnumItemList x:Key="moonTypeList" EnumType="{x:Type System:Byte}" SortBy="Value" >
-      <enum:EnumItem Value="0">Grey</enum:EnumItem>
-      <enum:EnumItem Value="1">Brown</enum:EnumItem>
-      <enum:EnumItem Value="2">Ringed</enum:EnumItem>
-      <enum:EnumItem Value="3">Blue Marble</enum:EnumItem>
-      <enum:EnumItem Value="4">White Ice</enum:EnumItem>
-      <enum:EnumItem Value="5">Green Gas</enum:EnumItem>
-      <enum:EnumItem Value="6">Pink</enum:EnumItem>
-      <enum:EnumItem Value="7">Orange Venus</enum:EnumItem>
-      <enum:EnumItem Value="8">Triple Purple</enum:EnumItem>
+      <enum:EnumItem Value="0" DisplayValue="{x:Static p:Language.world_moon_grey}" />
+      <enum:EnumItem Value="1" DisplayValue="{x:Static p:Language.world_moon_brown}" />
+      <enum:EnumItem Value="2" DisplayValue="{x:Static p:Language.world_moon_ringed}" />
+      <enum:EnumItem Value="3" DisplayValue="{x:Static p:Language.world_moon_blue_marble}" />
+      <enum:EnumItem Value="4" DisplayValue="{x:Static p:Language.world_moon_white_ice}" />
+      <enum:EnumItem Value="5" DisplayValue="{x:Static p:Language.world_moon_green_gas}" />
+      <enum:EnumItem Value="6" DisplayValue="{x:Static p:Language.world_moon_pink}" />
+      <enum:EnumItem Value="7" DisplayValue="{x:Static p:Language.world_moon_orange_venus}" />
+      <enum:EnumItem Value="8" DisplayValue="{x:Static p:Language.world_moon_triple_purple}" />
     </enum:EnumItemList>
     <enum:EnumItemList x:Key="gameModeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-      <enum:EnumItem Value="3">Journey</enum:EnumItem>
-      <enum:EnumItem Value="0">Classic</enum:EnumItem>
-      <enum:EnumItem Value="1">Expert</enum:EnumItem>
-      <enum:EnumItem Value="2">Master</enum:EnumItem>
+      <enum:EnumItem Value="3" DisplayValue="{x:Static p:Language.player_difficulty_journey}" />
+      <enum:EnumItem Value="0" DisplayValue="{x:Static p:Language.player_difficulty_classic}" />
+      <enum:EnumItem Value="1" DisplayValue="{x:Static p:Language.world_gamemode_expert}" />
+      <enum:EnumItem Value="2" DisplayValue="{x:Static p:Language.world_gamemode_master}" />
       <!--<enum:EnumItem Value="4">Legendary</enum:EnumItem>-->
     </enum:EnumItemList>
     <enum:EnumItemList x:Key="oreTierCobaltList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-      <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-      <enum:EnumItem Value="107">Cobalt</enum:EnumItem>
-      <enum:EnumItem Value="221">Palladium</enum:EnumItem>
+      <enum:EnumItem Value="-1" DisplayValue="{x:Static p:Language.common_not_determined}" />
+      <enum:EnumItem Value="107" DisplayValue="{x:Static p:Language.plugin_ore_cobalt}" />
+      <enum:EnumItem Value="221" DisplayValue="{x:Static p:Language.plugin_ore_palladium}" />
     </enum:EnumItemList>
     <enum:EnumItemList x:Key="oreTierMythrilList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-      <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-      <enum:EnumItem Value="108">Mythril</enum:EnumItem>
-      <enum:EnumItem Value="222">Orichalcum</enum:EnumItem>
+      <enum:EnumItem Value="-1" DisplayValue="{x:Static p:Language.common_not_determined}" />
+      <enum:EnumItem Value="108" DisplayValue="{x:Static p:Language.plugin_ore_mythril}" />
+      <enum:EnumItem Value="222" DisplayValue="{x:Static p:Language.plugin_ore_orichalcum}" />
     </enum:EnumItemList>
 
     <enum:EnumItemList x:Key="oreTierAdamantiteList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-      <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-      <enum:EnumItem Value="111">Adamantite</enum:EnumItem>
-      <enum:EnumItem Value="223">Titanium</enum:EnumItem>
+      <enum:EnumItem Value="-1" DisplayValue="{x:Static p:Language.common_not_determined}" />
+      <enum:EnumItem Value="111" DisplayValue="{x:Static p:Language.plugin_ore_adamantite}" />
+      <enum:EnumItem Value="223" DisplayValue="{x:Static p:Language.plugin_ore_titanium}" />
     </enum:EnumItemList>
     <enum:EnumItemList x:Key="oreTierCopperList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-      <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-      <enum:EnumItem Value="7">Copper</enum:EnumItem>
-      <enum:EnumItem Value="166">Tin</enum:EnumItem>
+      <enum:EnumItem Value="-1" DisplayValue="{x:Static p:Language.common_not_determined}" />
+      <enum:EnumItem Value="7" DisplayValue="{x:Static p:Language.plugin_ore_copper}" />
+      <enum:EnumItem Value="166" DisplayValue="{x:Static p:Language.plugin_ore_tin}" />
     </enum:EnumItemList>
     <enum:EnumItemList x:Key="oreTierIronList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-      <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-      <enum:EnumItem Value="6">Iron</enum:EnumItem>
-      <enum:EnumItem Value="167">Lead</enum:EnumItem>
+      <enum:EnumItem Value="-1" DisplayValue="{x:Static p:Language.common_not_determined}" />
+      <enum:EnumItem Value="6" DisplayValue="{x:Static p:Language.plugin_ore_iron}" />
+      <enum:EnumItem Value="167" DisplayValue="{x:Static p:Language.plugin_ore_lead}" />
     </enum:EnumItemList>
     <enum:EnumItemList x:Key="oreTierSilverList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-      <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-      <enum:EnumItem Value="9">Silver</enum:EnumItem>
-      <enum:EnumItem Value="168">Tungsten</enum:EnumItem>
+      <enum:EnumItem Value="-1" DisplayValue="{x:Static p:Language.common_not_determined}" />
+      <enum:EnumItem Value="9" DisplayValue="{x:Static p:Language.plugin_ore_silver}" />
+      <enum:EnumItem Value="168" DisplayValue="{x:Static p:Language.plugin_ore_tungsten}" />
     </enum:EnumItemList>
     <enum:EnumItemList x:Key="oreTierGoldList" EnumType="{x:Type System:Int32}" SortBy="Value" >
-      <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
-      <enum:EnumItem Value="8">Gold</enum:EnumItem>
-      <enum:EnumItem Value="169">Platinum</enum:EnumItem>
+      <enum:EnumItem Value="-1" DisplayValue="{x:Static p:Language.common_not_determined}" />
+      <enum:EnumItem Value="8" DisplayValue="{x:Static p:Language.plugin_ore_gold}" />
+      <enum:EnumItem Value="169" DisplayValue="{x:Static p:Language.plugin_ore_platinum}" />
     </enum:EnumItemList>
     <enum:EnumItemList x:Key="TreeStyleList" EnumType="{x:Type System:Byte}" SortBy="Value" >
       <enum:EnumItem Value="0">0</enum:EnumItem>
@@ -361,10 +361,10 @@
       <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
     <Style TargetType="{x:Type CheckBox}" x:Key="Boss2" BasedOn="{StaticResource {x:Type CheckBox}}">
-      <Setter Property="Content" Value="Eater of Worlds" />
+      <Setter Property="Content" Value="{x:Static p:Language.tool_wp_boss_eaterofworlds}" />
       <Style.Triggers>
         <DataTrigger Binding="{Binding CurrentWorld.IsCrimson}" Value="True">
-          <Setter Property="Content" Value="Brain of Cthulhu" />
+          <Setter Property="Content" Value="{x:Static p:Language.tool_wp_boss_brainofcthulhu}" />
         </DataTrigger>
       </Style.Triggers>
     </Style>

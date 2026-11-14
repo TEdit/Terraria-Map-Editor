@@ -83,15 +83,15 @@ public partial class WorldViewModel
         bool addBorders = false;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
-            "Crop World?",
-            "This will generate a new world within the selected region.\nAll progress outside of the cropped zone will be lost. Continue?");
+            Properties.Language.dialog_crop_world_title,
+            Properties.Language.dialog_crop_world_prompt);
 
         if (!confirm)
             return;
 
         addBorders = await App.DialogService.ShowConfirmationAsync(
-            "Crop World:",
-            "Add \"edge of world\" boundaries?");
+            Properties.Language.dialog_crop_world_borders_title,
+            Properties.Language.dialog_crop_world_borders_prompt);
 
         // Create clipboard
         //_clipboard.Buffer = _clipboard.GetSelectionBuffer();
@@ -246,7 +246,7 @@ public partial class WorldViewModel
             for (int y = 0; y < w.TilesHigh; y++)
             {
                 int percent = Calc.ProgressPercentage(y, w.TilesHigh);
-                progress?.Report(new ProgressChangedEventArgs(percent, "Cloning World..."));
+                progress?.Report(new ProgressChangedEventArgs(percent, Properties.Language.progress_cloning_world));
 
                 // Generate no extra tiles.
                 for (int x = 0; x < w.TilesWide; x++)
@@ -363,7 +363,7 @@ public partial class WorldViewModel
 
         _loadTimer.Stop();
         OnProgressChanged(this, new ProgressChangedEventArgs(0,
-             $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
+             string.Format(Properties.Language.progress_world_loaded_in_seconds, _loadTimer.Elapsed.TotalSeconds)));
         _saveTimer.Start();
     }
 
@@ -432,7 +432,7 @@ public partial class WorldViewModel
                     for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                     {
                         Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
-                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), Properties.Language.progress_calculating_colors));
                         for (int x = 0; x < CurrentWorld.TilesWide; x++)
                         {
                             PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
@@ -441,7 +441,7 @@ public partial class WorldViewModel
                 }
 
                 BuffTileCache.RebuildFromWorld(CurrentWorld);
-                OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+                OnProgressChanged(this, new ProgressChangedEventArgs(100, Properties.Language.progress_render_complete));
             });
     }
     // Renders the PixelMap with Hide filter support. Darken is handled by the overlay.
@@ -455,7 +455,7 @@ public partial class WorldViewModel
                     for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                     {
                         Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
-                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), Properties.Language.progress_calculating_colors));
                         for (int x = 0; x < CurrentWorld.TilesWide; x++)
                         {
                             bool showWalls      = _showWalls;
@@ -507,7 +507,7 @@ public partial class WorldViewModel
                 }
 
                 BuffTileCache.RebuildFromWorld(CurrentWorld);
-                OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+                OnProgressChanged(this, new ProgressChangedEventArgs(100, Properties.Language.progress_render_complete));
             });
     }
 
@@ -644,7 +644,7 @@ public partial class WorldViewModel
                 for (int y = bounded.Top; y < bounded.Bottom; y++)
                 {
                     Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
-                    OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                    OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), Properties.Language.progress_calculating_colors));
                     for (int x = bounded.Left; x < bounded.Right; x++)
                     {
                         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
@@ -652,7 +652,7 @@ public partial class WorldViewModel
                     }
                 }
             }
-            OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+            OnProgressChanged(this, new ProgressChangedEventArgs(100, Properties.Language.progress_render_complete));
         }));
     }
 
@@ -673,7 +673,7 @@ public partial class WorldViewModel
             for (int y = 0; y < CurrentWorld.TilesHigh; y++)
             {
                 Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
-                OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), Properties.Language.progress_calculating_colors));
                 for (int x = 0; x < CurrentWorld.TilesWide; x++)
                 {
                     if (y > CurrentWorld.TilesHigh || x > CurrentWorld.TilesWide)
@@ -685,7 +685,7 @@ public partial class WorldViewModel
         }
 
         BuffTileCache.RebuildFromWorld(CurrentWorld);
-        OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
+        OnProgressChanged(this, new ProgressChangedEventArgs(100, Properties.Language.progress_render_complete));
         return pixels;
     }
 

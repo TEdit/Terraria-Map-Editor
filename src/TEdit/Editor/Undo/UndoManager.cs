@@ -43,8 +43,8 @@ public partial class UndoManager : ReactiveObject, IUndoManager
         {
             ErrorLogging.LogWarn("Unable to create undo temp folder.");
             ErrorLogging.LogException(ex);
-            System.Windows.Forms.MessageBox.Show($"Unable to create undo temp folder. Application will exit.\r\n{Dir}\r\n{ex.Message}",
-                "Unable to create undo folder.", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            System.Windows.Forms.MessageBox.Show(string.Format(Properties.Language.error_undo_folder_exit, Dir, ex.Message),
+                Properties.Language.error_undo_folder_title, System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             App.Current.Shutdown();
         }
 

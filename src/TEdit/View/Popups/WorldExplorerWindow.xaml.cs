@@ -51,7 +51,7 @@ public partial class WorldExplorerWindow : FluentWindow
         var ofd = new OpenFileDialog
         {
             Filter = "Terraria World File|*.wld|TEdit Backup|*.TEdit|Terraria Backup|*.bak|All Files|*.*",
-            Title = "Open World File",
+            Title = Properties.Language.dialog_open_world_file,
             InitialDirectory = DependencyChecker.PathToWorlds
         };
 
@@ -180,10 +180,10 @@ public partial class WorldExplorerWindow : FluentWindow
         {
             var messageBox = new MessageBox
             {
-                Title = "Confirm Delete",
-                Content = $"Delete backup?\n{backup.DisplayText}",
-                PrimaryButtonText = "Delete",
-                CloseButtonText = "Cancel",
+                Title = Properties.Language.dialog_confirm_delete_title,
+                Content = string.Format(Properties.Language.dialog_delete_backup_prompt, backup.DisplayText),
+                PrimaryButtonText = Properties.Language.common_delete,
+                CloseButtonText = Properties.Language.common_cancel,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
                 Owner = this
             };
@@ -206,12 +206,10 @@ public partial class WorldExplorerWindow : FluentWindow
         var stats = FileMaintenance.GetTEditCacheStats();
         var messageBox = new MessageBox
         {
-            Title = "Clear TEdit Cache",
-            Content = $"Delete {stats.FileCount:N0} cached files ({FileMaintenance.FormatFileSize(stats.Bytes)})?\n\n" +
-                      "This removes TEdit backups, autosaves, and all undo/redo history. " +
-                      "Terraria world files and .bak files are not affected.",
-            PrimaryButtonText = "Clear Cache",
-            CloseButtonText = "Cancel",
+            Title = Properties.Language.dialog_clear_cache_title,
+            Content = string.Format(Properties.Language.dialog_clear_cache_prompt, stats.FileCount, FileMaintenance.FormatFileSize(stats.Bytes)),
+            PrimaryButtonText = Properties.Language.dialog_clear_cache_button,
+            CloseButtonText = Properties.Language.common_cancel,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Owner = this
         };
@@ -224,13 +222,12 @@ public partial class WorldExplorerWindow : FluentWindow
 
         var resultBox = new MessageBox
         {
-            Title = "Cache Cleared",
-            Content = $"Deleted {result.DeletedFileCount:N0} files and freed " +
-                      $"{FileMaintenance.FormatFileSize(result.FreedBytes)}." +
+            Title = Properties.Language.dialog_cache_cleared_title,
+            Content = string.Format(Properties.Language.dialog_cache_cleared_result, result.DeletedFileCount, FileMaintenance.FormatFileSize(result.FreedBytes)) +
                       (result.FailedFileCount > 0
-                          ? $"\n\n{result.FailedFileCount:N0} files could not be deleted; see the log for details."
+                          ? "\n\n" + string.Format(Properties.Language.dialog_cache_cleared_failed, result.FailedFileCount)
                           : string.Empty),
-            PrimaryButtonText = "OK",
+            PrimaryButtonText = Properties.Language.common_ok,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,
             Owner = this
         };

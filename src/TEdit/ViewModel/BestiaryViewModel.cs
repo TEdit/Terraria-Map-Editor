@@ -246,8 +246,8 @@ public partial class BestiaryViewModel : ReactiveObject
         if (_wvm.CurrentWorld == null) { return; }
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
-            "Complete Bestiary?",
-            "This will completely replace your currently loaded world Bestiary and Kill Tally with a completed bestiary. Continue?");
+            Properties.Language.dialog_complete_bestiary_title,
+            Properties.Language.dialog_complete_bestiary_prompt);
 
         if (!confirm)
             return;
@@ -284,7 +284,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
             ErrorLogging.LogException(ex);
-            await App.DialogService.ShowExceptionAsync($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
+            await App.DialogService.ShowExceptionAsync(string.Format(Properties.Language.dialog_complete_bestiary_error, ex.Message));
         }
     }
 
@@ -294,8 +294,8 @@ public partial class BestiaryViewModel : ReactiveObject
         if (_wvm.CurrentWorld == null) { return; }
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
-            "Reset Bestiary?",
-            "This will completely replace your currently loaded world Bestiary and Kill Tally with a reset bestiary. Continue?");
+            Properties.Language.dialog_reset_bestiary_title,
+            Properties.Language.dialog_reset_bestiary_prompt);
 
         if (!confirm)
             return;
@@ -317,7 +317,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
             ErrorLogging.LogException(ex);
-            await App.DialogService.ShowExceptionAsync($"Error resetting Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
+            await App.DialogService.ShowExceptionAsync(string.Format(Properties.Language.dialog_reset_bestiary_error, ex.Message));
         }
     }
 
@@ -330,8 +330,8 @@ public partial class BestiaryViewModel : ReactiveObject
         if (_wvm.CurrentWorld == null) { return; }
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
-            "Save Bestiary?",
-            "Are you sure you wish to save Bestiary changes?");
+            Properties.Language.dialog_save_bestiary_title,
+            Properties.Language.dialog_save_bestiary_prompt);
 
         if (!confirm)
             return;
@@ -359,7 +359,7 @@ public partial class BestiaryViewModel : ReactiveObject
             _wvm.CurrentWorld.KilledMobs.Clear();
             _wvm.CurrentWorld.KilledMobs.AddRange(killTally);
             ErrorLogging.LogException(ex);
-            await App.DialogService.ShowExceptionAsync($"Error saving Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
+            await App.DialogService.ShowExceptionAsync(string.Format(Properties.Language.dialog_save_bestiary_error, ex.Message));
         }
     }
 }
