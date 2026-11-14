@@ -287,7 +287,7 @@
     <value>应用</value>
   </data>
   <data name="common_both" xml:space="preserve">
-    <value>两者都有</value>
+    <value>两者</value>
   </data>
   <data name="common_browse" xml:space="preserve">
     <value>浏览...</value>
@@ -1570,13 +1570,13 @@
     <value>添加</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
-    <value>点击 [...] 导入模板蓝图</value>
+    <value>点击 [...] 导入模板结构图</value>
   </data>
   <data name="plugin_housegen_preview" xml:space="preserve">
     <value>预览</value>
   </data>
   <data name="plugin_housegen_schematics" xml:space="preserve">
-    <value>蓝图</value>
+    <value>结构图</value>
   </data>
   <data name="plugin_housegen_sync_groups" xml:space="preserve">
     <value>同步组</value>
@@ -1615,7 +1615,7 @@
     <value>魔矿</value>
   </data>
   <data name="plugin_ore_enable_undo" xml:space="preserve">
-    <value>启用撤销功能</value>
+    <value>启用撤销</value>
   </data>
   <data name="plugin_ore_gold" xml:space="preserve">
     <value>金</value>
@@ -1657,49 +1657,49 @@
     <value>银</value>
   </data>
   <data name="plugin_ore_tier_1" xml:space="preserve">
-    <value>撒旦军队1级</value>
+    <value>第 1 档</value>
   </data>
   <data name="plugin_ore_tier_10" xml:space="preserve">
-    <value>第 10 阶级</value>
+    <value>第 10 档</value>
   </data>
   <data name="plugin_ore_tier_11" xml:space="preserve">
-    <value>层级 11</value>
+    <value>第 11 档</value>
   </data>
   <data name="plugin_ore_tier_12" xml:space="preserve">
-    <value>第 12 阶段</value>
+    <value>第 12 档</value>
   </data>
   <data name="plugin_ore_tier_13" xml:space="preserve">
-    <value>第 13 阶段</value>
+    <value>第 13 档</value>
   </data>
   <data name="plugin_ore_tier_2" xml:space="preserve">
-    <value>撒旦军队2级</value>
+    <value>第 2 档</value>
   </data>
   <data name="plugin_ore_tier_3" xml:space="preserve">
-    <value>撒旦军队3级</value>
+    <value>第 3 档</value>
   </data>
   <data name="plugin_ore_tier_4" xml:space="preserve">
-    <value>第 4 阶段</value>
+    <value>第 4 档</value>
   </data>
   <data name="plugin_ore_tier_5" xml:space="preserve">
-    <value>等级 5</value>
+    <value>第 5 档</value>
   </data>
   <data name="plugin_ore_tier_6" xml:space="preserve">
-    <value>等级 6</value>
+    <value>第 6 档</value>
   </data>
   <data name="plugin_ore_tier_7" xml:space="preserve">
-    <value>第 7 级</value>
+    <value>第 7 档</value>
   </data>
   <data name="plugin_ore_tier_8" xml:space="preserve">
-    <value>第 8 阶段</value>
+    <value>第 8 档</value>
   </data>
   <data name="plugin_ore_tier_9" xml:space="preserve">
-    <value>第 9 阶段</value>
+    <value>第 9 档</value>
   </data>
   <data name="plugin_ore_tin" xml:space="preserve">
     <value>锡</value>
   </data>
   <data name="plugin_ore_titanium" xml:space="preserve">
-    <value>钛</value>
+    <value>钛金</value>
   </data>
   <data name="plugin_ore_title" xml:space="preserve">
     <value>简易矿石生成器</value>
@@ -1726,10 +1726,10 @@
     <value>安全建造</value>
   </data>
   <data name="plugin_pixelart_change_a_tooltip" xml:space="preserve">
-    <value>更改 A=。</value>
+    <value>更改 A 值。</value>
   </data>
   <data name="plugin_pixelart_change_sigma_tooltip" xml:space="preserve">
-    <value>更改 Sigma=。</value>
+    <value>更改 Sigma 值。</value>
   </data>
   <data name="plugin_pixelart_color_filter_data" xml:space="preserve">
     <value>颜色筛选器数据：</value>
@@ -1741,19 +1741,19 @@
     <value>颜色筛选工具：</value>
   </data>
   <data name="plugin_pixelart_convert_tooltip" xml:space="preserve">
-    <value>将当前图像转换为像素艺术。</value>
+    <value>将当前图像转换为像素画。</value>
   </data>
   <data name="plugin_pixelart_copy_to_clipboard" xml:space="preserve">
     <value>复制到剪贴板</value>
   </data>
   <data name="plugin_pixelart_copy_to_clipboard_tooltip" xml:space="preserve">
-    <value>将生成的像素艺术复制到剪贴板。</value>
+    <value>将生成的像素画复制到剪贴板。</value>
   </data>
   <data name="plugin_pixelart_current_image" xml:space="preserve">
     <value>当前图像：</value>
   </data>
   <data name="plugin_pixelart_del_null_colors" xml:space="preserve">
-    <value>删除空颜色</value>
+    <value>删除未使用的颜色</value>
   </data>
   <data name="plugin_pixelart_del_null_colors_tooltip" xml:space="preserve">
     <value>从筛选器中移除渲染后的像素画中不存在的颜色。</value>
@@ -1765,16 +1765,16 @@
     <value>收集统计信息</value>
   </data>
   <data name="plugin_pixelart_gather_statistics_tooltip" xml:space="preserve">
-    <value>记录像素艺术统计信息。</value>
+    <value>记录像素画统计信息。</value>
   </data>
   <data name="plugin_pixelart_gaussian" xml:space="preserve">
-    <value>高斯滤镜</value>
+    <value>高斯</value>
   </data>
   <data name="plugin_pixelart_generate_schematic" xml:space="preserve">
-    <value>生成蓝图</value>
+    <value>生成结构图</value>
   </data>
   <data name="plugin_pixelart_generate_schematic_tooltip" xml:space="preserve">
-    <value>渲染像素画时生成示意图文件（对速度略有影响）。</value>
+    <value>渲染像素画时生成结构图文件（对速度略有影响）。</value>
   </data>
   <data name="plugin_pixelart_grid_color" xml:space="preserve">
     <value>网格颜色</value>
@@ -1798,10 +1798,10 @@
     <value>偏移网格的 Y 轴。</value>
   </data>
   <data name="plugin_pixelart_hermite" xml:space="preserve">
-    <value>埃尔米特</value>
+    <value>Hermite（埃尔米特）</value>
   </data>
   <data name="plugin_pixelart_lanczos" xml:space="preserve">
-    <value>兰佐斯</value>
+    <value>Lanczos（兰索斯）</value>
   </data>
   <data name="plugin_pixelart_nearest_neighbor" xml:space="preserve">
     <value>最近邻</value>
@@ -1837,7 +1837,7 @@
     <value>重置颜色</value>
   </data>
   <data name="plugin_pixelart_reset_colors_tooltip" xml:space="preserve">
-    <value>将颜色滤镜重置为预设设置。</value>
+    <value>将颜色筛选器重置为预设设置。</value>
   </data>
   <data name="plugin_pixelart_rot_180" xml:space="preserve">
     <value>180 度</value>
@@ -1858,7 +1858,7 @@
     <value>将生成的像素画保存为图像。</value>
   </data>
   <data name="plugin_pixelart_save_schematic" xml:space="preserve">
-    <value>将蓝图保存到文件</value>
+    <value>将结构图保存到文件</value>
   </data>
   <data name="plugin_pixelart_scaling_mode" xml:space="preserve">
     <value>缩放模式：</value>
@@ -1882,10 +1882,10 @@
     <value>样条曲线</value>
   </data>
   <data name="plugin_pixelart_statistics" xml:space="preserve">
-    <value>像素艺术统计：</value>
+    <value>像素画统计：</value>
   </data>
   <data name="plugin_pixelart_title" xml:space="preserve">
-    <value>图像转像素艺术再转为蓝图 v0.1 | 编码者：D.RUSS#2430 | 泰拉瑞亚模组制作</value>
+    <value>图像转像素画 → 结构图 v0.1 | 作者：D.RUSS#2430 | 泰拉瑞亚模组制作</value>
   </data>
   <data name="plugin_pixelart_total_blocks" xml:space="preserve">
     <value>方块总数：</value>
@@ -1942,7 +1942,7 @@
     <value>随机化世界</value>
   </data>
   <data name="plugin_removetile_hint_blocks" xml:space="preserve">
-    <value>输入要移除的方块或精灵名称。</value>
+    <value>输入要移除的方块或物体名称。</value>
   </data>
   <data name="plugin_removetile_hint_walls" xml:space="preserve">
     <value>输入要移除的墙壁名称。</value>
@@ -1963,7 +1963,7 @@
     <value>速度</value>
   </data>
   <data name="plugin_replay_title" xml:space="preserve">
-    <value>重播</value>
+    <value>回放</value>
   </data>
   <data name="plugin_seed_label" xml:space="preserve">
     <value>种子：（留空以随机生成）</value>
@@ -1990,7 +1990,7 @@
     <value>程序化房屋生成器</value>
   </data>
   <data name="plugin_pixelart_menu" xml:space="preserve">
-    <value>图像转像素艺术编辑器</value>
+    <value>图像转像素画编辑器</value>
   </data>
   <data name="plugin_playermap_menu" xml:space="preserve">
     <value>渲染玩家 .map 文件</value>
@@ -2002,7 +2002,7 @@
     <value>移除所有宝箱</value>
   </data>
   <data name="plugin_removetile_menu" xml:space="preserve">
-    <value>移除精灵、方块或墙壁</value>
+    <value>移除物体、方块或墙壁</value>
   </data>
   <data name="plugin_removeunlockedchests_menu" xml:space="preserve">
     <value>移除所有未上锁的宝箱</value>
@@ -2011,7 +2011,7 @@
     <value>让沙块自然下落</value>
   </data>
   <data name="plugin_spritedebugger_menu" xml:space="preserve">
-    <value>生成调试精灵图</value>
+    <value>生成调试物体</value>
   </data>
   <data name="plugin_textstatue_menu" xml:space="preserve">
     <value>生成文字雕像</value>
@@ -3257,7 +3257,7 @@
     <value>永恒领域（The Constant）</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
-    <value>醉酒世界（Drunk）</value>
+    <value>醉酒世界（5162020）</value>
   </data>
   <data name="tool_wp_dungeon_point" xml:space="preserve">
     <value>地牢点</value>
@@ -3272,7 +3272,7 @@
     <value>金矿</value>
   </data>
   <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>For The Worthy（FTW）</value>
+    <value>For The Worthy</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>世界GUID</value>
@@ -3590,16 +3590,16 @@
     <value>无陷阱（No Traps）</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
-    <value>反转种子（Remix）</value>
+    <value>反转种子（Don't dig up）</value>
   </data>
   <data name="tool_wp_seed_skyblock" xml:space="preserve">
     <value>空岛（Skyblock）</value>
   </data>
   <data name="tool_wp_seed_vampire" xml:space="preserve">
-    <value>吸血鬼症（Vampirism）</value>
+    <value>吸血鬼症（What a horrible night to have a curse）</value>
   </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
-    <value>天顶种子（Zenith）</value>
+    <value>天顶种子（Get fixed boi）</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>银矿</value>
@@ -3818,7 +3818,7 @@
     <value>修复背景间隙</value>
   </data>
   <data name="tool_morph_deco_sprites" xml:space="preserve">
-    <value>祭坛/ orb</value>
+    <value>祭坛/暗影珠与猩红之心</value>
   </data>
   <data name="telemetry_prompt_link" xml:space="preserve">
     <value>阅读完整的隐私政策</value>
@@ -3845,7 +3845,7 @@
     <value>错误：颜色筛选器格式无效！{0}</value>
   </data>
   <data name="plugin_pixelart_error_color_filter_zero" xml:space="preserve">
-    <value>颜色滤镜值为零。请调整设置。</value>
+    <value>颜色筛选器值为零。请调整设置。</value>
   </data>
   <data name="plugin_pixelart_error_generate_first" xml:space="preserve">
     <value>错误：你需要先生成像素画！</value>
@@ -3866,10 +3866,10 @@
     <value>保存图像时出错：{0}</value>
   </data>
   <data name="plugin_pixelart_error_saving_schematic" xml:space="preserve">
-    <value>保存原理图时出错：{0}</value>
+    <value>保存结构图时出错：{0}</value>
   </data>
   <data name="plugin_pixelart_error_schematic_empty" xml:space="preserve">
-    <value>示意图数据为空！请先生成像素画！</value>
+    <value>结构图数据为空！请先生成像素画！</value>
   </data>
   <data name="plugin_pixelart_image_completed" xml:space="preserve">
     <value>图像处理完成。</value>
@@ -3881,12 +3881,12 @@
     <value>渲染已取消。</value>
   </data>
   <data name="plugin_pixelart_schematic_copied" xml:space="preserve">
-    <value>已将蓝图复制到剪贴板。</value>
+    <value>已将结构图复制到剪贴板。</value>
   </data>
   <data name="plugin_pixelart_schematic_overwritten" xml:space="preserve">
-    <value>原理图已被覆盖。</value>
+    <value>结构图已被覆盖。</value>
   </data>
   <data name="plugin_pixelart_schematic_saved" xml:space="preserve">
-    <value>已保存示意图。</value>
+    <value>已保存结构图。</value>
   </data>
 </root>
