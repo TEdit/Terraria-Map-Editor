@@ -16,6 +16,7 @@ public partial class SpriteTreeNodeViewModel
 {
     public int TileId { get; init; }
     public string Name { get; init; } = string.Empty;
+    public string OriginalName { get; init; } = string.Empty;
     public TEditColor Color { get; init; }
 
     /// <summary>
@@ -38,10 +39,11 @@ public partial class SpriteTreeNodeViewModel
 
     public SpriteTreeNodeViewModel() { }
 
-    public SpriteTreeNodeViewModel(int tileId, string name, TEditColor color, Vector2Short? uv = null)
+    public SpriteTreeNodeViewModel(int tileId, string name, TEditColor color, Vector2Short? uv = null, string? originalName = null)
     {
         TileId = tileId;
         Name = name;
+        OriginalName = originalName ?? name;
         Color = color;
         UV = uv;
     }

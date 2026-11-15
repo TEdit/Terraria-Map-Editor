@@ -39,8 +39,10 @@ public class TerrariaDataStore
     public Dictionary<int, ItemProperty> ItemById { get; } = new();
     public Dictionary<string, int> NpcIdByName { get; } = new();
     public Dictionary<int, string> NpcNameById { get; } = new();
+    public Dictionary<int, string> NpcDisplayNameById { get; } = new();
     public Dictionary<int, NpcData> NpcById { get; } = new();
     public Dictionary<byte, string> PrefixById { get; } = new();
+    public Dictionary<byte, string> PrefixDisplayById { get; } = new();
     public Dictionary<string, TEditColor> GlobalColors { get; } = new();
 
     // Category dictionaries (for UI dropdowns)
@@ -76,6 +78,7 @@ public class TerrariaDataStore
 
     // Prefix data for key resolution during localization
     private List<PrefixData> _prefixDataList = [];
+    public IReadOnlyList<PrefixData> Prefixes => _prefixDataList;
 
     // Bestiary-derived lookups
     public Dictionary<int, BestiaryNpcData> BestiaryNpcById { get; } = new();
@@ -274,7 +277,7 @@ public class TerrariaDataStore
         TileById.Clear();
 
         // Add air brick first
-        TileBricks.Add(new TileProperty { Id = -1, Name = "Air", Color = TEditColor.Transparent });
+        TileBricks.Add(new TileProperty { Id = -1, Name = "Air", Key = "Air", Color = TEditColor.Transparent });
 
         foreach (var tile in tiles)
         {
@@ -364,12 +367,14 @@ public class TerrariaDataStore
     {
         NpcIdByName.Clear();
         NpcNameById.Clear();
+        NpcDisplayNameById.Clear();
         NpcById.Clear();
 
         foreach (var npc in npcs)
         {
             NpcIdByName[npc.Name] = npc.Id;
             NpcNameById[npc.Id] = npc.Name;
+            NpcDisplayNameById[npc.Id] = npc.DisplayName;
             NpcById[npc.Id] = npc;
         }
     }
@@ -384,9 +389,14 @@ public class TerrariaDataStore
     internal void PopulatePrefixes(List<PrefixData> prefixes)
     {
         PrefixById.Clear();
+        PrefixDisplayById.Clear();
         _prefixDataList = prefixes;
         foreach (var prefix in prefixes)
-            PrefixById[(byte)prefix.Id] = prefix.Name;
+        {
+            var id = (byte)prefix.Id;
+            PrefixById[id] = prefix.Name;
+            PrefixDisplayById[id] = prefix.DisplayName;
+        }
     }
 
     internal void PopulateGlobalColors(List<GlobalColorEntry> colors)
@@ -420,9 +430,13 @@ public class TerrariaDataStore
     {
         CurrentLocale = locale;
 
-        if (locale == "en-US")
+        var hasEnglishOverride = locale == "en-US"
+            && dataPath != null
+            && File.Exists(Path.Combine(dataPath, "Localization", "en-US.json"));
+        if (locale == "en-US" && !hasEnglishOverride)
         {
             Localization = null;
+            ApplyLocalization(new DataModel.LocalizationData());
             return;
         }
 
@@ -433,6 +447,26 @@ public class TerrariaDataStore
 
     private void ApplyLocalization(DataModel.LocalizationData data)
     {
+        foreach (var item in Items) item.LocalizedName = null;
+        foreach (var tile in Tiles)
+        {
+            tile.LocalizedName = null;
+            if (tile.Frames == null) continue;
+            foreach (var frame in tile.Frames) frame.LocalizedDisplayName = null;
+        }
+        foreach (var air in TileBricks.Where(tile => tile.Id == -1))
+            air.LocalizedName = null;
+        foreach (var wall in Walls) wall.LocalizedName = null;
+        foreach (var npc in NpcById.Values) npc.LocalizedName = null;
+        foreach (var prefix in _prefixDataList) prefix.LocalizedName = null;
+
+        NpcDisplayNameById.Clear();
+        foreach (var npc in NpcById.Values)
+            NpcDisplayNameById[npc.Id] = npc.DisplayName;
+        PrefixDisplayById.Clear();
+        foreach (var prefix in _prefixDataList)
+            PrefixDisplayById[(byte)prefix.Id] = prefix.DisplayName;
+
         // Build key→object lookups from the Key property on each model
         var itemsByKey = Items
             .Where(i => i.Key != null)
@@ -440,48 +474,75 @@ public class TerrariaDataStore
         var tilesByKey = Tiles
             .Where(t => t.Key != null)
             .ToDictionary(t => t.Key!);
+        foreach (var air in TileBricks.Where(tile => tile.Id == -1 && tile.Key != null))
+            tilesByKey[air.Key!] = air;
         var wallsByKey = Walls
             .Where(w => w.Key != null)
             .ToDictionary(w => w.Key!);
         var npcsByKey = NpcById.Values
             .Where(n => n.Key != null)
             .ToDictionary(n => n.Key!);
-        var prefixKeyToId = _prefixDataList
+        var prefixesByKey = _prefixDataList
             .Where(p => p.Key != null)
-            .ToDictionary(p => p.Key!, p => (byte)p.Id);
+            .ToDictionary(p => p.Key!);
 
-        // Apply item names
+        // Keep source names stable; localized values are used only for display.
         foreach (var kv in data.Items)
             if (itemsByKey.TryGetValue(kv.Key, out var item))
-                item.Name = kv.Value;
+                item.LocalizedName = kv.Value;
 
-        // Apply tile names
         foreach (var kv in data.Tiles)
             if (tilesByKey.TryGetValue(kv.Key, out var tile))
-                tile.Name = kv.Value;
+                tile.LocalizedName = kv.Value;
 
-        // Apply wall names
         foreach (var kv in data.Walls)
             if (wallsByKey.TryGetValue(kv.Key, out var wall))
-                wall.Name = kv.Value;
+                wall.LocalizedName = kv.Value;
 
-        // Apply NPC names (+ maintain reverse lookups)
         foreach (var kv in data.Npcs)
         {
             if (npcsByKey.TryGetValue(kv.Key, out var npc))
             {
-                var oldName = npc.Name;
-                npc.Name = kv.Value;
-                NpcNameById[npc.Id] = kv.Value;
-                if (NpcIdByName.Remove(oldName))
-                    NpcIdByName[kv.Value] = npc.Id;
+                npc.LocalizedName = kv.Value;
+                NpcDisplayNameById[npc.Id] = npc.DisplayName;
             }
         }
 
-        // Apply prefix names
         foreach (var kv in data.Prefixes)
-            if (prefixKeyToId.TryGetValue(kv.Key, out var id))
-                PrefixById[id] = kv.Value;
+        {
+            if (prefixesByKey.TryGetValue(kv.Key, out var prefix))
+            {
+                prefix.LocalizedName = kv.Value;
+                PrefixDisplayById[(byte)prefix.Id] = prefix.DisplayName;
+            }
+        }
+
+        var localizedItemNamesBySourceName = Items
+            .Where(item => !string.IsNullOrWhiteSpace(item.LocalizedName))
+            .GroupBy(item => item.Name, StringComparer.Ordinal)
+            .Where(group => group.Select(item => item.LocalizedName).Distinct(StringComparer.Ordinal).Count() == 1)
+            .ToDictionary(group => group.Key, group => group.First().LocalizedName!, StringComparer.Ordinal);
+
+        foreach (var tile in Tiles)
+        {
+            if (tile.Key == null || tile.Frames == null)
+                continue;
+
+            data.Frames.TryGetValue(tile.Key, out var frameNames);
+            foreach (var frame in tile.Frames)
+            {
+                if (frameNames != null && frameNames.TryGetValue(frame.ToString(), out var localizedName)
+                    && !string.IsNullOrWhiteSpace(localizedName))
+                {
+                    frame.LocalizedDisplayName = localizedName;
+                    continue;
+                }
+
+                // Reuse an item translation only when it covers the complete frame label.
+                if (localizedItemNamesBySourceName.TryGetValue(frame.ToString(), out var itemLocalizedName))
+                    frame.LocalizedDisplayName = itemLocalizedName;
+            }
+        }
     }
 
     private void RebuildFrameImportant()

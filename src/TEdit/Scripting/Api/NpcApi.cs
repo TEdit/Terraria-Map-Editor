@@ -116,6 +116,10 @@ public class NpcApi
                 spriteId = match.Value;
                 internalName = match.Key;
             }
+            else if (TryResolveLocalizedNpc(name, out spriteId, out internalName))
+            {
+                // Localized display-name compatibility; store the original NPC name.
+            }
             else if (!TryResolveBestiaryNpc(name, id, out spriteId, out internalName))
             {
                 return;
@@ -133,6 +137,25 @@ public class NpcApi
         };
 
         _world.NPCs.Add(npc);
+    }
+
+    private static bool TryResolveLocalizedNpc(string name, out int spriteId, out string internalName)
+    {
+        foreach (var entry in WorldConfiguration.NpcDisplayNames)
+        {
+            if (!string.Equals(entry.Value, name, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            if (WorldConfiguration.NpcNames.TryGetValue(entry.Key, out internalName))
+            {
+                spriteId = entry.Key;
+                return true;
+            }
+        }
+
+        spriteId = 0;
+        internalName = string.Empty;
+        return false;
     }
 
     /// <summary>

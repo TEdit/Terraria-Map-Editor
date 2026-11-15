@@ -8,6 +8,7 @@ public class NpcListItem : ReactiveObject
 {
     public int SpriteId { get; }
     public string DefaultName { get; }
+    public string OriginalName { get; }
     public List<string> AvailableVariants { get; }
     public bool CanShimmer { get; }
     public bool HasVariants => AvailableVariants?.Count > 1;
@@ -104,10 +105,11 @@ public class NpcListItem : ReactiveObject
     /// </summary>
     public bool IsDuplicateInstance => InstanceIndex >= 0;
 
-    public NpcListItem(int spriteId, string defaultName, List<string> variants = null, bool canShimmer = false, int instanceIndex = -1)
+    public NpcListItem(int spriteId, string defaultName, List<string> variants = null, bool canShimmer = false, int instanceIndex = -1, string? originalName = null)
     {
         SpriteId = spriteId;
         DefaultName = defaultName;
+        OriginalName = originalName ?? defaultName;
         AvailableVariants = variants;
         CanShimmer = canShimmer;
         InstanceIndex = instanceIndex;

@@ -122,28 +122,28 @@ public partial class FilterSidebarViewModel
         foreach (var item in TilePicker.AllItems.Where(x => x.IsChecked))
         {
             FilterManager.AddTileFilter(item.Id);
-            FilterManager.SelectedTileNames.Add(item.Name);
+            FilterManager.SelectedTileNames.Add(item.OriginalName);
         }
 
         // Apply wall filters
         foreach (var item in WallPicker.AllItems.Where(x => x.IsChecked))
         {
             FilterManager.AddWallFilter(item.Id);
-            FilterManager.SelectedWallNames.Add(item.Name);
+            FilterManager.SelectedWallNames.Add(item.OriginalName);
         }
 
         // Apply liquid filters
         foreach (var item in LiquidPicker.AllItems.Where(x => x.IsChecked))
         {
             FilterManager.AddLiquidFilter((Terraria.LiquidType)item.Id);
-            FilterManager.SelectedLiquidNames.Add(item.Name);
+            FilterManager.SelectedLiquidNames.Add(item.OriginalName);
         }
 
         // Apply wire filters
         foreach (var item in WirePicker.AllItems.Where(x => x.IsChecked))
         {
             FilterManager.AddWireFilter((FilterManager.WireType)item.Id);
-            FilterManager.SelectedWireNames.Add(item.Name);
+            FilterManager.SelectedWireNames.Add(item.OriginalName);
         }
 
         // Apply sprite filters

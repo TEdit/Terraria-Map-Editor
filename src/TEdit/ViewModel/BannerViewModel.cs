@@ -77,6 +77,7 @@ public partial class BannerViewModel : ReactiveObject
 
         if (!string.IsNullOrEmpty(FilterText) &&
             !item.Name.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
+            !item.DisplayName.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
             !item.Category.Contains(FilterText, StringComparison.OrdinalIgnoreCase) &&
             !item.NpcId.ToString().Contains(FilterText, StringComparison.Ordinal) &&
             !item.BestiaryIndex.ToString().Contains(FilterText, StringComparison.Ordinal))
@@ -120,6 +121,10 @@ public partial class BannerViewModel : ReactiveObject
             .Where(n => n.BannerId >= 0)
             .GroupBy(n => n.BannerId)
             .ToDictionary(g => g.Key, g => g.First());
+        var bannerDisplayNames = WorldConfiguration.ItemProperties
+            .Where(item => !string.IsNullOrEmpty(item.Name))
+            .GroupBy(item => item.Name, StringComparer.Ordinal)
+            .ToDictionary(group => group.Key, group => group.First().DisplayName, StringComparer.Ordinal);
 
         foreach (var kvp in WorldConfiguration.TallyNames.OrderBy(k => k.Key))
         {
@@ -154,6 +159,9 @@ public partial class BannerViewModel : ReactiveObject
             {
                 TallyIndex = tallyIndex,
                 Name = bannerName,
+                LocalizedName = bannerDisplayNames.TryGetValue(bannerName, out var localizedBannerName)
+                    ? localizedBannerName
+                    : null,
                 Category = string.IsNullOrEmpty(category) ? "Other" : category,
                 NpcId = npcId,
                 BestiaryIndex = bestiaryIndex,

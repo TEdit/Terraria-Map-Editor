@@ -37,7 +37,7 @@
                 </Rectangle>
             </Border>
             <TextBlock Text="{Binding Path=Id, StringFormat='[{0}]'}" Margin="8,0,4,0" DockPanel.Dock="Right" Foreground="Gray" VerticalAlignment="Center" />
-            <TextBlock Text="{Binding Path=Name}" Margin="1,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+            <TextBlock Text="{Binding Path=DisplayName}" Margin="1,0" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
         </DockPanel>
     </DataTemplate>
     <!-- Color-tinted item template for tile/platform/wall properties (FrameProperty, TileProperty, etc.) -->
@@ -56,7 +56,7 @@
                         </Rectangle.Fill>
                     </Rectangle>
                 </Border>
-                <TextBlock Text="{Binding Name}" Margin="4,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                <TextBlock Text="{Binding DisplayName}" Margin="4,2,4,2" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
             </DockPanel>
         </Grid>
     </DataTemplate>
@@ -145,9 +145,9 @@
         </DataTemplate.Triggers>
     </DataTemplate>
 
-    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ItemPrefix}, Mode=OneTime}" x:Key="PrefixCollection" >
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ItemPrefixOptions}, Mode=OneTime}" x:Key="PrefixCollection" >
         <CollectionViewSource.SortDescriptions>
-            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+            <ComponentModel:SortDescription PropertyName="DisplayName" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
     <CollectionViewSource Source="{Binding Source={x:Static Terraria:WorldConfiguration.ItemProperties}, Mode=OneTime}" x:Key="ItemsCollection">

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text.Json.Serialization;
 using TEdit.Common;
 using TEdit.Geometry;
 
@@ -51,6 +52,14 @@ public class SpriteSheet
 {
     public ushort Tile { get; set; }
     public string Name { get; set; }
+
+    /// <summary>Localized UI label; Name remains the original source name.</summary>
+    [JsonIgnore]
+    public string? LocalizedName { get; set; }
+
+    [JsonIgnore]
+    public string DisplayName => string.IsNullOrWhiteSpace(LocalizedName) ? Name : LocalizedName;
+
     public Vector2Short[] SizeTiles { get; set; }
     public Vector2Short SizePixelsRender { get; set; }
     public Vector2Short SizePixelsInterval { get; set; }
@@ -87,6 +96,13 @@ public partial class SpriteItem : ReactiveObject
     public Vector2Short SizePixelsInterval { get; set; }
     public FrameAnchor Anchor { get; set; }
     public string Name { get; set; }
+
+    /// <summary>Localized complete frame label; Name remains the original source name.</summary>
+    [JsonIgnore]
+    public string? LocalizedDisplayName { get; set; }
+
+    [JsonIgnore]
+    public string DisplayName => string.IsNullOrWhiteSpace(LocalizedDisplayName) ? Name : LocalizedDisplayName;
 
     /// <summary>
     /// Custom preview configuration (null = use standard UV-based preview).

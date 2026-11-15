@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Data;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
+using TEdit.Common;
 using TEdit.Geometry;
 using TEdit.Terraria;
 
@@ -57,22 +58,23 @@ public partial class SpriteTreePickerViewModel
         // Get all framed tiles (sprites)
         var framedTiles = WorldConfiguration.TileProperties
             .Where(t => t.IsFramed && t.Frames?.Count > 0)
-            .OrderBy(t => t.Name);
+            .OrderBy(t => t.DisplayName);
 
         foreach (var tile in framedTiles)
         {
-            var rootNode = new SpriteTreeNodeViewModel(tile.Id, tile.Name, tile.Color);
+            var rootNode = new SpriteTreeNodeViewModel(tile.Id, tile.DisplayName, tile.Color, originalName: tile.Name);
 
             // Add variant children from Frames
             if (tile.Frames != null)
             {
-                foreach (var frame in tile.Frames.OrderBy(f => f.ToString()))
+                foreach (var frame in tile.Frames.OrderBy(f => f.DisplayName))
                 {
                     var childNode = new SpriteTreeNodeViewModel(
                         tile.Id,
-                        frame.ToString(),
+                        frame.DisplayName,
                         tile.Color,
-                        frame.UV
+                        frame.UV,
+                        frame.ToString()
                     );
                     rootNode.Children.Add(childNode);
                 }
@@ -87,11 +89,16 @@ public partial class SpriteTreePickerViewModel
         if (obj is not SpriteTreeNodeViewModel node) return false;
         if (string.IsNullOrWhiteSpace(SearchText)) return true;
 
-        // Match root name or any child name
-        if (node.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
+        if (LocalizedNameSearch.Matches(SearchText, node.Name, node.OriginalName))
             return true;
 
-        return node.Children.Any(c => c.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+        if (node.Children.Any(c => LocalizedNameSearch.Matches(SearchText, c.Name, c.OriginalName)))
+        {
+            node.IsExpanded = true;
+            return true;
+        }
+
+        return false;
     }
 
     private int CountSelectedNodes()

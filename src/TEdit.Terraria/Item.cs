@@ -19,14 +19,14 @@ public partial class Item : ReactiveObject
     public string ModName
     {
         get => _modName;
-        set { this.RaiseAndSetIfChanged(ref _modName, value); this.RaisePropertyChanged(nameof(Name)); this.RaisePropertyChanged(nameof(IsModItem)); }
+        set { this.RaiseAndSetIfChanged(ref _modName, value); this.RaisePropertyChanged(nameof(Name)); this.RaisePropertyChanged(nameof(DisplayName)); this.RaisePropertyChanged(nameof(IsModItem)); }
     }
 
     private string _modItemName;
     public string ModItemName
     {
         get => _modItemName;
-        set { this.RaiseAndSetIfChanged(ref _modItemName, value); this.RaisePropertyChanged(nameof(Name)); }
+        set { this.RaiseAndSetIfChanged(ref _modItemName, value); this.RaisePropertyChanged(nameof(Name)); this.RaisePropertyChanged(nameof(DisplayName)); }
     }
 
     // Mod prefix identity (null if vanilla or no prefix)
@@ -63,26 +63,36 @@ public partial class Item : ReactiveObject
                     StackSize = 1;
             }
             this.RaisePropertyChanged(nameof(Name));
+            this.RaisePropertyChanged(nameof(DisplayName));
             this.RaisePropertyChanged(nameof(IsModItem));
         }
     }
 
     public void SetFromName(string name)
     {
-        var curItem = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Name == name);
-        NetId = curItem.Id;
+        var curItem = WorldConfiguration.ItemProperties.FirstOrDefault(
+            x => x.Name == name || x.DisplayName == name);
+        NetId = curItem?.Id ?? 0;
         if (NetId != 0)
             StackSize = 1;
     }
 
-    public string Name
-    {
-        get { return GetName(); }
-    }
+    /// <summary>Original item name used by data and scripting APIs.</summary>
+    public string Name => GetName();
+
+    /// <summary>Localized item label for user-facing views.</summary>
+    public string DisplayName => GetDisplayName();
 
     public string PrefixName
     {
-        get { return WorldConfiguration.ItemPrefix.Count > Prefix ? WorldConfiguration.ItemPrefix[Prefix] : "Unknown " + Prefix.ToString(); }
+        get
+        {
+            if (WorldConfiguration.ItemPrefixDisplay.TryGetValue(Prefix, out var displayName))
+                return displayName;
+            return WorldConfiguration.ItemPrefix.TryGetValue(Prefix, out var name)
+                ? name
+                : "Unknown " + Prefix.ToString();
+        }
     }
 
     public string GetName()
@@ -94,6 +104,17 @@ public partial class Item : ReactiveObject
             return _currentItemProperty.Name;
 
         return _netId != 0 ? $"[unknown:{_netId}]" : "[empty]";
+    }
+
+    public string GetDisplayName()
+    {
+        if (IsModItem)
+            return $"{ModName}:{ModItemName}";
+
+        if (_currentItemProperty != null)
+            return _currentItemProperty.DisplayName;
+
+        return GetName();
     }
 
     public byte Prefix

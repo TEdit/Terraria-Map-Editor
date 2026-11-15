@@ -20,6 +20,11 @@ public partial class BestiaryItem : ReactiveObject
     [Reactive]
     private string _name;
 
+    /// <summary>Optional localized NPC name displayed in the bestiary editor.</summary>
+    public string? LocalizedName { get; set; }
+
+    public string DisplayName => string.IsNullOrWhiteSpace(LocalizedName) ? Name : LocalizedName;
+
     /// <summary>NPC ID for preview icon lookup.</summary>
     public int NpcId { get; set; }
 
@@ -221,6 +226,11 @@ public partial class BestiaryViewModel : ReactiveObject
                 bestiaryIndex = npcData.BestiaryDisplayIndex;
                 bestiaryStars = npcData.BestiaryStars;
             }
+            string? localizedName = null;
+            if (npcData != null && WorldConfiguration.NpcLocalizedNames.TryGetValue(npcData.BestiaryId, out var bestiaryDisplayName))
+                localizedName = bestiaryDisplayName;
+            else if (WorldConfiguration.NpcDisplayNames.TryGetValue(npcId, out var npcDisplayName))
+                localizedName = npcDisplayName;
 
             BestiaryData.Add(new BestiaryItem
             {
@@ -228,6 +238,7 @@ public partial class BestiaryViewModel : ReactiveObject
                 CanNear = WorldConfiguration.BestiaryData.BestiaryNearIDs.Contains(entity),
                 CanTalk = WorldConfiguration.BestiaryData.BestiaryTalkedIDs.Contains(entity),
                 Name = entity,
+                LocalizedName = localizedName,
                 NpcId = npcId,
                 BestiaryIndex = bestiaryIndex,
                 BestiaryStars = bestiaryStars,

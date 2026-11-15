@@ -30,6 +30,7 @@ public partial class PlayerItem : ReactiveObject
             else if (StackSize == 0)
                 StackSize = 1;
             this.RaisePropertyChanged(nameof(Name));
+            this.RaisePropertyChanged(nameof(DisplayName));
         }
     }
 
@@ -57,12 +58,17 @@ public partial class PlayerItem : ReactiveObject
 
     private ItemProperty _currentItemProperty;
 
+    /// <summary>Original item name retained for data and scripting compatibility.</summary>
     public string Name => _currentItemProperty?.Name ?? "[empty]";
 
+    public string DisplayName => _currentItemProperty?.DisplayName ?? Name;
+
     public string PrefixName =>
-        WorldConfiguration.ItemPrefix.Count > Prefix
-            ? WorldConfiguration.ItemPrefix[Prefix]
-            : "Unknown " + Prefix;
+        WorldConfiguration.ItemPrefixDisplay.TryGetValue(Prefix, out var displayName)
+            ? displayName
+            : WorldConfiguration.ItemPrefix.TryGetValue(Prefix, out var name)
+                ? name
+                : "Unknown " + Prefix;
 
     public PlayerItem() { }
 

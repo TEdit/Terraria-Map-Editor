@@ -268,7 +268,12 @@ public partial class ItemEditorControl : UserControl
     private static void OnPrefixSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is ItemEditorControl control)
+        {
             control.PrefixCombo.ItemsSource = e.NewValue as IEnumerable;
+            control.PrefixCombo.SelectedValuePath = "PrefixId";
+            control.PrefixCombo.DisplayMemberPath = "Name";
+            control.PrefixCombo.FilterMemberPath = "Name";
+        }
     }
 
     private void ConfigureItemCombo()

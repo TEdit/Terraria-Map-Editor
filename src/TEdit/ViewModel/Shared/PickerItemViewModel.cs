@@ -13,6 +13,7 @@ public partial class PickerItemViewModel
 {
     public int Id { get; init; }
     public string Name { get; init; } = string.Empty;
+    public string OriginalName { get; init; } = string.Empty;
     public TEditColor Color { get; init; }
 
     /// <summary>
@@ -26,10 +27,11 @@ public partial class PickerItemViewModel
 
     public PickerItemViewModel() { }
 
-    public PickerItemViewModel(int id, string name, TEditColor color, bool isChecked = false, int itemId = 0)
+    public PickerItemViewModel(int id, string name, TEditColor color, bool isChecked = false, int itemId = 0, string? originalName = null)
     {
         Id = id;
         Name = name;
+        OriginalName = originalName ?? name;
         Color = color;
         IsChecked = isChecked;
         ItemId = itemId;

@@ -15,11 +15,11 @@
                         <StackPanel Orientation="Horizontal" Margin="1">
                             <TextBox Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30" />
                             <controls:FilterablePickerControl
-                                      ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.ItemPrefix}, Mode=OneTime}"
+                                      ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.ItemPrefixOptions}, Mode=OneTime}"
                                       SelectedValue="{Binding Prefix, Mode=TwoWay}"
-                                      SelectedValuePath="Key"
-                                      DisplayMemberPath="Value"
-                                      FilterMemberPath="Value"
+                                      SelectedValuePath="PrefixId"
+                                      DisplayMemberPath="Name"
+                                      FilterMemberPath="Name"
                                       Width="75" Margin="1,0"
                                       Placeholder="{x:Static p:Language.picker_search_prefix_placeholder}" />
                             <controls:FilterablePickerControl

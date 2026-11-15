@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Threading;
+using TEdit.Common;
 
 namespace TEdit.UI.Controls;
 
@@ -46,7 +47,7 @@ public partial class TabbedPickerControl : UserControl
 
     public static readonly DependencyProperty DisplayMemberPathProperty =
         DependencyProperty.Register(nameof(DisplayMemberPath), typeof(string), typeof(TabbedPickerControl),
-            new PropertyMetadata(null));
+            new PropertyMetadata(null, OnDisplayPathChanged));
 
     public string DisplayMemberPath
     {
@@ -56,7 +57,7 @@ public partial class TabbedPickerControl : UserControl
 
     public static readonly DependencyProperty FilterMemberPathProperty =
         DependencyProperty.Register(nameof(FilterMemberPath), typeof(string), typeof(TabbedPickerControl),
-            new PropertyMetadata(null));
+            new PropertyMetadata(null, OnDisplayPathChanged));
 
     public string FilterMemberPath
     {
@@ -182,6 +183,7 @@ public partial class TabbedPickerControl : UserControl
             _filteredView.Filter = FilterItem;
 
         PART_ItemsList.ItemsSource = _filteredView;
+        UpdateListDisplayMemberPath();
         SyncListSelectionFromValue();
     }
 
@@ -192,13 +194,25 @@ public partial class TabbedPickerControl : UserControl
     private static void OnItemTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is TabbedPickerControl ctrl)
+        {
             ctrl.PART_ItemsList.ItemTemplate = e.NewValue as DataTemplate;
+            ctrl.UpdateListDisplayMemberPath();
+        }
     }
 
     private static void OnVisibleItemCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is TabbedPickerControl ctrl)
             ctrl.UpdateListHeight();
+    }
+
+    private static void OnDisplayPathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is TabbedPickerControl ctrl)
+        {
+            ctrl.UpdateListDisplayMemberPath();
+            ctrl._filteredView?.Refresh();
+        }
     }
 
     private static void OnFilterPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -288,8 +302,10 @@ public partial class TabbedPickerControl : UserControl
         // Text search filter
         if (string.IsNullOrEmpty(_searchText)) return true;
 
-        string filterText = GetFilterText(item);
-        if (filterText.Contains(_searchText, StringComparison.OrdinalIgnoreCase))
+        if (LocalizedNameSearch.Matches(
+                _searchText,
+                GetFilterText(item),
+                GetLocalizedFilterText(item)))
             return true;
 
         if (!string.IsNullOrEmpty(FilterIdMemberPath))
@@ -390,6 +406,43 @@ public partial class TabbedPickerControl : UserControl
 
     #region Property Helpers
 
+    private void UpdateListDisplayMemberPath()
+    {
+        if (PART_ItemsList == null)
+            return;
+
+        if (ItemTemplate != null)
+        {
+            PART_ItemsList.DisplayMemberPath = null;
+            return;
+        }
+
+        string path = DisplayMemberPath ?? FilterMemberPath ?? string.Empty;
+        string displayPath = path == "Name"
+            ? "DisplayName"
+            : path.EndsWith(".Name", StringComparison.Ordinal)
+                ? path[..^4] + "DisplayName"
+                : "DisplayName";
+
+        var source = ItemsSource;
+        if (source is ICollectionView view)
+            source = view.SourceCollection as IEnumerable;
+        object sample = null;
+        if (source is IEnumerable enumerable)
+        {
+            foreach (var value in enumerable)
+            {
+                if (value == null) continue;
+                sample = value;
+                break;
+            }
+        }
+
+        if (sample != null && GetPropertyValue(sample, displayPath) == null)
+            displayPath = path;
+        PART_ItemsList.DisplayMemberPath = displayPath;
+    }
+
     private string GetFilterText(object item)
     {
         if (item == null) return string.Empty;
@@ -397,6 +450,20 @@ public partial class TabbedPickerControl : UserControl
         if (!string.IsNullOrEmpty(path))
             return GetPropertyValue(item, path)?.ToString() ?? string.Empty;
         return item.ToString() ?? string.Empty;
+    }
+
+    private string? GetLocalizedFilterText(object item)
+    {
+        string path = FilterMemberPath ?? DisplayMemberPath ?? string.Empty;
+        if (string.IsNullOrEmpty(path))
+            return GetPropertyValue(item, "DisplayName")?.ToString();
+
+        string localizedPath = path == "Name"
+            ? "DisplayName"
+            : path.EndsWith(".Name", StringComparison.Ordinal)
+                ? path[..^4] + "DisplayName"
+                : "DisplayName";
+        return GetPropertyValue(item, localizedPath)?.ToString();
     }
 
     private static object GetPropertyValue(object obj, string path)

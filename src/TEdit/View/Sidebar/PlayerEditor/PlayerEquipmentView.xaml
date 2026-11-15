@@ -55,14 +55,14 @@
                            Width="24" Height="24" Stretch="Uniform"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"
                            Visibility="{Binding Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}"
-                           ToolTip="{Binding Dye.Name}"/>
+                           ToolTip="{Binding Dye.DisplayName}"/>
                     <Image Grid.Column="3"
                            Source="{Binding Item.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
                            Width="24" Height="24" Stretch="Uniform"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                     <TextBlock Grid.Column="4" Foreground="White" Text="{Binding Item.PrefixName}" Margin="2"
                                VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="5" Foreground="White" Text="{Binding Item.Name}" Margin="2"
+                    <TextBlock Grid.Column="5" Foreground="White" Text="{Binding Item.DisplayName}" Margin="2"
                                VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                     <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                             Command="{Binding DataContext.CopyEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
@@ -116,14 +116,14 @@
                            Width="24" Height="24" Stretch="Uniform"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"
                            Visibility="{Binding Dye, Converter={StaticResource NullToVisibilityConverter}, FallbackValue=Collapsed}"
-                           ToolTip="{Binding Dye.Name}"/>
+                           ToolTip="{Binding Dye.DisplayName}"/>
                     <Image Grid.Column="3"
                            Source="{Binding Item.NetId, Converter={StaticResource ItemIdToPreviewConverter}}"
                            Width="24" Height="24" Stretch="Uniform"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                     <TextBlock Grid.Column="4" Foreground="White" Text="{Binding Item.PrefixName}" Margin="2"
                                VerticalAlignment="Center"/>
-                    <TextBlock Grid.Column="5" Foreground="White" Text="{Binding Item.Name}" Margin="2"
+                    <TextBlock Grid.Column="5" Foreground="White" Text="{Binding Item.DisplayName}" Margin="2"
                                VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
                     <Button Grid.Column="6" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                             Command="{Binding DataContext.CopyEquipmentSlotCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">

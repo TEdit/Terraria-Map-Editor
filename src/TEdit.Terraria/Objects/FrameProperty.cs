@@ -17,6 +17,13 @@ public class FrameProperty : ITile
     public Vector2Short Size { get; set; } = Vector2Short.Zero;  // Default to (0,0) so tile's FrameSize is used when not specified
     public string Name { get; set; } = "Default";
 
+    /// <summary>Localized complete frame label; Name, Variety, Anchor and ToString remain raw.</summary>
+    [JsonIgnore]
+    public string? LocalizedDisplayName { get; set; }
+
+    [JsonIgnore]
+    public string DisplayName => string.IsNullOrWhiteSpace(LocalizedDisplayName) ? ToString() : LocalizedDisplayName;
+
     /// <summary>
     /// Custom source rectangle [x, y, width, height] within the texture.
     /// When set, preview reads from this region instead of UV-based grid calculation.

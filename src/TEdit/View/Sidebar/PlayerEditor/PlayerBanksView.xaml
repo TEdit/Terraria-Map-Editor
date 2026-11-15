@@ -54,7 +54,7 @@
                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                 <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
                                 <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
-                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding DisplayName}" Margin="2" TextTrimming="CharacterEllipsis" />
                                 <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                                         Command="{Binding DataContext.CopyPlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
                                     <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
@@ -126,7 +126,7 @@
                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                 <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
                                 <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
-                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding DisplayName}" Margin="2" TextTrimming="CharacterEllipsis" />
                                 <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                                         Command="{Binding DataContext.CopyPlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
                                     <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
@@ -198,7 +198,7 @@
                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                 <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
                                 <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
-                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding DisplayName}" Margin="2" TextTrimming="CharacterEllipsis" />
                                 <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                                         Command="{Binding DataContext.CopyPlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
                                     <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>
@@ -270,7 +270,7 @@
                                        RenderOptions.BitmapScalingMode="NearestNeighbor" />
                                 <TextBlock Grid.Column="1" Foreground="White" Text="{Binding StackSize}" Margin="2" TextAlignment="Right" />
                                 <TextBlock Grid.Column="2" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
-                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Name}" Margin="2" TextTrimming="CharacterEllipsis" />
+                                <TextBlock Grid.Column="3" Foreground="White" Text="{Binding DisplayName}" Margin="2" TextTrimming="CharacterEllipsis" />
                                 <Button Grid.Column="4" Style="{StaticResource CompactIconButton}" ToolTip="{x:Static p:Language.menu_edit_copy}"
                                         Command="{Binding DataContext.CopyPlayerItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}">
                                     <ui:SymbolIcon Symbol="Copy20" FontSize="14"/>

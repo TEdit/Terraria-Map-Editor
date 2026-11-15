@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using TEdit.Terraria.DataModel;
@@ -69,24 +70,28 @@ public static class LocalizationLoader
 
     public static LocalizationData LoadLocalization(string locale, string? dataPath = null)
     {
-        var resourceName = $"Localization.{locale}.json";
+        var data = LoadOptional<LocalizationData>(Path.Combine("Localization", $"{locale}.json"), dataPath)
+            ?? new LocalizationData();
 
+        ResolveReferences(data);
+        return data;
+    }
+
+    private static T? LoadOptional<T>(string resourceName, string? dataPath)
+    {
         try
         {
             using var stream = JsonDataLoader.GetDataStream(resourceName, dataPath);
-            var data = JsonSerializer.Deserialize<LocalizationData>(stream)
-                ?? new LocalizationData();
-
-            ResolveReferences(data);
-            return data;
+            return JsonSerializer.Deserialize<T>(stream);
         }
         catch (System.IO.FileNotFoundException)
         {
-            return new LocalizationData();
+            return default;
         }
     }
 
     private static readonly Regex ReferencePattern = new(@"\{\$([^.}]+)\.([^}]+)\}", RegexOptions.Compiled);
+    private const int MaximumReferenceDepth = 256;
 
     /// <summary>
     /// Resolves Terraria-style {$Category.Key} string references in all sections.
@@ -99,11 +104,15 @@ public static class LocalizationLoader
         ResolveDict(data.Prefixes, data);
         ResolveDict(data.Tiles, data);
         ResolveDict(data.Walls, data);
+        ResolveDict(data.Liquids, data);
+        ResolveDict(data.Wires, data);
+        foreach (var frameNames in data.Frames.Values)
+            ResolveDict(frameNames, data);
 
         foreach (var kvp in data.Buffs)
         {
-            kvp.Value.Name = ResolveString(kvp.Value.Name, data, 0);
-            kvp.Value.Description = ResolveString(kvp.Value.Description, data, 0);
+            kvp.Value.Name = ResolveString(kvp.Value.Name, data);
+            kvp.Value.Description = ResolveString(kvp.Value.Description, data);
         }
     }
 
@@ -112,27 +121,65 @@ public static class LocalizationLoader
         var keys = new List<string>(dict.Keys);
         foreach (var key in keys)
         {
-            dict[key] = ResolveString(dict[key], data, 0);
+            dict[key] = ResolveString(dict[key], data);
         }
     }
 
-    private static string ResolveString(string value, LocalizationData data, int depth)
+    private static string ResolveString(string value, LocalizationData data)
+        => ResolveString(value, data, new HashSet<string>(StringComparer.Ordinal), 0);
+
+    private static string ResolveString(
+        string value,
+        LocalizationData data,
+        HashSet<string> resolvingReferences,
+        int depth)
     {
-        if (depth > 5 || string.IsNullOrEmpty(value) || !value.Contains("{$"))
+        if (string.IsNullOrEmpty(value) || !value.Contains("{$"))
             return value;
 
-        return ReferencePattern.Replace(value, match =>
+        // Locale references are trusted data, but a malformed or unexpectedly
+        // deep chain must not be able to exhaust the process stack.
+        if (depth >= MaximumReferenceDepth)
+            return string.Empty;
+
+        var hasEmptyReference = false;
+        var result = ReferencePattern.Replace(value, match =>
         {
             var category = match.Groups[1].Value;
             var key = match.Groups[2].Value;
+            var reference = $"{category}.{key}";
+            if (!resolvingReferences.Add(reference))
+            {
+                // Cyclic references cannot produce a complete display label.
+                hasEmptyReference = true;
+                return string.Empty;
+            }
 
-            var resolved = LookupReference(category, key, data);
-            if (resolved == null)
-                return match.Value; // leave unresolved references as-is
+            try
+            {
+                var resolved = LookupReference(category, key, data);
+                if (resolved == null)
+                {
+                    // Invalid references are reported by the raw-resource
+                    // integrity audit; at runtime, fall back to the whole label.
+                    hasEmptyReference = true;
+                    return string.Empty;
+                }
 
-            // recursively resolve in case the target also contains references
-            return ResolveString(resolved, data, depth + 1);
+                resolved = ResolveString(resolved, data, resolvingReferences, depth + 1);
+                if (string.IsNullOrWhiteSpace(resolved))
+                    hasEmptyReference = true;
+                return resolved;
+            }
+            finally
+            {
+                resolvingReferences.Remove(reference);
+            }
         });
+
+        // An untranslated dependency makes the entire label untranslated, so
+        // display models can fall back to the complete source name.
+        return hasEmptyReference ? string.Empty : result;
     }
 
     private static string? LookupReference(string category, string key, LocalizationData data)
@@ -148,7 +195,16 @@ public static class LocalizationLoader
             case "BuffDescription":
                 return data.Buffs.TryGetValue(key, out var buffDesc) ? buffDesc.Description : null;
             case "Prefix":
+            case "PrefixName":
                 return data.Prefixes.TryGetValue(key, out var prefix) ? prefix : null;
+            case "TileName":
+                return data.Tiles.TryGetValue(key, out var tile) ? tile : null;
+            case "WallName":
+                return data.Walls.TryGetValue(key, out var wall) ? wall : null;
+            case "LiquidName":
+                return data.Liquids.TryGetValue(key, out var liquid) ? liquid : null;
+            case "WireName":
+                return data.Wires.TryGetValue(key, out var wire) ? wire : null;
             default:
                 return null;
         }

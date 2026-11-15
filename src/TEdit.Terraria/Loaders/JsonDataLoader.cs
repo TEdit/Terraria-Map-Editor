@@ -43,7 +43,8 @@ public static class JsonDataLoader
         }
 
         // Fall back to embedded resource
-        var fullResourceName = $"TEdit.Terraria.Data.{resourceName}";
+        var embeddedResourcePath = resourceName.Replace('\\', '.').Replace('/', '.');
+        var fullResourceName = $"TEdit.Terraria.Data.{embeddedResourcePath}";
         var stream = _assembly.GetManifestResourceStream(fullResourceName);
         if (stream != null)
             return stream;

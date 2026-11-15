@@ -5,8 +5,13 @@ public partial class BannerItem : ReactiveObject
     /// <summary>Tally index (index into ClaimableBanners/KilledMobs).</summary>
     public int TallyIndex { get; set; }
 
-    /// <summary>Banner item name (e.g. "Zombie Banner").</summary>
+    /// <summary>Original banner item name (e.g. "Zombie Banner").</summary>
     public string Name { get; set; } = "";
+
+    /// <summary>Optional localized banner name shown in the UI.</summary>
+    public string? LocalizedName { get; set; }
+
+    public string DisplayName => string.IsNullOrWhiteSpace(LocalizedName) ? Name : LocalizedName;
 
     /// <summary>Biome/event category from bestiaryNpcs.json.</summary>
     public string Category { get; set; } = "";

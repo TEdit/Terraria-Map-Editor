@@ -25,6 +25,16 @@ public class LocalizationData
 
     [JsonPropertyName("walls")]
     public Dictionary<string, string> Walls { get; set; } = new();
+
+    [JsonPropertyName("liquids")]
+    public Dictionary<string, string> Liquids { get; set; } = new();
+
+    [JsonPropertyName("wires")]
+    public Dictionary<string, string> Wires { get; set; } = new();
+
+    /// <summary>Optional frame labels keyed by parent tile key and original frame ToString.</summary>
+    [JsonPropertyName("frames")]
+    public Dictionary<string, Dictionary<string, string>> Frames { get; set; } = new();
 }
 
 public class BuffLocalization

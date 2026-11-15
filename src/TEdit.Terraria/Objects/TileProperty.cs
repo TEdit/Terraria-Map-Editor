@@ -86,6 +86,13 @@ public class TileProperty : ITile
     [JsonPropertyOrder(1)]
     public string Name { get; set; } = "UNKNOWN";
 
+    /// <summary>Runtime-localized name; Name remains the original source name.</summary>
+    [JsonIgnore]
+    public string? LocalizedName { get; set; }
+
+    [JsonIgnore]
+    public string DisplayName => string.IsNullOrWhiteSpace(LocalizedName) ? Name : LocalizedName;
+
     [JsonPropertyOrder(2)]
     public string? Key { get; set; }
 

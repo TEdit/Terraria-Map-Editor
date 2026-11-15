@@ -67,8 +67,12 @@ public class WorldConfiguration
 
     private static readonly Dictionary<string, TEditColor> _globalColors = new Dictionary<string, TEditColor>();
     private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
+    private static readonly Dictionary<int, string> _npcDisplayNames = new Dictionary<int, string>();
+    private static readonly Dictionary<string, string> _emptyNpcLocalizedNames = new(StringComparer.Ordinal);
     private static readonly Dictionary<int, NpcData> _npcById = new Dictionary<int, NpcData>();
     private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
+    private static readonly Dictionary<byte, string> _prefixDisplay = new Dictionary<byte, string>();
+    private static readonly ObservableCollection<PrefixData> _prefixProperties = new ObservableCollection<PrefixData>();
     private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
     private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
     private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
@@ -172,7 +176,8 @@ public class WorldConfiguration
         }
 
         // Add tiles directly (no conversion needed - already TileProperty)
-        var airBrick = new TileProperty { Id = -1, Name = "Air", Color = TEditColor.Transparent };
+        var airBrick = store.TileBricks.FirstOrDefault(tile => tile.Id == -1)
+            ?? new TileProperty { Id = -1, Name = "Air", Key = "Air", Color = TEditColor.Transparent };
         _tileBricks.Add(airBrick);
         _tileBricksMask.Add(airBrick);
 
@@ -262,8 +267,11 @@ public class WorldConfiguration
         foreach (var kv in store.GlobalColors) _globalColors[kv.Key] = kv.Value;
         foreach (var kv in store.NpcIdByName) _npcIds[kv.Key] = kv.Value;
         foreach (var kv in store.NpcNameById) _npcNames[kv.Key] = kv.Value;
+        foreach (var kv in store.NpcDisplayNameById) _npcDisplayNames[kv.Key] = kv.Value;
         foreach (var kv in store.NpcById) _npcById[kv.Key] = kv.Value;
         foreach (var kv in store.PrefixById) _prefix[kv.Key] = kv.Value;
+        foreach (var kv in store.PrefixDisplayById) _prefixDisplay[kv.Key] = kv.Value;
+        foreach (var prefix in store.Prefixes) _prefixProperties.Add(prefix);
     }
 
     private static void ClearCollections()
@@ -280,8 +288,11 @@ public class WorldConfiguration
         _globalColors.Clear();
         _npcIds.Clear();
         _npcNames.Clear();
+        _npcDisplayNames.Clear();
         _npcById.Clear();
         _prefix.Clear();
+        _prefixDisplay.Clear();
+        _prefixProperties.Clear();
         _itemLookup.Clear();
         _tallynames.Clear();
         _frameNames.Clear();
@@ -500,6 +511,14 @@ public class WorldConfiguration
         get { return _npcNames; }
     }
 
+    public static Dictionary<int, string> NpcDisplayNames
+    {
+        get { return _store?.NpcDisplayNameById ?? _npcDisplayNames; }
+    }
+
+    public static IReadOnlyDictionary<string, string> NpcLocalizedNames =>
+        _store?.Localization?.Npcs ?? _emptyNpcLocalizedNames;
+
     public static Dictionary<int, ItemProperty> ArmorHeadItems
     {
         get { return _armorHeadItems; }
@@ -558,7 +577,31 @@ public class WorldConfiguration
         get { return _prefix; }
     }
 
+    public static Dictionary<byte, string> ItemPrefixDisplay
+    {
+        get { return _store?.PrefixDisplayById ?? _prefixDisplay; }
+    }
 
+    public static ObservableCollection<PrefixData> ItemPrefixOptions
+    {
+        get { return _prefixProperties; }
+    }
+
+    public static string GetLocalizedLiquidName(string name)
+    {
+        var localization = _store?.Localization;
+        return localization != null && localization.Liquids.TryGetValue(name, out var localized) && !string.IsNullOrWhiteSpace(localized)
+            ? localized
+            : name;
+    }
+
+    public static string GetLocalizedWireName(string name)
+    {
+        var localization = _store?.Localization;
+        return localization != null && localization.Wires.TryGetValue(name, out var localized) && !string.IsNullOrWhiteSpace(localized)
+            ? localized
+            : name;
+    }
 
     public static ObservableCollection<TileProperty> TileProperties
     {

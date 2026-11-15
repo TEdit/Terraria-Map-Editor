@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using TEdit.Common;
 
 namespace TEdit.UI.Controls;
 
@@ -59,7 +60,7 @@ public partial class FilterablePickerControl : UserControl
 
     public static readonly DependencyProperty DisplayMemberPathProperty =
         DependencyProperty.Register(nameof(DisplayMemberPath), typeof(string), typeof(FilterablePickerControl),
-            new PropertyMetadata(null));
+            new PropertyMetadata(null, OnDisplayPathChanged));
 
     public string DisplayMemberPath
     {
@@ -69,7 +70,7 @@ public partial class FilterablePickerControl : UserControl
 
     public static readonly DependencyProperty FilterMemberPathProperty =
         DependencyProperty.Register(nameof(FilterMemberPath), typeof(string), typeof(FilterablePickerControl),
-            new PropertyMetadata(null));
+            new PropertyMetadata(null, OnDisplayPathChanged));
 
     public string FilterMemberPath
     {
@@ -344,6 +345,7 @@ public partial class FilterablePickerControl : UserControl
             _filteredView.Filter = FilterItem;
 
         PART_ItemsList.ItemsSource = _filteredView;
+        UpdateListDisplayMemberPath();
         SyncSelectedItemFromValue();
     }
 
@@ -355,8 +357,15 @@ public partial class FilterablePickerControl : UserControl
     {
         if (d is FilterablePickerControl ctrl)
         {
-            ctrl.PART_ItemsList.ItemTemplate = e.NewValue as DataTemplate;
-            ctrl.PART_SelectedPresenter.ContentTemplate = e.NewValue as DataTemplate;
+            var itemTemplate = e.NewValue as DataTemplate;
+            if (itemTemplate != null)
+                ctrl.PART_ItemsList.DisplayMemberPath = null;
+            else
+                ctrl.PART_ItemsList.ItemTemplate = null;
+
+            ctrl.PART_ItemsList.ItemTemplate = itemTemplate;
+            ctrl.PART_SelectedPresenter.ContentTemplate = itemTemplate;
+            ctrl.UpdateListDisplayMemberPath();
         }
     }
 
@@ -375,6 +384,15 @@ public partial class FilterablePickerControl : UserControl
         if (d is FilterablePickerControl ctrl && e.NewValue is double h)
         {
             ctrl.PART_ItemsList.MaxHeight = h - 10;
+        }
+    }
+
+    private static void OnDisplayPathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is FilterablePickerControl ctrl)
+        {
+            ctrl.UpdateListDisplayMemberPath();
+            ctrl._filteredView?.Refresh();
         }
     }
 
@@ -490,8 +508,10 @@ public partial class FilterablePickerControl : UserControl
         if (item == null) return false;
         if (string.IsNullOrEmpty(_pendingFilterText)) return true;
 
-        string filterText = GetFilterText(item);
-        if (filterText.Contains(_pendingFilterText, StringComparison.OrdinalIgnoreCase))
+        if (LocalizedNameSearch.Matches(
+                _pendingFilterText,
+                GetFilterText(item),
+                GetLocalizedFilterText(item)))
             return true;
 
         if (!string.IsNullOrEmpty(FilterIdMemberPath))
@@ -527,22 +547,80 @@ public partial class FilterablePickerControl : UserControl
 
     #region Display / Property Helpers
 
+    private void UpdateListDisplayMemberPath()
+    {
+        if (PART_ItemsList == null)
+            return;
+
+        if (ItemTemplate != null)
+        {
+            PART_ItemsList.DisplayMemberPath = null;
+            return;
+        }
+
+        string path = DisplayMemberPath ?? FilterMemberPath ?? string.Empty;
+        string displayPath = string.IsNullOrEmpty(path) ? "DisplayName" : GetLocalizedPropertyPath(path);
+        var sample = GetFirstItem();
+        if (sample != null && GetPropertyValue(sample, displayPath) == null)
+            displayPath = path;
+
+        PART_ItemsList.DisplayMemberPath = displayPath;
+    }
+
+    private object GetFirstItem()
+    {
+        var source = ItemsSource;
+        if (source is ICollectionView view)
+            source = view.SourceCollection as IEnumerable;
+
+        if (source is IEnumerable enumerable)
+        {
+            foreach (var item in enumerable)
+                if (item != null)
+                    return item;
+        }
+
+        return SelectedItem;
+    }
+
     private string GetDisplayText(object item)
     {
         if (item == null) return string.Empty;
         string path = DisplayMemberPath ?? FilterMemberPath;
-        if (!string.IsNullOrEmpty(path))
-            return GetPropertyValue(item, path)?.ToString() ?? string.Empty;
-        return item.ToString() ?? string.Empty;
+        if (string.IsNullOrEmpty(path))
+            return GetPropertyValue(item, "DisplayName")?.ToString() ?? item.ToString() ?? string.Empty;
+
+        return GetLocalizedValue(item, path) ?? GetPropertyValue(item, path)?.ToString() ?? string.Empty;
     }
 
     private string GetFilterText(object item)
     {
         if (item == null) return string.Empty;
         string path = FilterMemberPath ?? DisplayMemberPath;
-        if (!string.IsNullOrEmpty(path))
-            return GetPropertyValue(item, path)?.ToString() ?? string.Empty;
-        return item.ToString() ?? string.Empty;
+        if (string.IsNullOrEmpty(path))
+            return item.ToString() ?? string.Empty;
+
+        return GetPropertyValue(item, path)?.ToString() ?? string.Empty;
+    }
+
+    private string? GetLocalizedFilterText(object item)
+    {
+        string path = FilterMemberPath ?? DisplayMemberPath ?? string.Empty;
+        return string.IsNullOrEmpty(path) ? null : GetLocalizedValue(item, path);
+    }
+
+    private static string? GetLocalizedValue(object item, string path)
+    {
+        return GetPropertyValue(item, GetLocalizedPropertyPath(path))?.ToString();
+    }
+
+    private static string GetLocalizedPropertyPath(string path)
+    {
+        return path == "Name"
+            ? "DisplayName"
+            : path.EndsWith(".Name", StringComparison.Ordinal)
+                ? path[..^4] + "DisplayName"
+                : "DisplayName";
     }
 
     private static object GetPropertyValue(object obj, string path)
