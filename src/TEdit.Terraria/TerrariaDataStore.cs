@@ -72,10 +72,16 @@ public class TerrariaDataStore
 
     // Runtime indexes rebuilt whenever a locale is applied.
     private readonly Dictionary<string, string> _localizedItemNamesBySourceName = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, string> _localizedItemNamesByKey = new(StringComparer.Ordinal);
     private readonly Dictionary<string, string> _localizedTileNamesBySourceName = new(StringComparer.Ordinal);
     private readonly Dictionary<string, string> _localizedWallNamesBySourceName = new(StringComparer.Ordinal);
     private readonly Dictionary<string, TileProperty> _tilesByKey = new(StringComparer.Ordinal);
     private readonly Dictionary<string, WallProperty> _wallsByKey = new(StringComparer.Ordinal);
+
+    // Hand-verified historical/legacy sprite names that differ from the current
+    // official item name. Values are stable item keys from items.json; never use
+    // fuzzy matching here, because a wrong alias would silently mistranslate.
+    private static readonly Dictionary<string, string> FrameVariantItemKeyAliases = BuildFrameVariantItemKeyAliases();
 
     // Version management
     public DataModel.SaveVersionManager? VersionManager { get; private set; }
@@ -555,6 +561,7 @@ public class TerrariaDataStore
             prefix.LocalizedName = null;
 
         _localizedItemNamesBySourceName.Clear();
+        _localizedItemNamesByKey.Clear();
         _localizedTileNamesBySourceName.Clear();
         _localizedWallNamesBySourceName.Clear();
         _tilesByKey.Clear();
@@ -680,6 +687,77 @@ public class TerrariaDataStore
                 ? item.LocalizedName
                 : null;
 
+    private static Dictionary<string, string> BuildFrameVariantItemKeyAliases()
+    {
+        var aliases = new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            // Banner sprites kept historical names that the current item list no longer uses.
+            ["Zombie Eskimo Banner"] = "ZombieEskimoBanner",
+            ["Skeleton Mage Banner"] = "SkeletonMageBanner",
+            ["Nypmh Banner"] = "NypmhBanner",
+            ["Blue Cultist Caster Banner"] = "BlueCultistCasterBanner",
+            ["Martian Brainscrambler Banner"] = "MartianBrainscramblerBanner",
+            ["Goblin Summoner Banner"] = "GoblinSummonerBanner",
+            ["Grolem Banner"] = "GraniteGolemBanner",
+            ["Ravager Scorpion Banner"] = "RavagerScorpionBanner",
+            ["Small Star Cell Banner"] = "StardustSmallCellBanner",
+            ["Hemoglobin Shark Banner"] = "GoblinSharkBanner",
+
+            // Trophy/painting/statue/furniture labels with spelling or naming drift.
+            ["Ancient Cultist Trophy"] = "AncientCultistTrophy",
+            ["Pillagin Me Pixels"] = "PillaginMePixels",
+            ["Pirahna Statue"] = "PiranhaStatue",
+            ["Web Coverd Chest"] = "WebCoveredChest",
+            ["Trapped Web Coverd Chest"] = "Fake_WebCoveredChest",
+            ["Gold Crate"] = "GoldenCrate",
+            ["Meteor Toilet"] = "ToiletMeteor",
+            ["Diablost Lamp"] = "DiablostLamp",
+            ["Oil Rag Sconse"] = "OilRagSconse",
+            ["Wooden Work Bench"] = "WorkBench",
+            ["Logic Gate (NXOR)"] = "LogicGate_NXOR",
+            ["Boreal Work Bench"] = "BorealWoodWorkBench",
+            ["Dynasty Platform"] = "DynastyPlatform",
+            ["Spooky Platform"] = "SpookyPlatform",
+            ["Barstool"] = "BarStool",
+            ["Metal Bathtub"] = "Bathtub",
+            ["Large Dynasty Candelabra"] = "DynastyCandelabra",
+            ["Lihzahrd Locked Door"] = "LihzahrdDoor",
+
+            // The original ocean/space music boxes were renamed when the day/night
+            // variants were added; the sprites still use the original labels.
+            ["Music Box (Ocean)"] = "MusicBoxOcean",
+            ["Music Box (Space)"] = "MusicBoxSpace",
+
+            // Legacy generic furniture labels; the official items omit the material
+            // prefix for the default wooden style.
+            ["Wooden Bed"] = "Bed",
+            ["Wooden Bench"] = "Bench",
+            ["Wooden Sofa"] = "Sofa",
+            ["Wooden Bookcase"] = "Bookcase",
+            ["Wooden Dresser"] = "Dresser",
+            ["Wooden Piano"] = "Piano",
+            ["Wooden Chest"] = "Chest",
+
+            // Herb planter labels predate the "Planter Box" item names.
+            ["Blinkroot Planter"] = "BlinkrootPlanterBox",
+            ["Crimsonweed Planter"] = "CrimsonPlanterBox",
+            ["Daybloom Planter"] = "DayBloomPlanterBox",
+            ["Deathweed Planter"] = "CorruptPlanterBox",
+            ["Fireblossom Planter"] = "FireBlossomPlanterBox",
+            ["Moonglow Planter"] = "MoonglowPlanterBox",
+            ["Shiverthorn Planter"] = "ShiverthornPlanterBox",
+            ["Waterleaf Planter"] = "WaterleafPlanterBox",
+        };
+
+        // Alphabet statues use "A Statue" labels while the item keys are AlphabetStatueA.
+        for (var letter = 'A'; letter <= 'Z'; letter++)
+            aliases[$"{letter} Statue"] = $"AlphabetStatue{letter}";
+        for (var digit = '0'; digit <= '9'; digit++)
+            aliases[$"{digit} Statue"] = $"AlphabetStatue{digit}";
+
+        return aliases;
+    }
+
     private void BuildFrameNameIndexes()
     {
         _localizedItemNamesBySourceName.Clear();
@@ -693,6 +771,16 @@ public class TerrariaDataStore
                 .ToList();
             if (translations.Count == 1)
                 _localizedItemNamesBySourceName[group.Key] = translations[0];
+        }
+
+        _localizedItemNamesByKey.Clear();
+        foreach (var item in Items)
+        {
+            if (!string.IsNullOrWhiteSpace(item.Key)
+                && !string.IsNullOrWhiteSpace(item.LocalizedName))
+            {
+                _localizedItemNamesByKey[item.Key] = item.LocalizedName;
+            }
         }
 
         _localizedTileNamesBySourceName.Clear();
@@ -741,32 +829,47 @@ public class TerrariaDataStore
             return exact;
         }
 
-        // Banners, paintings and boss trophies already have complete item names;
-        // composing "Name: Variety" would duplicate the noun.
-        if (!string.IsNullOrWhiteSpace(frame.Variety))
+        var hasVariety = !string.IsNullOrWhiteSpace(frame.Variety);
+        var baseName = ResolveFrameBaseName(tile, frame.Name, data);
+        var categoryLevel = IsCategoryFrameName(tile, frame.Name);
+
+        if (hasVariety)
         {
-            if (frame.Name == "Boss Trophy"
-                && TryResolveItemName(frame.Variety + " Trophy", out var trophyName))
+            // Boss trophies carry complete item names on newer frames, but the
+            // original set omits the "Trophy" suffix. Try the complete name first
+            // so it is never duplicated.
+            if (frame.Name == "Boss Trophy")
             {
-                return trophyName;
+                if (TryResolveItemName(frame.Variety, out var fullTrophyName))
+                    return AppendAnchor(fullTrophyName, frame.Anchor, data);
+                if (TryResolveItemName(frame.Variety + " Trophy", out var suffixedTrophyName))
+                    return AppendAnchor(suffixedTrophyName, frame.Anchor, data);
             }
 
-            var isPaintingTile = tile.Key?.StartsWith("Painting", StringComparison.Ordinal) == true;
-            if (TryResolveItemName(frame.Variety, out var varietyItem)
-                && (frame.Name.EndsWith("Banner", StringComparison.OrdinalIgnoreCase)
-                    || frame.Name == "Painting"
-                    || (isPaintingTile && frame.Name != "Boss Trophy")))
+            if (baseName == null)
             {
-                return varietyItem;
+                // Without a translatable base, the variety is the most accurate
+                // complete label available (paintings, wall hangings, trophies).
+                var varietyLabel = ResolveFrameVariety(frame.Variety, data);
+                if (varietyLabel != null)
+                    return AppendAnchor(varietyLabel, frame.Anchor, data);
+            }
+            else if (categoryLevel
+                     && TryResolveItemName(frame.Variety, out var directVarietyName))
+            {
+                // Category labels ("Tombstones", "Ore Bars") already end with the
+                // same noun as the item; use the complete item name alone instead
+                // of repeating the category. Compound style labels ("Bone A") keep
+                // their category because they are not complete item names.
+                return AppendAnchor(directVarietyName, frame.Anchor, data);
             }
         }
 
-        var baseName = ResolveFrameBaseName(tile, frame.Name, data);
         if (baseName == null)
             return null;
 
         var result = new StringBuilder(baseName);
-        if (!string.IsNullOrWhiteSpace(frame.Variety))
+        if (hasVariety)
         {
             var variety = ResolveFrameVariety(frame.Variety, data);
             if (variety == null)
@@ -779,13 +882,7 @@ public class TerrariaDataStore
             result.Append(variety);
         }
 
-        if (frame.Anchor != FrameAnchor.None)
-        {
-            result.Append(" [");
-            result.Append(ResolveAnchorName(frame.Anchor, data));
-            result.Append(']');
-        }
-
+        AppendAnchor(result, frame.Anchor, data);
         return result.ToString();
     }
 
@@ -794,16 +891,10 @@ public class TerrariaDataStore
         string name,
         DataModel.LocalizationData data)
     {
-        if (string.IsNullOrWhiteSpace(name)
-            || name == "Default"
-            || name == tile.Name
-            || name == tile.Key
-            || name.All(char.IsDigit))
-        {
+        if (IsCategoryFrameName(tile, name))
             return string.IsNullOrWhiteSpace(tile.LocalizedName) ? null : tile.LocalizedName;
-        }
 
-        if (_localizedItemNamesBySourceName.TryGetValue(name, out var itemName))
+        if (TryResolveItemName(name, out var itemName))
             return itemName;
         if (_localizedTileNamesBySourceName.TryGetValue(name, out var tileName))
             return tileName;
@@ -813,12 +904,32 @@ public class TerrariaDataStore
             return supplemental;
         }
 
+        // Compound names such as "Lihzahrd Statue A" reuse the localized item
+        // plus the single-character variant suffix.
+        var lastSpace = name.LastIndexOf(' ');
+        if (lastSpace > 0 && name.Length - lastSpace == 2)
+        {
+            var basePart = name[..lastSpace];
+            var suffix = name[lastSpace..];
+            if (TryResolveItemName(basePart, out var baseItem))
+                return baseItem + suffix;
+            if (_localizedTileNamesBySourceName.TryGetValue(basePart, out var baseTile))
+                return baseTile + suffix;
+        }
+
         return null;
     }
 
+    private static bool IsCategoryFrameName(TileProperty tile, string name)
+        => string.IsNullOrWhiteSpace(name)
+           || name == "Default"
+           || name == tile.Name
+           || name == tile.Key
+           || name.All(char.IsDigit);
+
     private string? ResolveFrameVariety(string variety, DataModel.LocalizationData data)
     {
-        if (_localizedItemNamesBySourceName.TryGetValue(variety, out var itemName))
+        if (TryResolveItemName(variety, out var itemName))
             return itemName;
         if (data.SupplementalNames.TryGetValue(variety, out var supplemental)
             && !string.IsNullOrWhiteSpace(supplemental))
@@ -832,7 +943,7 @@ public class TerrariaDataStore
         {
             var basePart = variety[..lastSpace];
             var suffix = variety[lastSpace..];
-            if (_localizedItemNamesBySourceName.TryGetValue(basePart, out var baseItem))
+            if (TryResolveItemName(basePart, out var baseItem))
                 return baseItem + suffix;
             if (data.SupplementalNames.TryGetValue(basePart, out var baseStyle)
                 && !string.IsNullOrWhiteSpace(baseStyle))
@@ -852,11 +963,33 @@ public class TerrariaDataStore
             return true;
         }
 
+        if (FrameVariantItemKeyAliases.TryGetValue(sourceName, out var itemKey)
+            && _localizedItemNamesByKey.TryGetValue(itemKey, out resolved))
+        {
+            localizedName = resolved;
+            return true;
+        }
+
         localizedName = sourceName;
         return false;
     }
 
-    private string ResolveAnchorName(FrameAnchor anchor, DataModel.LocalizationData data)
+    private static string AppendAnchor(string label, FrameAnchor anchor, DataModel.LocalizationData data)
+        => anchor == FrameAnchor.None
+            ? label
+            : $"{label} [{ResolveAnchorName(anchor, data)}]";
+
+    private static void AppendAnchor(StringBuilder builder, FrameAnchor anchor, DataModel.LocalizationData data)
+    {
+        if (anchor == FrameAnchor.None)
+            return;
+
+        builder.Append(" [");
+        builder.Append(ResolveAnchorName(anchor, data));
+        builder.Append(']');
+    }
+
+    private static string ResolveAnchorName(FrameAnchor anchor, DataModel.LocalizationData data)
     {
         var key = $"Anchor.{anchor}";
         return data.SupplementalNames.TryGetValue(key, out var label) && !string.IsNullOrWhiteSpace(label)

@@ -649,6 +649,50 @@ public sealed class LocalizationBehaviorTests : IDisposable
     }
 
     [Fact]
+    public void EmbeddedZhHans_ResolvesTrophiesAliasesAndCategoryFrames()
+    {
+        var store = TerrariaDataStore.Initialize(locale: "zh-Hans");
+
+        FrameProperty Frame(string tileKey, string raw)
+            => store.Tiles.Single(tile => tile.Key == tileKey)
+                .Frames!.Single(frame => frame.ToString() == raw);
+
+        Frame("Painting3X3", "Boss Trophy: King Slime Trophy").DisplayName.ShouldBe("史莱姆王纪念章");
+        Frame("Painting3X3", "Boss Trophy: Moon Lord Trophy").DisplayName.ShouldBe("月亮领主纪念章");
+        Frame("Painting3X3", "Boss Trophy: Mourning Wood Trophy").DisplayName.ShouldBe("哀木纪念章");
+        Frame("Painting3X3", "Boss Trophy: Pumpking Trophy").DisplayName.ShouldBe("南瓜王纪念章");
+        Frame("Painting3X3", "Boss Trophy: Ogre Trophy").DisplayName.ShouldBe("食人魔纪念章");
+        Frame("Painting3X3", "Boss Trophy: Ancient Cultist Trophy").DisplayName.ShouldBe("拜月教邪教徒纪念章");
+        Frame("Painting3X3", "Fishing Trophy: Goldfish Trophy").DisplayName.ShouldBe("金鱼纪念章");
+        Frame("Painting3X3", "Fishing Trophy: Sharkteeth Trophy").DisplayName.ShouldBe("鲨牙纪念章");
+
+        Frame("Tombstones", "Tombstones: Tombstone").DisplayName.ShouldBe("墓石");
+        Frame("Tombstones", "Tombstones: Golden Tombstone").DisplayName.ShouldBe("金墓石");
+        Frame("MetalBars", "Ore Bars: Copper Bar").DisplayName.ShouldBe("铜锭");
+        Frame("MetalBars", "Ore Bars: Luminite Bar").DisplayName.ShouldBe("夜明锭");
+
+        Frame("Banners", "Monster Banner: Nypmh Banner").DisplayName.ShouldBe("宁芙旗");
+        Frame("Banners", "Monster Banner: Martian Brainscrambler Banner").DisplayName.ShouldBe("火星扰脑怪旗");
+        Frame("Painting6X4", "Painting: Pillagin Me Pixels").DisplayName.ShouldBe("海贼像素画");
+        Frame("Painting2X3", "Painting: Strange Growth A").DisplayName.ShouldBe("奇异植株 A");
+        Frame("AlphabetStatues", "Text Statue: A Statue").DisplayName.ShouldBe("A字雕像");
+
+        var kingSlimeTrophy = Frame("Painting3X3", "Boss Trophy: King Slime Trophy");
+        LocalizedNameSearch.Matches("史莱姆王纪念章", kingSlimeTrophy.Name, kingSlimeTrophy.DisplayName).ShouldBeTrue();
+        LocalizedNameSearch.Matches("Boss Trophy", kingSlimeTrophy.Name, kingSlimeTrophy.DisplayName).ShouldBeTrue();
+
+        foreach (var tile in store.Tiles.Where(tile => tile.Frames != null))
+        {
+            foreach (var frame in tile.Frames!)
+            {
+                frame.DisplayName.ShouldNotContain("Trophy Trophy");
+                frame.DisplayName.ShouldNotContain("墓石: 墓石");
+                frame.DisplayName.ShouldNotContain("金属锭: ");
+            }
+        }
+    }
+
+    [Fact]
     public void LanguageSwitch_ResetsAndUpdatesAllDisplayNames()
     {
         WriteOfficial("zh-Hans", new
