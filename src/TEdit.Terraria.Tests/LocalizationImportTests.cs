@@ -58,11 +58,15 @@ public class LocalizationImportTests
         var enItems = ReadLocaleSection(Path.Combine(LocalizationRoot, "en-US", "Items.json"), "ItemName");
         var wallToItemKey = BuildWallToItemMapping(wallIds, itemIds, enItems);
 
-        // Load TEdit's tiles.json to get English tile names for matching
-        var tilesJsonPath = Path.Combine(DataRoot, "tiles.json");
-        var tilesJson = JsonSerializer.Deserialize<List<JsonElement>>(File.ReadAllText(tilesJsonPath));
+        // Load TEdit's data files to build the complete key structure and get
+        // English tile names for matching.
+        var tilesJson = LoadDataEntries("tiles.json");
+        var itemEntries = LoadDataEntries("items.json");
+        var npcEntries = LoadDataEntries("npcs.json");
+        var prefixEntries = LoadDataEntries("prefixes.json");
+        var wallEntries = LoadDataEntries("walls.json");
         var tileEnglishNames = new Dictionary<int, string>();
-        foreach (var tile in tilesJson!)
+        foreach (var tile in tilesJson)
         {
             var id = tile.GetProperty("id").GetInt32();
             if (tile.TryGetProperty("name", out var nameProp))
@@ -83,7 +87,26 @@ public class LocalizationImportTests
             var localePath = Path.Combine(LocalizationRoot, locale);
             Assert.True(Directory.Exists(localePath), $"Locale directory not found: {localePath}");
 
-            var data = new LocalizationData();
+            // Official resources are generated exclusively. Buffs, liquids and wires
+            // are imported from the game source by a separate step; preserve them.
+            // Hand-verified corrections live in LocalizationOverrides.{locale}.json
+            // and supplemental sprite names in supplementalNames.{locale}.json;
+            // this generator must never write either of those files.
+            var existing = TryLoadOfficialLocale(locale);
+            var data = new LocalizationData
+            {
+                Buffs = existing?.Buffs ?? new(),
+                Liquids = existing?.Liquids ?? new(),
+                Wires = existing?.Wires ?? new(),
+            };
+
+            // Keep the complete shared key structure (empty means untranslated).
+            AddPlaceholders(data.Items, itemEntries);
+            AddPlaceholders(data.Npcs, npcEntries);
+            AddPlaceholders(data.Prefixes, prefixEntries);
+            AddPlaceholders(data.Tiles, tilesJson);
+            data.Tiles["Air"] = "";
+            AddPlaceholders(data.Walls, wallEntries);
 
             // Items: constName → localizedName
             var itemsJson = ReadLocaleSection(Path.Combine(localePath, "Items.json"), "ItemName");
@@ -134,6 +157,9 @@ public class LocalizationImportTests
 
             var sorted = SortLocalizationData(data);
             var outputPath = Path.Combine(OutputRoot, $"{locale}.json");
+            Assert.Equal(
+                Path.GetFileName(TEdit.Terraria.Loaders.LocalizationLoader.GetOfficialResourceName(locale)),
+                Path.GetFileName(outputPath));
             using var stream = File.Create(outputPath);
             JsonSerializer.Serialize(stream, sorted, WriteOptions);
 
@@ -143,6 +169,7 @@ public class LocalizationImportTests
             Assert.True(data.Prefixes.Count > 0, $"{locale}: No prefixes found");
             Assert.True(data.Tiles.Count > 0, $"{locale}: No tiles found");
             Assert.True(data.Walls.Count > 0, $"{locale}: No walls found");
+            Assert.Null(sorted.Frames);
         }
     }
 
@@ -288,6 +315,20 @@ public class LocalizationImportTests
     }
 
     [Fact]
+    public void OfficialResources_NeverUseCuratedResourceFileNames()
+    {
+        foreach (var locale in Locales)
+        {
+            var official = Path.GetFileName(
+                TEdit.Terraria.Loaders.LocalizationLoader.GetOfficialResourceName(locale));
+
+            Assert.Equal($"{locale}.json", official);
+            Assert.DoesNotContain("LocalizationOverrides", official, StringComparison.Ordinal);
+            Assert.DoesNotContain("supplementalNames", official, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
     public void LoadJapaneseLocalization_ContainsKnownItemNames()
     {
         var data = TEdit.Terraria.Loaders.LocalizationLoader.LoadLocalization("ja-JP");
@@ -365,11 +406,41 @@ public class LocalizationImportTests
         return new LocalizationData
         {
             Items = new Dictionary<string, string>(data.Items.OrderBy(kv => kv.Key, StringComparer.Ordinal)),
+            Buffs = new Dictionary<string, BuffLocalization>(data.Buffs.OrderBy(kv => kv.Key, StringComparer.Ordinal)),
             Npcs = new Dictionary<string, string>(data.Npcs.OrderBy(kv => kv.Key, StringComparer.Ordinal)),
             Prefixes = new Dictionary<string, string>(data.Prefixes.OrderBy(kv => kv.Key, StringComparer.Ordinal)),
             Tiles = new Dictionary<string, string>(data.Tiles.OrderBy(kv => kv.Key, StringComparer.Ordinal)),
             Walls = new Dictionary<string, string>(data.Walls.OrderBy(kv => kv.Key, StringComparer.Ordinal)),
+            Liquids = new Dictionary<string, string>(data.Liquids.OrderBy(kv => kv.Key, StringComparer.Ordinal)),
+            Wires = new Dictionary<string, string>(data.Wires.OrderBy(kv => kv.Key, StringComparer.Ordinal)),
         };
+    }
+
+    private static List<JsonElement> LoadDataEntries(string fileName)
+    {
+        var path = Path.Combine(DataRoot, fileName);
+        return JsonSerializer.Deserialize<List<JsonElement>>(File.ReadAllText(path)) ?? [];
+    }
+
+    private static void AddPlaceholders(Dictionary<string, string> target, IEnumerable<JsonElement> entries)
+    {
+        foreach (var entry in entries)
+        {
+            if (!entry.TryGetProperty("key", out var keyProperty))
+                continue;
+
+            var key = keyProperty.GetString();
+            if (!string.IsNullOrWhiteSpace(key))
+                target[key] = string.Empty;
+        }
+    }
+
+    private static LocalizationData? TryLoadOfficialLocale(string locale)
+    {
+        var path = Path.Combine(OutputRoot, $"{locale}.json");
+        return File.Exists(path)
+            ? JsonSerializer.Deserialize<LocalizationData>(File.ReadAllText(path))
+            : null;
     }
 
     /// <summary>

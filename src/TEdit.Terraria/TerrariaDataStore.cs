@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Text;
 using TEdit.Common;
 using TEdit.Terraria.DataModel;
 using TEdit.Terraria.Loaders;
@@ -68,6 +69,13 @@ public class TerrariaDataStore
     // Localization
     public DataModel.LocalizationData? Localization { get; private set; }
     public string CurrentLocale { get; private set; } = "en-US";
+
+    // Runtime indexes rebuilt whenever a locale is applied.
+    private readonly Dictionary<string, string> _localizedItemNamesBySourceName = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, string> _localizedTileNamesBySourceName = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, string> _localizedWallNamesBySourceName = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, TileProperty> _tilesByKey = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, WallProperty> _wallsByKey = new(StringComparer.Ordinal);
 
     // Version management
     public DataModel.SaveVersionManager? VersionManager { get; private set; }
@@ -433,52 +441,44 @@ public class TerrariaDataStore
         var hasEnglishOverride = locale == "en-US"
             && dataPath != null
             && File.Exists(Path.Combine(dataPath, "Localization", "en-US.json"));
-        if (locale == "en-US" && !hasEnglishOverride)
+        var hasOverrides = LocalizationLoader.HasOverrides(locale, dataPath);
+        if (locale == "en-US" && !hasEnglishOverride && !hasOverrides)
         {
             Localization = null;
             ApplyLocalization(new DataModel.LocalizationData());
             return;
         }
 
-        var data = Loaders.LocalizationLoader.LoadLocalization(locale, dataPath);
+        var data = LocalizationLoader.LoadLocalization(locale, dataPath);
         Localization = data;
         ApplyLocalization(data);
     }
 
     private void ApplyLocalization(DataModel.LocalizationData data)
     {
-        foreach (var item in Items) item.LocalizedName = null;
-        foreach (var tile in Tiles)
-        {
-            tile.LocalizedName = null;
-            if (tile.Frames == null) continue;
-            foreach (var frame in tile.Frames) frame.LocalizedDisplayName = null;
-        }
-        foreach (var air in TileBricks.Where(tile => tile.Id == -1))
-            air.LocalizedName = null;
-        foreach (var wall in Walls) wall.LocalizedName = null;
-        foreach (var npc in NpcById.Values) npc.LocalizedName = null;
-        foreach (var prefix in _prefixDataList) prefix.LocalizedName = null;
+        ResetLocalizationState();
 
-        NpcDisplayNameById.Clear();
-        foreach (var npc in NpcById.Values)
-            NpcDisplayNameById[npc.Id] = npc.DisplayName;
-        PrefixDisplayById.Clear();
-        foreach (var prefix in _prefixDataList)
-            PrefixDisplayById[(byte)prefix.Id] = prefix.DisplayName;
-
-        // Build key→object lookups from the Key property on each model
+        // Build key→object lookups from the Key property on each model.
         var itemsByKey = Items
             .Where(i => i.Key != null)
             .ToDictionary(i => i.Key!);
         var tilesByKey = Tiles
             .Where(t => t.Key != null)
             .ToDictionary(t => t.Key!);
+        _tilesByKey.Clear();
+        foreach (var (key, tile) in tilesByKey)
+            _tilesByKey[key] = tile;
         foreach (var air in TileBricks.Where(tile => tile.Id == -1 && tile.Key != null))
+        {
             tilesByKey[air.Key!] = air;
+            _tilesByKey[air.Key!] = air;
+        }
         var wallsByKey = Walls
             .Where(w => w.Key != null)
             .ToDictionary(w => w.Key!);
+        _wallsByKey.Clear();
+        foreach (var (key, wall) in wallsByKey)
+            _wallsByKey[key] = wall;
         var npcsByKey = NpcById.Values
             .Where(n => n.Key != null)
             .ToDictionary(n => n.Key!);
@@ -488,62 +488,423 @@ public class TerrariaDataStore
 
         // Keep source names stable; localized values are used only for display.
         foreach (var kv in data.Items)
-            if (itemsByKey.TryGetValue(kv.Key, out var item))
+            if (!string.IsNullOrWhiteSpace(kv.Value) && itemsByKey.TryGetValue(kv.Key, out var item))
                 item.LocalizedName = kv.Value;
 
         foreach (var kv in data.Tiles)
-            if (tilesByKey.TryGetValue(kv.Key, out var tile))
+            if (!string.IsNullOrWhiteSpace(kv.Value) && tilesByKey.TryGetValue(kv.Key, out var tile))
                 tile.LocalizedName = kv.Value;
 
         foreach (var kv in data.Walls)
-            if (wallsByKey.TryGetValue(kv.Key, out var wall))
+            if (!string.IsNullOrWhiteSpace(kv.Value) && wallsByKey.TryGetValue(kv.Key, out var wall))
                 wall.LocalizedName = kv.Value;
 
         foreach (var kv in data.Npcs)
-        {
-            if (npcsByKey.TryGetValue(kv.Key, out var npc))
-            {
+            if (!string.IsNullOrWhiteSpace(kv.Value) && npcsByKey.TryGetValue(kv.Key, out var npc))
                 npc.LocalizedName = kv.Value;
-                NpcDisplayNameById[npc.Id] = npc.DisplayName;
-            }
-        }
 
         foreach (var kv in data.Prefixes)
-        {
-            if (prefixesByKey.TryGetValue(kv.Key, out var prefix))
-            {
+            if (!string.IsNullOrWhiteSpace(kv.Value) && prefixesByKey.TryGetValue(kv.Key, out var prefix))
                 prefix.LocalizedName = kv.Value;
-                PrefixDisplayById[(byte)prefix.Id] = prefix.DisplayName;
-            }
-        }
 
-        var localizedItemNamesBySourceName = Items
-            .Where(item => !string.IsNullOrWhiteSpace(item.LocalizedName))
-            .GroupBy(item => item.Name, StringComparer.Ordinal)
-            .Where(group => group.Select(item => item.LocalizedName).Distinct(StringComparer.Ordinal).Count() == 1)
-            .ToDictionary(group => group.Key, group => group.First().LocalizedName!, StringComparer.Ordinal);
+        ApplyPlacedNameFallbacks(data);
+
+        // Refresh the flattened dictionaries used by the UI and scripting.
+        NpcDisplayNameById.Clear();
+        foreach (var npc in NpcById.Values)
+            NpcDisplayNameById[npc.Id] = npc.DisplayName;
+        PrefixDisplayById.Clear();
+        foreach (var prefix in _prefixDataList)
+            PrefixDisplayById[(byte)prefix.Id] = prefix.DisplayName;
+
+        BuildFrameNameIndexes();
 
         foreach (var tile in Tiles)
         {
             if (tile.Key == null || tile.Frames == null)
                 continue;
 
-            data.Frames.TryGetValue(tile.Key, out var frameNames);
+            Dictionary<string, string>? frameNames = null;
+            if (data.Frames != null)
+                data.Frames.TryGetValue(tile.Key, out frameNames);
             foreach (var frame in tile.Frames)
             {
-                if (frameNames != null && frameNames.TryGetValue(frame.ToString(), out var localizedName)
-                    && !string.IsNullOrWhiteSpace(localizedName))
-                {
-                    frame.LocalizedDisplayName = localizedName;
-                    continue;
-                }
-
-                // Reuse an item translation only when it covers the complete frame label.
-                if (localizedItemNamesBySourceName.TryGetValue(frame.ToString(), out var itemLocalizedName))
-                    frame.LocalizedDisplayName = itemLocalizedName;
+                frame.LocalizedDisplayName = ResolveFrameDisplayName(tile, frame, data, frameNames);
             }
         }
     }
+
+    private void ResetLocalizationState()
+    {
+        foreach (var item in Items)
+            item.LocalizedName = null;
+        foreach (var tile in Tiles)
+        {
+            tile.LocalizedName = null;
+            if (tile.Frames == null) continue;
+            foreach (var frame in tile.Frames)
+                frame.LocalizedDisplayName = null;
+        }
+        foreach (var air in TileBricks.Where(tile => tile.Id == -1))
+            air.LocalizedName = null;
+        foreach (var wall in Walls)
+            wall.LocalizedName = null;
+        foreach (var npc in NpcById.Values)
+            npc.LocalizedName = null;
+        foreach (var prefix in _prefixDataList)
+            prefix.LocalizedName = null;
+
+        _localizedItemNamesBySourceName.Clear();
+        _localizedTileNamesBySourceName.Clear();
+        _localizedWallNamesBySourceName.Clear();
+        _tilesByKey.Clear();
+        _wallsByKey.Clear();
+        NpcDisplayNameById.Clear();
+        PrefixDisplayById.Clear();
+    }
+
+    /// <summary>
+    /// Localized names are not always present in the official tile/wall sections
+    /// (the game derives them from item names). Fill the residual gaps with the
+    /// placing item and supplemental names without touching valid official names.
+    /// </summary>
+    private void ApplyPlacedNameFallbacks(DataModel.LocalizationData data)
+    {
+        foreach (var air in TileBricks.Where(tile => tile.Id == -1))
+        {
+            if (air.Key != null
+                && data.Tiles.TryGetValue(air.Key, out var airName)
+                && !string.IsNullOrWhiteSpace(airName))
+            {
+                air.LocalizedName = airName;
+            }
+        }
+
+        foreach (var tile in Tiles)
+        {
+            if (!string.IsNullOrWhiteSpace(tile.LocalizedName) || tile.Key == null)
+                continue;
+
+            if (data.Items.TryGetValue(tile.Key, out var itemName) && !string.IsNullOrWhiteSpace(itemName))
+            {
+                tile.LocalizedName = itemName;
+                continue;
+            }
+
+            if (data.SupplementalNames.TryGetValue(tile.Key, out var supplemental)
+                && !string.IsNullOrWhiteSpace(supplemental))
+            {
+                tile.LocalizedName = supplemental;
+                continue;
+            }
+
+            if (GetPlacingItemName(TileItemLookup, tile.Id) is { } placingItem)
+                tile.LocalizedName = placingItem;
+        }
+
+        foreach (var wall in Walls)
+        {
+            if (!string.IsNullOrWhiteSpace(wall.LocalizedName) || wall.Key == null)
+                continue;
+
+            if (data.Items.TryGetValue(wall.Key, out var itemName) && !string.IsNullOrWhiteSpace(itemName))
+            {
+                wall.LocalizedName = itemName;
+                continue;
+            }
+
+            if (data.Items.TryGetValue(wall.Key + "Wall", out var wallItemName) && !string.IsNullOrWhiteSpace(wallItemName))
+            {
+                wall.LocalizedName = wallItemName;
+                continue;
+            }
+
+            if (GetPlacingItemName(WallItemLookup, wall.Id) is { } placingItem)
+                wall.LocalizedName = placingItem;
+        }
+
+        ApplyWallVariantMarkers(data);
+    }
+
+    /// <summary>
+    /// Wall data contains synthetic " (natural)" / " (unused)" variants that have no
+    /// game name of their own. Reuse the base wall's translation plus a localized marker.
+    /// </summary>
+    private void ApplyWallVariantMarkers(DataModel.LocalizationData data)
+    {
+        if (!data.SupplementalNames.TryGetValue("Wall.Natural", out var naturalMarker)
+            || string.IsNullOrWhiteSpace(naturalMarker)
+            || !data.SupplementalNames.TryGetValue("Wall.Unused", out var unusedMarker)
+            || string.IsNullOrWhiteSpace(unusedMarker))
+        {
+            return;
+        }
+
+        var baseLocalizedByName = new Dictionary<string, string>(StringComparer.Ordinal);
+        foreach (var wall in Walls)
+        {
+            if (!string.IsNullOrWhiteSpace(wall.LocalizedName))
+                baseLocalizedByName.TryAdd(wall.Name, wall.LocalizedName);
+        }
+
+        foreach (var wall in Walls)
+        {
+            string marker;
+            if (wall.Name.EndsWith(" (natural)", StringComparison.Ordinal))
+                marker = naturalMarker;
+            else if (wall.Name.EndsWith(" (unused)", StringComparison.Ordinal))
+                marker = unusedMarker;
+            else
+                continue;
+
+            if (string.IsNullOrWhiteSpace(wall.LocalizedName)
+                || wall.LocalizedName.Contains(marker, StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            var baseEnglish = wall.Name[..wall.Name.LastIndexOf(" (", StringComparison.Ordinal)].TrimEnd();
+            if (baseLocalizedByName.TryGetValue(baseEnglish, out var baseLocalized)
+                && !string.IsNullOrWhiteSpace(baseLocalized)
+                && !string.Equals(baseLocalized, baseEnglish, StringComparison.Ordinal))
+            {
+                wall.LocalizedName = baseLocalized + marker;
+            }
+        }
+    }
+
+    private string? GetPlacingItemName(Dictionary<int, int> lookup, int tileOrWallId)
+        => lookup.TryGetValue(tileOrWallId, out var itemId)
+            && ItemById.TryGetValue(itemId, out var item)
+            && !string.IsNullOrWhiteSpace(item.LocalizedName)
+                ? item.LocalizedName
+                : null;
+
+    private void BuildFrameNameIndexes()
+    {
+        _localizedItemNamesBySourceName.Clear();
+        foreach (var group in Items
+                     .Where(item => !string.IsNullOrWhiteSpace(item.LocalizedName))
+                     .GroupBy(item => item.Name, StringComparer.Ordinal))
+        {
+            var translations = group
+                .Select(item => item.LocalizedName!)
+                .Distinct(StringComparer.Ordinal)
+                .ToList();
+            if (translations.Count == 1)
+                _localizedItemNamesBySourceName[group.Key] = translations[0];
+        }
+
+        _localizedTileNamesBySourceName.Clear();
+        foreach (var group in Tiles
+                     .Where(tile => !string.IsNullOrWhiteSpace(tile.LocalizedName))
+                     .GroupBy(tile => tile.Name, StringComparer.Ordinal))
+        {
+            var translations = group
+                .Select(tile => tile.LocalizedName!)
+                .Distinct(StringComparer.Ordinal)
+                .ToList();
+            if (translations.Count == 1)
+                _localizedTileNamesBySourceName[group.Key] = translations[0];
+        }
+
+        _localizedWallNamesBySourceName.Clear();
+        foreach (var group in Walls
+                     .Where(wall => !string.IsNullOrWhiteSpace(wall.LocalizedName))
+                     .GroupBy(wall => wall.Name, StringComparer.Ordinal))
+        {
+            var translations = group
+                .Select(wall => wall.LocalizedName!)
+                .Distinct(StringComparer.Ordinal)
+                .ToList();
+            if (translations.Count == 1)
+                _localizedWallNamesBySourceName[group.Key] = translations[0];
+        }
+    }
+
+    /// <summary>
+    /// Builds the complete localized label for a frame. Exact per-tile overrides win;
+    /// otherwise the label is composed from item/tile translations and supplemental
+    /// style/anchor names. When the base name has no reliable translation the raw
+    /// source label is preserved as a whole.
+    /// </summary>
+    private string? ResolveFrameDisplayName(
+        TileProperty tile,
+        FrameProperty frame,
+        DataModel.LocalizationData data,
+        Dictionary<string, string>? frameOverrides)
+    {
+        if (frameOverrides != null
+            && frameOverrides.TryGetValue(frame.ToString(), out var exact)
+            && !string.IsNullOrWhiteSpace(exact))
+        {
+            return exact;
+        }
+
+        // Banners, paintings and boss trophies already have complete item names;
+        // composing "Name: Variety" would duplicate the noun.
+        if (!string.IsNullOrWhiteSpace(frame.Variety))
+        {
+            if (frame.Name == "Boss Trophy"
+                && TryResolveItemName(frame.Variety + " Trophy", out var trophyName))
+            {
+                return trophyName;
+            }
+
+            var isPaintingTile = tile.Key?.StartsWith("Painting", StringComparison.Ordinal) == true;
+            if (TryResolveItemName(frame.Variety, out var varietyItem)
+                && (frame.Name.EndsWith("Banner", StringComparison.OrdinalIgnoreCase)
+                    || frame.Name == "Painting"
+                    || (isPaintingTile && frame.Name != "Boss Trophy")))
+            {
+                return varietyItem;
+            }
+        }
+
+        var baseName = ResolveFrameBaseName(tile, frame.Name, data);
+        if (baseName == null)
+            return null;
+
+        var result = new StringBuilder(baseName);
+        if (!string.IsNullOrWhiteSpace(frame.Variety))
+        {
+            var variety = ResolveFrameVariety(frame.Variety, data);
+            if (variety == null)
+            {
+                // Do not produce a half-translated label: keep the whole source label.
+                return null;
+            }
+
+            result.Append(": ");
+            result.Append(variety);
+        }
+
+        if (frame.Anchor != FrameAnchor.None)
+        {
+            result.Append(" [");
+            result.Append(ResolveAnchorName(frame.Anchor, data));
+            result.Append(']');
+        }
+
+        return result.ToString();
+    }
+
+    private string? ResolveFrameBaseName(
+        TileProperty tile,
+        string name,
+        DataModel.LocalizationData data)
+    {
+        if (string.IsNullOrWhiteSpace(name)
+            || name == "Default"
+            || name == tile.Name
+            || name == tile.Key
+            || name.All(char.IsDigit))
+        {
+            return string.IsNullOrWhiteSpace(tile.LocalizedName) ? null : tile.LocalizedName;
+        }
+
+        if (_localizedItemNamesBySourceName.TryGetValue(name, out var itemName))
+            return itemName;
+        if (_localizedTileNamesBySourceName.TryGetValue(name, out var tileName))
+            return tileName;
+        if (data.SupplementalNames.TryGetValue(name, out var supplemental)
+            && !string.IsNullOrWhiteSpace(supplemental))
+        {
+            return supplemental;
+        }
+
+        return null;
+    }
+
+    private string? ResolveFrameVariety(string variety, DataModel.LocalizationData data)
+    {
+        if (_localizedItemNamesBySourceName.TryGetValue(variety, out var itemName))
+            return itemName;
+        if (data.SupplementalNames.TryGetValue(variety, out var supplemental)
+            && !string.IsNullOrWhiteSpace(supplemental))
+        {
+            return supplemental;
+        }
+
+        // Compound style names such as "Flat A" reuse the localized base plus the suffix.
+        var lastSpace = variety.LastIndexOf(' ');
+        if (lastSpace > 0)
+        {
+            var basePart = variety[..lastSpace];
+            var suffix = variety[lastSpace..];
+            if (_localizedItemNamesBySourceName.TryGetValue(basePart, out var baseItem))
+                return baseItem + suffix;
+            if (data.SupplementalNames.TryGetValue(basePart, out var baseStyle)
+                && !string.IsNullOrWhiteSpace(baseStyle))
+            {
+                return baseStyle + suffix;
+            }
+        }
+
+        return null;
+    }
+
+    private bool TryResolveItemName(string sourceName, out string localizedName)
+    {
+        if (_localizedItemNamesBySourceName.TryGetValue(sourceName, out var resolved))
+        {
+            localizedName = resolved;
+            return true;
+        }
+
+        localizedName = sourceName;
+        return false;
+    }
+
+    private string ResolveAnchorName(FrameAnchor anchor, DataModel.LocalizationData data)
+    {
+        var key = $"Anchor.{anchor}";
+        return data.SupplementalNames.TryGetValue(key, out var label) && !string.IsNullOrWhiteSpace(label)
+            ? label
+            : anchor.ToString();
+    }
+
+    /// <summary>Gets the localized display label for a frame, falling back to the raw label.</summary>
+    public string GetLocalizedFrameName(TileProperty tile, FrameProperty frame)
+    {
+        if (Localization is not { } data)
+            return frame.ToString();
+
+        Dictionary<string, string>? frameOverrides = null;
+        if (tile.Key != null && data.Frames != null)
+            data.Frames.TryGetValue(tile.Key, out frameOverrides);
+
+        return ResolveFrameDisplayName(tile, frame, data, frameOverrides) ?? frame.ToString();
+    }
+
+    /// <summary>Resolves a supplemental sprite-style / biome-variant label.</summary>
+    public string GetLocalizedSpriteStyle(string name)
+    {
+        if (Localization is not { } data || string.IsNullOrWhiteSpace(name))
+            return name;
+
+        if (_localizedItemNamesBySourceName.TryGetValue(name, out var itemName))
+            return itemName;
+        if (_tilesByKey.TryGetValue(name, out var tile) && !string.IsNullOrWhiteSpace(tile.LocalizedName))
+            return tile.LocalizedName;
+        if (_wallsByKey.TryGetValue(name, out var wall) && !string.IsNullOrWhiteSpace(wall.LocalizedName))
+            return wall.LocalizedName;
+        if (_localizedTileNamesBySourceName.TryGetValue(name, out var tileName))
+            return tileName;
+        if (_localizedWallNamesBySourceName.TryGetValue(name, out var wallName))
+            return wallName;
+        if (data.SupplementalNames.TryGetValue(name, out var supplemental)
+            && !string.IsNullOrWhiteSpace(supplemental))
+        {
+            return supplemental;
+        }
+
+        return name;
+    }
+
+    /// <summary>Gets the localized name of a frame anchor (e.g. "Left").</summary>
+    public string GetLocalizedAnchor(FrameAnchor anchor)
+        => Localization is { } data ? ResolveAnchorName(anchor, data) : anchor.ToString();
 
     private void RebuildFrameImportant()
     {

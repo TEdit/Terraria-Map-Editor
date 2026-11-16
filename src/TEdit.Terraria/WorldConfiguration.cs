@@ -703,4 +703,16 @@ public class WorldConfiguration
     {
         return id + ":" + u + "," + v;
     }
+
+    /// <summary>Gets the localized display label for a tile frame style.</summary>
+    public static string GetLocalizedFrameName(TileProperty tile, FrameProperty frame)
+        => _store?.GetLocalizedFrameName(tile, frame) ?? frame.ToString();
+
+    /// <summary>Resolves a supplemental sprite-style / biome-variant label.</summary>
+    public static string GetLocalizedSpriteStyle(string name)
+        => _store?.GetLocalizedSpriteStyle(name) ?? name;
+
+    /// <summary>Gets the localized frame-anchor name (e.g. "Left").</summary>
+    public static string GetLocalizedAnchor(FrameAnchor anchor)
+        => _store?.GetLocalizedAnchor(anchor) ?? anchor.ToString();
 }

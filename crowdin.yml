@@ -8,3 +8,18 @@ files:
       locale:
         zh-CN: zh-Hans
         zh-TW: zh-Hant
+  - source: /src/TEdit.Terraria/Data/Localization/supplementalNames.en-US.json
+    translation: /src/TEdit.Terraria/Data/Localization/supplementalNames.%locale%.json
+    languages_mapping:
+      locale:
+        de: de-DE
+        es: es-ES
+        fr: fr-FR
+        it: it-IT
+        ja: ja-JP
+        ko: ko-KR
+        pl: pl-PL
+        pt-BR: pt-BR
+        ru: ru-RU
+        zh-CN: zh-Hans
+        zh-TW: zh-Hant

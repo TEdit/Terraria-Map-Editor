@@ -2457,7 +2457,9 @@ public partial class WorldRenderXna : UserControl
                                 Anchor = frameName?.Anchor ?? FrameAnchor.None,
                                 SizeTexture = sprite.SizeTexture,
                                 Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
-                                LocalizedDisplayName = frameName?.DisplayName,
+                                LocalizedDisplayName = frameName != null
+                                    ? WorldConfiguration.GetLocalizedFrameName(tile, frameName)
+                                    : null,
                                 Preview = texture.Texture2DToWriteableBitmap(),
                                 Style = subId,
                                 UV = uv

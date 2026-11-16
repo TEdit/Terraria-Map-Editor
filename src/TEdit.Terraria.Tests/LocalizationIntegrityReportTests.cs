@@ -10,10 +10,14 @@ namespace TEdit.Terraria.Tests;
 
 /// <summary>
 /// Audits every supported locale against the game data and shared name keys.
-/// Empty translations are intentional source-name fallbacks; missing keys,
-/// invalid references, duplicate keys and invalid frame mappings are errors.
-/// Language-specific grammar metadata is preserved without requiring other
-/// languages to declare the same grammatical forms.
+/// The official <c>{locale}.json</c> resources must contain only names derived
+/// from the game's localization files. Hand-verified translations live in
+/// <c>LocalizationOverrides.{locale}.json</c>; supplemental sprite/style names
+/// live in <c>supplementalNames.{locale}.json</c>.
+///
+/// Empty official values are intentional source-name fallbacks. Missing keys,
+/// invalid references, duplicate properties, invalid override keys and invalid
+/// frame mappings are errors. Missing override tables are normal.
 /// </summary>
 public sealed class LocalizationIntegrityReportTests
 {
@@ -34,8 +38,15 @@ public sealed class LocalizationIntegrityReportTests
         var npcs = JsonDataLoader.LoadListFromResource<NpcData>("npcs.json");
         var bestiaryNpcs = JsonDataLoader.LoadFromResource<BestiaryNpcConfiguration>("bestiaryNpcs.json");
         var prefixes = JsonDataLoader.LoadListFromResource<PrefixData>("prefixes.json");
-        var resources = LocalizationLoader.GetSupportedLocales()
-            .ToDictionary(locale => locale, LoadRawLocalization, StringComparer.Ordinal);
+
+        var locales = LocalizationLoader.GetSupportedLocales();
+        var resources = locales.ToDictionary(locale => locale, LoadRawOfficial, StringComparer.Ordinal);
+        var overrides = locales.ToDictionary(locale => locale, LoadRawOverrides, StringComparer.Ordinal);
+        var localized = locales.ToDictionary(
+            locale => locale,
+            locale => LocalizationLoader.LoadLocalization(locale),
+            StringComparer.Ordinal);
+
         var sourceEntries = new Dictionary<string, IEnumerable<(string? Key, string Name)>>
         {
             ["items"] = items.Select(x => (x.Key, x.Name)),
@@ -67,7 +78,9 @@ public sealed class LocalizationIntegrityReportTests
 
         foreach (var (locale, raw) in resources)
         {
-            var localization = LocalizationLoader.LoadLocalization(locale);
+            var overrideData = overrides[locale];
+            var localization = localized[locale];
+            var combinedRaw = CreateCombinedRaw(raw, overrideData);
             var rawSections = GetNameSections(raw);
             var resolvedSections = GetNameSections(localization);
             report.AppendLine();
@@ -90,11 +103,13 @@ public sealed class LocalizationIntegrityReportTests
             report.AppendLine($"- Buff keys: {raw.Buffs.Count}/{expectedBuffKeys.Count}");
 
             var emptyValues = GetEmptyValues(raw);
-            report.AppendLine($"- Empty localized values: {emptyValues.Count}");
+            report.AppendLine($"- Empty official localized values: {emptyValues.Count}");
+            AppendOverrideSummary(report, locale, raw, overrideData, expectedKeys, knownFrameKeys, errors);
 
             var invalidReferences = GetLocalizedValues(raw)
+                .Concat(overrideData == null ? [] : GetLocalizedValues(overrideData))
                 .SelectMany(value => ReferencePattern.Matches(value).Cast<Match>())
-                .Where(match => !HasReferenceTarget(raw, match.Groups[1].Value, match.Groups[2].Value))
+                .Where(match => !HasReferenceTarget(combinedRaw, match.Groups[1].Value, match.Groups[2].Value))
                 .Select(match => match.Value)
                 .Distinct(StringComparer.Ordinal)
                 .ToList();
@@ -102,7 +117,7 @@ public sealed class LocalizationIntegrityReportTests
                 .SelectMany(value => ReferencePattern.Matches(value).Select(match => match.Value))
                 .Distinct(StringComparer.Ordinal)
                 .ToList();
-            var cyclicReferences = FindCircularReferences(raw);
+            var cyclicReferences = FindCircularReferences(combinedRaw);
             errors.AddRange(invalidReferences.Select(token => $"{locale}: invalid reference {token}"));
             errors.AddRange(unresolvedReferences.Select(token => $"{locale}: unresolved reference {token}"));
             errors.AddRange(cyclicReferences.Select(cycle => $"{locale}: cyclic reference {cycle}"));
@@ -110,12 +125,11 @@ public sealed class LocalizationIntegrityReportTests
             report.AppendLine($"- Invalid targets: {invalidReferences.Count}; unresolved tokens after loading: {unresolvedReferences.Count}; cycles: {cyclicReferences.Count}");
             AppendExamples(report, invalidReferences.Concat(unresolvedReferences).Concat(cyclicReferences));
 
-            var frameKeys = raw.Frames.SelectMany(group => group.Value.Keys
-                .Select(key => (TileKey: group.Key, FrameKey: key))).ToHashSet();
-            var missingFrames = knownFrameKeys.Except(frameKeys).ToList();
-            var invalidFrames = frameKeys.Except(knownFrameKeys).ToList();
-            errors.AddRange(missingFrames.Select(frame => $"{locale}: missing frames.{frame.TileKey}.{frame.FrameKey}"));
-            errors.AddRange(invalidFrames.Select(frame => $"{locale}: invalid frames.{frame.TileKey}.{frame.FrameKey}"));
+            var overrideFrameKeys = overrideData?.Frames?
+                .SelectMany(group => group.Value.Keys.Select(key => (TileKey: group.Key, FrameKey: key)))
+                .ToHashSet() ?? [];
+            var invalidFrames = overrideFrameKeys.Except(knownFrameKeys).ToList();
+            errors.AddRange(invalidFrames.Select(frame => $"{locale}: invalid override frame {frame.TileKey}.{frame.FrameKey}"));
             var translatedItemNames = items
                 .Where(item => item.Key != null
                     && localization.Items.TryGetValue(item.Key, out var value)
@@ -124,19 +138,258 @@ public sealed class LocalizationIntegrityReportTests
                 .Where(group => group.Select(item => localization.Items[item.Key!]).Distinct(StringComparer.Ordinal).Count() == 1)
                 .Select(group => group.Key)
                 .ToHashSet(StringComparer.Ordinal);
-            var explicitTranslations = localization.Frames.Sum(group => group.Value.Count(pair => !string.IsNullOrWhiteSpace(pair.Value)));
+            var explicitTranslations = overrideFrameKeys.Count;
             var localizedFrames = knownFrameKeys.Count(frame =>
-                (localization.Frames.TryGetValue(frame.TileKey, out var names)
+                (localization.Frames != null
+                    && localization.Frames.TryGetValue(frame.TileKey, out var names)
                     && names.TryGetValue(frame.FrameKey, out var value)
                     && !string.IsNullOrWhiteSpace(value))
                 || translatedItemNames.Contains(frame.FrameKey));
             report.AppendLine("### Complete frame labels");
-            report.AppendLine($"- Source labels: {knownFrameKeys.Count}; resource keys: {frameKeys.Count}; missing: {missingFrames.Count}; invalid: {invalidFrames.Count}");
+            report.AppendLine($"- Source labels: {knownFrameKeys.Count}; override frame keys: {explicitTranslations}; invalid: {invalidFrames.Count}");
             report.AppendLine($"- Explicit translations: {explicitTranslations}; including exact item-name fallback: {localizedFrames}; whole-label source fallback: {knownFrameKeys.Count - localizedFrames}");
-            report.AppendLine($"- Empty explicit frame slots: {localization.Frames.Sum(group => group.Value.Count(pair => string.IsNullOrWhiteSpace(pair.Value)))}");
         }
 
         _output.WriteLine(report.ToString());
+        Assert.Empty(errors);
+    }
+
+    [Fact]
+    public void OfficialLocalizationResources_ContainOnlyGeneratedTranslations()
+    {
+        var tiles = JsonDataLoader.LoadListFromResource<TileProperty>("tiles.json");
+        var walls = JsonDataLoader.LoadListFromResource<WallProperty>("walls.json");
+        var items = JsonDataLoader.LoadListFromResource<ItemProperty>("items.json");
+        var enUs = LoadRawOfficial("en-US");
+        var itemNameToKey = new Dictionary<string, string>(StringComparer.Ordinal);
+        foreach (var (key, value) in enUs.Items)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+                itemNameToKey[value] = key;
+        }
+        var itemKeys = items.Where(item => item.Key != null).Select(item => item.Key!).ToHashSet(StringComparer.Ordinal);
+        var errors = new List<string>();
+
+        foreach (var locale in LocalizationLoader.GetSupportedLocales())
+        {
+            var raw = LoadRawOfficial(locale);
+            foreach (var tile in tiles)
+            {
+                if (tile.Key == null)
+                    continue;
+
+                var expected = tile.Name != null
+                    && itemNameToKey.TryGetValue(tile.Name, out var itemKey)
+                    && raw.Items.TryGetValue(itemKey, out var itemTranslation)
+                        ? itemTranslation
+                        : string.Empty;
+                if (!raw.Tiles.TryGetValue(tile.Key, out var actual))
+                    errors.Add($"{locale}: official tiles.{tile.Key} is missing");
+                else if (!string.Equals(actual, expected, StringComparison.Ordinal))
+                    errors.Add($"{locale}: official tiles.{tile.Key} was manually edited");
+            }
+
+            foreach (var wall in walls)
+            {
+                if (wall.Key == null)
+                    continue;
+
+                var cleanName = wall.Key.Replace("Unsafe", "", StringComparison.Ordinal);
+                var itemKey = new[] { cleanName + "Wall", wall.Key + "Wall", cleanName, wall.Key }
+                    .FirstOrDefault(candidate => itemKeys.Contains(candidate)
+                        && enUs.Items.ContainsKey(candidate));
+                var expected = itemKey != null && raw.Items.TryGetValue(itemKey, out var itemTranslation)
+                    ? itemTranslation
+                    : string.Empty;
+                if (!raw.Walls.TryGetValue(wall.Key, out var actual))
+                    errors.Add($"{locale}: official walls.{wall.Key} is missing");
+                else if (!string.Equals(actual, expected, StringComparison.Ordinal))
+                    errors.Add($"{locale}: official walls.{wall.Key} was manually edited");
+            }
+
+            if (raw.Tiles.TryGetValue("Air", out var air) && !string.IsNullOrWhiteSpace(air))
+                errors.Add($"{locale}: official tiles.Air was manually edited");
+
+            if (raw.Frames != null && raw.Frames.Count > 0)
+                errors.Add($"{locale}: official resource contains frame data");
+        }
+
+        // The Wiki-checked ManaCloakStar translation must stay in the override table.
+        var zhHansOfficial = LoadRawOfficial("zh-Hans");
+        if (!string.IsNullOrWhiteSpace(zhHansOfficial.Items.GetValueOrDefault("ManaCloakStar")))
+            errors.Add("zh-Hans: ManaCloakStar must not be written to the official resource");
+        var zhHansOverrides = LoadRawOverrides("zh-Hans");
+        if (zhHansOverrides?.Items.GetValueOrDefault("ManaCloakStar") != "魔力斗篷星星")
+            errors.Add("zh-Hans: missing ManaCloakStar override");
+
+        Assert.Empty(errors);
+    }
+
+    [Fact]
+    public void OverrideTables_UseValidCategoriesKeysAndNonBlankValues()
+    {
+        var tiles = JsonDataLoader.LoadListFromResource<TileProperty>("tiles.json");
+        var walls = JsonDataLoader.LoadListFromResource<WallProperty>("walls.json");
+        var items = JsonDataLoader.LoadListFromResource<ItemProperty>("items.json");
+        var npcs = JsonDataLoader.LoadListFromResource<NpcData>("npcs.json");
+        var bestiaryNpcs = JsonDataLoader.LoadFromResource<BestiaryNpcConfiguration>("bestiaryNpcs.json");
+        var prefixes = JsonDataLoader.LoadListFromResource<PrefixData>("prefixes.json");
+        var enUs = LoadRawOfficial("en-US");
+
+        var validKeys = new Dictionary<string, HashSet<string>>(StringComparer.Ordinal)
+        {
+            ["items"] = items.Where(x => x.Key != null).Select(x => x.Key!)
+                .Concat(enUs.Items.Keys)
+                .ToHashSet(StringComparer.Ordinal),
+            ["tiles"] = tiles.Where(x => x.Key != null).Select(x => x.Key!)
+                .Append("Air")
+                .Concat(enUs.Tiles.Keys)
+                .ToHashSet(StringComparer.Ordinal),
+            ["walls"] = walls.Where(x => x.Key != null).Select(x => x.Key!)
+                .Concat(enUs.Walls.Keys)
+                .ToHashSet(StringComparer.Ordinal),
+            ["npcs"] = npcs.Where(x => x.Key != null).Select(x => x.Key!)
+                .Concat(bestiaryNpcs.NpcData.Select(x => x.BestiaryId))
+                .Concat(enUs.Npcs.Keys)
+                .ToHashSet(StringComparer.Ordinal),
+            ["prefixes"] = prefixes.Where(x => x.Key != null).Select(x => x.Key!)
+                .Concat(enUs.Prefixes.Keys)
+                .ToHashSet(StringComparer.Ordinal),
+            ["liquids"] = enUs.Liquids.Keys.ToHashSet(StringComparer.Ordinal),
+            ["wires"] = enUs.Wires.Keys.ToHashSet(StringComparer.Ordinal),
+        };
+        var knownFrameKeys = tiles
+            .Where(tile => !string.IsNullOrWhiteSpace(tile.Key) && tile.Frames != null)
+            .SelectMany(tile => tile.Frames!.Select(frame => (TileKey: tile.Key!, FrameKey: frame.ToString())))
+            .ToHashSet();
+        var errors = new List<string>();
+
+        foreach (var locale in LocalizationLoader.GetSupportedLocales())
+        {
+            var overrides = LoadRawOverrides(locale);
+            if (overrides == null)
+                continue;
+
+            foreach (var (section, values) in GetNameSections(overrides))
+            {
+                foreach (var (key, value) in values)
+                {
+                    if (!validKeys[section].Contains(key))
+                        errors.Add($"{locale}: invalid overrides.{section}.{key}");
+                    if (string.IsNullOrWhiteSpace(value))
+                        errors.Add($"{locale}: blank overrides.{section}.{key}");
+                }
+            }
+
+            foreach (var (key, buff) in overrides.Buffs)
+            {
+                if (!enUs.Buffs.ContainsKey(key))
+                    errors.Add($"{locale}: invalid overrides.buffs.{key}");
+                if (string.IsNullOrWhiteSpace(buff.Name) && string.IsNullOrWhiteSpace(buff.Description))
+                    errors.Add($"{locale}: blank overrides.buffs.{key}");
+            }
+
+            if (overrides.Frames != null)
+            {
+                foreach (var (tileKey, frames) in overrides.Frames)
+                {
+                    foreach (var (frameKey, value) in frames)
+                    {
+                        if (!knownFrameKeys.Contains((tileKey, frameKey)))
+                            errors.Add($"{locale}: invalid overrides.frames.{tileKey}.{frameKey}");
+                        if (string.IsNullOrWhiteSpace(value))
+                            errors.Add($"{locale}: blank overrides.frames.{tileKey}.{frameKey}");
+                    }
+                }
+            }
+        }
+
+        var zhHans = LoadRawOverrides("zh-Hans");
+        if (zhHans?.Tiles.GetValueOrDefault("PlanteraBulb") != "世纪之花球茎")
+            errors.Add("zh-Hans: Plantera's Bulb override must be 世纪之花球茎");
+        if (zhHans?.Tiles.GetValueOrDefault("DemonAltar") != "祭坛")
+            errors.Add("zh-Hans: Demon Altar tile override must be 祭坛");
+        if (zhHans?.Frames?.GetValueOrDefault("Bottles")?.GetValueOrDefault("Bottle") != "玻璃瓶")
+            errors.Add("zh-Hans: missing Bottle frame override");
+
+        var ruRu = LoadRawOverrides("ru-RU");
+        if (ruRu?.Tiles.GetValueOrDefault("BorealWood") != "Заснеженная древесина")
+            errors.Add("ru-RU: missing BorealWood tile override");
+        if (ruRu?.Tiles.GetValueOrDefault("WoodenSpikes") != "Деревянное копье")
+            errors.Add("ru-RU: missing WoodenSpikes tile override");
+
+        Assert.Empty(errors);
+    }
+
+    [Fact]
+    public void SupplementalNames_UseKnownStyleKeysAndCoverAnchors()
+    {
+        var tiles = JsonDataLoader.LoadListFromResource<TileProperty>("tiles.json");
+        var enUsSupplemental = LocalizationLoader.LoadSupplementalNames("en-US");
+        var knownKeys = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var tile in tiles)
+        {
+            if (!string.IsNullOrWhiteSpace(tile.Key))
+                knownKeys.Add(tile.Key);
+            if (tile.BiomeVariants != null)
+            {
+                foreach (var variant in tile.BiomeVariants)
+                {
+                    if (!string.IsNullOrWhiteSpace(variant.Name))
+                        knownKeys.Add(variant.Name);
+                }
+            }
+            if (tile.Frames == null)
+                continue;
+            foreach (var frame in tile.Frames)
+            {
+                if (!string.IsNullOrWhiteSpace(frame.Name))
+                    knownKeys.Add(frame.Name);
+                if (!string.IsNullOrWhiteSpace(frame.Variety))
+                    knownKeys.Add(frame.Variety);
+            }
+        }
+
+        var errors = new List<string>();
+        if (enUsSupplemental.Count == 0)
+            errors.Add("en-US: supplemental names are empty");
+
+        foreach (var (key, value) in enUsSupplemental)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                errors.Add($"en-US: blank supplemental name {key}");
+            if (key.StartsWith("Anchor.", StringComparison.Ordinal))
+            {
+                if (!Enum.TryParse<FrameAnchor>(key["Anchor.".Length..], out _))
+                    errors.Add($"en-US: unknown supplemental anchor {key}");
+                continue;
+            }
+            if (key is "Wall.Natural" or "Wall.Unused")
+                continue;
+            if (!knownKeys.Contains(key))
+                errors.Add($"en-US: supplemental key has no style source {key}");
+        }
+
+        foreach (var locale in LocalizationLoader.GetSupportedLocales())
+        {
+            if (!LocalizationLoader.HasSupplementalNames(locale))
+                continue;
+
+            foreach (var (key, value) in LocalizationLoader.LoadSupplementalNames(locale))
+            {
+                if (!enUsSupplemental.ContainsKey(key))
+                    errors.Add($"{locale}: supplemental key not present in en-US source: {key}");
+                if (string.IsNullOrWhiteSpace(value))
+                    errors.Add($"{locale}: blank supplemental name {key}");
+            }
+        }
+
+        foreach (var anchor in Enum.GetValues<FrameAnchor>())
+        {
+            if (!enUsSupplemental.ContainsKey($"Anchor.{anchor}"))
+                errors.Add($"en-US: missing supplemental anchor Anchor.{anchor}");
+        }
+
         Assert.Empty(errors);
     }
 
@@ -162,8 +415,19 @@ public sealed class LocalizationIntegrityReportTests
     [Fact]
     public void EmbeddedJson_HasNoDuplicateProperties()
     {
-        var names = new[] { "items.json", "tiles.json", "walls.json", "npcs.json", "prefixes.json", "bestiaryNpcs.json" }
-            .Concat(LocalizationLoader.GetSupportedLocales().Select(locale => $"Localization/{locale}.json"));
+        var names = new List<string>
+        {
+            "items.json", "tiles.json", "walls.json", "npcs.json", "prefixes.json", "bestiaryNpcs.json"
+        };
+        foreach (var locale in LocalizationLoader.GetSupportedLocales())
+        {
+            names.Add($"Localization/{locale}.json");
+            if (LocalizationLoader.HasOverrides(locale))
+                names.Add(LocalizationLoader.GetOverridesResourceName(locale));
+            if (LocalizationLoader.HasSupplementalNames(locale))
+                names.Add(LocalizationLoader.GetSupplementalResourceName(locale));
+        }
+
         var duplicates = new List<string>();
         foreach (var name in names)
         {
@@ -187,10 +451,81 @@ public sealed class LocalizationIntegrityReportTests
         Assert.Empty(issues);
     }
 
-    private static LocalizationData LoadRawLocalization(string locale)
+    private static LocalizationData LoadRawOfficial(string locale)
     {
-        using var stream = JsonDataLoader.GetDataStream($"Localization/{locale}.json");
+        using var stream = JsonDataLoader.GetDataStream(LocalizationLoader.GetOfficialResourceName(locale));
         return JsonSerializer.Deserialize<LocalizationData>(stream)!;
+    }
+
+    private static LocalizationData? LoadRawOverrides(string locale)
+        => LocalizationLoader.LoadLocalizationOverrides(locale);
+
+    private static LocalizationData CreateCombinedRaw(LocalizationData official, LocalizationData? overrides)
+    {
+        var combined = new LocalizationData
+        {
+            Items = Clone(official.Items),
+            Buffs = official.Buffs.ToDictionary(
+                pair => pair.Key,
+                pair => new BuffLocalization { Name = pair.Value.Name, Description = pair.Value.Description },
+                StringComparer.Ordinal),
+            Npcs = Clone(official.Npcs),
+            Prefixes = Clone(official.Prefixes),
+            Tiles = Clone(official.Tiles),
+            Walls = Clone(official.Walls),
+            Liquids = Clone(official.Liquids),
+            Wires = Clone(official.Wires),
+            Frames = official.Frames?.ToDictionary(
+                pair => pair.Key,
+                pair => Clone(pair.Value),
+                StringComparer.Ordinal),
+        };
+        if (overrides == null)
+            return combined;
+
+        MergeStringSection(combined.Items, overrides.Items);
+        MergeStringSection(combined.Npcs, overrides.Npcs);
+        MergeStringSection(combined.Prefixes, overrides.Prefixes);
+        MergeStringSection(combined.Tiles, overrides.Tiles);
+        MergeStringSection(combined.Walls, overrides.Walls);
+        MergeStringSection(combined.Liquids, overrides.Liquids);
+        MergeStringSection(combined.Wires, overrides.Wires);
+        foreach (var (key, buff) in overrides.Buffs)
+        {
+            if (!combined.Buffs.TryGetValue(key, out var target))
+                combined.Buffs[key] = target = new BuffLocalization();
+            if (!string.IsNullOrWhiteSpace(buff.Name))
+                target.Name = buff.Name;
+            if (!string.IsNullOrWhiteSpace(buff.Description))
+                target.Description = buff.Description;
+        }
+        if (overrides.Frames != null)
+        {
+            combined.Frames ??= new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+            foreach (var (tileKey, frames) in overrides.Frames)
+            {
+                if (!combined.Frames.TryGetValue(tileKey, out var target))
+                    combined.Frames[tileKey] = target = new Dictionary<string, string>(StringComparer.Ordinal);
+                foreach (var (frameKey, value) in frames)
+                {
+                    if (!string.IsNullOrWhiteSpace(value))
+                        target[frameKey] = value;
+                }
+            }
+        }
+        return combined;
+    }
+
+    private static Dictionary<string, string> Clone(Dictionary<string, string> source)
+        => new(source, StringComparer.Ordinal);
+
+    private static void MergeStringSection(Dictionary<string, string> target, Dictionary<string, string> source)
+    {
+        foreach (var (key, value) in source)
+        {
+            if (!string.IsNullOrWhiteSpace(value))
+                target[key] = value;
+        }
     }
 
     private static Dictionary<string, Dictionary<string, string>> GetNameSections(LocalizationData data) => new()
@@ -210,6 +545,84 @@ public sealed class LocalizationIntegrityReportTests
         "LiquidName" => data.Liquids.ContainsKey(key),
         "WireName" => data.Wires.ContainsKey(key),
         _ => false
+    };
+
+    private static void AppendOverrideSummary(
+        StringBuilder report,
+        string locale,
+        LocalizationData raw,
+        LocalizationData? overrides,
+        IReadOnlyDictionary<string, HashSet<string>> expectedKeys,
+        HashSet<(string TileKey, string FrameKey)> knownFrameKeys,
+        List<string> errors)
+    {
+        if (overrides == null)
+        {
+            report.AppendLine("- Overrides: none");
+            return;
+        }
+
+        var counts = new List<string>();
+        foreach (var (section, values) in GetNameSections(overrides))
+        {
+            var corrections = 0;
+            var supplements = 0;
+            var redundant = 0;
+            foreach (var (key, value) in values)
+            {
+                if (!expectedKeys[section].Contains(key))
+                    errors.Add($"{locale}: invalid overrides.{section}.{key}");
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    errors.Add($"{locale}: blank overrides.{section}.{key}");
+                    continue;
+                }
+
+                if (!string.IsNullOrWhiteSpace(rawValue(raw, section, key)))
+                {
+                    if (rawValue(raw, section, key) == value)
+                        redundant++;
+                    else
+                        corrections++;
+                }
+                else
+                {
+                    supplements++;
+                }
+            }
+            counts.Add($"{section}: {values.Count} ({corrections} corrections, {supplements} fills, {redundant} redundant)");
+        }
+
+        if (overrides.Frames != null)
+        {
+            var frameCount = 0;
+            foreach (var (tileKey, frames) in overrides.Frames)
+            {
+                foreach (var (frameKey, value) in frames)
+                {
+                    frameCount++;
+                    if (!knownFrameKeys.Contains((tileKey, frameKey)))
+                        errors.Add($"{locale}: invalid overrides.frames.{tileKey}.{frameKey}");
+                    if (string.IsNullOrWhiteSpace(value))
+                        errors.Add($"{locale}: blank overrides.frames.{tileKey}.{frameKey}");
+                }
+            }
+            counts.Add($"frames: {frameCount}");
+        }
+
+        report.AppendLine($"- Overrides: {string.Join("; ", counts)}");
+    }
+
+    private static string? rawValue(LocalizationData data, string section, string key) => section switch
+    {
+        "items" => data.Items.GetValueOrDefault(key),
+        "npcs" => data.Npcs.GetValueOrDefault(key),
+        "prefixes" => data.Prefixes.GetValueOrDefault(key),
+        "tiles" => data.Tiles.GetValueOrDefault(key),
+        "walls" => data.Walls.GetValueOrDefault(key),
+        "liquids" => data.Liquids.GetValueOrDefault(key),
+        "wires" => data.Wires.GetValueOrDefault(key),
+        _ => null
     };
 
     private static List<string> FindCircularReferences(LocalizationData data)
@@ -244,9 +657,12 @@ public sealed class LocalizationIntegrityReportTests
             AddNode($"BuffName.{key}", buff.Name);
             AddNode($"BuffDescription.{key}", buff.Description);
         }
-        foreach (var (tileKey, frameNames) in data.Frames)
-            foreach (var (frameKey, value) in frameNames)
-                AddNode($"FrameName.{tileKey}.{frameKey}", value);
+        if (data.Frames != null)
+        {
+            foreach (var (tileKey, frameNames) in data.Frames)
+                foreach (var (frameKey, value) in frameNames)
+                    AddNode($"FrameName.{tileKey}.{frameKey}", value);
+        }
 
         var states = new Dictionary<string, byte>(StringComparer.Ordinal);
         var path = new List<string>();
@@ -362,10 +778,13 @@ public sealed class LocalizationIntegrityReportTests
                 empty.Add($"buffs.{key}.description");
         }
 
-        foreach (var (tileKey, frames) in data.Frames)
-            foreach (var (frameKey, value) in frames)
-                if (string.IsNullOrWhiteSpace(value))
-                    empty.Add($"frames.{tileKey}.{frameKey}");
+        if (data.Frames != null)
+        {
+            foreach (var (tileKey, frames) in data.Frames)
+                foreach (var (frameKey, value) in frames)
+                    if (string.IsNullOrWhiteSpace(value))
+                        empty.Add($"frames.{tileKey}.{frameKey}");
+        }
 
         return empty;
     }
@@ -380,9 +799,12 @@ public sealed class LocalizationIntegrityReportTests
             yield return buff.Name;
             yield return buff.Description;
         }
-        foreach (var frameNames in data.Frames.Values)
-            foreach (var value in frameNames.Values)
-                yield return value;
+        if (data.Frames != null)
+        {
+            foreach (var frameNames in data.Frames.Values)
+                foreach (var value in frameNames.Values)
+                    yield return value;
+        }
     }
 
     private static void FindDuplicateProperties(JsonElement element, string path, List<string> duplicates)

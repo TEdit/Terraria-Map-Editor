@@ -407,7 +407,7 @@ public partial class FindSidebarViewModel
         if (uv.HasValue && prop.Frames != null)
         {
             var frame = prop.Frames.FirstOrDefault(f => f.UV.X == uv.Value.X && f.UV.Y == uv.Value.Y);
-            if (frame != null) return $"{prop.DisplayName} ({frame.DisplayName})";
+            if (frame != null) return $"{prop.DisplayName} ({WorldConfiguration.GetLocalizedFrameName(prop, frame)})";
         }
 
         return prop.DisplayName;
