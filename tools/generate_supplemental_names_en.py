@@ -53,16 +53,27 @@ for tile in tiles:
 result = {k: k for k in sorted(keys) if k not in covered and not numeric_only.match(k)}
 
 # Frame anchor suffixes shown as "[Left]" etc.
-result['Anchor.Bottom'] = 'Bottom'
-result['Anchor.Center'] = 'Center'
-result['Anchor.Left'] = 'Left'
-result['Anchor.None'] = 'None'
-result['Anchor.Right'] = 'Right'
-result['Anchor.Top'] = 'Top'
+result['Anchor.Bottom'] = '[Bottom]'
+result['Anchor.Center'] = '[Center]'
+result['Anchor.Left'] = '[Left]'
+result['Anchor.None'] = '[None]'
+result['Anchor.Right'] = '[Right]'
+result['Anchor.Top'] = '[Top]'
 
 # Suffix markers appended to natural/unused wall variants (see ApplyLocalization).
 result['Wall.Natural'] = '(natural)'
 result['Wall.Unused'] = '(unused)'
+
+# Entries the game's own language files never provide: no MapObject counterpart and no placing
+# item, so en-US.json cannot carry them. ApplyLocalization looks them up under the "Wall." /
+# "Paint." prefixes, which also keeps the shared "None" key of wall 0 and paint 0 apart.
+result['Wall.None'] = 'Sky'
+result['Wall.UnbreakableBlockWall'] = 'Unbreakable Wall'
+result['Paint.None'] = 'None'
+
+# Tile 269 is absent from the MapObject table, so its key would fall back to the raw string;
+# pin it to the display name its frames already use.
+result['Womannequin'] = 'Womannequin (Legacy)'
 
 sorted_result = dict(sorted(result.items()))
 

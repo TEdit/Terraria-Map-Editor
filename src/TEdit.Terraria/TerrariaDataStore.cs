@@ -521,6 +521,10 @@ public class TerrariaDataStore
                 wall.LocalizedName = wallName;
             else if (data.Items.TryGetValue(wall.Key + "Wall", out var wallNameWall))
                 wall.LocalizedName = wallNameWall;
+            // Walls the game's own language files never name (no MapObject entry, no placing item)
+            // carry a pinned entry under the "Wall." prefix in supplementalNames (see the generator).
+            else if (data.SupplementalNames.TryGetValue("Wall." + wall.Key, out var wallSupp))
+                wall.LocalizedName = wallSupp;
             else if (GetPlacingItemName(WallItemLookup, wall.Id) is { } itemName)
                 wall.LocalizedName = itemName;
         }
@@ -549,10 +553,18 @@ public class TerrariaDataStore
             }
         }
 
-        // Apply paint names
+        // Apply paint names. Paint 0 shares the "None" key with wall 0, so a paint entry the game
+        // data does not carry is looked up under the "Paint." prefix to keep the two apart.
         foreach (var paint in Paints)
-            if (paint.Key != null && data.Items.TryGetValue(paint.Key, out var paintName))
+        {
+            if (paint.Key == null)
+                continue;
+
+            if (data.Items.TryGetValue(paint.Key, out var paintName))
                 paint.LocalizedName = paintName;
+            else if (data.SupplementalNames.TryGetValue("Paint." + paint.Key, out var paintSupp))
+                paint.LocalizedName = paintSupp;
+        }
 
         // Apply bestiary NPC names
         if (Bestiary != null)
@@ -644,7 +656,21 @@ public class TerrariaDataStore
     public string GetLocalizedFrameName(TileProperty tile, FrameProperty frame)
     {
         if (Localization is not { } loc)
+        {
+            // English UI loads no localization data. An unnamed frame still shows its tile's name
+            // instead of the "Default" placeholder, mirroring the fallback in the localized path below.
+            if ((string.IsNullOrWhiteSpace(frame.Name) || frame.Name == "Default")
+                && !string.IsNullOrWhiteSpace(tile.Name) && tile.Name != "Default")
+            {
+                string englishName = tile.Name;
+                if (!string.IsNullOrWhiteSpace(frame.Variety) && frame.Variety != "None")
+                    englishName += ": " + frame.Variety;
+                if (frame.Anchor != FrameAnchor.None)
+                    englishName += " [" + frame.Anchor + "]";
+                return englishName;
+            }
             return frame.ToString();
+        }
 
         // 1. Base name from the style lookup, falling back to the tile's own name for default frames.
         string baseName = ResolveStyleName(loc, frame.Name);
@@ -655,6 +681,7 @@ public class TerrariaDataStore
 
         // 2. Resolve the variant/style name (banners, paintings, trophies, direct style lookup and suffix variants).
         string? localizedVariety = null;
+        bool varietyResolved = false;
         if (!string.IsNullOrWhiteSpace(frame.Variety) && frame.Variety != "None")
         {
             // Boss trophies: the variant + " Trophy" is the item name (e.g. Eye of Cthulhu).
@@ -673,16 +700,24 @@ public class TerrariaDataStore
                     return directItem;
                 }
                 localizedVariety = directItem;
+                varietyResolved = true;
             }
-            // Look up the style name directly in the supplementalNames dictionary.
+            // Look up the style name directly in the supplementalNames dictionary. These entries are exactly
+            // the residual names that game data does not cover (see tools/generate_supplemental_names_en.py),
+            // i.e. they have no official item/tile counterpart at all, so this is their only translated source.
+            // This must precede the suffix split below: the split resolves its own head through this same
+            // dictionary and keeps the tail verbatim, so it would rewrite whole-entry translations into
+            // half-English strings ("Stair Top Landing R Endcap" -> "楼梯 顶层右平台 Endcap").
             else if (loc.SupplementalNames.TryGetValue(frame.Variety, out var styleVal))
             {
                 localizedVariety = styleVal;
+                varietyResolved = true;
             }
             // Compound suffix pattern (e.g. split "Flat A" into "Flat" + " A").
             else if (ResolveVarietySuffix(loc, frame.Variety) is { } suffixVal)
             {
                 localizedVariety = suffixVal;
+                varietyResolved = true;
             }
             else
             {
@@ -691,9 +726,20 @@ public class TerrariaDataStore
         }
 
         // 3. Compose the full name and append the anchor suffix.
-        var name = baseName;
-        if (!string.IsNullOrWhiteSpace(localizedVariety))
-            name += ": " + localizedVariety;
+        // An unresolved style name ("Rocket" on tile 216, "Painting" on the painting tiles) is a category
+        // label rather than a display name: when its variant is localized, show the variant alone instead of
+        // prefixing the untranslated English label.
+        string name;
+        if (varietyResolved && baseName == frame.Name)
+        {
+            name = localizedVariety!;
+        }
+        else
+        {
+            name = baseName;
+            if (!string.IsNullOrWhiteSpace(localizedVariety))
+                name += ": " + localizedVariety;
+        }
         if (frame.Anchor != FrameAnchor.None)
             name += $" [{GetLocalizedAnchor(frame.Anchor)}]";
         return name;

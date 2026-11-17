@@ -66,7 +66,7 @@ public partial class SpriteTreePickerViewModel
             // Add variant children from Frames
             if (tile.Frames != null)
             {
-                foreach (var frame in tile.Frames.OrderBy(f => f.ToString()))
+                foreach (var frame in tile.Frames.OrderBy(f => WorldConfiguration.GetLocalizedFrameName(tile, f)))
                 {
                     var childNode = new SpriteTreeNodeViewModel(
                         tile.Id,
