@@ -40,6 +40,10 @@ public class WorldConfiguration
     public static MorphConfiguration DestructiveMorphSettings { get; private set; }
     public static BackgroundStyleConfiguration BackgroundStyles => _store?.BackgroundStyles;
     public static IReadOnlyList<AnglerQuestProperty> AnglerQuests => _store?.AnglerQuests ?? [];
+    public static IReadOnlyList<XmasDecoProperty> XmasStarToppers => _store?.XmasStarToppers ?? [];
+    public static IReadOnlyList<XmasDecoProperty> XmasGarlands => _store?.XmasGarlands ?? [];
+    public static IReadOnlyList<XmasDecoProperty> XmasBulbs => _store?.XmasBulbs ?? [];
+    public static IReadOnlyList<XmasDecoProperty> XmasLights => _store?.XmasLights ?? [];
 
     // Tracks what we actually applied (handy for UI / warnings).
     public static uint ActiveWorldVersion  { get; private set; }

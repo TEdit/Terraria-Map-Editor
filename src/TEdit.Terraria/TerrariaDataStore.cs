@@ -66,6 +66,12 @@ public class TerrariaDataStore
     // Angler Quest fish
     public List<AnglerQuestProperty> AnglerQuests { get; } = new();
 
+    // Christmas tree decorations (V bit-field value → item)
+    public List<XmasDecoProperty> XmasStarToppers { get; } = new();
+    public List<XmasDecoProperty> XmasGarlands { get; } = new();
+    public List<XmasDecoProperty> XmasBulbs { get; } = new();
+    public List<XmasDecoProperty> XmasLights { get; } = new();
+
     // Localization
     public DataModel.LocalizationData? Localization { get; private set; }
     public string CurrentLocale { get; private set; } = "en-US";
@@ -352,6 +358,7 @@ public class TerrariaDataStore
                 WallItemLookup[item.CreateWall.Value] = item.Id;
         }
         PopulateAnglerQuests();
+        PopulateXmasDecorations();
     }
 
     internal void PopulateDyes(List<DyeProperty> dyes)
@@ -383,6 +390,40 @@ public class TerrariaDataStore
                 ItemId = itemId,
                 Item = item
             });
+        }
+    }
+
+    // Christmas tree decorations. The tree tile packs all four slots into V:
+    // star (bits 0-2), garland (bits 3-5), bulb (bits 6-9) and lights (bits 10-13).
+    // Slot value 0 means "none"; the rest map to items by a fixed offset.
+    private const int XmasStarItemOffset = 1873;    // V 1..4  → 1874..1877
+    private const int XmasGarlandItemOffset = 1877; // V 1..6  → 1878..1883
+    private const int XmasBulbItemOffset = 1883;    // V 1..11 → 1884..1894
+    private const int XmasLightItemOffset = 1894;   // V 1..11 → 1895..1905
+
+    internal void PopulateXmasDecorations()
+    {
+        PopulateXmasList(XmasStarToppers, XmasStarItemOffset, 4);
+        PopulateXmasList(XmasGarlands, XmasGarlandItemOffset, 6);
+        PopulateXmasList(XmasBulbs, XmasBulbItemOffset, 11);
+        PopulateXmasList(XmasLights, XmasLightItemOffset, 11);
+
+        void PopulateXmasList(List<XmasDecoProperty> list, int itemOffset, int maxValue)
+        {
+            list.Clear();
+            // Value 0 ("none") is supplied by the XAML as a localized placeholder,
+            // so the data list only carries real decoration items.
+            for (int value = 1; value <= maxValue; value++)
+            {
+                int itemId = itemOffset + value;
+                ItemById.TryGetValue(itemId, out var item);
+                list.Add(new XmasDecoProperty
+                {
+                    Value = value,
+                    ItemId = itemId,
+                    Item = item
+                });
+            }
         }
     }
 
