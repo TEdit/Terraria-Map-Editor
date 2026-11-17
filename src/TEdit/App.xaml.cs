@@ -130,6 +130,11 @@ public partial class App : Application
             WorldConfiguration.Sprites2Lock);
         ErrorLogging.LogDebug($"[Startup] WorldConfiguration.Sprites2 init: {sw.ElapsedMilliseconds}ms");
 
+        // The synthetic "Air" tile (Id -1) has no game-side name, so the localized
+        // data never covers it. Give it the UI label once the culture is applied.
+        foreach (var airTile in WorldConfiguration.TileBricks.Where(t => t.Id < 0))
+            airTile.LocalizedName = TEdit.Properties.Language.common_air;
+
         sw.Restart();
         Version = SemVersion.Parse(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion, SemVersionStyles.Any);
         ErrorLogging.Initialize();

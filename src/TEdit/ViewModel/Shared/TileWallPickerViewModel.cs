@@ -7,6 +7,7 @@ using System.Windows.Data;
 using ReactiveUI;
 using ReactiveUI.SourceGenerators;
 using TEdit.Common;
+using TEdit.Properties;
 using TEdit.Terraria;
 
 namespace TEdit.ViewModel.Shared;
@@ -75,7 +76,9 @@ public partial class TileWallPickerViewModel
                 foreach (var tile in WorldConfiguration.TileBricks.OrderBy(x => x.LocalizedName))
                 {
                     WorldConfiguration.TileItemLookup.TryGetValue(tile.Id, out int tileItemId);
-                    AllItems.Add(new PickerItemViewModel(tile.Id, tile.Name, tile.LocalizedName, tile.Color, itemId: tileItemId));
+                    // Id -1 is the synthetic "Air" entry, which has no game-side name.
+                    string tileName = tile.Id < 0 ? Language.common_air : tile.LocalizedName;
+                    AllItems.Add(new PickerItemViewModel(tile.Id, tile.Name, tileName, tile.Color, itemId: tileItemId));
                 }
                 break;
 

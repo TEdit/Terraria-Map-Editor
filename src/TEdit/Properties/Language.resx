@@ -280,6 +280,9 @@
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>
+  <data name="common_air" xml:space="preserve">
+    <value>Air</value>
+  </data>
   <data name="common_all" xml:space="preserve">
     <value>All</value>
   </data>

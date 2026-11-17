@@ -538,6 +538,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Air.
+        /// </summary>
+        public static string common_air {
+            get {
+                return ResourceManager.GetString("common_air", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string common_all {
