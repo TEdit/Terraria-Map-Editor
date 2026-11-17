@@ -4763,66 +4763,6 @@ The error is :
   <data name="world_gamemode_master" xml:space="preserve">
     <value>Master</value>
   </data>
-  <data name="specialtile_xmas_star_topper_1" xml:space="preserve">
-    <value>Star Topper 1</value>
-  </data>
-  <data name="specialtile_xmas_star_topper_2" xml:space="preserve">
-    <value>Star Topper 2</value>
-  </data>
-  <data name="specialtile_xmas_star_topper_3" xml:space="preserve">
-    <value>Star Topper 3</value>
-  </data>
-  <data name="specialtile_xmas_bow_topper" xml:space="preserve">
-    <value>Bow Topper</value>
-  </data>
-  <data name="specialtile_xmas_white" xml:space="preserve">
-    <value>White</value>
-  </data>
-  <data name="specialtile_xmas_white_red" xml:space="preserve">
-    <value>White and Red</value>
-  </data>
-  <data name="specialtile_xmas_red" xml:space="preserve">
-    <value>Red</value>
-  </data>
-  <data name="specialtile_xmas_red_green" xml:space="preserve">
-    <value>Red and Green</value>
-  </data>
-  <data name="specialtile_xmas_green" xml:space="preserve">
-    <value>Green</value>
-  </data>
-  <data name="specialtile_xmas_green_white" xml:space="preserve">
-    <value>Green and White</value>
-  </data>
-  <data name="specialtile_xmas_multicolored" xml:space="preserve">
-    <value>Multicolored</value>
-  </data>
-  <data name="specialtile_xmas_yellow" xml:space="preserve">
-    <value>Yellow</value>
-  </data>
-  <data name="specialtile_xmas_yellow_green" xml:space="preserve">
-    <value>Yellow and Green</value>
-  </data>
-  <data name="specialtile_xmas_red_yellow" xml:space="preserve">
-    <value>Red and Yellow</value>
-  </data>
-  <data name="specialtile_xmas_white_yellow" xml:space="preserve">
-    <value>White and Yellow</value>
-  </data>
-  <data name="specialtile_xmas_white_green" xml:space="preserve">
-    <value>White and Green</value>
-  </data>
-  <data name="specialtile_xmas_blue" xml:space="preserve">
-    <value>Blue</value>
-  </data>
-  <data name="specialtile_xmas_blue_green" xml:space="preserve">
-    <value>Blue and Green</value>
-  </data>
-  <data name="specialtile_xmas_red_blue" xml:space="preserve">
-    <value>Red and Blue</value>
-  </data>
-  <data name="specialtile_xmas_blue_yellow" xml:space="preserve">
-    <value>Blue and Yellow</value>
-  </data>
   <data name="tool_wp_boss_brainofcthulhu" xml:space="preserve">
     <value>Brain of Cthulhu</value>
   </data>
