@@ -9,6 +9,7 @@
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
              xmlns:terrariaData="clr-namespace:TEdit.Terraria.DataModel;assembly=TEdit.Terraria"
+             xmlns:converters="clr-namespace:TEdit.Converters"
              d:DesignWidth="400"
              d:DesignHeight="150"
              Background="{StaticResource WindowBackgroundBrush}"
@@ -16,6 +17,9 @@
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"             
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}" 
              mc:Ignorable="d" >
+    <UserControl.Resources>
+        <converters:LocalizedKeyConverter x:Key="LocalizedKey" />
+    </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
         <StackPanel Orientation="Vertical" Margin="2">
             <TextBlock Text="{x:Static p:Language.MorphBiome_Mode}" Margin="2" />
@@ -32,13 +36,24 @@
             <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
             <ComboBox Width="200"
                   ItemsSource="{Binding MorphToolOptions.TargetBiomes}"
-                  SelectedValue="{Binding MorphToolOptions.TargetBiome}" />
+                  SelectedValue="{Binding MorphToolOptions.TargetBiome}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource LocalizedKey}, ConverterParameter=MorphBiome_}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Text="{x:Static p:Language.tool_morph_moss_type}" Margin="2" />
             <ComboBox Width="200"
                   ItemsSource="{Binding Source={x:Static Terraria:WorldConfiguration.MossTypesWithNone}, Mode=OneTime}" 
                       SelectedValuePath="Value" 
-                      DisplayMemberPath="Key"
-                  SelectedValue="{Binding MorphToolOptions.MossType}" />
+                  SelectedValue="{Binding MorphToolOptions.MossType}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Key, Converter={StaticResource LocalizedKey}, ConverterParameter=morph_moss_}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="2">
             <TextBlock Text="{x:Static p:Language.tool_morph_options}" />

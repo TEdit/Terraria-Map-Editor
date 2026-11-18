@@ -12,6 +12,16 @@ public class WallProperty : ReactiveObject, ITile
     [JsonPropertyOrder(1)]
     public string Name { get; set; } = "UNKNOWN";
 
+    private string? _localizedName;
+
+    /// <summary>Localized display name; falls back to <see cref="Name"/>.</summary>
+    [JsonIgnore]
+    public string LocalizedName
+    {
+        get => _localizedName ?? Name;
+        set => _localizedName = value;
+    }
+
     [JsonPropertyOrder(2)]
     public string? Key { get; set; }
 
@@ -32,5 +42,5 @@ public class WallProperty : ReactiveObject, ITile
     [JsonIgnore]
     public string ShortName => Name.Contains(':') ? Name[(Name.IndexOf(':') + 1)..] : Name;
 
-    public override string ToString() => Name;
+    public override string ToString() => LocalizedName;
 }

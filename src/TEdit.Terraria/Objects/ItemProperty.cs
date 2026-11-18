@@ -12,6 +12,16 @@ public class ItemProperty : ITile
     [JsonPropertyOrder(1)]
     public string Name { get; set; } = "UNKNOWN";
 
+    private string? _localizedName;
+
+    /// <summary>Localized display name; falls back to <see cref="Name"/>.</summary>
+    [JsonIgnore]
+    public string LocalizedName
+    {
+        get => _localizedName ?? Name;
+        set => _localizedName = value;
+    }
+
     [JsonPropertyOrder(2)]
     public string? Key { get; set; }
 
@@ -75,5 +85,5 @@ public class ItemProperty : ITile
     [JsonIgnore]
     public TEditColor Color => TEditColor.Transparent;
 
-    public override string ToString() => Name;
+    public override string ToString() => LocalizedName;
 }

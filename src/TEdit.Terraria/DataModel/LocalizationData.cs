@@ -25,6 +25,13 @@ public class LocalizationData
 
     [JsonPropertyName("walls")]
     public Dictionary<string, string> Walls { get; set; } = new();
+
+    /// <summary>
+    /// Supplemental localized names not covered by the official mirror sections: frame style / variety names,
+    /// frame anchors, wall natural/unused markers, and biome-variant labels (merged at runtime from supplementalNames.{locale}.json).
+    /// </summary>
+    [JsonIgnore]
+    public Dictionary<string, string> SupplementalNames { get; set; } = new();
 }
 
 public class BuffLocalization

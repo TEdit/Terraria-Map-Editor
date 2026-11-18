@@ -3705,10 +3705,10 @@
     "MusicBoxQueenBeeAlt": "뮤직 박스(얼터너티브 여왕벌)",
     "MusicBoxQueenSlime": "뮤직 박스(Queen Slime)",
     "MusicBoxRain": "뮤직 박스 (Rain)",
-    "MusicBoxRainbowBoulder": "뮤직 박스 (Rainbow Boulder)",
+    "MusicBoxRainbowBoulder": "뮤직 박스 (무지개 바위)",
     "MusicBoxSandstorm": "뮤직 박스 (Sandstorm)",
     "MusicBoxShimmer": "뮤직 박스(Aether)",
-    "MusicBoxSilence": "뮤직 박스 (Silence)",
+    "MusicBoxSilence": "뮤직 박스 (침묵)",
     "MusicBoxSkeletron": "뮤직 박스 (스켈레트론)",
     "MusicBoxSkeletronPrime": "뮤직 박스(스켈레트론 프라임)",
     "MusicBoxSlimeRain": "뮤직 박스(Slime Rain)",
@@ -5610,7 +5610,7 @@
     "TheUndertaker": "장의사",
     "TheWerewolf": "늑대인간",
     "ThinIce": "살얼음",
-    "ThisIsCanonNow": "이제 이것도 게임의 일부",
+    "ThisIsCanonNow": "브라질의 하늘",
     "ThisIsGettingOutOfHand": "통제를 벗어난다",
     "ThornChakram": "가시 차크람",
     "ThornHook": "가시 갈고리",
@@ -6190,6 +6190,10 @@
       "name": "아비게일",
       "description": "아비게일이 함께 싸우며 지켜준다"
     },
+    "AcceleratePoisons": {
+      "name": "고통 강화",
+      "description": "독의 효과를 더 강력하게 만듭니다"
+    },
     "AmberMinecart": {
       "name": "{$BuffName.Minecart}",
       "description": "{$BuffDescription.Minecart}"
@@ -6362,6 +6366,10 @@
       "name": "파란 닭",
       "description": "이름표에 '셰인'이라 적혀 있음"
     },
+    "BlueLightning": {
+      "name": "감전",
+      "description": "몸이 찌릿찌릿합니다"
+    },
     "BoneJavelin": {
       "name": "관통",
       "description": "출혈 발생"
@@ -6422,9 +6430,17 @@
       "name": "한기",
       "description": "이동 속도 감소"
     },
+    "ChlorophyteSpore": {
+      "name": "포자 감염",
+      "description": "생명력을 잃습니다"
+    },
     "Clairvoyance": {
       "name": "신통력",
       "description": "마법 능력 증가"
+    },
+    "ClayPotMinion": {
+      "name": "점토 친구",
+      "description": "점토 친구가 당신을 위해 싸웁니다"
     },
     "CobWhipPlayerBuff": {
       "name": "채찍 거미",
@@ -6646,6 +6662,10 @@
       "name": "물갈퀴",
       "description": "물에서도 평소처럼 이동"
     },
+    "ForbiddenMinion": {
+      "name": "금지된 유적",
+      "description": "금지된 유적이 당신을 위해 싸웁니다"
+    },
     "Frostburn": {
       "name": "서리불꽃",
       "description": "아주 뜨겁거나 아주 차갑거나. 어느 쪽이든 무지하게 아픕니다"
@@ -6810,6 +6830,10 @@
       "name": "장엄한 말 탑승",
       "description": "장엄한 말을 탐"
     },
+    "ManaHeat": {
+      "name": "마나 급증",
+      "description": "마법 대미지가 증가합니다"
+    },
     "ManaRegeneration": {
       "name": "마나 재생",
       "description": "마나 재생력 증가"
@@ -6954,6 +6978,22 @@
       "name": "파이호",
       "description": "파이호가 당신을 위해 싸웁니다"
     },
+    "PalworldMinionTrustyCattiva": {
+      "name": "믿음직한 까부냥",
+      "description": "까부냥이 당신을 위해 싸웁니다"
+    },
+    "PalworldMinionTrustyFoxsparks": {
+      "name": "믿음직한 파이호",
+      "description": "파이호가 당신을 위해 싸웁니다"
+    },
+    "PalworldMountTrustyChillet": {
+      "name": "믿음직한 베비뇽",
+      "description": "베비뇽이 당신과 함께 탐험합니다\n움직임이 꽤 격렬합니다!"
+    },
+    "PalworldMountTrustyChilletIgnis": {
+      "name": "믿음직한 천도뇽",
+      "description": "천도뇽이 당신과 함께 탐험합니다\n너무 오래 쓰다듬으면 불꽃이 튈 수 있으니 주의하세요!"
+    },
     "PalworldPetChillet": {
       "name": "베비뇽",
       "description": "베비뇽이 당신과 함께 탐험합니다\n움직임이 꽤 격렬합니다!"
@@ -7058,6 +7098,10 @@
       "name": "중독",
       "description": "생명을 서서히 상실"
     },
+    "PotentAcid": {
+      "name": "강력한 산성",
+      "description": "생명력을 잃습니다"
+    },
     "PotionSickness": {
       "name": "물약 물림",
       "description": "치유 아이템을 더 이상 소모할 수 없음"
@@ -7113,6 +7157,10 @@
     "Ravens": {
       "name": "까마귀",
       "description": "까마귀들이 적들을 공격"
+    },
+    "RedLightning": {
+      "name": "감전",
+      "description": "몸이 찌릿찌릿합니다"
     },
     "Regeneration": {
       "name": "재생",
@@ -7444,7 +7492,7 @@
     },
     "Warmth": {
       "name": "온기",
-      "description": "차가운 요인으로 인해 받는 피해 감소"
+      "description": "추위로 인한 효과가 감소합니다"
     },
     "WaterCandle": {
       "name": "물 양초",
@@ -7480,7 +7528,7 @@
     },
     "WeaponImbueNanites": {
       "name": "무기 주입: 나나이트",
-      "description": "근접 공격 시 적에게 혼란 유발"
+      "description": "근접 공격이 적에게 혼란을 주고 5%의 추가 대미지를 입힙니다"
     },
     "WeaponImbuePoison": {
       "name": "무기 주입: 중독",
@@ -8379,6 +8427,7 @@
     "AncientSilverBrick": "고대 은 벽돌",
     "AnnouncementBox": "알림판",
     "AntiPortalBlock": "차원문 방지 블록",
+    "Anvils": "모루",
     "ArgonMossBlock": "아르곤 이끼 벽돌",
     "ArgonMossBrick": "아르곤 이끼 벽돌",
     "ArrowSign": "화살 표지",
@@ -8388,6 +8437,7 @@
     "AstraBrick": "아스트라 벽돌",
     "Autohammer": "자동 망치",
     "Bamboo": "대나무",
+    "Banners": "배너",
     "BeeHive": "벌집",
     "BewitchingTable": "요술 탁자",
     "BirdCage": "새장",
@@ -8425,6 +8475,8 @@
     "CardinalCage": "홍관조 우리",
     "CatBast": "바스테트 조각상",
     "Chain": "사슬",
+    "Chairs": "의자",
+    "Chandeliers": "샹들리에",
     "Chimney": "굴뚝",
     "ChimneySmoke": "연기 블록",
     "ChineseLanterns": "연등",
@@ -8434,6 +8486,7 @@
     "ChristmasTree": "크리스마스 트리",
     "ClayBlock": "찰흙 블록",
     "ClayPot": "토분",
+    "ClosedDoor": "문",
     "Cobalt": "코발트 광석",
     "CobaltBrick": "코발트 벽돌",
     "Cobweb": "거미줄",
@@ -8446,6 +8499,7 @@
     "Coral": "산호",
     "Coralstone": "산호석 블록",
     "CorruptIce": "자주색 얼음 블록",
+    "CorruptThorns": "가시",
     "CosmicEmberBrick": "우주적인 호박석 벽돌",
     "CrackedBlueDungeonBrick": "금이 간 파란색 벽돌",
     "CrackedGreenDungeonBrick": "금이 간 초록색 벽돌",
@@ -8465,9 +8519,11 @@
     "DeadCellsDisplayJar": "아이템 플라스크",
     "DeadCellsPotionStation": "연금술 플라스크",
     "DefendersForge": "수호자의 제련소",
+    "DemonAltar": "악마의 제단",
     "DemonAltarReplica": "복제품 악마의 제단",
     "Demonite": "악마석 광석",
     "DemoniteBrick": "악마석 벽돌",
+    "DesertFossil": "화석",
     "Detonator": "기폭 장치",
     "Diamond": "다이아몬드 원석 블록",
     "DiamondBunnyCage": "다이아몬드 토끼 우리",
@@ -8495,10 +8551,13 @@
     "EmpressButterflyJar": "선명한 풀잠자리 단지",
     "Explosives": "폭발물",
     "Extractinator": "추출기",
+    "FallenLog": "쓰러진 통나무",
+    "FallenLogEcho": "쓰러진 통나무",
     "FallenStarBlock": "떨어진 별 블록",
     "Feywood": "페이우드",
     "FireflyinaBottle": "병 안의 개똥벌레",
     "Fireplace": "벽난로",
+    "Firework": "로켓",
     "FireworkFountain": "폭죽 분수",
     "FireworksBox": "폭죽 상자",
     "FishBowl": "어항",
@@ -8509,10 +8568,12 @@
     "FogMachine": "연무기",
     "FoodPlatter": "접시",
     "ForbiddenBlock": "금지된 블록",
+    "FossilOre": "화석",
     "FrogCage": "개구리 우리",
     "FrozenSlimeBlock": "얼어붙은 슬라임 블록",
     "Furnaces": "용광로",
     "GardenGnome": "정원용 땅요정",
+    "GemSaplings": "묘목",
     "GeyserTrap": "간헐천",
     "Ghoulder": "구울 바위",
     "GiantTiki": "거대한 티키",
@@ -8552,6 +8613,7 @@
     "GreenStucco": "초록색 스투코",
     "HallowedBrick": "신성한 벽돌",
     "HallowedIce": "분홍색 얼음 블록",
+    "HangingLanterns": "등불",
     "HardenedSand": "굳은 모래 블록",
     "HarpyBlock": "하피 블록",
     "HatRack": "모자걸이",
@@ -8559,8 +8621,10 @@
     "HellButterflyJar": "지옥 나비 단지",
     "Hellforge": "지옥 용광로",
     "HellstoneBrick": "지옥석 벽돌",
+    "HolidayLights": "크리스마스 조명",
     "HoneyBlock": "벌꿀 블록",
     "HoneyDispenser": "벌꿀 공급기",
+    "HoneyDrip": "떨어지는 벌꿀",
     "Honeyfall": "벌꿀폭포 블록",
     "IceBlock": "얼음 블록",
     "IceBrick": "얼음 벽돌",
@@ -8575,14 +8639,18 @@
     "Jackolanterns": "잭 오 랜턴",
     "JellyfishBlock": "해파리 블록",
     "JuliaButterflyJar": "줄리아나비 단지",
+    "JungleThorns": "가시",
     "Kegs": "술통",
     "KryptonMossBlock": "크립톤 이끼 벽돌",
     "KryptonMossBrick": "크립톤 이끼 벽돌",
     "LadybugCage": "무당벌레 우리",
     "Lampposts": "가로등",
+    "Lamps": "바닥 램프",
     "LandMine": "지뢰",
+    "Larva": "애벌레",
     "LavaBoulder": "용암 바위",
     "LavaCloud": "용암 구름",
+    "LavaDrip": "떨어지는 용암",
     "LavaLamp": "용암 램프",
     "LavaMoss": "용암 이끼",
     "LavaMossBlock": "용암 이끼 벽돌",
@@ -8608,6 +8676,7 @@
     "LivingFrostFire": "살아있는 서리불꽃 블록",
     "LivingLoom": "생나무 베틀",
     "LivingUltrabrightFire": "살아있는 눈부신 화염 블록",
+    "LivingWood": "생나무",
     "Loom": "베틀",
     "LunarBlockNebula": "성운의 파편 블록",
     "LunarBlockSolar": "태양의 파편 블록",
@@ -8623,8 +8692,10 @@
     "MarbleBlock": "부드러운 대리석 블록",
     "MarbleColumn": "대리석 기둥",
     "MartianConduitPlating": "화성인 전선관 도금판",
+    "MasterTrophyBase": "유물",
     "MeatGrinder": "고기 분쇄기",
     "MercuryBrick": "머큐리 벽돌",
+    "MetalBars": "금속 주괴",
     "MeteoriteBrick": "운석 벽돌",
     "MinecartTrack": "광산 수레 선로",
     "MonarchButterflyJar": "제왕나비 단지",
@@ -8635,19 +8706,26 @@
     "Mudstone": "이암 벽돌",
     "MushroomBeam": "버섯 기둥",
     "MushroomStatue": "버섯 조각상",
+    "MushroomTrees": "거대 버섯",
     "Mythril": "미스릴 광석",
     "MythrilBrick": "미스릴 벽돌",
     "NebulaBrick": "성운의 벽돌",
     "NoirMonolith": "영사기",
     "ObsidianBrick": "흑요석 벽돌",
     "OfficeBlock": "사무실 블록",
+    "OpenDoor": "문",
     "OrangeDragonflyJar": "주황색 잠자리 단지",
     "Orichalcum": "오리칼쿰 광석",
     "OutletPump": "배출 펌프",
     "OwlCage": "부엉이 우리",
     "PaintedArrowSign": "색칠한 화살 표지",
+    "Painting2X3": "그림",
+    "Painting3X2": "그림",
+    "Painting3X3": "전리품",
+    "Painting6X4": "그림",
     "Palladium": "팔라듐 광석",
     "PalladiumColumn": "팔라듐 기둥",
+    "PalmTree": "야자나무",
     "PalmWood": "야자나무",
     "PartyBundleOfBalloonTile": "줄 달린 장식용 풍선 묶음",
     "PartyMonolith": "파티 센터",
@@ -8667,12 +8745,15 @@
     "PinkJellyfishBowl": "분홍색 해파리 단지",
     "PinkSlimeBlock": "분홍색 슬라임 블록",
     "PixelBox": "픽셀 박스",
+    "PlanteraBulb": "플랜테라의 구근",
     "PlasmaLamp": "플라즈마 램프",
     "Platinum": "백금 광석",
     "PlatinumBrick": "백금 벽돌",
     "PlatinumCandelabra": "백금 촛대",
     "PlatinumCandle": "백금 양초",
     "PoopBlock": "대변",
+    "Pots": "항아리",
+    "PotsEcho": "항아리",
     "PottedLavaPlantTendrils": "유황 덩굴 화분",
     "Poulder": "똥 바위",
     "ProjectilePressurePad": "암록색 압력 패드",
@@ -8704,12 +8785,14 @@
     "RubySquirrelCage": "루비 다람쥐 우리",
     "Safes": "금고",
     "Sand": "모래 블록",
+    "SandDrip": "흐르는 모래",
     "SandFallBlock": "떨어지는 모래",
     "SandStoneSlab": "사암 석판",
     "Sandcastles": "모래성 양동이",
     "Sandstone": "사암 블록",
     "SandstoneBrick": "사암 벽돌",
     "SandstoneColumn": "사암 기둥",
+    "Saplings": "묘목",
     "Sapphire": "사파이어 원석 블록",
     "SapphireBunnyCage": "사파이어 토끼 우리",
     "SapphireGemspark": "사파이어 보석불꽃 블록",
@@ -8742,6 +8825,7 @@
     "Silt": "토사 블록",
     "Silver": "은 광석",
     "SilverBrick": "은 벽돌",
+    "Sinks": "세면대",
     "SkullLanterns": "두개골 등불",
     "SkyMill": "하늘 제재소",
     "SliceOfCake": "조각 케이크",
@@ -8766,6 +8850,7 @@
     "StarCloud": "별 구름",
     "StarRoyaleBrick": "스타 로열 벽돌",
     "StardustBrick": "소성단의 벽돌",
+    "Statues": "조각상",
     "SteampunkBoiler": "스팀펑크 보일러",
     "StinkbugCage": "노린재 우리",
     "StinkbugHousingBlocker": "노린재 차단기",
@@ -8778,6 +8863,8 @@
     "Sunplate": "태양판 블록",
     "Switches": "스위치",
     "TNTBarrel": "TNT 통",
+    "Tables": "탁자",
+    "Tables2": "탁자",
     "TargetDummy": "표적 모형",
     "TatteredWoodSign": "너덜너덜한 나무 표지판",
     "TeaKettle": "찻주전자",
@@ -8801,28 +8888,42 @@
     "TeamBlockYellowVariant": "무딘 노랑 팀 블록",
     "Teleporter": "순간이동기",
     "Thrones": "왕좌",
+    "Timers": "타이머",
     "Tin": "주석 광석",
     "TinBrick": "주석 벽돌",
     "TinPlating": "주석 도금판",
     "TinkerersWorkbench": "땜장이의 작업장",
     "Titanium": "티타늄 광석",
     "Titanstone": "티탄석 블록",
+    "Toilets": "변기",
     "Topaz": "토파즈 원석 블록",
     "TopazBunnyCage": "토파즈 토끼 우리",
     "TopazGemspark": "토파즈 보석불꽃 블록",
     "TopazSquirrelCage": "토파즈 다람쥐 우리",
     "ToucanCage": "큰부리새 우리",
     "ToyBreakerBlock": "토이브레이커 벽돌",
+    "Traps": "함정",
     "TrashCan": "쓰레기통",
+    "TreeAmber": "나무",
+    "TreeAmethyst": "나무",
+    "TreeAsh": "나무",
+    "TreeDiamond": "나무",
+    "TreeEmerald": "나무",
     "TreeNymphButterflyJar": "나무요정나비 단지",
+    "TreeRuby": "나무",
+    "TreeSapphire": "나무",
+    "TreeTopaz": "나무",
+    "Trees": "나무",
     "TruffleWormCage": "트러플 지렁이 우리",
     "Tungsten": "텅스텐 광석",
     "TungstenBrick": "텅스텐 벽돌",
     "TurtleCage": "거북이 우리",
     "TurtleJungleCage": "정글 거북이 우리",
     "UlyssesButterflyJar": "율리시스나비 단지",
+    "VanityTreeSakura": "나무",
     "VanityTreeSakuraSaplings": "벚나무 묘목",
     "VanityTreeWillowSaplings": "노란색 버드나무 묘목",
+    "VanityTreeYellowWillow": "나무",
     "VineRope": "덩굴 밧줄",
     "VioletMossBlock": "네온 이끼 벽돌",
     "VioletMossBrick": "네온 이끼 벽돌",
@@ -8835,6 +8936,8 @@
     "WarTableBanner": "전쟁 테이블 배너",
     "WaterBlock": "수족관 블록",
     "WaterCandle": "물 양초",
+    "WaterDrip": "떨어지는 물",
+    "WaterFountain": "물 분수",
     "WaterStriderCage": "소금쟁이 우리",
     "Waterfall": "폭포 블록",
     "WeaponsRack2": "무기 선반",

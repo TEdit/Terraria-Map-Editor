@@ -16,6 +16,15 @@ public class FrameProperty : ITile
     public Vector2Short UV { get; set; } = Vector2Short.Zero;
     public Vector2Short Size { get; set; } = Vector2Short.Zero;  // Default to (0,0) so tile's FrameSize is used when not specified
     public string Name { get; set; } = "Default";
+    private string? _localizedName;
+
+    /// <summary>Localized display name; falls back to <see cref="Name"/>.</summary>
+    [JsonIgnore]
+    public string LocalizedName
+    {
+        get => _localizedName ?? Name;
+        set => _localizedName = value;
+    }
 
     /// <summary>
     /// Custom source rectangle [x, y, width, height] within the texture.

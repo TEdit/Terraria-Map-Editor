@@ -34,12 +34,12 @@ public sealed class PointTool : BaseTool
             }
             else
             {
-                if (string.Equals(_wvm.SelectedPoint, Properties.Language.tool_point_spawn, StringComparison.InvariantCultureIgnoreCase))
+                if (string.Equals(_wvm.SelectedPoint, WorldViewModel.SpawnPointId, StringComparison.InvariantCultureIgnoreCase))
                 {
                     _wvm.CurrentWorld.SpawnX = e.Location.X;
                     _wvm.CurrentWorld.SpawnY = e.Location.Y;
                 }
-                else if (string.Equals(_wvm.SelectedPoint, Properties.Language.tool_point_dungeon, StringComparison.InvariantCultureIgnoreCase))
+                else if (string.Equals(_wvm.SelectedPoint, WorldViewModel.DungeonPointId, StringComparison.InvariantCultureIgnoreCase))
                 {
                     _wvm.CurrentWorld.DungeonX = e.Location.X;
                     _wvm.CurrentWorld.DungeonY = e.Location.Y;
@@ -48,7 +48,7 @@ public sealed class PointTool : BaseTool
                 {
                     for (int teamIndex = 0; teamIndex < World.TeamCount; teamIndex++)
                     {
-                        if (string.Equals(_wvm.SelectedPoint, WorldViewModel.GetTeamPointName(teamIndex), StringComparison.InvariantCultureIgnoreCase))
+                        if (string.Equals(_wvm.SelectedPoint, WorldViewModel.GetTeamPointId(teamIndex), StringComparison.InvariantCultureIgnoreCase))
                         {
                             if (teamIndex < _wvm.CurrentWorld.TeamSpawns.Count)
                             {

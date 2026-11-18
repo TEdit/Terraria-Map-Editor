@@ -177,7 +177,7 @@
 
                         <!-- Static name shown when NPC is not on map -->
                         <TextBlock Grid.Row="0" Grid.Column="2"
-                                   Text="{Binding DefaultName}"
+                                   Text="{Binding LocalizedName}"
                                    Margin="4,0" Opacity="0.5"
                                    VerticalAlignment="Center">
                             <TextBlock.Style>
@@ -194,7 +194,7 @@
 
                         <!-- NPC type name, right-aligned -->
                         <TextBlock Grid.Row="0" Grid.Column="3"
-                                   Text="{Binding DefaultName}"
+                                   Text="{Binding LocalizedName}"
                                    HorizontalAlignment="Right"
                                    Margin="8,0,4,0"
                                    VerticalAlignment="Center"

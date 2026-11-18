@@ -91,9 +91,9 @@ public partial class Item : ReactiveObject
             return $"{ModName}:{ModItemName}";
 
         if (_currentItemProperty != null)
-            return _currentItemProperty.Name;
+            return _currentItemProperty.LocalizedName;
 
-        return _netId != 0 ? $"[unknown:{_netId}]" : "[empty]";
+        return _netId != 0 ? $"[unknown:{_netId}]" : string.Empty;
     }
 
     public byte Prefix

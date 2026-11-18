@@ -222,8 +222,8 @@
                       ItemTemplate="{StaticResource ColorPickerTemplate}"
                       SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
                       SelectedValuePath="Id"
-                      DisplayMemberPath="Name"
-                      FilterMemberPath="Name"
+                      DisplayMemberPath="LocalizedName"
+                      FilterMemberPath="LocalizedName"
                       FilterIdMemberPath="Id"
                       Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
@@ -233,8 +233,8 @@
                       ItemTemplate="{StaticResource ColorPickerTemplate}"
                       SelectedValue="{Binding Path=MaskSettings.TileMaskValue, Mode=TwoWay}"
                       SelectedValuePath="Id"
-                      DisplayMemberPath="Name"
-                      FilterMemberPath="Name"
+                      DisplayMemberPath="LocalizedName"
+                      FilterMemberPath="LocalizedName"
                       FilterIdMemberPath="Id"
                       Placeholder="{x:Static p:Language.picker_search_tiles_placeholder}" />
                 </tedit:AutoGrid>
@@ -252,8 +252,8 @@
                       ItemTemplate="{StaticResource ColorPickerTemplate}"
                       SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
                       SelectedValuePath="Id"
-                      DisplayMemberPath="Name"
-                      FilterMemberPath="Name"
+                      DisplayMemberPath="LocalizedName"
+                      FilterMemberPath="LocalizedName"
                       FilterIdMemberPath="Id"
                       Grid.ColumnSpan="2"
                       Placeholder="{x:Static p:Language.picker_search_walls_placeholder}" />
@@ -264,8 +264,8 @@
                       ItemTemplate="{StaticResource ColorPickerTemplate}"
                       SelectedValue="{Binding Path=MaskSettings.WallMaskValue, Mode=TwoWay}"
                       SelectedValuePath="Id"
-                      DisplayMemberPath="Name"
-                      FilterMemberPath="Name"
+                      DisplayMemberPath="LocalizedName"
+                      FilterMemberPath="LocalizedName"
                       FilterIdMemberPath="Id"
                       Placeholder="{x:Static p:Language.picker_search_walls_placeholder}" />
                 </tedit:AutoGrid>
@@ -491,8 +491,8 @@
                         ItemTemplate="{StaticResource TileColorTintTemplate}"
                         SelectedValue="{Binding Path=TilePicker.PlatformStyle, Mode=TwoWay}"
                         SelectedValuePath="Id"
-                        DisplayMemberPath="Name"
-                        FilterMemberPath="Name"
+                        DisplayMemberPath="LocalizedName"
+                        FilterMemberPath="LocalizedName"
                         FilterIdMemberPath="Id"
                         Placeholder="{x:Static p:Language.picker_search_platforms_placeholder}"
                         Width="200" />

@@ -63,6 +63,15 @@ public class TerrariaDataStore
     // Dye color lookup (item ID → static tint color)
     public Dictionary<int, DyeProperty> DyeColorById { get; } = new();
 
+    // Angler Quest fish
+    public List<AnglerQuestProperty> AnglerQuests { get; } = new();
+
+    // Christmas tree decorations (V bit-field value → item)
+    public List<XmasDecoProperty> XmasStarToppers { get; } = new();
+    public List<XmasDecoProperty> XmasGarlands { get; } = new();
+    public List<XmasDecoProperty> XmasBulbs { get; } = new();
+    public List<XmasDecoProperty> XmasLights { get; } = new();
+
     // Localization
     public DataModel.LocalizationData? Localization { get; private set; }
     public string CurrentLocale { get; private set; } = "en-US";
@@ -76,6 +85,7 @@ public class TerrariaDataStore
 
     // Prefix data for key resolution during localization
     private List<PrefixData> _prefixDataList = [];
+    private readonly Dictionary<string, string> _itemKeyByName = new(StringComparer.OrdinalIgnoreCase);
 
     // Bestiary-derived lookups
     public Dictionary<int, BestiaryNpcData> BestiaryNpcById { get; } = new();
@@ -347,6 +357,8 @@ public class TerrariaDataStore
             if (item.CreateWall.HasValue && !WallItemLookup.ContainsKey(item.CreateWall.Value))
                 WallItemLookup[item.CreateWall.Value] = item.Id;
         }
+        PopulateAnglerQuests();
+        PopulateXmasDecorations();
     }
 
     internal void PopulateDyes(List<DyeProperty> dyes)
@@ -358,6 +370,61 @@ public class TerrariaDataStore
         DyeItems.Clear();
         foreach (var item in Items)
             if (DyeColorById.ContainsKey(item.Id)) DyeItems[item.Id] = item;
+    }
+
+    /// <summary>
+    /// Item IDs for Angler quests, matching Terraria.Main.anglerQuestItemNetIDs (0..38: 2450..2488, 39: 4393, 40: 4394).
+    /// </summary>
+    private static readonly int[] AnglerQuestItemIds = [.. Enumerable.Range(2450, 39), 4393, 4394];
+
+    internal void PopulateAnglerQuests()
+    {
+        AnglerQuests.Clear();
+        for (int i = 0; i < AnglerQuestItemIds.Length; i++)
+        {
+            int itemId = AnglerQuestItemIds[i];
+            ItemById.TryGetValue(itemId, out var item);
+            AnglerQuests.Add(new AnglerQuestProperty
+            {
+                QuestId = i,
+                ItemId = itemId,
+                Item = item
+            });
+        }
+    }
+
+    // Christmas tree decorations. The tree tile packs all four slots into V:
+    // star (bits 0-2), garland (bits 3-5), bulb (bits 6-9) and lights (bits 10-13).
+    // Slot value 0 means "none"; the rest map to items by a fixed offset.
+    private const int XmasStarItemOffset = 1873;    // V 1..4  → 1874..1877
+    private const int XmasGarlandItemOffset = 1877; // V 1..6  → 1878..1883
+    private const int XmasBulbItemOffset = 1883;    // V 1..11 → 1884..1894
+    private const int XmasLightItemOffset = 1894;   // V 1..11 → 1895..1905
+
+    internal void PopulateXmasDecorations()
+    {
+        PopulateXmasList(XmasStarToppers, XmasStarItemOffset, 4);
+        PopulateXmasList(XmasGarlands, XmasGarlandItemOffset, 6);
+        PopulateXmasList(XmasBulbs, XmasBulbItemOffset, 11);
+        PopulateXmasList(XmasLights, XmasLightItemOffset, 11);
+
+        void PopulateXmasList(List<XmasDecoProperty> list, int itemOffset, int maxValue)
+        {
+            list.Clear();
+            // Value 0 ("none") is supplied by the XAML as a localized placeholder,
+            // so the data list only carries real decoration items.
+            for (int value = 1; value <= maxValue; value++)
+            {
+                int itemId = itemOffset + value;
+                ItemById.TryGetValue(itemId, out var item);
+                list.Add(new XmasDecoProperty
+                {
+                    Value = value,
+                    ItemId = itemId,
+                    Item = item
+                });
+            }
+        }
     }
 
     internal void PopulateNpcs(List<NpcData> npcs)
@@ -433,6 +500,12 @@ public class TerrariaDataStore
 
     private void ApplyLocalization(DataModel.LocalizationData data)
     {
+        // Frame style / variant names arrive as display names; index item name -> key so they can resolve back.
+        _itemKeyByName.Clear();
+        foreach (var item in Items)
+            if (!string.IsNullOrEmpty(item.Name) && !string.IsNullOrEmpty(item.Key))
+                _itemKeyByName.TryAdd(item.Name, item.Key);
+
         // Build key→object lookups from the Key property on each model
         var itemsByKey = Items
             .Where(i => i.Key != null)
@@ -450,39 +523,118 @@ public class TerrariaDataStore
             .Where(p => p.Key != null)
             .ToDictionary(p => p.Key!, p => (byte)p.Id);
 
-        // Apply item names
+        // Display only: Name stays the English identity.
         foreach (var kv in data.Items)
             if (itemsByKey.TryGetValue(kv.Key, out var item))
-                item.Name = kv.Value;
+                item.LocalizedName = kv.Value;
 
         // Apply tile names
         foreach (var kv in data.Tiles)
             if (tilesByKey.TryGetValue(kv.Key, out var tile))
-                tile.Name = kv.Value;
+                tile.LocalizedName = kv.Value;
+
+        // Fallback for tiles not covered by data.Tiles
+        foreach (var tile in Tiles)
+        {
+            if (tile.Key != null && data.Tiles.ContainsKey(tile.Key))
+                continue;
+
+            if (tile.Key != null && data.Items.TryGetValue(tile.Key, out var tileName))
+                tile.LocalizedName = tileName;
+            else if (tile.Key != null && data.SupplementalNames.TryGetValue(tile.Key, out var frameTileName))
+                tile.LocalizedName = frameTileName;
+            else if (GetPlacingItemName(TileItemLookup, tile.Id) is { } itemName)
+                tile.LocalizedName = itemName;
+        }
 
         // Apply wall names
         foreach (var kv in data.Walls)
             if (wallsByKey.TryGetValue(kv.Key, out var wall))
-                wall.Name = kv.Value;
+                wall.LocalizedName = kv.Value;
 
-        // Apply NPC names (+ maintain reverse lookups)
-        foreach (var kv in data.Npcs)
+        // Fallback for walls not covered by data.Walls
+        foreach (var wall in Walls)
         {
-            if (npcsByKey.TryGetValue(kv.Key, out var npc))
+            if (wall.Key == null || data.Walls.ContainsKey(wall.Key))
+                continue;
+
+            if (data.Items.TryGetValue(wall.Key, out var wallName))
+                wall.LocalizedName = wallName;
+            else if (data.Items.TryGetValue(wall.Key + "Wall", out var wallNameWall))
+                wall.LocalizedName = wallNameWall;
+            // Walls the game's own language files never name (no MapObject entry, no placing item)
+            // carry a pinned entry under the "Wall." prefix in supplementalNames (see the generator).
+            else if (data.SupplementalNames.TryGetValue("Wall." + wall.Key, out var wallSupp))
+                wall.LocalizedName = wallSupp;
+            else if (GetPlacingItemName(WallItemLookup, wall.Id) is { } itemName)
+                wall.LocalizedName = itemName;
+        }
+
+        // Natural/unused variants have no game name; reuse the base wall's name + marker.
+        if (data.SupplementalNames.TryGetValue("Wall.Natural", out var naturalMarker)
+            && data.SupplementalNames.TryGetValue("Wall.Unused", out var unusedMarker))
+        {
+            var baseLocalizedByName = new Dictionary<string, string>();
+            foreach (var wall in Walls)
+                baseLocalizedByName.TryAdd(wall.Name, wall.LocalizedName);
+
+            foreach (var wall in Walls)
             {
-                var oldName = npc.Name;
-                npc.Name = kv.Value;
-                NpcNameById[npc.Id] = kv.Value;
-                if (NpcIdByName.Remove(oldName))
-                    NpcIdByName[kv.Value] = npc.Id;
+                string marker;
+                if (wall.Name.EndsWith(" (natural)", StringComparison.Ordinal))
+                    marker = naturalMarker;
+                else if (wall.Name.EndsWith(" (unused)", StringComparison.Ordinal))
+                    marker = unusedMarker;
+                else
+                    continue;
+
+                var baseEnglish = wall.Name[..wall.Name.LastIndexOf('(')].TrimEnd();
+                if (baseLocalizedByName.TryGetValue(baseEnglish, out var baseLocalized) && baseLocalized != baseEnglish)
+                    wall.LocalizedName = baseLocalized + marker;
             }
         }
+
+        // Apply paint names. Paint 0 shares the "None" key with wall 0, so a paint entry the game
+        // data does not carry is looked up under the "Paint." prefix to keep the two apart.
+        foreach (var paint in Paints)
+        {
+            if (paint.Key == null)
+                continue;
+
+            if (data.Items.TryGetValue(paint.Key, out var paintName))
+                paint.LocalizedName = paintName;
+            else if (data.SupplementalNames.TryGetValue("Paint." + paint.Key, out var paintSupp))
+                paint.LocalizedName = paintSupp;
+        }
+
+        // Apply bestiary NPC names
+        if (Bestiary != null)
+        {
+            foreach (var npc in Bestiary.NpcData)
+            {
+                if (data.Npcs.TryGetValue(npc.BestiaryId, out var localizedName))
+                {
+                    npc.LocalizedName = localizedName;
+                }
+            }
+        }
+
+        // Display only: NpcIdByName / NpcNameById stay English for saves and scripts.
+        foreach (var kv in data.Npcs)
+            if (npcsByKey.TryGetValue(kv.Key, out var npc))
+                npc.LocalizedName = kv.Value;
 
         // Apply prefix names
         foreach (var kv in data.Prefixes)
             if (prefixKeyToId.TryGetValue(kv.Key, out var id))
                 PrefixById[id] = kv.Value;
     }
+
+    /// <summary>Gets the display name of the item that places a tile or wall, if any.</summary>
+    private string? GetPlacingItemName(Dictionary<int, int> lookup, int tileOrWallId) =>
+        lookup.TryGetValue(tileOrWallId, out var itemId) && ItemById.TryGetValue(itemId, out var item)
+            ? item.LocalizedName
+            : null;
 
     private void RebuildFrameImportant()
     {
@@ -507,5 +659,148 @@ public class TerrariaDataStore
         WallCount = data.MaxWallId + 1;
         MaxNpcId = data.MaxNpcId + 1;
         RebuildFrameImportant();
+    }
+
+    /// <summary>Gets the localized name of a frame anchor (e.g. "Left").</summary>
+    public string GetLocalizedAnchor(FrameAnchor anchor)
+    {
+        var key = $"Anchor.{anchor}";
+        if (Localization?.SupplementalNames.TryGetValue(key, out var label) == true)
+            return label;
+
+        return anchor.ToString();
+    }
+
+    /// <summary>
+    /// Resolves a supplemental sprite-style / biome-variant label: item name, then tile name, then
+    /// supplementalNames.{locale}.json, falling back to the original name when unmatched.
+    /// </summary>
+    public string GetLocalizedSpriteStyle(string name) =>
+        Localization is { } loc ? ResolveStyleName(loc, name) : name;
+
+    private string ResolveStyleName(LocalizationData loc, string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            return name;
+
+        if (ResolveItemName(loc, name) is { } itemName)
+            return itemName;
+        if (loc.Tiles.TryGetValue(name, out var tileName))
+            return tileName;
+        if (loc.SupplementalNames.TryGetValue(name, out var styleName))
+            return styleName;
+
+        return name;
+    }
+
+    /// <summary>Builds the full localized name for a tile frame style (base name, variant and anchor suffix).</summary>
+    public string GetLocalizedFrameName(TileProperty tile, FrameProperty frame)
+    {
+        if (Localization is not { } loc)
+        {
+            // English UI loads no localization data. An unnamed frame still shows its tile's name
+            // instead of the "Default" placeholder, mirroring the fallback in the localized path below.
+            if ((string.IsNullOrWhiteSpace(frame.Name) || frame.Name == "Default")
+                && !string.IsNullOrWhiteSpace(tile.Name) && tile.Name != "Default")
+            {
+                string englishName = tile.Name;
+                if (!string.IsNullOrWhiteSpace(frame.Variety) && frame.Variety != "None")
+                    englishName += ": " + frame.Variety;
+                if (frame.Anchor != FrameAnchor.None)
+                    englishName += " [" + frame.Anchor + "]";
+                return englishName;
+            }
+            return frame.ToString();
+        }
+
+        // 1. Base name from the style lookup, falling back to the tile's own name for default frames.
+        string baseName = ResolveStyleName(loc, frame.Name);
+        if (baseName == frame.Name
+            && (string.IsNullOrWhiteSpace(frame.Name) || frame.Name == "Default")
+            && !string.IsNullOrWhiteSpace(tile.LocalizedName) && tile.LocalizedName != "Default")
+            baseName = tile.LocalizedName;
+
+        // 2. Resolve the variant/style name (banners, paintings, trophies, direct style lookup and suffix variants).
+        string? localizedVariety = null;
+        bool varietyResolved = false;
+        if (!string.IsNullOrWhiteSpace(frame.Variety) && frame.Variety != "None")
+        {
+            // Boss trophies: the variant + " Trophy" is the item name (e.g. Eye of Cthulhu).
+            if (frame.Name == "Boss Trophy" && ResolveItemName(loc, frame.Variety + " Trophy") is { } trophyItem)
+                return trophyItem;
+
+            // Banners / paintings: the variant is the item name (e.g. Blue Slime Banner).
+            if (ResolveItemName(loc, frame.Variety) is { } directItem)
+            {
+                // Painting tiles (keys Painting3X3/4X3/6X4/2X3/3X2) use the variant's item name as the full display
+                // name. Tile 240 also hosts boss trophies, which must keep the composed name.
+                bool isPaintingTile = tile.Key?.StartsWith("Painting", StringComparison.Ordinal) == true;
+                if (frame.Name.EndsWith("Banner", StringComparison.OrdinalIgnoreCase) ||
+                    frame.Name == "Painting" || (isPaintingTile && frame.Name != "Boss Trophy"))
+                {
+                    return directItem;
+                }
+                localizedVariety = directItem;
+                varietyResolved = true;
+            }
+            // Look up the style name directly in the supplementalNames dictionary. These entries are exactly
+            // the residual names that game data does not cover (see tools/generate_supplemental_names_en.py),
+            // i.e. they have no official item/tile counterpart at all, so this is their only translated source.
+            // This must precede the suffix split below: the split resolves its own head through this same
+            // dictionary and keeps the tail verbatim, so it would rewrite whole-entry translations into
+            // half-English strings ("Stair Top Landing R Endcap" -> "楼梯 顶层右平台 Endcap").
+            else if (loc.SupplementalNames.TryGetValue(frame.Variety, out var styleVal))
+            {
+                localizedVariety = styleVal;
+                varietyResolved = true;
+            }
+            // Compound suffix pattern (e.g. split "Flat A" into "Flat" + " A").
+            else if (ResolveVarietySuffix(loc, frame.Variety) is { } suffixVal)
+            {
+                localizedVariety = suffixVal;
+                varietyResolved = true;
+            }
+            else
+            {
+                localizedVariety = frame.Variety;
+            }
+        }
+
+        // 3. Compose the full name and append the anchor suffix.
+        // An unresolved style name ("Rocket" on tile 216, "Painting" on the painting tiles) is a category
+        // label rather than a display name: when its variant is localized, show the variant alone instead of
+        // prefixing the untranslated English label.
+        string name;
+        if (varietyResolved && baseName == frame.Name)
+        {
+            name = localizedVariety!;
+        }
+        else
+        {
+            name = baseName;
+            if (!string.IsNullOrWhiteSpace(localizedVariety))
+                name += ": " + localizedVariety;
+        }
+        if (frame.Anchor != FrameAnchor.None)
+            name += $" [{GetLocalizedAnchor(frame.Anchor)}]";
+        return name;
+    }
+
+    /// <summary>Resolves a style/variant name to a localized item name (by item key, then directly by name).</summary>
+    private string? ResolveItemName(LocalizationData loc, string name) =>
+        _itemKeyByName.TryGetValue(name, out var key) && loc.Items.TryGetValue(key, out var value) ? value
+        : loc.Items.TryGetValue(name, out var directValue) ? directValue
+        : null;
+
+    /// <summary>Resolves by base name + variant suffix (e.g. split 'Flat A' into 'Flat' + ' A').</summary>
+    private string? ResolveVarietySuffix(LocalizationData loc, string variety)
+    {
+        int lastSpace = variety.LastIndexOf(' ');
+        if (lastSpace <= 0)
+            return null;
+
+        string basePart = variety[..lastSpace];
+        var resolved = loc.SupplementalNames.TryGetValue(basePart, out var style) ? style : ResolveItemName(loc, basePart);
+        return resolved is null ? null : resolved + variety[lastSpace..];
     }
 }

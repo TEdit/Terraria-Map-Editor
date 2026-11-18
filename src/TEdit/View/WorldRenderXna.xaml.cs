@@ -2287,6 +2287,7 @@ public partial class WorldRenderXna : UserControl
                 sprite.Tile = (ushort)tile.Id;
                 // this is only for debugging, no need to load in release versions
                 sprite.Name = tile.Name;
+                sprite.LocalizedName = tile.Name;
                 sprite.SizeTiles = tile.FrameSize;
                 sprite.SizeTexture = new Vector2Short((short)tileTex.Width, (short)tileTex.Height);
                 sprite.SizePixelsRender = tile.TextureGrid;
@@ -2456,6 +2457,7 @@ public partial class WorldRenderXna : UserControl
                                 Anchor = frameName?.Anchor ?? FrameAnchor.None,
                                 SizeTexture = sprite.SizeTexture,
                                 Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
+                                LocalizedName = frameName?.ToString() ?? $"{tile.Name}_{subId}",
                                 Preview = texture.Texture2DToWriteableBitmap(),
                                 Style = subId,
                                 UV = uv
@@ -2502,7 +2504,7 @@ public partial class WorldRenderXna : UserControl
                         _wvm.TreeStylePreviews.Add(new StylePreviewItem
                         {
                             Value = bg.Id,
-                            DisplayName = bg.Name,
+                            DisplayName = TEdit.Helper.BackgroundNameLocalizer.Get(bg),
                             Preview = preview
                         });
                     }
@@ -2557,7 +2559,7 @@ public partial class WorldRenderXna : UserControl
                 collection.Add(new StylePreviewItem
                 {
                     Value = bg.Id,
-                    DisplayName = bg.Name,
+                    DisplayName = TEdit.Helper.BackgroundNameLocalizer.Get(bg),
                     Preview = preview
                 });
             }
@@ -2584,7 +2586,7 @@ public partial class WorldRenderXna : UserControl
                 _wvm.UnderworldBgPreviews.Add(new StylePreviewItem
                 {
                     Value = bg.Id,
-                    DisplayName = bg.Name,
+                    DisplayName = TEdit.Helper.BackgroundNameLocalizer.Get(bg),
                     Preview = CreateScaledPreview(texIndex, tex, 128)
                 });
             }
@@ -2611,7 +2613,7 @@ public partial class WorldRenderXna : UserControl
                 collection.Add(new StylePreviewItem
                 {
                     Value = bg.Id,
-                    DisplayName = bg.Name,
+                    DisplayName = TEdit.Helper.BackgroundNameLocalizer.Get(bg),
                     Preview = preview,
                     TreeTopPreview = treeTopIdx >= 0 ? CreateTreeTopFramePreview(treeTopIdx) : null
                 });

@@ -94,7 +94,7 @@
                     <GridViewColumn Width="40" Header="BID" DisplayMemberBinding="{Binding BestiaryIndex}" />
 
                     <!-- Banner Name -->
-                    <GridViewColumn Width="120" Header="{x:Static p:Language.bestiary_name}" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Width="120" Header="{x:Static p:Language.bestiary_name}" DisplayMemberBinding="{Binding LocalizedName}" />
 
                     <!-- Kill count (read-only) -->
                     <GridViewColumn Header="{x:Static p:Language.banner_kills}" Width="55">

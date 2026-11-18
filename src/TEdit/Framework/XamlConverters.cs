@@ -166,7 +166,7 @@ public class TeamIndexToNameConverter : IValueConverter
         if (value is int index && index >= 0 && index < World.TeamNames.Length)
         {
             string key = $"TeamSpawn_{World.TeamNames[index]}";
-            string localized = Properties.Language.ResourceManager.GetString(key, culture);
+            string localized = Properties.Language.ResourceManager.GetString(key, CultureInfo.CurrentUICulture);
             return $"{localized ?? World.TeamNames[index]}:";
         }
 

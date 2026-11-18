@@ -83,7 +83,7 @@ public partial class WorldViewModel
             SpriteId = npcId
         };
         CurrentWorld.NPCs.Add(npc);
-        Points.Add(name);
+        Points.Add(new PointItem(name, WorldConfiguration.NpcById.TryGetValue(npcId, out var addedNpc) ? addedNpc.LocalizedName : name));
 
         var listItem = AllNpcs.FirstOrDefault(i => i.SpriteId == npcId);
         if (listItem != null)
@@ -119,7 +119,9 @@ public partial class WorldViewModel
             return;
 
         CurrentWorld.NPCs.Remove(npc);
-        Points.Remove(npc.Name);
+        var removedPoint = Points.FirstOrDefault(p => p.Name == npc.Name);
+        if (removedPoint != null)
+            Points.Remove(removedPoint);
 
         RefreshAllNpcs();
     }

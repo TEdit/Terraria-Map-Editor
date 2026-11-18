@@ -65,26 +65,28 @@ public partial class TileWallPickerViewModel
         switch (dataSource)
         {
             case PickerDataSource.Items:
-                foreach (var item in WorldConfiguration.ItemProperties.OrderBy(x => x.Name))
+                foreach (var item in WorldConfiguration.ItemProperties.OrderBy(x => x.LocalizedName))
                 {
                     // Items don't have a color property, use a default
-                    AllItems.Add(new PickerItemViewModel(item.Id, item.Name, TEditColor.White, itemId: item.Id));
+                    AllItems.Add(new PickerItemViewModel(item.Id, item.Name, item.LocalizedName, TEditColor.White, itemId: item.Id));
                 }
                 break;
 
             case PickerDataSource.TileBricks:
-                foreach (var tile in WorldConfiguration.TileBricks.OrderBy(x => x.Name))
+                foreach (var tile in WorldConfiguration.TileBricks.OrderBy(x => x.LocalizedName))
                 {
                     WorldConfiguration.TileItemLookup.TryGetValue(tile.Id, out int tileItemId);
-                    AllItems.Add(new PickerItemViewModel(tile.Id, tile.Name, tile.Color, itemId: tileItemId));
+                    // Id -1 is the synthetic "Air" entry, which has no game-side name.
+                    string tileName = tile.Id < 0 ? Language.common_air : tile.LocalizedName;
+                    AllItems.Add(new PickerItemViewModel(tile.Id, tile.Name, tileName, tile.Color, itemId: tileItemId));
                 }
                 break;
 
             case PickerDataSource.Walls:
-                foreach (var wall in WorldConfiguration.WallProperties.OrderBy(x => x.Name))
+                foreach (var wall in WorldConfiguration.WallProperties.OrderBy(x => x.LocalizedName))
                 {
                     WorldConfiguration.WallItemLookup.TryGetValue(wall.Id, out int wallItemId);
-                    AllItems.Add(new PickerItemViewModel(wall.Id, wall.Name, wall.Color, itemId: wallItemId));
+                    AllItems.Add(new PickerItemViewModel(wall.Id, wall.Name, wall.LocalizedName, wall.Color, itemId: wallItemId));
                 }
                 break;
 
@@ -96,31 +98,33 @@ public partial class TileWallPickerViewModel
                 break;
 
             case PickerDataSource.Wires:
-                AddWire(1, Language.menu_layers_wire_red, "Wire");
-                AddWire(2, Language.menu_layers_wire_blue, "Wire1");
-                AddWire(3, Language.menu_layers_wire_green, "Wire2");
-                AddWire(4, Language.menu_layers_wire_yellow, "Wire3");
+                AddWire(1, Language.menu_layers_wire_red, "Red Wire", "Wire");
+                AddWire(2, Language.menu_layers_wire_blue, "Blue Wire", "Wire1");
+                AddWire(3, Language.menu_layers_wire_green, "Green Wire", "Wire2");
+                AddWire(4, Language.menu_layers_wire_yellow, "Yellow Wire", "Wire3");
                 break;
         }
     }
 
     private void AddLiquid(LiquidType type, string name, string colorKey)
     {
+        // colorKey doubles as the English identity (searchable alongside the localized label)
         var color = WorldConfiguration.GlobalColors.TryGetValue(colorKey, out var c) ? c : TEditColor.Magenta;
-        AllItems.Add(new PickerItemViewModel((int)type, name, color));
+        AllItems.Add(new PickerItemViewModel((int)type, colorKey, name, color));
     }
 
-    private void AddWire(int id, string name, string colorKey)
+    private void AddWire(int id, string name, string englishName, string colorKey)
     {
         var color = WorldConfiguration.GlobalColors.TryGetValue(colorKey, out var c) ? c : TEditColor.Magenta;
-        AllItems.Add(new PickerItemViewModel(id, name, color));
+        AllItems.Add(new PickerItemViewModel(id, englishName, name, color));
     }
 
     private bool FilterItem(object obj)
     {
         if (obj is not PickerItemViewModel item) return false;
         if (string.IsNullOrWhiteSpace(SearchText)) return true;
-        return item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase)
+        return item.LocalizedName.Contains(SearchText, StringComparison.OrdinalIgnoreCase)
+            || item.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase)
             || item.Id.ToString().Contains(SearchText, StringComparison.Ordinal);
     }
 
