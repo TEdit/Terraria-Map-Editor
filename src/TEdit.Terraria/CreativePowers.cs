@@ -73,7 +73,8 @@ public class CreativePowers
                 }
                 return;
             default:
-                if (_powers.ContainsKey(id) && isEnabled != null)
+                // A world may not have saved this toggle yet; explicit edits must add it.
+                if (isEnabled != null)
                 {
                     _powers[id] = isEnabled.Value;
                 }
