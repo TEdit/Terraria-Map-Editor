@@ -65,7 +65,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "file.new",
-            Name = "New World",
+            Name = Properties.Language.input_file_new,
             Category = InputCategory.File,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.N, ModifierKeys.Control) }
@@ -74,7 +74,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "file.open",
-            Name = "Open",
+            Name = Properties.Language.input_file_open,
             Category = InputCategory.File,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.O, ModifierKeys.Control) }
@@ -83,7 +83,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "file.save",
-            Name = "Save",
+            Name = Properties.Language.input_file_save,
             Category = InputCategory.File,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.S, ModifierKeys.Control) }
@@ -92,7 +92,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "file.saveas",
-            Name = "Save As",
+            Name = Properties.Language.input_file_saveas,
             Category = InputCategory.File,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.S, ModifierKeys.Control | ModifierKeys.Shift) }
@@ -101,7 +101,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "file.saveasversion",
-            Name = "Save As Version",
+            Name = Properties.Language.input_file_saveasversion,
             Category = InputCategory.File,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.S, ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Shift) }
@@ -110,7 +110,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "file.reload",
-            Name = "Reload World",
+            Name = Properties.Language.input_file_reload,
             Category = InputCategory.File,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.F5) }
@@ -120,7 +120,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "edit.copy",
-            Name = "Copy",
+            Name = Properties.Language.input_edit_copy,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.C, ModifierKeys.Control) }
@@ -129,7 +129,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "edit.cut",
-            Name = "Cut",
+            Name = Properties.Language.input_edit_cut,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.X, ModifierKeys.Control) }
@@ -138,7 +138,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "edit.paste",
-            Name = "Paste",
+            Name = Properties.Language.input_edit_paste,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.V, ModifierKeys.Control) }
@@ -147,7 +147,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "edit.undo",
-            Name = "Undo",
+            Name = Properties.Language.input_edit_undo,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Z, ModifierKeys.Control) }
@@ -156,7 +156,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "edit.redo",
-            Name = "Redo",
+            Name = Properties.Language.input_edit_redo,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Y, ModifierKeys.Control) }
@@ -166,7 +166,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "paste.accept",
-            Name = "Accept Paste",
+            Name = Properties.Language.input_paste_accept,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Enter) }
@@ -175,7 +175,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "paste.rotate.cw",
-            Name = "Rotate Paste CW",
+            Name = Properties.Language.input_paste_rotate_cw,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Q, ModifierKeys.Control) }
@@ -184,7 +184,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "paste.rotate.ccw",
-            Name = "Rotate Paste CCW",
+            Name = Properties.Language.input_paste_rotate_ccw,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Q, ModifierKeys.Control | ModifierKeys.Shift) }
@@ -193,7 +193,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "paste.flip.h",
-            Name = "Flip Paste Horizontal",
+            Name = Properties.Language.input_paste_flip_h,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.H, ModifierKeys.Control) }
@@ -202,7 +202,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "paste.flip.v",
-            Name = "Flip Paste Vertical",
+            Name = Properties.Language.input_paste_flip_v,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.H, ModifierKeys.Control | ModifierKeys.Shift) }
@@ -212,7 +212,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.all",
-            Name = "Select All",
+            Name = Properties.Language.input_selection_all,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.A, ModifierKeys.Control) }
@@ -221,7 +221,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.none",
-            Name = "Deselect",
+            Name = Properties.Language.input_selection_none,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.D, ModifierKeys.Control) }
@@ -230,7 +230,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.delete",
-            Name = "Delete Selection",
+            Name = Properties.Language.input_selection_delete,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Delete) }
@@ -240,7 +240,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.move.up",
-            Name = "Move Selection Up",
+            Name = Properties.Language.input_selection_move_up,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Up) }
@@ -249,7 +249,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.move.down",
-            Name = "Move Selection Down",
+            Name = Properties.Language.input_selection_move_down,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Down) }
@@ -258,7 +258,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.move.left",
-            Name = "Move Selection Left",
+            Name = Properties.Language.input_selection_move_left,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Left) }
@@ -267,7 +267,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.move.right",
-            Name = "Move Selection Right",
+            Name = Properties.Language.input_selection_move_right,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Right) }
@@ -277,7 +277,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.move.up.fast",
-            Name = "Move Selection Up (Fast)",
+            Name = Properties.Language.input_selection_move_up_fast,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Shift) }
@@ -286,7 +286,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.move.down.fast",
-            Name = "Move Selection Down (Fast)",
+            Name = Properties.Language.input_selection_move_down_fast,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Shift) }
@@ -295,7 +295,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.move.left.fast",
-            Name = "Move Selection Left (Fast)",
+            Name = Properties.Language.input_selection_move_left_fast,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Shift) }
@@ -304,7 +304,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.move.right.fast",
-            Name = "Move Selection Right (Fast)",
+            Name = Properties.Language.input_selection_move_right_fast,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Shift) }
@@ -314,7 +314,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.resize.up",
-            Name = "Shrink Selection Height",
+            Name = Properties.Language.input_selection_resize_up,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Control) }
@@ -323,7 +323,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.resize.down",
-            Name = "Grow Selection Height",
+            Name = Properties.Language.input_selection_resize_down,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Control) }
@@ -332,7 +332,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.resize.left",
-            Name = "Shrink Selection Width",
+            Name = Properties.Language.input_selection_resize_left,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Control) }
@@ -341,7 +341,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.resize.right",
-            Name = "Grow Selection Width",
+            Name = Properties.Language.input_selection_resize_right,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Control) }
@@ -351,7 +351,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.resize.up.fast",
-            Name = "Shrink Selection Height (Fast)",
+            Name = Properties.Language.input_selection_resize_up_fast,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Control | ModifierKeys.Shift) }
@@ -360,7 +360,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.resize.down.fast",
-            Name = "Grow Selection Height (Fast)",
+            Name = Properties.Language.input_selection_resize_down_fast,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Control | ModifierKeys.Shift) }
@@ -369,7 +369,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.resize.left.fast",
-            Name = "Shrink Selection Width (Fast)",
+            Name = Properties.Language.input_selection_resize_left_fast,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Control | ModifierKeys.Shift) }
@@ -378,7 +378,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.resize.right.fast",
-            Name = "Grow Selection Width (Fast)",
+            Name = Properties.Language.input_selection_resize_right_fast,
             Category = InputCategory.Selection,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Control | ModifierKeys.Shift) }
@@ -388,27 +388,27 @@ public class InputService
         Register(new InputAction
         {
             Id = "selection.adjust.startpoint",
-            Name = "Move Selection Start Point",
+            Name = Properties.Language.input_selection_adjust_startpoint,
             Category = InputCategory.Selection,
             Scope = InputScope.Editor,
-            Description = "Ctrl+click/drag to move top-left corner of selection",
+            Description = Properties.Language.input_selection_adjust_startpoint_desc,
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left, ModifierKeys.Control) }
         });
 
         Register(new InputAction
         {
             Id = "selection.adjust.endpoint",
-            Name = "Move Selection End Point",
+            Name = Properties.Language.input_selection_adjust_endpoint,
             Category = InputCategory.Selection,
             Scope = InputScope.Editor,
-            Description = "Shift+click/drag to move bottom-right corner of selection",
+            Description = Properties.Language.input_selection_adjust_endpoint_desc,
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left, ModifierKeys.Shift) }
         });
 
         Register(new InputAction
         {
             Id = "edit.crop",
-            Name = "Crop World",
+            Name = Properties.Language.input_edit_crop,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
         });
@@ -416,7 +416,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "edit.expand",
-            Name = "Expand World",
+            Name = Properties.Language.input_edit_expand,
             Category = InputCategory.Editing,
             Scope = InputScope.Application,
         });
@@ -424,7 +424,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "app.settings",
-            Name = "Settings",
+            Name = Properties.Language.input_app_settings,
             Category = InputCategory.File,
             Scope = InputScope.Application,
         });
@@ -433,7 +433,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.scroll.up",
-            Name = "Scroll Up",
+            Name = Properties.Language.input_nav_scroll_up,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Up) }
@@ -442,7 +442,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.scroll.down",
-            Name = "Scroll Down",
+            Name = Properties.Language.input_nav_scroll_down,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Down) }
@@ -451,7 +451,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.scroll.left",
-            Name = "Scroll Left",
+            Name = Properties.Language.input_nav_scroll_left,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Left) }
@@ -460,7 +460,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.scroll.right",
-            Name = "Scroll Right",
+            Name = Properties.Language.input_nav_scroll_right,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Right) }
@@ -469,7 +469,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.scroll.up.fast",
-            Name = "Scroll Up Fast",
+            Name = Properties.Language.input_nav_scroll_up_fast,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Up, ModifierKeys.Shift) }
@@ -478,7 +478,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.scroll.down.fast",
-            Name = "Scroll Down Fast",
+            Name = Properties.Language.input_nav_scroll_down_fast,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Down, ModifierKeys.Shift) }
@@ -487,7 +487,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.scroll.left.fast",
-            Name = "Scroll Left Fast",
+            Name = Properties.Language.input_nav_scroll_left_fast,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Left, ModifierKeys.Shift) }
@@ -496,7 +496,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.scroll.right.fast",
-            Name = "Scroll Right Fast",
+            Name = Properties.Language.input_nav_scroll_right_fast,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Right, ModifierKeys.Shift) }
@@ -505,7 +505,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.pan",
-            Name = "Pan Mode",
+            Name = Properties.Language.input_nav_pan,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Space) }
@@ -514,7 +514,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.zoom.in",
-            Name = "Zoom In",
+            Name = Properties.Language.input_nav_zoom_in,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings =
@@ -527,7 +527,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.zoom.out",
-            Name = "Zoom Out",
+            Name = Properties.Language.input_nav_zoom_out,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings =
@@ -540,7 +540,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "nav.reset",
-            Name = "Reset Tool / Deselect",
+            Name = Properties.Language.input_nav_reset,
             Category = InputCategory.Navigation,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Escape) }
@@ -550,7 +550,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.arrow",
-            Name = "Arrow Tool",
+            Name = Properties.Language.input_tool_arrow,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.A) }
@@ -559,7 +559,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.brush",
-            Name = "Brush Tool",
+            Name = Properties.Language.input_tool_brush,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.B) }
@@ -568,7 +568,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.pencil",
-            Name = "Pencil Tool",
+            Name = Properties.Language.input_tool_pencil,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.E) }
@@ -577,7 +577,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.fill",
-            Name = "Fill Tool",
+            Name = Properties.Language.input_tool_fill,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.F) }
@@ -586,7 +586,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.picker",
-            Name = "Picker Tool",
+            Name = Properties.Language.input_tool_picker,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.R) }
@@ -595,7 +595,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.point",
-            Name = "Point Tool",
+            Name = Properties.Language.input_tool_point,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.P) }
@@ -604,7 +604,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.selection",
-            Name = "Selection Tool",
+            Name = Properties.Language.input_tool_selection,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.S) }
@@ -613,7 +613,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.sprite",
-            Name = "Sprite Tool",
+            Name = Properties.Language.input_tool_sprite,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.T) }
@@ -622,7 +622,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.hammer",
-            Name = "Hammer Tool",
+            Name = Properties.Language.input_tool_hammer,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.H) }
@@ -631,7 +631,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "tool.morph",
-            Name = "Morph Tool",
+            Name = Properties.Language.input_tool_morph,
             Category = InputCategory.Tools,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.M) }
@@ -641,7 +641,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "toggle.eraser",
-            Name = "Toggle Eraser",
+            Name = Properties.Language.input_toggle_eraser,
             Category = InputCategory.Toggles,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Z) }
@@ -650,7 +650,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "toggle.swap",
-            Name = "Swap Colors",
+            Name = Properties.Language.input_toggle_swap,
             Category = InputCategory.Toggles,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.X) }
@@ -660,77 +660,77 @@ public class InputService
         Register(new InputAction
         {
             Id = "editor.wire.modecycle",
-            Name = "Cycle Wire Drawing Mode",
+            Name = Properties.Language.input_editor_wire_modecycle,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Application,
-            Description = "Cycle wire drawing mode: Off → Wire90 → Wire45 → Off",
+            Description = Properties.Language.input_editor_wire_modecycle_desc,
             DefaultBindings = { InputBinding.Keyboard(Key.W, ModifierKeys.Shift) }
         });
 
         Register(new InputAction
         {
             Id = "editor.wire.togglehv",
-            Name = "Toggle Wire H/V Direction",
+            Name = Properties.Language.input_editor_wire_togglehv,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Application,
-            Description = "Toggle between horizontal-first, vertical-first, and auto-detect wire routing",
+            Description = Properties.Language.input_editor_wire_togglehv_desc,
             DefaultBindings = { InputBinding.Keyboard(Key.Q, ModifierKeys.Shift) }
         });
 
         Register(new InputAction
         {
             Id = "editor.wire.color1",
-            Name = "Toggle Wire Red",
+            Name = Properties.Language.input_editor_wire_color1,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Application,
-            Description = "Toggle red wire active",
+            Description = Properties.Language.input_editor_wire_color1_desc,
             DefaultBindings = { InputBinding.Keyboard(Key.D1) }
         });
 
         Register(new InputAction
         {
             Id = "editor.wire.color2",
-            Name = "Toggle Wire Blue",
+            Name = Properties.Language.input_editor_wire_color2,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Application,
-            Description = "Toggle blue wire active",
+            Description = Properties.Language.input_editor_wire_color2_desc,
             DefaultBindings = { InputBinding.Keyboard(Key.D2) }
         });
 
         Register(new InputAction
         {
             Id = "editor.wire.color3",
-            Name = "Toggle Wire Green",
+            Name = Properties.Language.input_editor_wire_color3,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Application,
-            Description = "Toggle green wire active",
+            Description = Properties.Language.input_editor_wire_color3_desc,
             DefaultBindings = { InputBinding.Keyboard(Key.D3) }
         });
 
         Register(new InputAction
         {
             Id = "editor.wire.color4",
-            Name = "Toggle Wire Yellow",
+            Name = Properties.Language.input_editor_wire_color4,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Application,
-            Description = "Toggle yellow wire active",
+            Description = Properties.Language.input_editor_wire_color4_desc,
             DefaultBindings = { InputBinding.Keyboard(Key.D4) }
         });
 
         Register(new InputAction
         {
             Id = "editor.wire.trace",
-            Name = "Wire Trace Highlight",
+            Name = Properties.Language.input_editor_wire_trace,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Editor,
-            Description = "Alt+click to highlight all wires connected to the clicked tile",
+            Description = Properties.Language.input_editor_wire_trace_desc,
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left, ModifierKeys.Alt) }
         });
 
         Register(new InputAction
         {
             Id = "toggle.tile",
-            Name = "Toggle Tile Style",
+            Name = Properties.Language.input_toggle_tile,
             Category = InputCategory.Toggles,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.Q) }
@@ -739,7 +739,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "toggle.wall",
-            Name = "Toggle Wall Style",
+            Name = Properties.Language.input_toggle_wall,
             Category = InputCategory.Toggles,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.W) }
@@ -749,50 +749,50 @@ public class InputService
         Register(new InputAction
         {
             Id = "editor.draw",
-            Name = "Draw / Primary Action",
+            Name = Properties.Language.input_editor_draw,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Editor,
-            Description = "Primary drawing action in tools",
+            Description = Properties.Language.input_editor_draw_desc,
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left) }
         });
 
         Register(new InputAction
         {
             Id = "editor.secondary",
-            Name = "Secondary Action",
+            Name = Properties.Language.input_editor_secondary,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Editor,
-            Description = "Secondary action in tools (inspect, deselect, pick mask, etc.)",
+            Description = Properties.Language.input_editor_secondary_desc,
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Right) }
         });
 
         Register(new InputAction
         {
             Id = "editor.draw.constrain",
-            Name = "Draw Constrained (H/V/45°)",
+            Name = Properties.Language.input_editor_draw_constrain,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Editor,
-            Description = "Constrain drawing to horizontal, vertical, or 45° diagonal lines",
+            Description = Properties.Language.input_editor_draw_constrain_desc,
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left, ModifierKeys.Control) }
         });
 
         Register(new InputAction
         {
             Id = "editor.draw.line",
-            Name = "Draw Point-to-Point Line",
+            Name = Properties.Language.input_editor_draw_line,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Editor,
-            Description = "Draw straight lines between click points",
+            Description = Properties.Language.input_editor_draw_line_desc,
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Left, ModifierKeys.Shift) }
         });
 
         Register(new InputAction
         {
             Id = "editor.pan",
-            Name = "Pan Viewport",
+            Name = Properties.Language.input_editor_pan,
             Category = InputCategory.ToolDrawing,
             Scope = InputScope.Editor,
-            Description = "Drag to pan the viewport",
+            Description = Properties.Language.input_editor_pan_desc,
             DefaultBindings = { InputBinding.Mouse(TEditMouseButton.Middle) }
         });
 
@@ -800,7 +800,7 @@ public class InputService
         Register(new InputAction
         {
             Id = "help.wiki",
-            Name = "Wiki / Help",
+            Name = Properties.Language.input_help_wiki,
             Category = InputCategory.Help,
             Scope = InputScope.Application,
             DefaultBindings = { InputBinding.Keyboard(Key.F1) }

@@ -34,24 +34,29 @@ public sealed class PointTool : BaseTool
             }
             else
             {
-                if (string.Equals(_wvm.SelectedPoint, "Spawn", StringComparison.InvariantCultureIgnoreCase))
+                if (string.Equals(_wvm.SelectedPoint, Properties.Language.tool_point_spawn, StringComparison.InvariantCultureIgnoreCase))
                 {
                     _wvm.CurrentWorld.SpawnX = e.Location.X;
                     _wvm.CurrentWorld.SpawnY = e.Location.Y;
                 }
-                else if (string.Equals(_wvm.SelectedPoint, "Dungeon", StringComparison.InvariantCultureIgnoreCase))
+                else if (string.Equals(_wvm.SelectedPoint, Properties.Language.tool_point_dungeon, StringComparison.InvariantCultureIgnoreCase))
                 {
                     _wvm.CurrentWorld.DungeonX = e.Location.X;
                     _wvm.CurrentWorld.DungeonY = e.Location.Y;
                 }
-                else if (_wvm.SelectedPoint != null && _wvm.SelectedPoint.StartsWith("Team ", StringComparison.InvariantCultureIgnoreCase))
+                else if (_wvm.SelectedPoint != null)
                 {
-                    string teamName = _wvm.SelectedPoint.Substring(5);
-                    int teamIndex = Array.IndexOf(World.TeamNames, teamName);
-                    if (teamIndex >= 0 && teamIndex < _wvm.CurrentWorld.TeamSpawns.Count)
+                    for (int teamIndex = 0; teamIndex < World.TeamCount; teamIndex++)
                     {
-                        _wvm.CurrentWorld.TeamSpawns[teamIndex].X = e.Location.X;
-                        _wvm.CurrentWorld.TeamSpawns[teamIndex].Y = e.Location.Y;
+                        if (string.Equals(_wvm.SelectedPoint, WorldViewModel.GetTeamPointName(teamIndex), StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            if (teamIndex < _wvm.CurrentWorld.TeamSpawns.Count)
+                            {
+                                _wvm.CurrentWorld.TeamSpawns[teamIndex].X = e.Location.X;
+                                _wvm.CurrentWorld.TeamSpawns[teamIndex].Y = e.Location.Y;
+                            }
+                            break;
+                        }
                     }
                 }
             }

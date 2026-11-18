@@ -111,7 +111,7 @@ public partial class HouseGenPlugin : BasePlugin
                 var ofd = new OpenFileDialog();
                 ofd.Filter = "TEdit House Gen Schematic File|*.TEditHGSch";
                 ofd.DefaultExt = "TEdit House Gen Schematic File|*.TEditHGSch";
-                ofd.Title = "Import TEdit House Gen Schematic File";
+                ofd.Title = Properties.Language.dialog_import_housegen_schematic;
                 ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics\Generator");
                 if (!Directory.Exists(ofd.InitialDirectory)) { Directory.CreateDirectory(ofd.InitialDirectory); }
                 ofd.Multiselect = false;
@@ -126,7 +126,7 @@ public partial class HouseGenPlugin : BasePlugin
             catch (Exception ex)
             {
                 ErrorLogging.LogException(ex);
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, Properties.Language.common_error, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -160,7 +160,7 @@ public partial class HouseGenPlugin : BasePlugin
                         catch (IndexOutOfRangeException e)
                         {
                             ErrorLogging.LogDebug($"HouseGen IndexOutOfRange in {room.Name}: {e.Message}");
-                            MessageBox.Show(e.Message + " Check JSON Data for " + room.Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(string.Format(Properties.Language.plugin_housegen_json_entry_error, e.Message, room.Name), Properties.Language.common_error, MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
@@ -185,7 +185,7 @@ public partial class HouseGenPlugin : BasePlugin
                         }
                         catch (IndexOutOfRangeException e)
                         {
-                            MessageBox.Show(e.Message + " Check JSON Data for " + roof.Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(string.Format(Properties.Language.plugin_housegen_json_entry_error, e.Message, roof.Name), Properties.Language.common_error, MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
@@ -203,7 +203,7 @@ public partial class HouseGenPlugin : BasePlugin
                     catch (IndexOutOfRangeException e)
                     {
                         ErrorLogging.LogDebug($"HouseGen IndexOutOfRange (Count mismatch): {e.Message}");
-                        MessageBox.Show(e.Message + " Check JSON Data for value 'Count' to make sure it matches with associated schematic.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(string.Format(Properties.Language.plugin_housegen_json_count_error, e.Message), Properties.Language.common_error, MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }

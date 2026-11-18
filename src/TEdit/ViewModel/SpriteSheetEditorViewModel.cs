@@ -19,7 +19,7 @@ namespace TEdit.ViewModel;
 /// </summary>
 public partial class EditableFrame : ReactiveObject
 {
-    [Reactive] private string _name = "Default";
+    [Reactive] private string _name = Properties.Language.spriteeditor_frame_default;
     [Reactive] private string? _variety;
     [Reactive] private short _uvX;
     [Reactive] private short _uvY;
@@ -97,7 +97,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
     // UI state
     [Reactive] private EditableFrame? _selectedFrame;
     [Reactive] private double _zoomLevel = 2.0;
-    [Reactive] private string _statusText = "Ready";
+    [Reactive] private string _statusText = Properties.Language.spriteeditor_status_ready;
 
     /// <summary>The full tile texture as a WPF bitmap.</summary>
     public WriteableBitmap? TileTexture { get; }
@@ -174,7 +174,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
             if (over != null)
             {
                 ApplyOverride(over);
-                StatusText = "Loaded from user override";
+                StatusText = Properties.Language.spriteeditor_status_override_loaded;
                 return;
             }
         }
@@ -267,14 +267,14 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
         }
 
         LoadFromTileProperty();
-        StatusText = "Reset to default tile data";
+        StatusText = Properties.Language.spriteeditor_status_reset_default;
     }
 
     private void ExecuteAutoDetect()
     {
         if (TileTexture == null)
         {
-            StatusText = "No texture loaded — cannot auto-detect";
+            StatusText = Properties.Language.spriteeditor_status_no_texture_detect;
             return;
         }
 
@@ -446,7 +446,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
     {
         if (TileTexture == null)
         {
-            StatusText = "No texture loaded";
+            StatusText = Properties.Language.spriteeditor_status_no_texture;
             return;
         }
 
@@ -467,7 +467,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
         Frames.Clear();
         Frames.Add(new EditableFrame
         {
-            Name = "Frame 0",
+            Name = string.Format(Properties.Language.spriteeditor_frame_format, 0),
             UvX = 0,
             UvY = 0,
             SizeX = FrameSizeX,
@@ -522,7 +522,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
             {
                 Frames.Add(new EditableFrame
                 {
-                    Name = $"Frame {index}",
+                    Name = string.Format(Properties.Language.spriteeditor_frame_format, index),
                     UvX = (short)x,
                     UvY = (short)y,
                     SizeX = FrameSizeX,
@@ -541,7 +541,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
     {
         var frame = new EditableFrame
         {
-            Name = $"Frame {Frames.Count}",
+            Name = string.Format(Properties.Language.spriteeditor_frame_format, Frames.Count),
             UvX = 0,
             UvY = 0,
             SizeX = FrameSizeX,
@@ -607,7 +607,7 @@ public partial class SpriteSheetEditorViewModel : ReactiveObject
     {
         var frame = new EditableFrame
         {
-            Name = $"Frame {Frames.Count}",
+            Name = string.Format(Properties.Language.spriteeditor_frame_format, Frames.Count),
             UvX = uvX,
             UvY = uvY,
             SizeX = sizeX,

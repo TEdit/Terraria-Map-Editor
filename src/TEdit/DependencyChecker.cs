@@ -411,7 +411,7 @@ public static class DependencyChecker
     private static string BrowseForTerraria()
     {
         FolderBrowserDialog fbd = new FolderBrowserDialog();
-        fbd.Description = "Locate Terraria Folder";
+        fbd.Description = Properties.Language.dialog_locate_terraria_folder;
         fbd.ShowNewFolderButton = false;
         if (fbd.ShowDialog() == DialogResult.OK)
         {

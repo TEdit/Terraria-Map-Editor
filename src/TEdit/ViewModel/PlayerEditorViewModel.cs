@@ -544,11 +544,11 @@ public partial class PlayerEditorViewModel
             PlayerFilePath = path;
             _loadedFileHash = ComputeFileHash(path);
             SyncFromPlayer();
-            StatusText = $"Loaded: {Player.Name}";
+            StatusText = string.Format(Language.player_editor_status_loaded, Player.Name);
         }
         catch (Exception ex)
         {
-            _ = App.DialogService.ShowExceptionAsync($"Failed to load player file:\n{ex.Message}");
+            _ = App.DialogService.ShowExceptionAsync(string.Format(Language.player_editor_error_load, ex.Message));
         }
     }
 
@@ -564,14 +564,14 @@ public partial class PlayerEditorViewModel
                  !CryptographicOperations.FixedTimeEquals(_loadedFileHash, ComputeFileHash(PlayerFilePath))))
             {
                 var overwriteResult = await _dialogService.ShowMessageAsync(
-                    $"{Path.GetFileName(PlayerFilePath)} was externally modified since it was loaded or last saved.\r\nDo you wish to overwrite it?",
-                    "Player Modified",
+                    string.Format(Language.dialog_player_modified_prompt, Path.GetFileName(PlayerFilePath)),
+                    Language.dialog_player_modified_title,
                     DialogButton.OKCancel,
                     DialogImage.Warning);
 
                 if (overwriteResult != DialogResponse.OK)
                 {
-                    StatusText = "Save canceled: player file was externally modified.";
+                    StatusText = Language.player_editor_save_canceled;
                     return;
                 }
             }
@@ -579,11 +579,11 @@ public partial class PlayerEditorViewModel
             SyncToPlayer();
             PlayerFile.Save(PlayerFilePath, Player);
             _loadedFileHash = ComputeFileHash(PlayerFilePath);
-            StatusText = $"Saved: {Player.Name}";
+            StatusText = string.Format(Language.player_editor_status_saved, Player.Name);
         }
         catch (Exception ex)
         {
-            _ = App.DialogService.ShowExceptionAsync($"Failed to save player file:\n{ex.Message}");
+            _ = App.DialogService.ShowExceptionAsync(string.Format(Language.player_editor_error_save, ex.Message));
         }
     }
 

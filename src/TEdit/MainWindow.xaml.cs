@@ -210,11 +210,11 @@ public partial class MainWindow : FluentWindow
         {
             var messageBox = new Wpf.Ui.Controls.MessageBox
             {
-                Title = "Unsaved Changes",
-                Content = "Save changes before closing TEdit?",
-                PrimaryButtonText = "Save",
-                SecondaryButtonText = "Don't Save",
-                CloseButtonText = "Cancel",
+                Title = Properties.Language.dialog_unsaved_title,
+                Content = Properties.Language.dialog_unsaved_content,
+                PrimaryButtonText = Properties.Language.common_save,
+                SecondaryButtonText = Properties.Language.dialog_dont_save,
+                CloseButtonText = Properties.Language.common_cancel,
                 IsPrimaryButtonEnabled = true,
                 IsSecondaryButtonEnabled = true,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
@@ -280,8 +280,8 @@ public partial class MainWindow : FluentWindow
         {
             Title = Properties.Language.telemetry_prompt_title,
             Content = textBlock,
-            PrimaryButtonText = "Yes",
-            SecondaryButtonText = "No",
+            PrimaryButtonText = Properties.Language.common_yes,
+            SecondaryButtonText = Properties.Language.common_no,
             IsPrimaryButtonEnabled = true,
             IsSecondaryButtonEnabled = true,
             WindowStartupLocation = WindowStartupLocation.CenterOwner,

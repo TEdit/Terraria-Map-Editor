@@ -181,8 +181,8 @@ public partial class BannerViewModel : ReactiveObject
         if (_wvm.CurrentWorld == null) return;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
-            "Import Banners?",
-            "This will replace your current banner counts with data from the selected world file. Continue?");
+            Properties.Language.dialog_import_banners_title,
+            Properties.Language.dialog_import_banners_prompt);
 
         if (!confirm)
             return;
@@ -191,7 +191,7 @@ public partial class BannerViewModel : ReactiveObject
         {
             Filter = "Terraria World File|*.wld",
             DefaultExt = "Terraria World File|*.wld",
-            Title = "Import Banners from World File",
+            Title = Properties.Language.dialog_import_banners,
             InitialDirectory = DependencyChecker.PathToWorlds,
             Multiselect = false,
         };
@@ -212,7 +212,7 @@ public partial class BannerViewModel : ReactiveObject
             {
                 _wvm.CurrentWorld.ClaimableBanners[i] = backup[i];
             }
-            await App.DialogService.ShowExceptionAsync($"Error importing banner data from {ofd.FileName}. Your current banners have been restored.\r\n{ex.Message}");
+            await App.DialogService.ShowExceptionAsync(string.Format(Properties.Language.dialog_import_banners_error, ofd.FileName, ex.Message));
         }
     }
 
@@ -222,8 +222,8 @@ public partial class BannerViewModel : ReactiveObject
         if (_wvm.CurrentWorld == null) return;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
-            "Save Banners?",
-            "Save banner changes back to the world?");
+            Properties.Language.dialog_save_banners_title,
+            Properties.Language.dialog_save_banners_prompt);
 
         if (!confirm)
             return;
@@ -247,7 +247,7 @@ public partial class BannerViewModel : ReactiveObject
             {
                 _wvm.CurrentWorld.ClaimableBanners[i] = backup[i];
             }
-            await App.DialogService.ShowExceptionAsync($"Error saving banner data. Changes have been restored.\r\n{ex.Message}");
+            await App.DialogService.ShowExceptionAsync(string.Format(Properties.Language.dialog_save_banners_error, ex.Message));
         }
     }
 
@@ -257,8 +257,8 @@ public partial class BannerViewModel : ReactiveObject
         if (_wvm.CurrentWorld == null) return;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
-            "Max Out Banners?",
-            "Set all banner counts to maximum (9999)?");
+            Properties.Language.dialog_max_banners_title,
+            Properties.Language.dialog_max_banners_prompt);
 
         if (!confirm)
             return;
@@ -275,8 +275,8 @@ public partial class BannerViewModel : ReactiveObject
         if (_wvm.CurrentWorld == null) return;
 
         var confirm = await App.DialogService.ShowConfirmationAsync(
-            "Reset Banners?",
-            "Reset all banner counts to zero?");
+            Properties.Language.dialog_reset_banners_title,
+            Properties.Language.dialog_reset_banners_prompt);
 
         if (!confirm)
             return;
