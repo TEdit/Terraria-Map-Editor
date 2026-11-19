@@ -208,7 +208,7 @@
     <value>Leeren</value>
   </data>
   <data name="bestiary_complete" xml:space="preserve">
-    <value>Vervollständ</value>
+    <value>Vervollständigen</value>
   </data>
   <data name="bestiary_defeated" xml:space="preserve">
     <value>Besiegt</value>
@@ -235,7 +235,7 @@
     <value>Blau</value>
   </data>
   <data name="bg_cave_blue_alt" xml:space="preserve">
-    <value>Blaues Alt-Block</value>
+    <value>Blau (alternativ)</value>
   </data>
   <data name="bg_cave_brown" xml:space="preserve">
     <value>Braun</value>
@@ -677,7 +677,7 @@ Möchtest du trotzdem versuchen, die Welt zu laden?</value>
     <value>Neuere Weltversion</value>
   </data>
   <data name="dialog_open_world_file" xml:space="preserve">
-    <value>Weltd Datei öffnen</value>
+    <value>Weltdatei öffnen</value>
   </data>
   <data name="dialog_player_modified_prompt" xml:space="preserve">
     <value>{0} wurde extern geändert, seit die Datei geladen oder zuletzt gespeichert wurde.
@@ -881,7 +881,7 @@ Der Fehler lautet:
     <value>Automatisch (Systemeinstellung folgen)</value>
   </data>
   <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
   </data>
   <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -1008,7 +1008,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>Der Export wird {0}×{1} Pixel groß ({2} Megapixel, geschätzte Dateigröße {3}). Dies kann eine Weile dauern. Fortfahren?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
@@ -2028,7 +2028,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
   </data>
   <data name="menu_language_zh_hant" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -2088,7 +2088,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Wände</value>
   </data>
   <data name="menu_layers_wire_all" xml:space="preserve">
-    <value>Alle draden</value>
+    <value>Alle Drähte</value>
   </data>
   <data name="menu_layers_wire_blue" xml:space="preserve">
     <value>Blaue Kabel</value>
@@ -2260,7 +2260,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Auf diese Kachel auf der Karte zoomen</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
-    <value>Füge Ash hinzu</value>
+    <value>Asche hinzufügen</value>
   </data>
   <data name="newworld_add_grass" xml:space="preserve">
     <value>Gras hinzufügen</value>
@@ -2332,7 +2332,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Oberfläche einschließen</value>
   </data>
   <data name="newworld_lava_noise" xml:space="preserve">
-    <value>Lavageräusch</value>
+    <value>Lava-Rauschen</value>
   </data>
   <data name="newworld_name" xml:space="preserve">
     <value>Weltname</value>
@@ -2347,7 +2347,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Welteigenschaften</value>
   </data>
   <data name="newworld_roof_noise" xml:space="preserve">
-    <value>Dächergeräusch</value>
+    <value>Deckenrauschen</value>
   </data>
   <data name="newworld_seed" xml:space="preserve">
     <value>Welt-ID (Seed)</value>
@@ -2449,7 +2449,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Präfix</value>
   </data>
   <data name="picker_search_sprites_placeholder" xml:space="preserve">
-    <value>Suchsprites...</value>
+    <value>Sprites suchen...</value>
   </data>
   <data name="picker_search_tiles_placeholder" xml:space="preserve">
     <value>Suchkacheln...</value>
@@ -2649,7 +2649,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>MP:</value>
   </data>
   <data name="player_stats_show_armor" xml:space="preserve">
-    <value>Showrüstung</value>
+    <value>Rüstung anzeigen</value>
   </data>
   <data name="player_stats_spawn_points" xml:space="preserve">
     <value>Spawnpunkte</value>
@@ -3503,7 +3503,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Run-Skript</value>
   </data>
   <data name="scripting_save_tooltip" xml:space="preserve">
-    <value>Save-Skript</value>
+    <value>Skript speichern</value>
   </data>
   <data name="scripting_stop" xml:space="preserve">
     <value>Stopp</value>
@@ -3627,7 +3627,7 @@ Bitte überprüfe, ob dieser Ordner existiert und TEdit Lesezugriff darauf hat.
     <value>Verwenden Sie realistische Farben</value>
   </data>
   <data name="settings_realistic_colors_desc" xml:space="preserve">
-    <value>Kacheln mit texturproben Farben rendern (Neustart erforderlich)</value>
+    <value>Blöcke mit aus Texturen ermittelten Farben darstellen (Neustart erforderlich)</value>
   </data>
   <data name="settings_save" xml:space="preserve">
     <value>Speichern</value>
@@ -4641,7 +4641,7 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
     <value>HG Tundra</value>
   </data>
   <data name="tool_wp_bg_tree2" xml:space="preserve">
-    <value>HG Bäume 1</value>
+    <value>HG Bäume 2</value>
   </data>
   <data name="tool_wp_bg_tree3" xml:space="preserve">
     <value>HG Bäume 3</value>
@@ -4860,10 +4860,10 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
     <value>Laternennacht echt</value>
   </data>
   <data name="tool_wp_lanternnight_manual" xml:space="preserve">
-    <value>Lantern Night Handbuch</value>
+    <value>Manuelle Laternennacht</value>
   </data>
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
-    <value>Lantern Night Next ist echt</value>
+    <value>Nächste Laternennacht ist natürlich</value>
   </data>
   <data name="tool_wp_meteor" xml:space="preserve">
     <value>Meteorit</value>
@@ -5088,7 +5088,7 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
     <value>Schweregrad</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>Angepeilter Schw</value>
+    <value>Angestrebte Stärke</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>Verbleibende Zeit</value>
@@ -5202,7 +5202,7 @@ Möchten Sie die Fehlerberichterstattung aktivieren?</value>
     <value>Wolkenanzahl</value>
   </data>
   <data name="tool_wp_weather_windspeed" xml:space="preserve">
-    <value>Windgeschwindigk</value>
+    <value>Windgeschwindigkeit</value>
   </data>
   <data name="TrackMode_Booster" xml:space="preserve">
     <value>Booster</value>

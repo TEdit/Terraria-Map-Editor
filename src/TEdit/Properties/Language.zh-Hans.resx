@@ -265,7 +265,7 @@
     <value>山脉 {0} + 树木</value>
   </data>
   <data name="bg_mountains_alt" xml:space="preserve">
-    <value>山脉高度（替代）</value>
+    <value>山脉（替代）</value>
   </data>
   <data name="bg_mountains_only" xml:space="preserve">
     <value>仅山地</value>
@@ -295,7 +295,7 @@
     <value>仅树木 B</value>
   </data>
   <data name="bg_tree_boreal" xml:space="preserve">
-    <value>针叶林 biomes?</value>
+    <value>针叶林</value>
   </data>
   <data name="bg_tree_jungle" xml:space="preserve">
     <value>类似丛林的</value>
@@ -386,7 +386,7 @@
     <value>两者</value>
   </data>
   <data name="common_browse" xml:space="preserve">
-    <value>浏览...</value>
+    <value>浏览……</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>取消</value>
@@ -1848,7 +1848,7 @@ TEdit 最大世界尺寸：{1}
     <value>地图图格……</value>
   </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
-    <value>纹理地图（1像素/图格）</value>
+    <value>像素地图（1像素/图格）</value>
   </data>
   <data name="menu_edit_export_quarter_texture" xml:space="preserve">
     <value>四分之一纹理（4像素/图格）</value>
@@ -2254,7 +2254,7 @@ TEdit 最大世界尺寸：{1}
     <value>在编辑器中打开</value>
   </data>
   <data name="nbt_search_tags_placeholder" xml:space="preserve">
-    <value>搜索标签...</value>
+    <value>搜索标签……</value>
   </data>
   <data name="nbt_zoom_to_tile_tooltip" xml:space="preserve">
     <value>在地图上缩放至此图格</value>
@@ -2374,7 +2374,7 @@ TEdit 最大世界尺寸：{1}
     <value>搜索……</value>
   </data>
   <data name="overflow_more_panels" xml:space="preserve">
-    <value>更多面板…</value>
+    <value>更多面板……</value>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液体</value>
@@ -2928,10 +2928,10 @@ TEdit 最大世界尺寸：{1}
     <value>安全建造</value>
   </data>
   <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>计算中...</value>
+    <value>计算中……</value>
   </data>
   <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>正在计算...</value>
+    <value>正在计算……</value>
   </data>
   <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
     <value>取消转换</value>
@@ -3090,7 +3090,7 @@ TEdit 最大世界尺寸：{1}
     <value>进度条</value>
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
-    <value>显示像素画绘制进度（对速度略有影响）</value>
+    <value>显示像素画绘制进度（对速度略有影响）。</value>
   </data>
   <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
     <value>渲染已取消。</value>
@@ -3302,7 +3302,7 @@ TEdit 最大世界尺寸：{1}
     <value>解锁所有宝箱</value>
   </data>
   <data name="progress_calculating_colors" xml:space="preserve">
-    <value>正在计算颜色...</value>
+    <value>正在计算颜色……</value>
   </data>
   <data name="progress_cloning_world" xml:space="preserve">
     <value>正在克隆世界……</value>
@@ -3323,16 +3323,16 @@ TEdit 最大世界尺寸：{1}
     <value>正在生成地狱……</value>
   </data>
   <data name="progress_generating_world" xml:space="preserve">
-    <value>正在生成世界...</value>
+    <value>正在生成世界……</value>
   </data>
   <data name="progress_loaded_windows_phone_header" xml:space="preserve">
     <value>已加载 Windows Phone 世界头部。</value>
   </data>
   <data name="progress_loading_chests" xml:space="preserve">
-    <value>正在加载宝箱...</value>
+    <value>正在加载宝箱……</value>
   </data>
   <data name="progress_loading_file_header" xml:space="preserve">
-    <value>正在加载文件头…</value>
+    <value>正在加载文件头……</value>
   </data>
   <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
     <value>正在加载旧版 Windows Phone 磁贴……</value>
@@ -3341,7 +3341,7 @@ TEdit 最大世界尺寸：{1}
     <value>正在加载 NPC……</value>
   </data>
   <data name="progress_loading_npc_data" xml:space="preserve">
-    <value>正在加载 NPC 数据...</value>
+    <value>正在加载 NPC 数据……</value>
   </data>
   <data name="progress_loading_npc_names" xml:space="preserve">
     <value>正在加载 NPC 名称……</value>
@@ -3350,13 +3350,13 @@ TEdit 最大世界尺寸：{1}
     <value>正在加载告示牌……</value>
   </data>
   <data name="progress_loading_tiles" xml:space="preserve">
-    <value>正在加载图块...</value>
+    <value>正在加载图块……</value>
   </data>
   <data name="progress_loading_tile_entities_section" xml:space="preserve">
     <value>正在加载图块实体区域……</value>
   </data>
   <data name="progress_loading_tmodloader_data" xml:space="preserve">
-    <value>正在加载 tModLoader 数据…</value>
+    <value>正在加载 tModLoader 数据……</value>
   </data>
   <data name="progress_loading_winphone_tiles" xml:space="preserve">
     <value>正在加载 Windows Phone 磁贴……</value>
@@ -3392,28 +3392,28 @@ TEdit 最大世界尺寸：{1}
     <value>保存完成。</value>
   </data>
   <data name="progress_save_creative_powers" xml:space="preserve">
-    <value>保存创意能力...</value>
+    <value>保存创意能力……</value>
   </data>
   <data name="progress_save_footers" xml:space="preserve">
-    <value>保存页脚...</value>
+    <value>保存页脚……</value>
   </data>
   <data name="progress_save_headers" xml:space="preserve">
-    <value>保存文件头...</value>
+    <value>保存文件头……</value>
   </data>
   <data name="progress_save_npcs" xml:space="preserve">
-    <value>保存 NPC...</value>
+    <value>保存 NPC……</value>
   </data>
   <data name="progress_save_signs" xml:space="preserve">
-    <value>保存告示牌...</value>
+    <value>保存告示牌……</value>
   </data>
   <data name="progress_save_tiles" xml:space="preserve">
-    <value>保存图块…</value>
+    <value>保存图块……</value>
   </data>
   <data name="progress_save_tile_entities_section" xml:space="preserve">
-    <value>保存图块实体区域...</value>
+    <value>保存图块实体区域……</value>
   </data>
   <data name="progress_save_town_manager" xml:space="preserve">
-    <value>保存城镇管理器...</value>
+    <value>保存城镇管理器……</value>
   </data>
   <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
     <value>保存加重压力板……</value>
@@ -3428,7 +3428,7 @@ TEdit 最大世界尺寸：{1}
     <value>正在保存 NPC 名称……</value>
   </data>
   <data name="progress_saving_signs" xml:space="preserve">
-    <value>正在保存告示牌...</value>
+    <value>正在保存告示牌……</value>
   </data>
   <data name="progress_saving_tiles" xml:space="preserve">
     <value>正在保存图块……</value>
@@ -3440,7 +3440,7 @@ TEdit 最大世界尺寸：{1}
     <value>正在保存验证数据……</value>
   </data>
   <data name="progress_saving_world" xml:space="preserve">
-    <value>正在保存世界...</value>
+    <value>正在保存世界……</value>
   </data>
   <data name="progress_settling_sand" xml:space="preserve">
     <value>沙子沉积中……</value>
@@ -3449,13 +3449,13 @@ TEdit 最大世界尺寸：{1}
     <value>验证完成……</value>
   </data>
   <data name="progress_validating_file" xml:space="preserve">
-    <value>正在验证文件...</value>
+    <value>正在验证文件……</value>
   </data>
   <data name="progress_validating_world" xml:space="preserve">
-    <value>正在验证世界…</value>
+    <value>正在验证世界……</value>
   </data>
   <data name="progress_verifying_file" xml:space="preserve">
-    <value>正在验证文件...</value>
+    <value>正在验证文件……</value>
   </data>
   <data name="progress_world_loaded_in_seconds" xml:space="preserve">
     <value>世界已在 {0} 秒内加载完成。</value>
@@ -5221,7 +5221,7 @@ TEdit 最大世界尺寸：{1}
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
   <data name="update_checking" xml:space="preserve">
-    <value>正在检查更新...</value>
+    <value>正在检查更新……</value>
   </data>
   <data name="update_check_failed" xml:space="preserve">
     <value>更新检查失败。</value>
@@ -5271,7 +5271,7 @@ TEdit 最大世界尺寸：{1}
     <value>有备份存在</value>
   </data>
   <data name="world_explorer_browse" xml:space="preserve">
-    <value>浏览...</value>
+    <value>浏览……</value>
   </data>
   <data name="world_explorer_clear_cache" xml:space="preserve">
     <value>清除缓存</value>

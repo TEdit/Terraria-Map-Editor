@@ -2254,7 +2254,7 @@ TEdit の最大ワールドサイズ: {1}
     <value>エディターで開く</value>
   </data>
   <data name="nbt_search_tags_placeholder" xml:space="preserve">
-    <value>タグを検索...</value>
+    <value>タグを検索…</value>
   </data>
   <data name="nbt_zoom_to_tile_tooltip" xml:space="preserve">
     <value>マップ上でこのタイルにズームする</value>
@@ -2374,7 +2374,7 @@ TEdit の最大ワールドサイズ: {1}
     <value>検索…</value>
   </data>
   <data name="overflow_more_panels" xml:space="preserve">
-    <value>その他のパネル...</value>
+    <value>その他のパネル…</value>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液体</value>
@@ -2440,7 +2440,7 @@ TEdit の最大ワールドサイズ: {1}
     <value>アイテムを検索…</value>
   </data>
   <data name="picker_search_placeholder" xml:space="preserve">
-    <value>捜索...</value>
+    <value>捜索…</value>
   </data>
   <data name="picker_search_platforms_placeholder" xml:space="preserve">
     <value>プラットフォームを検索…</value>
@@ -2928,10 +2928,10 @@ TEdit の最大ワールドサイズ: {1}
     <value>安全に建築する</value>
   </data>
   <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>計算中...</value>
+    <value>計算中…</value>
   </data>
   <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>計算中...</value>
+    <value>計算中…</value>
   </data>
   <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
     <value>変換をキャンセル</value>
@@ -2940,7 +2940,7 @@ TEdit の最大ワールドサイズ: {1}
     <value>A=を変更する</value>
   </data>
   <data name="plugin_pixelart_change_sigma_tooltip" xml:space="preserve">
-    <value>シグマを変更=.</value>
+    <value>ガウスぼかしのシグマ値を変更します。</value>
   </data>
   <data name="plugin_pixelart_color_filter_data" xml:space="preserve">
     <value>カラーフィルターデータ：</value>
@@ -3302,28 +3302,28 @@ TEdit の最大ワールドサイズ: {1}
     <value>すべてのチェストを解放する</value>
   </data>
   <data name="progress_calculating_colors" xml:space="preserve">
-    <value>色を計算中...</value>
+    <value>色を計算中…</value>
   </data>
   <data name="progress_cloning_world" xml:space="preserve">
-    <value>ワールドを複製中...</value>
+    <value>ワールドを複製中…</value>
   </data>
   <data name="progress_converting_to_windows_phone" xml:space="preserve">
-    <value>ワールドを Windows Phone 用に変換中...</value>
+    <value>ワールドを Windows Phone 用に変換中…</value>
   </data>
   <data name="progress_generating_caves" xml:space="preserve">
-    <value>洞窟を生成中...</value>
+    <value>洞窟を生成中…</value>
   </data>
   <data name="progress_generating_cave_noise" xml:space="preserve">
     <value>洞窟ノイズを生成中…</value>
   </data>
   <data name="progress_generating_hills" xml:space="preserve">
-    <value>丘を生成中...</value>
+    <value>丘を生成中…</value>
   </data>
   <data name="progress_generating_underworld" xml:space="preserve">
-    <value>地底世界を生成中...</value>
+    <value>地底世界を生成中…</value>
   </data>
   <data name="progress_generating_world" xml:space="preserve">
-    <value>ワールドを生成中...</value>
+    <value>ワールドを生成中…</value>
   </data>
   <data name="progress_loaded_windows_phone_header" xml:space="preserve">
     <value>Windows Phoneのワールドヘッダーを読み込みました。</value>
@@ -3332,34 +3332,34 @@ TEdit の最大ワールドサイズ: {1}
     <value>宝箱を読み込み中…</value>
   </data>
   <data name="progress_loading_file_header" xml:space="preserve">
-    <value>ファイルヘッダーを読み込み中...</value>
+    <value>ファイルヘッダーを読み込み中…</value>
   </data>
   <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
-    <value>旧式のWindows Phoneタイルを読み込み中...</value>
+    <value>旧式のWindows Phoneタイルを読み込み中…</value>
   </data>
   <data name="progress_loading_npcs" xml:space="preserve">
-    <value>NPCを読み込み中...</value>
+    <value>NPCを読み込み中…</value>
   </data>
   <data name="progress_loading_npc_data" xml:space="preserve">
-    <value>NPCデータを読み込み中...</value>
+    <value>NPCデータを読み込み中…</value>
   </data>
   <data name="progress_loading_npc_names" xml:space="preserve">
-    <value>NPC名を読み込み中...</value>
+    <value>NPC名を読み込み中…</value>
   </data>
   <data name="progress_loading_signs" xml:space="preserve">
-    <value>看板を読み込み中...</value>
+    <value>看板を読み込み中…</value>
   </data>
   <data name="progress_loading_tiles" xml:space="preserve">
-    <value>タイルを読み込み中...</value>
+    <value>タイルを読み込み中…</value>
   </data>
   <data name="progress_loading_tile_entities_section" xml:space="preserve">
-    <value>タイルエンティティセクションを読み込み中...</value>
+    <value>タイルエンティティセクションを読み込み中…</value>
   </data>
   <data name="progress_loading_tmodloader_data" xml:space="preserve">
-    <value>tModLoaderのデータを読み込んでいます...</value>
+    <value>tModLoaderのデータを読み込んでいます…</value>
   </data>
   <data name="progress_loading_winphone_tiles" xml:space="preserve">
-    <value>Windows Phone のタイルを読み込んでいます...</value>
+    <value>Windows Phone のタイルを読み込んでいます…</value>
   </data>
   <data name="progress_load_complete" xml:space="preserve">
     <value>読み込み完了。</value>
@@ -3371,91 +3371,91 @@ TEdit の最大ワールドサイズ: {1}
     <value>tModLoaderのデータを準備中…</value>
   </data>
   <data name="progress_refining_caves" xml:space="preserve">
-    <value>洞窟を詳細化中...</value>
+    <value>洞窟を詳細化中…</value>
   </data>
   <data name="progress_removing_future_tiles" xml:space="preserve">
-    <value>将来のタイルを削除中...</value>
+    <value>将来のタイルを削除中…</value>
   </data>
   <data name="progress_render_complete" xml:space="preserve">
     <value>レンダリング完了</value>
   </data>
   <data name="progress_resetting_time" xml:space="preserve">
-    <value>時間をリセット中...</value>
+    <value>時間をリセット中…</value>
   </data>
   <data name="progress_save_bestiary" xml:space="preserve">
-    <value>ベスティアリを保存...</value>
+    <value>ベスティアリを保存…</value>
   </data>
   <data name="progress_save_chests" xml:space="preserve">
-    <value>宝箱を保存...</value>
+    <value>宝箱を保存…</value>
   </data>
   <data name="progress_save_complete" xml:space="preserve">
     <value>保存が完了しました。</value>
   </data>
   <data name="progress_save_creative_powers" xml:space="preserve">
-    <value>クリエイティブパワーを保存...</value>
+    <value>クリエイティブパワーを保存…</value>
   </data>
   <data name="progress_save_footers" xml:space="preserve">
-    <value>フッターを保存...</value>
+    <value>フッターを保存…</value>
   </data>
   <data name="progress_save_headers" xml:space="preserve">
     <value>ヘッダーを保存…</value>
   </data>
   <data name="progress_save_npcs" xml:space="preserve">
-    <value>NPCを保存...</value>
+    <value>NPCを保存…</value>
   </data>
   <data name="progress_save_signs" xml:space="preserve">
-    <value>看板を保存...</value>
+    <value>看板を保存…</value>
   </data>
   <data name="progress_save_tiles" xml:space="preserve">
-    <value>タイルを保存...</value>
+    <value>タイルを保存…</value>
   </data>
   <data name="progress_save_tile_entities_section" xml:space="preserve">
-    <value>タイルエンティティセクションを保存...</value>
+    <value>タイルエンティティセクションを保存…</value>
   </data>
   <data name="progress_save_town_manager" xml:space="preserve">
-    <value>タウン管理を保存...</value>
+    <value>タウン管理を保存…</value>
   </data>
   <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
-    <value>重み付き感圧板を保存...</value>
+    <value>重み付き感圧板を保存…</value>
   </data>
   <data name="progress_saving_chests" xml:space="preserve">
-    <value>宝箱を保存中...</value>
+    <value>宝箱を保存中…</value>
   </data>
   <data name="progress_saving_npc_data" xml:space="preserve">
-    <value>NPCデータを保存中...</value>
+    <value>NPCデータを保存中…</value>
   </data>
   <data name="progress_saving_npc_names" xml:space="preserve">
-    <value>NPC名を保存中...</value>
+    <value>NPC名を保存中…</value>
   </data>
   <data name="progress_saving_signs" xml:space="preserve">
-    <value>看板を保存中...</value>
+    <value>看板を保存中…</value>
   </data>
   <data name="progress_saving_tiles" xml:space="preserve">
-    <value>タイルを保存中...</value>
+    <value>タイルを保存中…</value>
   </data>
   <data name="progress_saving_tmodloader_data" xml:space="preserve">
-    <value>tModLoaderのデータを保存中...</value>
+    <value>tModLoaderのデータを保存中…</value>
   </data>
   <data name="progress_saving_validation_data" xml:space="preserve">
-    <value>検証データを保存中...</value>
+    <value>検証データを保存中…</value>
   </data>
   <data name="progress_saving_world" xml:space="preserve">
-    <value>ワールドを保存中...</value>
+    <value>ワールドを保存中…</value>
   </data>
   <data name="progress_settling_sand" xml:space="preserve">
-    <value>砂が堆積中...</value>
+    <value>砂が堆積中…</value>
   </data>
   <data name="progress_validating_complete" xml:space="preserve">
-    <value>検証完了中...</value>
+    <value>検証完了…</value>
   </data>
   <data name="progress_validating_file" xml:space="preserve">
-    <value>ファイルを検証中...</value>
+    <value>ファイルを検証中…</value>
   </data>
   <data name="progress_validating_world" xml:space="preserve">
-    <value>ワールドを検証中...</value>
+    <value>ワールドを検証中…</value>
   </data>
   <data name="progress_verifying_file" xml:space="preserve">
-    <value>ファイルを検証中...</value>
+    <value>ファイルを検証中…</value>
   </data>
   <data name="progress_world_loaded_in_seconds" xml:space="preserve">
     <value>ワールドを{0}秒で読み込みました。</value>
@@ -4000,7 +4000,7 @@ TEdit の最大ワールドサイズ: {1}
     <value>Is Animated</value>
   </data>
   <data name="spriteeditor_name_label" xml:space="preserve">
-    <value>名前:</value>
+    <value>名前：</value>
   </data>
   <data name="spriteeditor_regen_grid" xml:space="preserve">
     <value>Regen Grid</value>
@@ -4057,10 +4057,10 @@ TEdit の最大ワールドサイズ: {1}
     <value>Sprite Editor — {0}</value>
   </data>
   <data name="spriteeditor_uv_x" xml:space="preserve">
-    <value>UV X:</value>
+    <value>UV X：</value>
   </data>
   <data name="spriteeditor_uv_y" xml:space="preserve">
-    <value>UV Y:</value>
+    <value>UV Y：</value>
   </data>
   <data name="spriteeditor_variety_label" xml:space="preserve">
     <value>Variety:</value>

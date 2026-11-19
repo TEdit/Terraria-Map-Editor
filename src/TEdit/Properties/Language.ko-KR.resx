@@ -797,7 +797,7 @@ TEdit 최대 월드: {1}
 {0}</value>
   </data>
   <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
-    <value>점프ing</value>
+    <value>점프</value>
   </data>
   <data name="DisplayDollPoseID_Sitting" xml:space="preserve">
     <value>앉기</value>
@@ -863,13 +863,13 @@ TEdit 최대 월드: {1}
     <value>타일 엔티티</value>
   </data>
   <data name="editor_tabs_worldproperties" xml:space="preserve">
-    <value>월드 재산</value>
+    <value>세계 속성</value>
   </data>
   <data name="editor_utilities_label" xml:space="preserve">
     <value>유틸리티</value>
   </data>
   <data name="enum_FilterMode_Darken" xml:space="preserve">
-    <value>다크엔</value>
+    <value>어둡게</value>
   </data>
   <data name="enum_FilterMode_Hide" xml:space="preserve">
     <value>숨어</value>
@@ -993,10 +993,10 @@ TEdit 최대 월드: {1}
     <value>세상은 이 새로운 차원들을 중심으로 이루어질 것입니다.</value>
   </data>
   <data name="expand_new_height" xml:space="preserve">
-    <value>뉴 하이트</value>
+    <value>새 높이</value>
   </data>
   <data name="expand_new_width" xml:space="preserve">
-    <value>뉴 와이즈</value>
+    <value>새 너비</value>
   </data>
   <data name="expand_title" xml:space="preserve">
     <value>세계 확장</value>
@@ -1008,7 +1008,7 @@ TEdit 최대 월드: {1}
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>내보낼 이미지의 크기는 {0}×{1}픽셀입니다({2}메가픽셀, 예상 파일 크기 {3}). 시간이 걸릴 수 있습니다. 계속하시겠습니까?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
@@ -1080,7 +1080,7 @@ TEdit 최대 월드: {1}
     <value>벽</value>
   </data>
   <data name="find_search_world" xml:space="preserve">
-    <value>서치 월드</value>
+    <value>세계 검색</value>
   </data>
   <data name="find_selected_items" xml:space="preserve">
     <value>{0} items</value>
@@ -1329,7 +1329,7 @@ TEdit 최대 월드: {1}
     <value>램프 오른쪽</value>
   </data>
   <data name="HalfBlockMode_Solid" xml:space="preserve">
-    <value>셋 고단히</value>
+    <value>완전한 블록으로 설정</value>
   </data>
   <data name="input_app_settings" xml:space="preserve">
     <value>설정</value>
@@ -1437,7 +1437,7 @@ TEdit 최대 월드: {1}
     <value>알겠습니다</value>
   </data>
   <data name="input_edit_crop" xml:space="preserve">
-    <value>크롭 월드</value>
+    <value>세계 자르기</value>
   </data>
   <data name="input_edit_cut" xml:space="preserve">
     <value>잘라내기</value>
@@ -1506,10 +1506,10 @@ TEdit 최대 월드: {1}
     <value>빠르게 위로 스크롤</value>
   </data>
   <data name="input_nav_zoom_in" xml:space="preserve">
-    <value>확대 인(zoom In)</value>
+    <value>확대</value>
   </data>
   <data name="input_nav_zoom_out" xml:space="preserve">
-    <value>줌아웃</value>
+    <value>축소</value>
   </data>
   <data name="input_paste_accept" xml:space="preserve">
     <value>붙여넣기 승인</value>
@@ -1827,7 +1827,7 @@ TEdit 최대 월드: {1}
     <value>알겠습니다</value>
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
-    <value>크롭 월드</value>
+    <value>세계 자르기</value>
   </data>
   <data name="menu_edit_cut" xml:space="preserve">
     <value>자르기</value>
@@ -1920,7 +1920,7 @@ TEdit 최대 월드: {1}
     <value>커스텀 배경색 선택</value>
   </data>
   <data name="menu_filter_darken" xml:space="preserve">
-    <value>다크엔</value>
+    <value>어둡게</value>
   </data>
   <data name="menu_filter_desaturate_label" xml:space="preserve">
     <value>탈포화</value>
@@ -2121,10 +2121,10 @@ TEdit 최대 월드: {1}
     <value>오류 보고 활성화</value>
   </data>
   <data name="menu_toolbar_zoom_in" xml:space="preserve">
-    <value>확대 인(zoom In)</value>
+    <value>확대</value>
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
-    <value>줌아웃</value>
+    <value>축소</value>
   </data>
   <data name="menu_uveditor_cancel" xml:space="preserve">
     <value>취소</value>
@@ -2314,7 +2314,7 @@ TEdit 최대 월드: {1}
     <value>언더월드 생성</value>
   </data>
   <data name="newworld_generation" xml:space="preserve">
-    <value>월드 제너레이션</value>
+    <value>세계 생성</value>
   </data>
   <data name="newworld_heading" xml:space="preserve">
     <value>새로운 세계 창조</value>
@@ -2335,7 +2335,7 @@ TEdit 최대 월드: {1}
     <value>용암 소음</value>
   </data>
   <data name="newworld_name" xml:space="preserve">
-    <value>월드 네임</value>
+    <value>세계 이름</value>
   </data>
   <data name="newworld_ores" xml:space="preserve">
     <value>광석</value>
@@ -2344,13 +2344,13 @@ TEdit 최대 월드: {1}
     <value>(광석 생성 플러그인 실행)</value>
   </data>
   <data name="newworld_properties" xml:space="preserve">
-    <value>월드 재산</value>
+    <value>세계 속성</value>
   </data>
   <data name="newworld_roof_noise" xml:space="preserve">
     <value>지붕 소음</value>
   </data>
   <data name="newworld_seed" xml:space="preserve">
-    <value>월드 아이드 (시드)</value>
+    <value>세계 ID (시드)</value>
   </data>
   <data name="newworld_surface" xml:space="preserve">
     <value>표면 수준</value>
@@ -2556,7 +2556,7 @@ TEdit 최대 월드: {1}
     <value>플레이어 저장</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value>플레이어 저장 목록은...</value>
+    <value>다른 이름으로 플레이어 저장...</value>
   </data>
   <data name="player_editor_save_canceled" xml:space="preserve">
     <value>저장 취소됨: 플레이어 파일이 외부에서 수정되었습니다.</value>
@@ -2649,7 +2649,7 @@ TEdit 최대 월드: {1}
     <value>국회의원:</value>
   </data>
   <data name="player_stats_show_armor" xml:space="preserve">
-    <value>쇼 아머</value>
+    <value>방어구 표시</value>
   </data>
   <data name="player_stats_spawn_points" xml:space="preserve">
     <value>스폰 지점</value>
@@ -2703,7 +2703,7 @@ TEdit 최대 월드: {1}
     <value>사용된 아케인 크리스탈</value>
   </data>
   <data name="player_stats_used_galaxy_pearl" xml:space="preserve">
-    <value>중고 갤럭시 펄</value>
+    <value>은하 진주 사용 여부</value>
   </data>
   <data name="player_stats_used_gummy_worm" xml:space="preserve">
     <value>사용한 구미 웜</value>
@@ -3473,7 +3473,7 @@ TEdit 최대 월드: {1}
     <value>신규 버전의 타일/벽/아이템 유지</value>
   </data>
   <data name="saveas_title" xml:space="preserve">
-    <value>셀렉트 월드 버전</value>
+    <value>세계 버전 선택</value>
   </data>
   <data name="scripting_api" xml:space="preserve">
     <value>API</value>
@@ -3500,7 +3500,7 @@ TEdit 최대 월드: {1}
     <value>출력</value>
   </data>
   <data name="scripting_run" xml:space="preserve">
-    <value>런 스크립트</value>
+    <value>스크립트 실행</value>
   </data>
   <data name="scripting_save_tooltip" xml:space="preserve">
     <value>저장 스크립트</value>
@@ -3618,7 +3618,7 @@ TEdit 최대 월드: {1}
     <value>미니맵에 하늘/동굴/지옥 배경색을 표시하세요</value>
   </data>
   <data name="settings_picker_hold_threshold" xml:space="preserve">
-    <value>피커 홀드 임계값(MS)</value>
+    <value>선택 도구 길게 누르기 기준 시간(ms)</value>
   </data>
   <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
     <value>피커 키를 임시 픽으로 유지하기 전 얼마나 오래 유지해야 하나요 (100-500ms)</value>
@@ -3642,7 +3642,7 @@ TEdit 최대 월드: {1}
     <value>설정...</value>
   </data>
   <data name="settings_show_actuators" xml:space="preserve">
-    <value>쇼 액추에이터</value>
+    <value>액추에이터 표시</value>
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
     <value>토글 액추에이터 가시성</value>
@@ -3666,7 +3666,7 @@ TEdit 최대 월드: {1}
     <value>배경 렌더링 토글</value>
   </data>
   <data name="settings_show_blue_wires" xml:space="preserve">
-    <value>블루 와이어즈 쇼</value>
+    <value>파란 전선 표시</value>
   </data>
   <data name="settings_show_blue_wires_desc" xml:space="preserve">
     <value>블루 와이어 가시성 토글</value>
@@ -3678,19 +3678,19 @@ TEdit 최대 월드: {1}
     <value>토글 코팅 층 가시성</value>
   </data>
   <data name="settings_show_green_wires" xml:space="preserve">
-    <value>그린 와이어즈 쇼</value>
+    <value>초록 전선 표시</value>
   </data>
   <data name="settings_show_green_wires_desc" xml:space="preserve">
     <value>녹색 와이어 가시성 토글</value>
   </data>
   <data name="settings_show_grid" xml:space="preserve">
-    <value>쇼 그리드</value>
+    <value>격자 표시</value>
   </data>
   <data name="settings_show_grid_desc" xml:space="preserve">
     <value>토글 그리드 오버레이</value>
   </data>
   <data name="settings_show_liquid" xml:space="preserve">
-    <value>쇼 리퀴드</value>
+    <value>액체 표시</value>
   </data>
   <data name="settings_show_liquid_desc" xml:space="preserve">
     <value>액체층 가시성 토글</value>
@@ -3708,7 +3708,7 @@ TEdit 최대 월드: {1}
     <value>스폰/NPC 포인트 마커 토글</value>
   </data>
   <data name="settings_show_red_wires" xml:space="preserve">
-    <value>레드 와이어스 쇼</value>
+    <value>빨간 전선 표시</value>
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>빨간 와이어 가시성 토글</value>
@@ -3720,7 +3720,7 @@ TEdit 최대 월드: {1}
     <value>애플리케이션이 시작되는 동안 TEdit 로고 표시</value>
   </data>
   <data name="settings_show_textures" xml:space="preserve">
-    <value>텍스처 쇼</value>
+    <value>텍스처 표시</value>
   </data>
   <data name="settings_show_textures_desc" xml:space="preserve">
     <value>타일 텍스처 렌더링 토글</value>
@@ -3841,7 +3841,7 @@ TEdit 최대 월드: {1}
     <value>타일 엔티티</value>
   </data>
   <data name="sidebar_worldprops_title" xml:space="preserve">
-    <value>월드 재산</value>
+    <value>세계 속성</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>취소</value>
@@ -3850,22 +3850,22 @@ TEdit 최대 월드: {1}
     <value>저장</value>
   </data>
   <data name="specialtile_label_acc1" xml:space="preserve">
-    <value>acc1</value>
+    <value>장신구 1</value>
   </data>
   <data name="specialtile_label_acc2" xml:space="preserve">
-    <value>악 2</value>
+    <value>장신구 2</value>
   </data>
   <data name="specialtile_label_acc3" xml:space="preserve">
-    <value>Acc3</value>
+    <value>장신구 3</value>
   </data>
   <data name="specialtile_label_acc4" xml:space="preserve">
-    <value>Acc4</value>
+    <value>장신구 4</value>
   </data>
   <data name="specialtile_label_acc5" xml:space="preserve">
-    <value>acc5</value>
+    <value>장신구 5</value>
   </data>
   <data name="specialtile_label_acc6" xml:space="preserve">
-    <value>악동 6</value>
+    <value>장신구 6</value>
   </data>
   <data name="specialtile_label_body" xml:space="preserve">
     <value>본문</value>
@@ -3931,7 +3931,7 @@ TEdit 최대 월드: {1}
     <value>무기 걸이 아이템</value>
   </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
-    <value>구근</value>
+    <value>장식 전구</value>
   </data>
   <data name="specialtile_label_xmas_deco" xml:space="preserve">
     <value>크리스마스 트리 장식</value>
@@ -4245,7 +4245,7 @@ TEdit 최대 월드: {1}
     <value>세계 분석</value>
   </data>
   <data name="tool_arrow_title" xml:space="preserve">
-    <value>애로우</value>
+    <value>화살표</value>
   </data>
   <data name="tool_bestiary_edit" xml:space="preserve">
     <value>수정</value>
@@ -4263,13 +4263,13 @@ TEdit 최대 월드: {1}
     <value>베스티어리</value>
   </data>
   <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
-    <value>플립 수평</value>
+    <value>가로로 뒤집기</value>
   </data>
   <data name="tool_brush_flip_label" xml:space="preserve">
     <value>뒤집기</value>
   </data>
   <data name="tool_brush_flip_v_tooltip" xml:space="preserve">
-    <value>플립 버티컬</value>
+    <value>세로로 뒤집기</value>
   </data>
   <data name="tool_brush_height_label" xml:space="preserve">
     <value>높이</value>
@@ -4284,7 +4284,7 @@ TEdit 최대 월드: {1}
     <value>개요</value>
   </data>
   <data name="tool_brush_outline_tooltip" xml:space="preserve">
-    <value>토글 드로우 아웃라인 (방)</value>
+    <value>윤곽선 그리기 전환 (방)</value>
   </data>
   <data name="tool_brush_rotation_label" xml:space="preserve">
     <value>회전</value>
@@ -4314,10 +4314,10 @@ TEdit 최대 월드: {1}
     <value>수출</value>
   </data>
   <data name="tool_clipboard_flipx" xml:space="preserve">
-    <value>플립 X</value>
+    <value>X축 뒤집기</value>
   </data>
   <data name="tool_clipboard_flipy" xml:space="preserve">
-    <value>플립 Y</value>
+    <value>Y축 뒤집기</value>
   </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
     <value>가짜 색상 이미지 가져오기</value>
@@ -4338,13 +4338,13 @@ TEdit 최대 월드: {1}
     <value>페이스트 액체</value>
   </data>
   <data name="tool_clipboard_ispastesprite" xml:space="preserve">
-    <value>페이스트 스프라이트</value>
+    <value>스프라이트 붙여넣기</value>
   </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
     <value>페이스트 타일</value>
   </data>
   <data name="tool_clipboard_ispastewalls" xml:space="preserve">
-    <value>페이스트 월즈</value>
+    <value>벽 붙여넣기</value>
   </data>
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>페이스트 와이어</value>
@@ -4362,7 +4362,7 @@ TEdit 최대 월드: {1}
     <value>회전</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
-    <value>냉동 생물군계 확산</value>
+    <value>생물군계 확산 중지</value>
   </data>
   <data name="tool_creative_difficulty" xml:space="preserve">
     <value>적 난이도</value>
@@ -4401,7 +4401,7 @@ TEdit 최대 월드: {1}
     <value>가치</value>
   </data>
   <data name="tool_creative_windfrozen" xml:space="preserve">
-    <value>프리즈 윈드</value>
+    <value>바람 고정</value>
   </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>채우기</value>
@@ -4446,7 +4446,7 @@ TEdit 최대 월드: {1}
     <value>이름</value>
   </data>
   <data name="tool_paint_actuator" xml:space="preserve">
-    <value>이 액추에이터는</value>
+    <value>액추에이터 설치</value>
   </data>
   <data name="tool_paint_brickstyle" xml:space="preserve">
     <value>벽돌 양식</value>
@@ -4632,7 +4632,7 @@ TEdit 최대 월드: {1}
     <value>정글 BG</value>
   </data>
   <data name="tool_wp_bg_mushroom" xml:space="preserve">
-    <value>버섯 배드</value>
+    <value>버섯 배경</value>
   </data>
   <data name="tool_wp_bg_ocean" xml:space="preserve">
     <value>오션 BG</value>
@@ -4803,19 +4803,19 @@ TEdit 최대 월드: {1}
     <value>하드모드</value>
   </data>
   <data name="tool_wp_holiday" xml:space="preserve">
-    <value>포스 홀리데이</value>
+    <value>기념일 강제 적용</value>
   </data>
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
     <value>할로윈</value>
   </data>
   <data name="tool_wp_holiday_halloween_forever" xml:space="preserve">
-    <value>포스 할로윈 포에버</value>
+    <value>항상 핼러윈으로 설정</value>
   </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>엑스마스</value>
   </data>
   <data name="tool_wp_holiday_xmas_forever" xml:space="preserve">
-    <value>포스 크리스마스 포에버</value>
+    <value>항상 크리스마스로 설정</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
     <value>월드 ID</value>
@@ -4860,7 +4860,7 @@ TEdit 최대 월드: {1}
     <value>랜턴 나이트 진짜</value>
   </data>
   <data name="tool_wp_lanternnight_manual" xml:space="preserve">
-    <value>랜턴 나이트 매뉴얼</value>
+    <value>수동 등불의 밤</value>
   </data>
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
     <value>다음 랜턴 나이트는 진짜다</value>
@@ -4878,22 +4878,22 @@ TEdit 최대 월드: {1}
     <value>블러드 문</value>
   </data>
   <data name="tool_wp_moon_eclipse" xml:space="preserve">
-    <value>이클립스는</value>
+    <value>일식 활성화</value>
   </data>
   <data name="tool_wp_moon_phase" xml:space="preserve">
     <value>달 위상</value>
   </data>
   <data name="tool_wp_moon_style" xml:space="preserve">
-    <value>문스타일</value>
+    <value>달 모양</value>
   </data>
   <data name="tool_wp_mythril" xml:space="preserve">
     <value>미스릴 티어</value>
   </data>
   <data name="tool_wp_name" xml:space="preserve">
-    <value>월드 네임</value>
+    <value>세계 이름</value>
   </data>
   <data name="tool_wp_notthebees" xml:space="preserve">
-    <value>비즈 월드가 아니야</value>
+    <value>Not the Bees 세계</value>
   </data>
   <data name="tool_wp_npc_angler" xml:space="preserve">
     <value>낚시꾼</value>
@@ -4980,7 +4980,7 @@ TEdit 최대 월드: {1}
     <value>스타일리스트</value>
   </data>
   <data name="tool_wp_npc_tavernkeep" xml:space="preserve">
-    <value>선술집</value>
+    <value>술집 주인</value>
   </data>
   <data name="tool_wp_npc_taxcollector" xml:space="preserve">
     <value>세금 징수관</value>
@@ -5007,7 +5007,7 @@ TEdit 최대 월드: {1}
     <value>구슬이 부서졌다</value>
   </data>
   <data name="tool_wp_partyofdoom" xml:space="preserve">
-    <value>파운의 당</value>
+    <value>파멸의 파티</value>
   </data>
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>행상인의 가방</value>
@@ -5088,7 +5088,7 @@ TEdit 최대 월드: {1}
     <value>심각도</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>경각성</value>
+    <value>목표 강도</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>남은 시간</value>
@@ -5231,7 +5231,7 @@ TEdit 최대 월드: {1}
     <comment>Toast message when update has been downloaded in AutoDownload mode</comment>
   </data>
   <data name="update_restart_prompt" xml:space="preserve">
-    <value>업데이트가 다운로드되었습니다. 지금 다시 시작해서 지원해야 하나요?</value>
+    <value>업데이트가 다운로드되었습니다. 지금 다시 시작하여 적용하시겠습니까?</value>
   </data>
   <data name="update_title" xml:space="preserve">
     <value>업데이트</value>
@@ -5304,7 +5304,7 @@ TEdit 최대 월드: {1}
     <value>백업 삭제</value>
   </data>
   <data name="world_explorer_loading_preview" xml:space="preserve">
-    <value>로딩 미리보기...</value>
+    <value>미리보기 불러오는 중...</value>
   </data>
   <data name="world_explorer_modified_days_ago" xml:space="preserve">
     <value>{0}일 전</value>
@@ -5334,13 +5334,13 @@ TEdit 최대 월드: {1}
     <value>핀</value>
   </data>
   <data name="world_explorer_preview_backup_tooltip" xml:space="preserve">
-    <value>미리보기 백업</value>
+    <value>백업 미리보기</value>
   </data>
   <data name="world_explorer_preview_format" xml:space="preserve">
     <value>미리보기: {0}</value>
   </data>
   <data name="world_explorer_preview_tooltip" xml:space="preserve">
-    <value>미리보기 세계 지도</value>
+    <value>세계 지도 미리보기</value>
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
     <value>세계를 탐색하라...</value>
@@ -5355,7 +5355,7 @@ TEdit 최대 월드: {1}
     <value>월드 익스플로러</value>
   </data>
   <data name="world_explorer_toggle_favorite_tooltip" xml:space="preserve">
-    <value>즐겨찾기 토글</value>
+    <value>즐겨찾기 설정/해제</value>
   </data>
   <data name="world_explorer_toggle_tmodloader_tooltip" xml:space="preserve">
     <value>바닐라 월드와 tModLoader 월드 간 전환</value>
@@ -5397,7 +5397,7 @@ TEdit 최대 월드: {1}
     <value>삼중 보라색</value>
   </data>
   <data name="world_moon_white_ice" xml:space="preserve">
-    <value>백빙:VEVENT</value>
+    <value>하얀 얼음</value>
   </data>
   <data name="world_size_custom" xml:space="preserve">
     <value>관습</value>

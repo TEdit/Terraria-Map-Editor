@@ -724,7 +724,8 @@ Do you want to overwrite it?</value>
     <value>Reset Bestiary?</value>
   </data>
   <data name="dialog_save_banners_error" xml:space="preserve">
-    <value>Error saving banner data. Changes have been restored.</value>
+    <value>Error saving banner data. Changes have been restored.
+{0}</value>
   </data>
   <data name="dialog_save_banners_prompt" xml:space="preserve">
     <value>Save banner changes back to the world?</value>
@@ -792,7 +793,8 @@ The error is:
 {3}</value>
   </data>
   <data name="dialog_world_save_failed" xml:space="preserve">
-    <value>Failed to save the world. The open world was restored, and your edits remain unsaved.</value>
+    <value>Failed to save the world. The open world was restored, and your edits remain unsaved.
+{0}</value>
   </data>
   <data name="DisplayDollPoseID_Jumping" xml:space="preserve">
     <value>Jumping</value>
@@ -1828,7 +1830,7 @@ Please check that this folder exists and TEdit has read access.
     <value>Crop World</value>
   </data>
   <data name="menu_edit_cut" xml:space="preserve">
-    <value>Cut</value>
+    <value>Cu_t</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Delete Selection</value>
@@ -2710,7 +2712,7 @@ Please check that this folder exists and TEdit has read access.
     <value>Using Biome Torches</value>
   </data>
   <data name="plugin_blockshuffle_apply_chance_all" xml:space="preserve">
-    <value>Apply % chance to everything</value>
+    <value>Apply percentage chance to everything</value>
   </data>
   <data name="plugin_blockshuffle_count_liquids" xml:space="preserve">
     <value>Also count liquids as empty (best with walls)</value>
@@ -2938,7 +2940,7 @@ Please check that this folder exists and TEdit has read access.
     <value>Change the A=.</value>
   </data>
   <data name="plugin_pixelart_change_sigma_tooltip" xml:space="preserve">
-    <value>Change Sigma=.</value>
+    <value>Change the Gaussian blur sigma value.</value>
   </data>
   <data name="plugin_pixelart_color_filter_data" xml:space="preserve">
     <value>Color Filter Data:</value>
@@ -4085,7 +4087,7 @@ Please check that this folder exists and TEdit has read access.
     <value>Filter</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Filter: </value>
+    <value>Filter:</value>
   </data>
   <data name="sprite_mods_label" xml:space="preserve">
     <value>Mods</value>
@@ -4471,7 +4473,7 @@ Would you like to enable error reporting?</value>
     <value>Add left facing intersection junction box.</value>
   </data>
   <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>Add defualt junction box.</value>
+    <value>Add default junction box.</value>
   </data>
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
     <value>Add right facing intersection junction box.</value>
@@ -5083,7 +5085,7 @@ Would you like to enable error reporting?</value>
     <value>Severity</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>Indended Severity</value>
+    <value>Intended Severity</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>Time Left</value>

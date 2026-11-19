@@ -1008,7 +1008,7 @@ Comprueba que esta carpeta existe y que TEdit tiene permiso de lectura.
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>La exportación tendrá {0}×{1} píxeles ({2} megapíxeles, tamaño estimado del archivo: {3}). Esto puede tardar un poco. ¿Continuar?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
@@ -1731,7 +1731,7 @@ Comprueba que esta carpeta existe y que TEdit tiene permiso de lectura.
     <value>Vacío</value>
   </data>
   <data name="MaskMode_Match" xml:space="preserve">
-    <value>Coincidencide</value>
+    <value>Editar coincidencias</value>
   </data>
   <data name="MaskMode_NotMatching" xml:space="preserve">
     <value>No coincide</value>
@@ -1779,7 +1779,7 @@ Comprueba que esta carpeta existe y que TEdit tiene permiso de lectura.
     <value>Inactivo</value>
   </data>
   <data name="mask_section_liquid_level" xml:space="preserve">
-    <value>Nivel de liquido</value>
+    <value>Nivel de líquido</value>
   </data>
   <data name="mask_section_liquid_type" xml:space="preserve">
     <value>Tipo de líquido</value>
@@ -2733,7 +2733,7 @@ Comprueba que esta carpeta existe y que TEdit tiene permiso de lectura.
     <value>Incluir información</value>
   </data>
   <data name="plugin_blockshuffle_include_entities" xml:space="preserve">
-    <value>Incluir entidades de bloque.</value>
+    <value>Incluir entidades de bloque</value>
   </data>
   <data name="plugin_blockshuffle_keep_below_entities" xml:space="preserve">
     <value>Mantener los bloques debajo de las entidades de mosaico especiales</value>
@@ -3615,7 +3615,7 @@ Comprueba que esta carpeta existe y que TEdit tiene permiso de lectura.
     <value>Fondo del minimapa</value>
   </data>
   <data name="settings_minimap_background_desc" xml:space="preserve">
-    <value>Mostrar colores de fondo de cielo/cueva/inferno en el minimapa</value>
+    <value>Mostrar colores de fondo del cielo, las cuevas y el infierno en el minimapa</value>
   </data>
   <data name="settings_picker_hold_threshold" xml:space="preserve">
     <value>Umbral de retención del selector (ms)</value>
@@ -3687,7 +3687,7 @@ Comprueba que esta carpeta existe y que TEdit tiene permiso de lectura.
     <value>Mostrar Cuadrícula</value>
   </data>
   <data name="settings_show_grid_desc" xml:space="preserve">
-    <value>Activar/desactivar la cuadricula superpuesta</value>
+    <value>Activar/desactivar la cuadrícula superpuesta</value>
   </data>
   <data name="settings_show_liquid" xml:space="preserve">
     <value>Mostrar líquido</value>
@@ -4108,7 +4108,7 @@ Comprueba que esta carpeta existe y que TEdit tiene permiso de lectura.
     <value>Estilo: {0}</value>
   </data>
   <data name="sprite_tiletype" xml:space="preserve">
-    <value>Filtro de tipos de sprites</value>
+    <value>Filtro de tipos de bloques</value>
   </data>
   <data name="sprite_tile_id_format" xml:space="preserve">
     <value>ID de la ficha: {0}</value>
@@ -4636,7 +4636,7 @@ Qué NO se recolecta:
     <value>Fondo del bioma de hongo</value>
   </data>
   <data name="tool_wp_bg_ocean" xml:space="preserve">
-    <value>Fondo del oceáno</value>
+    <value>Fondo del océano</value>
   </data>
   <data name="tool_wp_bg_snow" xml:space="preserve">
     <value>Fondo de la nieve</value>
@@ -5089,7 +5089,7 @@ Qué NO se recolecta:
     <value>Intensidad</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>Intensidad limite</value>
+    <value>Intensidad objetivo</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>Tiempo restante</value>

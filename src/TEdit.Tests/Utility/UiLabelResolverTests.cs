@@ -113,7 +113,7 @@ public class UiLabelResolverTests : IDisposable
     [Fact]
     public void MissingCultureTranslation_UsesReadableEnglishLabel()
     {
-        Language.Culture = CultureInfo.GetCultureInfo("ja-JP");
+        Language.Culture = CultureInfo.GetCultureInfo("nl-NL");
         UiLabelResolver.Resolve(LocalizationUiLabels.FrameTextPrefix + "Stair Top Landing L-R")
             .ShouldBe("Stair Top Landing Left–Right");
     }

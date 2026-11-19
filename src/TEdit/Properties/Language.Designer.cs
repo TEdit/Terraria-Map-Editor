@@ -5057,7 +5057,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cu_t,saveas_preserve_all=Preserve newer tile/wall/item data.
+        ///   Looks up a localized string similar to Cu_t.
         /// </summary>
         public static string menu_edit_cut {
             get {
@@ -7678,7 +7678,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply %-chance to everything.
+        ///   Looks up a localized string similar to Apply percentage chance to everything.
         /// </summary>
         public static string plugin_blockshuffle_apply_chance_all {
             get {
@@ -8362,7 +8362,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change the Sigma=..
+        ///   Looks up a localized string similar to Change the Gaussian blur sigma value..
         /// </summary>
         public static string plugin_pixelart_change_sigma_tooltip {
             get {
@@ -9876,7 +9876,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validating Complete....
+        ///   Looks up a localized string similar to Validation Complete....
         /// </summary>
         public static string progress_validating_complete {
             get {
@@ -11433,7 +11433,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter: .
+        ///   Looks up a localized string similar to Filter:.
         /// </summary>
         public static string sprite_filter_label {
             get {
@@ -12911,7 +12911,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add defualt junction box..
+        ///   Looks up a localized string similar to Add default junction box..
         /// </summary>
         public static string tool_paint_junctionbox_normal_tooltip {
             get {
@@ -14747,7 +14747,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indended Severity.
+        ///   Looks up a localized string similar to Intended Severity.
         /// </summary>
         public static string tool_wp_sandstorm_severity_target {
             get {

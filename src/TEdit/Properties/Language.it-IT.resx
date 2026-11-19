@@ -1008,7 +1008,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>L’esportazione avrà dimensioni di {0}×{1} pixel ({2} megapixel, dimensione stimata del file: {3}). Potrebbe richiedere del tempo. Continuare?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
@@ -1023,7 +1023,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Esportazione delle piastrelle: zoom {0}, piastrella {1}/{2}...</value>
   </data>
   <data name="export_tiles_warning" xml:space="preserve">
-    <value>Questo exporterà {0} piastrelle su {1} livelli di zoom. Continuare?</value>
+    <value>Verranno esportati {0} riquadri su {1} livelli di zoom. Continuare?</value>
   </data>
   <data name="export_tiles_warning_title" xml:space="preserve">
     <value>Esportazione piastrelle mappa</value>
@@ -1401,7 +1401,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Attiva/disattiva il filo blu</value>
   </data>
   <data name="input_editor_wire_color2_desc" xml:space="preserve">
-    <value>Attiva/disattiva il filo blu񎟂</value>
+    <value>Attiva/disattiva il filo blu</value>
   </data>
   <data name="input_editor_wire_color3" xml:space="preserve">
     <value>Attiva/disattiva filo verde</value>
@@ -1731,7 +1731,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Modifica: vuoto</value>
   </data>
   <data name="MaskMode_Match" xml:space="preserve">
-    <value>Modifica Matching</value>
+    <value>Modifica corrispondenti</value>
   </data>
   <data name="MaskMode_NotMatching" xml:space="preserve">
     <value>Modifica: non corrisponde</value>
@@ -2148,7 +2148,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Imposta i UV manuali su tutti</value>
   </data>
   <data name="menu_uveditor_setvalues" xml:space="preserve">
-    <value>Valori di insiemi</value>
+    <value>Imposta valori</value>
   </data>
   <data name="menu_uveditor_title" xml:space="preserve">
     <value>UV Editor</value>
@@ -2311,7 +2311,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Generare minerali</value>
   </data>
   <data name="newworld_generate_underworld" xml:space="preserve">
-    <value>Genera Underworld</value>
+    <value>Genera gli Inferi</value>
   </data>
   <data name="newworld_generation" xml:space="preserve">
     <value>Generazione del Mondo</value>
@@ -2601,7 +2601,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Attrezzatura varia</value>
   </data>
   <data name="player_equip_toggle_visibility_tooltip" xml:space="preserve">
-    <value>Toggle visibilità</value>
+    <value>Mostra/nascondi</value>
   </data>
   <data name="player_journey_research_sacrifices" xml:space="preserve">
     <value>Sacrifici di ricerca</value>
@@ -2658,10 +2658,10 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Statistiche</value>
   </data>
   <data name="player_stats_super_cart_enabled" xml:space="preserve">
-    <value>Super Cart abilitata</value>
+    <value>Super carrello abilitato</value>
   </data>
   <data name="player_stats_super_cart_unlocked" xml:space="preserve">
-    <value>Super Cartuccio sbloccato</value>
+    <value>Super carrello sbloccato</value>
   </data>
   <data name="player_stats_tax_money" xml:space="preserve">
     <value>Soldi delle tasse:</value>
@@ -2709,7 +2709,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Usato Gummy Worm</value>
   </data>
   <data name="player_stats_using_biome_torches" xml:space="preserve">
-    <value>Uso delle torce biomatiche</value>
+    <value>Uso delle torce dei biomi</value>
   </data>
   <data name="plugin_blockshuffle_apply_chance_all" xml:space="preserve">
     <value>Applica la probabilità percentuale a tutto</value>
@@ -3482,13 +3482,13 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Genera APIREFERENCE.md</value>
   </data>
   <data name="scripting_api_tooltip" xml:space="preserve">
-    <value>Toggle pannello di riferimento API</value>
+    <value>Mostra/nascondi il pannello di riferimento API</value>
   </data>
   <data name="scripting_engine_label" xml:space="preserve">
     <value>Motore:</value>
   </data>
   <data name="scripting_folder_tooltip" xml:space="preserve">
-    <value>Apri cartella scripts</value>
+    <value>Apri la cartella degli script</value>
   </data>
   <data name="scripting_new" xml:space="preserve">
     <value>Nuovo</value>
@@ -3573,10 +3573,10 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Use translucent Mica window backgrounds. Disable if windows appear transparent. Requires restart.</value>
   </data>
   <data name="settings_enable_player_editor" xml:space="preserve">
-    <value>Abilita Player Editor</value>
+    <value>Abilita l’editor del giocatore</value>
   </data>
   <data name="settings_enable_player_editor_desc" xml:space="preserve">
-    <value>Mostra la scheda Player Editor nella barra laterale per modificare i file player .plr (sperimentale)</value>
+    <value>Mostra la scheda dell’editor del giocatore nella barra laterale per modificare i file .plr (sperimentale)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Abilita la segnalazione degli errori</value>
@@ -3588,16 +3588,16 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Modalità filtro</value>
   </data>
   <data name="settings_filter_mode_desc" xml:space="preserve">
-    <value>Modalità di filtro predefinita per i filtri di blocchi, pareti, liquidi e caviikwembu</value>
+    <value>Modalità di filtro predefinita per i filtri di blocchi, pareti, liquidi e cavi</value>
   </data>
   <data name="settings_keybind_add_tooltip" xml:space="preserve">
     <value>Aggiungi una nuova assegnazione di tasti</value>
   </data>
   <data name="settings_keybind_remove_tooltip" xml:space="preserve">
-    <value>Rimuovi questo legaglio</value>
+    <value>Rimuovi questa associazione</value>
   </data>
   <data name="settings_keybind_reset_tooltip" xml:space="preserve">
-    <value>Reset ai bindings predefiniti</value>
+    <value>Ripristina le associazioni predefinite</value>
   </data>
   <data name="settings_language" xml:space="preserve">
     <value>Lingua</value>
@@ -3621,7 +3621,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Soglia di mantenimento del picker (ms)</value>
   </data>
   <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
-    <value>Quanto tempo tenere premuto il tasto Picker prima che diventi un plettro temporaneo (100-500ms)</value>
+    <value>Tempo di pressione del tasto del contagocce necessario per attivarlo temporaneamente (100-500 ms)</value>
   </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Usa colori realistici</value>
@@ -3645,13 +3645,13 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Attuatori da mostra</value>
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
-    <value>Visibilità degli attuatori a toggle</value>
+    <value>Mostra/nascondi gli attuatori</value>
   </data>
   <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
     <value>Mostra tutti gli oggetti del portaarmi</value>
   </data>
   <data name="settings_show_all_weapon_rack_items_desc" xml:space="preserve">
-    <value>Mostra tutti gli oggetti nell'editor del rack armi invece che solo negli oggetti rackable</value>
+    <value>Mostra tutti gli oggetti nell’editor del portaarmi, non solo quelli che possono essere collocati sul supporto</value>
   </data>
   <data name="settings_show_all_wires" xml:space="preserve">
     <value>Mostra tutti i fili</value>
@@ -3663,13 +3663,13 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Contesti della serie</value>
   </data>
   <data name="settings_show_backgrounds_desc" xml:space="preserve">
-    <value>Rendering a toggle background</value>
+    <value>Mostra/nascondi gli sfondi</value>
   </data>
   <data name="settings_show_blue_wires" xml:space="preserve">
     <value>Mostra i Fili Blu</value>
   </data>
   <data name="settings_show_blue_wires_desc" xml:space="preserve">
-    <value>Visibilità a toggle blue wire</value>
+    <value>Mostra/nascondi i fili blu</value>
   </data>
   <data name="settings_show_coatings" xml:space="preserve">
     <value>Rivestimenti per esposizione</value>
@@ -3681,13 +3681,13 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Mostra i fili verdi</value>
   </data>
   <data name="settings_show_green_wires_desc" xml:space="preserve">
-    <value>Visibilità a toggle green wire</value>
+    <value>Mostra/nascondi i fili verdi</value>
   </data>
   <data name="settings_show_grid" xml:space="preserve">
     <value>Griglia di Spettacolo</value>
   </data>
   <data name="settings_show_grid_desc" xml:space="preserve">
-    <value>Sovrapposizione a griglia toggle</value>
+    <value>Mostra/nascondi la griglia</value>
   </data>
   <data name="settings_show_liquid" xml:space="preserve">
     <value>Show Liquid</value>
@@ -3696,7 +3696,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Attiva la visibilità dello strato liquido</value>
   </data>
   <data name="settings_show_news" xml:space="preserve">
-    <value>Notizie dello show</value>
+    <value>Mostra notizie</value>
   </data>
   <data name="settings_show_news_desc" xml:space="preserve">
     <value>Mostra notizie e annunci nel redattore</value>
@@ -3705,13 +3705,13 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Punti dello spettacolo</value>
   </data>
   <data name="settings_show_points_desc" xml:space="preserve">
-    <value>Toggle spawn/marcatori di punti NPC</value>
+    <value>Mostra/nascondi gli indicatori dei punti di comparsa e dei PNG</value>
   </data>
   <data name="settings_show_red_wires" xml:space="preserve">
     <value>Mostra i fili rossi</value>
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
-    <value>Visibilità a toggle red wire</value>
+    <value>Mostra/nascondi i fili rossi</value>
   </data>
   <data name="settings_show_splash_screen" xml:space="preserve">
     <value>Mostra la schermata di avvio introduttiva</value>
@@ -3723,25 +3723,25 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Mostra le texture</value>
   </data>
   <data name="settings_show_textures_desc" xml:space="preserve">
-    <value>Rendering delle texture delle tile toggle</value>
+    <value>Mostra/nascondi le texture dei blocchi</value>
   </data>
   <data name="settings_show_tiles" xml:space="preserve">
     <value>Tessere Mostra</value>
   </data>
   <data name="settings_show_tiles_desc" xml:space="preserve">
-    <value>Visibilità del layer delle tessere toggle</value>
+    <value>Mostra/nascondi il livello dei blocchi</value>
   </data>
   <data name="settings_show_walls" xml:space="preserve">
     <value>Muri espositivi</value>
   </data>
   <data name="settings_show_walls_desc" xml:space="preserve">
-    <value>Visibilità dello strato muro a toggle</value>
+    <value>Mostra/nascondi il livello delle pareti</value>
   </data>
   <data name="settings_show_yellow_wires" xml:space="preserve">
     <value>Mostra fili gialli</value>
   </data>
   <data name="settings_show_yellow_wires_desc" xml:space="preserve">
-    <value>Visibilità a toggle filo giallo</value>
+    <value>Mostra/nascondi i fili gialli</value>
   </data>
   <data name="settings_sprite_thumbnail" xml:space="preserve">
     <value>Dimensione della miniatura dello sprite</value>
@@ -3904,7 +3904,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Gambe</value>
   </data>
   <data name="specialtile_label_mannequin" xml:space="preserve">
-    <value>Mannechino</value>
+    <value>Manichino</value>
   </data>
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
     <value>Abbigliamento manichino</value>
@@ -3937,7 +3937,7 @@ Verifica che questa cartella esista e che TEdit disponga dei permessi di lettura
     <value>Decorazioni per alberi di Natale</value>
   </data>
   <data name="specialtile_label_xmas_garland" xml:space="preserve">
-    <value>Garland</value>
+    <value>Ghirlande</value>
   </data>
   <data name="specialtile_label_xmas_lights" xml:space="preserve">
     <value>Luci</value>
@@ -4263,7 +4263,7 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Bestiario</value>
   </data>
   <data name="tool_brush_flip_h_tooltip" xml:space="preserve">
-    <value>Flip Orizzontale</value>
+    <value>Capovolgi orizzontalmente</value>
   </data>
   <data name="tool_brush_flip_label" xml:space="preserve">
     <value>Flip</value>
@@ -4284,7 +4284,7 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Scaletta</value>
   </data>
   <data name="tool_brush_outline_tooltip" xml:space="preserve">
-    <value>Toggle Draw Outline (stanza)</value>
+    <value>Attiva/disattiva il disegno del contorno (stanza)</value>
   </data>
   <data name="tool_brush_rotation_label" xml:space="preserve">
     <value>Rotazione</value>
@@ -4341,7 +4341,7 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Sprite Paste</value>
   </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
-    <value>Pasta Tiles</value>
+    <value>Incolla blocchi</value>
   </data>
   <data name="tool_clipboard_ispastewalls" xml:space="preserve">
     <value>Muri di Pasta</value>
@@ -4476,10 +4476,10 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Aggiungi una scatola di incrocio rivolta a sinistra.</value>
   </data>
   <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>Aggiungi una scatola di derivazione defualt.</value>
+    <value>Aggiungi una scatola di giunzione predefinita.</value>
   </data>
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
-    <value>Aggiungi una scatola di scrocchiamento esposta a destra.</value>
+    <value>Aggiungi una scatola di giunzione rivolta a destra.</value>
   </data>
   <data name="tool_paint_liquid_header" xml:space="preserve">
     <value>Liquido</value>
@@ -4758,7 +4758,7 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Libro di Combattimento Volume Due</value>
   </data>
   <data name="tool_wp_console" xml:space="preserve">
-    <value>Versione Console World</value>
+    <value>Versione del mondo per console</value>
   </data>
   <data name="tool_wp_copper" xml:space="preserve">
     <value>Copper Tier</value>
@@ -4776,7 +4776,7 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Modalità difficile</value>
   </data>
   <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>Non Famare il Mondo</value>
+    <value>Mondo Don’t Starve</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>Mondo degli Ubriachi</value>
@@ -4842,7 +4842,7 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Tipo di invasione</value>
   </data>
   <data name="tool_wp_invasion_x" xml:space="preserve">
-    <value>Obiettivo Invasion X</value>
+    <value>Coordinata X dell’obiettivo dell’invasione</value>
   </data>
   <data name="tool_wp_iron" xml:space="preserve">
     <value>Iron Tier</value>
@@ -4863,7 +4863,7 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Manuale notturno delle lanterne</value>
   </data>
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
-    <value>La Lantern Night Next è autentica</value>
+    <value>La prossima Notte delle Lanterne è naturale</value>
   </data>
   <data name="tool_wp_meteor" xml:space="preserve">
     <value>Meteor</value>
@@ -4878,7 +4878,7 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Luna di Sangue</value>
   </data>
   <data name="tool_wp_moon_eclipse" xml:space="preserve">
-    <value>È Eclipse</value>
+    <value>Eclissi attiva</value>
   </data>
   <data name="tool_wp_moon_phase" xml:space="preserve">
     <value>Fase lunare</value>
@@ -5010,7 +5010,7 @@ Vuoi abilitare la segnalazione degli errori?</value>
     <value>Partito della Morte</value>
   </data>
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
-    <value>Bisaccio del Mercagliante</value>
+    <value>Bisaccia del venditore ambulante</value>
   </data>
   <data name="tool_wp_pillars_active" xml:space="preserve">
     <value>Pilastri attivi</value>

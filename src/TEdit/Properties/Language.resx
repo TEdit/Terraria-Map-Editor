@@ -732,7 +732,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Crop World</value>
   </data>
   <data name="menu_edit_cut" xml:space="preserve">
-    <value>Cu_t,saveas_preserve_all=Preserve newer tile/wall/item data</value>
+    <value>Cu_t</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Delete Selection</value>
@@ -1546,7 +1546,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Using Biome Torches</value>
   </data>
   <data name="plugin_blockshuffle_apply_chance_all" xml:space="preserve">
-    <value>Apply %-chance to everything</value>
+    <value>Apply percentage chance to everything</value>
   </data>
   <data name="plugin_blockshuffle_count_liquids" xml:space="preserve">
     <value>Also count liquids as empty (best with walls)</value>
@@ -1744,7 +1744,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Change the A=.</value>
   </data>
   <data name="plugin_pixelart_change_sigma_tooltip" xml:space="preserve">
-    <value>Change the Sigma=.</value>
+    <value>Change the Gaussian blur sigma value.</value>
   </data>
   <data name="plugin_pixelart_color_filter_data" xml:space="preserve">
     <value>Color Filter Data:</value>
@@ -2643,7 +2643,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Filter</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Filter: </value>
+    <value>Filter:</value>
   </data>
   <data name="sprite_mods_label" xml:space="preserve">
     <value>Mods</value>
@@ -3011,7 +3011,7 @@ Would you like to enable error reporting?</value>
     <value>Add left facing intersection junction box.</value>
   </data>
   <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>Add defualt junction box.</value>
+    <value>Add default junction box.</value>
   </data>
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
     <value>Add right facing intersection junction box.</value>
@@ -3617,7 +3617,7 @@ Would you like to enable error reporting?</value>
     <value>Severity</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>Indended Severity</value>
+    <value>Intended Severity</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>Time Left</value>
@@ -4770,7 +4770,7 @@ The error is :
     <value>Load Complete.</value>
   </data>
   <data name="progress_validating_complete" xml:space="preserve">
-    <value>Validating Complete...</value>
+    <value>Validation Complete...</value>
   </data>
   <data name="progress_resetting_time" xml:space="preserve">
     <value>Resetting Time...</value>

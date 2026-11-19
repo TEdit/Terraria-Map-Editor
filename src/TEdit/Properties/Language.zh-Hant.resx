@@ -295,7 +295,7 @@
     <value>僅限樹木 B</value>
   </data>
   <data name="bg_tree_boreal" xml:space="preserve">
-    <value>針葉林 биомы?</value>
+    <value>針葉林</value>
   </data>
   <data name="bg_tree_jungle" xml:space="preserve">
     <value>類似叢林的</value>
@@ -386,7 +386,7 @@
     <value>兩者皆有</value>
   </data>
   <data name="common_browse" xml:space="preserve">
-    <value>瀏覽...</value>
+    <value>瀏覽……</value>
   </data>
   <data name="common_cancel" xml:space="preserve">
     <value>取消</value>
@@ -1008,7 +1008,7 @@ TEdit 最大世界尺寸：{1}
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>匯出的圖片大小為 {0}×{1} 像素（{2} 百萬像素，預估檔案大小為 {3}）。這可能需要一些時間。是否繼續？</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
@@ -1020,7 +1020,7 @@ TEdit 最大世界尺寸：{1}
     <value>地圖磚已導出至 {0}</value>
   </data>
   <data name="export_tiles_progress" xml:space="preserve">
-    <value>正在導出磚塊：縮放 {0}，磚塊 {1}/{2}...</value>
+    <value>正在導出磚塊：縮放 {0}，磚塊 {1}/{2}……</value>
   </data>
   <data name="export_tiles_warning" xml:space="preserve">
     <value>這將導出 {0} 塊在 {1} 個縮放級別中。要繼續嗎？</value>
@@ -1653,7 +1653,7 @@ TEdit 最大世界尺寸：{1}
     <value>接線盒：</value>
   </data>
   <data name="keybind_capture_instruction" xml:space="preserve">
-    <value>按鍵、滑鼠或滾輪......</value>
+    <value>按鍵、滑鼠或滾輪……</value>
   </data>
   <data name="keybind_capture_modifiers" xml:space="preserve">
     <value>（可選用 Ctrl、Shift 或 Alt 修飾鍵）</value>
@@ -1845,7 +1845,7 @@ TEdit 最大世界尺寸：{1}
     <value>Half Texture (8px/tile)</value>
   </data>
   <data name="menu_edit_export_map_tiles" xml:space="preserve">
-    <value>地圖磚......</value>
+    <value>地圖磚……</value>
   </data>
   <data name="menu_edit_export_pixel_map" xml:space="preserve">
     <value>Pixel Map (1px/tile)</value>
@@ -1878,7 +1878,7 @@ TEdit 最大世界尺寸：{1}
     <value>退出</value>
   </data>
   <data name="menu_file_export_map_tiles" xml:space="preserve">
-    <value>匯出地圖磚塊......</value>
+    <value>匯出地圖磚塊……</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>新</value>
@@ -1899,7 +1899,7 @@ TEdit 最大世界尺寸：{1}
     <value>立即查看最新消息</value>
   </data>
   <data name="menu_file_worlds" xml:space="preserve">
-    <value>世界探險家...</value>
+    <value>世界探險家……</value>
   </data>
   <data name="menu_filter" xml:space="preserve">
     <value>濾波器</value>
@@ -1983,7 +1983,7 @@ TEdit 最大世界尺寸：{1}
     <value>開啟日誌檔案</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>設定......</value>
+    <value>設定……</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
     <value>更新</value>
@@ -2371,10 +2371,10 @@ TEdit 最大世界尺寸：{1}
     <value>閃爍</value>
   </data>
   <data name="npc_search_placeholder" xml:space="preserve">
-    <value>搜尋......</value>
+    <value>搜尋……</value>
   </data>
   <data name="overflow_more_panels" xml:space="preserve">
-    <value>更多面板…</value>
+    <value>更多面板……</value>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>液體</value>
@@ -2437,25 +2437,25 @@ TEdit 最大世界尺寸：{1}
     <value>檢查所有可見的物品</value>
   </data>
   <data name="picker_search_items_placeholder" xml:space="preserve">
-    <value>搜尋物品......</value>
+    <value>搜尋物品……</value>
   </data>
   <data name="picker_search_placeholder" xml:space="preserve">
-    <value>搜尋......</value>
+    <value>搜尋……</value>
   </data>
   <data name="picker_search_platforms_placeholder" xml:space="preserve">
-    <value>搜尋平台......</value>
+    <value>搜尋平台……</value>
   </data>
   <data name="picker_search_prefix_placeholder" xml:space="preserve">
     <value>前綴</value>
   </data>
   <data name="picker_search_sprites_placeholder" xml:space="preserve">
-    <value>搜尋精靈......</value>
+    <value>搜尋精靈……</value>
   </data>
   <data name="picker_search_tiles_placeholder" xml:space="preserve">
-    <value>搜尋格子......</value>
+    <value>搜尋格子……</value>
   </data>
   <data name="picker_search_walls_placeholder" xml:space="preserve">
-    <value>搜查牆壁......</value>
+    <value>搜查牆壁……</value>
   </data>
   <data name="picker_tab_mods" xml:space="preserve">
     <value>Mods</value>
@@ -2556,7 +2556,7 @@ TEdit 最大世界尺寸：{1}
     <value>儲存玩家</value>
   </data>
   <data name="player_editor_save_as" xml:space="preserve">
-    <value>將玩家存為......</value>
+    <value>將玩家存為……</value>
   </data>
   <data name="player_editor_save_canceled" xml:space="preserve">
     <value>已取消儲存：玩家檔案已被外部修改。</value>
@@ -2928,10 +2928,10 @@ TEdit 最大世界尺寸：{1}
     <value>安全建造</value>
   </data>
   <data name="plugin_pixelart_calc" xml:space="preserve">
-    <value>計算中…</value>
+    <value>計算中……</value>
   </data>
   <data name="plugin_pixelart_calculating" xml:space="preserve">
-    <value>計算中...</value>
+    <value>計算中……</value>
   </data>
   <data name="plugin_pixelart_cancel_conversion" xml:space="preserve">
     <value>取消轉換</value>
@@ -3024,7 +3024,7 @@ TEdit 最大世界尺寸：{1}
     <value>產生藍圖</value>
   </data>
   <data name="plugin_pixelart_generate_schematic_tooltip" xml:space="preserve">
-    <value>渲染像素藝術時產生結構檔案（對速度略有影響）</value>
+    <value>渲染像素藝術時產生結構檔案（對速度略有影響）。</value>
   </data>
   <data name="plugin_pixelart_grid_color" xml:space="preserve">
     <value>網格顏色</value>
@@ -3090,7 +3090,7 @@ TEdit 最大世界尺寸：{1}
     <value>進度條</value>
   </data>
   <data name="plugin_pixelart_progress_bar_tooltip" xml:space="preserve">
-    <value>顯示像素藝術繪製進度（會稍微影響速度）</value>
+    <value>顯示像素藝術繪製進度（會稍微影響速度）。</value>
   </data>
   <data name="plugin_pixelart_render_cancelled" xml:space="preserve">
     <value>渲染已取消。</value>
@@ -3302,7 +3302,7 @@ TEdit 最大世界尺寸：{1}
     <value>解鎖所有寶箱</value>
   </data>
   <data name="progress_calculating_colors" xml:space="preserve">
-    <value>正在計算顏色…</value>
+    <value>正在計算顏色……</value>
   </data>
   <data name="progress_cloning_world" xml:space="preserve">
     <value>正在複製世界……</value>
@@ -3323,7 +3323,7 @@ TEdit 最大世界尺寸：{1}
     <value>正在生成地底世界……</value>
   </data>
   <data name="progress_generating_world" xml:space="preserve">
-    <value>正在生成世界…</value>
+    <value>正在生成世界……</value>
   </data>
   <data name="progress_loaded_windows_phone_header" xml:space="preserve">
     <value>已載入 Windows Phone 世界標頭。</value>
@@ -3332,7 +3332,7 @@ TEdit 最大世界尺寸：{1}
     <value>正在載入寶箱……</value>
   </data>
   <data name="progress_loading_file_header" xml:space="preserve">
-    <value>正在載入檔案標頭…</value>
+    <value>正在載入檔案標頭……</value>
   </data>
   <data name="progress_loading_legacy_winphone_tiles" xml:space="preserve">
     <value>正在載入舊版 Windows Phone 磁貼……</value>
@@ -3341,7 +3341,7 @@ TEdit 最大世界尺寸：{1}
     <value>正在載入 NPC……</value>
   </data>
   <data name="progress_loading_npc_data" xml:space="preserve">
-    <value>正在載入 NPC 資料...</value>
+    <value>正在載入 NPC 資料……</value>
   </data>
   <data name="progress_loading_npc_names" xml:space="preserve">
     <value>正在載入 NPC 名稱……</value>
@@ -3350,13 +3350,13 @@ TEdit 最大世界尺寸：{1}
     <value>正在載入告示牌……</value>
   </data>
   <data name="progress_loading_tiles" xml:space="preserve">
-    <value>正在載入圖塊...</value>
+    <value>正在載入圖塊……</value>
   </data>
   <data name="progress_loading_tile_entities_section" xml:space="preserve">
     <value>正在載入圖格實體區段……</value>
   </data>
   <data name="progress_loading_tmodloader_data" xml:space="preserve">
-    <value>正在載入 tModLoader 資料…</value>
+    <value>正在載入 tModLoader 資料……</value>
   </data>
   <data name="progress_loading_winphone_tiles" xml:space="preserve">
     <value>正在載入 Windows Phone 磚塊……</value>
@@ -3392,28 +3392,28 @@ TEdit 最大世界尺寸：{1}
     <value>儲存完成。</value>
   </data>
   <data name="progress_save_creative_powers" xml:space="preserve">
-    <value>儲存創意能力...</value>
+    <value>儲存創意能力……</value>
   </data>
   <data name="progress_save_footers" xml:space="preserve">
-    <value>儲存頁尾...</value>
+    <value>儲存頁尾……</value>
   </data>
   <data name="progress_save_headers" xml:space="preserve">
-    <value>儲存標頭...</value>
+    <value>儲存標頭……</value>
   </data>
   <data name="progress_save_npcs" xml:space="preserve">
-    <value>儲存 NPC…</value>
+    <value>儲存 NPC……</value>
   </data>
   <data name="progress_save_signs" xml:space="preserve">
-    <value>儲存告示牌...</value>
+    <value>儲存告示牌……</value>
   </data>
   <data name="progress_save_tiles" xml:space="preserve">
-    <value>儲存圖塊…</value>
+    <value>儲存圖塊……</value>
   </data>
   <data name="progress_save_tile_entities_section" xml:space="preserve">
-    <value>儲存圖格實體區段...</value>
+    <value>儲存圖格實體區段……</value>
   </data>
   <data name="progress_save_town_manager" xml:space="preserve">
-    <value>儲存城鎮管理員...</value>
+    <value>儲存城鎮管理員……</value>
   </data>
   <data name="progress_save_weighted_pressure_plates" xml:space="preserve">
     <value>儲存加重壓力板……</value>
@@ -3440,19 +3440,19 @@ TEdit 最大世界尺寸：{1}
     <value>正在儲存驗證資料……</value>
   </data>
   <data name="progress_saving_world" xml:space="preserve">
-    <value>正在儲存世界...</value>
+    <value>正在儲存世界……</value>
   </data>
   <data name="progress_settling_sand" xml:space="preserve">
     <value>沙子沉積中……</value>
   </data>
   <data name="progress_validating_complete" xml:space="preserve">
-    <value>正在完成驗證……</value>
+    <value>驗證完成……</value>
   </data>
   <data name="progress_validating_file" xml:space="preserve">
-    <value>正在驗證檔案...</value>
+    <value>正在驗證檔案……</value>
   </data>
   <data name="progress_validating_world" xml:space="preserve">
-    <value>正在驗證世界…</value>
+    <value>正在驗證世界……</value>
   </data>
   <data name="progress_verifying_file" xml:space="preserve">
     <value>正在驗證檔案……</value>
@@ -3618,7 +3618,7 @@ TEdit 最大世界尺寸：{1}
     <value>在小地圖中顯示天空/洞穴/地獄背景顏色</value>
   </data>
   <data name="settings_picker_hold_threshold" xml:space="preserve">
-    <value>Picker 保持閾值（MS）</value>
+    <value>選取工具長按門檻（ms）</value>
   </data>
   <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
     <value>要按多久 Picker 鍵才會變成臨時 picker（100-500ms）</value>
@@ -3639,7 +3639,7 @@ TEdit 最大世界尺寸：{1}
     <value>腳本可執行的最長時間（10-300 秒）</value>
   </data>
   <data name="settings_search_placeholder" xml:space="preserve">
-    <value>搜尋設定......</value>
+    <value>搜尋設定……</value>
   </data>
   <data name="settings_show_actuators" xml:space="preserve">
     <value>顯示制動器</value>
@@ -5221,7 +5221,7 @@ TEdit 最大世界尺寸：{1}
     <comment>Toast message for NotifyOnly mode when update is found</comment>
   </data>
   <data name="update_checking" xml:space="preserve">
-    <value>查看最新消息...</value>
+    <value>查看最新消息……</value>
   </data>
   <data name="update_check_failed" xml:space="preserve">
     <value>更新檢查失敗。</value>
@@ -5271,7 +5271,7 @@ TEdit 最大世界尺寸：{1}
     <value>備援存在</value>
   </data>
   <data name="world_explorer_browse" xml:space="preserve">
-    <value>瀏覽...</value>
+    <value>瀏覽……</value>
   </data>
   <data name="world_explorer_clear_cache" xml:space="preserve">
     <value>清除快取</value>
@@ -5304,7 +5304,7 @@ TEdit 最大世界尺寸：{1}
     <value>刪除備份</value>
   </data>
   <data name="world_explorer_loading_preview" xml:space="preserve">
-    <value>載入預覽...</value>
+    <value>載入預覽……</value>
   </data>
   <data name="world_explorer_modified_days_ago" xml:space="preserve">
     <value>{0} 天前</value>
@@ -5343,7 +5343,7 @@ TEdit 最大世界尺寸：{1}
     <value>預覽世界地圖</value>
   </data>
   <data name="world_explorer_search_placeholder" xml:space="preserve">
-    <value>搜尋世界...</value>
+    <value>搜尋世界……</value>
   </data>
   <data name="world_explorer_tab_tmodloader" xml:space="preserve">
     <value>tModLoader</value>

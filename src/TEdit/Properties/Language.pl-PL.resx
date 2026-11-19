@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="about_compatible_version" xml:space="preserve">
-    <value>Wersja Compatible World</value>
+    <value>Obsługiwana wersja świata</value>
   </data>
   <data name="about_content_path" xml:space="preserve">
     <value>Ścieżka treści</value>
@@ -229,7 +229,7 @@
     <value>Mówić</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
-    <value>Zaaktualizuj</value>
+    <value>Zaktualizuj</value>
   </data>
   <data name="bg_cave_blue" xml:space="preserve">
     <value>Niebieski</value>
@@ -881,7 +881,7 @@ Błąd:
     <value>Automatycznie (zgodnie z ustawieniami systemu)</value>
   </data>
   <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
   </data>
   <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -1008,7 +1008,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>Eksportowany obraz będzie miał {0}×{1} pikseli ({2} megapikseli, szacowany rozmiar pliku: {3}). Może to chwilę potrwać. Kontynuować?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
@@ -1986,7 +1986,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Ustawienia...</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
-    <value>Zaaktualizuj</value>
+    <value>Zaktualizuj</value>
   </data>
   <data name="menu_help_wiki" xml:space="preserve">
     <value>Wiki</value>
@@ -2028,7 +2028,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Rosyjski</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
   </data>
   <data name="menu_language_zh_hant" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -2260,7 +2260,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Przybliż mapę do tego kafelka</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
-    <value>Dodaj popioł</value>
+    <value>Dodaj popiół</value>
   </data>
   <data name="newworld_add_grass" xml:space="preserve">
     <value>Dodaj trawę</value>
@@ -3479,7 +3479,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>API</value>
   </data>
   <data name="scripting_api_generate_tooltip" xml:space="preserve">
-    <value>Generuj APIREFERENCE.md</value>
+    <value>Generuj API_REFERENCE.md</value>
   </data>
   <data name="scripting_api_tooltip" xml:space="preserve">
     <value>Przełącz panel referencyjny API</value>
@@ -3576,7 +3576,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Włącz edytor odtwarzaczy</value>
   </data>
   <data name="settings_enable_player_editor_desc" xml:space="preserve">
-    <value>Pokaż zakładkę Edytor Gracza w pasku bocznym do edycji plików odtwarzaczy .plr (eksperymentalnie)</value>
+    <value>Pokaż kartę edytora gracza na pasku bocznym, aby edytować pliki gracza .plr (funkcja eksperymentalna)</value>
   </data>
   <data name="settings_error_reporting" xml:space="preserve">
     <value>Włącz Raportowanie Błędów</value>
@@ -3666,7 +3666,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Przełączanie renderowania tła</value>
   </data>
   <data name="settings_show_blue_wires" xml:space="preserve">
-    <value>Pokaż Blue Wires</value>
+    <value>Pokaż niebieskie przewody</value>
   </data>
   <data name="settings_show_blue_wires_desc" xml:space="preserve">
     <value>Przełączaj widoczność niebieskiego przewodu</value>
@@ -3678,7 +3678,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Widoczność warstwy powłoki przełączającej</value>
   </data>
   <data name="settings_show_green_wires" xml:space="preserve">
-    <value>Pokaż Green Wires</value>
+    <value>Pokaż zielone przewody</value>
   </data>
   <data name="settings_show_green_wires_desc" xml:space="preserve">
     <value>Przełączaj widoczność na zielonym przewodzie</value>
@@ -3708,7 +3708,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Przełączaj znaczniki punktów pojawiania się NPC</value>
   </data>
   <data name="settings_show_red_wires" xml:space="preserve">
-    <value>Pokaż Red Wires</value>
+    <value>Pokaż czerwone przewody</value>
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
     <value>Przełączaj widoczność czerwonego przewodu</value>
@@ -3729,7 +3729,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Kafelki pokazowe</value>
   </data>
   <data name="settings_show_tiles_desc" xml:space="preserve">
-    <value>Widoczność warstwy kafelków typu toggle</value>
+    <value>Pokaż lub ukryj warstwę kafelków</value>
   </data>
   <data name="settings_show_walls" xml:space="preserve">
     <value>Ściany pokazowe</value>
@@ -3895,7 +3895,7 @@ Sprawdź, czy ten folder istnieje i czy TEdit ma do niego dostęp do odczytu.
     <value>Głowa</value>
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
-    <value>Obramówka Przedmiotów</value>
+    <value>Zawartość ramki na przedmiot</value>
   </data>
   <data name="specialtile_label_kite" xml:space="preserve">
     <value>Drapieżnik</value>
@@ -4338,7 +4338,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Wklej Płynne</value>
   </data>
   <data name="tool_clipboard_ispastesprite" xml:space="preserve">
-    <value>Colar Sprites</value>
+    <value>Wklej sprite’y</value>
   </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
     <value>Wklej Płytki</value>
@@ -4362,7 +4362,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Obróć</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
-    <value>Zamrażanie biomu Spread</value>
+    <value>Zatrzymaj rozprzestrzenianie się biomów</value>
   </data>
   <data name="tool_creative_difficulty" xml:space="preserve">
     <value>Poziom trudności wroga</value>
@@ -4560,7 +4560,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Ołówek</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
-    <value>Próbnik - select tile color zaznacz admi</value>
+    <value>Próbnik — wybierz kolor kafelka</value>
   </data>
   <data name="tool_point_dungeon" xml:space="preserve">
     <value>Loch</value>
@@ -4764,7 +4764,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Wariant Miedzi</value>
   </data>
   <data name="tool_wp_crimson" xml:space="preserve">
-    <value>Szkartłat</value>
+    <value>Szkarłat</value>
   </data>
   <data name="tool_wp_cultist_delay" xml:space="preserve">
     <value>Opóźnienie kultystów</value>
@@ -4860,10 +4860,10 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Latarnia Noc Autentyczna</value>
   </data>
   <data name="tool_wp_lanternnight_manual" xml:space="preserve">
-    <value>Podręcznik Lantern Night</value>
+    <value>Ręczna noc latarni</value>
   </data>
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
-    <value>Noc Latarni Next jest autentyczna</value>
+    <value>Następna noc latarni jest naturalna</value>
   </data>
   <data name="tool_wp_meteor" xml:space="preserve">
     <value>Meteoryt</value>
@@ -5079,7 +5079,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Używaj tylko bezpiecznych wartości</value>
   </data>
   <data name="tool_wp_sandstorm" xml:space="preserve">
-    <value>Burza Piastkowa</value>
+    <value>Burza piaskowa</value>
   </data>
   <data name="tool_wp_sandstorm_active" xml:space="preserve">
     <value>Jest Burzowo</value>
@@ -5234,7 +5234,7 @@ Czy chcesz włączyć raportowanie błędów?</value>
     <value>Aktualizacja została pobrana. Restartować teraz, żeby aplikować?</value>
   </data>
   <data name="update_title" xml:space="preserve">
-    <value>Zaaktualizuj</value>
+    <value>Zaktualizuj</value>
   </data>
   <data name="update_up_to_date" xml:space="preserve">
     <value>TEdit jest aktualny.</value>

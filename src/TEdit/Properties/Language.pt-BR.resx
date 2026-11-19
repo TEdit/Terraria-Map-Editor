@@ -881,7 +881,7 @@ O erro é:
     <value>Automático (seguir o sistema)</value>
   </data>
   <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
   </data>
   <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -1008,7 +1008,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>A exportação terá {0}×{1} pixels ({2} megapixels, tamanho estimado do arquivo: {3}). Isso pode demorar um pouco. Continuar?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
@@ -1149,7 +1149,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Plantas Baixas Carmesim</value>
   </data>
   <data name="frame_text_critter_anchor" xml:space="preserve">
-    <value>Âncora de Criatura@endsection</value>
+    <value>Âncora de criatura</value>
   </data>
   <data name="frame_text_decos_3x2" xml:space="preserve">
     <value>Decorações (3x2)</value>
@@ -2028,7 +2028,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
   </data>
   <data name="menu_language_zh_hant" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -2260,7 +2260,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Aproximar o mapa para este bloco</value>
   </data>
   <data name="newworld_add_ash" xml:space="preserve">
-    <value>Adicionar Ash</value>
+    <value>Adicionar cinzas</value>
   </data>
   <data name="newworld_add_grass" xml:space="preserve">
     <value>Adicionar grama</value>
@@ -2311,7 +2311,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Gerar Minérios</value>
   </data>
   <data name="newworld_generate_underworld" xml:space="preserve">
-    <value>Gerar Underworld</value>
+    <value>Gerar o Submundo</value>
   </data>
   <data name="newworld_generation" xml:space="preserve">
     <value>Geração Mundial</value>
@@ -2350,7 +2350,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Ruído no Telhado</value>
   </data>
   <data name="newworld_seed" xml:space="preserve">
-    <value>World Id (Semente)</value>
+    <value>ID do mundo (semente)</value>
   </data>
   <data name="newworld_surface" xml:space="preserve">
     <value>Nível da superfície</value>
@@ -2509,7 +2509,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Bônus</value>
   </data>
   <data name="player_editor_clear_slot" xml:space="preserve">
-    <value>Slot Transparente</value>
+    <value>Limpar espaço</value>
   </data>
   <data name="player_editor_difficulty" xml:space="preserve">
     <value>Dificuldade</value>
@@ -2658,7 +2658,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Estatísticas</value>
   </data>
   <data name="player_stats_super_cart_enabled" xml:space="preserve">
-    <value>Super Cartuch Ativado</value>
+    <value>Super carrinho ativado</value>
   </data>
   <data name="player_stats_super_cart_unlocked" xml:space="preserve">
     <value>Super Carrinho Desbloqueado</value>
@@ -3503,7 +3503,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Run Script</value>
   </data>
   <data name="scripting_save_tooltip" xml:space="preserve">
-    <value>Script de salvamento</value>
+    <value>Salvar script</value>
   </data>
   <data name="scripting_stop" xml:space="preserve">
     <value>Pare</value>
@@ -3711,7 +3711,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Mostrar Fios Vermelhos</value>
   </data>
   <data name="settings_show_red_wires_desc" xml:space="preserve">
-    <value>Visibilidade do fio vermelho com toggle</value>
+    <value>Mostrar/ocultar fios vermelhos</value>
   </data>
   <data name="settings_show_splash_screen" xml:space="preserve">
     <value>Mostrar Tela de Introdução</value>
@@ -3741,7 +3741,7 @@ Verifique se essa pasta existe e se o TEdit tem permissão de leitura.
     <value>Fios Amarelos de Exibição</value>
   </data>
   <data name="settings_show_yellow_wires_desc" xml:space="preserve">
-    <value>Visibilidade do fio amarelo com toggle</value>
+    <value>Mostrar/ocultar fios amarelos</value>
   </data>
   <data name="settings_sprite_thumbnail" xml:space="preserve">
     <value>Tamanho da Miniatura do Sprite</value>
@@ -4362,7 +4362,7 @@ Você gostaria de ativar o relatório de erros?</value>
     <value>Girar</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
-    <value>Congelamento do bioma Spread</value>
+    <value>Congelar a propagação dos biomas</value>
   </data>
   <data name="tool_creative_difficulty" xml:space="preserve">
     <value>Dificuldade inimiga</value>
@@ -4428,13 +4428,13 @@ Você gostaria de ativar o relatório de erros?</value>
     <value>Musgo</value>
   </data>
   <data name="tool_morph_moss_type" xml:space="preserve">
-    <value>Tipo Moss</value>
+    <value>Tipo de musgo</value>
   </data>
   <data name="tool_morph_options" xml:space="preserve">
     <value>Opções</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
-    <value>Transformamento de bioma</value>
+    <value>Transformação de bioma</value>
   </data>
   <data name="tool_npc_add" xml:space="preserve">
     <value>Adicionar NPC</value>
@@ -4617,7 +4617,7 @@ Você gostaria de ativar o relatório de erros?</value>
     <value>Cenário da selva profunda</value>
   </data>
   <data name="tool_wp_bg_desert" xml:space="preserve">
-    <value>Cenário do do deserto</value>
+    <value>Cenário do deserto</value>
   </data>
   <data name="tool_wp_bg_forest" xml:space="preserve">
     <value>Cenário da floresta</value>
@@ -4872,7 +4872,7 @@ Você gostaria de ativar o relatório de erros?</value>
     <value>Invocar meteoro</value>
   </data>
   <data name="tool_wp_moondial_cooldown" xml:space="preserve">
-    <value>Discagem lunar Cooldown</value>
+    <value>Tempo de recarga do relógio lunar</value>
   </data>
   <data name="tool_wp_moon_blood" xml:space="preserve">
     <value>Lua de Sangue</value>
@@ -5199,7 +5199,7 @@ Você gostaria de ativar o relatório de erros?</value>
     <value>Use discagem lunar</value>
   </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
-    <value>Número de núvens</value>
+    <value>Número de nuvens</value>
   </data>
   <data name="tool_wp_weather_windspeed" xml:space="preserve">
     <value>Velocidade do vento</value>
@@ -5334,7 +5334,7 @@ Você gostaria de ativar o relatório de erros?</value>
     <value>Pin</value>
   </data>
   <data name="world_explorer_preview_backup_tooltip" xml:space="preserve">
-    <value>Backup de prévia</value>
+    <value>Visualizar cópia de segurança</value>
   </data>
   <data name="world_explorer_preview_format" xml:space="preserve">
     <value>Prévia: {0}</value>

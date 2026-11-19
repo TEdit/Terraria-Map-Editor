@@ -881,7 +881,7 @@ TEdit v{0}
     <value>Автоматически (как в системе)</value>
   </data>
   <data name="enum_LanguageSelection_Chinese" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
   </data>
   <data name="enum_LanguageSelection_ChineseTraditional" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -1008,7 +1008,7 @@ TEdit v{0}
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>Размер экспортируемого изображения: {0}×{1} пикселей ({2} мегапикселей, примерный размер файла: {3}). Это может занять некоторое время. Продолжить?</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
@@ -2028,7 +2028,7 @@ TEdit v{0}
     <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>中文</value>
+    <value>中文 (简体)</value>
   </data>
   <data name="menu_language_zh_hant" xml:space="preserve">
     <value>中文 (繁體)</value>
@@ -2145,13 +2145,13 @@ TEdit v{0}
     <value>Выбранные кадры</value>
   </data>
   <data name="menu_uveditor_setmanualuv" xml:space="preserve">
-    <value>Установить ручные УФ-фильтры для всех</value>
+    <value>Задать UV-координаты вручную для всех</value>
   </data>
   <data name="menu_uveditor_setvalues" xml:space="preserve">
     <value>Установить значения</value>
   </data>
   <data name="menu_uveditor_title" xml:space="preserve">
-    <value>УФ-редактор</value>
+    <value>Редактор UV-координат</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Требуется перезагрузка</value>
@@ -2485,7 +2485,7 @@ TEdit v{0}
     <value>Путь</value>
   </data>
   <data name="player_difficulty_mediumcore" xml:space="preserve">
-    <value>Среднеядзерный</value>
+    <value>Средний уровень сложности</value>
   </data>
   <data name="player_editor_appearance_colors" xml:space="preserve">
     <value>Цвета внешнего вида</value>
@@ -2658,10 +2658,10 @@ TEdit v{0}
     <value>Статистика</value>
   </data>
   <data name="player_stats_super_cart_enabled" xml:space="preserve">
-    <value>Включена суперкартридж</value>
+    <value>Супервагонетка включена</value>
   </data>
   <data name="player_stats_super_cart_unlocked" xml:space="preserve">
-    <value>Суперкарт открыт</value>
+    <value>Супервагонетка разблокирована</value>
   </data>
   <data name="player_stats_tax_money" xml:space="preserve">
     <value>Налоговые деньги:</value>
@@ -2760,7 +2760,7 @@ TEdit v{0}
     <value>Добавить</value>
   </data>
   <data name="plugin_housegen_import_hint" xml:space="preserve">
-    <value>Нажмите [...], чтобы импортировать шабему шаблона.</value>
+    <value>Нажмите [...], чтобы импортировать схему шаблона.</value>
   </data>
   <data name="plugin_housegen_json_count_error" xml:space="preserve">
     <value>{0} Проверьте значение «Count» в данных JSON и убедитесь, что оно соответствует связанной схеме.</value>
@@ -3594,7 +3594,7 @@ TEdit v{0}
     <value>Добавьте новую клавиатуру</value>
   </data>
   <data name="settings_keybind_remove_tooltip" xml:space="preserve">
-    <value>Сними эту переплетку</value>
+    <value>Удалить эту привязку</value>
   </data>
   <data name="settings_keybind_reset_tooltip" xml:space="preserve">
     <value>Сброс к стандартным привязкам</value>
@@ -3621,7 +3621,7 @@ TEdit v{0}
     <value>Порог удержания Пикера (ms)</value>
   </data>
   <data name="settings_picker_hold_threshold_desc" xml:space="preserve">
-    <value>Сколько времени удерживать клавишу Picker, прежде чем она станет временной медиатором (100-500 мс)?</value>
+    <value>Время удержания клавиши пипетки для её временного включения (100-500 мс)</value>
   </data>
   <data name="settings_realistic_colors" xml:space="preserve">
     <value>Используйте реалистичные цвета</value>
@@ -3642,10 +3642,10 @@ TEdit v{0}
     <value>Настройки поиска...</value>
   </data>
   <data name="settings_show_actuators" xml:space="preserve">
-    <value>Актуаторы шоу</value>
+    <value>Показать актуаторы</value>
   </data>
   <data name="settings_show_actuators_desc" xml:space="preserve">
-    <value>Видимость актуатора переключения</value>
+    <value>Показать или скрыть актуаторы</value>
   </data>
   <data name="settings_show_all_weapon_rack_items" xml:space="preserve">
     <value>Показать все предметы из стойки оружия</value>
@@ -5361,7 +5361,7 @@ TEdit v{0}
     <value>Переключение между мирами Vanilla и tModLoader</value>
   </data>
   <data name="world_explorer_unpin" xml:space="preserve">
-    <value>Раззакрепить</value>
+    <value>Открепить</value>
   </data>
   <data name="world_gamemode_expert" xml:space="preserve">
     <value>Эксперт</value>

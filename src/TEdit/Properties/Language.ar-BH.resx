@@ -1007,7 +1007,7 @@ TEdit الإصدار {0}
     <value>Export would be {0}×{1} pixels ({2} MP) which exceeds the {3} MP limit.</value>
   </data>
   <data name="export_size_warning" xml:space="preserve">
-    <value>The export will be {0}×{1} pixels ({2} megapixels). This may take a while. Continue?</value>
+    <value>سيكون حجم الصورة المصدّرة {0}×{1} بكسل ({2} ميجابكسل، وحجم الملف المقدّر {3}). قد يستغرق ذلك بعض الوقت. هل تريد المتابعة؟</value>
   </data>
   <data name="export_size_warning_title" xml:space="preserve">
     <value>Large Export Warning</value>
@@ -2762,7 +2762,8 @@ TEdit الإصدار {0}
     <value>انقر على [...] لاستيراد مخطط القالب</value>
   </data>
   <data name="plugin_housegen_json_count_error" xml:space="preserve">
-    <value>تحقّق من بيانات JSON للقيمة 'Count' للتأكد من تطابقها مع المخطط المرتبط بها.</value>
+    <value>{0}
+تحقّق من بيانات JSON للقيمة 'Count' للتأكد من تطابقها مع المخطط المرتبط بها.</value>
   </data>
   <data name="plugin_housegen_json_entry_error" xml:space="preserve">
     <value>تحقّق من بيانات JSON لـ{0} لـ{1}</value>
@@ -3445,7 +3446,7 @@ TEdit الإصدار {0}
     <value>جاري ترسيب الرمل...</value>
   </data>
   <data name="progress_validating_complete" xml:space="preserve">
-    <value>جارٍ التحقق... اكتمل 大发快三计划</value>
+    <value>اكتمل التحقق...</value>
   </data>
   <data name="progress_validating_file" xml:space="preserve">
     <value>جارٍ التحقق من الملف...</value>
